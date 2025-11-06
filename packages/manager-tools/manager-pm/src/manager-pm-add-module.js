@@ -23,10 +23,12 @@ async function main() {
       actionLabel: 'add-module',
       handler: addModuleToPnpm,
       usage: [
-        'Usage: yarn pm:add:module --module <package|path>',
+        'Usage: yarn pm:add:module --module <package|path> [--private]',
         'Examples:',
         '  yarn pm:add:module --module packages/manager/core/api',
         '  yarn pm:add:module --module @ovh-ux/manager-core-api',
+        '  yarn pm:add:module --module packages/manager/core/application --private',
+        '  yarn pm:add:module --module @ovh-ux/manager-core-utils --private',
       ],
     });
 

@@ -7,7 +7,9 @@ import process from 'node:process';
 import { promisify } from 'node:util';
 
 import {
+  managerRootPath,
   pnpmAppsPlaybookPath,
+  privateModulesPath,
   rootPackageJsonPath,
   yarnAppsPlaybookPath,
 } from '../../playbook/playbook-config.js';
@@ -456,4 +458,125 @@ export async function updateCatalog({ fromPath, toPath, appPath }) {
   }
 
   return true;
+}
+
+/**
+ * Ensure a module is registered in the private PNPM modules catalog.
+ *
+ * @param {Object} params
+ * @param {string} params.turboFilter - Turbo filter (e.g., "--filter @ovh-ux/manager-core-utils")
+ * @param {string} params.pnpmPath - Relative path to the module (e.g., "packages/manager/core/utils")
+ * @returns {Promise<boolean>} True if added, false if already present or invalid.
+ */
+export async function updatePrivateModulesCatalog({ turboFilter, pnpmPath }) {
+  logger.debug(`updatePrivateModulesCatalog(turboFilter="${turboFilter}", pnpmPath="${pnpmPath}")`);
+
+  try {
+    // 1️⃣ Ensure catalog file exists or initialize an empty one
+    let entries = [];
+    if (existsSync(privateModulesPath)) {
+      const raw = await fs.readFile(privateModulesPath, 'utf8');
+      try {
+        entries = JSON.parse(raw);
+      } catch (err) {
+        logger.error(`❌ Failed to parse ${privateModulesPath}: ${err.message}`);
+        return false;
+      }
+    } else {
+      logger.warn(`⚠️ Private modules catalog not found. Creating a new one.`);
+    }
+
+    if (!Array.isArray(entries)) {
+      logger.error(`❌ Invalid catalog format in ${privateModulesPath}: expected an array`);
+      entries = [];
+    }
+
+    // 2️⃣ Normalize inputs
+    const normalizedTurbo = turboFilter.trim();
+    const normalizedPnpm = pnpmPath.trim().replace(managerRootPath, '').replace(/^\/+/, '');
+
+    // 3️⃣ Check if already present
+    const alreadyExists = entries.some(
+      (entry) => entry.turbo === normalizedTurbo || entry.pnpm === normalizedPnpm,
+    );
+
+    if (alreadyExists) {
+      logger.info(`ℹ️ Private module already registered: ${normalizedPnpm}`);
+      return false;
+    }
+
+    // 4️⃣ Add and sort alphabetically by pnpm path
+    entries.push({ turbo: normalizedTurbo, pnpm: normalizedPnpm });
+    entries.sort((a, b) => a.pnpm.localeCompare(b.pnpm));
+
+    // 5️⃣ Persist
+    const jsonData = JSON.stringify(entries, null, 2);
+    await fs.writeFile(privateModulesPath, jsonData, 'utf8');
+
+    logger.success(`➕ Added private module to catalog: ${normalizedTurbo} (${normalizedPnpm})`);
+    logger.debug(`🗂 Updated ${privateModulesPath} with ${entries.length} entries`);
+    return true;
+  } catch (err) {
+    logger.error(`❌ Failed to update private modules catalog: ${err.message}`);
+    logger.debug(`Stack trace: ${err.stack}`);
+    return false;
+  }
+}
+
+/**
+ * Remove a module from the private PNPM modules catalog.
+ *
+ * @param {Object} params
+ * @param {string} params.turboFilter - Turbo filter (e.g., "--filter @ovh-ux/manager-core-utils")
+ * @param {string} params.pnpmPath - Relative path to the module (e.g., "packages/manager/core/utils")
+ * @returns {Promise<boolean>} True if removed, false if not found or invalid.
+ */
+export async function removePrivateModuleFromCatalog({ turboFilter, pnpmPath }) {
+  logger.debug(
+    `removePrivateModuleFromCatalog(turboFilter="${turboFilter}", pnpmPath="${pnpmPath}")`,
+  );
+
+  try {
+    if (!existsSync(privateModulesPath)) {
+      logger.info(`ℹ️ Private catalog file not found: ${privateModulesPath}`);
+      return false;
+    }
+
+    const raw = await fs.readFile(privateModulesPath, 'utf8');
+    let entries = [];
+    try {
+      entries = JSON.parse(raw);
+    } catch (err) {
+      logger.error(`❌ Failed to parse ${privateModulesPath}: ${err.message}`);
+      return false;
+    }
+
+    if (!Array.isArray(entries)) {
+      logger.error(`❌ Invalid catalog format in ${privateModulesPath}: expected an array`);
+      return false;
+    }
+
+    const normalizedTurbo = turboFilter.trim();
+    const normalizedPnpm = pnpmPath.trim();
+
+    const beforeCount = entries.length;
+    entries = entries.filter(
+      (entry) => entry.turbo !== normalizedTurbo && entry.pnpm !== normalizedPnpm,
+    );
+
+    if (entries.length === beforeCount) {
+      logger.info(`ℹ️ Private module not found in catalog: ${normalizedPnpm}`);
+      return false;
+    }
+
+    await fs.writeFile(privateModulesPath, JSON.stringify(entries, null, 2), 'utf8');
+    logger.success(
+      `🗑️  Removed private module from catalog: ${normalizedTurbo} (${normalizedPnpm})`,
+    );
+    return true;
+  } catch (err) {
+    logger.error(`❌ Failed to remove private module from catalog: ${err.message}`);
+    logger.debug(`Stack trace: ${err.stack}`);
+    return false;
+  }
 }

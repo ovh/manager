@@ -83,18 +83,21 @@ function parseModuleArgument(argv = process.argv.slice(2)) {
 export async function runModuleCli({ actionLabel, handler, usageLines, successEmoji = '✅' }) {
   const moduleReference = parseModuleArgument();
 
+  // Detect --private flag
+  const isPrivate = process.argv.includes('--private') || process.argv.includes('-p');
+
   if (!moduleReference) {
     logger.error('❌ Missing required --module <package|path>.');
     printUsageAndExit(usageLines);
     return;
   }
 
-  logger.debug(`[${actionLabel}] moduleReference="${moduleReference}"`);
+  logger.debug(`[${actionLabel}] moduleReference="${moduleReference}", isPrivate=${isPrivate}`);
 
   const startTimestamp = Date.now();
 
   try {
-    await handler(moduleReference);
+    await handler(moduleReference, { isPrivate });
 
     const durationSeconds = ((Date.now() - startTimestamp) / 1000).toFixed(2);
     logger.success(`${successEmoji} manager-pm ${actionLabel} completed in ${durationSeconds}s`);

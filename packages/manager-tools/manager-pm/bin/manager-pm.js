@@ -125,8 +125,8 @@ ACTIONS
     lint    --app <name> [--fix ...]     Lint one app (supports --fix and other ESLint flags)
 
   Module:
-    add:module     --module <package|path>     Add a module to the workspace
-    remove:module  --module <package|path>     Remove a module from the workspace
+    add:module     --module <package|path> [--private]     Add a module (optionally private) to PNPM
+    remove:module  --module <package|path> [--private]     Remove a module (optionally private) from PNPM
 
   Turbo passthrough (flags forwarded to Turbo):
     buildCI [--filter <expr>] [other turbo flags]

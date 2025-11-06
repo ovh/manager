@@ -1,15 +1,15 @@
-# manager-pm — Hybrid **PNPM + Yarn** Orchestration for Incremental Adoption
+manager-pm — Hybrid **PNPM + Yarn** Orchestration for Incremental Adoption
 
 `manager-pm` enables a smooth, reversible migration where the monorepo keeps **Yarn** at the root while selected apps adopt **PNPM** in isolation. It manages catalogs of apps, patches configs safely, bootstraps a pinned PNPM binary, and gives you one CLI to build/test/lint across **both** worlds.
 
-> Repo assumptions: applications live under `packages/manager/apps/*` and private packages under `packages/manager/{core,modules,tools}` and `packages/components`.
+> Repo assumptions: applications live under `packages/manager/apps/*` and modules (public and private) under `packages/manager/{core,modules,tools}` and `packages/components`.
 
 ---
 
 ## Why this exists
 
 - Keep the **root** (lockfile, scripts, Turbo) stable on Yarn.
-- Migrate apps **one by one** to PNPM with minimal blast radius.
+- Migrate apps and modules **one by one** to PNPM with minimal blast radius.
 - Run Turbo tasks across **all** apps by temporarily merging workspaces.
 - Normalize risky deps (React, types, test stack) to prevent duplication conflicts.
 - Stay reproducible by pinning a PNPM binary under `target/pnpm/`.
@@ -553,7 +553,8 @@ package_path=$(yarn -s manager-pm --silent --action lerna list -ap --scope="XXX"
 
 ## Typical workflows
 
-### Migrate an app to PNPM
+### Migrate an application to PNPM
+
 ```bash
 yarn pm:add:app --app <name|package|path>
 yarn install
@@ -566,13 +567,122 @@ What happens:
 - Per-app `pnpm-workspace.yaml` generated and **PNPM install** executed
 - Root workspaces restored
 
-### Roll back to Yarn
+---
+
+### Roll back and application to Yarn
+
 ```bash
 yarn pm:remove:app --app <name|package|path>
 yarn install
 ```
 - App is moved back to **Yarn catalog**
 - PNPM leftovers cleaned; root restored
+
+---
+
+### Migrate a **Private Module** to PNPM
+
+Private modules (e.g. `@ovh-ux/manager-core-*`, `@ovh-ux/manager-modules-*`) can now be migrated to PNPM in **isolated mode** using the `--private` flag.  
+This ensures that the module is also registered in the **private PNPM catalog** (`src/playbook/catalog/pnpm-private-modules.json`), allowing Turbo and PNPM to correctly link local builds instead of fetching from the registry.
+
+```bash
+# Example: migrate a core module as private
+yarn pm:add:module --module packages/manager/core/utils --private
+
+# Alternative (by package name)
+yarn pm:add:module --module @ovh-ux/manager-core-utils --private
+```
+
+**What happens under the hood:**
+
+- Module is moved from **Yarn catalog → PNPM catalog**
+- Critical dependencies are normalized (`react`, `vitest`, etc.)
+- If `--private` is provided:
+  - The module is automatically added to `pnpm-private-modules.json`
+  - Its entry includes both Turbo and PNPM filters:
+    ```json
+    {
+      "turbo": "--filter @ovh-ux/manager-core-utils",
+      "pnpm": "packages/manager/core/utils"
+    }
+    ```
+  - This catalog is used by `manager-pm` to link local builds and exclude private packages from publishing or remote installs
+- Artifacts are cleaned (`node_modules`, `dist`, `.turbo`)
+- `yarn install` is executed automatically to restore merged catalogs
+- The migration summary is displayed with next steps
+
+Example CLI output:
+```bash
+📦 Adding module: packages/manager/core/utils (private)
+➕ Added @ovh-ux/manager-core-utils to PNPM catalog
+🔒 Marking module as private in package.json
+➕ Added private module to catalog: --filter @ovh-ux/manager-core-utils (packages/manager/core/utils)
+✅ Migration complete
+```
+
+---
+
+### Roll Back a **Private Module** to Yarn
+
+To revert a private module back to Yarn-managed mode:
+
+```bash
+yarn pm:remove:module --module packages/manager/core/utils --private
+```
+
+or
+
+```bash
+yarn pm:remove:module --module @ovh-ux/manager-core-utils --private
+```
+
+**Behavior:**
+
+- Module is moved from **PNPM → Yarn catalog**
+- PNPM artifacts (`dist`, `.turbo`, `node_modules`) are cleaned
+- If `--private` is provided:
+  - The entry is **removed** from `pnpm-private-modules.json`
+- Yarn workspaces are restored
+- A final cleanup banner confirms rollback success
+
+Example output:
+```bash
+🗑️  Removing module: packages/manager/core/utils (private)
+🗑️  Removed private module from catalog: --filter @ovh-ux/manager-core-utils (packages/manager/core/utils)
+✔ Rollback complete
+```
+
+---
+
+### Private Catalog Overview
+
+| Catalog | Path | Purpose |
+|----------|------|----------|
+| **PNPM Catalog** | `src/playbook/catalog/pnpm-catalog.json` | Tracks all PNPM-managed apps & modules |
+| **Private Modules Catalog** | `src/playbook/catalog/pnpm-private-modules.json` | Tracks all locally linked, non-published private packages |
+| **Yarn Catalog** | `src/playbook/catalog/yarn-catalog.json` | Tracks Yarn-managed apps & modules |
+
+Private modules listed in `pnpm-private-modules.json` are automatically:
+- Linked as `link:` dependencies for PNPM apps
+- Excluded from npm registry publishing
+- Available as Turbo filters for incremental builds
+- Built locally from their `dist/` outputs during `postinstall`
+
+Example private catalog entry:
+```json
+[
+  {
+    "turbo": "--filter @ovh-ux/manager-core-application",
+    "pnpm": "packages/manager/core/application"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-core-utils",
+    "pnpm": "packages/manager/core/utils"
+  }
+]
+```
+
+---
 
 ### Build / Test everything
 
@@ -582,6 +692,8 @@ yarn manager-pm --type pnpm --action full-build
 yarn manager-pm --type pnpm --action full-test
 yarn manager-pm --type pnpm --action full-lint
 ```
+
+---
 
 ### CI with fine-grained filters
 
@@ -694,48 +806,66 @@ To change behavior, update this file and commit.
 
 ---
 
-## Troubleshooting
+## 🧽 Deep Cleanup Command
 
-- **React duplication / invalid hooks** → ensure React-family deps are peers; re-run migration; check Vite `resolve.dedupe` (auto-patch).
-- **Stuck PNPM installs** → clear `target/pnpm/` and temp files; retry.
-- **Turbo cannot see some workspaces** → run:
-  ```bash
-  yarn pm:remove:legacy:workspace
-  yarn pm:prepare:legacy:workspace
-  ```
-- **Clean & reset hybrid state completely**:
-  ```bash
-  find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && \
-  find . -name 'dist'        -type d -prune -exec rm -rf '{}' + && \
-  find . -name '.turbo'      -type d -prune -exec rm -rf '{}' + && \
-  find . -name 'target'      -type d -prune -exec rm -rf '{}' +
-  ```
+When you need to **reset the entire monorepo** (for example after failed installs, corrupted lockfiles, or migration issues), you can now use the built-in deep cleanup script.
 
----
+### Command
 
-## Security & safety notes
+```bash
+yarn clean:deep
+```
 
-- Root `packageManager` and merged workspaces are **restored/cleared even on failure**.
-- Vitest config mutations are **minimal & idempotent**.
-- Catalog edits validate entries and log explicit warnings.
-- PNPM install runs with `--ignore-scripts` and writes no PNPM lockfile for apps (isolated, reproducible via catalogs).
+This runs:
 
----
+```bash
+node ./packages/manager-tools/manager-pm/src/manager-pm-deep-clean.js
+```
 
-## Migration Roadmap
+### What it does
 
-- **Short term (only candidate apps)**: Yarn root + PNPM apps in hybrid mode.
-- **Medium term**: Progressively migrate more apps to PNPM.
-- **Long term**: Remove Yarn entirely and consolidate into a single PNPM workspace with hoisting.
+- Recursively removes:
+  - `node_modules`
+  - `dist`
+  - `.turbo`
+  - `target`
+- Works cross-platform (Linux, macOS, Windows)
+- Uses **shelljs** internally for fast traversal
+- Logs progress through `manager-pm`’s unified `logger`
+- Gracefully exits if `node_modules` (and thus `shelljs`) is already missing — with helpful reinstall instructions.
 
-### Milestones
+### Example output
 
-- Migrate candidate apps first (application-level only; **do not touch `modules` or `core` at this stage**, as these will be handled separately in a dedicated cleaning phase).
-- Move all apps to PNPM.
-- Drop Yarn workspace scripts.
-- Replace root `yarn.lock` with `pnpm-lock.yaml`.
+```
+🧽 Starting deep cleanup...
+🧹 Removing 145 'node_modules' directories...
+   • packages/manager/apps/web/node_modules
+   • packages/manager/core/utils/node_modules
+   • packages/manager/modules/foo/node_modules
+   ...and 142 more.
+✅ Deep cleanup complete!
+```
 
-> ⚠ The initial cleaning and migration steps deliberately focus on apps and exclude shared `modules` and `core`. These areas will be addressed later to ensure stability and controlled migration.
+If dependencies were already removed:
+
+```
+⚠️  It looks like node_modules were already removed during a previous cleanup.
+
+👉 Please reinstall dependencies:
+   yarn install
+
+Then re-run your command if needed:
+   yarn clean:deep
+```
+
+### Typical usage
+
+| Situation | Command | Purpose |
+|------------|----------|----------|
+| Full reset after migration | `yarn clean:deep && yarn install` | Clears all artifacts and restores clean PNPM/Yarn hybrid state |
+| After branch switch | `yarn clean:deep` | Removes stale `.turbo` caches and mismatched modules |
+| Before CI debugging | `yarn clean:deep` | Cleans up all build outputs and binary stores |
+| Rebuild private packages from scratch | `yarn clean:deep && yarn build` | Forces complete rebuild from fresh state |
 
 ---
 

@@ -3,8 +3,17 @@ import {
   displayFinalInstructionsHelpBanner,
   displayRemoveHelpBanner,
 } from '../commons/banner-helper.js';
-import { buildModuleWorkspacePath } from '../helpers/modules-workspace-helper.js';
-import { getCatalogPaths, isAppInCatalog, updateCatalog } from '../utils/catalog-utils.js';
+import {
+  buildModuleWorkspacePath,
+  getPackageNameFromModule,
+} from '../helpers/modules-workspace-helper.js';
+import {
+  getCatalogPaths,
+  isAppInCatalog,
+  removePrivateModuleFromCatalog,
+  updateCatalog,
+  updatePrivateModulesCatalog,
+} from '../utils/catalog-utils.js';
 import { normalizeCriticalDependencies } from '../utils/dependencies-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { runYarnInstall } from '../utils/tasks-utils.js';
@@ -23,9 +32,10 @@ import { cleanArtifactDirectories } from '../utils/workspace-utils.js';
  *   7. Show final build/test banner
  *
  * @param {string} moduleRef - Module reference (name, package name, or workspace path).
+ * @param {boolean} isPrivate - Define if the module is private or not
  */
-export async function addModuleToPnpm(moduleRef) {
-  logger.debug(`addModuleToPnpm(moduleRef="${moduleRef}")`);
+export async function addModuleToPnpm(moduleRef, { isPrivate = false } = {}) {
+  logger.debug(`addModuleToPnpm(moduleRef="${moduleRef}", isPrivate=${isPrivate})`);
 
   if (!moduleRef) throw new Error('addModuleToPnpm: moduleRef is required');
 
@@ -49,6 +59,15 @@ export async function addModuleToPnpm(moduleRef) {
     });
 
     if (!success) return;
+
+    if (isPrivate) {
+      const packageName = await getPackageNameFromModule(relModulePath);
+      const turboFilter = `--filter ${packageName}`;
+      await updatePrivateModulesCatalog({
+        turboFilter,
+        pnpmPath: relModulePath,
+      });
+    }
 
     await cleanArtifactDirectories(relModulePath);
 
@@ -78,9 +97,10 @@ export async function addModuleToPnpm(moduleRef) {
  *   6. Show final build/test banner
  *
  * @param {string} moduleRef - Module reference (name, package name, or workspace path).
+ * @param {boolean} isPrivate - Define if the module is private or not
  */
-export async function removeModuleFromPnpm(moduleRef) {
-  logger.debug(`removeModuleFromPnpm(moduleRef="${moduleRef}")`);
+export async function removeModuleFromPnpm(moduleRef, { isPrivate = false } = {}) {
+  logger.debug(`removeModuleFromPnpm(moduleRef="${moduleRef}", isPrivate=${isPrivate})`);
 
   if (!moduleRef) throw new Error('removeModuleFromPnpm: moduleRef is required');
 
@@ -102,6 +122,15 @@ export async function removeModuleFromPnpm(moduleRef) {
     });
 
     if (!success) return;
+
+    if (isPrivate) {
+      const packageName = await getPackageNameFromModule(relModulePath);
+      const turboFilter = `--filter ${packageName}`;
+      await removePrivateModuleFromCatalog({
+        turboFilter,
+        pnpmPath: relModulePath,
+      });
+    }
 
     await cleanArtifactDirectories(relModulePath);
 

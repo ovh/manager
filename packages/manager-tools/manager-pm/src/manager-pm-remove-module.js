@@ -27,6 +27,8 @@ async function main() {
         'Examples:',
         '  yarn pm:remove:module --module packages/manager/core/api',
         '  yarn pm:remove:module --module @ovh-ux/manager-core-api',
+        '  yarn pm:remove:module --module packages/manager/core/application --private',
+        '  yarn pm:remove:module --module @ovh-ux/manager-core-utils --private',
       ],
     });
 
