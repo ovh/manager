@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.14.1...@ovh-ux/manager-pci-ai-tools-app@1.14.2) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4455] ([c05d4c6](https://github.com/ovh/manager/commit/c05d4c6aab3456f2611819550290446f31b7870f))
+
+
+
+
+
 ## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.14.0...@ovh-ux/manager-pci-ai-tools-app@1.14.1) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app

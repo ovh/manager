@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.4.1...@ovh-ux/muk@0.5.0) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+* **i18n:** add missing translations [CDS 4455] ([c05d4c6](https://github.com/ovh/manager/commit/c05d4c6aab3456f2611819550290446f31b7870f))
+* **muk:** update export constants ([18d1505](https://github.com/ovh/manager/commit/18d15053f47bf82da77a86b365478acc1ca5202f)), closes [#MANAGER-20219](https://github.com/ovh/manager/issues/MANAGER-20219)
+
+
+### Features
+
+* **manager-wiki:** add documentation for launch test in muk ([c88545f](https://github.com/ovh/manager/commit/c88545fd8be995069520252ae0d805a271a5092b)), closes [#MANAGER-20196](https://github.com/ovh/manager/issues/MANAGER-20196)
+* **muk:** update export lib after the build ([57d6d89](https://github.com/ovh/manager/commit/57d6d89c8a084791145210e269f4b49db429761a)), closes [#MANAGER-20196](https://github.com/ovh/manager/issues/MANAGER-20196)
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.4.0...@ovh-ux/muk@0.4.1) (2025-11-04)
 
 

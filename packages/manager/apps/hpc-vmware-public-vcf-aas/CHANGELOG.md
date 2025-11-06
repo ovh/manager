@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.14...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.15) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
 ## [0.25.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.13...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.14) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
