@@ -5,18 +5,19 @@ import { useTranslation } from 'react-i18next';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { LogsContext } from '../../LogsToCustomer.context';
-import { useDeleteLogSubscription } from '../../data/hooks/useLogSubscriptions';
-import { LogSubscription } from '../../data/types/dbaas/logs';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { useDeleteLogSubscription } from '@/data/hooks/useLogSubscriptions';
+import { LogSubscription } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const UnsubscribeButton = ({
   subscriptionId,
 }: {
   subscriptionId: LogSubscription['subscriptionId'];
 }) => {
-  const { t } = useTranslation('logStreams');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAMS);
   const unsubscribeLogsAccess = useLogTrackingActions(LogsActionEnum.unsubscribe_logs_access);
   const { trackClick } = useOvhTracking();
   const { currentLogKind, logApiUrls, logApiVersion, logIamActions, resourceURN } =

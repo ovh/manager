@@ -7,12 +7,13 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const OrderServiceButton = () => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('logService');
+  const { t } = useTranslation(NAMESPACES.LOG_SERVICE);
 
   const goToOrderLogs = useLogTrackingActions(LogsActionEnum.go_to_order_logs);
 

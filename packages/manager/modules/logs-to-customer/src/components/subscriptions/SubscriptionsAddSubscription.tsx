@@ -8,19 +8,20 @@ import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
 import {
   getLogServicesQueryKey,
   useLogServices,
-} from '../../data/hooks/useLogService';
-import ApiError from '../apiError/ApiError.component';
-import OrderServiceButton from '../services/OrderServiceButton.component';
+} from '@/data/hooks/useLogService';
+import ApiError from '@/components/apiError/ApiError.component';
+import OrderServiceButton from '@/components/services/OrderServiceButton.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const SubscriptionAddSubcription = () => {
   const queryClient = useQueryClient();
-  const { t } = useTranslation('logSubscription');
-  const { t: tService } = useTranslation('logService');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
+  const { t: tService } = useTranslation(NAMESPACES.LOG_SERVICE);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const subscribeLogsAccess = useLogTrackingActions(
