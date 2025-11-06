@@ -30,7 +30,6 @@ import {
   OsdsDivider,
   OsdsMessage,
   OsdsText,
-  OsdsChip,
   OsdsTile,
   OsdsTooltipContent,
   OsdsTooltip,
