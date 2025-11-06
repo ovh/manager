@@ -27,5 +27,6 @@
   "pci_instances_common_instance_type": "Tipo",
   "pci_instances_common_more_info": "Mais informações",
   "pci_instances_common_instance_continent_asia_oceania": "Ásia-Pacífico",
-  "pci_instances_common_instance_continent_all": "Todos"
+  "pci_instances_common_instance_continent_all": "Todos",
+  "pci_instances_common_ssh_key_label": "chave SSH"
 }

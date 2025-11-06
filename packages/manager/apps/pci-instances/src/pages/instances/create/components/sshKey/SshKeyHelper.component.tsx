@@ -21,7 +21,7 @@ export const SshKeyHelper: FC = () => {
         {t('creation:pci_instance_creation_select_sshKey_help_title')}
       </Text>
       {HELPER_TRANSLATION_KEYS.map((key) => (
-        <Text key={key} preset="paragraph" className="py-4">
+        <div key={key} className="py-4 text-[--ods-color-text]">
           <Trans
             t={t}
             i18nKey={`creation:pci_instance_creation_select_sshKey_help_${key}`}
@@ -31,7 +31,7 @@ export const SshKeyHelper: FC = () => {
               li: <li />,
             }}
           />
-        </Text>
+        </div>
       ))}
       <Link
         className="visited:text-[var(--ods-color-primary-500)]"

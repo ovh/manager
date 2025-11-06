@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { instanceNameRegex } from '@/constants';
+import { instanceNameRegex, sshKeyRegex } from '@/constants';
 import { DEPLOYMENT_MODES } from '@/types/instance/common.type';
 
 export const nameSchema = z.string().regex(instanceNameRegex);
@@ -33,3 +33,14 @@ export const quantitySchema = z
 export const distributionImageTypeSchema = z.string().nullable();
 
 export const distributionImageNameSchema = z.string().nullable();
+
+export const sshNameSchema = z.string().min(1);
+
+export const sshKeySchema = z.string().regex(sshKeyRegex);
+
+export const addSshKeyFormSchema = z.object({
+  sshName: sshNameSchema,
+  sshKey: sshKeySchema,
+});
+
+export type TAddSshKeyForm = z.infer<typeof addSshKeyFormSchema>;

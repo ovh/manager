@@ -28,6 +28,7 @@ export const CreationCart = () => {
     quantity,
     flavorId,
     distributionImageName,
+    sshName,
   ] = useWatch({
     control,
     name: [
@@ -38,6 +39,7 @@ export const CreationCart = () => {
       'quantity',
       'flavorId',
       'distributionImageName',
+      'sshName',
     ],
   });
 
@@ -104,17 +106,34 @@ export const CreationCart = () => {
     distributionImageName,
   ]);
 
+  const sshKeyDetails = useMemo(
+    () =>
+      sshName
+        ? [
+            {
+              name: t('common:pci_instances_common_ssh_key_label'),
+              description: (
+                <Text preset="heading-6" className="text-[--ods-color-heading]">
+                  {sshName}
+                </Text>
+              ),
+            },
+          ]
+        : [],
+    [sshName, t],
+  );
+
   const cartItems: TCartItem[] = useMemo(
     () => [
       {
         id: '0',
         title: t('pci_instances_common_instance_title'),
         name,
-        details: itemDetails,
+        details: [...itemDetails, ...sshKeyDetails],
         expanded: true,
       },
     ],
-    [name, itemDetails, t],
+    [name, itemDetails, t, sshKeyDetails],
   );
 
   return <Cart items={cartItems} />;

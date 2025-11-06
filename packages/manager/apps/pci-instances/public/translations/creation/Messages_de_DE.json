@@ -81,5 +81,11 @@
   "pci_instance_creation_select_sshKey_help_content_list": "Er basiert auf einem Schlüsselpaar: <ul><li>einem öffentlichen Schlüssel, der in Ihrem OVHcloud-Konto gespeichert ist,</li><li>einem privaten Schlüssel, der auf Ihrem Computer aufbewahrt wird und zur Herstellung der Verbindung verwendet wird.</li></ul>",
   "pci_instance_creation_select_sshKey_help_goal": "Warum eine SSH-Schlüssel verwenden? <ul><li>Sichere Verbindung zu Ihrer Instanz (verschlüsselte Verbindung).</li><li>Keine Eingabe eines Passworts bei jeder Verbindung.</li><li>Kompatibel mit allen Linux- und macOS-Systemen (und Windows über WSL oder PuTTY).</li></ul>",
   "pci_instance_creation_select_sshKey_help_how_to": "Wie geht das? <ol><li>Erstellen Sie ein SSH-Schlüsselpaar auf Ihrem lokalen Computer (falls Sie noch keins haben).</li><li>Fügen Sie Ihren öffentlichen Schlüssel in Ihrem OVHcloud-Kundenbereich hinzu. Sie können diesen öffentlichen Schlüssel auch direkt bei der Erstellung der Instanz hinzufügen.</li><li>Wählen Sie diesen Schlüssel beim Bereitstellen Ihrer Instanz aus.</li><li>Sobald die Instanz bereitgestellt ist, melden Sie sich über SSH mit dem entsprechenden privaten Schlüssel an.</li></ol>",
-  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Konsultieren Sie den vollständigen Leitfaden zum Erstellen und Verwenden eines SSH-Schlüssels."
+  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Konsultieren Sie den vollständigen Leitfaden zum Erstellen und Verwenden eines SSH-Schlüssels.",
+  "pci_instance_creation_select_sshKey_missing_warning": "Sie haben keinen SSH-Schlüssel. Sie können sich daher nicht mit Ihrem Server verbinden. Erstellen Sie einen Schlüssel, um auf Ihren Server zuzugreifen.",
+  "pci_instance_creation_select_sshKey_add_name_label": "Name des SSH-Schlüssels",
+  "pci_instance_creation_select_sshKey_add_key_label": "Geben Sie Ihren SSH-Schlüssel ein",
+  "pci_instance_creation_select_sshKey_add_key_description": "Die akzeptierten SSH-Schlüsseltypen sind RSA, ECDSA und ED25519. Ihr SSH-Schlüssel wird in allen Regionen und Rechenzentren von OVHcloud Ihres Projekts verfügbar sein.",
+  "pci_instance_creation_select_sshKey_add_key_submit_btn": "Schlüssel validieren",
+  "pci_instance_creation_select_sshKey_add_new": "Einen neuen SSH-Schlüssel erstellen"
 }

@@ -25,5 +25,6 @@
   "pci_instances_common_instance_continent_north_africa": "Afrique du Nord",
   "pci_instances_common_instance_continent_asia_oceania": "Asie-Pacifique",
   "pci_instances_common_instance_continent_all": "Tous",
-  "pci_instances_common_more_info": "Plus d'informations"
+  "pci_instances_common_more_info": "Plus d'informations",
+  "pci_instances_common_ssh_key_label": "Clé SSH"
 }
