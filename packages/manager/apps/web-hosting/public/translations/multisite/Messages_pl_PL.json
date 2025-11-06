@@ -9,5 +9,15 @@
   "multisite_git_modal_delete_association_description2": "<strong>Usunięcie dotyczy wszystkich domen wskazujących na twój katalog.</strong>",
   "multisite_git_modal_delete_association_description3": "Czy chcesz wyczyścić zawartość katalogu <strong>{{ path }}</strong>?",
   "multisite_git_modal_delete_association_warning_delete_dir": "Usuniemy powiązanie z Gitem oraz zawartość katalogu.",
-  "multisite_git_modal_delete_association_success": "Twoje usunięcie zostało pomyślnie zarejestrowane."
+  "multisite_git_modal_delete_association_success": "Twoje usunięcie zostało pomyślnie zarejestrowane.",
+  "multisite_cdn_modal_purge_title": "Wyczyść pamięć podręczną",
+  "multisite_cdn_modal_purge_description": "Czy na pewno chcesz wyczyścić pamięć podręczną swojego CDN?",
+  "multisite_cdn_modal_purge_subdescription": "<strong>Nazwa domeny :</strong>",
+  "multisite_cdn_modal_purge_option_all": "Cała strona",
+  "multisite_cdn_modal_purge_option_folder": "Materiał",
+  "multisite_cdn_modal_purge_option_uri": "URI",
+  "multisite_cdn_modal_purge_option_extension": "Rozszerzenie",
+  "multisite_cdn_modal_purge_option_regex": "Niestandardowy wyrażenie regularne",
+  "multisite_cdn_modal_purge_success": "Twoja pamięć podręczna CDN została pomyślnie wyczyszczona.",
+  "multisite_cdn_modal_purge_error": "Wystąpił błąd podczas żądania czyszczenia pamięci podręcznej CDN. {{ message }}"
 }

@@ -9,5 +9,15 @@
   "multisite_git_modal_delete_association_description2": "<strong>Die Löschung gilt für alle Domains, die auf Ihr Verzeichnis verweisen.</strong>",
   "multisite_git_modal_delete_association_description3": "Möchten Sie den Inhalt des Verzeichnisses <strong>{{ path }}</strong> leeren?",
   "multisite_git_modal_delete_association_warning_delete_dir": "Wir werden die Verknüpfung mit Git und den Inhalt des Verzeichnisses löschen.",
-  "multisite_git_modal_delete_association_success": "Ihre Löschung wurde erfolgreich berücksichtigt."
+  "multisite_git_modal_delete_association_success": "Ihre Löschung wurde erfolgreich berücksichtigt.",
+  "multisite_cdn_modal_purge_title": "Cache leeren",
+  "multisite_cdn_modal_purge_description": "Sind Sie sicher, dass Sie den Cache Ihres CDN leeren möchten?",
+  "multisite_cdn_modal_purge_subdescription": "<strong>Domainname:</strong>",
+  "multisite_cdn_modal_purge_option_all": "Die gesamte Website",
+  "multisite_cdn_modal_purge_option_folder": "Ordner",
+  "multisite_cdn_modal_purge_option_uri": "URI",
+  "multisite_cdn_modal_purge_option_extension": "Domain",
+  "multisite_cdn_modal_purge_option_regex": "Benutzerdefinierter regulärer Ausdruck",
+  "multisite_cdn_modal_purge_success": "Ihr CDN-Cache wurde erfolgreich geleert.",
+  "multisite_cdn_modal_purge_error": "Ein Fehler ist bei der Anfrage zum Leeren des CDN-Caches aufgetreten. {{ message }}"
 }
