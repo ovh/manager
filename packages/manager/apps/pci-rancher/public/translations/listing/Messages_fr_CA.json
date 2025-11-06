@@ -5,6 +5,7 @@
   "rancherVersion": "Version du Rancher",
   "numberOfCpu": "Nombre de vCPUs",
   "status": "Statut",
+  "iam": "Authentification IAM",
   "actions": "Actions",
   "cancel": "Annuler",
   "manage": "Gérer",

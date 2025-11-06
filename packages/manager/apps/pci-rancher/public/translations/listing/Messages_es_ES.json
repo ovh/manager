@@ -32,5 +32,6 @@
   "STANDARD": "Standard",
   "DISABLED": "Deshabilitado",
   "ENABLED": "Habilitado",
-  "rancherStatusCreating": "Creando su Managed Rancher Service... Por favor, espere. Esta operación puede tardar unos minutos."
+  "rancherStatusCreating": "Creando su Managed Rancher Service... Por favor, espere. Esta operación puede tardar unos minutos.",
+  "iam": "Autentificación IAM"
 }

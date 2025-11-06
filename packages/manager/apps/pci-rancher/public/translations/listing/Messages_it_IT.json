@@ -32,5 +32,6 @@
   "CREATING": "Creazione in corso",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard",
-  "rancherStatusCreating": "Creazione del tuo Managed Rancher Service in corso... Ti chiediamo di attendere, l'operazione potrebbe richiedere alcuni minuti."
+  "rancherStatusCreating": "Creazione del tuo Managed Rancher Service in corso... Ti chiediamo di attendere, l'operazione potrebbe richiedere alcuni minuti.",
+  "iam": "Autenticazione IAM"
 }

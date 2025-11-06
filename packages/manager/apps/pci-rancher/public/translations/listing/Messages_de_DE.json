@@ -32,5 +32,6 @@
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard",
   "DISABLED": "Deaktiviert",
-  "rancherStatusCreating": "Ihr Managed Rancher Service wird erstellt. Bitte gedulden Sie sich einen Augenblick."
+  "rancherStatusCreating": "Ihr Managed Rancher Service wird erstellt. Bitte gedulden Sie sich einen Augenblick.",
+  "iam": "IAM Authentifizierung"
 }
