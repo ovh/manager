@@ -65,7 +65,7 @@ export default function Layout() {
   const taskUrl = `#/${serviceName}/task`;
   const automatedEmailsUrl = useHostingUrl(serviceName, 'automated-emails');
   const cronUrl = useHostingUrl(serviceName, 'cron');
-  const seoUrl = useHostingUrl(serviceName, 'localSeo');
+  const seoUrl = `#/${serviceName}/localSeo`;
   const boostUrl = useHostingUrl(serviceName, 'boost');
   const mailsUrl = useEmailsUrl(flattenData?.[0]?.domain, 'mailing-list');
 
