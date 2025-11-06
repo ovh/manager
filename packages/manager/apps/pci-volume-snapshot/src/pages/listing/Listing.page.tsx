@@ -30,7 +30,7 @@ import {
 import { Suspense, useContext, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
+import { useDatagridColumn } from '@/pages/listing/hooks/useDatagridColumn';
 import { CHANGELOG_LINKS } from '@/constants';
 import {
   useAllSnapshots,
