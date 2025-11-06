@@ -16,7 +16,7 @@ import {
 } from '@secret-manager/components/form/SecretCasRequiredFormField.component';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
-import { useSecretMetadataSchema } from '@secret-manager/validation/metadata/metadataSchema';
+import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
 import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
 import {
   DrawerContent,
@@ -46,7 +46,7 @@ export const EditMetadataDrawerForm = ({
     error: updateError,
   } = useUpdateSecret();
 
-  const metadataSchema = useSecretMetadataSchema();
+  const metadataSchema = useSecretConfigSchema();
 
   type FormSchema = z.infer<typeof metadataSchema>;
   const { control, handleSubmit } = useForm({
