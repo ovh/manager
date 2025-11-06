@@ -9,6 +9,8 @@
   "edge_add_input_ip_block_helper": "Vous devez sélectionner un IP Space",
   "edge_add_submit": "Créer la Edge Gateway",
   "edge_add_banner_success": "La demande de création de votre Edge Gateway a bien été prise en compte.",
+  "edge_update_banner_success": "La demande de modification de votre Edge Gateway a bien été prise en compte.",
+  "edge_update_ip_block_helper": "Cet IP Space est alloué automatiquement pour votre Edge Gateway et ne peut pas être modifié.",
   "edge_delete_title": "Supprimer la Edge Gateway",
   "edge_delete_description": "Voulez-vous vraiment supprimer votre Edge Gateway {{edgeName}} ?",
   "edge_delete_warning": "Attention : supprimer votre Edge Gateway entraînera la suppression définitive de tous ses services réseau et des configurations. Cette action est irréversible.",
