@@ -17,6 +17,7 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
 
   const { isLoading } = useSshKeys(microRegion);
 
+  // for condition
   const sshKeys = useMemo(
     () => (isLoading ? [] : selectSshKeys(deps)(projectId, microRegion)),
     [isLoading, microRegion, projectId],
