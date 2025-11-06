@@ -7,8 +7,8 @@
  */
 import process from 'node:process';
 
-import { removeAppFromPnpm } from './kernel/pnpm/pnpm-apps-manager.js';
-import { runAppCli } from './kernel/utils/cli-utils.js';
+import { removeApplicationFromPnpm } from './kernel/pnpm/pnpm-apps-manager.js';
+import { runApplicationCli } from './kernel/utils/cli-utils.js';
 import { logger } from './kernel/utils/log-manager.js';
 import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
 
@@ -19,9 +19,9 @@ async function main() {
   const start = Date.now();
 
   try {
-    await runAppCli({
+    await runApplicationCli({
       actionLabel: 'remove-app',
-      handler: removeAppFromPnpm,
+      handler: removeApplicationFromPnpm,
       usage: [
         'Usage: yarn pm:remove:app --app <name|package|path>',
         'Examples:',

@@ -3,11 +3,12 @@ import {
   displayFinalInstructionsHelpBanner,
   displayRemoveHelpBanner,
 } from '../commons/banner-helper.js';
+import { buildApplicationWorkspacePath } from '../helpers/apps-workspace-helper.js';
 import { getCatalogPaths, isAppInCatalog, updateCatalog } from '../utils/catalog-utils.js';
 import { normalizeCriticalDependencies } from '../utils/dependencies-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { runYarnInstall } from '../utils/tasks-utils.js';
-import { buildAppWorkspacePath, cleanAppDirs } from '../utils/workspace-utils.js';
+import { cleanArtifactDirectories } from '../utils/workspace-utils.js';
 import { patchVitestConfig } from './pnpm-config-manager.js';
 
 /**
@@ -25,12 +26,12 @@ import { patchVitestConfig } from './pnpm-config-manager.js';
  *
  * @param {string} appRef - Application reference (name, package name, or workspace path).
  */
-export async function addAppToPnpm(appRef) {
-  logger.debug(`addAppToPnpm(appRef="${appRef}")`);
+export async function addApplicationToPnpm(appRef) {
+  logger.debug(`addApplicationToPnpm(appRef="${appRef}")`);
 
-  if (!appRef) throw new Error('addAppToPnpm: appRef is required');
+  if (!appRef) throw new Error('addApplicationToPnpm: appRef is required');
 
-  const relAppPath = buildAppWorkspacePath(appRef);
+  const relAppPath = buildApplicationWorkspacePath(appRef);
   displayAddHelpBanner(relAppPath);
 
   try {
@@ -51,7 +52,7 @@ export async function addAppToPnpm(appRef) {
 
     if (!success) return;
 
-    await cleanAppDirs(relAppPath);
+    await cleanArtifactDirectories(relAppPath);
     await patchVitestConfig(relAppPath);
 
     logger.success(`✅ "${relAppPath}" is now tracked in PNPM and visible to Turbo.`);
@@ -81,11 +82,11 @@ export async function addAppToPnpm(appRef) {
  *
  * @param {string} appRef - Application reference (name, package name, or workspace path).
  */
-export async function removeAppFromPnpm(appRef) {
-  logger.debug(`removeAppFromPnpm(appRef="${appRef}")`);
-  if (!appRef) throw new Error('removeAppFromPnpm: appRef is required');
+export async function removeApplicationFromPnpm(appRef) {
+  logger.debug(`removeApplicationFromPnpm(appRef="${appRef}")`);
+  if (!appRef) throw new Error('removeApplicationFromPnpm: appRef is required');
 
-  const relAppPath = buildAppWorkspacePath(appRef);
+  const relAppPath = buildApplicationWorkspacePath(appRef);
   displayRemoveHelpBanner(relAppPath);
 
   try {
@@ -104,7 +105,7 @@ export async function removeAppFromPnpm(appRef) {
 
     if (!success) return;
 
-    await cleanAppDirs(relAppPath);
+    await cleanArtifactDirectories(relAppPath);
 
     logger.success(`✅ "${relAppPath}" is now tracked in Yarn and visible to Turbo.`);
 

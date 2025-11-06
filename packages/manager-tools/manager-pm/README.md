@@ -168,6 +168,21 @@ The file is **removed afterwards**.
 
 ## CLI Reference
 
+### Apps and Modules Support
+
+Both **applications** and **modules** can now be built, tested, or linted individually or in bulk.
+
+| Scope | Example Command | Description |
+|--------|-----------------|--------------|
+| **Application** | `manager-pm --action build --app web` | Build one app |
+| **Module** | `manager-pm --action build --module @ovh-ux/manager-core-api` | Build one module |
+| **All** | `manager-pm --action full-build` | Build all apps and modules |
+
+Each reference (`--app` or `--module`) may be:
+- a **package name** (`@scope/name`)
+- a **workspace path** (`packages/manager/core/api`)
+- or a **bare folder name** (`web`, `core-api`)
+
 ### Binary
 
 ```bash
@@ -178,6 +193,7 @@ manager-pm --type pnpm --action <action> [options] [-- <passthrough>]
 - `--type <pnpm>`: package manager type (future-proof, default: `pnpm`).
 - `--action <name>`: command to run.
 - `--app <name|workspace|path>`: single-app operations (build/test/lint).
+- `--module <name|workspace|path>`: single-module operations (build/test/lint).
 - `--filter <expr>`: Turbo filter for CI commands.
 - `--container`: hint for “start” (container mode).
 - `--region <code>`: informational; surfaced in logs.
@@ -185,13 +201,18 @@ manager-pm --type pnpm --action <action> [options] [-- <passthrough>]
 
 ---
 
-### Single app
+### Single app / module
 
 ```bash
-# Build / Test / Lint one app (by folder, package name, or shorthand)
+# Build / Test / Lint one app
 yarn manager-pm --type pnpm --action build --app packages/manager/apps/web
 yarn manager-pm --type pnpm --action test  --app @ovh-ux/manager-web
 yarn manager-pm --type pnpm --action lint  --app web
+
+# Build / Test / Lint one module
+yarn manager-pm --type pnpm --action build --module @ovh-ux/manager-core-api
+yarn manager-pm --type pnpm --action test  --module packages/manager/core/api
+yarn manager-pm --type pnpm --action lint  --module core-api
 ```
 
 ### CI — Turbo passthrough

@@ -120,3 +120,10 @@ export const cleanupDirectories = ['node_modules', 'dist', '.turbo'];
  * Container application package name.
  */
 export const containerPackageName = '@ovh-ux/manager-container-app';
+
+/** Candidate module base directories (in lookup order). */
+export const modulesBasePaths = [
+  'packages/manager-tools',
+  'packages/manager/modules',
+  'packages/manager/core',
+];

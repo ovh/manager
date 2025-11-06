@@ -7,8 +7,8 @@
  */
 import process from 'node:process';
 
-import { addAppToPnpm } from './kernel/pnpm/pnpm-apps-manager.js';
-import { runAppCli } from './kernel/utils/cli-utils.js';
+import { addApplicationToPnpm } from './kernel/pnpm/pnpm-apps-manager.js';
+import { runApplicationCli } from './kernel/utils/cli-utils.js';
 import { logger } from './kernel/utils/log-manager.js';
 import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
 
@@ -19,9 +19,9 @@ async function main() {
   const start = Date.now();
 
   try {
-    await runAppCli({
+    await runApplicationCli({
       actionLabel: 'add-app',
-      handler: addAppToPnpm,
+      handler: addApplicationToPnpm,
       usage: [
         'Usage: yarn pm:add:app --app <name|package|path>',
         'Examples:',

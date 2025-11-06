@@ -1,64 +1,23 @@
-import { spawn } from 'node:child_process';
-
 import { managerRootPath } from '../../playbook/playbook-config.js';
 import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
-import { logger } from '../utils/log-manager.js';
-import { resolveBuildFilter } from '../utils/tasks-utils.js';
+import {
+  resolveApplicationBuildFilter,
+  resolveModuleBuildFilter,
+  runCommand,
+  runTaskFromRoot,
+} from '../utils/tasks-utils.js';
 
 /**
- * Spawn a child process and run a command with streamed output.
+ * Execute a task within a safe workspace context.
  *
- * @param {string} cmd - The command to run (e.g., "turbo" or "yarn").
- * @param {string[]} args - The arguments passed to the command.
- * @param {string} cwd - The working directory in which the command should run.
- * @returns {Promise<void>} Resolves when the process exits successfully, rejects on error or non-zero exit.
- */
-function runCommand(cmd, args, cwd) {
-  return new Promise((resolve, reject) => {
-    const proc = spawn(cmd, args, {
-      cwd,
-      stdio: 'inherit',
-    });
-
-    proc.on('error', reject);
-    proc.on('close', (code) => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(new Error(`${cmd} ${args.join(' ')} failed with exit code ${code}`));
-      }
-    });
-  });
-}
-
-/**
- * Run a task with centralized logging and error handling.
- *
- * @param {string} label - A human-friendly label for the task (e.g., "build (all apps)").
- * @param {string} cmd - The command to run (e.g., "turbo" or "yarn").
- * @param {string[]} args - Arguments to pass to the command.
- * @returns {Promise<void>} Resolves on success, logs and rethrows on failure.
- */
-async function runTask(label, cmd, args) {
-  try {
-    logger.info(`▶ ${cmd} ${args?.join(' ')}`);
-    await runCommand(cmd, args, managerRootPath);
-    logger.info(`✅ ${label} completed successfully`);
-  } catch (error) {
-    logger.error(`❌ ${label} failed:`);
-    logger.error(error.stack || error.message || error);
-    throw error;
-  }
-}
-
-/**
- * Wrap a task with pre/post workspace handling.
- * Ensures catalogs are merged before and always cleared after execution,
- * even if the task fails.
+ * Ensures root catalogs are merged before the task runs and cleared afterward,
+ * even if the task fails or throws.
  *
  * @template T
- * @param {() => Promise<T>} fn - The async function representing the task body.
- * @returns {Promise<T>} Resolves or rejects with the underlying task result.
+ * @param {() => Promise<T>} fn - The async task function to execute.
+ * @returns {Promise<T>} The result of the provided task.
+ * @example
+ * await withWorkspaces(async () => runTaskFromRoot('build', 'turbo', ['run', 'build']));
  */
 async function withWorkspaces(fn) {
   await updateRootWorkspacesFromCatalogs();
@@ -70,172 +29,303 @@ async function withWorkspaces(fn) {
 }
 
 /**
- * Run a Turbo task (build or test) in CI mode with arbitrary CLI options.
+ * Run a Turbo task (`build` or `test`) in CI mode with optional CLI arguments.
  *
- * This wrapper is agnostic of the underlying package manager (Yarn, PNPM, or hybrid).
- * It ensures catalogs are merged into root workspaces before running Turbo,
- * and cleared afterward.
- *
- * Example:
- * ```bash
- * yarn manager-pm --action buildCI --filter=@scope/app
- * yarn manager-pm --action testCI --filter=tag:unit --parallel
- * ```
+ * Automatically prepares and cleans up workspaces around execution.
  *
  * @async
- * @param {"build"|"test"} task - The Turbo task to run.
+ * @param {"build"|"test"} task - The Turbo task name.
  * @param {string[]} [options=[]] - Extra CLI args passed to `turbo run <task>`.
- * @returns {Promise<void>} Resolves when the Turbo task finishes successfully.
+ * @returns {Promise<void>} Resolves when the Turbo task completes.
+ * @example
+ * await runCITask('build', ['--filter=@scope/app']);
  */
-export async function runTurboTaskCI(task, options = []) {
+export async function runCITask(task, options = []) {
   return withWorkspaces(async () => {
     const args = ['run', task, ...options];
-    await runTask(`${task} (CI)`, 'turbo', args);
+    await runTaskFromRoot(`${task} (CI)`, 'turbo', args);
   });
 }
 
 /**
- * Run a Turbo build in CI mode with arbitrary Turbo CLI options.
- *
- * Example:
- * ```bash
- * manager-pm --type pnpm --action buildCI -- --filter=app...
- * ```
+ * Build all targets in CI mode.
  *
  * @async
- * @param {string[]} [options=[]] - Turbo CLI options passed to `turbo run build`.
- * @returns {Promise<void>} Resolves when the build finishes successfully.
+ * @param {string[]} [options=[]] - Turbo CLI options.
+ * @returns {Promise<void>}
+ * @example
+ * await buildCI(['--filter=@ovh-ux/manager-web']);
  */
 export async function buildCI(options = []) {
-  return runTurboTaskCI('build', options);
+  return runCITask('build', options);
 }
 
 /**
- * Run Turbo tests in CI mode with arbitrary Turbo CLI options.
- *
- * Example:
- * ```bash
- * manager-pm --type pnpm --action testCI -- --filter=tag:unit
- * ```
+ * Run Turbo tests in CI mode.
  *
  * @async
- * @param {string[]} [options=[]] - Turbo CLI options passed to `turbo run test`.
- * @returns {Promise<void>} Resolves when tests finish successfully.
+ * @param {string[]} [options=[]] - Turbo CLI options.
+ * @returns {Promise<void>}
+ * @example
+ * await testCI(['--filter=tag:unit']);
  */
 export async function testCI(options = []) {
-  return runTurboTaskCI('test', options);
+  return runCITask('test', options);
 }
 
 /**
- * Prepare and run a Turbo task (build or test).
+ * Run a Turbo task (e.g., `build` or `test`) for a **specific module only**.
  *
- * @param {"build"|"test"} task - The turbo task type to run.
- * @param {string|null} appRef - Optional app reference to filter on. If null, runs for all apps.
- * @param {number} concurrency - Concurrency level for the task.
- * @returns {Promise<void>} Resolves when the Turbo task completes.
+ * This function enforces that a valid module reference is provided — it can
+ * no longer be used for global module runs (use `runAllTask()` instead).
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --action build --module @ovh-ux/manager-core-api
+ * yarn manager-pm --action test --module packages/manager/core/api
+ * ```
+ *
+ * @async
+ * @param {"build"|"test"|"lint"|string} task - The Turbo task to run for the module.
+ * @param {string} targetReference - Module reference or package name.
+ * @param {number} [concurrency=1] - Maximum concurrency level for Turbo pipelines.
+ * @throws {Error} If no module reference is provided or resolution fails.
+ * @returns {Promise<void>} Resolves when the Turbo task completes successfully.
  */
-async function runTurboTask(task, appRef, concurrency = 1) {
+async function runModuleTask(task, targetReference, concurrency = 1) {
+  if (!targetReference) {
+    throw new Error(
+      `runModuleTask: missing target reference. This function requires an explicit module reference.`,
+    );
+  }
+
   return withWorkspaces(async () => {
     const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
-    const filter = resolveBuildFilter(appRef);
-    if (filter) args.push('--filter', filter);
-    await runTask(`${task}${appRef ? ` (${appRef})` : ' (all apps)'}`, 'turbo', args);
+    const filter = resolveModuleBuildFilter(targetReference);
+
+    if (!filter) {
+      throw new Error(`Unable to resolve build filter for module "${targetReference}"`);
+    }
+
+    args.push('--filter', filter);
+
+    await runTaskFromRoot(`${task} (${targetReference})`, 'turbo', args);
   });
 }
 
 /**
- * Build a specific application.
+ * Build a single module.
  *
- * @param {string} appRef - The app reference or package name.
- * @returns {Promise<void>} Resolves when the build finishes successfully.
+ * @param {string} moduleRef - Module reference or package name.
+ * @returns {Promise<void>}
+ * @example
+ * await buildModule('@ovh-ux/manager-core-api');
  */
-export async function buildApp(appRef) {
-  return runTurboTask('build', appRef, 1);
+export async function buildModule(moduleRef) {
+  return runModuleTask('build', moduleRef, 1);
 }
 
 /**
- * Run tests for a specific application.
+ * Test a single module.
  *
- * @param {string} appRef - The app reference or package name.
- * @returns {Promise<void>} Resolves when the tests complete successfully.
+ * @param {string} moduleRef - Module reference or package name.
+ * @returns {Promise<void>}
+ * @example
+ * await testModule('packages/manager/core/api');
  */
-export async function testApp(appRef) {
-  return runTurboTask('test', appRef, 1);
+export async function testModule(moduleRef) {
+  return runModuleTask('test', moduleRef, 1);
 }
 
 /**
- * Build all applications.
+ * Lint a single module using the hybrid lint runner.
  *
- * @returns {Promise<void>} Resolves when the build finishes successfully.
+ * @param {string} moduleRef - Module reference or package name.
+ * @param {string[]} [options=[]] - Additional CLI flags (e.g., `--fix`).
+ * @throws {Error} If no module reference or package name cannot be resolved.
+ * @returns {Promise<void>}
+ * @example
+ * await lintModule('@ovh-ux/manager-core-api', ['--fix']);
+ */
+export async function lintModule(moduleRef, options = []) {
+  if (!moduleRef) throw new Error('lintModule: moduleRef is required');
+
+  return withWorkspaces(async () => {
+    const pkgName = resolveModuleBuildFilter(moduleRef);
+
+    if (!pkgName) throw new Error(`Unable to resolve package name for "${moduleRef}"`);
+
+    await runTaskFromRoot(`lint (${moduleRef})`, 'yarn', [
+      'pm:lint:base',
+      '--module',
+      pkgName,
+      ...options,
+    ]);
+  });
+}
+
+/**
+ * Run a Turbo task (e.g., `build` or `test`) for a **specific application only**.
+ *
+ * This function no longer supports global builds — use `runAllTask()` instead.
+ * It validates the `targetReference` and fails fast if not provided.
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --action build --app web
+ * yarn manager-pm --action test --app @ovh-ux/manager-web
+ * ```
+ *
+ * @async
+ * @param {"build"|"test"|"lint"|string} task - The Turbo task to run.
+ * @param {string} targetReference - Application reference or package name.
+ * @param {number} [concurrency=1] - Turbo concurrency level.
+ * @throws {Error} If no target reference is provided or resolution fails.
+ * @returns {Promise<void>} Resolves when the Turbo task completes successfully.
+ */
+async function runApplicationTask(task, targetReference, concurrency = 1) {
+  if (!targetReference) {
+    throw new Error(
+      `runApplicationTask: missing target reference. This function requires an explicit app reference.`,
+    );
+  }
+
+  return withWorkspaces(async () => {
+    const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
+    const filter = resolveApplicationBuildFilter(targetReference);
+
+    if (!filter) {
+      throw new Error(`Unable to resolve build filter for application "${targetReference}"`);
+    }
+
+    args.push('--filter', filter);
+
+    await runTaskFromRoot(`${task} (${targetReference})`, 'turbo', args);
+  });
+}
+
+/**
+ * Build a single application.
+ *
+ * @param {string} appRef - Application reference or package name.
+ * @returns {Promise<void>}
+ * @example
+ * await buildApplication('web');
+ */
+export async function buildApplication(appRef) {
+  return runApplicationTask('build', appRef, 1);
+}
+
+/**
+ * Run tests for a single application.
+ *
+ * @param {string} appRef - Application reference or package name.
+ * @returns {Promise<void>}
+ * @example
+ * await testApplication('@ovh-ux/manager-web');
+ */
+export async function testApplication(appRef) {
+  return runApplicationTask('test', appRef, 1);
+}
+
+/**
+ * Lint a single application using the hybrid lint runner.
+ *
+ * @param {string} appRef - Application reference or package name.
+ * @param {string[]} [options=[]] - Extra CLI args (e.g., `--fix`).
+ * @throws {Error} If the app reference is invalid or unresolved.
+ * @returns {Promise<void>}
+ * @example
+ * await lintApplication('web', ['--fix']);
+ */
+export async function lintApplication(appRef, options = []) {
+  if (!appRef) throw new Error('lintApplication: appRef is required');
+
+  return withWorkspaces(async () => {
+    const pkgName = resolveApplicationBuildFilter(appRef);
+    if (!pkgName) throw new Error(`Unable to resolve package name for "${appRef}"`);
+
+    await runTaskFromRoot(`lint (${appRef})`, 'yarn', [
+      'pm:lint:base',
+      '--app',
+      pkgName,
+      ...options,
+    ]);
+  });
+}
+
+/**
+ * Run a Turbo task (e.g., `build`, `test`, `lint`) across **all applications and modules**.
+ *
+ * Automatically prepares and cleans up workspaces before and after execution.
+ * This runs the Turbo task globally without any `--filter`, targeting every
+ * project in the monorepo.
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --action full-build
+ * yarn manager-pm --action full-test
+ * ```
+ *
+ * @async
+ * @param {"build"|"test"|"lint"|string} task - The Turbo task name to execute across all workspaces.
+ * @param {number} [concurrency=1] - The maximum number of concurrent Turbo pipelines.
+ * @returns {Promise<void>} Resolves when the task completes successfully.
+ * @throws {Error} If the underlying Turbo command fails.
+ */
+async function runAllTask(task, concurrency = 1) {
+  return withWorkspaces(async () => {
+    const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
+    await runTaskFromRoot(`${task} (all: apps + modules)`, 'turbo', args);
+  });
+}
+
+/**
+ * Build all (apps + modules).
+ *
+ * @returns {Promise<void>}
+ * @example
+ * await buildAll();
  */
 export async function buildAll() {
-  return runTurboTask('build', null, 1);
+  return runAllTask('build', 1);
 }
 
 /**
- * Run tests for all applications.
+ * Test all (apps + modules).
  *
- * @returns {Promise<void>} Resolves when the tests complete successfully.
+ * @returns {Promise<void>}
+ * @example
+ * await testAll();
  */
 export async function testAll() {
-  return runTurboTask('test', null, 1);
+  return runAllTask('test', 1);
 }
 
 /**
- * Run linting for a specific application using the hybrid lint runner.
+ * Lint all (apps + modules) in the monorepo.
  *
- * Executes the app's lint command inside a prepared workspace environment.
- * Supports forwarding flags like `--fix` or `--max-warnings 0`.
- *
- * Example:
- * ```bash
- * manager-pm --action lint --app web --fix
- * ```
- *
- * @async
- * @param {string} appRef - The app reference or package name (required).
- * @param {string[]} [options=[]] - Additional CLI flags to pass to the lint runner.
- * @throws {Error} If no appRef is provided or the package name cannot be resolved.
- * @returns {Promise<void>} Resolves when linting completes successfully.
- */
-export async function lintApp(appRef, options = []) {
-  if (!appRef) throw new Error('lintApp: appRef is required');
-  return withWorkspaces(async () => {
-    const pkgName = resolveBuildFilter(appRef);
-    if (!pkgName) throw new Error(`Unable to resolve package name for "${appRef}"`);
-    await runTask(`lint (${appRef})`, 'yarn', ['pm:lint:base', '--app', pkgName, ...options]);
-  });
-}
-
-/**
- * Run linting for all applications across the monorepo.
- *
- * Executes the global lint workflow (`yarn pm:lint:base`) inside a prepared
- * workspace environment. Supports forwarding arbitrary flags like `--fix`
- * or `--max-warnings 0`.
- *
- * Example:
- * ```bash
- * manager-pm --action full-lint --fix
- * manager-pm --action full-lint --max-warnings 0
- * ```
- *
- * @async
- * @param {string[]} [options=[]] - Additional CLI flags forwarded to `yarn pm:lint:base`.
- * @returns {Promise<void>} Resolves when linting completes successfully.
+ * @param {string[]} [options=[]] - Extra CLI args (e.g., `--fix`).
+ * @returns {Promise<void>}
+ * @example
+ * await lintAll(['--quiet']);
  */
 export async function lintAll(options = []) {
-  return withWorkspaces(() => runTask('lint (all apps)', 'yarn', ['pm:lint:base', ...options]));
+  return withWorkspaces(() =>
+    runTaskFromRoot('lint (all: apps + modules)', 'yarn', ['pm:lint:base', ...options]),
+  );
 }
 
 /**
- * Build the documentation workspace (@ovh-ux/manager-documentation).
+ * Build the documentation workspace.
  *
- * @returns {Promise<void>} Resolves when docs are built successfully.
+ * @returns {Promise<void>}
+ * @example
+ * await buildDocs();
  */
 export async function buildDocs() {
   return withWorkspaces(() =>
-    runTask('docs build', 'yarn', [
+    runTaskFromRoot('docs build', 'yarn', [
       'workspace',
       '@ovh-ux/manager-documentation',
       'run',
@@ -245,21 +335,16 @@ export async function buildDocs() {
 }
 
 /**
- * Run the manager-cli workspace command with pre/post workspace handling.
+ * Run the manager-cli workspace command.
  *
- * This ensures catalogs are merged before and cleaned after execution.
- *
- * Example:
- * ```bash
- * yarn manager-pm --type pnpm --action cli -- <args>
- * ```
- *
- * @param {string[]} [options=[]] - Additional arguments to pass to manager-cli.
- * @returns {Promise<void>} Resolves when the CLI completes successfully.
+ * @param {string[]} [options=[]] - CLI args forwarded to manager-cli.
+ * @returns {Promise<void>}
+ * @example
+ * await runManagerCli(['--migrations-status']);
  */
 export async function runManagerCli(options = []) {
   return withWorkspaces(() =>
-    runTask('manager-cli', 'yarn', [
+    runTaskFromRoot('manager-cli', 'yarn', [
       'workspace',
       '@ovh-ux/manager-cli',
       'run',
@@ -270,39 +355,41 @@ export async function runManagerCli(options = []) {
 }
 
 /**
- * Publish all packages (delegates to scripts/publish.js).
- * Forwards CLI flags like: --tag v1.2.3 → ['--tag','v1.2.3'].
+ * Publish all packages.
  *
- * @param {string[]} [options=[]]
+ * @param {string[]} [options=[]] - CLI args forwarded to `scripts/publish.js`.
  * @returns {Promise<void>}
+ * @example
+ * await publishPackage(['--tag', 'latest']);
  */
 export async function publishPackage(options = []) {
   return withWorkspaces(() =>
-    runTask('packages:publish', 'node', ['scripts/publish.js', ...options]),
+    runTaskFromRoot('packages:publish', 'node', ['scripts/publish.js', ...options]),
   );
 }
 
 /**
- * Create a release (delegates to scripts/release/release.sh).
- * Forwards CLI flags like: --tag v1.2.3 → ['--tag','v1.2.3'].
+ * Create a release.
  *
- * @param {string[]} [options=[]]
+ * @param {string[]} [options=[]] - CLI args forwarded to `scripts/release/release.sh`.
  * @returns {Promise<void>}
+ * @example
+ * await createRelease(['--tag', 'v1.3.0']);
  */
 export async function createRelease(options = []) {
   return withWorkspaces(() =>
-    runTask('release', 'bash', ['scripts/release/release.sh', ...options]),
+    runTaskFromRoot('release', 'bash', ['scripts/release/release.sh', ...options]),
   );
 }
 
 /**
- * Run a lifecycle task (preinstall, postinstall, etc.).
+ * Run a preinstall or postinstall lifecycle script.
  *
- * This is a thin wrapper around runTask, without withWorkspaces,
- * because lifecycle hooks must run before or after install.
- *
- * @param {"preinstall"|"postinstall"} lifecycle - Lifecycle stage to run.
- * @returns {Promise<void>} Resolves when the lifecycle script completes successfully.
+ * @param {"preinstall"|"postinstall"} lifecycle - Lifecycle stage name.
+ * @returns {Promise<void>}
+ * @throws {Error} If the lifecycle script is unknown.
+ * @example
+ * await runLifecycleTask('preinstall');
  */
 export async function runLifecycleTask(lifecycle) {
   const scripts = {
@@ -311,86 +398,56 @@ export async function runLifecycleTask(lifecycle) {
   };
 
   const script = scripts[lifecycle];
-  if (!script) {
-    throw new Error(`Unknown lifecycle: ${lifecycle}`);
-  }
+  if (!script) throw new Error(`Unknown lifecycle: ${lifecycle}`);
 
-  return runTask(lifecycle, 'node', [script]);
+  return runTaskFromRoot(lifecycle, 'node', [script]);
 }
 
 /**
- * Run static + dynamic quality checks in reports mode.
+ * Run static + dynamic quality checks (report mode).
  *
- * This executes the `manager-static-dynamic-quality-checks` CLI without extra flags,
- * generating combined HTML/JSON reports for code duplication, type coverage,
- * test coverage, and performance budgets.
- *
- * Example:
- * ```bash
- * yarn manager-pm --type pnpm --action staticDynamicReports
- * ```
- *
- * @returns {Promise<void>} Resolves when all reports are generated successfully.
+ * @returns {Promise<void>}
+ * @example
+ * await runStaticDynamicReports();
  */
 export async function runStaticDynamicReports() {
   return withWorkspaces(() =>
-    runTask('static-dynamic-reports', 'manager-static-dynamic-quality-checks'),
+    runTaskFromRoot('static-dynamic-reports', 'manager-static-dynamic-quality-checks'),
   );
 }
 
 /**
- * Run static + dynamic quality checks in tests mode.
+ * Run static + dynamic quality checks (test mode).
  *
- * This executes the `manager-static-dynamic-quality-checks` CLI with the `--tests` flag,
- * triggering analyzers in validation mode (duplication-tests, types-tests, coverage-tests,
- * perf-budgets-tests).
- *
- * Example:
- * ```bash
- * yarn manager-pm --type pnpm --action staticDynamicTests
- * ```
- *
- * @returns {Promise<void>} Resolves when all test checks complete successfully.
+ * @returns {Promise<void>}
+ * @example
+ * await runStaticDynamicTests();
  */
 export async function runStaticDynamicTests() {
   return withWorkspaces(() =>
-    runTask('static-dynamic-tests', 'manager-static-dynamic-quality-checks', ['--tests']),
+    runTaskFromRoot('static-dynamic-tests', 'manager-static-dynamic-quality-checks', ['--tests']),
   );
 }
 
 /**
- * Run performance budgets analysis with hybrid package-manager awareness.
+ * Run performance budgets checks.
  *
- * Works across Yarn, PNPM, or mixed setups. Ensures workspaces are prepared before running.
- * Supports scoping by app or package list.
- *
- * Example:
- * ```bash
- * yarn manager-pm --action perfBudgets --packages web,cloud
- * yarn manager-pm --action perfBudgets --app zimbra
- * ```
- *
- * @param {string[]} [options=[]] - Extra CLI flags, e.g. `--app <name>` or `--packages <list>`.
- * @returns {Promise<void>} Resolves when performance budgets complete successfully.
+ * @param {string[]} [options=[]] - CLI args such as `--packages web,cloud`.
+ * @returns {Promise<void>}
+ * @example
+ * await runPerfBudgets(['--app', 'web']);
  */
 export async function runPerfBudgets(options = []) {
-  return withWorkspaces(() => runTask('perf-budgets', 'manager-perf-budgets', options));
+  return withWorkspaces(() => runTaskFromRoot('perf-budgets', 'manager-perf-budgets', options));
 }
 
 /**
- * Run an arbitrary Lerna command with workspace handling.
+ * Run arbitrary Lerna commands with workspace setup.
  *
- * Suppresses all logger output to avoid breaking JSON output
- * when piping to tools like `jq`.
- *
- * Example:
- * ```bash
- * yarn manager-pm --action lerna list --all --json --toposort \
- *   | jq -r '.[].location | select(. | test("/packages/manager/apps"))'
- * ```
- *
- * @param {string[]} [options=[]] - Arguments passed to the `lerna` binary.
- * @returns {Promise<void>} Resolves when the Lerna process completes successfully.
+ * @param {string[]} [options=[]] - Arguments for the `lerna` binary.
+ * @returns {Promise<void>}
+ * @example
+ * await runLernaTask(['list', '--json']);
  */
 export async function runLernaTask(options = []) {
   return withWorkspaces(async () => {
