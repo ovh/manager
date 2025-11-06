@@ -5,10 +5,10 @@
   "manager_error_page_action_reload_label": "Volver a intentarlo",
   "manager_error_page_action_home_label": "Volver a la página de inicio",
   "manager_error_page_default": "Se ha producido un error al cargar la página.",
-  "manager_error_page_404_title": "¡Ups! Página no encontrada.",
-  "manager_error_page_404_description": "Error 404. La página que buscas parece no estar disponible.",
-  "manager_error_api_page_title": "¡Ups! Se ha producido un error interno",
-  "manager_error_page_api_description": "Se ha producido un error, puedes contactarnos con el código de error a continuación.",
-  "manager_error_page_boundary_title": "¡Ups! Se ha producido un error.",
+  "manager_error_page_404_title": "¡Vaya! Página no encontrada.",
+  "manager_error_page_404_description": "Error 404. Lo sentimos, pero la página que buscas no existe.",
+  "manager_error_api_page_title": "¡Vaya! Se ha producido un error interno",
+  "manager_error_page_api_description": "Se ha producido un error. Puede ponerse en contacto con nosotros con el código de error que aparece a continuación.",
+  "manager_error_page_boundary_title": "¡Vaya! Se ha producido un error.",
   "manager_error_page_boundary_description": "Se ha producido un error. Por favor, vuelva a intentarlo más tarde."
 }

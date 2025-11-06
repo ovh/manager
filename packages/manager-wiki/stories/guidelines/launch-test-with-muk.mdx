@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Launch test with MUK" />
+
+# Running Tests with Manager UI Kit
+
+## Quick Setup
+
+To run Vitest tests with Manager UI Kit (MUK), use the `sharedCssConfig` configuration.
+
+## Configuration
+
+Import and spread `sharedCssConfig` in your test configuration:
+
+```javascript
+import {
+  createConfig,
+  mergeConfig,
+  sharedConfig,
+  sharedCssConfig,
+} from '@ovh-ux/manager-tests-setup';
+
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: ['./setupTests.ts'],
+      ...sharedCssConfig,
+    },
+  }),
+);
+```
+
+## What does `sharedCssConfig` include?
+
+```javascript
+{
+  deps: {
+    inline: ['@ovhcloud/ods-react'],  // Transform ODS components during tests
+  },
+  css: true,                   // Enable CSS processing for styled components
+}
+```
+
+## Why is this needed?
+
+- **`deps.inline`** - Ensures ODS React components are properly transformed and rendered
+- **`css: true`** - Enables component styling in tests
+
+That's it! Your tests will now work with MUK components.
