@@ -11,6 +11,16 @@ export default defineConfig({
         inline: ['clsx'],
       },
     },
+    deps: {
+      inline: ['@ovhcloud/ods-react'],
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          includePaths: [path.resolve(__dirname, 'node_modules')],
+        },
+      },
+    },
     globals: true,
     environment: 'jsdom',
     coverage: {

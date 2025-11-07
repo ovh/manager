@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Meter, Text } from '@ovh-ux/muk';
 
 import {
   OsdsButton,
@@ -243,6 +244,10 @@ export default function Listing() {
                 >
                   {t(`${NAMESPACES.ACTIONS}:order`)}
                 </OsdsButton>
+              </div>
+              <div>
+                <Text preset="heading-1">Meter from MUK</Text>
+                <Meter />
               </div>
               {columns && flattenData && (
                 <Datagrid
