@@ -100,6 +100,12 @@ const TerminateOrganizationPage = React.lazy(() =>
   import('@/pages/terminate/TerminateOrganization.page'),
 );
 
+const AddPublicIpBlockPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/general-informations/add-public-ip-block/AddPublicIpBlock.page'
+  ),
+);
+
 export default (
   <>
     <Route path="/" element={<Navigate to={urls.root} replace />} />
@@ -238,6 +244,11 @@ export default (
                 pageType: PageType.popup,
               },
             }}
+          />
+          <Route
+            id={'vdc-add-public-ip'}
+            path={urls.datacentreAddPublicIpBlock}
+            Component={AddPublicIpBlockPage}
           />
         </Route>
         <Route
