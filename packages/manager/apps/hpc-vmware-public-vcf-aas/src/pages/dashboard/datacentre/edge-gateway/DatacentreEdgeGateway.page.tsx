@@ -22,7 +22,7 @@ export default function EdgeGatewayListingPage() {
   const { id, vdcId } = useParams();
   const columns = useEdgeGatewayListingColumns();
   const vdcQuery = useVcdDatacentre(id, vdcId);
-  const edgeQuery = useVcdEdgeGatewaysMocks(id, vdcId);
+  const edgeQuery = useVcdEdgeGatewaysMocks({ id, vdcId });
 
   const queryList = [vdcQuery, edgeQuery];
   const queries = {
