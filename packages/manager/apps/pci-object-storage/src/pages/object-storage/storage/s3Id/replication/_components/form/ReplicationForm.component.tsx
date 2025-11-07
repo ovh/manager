@@ -1,5 +1,4 @@
 import { UseFormReturn } from 'react-hook-form';
-import { Skeleton } from '@datatr-ux/uxlib';
 import { ReplicationFormValues } from './useReplicationForm.hook';
 import { ReplicationFormProvider } from './ReplicationForm.context';
 import { ReplicationRuleIdentification } from './ReplicationRuleIdentification.component';

@@ -36,6 +36,7 @@ import { getUserRclone } from '@/data/api/user/user.api';
 import useDownload from '@/hooks/useDownload';
 import { FormField } from '@/components/form-field/FormField.component';
 import Flag from '@/components/flag/Flag.component';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 const Rclone = () => {
   const { t } = useTranslation('pci-object-storage/users/rclone');
@@ -139,7 +140,15 @@ const Rclone = () => {
                       <ComboboxValue
                         data-testid="select-region-button"
                         placeholder={t('regionPlaceholder')}
-                        value={field.value && tRegions(`region_${field.value}`)}
+                        value={
+                          field.value && (
+                            <RegionWithFlag
+                              region={regions.find(
+                                (r) => r.name === field.value,
+                              )}
+                            />
+                          )
+                        }
                       />
                     </ComboboxTrigger>
                     <ComboboxContent>
@@ -165,18 +174,7 @@ const Rclone = () => {
                                 keywords={[tRegions(`region_${region.name}`)]}
                                 className="flex gap-2"
                               >
-                                <Flag flagName={region.countryCode} />
-                                {`${tRegions(`region_${region.name}`)} - (${
-                                  region.name
-                                })`}
-                                <Check
-                                  className={cn(
-                                    'ml-auto',
-                                    region.name === field.value
-                                      ? 'opacity-100'
-                                      : 'opacity-0',
-                                  )}
-                                />
+                                <RegionWithFlag region={region} />
                               </ComboboxItem>
                             ))}
                         </ComboboxGroup>

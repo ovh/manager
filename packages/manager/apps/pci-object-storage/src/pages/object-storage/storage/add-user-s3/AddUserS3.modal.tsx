@@ -128,21 +128,19 @@ const AddUserS3Modal = () => {
                       <ComboboxList>
                         <ComboboxEmpty>{t('noUserFound')}</ComboboxEmpty>
                         <ComboboxGroup>
-                          {users.map((user) => (
+                          {users.map((user, i) => (
                             <ComboboxItem
+                              disabled={i === 2}
                               key={user.id}
                               value={`${user.id}`}
                               keywords={[user.username, user.description]}
+                              className={cn(
+                                'cursor-pointer hover:bg-primary-50',
+                                'data-[disabled]:pointer-events-auto data-[disabled]:opacity-100',
+                                'data-[disabled=true]:cursor-not-allowed data-[disabled=true]:pointer-events-none data-[disabled=true]:!opacity-50',
+                              )}
                             >
                               {`${user.username} - ${user.description}`}
-                              <Check
-                                className={cn(
-                                  'ml-auto',
-                                  user.id === field.value
-                                    ? 'opacity-100'
-                                    : 'opacity-0',
-                                )}
-                              />
                             </ComboboxItem>
                           ))}
                         </ComboboxGroup>

@@ -27,6 +27,7 @@ import cloud from '@/types/Cloud';
 import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { RegionTypeBadgeWithPopover } from '@/components/region-type-badge/RegionTypeBadge.component';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 interface RegionsSelectProps {
   regions: Region[];
@@ -209,10 +210,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                       <div className="flex items-center gap-2">
                         <RadioIndicator />
                         <h5 className="flex gap-2 items-center">
-                          {region.countryCode && (
-                            <Flag flagName={region.countryCode} />
-                          )}
-                          {region.label}
+                          <RegionWithFlag region={region} />
                         </h5>
                       </div>
                     </div>

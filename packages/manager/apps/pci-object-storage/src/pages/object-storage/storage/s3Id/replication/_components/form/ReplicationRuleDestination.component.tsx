@@ -52,7 +52,18 @@ export const ReplicationRuleDestination = () => {
         {(field) => (
           <>
             <FieldLabel>{t('destinationFieldLabel')}</FieldLabel>
-            <Combobox>
+            <Combobox
+              modal
+              value={
+                selectedDestination
+                  ? `${selectedDestination.name}::${selectedDestination.region}`
+                  : ''
+              }
+              onValueChange={(val) => {
+                const [name, region] = val.split('::');
+                handleSelect(name, region);
+              }}
+            >
               <ComboboxTrigger disabled={isDisabled} ref={field.ref}>
                 <ComboboxValue
                   placeholder={t('destinationPlaceholder')}
@@ -62,8 +73,9 @@ export const ReplicationRuleDestination = () => {
                         <Flag
                           flagName={selectedDestination.regionObj?.countryCode}
                         />
-                        {selectedDestination.name} ({selectedDestination.region}
-                        )
+                        <span>
+                          {`${selectedDestination.name} (${selectedDestination.region})`}
+                        </span>
                       </div>
                     )
                   }
@@ -81,13 +93,14 @@ export const ReplicationRuleDestination = () => {
                     {availableDestinations.map(
                       ({ name, region, regionObj }) => (
                         <ComboboxItem
-                          key={`${name}-${region}`}
-                          value={`${name}-${region}`}
-                          onSelect={() => handleSelect(name, region)}
+                          key={`${name}::${region}`}
+                          value={`${name}::${region}`}
                           keywords={[name, region]}
                         >
-                          <Flag flagName={regionObj?.countryCode} />
-                          {name} ({region})
+                          <div className="flex items-center gap-2">
+                            <Flag flagName={regionObj?.countryCode} />
+                            <span>{`${name} (${region})`}</span>
+                          </div>
                         </ComboboxItem>
                       ),
                     )}

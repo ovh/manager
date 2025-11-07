@@ -21,7 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { Info } from 'lucide-react';
 import { MappedRegions } from './RegionStep.component';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
-import Flag from '@/components/flag/Flag.component';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 enum ReplicationMode {
   Disabled = 'disabled',
@@ -130,12 +130,7 @@ const OffsiteReplicationStep = React.forwardRef<
               <ComboboxValue
                 aria-labelledby="offsite-replication-region-combobox"
                 placeholder={t('offsiteReplicationRegionPlaceholder')}
-                value={
-                  <div className="flex gap-2 items-center">
-                    <Flag flagName={selectedRegion?.countryCode} />
-                    <span>{selectedRegion?.label}</span>
-                  </div>
-                }
+                value={<RegionWithFlag region={selectedRegion} />}
               />
             </ComboboxTrigger>
             <ComboboxContent>
@@ -157,8 +152,7 @@ const OffsiteReplicationStep = React.forwardRef<
                           value={r.label}
                           className="flex gap-2"
                         >
-                          <Flag flagName={r.countryCode} />
-                          {r.label}
+                          <RegionWithFlag region={r} />
                         </ComboboxItem>
                       ))}
                   </ComboboxGroup>

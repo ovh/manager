@@ -2,7 +2,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Dialog,
   DialogBody,
   DialogClose,
   DialogContent,

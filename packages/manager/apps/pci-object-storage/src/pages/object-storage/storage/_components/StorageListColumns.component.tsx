@@ -22,6 +22,7 @@ import storages, {
 import { octetConverter } from '@/lib/bytesHelper';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import { RegionTypeBadge } from '@/components/region-type-badge/RegionTypeBadge.component';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 interface StoragesListColumnsProps {
   onSwitchClicked: (storage: FormattedStorage) => void;
@@ -70,18 +71,7 @@ export const useGetColumns = ({
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
-        const { translateMacroRegion } = useTranslatedMicroRegions();
-        return (
-          <div className="flex items-center gap-2">
-            <Flag
-              flagName={row.original.regionObj.countryCode}
-              className="w-4 h-3"
-            />
-            <span className="whitespace-nowrap">
-              {translateMacroRegion(row.original.region)}
-            </span>
-          </div>
-        );
+        return <RegionWithFlag region={row.original.regionObj} />;
       },
     },
     {
