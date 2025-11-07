@@ -50,5 +50,16 @@
   "managed_vcd_dashboard_edit_description_modal_title": "Modifier la description",
   "managed_vcd_dashboard_edit_description_modal_label": "Description",
   "managed_vcd_dashboard_edit_description_modal_success": "La description a été modifiée avec succès.",
-  "managed_vcd_dashboard_edit_description_modal_helper_error": "Veuillez saisir une description dont la longueur est comprise entre 1 et 255 caractères."
+  "managed_vcd_dashboard_edit_description_modal_helper_error": "Veuillez saisir une description dont la longueur est comprise entre 1 et 255 caractères.",
+  "managed_vcd_dashboard_add_ip_public_block_description": "Vous pouvez ajouter un de vos blocs d'IP publics enregistrés à votre VDC, ce qui vous permettra d'assigner n'importe quelle adresse IP qu'il contient à vos VMs.",
+  "managed_vcd_dashboard_add_ip_public_block_information": "Pour voir vos blocs IP disponibles, vous devez les avoir liés à votre vRack du VDC. Cliquez ci-dessous pour accéder à votre vRack.",
+  "managed_vcd_dashboard_add_ip_public_block_no_vrack_ip_information": "Il semble qu'aucun bloc IP ne soit associé à votre vRack. Associez un bloc IP en accédant au gestionnaire de vrack ci-dessous",
+  "managed_vcd_dashboard_add_ip_public_block_label": "Bloc d'adresses IP publiques",
+  "managed_vcd_dashboard_add_ip_public_block_modal_heading": "Ajouter un nouveau bloc IP public",
+  "managed_vcd_dashboard_add_ip_public_block_message_success": "Votre demande d'ajout de la passerelle {{gateway}} correspondant au bloc d'IP public {{blockIp}} a bien été prise en compte.",
+  "managed_vcd_dashboard_tile_ip_block_title": "Accès public",
+  "managed_vcd_dashboard_tile_ip_block_label": "Nombre de blocs d'adresses IP publiques:",
+  "managed_vcd_dashboard_tile_action_add_ip_block": "Ajouter un nouveau bloc d'adresses IP",
+  "managed_vcd_dashboard_tile_action_manage_vrack_segments": "Gérer mes segments vRack",
+  "managed_vcd_dashboard_add_ip_public_block_add_already_exist": "La passerelle {{gateway}} correspondant au bloc IP {{blockIp}} existe déjà dans le segment VRack, et ne peut donc pas être ajoutée à la configuration réseau."
 }
