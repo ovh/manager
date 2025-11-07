@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-tests-setup",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "description": "Manager common tests configuration",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"

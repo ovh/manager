@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.0...@ovh-ux/manager-web@19.27.1) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.13...@ovh-ux/manager-web@19.27.0) (2025-11-06)
+
+
+### Features
+
+* **web-hosting:** migrate visibility pro tab in react ([a524b43](https://github.com/ovh/manager/commit/a524b430b2440ebeafc7e9fdb7c29027c5b1f349)), closes [#WEB-21060](https://github.com/ovh/manager/issues/WEB-21060)
+
+
+
+
+
 ## [19.26.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.12...@ovh-ux/manager-web@19.26.13) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

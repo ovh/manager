@@ -27,7 +27,7 @@
   "editTopicButtonConfirm": "Modificar o topic",
   "addTopicToastErrorTitle": "Ocorreu um erro aquando da adição do seu topic.",
   "addTopicToastSuccessTitle": "Êxito",
-  "addTopicToastSuccessDescription": "O seu topic «{{name}}» foi adicionado com sucesso.",
+  "addTopicToastSuccessDescription": "O seu topic \"{{name}}\" foi adicionado com sucesso.",
   "deleteTopicToastErrorTitle": "Ocorreu um erro aquando da eliminação do seu topic.",
   "deleteTopicToastSuccessTitle": "Êxito",
   "deleteTopicToastSuccessDescription": "O seu topic foi eliminado com êxito.",
@@ -47,7 +47,7 @@
   "tableActionEdit": "Alterar",
   "breadcrumb": "Topics",
   "formTopicErrorPattern": "Deve conter entre 1 e 249 caracteres alfanuméricos, hífens (-), underscores (_) ou pontos (.) apenas",
-  "editTopicToastErrorTitle": "Ocorreu um erro ao modificar o seu tópico",
-  "topicToastSuccessTitle": "Sucesso",
-  "editTopicToastSuccessDescription": "O seu tópico \"{{name}}\" foi modificado com sucesso."
+  "editTopicToastErrorTitle": "Ocorreu um erro aquando da modificação do seu topic",
+  "topicToastSuccessTitle": "Êxito",
+  "editTopicToastSuccessDescription": "O seu topic \"{{name}}\" foi modificado com sucesso."
 }
