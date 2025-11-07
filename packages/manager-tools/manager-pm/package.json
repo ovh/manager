@@ -7,7 +7,9 @@
   "author": "OVH SAS",
   "type": "module",
   "bin": {
-    "manager-pm": "./bin/manager-pm.js"
+    "manager-pm": "./bin/manager-pm.js",
+    "manager-pm-validation": "./bin/manager-pm-validation.js",
+    "manager-pm-cds-validation": "./bin/manager-pm-cds-validation.js"
   },
   "scripts": {
     "lint:modern": "manager-lint --config eslint.config.mjs './bin/**/*.js' './src/**/*.js'",
