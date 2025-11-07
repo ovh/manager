@@ -1,15 +1,14 @@
-import {
-  useMutation,
-  UseMutationOptions,
-  useQueryClient,
-} from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getVcdEdgeGatewayListQueryKey } from '../utils';
-import { GetEdgeGatewayParams } from '../types';
+import {
+  GetEdgeGatewayParams,
+  RestrictedMutationOptions,
+  VCDEdgeGateway,
+} from '../types';
 import { deleteVcdEdgeGateway } from '../api';
 
 type UseDeleteEdgeGatewayParams = GetEdgeGatewayParams &
-  Partial<UseMutationOptions<unknown, ApiError, void, unknown>>;
+  RestrictedMutationOptions<VCDEdgeGateway, void>;
 
 export const useDeleteEdgeGateway = ({
   id,

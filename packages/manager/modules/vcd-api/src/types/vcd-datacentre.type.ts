@@ -1,5 +1,10 @@
 import { VCDResourceStatus, Task, WithIam } from './vcd-utility.type';
 
+export type GetVCDDatacentreParams = {
+  id: string;
+  vdcId: string;
+};
+
 export type VCDDatacentreTargetSpec = {
   vCPUSpeed: number;
   description: string;
