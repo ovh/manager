@@ -5,6 +5,7 @@ import {
   initShellContext,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import '@ovhcloud/ods-themes/default';
 import '@/vite-hmr';
 import App from './App';
@@ -50,6 +51,8 @@ const init = async (
       'order-price',
       'regions',
       'status',
+      NAMESPACES.ACTIONS,
+      NAMESPACES.FORM,
     ],
     defaultNS: 'common',
   });

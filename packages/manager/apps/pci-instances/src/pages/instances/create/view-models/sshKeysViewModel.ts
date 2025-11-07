@@ -2,7 +2,7 @@ import { Deps } from '@/deps/deps';
 import { TSshKey } from '@/domain/entities/configuration';
 import { Reader } from '@/types/utils.type';
 
-type TSshKeyData = {
+export type TSshKeyData = {
   label: string;
   value: string;
 };
