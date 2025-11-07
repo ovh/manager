@@ -1,15 +1,10 @@
 import * as React from 'react';
-import { Upload, File as FileIcon, X } from 'lucide-react';
-import {
-  Button,
-  Table,
-  TableBody,
-  TableRow,
-  TableCell,
-} from '@datatr-ux/uxlib';
+import { Upload, X } from 'lucide-react';
+import { Button } from '@datatr-ux/uxlib';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { octetConverter } from '@/lib/bytesHelper';
+import FileIcon from '../file-icon/FileIcon.component';
 
 interface FileInputProps
   extends Omit<
@@ -81,40 +76,43 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
           <Upload className="w-10 h-10 text-gray-500 mb-2" />
           <p className="text-gray-600 mb-4">{t('importFileLabel')}</p>
           <Button type="button" mode="ghost" size="sm" className="font-bold">
-            <Upload className="size-4 mr-2" />
+            <Upload className="size-4" />
             {t('importFileButton')}
           </Button>
 
           {/* File list */}
           {value?.length > 0 && (
-            <div className="mt-2 px-4">
-              <Table>
-                <TableBody>
-                  {value.map((file, index) => (
-                    <TableRow key={index} className="text-sm">
-                      <TableCell>
-                        <FileIcon className="size-4" />
-                      </TableCell>
-                      <TableCell className="w-[250px] truncate text-left">
-                        {file.name}
-                      </TableCell>
-                      <TableCell>{octetConverter(file.size)}</TableCell>
-                      <TableCell className="text-right">
-                        <Button
-                          type="button"
-                          className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 mt-1"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            removeFile(file);
-                          }}
-                        >
-                          <X className="size-4" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+            <div className="mt-2 px-4 w-full max-h-48 overflow-auto">
+              {value.map((file, index) => (
+                <div
+                  key={index}
+                  className="grid grid-cols-2 gap-4 items-center border-b border-gray-200"
+                >
+                  <div className="flex flex-row items-center gap-4">
+                    <FileIcon className="size-4" fileName={file.name} />
+                    <p
+                      className="font-semibold max-w-60 truncate"
+                      title={file.name}
+                    >
+                      {file.name}
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-center justify-end gap-4">
+                    <p>{octetConverter(file.size)}</p>
+                    <Button
+                      type="button"
+                      mode="ghost"
+                      className="h-4 w-4"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeFile(file);
+                      }}
+                    >
+                      <X className="size-4" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>

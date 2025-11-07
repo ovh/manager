@@ -33,7 +33,7 @@ export const useAddS3Form = ({ onUploadEnd }: { onUploadEnd: () => void }) => {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -50,7 +50,7 @@ export const useAddS3Form = ({ onUploadEnd }: { onUploadEnd: () => void }) => {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

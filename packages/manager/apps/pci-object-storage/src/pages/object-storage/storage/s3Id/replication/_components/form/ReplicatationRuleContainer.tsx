@@ -8,11 +8,11 @@ export const ReplicationRuleContainer = ({
   children: React.ReactNode;
 }) => {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className="flex flex-col gap-2">{children}</CardContent>
     </Card>
   );
 };

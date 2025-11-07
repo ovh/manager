@@ -24,8 +24,8 @@ export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
           <h2>{swift.name ?? 'Dashboard'}</h2>
         </div>
         <div className="flex gap-2 flex-wrap mt-2">
-          <Badge variant={'outline'}>Swift</Badge>
-          <Badge variant={'outline'} className="capitalize">
+          <Badge variant="outline">Swift</Badge>
+          <Badge variant="outline" className="capitalize">
             <div className="flex items-center gap-1">
               <Flag
                 flagName={getRegionFlag(getMacroRegion(swift.region))}
@@ -34,7 +34,7 @@ export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
               {translateMacroRegion(swift.region)}
             </div>
           </Badge>
-          <Badge variant={'outline'}>{octetConverter(swift.storedBytes)}</Badge>
+          <Badge variant="outline">{octetConverter(swift.storedBytes)}</Badge>
         </div>
       </div>
     </div>

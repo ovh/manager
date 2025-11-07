@@ -22,7 +22,7 @@ const Dashboard = () => {
         <h2>{t('dashboardTitle')}</h2>
         <Guides selectors={['swift']} />
       </div>
-      <Card>
+      <Card className="w-full">
         <CardHeader>
           <h5>
             <Globe2 className="size-4 inline mr-2" />
@@ -44,7 +44,7 @@ const Dashboard = () => {
         <Card>
           <CardHeader>
             <h4>
-              <Settings2 className="inline size-4 mr-2 mb-1" />
+              <Settings2 className="inline size-4 mr-2" />
               {t('configurationTitle')}
             </h4>
           </CardHeader>

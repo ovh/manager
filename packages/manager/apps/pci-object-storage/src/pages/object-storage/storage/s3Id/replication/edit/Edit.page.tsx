@@ -1,13 +1,22 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useToast, Skeleton } from '@datatr-ux/uxlib';
+import {
+  Button,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';
-import { useEditReplicationForm } from './useEditReplicationForm.hook';
-import { useUpdateReplication } from '@/data/hooks/replication/useUpdateReplication.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
-import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
-import { ReplicationLayout } from '../_components/ReplicationLayout.component';
-import { useReplicationFormSubmit } from '../../../../../../hooks/useReplicationFormSubmit.hook';
+import { ReplicationForm } from '../_components/form/ReplicationForm.component';
+import { useUpdateReplication } from '@/data/hooks/replication/useUpdateReplication.hook';
+import { buildReplicationRule } from '../_components/form/buildReplicationRule';
+import { useReplicationForm } from '../_components/form/useReplicationForm.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const EditReplication = () => {
   const { t } = useTranslation('pci-object-storage/replication');
@@ -16,29 +25,19 @@ const EditReplication = () => {
   const navigate = useNavigate();
   const { projectId, ruleId } = useParams();
 
-  const storagesQuery = useGetStorages(projectId);
-  const availableDestinations = storagesQuery.data?.resources || [];
-
   const existingRule = s3.replication?.rules?.find(
     (rule) => rule.id === ruleId,
   );
 
-  const { form } = useEditReplicationForm({
+  const { form } = useReplicationForm({
     existingRule,
-    availableDestinations,
-  });
-
-  const { buildReplicationRule } = useReplicationFormSubmit({
-    availableDestinations,
-    s3Region: s3?.region,
-    s3Name: s3?.name,
   });
 
   const { updateReplication, isPending } = useUpdateReplication({
     onError: (err) => {
       toast.toast({
         title: t('editReplicationToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -47,7 +46,7 @@ const EditReplication = () => {
         title: t('editReplicationToastSuccessTitle'),
         description: t('editReplicationToastSuccessDescription'),
       });
-      navigate('../replication');
+      navigate('..');
     },
   });
 
@@ -59,42 +58,42 @@ const EditReplication = () => {
       projectId,
       region: s3.region,
       name: s3.name,
-      ruleId,
       replicationRule,
     });
   });
 
-  const isLoading =
-    s3Query.isLoading || storagesQuery.isLoading || !existingRule;
-
-  if (isLoading) {
-    return (
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <Skeleton className="w-48 h-8" />
-          <Skeleton className="w-32 h-6" />
-        </div>
-        <div className="space-y-4">
-          <Skeleton className="w-full h-32" />
-          <Skeleton className="w-full h-32" />
-          <Skeleton className="w-full h-32" />
-          <Skeleton className="w-full h-32" />
-        </div>
-        <Skeleton className="w-32 h-10" />
-      </div>
-    );
-  }
-
   return (
-    <ReplicationLayout
-      title={t('editReplicationTitle')}
-      isLoading={isLoading}
-      form={form}
-      availableDestinations={availableDestinations}
-      isPending={isPending}
-      onSubmit={onSubmit}
-      submitButtonText={t('editReplicationButtonConfirm')}
-    />
+    <RouteModal isLoading={s3Query.isLoading}>
+      <DialogContent className="p-0 max-w-3xl" variant="warning">
+        <DialogHeader>
+          <DialogTitle data-testid="edit-replication-modal">
+            {t('editReplicationTitle')}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
+          <ReplicationForm
+            isEditMode
+            form={form}
+            isPending={isPending}
+            onSubmit={onSubmit}
+          />
+        </DialogBody>
+        <DialogFooter className="border-t">
+          <DialogClose asChild>
+            <Button
+              data-testid="edit-replication-cancel-button"
+              type="button"
+              mode="ghost"
+            >
+              {t('replicationButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button type="submit" disabled={isPending} form="replication-form">
+            {t('editReplicationButtonConfirm')}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </RouteModal>
   );
 };
 

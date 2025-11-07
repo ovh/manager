@@ -38,7 +38,7 @@ export function ActionsMenu({
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
-          variant="destructive"
+          variant="critical"
           onClick={() => onDelete(replication)}
         >
           {t('actionDelete')}

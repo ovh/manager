@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Plus, X } from 'lucide-react';
 import { Button, Input } from '@datatr-ux/uxlib';
-import { TagMap, TagValidationErrors } from '../../../../../../types/Tag';
+import { TagMap, TagValidationErrors } from '../../../../../../../types/Tag';
 
 type TagInputProps = {
   tags: TagMap;
@@ -89,7 +89,9 @@ export const TagInput = ({
             <Button
               type="button"
               mode="outline"
-              size="icon"
+              variant="critical"
+              size="menu"
+              className="mt-1"
               onClick={() => removeTag(Number(id))}
               disabled={isDisabled}
             >
@@ -102,12 +104,12 @@ export const TagInput = ({
       <Button
         className="mt-2"
         type="button"
-        size="xs"
+        size="md"
         mode="outline"
         onClick={addNewTag}
         disabled={isDisabled}
       >
-        <Plus className="h-4 w-4 mr-2" />
+        <Plus className="h-4 w-4" />
         {t('addTag')}
       </Button>
     </div>

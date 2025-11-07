@@ -2,9 +2,11 @@ import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
 import {
   Badge,
   Button,
+  ButtonProps,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuItemProps,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   useToast,
@@ -20,9 +22,10 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
+import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import FileIcon from '@/components/fileIcon/FileIcon.component';
+import FileIcon from '@/components/file-icon/FileIcon.component';
 import Link from '@/components/links/Link.component';
 import useDownload from '@/hooks/useDownload';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
@@ -51,7 +54,7 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -81,7 +84,17 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
   const onDeleteClicked = () =>
     navigate(`./delete-object?objectKey=${object.key}`);
 
-  const actions = [
+  const actions: {
+    id: string;
+    icon: ReactElement;
+    onClick: () => void;
+    disabled?: boolean;
+    label: string;
+    withSeparator?: boolean;
+    mobileOnly?: boolean;
+    hidden?: boolean;
+    variant?: ButtonProps['variant'] & DropdownMenuItemProps['variant'];
+  }[] = [
     {
       id: 'details',
       icon: <Pen className="size-4" />,
@@ -113,7 +126,7 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
       icon: <Trash className="size-4" />,
       onClick: () => onDeleteClicked(),
       label: t('tableActionDelete'),
-      variant: 'destructive',
+      variant: 'critical',
     },
   ];
   return (
@@ -136,7 +149,7 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               .pop()}
           </span>
           {object.isDeleteMarker && (
-            <Badge className="ml-2" variant="info">
+            <Badge className="ml-2" variant="information">
               {t('tableSuppressionBadgeLabel')}
             </Badge>
           )}
@@ -177,8 +190,8 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
                 aria-label={a.label}
                 title={a.label}
                 onClick={a.onClick}
-                mode={'ghost'}
-                size={'xs'}
+                mode="ghost"
+                size="xs"
                 className="p-1"
                 variant={a.variant}
                 disabled={a.disabled}
