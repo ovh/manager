@@ -811,6 +811,536 @@ export function useShellRoutingSync() {
 - [ ] Documentation updated
 - [ ] Ready for next component
 
+## 🔍 Pattern Detection Rules (Automated)
+
+### Route Detection Patterns
+
+```typescript
+// Pattern: $stateProvider.state('name', { ... })
+const statePattern = /\$stateProvider\.state\(['"]([^'"]+)['"]\s*,\s*\{/g;
+
+// Extract:
+// - State name: 'module.submodule'
+// - URL pattern: url: '/path/:param'
+// - Component: component: 'componentName'
+// - Resolves: resolve: { ... }
+// - RedirectTo: redirectTo: (transition) => ...
+
+// Example detection:
+const states = [
+  {
+    name: 'nasha.dashboard',
+    url: '/:serviceName',
+    component: 'nashaDashboard',
+    hasResolves: true,
+    hasRedirectTo: false,
+  },
+];
+```
+
+### Resolve Function Detection
+
+```typescript
+// Pattern: name: /* @ngInject */ (...) => ...
+const resolvePattern = /(\w+):\s*\/\*\s*@ngInject\s*\*\/\s*\(([^)]*)\)\s*=>/g;
+
+// Extract:
+// - Resolve name
+// - Dependencies (injections)
+// - Function body
+// - Return type (promise, value, function)
+
+// Example detection:
+const resolves = [
+  {
+    name: 'nasha',
+    dependencies: ['OvhApiDedicatedNasha', 'serviceName', 'prepareNasha'],
+    usesAAPI: true,
+    usesIceberg: false,
+    usesHttp: false,
+    returnsPromise: true,
+  },
+];
+```
+
+### OUI Component Detection
+
+```typescript
+// Patterns in templates
+const ouiPatterns = {
+  datagrid: /<oui-datagrid[^>]*>/i,
+  tile: /<oui-tile[^>]*>/i,
+  tileDefinition: /<oui-tile-definition[^>]*>/i,
+  button: /<oui-button[^>]*>/i,
+  modal: /<oui-modal[^>]*>/i,
+  header: /<header[^>]*class="oui-header"/i,
+  tabs: /<oui-header-tabs[^>]*>/i,
+  actionMenu: /<oui-action-menu[^>]*>/i,
+  message: /<oui-message[^>]*>/i,
+  managerListLayout: /<manager-list-layout[^>]*>/i,
+  changelogButton: /<changelog-button[^>]*>/i,
+  guideMenu: /<oui-guide-menu[^>]*>/i,
+};
+
+// Example detection:
+const detectedComponents = {
+  hasDatagrid: true,
+  hasTiles: true,
+  hasButtons: 3,
+  hasModals: 1,
+  hasManagerListLayout: true,
+};
+```
+
+### API Endpoint Detection
+
+```typescript
+// Patterns in controllers/services
+const apiPatterns = {
+  aapi: /OvhApi\w+\.Aapi\(\)/g,
+  iceberg: /iceberg\([^)]+\)/g,
+  http: /\$http\.(get|post|put|delete)\(['"]([^'"]+)['"]/g,
+  v6: /v6\.(get|post|put|delete)\(['"]([^'"]+)['"]/g,
+};
+
+// Example detection:
+const apiEndpoints = [
+  {
+    type: 'aapi',
+    method: 'get',
+    endpoint: '/dedicated/nasha/{serviceName}',
+    location: 'resolve.nasha',
+  },
+  {
+    type: 'iceberg',
+    method: 'query',
+    endpoint: '/dedicated/nasha/{serviceName}/partition',
+    location: 'resolve.partitionAllocatedSize',
+  },
+];
+```
+
+## 🎯 Resolve Function Mapping Patterns
+
+### Pattern 1: Simple Data Fetching (AAPI)
+
+**AngularJS:**
+```javascript
+resolve: {
+  nasha: /* @ngInject */ (
+    OvhApiDedicatedNasha,
+    serviceName,
+    prepareNasha,
+  ) => {
+    const aapi = OvhApiDedicatedNasha.Aapi();
+    aapi.resetCache();
+    return aapi.get({ serviceName }).$promise.then(prepareNasha);
+  },
+}
+```
+
+**React Hook:**
+```typescript
+export function useNashaDetail(serviceName: string) {
+  const prepareNasha = usePrepareNasha();
+  return useQuery({
+    queryKey: ['nasha-detail', serviceName],
+    queryFn: async () => {
+      const { data } = await aapi.get(`${BASE_API_URL}/${serviceName}`);
+      return prepareNasha(data);
+    },
+    staleTime: 2 * 60 * 1000,
+  });
+}
+```
+
+**Detection Rule:**
+- Contains `OvhApi*.Aapi()`
+- Contains `.resetCache()`
+- Returns `.$promise.then(prepareFunction)`
+- → Map to `useQuery` with `aapi` and preparation hook
+
+### Pattern 2: Iceberg Query
+
+**AngularJS:**
+```javascript
+resolve: {
+  partitionAllocatedSize: /* @ngInject */ (iceberg, nashaApiUrl) =>
+    iceberg(`${nashaApiUrl}/partition`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data.reduce(/* ... */)),
+}
+```
+
+**React Hook:**
+```typescript
+export function usePartitionAllocatedSize(serviceName: string) {
+  return useQuery({
+    queryKey: ['nasha-partition-allocated-size', serviceName],
+    queryFn: async () => {
+      const { fetchIcebergV6 } = await import('@ovh-ux/manager-core-api');
+      const result = await fetchIcebergV6({
+        route: `${BASE_API_URL}/${serviceName}/partition`,
+        page: 1,
+        pageSize: 1000,
+      });
+      return result.data.reduce(/* ... */);
+    },
+  });
+}
+```
+
+**Detection Rule:**
+- Contains `iceberg().query()`
+- Contains `.expand('CachedObjectList-Pages')`
+- → Map to `fetchIcebergV6` with `pageSize: 1000`
+
+### Pattern 3: Calculated Resolve
+
+**AngularJS:**
+```javascript
+resolve: {
+  canCreatePartitions: /* @ngInject */ (partitionAllocatedSize, nasha) =>
+    partitionAllocatedSize <= nasha.zpoolSize - SIZE_MIN,
+}
+```
+
+**React Hook:**
+```typescript
+export function useCanCreatePartitions(
+  serviceName: string,
+  nashaZpoolSize?: number
+) {
+  const { data: allocatedSize } = usePartitionAllocatedSize(serviceName);
+  const SIZE_MIN_BYTES = 10 * 1024 * 1024 * 1024;
+  return {
+    canCreatePartitions:
+      allocatedSize !== undefined &&
+      nashaZpoolSize !== undefined &&
+      allocatedSize <= nashaZpoolSize - SIZE_MIN_BYTES,
+    allocatedSize,
+  };
+}
+```
+
+**Detection Rule:**
+- Depends on other resolves
+- Contains calculation logic
+- → Map to hook that uses other hooks
+
+### Pattern 4: Navigation Function
+
+**AngularJS:**
+```javascript
+resolve: {
+  goToPartitionsCreate: /* @ngInject */ ($state, serviceName) => () =>
+    $state.go(`${dashboardStateName}.partitions.create`, { serviceName }),
+}
+```
+
+**React Handler:**
+```typescript
+const handleGoToPartitionsCreate = () => {
+  trackClick({ actions: [PREFIX_TRACKING_DASHBOARD, 'create-partition'] });
+  navigate(`/${serviceName}/partitions/create`);
+};
+```
+
+**Detection Rule:**
+- Returns a function
+- Contains `$state.go()`
+- → Map to component handler with `navigate()`
+
+## 🚨 Edge Cases & Special Patterns
+
+### Edge Case 1: Conditional Redirect (redirectTo)
+
+**AngularJS (nasha.routing.js):**
+```javascript
+redirectTo: (transition) =>
+  transition
+    .injector()
+    .get('iceberg')(NASHA_BASE_API_URL)
+    .query()
+    .expand('CachedObjectList-Pages')
+    .limit(1)
+    .execute(null, true)
+    .$promise.then(({ data }) =>
+      data.length ? 'nasha.directory' : 'nasha.onboarding',
+    ),
+```
+
+**React (Root.page.tsx):**
+```typescript
+export default function RootPage() {
+  const navigate = useNavigate();
+  const { data, isLoading } = useNashaServicesCheck();
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      if (data.hasServices) {
+        navigate('listing', { replace: true });
+      } else {
+        navigate('onboarding', { replace: true });
+      }
+    }
+  }, [data, isLoading, navigate]);
+
+  return null; // Redirect only
+}
+```
+
+**Mapping Strategy:**
+1. Create `RootPage` component
+2. Create hook to check if services exist (equivalent to redirectTo logic)
+3. Use `useEffect` to navigate based on result
+4. Return `null` or loading spinner
+
+### Edge Case 2: AAPI with resetCache
+
+**AngularJS:**
+```javascript
+resolve: {
+  nasha: /* @ngInject */ (
+    OvhApiDedicatedNasha,
+    serviceName,
+    prepareNasha,
+  ) => {
+    const aapi = OvhApiDedicatedNasha.Aapi();
+    aapi.resetCache(); // Important: clears cache
+    return aapi.get({ serviceName }).$promise.then(prepareNasha);
+  },
+}
+```
+
+**React:**
+```typescript
+export function useNashaDetail(serviceName: string) {
+  const prepareNasha = usePrepareNasha();
+  return useQuery({
+    queryKey: ['nasha-detail', serviceName],
+    queryFn: async () => {
+      // Note: React Query handles cache, resetCache not needed
+      // But if needed, use queryClient.invalidateQueries before fetch
+      const { data } = await aapi.get(`${BASE_API_URL}/${serviceName}`);
+      return prepareNasha(data);
+    },
+    staleTime: 2 * 60 * 1000,
+  });
+}
+```
+
+**Mapping Strategy:**
+- `resetCache()` is not needed in React Query (cache is managed automatically)
+- If cache invalidation is needed, use `queryClient.invalidateQueries()` before fetch
+- Or use `refetch()` to force refresh
+
+### Edge Case 3: Complex Resolve Functions
+
+**AngularJS:**
+```javascript
+resolve: {
+  goBack: /* @ngInject */ (
+    $state,
+    serviceName,
+    alertSuccess,
+    alertError,
+  ) => ({ success, error, stateName, reload } = {}) => {
+    const name = stateName || '^';
+    const prms = { serviceName };
+    const opts = {
+      reload: reload === true || (Boolean(success) && reload !== false),
+    };
+    return $state.go(name, prms, opts).then((result) => {
+      if (success) {
+        alertSuccess(success);
+      }
+      if (error) {
+        alertError(error);
+      }
+      return result;
+    });
+  },
+}
+```
+
+**React:**
+```typescript
+// In component
+const handleGoBack = (options?: {
+  success?: string;
+  error?: Error;
+  reload?: boolean;
+}) => {
+  if (options?.success) {
+    // Show success notification
+    showNotification({ type: 'success', message: options.success });
+  }
+  if (options?.error) {
+    // Show error notification
+    showNotification({ type: 'error', message: options.error.message });
+  }
+  
+  if (options?.reload) {
+    // Invalidate queries to reload data
+    queryClient.invalidateQueries({ queryKey: ['nasha-detail', serviceName] });
+  }
+  
+  navigate(`/${serviceName}`, { replace: true });
+};
+```
+
+**Mapping Strategy:**
+- Navigation functions become component handlers
+- Alert system becomes notification system
+- Reload logic becomes cache invalidation
+- Promise-based becomes callback-based
+
+### Edge Case 4: managerListLayout Mapping
+
+**AngularJS (directory.routing.js):**
+```javascript
+component: 'managerListLayout',
+resolve: {
+  columnConfig: /* @ngInject */ ($translate) => ({
+    data: [
+      {
+        label: $translate.instant('key'),
+        property: 'field',
+        serviceLink: true,
+        hidden: false,
+        format: (row) => formatValue(row.field),
+      }
+    ],
+  }),
+  topbarOptions: /* @ngInject */ ($translate, $state, atInternet) => ({
+    cta: {
+      type: 'button',
+      label: $translate.instant('order_label'),
+      onClick: () => $state.go('nasha.order'),
+    },
+  }),
+}
+```
+
+**React (Listing.page.tsx):**
+```typescript
+<BaseLayout
+  header={{
+    title: t('listing_title'),
+    changelogButton: <ChangelogMenu />,
+    guideMenu: <GuideMenu />,
+  }}
+>
+  <Button onClick={handleOrderClick}>
+    {t('order_label')}
+  </Button>
+  <Datagrid
+    columns={columns}
+    data={data}
+    // ... other props
+  />
+</BaseLayout>
+```
+
+**Mapping Strategy:**
+1. `component: 'managerListLayout'` → `<BaseLayout>` + `<Datagrid>`
+2. `columnConfig.data` → `columns` array with `DatagridColumn` type
+3. `topbarOptions.cta` → `<Button>` in header area
+4. `serviceLink: true` → Custom `cell` renderer with `<Link>`
+5. `format` function → Custom `cell` renderer
+6. `ListLayoutHelper.stateResolves` → Custom hooks for pagination, sorting, filtering
+
+## 🔗 AAPI Integration Pattern
+
+### When to Use AAPI
+
+Use AAPI when AngularJS code uses:
+- `OvhApi*.Aapi()`
+- `.resetCache()` (though not needed in React)
+- AAPI-specific endpoints
+
+### Pattern Template
+
+```typescript
+import { useQuery } from '@tanstack/react-query';
+import { aapi } from '@ovh-ux/manager-core-api';
+import { usePrepareData } from '@/utils/{module}.utils';
+
+export function useDataDetail(id: string) {
+  const prepareData = usePrepareData();
+  
+  return useQuery({
+    queryKey: ['{module}-detail', id],
+    queryFn: async () => {
+      // Use AAPI endpoint like AngularJS does
+      const { data } = await aapi.get<DataApiType>(
+        `${BASE_API_URL}/${id}`
+      );
+      return prepareData(data) as DataPrepared;
+    },
+    staleTime: 2 * 60 * 1000,
+  });
+}
+```
+
+## 🔗 Iceberg Integration Pattern
+
+### When to Use Iceberg
+
+Use Iceberg when AngularJS code uses:
+- `iceberg().query()`
+- `.expand('CachedObjectList-Pages')`
+- Pagination with Iceberg
+
+### Pattern Template
+
+```typescript
+import { useQuery } from '@tanstack/react-query';
+import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+
+export function useDataList(params: {
+  page?: number;
+  pageSize?: number;
+  filters?: Filter[];
+}) {
+  return useQuery({
+    queryKey: ['{module}-list', params],
+    queryFn: async () => {
+      const result = await fetchIcebergV6<DataType>({
+        route: BASE_API_URL,
+        page: params.page || 1,
+        pageSize: params.pageSize || 50,
+        filters: params.filters,
+      });
+      return {
+        data: result.data,
+        totalCount: result.totalCount,
+      };
+    },
+  });
+}
+```
+
+## 📋 Template Component Mapping (OUI → MUK)
+
+| OUI Component | MUK Component | Notes |
+|---------------|---------------|-------|
+| `<oui-datagrid>` | `<Datagrid>` | Full feature parity |
+| `<oui-tile>` | `<Tile.Root>` | With `<Tile.Item.Root>` |
+| `<oui-tile-definition>` | `<Tile.Item.Term>` + `<Tile.Item.Description>` | Nested in `<Tile.Item.Root>` |
+| `<oui-button>` | `<Button>` | Variants: default, ghost, primary |
+| `<oui-modal>` | `<Modal>` | From MUK |
+| `<oui-header>` | `BaseLayout` header prop | Or custom header component |
+| `<oui-header-tabs>` | Custom tabs with `NavLink` | Or MUK Tabs if available |
+| `<oui-action-menu>` | `<ActionMenu>` | Full feature parity |
+| `<oui-message>` | `<Message>` | From MUK |
+| `<manager-list-layout>` | `<BaseLayout>` + `<Datagrid>` | Complete layout |
+| `<changelog-button>` | `<ChangelogMenu>` | From MUK |
+| `<oui-guide-menu>` | `<GuideMenu>` | From MUK |
+
 ---
 
 ## ⚖️ The Migration's Moral
@@ -819,5 +1349,7 @@ export function useShellRoutingSync() {
 - **100% parity** ensures user experience
 - **Complete testing** prevents regressions
 - **OVHcloud standards** ensure consistency
+- **Pattern detection** automates repetitive tasks
+- **Edge case handling** ensures completeness
 
 **👉 Good migration is invisible to users but transformative for developers.**
