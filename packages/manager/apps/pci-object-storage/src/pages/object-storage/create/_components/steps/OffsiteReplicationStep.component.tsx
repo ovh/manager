@@ -64,11 +64,10 @@ const OffsiteReplicationStep = React.forwardRef<
   const RECOMMENEDED_REPLICATION_MODE = ReplicationMode.Enabled;
 
   const onSelectRegion = (newValue: string) => {
-    const newRegion = mappedRegions.find((re) => re.label === newValue);
-    if (newRegion.name !== value.region) {
+    if (newValue !== value.region) {
       onChange({
         ...value,
-        region: newRegion.name,
+        region: newValue,
       });
     }
   };
@@ -149,7 +148,7 @@ const OffsiteReplicationStep = React.forwardRef<
                         <ComboboxItem
                           keywords={[r.label, r.name]}
                           key={r.name}
-                          value={r.label}
+                          value={r.name}
                           className="flex gap-2"
                         >
                           <RegionWithFlag region={r} />

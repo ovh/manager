@@ -132,7 +132,7 @@ const OrderFunnel = ({
   // replication only allows 1az regions
   const replicationRegions = useMemo(
     () =>
-      availableRegions.filter((r) => r.type !== RegionTypeEnum.region) || [],
+      availableRegions.filter((r) => r.type === RegionTypeEnum.region) || [],
     [availableRegions],
   );
   return (

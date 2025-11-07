@@ -16,8 +16,6 @@ import {
   Label,
 } from '@datatr-ux/uxlib';
 import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
-
-import Flag from '@/components/flag/Flag.component';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import {
   DeploymentModeSelection,
