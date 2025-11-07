@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
@@ -29,7 +29,10 @@ export default function EditEdgeGatewayPage() {
   const { addSuccess, addError } = useMessageContext();
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
-  const { data: edge, isLoading } = useVcdEdgeGatewayMocks(edgeParams);
+  const { data: edge, isLoading, refetch } = useVcdEdgeGatewayMocks({
+    ...edgeParams,
+    staleTime: 5000,
+  });
 
   const {
     mutate: updateEdgeGateway,
@@ -45,24 +48,25 @@ export default function EditEdgeGatewayPage() {
     control,
     handleSubmit,
     formState: { isValid },
-    reset,
   } = useForm<AddEdgeForm>({
     mode: 'onTouched',
     resolver: zodResolver(EDGE_FORM_SCHEMA),
-    defaultValues: { edgeGatewayName: '', ipBlock: '' },
+    defaultValues: async () => {
+      try {
+        const data = await refetch();
+        if (!data?.data) throw new Error('Cannot access Edge data.');
+        return {
+          edgeGatewayName: data.data.currentState.edgeGatewayName,
+          ipBlock: data.data.currentState.ipBlock,
+        };
+      } catch (error) {
+        return { edgeGatewayName: '', ipBlock: '' };
+      }
+    },
   });
 
   const onSubmit = (data: AddEdgeForm) =>
     updateEdgeGateway({ edgeGatewayNewName: data.edgeGatewayName });
-
-  useEffect(() => {
-    if (!isLoading && edge?.currentState) {
-      reset({
-        edgeGatewayName: edge.currentState.edgeGatewayName,
-        ipBlock: edge.currentState.ipBlock,
-      });
-    }
-  }, [isLoading, edge]);
 
   return (
     <Suspense fallback={<Loading />}>
