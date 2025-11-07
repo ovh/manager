@@ -21,6 +21,13 @@ export const getDomainAnycastOption = async (
   return data;
 };
 
+export const getDomainService = async (
+  serviceName: string,
+): Promise<TDomainOption> => {
+  const { data } = await v6.get(`/domain/${serviceName}`);
+  return data;
+};
+
 /**
  *  : Update a domain resource
  */

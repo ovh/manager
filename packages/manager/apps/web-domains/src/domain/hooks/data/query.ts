@@ -20,7 +20,7 @@ import {
   TDomainOption,
   TDomainResource,
 } from '@/domain/types/domainResource';
-import { getDomainZone } from '@/domain/data/api/domainZone';
+import { getDomainZone, getServiceDnssec } from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
@@ -329,3 +329,15 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
     })),
   });
 }
+export const useGetDnssecStatus = (serviceName: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['domain', 'zone', 'dnssec', serviceName],
+    queryFn: () => getServiceDnssec(serviceName),
+    retry: false,
+  });
+
+  return {
+    dnssecStatus: data,
+    isDnssecStatusLoading: isLoading,
+  };
+};
