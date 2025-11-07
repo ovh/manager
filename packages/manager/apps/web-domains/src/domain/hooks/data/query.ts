@@ -20,7 +20,7 @@ import {
   TDomainOption,
   TDomainResource,
 } from '@/domain/types/domainResource';
-import { getDomainZone } from '@/domain/data/api/domainZone';
+import { getDomainZone, getServiceDnssec } from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
@@ -182,14 +182,21 @@ export const useUpdateDomainResource = (serviceName: string) => {
   };
 };
 
-export const useGetDomainContact = (contactID: string) => {
-  const { data, isLoading, error } = useQuery<TDomainContact>({
+export const useGetDomainContact = (
+  contactID: string,
+  options?: { enabled?: boolean },
+) => {
+  const { data, isFetching, error } = useQuery<TDomainContact>({
     queryKey: ['domain', 'contact', contactID],
     queryFn: () => getDomainContact(contactID),
+    enabled: options?.enabled ?? false,
+    retry: false,
+    retryOnMount: false,
+    refetchOnMount: false,
   });
   return {
     domainContact: data,
-    isFetchingDomainContact: isLoading,
+    isFetchingDomainContact: isFetching,
     domainContactError: error,
   };
 };
@@ -329,3 +336,17 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
     })),
   });
 }
+export const useGetDnssecStatus = (serviceName: string) => {
+  const { data, isFetching } = useQuery({
+    queryKey: ['domain', 'zone', 'dnssec', serviceName],
+    queryFn: () => getServiceDnssec(serviceName),
+    retry: false,
+    retryOnMount: false,
+    refetchOnMount: false,
+  });
+
+  return {
+    dnssecStatus: data,
+    isDnssecStatusLoading: isFetching,
+  };
+};

@@ -7,13 +7,13 @@ export const useGetServiceInformation = (
   serviceName: string,
   serviceRoute: ServiceRoutes,
 ) => {
-  const { data, isLoading } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: [key, 'service', serviceName],
     queryFn: () => getServiceInformation(serviceName, serviceRoute),
   });
 
   return {
     serviceInfo: data,
-    isServiceInfoLoading: isLoading,
+    isServiceInfoLoading: isFetching,
   };
 };
