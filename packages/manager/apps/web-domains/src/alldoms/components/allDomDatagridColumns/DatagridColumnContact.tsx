@@ -1,6 +1,5 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { Link } from '@ovhcloud/ods-react';
-import React from 'react';
 
 interface DatagridColumnContactProps {
   readonly contact: string;

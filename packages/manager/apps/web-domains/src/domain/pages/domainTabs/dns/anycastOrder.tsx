@@ -109,7 +109,7 @@ export default function AnycastOrder() {
             onCancel={() => navigate(backUrl, { replace: true })}
           >
             <Text preset={TEXT_PRESET.heading3} className="pb-8">
-              {t('domain_dns_tab_button_order_anycast')}
+              {t('domain_tab_DNS_anycast_order')}
             </Text>
             {!domainZone && (
               <DnsZoneOrder
