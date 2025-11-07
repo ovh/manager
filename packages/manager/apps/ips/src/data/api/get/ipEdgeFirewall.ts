@@ -1,12 +1,8 @@
-import {
-  IcebergFetchResultV6,
-  fetchIcebergV6,
-  ApiResponse,
-  v6,
-} from '@ovh-ux/manager-core-api';
+import { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpEdgeFirewallParams = {
   ip: string;
+  ipOnFirewall: string;
 };
 
 export enum IpEdgeFirewallStateEnum {
@@ -22,16 +18,19 @@ export type IpEdgeFirewallType = {
 };
 
 export const getIpEdgeFirewallQueryKey = (params: GetIpEdgeFirewallParams) => [
-  `get/ip/${encodeURIComponent(params.ip)}/firewall`,
+  `get/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(
+    params.ipOnFirewall,
+  )}`,
 ];
 
 export const getIpEdgeFirewall = async (
   params: GetIpEdgeFirewallParams,
-): Promise<IcebergFetchResultV6<IpEdgeFirewallType>> =>
-  fetchIcebergV6<IpEdgeFirewallType>({
-    route: `/ip/${encodeURIComponent(params.ip)}/firewall`,
-    page: 1,
-  });
+): Promise<ApiResponse<IpEdgeFirewallType>> =>
+  v6.get<IpEdgeFirewallType>(
+    `/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(
+      params.ipOnFirewall,
+    )}`,
+  );
 
 export const postIpEdgeFirewall = async (params: {
   ip: string;
