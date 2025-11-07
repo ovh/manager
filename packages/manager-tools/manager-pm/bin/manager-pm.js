@@ -31,7 +31,7 @@ import {
   testApplication,
   testCI,
   testModule,
-} from '../src/kernel/commons/tasks-manager.js';
+} from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
 import {
   clearRootWorkspaces,
