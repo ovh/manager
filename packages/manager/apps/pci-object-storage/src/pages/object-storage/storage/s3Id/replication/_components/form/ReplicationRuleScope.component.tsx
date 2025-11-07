@@ -1,50 +1,37 @@
 import { useTranslation } from 'react-i18next';
-import { UseFormReturn, Controller } from 'react-hook-form';
 import {
   Alert,
   AlertDescription,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
   Input,
   RadioGroup,
   RadioGroupItem,
   Label,
+  FieldDescription,
+  FieldLabel,
 } from '@datatr-ux/uxlib';
-import { AddReplicationFormValues } from '../new/useAddReplicationForm.hook';
+import { Info } from 'lucide-react';
+import { FormField } from '@/components/form-field/FormField.component';
 import { TagInput } from './TagInput.component';
 import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
+import { useReplicationFormContext } from './ReplicationForm.context';
 
-type ReplicationRuleScopeProps = {
-  form: UseFormReturn<AddReplicationFormValues>;
-  isPending: boolean;
-  showScopeFields: boolean;
-  isTagsDisabled: boolean;
-};
-
-export const ReplicationRuleScope = ({
-  form,
-  isPending,
-  showScopeFields,
-  isTagsDisabled,
-}: ReplicationRuleScopeProps) => {
+export const ReplicationRuleScope = () => {
   const { t } = useTranslation('pci-object-storage/replication');
+  const {
+    form,
+    isPending,
+    showScopeFields,
+    isTagsDisabled,
+  } = useReplicationFormContext();
 
   return (
     <ReplicationRuleContainer title={t('replicationApplicationLabel')}>
-      <FormField
-        control={form.control}
-        name="isReplicationApplicationLimited"
-        render={({ field }) => (
-          <FormItem className="space-y-4">
-            <div className="space-y-2">
-              <FormDescription>
-                {t('replicationApplicationDescription')}
-              </FormDescription>
-            </div>
+      <FormField name="isReplicationApplicationLimited" form={form}>
+        {(field) => (
+          <>
+            <FieldDescription>
+              {t('replicationApplicationDescription')}
+            </FieldDescription>
             <RadioGroup
               value={field.value ? 'limited' : 'all'}
               onValueChange={(value) => field.onChange(value === 'limited')}
@@ -73,37 +60,31 @@ export const ReplicationRuleScope = ({
               </div>
             </RadioGroup>
             {field.value && (
-              <Alert>
-                <AlertDescription>
+              <Alert variant="information" className="rounded-md my-2">
+                <AlertDescription className="flex gap-2 items-center">
+                  <Info className="size-4" />
                   {t('replicationApplicationLimitedHelper')}
                 </AlertDescription>
               </Alert>
             )}
-          </FormItem>
+          </>
         )}
-      />
+      </FormField>
 
       {showScopeFields && (
         <>
-          <FormField
-            control={form.control}
-            name="prefix"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t('prefixLabel')}</FormLabel>
-                <FormControl>
-                  <Input disabled={isPending} {...field} />
-                </FormControl>
-                <FormDescription>{t('prefixDescription')}</FormDescription>
-                <FormMessage />
-              </FormItem>
+          <FormField name="prefix" form={form}>
+            {(field) => (
+              <>
+                <FieldLabel>{t('prefixLabel')}</FieldLabel>
+                <Input disabled={isPending} {...field} />
+                <FieldDescription>{t('prefixDescription')}</FieldDescription>
+              </>
             )}
-          />
+          </FormField>
 
-          <Controller
-            control={form.control}
-            name="tags"
-            render={({ field }) => (
+          <FormField name="tags" form={form}>
+            {(field) => (
               <>
                 <TagInput
                   tags={field.value}
@@ -112,15 +93,16 @@ export const ReplicationRuleScope = ({
                   disabled={isTagsDisabled}
                 />
                 {isTagsDisabled && (
-                  <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 mt-2">
-                    <p className="text-sm text-blue-900">
+                  <Alert variant="information">
+                    <AlertDescription className="flex gap-2 items-center">
+                      <Info className="size-4" />
                       {t('tagsDisabledHelper')}
-                    </p>
-                  </div>
+                    </AlertDescription>
+                  </Alert>
                 )}
               </>
             )}
-          />
+          </FormField>
         </>
       )}
     </ReplicationRuleContainer>

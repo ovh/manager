@@ -9,6 +9,7 @@ import { ExternalLink, HelpCircle } from 'lucide-react';
 import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
 
 import A from '@/components/links/A.component';
+import { cn } from '@/lib/utils';
 
 const getBadgeConfig = (type: RegionTypeEnum) => {
   switch (type) {
@@ -44,7 +45,7 @@ export const RegionTypeBadge = ({ type, className }: RegionTypeBadgeProps) => {
   const config = getBadgeConfig(type);
 
   return (
-    <Badge className={className || config.className}>
+    <Badge className={cn(config.className, 'whitespace-nowrap', className)}>
       <span>{config.label}</span>
     </Badge>
   );

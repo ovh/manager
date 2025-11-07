@@ -3,17 +3,13 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FieldLabel,
   Input,
   useToast,
 } from '@datatr-ux/uxlib';
@@ -24,6 +20,8 @@ import { useAddUser } from '@/data/hooks/user/useAddUser.hook';
 import user from '@/types/User';
 import { useGetUser } from '@/data/hooks/user/useGetUser.hook';
 import UserInformation from '@/components/user-information/userInformation.component';
+import { POLLING } from '@/configuration/polling.constants';
+import { FormField } from '@/components/form-field/FormField.component';
 
 interface AddUserFormProps {
   onClose?: (user: user.User) => void;
@@ -39,7 +37,9 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
   const newUserQuery = useGetUser(projectId, newUserId, {
     enabled: !!newUserId,
     refetchInterval: (query) => {
-      return query.state.data?.status === user.UserStatusEnum.ok ? false : 2500;
+      return query.state.data?.status === user.UserStatusEnum.ok
+        ? false
+        : POLLING.USER_CREATION;
     },
   });
 
@@ -47,7 +47,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
     onError: (err) => {
       toast.toast({
         title: t('addUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -65,7 +65,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
     onError: (err) => {
       toast.toast({
         title: t('addUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -102,7 +102,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
 
   return (
     <>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-user-modal">
             {t('addUserTitle')}
@@ -110,8 +110,10 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
         </DialogHeader>
         {newUserPwd ? (
           <>
-            <UserInformation pwd={newUserPwd} newUser={newUserQuery.data} />
-            <DialogFooter className="flex justify-end mt-4">
+            <DialogBody>
+              <UserInformation pwd={newUserPwd} newUser={newUserQuery.data} />
+            </DialogBody>
+            <DialogFooter>
               <DialogClose asChild onClick={() => handleClose()}>
                 <Button
                   disabled={
@@ -120,7 +122,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
                   }
                   data-testid="add-user-close-button"
                   type="button"
-                  mode="outline"
+                  mode="ghost"
                 >
                   {t('formAddUserButtonClose')}
                 </Button>
@@ -128,37 +130,37 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
             </DialogFooter>
           </>
         ) : (
-          <Form {...form}>
-            <form onSubmit={onSubmit} className="flex flex-col gap-2">
-              <FormField
-                control={form.control}
-                name="userName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('userNameLabel')}</FormLabel>
-                    <FormControl>
+          <>
+            <DialogBody>
+              <form onSubmit={onSubmit} id="addUserForm">
+                <FormField name="userName" form={form}>
+                  {(field) => (
+                    <>
+                      <FieldLabel htmlFor={'userName-input'}>
+                        {t('userNameLabel')}
+                      </FieldLabel>
                       <Input disabled={isAddUserPending} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <DialogFooter className="flex justify-end mt-4">
-                <DialogClose asChild>
-                  <Button type="button" mode="outline">
-                    {t('addUserButtonCancel')}
-                  </Button>
-                </DialogClose>
-                <Button
-                  type="submit"
-                  data-testid="add-user-submit-button"
-                  disabled={isAddS3UserPending}
-                >
-                  {t('addUserButtonConfirm')}
+                    </>
+                  )}
+                </FormField>
+              </form>
+            </DialogBody>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button type="button" mode="ghost">
+                  {t('addUserButtonCancel')}
                 </Button>
-              </DialogFooter>
-            </form>
-          </Form>
+              </DialogClose>
+              <Button
+                type="submit"
+                form="addUserForm"
+                data-testid="add-user-submit-button"
+                disabled={isAddS3UserPending}
+              >
+                {t('addUserButtonConfirm')}
+              </Button>
+            </DialogFooter>
+          </>
         )}
       </DialogContent>
     </>

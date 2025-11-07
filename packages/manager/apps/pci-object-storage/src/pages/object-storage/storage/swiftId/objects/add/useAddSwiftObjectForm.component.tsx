@@ -37,7 +37,7 @@ export const useAddSwiftObjectForm = ({
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -54,7 +54,7 @@ export const useAddSwiftObjectForm = ({
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

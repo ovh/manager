@@ -41,8 +41,6 @@ export function useOrderFunnel({
   const { t } = useTranslation('pci-object-storage/order-funnel');
   const orderFunnelFormSchema = createOrderFunnelFormSchema(t);
 
-  const defaultReplicationRegion = regions?.[0]?.name;
-
   const defaultValuesByOffer: Record<
     ObjectContainerOffers,
     Partial<OrderFunnelFormValues>

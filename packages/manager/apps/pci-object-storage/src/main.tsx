@@ -9,6 +9,8 @@ import App from './App';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 import '@/vite-hmr.ts';
 import './global.css';
+import '@datatr-ux/uxlib/style.css';
+import '@ovhcloud/ods-themes/default';
 
 const init = async (
   appName: string,

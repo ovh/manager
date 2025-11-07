@@ -2,36 +2,31 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
+  Combobox,
+  ComboboxTrigger,
+  ComboboxValue,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxList,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxItem,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
   useToast,
+  FieldLabel,
 } from '@datatr-ux/uxlib';
-import { useState } from 'react';
-import { Check, ChevronsUpDown } from 'lucide-react';
+import { Check } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
 import storages from '@/types/Storages';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
@@ -40,17 +35,15 @@ import { useObjectStorageData } from '../../ObjectStorage.context';
 import { useUserForm } from './formUser/useUserForm.hook';
 import { cn } from '@/lib/utils';
 import { useAddS3Policy } from '@/data/hooks/s3-storage/useAddS3Policy.hook';
+import { FormField } from '@/components/form-field/FormField.component';
 
-const SwithType = () => {
+const AddUserS3Modal = () => {
   const { t } = useTranslation('pci-object-storage/storages/user-s3');
   const navigate = useNavigate();
   const toast = useToast();
   const { projectId, storageId, region } = useParams();
   const s3Query = useGetS3({ projectId, region, name: storageId });
-  const [openUser, setOpenUser] = useState(false);
-
   const { users } = useObjectStorageData();
-
   const { form } = useUserForm({
     users,
   });
@@ -59,7 +52,7 @@ const SwithType = () => {
     onError: (err) => {
       toast.toast({
         title: t('updateS3PolicyToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -86,126 +79,123 @@ const SwithType = () => {
 
   return (
     <RouteModal isLoading={!s3Query.data?.name}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="s3-policy-modal">
             {t('updateS3PolicyTitle')}
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription>{t('updateS3PolicyDescription')}</DialogDescription>
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="flex flex-col gap-2">
-            <FormField
-              control={form.control}
-              name="userId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('userIdFieldLabel')}</FormLabel>
-                  <Popover open={openUser} onOpenChange={setOpenUser}>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          data-testid="select-user-button"
-                          role="combobox"
-                          mode="ghost"
-                          className="w-full flex flex-row items-center justify-between text-sm border"
-                        >
-                          {field.value
-                            ? `${
-                                users.find((us) => us.id === field.value)
-                                  ?.username
-                              } - ${
-                                users.find((us) => us.id === field.value)
-                                  ?.description
-                              }`
-                            : t('userPlaceholder')}
-                          <ChevronsUpDown className="opacity-50 size-4" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-full">
-                      <Command>
-                        <CommandInput
-                          placeholder={t('inputUserPlaceholder')}
-                          className="h-9"
-                        />
-                        <CommandList>
-                          <CommandEmpty>{t('noUserFound')}</CommandEmpty>
-                          <CommandGroup>
-                            {users.map((user) => (
-                              <CommandItem
-                                value={user.username}
-                                key={user.id}
-                                onSelect={() => {
-                                  form.setValue('userId', user.id);
-                                  setOpenUser(false);
-                                }}
-                              >
-                                {`${user.username} - ${user.description}`}
-                                <Check
-                                  className={cn(
-                                    'ml-auto',
-                                    user.id === field.value
-                                      ? 'opacity-100'
-                                      : 'opacity-0',
-                                  )}
-                                />
-                              </CommandItem>
-                            ))}
-                          </CommandGroup>
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
-            <FormField
-              control={form.control}
-              name="userRole"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('userRoleFieldLabel')}</FormLabel>
-                  <FormControl>
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {Object.values(storages.PolicyRoleEnum).map((role) => (
-                          <SelectItem key={role} value={role}>
-                            {t(`role_${role}`)}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+        <DialogBody>
+          <DialogDescription>
+            {t('updateS3PolicyDescription')}
+          </DialogDescription>
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col gap-2 mt-2"
+            id="addUserS3Form"
+          >
+            <FormField name="userId" form={form}>
+              {(field) => (
+                <>
+                  <FieldLabel htmlFor={'userId-combobox'}>
+                    {t('userIdFieldLabel')}
+                  </FieldLabel>
+                  <Combobox
+                    value={`${field.value}`}
+                    onValueChange={(val) => field.onChange(+val)}
+                    modal
+                  >
+                    <ComboboxTrigger
+                      id="userId-combobox"
+                      ref={field.ref}
+                      disabled={field.disabled}
+                    >
+                      <ComboboxValue
+                        data-testid="select-user-button"
+                        placeholder={t('userPlaceholder')}
+                        value={
+                          field.value &&
+                          `${users.find((u) => u.id === field.value)
+                            ?.username ?? ''} - ${users.find(
+                            (u) => u.id === field.value,
+                          )?.description ?? ''}`
+                        }
+                      />
+                    </ComboboxTrigger>
+                    <ComboboxContent>
+                      <ComboboxInput placeholder={t('inputUserPlaceholder')} />
+                      <ComboboxList>
+                        <ComboboxEmpty>{t('noUserFound')}</ComboboxEmpty>
+                        <ComboboxGroup>
+                          {users.map((user, i) => (
+                            <ComboboxItem
+                              disabled={i === 2}
+                              key={user.id}
+                              value={`${user.id}`}
+                              keywords={[user.username, user.description]}
+                              className={cn(
+                                'cursor-pointer hover:bg-primary-50',
+                                'data-[disabled]:pointer-events-auto data-[disabled]:opacity-100',
+                                'data-[disabled=true]:cursor-not-allowed data-[disabled=true]:pointer-events-none data-[disabled=true]:!opacity-50',
+                              )}
+                            >
+                              {`${user.username} - ${user.description}`}
+                            </ComboboxItem>
+                          ))}
+                        </ComboboxGroup>
+                      </ComboboxList>
+                    </ComboboxContent>
+                  </Combobox>
+                </>
               )}
-            />
+            </FormField>
 
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button type="button" mode="outline">
-                  {t('updateS3PolicyButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                data-testid="s3-policy-submit-button"
-                disabled={isPending}
-              >
-                {t('updateS3PolicyButtonConfirm')}
-              </Button>
-            </DialogFooter>
+            <FormField form={form} name="userRole">
+              {(field) => (
+                <>
+                  <FieldLabel htmlFor={`userRole-select`}>
+                    {t('userRoleFieldLabel')}
+                  </FieldLabel>
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger
+                      ref={field.ref}
+                      disabled={field.disabled}
+                      id="userRole-select"
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.values(storages.PolicyRoleEnum).map((role) => (
+                        <SelectItem key={role} value={role}>
+                          {t(`role_${role}`)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </>
+              )}
+            </FormField>
           </form>
-        </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button" mode="ghost">
+              {t('updateS3PolicyButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            form="addUserS3Form"
+            type="submit"
+            data-testid="s3-policy-submit-button"
+            disabled={isPending}
+          >
+            {t('updateS3PolicyButtonConfirm')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );
 };
 
-export default SwithType;
+export default AddUserS3Modal;

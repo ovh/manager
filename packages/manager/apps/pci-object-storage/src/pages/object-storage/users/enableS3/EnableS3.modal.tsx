@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   Clipboard,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { useState } from 'react';
 import RouteModal from '@/components/route-modal/RouteModal';
@@ -25,13 +26,11 @@ const EnableUser = () => {
   const toast = useToast();
   const userToUpate = users.find((us) => us.id === Number(userId));
   const navigate = useNavigate();
-  if (!user) navigate('../');
-
   const { addS3User, isPending: isAddS3UserPending } = useAddS3User({
     onError: (err) => {
       toast.toast({
         title: t('enableUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -46,10 +45,10 @@ const EnableUser = () => {
     },
   });
 
+  if (!user) navigate('../');
   const handleEnable = () => {
     addS3User({ projectId, userId: userToUpate.id });
   };
-
   const handleClose = () => {
     setNewUser(undefined);
     navigate('../');
@@ -57,45 +56,47 @@ const EnableUser = () => {
 
   return (
     <RouteModal isLoading={!userToUpate}>
-      <DialogContent>
-        <DialogHeader className="rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent variant="information">
+        <DialogHeader>
           <DialogTitle data-testid="enable-user-s3-modal">
             {t('enableUserTitle')}
           </DialogTitle>
         </DialogHeader>
         {newUser ? (
           <>
-            <div className="flex flex-col gap-2">
-              <span className="text-sm font-medium leading-none">
-                {t('accessKeyLabel')}
-              </span>
-              <Clipboard
-                value={newUser.access}
-                onCopy={() =>
-                  toast.toast({
-                    title: t('passwordCopy'),
-                  })
-                }
-              />
-              <span className="text-sm font-medium leading-none">
-                {t('secretKeyLabel')}
-              </span>
-              <Clipboard
-                value={newUser.secret}
-                secret
-                onCopy={() =>
-                  toast.toast({
-                    title: t('passwordCopy'),
-                  })
-                }
-              />
-            </div>
+            <DialogBody>
+              <div className="flex flex-col gap-2">
+                <span className="text-sm font-medium leading-none">
+                  {t('accessKeyLabel')}
+                </span>
+                <Clipboard
+                  value={newUser.access}
+                  onCopy={() =>
+                    toast.toast({
+                      title: t('passwordCopy'),
+                    })
+                  }
+                />
+                <span className="text-sm font-medium leading-none">
+                  {t('secretKeyLabel')}
+                </span>
+                <Clipboard
+                  value={newUser.secret}
+                  secret
+                  onCopy={() =>
+                    toast.toast({
+                      title: t('passwordCopy'),
+                    })
+                  }
+                />
+              </div>
+            </DialogBody>
             <DialogFooter className="flex justify-end">
               <DialogClose asChild onClick={() => handleClose()}>
                 <Button
                   data-testid="enable-user-close-button"
                   type="button"
-                  mode="outline"
+                  mode="ghost"
                 >
                   {t('enableUserButtonClose')}
                 </Button>
@@ -104,17 +105,19 @@ const EnableUser = () => {
           </>
         ) : (
           <>
-            <p>
-              {t('enableUSerDescription', {
-                name: userToUpate?.username,
-              })}
-            </p>
+            <DialogBody>
+              <p>
+                {t('enableUSerDescription', {
+                  name: userToUpate?.username,
+                })}
+              </p>
+            </DialogBody>
             <DialogFooter className="flex justify-end">
               <DialogClose asChild>
                 <Button
                   data-testid="enable-s3-cancel-button"
                   type="button"
-                  mode="outline"
+                  mode="ghost"
                 >
                   {t('enableUserButtonCancel')}
                 </Button>

@@ -23,7 +23,7 @@ const ObjectLock = () => {
         >
           {t(`${prefix}Label`)}
         </Badge>
-        <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+        <Badge variant="neutral">{t('comingSoonLabel')}</Badge>
       </div>
     </div>
   );

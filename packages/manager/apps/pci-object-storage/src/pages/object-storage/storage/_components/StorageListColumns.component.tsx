@@ -22,13 +22,14 @@ import storages, {
 import { octetConverter } from '@/lib/bytesHelper';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import { RegionTypeBadge } from '@/components/region-type-badge/RegionTypeBadge.component';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 interface StoragesListColumnsProps {
   onSwitchClicked: (storage: FormattedStorage) => void;
   onAddUserClicked: (storage: FormattedStorage) => void;
   onDeleteClicked: (storage: FormattedStorage) => void;
 }
-export const getColumns = ({
+export const useGetColumns = ({
   onSwitchClicked,
   onDeleteClicked,
   onAddUserClicked,
@@ -70,18 +71,7 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
-        const { translateMacroRegion } = useTranslatedMicroRegions();
-        return (
-          <div className="flex items-center gap-2">
-            <Flag
-              flagName={row.original.regionObj.countryCode}
-              className="w-4 h-3"
-            />
-            <span className="whitespace-nowrap">
-              {translateMacroRegion(row.original.region)}
-            </span>
-          </div>
-        );
+        return <RegionWithFlag region={row.original.regionObj} />;
       },
     },
     {
@@ -245,7 +235,7 @@ export const getColumns = ({
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 data-testid="storage-action-delete-button"
-                variant="destructive"
+                variant="critical"
                 onClick={() => {
                   onDeleteClicked(row.original);
                 }}

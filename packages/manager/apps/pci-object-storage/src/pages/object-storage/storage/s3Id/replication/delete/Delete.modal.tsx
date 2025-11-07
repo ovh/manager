@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -31,7 +32,7 @@ const DeleteReplication = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteReplicationToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: t('deleteReplicationToastErrorMessage', {
           message: getObjectStoreApiErrorMessage(err),
         }),
@@ -47,10 +48,6 @@ const DeleteReplication = () => {
     },
   });
 
-  const handleClose = () => {
-    navigate('../');
-  };
-
   const handleConfirm = () => {
     if (!projectId || !s3?.region || !s3?.name || !decodedRuleId) return;
 
@@ -62,34 +59,18 @@ const DeleteReplication = () => {
     });
   };
 
-  if (!existingRule) {
-    return (
-      <RouteModal isLoading={false}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{t('deleteReplicationTitle')}</DialogTitle>
-          </DialogHeader>
-          <div className="p-4">
-            <p>{t('replicationRuleNotFound')}</p>
-          </div>
-          <DialogFooter>
-            <Button onClick={handleClose}>{t('close')}</Button>
-          </DialogFooter>
-        </DialogContent>
-      </RouteModal>
-    );
-  }
+  if (!existingRule) return navigate('./');
 
   return (
     <RouteModal isLoading={s3Query.isLoading}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-replication-modal">
             {t('deleteReplicationTitle')}
           </DialogTitle>
         </DialogHeader>
-        <div>
-          <p className="text-sm">
+        <DialogBody>
+          <p>
             <Trans
               i18nKey="deleteReplicationDescription"
               ns="pci-object-storage/replication/delete"
@@ -99,16 +80,15 @@ const DeleteReplication = () => {
               }}
             />
           </p>
-        </div>
+        </DialogBody>
         <DialogFooter className="flex justify-end gap-2">
           <DialogClose asChild>
-            <Button type="button" mode="outline" disabled={isPending}>
+            <Button type="button" mode="ghost" disabled={isPending}>
               {t('deleteReplicationButtonCancel')}
             </Button>
           </DialogClose>
           <Button
             type="button"
-            mode="destructive"
             onClick={handleConfirm}
             disabled={isPending}
             data-testid="delete-replication-confirm-button"

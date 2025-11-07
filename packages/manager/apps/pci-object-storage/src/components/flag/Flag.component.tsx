@@ -13,6 +13,7 @@ const Flag = ({
   const flagUrl = `assets/flags/${flagName}.svg`;
   return (
     <div
+      aria-hidden
       style={{
         backgroundImage: `url('${flagUrl}')`,
         backgroundRepeat: 'no-repeat',

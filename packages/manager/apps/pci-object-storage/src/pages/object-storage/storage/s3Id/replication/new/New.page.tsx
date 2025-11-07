@@ -1,36 +1,36 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useToast } from '@datatr-ux/uxlib';
+import {
+  Button,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  useToast,
+} from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';
-import { useAddReplicationForm } from './useAddReplicationForm.hook';
 import { useAddReplication } from '@/data/hooks/replication/useAddReplication.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
-import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
-import { ReplicationLayout } from '../_components/ReplicationLayout.component';
-import { useReplicationFormSubmit } from '../../../../../../hooks/useReplicationFormSubmit.hook';
+import { ReplicationForm } from '../_components/form/ReplicationForm.component';
+import { buildReplicationRule } from '../_components/form/buildReplicationRule';
+import { useReplicationForm } from '../_components/form/useReplicationForm.hook';
+import RouteModal from '@/components/route-modal/RouteModal';
 
 const CreateReplication = () => {
   const { t } = useTranslation('pci-object-storage/replication');
   const { s3, s3Query } = useS3Data();
   const toast = useToast();
   const navigate = useNavigate();
-  const { form } = useAddReplicationForm();
+  const { form } = useReplicationForm({});
   const { projectId } = useParams();
-
-  const storagesQuery = useGetStorages(projectId);
-  const availableDestinations = storagesQuery.data?.resources || [];
-
-  const { buildReplicationRule } = useReplicationFormSubmit({
-    availableDestinations,
-    s3Region: s3?.region,
-    s3Name: s3?.name,
-  });
 
   const { addReplication, isPending } = useAddReplication({
     onError: (err) => {
       toast.toast({
         title: t('addReplicationToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -39,7 +39,7 @@ const CreateReplication = () => {
         title: t('addReplicationToastSuccessTitle'),
         description: t('addReplicationToastSuccessDescription'),
       });
-      navigate('../replication');
+      navigate('..');
     },
   });
 
@@ -56,15 +56,36 @@ const CreateReplication = () => {
   });
 
   return (
-    <ReplicationLayout
-      title={t('addReplicationTitle')}
-      isLoading={s3Query.isLoading || storagesQuery.isLoading}
-      form={form}
-      availableDestinations={availableDestinations}
-      isPending={isPending}
-      onSubmit={onSubmit}
-      submitButtonText={t('addReplicationButtonConfirm')}
-    />
+    <RouteModal isLoading={s3Query.isLoading}>
+      <DialogContent className="p-0 max-w-3xl" variant="information">
+        <DialogHeader>
+          <DialogTitle data-testid="add-replication-modal">
+            {t('addReplicationTitle')}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
+          <ReplicationForm
+            form={form}
+            isPending={isPending}
+            onSubmit={onSubmit}
+          />
+        </DialogBody>
+        <DialogFooter className="border-t">
+          <DialogClose asChild>
+            <Button
+              data-testid="add-replication-cancel-button"
+              type="button"
+              mode="ghost"
+            >
+              {t('replicationButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button type="submit" disabled={isPending} form="replication-form">
+            {t('addReplicationButtonConfirm')}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </RouteModal>
   );
 };
 

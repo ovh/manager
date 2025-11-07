@@ -40,7 +40,7 @@ const Encryption = () => {
             size="sm"
             onClick={() => navigate('./active-encryption')}
           >
-            <Settings className="size-4 mr-2" />
+            <Settings className="size-4" />
             <span className="font-semibold">{t('activateButton')}</span>
           </Button>
         )}

@@ -87,15 +87,15 @@ const DataTableDefaultFilterButton = ({
   return (
     <DropdownMenu open={filtersOpen} onOpenChange={setFiltersOpen}>
       <DropdownMenuTrigger asChild>
-        <Button mode="outline">
-          <FilterIcon className="size-4 md:mr-1" />
+        <Button mode="outline" className="h-10 px-4">
+          <FilterIcon className="size-4" />
           <span className="hidden md:block">
             {t('common_criteria_adder_filter_label')}
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-32">
-        <div>
+      <DropdownMenuContent align="end" className="min-w-36">
+        <div className="px-2 py-1">
           <Label>{t('common_criteria_adder_column_label')}</Label>
           <Select
             name="add-operator"
@@ -116,7 +116,7 @@ const DataTableDefaultFilterButton = ({
             </SelectContent>
           </Select>
         </div>
-        <div>
+        <div className="px-2 py-1">
           <Label>{t('common_criteria_adder_operator_label')}</Label>
           <Select
             name="add-operator"
@@ -137,7 +137,7 @@ const DataTableDefaultFilterButton = ({
             </SelectContent>
           </Select>
         </div>
-        <div>
+        <div className="px-2 py-1">
           <Label htmlFor="input-value">
             {t('common_criteria_adder_value_label')}
           </Label>
@@ -145,7 +145,7 @@ const DataTableDefaultFilterButton = ({
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  mode={'ghost'}
+                  mode="ghost"
                   className="text-left justify-start flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
@@ -214,7 +214,7 @@ const DataTableDefaultFilterButton = ({
             />
           )}
         </div>
-        <div>
+        <div className="px-2 py-1">
           <Button className="w-full mt-2" onClick={submitAddFilter}>
             {t('common_criteria_adder_submit_label')}
           </Button>

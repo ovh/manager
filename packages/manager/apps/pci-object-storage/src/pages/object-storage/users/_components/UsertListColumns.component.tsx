@@ -27,7 +27,7 @@ interface UsersListColumnsProps {
   onSecretKeyClicked: (user: user.User) => void;
   onDeleteClicked: (user: user.User) => void;
 }
-export const getColumns = ({
+export const useGetColumns = ({
   onEnableUserClicked,
   onImportUserAccessClicked,
   onDownloadUserAccessClicked,
@@ -56,7 +56,7 @@ export const getColumns = ({
       accessorFn: (row) => row.description,
     },
     {
-      id: 'access key',
+      id: 'access_key',
       header: () => t('tableHeaderAccessKey'),
       cell: ({ row }) => {
         const accessQuery = useGetUserAccess(row.original.id);
@@ -65,7 +65,7 @@ export const getColumns = ({
       },
     },
     {
-      id: 's3 activated',
+      id: 's3_activated',
       header: () => (
         <div className="flex items-center">
           <Popover>
@@ -169,7 +169,7 @@ export const getColumns = ({
               ) : (
                 <DropdownMenuItem
                   data-testid="user-action-delete-button"
-                  variant="destructive"
+                  variant="critical"
                   onClick={() => {
                     onDeleteClicked(row.original);
                   }}

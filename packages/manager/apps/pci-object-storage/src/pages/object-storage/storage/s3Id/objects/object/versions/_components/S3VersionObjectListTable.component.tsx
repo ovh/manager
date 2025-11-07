@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -35,7 +35,7 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -63,7 +63,9 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
     },
     onDeleteClicked: (object: StorageObject) => {
       return navigate(
-        `./delete-version/${object.versionId}?objectKey=${object.key}`,
+        `./delete-version/${object.versionId}?objectKey=${encodeURIComponent(
+          object.key,
+        )}`,
       );
     },
   });

@@ -1,8 +1,10 @@
 import {
   Button,
+  ButtonProps,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuItemProps,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   useToast,
@@ -12,10 +14,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ContainerObject } from '@datatr-ux/ovhcloud-types/cloud/storage/index';
 import { add, formatRFC3339 } from 'date-fns';
+import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import FileIcon from '@/components/fileIcon/FileIcon.component';
-import Link from '@/components/links/Link.component';
+import FileIcon from '@/components/file-icon/FileIcon.component';
 import useDownload from '@/hooks/useDownload';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import storages from '@/types/Storages';
@@ -39,7 +41,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -64,7 +66,16 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
   const onDeleteClicked = () =>
     navigate(`./delete-object?objectName=${object.name}`);
 
-  const actions = [
+  const actions: {
+    id: string;
+    icon: ReactElement;
+    onClick: () => void;
+    disabled?: boolean;
+    label: string;
+    withSeparator?: boolean;
+    mobileOnly?: boolean;
+    variant?: ButtonProps['variant'] & DropdownMenuItemProps['variant'];
+  }[] = [
     {
       id: 'details',
       icon: <Pen className="size-4" />,
@@ -89,7 +100,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
       icon: <Trash className="size-4" />,
       onClick: () => onDeleteClicked(),
       label: t('tableActionDelete'),
-      variant: 'destructive',
+      variant: 'critical',
     },
   ];
   return (

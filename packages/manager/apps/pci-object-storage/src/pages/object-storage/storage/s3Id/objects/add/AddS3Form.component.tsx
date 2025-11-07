@@ -1,13 +1,9 @@
 import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
   Input,
-  FormMessage,
   DialogFooter,
   DialogClose,
   Button,
+  FieldLabel,
 } from '@datatr-ux/uxlib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
@@ -17,6 +13,10 @@ import { FileInput } from '@/components/file-input/FileInput.component';
 import storages from '@/types/Storages';
 import { useS3Data } from '../../S3.context';
 import StorageClassSelector from '@/components/storage-class-selector/StorageClassSelector.component';
+import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
+import { useIs3AZ } from '@/hooks/useIs3AZ.hook';
+import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import { FormField } from '@/components/form-field/FormField.component';
 
 interface AddS3FormProps {
   onSubmit: SubmitHandler<{
@@ -56,59 +56,46 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
     },
   });
   const { s3 } = useS3Data();
-  // TODO: handle this better
-  const is3AZ = s3.region === 'EU-WEST-PAR';
+  const { regions } = useObjectStorageData();
+  const is3AZ = useIs3AZ(s3, regions);
+  const isLocalZone = useIsLocaleZone(s3, regions);
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit, onError)}
-        className="flex flex-col gap-2 px-6"
-      >
-        <FormField
-          control={form.control}
-          name="prefix"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('prefixFieldLabel')}</FormLabel>
-              <Input placeholder="Enter a prefix" {...field} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="storageClass"
-          render={({ field }) => (
-            <FormItem>
-              <StorageClassSelector
-                storageClass={field.value}
-                onStorageClassChange={field.onChange}
-                is3AZ={is3AZ}
-              />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="files"
-          render={({ field }) => (
-            <FormItem>
-              <FileInput {...field} multiple />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <DialogFooter className="flex justify-end">
-          <DialogClose asChild>
-            <Button type="button" mode="outline">
-              {t('fileUploaderButtonCancel')}
-            </Button>
-          </DialogClose>
-          <Button type="submit">{t('fileUploaderButtonConfirm')}</Button>
-        </DialogFooter>
-      </form>
-    </Form>
+    <form
+      onSubmit={form.handleSubmit(onSubmit, onError)}
+      className="flex flex-col gap-2 px-6"
+    >
+      <FormField form={form} name="prefix">
+        {(field) => (
+          <>
+            <FieldLabel>{t('prefixFieldLabel')}</FieldLabel>
+            <Input placeholder={t('prefixFieldPlaceholder')} {...field} />
+          </>
+        )}
+      </FormField>
+
+      <FormField form={form} name="storageClass">
+        {(field) => (
+          <StorageClassSelector
+            storageClass={field.value}
+            onStorageClassChange={field.onChange}
+            is3AZ={is3AZ}
+            isLZ={isLocalZone}
+          />
+        )}
+      </FormField>
+      <FormField form={form} name="files">
+        {(field) => <FileInput {...field} multiple />}
+      </FormField>
+
+      <DialogFooter className="flex justify-end px-0">
+        <DialogClose asChild>
+          <Button type="button" mode="ghost">
+            {t('fileUploaderButtonCancel')}
+          </Button>
+        </DialogClose>
+        <Button type="submit">{t('fileUploaderButtonConfirm')}</Button>
+      </DialogFooter>
+    </form>
   );
 };
 

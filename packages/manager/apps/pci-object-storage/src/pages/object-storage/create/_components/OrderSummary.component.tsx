@@ -21,6 +21,7 @@ import cloud from '@/types/Cloud';
 import storages from '@/types/Storages';
 import { isS3Order, isSwiftOrder } from './useOrderFunnel.hook';
 import * as Tuser from '@/types/User';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 const AnchorLabel = ({
   label,
@@ -30,8 +31,9 @@ const AnchorLabel = ({
   onClick: (id: string) => void;
 }) => (
   <Button
-    className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline text-sm"
+    className="h-auto p-0 !bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline text-sm"
     type="button"
+    mode="ghost"
     onClick={() => onClick('options')}
   >
     {label}
@@ -89,14 +91,10 @@ const OrderSummary = ({
     return user ? user.description : '-';
   };
   const RegionInfo = ({ region }: { region?: string }) => {
-    const { translateMicroRegion } = useTranslatedMicroRegions();
     const rInfo = regions.find((r) => r.name === region);
-    return regionInfo ? (
+    return rInfo ? (
       <div className="flex gap-2 items-center">
-        {rInfo?.countryCode && (
-          <Flag className="w-[1rem] h-[0.8rem]" flagName={rInfo?.countryCode} />
-        )}
-        <span>{rInfo ? translateMicroRegion(rInfo?.name) : region}</span>
+        <RegionWithFlag region={rInfo} />
       </div>
     ) : (
       <span>-</span>

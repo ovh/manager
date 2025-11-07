@@ -29,7 +29,7 @@
   "objectBackLink": "Retour à l'objet",
   "changeStorageClassTitle": "Modifier la classe de stockage",
   "changeStorageClassDescription": "Choisissez la nouvelle classe de stockage pour cet objet.",
-  "changeStorageClassLink": "Modifier la classe de stockage",
+  "changeStorageClassLink": "Modifier",
   "changeStorageClassCancel": "Annuler",
   "changeStorageClassConfirm": "Modifier",
   "changeStorageClassSuccessTitle": "Succès",

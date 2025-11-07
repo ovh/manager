@@ -34,7 +34,7 @@ const Versionning = () => {
             size="sm"
             onClick={() => navigate('./active-versionning')}
           >
-            <Settings className="size-4 mr-2" />
+            <Settings className="size-4" />
             <span className="font-semibold">{t('activateButton')}</span>
           </Button>
         )}

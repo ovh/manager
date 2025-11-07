@@ -6,7 +6,7 @@
   "cnameTableHeader": "Enregistrement CNAME/TXT",
   "configurationTitle": "Gestion du service",
   "swiftIdLabel": "Id du conteneur",
-  "successCopy": "Copié!",
+  "copyLabel": "Copié",
   "deleteSwiftButton": "Supprimer",
   "settingsTitle": "Configurations"
 }

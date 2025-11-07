@@ -3,9 +3,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Skeleton, Button, useToast } from '@datatr-ux/uxlib';
-import { getColumns } from './UsertListColumns.component';
+import { useGetColumns } from './UsertListColumns.component';
 import DataTable from '@/components/data-table';
-import { getFilters } from './UserListFilters.component';
+import { useGetFilters } from './UserListFilters.component';
 import user from '@/types/User';
 import useDownload from '@/hooks/useDownload';
 import { useObjectStorageData } from '../../ObjectStorage.context';
@@ -29,12 +29,12 @@ export default function UsersList({ users }: UsersListProps) {
     } catch (err) {
       toast.toast({
         title: t('userPolicyDownloadFailed'),
-        variant: 'error',
+        variant: 'critical',
       });
     }
   };
 
-  const columns: ColumnDef<user.User>[] = getColumns({
+  const columns: ColumnDef<user.User>[] = useGetColumns({
     onEnableUserClicked: (us: user.User) => {
       navigate(`./enable/${us.id}`);
     },
@@ -54,7 +54,7 @@ export default function UsersList({ users }: UsersListProps) {
       navigate(`./disable/${us.id}`);
     },
   });
-  const usersFilters = getFilters();
+  const usersFilters = useGetFilters();
 
   return (
     <DataTable.Provider
@@ -71,7 +71,7 @@ export default function UsersList({ users }: UsersListProps) {
               navigate('./create');
             }}
           >
-            <Plus className="size-6 mr-2 text-primary-foreground" />
+            <Plus className="size-6" />
             {t('createNewUser')}
           </Button>
         </DataTable.Action>
