@@ -1,4 +1,5 @@
 import { GitStatus, ResourceStatus, ServiceStatus, TaskStatus } from '../status';
+import { CmsType } from './managedWordpress/cms';
 
 export enum TaskType {
   DEPLOYMENT = 'DEPLOYMENT',
@@ -55,4 +56,25 @@ export type WebsiteType = {
     status?: TaskStatus | null;
     type?: TaskType;
   }[];
+};
+
+export enum AssociationType {
+  EXISTING = 'EXISTING',
+  EXTERNAL = 'EXTERNAL',
+  ORDER = 'ORDER',
+}
+
+export type WebHostingWebsiteType = {
+  associationType: AssociationType;
+  cdn: boolean;
+  firewall: boolean;
+  name: string;
+  path: string;
+  autoConfigureDns: boolean;
+  fqdn: string;
+  ip: boolean;
+  selectedIp: string;
+  module: CmsType;
+  advancedConfiguration: boolean;
+  wwwNeeded: boolean;
 };
