@@ -1,5 +1,7 @@
 name: Duplicate translation
-on: [push]
+on:
+  push:
+    branches-ignore: [master]
 
 jobs:
   duplicate-translation:
