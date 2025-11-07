@@ -300,6 +300,103 @@ yarn -s manager-pm --silent --action lerna list --all --json --toposort | jq -r 
 
 ---
 
+## ⚙️ Isolated Install for manager-pm (pm:isolated:install)
+
+When you only need to use the **manager-pm CLI** — for example, in **CI/CD pipelines** or local debugging — running a full monorepo install (with PNPM hooks and Turbo rebuilds) is wasteful and slow.  
+The **isolated install mode** solves this by installing dependencies *only for* `manager-pm`, skipping all other workspaces and scripts.
+
+---
+
+### Command
+
+```bash
+yarn pm:isolated:install
+```
+
+**Defined in `package.json`:**
+```json
+{
+  "scripts": {
+    "pm:isolated:install": "node packages/manager-tools/manager-pm/src/manager-pm-isolated-install.js"
+  }
+}
+```
+
+---
+
+### What it does
+
+1. Temporarily modifies the root `package.json` to include **only**:
+   ```json
+   {
+     "workspaces": { "packages": ["packages/manager-tools/manager-pm"] }
+   }
+   ```
+2. Runs:
+   ```bash
+   yarn install --ignore-scripts
+   ```
+   to install `manager-pm`’s dependencies **without** triggering any Yarn or PNPM lifecycle scripts.
+3. Restores the original root workspace configuration afterward.
+
+---
+
+### Example output
+
+```
+🚀 manager-pm pm:isolated:install CLI started...
+📦 Isolated workspaces to: packages/manager-tools/manager-pm
+✔ Dependencies installed for isolated modules.
+🧹 Restored original root workspaces.
+✅ manager-pm pm:isolated:install completed in 87.12s
+✨  Done in 87.94s.
+```
+
+After the process:
+
+- Only `packages/manager-tools/manager-pm/node_modules` exists.
+- No `postinstall`, PNPM bootstrap, or Turbo tasks are triggered.
+- The root `package.json` is automatically restored.
+
+---
+
+### Why this matters
+
+| Scenario | Benefit |
+|-----------|----------|
+| **CI/CD pipelines** | Speeds up runs where only `manager-pm` CLI is needed |
+| **Developer onboarding** | Enables using `manager-pm` without waiting for full monorepo install |
+| **Hotfix and release tooling** | Allows quick access to CLI scripts (publish, release, catalog sync) |
+| **Offline or cached environments** | Avoids unnecessary dependency downloads |
+
+---
+
+### Behavior summary
+
+| Step | Description |
+|------|--------------|
+| 🧭 **Read** | Reads the current root `package.json` |
+| ✏️ **Rewrite** | Sets `workspaces.packages = ['packages/manager-tools/manager-pm']` |
+| 📦 **Install** | Runs `yarn install --ignore-scripts` |
+| 🧹 **Restore** | Calls `clearRootWorkspaces()` to revert to the original configuration |
+
+---
+
+### Typical CI/CD usage
+
+```bash
+# Install only manager-pm dependencies
+yarn pm:isolated:install
+
+# Run manager-pm CLI immediately
+yarn manager-pm --action buildCI --filter=@ovh-ux/manager-web --silent
+```
+
+This reduces setup time from 15+ minutes to under 2 minutes in large repos —  
+ideal for quick CI runners, release automation, or script-driven catalog operations.
+
+---
+
 ## Continuous Delivery (CDS)
 
 In our previous workflow, Continuous Delivery jobs relied on **direct Lerna invocations** such as:

@@ -1,7 +1,8 @@
 import { execSync } from 'node:child_process';
 import { spawn } from 'node:child_process';
+import { promises as fs } from 'node:fs';
 
-import { managerRootPath } from '../../playbook/playbook-config.js';
+import { managerRootPath, rootPackageJsonPath } from '../../playbook/playbook-config.js';
 import {
   buildApplicationWorkspacePath,
   getPackageNameFromApplication,
@@ -10,6 +11,7 @@ import {
   buildModuleWorkspacePath,
   getPackageNameFromModule,
 } from '../helpers/modules-workspace-helper.js';
+import { clearRootWorkspaces } from './catalog-utils.js';
 import { logger } from './log-manager.js';
 
 /**
@@ -129,6 +131,47 @@ export function runYarnInstall(args = []) {
   } catch (err) {
     logger.error(`❌ "yarn install" failed: ${err.message}`);
     throw err;
+  }
+}
+
+/**
+ * Temporarily modifies the root `package.json` workspaces field
+ * to include only the given modules, runs `yarn install --ignore-scripts`,
+ * and then restores the original configuration.
+ *
+ * @async
+ * @param {string[]} modules - List of module workspace globs or paths to isolate.
+ * @returns {Promise<void>} Resolves when isolation and installation complete.
+ */
+export async function runIsolatedModulesInstall(modules = []) {
+  try {
+    // Read and parse the root package.json
+    const rawContent = await fs.readFile(rootPackageJsonPath, 'utf-8');
+    const rootPackageJson = JSON.parse(rawContent);
+
+    // Prepare a minimal workspaces field containing only the target modules
+    if (!rootPackageJson.workspaces || typeof rootPackageJson.workspaces !== 'object') {
+      logger.warn('⚠️ Root package.json has no valid "workspaces" field. Creating a new one.');
+      rootPackageJson.workspaces = { packages: modules };
+    } else {
+      rootPackageJson.workspaces.packages = modules;
+    }
+
+    // Write the updated package.json
+    await fs.writeFile(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2));
+    logger.info(`📦 Isolated workspaces to: ${modules.join(', ') || '(none)'}`);
+
+    // Run Yarn install for isolated modules (skip lifecycle scripts)
+    await runYarnInstall(['--ignore-scripts']);
+    logger.success('✔ Dependencies installed for isolated modules.');
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    logger.error(`❌ Failed to isolate modules install: ${message}`);
+    throw error;
+  } finally {
+    // Always restore original workspaces configuration
+    await clearRootWorkspaces();
+    logger.info('🧹 Restored original root workspaces.');
   }
 }
 
