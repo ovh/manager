@@ -9,7 +9,6 @@ import {
   BaseLayout,
   ChangelogButton,
   Datagrid,
-  PciGuidesHeader,
   RedirectionGuard,
   useDataGrid,
   useProjectUrl,
@@ -37,6 +36,7 @@ import {
   usePaginatedVolumeSnapshot,
 } from '@/api/hooks/useSnapshots';
 import { useQueryParamNotifications } from '@/hooks/useQueryParamNotifications';
+import { VolumeSnapshotGuidesHeader } from '@/pages/listing/components/VolumeSnapshotGuidesHeader.component';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
@@ -110,7 +110,7 @@ export default function ListingPage() {
         }
         header={{
           title: t('pci_projects_project_storages_snapshots_title'),
-          headerButton: <PciGuidesHeader category="storage" />,
+          headerButton: <VolumeSnapshotGuidesHeader />,
           changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
         }}
       >
