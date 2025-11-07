@@ -87,5 +87,8 @@
   "pci_instance_creation_select_sshKey_add_key_label": "Geben Sie Ihren SSH-Schlüssel ein",
   "pci_instance_creation_select_sshKey_add_key_description": "Die akzeptierten SSH-Schlüsseltypen sind RSA, ECDSA und ED25519. Ihr SSH-Schlüssel wird in allen Regionen und Rechenzentren von OVHcloud Ihres Projekts verfügbar sein.",
   "pci_instance_creation_select_sshKey_add_key_submit_btn": "Schlüssel validieren",
-  "pci_instance_creation_select_sshKey_add_new": "Einen neuen SSH-Schlüssel erstellen"
+  "pci_instance_creation_select_sshKey_add_new": "Einen neuen SSH-Schlüssel erstellen",
+  "pci_instance_creation_select_sshKey_dropdown_label": "Wählen Sie einen vorhandenen Schlüssel aus",
+  "pci_instance_creation_select_sshKey_add_key_done": "Ihr SSH-Schlüssel wird am Ende des Konfigurationsprozesses erstellt.",
+  "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Bitte wählen Sie einen anderen Namen, dieser ist bereits vergeben."
 }

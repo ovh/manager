@@ -3,7 +3,7 @@ import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
 
-export const nameDefaultValue = 'default name to add';
+export const nameDefaultValue = 'default_name_to_add';
 
 export const Name = () => {
   const { t } = useTranslation(['common', 'creation']);
