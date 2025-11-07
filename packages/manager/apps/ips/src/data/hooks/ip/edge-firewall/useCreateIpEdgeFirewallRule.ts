@@ -196,7 +196,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
 
       if (hasNoFirewall) {
         qc.invalidateQueries({
-          queryKey: getIpEdgeFirewallQueryKey({ ip: ipOnFirewall }),
+          queryKey: getIpEdgeFirewallQueryKey({ ip, ipOnFirewall }),
         });
       }
 
