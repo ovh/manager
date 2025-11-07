@@ -3,7 +3,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { domain } from '@/__mocks__/domain';
 import Domain from '@/pages/dashboard/domain/Domain';
 import { taskMeDomain } from '@/constants';
@@ -60,24 +60,19 @@ describe('Domain datagrid', () => {
       }),
     }));
 
-    const { getByTestId } = render(<Domain />, { wrapper });
-    await waitFor(() => {
-      expect(getByTestId('datagrid')).toBeInTheDocument();
+    render(<Domain />, { wrapper });
 
-      const domainName = getByTestId('case-where-modal-cant-be-open.ovh');
-      expect(domainName).toBeInTheDocument();
-      expect(domainName).toHaveAttribute(
-        'href',
-        'https://ovh.test/#/web/domain/case-where-modal-cant-be-open.ovh/information',
-      );
+    expect(screen.getByTestId('datagrid')).toBeInTheDocument();
 
-      // We test the able or disabled ActionButton
-      const buttons = screen.getAllByTestId('navigation-action-trigger-action');
-      const disabledButton = buttons[0]; // The button comes from the mock, it's the mock's first element
-      expect(disabledButton).toHaveAttribute('is-disabled', 'true');
+    const domainName = screen.getByTestId('case-where-modal-cant-be-open.ovh');
+    expect(domainName).toBeInTheDocument();
+    expect(domainName).toHaveAttribute(
+      'href',
+      'https://ovh.test/#/web/domain/case-where-modal-cant-be-open.ovh/information',
+    );
 
-      const ableButton = buttons[1]; // The button comes from the mock, it's the mock's second element
-      expect(ableButton).toHaveAttribute('is-disabled', 'false');
-    });
+    const buttons = screen.getAllByTestId('navigation-action-trigger-action');
+    expect(buttons[0]).toHaveAttribute('is-disabled', 'true');
+    expect(buttons[1]).toBeEnabled();
   });
 });
