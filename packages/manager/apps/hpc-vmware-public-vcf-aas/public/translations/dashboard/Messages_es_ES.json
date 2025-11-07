@@ -55,5 +55,16 @@
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confirmar",
   "managed_vcd_dashboard_cancellation_tooltip": "Si desea dar de baja el servicio, contacte con nuestro equipo de soporte.",
   "managed_vcd_dashboard_vrack_title": "Redes vRack",
-  "managed_vcd_dashboard_general_network_acl": "Permisos de acceso"
+  "managed_vcd_dashboard_general_network_acl": "Permisos de acceso",
+  "managed_vcd_dashboard_add_ip_public_block_description": "Puede añadir a su VDC uno de sus bloques de IP públicas registradas, lo que le permitirá asignar a sus MV cualquier dirección IP que contenga.",
+  "managed_vcd_dashboard_add_ip_public_block_information": "Para ver los bloques de IP disponibles, es necesario disponer de ellos en el vRack del VDC. Haga clic a continuación para acceder al vRack.",
+  "managed_vcd_dashboard_add_ip_public_block_no_vrack_ip_information": "Parece que no hay ningún bloque de IP asociado a su vRack. Asocie un bloque de IP accediendo al gestor de vRack que aparece a continuación",
+  "managed_vcd_dashboard_add_ip_public_block_label": "Bloque de direcciones IP públicas",
+  "managed_vcd_dashboard_add_ip_public_block_modal_heading": "Añadir un nuevo bloque de IP pública",
+  "managed_vcd_dashboard_add_ip_public_block_message_success": "La solicitud de adición de la puerta de enlace {{gateway}} correspondiente al bloque de IP pública {{blockIp}} se ha enviado correctamente.",
+  "managed_vcd_dashboard_tile_ip_block_title": "Acceso público",
+  "managed_vcd_dashboard_tile_ip_block_label": "Número de bloques de direcciones IP públicas:",
+  "managed_vcd_dashboard_tile_action_add_ip_block": "Añadir un nuevo bloque de direcciones IP",
+  "managed_vcd_dashboard_tile_action_manage_vrack_segments": "Gestionar mis segmentos vRack",
+  "managed_vcd_dashboard_add_ip_public_block_add_already_exist": "La puerta de enlace {{gateway}} correspondiente al bloque IP {{blockIp}} ya existe en el segmento VRack, por lo que no puede añadirse a la configuración de red."
 }
