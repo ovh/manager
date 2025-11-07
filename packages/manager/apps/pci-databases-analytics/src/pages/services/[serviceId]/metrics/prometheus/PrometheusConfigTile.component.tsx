@@ -43,7 +43,7 @@ const PrometheusConfigTile = () => {
     onError: (err) => {
       toast.toast({
         title: t('errorToastTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -112,7 +112,7 @@ const PrometheusConfigTile = () => {
                       'px-2 py-0.5 text-xs',
                       !service.enablePrometheus && 'border border-gray-200',
                     )}
-                    variant={service.enablePrometheus ? 'success' : 'outline'}
+                    variant={service.enablePrometheus ? 'success' : 'neutral'}
                   >
                     {t(
                       service.enablePrometheus

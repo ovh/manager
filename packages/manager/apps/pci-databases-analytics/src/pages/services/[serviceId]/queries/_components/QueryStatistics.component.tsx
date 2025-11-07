@@ -26,7 +26,7 @@ const QueryStatistics = () => {
     onError: (err) => {
       toast.toast({
         title: t('queryStatistcsResetToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },

@@ -72,7 +72,7 @@ const AddEditUserModal = ({
     onError: (err) => {
       toast.toast({
         title: t(`${prefix}UserToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },

@@ -14,6 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
   Label,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useDeleteService } from '@/hooks/api/database/service/useDeleteService.hook';
@@ -84,7 +85,7 @@ const DeleteService = ({
       );
       toast.toast({
         title: t('deleteServiceToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
       if (onError) {
@@ -120,13 +121,13 @@ const DeleteService = ({
 
   return (
     <RouteModal isLoading={!service?.id || !integratedServices}>
-      <DialogContent className="p-0">
-        <DialogHeader className="bg-warning-100 p-6 rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent variant="warning">
+        <DialogHeader>
           <DialogTitle data-testid="delete-service-modal">
             {t('deleteServiceTitle')}
           </DialogTitle>
         </DialogHeader>
-        <div className="p-6 pt-0">
+        <DialogBody>
           {integratedServices?.length > 0 && (
             <Alert variant="information">
               <AlertDescription className="mt-2 text-base">
@@ -169,13 +170,13 @@ const DeleteService = ({
               }}
             />
           </div>
-        </div>
-        <DialogFooter className="flex justify-end p-6 pt-0">
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-service-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
               onClick={() =>
                 track(
                   TRACKING.deleteService.cancel(

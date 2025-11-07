@@ -94,7 +94,7 @@ const ForkForm = ({
     onError: (err) => {
       toast({
         title: t('errorCreatingService'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -167,7 +167,7 @@ const ForkForm = ({
     (error) => {
       toast({
         title: t('errorFormTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: <ErrorList error={error} />,
       });
     },

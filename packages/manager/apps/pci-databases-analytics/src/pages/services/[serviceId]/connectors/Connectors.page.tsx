@@ -64,7 +64,7 @@ const Connectors = () => {
     onError: (err: CdbError) => {
       toast.toast({
         title: t(`${action}ConnectorToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },

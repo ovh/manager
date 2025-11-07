@@ -28,7 +28,7 @@ const ServiceNameWithUpdate = ({ service }: { service: database.Service }) => {
     onError: (err) => {
       toast.toast({
         title: t('renameServiceToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },

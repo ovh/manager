@@ -86,7 +86,7 @@ const AddEditConnector = ({ connectorToEdit }: IAddEditConnectorProps) => {
         : null;
       toast.toast({
         title: t(`${prefix}ConnectorToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: details,
       });
     },

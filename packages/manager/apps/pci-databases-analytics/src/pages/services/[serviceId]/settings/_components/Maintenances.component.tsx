@@ -30,7 +30,7 @@ const Maintenances = () => {
     onError: (err) => {
       toast.toast({
         title: t('maintenanceApplyToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
