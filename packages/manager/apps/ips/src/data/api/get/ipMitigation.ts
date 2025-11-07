@@ -41,6 +41,7 @@ export const getIpMitigation = async (
   fetchIcebergV6<IpMitigationType>({
     route: `/ip/${encodeURIComponent(params.ip)}/mitigation`,
     page: 1,
+    disableCache: true,
   });
 
 export const getIpMitigationWithoutIcebergQueryKey = (

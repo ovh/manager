@@ -11,7 +11,7 @@ import {
   getIpMitigationWithoutIceberg,
   getIpMitigationWithoutIcebergQueryKey,
 } from '@/data/api';
-import { ipFormatter } from '@/utils';
+import { INVALIDATED_REFRESH_PERIOD, ipFormatter } from '@/utils';
 
 export type UseGetIpMitigationParams = {
   ip: string;
@@ -88,7 +88,7 @@ export const useGetIpMitigationWithoutIceberg = ({
     refetchInterval: (query) =>
       query.state.data?.data?.state === 'creationPending' ||
       query.state.data?.data?.state === 'removalPending'
-        ? 2000
+        ? INVALIDATED_REFRESH_PERIOD
         : false,
   });
 
