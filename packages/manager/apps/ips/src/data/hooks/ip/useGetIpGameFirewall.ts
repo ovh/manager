@@ -6,6 +6,7 @@ import {
   getIpGameFirewall,
   getIpGameFirewallQueryKey,
 } from '@/data/api';
+import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
 export type UseGetIpGameFirewallParams = {
   ip: string;
@@ -17,7 +18,7 @@ export type UseGetIpGameFirewallParams = {
 export const useGetIpGameFirewall = ({
   ip,
   enabled = true,
-  refetchInterval = 2000,
+  refetchInterval = INVALIDATED_REFRESH_PERIOD,
 }: UseGetIpGameFirewallParams) => {
   const getQuery = useQuery<IcebergFetchResultV6<IpGameFirewallType>, ApiError>(
     {
@@ -38,7 +39,6 @@ export const useGetIpGameFirewall = ({
         }
       },
       enabled,
-      staleTime: Number.POSITIVE_INFINITY,
       retry: false,
       refetchInterval: (query) =>
         // Array can be empty and will trigger the refresh indefinitly
