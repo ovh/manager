@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { Plus } from 'lucide-react';
-import { Skeleton, Button } from '@datatr-ux/uxlib';
+import { AlertTriangle, Plus } from 'lucide-react';
+import { Skeleton, Button, Alert, AlertDescription } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import { getColumns } from './ReplicationListColumns.component';
 import DataTable from '@/components/data-table';
-import { useS3Data } from '../../S3.context';
+import { useS3Data } from '../../../S3.context';
 import storages from '@/types/Storages';
+import { useGetAvailableDestinationsContainers } from '../form/useGetDestinationContainers';
 
 interface ReplicationListProps {
   replicationRules: storages.ReplicationRule[];
@@ -31,8 +32,29 @@ export default function ReplicationList({
   const isVersioningEnabled =
     s3?.versioning?.status === storages.VersioningStatusEnum.enabled;
 
+  const {
+    availableDestinations,
+    isLoading,
+  } = useGetAvailableDestinationsContainers();
+
   return (
     <DataTable.Provider columns={columns} data={replicationRules} pageSize={25}>
+      {availableDestinations.length === 0 && !isLoading && (
+        <Alert variant="warning">
+          <AlertDescription className="flex gap-2 items-center">
+            <AlertTriangle className="size-4" />
+            {t('noAvailableDestinationContainersAlert')}
+          </AlertDescription>
+        </Alert>
+      )}
+      {!isVersioningEnabled && (
+        <Alert variant="warning">
+          <AlertDescription className="flex gap-2 items-center">
+            <AlertTriangle className="size-4" />
+            {t('replicationRequiresVersioningAlert')}
+          </AlertDescription>
+        </Alert>
+      )}
       <DataTable.Header>
         <DataTable.Action>
           <Button
@@ -40,7 +62,11 @@ export default function ReplicationList({
             onClick={() => {
               navigate('./new');
             }}
-            disabled={!isVersioningEnabled}
+            disabled={
+              !isVersioningEnabled ||
+              isLoading ||
+              availableDestinations.length === 0
+            }
           >
             <Plus className="size-6" />
             {t('createReplication')}

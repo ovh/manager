@@ -2,12 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FieldLabel,
   Input,
   Sheet,
   SheetClose,
@@ -18,6 +13,7 @@ import {
   SheetTitle,
 } from '@datatr-ux/uxlib';
 import { useLabelForm } from '@/components/labels/useLabelForm.hook';
+import { FormField } from '../form-field/FormField.component';
 
 export interface Label {
   key?: string;
@@ -51,54 +47,42 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             <SheetTitle>{t(`addTagTitle`)}</SheetTitle>
             <SheetDescription />
           </SheetHeader>
-          <Form {...form}>
-            <form onSubmit={onSubmit}>
-              <div className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="key"
-                  defaultValue=""
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel data-testid="name-field-label">
-                        {t('keyFieldLabel')}
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          data-testid="key-input-field"
-                          {...field}
-                          ref={ref}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="value"
-                  defaultValue=""
-                  render={({ field }) => (
-                    <FormItem data-testid="value-field-label">
-                      <FormLabel>{t('valueFieldLabel')}</FormLabel>
-                      <FormControl>
-                        <Input data-testid="value-input-field" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <SheetFooter>
-                  <SheetClose asChild>
-                    <Button type="button" mode="ghost">
-                      {t('cancelButton')}
-                    </Button>
-                  </SheetClose>
-                  <Button type="submit">{t('confirmButton')}</Button>
-                </SheetFooter>
-              </div>
-            </form>
-          </Form>
+          <form onSubmit={onSubmit}>
+            <div className="space-y-4">
+              <FormField form={form} name="key">
+                {(field) => (
+                  <>
+                    <FieldLabel data-testid="name-field-label">
+                      {t('keyFieldLabel')}
+                    </FieldLabel>
+                    <Input data-testid="key-input-field" {...field} ref={ref} />
+                  </>
+                )}
+              </FormField>
+              <FormField form={form} name="value">
+                {(field) => (
+                  <>
+                    <FieldLabel data-testid="value-field-label">
+                      {t('valueFieldLabel')}
+                    </FieldLabel>
+                    <Input
+                      data-testid="value-input-field"
+                      {...field}
+                      ref={ref}
+                    />
+                  </>
+                )}
+              </FormField>
+              <SheetFooter>
+                <SheetClose asChild>
+                  <Button type="button" mode="ghost">
+                    {t('cancelButton')}
+                  </Button>
+                </SheetClose>
+                <Button type="submit">{t('confirmButton')}</Button>
+              </SheetFooter>
+            </div>
+          </form>
         </SheetContent>
       </Sheet>
     );

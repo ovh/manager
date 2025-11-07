@@ -23,7 +23,6 @@ const Objects = () => {
     region: s3.region,
     name: s3.name,
     withVersions: withVersion,
-    // options: { refetchInterval: 15000 }
   });
   const navigate = useNavigate();
 

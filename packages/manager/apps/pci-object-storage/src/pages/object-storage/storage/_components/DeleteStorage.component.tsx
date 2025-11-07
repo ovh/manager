@@ -66,19 +66,19 @@ const DeleteStorage = ({
   });
 
   const handleDelete = () => {
-    if (type === ObjectStorageTypeEnum.s3) {
-      deleteStorage({
-        projectId,
-        name: storageId,
-        region: storage.region,
-      });
-    }
-    if (type === ObjectStorageTypeEnum.swift) {
-      deleteStorage({
-        projectId,
-        containerId: storageId,
-      });
-    }
+    const payload =
+      type === ObjectStorageTypeEnum.s3
+        ? {
+            projectId,
+            name: storageId,
+            region: storage.region,
+          }
+        : {
+            projectId,
+            containerId: storageId,
+          };
+
+    deleteStorage(payload);
   };
 
   return (

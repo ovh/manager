@@ -21,6 +21,7 @@ import cloud from '@/types/Cloud';
 import storages from '@/types/Storages';
 import { isS3Order, isSwiftOrder } from './useOrderFunnel.hook';
 import * as Tuser from '@/types/User';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 const AnchorLabel = ({
   label,
@@ -90,14 +91,10 @@ const OrderSummary = ({
     return user ? user.description : '-';
   };
   const RegionInfo = ({ region }: { region?: string }) => {
-    const { translateMicroRegion } = useTranslatedMicroRegions();
     const rInfo = regions.find((r) => r.name === region);
-    return regionInfo ? (
+    return rInfo ? (
       <div className="flex gap-2 items-center">
-        {rInfo?.countryCode && (
-          <Flag className="w-[1rem] h-[0.8rem]" flagName={rInfo?.countryCode} />
-        )}
-        <span>{rInfo ? translateMicroRegion(rInfo?.name) : region}</span>
+        <RegionWithFlag region={rInfo} />
       </div>
     ) : (
       <span>-</span>

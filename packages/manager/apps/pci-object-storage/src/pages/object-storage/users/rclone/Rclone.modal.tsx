@@ -17,16 +17,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
   Label,
   RadioGroup,
   RadioGroupItem,
   useToast,
+  FieldLabel,
 } from '@datatr-ux/uxlib';
 import { Check, ExternalLink } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
@@ -39,6 +34,9 @@ import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { getUserRclone } from '@/data/api/user/user.api';
 import useDownload from '@/hooks/useDownload';
+import { FormField } from '@/components/form-field/FormField.component';
+import Flag from '@/components/flag/Flag.component';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 const Rclone = () => {
   const { t } = useTranslation('pci-object-storage/users/rclone');
@@ -78,134 +76,117 @@ const Rclone = () => {
         </DialogHeader>
 
         <DialogBody>
-          <Form {...form}>
-            <form
-              onSubmit={onSubmit}
-              className="flex flex-col gap-2"
-              id="download-rclone"
-            >
-              <div className="in-line space-x-2">
-                <span>{t('rcloneDescription')}</span>
-                <A
-                  href={getGuideUrl(GUIDES.OBJ_STO_RCLONE, locale)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="inline-flex items-center gap-2">
-                    <span className="text-primary-500">{t('rcloneDoc')}</span>
-                    <ExternalLink className="size-4 text-primary-500" />
-                  </div>
-                </A>
-              </div>
-              <FormField
-                control={form.control}
-                name="rcloneType"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('typeLabel')}</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        className="flex flex-row gap-4 mb-2"
-                        name="access-type"
-                        value={field.value}
-                        onValueChange={(value) => {
-                          field.onChange(value);
-                          form.setValue('region', '');
-                        }}
-                      >
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value={ObjectStorageTypeEnum.swift}
-                            id="swift-radio"
-                          />
-                          <Label>{t('swiftTypeLabel')}</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value={ObjectStorageTypeEnum.s3}
-                            id="s3-radio"
-                          />
-                          <Label>{t('s3TypeLabel')}</Label>
-                        </div>
-                      </RadioGroup>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="region"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('regionLabel')}</FormLabel>
-                    <FormControl>
-                      <Combobox
-                        value={`${field.value}`}
-                        onValueChange={field.onChange}
-                        modal
-                      >
-                        <ComboboxTrigger
-                          ref={field.ref}
-                          disabled={field.disabled}
-                        >
-                          <ComboboxValue
-                            data-testid="select-region-button"
-                            placeholder={t('regionPlaceholder')}
-                            value={
-                              field.value && tRegions(`region_${field.value}`)
-                            }
-                          />
-                        </ComboboxTrigger>
-                        <ComboboxContent>
-                          <ComboboxInput placeholder={t('regionPlaceholder')} />
-                          <ComboboxList>
-                            <ComboboxEmpty>{t('noRegionFound')}</ComboboxEmpty>
-                            <ComboboxGroup>
-                              {regions
-                                .filter((reg) =>
-                                  form.getValues('rcloneType') ===
-                                  ObjectStorageTypeEnum.s3
-                                    ? reg.services.find((ser) =>
-                                        ser.name.startsWith('storage-s3'),
-                                      )
-                                    : reg.services.find(
-                                        (ser) => ser.name === 'storage',
-                                      ),
-                                )
-                                .map((region) => (
-                                  <ComboboxItem
-                                    value={region.name}
-                                    key={region.name}
-                                    keywords={[
-                                      tRegions(`region_${region.name}`),
-                                    ]}
-                                  >
-                                    {`${tRegions(`region_${region.name}`)} - (${
-                                      region.name
-                                    })`}
-                                    <Check
-                                      className={cn(
-                                        'ml-auto',
-                                        region.name === field.value
-                                          ? 'opacity-100'
-                                          : 'opacity-0',
-                                      )}
-                                    />
-                                  </ComboboxItem>
-                                ))}
-                            </ComboboxGroup>
-                          </ComboboxList>
-                        </ComboboxContent>
-                      </Combobox>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <p className="text-xs">{t('rcloneInfo')}</p>
-            </form>
-          </Form>
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col gap-2"
+            id="download-rclone"
+          >
+            <div className="in-line space-x-2">
+              <span>{t('rcloneDescription')}</span>
+              <A
+                href={getGuideUrl(GUIDES.OBJ_STO_RCLONE, locale)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="inline-flex items-center gap-2">
+                  <span className="text-primary-500">{t('rcloneDoc')}</span>
+                  <ExternalLink className="size-4 text-primary-500" />
+                </div>
+              </A>
+            </div>
+            <FormField name="rcloneType" form={form}>
+              {(field) => (
+                <>
+                  <FieldLabel>{t('typeLabel')}</FieldLabel>
+                  <RadioGroup
+                    className="flex flex-row gap-4 mb-2"
+                    name="access-type"
+                    value={field.value}
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                      form.setValue('region', undefined);
+                    }}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem
+                        value={ObjectStorageTypeEnum.swift}
+                        id="swift-radio"
+                      />
+                      <Label>{t('swiftTypeLabel')}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem
+                        value={ObjectStorageTypeEnum.s3}
+                        id="s3-radio"
+                      />
+                      <Label>{t('s3TypeLabel')}</Label>
+                    </div>
+                  </RadioGroup>
+                </>
+              )}
+            </FormField>
+
+            <FormField name="region" form={form}>
+              {(field) => (
+                <>
+                  <FieldLabel>{t('regionLabel')}</FieldLabel>
+
+                  <Combobox
+                    value={`${field.value}`}
+                    onValueChange={field.onChange}
+                    modal
+                  >
+                    <ComboboxTrigger ref={field.ref} disabled={field.disabled}>
+                      <ComboboxValue
+                        data-testid="select-region-button"
+                        placeholder={t('regionPlaceholder')}
+                        value={
+                          field.value && (
+                            <RegionWithFlag
+                              region={regions.find(
+                                (r) => r.name === field.value,
+                              )}
+                            />
+                          )
+                        }
+                      />
+                    </ComboboxTrigger>
+                    <ComboboxContent>
+                      <ComboboxInput placeholder={t('regionPlaceholder')} />
+                      <ComboboxList>
+                        <ComboboxEmpty>{t('noRegionFound')}</ComboboxEmpty>
+                        <ComboboxGroup>
+                          {regions
+                            .filter((reg) =>
+                              form.getValues('rcloneType') ===
+                              ObjectStorageTypeEnum.s3
+                                ? reg.services.find((ser) =>
+                                    ser.name.startsWith('storage-s3'),
+                                  )
+                                : reg.services.find(
+                                    (ser) => ser.name === 'storage',
+                                  ),
+                            )
+                            .map((region) => (
+                              <ComboboxItem
+                                value={region.name}
+                                key={region.name}
+                                keywords={[tRegions(`region_${region.name}`)]}
+                                className="flex gap-2"
+                              >
+                                <RegionWithFlag region={region} />
+                              </ComboboxItem>
+                            ))}
+                        </ComboboxGroup>
+                      </ComboboxList>
+                    </ComboboxContent>
+                  </Combobox>
+                </>
+              )}
+            </FormField>
+
+            <p className="text-xs">{t('rcloneInfo')}</p>
+          </form>
         </DialogBody>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>

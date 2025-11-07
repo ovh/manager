@@ -6,17 +6,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
   Separator,
   useToast,
 } from '@datatr-ux/uxlib';
 import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
 import { Catalog } from '@datatr-ux/ovhcloud-types/order/catalog/public/Catalog';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 import OrderSection from './Section.component';
 import OfferStep from './steps/OfferStep.component';
 import OrderSummary from './OrderSummary.component';
@@ -26,6 +22,7 @@ import VersionningStep from './steps/VersionningStep.component';
 import ContainerTypeStep from './steps/ContainerTypeStep.component';
 import UserStep from './steps/UserStep.component';
 import EncryptStep from './steps/EncryptStep.component';
+import { FormField } from '@/components/form-field/FormField.component';
 import NameInput from './steps/NameStep.component';
 import { isS3Order, isSwiftOrder, useOrderFunnel } from './useOrderFunnel.hook';
 import { ProductAvailability } from '@/types/Availability';
@@ -58,25 +55,27 @@ const OrderFunnel = ({
 }: OrderFunnelProps) => {
   const { projectId } = useParams();
   const projectData = usePciProject();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { t } = useTranslation('pci-object-storage/order-funnel');
   const toast = useToast();
   const navigate = useNavigate();
   const storagePricesLink = useLink(STORAGE_PRICES_LINK);
   const replicationLink = useLink(STORAGE_ASYNC_REPLICATION_LINK);
 
-  const { form, availableRegions, model, pricings, result } = useOrderFunnel({
+  const { form, availableRegions, model, result } = useOrderFunnel({
     regions,
     users,
     availabilities,
     catalog,
   });
-  const { createSwift, isPending: isCreateSwiftPending } = useCreateSwift({
+  const { createSwift } = useCreateSwift({
     onError: (err) => {
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'critical',
         description: err.message,
       });
+      setIsSubmitting(false);
     },
     onSuccess: (container) => {
       navigate(`../swift/${container.id}`);
@@ -85,13 +84,14 @@ const OrderFunnel = ({
       });
     },
   });
-  const { createS3, isPending: isCreateS3Pending } = useCreateS3({
+  const { createS3 } = useCreateS3({
     onError: (err) => {
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'critical',
         description: err.message,
       });
+      setIsSubmitting(false);
     },
     onSuccess: (container) => {
       navigate(`../s3/${container.region}/${container.name}`);
@@ -102,9 +102,9 @@ const OrderFunnel = ({
   });
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
-  const isPending = isCreateSwiftPending || isCreateS3Pending;
 
   const onSubmit = form.handleSubmit(() => {
+    setIsSubmitting(true);
     if (isSwiftOrder(result)) {
       createSwift({
         projectId,
@@ -125,220 +125,157 @@ const OrderFunnel = ({
     }
   });
 
+  const isS3Offer = model.offer === ObjectContainerOffers['s3-standard'];
+  const is3AZ = model.currentRegion?.type === RegionTypeEnum['region-3-az'];
+  const isLZ = model.currentRegion?.type === RegionTypeEnum.localzone;
+
+  // replication only allows 1az regions
+  const replicationRegions = useMemo(
+    () =>
+      availableRegions.filter((r) => r.type === RegionTypeEnum.region) || [],
+    [availableRegions],
+  );
   return (
     <div>
       <DiscoveryBanner>{t('discoveryModeActivate')}</DiscoveryBanner>
-      <Form {...form}>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-          <div
-            data-testid="order-funnel-container"
-            className="col-span-1 lg:col-span-3 flex flex-col gap-4"
-          >
-            <OrderSection id="name" title={t('labelContainerName')}>
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <NameInput {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </OrderSection>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <form
+          onSubmit={onSubmit}
+          id="os-order-funnel"
+          data-testid="order-funnel-container"
+          className="col-span-1 lg:col-span-3 flex flex-col gap-4"
+        >
+          {/* ──────────────── Common steps ──────────────── */}
+          <OrderSection id="name" title={t('labelContainerName')}>
+            <FormField name="name" form={form}>
+              {(field) => <NameInput {...field} />}
+            </FormField>
+          </OrderSection>
 
-            <OrderSection id="offer" title={t('labelOffer')}>
-              <FormField
-                control={form.control}
-                name="offer"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <OfferStep {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </OrderSection>
+          <OrderSection id="offer" title={t('labelOffer')}>
+            <FormField name="offer" form={form}>
+              {(field) => <OfferStep {...field} />}
+            </FormField>
+          </OrderSection>
 
-            <OrderSection id="region" title={t('labelLocation')}>
-              <FormField
-                control={form.control}
-                name="region"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <RegionsStep regions={availableRegions} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </OrderSection>
+          <OrderSection id="region" title={t('labelLocation')}>
+            <FormField name="region" form={form}>
+              {(field) => <RegionsStep regions={availableRegions} {...field} />}
+            </FormField>
+          </OrderSection>
 
-            {model.offer === ObjectContainerOffers.swift && (
-              <>
+          {/* ──────────────── Swift-only step ──────────────── */}
+          {!isS3Offer && (
+            <OrderSection id="containerType" title={t('labelContainerType')}>
+              <FormField name="containerType" form={form}>
+                {(field) => <ContainerTypeStep {...field} />}
+              </FormField>
+            </OrderSection>
+          )}
+
+          {/* ──────────────── S3-only steps ──────────────── */}
+          {isS3Offer && (
+            <>
+              {is3AZ && (
                 <OrderSection
-                  id="containerType"
-                  title={t('labelContainerType')}
-                >
-                  <FormField
-                    control={form.control}
-                    name="containerType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <ContainerTypeStep {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </OrderSection>
-              </>
-            )}
-
-            {model.offer === ObjectContainerOffers['s3-standard'] && (
-              <>
-                {model.currentRegion?.type ===
-                  RegionTypeEnum['region-3-az'] && (
-                  <OrderSection
-                    id="replication"
-                    title={t('labelOffsiteReplication')}
-                    description={
-                      <Trans
-                        i18nKey={`descriptionOffsiteReplication`}
-                        ns={'pci-object-storage/order-funnel'}
-                        components={[
-                          <A href={replicationLink} target="_blank" />,
-                        ]}
-                      />
-                    }
-                  >
-                    <FormField
-                      control={form.control}
-                      name="replication"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <OffsiteReplicationStep
-                              regions={availableRegions.filter(
-                                (r) => r.type !== RegionTypeEnum['region-3-az'],
-                              )}
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                  id="replication"
+                  title={t('labelOffsiteReplication')}
+                  description={
+                    <Trans
+                      i18nKey="descriptionOffsiteReplication"
+                      ns="pci-object-storage/order-funnel"
+                      components={[
+                        <A href={replicationLink} target="_blank" />,
+                      ]}
                     />
+                  }
+                >
+                  <FormField name="replication" form={form}>
+                    {(field) => (
+                      <OffsiteReplicationStep
+                        regions={replicationRegions}
+                        {...field}
+                      />
+                    )}
+                  </FormField>
+                </OrderSection>
+              )}
+
+              {!isLZ && (
+                <>
+                  <OrderSection
+                    id="versions"
+                    title={t('labelVersioning')}
+                    description={t('descriptionVersioning')}
+                  >
+                    <FormField name="versioning" form={form}>
+                      {(field) => (
+                        <VersionningStep
+                          isOffsiteReplicationActivated={
+                            model.replication?.enabled
+                          }
+                          {...field}
+                        />
+                      )}
+                    </FormField>
                   </OrderSection>
-                )}
 
-                {model.currentRegion?.type !== RegionTypeEnum.localzone && (
-                  <>
-                    <OrderSection
-                      id="versions"
-                      title={t('labelVersioning')}
-                      description={t('descriptionVersioning')}
-                    >
-                      <FormField
-                        control={form.control}
-                        name="versioning"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <VersionningStep
-                                {...field}
-                                isOffsiteReplicationActivated={
-                                  model.replication?.enabled
-                                }
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </OrderSection>
+                  <OrderSection
+                    id="user"
+                    title={t('labelUser')}
+                    description={t('descriptionUser')}
+                  >
+                    <FormField name="user" form={form}>
+                      {(field) => <UserStep users={users} {...field} />}
+                    </FormField>
+                  </OrderSection>
 
-                    <OrderSection
-                      id="user"
-                      title={t('labelUser')}
-                      description={t('descriptionUser')}
-                    >
-                      <FormField
-                        control={form.control}
-                        name="user"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <UserStep users={users} {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </OrderSection>
-
-                    <OrderSection
-                      id="encryption"
-                      title={t('labelEncryption')}
-                      description={t('descriptionEncryption')}
-                    >
-                      <FormField
-                        control={form.control}
-                        name="encryption"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <EncryptStep {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </OrderSection>
-                  </>
-                )}
-              </>
-            )}
-          </div>
-          <Card className="sticky top-4 h-fit shadow-lg">
-            <CardHeader>
-              <CardTitle>{t('summaryTitle')}</CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 gap-2">
-              <OrderSummary
-                order={result}
-                regions={availableRegions}
-                users={users}
+                  <OrderSection
+                    id="encryption"
+                    title={t('labelEncryption')}
+                    description={t('descriptionEncryption')}
+                  >
+                    <FormField name="encryption" form={form}>
+                      {(field) => <EncryptStep {...field} />}
+                    </FormField>
+                  </OrderSection>
+                </>
+              )}
+            </>
+          )}
+        </form>
+        <Card className="sticky top-4 h-fit shadow-lg">
+          <CardHeader>
+            <CardTitle>{t('summaryTitle')}</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 gap-2">
+            <OrderSummary
+              order={result}
+              regions={availableRegions}
+              users={users}
+            />
+            <Separator className="my-2" />
+            <div className="text-xs mt-2 italic">
+              <Trans
+                i18nKey={`pricingDisclaimer`}
+                ns={'pci-object-storage/order-funnel'}
+                components={[<A href={storagePricesLink} target="_blank" />]}
               />
-              <Separator className="my-2" />
-
-              <div className="text-xs mt-2 italic">
-                <Trans
-                  i18nKey={`pricingDisclaimer`}
-                  ns={'pci-object-storage/order-funnel'}
-                  components={[<A href={storagePricesLink} target="_blank" />]}
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col gap-2 justify-between">
-              <Button
-                data-testid="order-submit-button"
-                className="w-full"
-                disabled={isPending || isProjectDiscoveryMode}
-                onClick={onSubmit}
-              >
-                {t('orderButton')}
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-      </Form>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col gap-2 justify-between">
+            <Button
+              type="submit"
+              form="os-order-funnel"
+              data-testid="order-submit-button"
+              className="w-full"
+              disabled={isSubmitting || isProjectDiscoveryMode}
+            >
+              {t('orderButton')}
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 };

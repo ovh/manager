@@ -4,7 +4,7 @@ import { Button } from '@datatr-ux/uxlib';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { octetConverter } from '@/lib/bytesHelper';
-import FileIcon from '../fileIcon/FileIcon.component';
+import FileIcon from '../file-icon/FileIcon.component';
 
 interface FileInputProps
   extends Omit<

@@ -3,9 +3,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Skeleton, Button } from '@datatr-ux/uxlib';
-import { getColumns } from './StorageListColumns.component';
+import { useGetColumns } from './StorageListColumns.component';
 import DataTable from '@/components/data-table';
-import { getFilters } from './StorageListFilters.component';
+import { useGetFilters } from './StorageListFilters.component';
 import { FormattedStorage, ObjectStorageTypeEnum } from '@/types/Storages';
 
 interface StoragesListProps {
@@ -15,7 +15,7 @@ interface StoragesListProps {
 export default function StoragesList({ storages }: StoragesListProps) {
   const { t } = useTranslation('pci-object-storage/storages');
   const navigate = useNavigate();
-  const columns: ColumnDef<FormattedStorage>[] = getColumns({
+  const columns: ColumnDef<FormattedStorage>[] = useGetColumns({
     onSwitchClicked: (storage: FormattedStorage) => {
       navigate(`./switch-type/${storage.id}`);
     },
@@ -34,7 +34,7 @@ export default function StoragesList({ storages }: StoragesListProps) {
       );
     },
   });
-  const storagesFilters = getFilters();
+  const storagesFilters = useGetFilters();
 
   return (
     <DataTable.Provider

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteReplication } from '@/data/api/replication/replication.api';
+import { updateReplications } from '@/data/api/replication/replication.api';
 import { ObjStoError } from '@/data/api';
+import { getContainerHelper } from '../s3-storage/getContainerHelper';
 
 export type DeleteReplicationParams = {
   projectId: string;
@@ -21,7 +22,26 @@ export function useDeleteReplication({
   const queryClient = useQueryClient();
 
   const { mutate: deleteReplicationMutation, isPending } = useMutation({
-    mutationFn: deleteReplication,
+    mutationFn: async (data: DeleteReplicationParams) => {
+      const container = await getContainerHelper(
+        queryClient,
+        data.projectId,
+        data.region,
+        data.name,
+      );
+
+      const existingRules = container.replication?.rules || [];
+      const updatedRules = existingRules.filter(
+        (rule) => rule.id !== data.ruleId,
+      );
+
+      return updateReplications({
+        projectId: data.projectId,
+        region: data.region,
+        name: data.name,
+        replicationRules: updatedRules,
+      });
+    },
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
         queryKey: [

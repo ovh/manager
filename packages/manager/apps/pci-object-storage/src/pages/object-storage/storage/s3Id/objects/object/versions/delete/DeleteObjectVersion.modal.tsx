@@ -40,7 +40,6 @@ const DeleteObjectVersion = () => {
     versionId,
     options: { enabled: !!objectKey },
   });
-  if (!objectKey) return navigate('../');
 
   const { deleteS3ObjectVersion, isPending } = useDeleteS3ObjectVersion({
     onError: (err) => {
@@ -60,6 +59,8 @@ const DeleteObjectVersion = () => {
       navigate(`../?objectKey=${encodeURIComponent(objectKey)}`);
     },
   });
+
+  if (!objectKey) return navigate('../');
 
   const handleDelete = () => {
     deleteS3ObjectVersion({

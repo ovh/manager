@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Folder } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import FileIcon from '@/components/fileIcon/FileIcon.component';
+import FileIcon from '@/components/file-icon/FileIcon.component';
 import { useBrowser } from './BrowserRoot.component';
 
 export interface BrowserFileListProps<T extends { name: string }> {

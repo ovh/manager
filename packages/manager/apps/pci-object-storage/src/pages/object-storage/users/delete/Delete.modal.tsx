@@ -22,15 +22,12 @@ const DeleteUser = () => {
   const { projectId, userId } = useParams();
   const { t } = useTranslation('pci-object-storage/users/delete');
   const { users } = useObjectStorageData();
-  const userPath = `#/pci/projects/${projectId}/users`;
   const toast = useToast();
   const user = users.find((us) => us.id === Number(userId));
   const credsQuery = useGetUserS3Credentials(projectId, user.id, {
     enabled: !!user.id,
   });
   const navigate = useNavigate();
-  if (!user) navigate('../');
-
   const { deleteUser, isPending } = useDeleteUser({
     onError: (err) => {
       toast.toast({
@@ -50,6 +47,9 @@ const DeleteUser = () => {
     },
   });
 
+  if (!user) navigate('../');
+
+  const userPath = `#/pci/projects/${projectId}/users`;
   const handleDelete = () => {
     deleteUser({
       projectId,

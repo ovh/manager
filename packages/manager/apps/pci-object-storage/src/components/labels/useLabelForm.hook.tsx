@@ -33,6 +33,10 @@ export const useLabelForm = ({ configuredLabel }: UseLabelFormProps) => {
 
   const form = useForm({
     resolver: zodResolver(labelSchema),
+    defaultValues: {
+      key: '',
+      value: '',
+    },
   });
 
   return { form, labelSchema };

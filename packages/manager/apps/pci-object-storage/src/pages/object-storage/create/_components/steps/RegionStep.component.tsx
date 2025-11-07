@@ -16,8 +16,6 @@ import {
   Label,
 } from '@datatr-ux/uxlib';
 import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
-
-import Flag from '@/components/flag/Flag.component';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import {
   DeploymentModeSelection,
@@ -27,6 +25,7 @@ import cloud from '@/types/Cloud';
 import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { RegionTypeBadgeWithPopover } from '@/components/region-type-badge/RegionTypeBadge.component';
+import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 interface RegionsSelectProps {
   regions: Region[];
@@ -209,10 +208,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                       <div className="flex items-center gap-2">
                         <RadioIndicator />
                         <h5 className="flex gap-2 items-center">
-                          {region.countryCode && (
-                            <Flag flagName={region.countryCode} />
-                          )}
-                          {region.label}
+                          <RegionWithFlag region={region} />
                         </h5>
                       </div>
                     </div>
@@ -231,7 +227,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
             </RadioGroup>
           </ScrollArea>
         ) : (
-          <Alert>
+          <Alert variant="information">
             <Trans
               i18nKey={`regionsNoMatch`}
               ns={'pci-object-storage/order-funnel'}

@@ -39,6 +39,7 @@
   "storageClassStandardIA": "Standard - Accès peu fréquent",
   "storageClassHighPerf": "Haute performance",
   "statusLabel": "Statut",
+  "deleteMarkerReplication": "Réplication des marqueurs de suppression",
   "deleteMarkerReplicationLabel": "Réplication des marqueurs de suppression",
   "deleteMarkerReplicationDescription": "Répliquer également les marqueurs de suppression vers la destination",
   "addReplicationButtonCancel": "Annuler",
@@ -65,5 +66,12 @@
   "ruleIdMaxLengthError": "L'identifiant de la règle ne peut pas dépasser {{max}} caractères",
   "ruleIdRegexError": "L'identifiant de la règle ne peut contenir que des caractères ASCII imprimables",
   "destinationRequired": "La destination est requise",
-  "prefixRegexError": "Le préfixe contient des caractères non valides"
+  "errorDestinationVersioningDisabled": "La réplication nécessite que le versioning soit activé sur le conteneur de destination",
+  "errorDestinationFetchingDetails": "Une erreur est survenue lors de la récupération des détails du conteneur de destination",
+  "errorDestinationObjectLockDisabled": "La réplication nécessite que object lock soit activé sur le conteneur de destination",
+  "prefixRegexError": "Le préfixe contient des caractères non valides",
+  "noAvailableDestinationContainersAlert": "Pour utiliser la réplication asynchrone, vous avez besoin d'un autre conteneur avec le versioning activé.",
+  "replicationRequiresVersioningAlert": "Pour utiliser la réplication asynchrone, le versioning doit être activé.",
+  "destinationFieldLabel": "Conteneur de destination",
+  "replicationButtonCancel": "Annuler"
 }

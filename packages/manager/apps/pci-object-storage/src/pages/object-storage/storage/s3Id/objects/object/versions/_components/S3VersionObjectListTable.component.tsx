@@ -63,7 +63,9 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
     },
     onDeleteClicked: (object: StorageObject) => {
       return navigate(
-        `./delete-version/${object.versionId}?objectKey=${object.key}`,
+        `./delete-version/${object.versionId}?objectKey=${encodeURIComponent(
+          object.key,
+        )}`,
       );
     },
   });
