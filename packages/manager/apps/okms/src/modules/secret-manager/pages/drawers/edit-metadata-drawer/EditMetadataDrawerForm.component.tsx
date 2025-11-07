@@ -84,7 +84,7 @@ export const EditMetadataDrawerForm = ({
   return (
     <div className="flex flex-col h-full">
       <DrawerContent>
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4 p-1">
           {updateError && (
             <OdsMessage color="danger" className="mb-4">
               {updateError?.response?.data?.message ||
