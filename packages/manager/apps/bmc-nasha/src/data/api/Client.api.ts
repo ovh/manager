@@ -82,7 +82,7 @@ export async function deleteJSON<T>(
 
 async function fetchListingV6Iceberg<T>(
   route: string,
-  { page = 1, pageSize = 20, sortBy, sortDesc, filters = [] }: GetListingParams,
+  { page = 1, pageSize = 20, sortBy, sortDesc, filters = [], disableCache }: GetListingParams,
 ): Promise<ListingPageResult<T>> {
   const res: IcebergFetchResultV6<T> = await fetchIcebergV6<T>({
     route,
@@ -91,6 +91,7 @@ async function fetchListingV6Iceberg<T>(
     sortBy,
     sortReverse: !!sortDesc,
     filters,
+    disableCache,
   });
   return {
     data: res.data,

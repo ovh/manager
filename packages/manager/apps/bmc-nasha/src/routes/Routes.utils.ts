@@ -9,8 +9,10 @@ export function getRoot(): string {
   const prefix = basePrefix ? `/${String(basePrefix)}` : '';
 
   if (routeFlavor === 'pci') {
-    return `${prefix}/pci/projects/:projectId/${appSlug}`;
+    return `${prefix}/pci/projects/:projectId/${appSlug || appName}`;
   }
 
-  return `${prefix}/${appSlug}`;
+  // If appSlug is empty, shell already handles the slug, so return just "/"
+  // Otherwise, use the appSlug or appName as fallback
+  return appSlug ? `${prefix}/${appSlug}` : prefix || '/';
 }

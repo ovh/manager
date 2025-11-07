@@ -1,6 +1,27 @@
 {
   "home": "Home",
-  "order": "Order",
+  "order": {
+    "label": "Order a HA-NAS",
+    "value": "Order a HA-NAS"
+  },
   "open": "Open dashboard",
-  "title": "List"
+  "title": "List",
+  "columns": {
+    "serviceName": "Service ID",
+    "canCreatePartition": "Partition creation",
+    "customName": "Name",
+    "datacenter": "Datacentre location",
+    "diskType": "Disk type",
+    "monitored": "Monitored",
+    "zpoolCapacity": "Zpool capacity",
+    "zpoolSize": "Zpool size",
+    "canCreatePartitionValues": {
+      "true": "Allowed",
+      "false": "Not allowed"
+    },
+    "monitoredValues": {
+      "true": "Yes",
+      "false": "No"
+    }
+  }
 }

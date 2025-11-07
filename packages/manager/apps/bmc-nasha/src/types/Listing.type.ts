@@ -29,3 +29,16 @@ export type ListingPageResult<T> = {
   cursorNext?: string;
   status?: number;
 };
+
+// NASHA specific types for listing
+export type NashaListingItem = {
+  serviceName: string;
+  canCreatePartition: boolean;
+  customName?: string;
+  datacenter: string;
+  diskType: string;
+  monitored: boolean;
+  zpoolCapacity?: number;
+  zpoolSize?: number;
+  [key: string]: unknown;
+};

@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Navigate, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/muk';
 
 import NotFound from '@/pages/not-found/404.page';
+import RootRedirect from '@/pages/root-redirect/RootRedirect.page';
 
 import { redirectionApp, urls } from './Routes.constants';
 
@@ -15,10 +16,12 @@ const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
 
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+
 export default (
   <>
     {/* Redirect container "/" → flavor-specific root (e.g. /pci/projects/:projectId/appSlug) */}
-    <Route path="/" element={<Navigate to={urls.root} replace />} />
+    <Route path="/" element={<RootRedirect />} />
 
     {/* Rooted application layout */}
     <Route
@@ -33,6 +36,21 @@ export default (
         />
       }
     >
+      {/* Default landing inside root → conditional redirect to listing or onboarding */}
+      <Route index element={<RootRedirect />} />
+
+      {/* Onboarding route */}
+      <Route
+        path="onboarding"
+        Component={OnboardingPage}
+        handle={{
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        }}
+      />
+
       {/* Listing route */}
       <Route
         path={urls.listing}

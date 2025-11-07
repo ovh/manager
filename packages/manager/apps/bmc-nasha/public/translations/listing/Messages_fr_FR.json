@@ -1,6 +1,27 @@
 {
   "home": "Accueil",
-  "order": "Commander",
+  "order": {
+    "label": "Commander un NAS-HA",
+    "value": "Commander un NAS-HA"
+  },
   "open": "Ouvrir le tableau de bord",
-  "title": "Liste"
+  "title": "Liste",
+  "columns": {
+    "serviceName": "ID Service",
+    "canCreatePartition": "Création de partition",
+    "customName": "Nom",
+    "datacenter": "Localisation du datacenter",
+    "diskType": "Type de disque",
+    "monitored": "Monitoré",
+    "zpoolCapacity": "Capacité du Zpool",
+    "zpoolSize": "Taille du Zpool",
+    "canCreatePartitionValues": {
+      "true": "Autorisée",
+      "false": "Non autorisée"
+    },
+    "monitoredValues": {
+      "true": "Oui",
+      "false": "Non"
+    }
+  }
 }

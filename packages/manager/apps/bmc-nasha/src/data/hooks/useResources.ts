@@ -15,7 +15,7 @@ function mapResponse<T>(response: {
   hasNextPage?: boolean;
   fetchNextPage?: () => Promise<unknown> | void;
   isLoading?: boolean;
-  status?: string;
+  status?: 'idle' | 'loading' | 'error' | 'success' | string;
   sorting?:
     | {
         sorting: SortingState;
@@ -26,15 +26,27 @@ function mapResponse<T>(response: {
   filters?: unknown;
   search?: unknown;
 }): ResourcesFacadeResult<T> {
-  const status = response.status as 'pending' | 'success' | 'error' | undefined;
+  // Map React Query status to our status format
+  let status: 'pending' | 'success' | 'error' | undefined;
+  if (response.status === 'loading' || response.status === 'idle') {
+    status = 'pending';
+  } else if (response.status === 'success') {
+    status = 'success';
+  } else if (response.status === 'error') {
+    status = 'error';
+  }
+
+  // Extract sorting state - return the full array
+  const sortingState = response.sorting?.sorting ?? [];
+
   return {
-    flattenData: response.flattenData ?? response.data,
+    flattenData: response.flattenData ?? response.data ?? [],
     totalCount: response.totalCount,
-    hasNextPage: response.hasNextPage,
+    hasNextPage: response.hasNextPage ?? false,
     fetchNextPage: response.fetchNextPage,
-    isLoading: response.isLoading,
+    isLoading: response.isLoading ?? false,
     status,
-    sorting: response.sorting?.sorting?.[0],
+    sorting: sortingState,
     setSorting: response.sorting?.setSorting,
     filters: response.filters,
     search: response.search,

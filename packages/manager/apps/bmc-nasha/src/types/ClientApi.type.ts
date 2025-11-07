@@ -21,6 +21,7 @@ export type GetListingParams = {
   sortDesc?: boolean;
   filters?: Filter[];
   cursor?: string;
+  disableCache?: boolean;
 };
 
 export type UseResourcesParams<T extends Record<string, unknown>> = {
@@ -44,7 +45,7 @@ export type ResourcesFacadeResult<T> = {
   fetchNextPage?: () => Promise<unknown> | void;
   isLoading?: boolean;
   status?: 'pending' | 'success' | 'error';
-  sorting?: SortingState[0];
+  sorting?: SortingState;
   setSorting?: React.Dispatch<React.SetStateAction<SortingState>>;
   filters?: unknown;
   search?: unknown;
