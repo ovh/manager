@@ -37,6 +37,7 @@
     "pm:remove:app": "node ./packages/manager-tools/manager-pm/src/manager-pm-remove-app.js",
     "pm:add:module": "node ./packages/manager-tools/manager-pm/src/manager-pm-add-module.js",
     "pm:remove:module": "node ./packages/manager-tools/manager-pm/src/manager-pm-remove-module.js",
+    "pm:prepare:manager": "node ./packages/manager-tools/manager-pm/src/manager-pm-prepare-manager.js",
     "pm:prepare:legacy:workspace": "node ./packages/manager-tools/manager-pm/src/manager-pm-prepare-workspace.js",
     "pm:remove:legacy:workspace": "node ./packages/manager-tools/manager-pm/src/manager-pm-remove-workspace.js",
     "pm:build:ci": "manager-pm --type pnpm --action buildCI",

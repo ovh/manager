@@ -114,16 +114,18 @@ export function resolveModuleBuildFilter(moduleRef) {
 }
 
 /**
- * Run `yarn install` at the repository root to refresh
- * all workspaces after migration or rollback.
+ * Run `yarn install` at the repository root with optional CLI arguments.
  *
+ * @param {string[]} [args=[]] - Extra Yarn CLI flags (e.g., ['--ignore-scripts', '--frozen-lockfile'])
  * @throws {Error} If the install command fails.
  */
-export function runYarnInstall() {
-  logger.info(`📦 Running "yarn install" to refresh root workspaces...`);
+export function runYarnInstall(args = []) {
+  const fullCommand = ['yarn', 'install', ...args].join(' ');
+  logger.info(`📦 Running "${fullCommand}" to refresh root workspaces...`);
+
   try {
-    execSync('yarn install', { stdio: 'inherit' });
-    logger.success(`✔ Dependencies installed.`);
+    execSync(fullCommand, { stdio: 'inherit' });
+    logger.success(`✔ Dependencies installed successfully.`);
   } catch (err) {
     logger.error(`❌ "yarn install" failed: ${err.message}`);
     throw err;
