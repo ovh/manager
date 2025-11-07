@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react';
 import {
+  Button,
   Divider,
+  Icon,
   ICON_NAME,
   Message,
   MessageBody,
@@ -12,19 +15,39 @@ import { useSshKeys } from '@/data/hooks/ssh/useSshKeys';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectSshKeys } from '../view-models/sshKeysViewModel';
+import AddSshKey from './sshKey/AddSshKey.component';
+import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { TInstanceCreationForm } from '../CreateInstance.page';
+import { TAddSshKeyForm } from '../CreateInstance.schema';
 
 type TSshKeyProps = {
   microRegion: string;
 };
-import AddSshKey from './sshKey/AddSshKey.component';
 
 const SshKey = ({ microRegion }: TSshKeyProps) => {
   const projectId = useProjectId();
   const { t } = useTranslation('creation');
+  const [openSshKeyform, setOpenSshKeyForm] = useState<boolean>(false);
+  const { setValue } = useFormContext<TInstanceCreationForm>();
 
   const { isLoading } = useSshKeys(microRegion);
 
   const sshKeys = selectSshKeys(deps)(projectId, microRegion);
+
+  const handleOpenSshKeyForm = () => setOpenSshKeyForm(true);
+
+  const handleAddSshKey: SubmitHandler<TAddSshKeyForm> = ({
+    sshName,
+    sshKey,
+  }) => {
+    setValue('sshName', sshName);
+    setValue('sshKey', sshKey);
+    setOpenSshKeyForm(false);
+  };
+
+  useEffect(() => {
+    if (!isLoading && sshKeys.length === 0) setOpenSshKeyForm(true);
+  }, [isLoading, sshKeys]);
 
   return (
     <section>
@@ -52,7 +75,14 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
               </Message>
             </div>
           )}
-          <AddSshKey openForm={!sshKeys} />
+          {openSshKeyform ? (
+            <AddSshKey onSubmit={handleAddSshKey} />
+          ) : (
+            <Button variant="ghost" onClick={handleOpenSshKeyForm}>
+              <Icon name="plus" />
+              {t('creation:pci_instance_creation_select_sshKey_add_new')}
+            </Button>
+          )}
         </>
       )}
     </section>
