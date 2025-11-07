@@ -29,6 +29,7 @@ export const urls = {
   dashboardTenantAgents: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}`,
   listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
   dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,
+  listingBilling: `/${subRoutes.billing}`,
 } as const;
 
 export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
