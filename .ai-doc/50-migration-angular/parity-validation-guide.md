@@ -23,6 +23,10 @@ This document provides a **comprehensive validation framework** for ensuring **1
 
 ## 📘 Guidelines / Implementation
 
+### UI Policy for Validation
+- React implementation must use MUK components exclusively.
+- If a temporary fallback (non‑MUK) is required due to a missing feature, the parity tests must reference the behavior, not the fallback API, and the fallback must be documented with a follow‑up ticket to replace it with MUK.
+
 ### 🎯 Parity Validation Framework
 
 #### 1. **Visual Parity Validation**
@@ -55,6 +59,10 @@ describe('Visual Parity Validation', () => {
     
     // Check currency formatting
     expect(screen.getByText('€12.50')).toBeInTheDocument();
+    
+    // Check images presence (paths may differ, visuals must match)
+    const logo = screen.getByAltText('NAS-HA');
+    expect(logo).toBeInTheDocument();
   });
   
   it('should have identical states', () => {
@@ -129,11 +137,12 @@ describe('Technical Parity Validation', () => {
     expect(mockApiClient.v6.get).toHaveBeenCalledWith('/api/users');
   });
   
-  it('should use identical translation keys', () => {
+  it('should render identical translation values (keys may differ)', () => {
     render(<UserListPage />);
     
-    expect(screen.getByText('nasha_directory_columns_header_serviceName')).toBeInTheDocument();
-    expect(screen.getByText('nasha_directory_columns_header_canCreatePartition')).toBeInTheDocument();
+    // Assert on rendered texts (values), not on key names
+    expect(screen.getByText('Service Name')).toBeInTheDocument();
+    expect(screen.getByText('Can Create Partition')).toBeInTheDocument();
   });
   
   it('should have identical accessibility features', () => {
@@ -416,10 +425,11 @@ function measureTime(fn: () => void): number {
 
 #### Technical Parity
 - [ ] **URLs**: Paths, parameters identical
-- [ ] **Translations**: Keys, values identical
+- [ ] **Translations**: Values identical; keys may differ if mapping documented
 - [ ] **Accessibility**: ARIA, keyboard navigation identical
 - [ ] **Performance**: LCP, INP, CLS identical or better
 - [ ] **Security**: XSS protection, CSRF handling identical
+ - [ ] **Assets**: Rendered images identical; file paths may differ if mapping documented
 
 ### 🚫 Anti-Patterns to Avoid
 

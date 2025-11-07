@@ -13,8 +13,6 @@ ai: true
 
 The **Manager React Shell Client** provides React hooks and utilities for integrating µApps with the OVHcloud Manager shell. It handles shell communication, tracking, navigation, breadcrumbs, and internationalization in React applications.
 
-This package is essential for React µApps to communicate with the Manager shell, providing seamless integration with the container application and standardized tracking capabilities.
-
 ## ⚙️ Context
 
 Manager React Shell Client is designed for:
@@ -25,12 +23,6 @@ Manager React Shell Client is designed for:
 - **Internationalization** setup and management
 - **UX components** integration (sidebars, modals, etc.)
 
-This package is essential for:
-- **React µApps** in the Manager ecosystem
-- **Tracking compliance** with OVHcloud standards
-- **Navigation consistency** across applications
-- **User experience** standardization
-
 ## 🔗 References
 
 - [React Tracking](../10-architecture/react-tracking.md)
@@ -38,7 +30,7 @@ This package is essential for:
 - [Manager Core API](./manager-core-api.md)
 - [Shell Package](./shell.md)
 
-## 📘 Guidelines / Implementation
+## 📘 Quick Start
 
 ### Package Installation
 
@@ -51,8 +43,6 @@ This package is essential for:
 ```
 
 ### Shell Context Initialization
-
-#### Basic Setup
 
 ```typescript
 // main.tsx
@@ -74,8 +64,6 @@ const trackingContext = {
 const context = await initShellContext('bmc-nasha', trackingContext);
 ```
 
-#### Shell Provider Setup
-
 ```typescript
 // App.tsx
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -89,26 +77,7 @@ export default function App() {
 }
 ```
 
-### Shell Hooks
-
-#### useShell (Deprecated)
-
-```typescript
-import { useShell } from '@ovh-ux/manager-react-shell-client';
-
-// ⚠️ DEPRECATED: Use ShellContext directly
-function MyComponent() {
-  const shell = useShell();
-  
-  // Access shell APIs
-  const environment = await shell.environment.getEnvironment();
-  const locale = await shell.i18n.getLocale();
-  
-  return <div>Component content</div>;
-}
-```
-
-#### Direct ShellContext Usage (Recommended)
+### ShellContext Usage (Recommended)
 
 ```typescript
 import { useContext } from 'react';
@@ -122,17 +91,30 @@ function MyComponent() {
     await shell.environment.setUniverse('BareMetalCloud');
   };
   
-  const handleLocaleChange = async () => {
-    await shell.i18n.setLocale('en_GB');
-  };
-  
   return <div>Component content</div>;
 }
 ```
 
-### Tracking Integration
+## 📦 Hooks Reference
 
-#### useOvhTracking Hook
+| Hook | Returns | Usage | Status |
+|------|---------|-------|--------|
+| **useOvhTracking** | `{ trackCurrentPage, trackPage, trackClick }` | Tracking implementation | ✅ Active |
+| **useNavigationGetUrl** | `{ data: url, isLoading }` | Get navigation URL with React Query cache | ✅ Active |
+| **useRouteSynchro** | `void` | Auto-sync routes with shell | ✅ Active |
+| **useBreadcrumb** | `BreadcrumbItem[]` | Generate breadcrumb items | ✅ Active |
+| **useEnvironment** | `Environment` | Access environment properties | ✅ Active |
+| **useShell** | `Shell` | Access shell APIs | ⚠️ Deprecated |
+| **useNavigation** | `Navigation` | Navigation methods | ⚠️ Deprecated |
+| **useRouting** | `Routing` | Routing methods | ⚠️ Deprecated |
+| **useUX** | `UX` | UX components | ⚠️ Deprecated |
+| **useTracking** | `Tracking` | Tracking methods | ⚠️ Deprecated |
+
+**⚠️ Deprecated hooks:** Use `ShellContext` directly instead.
+
+## 🎯 Tracking Integration
+
+### useOvhTracking Hook
 
 ```typescript
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -140,21 +122,11 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 function MyComponent() {
   const { trackCurrentPage, trackPage, trackClick } = useOvhTracking();
   
-  // Track current page
   useEffect(() => {
     trackCurrentPage();
   }, []);
   
-  // Track specific page
-  const handlePageView = () => {
-    trackPage({
-      pageType: PageType.dashboard,
-      pageName: 'service-details'
-    });
-  };
-  
-  // Track user interactions
-  const handleButtonClick = () => {
+  const handleClick = () => {
     trackClick({
       location: PageLocation.datagrid,
       buttonType: ButtonType.button,
@@ -163,106 +135,77 @@ function MyComponent() {
     });
   };
   
-  return (
-    <div>
-      <button onClick={handleButtonClick}>
-        Create Service
-      </button>
-    </div>
-  );
+  return <button onClick={handleClick}>Create Service</button>;
 }
 ```
 
-#### Tracking Enums
+### Tracking Enums
 
 ```typescript
-import { 
-  PageType, 
-  PageLocation, 
-  ButtonType, 
-  ActionType 
-} from '@ovh-ux/manager-react-shell-client';
+import { PageType, PageLocation, ButtonType, ActionType } from '@ovh-ux/manager-react-shell-client';
 
-// Page types for tracking
-PageType.onboarding     // Onboarding pages
-PageType.listing        // List pages
-PageType.dashboard      // Dashboard pages
-PageType.popup          // Modal/popup pages
-PageType.bannerSuccess  // Success banners
-PageType.bannerError    // Error banners
-PageType.bannerInfo     // Info banners
-PageType.bannerWarning  // Warning banners
-PageType.funnel         // Funnel pages
+// Page types
+PageType.onboarding | PageType.listing | PageType.dashboard | PageType.popup | 
+PageType.bannerSuccess | PageType.bannerError | PageType.bannerInfo | 
+PageType.bannerWarning | PageType.funnel
 
 // Page locations
-PageLocation.page        // Main page
-PageLocation.funnel     // Funnel area
-PageLocation.banner     // Banner area
-PageLocation.popup      // Popup/modal
-PageLocation.datagrid   // Data grid
-PageLocation.tile       // Tile component
-PageLocation.mainTabnav // Main tab navigation
+PageLocation.page | PageLocation.funnel | PageLocation.banner | PageLocation.popup |
+PageLocation.datagrid | PageLocation.tile | PageLocation.mainTabnav
 
 // Button types
-ButtonType.button       // Regular button
-ButtonType.link         // Link
-ButtonType.select       // Select dropdown
-ButtonType.externalLink // External link
-ButtonType.tile         // Tile component
-ButtonType.tutorial     // Tutorial tile
-ButtonType.tab          // Tab navigation
+ButtonType.button | ButtonType.link | ButtonType.select | ButtonType.externalLink |
+ButtonType.tile | ButtonType.tutorial | ButtonType.tab
 
 // Action types
-ActionType.action       // User action
-ActionType.navigation  // Navigation action
-ActionType.download    // Download action
-ActionType.exit        // Exit action
+ActionType.action | ActionType.navigation | ActionType.download | ActionType.exit
 ```
 
-### Navigation Management
+## 🧭 Navigation
 
-#### useNavigation Hook
+### useNavigationGetUrl (Recommended)
 
 ```typescript
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
-function MyComponent() {
-  const navigation = useNavigation();
-  
-  // Navigate to another application
-  const handleNavigateToBilling = () => {
-    navigation.navigateTo('billing', '/billing/history');
-  };
-  
-  // Navigate to external URL
-  const handleNavigateToExternal = () => {
-    navigation.navigateTo('external', 'https://docs.ovh.com');
-  };
-  
-  return (
-    <div>
-      <button onClick={handleNavigateToBilling}>
-        Go to Billing
-      </button>
-    </div>
+function NavigationComponent() {
+  const { data: url, isLoading } = useNavigationGetUrl(
+    ['billing', '#/billing/invoices'],
+    { enabled: true, staleTime: 5 * 60 * 1000 }
   );
+  
+  if (isLoading) return <div>Loading...</div>;
+  return <a href={url}>Go to Billing</a>;
 }
 ```
 
-#### Navigation API
+### ShellContext Navigation (Alternative)
 
 ```typescript
-// Navigation methods available
-navigation.navigateTo(appName: string, path: string): Promise<void>
-navigation.getURL(appName: string, path: string): Promise<string>
-navigation.reload(): Promise<void>
-navigation.goBack(): Promise<void>
-navigation.goForward(): Promise<void>
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+function MyComponent() {
+  const { shell } = useContext(ShellContext);
+  
+  const handleNavigate = async () => {
+    await shell.navigation.navigateTo('billing', '/billing/history');
+  };
+  
+  return <button onClick={handleNavigate}>Go to Billing</button>;
+}
 ```
 
-### Breadcrumb Management
+**Navigation API:**
+- `navigation.navigateTo(appName: string, path: string): Promise<void>`
+- `navigation.getURL(appName: string, path: string): Promise<string>`
+- `navigation.reload(): Promise<void>`
+- `navigation.goBack(): Promise<void>`
+- `navigation.goForward(): Promise<void>`
 
-#### useBreadcrumb Hook
+## 🍞 Breadcrumb Management
+
+### useBreadcrumb Hook
 
 ```typescript
 import { useBreadcrumb } from '@ovh-ux/manager-react-shell-client';
@@ -278,11 +221,7 @@ function BreadcrumbComponent() {
     <nav>
       {breadcrumbItems.map((item, index) => (
         <span key={index}>
-          {item.href ? (
-            <a href={item.href}>{item.label}</a>
-          ) : (
-            <span>{item.label}</span>
-          )}
+          {item.href ? <a href={item.href}>{item.label}</a> : <span>{item.label}</span>}
           {index < breadcrumbItems.length - 1 && ' > '}
         </span>
       ))}
@@ -291,23 +230,21 @@ function BreadcrumbComponent() {
 }
 ```
 
-#### BreadcrumbItem Type
-
+**BreadcrumbItem Type:**
 ```typescript
 type BreadcrumbItem = {
-  label: string;    // Display text
-  href?: string;    // Optional link URL
+  label: string;
+  href?: string;
 };
 ```
 
-### Internationalization
+## 🌐 Internationalization
 
-#### initI18n Function
+### initI18n Function
 
 ```typescript
 import { initI18n } from '@ovh-ux/manager-react-shell-client';
 
-// Initialize i18n with shell context
 const i18n = await initI18n({
   context: shellContext,
   reloadOnLocaleChange: true,
@@ -316,7 +253,7 @@ const i18n = await initI18n({
 });
 ```
 
-#### Locale Management
+### Locale Management
 
 ```typescript
 import { useContext } from 'react';
@@ -329,11 +266,6 @@ function LocaleSelector() {
     await shell.i18n.setLocale(locale);
   };
   
-  const getAvailableLocales = async () => {
-    const locales = await shell.i18n.getAvailableLocales();
-    return locales;
-  };
-  
   return (
     <select onChange={(e) => handleLocaleChange(e.target.value)}>
       <option value="fr_FR">Français</option>
@@ -343,78 +275,58 @@ function LocaleSelector() {
 }
 ```
 
-### UX Components Integration
-
-#### useUX Hook
+### Locale Utilities
 
 ```typescript
-import { useUX } from '@ovh-ux/manager-react-shell-client';
+import { 
+  ovhLocaleToI18next, 
+  i18nextLocaleToOvh,
+  defaultLocale,
+  defaultAvailableLocales 
+} from '@ovh-ux/manager-react-shell-client';
+
+// Conversions
+ovhLocaleToI18next('fr_FR'); // 'fr-FR'
+i18nextLocaleToOvh('en-GB'); // 'en_GB'
+```
+
+## 🎨 UX Components
+
+### ShellContext UX (Recommended)
+
+```typescript
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 function UXComponent() {
-  const ux = useUX();
+  const { shell } = useContext(ShellContext);
   
-  // Sidebar management
   const handleShowSidebar = async () => {
-    await ux.showAccountSidebar();
+    await shell.ux.showAccountSidebar();
   };
   
-  const handleShowMenuSidebar = async () => {
-    await ux.showMenuSidebar();
-  };
-  
-  // Progress indicators
   const handleStartProgress = async () => {
-    await ux.startProgress();
-  };
-  
-  const handleStopProgress = async () => {
-    await ux.stopProgress();
-  };
-  
-  // Live chat
-  const handleOpenLiveChat = async () => {
-    await ux.openLiveChat();
+    await shell.ux.startProgress();
   };
   
   return (
     <div>
       <button onClick={handleShowSidebar}>Show Sidebar</button>
       <button onClick={handleStartProgress}>Start Progress</button>
-      <button onClick={handleOpenLiveChat}>Open Chat</button>
     </div>
   );
 }
 ```
 
-#### UX API Methods
+**UX API Methods:**
+- **Sidebar:** `showAccountSidebar()`, `isAccountSidebarVisible()`, `showMenuSidebar()`, `isMenuSidebarVisible()`, `resetAccountSidebar()`
+- **Progress:** `startProgress()`, `stopProgress()`, `hidePreloader()`, `showPreloader()`
+- **Live Chat:** `openLiveChat()`, `closeChatbot()`, `isChatbotVisible()`, `isChatbotReduced()`
+- **Modal:** `notifyModalActionDone(id: string)`
 
-```typescript
-// Sidebar management
-ux.showAccountSidebar(): Promise<void>
-ux.isAccountSidebarVisible(): Promise<boolean>
-ux.showMenuSidebar(): Promise<void>
-ux.isMenuSidebarVisible(): Promise<boolean>
-ux.resetAccountSidebar(): Promise<void>
+## 🌍 Environment Management
 
-// Progress indicators
-ux.startProgress(): Promise<void>
-ux.stopProgress(): Promise<void>
-ux.hidePreloader(): Promise<void>
-ux.showPreloader(): Promise<void>
-
-// Live chat
-ux.openLiveChat(): Promise<void>
-ux.closeChatbot(): Promise<void>
-ux.isChatbotVisible(): Promise<boolean>
-ux.isChatbotReduced(): Promise<boolean>
-
-// Modal management
-ux.notifyModalActionDone(id: string): Promise<void>
-```
-
-### Environment Management
-
-#### useEnvironment Hook
+### useEnvironment Hook
 
 ```typescript
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
@@ -422,7 +334,6 @@ import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 function EnvironmentComponent() {
   const environment = useEnvironment();
   
-  // Access environment properties
   const region = environment.getRegion();
   const universe = environment.getUniverse();
   const user = environment.getUser();
@@ -437,47 +348,52 @@ function EnvironmentComponent() {
 }
 ```
 
-#### Environment API
+**Environment API:**
+- `environment.getEnvironment(): Promise<Environment>`
+- `environment.setUniverse(universe: string): Promise<void>`
+- `environment.setApplication(appId: ApplicationId): Promise<void>`
+- `environment.setUser(user: User): Promise<void>`
+- `environment.getRegion(): string`
+- `environment.getUniverse(): string`
+- `environment.getUser(): User`
+- `environment.getUserLocale(): string`
+
+## 🔄 Routing Management
+
+### useRouteSynchro Hook
 
 ```typescript
-// Environment methods
-environment.getEnvironment(): Promise<Environment>
-environment.setUniverse(universe: string): Promise<void>
-environment.setApplication(appId: ApplicationId): Promise<void>
-environment.setUser(user: User): Promise<void>
+import { useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+
+function App() {
+  useRouteSynchro(); // Auto-syncs route changes with shell
+  return <div>App content</div>;
+}
 ```
 
-### Routing Management
-
-#### useRouting Hook
+### ShellContext Routing (Alternative)
 
 ```typescript
-import { useRouting } from '@ovh-ux/manager-react-shell-client';
+import { useContext, useEffect } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 function RoutingComponent() {
-  const routing = useRouting();
+  const { shell } = useContext(ShellContext);
   
   useEffect(() => {
-    // Listen for hash changes
-    routing.listenForHashChange();
-    
+    shell.routing.listenForHashChange();
     return () => {
-      // Clean up listener
-      routing.stopListenForHashChange();
+      shell.routing.stopListenForHashChange();
     };
-  }, []);
-  
-  const handleHashChange = () => {
-    routing.onHashChange();
-  };
+  }, [shell]);
   
   return <div>Routing component</div>;
 }
 ```
 
-### Advanced Usage Patterns
+## 📝 Advanced Usage
 
-#### Complete Shell Integration
+### Complete Shell Integration
 
 ```typescript
 import { useContext, useEffect } from 'react';
@@ -487,12 +403,9 @@ function AppShellIntegration() {
   const { shell, environment, tracking } = useContext(ShellContext);
   
   useEffect(() => {
-    // Initialize shell features
     const initializeShell = async () => {
-      // Set up environment
       await shell.environment.setUniverse('BareMetalCloud');
       
-      // Configure tracking
       if (tracking) {
         shell.tracking.trackPage({
           name: 'app-initialization',
@@ -500,7 +413,6 @@ function AppShellIntegration() {
         });
       }
       
-      // Set up navigation listeners
       shell.routing.listenForHashChange();
     };
     
@@ -515,34 +427,7 @@ function AppShellIntegration() {
 }
 ```
 
-#### Tracking with Context
-
-```typescript
-import { useContext } from 'react';
-import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-
-function TrackingComponent() {
-  const { tracking } = useContext(ShellContext);
-  const { trackClick } = useOvhTracking();
-  
-  const handleAction = () => {
-    trackClick({
-      location: PageLocation.datagrid,
-      buttonType: ButtonType.button,
-      actions: ['create-resource'],
-      actionType: 'action'
-    });
-  };
-  
-  return (
-    <button onClick={handleAction}>
-      Create Resource
-    </button>
-  );
-}
-```
-
-#### Error Handling
+### Error Handling
 
 ```typescript
 import { useContext } from 'react';
@@ -553,16 +438,10 @@ function ErrorHandlingComponent() {
   
   const handleApiCall = async () => {
     try {
-      // Make API call
       const result = await fetch('/api/data');
-      
-      // Log success
       await shell.logger.info('API call successful', result);
     } catch (error) {
-      // Log error
       await shell.logger.error('API call failed', error);
-      
-      // Show error to user
       await shell.ux.notifyModalActionDone('error-modal');
     }
   };
@@ -571,9 +450,9 @@ function ErrorHandlingComponent() {
 }
 ```
 
-### Best Practices
+## ⚠️ Best Practices & Common Pitfalls
 
-#### 1. Shell Context Usage
+### ✅ Best Practices
 
 ```typescript
 // ✅ CORRECT: Use ShellContext directly
@@ -585,94 +464,41 @@ function MyComponent() {
   // Use shell APIs
 }
 
-// ❌ WRONG: Use deprecated useShell hook
-import { useShell } from '@ovh-ux/manager-react-shell-client';
-
-function MyComponent() {
-  const shell = useShell(); // Deprecated
-}
-```
-
-#### 2. Tracking Implementation
-
-```typescript
 // ✅ CORRECT: Complete tracking setup
 const { trackClick } = useOvhTracking();
+trackClick({
+  location: PageLocation.datagrid,
+  buttonType: ButtonType.button,
+  actions: ['create-item'],
+  actionType: 'action'
+});
 
-const handleClick = () => {
-  trackClick({
-    location: PageLocation.datagrid,
-    buttonType: ButtonType.button,
-    actions: ['create-item'],
-    actionType: 'action'
-  });
-};
-
-// ❌ WRONG: Incomplete tracking
-const handleClick = () => {
-  trackClick({}); // Missing required properties
-};
-```
-
-#### 3. Error Handling
-
-```typescript
 // ✅ CORRECT: Proper error handling
 try {
   await shell.navigation.navigateTo('billing', '/history');
 } catch (error) {
   await shell.logger.error('Navigation failed', error);
 }
+```
+
+### ❌ Common Mistakes
+
+```typescript
+// ❌ WRONG: Missing Shell Context
+function MyComponent() {
+  const { trackClick } = useOvhTracking(); // Will fail without context
+}
+
+// ❌ WRONG: Deprecated hook usage
+import { useShell, useNavigation } from '@ovh-ux/manager-react-shell-client';
 
 // ❌ WRONG: No error handling
 await shell.navigation.navigateTo('billing', '/history');
 ```
 
-### Common Pitfalls
-
-#### ❌ Wrong: Missing Shell Context
-
-```typescript
-// Don't use hooks without ShellContext
-function MyComponent() {
-  const { trackClick } = useOvhTracking(); // Will fail without context
-}
-```
-
-#### ✅ Correct: Provide Shell Context
-
-```typescript
-// Wrap app with ShellContext.Provider
-<ShellContext.Provider value={shellContext}>
-  <MyComponent />
-</ShellContext.Provider>
-```
-
-#### ❌ Wrong: Deprecated Hook Usage
-
-```typescript
-// Don't use deprecated hooks
-import { useShell, useNavigation } from '@ovh-ux/manager-react-shell-client';
-```
-
-#### ✅ Correct: Use ShellContext
-
-```typescript
-// Use ShellContext directly
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-
-function MyComponent() {
-  const { shell } = useContext(ShellContext);
-  // Use shell.navigation, shell.tracking, etc.
-}
-```
-
----
-
 ## 🤖 AI Development Guidelines
 
-### Essential Rules for AI Code Generation
+### Essential Rules
 
 1. **Always use ShellContext**: Use `useContext(ShellContext)` instead of deprecated hooks
 2. **Initialize shell context**: Always call `initShellContext` in main.tsx
@@ -683,7 +509,7 @@ function MyComponent() {
 7. **Set up i18n properly**: Use initI18n with correct namespaces
 8. **Clean up listeners**: Remove event listeners in useEffect cleanup
 
-### Shell Integration Checklist
+### Integration Checklist
 
 - [ ] ShellContext.Provider wraps the app
 - [ ] initShellContext called with tracking parameters
@@ -693,28 +519,6 @@ function MyComponent() {
 - [ ] i18n initialized with initI18n
 - [ ] Error handling for all shell API calls
 - [ ] Cleanup of event listeners
-
-### Tracking Implementation Checklist
-
-- [ ] trackCurrentPage called on route changes
-- [ ] trackClick implemented for user actions
-- [ ] Proper enums used (PageType, PageLocation, ButtonType, ActionType)
-- [ ] Actions array follows naming conventions
-- [ ] Tracking context properly configured
-
-### Navigation Checklist
-
-- [ ] useNavigation for inter-app navigation
-- [ ] Proper error handling for navigation calls
-- [ ] URL construction with navigation.getURL
-- [ ] Cleanup of routing listeners
-
-### Performance Considerations
-
-- [ ] Memoize shell context values
-- [ ] Use useCallback for event handlers
-- [ ] Implement proper cleanup in useEffect
-- [ ] Avoid unnecessary re-renders with shell state
 
 ---
 
@@ -726,223 +530,3 @@ function MyComponent() {
 - **Context management** enables clean and maintainable code
 
 **👉 Good shell integration is invisible to users but essential for application coherence.**
-
-## 🔄 Exports en Cascade
-
-### Hooks de Navigation
-
-#### useNavigationGetUrl
-
-```typescript
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-
-// Obtenir une URL avec cache React Query
-function NavigationComponent() {
-  const { data: url, isLoading } = useNavigationGetUrl(
-    ['billing', '#/billing/invoices'],
-    {
-      enabled: true,
-      staleTime: 5 * 60 * 1000 // 5 minutes
-    }
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  
-  return <a href={url}>Go to Billing</a>;
-}
-```
-
-#### useRouteSynchro
-
-```typescript
-import { useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
-
-// Synchronisation automatique des routes avec le shell
-function App() {
-  useRouteSynchro(); // Synchronise automatiquement les changements de route
-  
-  return <div>App content</div>;
-}
-```
-
-### Hooks Dépréciés (Utiliser ShellContext)
-
-#### useNavigation (Déprécié)
-
-```typescript
-// ❌ DÉPRÉCIÉ: Utiliser ShellContext directement
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-
-// ✅ RECOMMANDÉ: Utiliser ShellContext
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
-
-function Component() {
-  const { shell } = useContext(ShellContext);
-  const navigation = shell.navigation;
-  
-  return <div>Navigation: {navigation}</div>;
-}
-```
-
-#### useRouting (Déprécié)
-
-```typescript
-// ❌ DÉPRÉCIÉ: Utiliser ShellContext directement
-import { useRouting } from '@ovh-ux/manager-react-shell-client';
-
-// ✅ RECOMMANDÉ: Utiliser ShellContext
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
-
-function Component() {
-  const { shell } = useContext(ShellContext);
-  const routing = shell.routing;
-  
-  return <div>Routing: {routing}</div>;
-}
-```
-
-#### useUX (Déprécié)
-
-```typescript
-// ❌ DÉPRÉCIÉ: Utiliser ShellContext directement
-import { useUX } from '@ovh-ux/manager-react-shell-client';
-
-// ✅ RECOMMANDÉ: Utiliser ShellContext
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
-
-function Component() {
-  const { shell } = useContext(ShellContext);
-  const ux = shell.ux;
-  
-  return <div>UX: {ux}</div>;
-}
-```
-
-#### useTracking (Déprécié)
-
-```typescript
-// ❌ DÉPRÉCIÉ: Utiliser ShellContext directement
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
-
-// ✅ RECOMMANDÉ: Utiliser ShellContext
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
-
-function Component() {
-  const { shell } = useContext(ShellContext);
-  const tracking = shell.tracking;
-  
-  return <div>Tracking: {tracking}</div>;
-}
-```
-
-### Hooks d'Environnement
-
-#### useEnvironment
-
-```typescript
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
-
-function EnvironmentComponent() {
-  const environment = useEnvironment();
-  
-  if (!environment) {
-    return <div>Loading environment...</div>;
-  }
-  
-  return (
-    <div>
-      <p>Region: {environment.getRegion()}</p>
-      <p>User: {environment.getUser().nichandle}</p>
-      <p>Locale: {environment.getUserLocale()}</p>
-    </div>
-  );
-}
-```
-
-### Hooks de Breadcrumb
-
-#### useBreadcrumb
-
-```typescript
-import { useBreadcrumb } from '@ovh-ux/manager-react-shell-client';
-
-function BreadcrumbComponent() {
-  const breadcrumb = useBreadcrumb({
-    rootLabel: 'Home',
-    appName: 'bmc-nasha'
-  });
-  
-  return (
-    <nav>
-      {breadcrumb.map((item, index) => (
-        <span key={index}>
-          <a href={item.href}>{item.label}</a>
-          {index < breadcrumb.length - 1 && ' > '}
-        </span>
-      ))}
-    </nav>
-  );
-}
-```
-
-### Initialisation i18n
-
-#### initI18n
-
-```typescript
-import { initI18n } from '@ovh-ux/manager-react-shell-client';
-
-// Initialisation complète d'i18n
-const initializeI18n = async (context) => {
-  const i18n = await initI18n({
-    context,
-    reloadOnLocaleChange: false,
-    defaultNS: 'common',
-    ns: ['common', 'dashboard', 'onboarding']
-  });
-  
-  return i18n;
-};
-```
-
-#### Utilitaires de Locale
-
-```typescript
-import { 
-  ovhLocaleToI18next, 
-  i18nextLocaleToOvh,
-  defaultLocale,
-  defaultAvailableLocales 
-} from '@ovh-ux/manager-react-shell-client';
-
-// Conversion de locales
-const ovhLocale = 'fr_FR';
-const i18nextLocale = ovhLocaleToI18next(ovhLocale); // 'fr-FR'
-
-const i18nextLocale2 = 'en-GB';
-const ovhLocale2 = i18nextLocaleToOvh(i18nextLocale2); // 'en_GB'
-
-// Locales par défaut
-const locale = defaultLocale; // 'fr_FR'
-const locales = defaultAvailableLocales; // ['fr_FR']
-```
-
-### Intégration avec Request Tagger
-
-```typescript
-import { initShellContext } from '@ovh-ux/manager-react-shell-client';
-
-// L'initialisation du shell intègre automatiquement request-tagger
-const initializeApp = async (appName, tracking) => {
-  const { shell, environment, tracking: shellTracking } = await initShellContext(appName, tracking);
-  
-  // La version de l'application est automatiquement définie dans request-tagger
-  // si __VERSION__ est disponible
-  
-  return { shell, environment, tracking: shellTracking };
-};
-```

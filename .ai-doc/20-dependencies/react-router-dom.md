@@ -13,8 +13,6 @@ ai: true
 
 **React Router DOM** is the standard routing library for React applications, providing declarative routing with nested routes, lazy loading, and navigation management. In the OVHcloud Manager ecosystem, it's used with specific patterns for µApp routing, tracking integration, and shell communication.
 
-This package is essential for React µApps to handle navigation, route management, and integration with the Manager shell tracking system.
-
 ## ⚙️ Context
 
 React Router DOM is designed for:
@@ -25,12 +23,6 @@ React Router DOM is designed for:
 - **Hash routing** for µApp integration
 - **Route synchronization** with shell container
 
-This package is essential for:
-- **React µApps** in the Manager ecosystem
-- **Navigation consistency** across applications
-- **Performance optimization** through lazy loading
-- **Tracking integration** with route metadata
-
 ## 🔗 References
 
 - [React Tracking](../10-architecture/react-tracking.md)
@@ -38,7 +30,7 @@ This package is essential for:
 - [Manager React Shell Client](./manager-react-shell-client.md)
 - [React Router Documentation](https://reactrouter.com/)
 
-## 📘 Guidelines / Implementation
+## 📘 Quick Start
 
 ### Package Installation
 
@@ -52,8 +44,6 @@ This package is essential for:
 
 ### Basic Router Setup
 
-#### createBrowserRouter
-
 ```typescript
 // routes/Routes.tsx
 import { createBrowserRouter } from 'react-router-dom';
@@ -66,17 +56,6 @@ export const router = createBrowserRouter([
     path: '/',
     ...lazyRouteConfig(() => import('@/pages/Main.layout')),
     children: [
-      {
-        id: 'onboarding',
-        path: 'onboarding',
-        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
-        handle: {
-          tracking: {
-            pageName: 'onboarding',
-            pageType: PageType.onboarding
-          }
-        }
-      },
       {
         id: 'listing',
         path: 'listing',
@@ -93,18 +72,13 @@ export const router = createBrowserRouter([
         path: 'dashboard/:id',
         ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
         handle: {
-          tracking: {
-            pageName: 'details',
-            pageType: PageType.details
-          }
+          tracking: { pageName: 'details', pageType: PageType.details }
         }
       }
     ]
   }
 ]);
 ```
-
-#### Router Provider
 
 ```typescript
 // App.tsx
@@ -116,14 +90,113 @@ export default function App() {
 }
 ```
 
-### Lazy Loading with lazyRouteConfig
+## 📦 Hooks Reference
 
-#### Basic Lazy Loading
+| Hook | Returns | Usage |
+|------|---------|-------|
+| **useNavigate** | `(to, options?) => void` | Programmatic navigation |
+| **useLocation** | `{ pathname, search, hash, state, key }` | Current location |
+| **useParams** | `Record<string, string>` | Route parameters |
+| **useSearchParams** | `[URLSearchParams, setSearchParams]` | Query parameters |
+| **useLoaderData** | `T` | Route loader data |
+| **useMatches** | `Match[]` | All route matches |
+| **useOutlet** | `ReactElement | null` | Nested route outlet |
+| **useNavigation** | `{ state: 'idle' | 'loading' | 'submitting' }` | Navigation state |
+
+## 🧭 Navigation Hooks
+
+### useNavigate
+
+```typescript
+import { useNavigate } from 'react-router-dom';
+
+function NavigationComponent() {
+  const navigate = useNavigate();
+  
+  // Basic navigation
+  navigate('/dashboard/123');
+  
+  // With state
+  navigate('/dashboard/123', {
+    state: { from: 'listing', service: {...} }
+  });
+  
+  // With search params
+  navigate({
+    pathname: '/listing',
+    search: '?filter=active&page=1'
+  });
+  
+  // Replace history
+  navigate('/dashboard/123', { replace: true });
+  
+  // Relative navigation
+  navigate('../sibling', { relative: 'path' });
+  
+  return <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button>;
+}
+```
+
+### useLocation
+
+```typescript
+import { useLocation } from 'react-router-dom';
+
+function LocationComponent() {
+  const location = useLocation();
+  
+  // Access location properties
+  const pathname = location.pathname;
+  const search = location.search;
+  const state = location.state;
+  
+  return <div>Current path: {pathname}</div>;
+}
+```
+
+### useParams
+
+```typescript
+import { useParams } from 'react-router-dom';
+
+function DashboardPage() {
+  const { id } = useParams<{ id: string }>();
+  
+  return <div>Dashboard ID: {id}</div>;
+}
+```
+
+### useSearchParams
+
+```typescript
+import { useSearchParams } from 'react-router-dom';
+
+function FilterComponent() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  const filter = searchParams.get('filter');
+  const page = searchParams.get('page');
+  
+  const handleFilterChange = (newFilter: string) => {
+    setSearchParams({ filter: newFilter, page: '1' });
+  };
+  
+  return (
+    <select onChange={(e) => handleFilterChange(e.target.value)}>
+      <option value="">All</option>
+      <option value="active">Active</option>
+    </select>
+  );
+}
+```
+
+## 🛣️ Lazy Loading
+
+### lazyRouteConfig (Manager Pattern)
 
 ```typescript
 import { lazyRouteConfig } from '@ovh-ux/manager-core';
 
-// Lazy load a page component
 const routes = [
   {
     id: 'dashboard',
@@ -133,19 +206,19 @@ const routes = [
 ];
 ```
 
-#### Lazy Loading with Error Boundary
+### Manual Lazy Loading
 
 ```typescript
-import { lazyRouteConfig } from '@ovh-ux/manager-core';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
+
+const DashboardPage = lazy(() => import('@/pages/dashboard/Dashboard.page'));
 
 const routes = [
   {
     id: 'dashboard',
     path: 'dashboard',
-    ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
     element: (
-      <Suspense fallback={<div>Loading dashboard...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <DashboardPage />
       </Suspense>
     )
@@ -153,158 +226,26 @@ const routes = [
 ];
 ```
 
-### Navigation Hooks
+## 🔄 Nested Routes
 
-#### useNavigate Hook
-
-```typescript
-import { useNavigate } from 'react-router-dom';
-
-function NavigationComponent() {
-  const navigate = useNavigate();
-  
-  const handleNavigateToDashboard = (id: string) => {
-    navigate(`/dashboard/${id}`);
-  };
-  
-  const handleNavigateBack = () => {
-    navigate(-1); // Go back one step
-  };
-  
-  const handleNavigateWithState = () => {
-    navigate('/dashboard/123', {
-      state: { from: 'listing' },
-      replace: false // Use push instead of replace
-    });
-  };
-  
-  return (
-    <div>
-      <button onClick={() => handleNavigateToDashboard('123')}>
-        Go to Dashboard
-      </button>
-      <button onClick={handleNavigateBack}>
-        Go Back
-      </button>
-    </div>
-  );
-}
-```
-
-#### useLocation Hook
+### Parent Route with Outlet
 
 ```typescript
-import { useLocation } from 'react-router-dom';
-
-function LocationComponent() {
-  const location = useLocation();
-  
-  // Access current pathname
-  const currentPath = location.pathname;
-  
-  // Access search parameters
-  const searchParams = new URLSearchParams(location.search);
-  const page = searchParams.get('page');
-  
-  // Access state passed during navigation
-  const from = location.state?.from;
-  
-  return (
-    <div>
-      <p>Current path: {currentPath}</p>
-      <p>Page: {page}</p>
-      <p>From: {from}</p>
-    </div>
-  );
-}
-```
-
-#### useParams Hook
-
-```typescript
-import { useParams } from 'react-router-dom';
-
-function DashboardPage() {
-  const { id } = useParams<{ id: string }>();
-  
-  return (
-    <div>
-      <h1>Dashboard for service: {id}</h1>
-    </div>
-  );
-}
-```
-
-#### useSearchParams Hook
-
-```typescript
-import { useSearchParams } from 'react-router-dom';
-
-function SearchComponent() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  
-  const page = searchParams.get('page') || '1';
-  const filter = searchParams.get('filter') || '';
-  
-  const handlePageChange = (newPage: string) => {
-    setSearchParams(prev => {
-      prev.set('page', newPage);
-      return prev;
-    });
-  };
-  
-  const handleFilterChange = (newFilter: string) => {
-    setSearchParams(prev => {
-      if (newFilter) {
-        prev.set('filter', newFilter);
-      } else {
-        prev.delete('filter');
-      }
-      return prev;
-    });
-  };
-  
-  return (
-    <div>
-      <p>Current page: {page}</p>
-      <p>Current filter: {filter}</p>
-      <button onClick={() => handlePageChange('2')}>
-        Go to page 2
-      </button>
-    </div>
-  );
-}
-```
-
-### Nested Routes and Outlets
-
-#### Parent Route with Outlet
-
-```typescript
-// Main.layout.tsx
+// MainLayout.tsx
 import { Outlet } from 'react-router-dom';
 
-export default function MainLayout() {
+function MainLayout() {
   return (
     <div>
-      <header>
-        <h1>BMC Nasha</h1>
-        <nav>
-          {/* Navigation items */}
-        </nav>
-      </header>
-      <main>
-        <Outlet /> {/* Child routes will render here */}
-      </main>
-      <footer>
-        {/* Footer content */}
-      </footer>
+      <header>Header</header>
+      <Outlet /> {/* Nested routes render here */}
+      <footer>Footer</footer>
     </div>
   );
 }
 ```
 
-#### Nested Route Structure
+### Nested Route Configuration
 
 ```typescript
 const routes = [
@@ -315,18 +256,13 @@ const routes = [
     children: [
       {
         id: 'dashboard',
-        path: 'dashboard',
+        path: 'dashboard/:id',
         element: <DashboardPage />,
         children: [
           {
-            id: 'dashboard-overview',
+            id: 'overview',
             path: 'overview',
             element: <OverviewTab />
-          },
-          {
-            id: 'dashboard-settings',
-            path: 'settings',
-            element: <SettingsTab />
           }
         ]
       }
@@ -335,34 +271,13 @@ const routes = [
 ];
 ```
 
-### Route Metadata and Handles
+## 📊 Route Metadata
 
-#### Tracking Integration
+### Tracking Integration
 
 ```typescript
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-const routes = [
-  {
-    id: 'listing',
-    path: 'listing',
-    ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
-    handle: {
-      tracking: {
-        pageName: 'listing',
-        pageType: PageType.listing
-      },
-      breadcrumb: {
-        label: 'Services List'
-      }
-    }
-  }
-];
-```
-
-#### Custom Route Handles
-
-```typescript
 const routes = [
   {
     id: 'dashboard',
@@ -374,37 +289,34 @@ const routes = [
         pageType: PageType.details
       },
       breadcrumb: {
-        label: 'Service Details',
-        dynamic: true
-      },
-      permissions: ['service:read'],
-      layout: 'full-width'
+        label: 'Service Details'
+      }
     }
   }
 ];
 ```
 
-#### Using Route Handles
+### Using Route Handles
 
 ```typescript
 import { useMatches } from 'react-router-dom';
 
-function BreadcrumbComponent() {
+function Breadcrumb() {
   const matches = useMatches();
   
   const breadcrumbs = matches
     .filter(match => match.handle?.breadcrumb)
     .map(match => ({
-      label: match.handle.breadcrumb.label,
-      path: match.pathname
+      path: match.pathname,
+      label: match.handle.breadcrumb.label
     }));
   
   return (
     <nav>
-      {breadcrumbs.map((breadcrumb, index) => (
-        <span key={index}>
-          {index > 0 && ' > '}
-          <a href={breadcrumb.path}>{breadcrumb.label}</a>
+      {breadcrumbs.map((bc, i) => (
+        <span key={i}>
+          {i > 0 && ' > '}
+          <a href={bc.path}>{bc.label}</a>
         </span>
       ))}
     </nav>
@@ -412,62 +324,9 @@ function BreadcrumbComponent() {
 }
 ```
 
-### Programmatic Navigation
+## 🛡️ Route Guards
 
-#### Navigation with State
-
-```typescript
-import { useNavigate } from 'react-router-dom';
-
-function ServiceCard({ service }: { service: Service }) {
-  const navigate = useNavigate();
-  
-  const handleViewDetails = () => {
-    navigate(`/dashboard/${service.id}`, {
-      state: {
-        service,
-        from: 'listing'
-      }
-    });
-  };
-  
-  return (
-    <div onClick={handleViewDetails}>
-      <h3>{service.name}</h3>
-      <p>{service.description}</p>
-    </div>
-  );
-}
-```
-
-#### Navigation with Search Params
-
-```typescript
-import { useNavigate } from 'react-router-dom';
-
-function FilterComponent() {
-  const navigate = useNavigate();
-  
-  const handleFilterChange = (filter: string) => {
-    navigate({
-      pathname: '/listing',
-      search: `?filter=${filter}&page=1`
-    });
-  };
-  
-  return (
-    <select onChange={(e) => handleFilterChange(e.target.value)}>
-      <option value="">All</option>
-      <option value="active">Active</option>
-      <option value="inactive">Inactive</option>
-    </select>
-  );
-}
-```
-
-### Route Guards and Protection
-
-#### Authentication Guard
+### Authentication Guard
 
 ```typescript
 import { Navigate } from 'react-router-dom';
@@ -484,7 +343,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 ```
 
-#### Permission Guard
+### Permission Guard
 
 ```typescript
 import { Navigate } from 'react-router-dom';
@@ -507,7 +366,7 @@ function PermissionGuard({
 }
 ```
 
-#### Route with Guards
+### Using Guards in Routes
 
 ```typescript
 const routes = [
@@ -525,9 +384,9 @@ const routes = [
 ];
 ```
 
-### Hash Routing for µApps
+## 🔗 Hash Routing (µApps)
 
-#### Hash Router Setup
+### Hash Router Setup
 
 ```typescript
 import { createHashRouter } from 'react-router-dom';
@@ -548,7 +407,7 @@ export const router = createHashRouter([
 ]);
 ```
 
-#### Hash Router with Shell Integration
+### Shell Integration
 
 ```typescript
 import { createHashRouter } from 'react-router-dom';
@@ -563,49 +422,21 @@ function App() {
     }
   ];
   
-  return (
-    <OvhContainerRoutingSync routes={routes} />
-  );
+  return <OvhContainerRoutingSync routes={routes} />;
 }
 ```
 
-### Advanced Patterns
+## 📥 Route Loaders
 
-#### Route-based Code Splitting
-
-```typescript
-import { lazy, Suspense } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
-
-// Lazy load components
-const DashboardPage = lazy(() => import('@/pages/dashboard/Dashboard.page'));
-const ListingPage = lazy(() => import('@/pages/listing/Listing.page'));
-
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    element: (
-      <Suspense fallback={<div>Loading dashboard...</div>}>
-        <DashboardPage />
-      </Suspense>
-    )
-  }
-];
-```
-
-#### Dynamic Route Loading
+### Basic Loader
 
 ```typescript
-import { lazyRouteConfig } from '@ovh-ux/manager-core';
-
 const routes = [
   {
     id: 'dashboard',
     path: 'dashboard/:id',
     ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
     loader: async ({ params }) => {
-      // Pre-load data for the route
       const service = await fetchService(params.id);
       return { service };
     }
@@ -613,27 +444,7 @@ const routes = [
 ];
 ```
 
-#### Route Loaders
-
-```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard/:id',
-    ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-    loader: async ({ params }) => {
-      try {
-        const service = await fetchService(params.id);
-        return { service };
-      } catch (error) {
-        throw new Response('Service not found', { status: 404 });
-      }
-    }
-  }
-];
-```
-
-#### Using Route Loaders
+### Using Loader Data
 
 ```typescript
 import { useLoaderData } from 'react-router-dom';
@@ -650,21 +461,25 @@ function DashboardPage() {
 }
 ```
 
-### Error Handling
+## ⚠️ Error Handling
 
-#### Error Boundaries
+### Route Error Elements
+
+```typescript
+const routes = [
+  {
+    id: 'dashboard',
+    path: 'dashboard',
+    element: <DashboardPage />,
+    errorElement: <ErrorPage />
+  }
+];
+```
+
+### Error Boundary
 
 ```typescript
 import { ErrorBoundary } from 'react-error-boundary';
-
-function ErrorFallback({ error }: { error: Error }) {
-  return (
-    <div>
-      <h2>Something went wrong:</h2>
-      <pre>{error.message}</pre>
-    </div>
-  );
-}
 
 const routes = [
   {
@@ -679,22 +494,9 @@ const routes = [
 ];
 ```
 
-#### Route Error Elements
+## ⚠️ Best Practices & Common Pitfalls
 
-```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    element: <DashboardPage />,
-    errorElement: <ErrorPage />
-  }
-];
-```
-
-### Best Practices
-
-#### 1. Route Structure
+### ✅ Best Practices
 
 ```typescript
 // ✅ CORRECT: Hierarchical route structure
@@ -707,133 +509,46 @@ const routes = [
       {
         id: 'dashboard',
         path: 'dashboard',
-        element: <DashboardPage />,
-        children: [
-          {
-            id: 'dashboard-overview',
-            path: 'overview',
-            element: <OverviewTab />
-          }
-        ]
+        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
+        handle: {
+          tracking: { pageName: 'dashboard', pageType: PageType.dashboard }
+        }
       }
     ]
   }
 ];
 
-// ❌ WRONG: Flat route structure
-const routes = [
-  { path: '/dashboard', element: <DashboardPage /> },
-  { path: '/dashboard/overview', element: <OverviewTab /> }
-];
+// ✅ CORRECT: Complete route metadata
+{
+  id: 'dashboard',
+  path: 'dashboard/:id',
+  ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
+  handle: {
+    tracking: { pageName: 'details', pageType: PageType.details },
+    breadcrumb: { label: 'Service Details' }
+  }
+}
 ```
 
-#### 2. Lazy Loading
+### ❌ Common Mistakes
 
 ```typescript
-// ✅ CORRECT: Use lazyRouteConfig for lazy loading
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page'))
-  }
-];
+// ❌ WRONG: Missing route ID
+{
+  path: 'dashboard', // Missing id
+  element: <DashboardPage />
+}
 
-// ❌ WRONG: Direct import
+// ❌ WRONG: Direct import (no lazy loading)
 import DashboardPage from '@/pages/dashboard/Dashboard.page';
 
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    element: <DashboardPage />
-  }
-];
+// ❌ WRONG: No error handling
+<RouterProvider router={router} /> // No error boundary
 ```
-
-#### 3. Route Metadata
-
-```typescript
-// ✅ CORRECT: Complete route metadata
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard/:id',
-    ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-    handle: {
-      tracking: {
-        pageName: 'details',
-        pageType: PageType.details
-      },
-      breadcrumb: {
-        label: 'Service Details'
-      }
-    }
-  }
-];
-
-// ❌ WRONG: Missing route metadata
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard/:id',
-    element: <DashboardPage />
-  }
-];
-```
-
-### Common Pitfalls
-
-#### ❌ Wrong: Missing Route IDs
-
-```typescript
-// Don't forget route IDs
-const routes = [
-  {
-    path: 'dashboard', // Missing id
-    element: <DashboardPage />
-  }
-];
-```
-
-#### ✅ Correct: Include Route IDs
-
-```typescript
-const routes = [
-  {
-    id: 'dashboard', // Required for route identification
-    path: 'dashboard',
-    element: <DashboardPage />
-  }
-];
-```
-
-#### ❌ Wrong: Not Handling Loading States
-
-```typescript
-// Don't ignore loading states
-function App() {
-  return <RouterProvider router={router} />; // No error boundary
-}
-```
-
-#### ✅ Correct: Handle All States
-
-```typescript
-function App() {
-  return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <RouterProvider router={router} />
-    </ErrorBoundary>
-  );
-}
-```
-
----
 
 ## 🤖 AI Development Guidelines
 
-### Essential Rules for AI Code Generation
+### Essential Rules
 
 1. **Always use route IDs**: Every route must have a unique id
 2. **Use lazyRouteConfig**: Always use lazyRouteConfig for lazy loading
@@ -862,15 +577,6 @@ function App() {
 - [ ] useSearchParams for query parameters
 - [ ] Navigation state management
 - [ ] Back/forward navigation handled
-
-### Performance Optimization Checklist
-
-- [ ] Lazy loading implemented
-- [ ] Code splitting configured
-- [ ] Route preloading (if applicable)
-- [ ] Error boundaries prevent crashes
-- [ ] Loading states provide feedback
-- [ ] Memory usage optimized
 
 ---
 

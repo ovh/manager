@@ -11,8 +11,6 @@ ai: true
 
 This document defines the **frontend React patterns** used in the OVHcloud Manager ecosystem. It provides a comprehensive guide to common React patterns, component design principles, and architectural approaches that ensure consistency and maintainability across all Manager applications.
 
-These patterns serve as a shared language for teams and provide proven solutions to common React development challenges.
-
 ## ⚙️ Context
 
 Frontend React patterns are essential for:
@@ -22,12 +20,6 @@ Frontend React patterns are essential for:
 - **Maintainable code** that can evolve over time
 - **Performance optimization** through proven patterns
 
-This guide covers patterns specifically relevant to:
-- **React 18+** applications in the Manager ecosystem
-- **TypeScript** development with type safety
-- **Modern React patterns** with Hooks and functional components
-- **Manager-specific** patterns and conventions
-
 ## 🔗 References
 
 - [React Best Practices](./react-best-practices.md)
@@ -36,11 +28,10 @@ This guide covers patterns specifically relevant to:
 - [Frontend Design Patterns](./frontend-design-patterns.md)
 - [MUK Components](../20-dependencies/muk.md)
 
-## 📘 Guidelines / Implementation
+## 📘 Component Architecture Patterns
 
-### 🏗️ Component Architecture Patterns
+### 1. Container/Presentational Pattern
 
-#### 1. Container/Presentational Pattern
 ```typescript
 // ✅ CORRECT: Container component (logic)
 function UserListContainer() {
@@ -73,7 +64,8 @@ function UserList({ users, loading }: UserListProps) {
 }
 ```
 
-#### 2. Compound Components Pattern
+### 2. Compound Components Pattern
+
 ```typescript
 // ✅ CORRECT: Compound components for flexible UI
 interface ModalContextType {
@@ -91,15 +83,9 @@ function useModalContext() {
   return context;
 }
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-}
-
-function Modal({ isOpen, onClose, children }: ModalProps) {
+function Modal({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) {
   if (!isOpen) return null;
-
+  
   return (
     <ModalContext.Provider value={{ isOpen, onClose }}>
       <div className="modal-overlay" onClick={onClose}>
@@ -125,11 +111,7 @@ function ModalFooter({ children }: { children: React.ReactNode }) {
 
 function ModalCloseButton() {
   const { onClose } = useModalContext();
-  return (
-    <button className="modal-close" onClick={onClose}>
-      ×
-    </button>
-  );
+  return <button className="modal-close" onClick={onClose}>×</button>;
 }
 
 // Usage
@@ -139,25 +121,21 @@ function ModalCloseButton() {
     <ModalCloseButton />
   </ModalHeader>
   <ModalBody>
-    <p>Are you sure you want to perform this action?</p>
+    <p>Are you sure?</p>
   </ModalBody>
   <ModalFooter>
-    <button onClick={() => setIsOpen(false)}>Cancel</button>
     <button onClick={handleConfirm}>Confirm</button>
   </ModalFooter>
 </Modal>
 ```
 
-#### 3. Render Props Pattern
+### 3. Render Props Pattern
+
 ```typescript
 // ✅ CORRECT: Render props for flexible data sharing
 interface DataFetcherProps<T> {
   url: string;
-  children: (data: {
-    data: T | null;
-    loading: boolean;
-    error: string | null;
-  }) => React.ReactNode;
+  children: (data: { data: T | null; loading: boolean; error: string | null }) => React.ReactNode;
 }
 
 function DataFetcher<T>({ url, children }: DataFetcherProps<T>) {
@@ -186,9 +164,10 @@ function DataFetcher<T>({ url, children }: DataFetcherProps<T>) {
 </DataFetcher>
 ```
 
-### 🎣 Custom Hooks Patterns
+## 🎣 Custom Hooks Patterns
 
-#### 1. Data Fetching Hook
+### 1. Data Fetching Hook
+
 ```typescript
 // ✅ CORRECT: Custom hook for data fetching
 function useApiData<T>(url: string) {
@@ -236,66 +215,39 @@ function useApiData<T>(url: string) {
 }
 ```
 
-#### 2. Form Handling Hook
+### 2. Form Handling Hook
+
 ```typescript
 // ✅ CORRECT: Custom hook for form handling
-interface UseFormOptions<T> {
-  initialValues: T;
-  validationSchema?: (values: T) => Record<keyof T, string>;
-  onSubmit: (values: T) => void | Promise<void>;
-}
-
-function useForm<T extends Record<string, any>>({
-  initialValues,
-  validationSchema,
-  onSubmit
-}: UseFormOptions<T>) {
+function useForm<T extends Record<string, any>>(initialValues: T) {
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = useCallback((name: keyof T, value: any) => {
     setValues(prev => ({ ...prev, [name]: value }));
-    
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
     }
   }, [errors]);
 
-  const handleSubmit = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validate
-    if (validationSchema) {
-      const validationErrors = validationSchema(values);
-      const hasErrors = Object.values(validationErrors).some(error => error);
-      
-      if (hasErrors) {
-        setErrors(validationErrors);
-        return;
-      }
-    }
-    
-    setIsSubmitting(true);
-    try {
-      await onSubmit(values);
-    } finally {
-      setIsSubmitting(false);
-    }
-  }, [values, validationSchema, onSubmit]);
+  const handleSubmit = useCallback((onSubmit: (values: T) => void) => {
+    return (e: React.FormEvent) => {
+      e.preventDefault();
+      onSubmit(values);
+    };
+  }, [values]);
 
-  return {
-    values,
-    errors,
-    isSubmitting,
-    handleChange,
-    handleSubmit
-  };
+  return { values, errors, handleChange, handleSubmit, setErrors };
 }
 ```
 
-#### 3. Local Storage Hook
+### 3. Local Storage Hook
+
 ```typescript
 // ✅ CORRECT: Custom hook for local storage
 function useLocalStorage<T>(key: string, initialValue: T) {
@@ -304,7 +256,6 @@ function useLocalStorage<T>(key: string, initialValue: T) {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.error(`Error reading localStorage key "${key}":`, error);
       return initialValue;
     }
   });
@@ -315,7 +266,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
-      console.error(`Error setting localStorage key "${key}":`, error);
+      // Handle error
     }
   }, [key, storedValue]);
 
@@ -323,29 +274,21 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 }
 ```
 
-### 🎨 UI Component Patterns
+## 🎨 UI Component Patterns
 
-#### 1. Polymorphic Components
+### 1. Polymorphic Components
+
 ```typescript
 // ✅ CORRECT: Polymorphic component
 interface AsProp<C extends React.ElementType> {
   as?: C;
 }
 
-type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
-
 type PolymorphicComponentProp<
   C extends React.ElementType,
   Props = {}
 > = React.PropsWithChildren<Props & AsProp<C>> &
-  Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
-
-type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>['ref'];
-
-type PolymorphicComponentPropWithRef<
-  C extends React.ElementType,
-  Props = {}
-> = PolymorphicComponentProp<C, Props> & { ref?: PolymorphicRef<C> };
+  Omit<React.ComponentPropsWithoutRef<C>, keyof (AsProp<C> & Props)>;
 
 function Box<C extends React.ElementType = "div">({
   as,
@@ -358,10 +301,10 @@ function Box<C extends React.ElementType = "div">({
 // Usage
 <Box as="button" onClick={handleClick}>Click me</Box>
 <Box as="a" href="/link">Link</Box>
-<Box as="section" className="container">Content</Box>
 ```
 
-#### 2. Higher-Order Components (HOCs)
+### 2. Higher-Order Components (HOCs)
+
 ```typescript
 // ✅ CORRECT: HOC for authentication
 interface WithAuthProps {
@@ -376,20 +319,16 @@ function withAuth<P extends object>(
     const { isAuthenticated, user } = useAuth();
     
     if (!isAuthenticated) {
-      return <div>Please log in to access this page.</div>;
+      return <div>Please log in</div>;
     }
     
     return <Component {...props} isAuthenticated={isAuthenticated} user={user} />;
   };
 }
-
-// Usage
-const ProtectedPage = withAuth(function Page({ user }: { user: User }) {
-  return <div>Welcome, {user.name}!</div>;
-});
 ```
 
-#### 3. Context Pattern
+### 3. Context Pattern
+
 ```typescript
 // ✅ CORRECT: Context for theme management
 interface ThemeContextType {
@@ -422,9 +361,10 @@ function useTheme() {
 }
 ```
 
-### 🔄 State Management Patterns
+## 🔄 State Management Patterns
 
-#### 1. Reducer Pattern
+### 1. Reducer Pattern
+
 ```typescript
 // ✅ CORRECT: useReducer for complex state
 interface TodoState {
@@ -465,31 +405,19 @@ function todoReducer(state: TodoState, action: TodoAction): TodoState {
 }
 
 function TodoApp() {
-  const [state, dispatch] = useReducer(todoReducer, {
-    todos: [],
-    filter: 'all'
-  });
-  
-  const filteredTodos = useMemo(() => {
-    switch (state.filter) {
-      case 'active':
-        return state.todos.filter(todo => !todo.completed);
-      case 'completed':
-        return state.todos.filter(todo => todo.completed);
-      default:
-        return state.todos;
-    }
-  }, [state.todos, state.filter]);
+  const [state, dispatch] = useReducer(todoReducer, { todos: [], filter: 'all' });
   
   return (
     <div>
-      {/* Todo list implementation */}
+      <button onClick={() => dispatch({ type: 'ADD_TODO', payload: 'New todo' })}>Add</button>
+      {/* Todo list */}
     </div>
   );
 }
 ```
 
-#### 2. State Machine Pattern
+### 2. State Machine Pattern
+
 ```typescript
 // ✅ CORRECT: State machine for complex UI states
 type LoadingState = 
@@ -507,46 +435,39 @@ type LoadingAction =
 function loadingReducer(state: LoadingState, action: LoadingAction): LoadingState {
   switch (state.status) {
     case 'idle':
-      if (action.type === 'FETCH') {
-        return { status: 'loading' };
-      }
+      if (action.type === 'FETCH') return { status: 'loading' };
       return state;
-    
     case 'loading':
-      if (action.type === 'SUCCESS') {
-        return { status: 'success', data: action.data };
-      }
-      if (action.type === 'ERROR') {
-        return { status: 'error', error: action.error };
-      }
+      if (action.type === 'SUCCESS') return { status: 'success', data: action.data };
+      if (action.type === 'ERROR') return { status: 'error', error: action.error };
       return state;
-    
     case 'success':
     case 'error':
-      if (action.type === 'RESET') {
-        return { status: 'idle' };
-      }
+      if (action.type === 'RESET') return { status: 'idle' };
       return state;
-    
     default:
       return state;
   }
 }
 ```
 
-### 🎯 Performance Patterns
+## 🎯 Performance Patterns
 
-#### 1. Virtual Scrolling
+### 1. Virtual Scrolling
+
 ```typescript
 // ✅ CORRECT: Virtual scrolling for large lists
-interface VirtualListProps<T> {
+function VirtualList<T>({ 
+  items, 
+  itemHeight, 
+  containerHeight, 
+  renderItem 
+}: {
   items: T[];
   itemHeight: number;
   containerHeight: number;
   renderItem: (item: T, index: number) => React.ReactNode;
-}
-
-function VirtualList<T>({ items, itemHeight, containerHeight, renderItem }: VirtualListProps<T>) {
+}) {
   const [scrollTop, setScrollTop] = useState(0);
   
   const visibleStart = Math.floor(scrollTop / itemHeight);
@@ -576,7 +497,8 @@ function VirtualList<T>({ items, itemHeight, containerHeight, renderItem }: Virt
 }
 ```
 
-#### 2. Lazy Loading
+### 2. Lazy Loading
+
 ```typescript
 // ✅ CORRECT: Lazy loading with intersection observer
 function useIntersectionObserver(
@@ -590,17 +512,12 @@ function useIntersectionObserver(
     if (!element) return;
     
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsIntersecting(entry.isIntersecting);
-      },
+      ([entry]) => setIsIntersecting(entry.isIntersecting),
       options
     );
     
     observer.observe(element);
-    
-    return () => {
-      observer.unobserve(element);
-    };
+    return () => observer.unobserve(element);
   }, [elementRef, options]);
   
   return isIntersecting;
@@ -610,41 +527,29 @@ function LazyImage({ src, alt, ...props }: ImgHTMLAttributes<HTMLImageElement>) 
   const imgRef = useRef<HTMLImageElement>(null);
   const isVisible = useIntersectionObserver(imgRef);
   
-  return (
-    <img
-      ref={imgRef}
-      src={isVisible ? src : undefined}
-      alt={alt}
-      {...props}
-    />
-  );
+  return <img ref={imgRef} src={isVisible ? src : undefined} alt={alt} {...props} />;
 }
 ```
 
-### 🧪 Testing Patterns
+## 🧪 Testing Patterns
 
-#### 1. Component Testing
+### Component Testing
+
 ```typescript
-// ✅ CORRECT: Testing React components
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Counter } from './Counter';
 
 describe('Counter', () => {
   it('increments count when button is clicked', () => {
     render(<Counter />);
-    
     expect(screen.getByText('Count: 0')).toBeInTheDocument();
-    
     fireEvent.click(screen.getByText('Increment'));
-    
     expect(screen.getByText('Count: 1')).toBeInTheDocument();
   });
   
   it('handles async operations', async () => {
     render(<AsyncComponent />);
-    
     expect(screen.getByText('Loading...')).toBeInTheDocument();
-    
     await waitFor(() => {
       expect(screen.getByText('Data loaded')).toBeInTheDocument();
     });
@@ -652,9 +557,9 @@ describe('Counter', () => {
 });
 ```
 
-#### 2. Hook Testing
+### Hook Testing
+
 ```typescript
-// ✅ CORRECT: Testing custom hooks
 import { renderHook, act } from '@testing-library/react';
 import { useCounter } from './useCounter';
 
@@ -673,35 +578,22 @@ describe('useCounter', () => {
 });
 ```
 
----
-
 ## 🤖 AI Development Guidelines
 
-### Essential React Pattern Rules for AI Code Generation
+### Pattern Selection Guide
 
-1. **Use appropriate patterns**: Choose the right pattern for the problem
-2. **Follow naming conventions**: Custom hooks start with 'use', components are PascalCase
-3. **Implement proper TypeScript**: Type all props, state, and function parameters
-4. **Handle edge cases**: Always consider loading, error, and empty states
-5. **Optimize performance**: Use memoization and lazy loading when appropriate
-6. **Test thoroughly**: Include unit tests for components and hooks
-7. **Follow Manager conventions**: Use MUK components and design system
-8. **Implement proper error handling**: Use error boundaries and proper error states
-9. **Use proper state management**: Choose between useState, useReducer, or context
-10. **Follow accessibility guidelines**: Ensure components are accessible
-
-### React Pattern Selection Guide
-
-- **Simple state**: Use `useState`
-- **Complex state**: Use `useReducer`
-- **Shared state**: Use Context API
-- **Data fetching**: Use custom hooks with proper cleanup
-- **Form handling**: Use custom hooks or libraries
-- **Performance**: Use `React.memo`, `useMemo`, `useCallback`
-- **Large lists**: Use virtual scrolling
-- **Lazy loading**: Use intersection observer
-- **Authentication**: Use HOCs or context
-- **Theming**: Use context providers
+| Use Case | Recommended Pattern |
+|----------|-------------------|
+| **Simple state** | `useState` |
+| **Complex state** | `useReducer` |
+| **Shared state** | Context API |
+| **Data fetching** | Custom hooks with cleanup |
+| **Form handling** | Custom hooks |
+| **Performance** | `React.memo`, `useMemo`, `useCallback` |
+| **Large lists** | Virtual scrolling |
+| **Lazy loading** | Intersection observer |
+| **Authentication** | HOCs or context |
+| **Theming** | Context providers |
 
 ### Common Anti-Patterns to Avoid
 
@@ -709,26 +601,14 @@ describe('useCounter', () => {
 // ❌ WRONG: Prop drilling
 function App() {
   const [user, setUser] = useState(null);
-  return <Header user={user} />;
-}
-
-function Header({ user }) {
-  return <Navigation user={user} />;
-}
-
-function Navigation({ user }) {
-  return <UserMenu user={user} />;
+  return <Header user={user} />; // Passes through multiple levels
 }
 
 // ❌ WRONG: Mutating state directly
-function Component() {
-  const [items, setItems] = useState([]);
-  
-  const addItem = (item) => {
-    items.push(item); // ❌ Mutating state
-    setItems(items);
-  };
-}
+const addItem = (item) => {
+  items.push(item); // ❌ Mutating state
+  setItems(items);
+};
 
 // ❌ WRONG: Missing dependency arrays
 useEffect(() => {
@@ -741,7 +621,6 @@ useEffect(() => {
 ```typescript
 // ✅ CORRECT: Context for shared state
 const UserContext = createContext();
-
 function App() {
   const [user, setUser] = useState(null);
   return (
@@ -752,19 +631,24 @@ function App() {
 }
 
 // ✅ CORRECT: Immutable state updates
-function Component() {
-  const [items, setItems] = useState([]);
-  
-  const addItem = (item) => {
-    setItems(prev => [...prev, item]); // ✅ Immutable update
-  };
-}
+const addItem = (item) => {
+  setItems(prev => [...prev, item]); // ✅ Immutable update
+};
 
 // ✅ CORRECT: Complete dependency arrays
 useEffect(() => {
   fetchData(userId);
 }, [userId]); // ✅ Include all dependencies
 ```
+
+### Essential Rules
+
+1. **Use appropriate patterns**: Choose the right pattern for the problem
+2. **Follow naming conventions**: Custom hooks start with 'use', components are PascalCase
+3. **Implement proper TypeScript**: Type all props, state, and function parameters
+4. **Handle edge cases**: Always consider loading, error, and empty states
+5. **Optimize performance**: Use memoization and lazy loading when appropriate
+6. **Test thoroughly**: Include unit tests for components and hooks
 
 ---
 
@@ -776,5 +660,3 @@ useEffect(() => {
 - **Testing is essential** - patterns should be testable
 
 **👉 Good React patterns make your code more maintainable, reusable, and performant.**
-
-React patterns provide proven solutions to common problems. By following these patterns, you'll write code that's easier to understand, test, and maintain in the long run.

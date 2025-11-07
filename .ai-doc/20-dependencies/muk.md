@@ -1,619 +1,480 @@
 ---
 title: Manager UI Kit (MUK)
 last_update: 2025-01-27
-tags: [muk, ui-kit, components, ovhcloud, manager, react, typescript]
+tags: [muk, manager, ui-kit, components, ovhcloud, react, ods]
 ai: true
 ---
 
 # Manager UI Kit (MUK)
 
-> **📦 Version:** `@ovh-ux/muk@^1.x`
+> **📦 Version:** `@ovh-ux/muk@^0.4.0`
 
 ## 🧭 Purpose
 
-The **Manager UI Kit (MUK)** is the unified component library for OVHcloud Manager applications. It serves as the **SINGLE SOURCE OF TRUTH** for all UI components and styles, replacing both `@ovhcloud/ods-components` and `@ovh-ux/manager-react-components`.
+The **Manager UI Kit (MUK)** is the official UI component library for OVHcloud Manager applications. It provides a unified entry point for all Manager components, hooks, and utilities, built on top of OVHcloud Design System (ODS) v19.2.1.
 
-⚠️ **CRITICAL**: MUK is the SSOT - do not import from legacy ODS or MRC when MUK components are available.
+MUK eliminates dependency clutter, simplifies imports, and accelerates development with one consistent source of truth for all Manager applications.
 
 ## ⚙️ Context
 
 MUK is designed for:
-- **Unified UI components** replacing legacy ODS + MRC
-- **Data fetching hooks** with TanStack Query integration
-- **Advanced data grids** with TanStack Table
-- **Form components** with validation
-- **Layout components** for page structure
-- **TypeScript support** with full type definitions
-
-This package is essential for:
-- **React µApps** in the Manager ecosystem
-- **Consistent UI** across all applications
-- **Data management** with standardized hooks
-- **Component reusability** and maintainability
+- **Unified component library** for all Manager µApps
+- **ODS wrapper components** with Manager-specific enhancements
+- **IAM integration** built into every component
+- **Data fetching hooks** optimized for Manager APIs
+- **Accessibility compliance** with WCAG standards
+- **Performance optimization** with tree-shaking support
 
 ## 🔗 References
 
-- [Manager React Components](./manager-react-components.md) (being replaced)
-- [Legacy ODS Components](./ods-components.md) (being replaced)
+- [Manager Core API](./manager-core-api.md)
+- [Manager React Shell Client](./manager-react-shell-client.md)
 - [TanStack React Query](./tanstack-react-query.md)
-- [TanStack Table](https://tanstack.com/table)
+- [ODS Components](./ods-components.md)
 
-## 📘 Guidelines / Implementation
+## 📘 Quick Start
 
-### Package Installation
+### Installation
 
 ```json
 {
   "dependencies": {
-    "@ovh-ux/muk": "^1.x"
+    "@ovh-ux/muk": "^0.4.0"
   }
 }
 ```
 
-### CSS Import (Required)
+### CSS Import (REQUIRED)
 
 ```typescript
-// Always import MUK styles
+// REQUIRED: Import MUK styles
 import '@ovh-ux/muk/dist/style.css';
 ```
 
-### TypeScript Setup
+### Basic Usage
 
 ```typescript
-// MUK provides full TypeScript support
-import { Button, Datagrid, useV6 } from '@ovh-ux/muk';
+import { Button, Datagrid, OnboardingLayout } from '@ovh-ux/muk';
+
+<Button iamActions={['action:read']} urn="urn:resource">
+  Click me
+</Button>
 ```
 
-## Data Fetching Hooks
+## 🏗️ Architecture
 
-### useV6 Hook
+MUK components are wrappers around ODS React components with Manager-specific enhancements (IAM integration, Manager-specific logic).
 
-```typescript
-import { useV6 } from '@ovh-ux/muk';
+**Pattern:** All components accept standard ODS props + IAM props (`iamActions`, `urn`, `displayTooltip?`, `tooltipPosition?`).
 
-function ServiceDetails({ serviceId }: { serviceId: string }) {
-  const { data, isLoading, error } = useV6(`/service/${serviceId}`);
-  
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  
-  return <div>{data?.name}</div>;
-}
-```
+## 📦 Component Reference
 
-### useIceberg Hook
-
-```typescript
-import { useIceberg } from '@ovh-ux/muk';
-
-function ServicesList() {
-  const { data, totalCount, isLoading } = useIceberg('/services', {
-    page: 1,
-    pageSize: 20,
-    sortBy: 'name',
-    sortDesc: false
-  });
-  
-  return (
-    <div>
-      <p>Total: {totalCount}</p>
-      {data?.map(service => (
-        <div key={service.id}>{service.name}</div>
-      ))}
-    </div>
-  );
-}
-```
-
-### useInfiniteQuery Hook
-
-```typescript
-import { useInfiniteQuery } from '@ovh-ux/muk';
-
-function InfiniteServicesList() {
-  const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
-    queryKey: ['services'],
-    queryFn: ({ pageParam = 0 }) => fetchServices(pageParam),
-    getNextPageParam: (lastPage) => lastPage.nextCursor
-  });
-  
-  return (
-    <div>
-      {data?.pages.map(page => 
-        page.items.map(service => <div key={service.id}>{service.name}</div>)
-      )}
-      {hasNextPage && (
-        <button onClick={() => fetchNextPage()}>Load More</button>
-      )}
-    </div>
-  );
-}
-```
-
-## Core Components
-
-### Layout Components
+### Layout Components (Priority)
 
 #### BaseLayout
+Main application layout with header, breadcrumb, tabs.
 
 ```typescript
 import { BaseLayout } from '@ovh-ux/muk';
 
-function MyPage() {
-  return (
-    <BaseLayout
-      header={{ title: 'My Services' }}
-      breadcrumb={[
-        { label: 'Home', href: '/' },
-        { label: 'Services' }
-      ]}
-    >
-      <div>Page content</div>
-    </BaseLayout>
-  );
-}
+<BaseLayout
+  header={{ title: 'App', description: 'Description' }}
+  breadcrumb={<Breadcrumb items={items} />}
+  tabs={<Tabs items={tabs} />}
+>
+  <div>Content</div>
+</BaseLayout>
 ```
 
+**Props:** `breadcrumb?`, `header?`, `message?`, `description?`, `subtitle?`, `backLink?`, `tabs?`, `children?`
+
 #### OnboardingLayout
+Complete onboarding page with image, title, description, action buttons.
 
 ```typescript
 import { OnboardingLayout } from '@ovh-ux/muk';
 
-function OnboardingPage() {
-  return (
-    <OnboardingLayout
-      title="Welcome to OVHcloud"
-      description="Get started with your services"
-    >
-      <div>Onboarding content</div>
-    </OnboardingLayout>
-  );
-}
+<OnboardingLayout
+  title="Welcome"
+  description="Get started"
+  img={{ src: '/image.png', alt: 'Alt' }}
+  orderButtonLabel="Order Now"
+  onOrderButtonClick={() => {}}
+  orderIam={{ urn: 'urn:resource', iamActions: ['action:create'] }}
+  moreInfoHref="/docs"
+  moreInfoButtonLabel="Learn More"
+>
+  <div>Content</div>
+</OnboardingLayout>
 ```
 
-### Data Components
+**Props:** `title`, `description?`, `img?`, `orderButtonLabel?`, `orderHref?`, `onOrderButtonClick?`, `isActionDisabled?`, `orderIam?`, `moreInfoHref?`, `moreInfoButtonLabel?`, `moreInfoButtonIcon?`, `isMoreInfoButtonDisabled?`, `hideHeadingSection?`, `children?`
 
-#### Datagrid
+#### RedirectionGuard
+Guard that redirects when condition is met.
 
 ```typescript
-import { Datagrid } from '@ovh-ux/muk';
+import { RedirectionGuard } from '@ovh-ux/muk';
 
-function ServicesTable() {
-  const columns = [
-    { id: 'name', label: 'Name', sortable: true },
-    { id: 'status', label: 'Status', sortable: true },
-    { id: 'actions', label: 'Actions' }
-  ];
-  
-  const data = [
-    { id: '1', name: 'Service 1', status: 'active' },
-    { id: '2', name: 'Service 2', status: 'inactive' }
-  ];
-  
+<RedirectionGuard when={!hasAccess} to="/forbidden" fallback={<div>Loading...</div>}>
+  <ProtectedContent />
+</RedirectionGuard>
+```
+
+#### GridLayout
+Grid-based layout system. Props: `columns?`, `gap?`, `className?`, `children`
+
+### Data Components (Priority)
+
+#### Datagrid
+Advanced data table with TanStack Table v8.
+
+```typescript
+import { Datagrid, useDataApi } from '@ovh-ux/muk';
+
+const columns = [
+  { accessorKey: 'name', header: 'Name', isSortable: true, isSearchable: true, isFilterable: true },
+  { accessorKey: 'status', header: 'Status', meta: { type: 'badge' } }
+];
+
+function DataTable() {
+  const { data, isLoading, totalCount, sorting, filters, search } = useDataApi({
+    route: '/api/services',
+    version: 'v2',
+    cacheKey: ['services'],
+    columns
+  });
+
   return (
     <Datagrid
       columns={columns}
       data={data}
-      totalItems={data.length}
-      onSort={(sortBy, sortDesc) => console.log(sortBy, sortDesc)}
+      totalCount={totalCount}
+      isLoading={isLoading}
+      sorting={sorting}
+      filters={filters}
+      search={search}
     />
   );
 }
 ```
 
-#### Filters
+**Key Props:**
+- `columns: DatagridColumn<T>[]` - Column definitions with `accessorKey`, `header`, `isSortable?`, `isSearchable?`, `isFilterable?`, `filterOptions?`, `meta?`
+- `data: T[]` - Data array
+- `totalCount?: number` - Total items (NOT `totalItems`)
+- `isLoading?: boolean`
+- `sorting?`, `filters?`, `search?` - From `useDataApi` hook
+- `expandable?`, `rowSelection?`, `columnVisibility?`, `topbar?`, `onFetchNextPage?`, `renderSubComponent?`
 
+**Column Definition:**
 ```typescript
-import { Filters } from '@ovh-ux/muk';
-
-function ServicesFilters() {
-  const filterConfig = [
-    {
-      key: 'status',
-      label: 'Status',
-      type: 'select',
-      options: [
-        { value: 'active', label: 'Active' },
-        { value: 'inactive', label: 'Inactive' }
-      ]
-    }
-  ];
-  
-  return (
-    <Filters
-      config={filterConfig}
-      onFilter={(filters) => console.log(filters)}
-    />
-  );
+interface DatagridColumn<T> extends ColumnDef<T> {
+  accessorKey: string;
+  header: string;
+  isSortable?: boolean;
+  isSearchable?: boolean;
+  isFilterable?: boolean;
+  filterOptions?: Option[];
+  enableHiding?: boolean;
+  meta?: { type?: ColumnMetaType; className?: string };
 }
 ```
 
 ### Form Components
 
-#### FormField
+**All form components support IAM props:** `iamActions?`, `urn?`, `displayTooltip?`, `tooltipPosition?`
 
-```typescript
-import { FormField, Input, Button } from '@ovh-ux/muk';
-
-function CreateServiceForm() {
-  const [formData, setFormData] = useState({ name: '', description: '' });
-  
-  return (
-    <form>
-      <FormField label="Service Name" required>
-        <Input
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        />
-      </FormField>
-      
-      <FormField label="Description">
-        <Input
-          value={formData.description}
-          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-        />
-      </FormField>
-      
-      <Button type="submit">Create Service</Button>
-    </form>
-  );
-}
-```
-
-#### Select Component
-
-```typescript
-import { Select } from '@ovh-ux/muk';
-
-function RegionSelector() {
-  const regions = [
-    { value: 'eu', label: 'Europe' },
-    { value: 'us', label: 'United States' },
-    { value: 'ca', label: 'Canada' }
-  ];
-  
-  return (
-    <Select
-      options={regions}
-      value="eu"
-      onChange={(value) => console.log(value)}
-    />
-  );
-}
-```
+| Component | Key Props | Usage Pattern |
+|-----------|-----------|---------------|
+| **Button** | `variant?`, `size?`, `disabled?`, `onClick?` + IAM | Standard button with IAM |
+| **Checkbox** | `checked`, `onChange`, `disabled?` + IAM | Checkbox with IAM |
+| **Combobox** | `options`, `value`, `onChange`, `placeholder?`, `searchable?`, `multiple?` | Searchable dropdown |
+| **Datepicker** | `value`, `onChange`, `format?`, `minDate?`, `maxDate?` | Date selection |
+| **FileUpload** | `onFileSelect`, `accept?`, `maxSize?`, `multiple?`, `disabled?` | File upload |
+| **FormField** | `label`, `required?`, `error?`, `help?` | Form field wrapper |
+| **Input** | `value`, `onChange`, `type?`, `placeholder?`, `disabled?`, `error?` | Text input |
+| **PhoneNumber** | `value`, `onChange`, `country?`, `placeholder?` | Phone input |
+| **Quantity** | `value`, `onChange`, `min?`, `max?`, `step?` | Number input with controls |
+| **RadioGroup** | `value`, `onChange`, `options`, `disabled?` | Radio buttons |
+| **Select** | `value`, `onChange`, `options`, `placeholder?`, `searchable?` | Dropdown |
+| **Switch** | `checked`, `onChange`, `size?` | Toggle switch |
+| **Textarea** | `value`, `onChange`, `rows?`, `maxLength?`, `disabled?` | Multi-line text |
+| **Timepicker** | `value`, `onChange`, `format?` | Time selection |
+| **Toggle** | `checked`, `onChange`, `size?` | Toggle component |
+| **TilesInput** | `name`, `value`, `onChange`, `options: Array<{label, value, disabled?}>` | Tile-based choice |
+| **TilesInputGroup** | `children` (TilesInput components) | Group multiple tiles |
 
 ### UI Components
 
-#### Button
+| Component | Key Props | Usage Pattern |
+|-----------|-----------|---------------|
+| **Accordion** | `children` (AccordionItem) | Collapsible content |
+| **Badge** | `color?`, `size?`, `variant?` | Status badges |
+| **Breadcrumb** | `items: Array<{label, href?}>` | Navigation breadcrumbs |
+| **Clipboard** | `text`, `onCopy?`, `tooltip?` | Copy to clipboard |
+| **Drawer** | `open`, `onOpenChange`, `side?`, `size?` | Slide-out panel |
+| **Link** | `href`, `external?` + IAM | Enhanced links |
+| **LinkCard** | `href`, `title`, `description?`, `image?` + IAM | Card with link |
+| **Message** | `type`, `title?`, `description?`, `closable?`, `onClose?` | User messages |
+| **Modal** | `open`, `onOpenChange`, `title?`, `size?` | Modal dialogs |
+| **Notifications** | `notifications`, `onRemove`, `position?`, `duration?` | Toast notifications |
+| **Popover** | `children` (PopoverTrigger, PopoverContent) | Floating content |
+| **Progress** | `value`, `max?`, `size?`, `variant?`, `showValue?` | Progress indicators |
+| **Tabs** | `value`, `onValueChange`, `items: Array<{value, label, content}>` | Tab navigation |
+| **Tile** | `title`, `description?`, `image?`, `href?` + IAM | Content tiles |
+| **Tooltip** | `content`, `position?`, `delay?` | Hover tooltips |
+| **TreeView** | `data`, `onNodeSelect?`, `onNodeToggle?`, `expandable?`, `selectable?` | Hierarchical data |
+| **Text** | `preset?` (ODS preset) + IAM | Text with IAM support |
+| **Price** | `value`, `currency`, `subsidiary?` (OvhSubsidiary), `intervalUnit?` (IntervalUnitType) | Price display |
+| **Step** | `current`, `total`, `label?` | Step indicator |
+| **GuideMenu** | `items: Array<{label, href}>` | Contextual guide menu |
+| **ChangelogMenu** | `entries: Array<{date, title, description}>` | Changelog entries |
+
+### Feedback Components
+
+| Component | Key Props | Usage Pattern |
+|-----------|-----------|---------------|
+| **ActionBanner** | `type`, `title?`, `description?`, `actionLabel?`, `onAction?`, `dismissible?`, `onDismiss?` | Action prompts |
+| **Error** | `title?`, `message?`, `details?`, `onRetry?`, `onDismiss?` | Error displays |
+| **ErrorBoundary** | `fallback?`, `onError?`, `children` | Error catching |
+| **ServiceStateBadge** | `status`, `size?`, `showIcon?` | Service status |
+| **TagsList** | `tags`, `onAdd?`, `onRemove?`, `onEdit?`, `editable?`, `addLabel?` | Tag management |
+| **TagsTile** | `tags`, `maxDisplay?`, `onTagClick?`, `showCount?` | Tag display |
+| **UpdateNameModal** | `open`, `onOpenChange`, `defaultValue`, `onSubmit` | Update resource name |
+| **DeleteModal** | `open`, `onOpenChange`, `title`, `description?`, `onConfirm` | Deletion confirmation |
+
+## 🔧 Hooks
+
+### useDataApi (Priority)
+Primary data fetching hook with pagination, sorting, filtering.
 
 ```typescript
-import { Button } from '@ovh-ux/muk';
+import { useDataApi } from '@ovh-ux/muk';
 
-function ActionButtons() {
-  return (
-    <div>
-      <Button variant="primary">Primary Action</Button>
-      <Button variant="secondary">Secondary Action</Button>
-      <Button variant="ghost">Ghost Action</Button>
-    </div>
-  );
-}
+const {
+  data,           // TData[]
+  isLoading,
+  error,
+  hasNextPage,
+  fetchNextPage,
+  totalCount,
+  flattenData,
+  sorting,        // { sorting, setSorting, manualSorting }
+  filters,        // { filters, add, remove }
+  search          // { onSearch, searchInput, setSearchInput }
+} = useDataApi({
+  route: '/api/services',
+  version: 'v2' | 'v6',  // REQUIRED
+  cacheKey: ['services'], // REQUIRED
+  pageSize?: number,
+  defaultSorting?: SortingState,
+  columns?: DatagridColumn<TData>[],
+  enabled?: boolean,
+  refetchInterval?: number,
+  fetchAll?: boolean,
+  disableCache?: boolean,
+  fetchDataFn?: (route: string) => Promise<{ data: TData[] }>
+});
 ```
 
-#### Modal
+### Utility Hooks
 
+| Hook | Returns | Usage |
+|------|---------|-------|
+| **useAuthorizationIam** | `{ isAuthorized, isLoading }` | IAM authorization check |
+| **useDatagridSearchParams** | `{ searchParams, setSearchParams }` | Search params for datagrid |
+| **useColumnFilters** | `{ filters, add, remove }` | Column filtering |
+| **useBreadcrumb** | `breadcrumbItems` | Breadcrumb management |
+| **useBytes** | `{ formatBytes, parseBytes }` | Byte formatting |
+| **useCatalogPrice** | `{ formatPrice, getCurrency }` | Price formatting |
+| **useMe** | `{ user, isLoading }` | User information |
+| **useRegion** | `{ region, setRegion }` | Region information |
+
+## 🎨 IAM Integration
+
+**All MUK components support IAM props:**
+- `iamActions?: string[]` - Required IAM actions
+- `urn?: string` - Resource URN
+- `displayTooltip?: boolean` - Show tooltip when unauthorized
+- `tooltipPosition?: TOOLTIP_POSITION` - Tooltip position
+
+**Pattern:**
 ```typescript
-import { Modal, Button } from '@ovh-ux/muk';
-
-function ConfirmModal({ isOpen, onClose, onConfirm }: {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-}) {
-  return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div>
-        <h2>Confirm Action</h2>
-        <p>Are you sure you want to proceed?</p>
-        <div>
-          <Button variant="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="primary" onClick={onConfirm}>Confirm</Button>
-        </div>
-      </div>
-    </Modal>
-  );
-}
+<Component
+  iamActions={['service:read', 'service:write']}
+  urn="urn:v1:eu:service:123"
+  displayTooltip={true}
+>
+  Content
+</Component>
 ```
 
-#### Message
+Components automatically disable/hide when unauthorized.
+
+## 📝 Advanced Usage Examples
+
+### Complete Application Setup
 
 ```typescript
-import { Message } from '@ovh-ux/muk';
+import '@ovh-ux/muk/dist/style.css';
+import { BaseLayout, Datagrid, useDataApi } from '@ovh-ux/muk';
 
-function StatusMessages() {
-  return (
-    <div>
-      <Message type="success">Operation completed successfully</Message>
-      <Message type="error">An error occurred</Message>
-      <Message type="warning">Please review your settings</Message>
-      <Message type="info">New features available</Message>
-    </div>
-  );
-}
-```
-
-## Complete Examples
-
-### 1. List Page with Datagrid + Filters
-
-```typescript
-import { BaseLayout, Datagrid, Filters, Button } from '@ovh-ux/muk';
-import { useIceberg } from '@ovh-ux/muk';
-
-function ServicesPage() {
-  const { data, totalCount, isLoading } = useIceberg('/services', {
-    page: 1,
-    pageSize: 20
+function App() {
+  const { data, isLoading } = useDataApi({
+    route: '/api/services',
+    version: 'v2',
+    cacheKey: ['services']
   });
-  
-  const columns = [
-    { id: 'name', label: 'Name', sortable: true },
-    { id: 'status', label: 'Status', sortable: true },
-    { id: 'actions', label: 'Actions' }
-  ];
-  
+
   return (
-    <BaseLayout header={{ title: 'Services' }}>
-      <Filters config={filterConfig} onFilter={handleFilter} />
-      <Datagrid
-        columns={columns}
-        data={data}
-        totalItems={totalCount}
-        isLoading={isLoading}
-        onSort={handleSort}
-      />
-      <Button>Create Service</Button>
+    <BaseLayout header={{ title: 'Services' }} breadcrumb={<Breadcrumb items={items} />}>
+      <Datagrid columns={columns} data={data} totalCount={totalCount} isLoading={isLoading} />
     </BaseLayout>
   );
 }
 ```
 
-### 2. Create Form with Validation
+### Data Table with Filters
 
 ```typescript
-import { Modal, FormField, Input, Select, Button } from '@ovh-ux/muk';
+import { Datagrid, useDataApi, useColumnFilters } from '@ovh-ux/muk';
 
-function CreateServiceModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    region: '',
-    plan: ''
+function ServicesTable() {
+  const { filters, add, remove } = useColumnFilters();
+  const { data, isLoading, totalCount, sorting, filters: apiFilters, search } = useDataApi({
+    route: '/api/services',
+    version: 'v2',
+    cacheKey: ['services'],
+    columns: [
+      { accessorKey: 'name', header: 'Name', isSortable: true, isFilterable: true },
+      { accessorKey: 'status', header: 'Status', meta: { type: 'badge' }, filterOptions: [...] }
+    ]
   });
-  
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    // Submit logic
-    onClose();
-  };
-  
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <form onSubmit={handleSubmit}>
-        <FormField label="Service Name" required>
-          <Input
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-        </FormField>
-        
-        <FormField label="Region" required>
-          <Select
-            value={formData.region}
-            onChange={(value) => setFormData({ ...formData, region: value })}
-            options={regionOptions}
-          />
-        </FormField>
-        
-        <div>
-          <Button variant="secondary" onClick={onClose}>Cancel</Button>
-          <Button variant="primary" type="submit">Create</Button>
-        </div>
-      </form>
-    </Modal>
+    <Datagrid
+      columns={columns}
+      data={data}
+      totalCount={totalCount}
+      isLoading={isLoading}
+      sorting={sorting}
+      filters={{ filters: apiFilters.filters, add: apiFilters.add, remove: apiFilters.remove }}
+      search={search}
+    />
   );
 }
 ```
 
-### 3. Infinite Scroll List
+## ⚠️ Critical Warnings
+
+### ❌ Common Mistakes
 
 ```typescript
-import { useInfiniteQuery } from '@ovh-ux/muk';
+// ❌ Missing CSS import
+import { Button } from '@ovh-ux/muk';
+// ✅ import '@ovh-ux/muk/dist/style.css';
 
-function InfiniteServicesList() {
-  const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
-    queryKey: ['services'],
-    queryFn: ({ pageParam = 0 }) => fetchServices({ page: pageParam }),
-    getNextPageParam: (lastPage) => lastPage.nextPage
-  });
-  
-  return (
-    <div>
-      {data?.pages.map((page, pageIndex) => 
-        page.items.map((service, itemIndex) => (
-          <div key={`${pageIndex}-${itemIndex}`}>
-            {service.name}
-          </div>
-        ))
-      )}
-      {hasNextPage && (
-        <button onClick={() => fetchNextPage()} disabled={isLoading}>
-          {isLoading ? 'Loading...' : 'Load More'}
-        </button>
-      )}
-    </div>
-  );
-}
+// ❌ Non-existent components
+import { Title, Subtitle } from '@ovh-ux/muk';
+// ✅ Use: <Text preset={TEXT_PRESET.heading1}>Title</Text>
+
+// ❌ Wrong Datagrid prop
+<Datagrid totalItems={100} /> // ❌
+<Datagrid totalCount={100} /> // ✅
+
+// ❌ Missing IAM
+<Button>Edit</Button> // ❌
+<Button iamActions={['edit']} urn="urn:resource">Edit</Button> // ✅
 ```
 
-## Migration Guide
-
-### From Legacy ODS Components
+### ✅ Best Practices
 
 ```typescript
-// ❌ OLD (Legacy ODS)
-import { OsdsButton, OsdsInput, OsdsModal } from '@ovhcloud/ods-components/react';
-
-// ✅ NEW (MUK)
-import { Button, Input, Modal } from '@ovh-ux/muk';
-```
-
-### From Manager React Components
-
-```typescript
-// ❌ OLD (MRC)
-import { Datagrid, BaseLayout, Filters } from '@ovh-ux/manager-react-components';
-
-// ✅ NEW (MUK)
-import { Datagrid, BaseLayout, Filters } from '@ovh-ux/muk';
-```
-
-### CSS Migration
-
-```typescript
-// ❌ OLD
-import '@ovhcloud/ods-components/dist/style.css'; // Legacy ODS
-import '@ovh-ux/manager-react-components/dist/style.css';
-
-// ✅ NEW
+// ✅ Complete setup
 import '@ovh-ux/muk/dist/style.css';
-```
-
-## Best Practices
-
-### 1. Always Use MUK First
-
-```typescript
-// ✅ CORRECT: Use MUK components
-import { Button, Modal, Datagrid } from '@ovh-ux/muk';
-
-// ❌ WRONG: Don't use legacy ODS/MRC when MUK is available
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { Datagrid } from '@ovh-ux/manager-react-components';
-```
-
-### 2. Data Fetching
-
-```typescript
-// ✅ CORRECT: Use MUK data hooks
-import { useV6, useIceberg } from '@ovh-ux/muk';
-
-// ❌ WRONG: Don't use raw API calls
-import { v6 } from '@ovh-ux/manager-core-api';
-```
-
-### 3. TypeScript Support
-
-```typescript
-// ✅ CORRECT: Use MUK types
-import { ButtonProps, DatagridProps } from '@ovh-ux/muk';
-
-// ❌ WRONG: Don't recreate types
-interface ButtonProps { ... }
-```
-
-## Common Pitfalls
-
-### ❌ Wrong: Using Legacy ODS/MRC When MUK Exists
-
-```typescript
-// Don't do this
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { Datagrid } from '@ovh-ux/manager-react-components';
-```
-
-### ✅ Correct: Use MUK Components
-
-```typescript
-// Do this instead
 import { Button, Datagrid } from '@ovh-ux/muk';
+
+// ✅ IAM integration
+<Button iamActions={['service:edit']} urn="urn:v1:eu:service:123" displayTooltip={true}>
+  Edit
+</Button>
+
+// ✅ Data fetching
+const { data, isLoading } = useDataApi({
+  route: '/api/services',
+  version: 'v2',
+  cacheKey: ['services']
+});
+
+// ✅ Tree-shaking
+import { Button, Datagrid } from '@ovh-ux/muk'; // ✅
+import * as MUK from '@ovh-ux/muk'; // ❌
 ```
 
-### ❌ Wrong: Missing CSS Import
+## 🚀 Performance
+
+- **Tree-shaking**: Import specific components
+- **Cache keys**: Include dependencies in `cacheKey` for `useDataApi`
+- **Loading states**: Always handle `isLoading` from hooks
+
+## 🧪 Testing
 
 ```typescript
-// Don't forget the CSS
-import '@ovh-ux/muk/dist/style.css';
-```
+import { render, screen } from '@testing-library/react';
+import { Button } from '@ovh-ux/muk';
 
-### ❌ Wrong: Using Raw API Calls
-
-```typescript
-// Don't do this
-const { data } = useQuery({
-  queryKey: ['service'],
-  queryFn: () => v6.get('/service')
+test('renders button with IAM', () => {
+  render(<Button iamActions={['read']} urn="urn:test">Test</Button>);
+  expect(screen.getByText('Test')).toBeInTheDocument();
 });
 ```
 
-### ✅ Correct: Use MUK Data Hooks
+## 📚 TypeScript
+
+All components have full TypeScript support. Import types:
 
 ```typescript
-// Do this instead
-const { data } = useV6('/service');
+import type {
+  ButtonProps,
+  DatagridProps,
+  OnboardingLayoutProps,
+  BaseLayoutProps,
+  UseDataApiOptions,
+  UseDataApiResult
+} from '@ovh-ux/muk';
 ```
 
 ---
 
 ## 🤖 AI Development Guidelines
 
-### Essential Rules for AI Code Generation
+### Essential Rules
 
-1. **ALWAYS use MUK first**: Import from `@ovh-ux/muk` before considering legacy ODS/MRC
-2. **NEVER import from legacy ODS/MRC**: When MUK components are available
-3. **ALWAYS include CSS**: Import `@ovh-ux/muk/dist/style.css`
-4. **Use MUK data hooks**: Prefer `useV6`, `useIceberg` over raw API calls
-5. **Follow TypeScript patterns**: Use MUK's built-in types
-6. **Check component availability**: Verify MUK has the component before using alternatives
-7. **Document exceptions**: When using non-MUK components, explain why
+1. **Always import CSS**: `import '@ovh-ux/muk/dist/style.css'`
+2. **Use real component names**: Button, Datagrid, OnboardingLayout (not Title, Subtitle)
+3. **Include IAM props**: Always add `iamActions` and `urn` for security
+4. **Use correct Datagrid props**: `totalCount` not `totalItems`
+5. **Import specific components**: Don't use `import *`
+6. **Use useDataApi for data**: Primary hook for data fetching
+7. **Handle loading states**: Always check `isLoading`
 
-### Component Priority Checklist
+### Quick Reference Checklist
 
-- [ ] Check if MUK component exists
-- [ ] Use MUK component if available
-- [ ] Only use legacy ODS/MRC if MUK component missing
-- [ ] Document why non-MUK component is used
-- [ ] Include proper CSS imports
-- [ ] Use MUK data hooks for API calls
-
-### ⚠️ CRITICAL: Check Component Availability First
-
-**Before using any MUK component, check [muk-components-reference.md](./muk-components-reference.md)**
-
-Common mistakes:
-- ❌ `Spinner` - Not available, use CSS spinner
-- ❌ `Links` - Not available, use HTML + Tailwind
-- ❌ `Title`/`Subtitle` - Not available, use HTML headings
-- ❌ `variant="primary"` - Not available, use `variant="default"`
-- ❌ `totalItems` - Wrong prop, use `totalCount`
-- ❌ `trackClick('action')` - Wrong format, use `trackClick({ actions: ['action'] })`
-
-### MUK vs Alternatives
-
-| Component | MUK | Legacy ODS | Legacy MRC |
-|-----------|-----|-----|-----|
-| Button | ✅ `Button` | ❌ `OsdsButton` | ❌ N/A |
-| Datagrid | ✅ `Datagrid` | ❌ N/A | ❌ `Datagrid` |
-| Modal | ✅ `Modal` | ❌ `OsdsModal` | ❌ N/A |
-| Data hooks | ✅ `useV6`, `useIceberg` | ❌ N/A | ❌ N/A |
+- [ ] CSS import added
+- [ ] Correct component names used
+- [ ] IAM props included where needed
+- [ ] Loading states handled
+- [ ] Datagrid uses `totalCount` (not `totalItems`)
+- [ ] Tree-shaking (specific imports)
 
 ---
 
 ## ⚖️ The MUK's Moral
 
-- **Unified components** ensure consistent UI across all Manager applications
-- **Single source of truth** prevents component fragmentation
-- **Modern patterns** with TypeScript and React 18+ support
-- **Data integration** with standardized hooks and TanStack Query
+- **Unified development** ensures consistency across all Manager applications
+- **IAM integration** provides security by default
+- **ODS foundation** guarantees design system compliance
+- **Performance optimization** ensures fast, scalable applications
 
-**👉 Good MUK usage is invisible to users but essential for maintainable applications.**
+**👉 Good MUK usage is invisible to users but essential for Manager application success.**

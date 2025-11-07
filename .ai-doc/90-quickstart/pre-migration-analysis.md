@@ -314,18 +314,194 @@ After 5-minute analysis, fill this template:
 # Result: Accurate parity
 ```
 
+## 🤖 Automated Detection Patterns
+
+### Pattern-Based Detection Script
+
+Use these patterns to automatically detect features from source code:
+
+```typescript
+// 1. Route Detection
+const routePattern = /\$stateProvider\.state\(['"]([^'"]+)['"]\s*,\s*\{/g;
+const routes = [];
+let match;
+while ((match = routePattern.exec(routingFile)) !== null) {
+  routes.push({
+    name: match[1],
+    // Extract URL, component, resolves from full state definition
+  });
+}
+
+// 2. Component Detection in Templates
+const componentPatterns = {
+  managerListLayout: /<manager-list-layout[^>]*>/i,
+  ouiDatagrid: /<oui-datagrid[^>]*>/i,
+  ouiTile: /<oui-tile[^>]*>/i,
+  ouiButton: /<oui-button[^>]*>/i,
+  ouiModal: /<oui-modal[^>]*>/i,
+  ouiHeader: /<header[^>]*class="oui-header"/i,
+  ouiTabs: /<oui-header-tabs[^>]*>/i,
+  changelogButton: /<changelog-button[^>]*>/i,
+  guideMenu: /<oui-guide-menu[^>]*>/i,
+};
+
+const detectedComponents = {};
+for (const [key, pattern] of Object.entries(componentPatterns)) {
+  detectedComponents[key] = pattern.test(templateFile);
+}
+
+// 3. Feature Detection
+const featurePatterns = {
+  hasSearch: /<input[^>]*ng-model="[^"]*search/i,
+  hasFilter: /filter|filtrer/i,
+  hasColumnCustomization: /customize-columns|column-visibility/i,
+  hasPagination: /<oui-pagination|pagination-control/i,
+  hasPageSize: /items-per-page|page-size-selector/i,
+  hasTopbarCTA: /topbarOptions.*cta/i,
+};
+
+const detectedFeatures = {};
+for (const [key, pattern] of Object.entries(featurePatterns)) {
+  detectedFeatures[key] = pattern.test(templateFile) || pattern.test(routingFile);
+}
+
+// 4. API Endpoint Detection
+const apiPatterns = {
+  aapi: /OvhApi\w+\.Aapi\(\)/g,
+  iceberg: /iceberg\([^)]+\)/g,
+  http: /\$http\.(get|post|put|delete)\(['"]([^'"]+)['"]/g,
+  v6: /v6\.(get|post|put|delete)\(['"]([^'"]+)['"]/g,
+};
+
+const apiEndpoints = [];
+for (const [type, pattern] of Object.entries(apiPatterns)) {
+  let match;
+  while ((match = pattern.exec(controllerFile)) !== null) {
+    apiEndpoints.push({
+      type,
+      method: match[1] || 'query',
+      endpoint: match[2] || match[0],
+    });
+  }
+}
+
+// 5. Resolve Function Detection
+const resolvePattern = /(\w+):\s*\/\*\s*@ngInject\s*\*\/\s*\(([^)]*)\)\s*=>/g;
+const resolves = [];
+while ((match = resolvePattern.exec(routingFile)) !== null) {
+  resolves.push({
+    name: match[1],
+    dependencies: match[2].split(',').map(d => d.trim()),
+    // Analyze function body to determine type (AAPI, Iceberg, HTTP, etc.)
+  });
+}
+```
+
+### Automated Checklist Generation
+
+Based on detected patterns, automatically generate checklist:
+
+```typescript
+function generateChecklist(detected) {
+  return {
+    routes: detected.routes.map(r => ({
+      name: r.name,
+      url: r.url,
+      component: r.component,
+      hasResolves: r.hasResolves,
+      hasRedirectTo: r.hasRedirectTo,
+    })),
+    components: Object.entries(detected.components)
+      .filter(([_, found]) => found)
+      .map(([name]) => name),
+    features: Object.entries(detected.features)
+      .filter(([_, found]) => found)
+      .map(([name]) => name),
+    apiEndpoints: detected.apiEndpoints,
+    resolves: detected.resolves,
+    ouiToMukMapping: generateOuiToMukMapping(detected.components),
+  };
+}
+
+function generateOuiToMukMapping(components) {
+  const mapping = {
+    'manager-list-layout': 'BaseLayout + Datagrid',
+    'oui-datagrid': 'Datagrid',
+    'oui-tile': 'Tile.Root',
+    'oui-button': 'Button',
+    'oui-modal': 'Modal',
+    'oui-header': 'BaseLayout header prop',
+    'oui-header-tabs': 'Custom tabs with NavLink',
+    'changelog-button': 'ChangelogMenu',
+    'oui-guide-menu': 'GuideMenu',
+  };
+  
+  return Object.entries(components)
+    .filter(([_, found]) => found)
+    .map(([oui]) => ({
+      oui,
+      muk: mapping[oui] || 'Custom component needed',
+    }));
+}
+```
+
+### Detection Output Template
+
+After automated detection, generate this report:
+
+```markdown
+## Automated Analysis Report: {module-name}
+
+### Routes Detected
+- **{route-name}**: `{url}` → Component: `{component}`
+  - Resolves: {count} functions
+  - RedirectTo: {yes/no}
+  - Nested routes: {count}
+
+### Components Detected
+- OUI Components: {list}
+- Special Components: {changelog-button, guide-menu, etc.}
+
+### Features Detected
+- Search: {yes/no}
+- Filter: {yes/no}
+- Column Customization: {yes/no}
+- Pagination: {yes/no}
+- Page Size Selector: {yes/no}
+- Topbar CTA: {yes/no} (label: {label})
+- Changelog Button: {yes/no}
+- Guide Menu: {yes/no}
+
+### API Endpoints Detected
+- AAPI: {count} endpoints
+- Iceberg: {count} endpoints
+- HTTP v6: {count} endpoints
+
+### Resolve Functions Detected
+- {resolve-name}: {type} (AAPI/Iceberg/HTTP/Calculated/Navigation)
+
+### OUI → MUK Mapping
+- {oui-component} → {muk-component}
+
+### Missing Elements (Must Implement)
+- [ ] {feature 1}
+- [ ] {feature 2}
+```
+
 ## 🤖 AI Development Guidelines
 
 ### Essential Analysis Rules for AI Code Generation
 
 1. **Always start with analysis**: Never skip the 5-minute checklist
-2. **Document all features**: Even if they seem "obvious"
-3. **Check templates first**: UI/UX is defined in templates
-4. **Verify topbar actions**: Most missed feature is extra buttons
-5. **Count all buttons**: Order, Roadmap, Guides, Filter, Edit, etc.
-6. **Check for special components**: changelog-button, oui-guide-menu
-7. **Identify pagination type**: Affects API integration
-8. **Map OUI → MUK early**: Know which components are available
+2. **Use automated detection**: Run pattern detection scripts first
+3. **Document all features**: Even if they seem "obvious"
+4. **Check templates first**: UI/UX is defined in templates
+5. **Verify topbar actions**: Most missed feature is extra buttons
+6. **Count all buttons**: Order, Roadmap, Guides, Filter, Edit, etc.
+7. **Check for special components**: changelog-button, oui-guide-menu
+8. **Identify pagination type**: Affects API integration
+9. **Map OUI → MUK early**: Know which components are available
+10. **Generate checklist automatically**: Use detection patterns
 
 ### Analysis Checklist
 

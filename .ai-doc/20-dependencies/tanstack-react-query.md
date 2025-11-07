@@ -34,7 +34,6 @@ This package is essential for:
 ## 🔗 References
 
 - [Manager Core API](./manager-core-api.md)
-- [Data Fetching Patterns](../10-architecture/data-fetching.md)
 - [Manager React Core Application](./manager-react-core-application.md)
 - [TanStack Query Documentation](https://tanstack.com/query/latest)
 
@@ -114,6 +113,50 @@ export default function App() {
       <RouterProvider router={router} />
     </QueryClientProvider>
   );
+}
+```
+
+### Manager Integration
+
+In Manager, backend interaction follows this pattern:
+1. Create API functions using `@ovh-ux/manager-core-api`
+2. Wrap them in custom React hooks using TanStack Query
+
+#### HTTP Requests with Manager Core API
+
+```typescript
+import { apiClient, v6, v2, aapi, fetchIcebergV6, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
+
+// Direct API calls
+v6.get('/me');
+v2.get('/iam/policy');
+aapi.get('/feature/availability');
+
+// Iceberg endpoints (pagination)
+fetchIcebergV6({ route: '/product/services', pageSize: 20 });
+fetchIcebergV2({ route: '/iam/policy', pageSize: 50 });
+```
+
+#### Polling Example
+
+Use `refetchInterval` to auto-refresh async resource creation (e.g., Public Cloud instances):
+
+```typescript
+import { useQuery } from '@tanstack/react-query';
+import { v6 } from '@ovh-ux/manager-core-api';
+
+export function useInstances(instanceId?: string) {
+  return useQuery({
+    queryKey: ['instances', instanceId],
+    queryFn: () => v6.get('/cloud/project/instances').then(res => res.data),
+    refetchInterval: (data) => {
+      const instances = data?.data || [];
+      return instanceId &&
+        instances.find(({ id }) => id === instanceId)?.status !== 'ACTIVE'
+        ? 5000 // Poll every 5s until active
+        : false;
+    },
+  });
 }
 ```
 
