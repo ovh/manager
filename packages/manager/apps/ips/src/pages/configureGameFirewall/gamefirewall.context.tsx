@@ -127,7 +127,6 @@ export const GameFirewallContextProvider: React.FC<{
   } = useIpGameFirewallRules({
     ip: ipGroup,
     ipOnGame,
-    refetchInterval: INVALIDATED_REFRESH_PERIOD,
   });
 
   const { mutate: addRule } = useMutation({

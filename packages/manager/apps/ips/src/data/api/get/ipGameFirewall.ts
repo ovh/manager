@@ -6,7 +6,6 @@ import {
 } from '@ovh-ux/manager-core-api';
 
 export type GetIpGameFirewallParams = {
-  /**  */
   ip: string;
 };
 
@@ -35,6 +34,7 @@ export const getIpGameFirewall = async (
   fetchIcebergV6<IpGameFirewallType>({
     route: `/ip/${encodeURIComponent(params.ip)}/game`,
     page: 1,
+    disableCache: true,
   });
 
 export type GetGameFirewallRuleParams = {

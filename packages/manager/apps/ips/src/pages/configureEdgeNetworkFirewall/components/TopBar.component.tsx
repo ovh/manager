@@ -3,7 +3,6 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   OdsButton,
   OdsIcon,
-  OdsSpinner,
   OdsText,
   OdsToggle,
   OdsTooltip,
@@ -12,7 +11,6 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import {
@@ -33,10 +31,10 @@ function getToggleLabelFromFirewallState({
   enabled: boolean;
 }) {
   if (state === IpEdgeFirewallStateEnum.PENDING_ENABLE) {
-    return 'activation_in_progress';
+    return 'ok';
   }
   if (state === IpEdgeFirewallStateEnum.PENDING_DISABLE) {
-    return 'suspending';
+    return 'disabled';
   }
   return enabled ? 'ok' : 'disabled';
 }
@@ -111,10 +109,6 @@ export const TopBar: React.FC = () => {
             },
           )}
         </OdsText>
-        {[
-          IpEdgeFirewallStateEnum.PENDING_DISABLE,
-          IpEdgeFirewallStateEnum.PENDING_ENABLE,
-        ].includes(firewallState) && <OdsSpinner size={ODS_SPINNER_SIZE.xs} />}
         <OdsIcon
           id="tooltip"
           name={ODS_ICON_NAME.circleQuestion}

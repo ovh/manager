@@ -201,11 +201,11 @@ export const getIpsMocks = ({
     api: 'v6',
   },
   {
-    url: '/ip/:ip/firewall',
-    response: (): IpEdgeFirewallType[] => [
+    url: '/ip/:ip/firewall/:ipOnFirewall',
+    response: (_: Request, params: PathParams): IpEdgeFirewallType[] => [
       {
         enabled: !edgeFirewallDisable,
-        ipOnFirewall: '10.0.0.1',
+        ipOnFirewall: params.ipOnFirewall as string,
         state: edgeFirewallState,
       },
     ],
