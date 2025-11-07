@@ -1,26 +1,15 @@
-import {
-  useMutation,
-  UseMutationOptions,
-  useQueryClient,
-} from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateVcdEdgeGateway } from '../api';
 import {
   GetEdgeGatewayParams,
+  RestrictedMutationOptions,
   UpdateEdgeGatewayPayload,
   VCDEdgeGateway,
 } from '../types';
 import { getVcdEdgeGatewayListQueryKey } from '../utils';
 
 type UseUpdateEdgeGatewayParams = GetEdgeGatewayParams &
-  Partial<
-    UseMutationOptions<
-      VCDEdgeGateway,
-      ApiError,
-      UpdateEdgeGatewayPayload,
-      unknown
-    >
-  >;
+  RestrictedMutationOptions<VCDEdgeGateway, UpdateEdgeGatewayPayload>;
 
 export const useUpdateEdgeGateway = ({
   id,
