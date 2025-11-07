@@ -26,6 +26,7 @@
     "@ovh-ux/manager-module-common-api": "^0.5.13",
     "@ovh-ux/manager-module-order": "^0.11.12",
     "@ovh-ux/manager-module-vcd-api": "^0.8.19",
+    "@ovh-ux/manager-network-common": "^0.5.19",
     "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-react-core-application": "^0.13.0",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
