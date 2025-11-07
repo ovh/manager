@@ -1,6 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { TFunction } from 'i18next';
 import {
+  canRetype,
   EncryptionType,
   getEncryption,
   mapVolumeEncryption,
@@ -13,7 +14,6 @@ import { BlockStorageListColumn } from '@/hooks/useDatagridColumn';
 import { TVolumeCatalog } from '@/api/data/catalog';
 import { TAPIVolume } from '@/api/data/volume';
 import { is3az } from '@/api/select/catalog';
-import { TRegion } from '@/api/data/regions';
 
 vi.mock('@/api/select/catalog', () => ({
   getPricingSpecsFromModelPricings: vi.fn(),
@@ -61,6 +61,39 @@ const catalog = {
     },
   ],
 } as TVolumeCatalog;
+
+const buildData = ({
+  isEncrypted,
+  isVolumeClassicMultiAttach,
+}: {
+  isEncrypted: boolean;
+  isVolumeClassicMultiAttach: boolean;
+}) => {
+  const volumeRegion = 'volumeRegion';
+  const volumeType = isVolumeClassicMultiAttach
+    ? 'classic-multiattach'
+    : 'volumeType';
+
+  const mockCatalog = ({
+    models: [
+      {
+        pricings: [
+          {
+            specs: { name: volumeType, encrypted: isEncrypted },
+            regions: [volumeRegion],
+          },
+        ],
+      },
+    ],
+  } as unknown) as TVolumeCatalog;
+
+  const mockVolume = {
+    region: volumeRegion,
+    type: volumeType,
+  } as TAPIVolume;
+
+  return { mockCatalog, mockVolume };
+};
 
 describe('volume', () => {
   describe('sortResults', () => {
@@ -506,41 +539,85 @@ describe('volume', () => {
   });
 
   describe('mapVolumeType', () => {
-    it('should add the value of is3az and isClassicMultiattach to true if type is "classic-multiattach"', () => {
-      const volume = {
-        region: 'region',
-        type: 'classic-multiattach',
-      } as TAPIVolume;
-      const catalogRegion = [{ name: 'toto' }] as TRegion[];
-      vi.mocked(is3az).mockReturnValue(false);
+    it.each`
+      isEncrypted | isVolume3az | isVolumeClassicMultiAttach | expectedResult
+      ${true}     | ${true}     | ${true}                    | ${{ is3az: true, isClassicMultiAttach: true, canRetype: false }}
+      ${true}     | ${true}     | ${false}                   | ${{ is3az: true, isClassicMultiAttach: false, canRetype: false }}
+      ${true}     | ${false}    | ${true}                    | ${{ is3az: false, isClassicMultiAttach: true, canRetype: false }}
+      ${true}     | ${false}    | ${false}                   | ${{ is3az: false, isClassicMultiAttach: false, canRetype: false }}
+      ${false}    | ${true}     | ${true}                    | ${{ is3az: true, isClassicMultiAttach: true, canRetype: false }}
+      ${false}    | ${true}     | ${false}                   | ${{ is3az: true, isClassicMultiAttach: false, canRetype: true }}
+      ${false}    | ${false}    | ${true}                    | ${{ is3az: false, isClassicMultiAttach: true, canRetype: true }}
+      ${false}    | ${false}    | ${false}                   | ${{ is3az: false, isClassicMultiAttach: false, canRetype: true }}
+    `(
+      'should add $expectedResult when volume: isEncrypted: $isEncrypted, is3az: $isVolume3az, isClassicMultiAttach: $isVolumeClassicMultiAttach',
+      ({
+        isEncrypted,
+        isVolume3az,
+        isVolumeClassicMultiAttach,
+        expectedResult,
+      }: {
+        isEncrypted: boolean;
+        isVolume3az: boolean;
+        isVolumeClassicMultiAttach: boolean;
+        expectedResult: {
+          is3az: boolean;
+          isClassicMultiAttach: boolean;
+          canRetype: boolean;
+        };
+      }) => {
+        vi.mocked(is3az).mockReturnValue(isVolume3az);
 
-      const result = mapVolumeType({
-        regions: catalogRegion,
-      } as TVolumeCatalog)(volume);
+        const { mockCatalog, mockVolume } = buildData({
+          isEncrypted,
+          isVolumeClassicMultiAttach,
+        });
 
-      expect(result).toEqual({
-        ...volume,
-        is3az: false,
-        isClassicMultiAttach: true,
-      });
-      expect(is3az).toHaveBeenCalledWith(catalogRegion, volume.region);
-    });
+        const result = mapVolumeType(mockCatalog)(mockVolume);
 
-    it('should add the value of is3az and isClassicMultiattach to false if type is not "classic-multiattach"', () => {
-      const volume = { region: 'region', type: 'classic' } as TAPIVolume;
-      const catalogRegion = [{ name: 'toto' }] as TRegion[];
-      vi.mocked(is3az).mockReturnValue(true);
+        expect(result).toEqual({
+          ...mockVolume,
+          ...expectedResult,
+        });
+      },
+    );
+  });
 
-      const result = mapVolumeType({
-        regions: catalogRegion,
-      } as TVolumeCatalog)(volume);
+  describe('canRetype', () => {
+    it.each`
+      isEncrypted | isVolume3az | isVolumeClassicMultiAttach | expectedCantRetype
+      ${true}     | ${true}     | ${true}                    | ${false}
+      ${true}     | ${true}     | ${false}                   | ${false}
+      ${true}     | ${false}    | ${true}                    | ${false}
+      ${true}     | ${false}    | ${false}                   | ${false}
+      ${false}    | ${true}     | ${true}                    | ${false}
+      ${false}    | ${true}     | ${false}                   | ${true}
+      ${false}    | ${false}    | ${true}                    | ${true}
+      ${false}    | ${false}    | ${false}                   | ${true}
+    `(
+      'can retype is {$expectedCantRetype} when volume: isEncrypted: $isEncrypted, isVolume3az: $isVolume3az, isClassicMultiAttach: $isVolumeClassicMultiAttach',
+      ({
+        isEncrypted,
+        isVolume3az,
+        isVolumeClassicMultiAttach,
+        expectedCantRetype,
+      }: {
+        isEncrypted: boolean;
+        isVolume3az: boolean;
+        isVolumeClassicMultiAttach: boolean;
+        expectedCantRetype: boolean;
+      }) => {
+        vi.mocked(is3az).mockReturnValue(isVolume3az);
 
-      expect(result).toEqual({
-        ...volume,
-        is3az: true,
-        isClassicMultiAttach: false,
-      });
-      expect(is3az).toHaveBeenCalledWith(catalogRegion, volume.region);
-    });
+        const { mockCatalog, mockVolume } = buildData({
+          isEncrypted,
+          isVolumeClassicMultiAttach,
+        });
+
+        const result = canRetype(mockCatalog)(mockVolume);
+
+        expect(result).toBe(expectedCantRetype);
+      },
+    );
   });
 });
