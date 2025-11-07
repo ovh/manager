@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { urls } from '@/routes/routes.constant';
-import ContactForm from '@/components/contact/contactForm/ContactForm.component';
+import ContactForm from '@/components/contactForm/ContactForm.component';
 import { CreateContactMean } from '@/data/types/contact-mean.type';
 import {
   useContactMean,
@@ -37,7 +37,7 @@ export default function EditContactPage() {
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('edit_contact_success_message'));
-      navigate(urls.contact.listing);
+      navigate(urls.ContactsTab);
     },
     onError: (err) => {
       if (err.response?.status === 429) {
@@ -58,15 +58,15 @@ export default function EditContactPage() {
     isLoading,
     isAuthorized,
     condition: !!contactMeanId,
-    redirectTo: urls.contact.listing,
+    redirectTo: urls.ContactsTab,
   });
 
   return (
     <Drawer
       heading={t('edit_contact_modal_title')}
       isOpen={true}
-      onDismiss={() => navigate(urls.contact.listing)}
-      onSecondaryButtonClick={() => navigate(urls.contact.listing)}
+      onDismiss={() => navigate(urls.ContactsTab)}
+      onSecondaryButtonClick={() => navigate(urls.ContactsTab)}
       onPrimaryButtonClick={() => formRef.current?.submit()}
       secondaryButtonLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       primaryButtonLabel={t('validate', { ns: NAMESPACES.ACTIONS })}

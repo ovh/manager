@@ -17,7 +17,6 @@ import {
 } from '@/data/api/contacts';
 import {
   ContactMean,
-  ContactMeanStatus,
   ValidateContactMean,
 } from '@/data/types/contact-mean.type';
 
@@ -110,10 +109,7 @@ export const useChangeContactMeanStatus = ({
       });
       return updateContactMean({
         contactMeanId,
-        data: {
-          description: contactMean.description,
-          status: status as ContactMeanStatus,
-        },
+        data: { description: contactMean.description, status },
       });
     },
     onSuccess: async (contactMean: ContactMean) => {

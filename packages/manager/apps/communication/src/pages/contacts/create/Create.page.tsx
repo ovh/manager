@@ -6,7 +6,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useRef, useState } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { urls } from '@/routes/routes.constant';
-import ContactForm from '@/components/contact/contactForm/ContactForm.component';
+import ContactForm from '@/components/contactForm/ContactForm.component';
 import { ContactMean, CreateContactMean } from '@/data/types/contact-mean.type';
 import {
   useCreateContactMean,
@@ -15,7 +15,7 @@ import {
 } from '@/data/hooks/useContactMean/useContactMean';
 import { useAuthorization, usePendingRedirect } from '@/hooks';
 import { CreateContactStage } from './Create.constants';
-import ContactValidateForm from '@/components/contact/contactValidateForm/contactValidateForm.component';
+import ContactValidateForm from '@/components/contactValidateForm/contactValidateForm.component';
 
 export default function CreateContactPage() {
   const [currentStage, setCurrentStage] = useState<CreateContactStage>(
@@ -62,7 +62,7 @@ export default function CreateContactPage() {
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('add_contact_success_message'));
-      navigate(urls.contact.listing);
+      navigate(urls.ContactsTab);
     },
     onError: (err) => {
       if (err.response?.status === 429) {
@@ -91,7 +91,7 @@ export default function CreateContactPage() {
     isLoading: isLoadingAuthorization,
     isAuthorized,
     condition: isAuthorized,
-    redirectTo: urls.contact.listing,
+    redirectTo: urls.ContactsTab,
   });
 
   return (
@@ -103,7 +103,7 @@ export default function CreateContactPage() {
       }
       isOpen={true}
       isLoading={isLoadingAuthorization}
-      onDismiss={() => navigate(urls.contact.listing)}
+      onDismiss={() => navigate(urls.ContactsTab)}
       primaryLabel={
         currentStage === CreateContactStage.CREATE
           ? t('add', { ns: NAMESPACES.ACTIONS })
@@ -111,7 +111,7 @@ export default function CreateContactPage() {
       }
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={() => {
-        navigate(urls.contact.listing);
+        navigate(urls.ContactsTab);
       }}
       onPrimaryButtonClick={() => formRef.current?.submit()}
       isPrimaryButtonLoading={isPending}

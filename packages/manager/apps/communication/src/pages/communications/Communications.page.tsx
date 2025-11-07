@@ -54,7 +54,7 @@ function CommunicationsPage() {
       cell: (notification) => (
         <DataGridTextCell>
           <Link
-            to={urls.communication.detailTo(notification.id)}
+            to={`${urls.CommunicationsDetailTo(notification.id)}`}
             onClick={() =>
               trackClick({
                 location: PageLocation.datagrid,

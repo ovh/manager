@@ -30,31 +30,22 @@ export default function DashboardLayout() {
     {
       name: 'communications',
       title: t('tab_communications'),
-      to: useResolvedPath(urls.communication.listing).pathname,
+      to: useResolvedPath(urls.CommunicationsTab).pathname,
     },
     {
       name: 'contacts',
       title: t('tab_contacts'),
-      to: useResolvedPath(urls.contact.listing).pathname,
+      to: useResolvedPath(urls.ContactsTab).pathname,
     },
     {
       name: 'preference-center',
       title: t('tab_settings'),
-      to: useResolvedPath(urls.routing.listing).pathname,
+      to: useResolvedPath(urls.SettingsTab).pathname,
     },
   ];
 
   useEffect(() => {
-    const matchesPath = (path: string, tabPath: string): boolean => {
-      if (tabPath === '/') {
-        return path === '/';
-      }
-      return path === tabPath || path.startsWith(`${tabPath}/`);
-    };
-
-    const activeTab = tabsList.find((tab) =>
-      matchesPath(location.pathname, tab.to),
-    );
+    const activeTab = tabsList.find((tab) => tab.to === location.pathname);
     if (activeTab) {
       setActivePanel(activeTab.name);
     } else {

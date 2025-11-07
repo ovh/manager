@@ -32,7 +32,7 @@ export default function DeleteContactPage() {
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('delete_contact_success_message'));
-      navigate(urls.contact.listing);
+      navigate(urls.ContactsTab);
     },
   });
 
@@ -45,7 +45,7 @@ export default function DeleteContactPage() {
     isLoading: isLoadingContactMean || isLoadingAuthorization,
     isAuthorized,
     condition: !!contactMeanId,
-    redirectTo: urls.contact.listing,
+    redirectTo: urls.ContactsTab,
   });
 
   return (
@@ -53,8 +53,8 @@ export default function DeleteContactPage() {
       isOpen
       type={ODS_MODAL_COLOR.warning}
       heading={t('delete_contact_modal_title')}
-      onDismiss={() => navigate(urls.contact.listing)}
-      onSecondaryButtonClick={() => navigate(urls.contact.listing)}
+      onDismiss={() => navigate(urls.ContactsTab)}
+      onSecondaryButtonClick={() => navigate(urls.ContactsTab)}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       onPrimaryButtonClick={onConfirm}

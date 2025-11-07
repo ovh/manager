@@ -25,10 +25,6 @@ const CommunicationsDetailPage = lazy(() =>
   import('@/pages/communications/detail/CommunicationsDetail.page'),
 );
 const SettingsPage = lazy(() => import('@/pages/settings/Settings.page'));
-const CreateSettingsPage = lazy(() =>
-  import('@/pages/settings/create/Create.page'),
-);
-const EditSettingsPage = lazy(() => import('@/pages/settings/edit/Edit.page'));
 
 export default (
   <Route
@@ -44,7 +40,7 @@ export default (
   >
     <Route Component={DashboardLayout}>
       <Route
-        path={urls.communication.listing}
+        path={urls.CommunicationsTab}
         Component={CommunicationsPage}
         handle={{
           tracking: {
@@ -55,7 +51,7 @@ export default (
         }}
       />
       <Route
-        path={urls.communication.detail}
+        path={urls.CommunicationsDetail}
         Component={CommunicationsDetailPage}
         handle={{
           tracking: {
@@ -66,7 +62,7 @@ export default (
         }}
       />
       <Route
-        path={urls.contact.listing}
+        path={urls.ContactsTab}
         Component={ContactsPage}
         handle={{
           tracking: {
@@ -77,7 +73,7 @@ export default (
         }}
       >
         <Route
-          path={urls.contact.create}
+          path={urls.contactsAdd}
           Component={CreateContactPage}
           handle={{
             tracking: {
@@ -87,7 +83,7 @@ export default (
           }}
         />
         <Route
-          path={urls.contact.edit}
+          path={urls.contactsEdit}
           Component={EditContactPage}
           handle={{
             tracking: {
@@ -97,7 +93,7 @@ export default (
           }}
         />
         <Route
-          path={urls.contact.validate}
+          path={urls.contactsValidate}
           Component={ValidateContactPage}
           handle={{
             tracking: {
@@ -107,7 +103,7 @@ export default (
           }}
         />
         <Route
-          path={urls.contact.delete}
+          path={urls.contactsDelete}
           Component={DeleteContactPage}
           handle={{
             tracking: {
@@ -118,34 +114,12 @@ export default (
         />
       </Route>
       <Route
-        path={urls.routing.listing}
+        path={urls.SettingsTab}
         Component={SettingsPage}
         handle={{
           tracking: {
             pageName: 'preference-center',
             pageType: PageType.dashboard,
-            subApp: TrackingSubApps.Settings,
-          },
-        }}
-      ></Route>
-      <Route
-        path={urls.routing.create}
-        Component={CreateSettingsPage}
-        handle={{
-          tracking: {
-            pageName: 'preference-center::create',
-            pageType: PageType.popup,
-            subApp: TrackingSubApps.Settings,
-          },
-        }}
-      />
-      <Route
-        path={urls.routing.edit}
-        Component={EditSettingsPage}
-        handle={{
-          tracking: {
-            pageName: 'preference-center::edit',
-            pageType: PageType.popup,
             subApp: TrackingSubApps.Settings,
           },
         }}

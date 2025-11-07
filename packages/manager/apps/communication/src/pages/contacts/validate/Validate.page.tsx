@@ -11,7 +11,7 @@ import {
   useValidateContactMean,
 } from '@/data/hooks/useContactMean/useContactMean';
 import { useAuthorization, usePendingRedirect } from '@/hooks';
-import ContactValidateForm from '@/components/contact/contactValidateForm/contactValidateForm.component';
+import ContactValidateForm from '@/components/contactValidateForm/contactValidateForm.component';
 
 export default function ValidateContactPage() {
   const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
@@ -39,7 +39,7 @@ export default function ValidateContactPage() {
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('add_contact_success_message'));
-      navigate(urls.contact.listing);
+      navigate(urls.ContactsTab);
     },
     onError: (err) => {
       if (err.response?.status === 429) {
@@ -57,7 +57,7 @@ export default function ValidateContactPage() {
     isLoading: isLoadingAuthorization,
     isAuthorized,
     condition: isAuthorized,
-    redirectTo: urls.contact.listing,
+    redirectTo: urls.ContactsTab,
   });
 
   return (
@@ -65,11 +65,11 @@ export default function ValidateContactPage() {
       heading={t('verify_contact_modal_title')}
       isOpen={true}
       isLoading={isLoading}
-      onDismiss={() => navigate(urls.contact.listing)}
+      onDismiss={() => navigate(urls.ContactsTab)}
       primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={() => {
-        navigate(urls.contact.listing);
+        navigate(urls.ContactsTab);
       }}
       onPrimaryButtonClick={() => formRef.current?.submit()}
       isPrimaryButtonLoading={isValidatePending}

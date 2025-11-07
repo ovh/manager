@@ -17,7 +17,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAuthorization } from '@/hooks';
 import { ContactMean } from '@/data/types/contact-mean.type';
-import ContactMeanStatusChip from '@/components/contact/contactMeanStatus/contactMeanStatus.component';
+import ContactMeanStatusChip from '@/components/contactMeanStatus/contactMeanStatus.component';
 import { useAccountUrn } from '@/data';
 import { urls } from '@/routes/routes.constant';
 import {
@@ -71,14 +71,14 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
         displayActionMenuItem(contactMean, ContactMeanActions.EDIT) && {
           id: 1,
           label: t('table_action_edit'),
-          onClick: () => navigate(urls.contact.editTo(contactMean.id)),
+          onClick: () => navigate(urls.ContactsEditTo(contactMean.id)),
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(contactMean, ContactMeanActions.VALIDATE) && {
           id: 2,
           label: t('table_action_enter_verification_code'),
-          onClick: () => navigate(urls.contact.validateTo(contactMean.id)),
+          onClick: () => navigate(urls.ContactsValidateTo(contactMean.id)),
           iamActions: ['account:apiovh:notification/contactMean/validate'],
           urn: accountUrn,
         },
@@ -111,7 +111,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
         {
           id: 6,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => navigate(urls.contact.deleteTo(contactMean.id)),
+          onClick: () => navigate(urls.ContactsDeleteTo(contactMean.id)),
           iamActions: ['account:apiovh:notification/contactMean/delete'],
           urn: accountUrn,
         },
@@ -226,7 +226,7 @@ function ContactsPage() {
       <Notifications clearAfterRead />
 
       <Datagrid
-        items={flattenData || []}
+        items={flattenData}
         columns={columns}
         sorting={sorting}
         onSortChange={setSorting}
@@ -241,7 +241,7 @@ function ContactsPage() {
             label={t('add_contact_button')}
             aria-label={t('add_contact_button')}
             size="sm"
-            onClick={() => navigate(urls.contact.create)}
+            onClick={() => navigate(urls.contactsAdd)}
           />
         }
         totalItems={flattenData?.length || 0}
