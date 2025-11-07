@@ -165,11 +165,14 @@ export const EdgeFirewallContextProvider: React.FC<{
   const ip = data?.data?.[0] || ipGroup;
 
   const { isLoading, ipEdgeFirewall, isError, error } = useGetIpEdgeFirewall({
-    ip: ipOnFirewall,
+    ip,
+    ipOnFirewall,
     enabled: !!ipOnFirewall && !isParentIpLoading,
   });
 
-  const hasNoFirewall = ipEdgeFirewall?.length === 0;
+  const hasNoFirewall = React.useMemo(() => ipEdgeFirewall === null, [
+    ipEdgeFirewall,
+  ]);
 
   const hideNewRuleRow = React.useCallback(() => {
     setNewSequence(undefined);
@@ -211,12 +214,12 @@ export const EdgeFirewallContextProvider: React.FC<{
   } = useIpEdgeNetworkFirewallRules({
     ip,
     ipOnFirewall,
-    refetchInterval: INVALIDATED_REFRESH_PERIOD,
   });
 
   const value = {
     isLoading,
     isRulesLoading,
+    hasNoFirewall,
     rules: rules || [],
     ruleSequenceList: (rules || [])?.map((rule) => rule?.sequence),
     ip,
@@ -263,9 +266,8 @@ export const EdgeFirewallContextProvider: React.FC<{
     setNewFragments,
     setNewTcpOption,
     maxRulesReached: rules?.length === MAX_RULES_NUMBER,
-    hasNoFirewall,
-    firewallModeEnabled: ipEdgeFirewall?.[0]?.enabled,
-    firewallState: ipEdgeFirewall?.[0]?.state,
+    firewallModeEnabled: ipEdgeFirewall?.enabled,
+    firewallState: ipEdgeFirewall?.state,
     tmpToggleState,
     setTmpToggleState,
     newSequence,

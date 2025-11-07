@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   IpEdgeFirewallType,
   getIpEdgeFirewall,
@@ -10,28 +10,41 @@ import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
 export type UseGetIpEdgeFirewallParams = {
   ip: string;
+  ipOnFirewall: string;
   enabled?: boolean;
   refetchInterval?: number;
 };
 
 export const useGetIpEdgeFirewall = ({
   ip,
+  ipOnFirewall,
   enabled = true,
   refetchInterval = INVALIDATED_REFRESH_PERIOD,
 }: UseGetIpEdgeFirewallParams) => {
   const { data: ipEdgeFirewallResponse, isLoading, isError, error } = useQuery<
-    IcebergFetchResultV6<IpEdgeFirewallType>,
+    ApiResponse<IpEdgeFirewallType>,
     ApiError
   >({
-    queryKey: getIpEdgeFirewallQueryKey({ ip }),
-    queryFn: () => getIpEdgeFirewall({ ip }),
+    queryKey: getIpEdgeFirewallQueryKey({ ip, ipOnFirewall }),
+    queryFn: async () => {
+      try {
+        const firewall = await getIpEdgeFirewall({ ip, ipOnFirewall });
+        return firewall;
+      } catch (err) {
+        if ((err as ApiError).status === 404) {
+          return {
+            data: null,
+          } as ApiResponse<IpEdgeFirewallType>;
+        }
+        throw err;
+      }
+    },
     enabled,
-    staleTime: Number.POSITIVE_INFINITY,
     retry: false,
     refetchInterval: (query) => {
       return query.state.error ||
-        !query.state.data?.data?.[0]?.state ||
-        query.state.data?.data?.[0]?.state === IpEdgeFirewallStateEnum.OK
+        !query.state.data?.data?.state ||
+        query.state.data?.data?.state === IpEdgeFirewallStateEnum.OK
         ? undefined
         : refetchInterval;
     },

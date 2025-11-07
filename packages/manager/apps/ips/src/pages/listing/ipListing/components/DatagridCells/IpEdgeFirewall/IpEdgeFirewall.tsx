@@ -7,6 +7,8 @@ import { IpEdgeFirewallDisplay } from './IpEdgeFirewallDisplay';
 
 export type IpEdgeFirewallProps = {
   ip: string;
+  ipOnFirewall?: string;
+  isByoipSlice?: boolean;
 };
 
 /**
@@ -18,26 +20,40 @@ export type IpEdgeFirewallProps = {
  * @param ip the ip with mask
  * @returns React component
  */
-export const IpEdgeFirewall = ({ ip }: IpEdgeFirewallProps) => {
+export const IpEdgeFirewall = ({
+  ip,
+  ipOnFirewall,
+  isByoipSlice,
+}: IpEdgeFirewallProps) => {
   const { expiredIps } = useContext(ListingContext);
+  const { isGroup, ipAddress } = ipFormatter(ip);
 
-  // Check if ip is not group
-  const { isGroup } = ipFormatter(ip);
+  const enabled = React.useMemo(
+    () =>
+      ((isGroup && !!ipOnFirewall) || !isGroup) &&
+      expiredIps.indexOf(ip) === -1 &&
+      !isByoipSlice,
+    [isGroup, ipOnFirewall, ip, expiredIps],
+  );
 
   // Get edge firewall details
   const { ipEdgeFirewall, isLoading, error } = useGetIpEdgeFirewall({
     ip,
-    enabled: !isGroup && expiredIps.indexOf(ip) === -1,
+    ipOnFirewall: ipOnFirewall ?? ipAddress,
+    enabled,
   });
 
   return (
     <SkeletonCell
       isLoading={isLoading}
-      enabled={!isGroup}
+      enabled={enabled}
       error={error}
-      ip={ip}
+      ip={ipOnFirewall ?? ip}
     >
-      <IpEdgeFirewallDisplay ip={ip} ipEdgeFirewall={ipEdgeFirewall?.[0]} />
+      <IpEdgeFirewallDisplay
+        ip={ipOnFirewall ?? ip}
+        ipEdgeFirewall={ipEdgeFirewall}
+      />
     </SkeletonCell>
   );
 };

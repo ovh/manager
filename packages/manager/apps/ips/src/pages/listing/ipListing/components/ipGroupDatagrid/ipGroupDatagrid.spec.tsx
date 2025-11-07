@@ -7,11 +7,7 @@ import { Row } from '@tanstack/react-table';
 import ipReverseList from '../../../../../../mocks/ip/get-ip-reverse-for-block.json';
 import ipDetailsList from '../../../../../../mocks/ip/get-ip-details.json';
 import { IpGroupDatagrid } from './ipGroupDatagrid';
-import {
-  useByoipAggregate,
-  useByoipSlice,
-  VmacWithIpType,
-} from '@/data/hooks/ip';
+import { VmacWithIpType } from '@/data/hooks/ip';
 import {
   IpEdgeFirewallStateEnum,
   IpEdgeFirewallType,
@@ -38,14 +34,6 @@ const useGetIpDetailsMock = vi.hoisted(() =>
 
 const useGetIpMitigationWithoutIcebergMock = vi.hoisted(() =>
   vi.fn(() => ({ ipMitigation: {}, isLoading: true, error: undefined })),
-);
-
-const useGetIpEdgeFirewallMock = vi.hoisted(() =>
-  vi.fn(() => ({
-    ipEdgeFirewall: undefined,
-    isLoading: true,
-    error: undefined,
-  })),
 );
 
 const useGetIpGameFirewallMock = vi.hoisted(() =>
@@ -90,7 +78,6 @@ vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useGetIcebergIpReverse: useGetIcebergIpReverseMock,
   useGetIpMitigationWithoutIceberg: useGetIpMitigationWithoutIcebergMock,
-  useGetIpEdgeFirewall: useGetIpEdgeFirewallMock,
   useGetIpGameFirewall: useGetIpGameFirewallMock,
   useGetIpVmacWithIp: useGetIpVmacWithIpMock,
   useByoipSlice: useByoipSliceMock,
@@ -104,7 +91,7 @@ vi.mock('../DatagridCells', () => ({
   IpAttachedService: () => <div>attached-service</div>,
   IpCell: ({ ip }: { ip: string }) => <div>{ip}</div>,
   IpCountry: () => <div>country</div>,
-  IpEdgeFirewallDisplay: () => <div>edge-firewall</div>,
+  IpEdgeFirewall: () => <div>edge-firewall</div>,
   IpGameFirewallDisplay: () => <div>game-firewall</div>,
   IpRegion: () => <div>region</div>,
   IpReverse: () => <div>ip-reverse</div>,
@@ -175,17 +162,6 @@ describe('IpDatagrid Component', async () => {
     });
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[3],
-      isLoading: false,
-    });
-    useGetIpEdgeFirewallMock.mockReturnValue({
-      ipEdgeFirewall: [
-        {
-          ipOnFirewall: '1.1.1.1',
-          enabled: true,
-          state: IpEdgeFirewallStateEnum.OK,
-        },
-      ] as IpEdgeFirewallType[],
-      error: false,
       isLoading: false,
     });
     useGetIpGameFirewallMock.mockReturnValue({

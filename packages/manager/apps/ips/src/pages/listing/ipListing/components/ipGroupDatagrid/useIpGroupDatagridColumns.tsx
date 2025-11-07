@@ -8,7 +8,7 @@ import {
   IpAttachedService,
   IpCell,
   IpCountry,
-  IpEdgeFirewallDisplay,
+  IpEdgeFirewall,
   IpGameFirewallDisplay,
   IpRegion,
   IpReverse,
@@ -16,7 +16,6 @@ import {
   IpVmacFilterByIp,
 } from '../DatagridCells';
 import {
-  useGetIpEdgeFirewall,
   useGetIpGameFirewall,
   useGetIpMitigationWithoutIceberg,
   useGetIpVmacWithIp,
@@ -45,11 +44,6 @@ export const useIpGroupDatagridColumns = ({
   } = useGetIpMitigationWithoutIceberg({
     ip: parentIp,
   });
-
-  const {
-    ipEdgeFirewall,
-    isLoading: isEdgeFirewallLoading,
-  } = useGetIpEdgeFirewall({ ip: parentIp });
 
   const {
     ipGameFirewall,
@@ -138,11 +132,10 @@ export const useIpGroupDatagridColumns = ({
       id: 'ip-edge-firewall',
       label: t('listingColumnsIpEdgeFirewall'),
       cell: (ip: string) => (
-        <IpEdgeFirewallDisplay
-          ip={ip}
-          ipEdgeFirewall={ipEdgeFirewall?.find(
-            (firewall) => firewall.ipOnFirewall === ip,
-          )}
+        <IpEdgeFirewall
+          ip={parentIp}
+          ipOnFirewall={ip}
+          isByoipSlice={isByoipSlice}
         />
       ),
       size: parentHeaders.current['ip-edge-firewall'].clientWidth,
@@ -177,10 +170,6 @@ export const useIpGroupDatagridColumns = ({
 
   return {
     columns,
-    isLoading:
-      isMitigationLoading ||
-      isEdgeFirewallLoading ||
-      isGameFirewallLoading ||
-      isVmacsLoading,
+    isLoading: isMitigationLoading || isGameFirewallLoading || isVmacsLoading,
   };
 };

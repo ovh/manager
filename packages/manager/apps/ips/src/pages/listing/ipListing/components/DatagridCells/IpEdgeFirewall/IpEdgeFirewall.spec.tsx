@@ -41,9 +41,10 @@ const renderComponent = (params: IpEdgeFirewallProps) => {
 describe('IpEdgeFirewall Component', async () => {
   it('Should display enable state if firewall has enable to true', async () => {
     useGetIpEdgeFirewall.mockReturnValue({
-      ipEdgeFirewall: [
-        { enabled: true, state: IpEdgeFirewallStateEnum.OK },
-      ] as IpEdgeFirewallType[],
+      ipEdgeFirewall: {
+        enabled: true,
+        state: IpEdgeFirewallStateEnum.OK,
+      } as IpEdgeFirewallType,
       isLoading: false,
       error: undefined,
     });
@@ -64,7 +65,7 @@ describe('IpEdgeFirewall Component', async () => {
 
   it('Should display disable state if there is no firewall', async () => {
     useGetIpEdgeFirewall.mockReturnValue({
-      ipEdgeFirewall: [] as IpEdgeFirewallType[],
+      ipEdgeFirewall: undefined as IpEdgeFirewallType,
       isLoading: false,
       error: undefined,
     });
@@ -85,9 +86,10 @@ describe('IpEdgeFirewall Component', async () => {
 
   it('Should display disable state if firewall is disable', async () => {
     useGetIpEdgeFirewall.mockReturnValue({
-      ipEdgeFirewall: [
-        { enabled: false, state: IpEdgeFirewallStateEnum.OK },
-      ] as IpEdgeFirewallType[],
+      ipEdgeFirewall: {
+        enabled: false,
+        state: IpEdgeFirewallStateEnum.OK,
+      } as IpEdgeFirewallType,
       isLoading: false,
       error: undefined,
     });
@@ -108,9 +110,10 @@ describe('IpEdgeFirewall Component', async () => {
 
   it('Should display Pending state if firewall is disable', async () => {
     useGetIpEdgeFirewall.mockReturnValue({
-      ipEdgeFirewall: [
-        { enabled: false, state: IpEdgeFirewallStateEnum.PENDING_ENABLE },
-      ] as IpEdgeFirewallType[],
+      ipEdgeFirewall: {
+        enabled: false,
+        state: IpEdgeFirewallStateEnum.PENDING_ENABLE,
+      } as IpEdgeFirewallType,
       isLoading: false,
       error: undefined,
     });

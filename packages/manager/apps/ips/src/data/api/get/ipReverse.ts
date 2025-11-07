@@ -38,6 +38,7 @@ export const getIcebergIpReverse = async (
   fetchIcebergV6<IpReverseType>({
     route: `/ip/${encodeURIComponent(params.ip)}/reverse`,
     page: 1,
+    disableCache: true,
   });
 
 export const getIpReverse = async ({

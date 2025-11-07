@@ -12,9 +12,10 @@ import {
   getGameFirewallRuleDetails,
   IpGameFirewallRule,
 } from '@/data/api';
+import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
 export const useIpGameFirewallRules = ({
-  refetchInterval,
+  refetchInterval = INVALIDATED_REFRESH_PERIOD,
   ip,
   ipOnGame,
 }: {

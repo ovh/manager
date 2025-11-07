@@ -13,11 +13,12 @@ import {
   getIpEdgeNetworkFirewallRuleListQueryKey,
   IpEdgeFirewallRuleState,
 } from '@/data/api';
+import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
 export const useIpEdgeNetworkFirewallRules = ({
   ip,
   ipOnFirewall,
-  refetchInterval,
+  refetchInterval = INVALIDATED_REFRESH_PERIOD,
 }: {
   ip?: string;
   ipOnFirewall?: string;
