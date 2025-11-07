@@ -2,7 +2,7 @@ import '@/setupTests';
 import React from 'react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import {
   useAuthorizationIam,
   useFeatureAvailability,
@@ -62,10 +62,10 @@ describe('alldom datagrid', () => {
       data: { [allDomFeatureAvailibility]: true },
     });
 
-    const { getByTestId } = render(<AllDom />, { wrapper });
+    render(<AllDom />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('datagrid')).toBeInTheDocument();
-      const allDomName = getByTestId('allDom-test');
+      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+      const allDomName = screen.getByTestId('allDom-test');
       expect(allDomName).toBeInTheDocument();
       expect(allDomName).toHaveAttribute(
         'href',
