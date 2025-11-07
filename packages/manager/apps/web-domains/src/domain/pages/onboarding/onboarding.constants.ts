@@ -109,3 +109,26 @@ export const FAQ_LINK: Links = {
   SN: `${guideUrl}fr-domain-names-faq?id=kb_article_view&sysparm_article=KB0072959`,
   TN: `${guideUrl}fr-domain-names-faq?id=kb_article_view&sysparm_article=KB0072959`,
 };
+const SUFFIX_URL_GENERAL_INFORMATION =
+  '?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955&kb_category=54441955f49801102d4ca4d466a7fdb2';
+export const DOMAINS_GUIDES: Links = {
+  DEFAULT: `${guideUrl}world-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  ASIA: `${guideUrl}asia-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  DE: `${guideUrl}de-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  ES: `${guideUrl}es-es-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  IE: `${guideUrl}en-ie-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  IT: `${guideUrl}it-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  PL: `${guideUrl}pl-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  PT: `${guideUrl}pt-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  GB: `${guideUrl}en-gb-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  CA: `${guideUrl}en-ca-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  QC: `${guideUrl}fr-ca-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  MA: `${guideUrl}fr-ma-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  SN: `${guideUrl}fr-sn-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  TN: `${guideUrl}fr-tn-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  AU: `${guideUrl}en-au-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  SG: `${guideUrl}en-sg-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  FR: `${guideUrl}fr-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  WE: `${guideUrl}world-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+  WS: `${guideUrl}es-documentation-web-cloud-domains${SUFFIX_URL_GENERAL_INFORMATION}`,
+};

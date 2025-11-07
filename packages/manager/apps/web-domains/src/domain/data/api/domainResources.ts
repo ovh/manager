@@ -1,5 +1,9 @@
 import { v2, v6 } from '@ovh-ux/manager-core-api';
-import { TDomainOption, TDomainResource } from '@/domain/types/domainResource';
+import {
+  TDomainOption,
+  TDomainResource,
+  DomainService,
+} from '@/domain/types/domainResource';
 import { OptionEnum } from '@/common/enum/option.enum';
 
 /**
@@ -18,6 +22,13 @@ export const getDomainAnycastOption = async (
   const { data } = await v6.get(
     `/domain/${serviceName}/option/${OptionEnum.DNS_ANYCAST}`,
   );
+  return data;
+};
+
+export const getDomainService = async (
+  serviceName: string,
+): Promise<DomainService> => {
+  const { data } = await v6.get(`/domain/${serviceName}`);
   return data;
 };
 
