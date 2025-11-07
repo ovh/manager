@@ -7,9 +7,9 @@ import {
   DialogHeader,
   DialogTitle,
   Button,
-  ScrollArea,
   DialogFooter,
   DialogClose,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 
 import * as database from '@/types/cloud/project/database';
@@ -67,16 +67,15 @@ const InfoConnectionPool = () => {
     <RouteModal
       isLoading={!poolDb || !connectionPool || !certificateQuery.data}
     >
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl" variant="information">
         <DialogHeader>
           <DialogTitle data-testid="info-pools-modal">
             {t('infoConnectionPoolTitle')}
           </DialogTitle>
         </DialogHeader>
-
-        <ScrollArea className="w-full max-w-xl">
+        <DialogBody>
           {certificateQuery.isSuccess && (
-            <div className="max-w-md mx-auto">
+            <div>
               <p className="font-semibold">
                 {t('infoConnectionPoolDatabaseLabel')}
               </p>
@@ -118,13 +117,13 @@ const InfoConnectionPool = () => {
               <Clipboard value={`${connectionPool?.size}`} />
             </div>
           )}
-        </ScrollArea>
-        <DialogFooter className="flex justify-end">
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-pools-close-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('infoConnectionPoolButtonClose')}
             </Button>

@@ -87,7 +87,7 @@ const ApiTerraformDialog = ({
     onError: () => {
       toast({
         title: t('pciDatabasesAddCommandDialogTerraformFetchError'),
-        variant: 'destructive',
+        variant: 'critical',
       });
     },
     onSuccess: (data) => {

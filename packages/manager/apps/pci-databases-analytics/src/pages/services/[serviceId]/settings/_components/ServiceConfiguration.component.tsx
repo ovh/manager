@@ -27,7 +27,7 @@ const ServiceConfiguration = () => {
     onError: (err) => {
       toast.toast({
         title: t('serviceConfigurationUpdateToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },

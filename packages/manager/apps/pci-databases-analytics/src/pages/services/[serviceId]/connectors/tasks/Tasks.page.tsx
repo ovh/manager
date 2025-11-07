@@ -63,7 +63,7 @@ const Tasks = () => {
     onError: (err) => {
       toast.toast({
         title: t('restartConnectorTaskToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },

@@ -73,7 +73,7 @@ const AdvancedConfigurationForm = ({
   } = useEditAdvancedConfiguration({
     onError: (error) => {
       toast.toast({
-        variant: 'destructive',
+        variant: 'critical',
         title: t('advancedConfigurationUpdateErrorTitle'),
         description: getCdbApiErrorMessage(error),
       });

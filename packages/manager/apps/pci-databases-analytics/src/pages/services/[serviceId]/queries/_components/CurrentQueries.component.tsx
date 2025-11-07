@@ -34,7 +34,7 @@ const CurrentQueries = () => {
     onError: (err) => {
       toast.toast({
         title: t('currentQueryTerminateToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -46,7 +46,7 @@ const CurrentQueries = () => {
         });
       } else {
         toast.toast({
-          variant: 'destructive',
+          variant: 'critical',
           title: t('currentQueryTerminateToastSuccesFalseTitle'),
         });
       }

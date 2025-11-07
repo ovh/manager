@@ -28,7 +28,7 @@ const DeletionProtection = () => {
     onError: (err) => {
       toast.toast({
         title: t('updateServiceToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -54,7 +54,7 @@ const DeletionProtection = () => {
 
   return (
     <RouteModal isLoading={!serviceQuery.data?.id}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="deletion-protection-modal">
             {t('deletionProtectionTitle')}
@@ -68,9 +68,9 @@ const DeletionProtection = () => {
               : t('activateProtection')}
           </p>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('deletionProtectionButtonCancel')}
             </Button>
           </DialogClose>
