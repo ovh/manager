@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Meter, Text } from '@ovh-ux/muk';
 
 import {
   OsdsButton,
@@ -231,7 +232,7 @@ export default function Listing() {
           <React.Suspense>
             <div className="flex flex-col gap-4">
               <div>
-                <OsdsButton
+                {/* <OsdsButton
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.stroked}
                   size={ODS_BUTTON_SIZE.sm}
@@ -242,7 +243,11 @@ export default function Listing() {
                   inline
                 >
                   {t(`${NAMESPACES.ACTIONS}:order`)}
-                </OsdsButton>
+                </OsdsButton> */}
+                <div>
+                  <Text preset="heading-1">Meter from MUK</Text>
+                  <Meter />
+                </div>
               </div>
               {columns && flattenData && (
                 <Datagrid
