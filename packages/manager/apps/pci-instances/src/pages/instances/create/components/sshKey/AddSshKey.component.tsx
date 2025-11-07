@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FormField,
@@ -7,27 +7,23 @@ import {
   Textarea,
   Button,
   Input,
-  Icon,
 } from '@ovhcloud/ods-react';
-import {
-  Controller,
-  SubmitHandler,
-  useForm,
-  useFormContext,
-} from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   addSshKeyFormSchema,
   TAddSshKeyForm,
 } from '../../CreateInstance.schema';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 
-const AddSshKey: FC<{ openForm: boolean }> = ({ openForm }) => {
+const AddSshKey: FC<{ onSubmit: SubmitHandler<TAddSshKeyForm> }> = ({
+  onSubmit,
+}) => {
   const { t } = useTranslation('creation');
   const {
     control,
     formState: { isValid },
     handleSubmit,
+    reset,
   } = useForm({
     resolver: zodResolver(addSshKeyFormSchema),
     defaultValues: {
@@ -36,34 +32,16 @@ const AddSshKey: FC<{ openForm: boolean }> = ({ openForm }) => {
     },
     mode: 'onChange',
   });
-  const { setValue } = useFormContext<TInstanceCreationForm>();
-  const [openSshKeyform, setOpenSshKeyForm] = useState<boolean>(openForm);
 
-  const handleAddSshKey: SubmitHandler<TAddSshKeyForm> = ({
-    sshName,
-    sshKey,
-  }) => {
-    setValue('sshName', sshName);
-    setValue('sshKey', sshKey);
-    setOpenSshKeyForm(false);
+  const handleAddSshKey = (event: FormEvent) => {
+    void handleSubmit(onSubmit)(event);
+    reset();
   };
-
-  const handleOpenSshKeyForm = () => setOpenSshKeyForm(true);
-
-  if (!openSshKeyform)
-    return (
-      <Button variant="ghost" onClick={handleOpenSshKeyForm}>
-        <Icon name="plus" />
-        {t('creation:pci_instance_creation_select_sshKey_add_new')}
-      </Button>
-    );
 
   return (
     <form
       className="mt-4 max-w-[55%] flex flex-col gap-y-5"
-      onSubmit={(e) => {
-        void handleSubmit(handleAddSshKey)(e);
-      }}
+      onSubmit={handleAddSshKey}
     >
       <Controller
         control={control}
