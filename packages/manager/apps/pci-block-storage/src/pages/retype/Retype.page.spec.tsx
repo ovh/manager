@@ -15,6 +15,9 @@ import { TVolumeSnapshot } from '@/api/data/snapshot';
 const PROJECT_ID = '123';
 const VOLUME_ID = '1';
 
+vi.mock('@/api/hooks/useBodyScrollLock');
+vi.mock('@/hooks/useTrackAction', () => ({ useTrackAction: vi.fn() }));
+
 vi.mock('@/api/hooks/useCatalogWithPreselection', () => ({
   useCatalogWithPreselection: vi.fn(),
 }));

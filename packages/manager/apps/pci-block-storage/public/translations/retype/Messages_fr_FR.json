@@ -1,5 +1,5 @@
 {
-  "pci_projects_project_storages_blocks_retype_cant_retype": "Les fonctionnalités de modification du type et de chiffrement ne sont pas disponibiles pour les volumes Classic 3AZ",
+  "pci_projects_project_storages_blocks_retype_cant_retype": "La fonctionnalité de modification du type n'est pas disponible pour les volumes Classic 3AZ ou les volumes chiffrés",
   "pci_projects_project_storages_blocks_retype_title": "Modifier votre type d'offre",
   "pci_projects_project_storages_blocks_retype_change_type_title": "Sélectionner le type",
   "pci_projects_project_storages_blocks_retype_change_encryption_title": "Sélectionner le chiffrement",
