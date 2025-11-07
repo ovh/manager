@@ -1,0 +1,7 @@
+{
+  "installed_agents": "Agents installés",
+  "connected_vaults": "Vaults connectés",
+  "billing_more_info": "Plus d'information sur la facturation",
+  "number_of_connected_vaults": "{{connectedVaultCount}} connecté(s)",
+  "number_of_installed_agents": "{{installedAgentsCount}} installé(s)"
+}

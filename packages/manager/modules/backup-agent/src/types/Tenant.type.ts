@@ -3,7 +3,7 @@ import { ResourceStatus } from '@/types/Resource.type';
 
 import { Vault } from './Vault.type';
 
-type AssociatedTenantVSPC = {
+export type AssociatedTenantVSPC = {
   region: string;
   id: string;
   name: string;
