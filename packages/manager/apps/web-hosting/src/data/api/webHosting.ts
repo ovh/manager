@@ -69,6 +69,35 @@ export const postWebHostingWebsite = async (
   );
   return data;
 };
+
+export const postWebHostingWebsites = async (
+  serviceName: string,
+  payload: PostWebHostingWebsitePayload,
+  wwwNeeded: boolean,
+): Promise<PromiseSettledResult<PostWebHostingWebsitePayload>[]> => {
+  const promises = [postWebHostingWebsite(serviceName, payload)];
+
+  if (wwwNeeded) {
+    promises.push(
+      postWebHostingWebsite(serviceName, {
+        ...payload,
+        targetSpec: {
+          fqdn: `www.${payload.targetSpec.fqdn}`,
+          ...payload.targetSpec,
+        },
+      }),
+    );
+  }
+  const results = await Promise.allSettled(promises);
+  const failed = results.find((r): r is PromiseRejectedResult => r.status === 'rejected');
+
+  if (failed) {
+    throw failed.reason ?? new Error('Domain certificate creation failed');
+  }
+
+  return results;
+};
+
 export const putWebHostingWebsite = async (
   serviceName: string,
   id: number,
