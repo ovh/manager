@@ -374,11 +374,6 @@ import { useState } from 'react';`,
     },
   },
   tags: ['!dev'],
-  parameters: {
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
-  },
   render: ({}) => {
     const [values, setValues] = useState([30, 70]);
 

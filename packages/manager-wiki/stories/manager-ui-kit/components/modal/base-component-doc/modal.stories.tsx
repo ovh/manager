@@ -474,11 +474,6 @@ export const NonDismissible: Story = {
       source: { ...staticSourceRenderConfig() },
     },
   },
-  parameters: {
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
-  },
   render: ({}) => (
     <Modal>
       <ModalTrigger asChild>
