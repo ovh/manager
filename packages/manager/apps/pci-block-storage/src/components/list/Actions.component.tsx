@@ -28,9 +28,7 @@ export default function ActionsComponent({
     }),
   );
 
-  const isVolumeClassic3az = volume.is3az && volume.isClassicMultiAttach;
-
-  const retypeTitleIfDeactivated = isVolumeClassic3az
+  const retypeTitleIfDeactivated = !volume.canRetype
     ? {
         title: t(
           'retype:pci_projects_project_storages_blocks_retype_cant_retype',
@@ -72,7 +70,7 @@ export default function ActionsComponent({
       href: hrefRetype,
       label: t('pci_projects_project_storages_blocks_change_type'),
       dataTestid: 'actionComponent-retype-button',
-      disabled: isVolumeClassic3az,
+      disabled: !volume.canRetype,
       ...retypeTitleIfDeactivated,
     },
     {
