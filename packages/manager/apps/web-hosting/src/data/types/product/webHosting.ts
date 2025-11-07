@@ -207,14 +207,13 @@ export type WebHostingWebsiteDomainType = {
 export type PostWebHostingWebsitePayload = {
   targetSpec: {
     bypassDNSConfiguration?: boolean;
-    cdn?: ServiceStatus;
-    cms?: CmsType;
-    firewall?: ServiceStatus;
+    cdn?: { status?: ServiceStatus };
+    module?: { name?: CmsType };
+    firewall?: { status?: ServiceStatus };
     fqdn?: string;
     ipLocation?: string;
     name?: string;
     path?: string;
-    phpVersion?: string;
   };
 };
 
