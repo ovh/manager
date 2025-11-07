@@ -7,25 +7,47 @@ import {
   Textarea,
   Button,
   Input,
+  Text,
 } from '@ovhcloud/ods-react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  addSshKeyFormSchema,
+  buildAddSshKeyFormSchema,
   TAddSshKeyForm,
 } from '../../CreateInstance.schema';
 
-const AddSshKey: FC<{ onSubmit: SubmitHandler<TAddSshKeyForm> }> = ({
+type TAddSshKeyProps = {
+  unavailableNames: string[];
+  onSubmit: SubmitHandler<TAddSshKeyForm>;
+  onCancel: () => void;
+};
+
+const AddSshKey: FC<TAddSshKeyProps> = ({
   onSubmit,
+  onCancel,
+  unavailableNames,
 }) => {
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation([
+    'creation',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const {
     control,
     formState: { isValid },
     handleSubmit,
     reset,
   } = useForm({
-    resolver: zodResolver(addSshKeyFormSchema),
+    resolver: zodResolver(
+      buildAddSshKeyFormSchema({
+        unavailableNames,
+        unavailableNameError: t(
+          'creation:pci_instance_creation_select_sshKey_add_name_unavailable_error',
+        ),
+        requiredError: t(`${NAMESPACES.FORM}:error_required_field`),
+      }),
+    ),
     defaultValues: {
       sshName: '',
       sshKey: '',
@@ -33,9 +55,16 @@ const AddSshKey: FC<{ onSubmit: SubmitHandler<TAddSshKeyForm> }> = ({
     mode: 'onChange',
   });
 
+  const handleResetAddSshKeyForm = () => reset();
+
+  const handleCancelAddSshKey = () => {
+    handleResetAddSshKeyForm();
+    onCancel();
+  };
+
   const handleAddSshKey = (event: FormEvent) => {
     void handleSubmit(onSubmit)(event);
-    reset();
+    handleResetAddSshKeyForm();
   };
 
   return (
@@ -47,12 +76,24 @@ const AddSshKey: FC<{ onSubmit: SubmitHandler<TAddSshKeyForm> }> = ({
         control={control}
         name="sshName"
         render={({ field, fieldState }) => (
-          <FormField>
-            <FormFieldLabel>
-              {t('creation:pci_instance_creation_select_sshKey_add_name_label')}
-            </FormFieldLabel>
-            <Input invalid={fieldState.invalid} {...field} />
-          </FormField>
+          <div>
+            <FormField>
+              <FormFieldLabel>
+                {t(
+                  'creation:pci_instance_creation_select_sshKey_add_name_label',
+                )}
+              </FormFieldLabel>
+              <Input invalid={fieldState.invalid} {...field} />
+            </FormField>
+            {fieldState.error?.message && (
+              <Text
+                className="text-sm text-[--ods-color-critical-500]"
+                preset="span"
+              >
+                {fieldState.error.message}
+              </Text>
+            )}
+          </div>
         )}
       />
       <Controller
@@ -76,15 +117,14 @@ const AddSshKey: FC<{ onSubmit: SubmitHandler<TAddSshKeyForm> }> = ({
           </FormField>
         )}
       />
-      <Button
-        disabled={!isValid}
-        variant="outline"
-        size="sm"
-        className="self-start"
-        type="submit"
-      >
-        {t('creation:pci_instance_creation_select_sshKey_add_key_submit_btn')}
-      </Button>
+      <div className="flex gap-x-6">
+        <Button variant="outline" size="sm" onClick={handleCancelAddSshKey}>
+          {t(`${NAMESPACES.ACTIONS}:cancel`)}
+        </Button>
+        <Button disabled={!isValid} variant="outline" size="sm" type="submit">
+          {t('creation:pci_instance_creation_select_sshKey_add_key_submit_btn')}
+        </Button>
+      </div>
     </form>
   );
 };

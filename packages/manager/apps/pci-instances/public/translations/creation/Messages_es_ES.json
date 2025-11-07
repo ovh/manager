@@ -87,5 +87,8 @@
   "pci_instance_creation_select_sshKey_add_key_label": "Introduce tu clave SSH",
   "pci_instance_creation_select_sshKey_add_key_description": "Las claves SSH aceptadas son de tipo RSA, ECDSA y ED25519. Tu clave SSH estará disponible en todas las regiones y centros de datos de OVHcloud de tu proyecto.",
   "pci_instance_creation_select_sshKey_add_key_submit_btn": "Validar la clave",
-  "pci_instance_creation_select_sshKey_add_new": "Crear una nueva clave SSH"
+  "pci_instance_creation_select_sshKey_add_new": "Crear una nueva clave SSH",
+  "pci_instance_creation_select_sshKey_dropdown_label": "Seleccione una clave existente",
+  "pci_instance_creation_select_sshKey_add_key_done": "Su clave SSH se creará al final del proceso de configuración.",
+  "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Gracias por elegir un nombre diferente, este ya está en uso."
 }
