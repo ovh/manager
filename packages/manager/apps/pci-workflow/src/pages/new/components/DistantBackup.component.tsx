@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -11,16 +11,21 @@ import {
   ComboboxValueChangeDetails,
   FormField,
   FormFieldLabel,
+  MESSAGE_COLOR,
   Message,
   MessageBody,
   MessageIcon,
   Text,
+  Toggle,
+  ToggleControl,
+  ToggleLabel,
 } from '@ovhcloud/ods-react';
 
-import { RegionChipByType } from '@ovh-ux/manager-pci-common';
+import { Badge } from '@ovh-ux/manager-pci-common';
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 import { ContinentRegion } from '@/api/hooks/order/order';
+import { RegionTypeBadge } from '@/components/new/RegionTypeBadge.component';
 
 interface DistantBackupProps {
   distantContinents: Map<string, ContinentRegion[]>;
@@ -34,6 +39,8 @@ export const DistantBackup: FC<DistantBackupProps> = ({
   onChange,
 }) => {
   const { t } = useTranslation(['workflow-add', 'pci-common', 'global']);
+
+  const [distantBackup, setDistantBackup] = useState(false);
 
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
@@ -65,9 +72,7 @@ export const DistantBackup: FC<DistantBackupProps> = ({
         <div className={'flex flex-row justify-between w-full'}>
           <span>{item.label}</span>
           {regionsById.has(item.value) && (
-            <span>
-              <RegionChipByType type={regionsById.get(item.value).type} showTooltip={false} />
-            </span>
+            <RegionTypeBadge type={regionsById.get(item.value).type} />
           )}
         </div>
       );
@@ -96,43 +101,62 @@ export const DistantBackup: FC<DistantBackupProps> = ({
     onChange(changeDetails.value[0] ?? null);
 
   return (
-    <div className={'mt-5'}>
-      <FormField>
-        <FormFieldLabel>{t('pci_workflow_create_distant_region_label')}</FormFieldLabel>
+    <div className="mt-8">
+      <Text preset="label">
+        <Toggle onCheckedChange={(e) => setDistantBackup(e.checked)}>
+          <ToggleControl />
+          <ToggleLabel>
+            <span>{t('pci_workflow_create_distant_label')}</span>
+            <Badge
+              className="ml-4"
+              label={t('global:common_new')}
+              textColor="#000D1F"
+              backgroundColor="#47FFFA"
+            />
+          </ToggleLabel>
+        </Toggle>
+      </Text>
 
-        <Combobox
-          customOptionRenderer={comboboxRegionRender}
-          items={distantContinentsComboboxItems}
-          value={distantRegion ? [distantRegion] : []}
-          onValueChange={handleDistantRegionChange}
-          className="max-w-[360px]"
-          allowCustomValue={false}
-        >
-          <ComboboxControl clearable />
-          <ComboboxContent className="max-h-52 overflow-y-scroll" />
-        </Combobox>
-      </FormField>
-
-      {distantRegion && (
+      {distantBackup && (
         <div className="mt-5">
-          <Text>
-            {t('pci_workflow_create_price_title')}
-            <span className="font-bold">
-              {distantRegionPrice
-                ? t('pci_workflow_create_price_monthly', {
-                    price: distantRegionPrice,
-                  })
-                : t('pci_workflow_create_price_not_available')}
-            </span>
-          </Text>
-        </div>
-      )}
+          <FormField>
+            <FormFieldLabel>{t('pci_workflow_create_distant_region_label')}</FormFieldLabel>
 
-      {showActivateRegionWarning && (
-        <Message className={'mt-6'} color={'warning'} dismissible={false}>
-          <MessageIcon name={'triangle-exclamation'} />
-          <MessageBody>{t('pci_workflow_create_distant_region_enable_warning')}</MessageBody>
-        </Message>
+            <Combobox
+              customOptionRenderer={comboboxRegionRender}
+              items={distantContinentsComboboxItems}
+              value={distantRegion ? [distantRegion] : []}
+              onValueChange={handleDistantRegionChange}
+              className="max-w-80"
+              allowCustomValue={false}
+            >
+              <ComboboxControl clearable />
+              <ComboboxContent className="max-h-52 overflow-y-scroll" />
+            </Combobox>
+          </FormField>
+
+          {distantRegion && (
+            <div className="mt-5">
+              <Text>
+                {t('pci_workflow_create_price_title')}
+                <span className="font-bold">
+                  {distantRegionPrice
+                    ? t('pci_workflow_create_price_monthly', {
+                        price: distantRegionPrice,
+                      })
+                    : t('pci_workflow_create_price_not_available')}
+                </span>
+              </Text>
+            </div>
+          )}
+
+          {showActivateRegionWarning && (
+            <Message className="mt-6" color={MESSAGE_COLOR.warning} dismissible={false}>
+              <MessageIcon name={'triangle-exclamation'} />
+              <MessageBody>{t('pci_workflow_create_distant_region_enable_warning')}</MessageBody>
+            </Message>
+          )}
+        </div>
       )}
     </div>
   );

@@ -122,7 +122,7 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
       )}
 
       {!step.isLocked && (
-        <div className="flex flex-row mt-6 gap-4">
+        <div className="flex flex-row mt-8 gap-4">
           <Button
             size={'md'}
             color={'primary'}
