@@ -21,6 +21,8 @@ export enum ServiceInfoRenewModeEnum {
 export enum LifecycleCapacitiesEnum {
   EarlyRenewal = 'earlyRenewal',
   Terminate = 'terminate',
+  AutorRenewInProgress = 'autorenewInProgress',
+  DeleteAtExpiration = 'deleteAtExpiration',
   TerminateAtEngagementDate = 'terminateAtEngagementDate',
   TerminateAtExpirationDate = 'terminateAtExpirationDate',
 }

@@ -13,9 +13,9 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { RENEW_URL } from '@/alldoms/constants';
 import { bannerTypeFromFlags } from '@/domain/utils/bannerStatus';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
+import { RENEW_URL } from '@/common/constants';
 
 interface BannerErrorWarningProps {
   readonly serviceName: string;
