@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { Badge } from '@/components';
-
-import { ServiceStateBadgeProps } from './ServiceStateBadge.props';
+import { Badge } from '@/components/badge/Badge.component';
+import { ServiceStateBadgeProps } from '@/components/service-state-badge/ServiceStateBadge.props';
 
 const STATES = {
   active: { label: 'service_state_active', color: 'success' },

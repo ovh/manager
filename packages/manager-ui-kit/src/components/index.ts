@@ -80,6 +80,7 @@ export { RedirectionGuard } from './redirection-guard/RedirectionGuard.component
 export { SelectContent } from './select/select-content/SelectContent.component';
 export { SelectControl } from './select/select-control/SelectControl.component';
 export { Select } from './select/Select.component';
+export { ServiceStateBadge } from './service-state-badge/ServiceStateBadge.component';
 export { Skeleton } from './skeleton/Skeleton.component';
 export { Spinner } from './spinner/Spinner.component';
 export { Step } from './step/Step.component';
@@ -201,6 +202,10 @@ export type { ToggleProps } from './toggle/Toggle.props';
 export type { TooltipProps } from './tooltip/Tooltip.props';
 export type { TreeViewProps } from './tree-view/TreeView.props';
 export type { UpdateNameModalProps } from './update-name-modal/UpdateNameModal.props';
+export type {
+  ResourceStatus,
+  ServiceStateBadgeProps,
+} from './service-state-badge/ServiceStateBadge.props';
 export type {
   TilesInputGroupProps,
   TilesInputGroupState,

@@ -52,7 +52,12 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/lib.ts'),
       name: 'ManagerUiKitLib',
-      fileName: (format) => `manager-ui-kit-lib.${format}.ts`,
+      fileName: (format) => {
+        if (format === 'umd') {
+          return 'manager-ui-kit-lib.umd.cjs';
+        }
+        return 'manager-ui-kit-lib.es.js';
+      },
     },
     rollupOptions: {
       external: [
