@@ -28,7 +28,7 @@ export default function ActionsComponent({
     }),
   );
 
-  const retypeTitleIfDeactivated = volume.cantRetype
+  const retypeTitleIfDeactivated = !volume.canRetype
     ? {
         title: t(
           'retype:pci_projects_project_storages_blocks_retype_cant_retype',
@@ -70,7 +70,7 @@ export default function ActionsComponent({
       href: hrefRetype,
       label: t('pci_projects_project_storages_blocks_change_type'),
       dataTestid: 'actionComponent-retype-button',
-      disabled: volume.cantRetype,
+      disabled: !volume.canRetype,
       ...retypeTitleIfDeactivated,
     },
     {

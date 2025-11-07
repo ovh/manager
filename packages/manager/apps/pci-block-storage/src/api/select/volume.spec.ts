@@ -1,7 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { TFunction } from 'i18next';
 import {
-  cantRetype,
+  canRetype,
   EncryptionType,
   getEncryption,
   mapVolumeEncryption,
@@ -541,14 +541,14 @@ describe('volume', () => {
   describe('mapVolumeType', () => {
     it.each`
       isEncrypted | isVolume3az | isVolumeClassicMultiAttach | expectedResult
-      ${true}     | ${true}     | ${true}                    | ${{ is3az: true, isClassicMultiAttach: true, cantRetype: true }}
-      ${true}     | ${true}     | ${false}                   | ${{ is3az: true, isClassicMultiAttach: false, cantRetype: true }}
-      ${true}     | ${false}    | ${true}                    | ${{ is3az: false, isClassicMultiAttach: true, cantRetype: true }}
-      ${true}     | ${false}    | ${false}                   | ${{ is3az: false, isClassicMultiAttach: false, cantRetype: true }}
-      ${false}    | ${true}     | ${true}                    | ${{ is3az: true, isClassicMultiAttach: true, cantRetype: true }}
-      ${false}    | ${true}     | ${false}                   | ${{ is3az: true, isClassicMultiAttach: false, cantRetype: false }}
-      ${false}    | ${false}    | ${true}                    | ${{ is3az: false, isClassicMultiAttach: true, cantRetype: false }}
-      ${false}    | ${false}    | ${false}                   | ${{ is3az: false, isClassicMultiAttach: false, cantRetype: false }}
+      ${true}     | ${true}     | ${true}                    | ${{ is3az: true, isClassicMultiAttach: true, canRetype: false }}
+      ${true}     | ${true}     | ${false}                   | ${{ is3az: true, isClassicMultiAttach: false, canRetype: false }}
+      ${true}     | ${false}    | ${true}                    | ${{ is3az: false, isClassicMultiAttach: true, canRetype: false }}
+      ${true}     | ${false}    | ${false}                   | ${{ is3az: false, isClassicMultiAttach: false, canRetype: false }}
+      ${false}    | ${true}     | ${true}                    | ${{ is3az: true, isClassicMultiAttach: true, canRetype: false }}
+      ${false}    | ${true}     | ${false}                   | ${{ is3az: true, isClassicMultiAttach: false, canRetype: true }}
+      ${false}    | ${false}    | ${true}                    | ${{ is3az: false, isClassicMultiAttach: true, canRetype: true }}
+      ${false}    | ${false}    | ${false}                   | ${{ is3az: false, isClassicMultiAttach: false, canRetype: true }}
     `(
       'should add $expectedResult when volume: isEncrypted: $isEncrypted, is3az: $isVolume3az, isClassicMultiAttach: $isVolumeClassicMultiAttach',
       ({
@@ -583,19 +583,19 @@ describe('volume', () => {
     );
   });
 
-  describe('cantRetype', () => {
+  describe('canRetype', () => {
     it.each`
       isEncrypted | isVolume3az | isVolumeClassicMultiAttach | expectedCantRetype
-      ${true}     | ${true}     | ${true}                    | ${true}
-      ${true}     | ${true}     | ${false}                   | ${true}
-      ${true}     | ${false}    | ${true}                    | ${true}
-      ${true}     | ${false}    | ${false}                   | ${true}
-      ${false}    | ${true}     | ${true}                    | ${true}
-      ${false}    | ${true}     | ${false}                   | ${false}
-      ${false}    | ${false}    | ${true}                    | ${false}
-      ${false}    | ${false}    | ${false}                   | ${false}
+      ${true}     | ${true}     | ${true}                    | ${false}
+      ${true}     | ${true}     | ${false}                   | ${false}
+      ${true}     | ${false}    | ${true}                    | ${false}
+      ${true}     | ${false}    | ${false}                   | ${false}
+      ${false}    | ${true}     | ${true}                    | ${false}
+      ${false}    | ${true}     | ${false}                   | ${true}
+      ${false}    | ${false}    | ${true}                    | ${true}
+      ${false}    | ${false}    | ${false}                   | ${true}
     `(
-      'cant retype is {$expectedCantRetype} when volume: isEncrypted: $isEncrypted, isVolume3az: $isVolume3az, isClassicMultiAttach: $isVolumeClassicMultiAttach',
+      'can retype is {$expectedCantRetype} when volume: isEncrypted: $isEncrypted, isVolume3az: $isVolume3az, isClassicMultiAttach: $isVolumeClassicMultiAttach',
       ({
         isEncrypted,
         isVolume3az,
@@ -614,7 +614,7 @@ describe('volume', () => {
           isVolumeClassicMultiAttach,
         });
 
-        const result = cantRetype(mockCatalog)(mockVolume);
+        const result = canRetype(mockCatalog)(mockVolume);
 
         expect(result).toBe(expectedCantRetype);
       },

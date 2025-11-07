@@ -13,7 +13,7 @@ import {
   TModelPreselection,
   TModelPrice,
 } from '@/api/select/catalog';
-import { cantRetype } from '@/api/select/volume';
+import { canRetype } from '@/api/select/volume';
 
 export type TVolumeRetypeModel = TModelPrice &
   TModelAvailabilityZones &
@@ -42,7 +42,7 @@ export const useCatalogWithPreselection = (
   const data = useMemo(() => {
     if (!catalogData || !volumeData) return null;
 
-    if (cantRetype(catalogData)(volumeData)) {
+    if (!canRetype(catalogData)(volumeData)) {
       return [];
     }
 

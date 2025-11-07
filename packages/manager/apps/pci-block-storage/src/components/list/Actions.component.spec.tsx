@@ -12,6 +12,7 @@ const mockVolume = {
   attachedTo: [],
   canAttachInstance: true,
   canDetachInstance: false,
+  canRetype: true,
 } as TVolume;
 
 const mockVolumeDetach = {
@@ -81,39 +82,39 @@ describe('ActionsComponent', () => {
   });
 
   describe('change type actions', () => {
-    it.each([
-      { is3az: false, isClassicMultiAttach: false },
-      { is3az: true, isClassicMultiAttach: false },
-      { is3az: false, isClassicMultiAttach: true },
-    ])(
-      'should be enabled without a title if volume %j',
-      ({ is3az, isClassicMultiAttach }) => {
-        const { getByTestId } = render(
-          <ActionsComponent
-            volume={{ ...mockVolumeDetach, is3az, isClassicMultiAttach }}
-            projectUrl="/project"
-          />,
-        );
-
-        const changeTypeButton = getByTestId('actionComponent-retype-button');
-
-        expect(changeTypeButton).toBeEnabled();
-        expect(changeTypeButton).not.toHaveAttribute('title');
-      },
-    );
-
-    it('should be disabled with a title if volume cant retype', () => {
-      const cantRetype = true;
+    it('should be enabled without a title if volume can retype', () => {
+      const canRetype = true;
 
       const { getByTestId } = render(
         <ActionsComponent
-          volume={{ ...mockVolumeDetach, cantRetype }}
+          volume={{
+            ...mockVolumeDetach,
+            canRetype,
+          }}
           projectUrl="/project"
         />,
       );
 
       const changeTypeButton = getByTestId('actionComponent-retype-button');
 
+      expect(changeTypeButton).toBeVisible();
+      expect(changeTypeButton).toBeEnabled();
+      expect(changeTypeButton).not.toHaveAttribute('title');
+    });
+
+    it('should be disabled with a title if volume cant retype', () => {
+      const canRetype = false;
+
+      const { getByTestId } = render(
+        <ActionsComponent
+          volume={{ ...mockVolumeDetach, canRetype }}
+          projectUrl="/project"
+        />,
+      );
+
+      const changeTypeButton = getByTestId('actionComponent-retype-button');
+
+      expect(changeTypeButton).toBeVisible();
       expect(changeTypeButton).toBeDisabled();
       expect(changeTypeButton).toHaveAttribute(
         'title',

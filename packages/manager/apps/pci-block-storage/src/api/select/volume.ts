@@ -324,16 +324,16 @@ export const mapVolumeToEdit = ({
 export const isClassicMultiAttach = (volume: TAPIVolume) =>
   volume.type === 'classic-multiattach';
 
-export const cantRetype = <V extends TAPIVolume>(catalog?: TVolumeCatalog) => (
+export const canRetype = <V extends TAPIVolume>(catalog?: TVolumeCatalog) => (
   volume: V,
 ) =>
-  (is3az(catalog?.regions, volume.region) && isClassicMultiAttach(volume)) ||
-  !!getEncryption(catalog)(volume).encrypted;
+  !getEncryption(catalog)(volume).encrypted &&
+  !(is3az(catalog?.regions, volume.region) && isClassicMultiAttach(volume));
 
 export type TVolumeType = {
   is3az: boolean;
   isClassicMultiAttach: boolean;
-  cantRetype: boolean;
+  canRetype: boolean;
 };
 
 export const mapVolumeType = <V extends TAPIVolume>(
@@ -342,5 +342,5 @@ export const mapVolumeType = <V extends TAPIVolume>(
   ...volume,
   is3az: is3az(catalog?.regions || [], volume.region),
   isClassicMultiAttach: isClassicMultiAttach(volume),
-  cantRetype: cantRetype(catalog)(volume),
+  canRetype: canRetype(catalog)(volume),
 });

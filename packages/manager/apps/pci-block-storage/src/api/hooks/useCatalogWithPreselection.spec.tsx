@@ -8,14 +8,14 @@ import {
   useCatalogWithPreselection,
 } from '@/api/hooks/useCatalogWithPreselection';
 import { mapRetypingVolumeCatalog } from '@/api/select/catalog';
-import { cantRetype } from '@/api/select/volume';
+import { canRetype } from '@/api/select/volume';
 
 vi.mock('@tanstack/react-query', () => ({
   useQueries: vi.fn(),
 }));
 
 vi.mock('@/api/select/volume', () => ({
-  cantRetype: vi.fn(),
+  canRetype: vi.fn(),
 }));
 
 vi.mock('@/api/select/catalog', () => ({
@@ -57,16 +57,16 @@ describe('useCatalogWithPreselection', () => {
   });
 
   it.each`
-    canRetype | expectedData
-    ${true}   | ${mockMappedCatalog}
-    ${false}  | ${noData}
+    canVolumeRetype | expectedData
+    ${true}         | ${mockMappedCatalog}
+    ${false}        | ${noData}
   `(
-    'should return $expectedData when volume can retype: $canRetype',
+    'should return $expectedData when volume can retype: $canVolumeRetype',
     ({
-      canRetype,
+      canVolumeRetype,
       expectedData,
     }: {
-      canRetype: boolean;
+      canVolumeRetype: boolean;
       expectedData: TVolumeRetypeModel[];
     }) => {
       vi.mocked(useQueries).mockReturnValue([
@@ -74,7 +74,7 @@ describe('useCatalogWithPreselection', () => {
         { data: mockCatalog, isPending: false },
       ]);
 
-      vi.mocked(cantRetype).mockReturnValue(() => !canRetype);
+      vi.mocked(canRetype).mockReturnValue(() => canVolumeRetype);
 
       const { result } = renderHook(() =>
         useCatalogWithPreselection(PROJECT_ID, VOLUME_ID),
