@@ -6,7 +6,6 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { getVolumeCatalogQuery } from '@/api/hooks/useCatalog';
 import { getVolumeQuery } from '@/api/hooks/useVolume';
 import {
-  is3az,
   mapRetypingVolumeCatalog,
   TModelAttach,
   TModelAvailabilityZones,
@@ -14,7 +13,7 @@ import {
   TModelPreselection,
   TModelPrice,
 } from '@/api/select/catalog';
-import { isClassicMultiAttach } from '@/api/select/volume';
+import { canRetype } from '@/api/select/volume';
 
 export type TVolumeRetypeModel = TModelPrice &
   TModelAvailabilityZones &
@@ -43,10 +42,7 @@ export const useCatalogWithPreselection = (
   const data = useMemo(() => {
     if (!catalogData || !volumeData) return null;
 
-    if (
-      is3az(catalogData.regions, volumeData.region) &&
-      isClassicMultiAttach(volumeData)
-    ) {
+    if (!canRetype(catalogData)(volumeData)) {
       return [];
     }
 
