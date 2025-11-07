@@ -125,10 +125,7 @@ export const baseEmailAccountSchema = z.object({
   slotId: z.string().optional(),
 });
 
-export const addEmailAccountSchema = baseEmailAccountSchema
-  .merge(withPassword)
-  .merge(withSlotId)
-  .merge(withOffer);
+export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword).merge(withOffer);
 
 export const addEmailAccountsSchema = z
   .object({
