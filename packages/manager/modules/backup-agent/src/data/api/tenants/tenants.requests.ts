@@ -26,7 +26,7 @@ export const getTenantDetails = async (tenantId: string) =>
   (await v2.get<Tenant>(getDetailsTenantRoute(tenantId))).data;
 
 export const getVSPCTenantDetails = async (vspcTenantId: string) =>
-  (await v2.get<Tenant>(getDetailsVspcTenantRoute(vspcTenantId))).data;
+  (await v2.get<VSPCTenant>(getDetailsVspcTenantRoute(vspcTenantId))).data;
 
 export const getVSPCTenants = async (
   params?: Omit<IcebergFetchParamsV2, 'route'>,
@@ -35,3 +35,4 @@ export const getVSPCTenants = async (
 
 export const deleteVSPCTenant = async (vspcTenantId: string): Promise<ApiResponse<string>> =>
   v2.delete(`${GET_VSPC_TENANTS_ROUTE}/${vspcTenantId}`);
+
