@@ -966,6 +966,95 @@ Then re-run your command if needed:
 
 ---
 
+## 🧩 Validation Tests
+
+Before any push, release, or migration, the **validation suite** ensures the hybrid ecosystem remains consistent, deterministic, and CI/CD-ready.
+
+Two complementary validation commands exist:
+
+| Command | Description | Purpose |
+|----------|--------------|----------|
+| `yarn manager-pm-validation` | Runs local integrity tests (catalogs, private package linking, version normalization, workspace safety) | Guarantees internal coherence |
+| `yarn manager-pm-cds-validation` | Simulates Continuous Delivery (CDS) build pipeline with dry-run validation and report export | Guarantees CI/CD reproducibility |
+
+---
+
+### 1️⃣ `yarn manager-pm-validation`
+
+Validates **local workspace integrity**:
+
+- Catalog synchronization (Yarn, PNPM, Private)
+- PNPM binary version pinning and availability
+- Root workspace safety (Yarn + PNPM merged view)
+- Private package linking and dependency normalization
+
+✅ **Pass Criteria:**
+All checks return “✅” in the final summary.
+
+Example:
+```
+📊 Manager-PM Validation Summary
+✅ Catalog integrity
+✅ PNPM binary version 10.17.0
+✅ Linked private modules
+✅ Safe root workspaces state
+🎉 All validation tests passed
+```
+
+---
+
+### 2️⃣ `yarn manager-pm-cds-validation`
+
+Performs a **full CDS pipeline simulation** — deterministic and CI-ready.
+
+It runs from the repo root and executes the following sequence:
+
+1. CLI sanity check (`manager-pm --version`)
+2. Dry-run execution (`--action buildCI --dry-run=json`)
+3. Validation of exported variables (`AFFECTED_PKGS`, `PACKAGES_TO_BUILD`, `IMPACTED_UNIVERSES`)
+4. Universe folder and dist folder verification
+5. Package existence validation across the entire monorepo
+6. Snapshot persistence and cleanup
+7. Structured report generation (`validation-results.json`, `validation-results.xml`)
+
+📁 **Output directory:**
+```
+test-results/cds/reports/
+ ├─ validation-results.json
+ ├─ validation-results.xml
+ └─ dry-run-snapshot.json
+```
+
+✅ **Pass Criteria:**
+```
+📊 CDS Validation Summary
+✅ Passed: 13
+❌ Failed: 0
+🎉 All CDS validation tests passed successfully!
+```
+
+If any test fails, CI exits with code 1 and detailed failure information is available in the exported reports.
+
+---
+
+## 🧭 When to Run Validation Tests
+
+| Scenario | Command | Purpose |
+|-----------|----------|----------|
+| Before merging any migration branch | `yarn manager-pm-cds-validation` | Ensure PNPM apps don’t break CDS pipelines |
+| Before publishing a new release | `yarn manager-pm-validation` | Confirm catalogs and linking consistency |
+| After refactoring `manager-pm` internals | Both | Detect regressions early |
+| During CI/CD pipeline runs | `yarn -s manager-pm --silent --action buildCI` + `yarn manager-pm-cds-validation` | Reproducible build validation |
+
+---
+
+## ✅ Rule of Thumb
+
+> If both `manager-pm-validation` and `manager-pm-cds-validation` pass from the repository root,  
+> you are safe to **push, release, or evolve** the toolchain.
+
+---
+
 ## License
 
 BSD-3-Clause (c) OVH SAS
