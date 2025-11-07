@@ -2,8 +2,7 @@ import '@/setupTests';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
 import '@testing-library/jest-dom';
-import { render, waitFor } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
 import {
   useAuthorizationIam,
   useFeatureAvailability,
@@ -12,6 +11,7 @@ import DashboardPage from '@/pages/dashboard/Dashboard';
 import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
 import { allDomIamResource } from '@/__mocks__/allDom';
 import { allDomFeatureAvailibility } from '@/constants';
+import { wrapper } from '@/utils/test.provider';
 
 vi.mock('@/hooks/iam/iam', () => ({
   useGetIAMResourceAllDom: vi.fn(),
@@ -31,16 +31,11 @@ describe('dashboard test', () => {
       data: { [allDomFeatureAvailibility]: true },
     });
 
-    const { getByText } = render(
-      <BrowserRouter>
-        <DashboardPage />
-      </BrowserRouter>,
-    );
+    globalThis.HTMLElement.prototype.scrollIntoView = vi.fn();
+    render(<DashboardPage />, { wrapper });
 
-    await waitFor(() => {
-      const tab = getByText('domain_operations_dashboard_title');
-      expect(tab).toBeDefined();
-      expect(tab).not.toHaveAttribute('active');
-    });
+    const tab = screen.getByText('domain_operations_dashboard_title');
+    expect(tab).toBeInTheDocument();
+    expect(tab).not.toHaveAttribute('active');
   });
 });
