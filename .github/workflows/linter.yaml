@@ -1,10 +1,6 @@
 name: Lint Code Base
 
-on:
-  push:
-    branches-ignore: [master, develop]
-  pull_request:
-    branches: [master, develop]
+on: [push]
 
 jobs:
   build:
@@ -12,6 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: true
+          android: false
+          dotnet: false
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: true
       # Checkout the code and include all commit history
       - name: Checkout Code
         uses: actions/checkout@v3
