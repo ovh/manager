@@ -17,13 +17,13 @@
   "category_security": "Bezpieczeństwo",
   "category_legal": "Informacje prawne",
   "iam_display_content_message": "Nie masz wystarczających uprawnień do wyświetlenia danych dotyczących tego zasobu. Skontaktuj się z administratorem.",
-  "category_support": "Pomoc techniczna",
+  "category_support": "Dział Wsparcia Klienta",
   "category_alert": "Alerty",
-  "category_incident": "Incydent",
+  "category_incident": "Awaria",
   "category_maintenance": "Konserwacja",
   "status_error": "Błąd",
-  "status_disabled": "Wyłączona",
-  "status_valid": "Aktywny",
-  "status_to_validate": "W oczekiwaniu",
-  "error_rate_limit_message": "Osiągnąłeś limit zapytań. Proszę spróbować ponownie później."
+  "status_disabled": "Wyłączony",
+  "status_valid": "Aktywna",
+  "status_to_validate": "Oczekujący",
+  "error_rate_limit_message": "Osiągnąłeś limit zapytań. Spróbuj ponownie później."
 }
