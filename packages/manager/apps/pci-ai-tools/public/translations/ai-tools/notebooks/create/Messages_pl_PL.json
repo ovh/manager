@@ -53,5 +53,5 @@
   "fieldConfigurationPrivacyLabel": "Poufność",
   "sshKeyConfigurationHelperBis": "Połącz klucze SSH z Twoim notebookiem za pomocą poniższej listy rozwijanej",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
-  "qpuQubits": "Qubits"
+  "qpuQubits": "Kubity"
 }

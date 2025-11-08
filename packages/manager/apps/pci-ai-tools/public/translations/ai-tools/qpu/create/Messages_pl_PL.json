@@ -51,9 +51,9 @@
   "errorCreatingNotebook": "Błąd",
   "successCreatingNotebookTitle": "Operacja zakończona pomyślnie",
   "successCreatingNotebookDescription": "Twój notebook został utworzony",
-  "qpuPrice": "Czas QPU",
+  "qpuPrice": "Czas działania QPU",
   "totalPrice": "Razem",
-  "notePriceDesc": "Czas QPU jest naliczany na sekundę. Czas QPU będzie naliczany tylko za czas korzystania z QPU",
+  "notePriceDesc": "Czas pracy QPU jest fakturowany za sekundę. Płacisz wyłącznie za rzeczywisty czas pracy QPU",
   "pricingLabel": "Cena",
-  "notebookPrice": "Zasoby Notebook"
+  "notebookPrice": "Zasoby Notebooka"
 }
