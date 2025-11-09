@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 /* eslint-disable */
-const { spawn } = require("node:child_process");
+const { spawnSync } = require("node:child_process");
 const glob = require("glob");
+
+const BATCH_SIZE = 100; // avoid E2BIG: run in small groups
 
 const files = glob.sync("packages/**/*.html", {
   ignore: [
@@ -22,29 +24,28 @@ if (files.length === 0) {
 
 console.log(`▶️  Running htmlhint on ${files.length} files...\n`);
 
-const child = spawn("htmlhint", files, { shell: true });
+let hasErrors = false;
+for (let i = 0; i < files.length; i += BATCH_SIZE) {
+  const batch = files.slice(i, i + BATCH_SIZE);
+  const result = spawnSync("htmlhint", batch, { encoding: "utf-8" });
 
-child.stdout.on("data", (data) => {
-  const lines = data
-    .toString()
+  // Filter stdout (remove "Config loaded" lines)
+  const stdout = result.stdout
     .split("\n")
-    // Filter out the “Config loaded” line(s)
     .filter((line) => !line.includes("Config loaded:"))
-    .join("\n");
+    .join("\n")
+    .trim();
 
-  if (lines.trim()) process.stdout.write(lines + "\n");
-});
+  if (stdout) console.log(stdout);
 
-child.stderr.on("data", (data) => {
-  // Pass through all stderr lines (errors, warnings, etc.)
-  process.stderr.write(data.toString());
-});
+  if (result.status !== 0) hasErrors = true;
+}
 
-child.on("close", (code) => {
-  if (code !== 0) {
-    console.warn("\n⚠️  HTMLHint reported issues, but CI will continue.");
-  } else {
-    console.log("✅  HTMLHint passed with no issues.");
-  }
-  process.exit(0);
-});
+if (hasErrors) {
+  console.warn("\n⚠️  HTMLHint reported issues, but CI will continue.");
+} else {
+  console.log("✅  HTMLHint passed with no issues.");
+}
+
+// Always success (non-blocking in CI)
+process.exit(0);
