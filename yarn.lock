@@ -22173,7 +22173,7 @@ htmlfy@^0.6.0:
   resolved "https://registry.yarnpkg.com/htmlfy/-/htmlfy-0.6.7.tgz#598172336a75915e41e4abf558656e11fcc4c449"
   integrity sha512-r8hRd+oIM10lufovN+zr3VKPTYEIvIwqXGucidh2XQufmiw6sbUXFUFjWlfjo3AnefIDTyzykVzQ8IUVuT1peQ==
 
-htmlhint@^1.1.0:
+htmlhint@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/htmlhint/-/htmlhint-1.7.1.tgz#058e2848ae37fe5f7b8f0f4481afea81cd14d10d"
   integrity sha512-zasEL49C55zZj30n6KFSwlWPXCUxFcXNBGfupO8lQeFV5LAMAlvSloUWebXYsU3v2cSt2H4+AYx3wI6rUk4pmA==
