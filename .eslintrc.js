@@ -37,7 +37,6 @@ module.exports = {
     '**/vue/src/**',
     '**/loader/**',
     '**/templates/**',
-    '**/*.tsx',
     '**/*.config.ts',
     'vite-env.d.ts'
   ],
