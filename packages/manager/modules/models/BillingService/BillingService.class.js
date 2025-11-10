@@ -359,9 +359,7 @@ export default class BillingService {
 
   canBeUnresiliated(nichandle) {
     return (
-      this.shouldDeleteAtExpiration() &&
-      !this.hasManualRenew() &&
-      this.hasResiliationRights(nichandle)
+      this.shouldDeleteAtExpiration() && this.hasResiliationRights(nichandle)
     );
   }
 
