@@ -22,6 +22,7 @@ import { useGetUser } from '@/data/hooks/user/useGetUser.hook';
 import UserInformation from '@/components/user-information/userInformation.component';
 import { POLLING } from '@/configuration/polling.constants';
 import { FormField } from '@/components/form-field/FormField.component';
+import { withPreventDefault } from '@/lib/formHelper';
 
 interface AddUserFormProps {
   onClose?: (user: user.User) => void;
@@ -132,7 +133,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
         ) : (
           <>
             <DialogBody>
-              <form onSubmit={onSubmit} id="addUserForm">
+              <form id="addUserForm" onSubmit={withPreventDefault(onSubmit)}>
                 <FormField name="userName" form={form}>
                   {(field) => (
                     <>
