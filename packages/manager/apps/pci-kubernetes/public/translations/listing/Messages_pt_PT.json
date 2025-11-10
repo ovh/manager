@@ -25,5 +25,12 @@
   "kube_common_node_pool_title_multiple": "Configure um ou vários pools de nós (opcional)",
   "kubernetes_containers_deployment_mode_label": "Modo de implementação",
   "kube_list_node_pools": "Precisa de volumes persistentes para vários pods em diferentes nós e zonas de disponibilidade? Experimente o nosso serviço <strong>File Storage</strong> totalmente gerido, compatível com o Managed Kubernetes Service. Desfrute de volumes 'Read Write Many' <strong>a partir de 10 GB</strong>, evoluindo de forma transparente com os seus clusters.",
-  "kube_list_node_pools_discover": "Descobrir o alpha"
+  "kube_list_node_pools_discover": "Descobrir o alpha",
+  "READY": "Pronto",
+  "DISABLED": "Desativado",
+  "UPDATING": "Atualização em curso",
+  "ERROR": "Erro",
+  "DELETING": "Eliminação em curso",
+  "CREATING": "Criação em curso",
+  "ENABLED": "Ativado"
 }

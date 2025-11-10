@@ -58,7 +58,7 @@ vi.mock('react-i18next', () => ({
       exists: () => true,
     },
   }),
-  Trans: ({ children }: { children: string }) => children,
+  Trans: ({ children, i18nKey }: { children: string; i18nKey: string }) => i18nKey ?? children,
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
