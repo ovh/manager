@@ -1,4 +1,4 @@
-import { ElementRef, ForwardedRef, forwardRef, useMemo } from 'react';
+import { ElementRef, ForwardedRef, forwardRef, ForwardRefExoticComponent, RefAttributes, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,9 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { ModalProps } from '@/components/modal/Modal.props';
 
-export const Modal = forwardRef(
+type ModalRef = ElementRef<typeof ModalContent>;
+
+export const Modal: ForwardRefExoticComponent<ModalProps & RefAttributes<ModalRef>> = forwardRef(
   (
     {
       heading,
