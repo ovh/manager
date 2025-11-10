@@ -2,7 +2,7 @@ import { useMemo, useCallback } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, Datagrid, type DatagridColumn } from '@ovh-ux/muk';
+import { BaseLayout, Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -71,37 +71,37 @@ export default function ListingPage() {
   );
 
   // Define columns with cell renderers and labels for Datagrid
-  // Removed isSortable, isSearchable, isFilterable to prevent infinite loops
+  // Using accessorKey and header as required by MUK Datagrid (TanStack Table)
   const columns = useMemo<DatagridColumn<NashaService>[]>(
     () => [
       {
-        id: 'serviceName',
-        label: t('listing:columns.serviceName'),
-        cell: renderServiceName,
+        accessorKey: 'serviceName',
+        header: t('listing:columns.serviceName'),
+        cell: ({ row }) => renderServiceName(row.original),
         enableHiding: true,
       },
       {
-        id: 'canCreatePartition',
-        label: t('listing:columns.canCreatePartition'),
-        cell: renderCanCreatePartition,
+        accessorKey: 'canCreatePartition',
+        header: t('listing:columns.canCreatePartition'),
+        cell: ({ row }) => renderCanCreatePartition(row.original),
         enableHiding: true,
       },
       {
-        id: 'customName',
-        label: t('listing:columns.customName'),
-        cell: renderCustomName,
+        accessorKey: 'customName',
+        header: t('listing:columns.customName'),
+        cell: ({ row }) => renderCustomName(row.original),
         enableHiding: true,
       },
       {
-        id: 'datacenter',
-        label: t('listing:columns.datacenter'),
-        cell: renderDatacenter,
+        accessorKey: 'datacenter',
+        header: t('listing:columns.datacenter'),
+        cell: ({ row }) => renderDatacenter(row.original),
         enableHiding: true,
       },
       {
-        id: 'diskType',
-        label: t('listing:columns.diskType'),
-        cell: renderDiskType,
+        accessorKey: 'diskType',
+        header: t('listing:columns.diskType'),
+        cell: ({ row }) => renderDiskType(row.original),
         enableHiding: true,
       },
     ],
@@ -124,13 +124,9 @@ export default function ListingPage() {
   // Topbar CTA button
   const topbarCTA = useMemo(
     () => (
-      <button
-        type="button"
-        onClick={handleOrderClick}
-        className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark"
-      >
+      <Button variant="default" onClick={handleOrderClick}>
         {t('listing:order_button')}
-      </button>
+      </Button>
     ),
     [t, handleOrderClick],
   );

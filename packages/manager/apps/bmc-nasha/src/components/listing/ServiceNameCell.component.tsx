@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
@@ -10,22 +10,24 @@ type ServiceNameCellProps = {
 };
 
 export default function ServiceNameCell({ serviceName }: ServiceNameCellProps) {
-  const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const handleNavigate = () => {
+  const handleClick = () => {
     trackClick({
       location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'action',
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
       actions: [APP_NAME, 'listing', 'go-to-service'],
     });
-    navigate(`../${urls.dashboard.replace(':serviceName', serviceName)}`);
   };
 
   return (
-    <button type="button" onClick={handleNavigate} className="text-primary hover:underline">
+    <Link
+      to={`../${urls.dashboard.replace(':serviceName', serviceName)}`}
+      onClick={handleClick}
+      className="text-primary hover:underline"
+    >
       {serviceName}
-    </button>
+    </Link>
   );
 }
