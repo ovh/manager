@@ -81,7 +81,7 @@ export default function EditNamePage() {
 
   return (
     <UpdateNameModal
-      isOpen={true}
+      open={true}
       headline={t('edit-name:title', { name: nasha.serviceName }, `Edit name for ${nasha.serviceName}`)}
       description={t('edit-name:description', 'Update the display name for this service')}
       inputLabel={t('edit-name:label', { name: nasha.serviceName }, `Name for ${nasha.serviceName}`)}

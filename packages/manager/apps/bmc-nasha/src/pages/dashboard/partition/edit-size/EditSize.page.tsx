@@ -160,7 +160,7 @@ export default function EditSizePage() {
         <div className="flex gap-4 mt-6">
           <Button
             type="submit"
-            variant="primary"
+            variant="default"
             disabled={isUpdating || hasError || size === Math.floor(partition.size / (1024 * 1024 * 1024))}
             isLoading={isUpdating}
           >

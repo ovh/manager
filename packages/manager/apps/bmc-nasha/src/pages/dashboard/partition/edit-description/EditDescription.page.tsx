@@ -119,7 +119,7 @@ export default function EditDescriptionPage() {
         <div className="flex gap-4 mt-6">
           <Button
             type="submit"
-            variant="primary"
+            variant="default"
             disabled={isUpdating || description === partition.partitionDescription}
             isLoading={isUpdating}
           >

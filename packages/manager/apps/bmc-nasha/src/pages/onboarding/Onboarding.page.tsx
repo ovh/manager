@@ -89,7 +89,7 @@ export default function OnboardingPage() {
       img={img}
       description={t('onboarding:content')}
       orderButtonLabel={t('onboarding:order')}
-      onOrderClick={handleOrderClick}
+      onOrderButtonClick={handleOrderClick}
     >
       {guideTiles.map((tile) => (
         <LinkCard
