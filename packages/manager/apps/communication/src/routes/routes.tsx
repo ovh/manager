@@ -24,12 +24,14 @@ const CommunicationsPage = lazy(() =>
 const CommunicationsDetailPage = lazy(() =>
   import('@/pages/communications/detail/CommunicationsDetail.page'),
 );
-const SettingsPage = lazy(() => import('@/pages/settings/Settings.page'));
-const CreateSettingsPage = lazy(() =>
+const RoutingListingPage = lazy(() => import('@/pages/settings/Settings.page'));
+const CreateRoutingPage = lazy(() =>
   import('@/pages/settings/create/Create.page'),
 );
-const EditSettingsPage = lazy(() => import('@/pages/settings/edit/Edit.page'));
-
+const EditRoutingPage = lazy(() => import('@/pages/settings/edit/Edit.page'));
+const DeleteRoutingPage = lazy(() =>
+  import('@/pages/settings/delete/Delete.page'),
+);
 export default (
   <Route
     path={urls.root}
@@ -119,7 +121,7 @@ export default (
       </Route>
       <Route
         path={urls.routing.listing}
-        Component={SettingsPage}
+        Component={RoutingListingPage}
         handle={{
           tracking: {
             pageName: 'preference-center',
@@ -127,10 +129,21 @@ export default (
             subApp: TrackingSubApps.Settings,
           },
         }}
-      ></Route>
+      >
+        <Route
+          path={urls.routing.delete}
+          Component={DeleteRoutingPage}
+          handle={{
+            tracking: {
+              pageName: 'preference-center::delete',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
       <Route
         path={urls.routing.create}
-        Component={CreateSettingsPage}
+        Component={CreateRoutingPage}
         handle={{
           tracking: {
             pageName: 'preference-center::create',
@@ -141,7 +154,7 @@ export default (
       />
       <Route
         path={urls.routing.edit}
-        Component={EditSettingsPage}
+        Component={EditRoutingPage}
         handle={{
           tracking: {
             pageName: 'preference-center::edit',

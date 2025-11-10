@@ -111,7 +111,7 @@ export const useUpdateRoutingStatus = ({
         queryClient.invalidateQueries({
           queryKey: getNotificationRoutingListQueryKey(),
         }),
-        queryClient.invalidateQueries({
+        queryClient.removeQueries({
           queryKey: getNotificationRoutingQueryKey(routing.id),
         }),
       ]);
@@ -140,7 +140,7 @@ export const useDeleteRouting = ({
         queryClient.invalidateQueries({
           queryKey: getNotificationRoutingListQueryKey(),
         }),
-        queryClient.invalidateQueries({
+        queryClient.removeQueries({
           queryKey: getNotificationRoutingQueryKey(routingId),
         }),
       ]);
