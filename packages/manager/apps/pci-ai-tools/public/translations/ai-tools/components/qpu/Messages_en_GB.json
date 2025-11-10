@@ -2,7 +2,7 @@
   "fieldQpuDescription": "Select resource type",
   "tableHeadType": "Type",
   "tableHeadDescription": "Description",
-  "tableHeadQubits": "qubits",
+  "tableHeadQubits": "Qubits",
   "tableHeadMemory": "RAM",
   "tableHeadStorage": "Storage",
   "tableHeadPrice": "Price per hour",

@@ -17,13 +17,13 @@
   "category_security": "Sicherheit",
   "category_legal": "Rechtliches",
   "iam_display_content_message": "Sie verfügen nicht über die erforderlichen Berechtigungen zum Anzeigen der Daten für diese Ressource. Bitte wenden Sie sich an Ihren Administrator.",
-  "category_support": "Kundendienst",
+  "category_support": "Support",
   "category_alert": "Warnungen",
-  "category_incident": "Vorfall",
-  "category_maintenance": "Wartung",
+  "category_incident": "Störung",
+  "category_maintenance": "Wartungsarbeit",
   "status_error": "Fehler",
   "status_disabled": "Deaktiviert",
   "status_valid": "Aktiv",
-  "status_to_validate": "Warten",
-  "error_rate_limit_message": "Sie haben das Anfrage-Limit erreicht. Bitte versuchen Sie es später erneut."
+  "status_to_validate": "Ausstehend",
+  "error_rate_limit_message": "Sie haben das Limit für Anfragen erreicht. Bitte versuchen Sie es später noch einmal."
 }
