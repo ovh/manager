@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.19...@ovh-ux/manager-web-domains-app@1.3.20) (2025-11-10)
+
+
+### Bug Fixes
+
+* **web-domains:** billing renew is null ([2a12aad](https://github.com/ovh/manager/commit/2a12aad709323bf68653e3861f1f3c1e2572109e)), closes [#DCE-89](https://github.com/ovh/manager/issues/DCE-89)
+
+
+
+
+
 ## [1.3.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.18...@ovh-ux/manager-web-domains-app@1.3.19) (2025-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app
