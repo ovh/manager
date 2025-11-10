@@ -7,7 +7,7 @@ ai: true
 
 # Manager UI Kit (MUK)
 
-> **📦 Version:** `@ovh-ux/muk@^0.4.0`
+> **📦 Version:** `@ovh-ux/muk@^0.5.0`
 
 ## 🧭 Purpose
 
@@ -39,7 +39,7 @@ MUK is designed for:
 ```json
 {
   "dependencies": {
-    "@ovh-ux/muk": "^0.4.0"
+    "@ovh-ux/muk": "^0.5.0"
   }
 }
 ```
@@ -166,6 +166,7 @@ function DataTable() {
 - `isLoading?: boolean`
 - `sorting?`, `filters?`, `search?` - From `useDataApi` hook
 - `expandable?`, `rowSelection?`, `columnVisibility?`, `topbar?`, `onFetchNextPage?`, `renderSubComponent?`
+- `variant?`, `size?` - 🔄 Coming soon in future releases
 
 **Column Definition:**
 ```typescript
@@ -221,7 +222,7 @@ interface DatagridColumn<T> extends ColumnDef<T> {
 | **Notifications** | `notifications`, `onRemove`, `position?`, `duration?` | Toast notifications |
 | **Popover** | `children` (PopoverTrigger, PopoverContent) | Floating content |
 | **Progress** | `value`, `max?`, `size?`, `variant?`, `showValue?` | Progress indicators |
-| **Tabs** | `value`, `onValueChange`, `items: Array<{value, label, content}>` | Tab navigation |
+| **Tabs** | `value`, `onValueChange`, `items: Array<{value, label, content}>` | Tab navigation (🔄 ODS 19 component coming soon) |
 | **Tile** | `title`, `description?`, `image?`, `href?` + IAM | Content tiles |
 | **Tooltip** | `content`, `position?`, `delay?` | Hover tooltips |
 | **TreeView** | `data`, `onNodeSelect?`, `onNodeToggle?`, `expandable?`, `selectable?` | Hierarchical data |
@@ -420,6 +421,42 @@ import * as MUK from '@ovh-ux/muk'; // ❌
 
 ## 🧪 Testing
 
+MUK v0.5.0 includes full testing support for React apps. Configure Vitest in your app:
+
+### Vitest Configuration
+
+```typescript
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./vitest.setup.ts'],
+  },
+});
+```
+
+```typescript
+// vitest.setup.ts
+import '@ovh-ux/muk/dist/style.css';
+import { vi } from 'vitest';
+
+// Mock MUK components if needed
+vi.mock('@ovh-ux/muk', async () => {
+  const actual = await vi.importActual('@ovh-ux/muk');
+  return {
+    ...actual,
+    // Add specific mocks if needed
+  };
+});
+```
+
+### Testing Example
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import { Button } from '@ovh-ux/muk';
@@ -432,7 +469,7 @@ test('renders button with IAM', () => {
 
 ## 📚 TypeScript
 
-All components have full TypeScript support. Import types:
+All components have full TypeScript support. Import types and enums:
 
 ```typescript
 import type {
@@ -443,7 +480,26 @@ import type {
   UseDataApiOptions,
   UseDataApiResult
 } from '@ovh-ux/muk';
+
+// Enums are now exported (v0.5.0+)
+import {
+  BADGE_COLOR,
+  BADGE_SIZE,
+  BADGE_VARIANT,
+  BREADCRUMB_SIZE,
+  BUTTON_VARIANT,
+  BUTTON_SIZE,
+  MODAL_COLOR,
+  MODAL_SIZE
+} from '@ovh-ux/muk';
 ```
+
+### Available Enums (v0.5.0+)
+
+- **Badge**: `BADGE_COLOR`, `BADGE_SIZE`, `BADGE_VARIANT`
+- **Breadcrumb**: `BREADCRUMB_SIZE`
+- **Button**: `BUTTON_VARIANT`, `BUTTON_SIZE`
+- **Modal**: `MODAL_COLOR`, `MODAL_SIZE`
 
 ---
 
@@ -478,3 +534,16 @@ import type {
 - **Performance optimization** ensures fast, scalable applications
 
 **👉 Good MUK usage is invisible to users but essential for Manager application success.**
+
+---
+
+## 📋 Version 0.5.0 Changelog
+
+### ✅ Added
+- **Testing support**: Full Vitest configuration support for React apps
+- **Exported enums**: Badge, Breadcrumb, Button, and Modal enums are now exported
+
+### 🔄 Coming Soon
+- **Datagrid variant and size**: Additional styling options for Datagrid component
+- **Storybook fixes**: Various fixes and improvements in Storybook
+- **Tabs component**: ODS 19 Tabs component integration

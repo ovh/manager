@@ -5,6 +5,8 @@ tags: [muk, components, reference, available, exports]
 ai: true
 ---
 
+> **📦 Version:** `@ovh-ux/muk@^0.5.0`
+
 # MUK Components Reference
 
 ## Available Components
@@ -241,6 +243,8 @@ interface DatagridProps<T> {
   onPaginationChange?: (updater: Updater<PaginationState>) => void;
   onSortChange?: (updater: Updater<SortingState>) => void;
   isLoading?: boolean;
+  variant?: string;    // 🔄 Coming soon
+  size?: string;       // 🔄 Coming soon
 }
 ```
 
@@ -249,6 +253,33 @@ interface DatagridProps<T> {
 - `ghost` - Transparent background
 - `outline` - Border only
 ❌ NOT: `primary`, `secondary`
+
+**Enums (v0.5.0+):**
+```typescript
+import { BUTTON_VARIANT, BUTTON_SIZE } from '@ovh-ux/muk';
+```
+
+## Available Enums (v0.5.0+)
+
+MUK v0.5.0 exports the following enums:
+
+- **Badge**: `BADGE_COLOR`, `BADGE_SIZE`, `BADGE_VARIANT`
+- **Breadcrumb**: `BREADCRUMB_SIZE`
+- **Button**: `BUTTON_VARIANT`, `BUTTON_SIZE`
+- **Modal**: `MODAL_COLOR`, `MODAL_SIZE`
+
+```typescript
+import {
+  BADGE_COLOR,
+  BADGE_SIZE,
+  BADGE_VARIANT,
+  BREADCRUMB_SIZE,
+  BUTTON_VARIANT,
+  BUTTON_SIZE,
+  MODAL_COLOR,
+  MODAL_SIZE
+} from '@ovh-ux/muk';
+```
 
 ## Tracking API
 
@@ -315,3 +346,35 @@ import { Spinner, Links, Title } from '@ovh-ux/muk';
 <Button variant="ghost">Click me</Button>    // ✅ Available
 <Button variant="outline">Click me</Button>  // ✅ Available
 ```
+
+## Testing with MUK (v0.5.0+)
+
+MUK v0.5.0 includes full testing support. Configure Vitest:
+
+```typescript
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./vitest.setup.ts'],
+  },
+});
+```
+
+```typescript
+// vitest.setup.ts
+import '@ovh-ux/muk/dist/style.css';
+```
+
+## Upcoming Features
+
+The following features are planned for future releases:
+
+- **Datagrid variant and size**: Additional styling options for Datagrid component 🔄
+- **Storybook fixes**: Various fixes and improvements in Storybook 🔄
+- **Tabs component**: ODS 19 Tabs component integration 🔄
