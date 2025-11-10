@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Country, LegalForm, Subsidiary, User } from '@ovh-ux/manager-config';
+import {
+  Country,
+  LegalForm,
+  Subsidiary,
+  User,
+  UserLocales,
+} from '@ovh-ux/manager-config';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import userContext from '@/context/user/user.context';
 import { useTrackingContext } from '@/context/tracking/useTracking';
@@ -25,7 +31,6 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     { enabled: Boolean(isFetched && me) },
   );
   const redirectToLegacySignup = useLegacySignupRedirection();
-  // We will need to add states for language to prefill the /details form
   const [legalForm, setLegalForm] = useState<LegalForm | undefined>(undefined);
   const [ovhSubsidiary, setOvhSubsidiary] = useState<Subsidiary | undefined>(
     undefined,
@@ -40,6 +45,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   ] = useState<string | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [city, setCity] = useState<string | undefined>(undefined);
+  const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
 
   useEffect(() => {
     if (isFetched) {
@@ -49,7 +55,13 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
       }
       setLegalForm(me?.legalform);
       setOvhSubsidiary(me?.ovhSubsidiary);
-      setCountry(me?.country as Country);
+      setCountry(me?.country);
+      setLanguage(me?.language || undefined);
+      // When we receive the user data, we will call setUser to update the tracking configuration
+      setUser({
+        ...(me || {}),
+        language: me?.language || undefined,
+      } as User);
     }
   }, [isFetched]);
 
@@ -63,14 +75,13 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     }
   }, [availability]);
 
+  // When the legal form is updated, we will call setUser to update the tracking configuration
   useEffect(() => {
-    // TODO: add currency to dependencies (MANAGER-17334)
     setUser({
       ...(me || {}),
       legalform: legalForm,
-      country,
     } as User);
-  }, [legalForm, country]);
+  }, [legalForm]);
 
   const setCompany = (company: Company | null) => {
     if (company !== null) {
@@ -102,6 +113,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     address,
     city,
     setCompany,
+    language,
     isSMSConsentAvailable: availability?.[SMS_CONSENT_FEATURE] ?? false,
   };
 

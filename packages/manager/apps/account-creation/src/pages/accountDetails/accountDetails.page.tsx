@@ -773,9 +773,9 @@ function AccountDetailsForm({
                     className="flex-1"
                   >
                     {rules?.language
-                      ? rules?.language.in?.map((language: string) => (
-                          <option key={language} value={language}>
-                            {t(`language_${language}`, {
+                      ? rules?.language.in?.map((lang: string) => (
+                          <option key={lang} value={lang}>
+                            {t(`language_${lang}`, {
                               ns: NAMESPACES.LANGUAGE,
                             })}
                           </option>
