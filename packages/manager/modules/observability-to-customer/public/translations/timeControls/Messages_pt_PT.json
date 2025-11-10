@@ -1,0 +1,10 @@
+{
+  "button_cancel": "Anular",
+  "option_custom": "Personalizado",
+  "option_day": "1 dia",
+  "option_days": "{{nbDays}} dias",
+  "button_refresh": "Atualizar",
+  "time_range_from": "De",
+  "time_range_to": "Ao",
+  "apply_time_range": "Aplicar"
+}
