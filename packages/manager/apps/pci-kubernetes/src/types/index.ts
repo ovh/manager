@@ -207,11 +207,16 @@ export type TSelectedAvailabilityZones = {
   checked: boolean;
 }[];
 
+export type TAttachFloatingIPs = {
+  enabled: boolean;
+};
+
 export type NodePoolState = {
   name: string;
   isTouched: boolean;
   scaling: TScalingState;
   antiAffinity: boolean;
+  attachFloatingIPs?: TAttachFloatingIPs;
   selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
 };
 
