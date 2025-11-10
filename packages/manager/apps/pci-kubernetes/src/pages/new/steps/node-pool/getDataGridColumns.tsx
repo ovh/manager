@@ -1,85 +1,114 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ReactNode } from 'react';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { NodePool } from '@/api/data/kubernetes';
+import StatusChip from '@/components/StatusChip';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 import { MonthlyBilled } from '@/pages/detail/nodepools/useDatagridColumn';
+import { ResourceStatus } from '@/types';
+
+const TextCell = ({ children }: { children: ReactNode }) => (
+  <DataGridTextCell>{children}</DataGridTextCell>
+);
+
+const AutoscalingCell = ({
+  maxNodes,
+  minNodes,
+  autoscale,
+}: {
+  maxNodes?: number;
+  minNodes?: number;
+  autoscale: boolean;
+}) => (
+  <TextCell>
+    {autoscale ? `Min ${minNodes}, Max ${maxNodes}` : <StatusChip label={'DISABLED'} />}
+  </TextCell>
+);
+
+const createTextColumn = (
+  id: string,
+  accessor: (props: NodePool) => ReactNode,
+  labelKey: string,
+  t: (text: string) => string,
+): DatagridColumn<NodePool> => ({
+  id,
+  cell: (props) => <TextCell>{accessor(props)}</TextCell>,
+  label: t(labelKey),
+});
 
 export const getDatagridColumns = ({
   onDelete,
   t,
+  showFloatingIp = false,
 }: {
   onDelete: (name: string) => void;
   t: (text: string) => string;
+  showFloatingIp: boolean;
 }) => {
   const columns: DatagridColumn<NodePool>[] = [
-    {
-      id: 'name',
-      cell: (props) => <DataGridTextCell>{props.name}</DataGridTextCell>,
-      label: t('add:kubernetes_add_name'),
-    },
-
-    {
-      id: 'localisation',
-      cell: (props) => <DataGridTextCell>{props.localisation}</DataGridTextCell>,
-      label: t('node-pool:kube_common_node_pool_localisation'),
-    },
-    {
-      id: 'model',
-      cell: (props) => <DataGridTextCell>{props.flavorName}</DataGridTextCell>,
-      label: t('node-pool:kube_common_node_pool_model'),
-    },
-    {
-      id: 'desiredNodes',
-      cell: (props) => <DataGridTextCell>{props.desiredNodes}</DataGridTextCell>,
-      label: t('node-pool:kube_common_node_pool_desired_node'),
-    },
+    createTextColumn('name', (props) => props.name, 'add:kubernetes_add_name', t),
+    createTextColumn(
+      'localisation',
+      (props) => props.localisation,
+      'node-pool:kube_common_node_pool_localisation',
+      t,
+    ),
+    createTextColumn(
+      'model',
+      (props) => props.flavorName,
+      'node-pool:kube_common_node_pool_model',
+      t,
+    ),
+    createTextColumn(
+      'desiredNodes',
+      (props) => props.desiredNodes,
+      'node-pool:kube_common_node_pool_desired_node',
+      t,
+    ),
     {
       id: 'autoscaling',
-      cell: (props) =>
-        props.autoscale ? (
-          <DataGridTextCell>
-            Min {props.minNodes}, Max {props.maxNodes}
-          </DataGridTextCell>
-        ) : (
-          <DataGridTextCell>
-            <span className="whitespace-nowrap">
-              <OsdsChip
-                color={
-                  props.autoscale ? ODS_THEME_COLOR_INTENT.success : ODS_THEME_COLOR_INTENT.error
-                }
-                inline
-                size={ODS_CHIP_SIZE.sm}
-              >
-                {t(`node-pool:kube_node_pool_autoscale_${props.autoscale}`)}
-              </OsdsChip>
-            </span>
-          </DataGridTextCell>
-        ),
+      cell: (props) => (
+        <AutoscalingCell
+          minNodes={props.minNodes}
+          maxNodes={props.maxNodes}
+          autoscale={props.autoscale}
+        />
+      ),
       label: t('autoscaling:kubernetes_node_pool_autoscaling_autoscale'),
     },
     {
       id: 'anti-affinity',
       cell: (props) => (
-        <DataGridTextCell>
-          <span className="whitespace-nowrap">
-            <OsdsChip
-              color={
-                props.antiAffinity ? ODS_THEME_COLOR_INTENT.success : ODS_THEME_COLOR_INTENT.error
-              }
-              inline
-              size={ODS_CHIP_SIZE.sm}
-            >
-              {t(`node-pool:kube_node_pool_autoscale_${props.antiAffinity}`)}
-            </OsdsChip>
-          </span>
-        </DataGridTextCell>
+        <TextCell>
+          <StatusChip
+            label={props.antiAffinity ? ResourceStatus.ENABLED : ResourceStatus.DISABLED}
+          />
+        </TextCell>
       ),
       label: t('billing-anti-affinity:kubernetes_node_pool_anti_affinity'),
     },
+    ...(showFloatingIp
+      ? [
+          {
+            id: 'floating-ip',
+            cell: (props: NodePool) => (
+              <TextCell>
+                <StatusChip
+                  label={
+                    props.attachFloatingIPs?.enabled
+                      ? ResourceStatus.ENABLED
+                      : ResourceStatus.DISABLED
+                  }
+                />
+              </TextCell>
+            ),
+            label: t('Floating IP'),
+          },
+        ]
+      : []),
     {
       id: 'billing',
       cell: MonthlyBilled,

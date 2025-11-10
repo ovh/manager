@@ -43,5 +43,16 @@
   "kube_common_node_pool_select_zone": "Deve escolher, no mínimo, uma Availability Zone.",
   "kube_common_add_node_pool_plural": "Adicionar {{count}} pools de nós",
   "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Se forem escolhidas várias Availability Zones (AZ), a configuração será duplicada automaticamente para criar um pool de nós distinto em cada zona.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Repartição AZ"
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Repartição AZ",
+  "kube_common_node_pool_public_connetivity_title": "Ligação pública",
+  "kube_common_node_pool_public_connetivity_toggle": "Anexar Floating IPs aos nós",
+  "kube_common_node_pool_public_connectivity_warning_title": "Aviso relacionado à Atualização do Cluster:",
+  "kube_common_node_pool_public_connectivity_warning_description_rolling": "A estratégia de atualização (upgrade e patch) dos clusters é atualmente <strong>\"Atualização Contínua\"</strong>: os nós são assim <strong>substituídos</strong> um por um, assim como <strong>os IPs flutuantes associados.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_in_place": "Uma futura estratégia de atualização (<strong>\"No Local\"</strong>) permitirá <strong>manter esses IPs durante as atualizações.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_more": "<strong>Para saber mais</strong>, consulte nosso <a>guia sobre o conceito de IPs Flutuantes</a>",
+  "kube_common_node_pool_deploy_floating_ip_content1": "Atribui automaticamente um <strong>IP Flutuante (IP público)</strong> a cada nó do pool de nós, incluindo os do autoscaler.",
+  "kube_common_node_pool_deploy_floating_ip_content2": "<strong>Acesso público</strong> direto ao nó.",
+  "kube_common_node_pool_deploy_floating_ip_content3": "Permite usar a <a>banda larga pública do nó</a> (em vez da da Gateway Gerenciada).",
+  "kube_common_node_pool_deploy_floating_ip_content4": "O ciclo de vida do IP Flutuante está ligado ao do nó (ele é removido com ele).",
+  "kube_common_node_pool_node": "nó"
 }

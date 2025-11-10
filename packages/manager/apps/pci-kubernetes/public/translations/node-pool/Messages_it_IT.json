@@ -42,6 +42,17 @@
   "kube_common_node_pool_estimation_cost_tile": "Stima mensile",
   "kube_common_node_pool_select_zone": "È necessario selezionare almeno una zona di disponibilità.",
   "kube_common_add_node_pool_plural": "Aggiungere {{count}} pool di nodi",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Se sono selezionate più zone di disponibilità (AZ), la configurazione verrà automaticamente duplicata per creare un pool di nodi separato in ogni zona.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Ripartizione AZ"
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Se vengono selezionate più zone di disponibilità (AZ), la configurazione verrà automaticamente duplicata per creare un pool di nodi distinto in ogni zona.",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Ripartizione AZ",
+  "kube_common_node_pool_public_connetivity_title": "Connettività pubblica",
+  "kube_common_node_pool_public_connetivity_toggle": "Collegare Floating IPs ai nodi",
+  "kube_common_node_pool_public_connectivity_warning_title": "Avviso relativo all'aggiornamento del Cluster:",
+  "kube_common_node_pool_public_connectivity_warning_description_rolling": "La strategia di aggiornamento (upgrade e patch) dei cluster è attualmente <strong>\"Rolling Upgrade\"</strong>: i nodi vengono <strong>sostituiti</strong> uno alla volta insieme a <strong>gli IP flottanti associati.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_in_place": "Una futura strategia di aggiornamento (<strong>\"In Place\"</strong>) permetterà di <strong>mantenere questi IP al momento degli aggiornamenti.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_more": "<strong>Per saperne di più</strong>, consulta la nostra <a>guida sul concetto di Floating IP</a>",
+  "kube_common_node_pool_deploy_floating_ip_content1": "Assegna automaticamente una <strong>Floating IP (IP pubblica)</strong> a ogni nodo del pool di nodi, compresi quelli dell'autoscaler.",
+  "kube_common_node_pool_deploy_floating_ip_content2": "<strong>Accesso pubblico</strong> diretto al nodo.",
+  "kube_common_node_pool_deploy_floating_ip_content3": "Permette di utilizzare la <a>larghezza di banda pubblica del nodo</a> (invece di quella della Gateway Gestita).",
+  "kube_common_node_pool_deploy_floating_ip_content4": "Il ciclo di vita della Floating IP è legato a quello del nodo (viene eliminata con esso).",
+  "kube_common_node_pool_node": "nodo"
 }
