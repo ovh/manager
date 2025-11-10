@@ -1,7 +1,7 @@
 import { STATUS } from './constants';
 
 export default class Snapshot {
-  constructor({ id, name, description, createdAt, type, status, size }) {
+  constructor({ id, name, description, createdAt, type, status, size, path }) {
     Object.assign(this, {
       id,
       name,
@@ -10,6 +10,7 @@ export default class Snapshot {
       type,
       status,
       size,
+      path,
     });
   }
 
