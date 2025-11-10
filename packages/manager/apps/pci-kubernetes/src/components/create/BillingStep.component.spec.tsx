@@ -132,7 +132,7 @@ describe('BillingStep', () => {
       expect(warnMessage).toBeInTheDocument();
     });
 
-    it("should not show warn message if it's enabled", () => {
+    it("should not show warn message if it's disabled", () => {
       const props = {
         ...defaultProps,
         warn: false,
@@ -142,6 +142,64 @@ describe('BillingStep', () => {
       const warnMessage = queryByTestId('warn_message');
 
       expect(warnMessage).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Floating IP cost', () => {
+    it('should show floating IP cost text when isFloatingIpsEnabled is true', () => {
+      const props = {
+        ...defaultProps,
+        isFloatingIpsEnabled: true,
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      const hourlyTile = getByTestId('hourly_tile');
+
+      expect(hourlyTile.innerHTML).toContain(
+        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
+      );
+    });
+
+    it('should show floating IP cost text in monthly tile when isFloatingIpsEnabled is true', () => {
+      const props = {
+        ...defaultProps,
+        monthlyPrice: 15,
+        isFloatingIpsEnabled: true,
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      const monthlyTile = getByTestId('monthly_tile');
+
+      expect(monthlyTile.innerHTML).toContain(
+        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
+      );
+    });
+
+    it('should not show floating IP cost text when isFloatingIpsEnabled is false', () => {
+      const props = {
+        ...defaultProps,
+        isFloatingIpsEnabled: false,
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      const hourlyTile = getByTestId('hourly_tile');
+
+      expect(hourlyTile.innerHTML).not.toContain(
+        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
+      );
+    });
+
+    it('should not show floating IP cost text when isFloatingIpsEnabled is undefined', () => {
+      const props = {
+        ...defaultProps,
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      const hourlyTile = getByTestId('hourly_tile');
+
+      expect(hourlyTile.innerHTML).not.toContain(
+        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
+      );
     });
   });
 });
