@@ -196,7 +196,7 @@ export const useDeleteContactMean = ({
         queryClient.invalidateQueries({
           queryKey: getContactMeanListQueryKey(),
         }),
-        queryClient.invalidateQueries({
+        queryClient.removeQueries({
           queryKey: getContactMeanQueryKey(contactMean.id),
         }),
       ]);

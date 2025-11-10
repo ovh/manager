@@ -63,13 +63,15 @@ export default function EditSettingsPage() {
       condition={!isAuthorized}
     >
       <div className="flex flex-col gap-6 max-w-4xl">
-        <Link to={urls.routing.listing}>
-          <OdsButton
-            variant="ghost"
-            icon="arrow-left"
-            label={t('back_to_list', { ns: NAMESPACES.ACTIONS })}
-          />
-        </Link>
+        <div className="flex flex-row justify-start gap-5">
+          <Link to={urls.routing.listing}>
+            <OdsButton
+              variant="ghost"
+              icon="arrow-left"
+              label={t('back_to_list', { ns: NAMESPACES.ACTIONS })}
+            />
+          </Link>
+        </div>
         <OdsText preset={ODS_TEXT_PRESET.heading2}>
           {t('edit_routing_headline')}
         </OdsText>

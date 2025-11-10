@@ -19,7 +19,12 @@ import {
   OdsIcon,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_PRESET,
+  OdsToggleChangeEventDetail,
+  OdsToggleCustomEvent,
+} from '@ovhcloud/ods-components';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { Combobox, ComboboxContent, ComboboxControl } from '@ovh-ux/muk';
 import {
@@ -172,9 +177,13 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
               </label>
               <OdsToggle
                 name={name}
-                value={value}
+                value={Boolean(value)}
                 onBlur={onBlur}
-                onOdsChange={onChange}
+                onOdsChange={(
+                  e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>,
+                ) => {
+                  onChange(!!e.detail.value);
+                }}
                 withLabel
                 hasError={!!errors.active}
               />
@@ -206,7 +215,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                 <Controller
                   control={control}
                   name={`rules.${index}.condition.category`}
-                  render={({ field: { onChange, value, name } }) => (
+                  render={({ field: { onChange, value, name, onBlur } }) => (
                     <OdsFormField
                       error={
                         errors.rules?.[index]?.condition?.priority &&
@@ -233,6 +242,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                         onValueChange={(e: { value: string[] }) =>
                           onChange(e.value)
                         }
+                        onBlur={onBlur}
                         invalid={!!errors.rules?.[index]?.condition?.category}
                         noResultLabel={t('no_result_found', {
                           ns: NAMESPACES.DASHBOARD,
@@ -249,7 +259,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                 <Controller
                   control={control}
                   name={`rules.${index}.condition.priority`}
-                  render={({ field: { onChange, value, name } }) => (
+                  render={({ field: { onChange, value, name, onBlur } }) => (
                     <OdsFormField
                       error={
                         errors.rules?.[index]?.condition?.priority &&
@@ -276,6 +286,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                         onValueChange={(e: { value: string[] }) =>
                           onChange(e.value)
                         }
+                        onBlur={onBlur}
                         invalid={!!errors.rules?.[index]?.condition?.priority}
                         noResultLabel={t('no_result_found', {
                           ns: NAMESPACES.DASHBOARD,
@@ -292,7 +303,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                 <Controller
                   control={control}
                   name={`rules.${index}.contactMeans`}
-                  render={({ field: { onChange, value, name } }) => (
+                  render={({ field: { onChange, value, name, onBlur } }) => (
                     <OdsFormField
                       error={
                         errors.rules?.[index]?.contactMeans &&
@@ -323,6 +334,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                         onValueChange={(e: { value: string[] }) =>
                           onChange(e.value.map((id) => ({ id })))
                         }
+                        onBlur={onBlur}
                         invalid={!!errors.rules?.[index]?.condition?.priority}
                         noResultLabel={t('no_result_found', {
                           ns: NAMESPACES.DASHBOARD,
@@ -347,9 +359,13 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                     <OdsToggle
                       name={name}
                       withLabel
-                      value={value}
+                      value={Boolean(value)}
                       onBlur={onBlur}
-                      onOdsChange={onChange}
+                      onOdsChange={(
+                        e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>,
+                      ) => {
+                        onChange(!!e.detail.value);
+                      }}
                       hasError={!!errors.rules?.[index]?.continue}
                     />
                     <label

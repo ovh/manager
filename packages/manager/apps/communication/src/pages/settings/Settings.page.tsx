@@ -25,10 +25,7 @@ import {
 } from './settings.constants';
 import RoutingStatusChip from '@/components/routing/routingStatus/RoutingStatus.component';
 import { urls } from '@/routes/routes.constant';
-import {
-  useDeleteRouting,
-  useUpdateRoutingStatus,
-} from '@/data/hooks/useNotificationRouting/useNotificationRouting';
+import { useUpdateRoutingStatus } from '@/data/hooks/useNotificationRouting/useNotificationRouting';
 import RoutingError from '@/components/routing/routingError/RoutingError.component';
 
 function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
@@ -46,18 +43,6 @@ function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
     onError: () => {
       clearNotifications();
       addError(t('edit_routing_error_message'));
-    },
-  });
-
-  const { mutate: deleteRouting } = useDeleteRouting({
-    routingId: routing.id,
-    onSuccess: () => {
-      clearNotifications();
-      addSuccess(t('delete_routing_success_message'));
-    },
-    onError: () => {
-      clearNotifications();
-      addError(t('delete_routing_error_message'));
     },
   });
 
@@ -88,7 +73,7 @@ function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
         displayActionMenuItem(routing, NotificationRoutingActions.DELETE) && {
           id: 4,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => deleteRouting(),
+          onClick: () => navigate(urls.routing.deleteTo(routing.id)),
           iamActions: ['account:apiovh:notification/routing/delete'],
           urn: accountUrn,
         },
@@ -171,6 +156,10 @@ function SettingsPage() {
   } = useResourcesIcebergV2<NotificationRouting>({
     columns,
     route: '/notification/routing',
+    defaultSorting: {
+      id: 'createdAt',
+      desc: true,
+    },
     queryKey: getNotificationRoutingListQueryKey(),
     enabled: isAuthorized,
   });

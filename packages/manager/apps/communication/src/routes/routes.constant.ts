@@ -21,5 +21,7 @@ export const urls = {
     create: '/routing/create',
     edit: '/routing/:routingId/edit',
     editTo: (routingId: string) => `/routing/${routingId}/edit`,
+    delete: '/routing/:routingId/delete',
+    deleteTo: (routingId: string) => `/routing/${routingId}/delete`,
   },
 };
