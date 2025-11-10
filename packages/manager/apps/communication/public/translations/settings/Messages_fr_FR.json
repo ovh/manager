@@ -22,7 +22,7 @@
   "delete_routing_modal_info": "Êtes-vous sûr de vouloir supprimer la règle <strong>{{ routingName }}</strong> ?",
   "rule_form_name_label": "Nom de la règle",
   "rule_form_name_placeholder": "Nom de la règle",
-  "rule_form_active_label": "Active / Désactivé",
+  "rule_form_active_label": "Active / Inactive",
   "rule_form_active_label_tooltip": "Activez cette option pour appliquer la règle de distribution. Si vous la désactivez, la règle ne sera pas appliquée. Vous pourrez l'activer plus tard",
   "rule_form_condition_label": "Condition",
   "rule_form_condition_category_label": "Si la catégorie est",

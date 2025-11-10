@@ -24,7 +24,7 @@
   "restart_validation_contact_error_message": "Se ha producido un error al renovar el código de validación.",
   "verify_contact_info": "Si lo necesita, puede introducir el código de validación más adelante para finalizar la adición de contacto.",
   "verify_contact_link_label": "Volver a enviar el código",
-  "verify_contact_contact_email_info": "Ha recibido un código en <strong>{{email}}</strong>.",
+  "verify_contact_contact_email_info": "Has recibido un código en <strong>{{email}}</strong>.",
   "add_contact_modal_title": "Añadir un contacto",
   "verify_contact_modal_title": "Introduzca el código de verificación",
   "edit_contact_modal_title": "Modificar el contacto",
