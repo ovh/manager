@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useFeatureAvailability } from '@ovh-ux/manager-react-shell-client';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 import { useIsNashaLegacyService } from './useIsNashaLegacyService';
 
@@ -15,7 +15,7 @@ export function useIsNashaEolServiceBannerAvailable(serviceName: string) {
   const isNashaLegacyService = useIsNashaLegacyService(serviceName);
 
   return useMemo(() => {
-    const isNashaLegacyServicesPeriod = features?.[FEATURE_ID]?.isFeatureAvailable(FEATURE_ID);
+    const isNashaLegacyServicesPeriod = features?.[FEATURE_ID] ?? false;
     return isNashaLegacyServicesPeriod && isNashaLegacyService;
   }, [features, isNashaLegacyService]);
 }

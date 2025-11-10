@@ -1,35 +1,36 @@
 import { Suspense, useContext, useMemo } from 'react';
 
-import { useTranslation } from 'react-i18next';
-import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, Tile } from '@ovh-ux/muk';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+
 import {
   ButtonType,
   PageLocation,
   ShellContext,
-  useFeatureAvailability,
   useNavigationGetUrl,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, ChangelogMenu, GuideMenu, Tile } from '@ovh-ux/muk';
 
+import { APP_NAME } from '@/Tracking.constants';
+import BillingTile from '@/components/BillingTile/BillingTile.component';
+import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { GUIDES_URL } from '@/constants/nasha.constants';
 import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions';
 import { useIsNashaEolServiceBannerAvailable } from '@/hooks/dashboard/useIsNashaEolServiceBannerAvailable';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { useServiceInfo } from '@/hooks/dashboard/useServiceInfo';
 import { urls } from '@/routes/Routes.constants';
-import { APP_NAME } from '@/Tracking.constants';
-
-import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
-import BillingTile from '@/components/BillingTile/BillingTile.component';
 
 export default function DashboardPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
   const { t } = useTranslation(['common', 'dashboard']);
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -38,15 +39,11 @@ export default function DashboardPage() {
   const { data: nasha, isLoading: isNashaLoading } = useNashaDetail(serviceName ?? '');
   const { data: serviceInfo } = useServiceInfo(serviceName ?? '');
   const { canCreatePartitions } = useCanCreatePartitions(serviceName ?? '');
-  const { data: features } = useFeatureAvailability(['billing:commitment']);
-  const isNashaEolServiceBannerAvailable = useIsNashaEolServiceBannerAvailable(serviceName ?? '');
+  const isNashaEolServiceBannerAvailable = useIsNashaEolServiceBannerAvailable(
+    serviceName ?? '',
+  ) as boolean;
 
   // Get URLs
-  const { data: editNameUrl } = useNavigationGetUrl([
-    'dedicated',
-    `#/nasha/${serviceName}/edit-name`,
-    {},
-  ]);
   const { data: partitionsCreateUrl } = useNavigationGetUrl([
     'dedicated',
     `#/nasha/${serviceName}/partitions/create`,
@@ -54,14 +51,13 @@ export default function DashboardPage() {
   ]);
 
   // Computed values
-  const displayName = useMemo(() => nasha?.customName || nasha?.serviceName || serviceName, [nasha, serviceName]);
+  const displayName = useMemo(
+    () => nasha?.customName || nasha?.serviceName || serviceName,
+    [nasha, serviceName],
+  );
   const nashaGuidesUrl = useMemo(
     () => GUIDES_URL[ovhSubsidiary as keyof typeof GUIDES_URL] || GUIDES_URL.DEFAULT,
     [ovhSubsidiary],
-  );
-  const isCommitmentAvailable = useMemo(
-    () => features?.['billing:commitment']?.isFeatureAvailable('billing:commitment') ?? false,
-    [features],
   );
 
   // Tabs configuration
@@ -71,7 +67,8 @@ export default function DashboardPage() {
         name: 'general-information',
         title: t('dashboard:tabs.general_information'),
         to: `../${urls.dashboard.replace(':serviceName', serviceName ?? '')}`,
-        isActive: location.pathname.includes('/dashboard/') && !location.pathname.includes('/partitions'),
+        isActive:
+          location.pathname.includes('/dashboard/') && !location.pathname.includes('/partitions'),
       },
       {
         name: 'partitions',
@@ -83,6 +80,12 @@ export default function DashboardPage() {
     [t, serviceName, location.pathname],
   );
 
+  // Get active tab value
+  const activeTabValue = useMemo(() => {
+    const activeTab = tabs.find((tab) => tab.isActive);
+    return activeTab?.name || tabs[0]?.name || '';
+  }, [tabs]);
+
   // Header actions
   const handleEditName = () => {
     trackClick({
@@ -91,9 +94,8 @@ export default function DashboardPage() {
       actionType: 'action',
       actions: [APP_NAME, 'dashboard', 'edit-name'],
     });
-    if (editNameUrl) {
-      window.location.href = editNameUrl as string;
-    }
+    // Navigate to edit-name route (route-based modal) - use relative path
+    navigate('edit-name');
   };
 
   const handleCreatePartition = () => {
@@ -127,42 +129,50 @@ export default function DashboardPage() {
 
   return (
     <BaseLayout
+      breadcrumb={<Breadcrumb />}
       header={{
         title: displayName,
-        description: serviceName,
-        headerButton: (
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={handleEditName}
-              className="p-2 hover:bg-gray-100 rounded"
-              title={t('dashboard:edit')}
-            >
-              <span className="text-lg">✏️</span>
-            </button>
-          </div>
+        changelogButton: (
+          <ChangelogMenu
+            links={{
+              changelog: 'https://github.com/ovh/manager',
+              roadmap: 'https://github.com/ovh/manager',
+              'feature-request': 'https://github.com/ovh/manager',
+            }}
+          />
         ),
-        changelogButton: true,
-        guideMenu: {
-          items: [
-            {
-              id: 1,
-              href: nashaGuidesUrl,
-              target: '_blank',
-              label: t('dashboard:guides.title'),
-              onClickReturn: handleGuideClick,
-            },
-          ],
-        },
+        guideMenu: (
+          <GuideMenu
+            items={[
+              {
+                id: 1,
+                href: nashaGuidesUrl,
+                target: '_blank',
+                label: t('dashboard:guides.title'),
+                onClick: handleGuideClick,
+              },
+            ]}
+          />
+        ),
       }}
       tabs={
-        <OdsTabs>
-          {tabs.map((tab) => (
-            <NavLink key={tab.name} to={tab.to} className="no-underline">
-              <OdsTab isSelected={tab.isActive}>{tab.title}</OdsTab>
-            </NavLink>
-          ))}
-        </OdsTabs>
+        <Tabs
+          value={activeTabValue}
+          onValueChange={(event) => {
+            const tab = tabs.find((t) => t.name === event.value);
+            if (tab) {
+              navigate(tab.to);
+            }
+          }}
+        >
+          <TabList>
+            {tabs.map((tab) => (
+              <Tab key={tab.name} value={tab.name}>
+                {tab.title}
+              </Tab>
+            ))}
+          </TabList>
+        </Tabs>
       }
     >
       {/* EOL Banner */}
@@ -244,4 +254,3 @@ export default function DashboardPage() {
     </BaseLayout>
   );
 }
-

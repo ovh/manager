@@ -28,7 +28,7 @@ export default function OnboardingPage() {
   const { productName, heroImage, tiles } = useOnboardingContent();
 
   // Get order URL
-  const { data: orderUrl } = useNavigationGetUrl(['dedicated', '#/nasha/order', {}]);
+  const { data: orderUrl } = useNavigationGetUrl(['dedicated', 'nasha/order', {}]);
 
   // Build guides tiles with localized links
   const guideTiles = useMemo(() => {

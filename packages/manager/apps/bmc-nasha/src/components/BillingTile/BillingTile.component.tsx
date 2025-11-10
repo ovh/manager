@@ -3,7 +3,8 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Tile, Link } from '@ovh-ux/muk';
-import { useFormatDate, useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { useFormatDate } from '@ovh-ux/muk';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
 type ServiceInfo = {
   creation?: string;

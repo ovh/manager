@@ -1,23 +1,28 @@
-import { Suspense, useMemo } from 'react';
+import { Suspense, useMemo, useState, useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, Tile } from '@ovh-ux/muk';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+
+import { BaseLayout, Tile, Meter, Modal, FormField, Input, Button } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
-  useNavigationGetUrl,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
+import { APP_FEATURES } from '@/App.constants';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
 import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
+import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
+
 import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
+
+const DESCRIPTION_MAX = 50;
 
 export default function PartitionDetailPage() {
   const { serviceName, partitionName } = useParams<{ serviceName: string; partitionName: string }>();
@@ -27,23 +32,25 @@ export default function PartitionDetailPage() {
   const { trackClick } = useOvhTracking();
 
   // Fetch data
-  const { data: partition, isLoading: isPartitionLoading } = usePartitionDetail(
+  const { data: partition, isLoading: isPartitionLoading, refetch: refetchPartition } = usePartitionDetail(
     serviceName ?? '',
     partitionName ?? '',
   );
   const { data: nasha } = useNashaDetail(serviceName ?? '');
 
-  // Get URLs
-  const { data: editDescriptionUrl } = useNavigationGetUrl([
-    'dedicated',
-    `#/nasha/${serviceName}/partition/${partitionName}/edit-description`,
-    {},
-  ]);
-  const { data: editSizeUrl } = useNavigationGetUrl([
-    'dedicated',
-    `#/nasha/${serviceName}/partition/${partitionName}/edit-size`,
-    {},
-  ]);
+  // Modal state for edit description
+  const [isEditDescriptionModalOpen, setIsEditDescriptionModalOpen] = useState(false);
+  const [description, setDescription] = useState('');
+  const [isUpdatingDescription, setIsUpdatingDescription] = useState(false);
+  const [descriptionError, setDescriptionError] = useState<string | null>(null);
+
+  // Initialize description when partition loads or modal opens
+  useEffect(() => {
+    if (partition && isEditDescriptionModalOpen) {
+      setDescription(partition.partitionDescription || '');
+      setDescriptionError(null);
+    }
+  }, [partition, isEditDescriptionModalOpen]);
 
   // Tabs configuration
   const tabs = useMemo(
@@ -73,7 +80,13 @@ export default function PartitionDetailPage() {
     [t, serviceName, partitionName, location.pathname],
   );
 
-  // Handle edit actions
+  // Get active tab value
+  const activeTabValue = useMemo(() => {
+    const activeTab = tabs.find((tab) => tab.isActive);
+    return activeTab?.name || tabs[0]?.name || '';
+  }, [tabs]);
+
+  // Handle edit description modal
   const handleEditDescription = () => {
     trackClick({
       location: PageLocation.page,
@@ -81,8 +94,56 @@ export default function PartitionDetailPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'edit-description'],
     });
-    if (editDescriptionUrl) {
-      window.location.href = editDescriptionUrl as string;
+    setIsEditDescriptionModalOpen(true);
+  };
+
+  const handleCloseEditDescriptionModal = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [APP_NAME, 'partition', 'edit-description', 'cancel'],
+    });
+    setIsEditDescriptionModalOpen(false);
+    setDescriptionError(null);
+  };
+
+  const handleSubmitDescription = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!serviceName || !partitionName) return;
+
+    if (description.length > DESCRIPTION_MAX) {
+      setDescriptionError(t('partition:edit_description.max_length', `Maximum ${DESCRIPTION_MAX} characters`));
+      return;
+    }
+
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [APP_NAME, 'partition', 'edit-description', 'confirm'],
+    });
+
+    setIsUpdatingDescription(true);
+    setDescriptionError(null);
+
+    try {
+      await httpV6.put(
+        `${APP_FEATURES.listingEndpoint}/${serviceName}/partition/${partitionName}`,
+        {
+          partitionDescription: description.trim(),
+        },
+      );
+
+      // Refresh partition data
+      await refetchPartition();
+
+      // Close modal
+      setIsEditDescriptionModalOpen(false);
+    } catch (err) {
+      setDescriptionError((err as Error).message || t('partition:edit_description.error', 'An error occurred'));
+      setIsUpdatingDescription(false);
     }
   };
 
@@ -93,9 +154,12 @@ export default function PartitionDetailPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'edit-size'],
     });
-    if (editSizeUrl) {
-      window.location.href = editSizeUrl as string;
-    }
+    // Navigate to the edit-size route using full path with parameters
+    navigate(
+      urls.partitionEditSize
+        .replace(':serviceName', serviceName ?? '')
+        .replace(':partitionName', partitionName ?? ''),
+    );
   };
 
   if (isPartitionLoading) {
@@ -113,13 +177,23 @@ export default function PartitionDetailPage() {
         description: serviceName,
       }}
       tabs={
-        <OdsTabs>
-          {tabs.map((tab) => (
-            <NavLink key={tab.name} to={tab.to} className="no-underline">
-              <OdsTab isSelected={tab.isActive}>{tab.title}</OdsTab>
-            </NavLink>
-          ))}
-        </OdsTabs>
+        <Tabs
+          value={activeTabValue}
+          onValueChange={(event) => {
+            const tab = tabs.find((t) => t.name === event.value);
+            if (tab) {
+              navigate(tab.to);
+            }
+          }}
+        >
+          <TabList>
+            {tabs.map((tab) => (
+              <Tab key={tab.name} value={tab.name}>
+                {tab.title}
+              </Tab>
+            ))}
+          </TabList>
+        </Tabs>
       }
     >
       {/* General Information View */}
@@ -179,10 +253,59 @@ export default function PartitionDetailPage() {
         </div>
       )}
 
-      {/* Nested routes (accesses, snapshots, edit-description, edit-size, etc.) */}
+      {/* Nested routes (accesses, snapshots, edit-size, etc.) */}
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
+
+      {/* Edit Description Modal */}
+      <Modal
+        open={isEditDescriptionModalOpen}
+        onOpenChange={(open) => {
+          if (!open) {
+            handleCloseEditDescriptionModal();
+          }
+        }}
+        heading={t('partition:edit_description.title', { name: partitionName }, `Edit description for ${partitionName}`)}
+      >
+        <form onSubmit={handleSubmitDescription} className="space-y-4">
+          <FormField error={descriptionError || undefined}>
+            <FormField.Label>
+              {t('partition:edit_description.label', 'Description')}
+            </FormField.Label>
+            <Input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              maxLength={DESCRIPTION_MAX}
+              disabled={isUpdatingDescription}
+              required
+            />
+            <FormField.Helper>
+              {t('partition:edit_description.helper', `Maximum ${DESCRIPTION_MAX} characters`)}
+            </FormField.Helper>
+          </FormField>
+
+          <div className="flex gap-4 justify-end mt-6">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={handleCloseEditDescriptionModal}
+              disabled={isUpdatingDescription}
+            >
+              {t('partition:edit_description.cancel', 'Cancel')}
+            </Button>
+            <Button
+              type="submit"
+              variant="default"
+              disabled={isUpdatingDescription || description === (partition?.partitionDescription || '')}
+              isLoading={isUpdatingDescription}
+            >
+              {t('partition:edit_description.confirm', 'Confirm')}
+            </Button>
+          </div>
+        </form>
+      </Modal>
     </BaseLayout>
   );
 }

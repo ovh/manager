@@ -47,7 +47,7 @@ export default function EditNamePage() {
     navigate(`../${urls.dashboard.replace(':serviceName', serviceName ?? '')}`);
   };
 
-  const handleConfirm = async () => {
+  const handleUpdateName = async (newName: string) => {
     if (!serviceName || !nasha) return;
 
     trackClick({
@@ -62,7 +62,7 @@ export default function EditNamePage() {
 
     try {
       await httpV6.put(`${APP_FEATURES.listingEndpoint}/${serviceName}`, {
-        customName: customName.trim(),
+        customName: newName.trim(),
       });
 
       // Navigate back to dashboard with success
@@ -81,15 +81,15 @@ export default function EditNamePage() {
 
   return (
     <UpdateNameModal
-      open={true}
+      isOpen={true}
       headline={t('edit-name:title', { name: nasha.serviceName }, `Edit name for ${nasha.serviceName}`)}
       description={t('edit-name:description', 'Update the display name for this service')}
       inputLabel={t('edit-name:label', { name: nasha.serviceName }, `Name for ${nasha.serviceName}`)}
       defaultValue={customName}
       isLoading={isUpdating}
       onClose={handleClose}
-      updateDisplayName={setCustomName}
-      error={error}
+      updateDisplayName={handleUpdateName}
+      error={error ? error.message : null}
       pattern={NAME_PATTERN.source}
       patternMessage={t('edit-name:rules', 'Only alphanumeric characters, hyphens and underscores are allowed')}
       cancelButtonLabel={t('edit-name:cancel', 'Cancel')}
