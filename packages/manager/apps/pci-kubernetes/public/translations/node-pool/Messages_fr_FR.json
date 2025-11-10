@@ -40,9 +40,19 @@
   "kube_common_add_node_pool_plural": "Ajouter {{count}} pools de nœuds",
   "kube_common_min_max_nodes": "Min {{minNodes}}, Max {{maxNodes}}",
   "kube_common_node_pool_deploy_title": "Choix de la zone de disponibilité",
+  "kube_common_node_pool_public_connetivity_title": "Connectivité publique",
+  "kube_common_node_pool_public_connetivity_toggle": "Attacher des Floating IPs aux nœuds",
+  "kube_common_node_pool_public_connectivity_warning_title": "Avertissement lié à la Mise à jour du Cluster :",
+  "kube_common_node_pool_public_connectivity_warning_description_rolling": "La stratégie de mise à jour (upgrade et pach) des clusters est actuellement <strong>\"Rolling Upgrade\"</strong>: les noeuds sont ainsi <strong>remplacés</strong> un par un ainsi que <strong>les floating IP associés.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_in_place": "Une future stratégie de mise à jour (<strong>\"In Place\"</strong>) permettra de <strong>conserver ces IPs au moment des mise à jours.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_more": "<strong>Pour en savoir plus</strong>, consultez notre <a>guide sur le concept des Floating IPs</a>",
   "kube_common_node_pool_deploy_description": "Dans un cluster Kubernetes réparti sur trois zone de disponibilité (AZ), l'utilisation de pools de nœuds par zone est recommandée pour assurer la résilience et la haute disponibilité. Cette configuration vous permet de distribuer de manière équilibrée vos workloads entre les AZ. Elle améliore ainsi la tolérance aux pannes et garantit une continuité de service optimale.",
   "kube_common_node_pool_select_zone": "Vous devez sélectionner au moins une zone de disponibilité.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone":"Si plusieurs zones de disponibilité (AZ) sont sélectionnées, la configuration sera automatiquement dupliquée pour créer un pool de noeuds distinct dans chaque zone.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition":"Répartition AZ"
-
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Si plusieurs zones de disponibilité (AZ) sont sélectionnées, la configuration sera automatiquement dupliquée pour créer un pool de noeuds distinct dans chaque zone.",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Répartition AZ",
+  "kube_common_node_pool_deploy_floating_ip_content1": "Attribue automatiquement une <strong>Floating IP (IP publique)</strong> à chaque nœud du pool de noeuds, y compris ceux de l'autoscaler.",
+  "kube_common_node_pool_deploy_floating_ip_content2": "<strong>Accès public</strong> direct au nœud.",
+  "kube_common_node_pool_deploy_floating_ip_content3": "Permet d'utiliser la <a>bande passante publique du nœud</a> (au lieu de celle de la Gateway Managée).",
+  "kube_common_node_pool_deploy_floating_ip_content4": "Le cycle de vie de la Floating IP est lié à celui du nœud (elle est supprimée avec lui).",
+  "kube_common_node_pool_node": "nœud"
 }

@@ -207,11 +207,16 @@ export type TSelectedAvailabilityZones = {
   checked: boolean;
 }[];
 
+export type TAttachFloatingIPs = {
+  enabled: boolean;
+};
+
 export type NodePoolState = {
   name: string;
   isTouched: boolean;
   scaling: TScalingState;
   antiAffinity: boolean;
+  attachFloatingIPs?: TAttachFloatingIPs;
   selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
 };
 
@@ -249,6 +254,17 @@ export type NodePool = {
   flavorName: string;
   maxNodes?: number;
   monthlyBilled: boolean;
+  attachFloatingIPs?: TAttachFloatingIPs;
 };
 
 export type NodePoolPrice = NodePool & { monthlyPrice: number };
+
+export enum ResourceStatus {
+  READY = 'READY',
+  DISABLED = 'DISABLED',
+  UPDATING = 'UPDATING',
+  CREATING = 'CREATING',
+  DELETING = 'DELETING',
+  ERROR = 'ERROR',
+  ENABLED = 'ENABLED',
+}

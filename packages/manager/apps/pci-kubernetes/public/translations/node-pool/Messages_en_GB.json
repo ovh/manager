@@ -42,6 +42,17 @@
   "kube_common_node_pool_estimation_cost_tile": "Monthly estimate",
   "kube_common_node_pool_select_zone": "Please select at least one availability zone.",
   "kube_common_add_node_pool_plural": "Add {{count}} node pools",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "When multiple availability zones (AZs) are selected, the configuration is copied automatically, creating a separate node pool in each zone.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "AZ distribution"
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "If multiple availability zones (AZ) are selected, the configuration will be automatically duplicated to create a distinct node pool in each zone.",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "AZ allocation",
+  "kube_common_node_pool_public_connetivity_title": "Public connectivity",
+  "kube_common_node_pool_public_connetivity_toggle": "Attach Floating IPs to nodes",
+  "kube_common_node_pool_public_connectivity_warning_title": "Warning related to Cluster Update:",
+  "kube_common_node_pool_public_connectivity_warning_description_rolling": "The update strategy (upgrade and patch) for clusters is currently <strong>\"Rolling Upgrade\"</strong>: nodes are <strong>replaced</strong> one by one along with <strong>the associated floating IPs.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_in_place": "A future update strategy (<strong>\"In Place\"</strong>) will allow <strong>to keep these IPs during updates.</strong>",
+  "kube_common_node_pool_public_connectivity_warning_description_more": "<strong>For more information</strong>, refer to our <a>guide on the concept of Floating IPs</a>",
+  "kube_common_node_pool_deploy_floating_ip_content1": "Automatically assigns a <strong>Floating IP (public IP)</strong> to each node in the node pool, including those of the autoscaler.",
+  "kube_common_node_pool_deploy_floating_ip_content2": "<strong>Direct public</strong> access to the node.",
+  "kube_common_node_pool_deploy_floating_ip_content3": "Allows the use of the <a>public bandwidth of the node</a> (instead of that of the Managed Gateway).",
+  "kube_common_node_pool_deploy_floating_ip_content4": "The lifecycle of the Floating IP is tied to that of the node (it is deleted with it).",
+  "kube_common_node_pool_node": "node"
 }
