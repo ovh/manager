@@ -20,3 +20,5 @@ export const WEBSITE_LABEL_BY_LOCALE = {
   'en-IN': 'OVHcloud India (English)',
   'en-US': 'OVHcloud United States (English)',
 };
+
+export const DEFAULT_REDIRECT_URL = 'https://ovhcloud.com/';

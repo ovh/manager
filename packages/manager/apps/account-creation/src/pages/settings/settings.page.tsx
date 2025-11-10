@@ -18,9 +18,17 @@ import {
   useCountrySettings,
   useCurrencySettings,
   useLanguageSettings,
+  useSubsidiarySettings,
 } from '@/data/hooks/settings/useSettings';
+import {
+  useRedirectToLoginUrl,
+  useRedirectToSignUpUrl,
+} from '@/hooks/redirection/useSettingsRedirecions';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
-import { WEBSITE_LABEL_BY_LOCALE } from './settings.constants';
+import {
+  DEFAULT_REDIRECT_URL,
+  WEBSITE_LABEL_BY_LOCALE,
+} from './settings.constants';
 
 type SettingsFormData = {
   country: string;
@@ -34,6 +42,8 @@ export default function Settings() {
     NAMESPACES.ACTIONS,
     NAMESPACES.FORM,
   ]);
+  const redirectToLoginUrl = useRedirectToLoginUrl();
+  const redirectToSignUpUrl = useRedirectToSignUpUrl();
 
   const schema = useSettingsSchema();
 
@@ -50,6 +60,7 @@ export default function Settings() {
 
   const selectedCountry = watch('country');
   const selectedCurrency = watch('currency');
+  const selectedLanguage = watch('language');
   const {
     data: countries,
     isLoading: isLoadingCountries,
@@ -58,6 +69,11 @@ export default function Settings() {
   const { data: languages } = useLanguageSettings(
     selectedCountry,
     selectedCurrency,
+  );
+  const { data: ovhSubsidiary } = useSubsidiarySettings(
+    selectedCountry,
+    selectedCurrency,
+    selectedLanguage,
   );
 
   const comboboxRef = useRef<HTMLOdsComboboxElement | null>(null);
@@ -97,8 +113,16 @@ export default function Settings() {
   const submitSettings: SubmitHandler<SettingsFormData> = useCallback(
     ({ country, currency, language }: SettingsFormData) => {
       console.log({ country, currency, language });
+      // In case the signup url is not valid, we will redirect to the website
+      if (redirectToSignUpUrl !== null) {
+        const params = `ovhSubsidiary=${ovhSubsidiary}&country=${country}&language=${language}`;
+        const junction = redirectToSignUpUrl.includes('?') ? '&' : '?';
+        window.location.href = `${redirectToSignUpUrl}${junction}${params}`;
+      } else {
+        window.location.href = DEFAULT_REDIRECT_URL;
+      }
     },
-    [],
+    [redirectToSignUpUrl, ovhSubsidiary],
   );
 
   return (
@@ -110,7 +134,9 @@ export default function Settings() {
             t={t}
             i18nKey="description"
             components={{
-              Link: <OdsLink href={'/auth'} />,
+              Link: (
+                <OdsLink href={redirectToLoginUrl || DEFAULT_REDIRECT_URL} />
+              ),
             }}
           />
         </OdsText>
