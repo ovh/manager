@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useParam } from '@ovh-ux/manager-pci-common';
+import { TRegionType, useParam } from '@ovh-ux/manager-pci-common';
 import { convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
 
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
@@ -8,8 +8,9 @@ import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector
 import { NODE_RANGE, TAGS_BLOB } from '@/constants';
 import { ensureNameIsUnique, generateUniqueName } from '@/helpers';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
 import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
-import { NodePoolPrice, NodePoolState } from '@/types';
+import { DeploymentMode, NodePoolPrice, NodePoolState } from '@/types';
 
 import { useNodePoolErrors } from './useNodePoolErrors';
 
@@ -39,6 +40,16 @@ function canSubmitNodePools(
   return Array.isArray(nodes) && nodes.length > 0;
 }
 
+const getIsButtonDisabled = (
+  isNodePoolValid: boolean,
+  type: DeploymentMode | null,
+  nodePoolState: NodePoolState,
+): boolean => {
+  if (!isNodePoolValid) return true;
+  if (!type) return false;
+  return hasInvalidScalingOrAntiAffinityConfig(type, nodePoolState);
+};
+
 const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boolean }) => {
   const [nodes, setNodes] = useState<NodePoolPrice[] | null>(null);
   const [selectedFlavor, setSelectedFlavor] = useState<TComputedKubeFlavor | null>(null);
@@ -62,17 +73,25 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     nodes,
   );
 
+  const { price: priceFloatingIp } = useFloatingIpsPrice(
+    Boolean(nodePoolState.attachFloatingIPs?.enabled),
+    isMonthlyBilled ? 'month' : 'hour',
+    regionInformations?.type ?? null,
+  );
+
   const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
     projectId,
     name ?? null,
     selectedFlavor?.id ?? null,
     {
-      select: (flavor) =>
-        getPriceByDesiredScale(
+      select: (flavor) => {
+        return getPriceByDesiredScale(
           flavor.pricingsHourly?.price,
           flavor.pricingsMonthly?.price,
           nodePoolState.scaling?.quantity.desired,
-        ),
+          priceFloatingIp,
+        );
+      },
     },
   );
 
@@ -92,6 +111,9 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
       autoscale: nodePoolState.scaling.isAutoscale,
       ...(zone && { availabilityZones: [zone] }),
       localisation: zone ?? name ?? null,
+      ...(nodePoolState.attachFloatingIPs && {
+        attachFloatingIPs: nodePoolState.attachFloatingIPs,
+      }),
       desiredNodes: nodePoolState.scaling.quantity.desired,
       ...(nodePoolState.scaling.isAutoscale && {
         minNodes: nodePoolState.scaling.quantity.min,
@@ -134,12 +156,13 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   const isNodePoolValid =
     !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName && !error?.exists);
 
-  const isButtonDisabled =
-    !isNodePoolValid ||
-    (regionInformations &&
-      hasInvalidScalingOrAntiAffinityConfig(regionInformations?.type, nodePoolState));
+  const isButtonDisabled = getIsButtonDisabled(
+    isNodePoolValid,
+    regionInformations?.type ?? null,
+    nodePoolState,
+  );
 
-  const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(TAGS_BLOB.COMING_SOON);
+  const isPricingComingSoon = selectedFlavor?.blobs?.tags.includes(TAGS_BLOB.COMING_SOON);
 
   const isStepUnlocked = !isLocked;
 
@@ -148,7 +171,18 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   useEffect(() => setIsMonthlyBilled(false), [selectedFlavor]);
 
   useEffect(() => {
+    // TODO in the future replace by standard plan as soon as it is available
     if (regionInformations?.availabilityZones.length) {
+      setNodePoolState((state) => ({
+        ...state,
+        attachFloatingIPs: { enabled: false },
+      }));
+    }
+  }, [regionInformations?.availabilityZones]);
+
+  useEffect(() => {
+    if (regionInformations?.availabilityZones.length) {
+      // Initialize all zones if 3AZ available as checked
       setNodePoolState((state) => ({
         ...state,
         selectedAvailabilityZones: regionInformations?.availabilityZones.map((zone) => ({
@@ -160,14 +194,17 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   }, [regionInformations?.availabilityZones, setNodePoolState]);
 
   useEffect(() => {
-    setNodes(!nodePoolEnabled ? null : []);
     if (!nodePoolEnabled) {
+      // Clear nodes and reset the node pool form when disabled
+      setNodes(null);
       setNodePoolState((state) => ({
         ...state,
-
         name: '',
         isTouched: false,
       }));
+    } else {
+      // Initialize empty node pool when enabled
+      setNodes([]);
     }
   }, [nodePoolEnabled, setNodePoolState, setNodes]);
 
@@ -184,6 +221,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
       isMonthlyBilled,
       nodePoolEnabled,
       price,
+      priceFloatingIp,
     },
 
     actions: {

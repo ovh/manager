@@ -25,5 +25,12 @@
   "kubernetes_add_private_network_add": "Créer un réseau privé",
   "kubernetes_containers_deployment_mode_label": "Mode de déploiement",
   "kube_list_node_pools": "Besoin de volumes persistants pour plusieurs pods à travers différents nœuds et zones de disponibilité ? Essayez notre service entièrement géré <strong>File Storage</strong>, compatible avec Managed Kubernetes Service. Profitez de volumes 'Read Write Many' <strong>à partir de 10 Go</strong>, évoluant de manière transparente avec vos clusters.",
-  "kube_list_node_pools_discover": "Découvrir l'alpha"
+  "kube_list_node_pools_discover": "Découvrir l'alpha",
+  "READY": "Prêt",
+  "DISABLED": "Désactivé",
+  "UPDATING": "Mise à jour en cours",
+  "ERROR": "Erreur",
+  "DELETING": "Suppression en cours",
+  "CREATING": "Création en cours",
+  "ENABLED": "Activé"
 }
