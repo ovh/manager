@@ -38,6 +38,7 @@ const features = [
   'veeam-backup',
   'veeam-enterprise:order',
   'hycu',
+  'hpc-backup-agent-iaas',
   'vrack:bare-metal-cloud',
   'vrack:order',
   'vrack-services',
@@ -288,7 +289,7 @@ export default function HostedPrivateCloudSidebar() {
       });
     }
 
-    if (feature.hycu || feature['veeam-backup']) {
+    if (feature.hycu || feature['veeam-backup'] || feature['hpc-backup-agent-iaas']) {
       menu.push({
         id: 'hpc-storage-backup',
         label: t('sidebar_storage_backup'),
@@ -299,7 +300,7 @@ export default function HostedPrivateCloudSidebar() {
             src={infinityCLoud}
           />
         ),
-        pathMatcher: new RegExp('^/(hycu|veeam-backup)'),
+        pathMatcher: new RegExp('^/(hycu|veeam-backup|hpc-backup-agent-iaas)'),
         badge: 'new',
         subItems: [
           feature['veeam-backup'] && {
@@ -348,6 +349,31 @@ export default function HostedPrivateCloudSidebar() {
                 ...items.map((service) => ({
                   ...service,
                   href: navigation.getURL(appId, `#/${service.serviceName}`),
+                })),
+              ];
+            },
+          },
+          feature['hpc-backup-agent-iaas'] && {
+            id: 'hpc-backup-agent-iaas',
+            label: t('sidebar_backup_agent_iaas'),
+            icon: (
+              <img alt="" src={hycuLogo} className="mb-1 w-6 aspect-square" />
+            ),
+            pathMatcher: new RegExp('^/hpc-backup-agent-iaas'),
+            badge: 'new',
+            async loader() {
+              const appId = 'hpc-backup-agent-iaas';
+              const items = await loadServices('/backup/tenant');
+
+              return [
+                {
+                  id: 'hpc-backup-agent-iaas-all',
+                  label: t('sidebar_all_hpc-backup-agent-iaas'),
+                  href: navigation.getURL(appId, '#/'),
+                },
+                ...items.map((service) => ({
+                  ...service,
+                  href: navigation.getURL(appId, `#/dashboard/${service.serviceName}`),
                 })),
               ];
             },
