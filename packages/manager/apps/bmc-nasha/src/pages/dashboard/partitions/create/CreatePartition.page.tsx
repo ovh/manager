@@ -16,7 +16,6 @@ import { SIZE_MIN } from '@/constants/nasha.constants';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitionAllocatedSize } from '@/hooks/dashboard/usePartitionAllocatedSize';
 import { usePartitions } from '@/hooks/partitions/usePartitions';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 const NAME_PATTERN = /^[a-z0-9_-]+$/i;
@@ -116,7 +115,8 @@ export default function CreatePartitionPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partitions', 'create', 'cancel'],
     });
-    navigate(`../${urls.partitions.replace(':serviceName', serviceName ?? '')}`);
+    // Navigate back to partitions list using relative path
+    navigate('..', { replace: true });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -149,8 +149,8 @@ export default function CreatePartitionPage() {
         },
       );
 
-      // Navigate to task tracker
-      navigate(`../task-tracker`, {
+      // Navigate to task tracker using relative path
+      navigate('../task-tracker', {
         state: {
           taskId: response.data.taskId,
           operation: 'create',

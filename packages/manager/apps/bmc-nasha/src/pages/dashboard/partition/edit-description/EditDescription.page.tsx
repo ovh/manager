@@ -12,7 +12,6 @@ import {
 
 import { APP_FEATURES } from '@/App.constants';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
@@ -43,7 +42,8 @@ export default function EditDescriptionPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'edit-description', 'cancel'],
     });
-    navigate(`../${urls.partitionDetail.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`);
+    // Navigate back to partition detail using relative path
+    navigate('..', { replace: true });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -74,13 +74,11 @@ export default function EditDescriptionPage() {
         },
       );
 
-      // Navigate back to partition detail with success
-      navigate(
-        `../${urls.partitionDetail.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`,
-        {
-          state: { success: t('partition:edit_description.success', 'Description updated successfully') },
-        },
-      );
+      // Navigate back to partition detail with success using relative path
+      navigate('..', {
+        replace: true,
+        state: { success: t('partition:edit_description.success', 'Description updated successfully') },
+      });
     } catch (err) {
       setError((err as Error).message || t('partition:edit_description.error', 'An error occurred'));
       setIsUpdating(false);

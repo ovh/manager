@@ -5,7 +5,7 @@ import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 
-import { BaseLayout, Tile, Meter, Modal, FormField, Input, Button } from '@ovh-ux/muk';
+import { BaseLayout, Button, Icon, Meter, Modal, FormField, Input, Tile } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -58,7 +58,7 @@ export default function PartitionDetailPage() {
       {
         name: 'general-information',
         title: t('partition:tabs.general_information'),
-        to: `../${urls.partitionDetail.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`,
+        to: '.', // Current route (partition detail)
         isActive:
           location.pathname.includes('/partition/') &&
           !location.pathname.includes('/accesses') &&
@@ -67,17 +67,17 @@ export default function PartitionDetailPage() {
       {
         name: 'snapshots',
         title: t('partition:tabs.snapshots'),
-        to: `../${urls.partitionSnapshots.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`,
+        to: 'snapshots', // Relative route to snapshots
         isActive: location.pathname.includes('/snapshots'),
       },
       {
         name: 'accesses',
         title: t('partition:tabs.accesses'),
-        to: `../${urls.partitionAccesses.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`,
+        to: 'accesses', // Relative route to accesses
         isActive: location.pathname.includes('/accesses'),
       },
     ],
-    [t, serviceName, partitionName, location.pathname],
+    [t, location.pathname],
   );
 
   // Get active tab value
@@ -154,12 +154,8 @@ export default function PartitionDetailPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'edit-size'],
     });
-    // Navigate to the edit-size route using full path with parameters
-    navigate(
-      urls.partitionEditSize
-        .replace(':serviceName', serviceName ?? '')
-        .replace(':partitionName', partitionName ?? ''),
-    );
+    // Navigate to edit-size route using relative path
+    navigate('edit-size');
   };
 
   if (isPartitionLoading) {
@@ -208,16 +204,22 @@ export default function PartitionDetailPage() {
             <Tile.Item.Root>
               <Tile.Item.Term label={t('partition:information.description')} />
               <Tile.Item.Description>
-                {partition.partitionDescription || (
-                  <em>{t('partition:information.description_none', 'No description')}</em>
-                )}
-                <button
-                  type="button"
-                  onClick={handleEditDescription}
-                  className="ml-2 text-primary hover:underline text-sm"
-                >
-                  {t('partition:edit', 'Edit')}
-                </button>
+                <div className="flex items-center">
+                  <span>
+                    {partition.partitionDescription || (
+                      <em>{t('partition:information.description_none', 'No description')}</em>
+                    )}
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleEditDescription}
+                    className="ml-2"
+                    aria-label={t('partition:edit', 'Edit')}
+                  >
+                    <Icon name="pen" />
+                  </Button>
+                </div>
               </Tile.Item.Description>
             </Tile.Item.Root>
             <Tile.Item.Root>
@@ -228,16 +230,20 @@ export default function PartitionDetailPage() {
               <Tile.Item.Term label={t('partition:information.size')} />
               <Tile.Item.Description>
                 {partition.use?.size ? (
-                  <>
-                    {partition.use.size.value} {partition.use.size.unit}
-                    <button
-                      type="button"
+                  <div className="flex items-center">
+                    <span>
+                      {partition.use.size.value} {partition.use.size.unit}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={handleEditSize}
-                      className="ml-2 text-primary hover:underline text-sm"
+                      className="ml-2"
+                      aria-label={t('partition:edit', 'Edit')}
                     >
-                      {t('partition:edit', 'Edit')}
-                    </button>
-                  </>
+                      <Icon name="pen" />
+                    </Button>
+                  </div>
                 ) : (
                   '-'
                 )}

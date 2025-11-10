@@ -10,10 +10,9 @@ import {
   ButtonType,
   PageLocation,
   ShellContext,
-  useNavigationGetUrl,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, ChangelogMenu, GuideMenu, Tile } from '@ovh-ux/muk';
+import { BaseLayout, Button, ChangelogMenu, GuideMenu, Icon, Tile } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/Tracking.constants';
 import BillingTile from '@/components/BillingTile/BillingTile.component';
@@ -24,7 +23,6 @@ import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions
 import { useIsNashaEolServiceBannerAvailable } from '@/hooks/dashboard/useIsNashaEolServiceBannerAvailable';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { useServiceInfo } from '@/hooks/dashboard/useServiceInfo';
-import { urls } from '@/routes/Routes.constants';
 
 export default function DashboardPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -43,13 +41,6 @@ export default function DashboardPage() {
     serviceName ?? '',
   ) as boolean;
 
-  // Get URLs
-  const { data: partitionsCreateUrl } = useNavigationGetUrl([
-    'dedicated',
-    `#/nasha/${serviceName}/partitions/create`,
-    {},
-  ]);
-
   // Computed values
   const displayName = useMemo(
     () => nasha?.customName || nasha?.serviceName || serviceName,
@@ -66,18 +57,18 @@ export default function DashboardPage() {
       {
         name: 'general-information',
         title: t('dashboard:tabs.general_information'),
-        to: `../${urls.dashboard.replace(':serviceName', serviceName ?? '')}`,
+        to: '.', // Current route (dashboard)
         isActive:
           location.pathname.includes('/dashboard/') && !location.pathname.includes('/partitions'),
       },
       {
         name: 'partitions',
         title: t('dashboard:tabs.partitions'),
-        to: `../${urls.partitions.replace(':serviceName', serviceName ?? '')}`,
+        to: 'partitions', // Relative route to partitions
         isActive: location.pathname.includes('/partitions'),
       },
     ],
-    [t, serviceName, location.pathname],
+    [t, location.pathname],
   );
 
   // Get active tab value
@@ -105,9 +96,8 @@ export default function DashboardPage() {
       actionType: 'action',
       actions: [APP_NAME, 'dashboard', 'create-partition'],
     });
-    if (partitionsCreateUrl) {
-      window.location.href = partitionsCreateUrl as string;
-    }
+    // Navigate to create partition route using relative path
+    navigate('partitions/create');
   };
 
   const handleGuideClick = () => {
@@ -192,14 +182,18 @@ export default function DashboardPage() {
             <Tile.Item.Root>
               <Tile.Item.Term label={t('dashboard:information.name')} />
               <Tile.Item.Description>
-                {displayName}
-                <button
-                  type="button"
-                  onClick={handleEditName}
-                  className="ml-2 text-primary hover:underline text-sm"
-                >
-                  {t('dashboard:edit')}
-                </button>
+                <div className="flex items-center">
+                  <span>{displayName}</span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleEditName}
+                    className="ml-2"
+                    aria-label={t('dashboard:edit', 'Edit')}
+                  >
+                    <Icon name="pen" />
+                  </Button>
+                </div>
               </Tile.Item.Description>
             </Tile.Item.Root>
             <Tile.Item.Root>

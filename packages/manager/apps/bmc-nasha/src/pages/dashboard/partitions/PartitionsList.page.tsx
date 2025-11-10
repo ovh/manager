@@ -16,7 +16,6 @@ import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitions } from '@/hooks/partitions/usePartitions';
 import { useUpdateMonitored } from '@/hooks/partitions/useUpdateMonitored';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 import Metrics from '@/components/Metrics/Metrics.component';
@@ -89,7 +88,8 @@ export default function PartitionsListPage() {
       actionType: 'action',
       actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'create-partition'],
     });
-    navigate(`../${urls.partitions.replace(':serviceName', serviceName ?? '')}/create`);
+    // Navigate to create partition route using relative path
+    navigate('create');
   }, [trackClick, navigate, serviceName]);
 
 

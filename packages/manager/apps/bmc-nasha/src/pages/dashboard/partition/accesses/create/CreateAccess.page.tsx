@@ -16,7 +16,6 @@ import { useCreateAccess } from '@/hooks/partitions/useCreateAccess';
 import { useAuthorizableAccesses } from '@/hooks/partitions/useAuthorizableAccesses';
 import { usePartitionAccesses } from '@/hooks/partitions/usePartitionAccesses';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 const ACL_TYPE_OPTIONS = [
@@ -89,7 +88,8 @@ export default function CreateAccessPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'accesses', 'create', 'cancel'],
     });
-    navigate(`../${urls.partitionAccesses.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`);
+    // Navigate back to accesses list using relative path
+    navigate('..', { replace: true });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

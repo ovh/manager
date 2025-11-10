@@ -14,7 +14,6 @@ import { APP_FEATURES } from '@/App.constants';
 import { useCreateSnapshot } from '@/hooks/partitions/useCreateSnapshot';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
 import { usePartitionCustomSnapshots } from '@/hooks/partitions/usePartitionSnapshots';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 const CUSTOM_SNAPSHOT_NAME_PATTERN = /^[a-zA-Z0-9.:-]+$/;
@@ -75,7 +74,8 @@ export default function CreateSnapshotPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'snapshots', 'create', 'cancel'],
     });
-    navigate(`../${urls.partitionSnapshots.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`);
+    // Navigate back to snapshots list using relative path
+    navigate('..', { replace: true });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

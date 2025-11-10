@@ -12,7 +12,6 @@ import {
 
 import { APP_FEATURES } from '@/App.constants';
 import { useDeleteSnapshot } from '@/hooks/partitions/useDeleteSnapshot';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 export default function DeleteSnapshotPage() {
@@ -35,7 +34,8 @@ export default function DeleteSnapshotPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'snapshots', 'delete', 'cancel'],
     });
-    navigate(`../${urls.partitionSnapshots.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`);
+    // Navigate back to snapshots list using relative path
+    navigate('..', { replace: true });
   };
 
   const handleConfirm = async () => {

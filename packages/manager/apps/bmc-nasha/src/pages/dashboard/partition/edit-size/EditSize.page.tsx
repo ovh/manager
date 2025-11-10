@@ -15,7 +15,6 @@ import { SIZE_MIN } from '@/constants/nasha.constants';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitionAllocatedSize } from '@/hooks/dashboard/usePartitionAllocatedSize';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
@@ -67,7 +66,8 @@ export default function EditSizePage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'edit-size', 'cancel'],
     });
-    navigate(`../${urls.partitionDetail.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`);
+    // Navigate back to partition detail using relative path
+    navigate('..', { replace: true });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -105,13 +105,11 @@ export default function EditSizePage() {
         },
       );
 
-      // Navigate back to partition detail with success
-      navigate(
-        `../${urls.partitionDetail.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`,
-        {
-          state: { success: t('partition:edit_size.success', 'Size updated successfully') },
-        },
-      );
+      // Navigate back to partition detail with success using relative path
+      navigate('..', {
+        replace: true,
+        state: { success: t('partition:edit_size.success', 'Size updated successfully') },
+      });
     } catch (err) {
       setError((err as Error).message || t('partition:edit_size.error', 'An error occurred'));
       setIsUpdating(false);

@@ -12,7 +12,6 @@ import {
 
 import { APP_FEATURES } from '@/App.constants';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
@@ -44,7 +43,8 @@ export default function EditNamePage() {
       actionType: 'action',
       actions: [APP_NAME, PREFIX_TRACKING_EDIT_NAME, 'cancel'],
     });
-    navigate(`../${urls.dashboard.replace(':serviceName', serviceName ?? '')}`);
+    // Navigate back to parent route (dashboard) using relative path
+    navigate('..', { replace: true });
   };
 
   const handleUpdateName = async (newName: string) => {
@@ -65,8 +65,9 @@ export default function EditNamePage() {
         customName: newName.trim(),
       });
 
-      // Navigate back to dashboard with success
-      navigate(`../${urls.dashboard.replace(':serviceName', serviceName ?? '')}`, {
+      // Navigate back to dashboard with success - use relative path
+      navigate('..', {
+        replace: true,
         state: { success: t('edit-name:success', 'Name updated successfully') },
       });
     } catch (err) {

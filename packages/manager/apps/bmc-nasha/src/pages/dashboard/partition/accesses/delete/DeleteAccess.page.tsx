@@ -12,7 +12,6 @@ import {
 
 import { APP_FEATURES } from '@/App.constants';
 import { useDeleteAccess } from '@/hooks/partitions/useDeleteAccess';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 export default function DeleteAccessPage() {
@@ -35,7 +34,8 @@ export default function DeleteAccessPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'accesses', 'delete', 'cancel'],
     });
-    navigate(`../${urls.partitionAccesses.replace(':serviceName', serviceName ?? '').replace(':partitionName', partitionName ?? '')}`);
+    // Navigate back to accesses list using relative path
+    navigate('..', { replace: true });
   };
 
   const handleConfirm = async () => {

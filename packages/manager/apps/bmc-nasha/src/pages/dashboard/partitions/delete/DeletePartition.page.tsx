@@ -13,7 +13,6 @@ import {
 import { APP_FEATURES } from '@/App.constants';
 import { PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE } from '@/constants/nasha.constants';
 import { useDeletePartition } from '@/hooks/partitions/useDeletePartition';
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 export default function DeletePartitionPage() {
@@ -35,7 +34,8 @@ export default function DeletePartitionPage() {
       actionType: 'action',
       actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE, 'cancel'],
     });
-    navigate(`../${urls.partitions.replace(':serviceName', serviceName ?? '')}`);
+    // Navigate back to partitions list using relative path
+    navigate('..', { replace: true });
   };
 
   const handleConfirm = async () => {

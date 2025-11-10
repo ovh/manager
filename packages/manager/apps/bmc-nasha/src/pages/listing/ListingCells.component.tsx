@@ -6,7 +6,6 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 import type { NashaService } from '@/types/Nasha.type';
 
@@ -21,7 +20,9 @@ export const ServiceNameCell = ({ serviceName }: { serviceName: string }) => {
       actionType: 'action',
       actions: [APP_NAME, 'listing', 'go-to-service'],
     });
-    navigate(`../${urls.dashboard.replace(':serviceName', serviceName)}`);
+    // Navigate to dashboard using relative path from listing
+    // Since listing and dashboard are sibling routes, we use relative path
+    navigate(`../dashboard/${serviceName}`);
   };
 
   return (

@@ -38,12 +38,17 @@ function MyComponent() {
   const navigate = useNavigate();
   
   const handleClick = () => {
-    // Navigate to a route in the same app
-    navigate('listing'); // Relative path
-    // OR
-    navigate('../dashboard/:serviceName', { 
-      state: { serviceName: 'my-service' }
-    });
+    // Navigate to a child route (relative path)
+    navigate('listing'); // Goes to ./listing
+    
+    // Navigate to parent route
+    navigate('..'); // Goes up one level
+    
+    // Navigate to sibling route
+    navigate('../dashboard/my-service'); // Goes up then to sibling
+    
+    // Navigate to current route (refresh)
+    navigate('.'); // Stays on current route
   };
   
   return <button onClick={handleClick}>Go to Listing</button>;
@@ -75,29 +80,44 @@ function MyComponent() {
 
 function PartitionDetailPage() {
   const navigate = useNavigate();
-  const { serviceName, partitionName } = useParams();
   
   const handleEdit = () => {
-    // Option 1: Relative path (recommended for nested routes)
-    navigate('./edit-description');
+    // ✅ BEST: Use relative path (recommended for nested routes)
+    navigate('edit-description'); // Child route
     
-    // Option 2: Full path with parameters
-    navigate(
-      urls.partitionEditDescription
-        .replace(':serviceName', serviceName ?? '')
-        .replace(':partitionName', partitionName ?? '')
-    );
+    // ✅ GOOD: Navigate back to parent
+    navigate('..', { replace: true }); // Parent route with replace
+    
+    // ❌ AVOID: Absolute path with replace() - creates duplication issues
+    // navigate(`../${urls.partitionDetail.replace(...)}`); // May cause route duplication
   };
   
   return <button onClick={handleEdit}>Edit</button>;
 }
 ```
 
-#### ❌ Avoid: Absolute Paths
+**Key Points:**
+- Use relative paths (`'edit-description'`, `'..'`, `'.'`) instead of absolute paths
+- Use `replace: true` when closing modals to avoid adding history entries
+- Relative paths automatically resolve based on current route context
+- Avoid using `urls.xxx.replace()` for internal navigation - use relative paths instead
+
+#### ❌ Avoid: Absolute Paths with Route Constants
 
 ```typescript
+// ❌ Don't use absolute paths with replace() - causes route duplication
+// From: /dashboard/zpool-123
+// This creates: /dashboard/zpool-123/dashboard/zpool-123 (duplication!)
+navigate(`../${urls.dashboard.replace(':serviceName', serviceName ?? '')}`);
+
+// ✅ Correct: Use relative path
+navigate('..', { replace: true }); // Goes to parent route
+
 // ❌ Don't use absolute paths - they may not work in nested contexts
 navigate('/bmc-nasha/listing'); // May break if app is mounted at different path
+
+// ✅ Correct: Use relative path
+navigate('listing'); // Relative to current route
 ```
 
 ### 2. External Links (Other Manager Apps)
@@ -230,19 +250,39 @@ Is the link within the same React app?
 ```typescript
 // ✅ Internal navigation - same app
 import { useNavigate } from 'react-router-dom';
-import { urls } from '@/routes/Routes.constants';
 
 function DashboardPage() {
   const navigate = useNavigate();
-  const { serviceName } = useParams();
   
   const handleViewPartitions = () => {
-    // Navigate to partitions list in same app
-    navigate(`../${urls.partitions.replace(':serviceName', serviceName ?? '')}`);
+    // ✅ Navigate to partitions list using relative path
+    navigate('partitions'); // Child route
+  };
+  
+  const handleEditName = () => {
+    // ✅ Navigate to edit-name route (child route)
+    navigate('edit-name');
+  };
+  
+  const handleCloseModal = () => {
+    // ✅ Navigate back to parent with replace (removes modal from history)
+    navigate('..', { replace: true });
   };
   
   return <button onClick={handleViewPartitions}>View Partitions</button>;
 }
+```
+
+**Route Structure:**
+```
+/dashboard/:serviceName (DashboardPage)
+  ├─ /partitions (PartitionsListPage)
+  ├─ /edit-name (EditNamePage)
+  └─ /partition/:partitionName (PartitionDetailPage)
+      ├─ /edit-description
+      ├─ /edit-size
+      ├─ /accesses
+      └─ /snapshots
 ```
 
 ### Example 2: Navigation to Another Manager App
@@ -338,19 +378,39 @@ const { data: billingUrl } = useNavigationGetUrl(['billing', '#/billing/invoices
 // Then use <a href={billingUrl}>
 ```
 
-### ❌ Mistake 3: Not Using Relative Paths
+### ❌ Mistake 3: Using Absolute Paths with Route Constants
 
 ```typescript
+// ❌ Wrong: Absolute path with replace() causes route duplication
+// Current: /dashboard/zpool-123
+// Result: /dashboard/zpool-123/dashboard/zpool-123 (duplication!)
+navigate(`../${urls.dashboard.replace(':serviceName', serviceName ?? '')}`);
+
 // ❌ Wrong: Absolute path may break in nested routes
 navigate('/bmc-nasha/dashboard/my-service');
 
 // ✅ Correct: Use relative paths
-navigate('../dashboard/:serviceName'.replace(':serviceName', 'my-service'));
-// OR use route constants
-navigate(urls.dashboard.replace(':serviceName', 'my-service'));
+navigate('..', { replace: true }); // Parent route
+navigate('partitions'); // Child route
+navigate('.'); // Current route
+navigate('../sibling'); // Sibling route
 ```
 
-### ❌ Mistake 4: Missing External Link Attributes
+### ❌ Mistake 4: Not Using `replace: true` for Modal Closures
+
+```typescript
+// ❌ Wrong: Adds modal route to history
+const handleCloseModal = () => {
+  navigate('..'); // User can go back to modal
+};
+
+// ✅ Correct: Replace history entry when closing modal
+const handleCloseModal = () => {
+  navigate('..', { replace: true }); // Removes modal from history
+};
+```
+
+### ❌ Mistake 5: Missing External Link Attributes
 
 ```typescript
 // ❌ Wrong: Missing security attributes
@@ -373,9 +433,11 @@ navigate(urls.dashboard.replace(':serviceName', 'my-service'));
 ### Internal Links (Same App)
 1. ✅ Use `navigate()` for programmatic navigation
 2. ✅ Use `<Link>` for declarative links
-3. ✅ Always use relative paths
-4. ✅ Use route constants from `Routes.constants.ts`
+3. ✅ **Always use relative paths** (`'child'`, `'..'`, `'.'`)
+4. ✅ Use `replace: true` when closing modals to avoid history pollution
 5. ✅ Avoid `window.location.href` (causes full page reload)
+6. ✅ Avoid using `urls.xxx.replace()` for internal navigation - use relative paths
+7. ✅ Relative paths automatically resolve based on current route context
 
 ### External Links (Other Manager Apps)
 1. ✅ Use `useNavigationGetUrl` hook
@@ -444,4 +506,23 @@ function MyComponent() {
 - **Always handle loading states** for external URLs
 
 **👉 Good navigation is seamless for users and correctly typed for developers.**
+
+## 📝 Quick Reference: Relative Path Patterns
+
+```typescript
+// Current route: /dashboard/zpool-123/partition/my-partition
+
+navigate('edit-description');     // → /dashboard/zpool-123/partition/my-partition/edit-description
+navigate('..');                   // → /dashboard/zpool-123/partition/my-partition (parent)
+navigate('../accesses');          // → /dashboard/zpool-123/partition/my-partition/accesses
+navigate('../../partitions');     // → /dashboard/zpool-123/partitions
+navigate('.');                    // → /dashboard/zpool-123/partition/my-partition (current)
+```
+
+**Common Patterns:**
+- `navigate('child')` - Navigate to child route
+- `navigate('..')` - Navigate to parent route
+- `navigate('..', { replace: true })` - Navigate to parent and replace history (for modal closures)
+- `navigate('.')` - Stay on current route (refresh)
+- `navigate('../sibling')` - Navigate to sibling route
 

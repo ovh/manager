@@ -2,7 +2,6 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { BaseLayout } from '@ovh-ux/muk';
 
-import { urls } from '@/routes/Routes.constants';
 
 import TaskTracker from '@/components/TaskTracker/TaskTracker.component';
 
@@ -20,8 +19,8 @@ export default function TaskTrackerPage() {
 
   const handleGoBack = (options?: { success?: string; error?: string; reload?: boolean }) => {
     if (options?.reload) {
-      // Navigate back and reload data
-      navigate(`../${urls.partitions.replace(':serviceName', serviceName ?? '')}`, {
+      // Navigate back to partitions list and reload data using relative path
+      navigate('..', {
         replace: true,
         state: options,
       });
