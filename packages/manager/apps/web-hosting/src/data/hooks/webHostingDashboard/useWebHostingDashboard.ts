@@ -10,8 +10,14 @@ import {
   getServiceInfos,
   updateHostingService,
 } from '@/data/api/dashboard';
+import {
+  fetchDeploymentLogs,
+  fetchHostingWebsiteIds,
+  fetchWebsiteDeployments,
+} from '@/data/api/git';
 import { getWebHostingWebsiteV6 } from '@/data/api/webHosting';
 import { TAttachedDomain, TCreateAttachedDomain } from '@/data/types/product/domain';
+import { Logs } from '@/data/types/product/git';
 import queryClient from '@/utils/queryClient';
 
 export const useGetHostingService = (serviceName: string) =>
@@ -20,6 +26,41 @@ export const useGetHostingService = (serviceName: string) =>
     queryFn: () => getHostingService(serviceName),
     enabled: Boolean(serviceName),
   });
+
+export const useGetHostingWebsiteIds = (serviceName: string, path?: string) =>
+  useQuery<number[]>({
+    queryKey: ['hosting', 'web', serviceName, 'website', path, 'ids'],
+    queryFn: () => fetchHostingWebsiteIds(serviceName, path),
+    enabled: Boolean(serviceName),
+  });
+
+export const useGetWebsiteDeployments = (serviceName: string, websiteId?: number) =>
+  useQuery<number[]>({
+    queryKey: ['hosting', 'web', serviceName, 'website', websiteId, 'deployment'],
+    queryFn: () => fetchWebsiteDeployments(serviceName, websiteId),
+    enabled: Boolean(serviceName && websiteId !== undefined),
+  });
+
+export const useGetDeploymentLogs = (
+  serviceName: string,
+  websiteId?: number,
+  deploymentId?: number,
+) =>
+  useQuery<Logs[]>({
+    queryKey: [
+      'hosting',
+      'web',
+      serviceName,
+      'website',
+      websiteId,
+      'deployment',
+      deploymentId,
+      'logs',
+    ],
+    queryFn: () => fetchDeploymentLogs(serviceName, websiteId, deploymentId),
+    enabled: Boolean(serviceName && websiteId !== undefined && deploymentId !== undefined),
+  });
+
 export const useGetHostingServiceWebsite = (serviceName: string, path?: string) =>
   useQuery<string[]>({
     queryKey: ['hosting', 'web', serviceName, 'website', path],
