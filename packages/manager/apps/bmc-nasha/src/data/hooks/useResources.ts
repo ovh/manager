@@ -27,8 +27,9 @@ function mapResponse<T>(response: {
   search?: unknown;
 }): ResourcesFacadeResult<T> {
   const status = response.status as 'pending' | 'success' | 'error' | undefined;
+  const data = response.flattenData ?? response.data;
   return {
-    flattenData: response.flattenData ?? response.data,
+    flattenData: Array.isArray(data) ? data : [],
     totalCount: response.totalCount,
     hasNextPage: response.hasNextPage,
     fetchNextPage: response.fetchNextPage,

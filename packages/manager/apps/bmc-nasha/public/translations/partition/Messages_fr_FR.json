@@ -1,0 +1,67 @@
+{
+  "edit": "Modifier",
+  "tabs": {
+    "general_information": "Informations générales",
+    "snapshots": "Snapshots",
+    "accesses": "Accès"
+  },
+  "information": {
+    "title": "Informations",
+    "name": "Nom",
+    "description": "Description",
+    "description_none": "Aucune description",
+    "protocol": "Protocole",
+    "size": "Taille",
+    "quota": "Quota"
+  },
+  "edit_description": {
+    "title": "Modifier la description",
+    "label": "Description",
+    "helper": "Maximum 50 caractères",
+    "max_length": "La description ne peut pas dépasser 50 caractères",
+    "success": "La description a été modifiée avec succès",
+    "error": "Une erreur est survenue",
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
+  },
+  "edit_size": {
+    "title": "Modifier la taille",
+    "label": "Taille de la partition",
+    "helper": "Taille autorisée : min {{ min }}GB, max {{ max }}GB",
+    "boundaries_error": "La taille doit être entre {{ min }} GB et {{ max }} GB",
+    "success": "La taille a été modifiée avec succès",
+    "error": "Une erreur est survenue",
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
+  },
+  "accesses": {
+    "title": "Contrôle d'accès (ACL)",
+    "description": "Gérer les accès IP à cette partition",
+    "create": "Créer un accès",
+    "columns": {
+      "type": "Type",
+      "description": "Description"
+    },
+    "actions": {
+      "delete": "Supprimer"
+    }
+  },
+  "snapshots": {
+    "title": "Snapshot policies",
+    "description": "Gérer les politiques de snapshot pour cette partition",
+    "create": "Créer un snapshot",
+    "count_title": "Nombre de snapshots personnalisés",
+    "count_max": "max",
+    "types": "Types de snapshot",
+    "custom": "Snapshot personnalisé",
+    "no_types": "Aucun",
+    "columns": {
+      "type": "Type",
+      "name": "Nom"
+    },
+    "actions": {
+      "delete": "Supprimer"
+    }
+  }
+}
+

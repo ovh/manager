@@ -1,19 +1,27 @@
 {
-  "home": "Accueil",
-  "order": "Commander",
-  "back": "Retour",
-  "title": "Dashboard",
-  "email": "E-mail",
-  "subject": "Objet",
-  "message": "Message",
-  "submitButton": "Envoyer",
-  "successMessage": "Votre demande a été envoyée avec succès.",
-  "errors": {
-    "emailRequired": "L’e-mail est obligatoire.",
-    "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
-    "subjectRequired": "L’objet est obligatoire.",
-    "messageRequired": "Le message est obligatoire."
+  "edit": "Modifier",
+  "guides": {
+    "title": "Documentation générale"
   },
-  "general-information": "Informations générales",
-  "help": "Aide"
+  "tabs": {
+    "general_information": "Informations générales",
+    "partitions": "Partitions"
+  },
+  "information": {
+    "title": "Informations",
+    "name": "Nom",
+    "id": "ID Service",
+    "datacenter": "Localisation du datacenter",
+    "disk_type": "Type de disque",
+    "disk_size": "Taille de stockage"
+  },
+  "configuration": {
+    "title": "Configuration",
+    "quota": "Quota",
+    "link": "Créer une partition"
+  },
+  "billing": {
+    "placeholder": "Les informations de facturation seront affichées ici"
+  },
+  "eol_banner_message": "Ce service est en période de fin de vie"
 }

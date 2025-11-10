@@ -1,19 +1,27 @@
 {
-  "home": "Home",
-  "order": "Order",
-  "back": "Back",
-  "title": "Dashboard",
-  "email": "Email address",
-  "subject": "Subject",
-  "message": "Message",
-  "submitButton": "Send",
-  "successMessage": "Your request has been sent.",
-  "errors": {
-    "emailRequired": "You need to enter an email address",
-    "emailInvalid": "Please enter a valid email address.",
-    "subjectRequired": "You need to enter a subject.",
-    "messageRequired": "You need to write a message."
+  "edit": "Edit",
+  "guides": {
+    "title": "General documentation"
   },
-  "general-information": "General information",
-  "help": "Help"
+  "tabs": {
+    "general_information": "General information",
+    "partitions": "Partitions"
+  },
+  "information": {
+    "title": "Information",
+    "name": "Name",
+    "id": "Service ID",
+    "datacenter": "Datacentre location",
+    "disk_type": "Disk type",
+    "disk_size": "Storage size"
+  },
+  "configuration": {
+    "title": "Configuration",
+    "quota": "Quota",
+    "link": "Create a partition"
+  },
+  "billing": {
+    "placeholder": "Billing information will be displayed here"
+  },
+  "eol_banner_message": "This service is in end-of-life period"
 }

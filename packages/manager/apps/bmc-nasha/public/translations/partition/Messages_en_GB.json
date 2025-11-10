@@ -1,0 +1,67 @@
+{
+  "edit": "Edit",
+  "tabs": {
+    "general_information": "General information",
+    "snapshots": "Snapshots",
+    "accesses": "Accesses"
+  },
+  "information": {
+    "title": "Information",
+    "name": "Name",
+    "description": "Description",
+    "description_none": "No description",
+    "protocol": "Protocol",
+    "size": "Size",
+    "quota": "Quota"
+  },
+  "edit_description": {
+    "title": "Edit description",
+    "label": "Description",
+    "helper": "Maximum 50 characters",
+    "max_length": "Description cannot exceed 50 characters",
+    "success": "Description updated successfully",
+    "error": "An error occurred",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "edit_size": {
+    "title": "Edit size",
+    "label": "Partition size",
+    "helper": "Allowed size: min {{ min }}GB, max {{ max }}GB",
+    "boundaries_error": "Size must be between {{ min }} GB and {{ max }} GB",
+    "success": "Size updated successfully",
+    "error": "An error occurred",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "accesses": {
+    "title": "Access control (ACL)",
+    "description": "Manage IP access to this partition",
+    "create": "Create access",
+    "columns": {
+      "type": "Type",
+      "description": "Description"
+    },
+    "actions": {
+      "delete": "Delete"
+    }
+  },
+  "snapshots": {
+    "title": "Snapshot policies",
+    "description": "Manage snapshot policies for this partition",
+    "create": "Create snapshot",
+    "count_title": "Custom snapshots count",
+    "count_max": "max",
+    "types": "Snapshot types",
+    "custom": "Custom snapshot",
+    "no_types": "None",
+    "columns": {
+      "type": "Type",
+      "name": "Name"
+    },
+    "actions": {
+      "delete": "Delete"
+    }
+  }
+}
+

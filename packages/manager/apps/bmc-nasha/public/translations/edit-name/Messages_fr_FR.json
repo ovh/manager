@@ -1,0 +1,12 @@
+{
+  "title": "Modifier le nom du service {{ name }}",
+  "description": "Mettre à jour le nom d'affichage de ce service",
+  "label": "Nom du service {{ name }}",
+  "rules": "Les caractères < et > ne sont pas autorisés",
+  "success": "Le nom a été changé avec succès",
+  "cancel": "Fermer",
+  "confirm": "Modifier le nom du service"
+}
+
+
+
