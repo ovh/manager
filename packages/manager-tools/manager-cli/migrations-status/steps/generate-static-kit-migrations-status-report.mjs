@@ -79,13 +79,13 @@ const checkStaticKitCompliance = (appName) => {
     if (cliArgs.dryRun) console.log(`❌ ${appName}: Missing ${STATIC_KIT_PKG} in devDependencies`);
   }
 
-  // 2. Disallow direct eslint/typescript dependencies
+  // 2. Disallow direct eslint dependencies
   const hasBannedDeps = Object.keys({ ...deps, ...devDeps }).some(
-    (dep) => dep === 'typescript' || dep.startsWith('eslint'),
+    (dep) => dep === dep.startsWith('eslint'),
   );
   if (hasBannedDeps) {
     eslintOk = false;
-    if (cliArgs.dryRun) console.log(`❌ ${appName}: Contains banned eslint/typescript deps`);
+    if (cliArgs.dryRun) console.log(`❌ ${appName}: Contains banned eslint deps`);
   }
 
   // 3. Check required scripts

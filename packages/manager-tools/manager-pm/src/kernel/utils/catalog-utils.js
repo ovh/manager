@@ -1,15 +1,21 @@
 import { Buffer } from 'node:buffer';
+import { exec } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { promisify } from 'node:util';
 
 import {
+  managerRootPath,
   pnpmAppsPlaybookPath,
+  privateModulesPath,
   rootPackageJsonPath,
   yarnAppsPlaybookPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
+
+const execAsync = promisify(exec);
 
 /**
  * Resolve canonical catalog file paths.
@@ -347,42 +353,230 @@ export async function updateRootWorkspacesToPnpmOnly() {
 }
 
 /**
- * Clear all root workspaces.
+ * Try to restore package.json from Git.
  *
- * Sets:
- * {
- *   "workspaces": { "packages": [] }
- * }
+ * @param {string} directory - Directory containing package.json
+ * @param {string} file - Filename of package.json
+ * @returns {Promise<boolean>} True if restored successfully
+ */
+async function tryGitRestore(directory, file) {
+  try {
+    logger.info(`Attempting to restore ${file} using Git...`);
+    await execAsync(`git restore ${file}`, { cwd: directory });
+    logger.success(`✔ Successfully restored ${file} from Git`);
+    return true;
+  } catch (err) {
+    logger.warn(`⚠️ Git restore failed: ${err.message}`);
+    logger.debug(`Git error stack: ${err.stack}`);
+    return false;
+  }
+}
+
+/**
+ * Manually clear the workspaces field in root package.json.
  *
- * - Idempotent.
- * - Normalizes array-form workspaces to object-form for consistency.
+ * @returns {Promise<void>}
+ */
+async function clearWorkspacesManually() {
+  try {
+    logger.info('Falling back to manual workspace clearing...');
+    const rootPackageJsonContent = await fs.readFile(rootPackageJsonPath, 'utf-8');
+    const rootPackageJson = JSON.parse(rootPackageJsonContent);
+
+    if (
+      !rootPackageJson.workspaces ||
+      typeof rootPackageJson.workspaces !== 'object' ||
+      Array.isArray(rootPackageJson.workspaces)
+    ) {
+      logger.warn('⚠️ Invalid or missing "workspaces" field. Creating new object form.');
+      rootPackageJson.workspaces = { packages: [] };
+    } else {
+      rootPackageJson.workspaces.packages = [];
+    }
+
+    await fs.writeFile(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2));
+    logger.success('✔ Cleared root workspaces.packages (manual fallback successful)');
+  } catch (err) {
+    logger.error(`❌ Failed to manually clear root workspaces: ${err.message}`);
+    logger.debug(`Stack trace: ${err.stack}`);
+  }
+}
+
+/**
+ * Attempt to restore the root `package.json` from Git.
+ * Falls back to manually clearing workspaces if Git is unavailable or fails.
+ *
+ * - Uses `git restore` (requires Git ≥ 2.23, cross-platform)
+ * - Ensures the file returns to a consistent empty state even on failure
  *
  * @returns {Promise<string[]>} Always returns an empty array.
  */
 export async function clearRootWorkspaces() {
   logger.debug('clearRootWorkspaces()');
-  try {
-    const raw = await fs.readFile(rootPackageJsonPath, 'utf-8');
-    const pkg = JSON.parse(raw);
 
-    // Normalize to object form: { packages: [] }
-    if (!pkg.workspaces || typeof pkg.workspaces !== 'object' || Array.isArray(pkg.workspaces)) {
-      if (Array.isArray(pkg.workspaces)) {
-        logger.warn('⚠️ Root package.json workspaces is an array. Converting to object form.');
-      } else {
-        logger.warn('⚠️ Root package.json had no valid workspaces field. Creating a new one.');
+  const cwd = path.dirname(rootPackageJsonPath);
+  const file = path.basename(rootPackageJsonPath);
+
+  // --- Try Git restore first ---
+  if (await tryGitRestore(cwd, file)) {
+    return [];
+  }
+
+  // --- Fallback: manual clear ---
+  await clearWorkspacesManually();
+  return [];
+}
+
+/**
+ * Update workspace catalogs by removing the application path
+ * from one catalog and adding it to another.
+ *
+ * @async
+ * @param {Object} params - Function parameters.
+ * @param {string} params.fromPath - Source catalog path (to remove from).
+ * @param {string} params.toPath - Target catalog path (to add to).
+ * @param {string} params.appPath - Relative path of the application.
+ * @returns {Promise<boolean>} - True if catalog update succeeded,
+ *   false if skipped due to invalid workspace.
+ * @throws {Error} If catalog update fails with an error status.
+ */
+export async function updateCatalog({ fromPath, toPath, appPath }) {
+  const removed = await removeAppPathFromCatalog(fromPath, appPath);
+  const added = await addAppPathToCatalog(toPath, appPath);
+
+  logger.info(`ℹ️ Catalog updates:
+       • Removed from ${fromPath.includes('pnpm') ? 'PNPM' : 'Yarn'} → ${removed}
+       • Added to ${toPath.includes('pnpm') ? 'PNPM' : 'Yarn'} → ${added}`);
+
+  if (removed === 'invalid' || added === 'invalid') {
+    logger.warn(`⚠️ Skipped: "${appPath}" is not a valid workspace.`);
+    return false;
+  }
+
+  if (removed === 'error' || added === 'error') {
+    throw new Error(`Catalog update failed for "${appPath}"`);
+  }
+
+  return true;
+}
+
+/**
+ * Ensure a module is registered in the private PNPM modules catalog.
+ *
+ * @param {Object} params
+ * @param {string} params.turboFilter - Turbo filter (e.g., "--filter @ovh-ux/manager-core-utils")
+ * @param {string} params.pnpmPath - Relative path to the module (e.g., "packages/manager/core/utils")
+ * @returns {Promise<boolean>} True if added, false if already present or invalid.
+ */
+export async function updatePrivateModulesCatalog({ turboFilter, pnpmPath }) {
+  logger.debug(`updatePrivateModulesCatalog(turboFilter="${turboFilter}", pnpmPath="${pnpmPath}")`);
+
+  try {
+    // 1️⃣ Ensure catalog file exists or initialize an empty one
+    let entries = [];
+    if (existsSync(privateModulesPath)) {
+      const raw = await fs.readFile(privateModulesPath, 'utf8');
+      try {
+        entries = JSON.parse(raw);
+      } catch (err) {
+        logger.error(`❌ Failed to parse ${privateModulesPath}: ${err.message}`);
+        return false;
       }
-      pkg.workspaces = { packages: [] };
     } else {
-      pkg.workspaces.packages = [];
+      logger.warn(`⚠️ Private modules catalog not found. Creating a new one.`);
     }
 
-    await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
-    logger.success('✔ Cleared root workspaces.packages (now empty)');
-    return [];
+    if (!Array.isArray(entries)) {
+      logger.error(`❌ Invalid catalog format in ${privateModulesPath}: expected an array`);
+      entries = [];
+    }
+
+    // 2️⃣ Normalize inputs
+    const normalizedTurbo = turboFilter.trim();
+    const normalizedPnpm = pnpmPath.trim().replace(managerRootPath, '').replace(/^\/+/, '');
+
+    // 3️⃣ Check if already present
+    const alreadyExists = entries.some(
+      (entry) => entry.turbo === normalizedTurbo || entry.pnpm === normalizedPnpm,
+    );
+
+    if (alreadyExists) {
+      logger.info(`ℹ️ Private module already registered: ${normalizedPnpm}`);
+      return false;
+    }
+
+    // 4️⃣ Add and sort alphabetically by pnpm path
+    entries.push({ turbo: normalizedTurbo, pnpm: normalizedPnpm });
+    entries.sort((a, b) => a.pnpm.localeCompare(b.pnpm));
+
+    // 5️⃣ Persist
+    const jsonData = JSON.stringify(entries, null, 2);
+    await fs.writeFile(privateModulesPath, jsonData, 'utf8');
+
+    logger.success(`➕ Added private module to catalog: ${normalizedTurbo} (${normalizedPnpm})`);
+    logger.debug(`🗂 Updated ${privateModulesPath} with ${entries.length} entries`);
+    return true;
   } catch (err) {
-    logger.error(`❌ Failed to clear root workspaces: ${err.message}`);
+    logger.error(`❌ Failed to update private modules catalog: ${err.message}`);
     logger.debug(`Stack trace: ${err.stack}`);
-    return [];
+    return false;
+  }
+}
+
+/**
+ * Remove a module from the private PNPM modules catalog.
+ *
+ * @param {Object} params
+ * @param {string} params.turboFilter - Turbo filter (e.g., "--filter @ovh-ux/manager-core-utils")
+ * @param {string} params.pnpmPath - Relative path to the module (e.g., "packages/manager/core/utils")
+ * @returns {Promise<boolean>} True if removed, false if not found or invalid.
+ */
+export async function removePrivateModuleFromCatalog({ turboFilter, pnpmPath }) {
+  logger.debug(
+    `removePrivateModuleFromCatalog(turboFilter="${turboFilter}", pnpmPath="${pnpmPath}")`,
+  );
+
+  try {
+    if (!existsSync(privateModulesPath)) {
+      logger.info(`ℹ️ Private catalog file not found: ${privateModulesPath}`);
+      return false;
+    }
+
+    const raw = await fs.readFile(privateModulesPath, 'utf8');
+    let entries = [];
+    try {
+      entries = JSON.parse(raw);
+    } catch (err) {
+      logger.error(`❌ Failed to parse ${privateModulesPath}: ${err.message}`);
+      return false;
+    }
+
+    if (!Array.isArray(entries)) {
+      logger.error(`❌ Invalid catalog format in ${privateModulesPath}: expected an array`);
+      return false;
+    }
+
+    const normalizedTurbo = turboFilter.trim();
+    const normalizedPnpm = pnpmPath.trim();
+
+    const beforeCount = entries.length;
+    entries = entries.filter(
+      (entry) => entry.turbo !== normalizedTurbo && entry.pnpm !== normalizedPnpm,
+    );
+
+    if (entries.length === beforeCount) {
+      logger.info(`ℹ️ Private module not found in catalog: ${normalizedPnpm}`);
+      return false;
+    }
+
+    await fs.writeFile(privateModulesPath, JSON.stringify(entries, null, 2), 'utf8');
+    logger.success(
+      `🗑️  Removed private module from catalog: ${normalizedTurbo} (${normalizedPnpm})`,
+    );
+    return true;
+  } catch (err) {
+    logger.error(`❌ Failed to remove private module from catalog: ${err.message}`);
+    logger.debug(`Stack trace: ${err.stack}`);
+    return false;
   }
 }
