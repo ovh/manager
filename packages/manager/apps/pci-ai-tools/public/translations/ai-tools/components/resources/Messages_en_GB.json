@@ -10,5 +10,5 @@
   "temporaryLocalStorageHelper": "High-performance local storage, but not backed up",
   "modifyLabel": "Edit",
   "disabledButtonTooltip": "Make sure the notebook is in ‘Stopped’ status",
-  "qpuQubitsFiel": "Qubits: {{ qubits }}"
+  "qpuQubitsFiel": "Qubits: {{ qubits }} "
 }

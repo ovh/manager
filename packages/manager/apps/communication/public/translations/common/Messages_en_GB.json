@@ -24,6 +24,6 @@
   "status_error": "Error",
   "status_disabled": "Disabled",
   "status_valid": "Active",
-  "status_to_validate": "Pending",
-  "error_rate_limit_message": "You have reached the request limit. Please try again later."
+  "status_to_validate": "Queued",
+  "error_rate_limit_message": "You have reached the maximum number of requests. Please try again later."
 }
