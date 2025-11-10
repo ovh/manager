@@ -17,6 +17,8 @@ import deleteModule from './delete';
 import service from './service';
 import createVolumeModule from './create-volume';
 
+import './style.less';
+
 const moduleName = 'ovhManagerNetAppVolumesDashboardSnapshots';
 
 angular
