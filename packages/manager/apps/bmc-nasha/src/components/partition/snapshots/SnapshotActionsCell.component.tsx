@@ -31,12 +31,7 @@ export default function SnapshotActionsCell({ snapshotName, isCustom }: Snapshot
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'snapshots', 'delete'],
     });
-    navigate(
-      `../${urls.partitionSnapshotDelete
-        .replace(':serviceName', serviceName ?? '')
-        .replace(':partitionName', partitionName ?? '')
-        .replace(':customSnapshotName', snapshotName)}`,
-    );
+    navigate(`delete/${encodeURIComponent(snapshotName)}`);
   };
 
   return (

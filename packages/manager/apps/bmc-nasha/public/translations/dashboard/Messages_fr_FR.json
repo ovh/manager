@@ -21,7 +21,17 @@
     "link": "Créer une partition"
   },
   "billing": {
-    "placeholder": "Les informations de facturation seront affichées ici"
+    "title": "Facturation",
+    "creation": "Date de création",
+    "status": "Statut",
+    "expiration": "Date d'expiration",
+    "next_billing_date": "Prochaine date de facturation",
+    "view_billing": "Voir la facturation",
+    "renewal": {
+      "automatic": "Renouvellement automatique tous les {{ period }} mois",
+      "automatic_generic": "Renouvellement automatique",
+      "manual": "Renouvellement manuel"
+    }
   },
   "eol_banner_message": "Ce service est en période de fin de vie"
 }

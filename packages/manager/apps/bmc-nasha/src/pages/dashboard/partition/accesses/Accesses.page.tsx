@@ -1,9 +1,9 @@
 import { Suspense, useMemo, useCallback } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { BaseLayout, Datagrid, type DatagridColumn } from '@ovh-ux/muk';
+import { BaseLayout, Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -30,6 +30,8 @@ export default function AccessesPage() {
   const { data: accesses, isLoading } = usePartitionAccesses(serviceName ?? '', partitionName ?? '');
 
 
+  const navigate = useNavigate();
+
   // Handle create access
   const handleCreateAccess = useCallback(() => {
     trackClick({
@@ -38,42 +40,42 @@ export default function AccessesPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'accesses', 'create'],
     });
-    // TODO: Implement create access form/modal
-  }, [trackClick]);
+    navigate('create');
+  }, [trackClick, navigate]);
 
-  // Define columns
+  // Define columns using accessorKey and header as required by MUK Datagrid
   const columns = useMemo<DatagridColumn<PartitionAccess>[]>(
     () => [
       {
-        id: 'ip',
-        label: 'IP',
-        cell: ({ ip }) => ip,
+        accessorKey: 'ip',
+        header: 'IP',
+        cell: ({ row }) => row.original.ip,
         isSortable: true,
         isSearchable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'type',
-        label: t('partition:accesses.columns.type'),
-        cell: ({ type }) => type,
+        accessorKey: 'type',
+        header: t('partition:accesses.columns.type'),
+        cell: ({ row }) => row.original.type,
         isSortable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'aclDescription',
-        label: t('partition:accesses.columns.description'),
-        cell: ({ aclDescription }) => aclDescription || '-',
+        accessorKey: 'aclDescription',
+        header: t('partition:accesses.columns.description'),
+        cell: ({ row }) => row.original.aclDescription || '-',
         isSortable: true,
         isSearchable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'actions',
-        label: '',
-        cell: (access: PartitionAccess) => <AccessActionsCell ip={access.ip} />,
+        accessorKey: 'actions',
+        header: '',
+        cell: ({ row }) => <AccessActionsCell ip={row.original.ip} />,
         isSortable: false,
         enableHiding: false,
       },
@@ -84,13 +86,9 @@ export default function AccessesPage() {
   // Topbar CTA button
   const topbarCTA = useMemo(
     () => (
-      <button
-        type="button"
-        onClick={handleCreateAccess}
-        className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark"
-      >
+      <Button variant="default" onClick={handleCreateAccess}>
         {t('partition:accesses.create', 'Create access')}
-      </button>
+      </Button>
     ),
     [t, handleCreateAccess],
   );

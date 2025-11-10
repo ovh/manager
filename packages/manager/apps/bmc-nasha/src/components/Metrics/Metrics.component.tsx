@@ -100,13 +100,13 @@ export default function Metrics({
             <Tile.Item.Root>
               <Tile.Item.Term label={t('nasha:metrics.space_usage', 'Space usage notification')} />
               <Tile.Item.Description>
-                <label className="flex items-center gap-2">
+                <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={nasha.monitored ?? false}
                     disabled={isMonitoredUpdating}
                     onChange={(e) => onMonitoredChanged?.(e.target.checked)}
-                    className="w-4 h-4"
+                    className="w-4 h-4 cursor-pointer"
                   />
                   <span className="text-sm">
                     {nasha.monitored

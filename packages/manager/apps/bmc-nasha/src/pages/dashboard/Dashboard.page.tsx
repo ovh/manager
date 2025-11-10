@@ -23,6 +23,7 @@ import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
 import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
+import BillingTile from '@/components/BillingTile/BillingTile.component';
 
 export default function DashboardPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -227,16 +228,12 @@ export default function DashboardPage() {
             </Tile.Item.Root>
           </Tile.Root>
 
-          {/* Billing Tile - TODO: Implement BillingSubscriptionTile when available */}
-          <Tile.Root title="Billing">
-            <Tile.Item.Root>
-              <Tile.Item.Description>
-                <p className="text-sm text-gray-600">
-                  {t('dashboard:billing.placeholder', 'Billing information will be displayed here')}
-                </p>
-              </Tile.Item.Description>
-            </Tile.Item.Root>
-          </Tile.Root>
+          {/* Billing Tile */}
+          <BillingTile
+            serviceInfo={serviceInfo}
+            isLoading={!serviceInfo}
+            serviceName={serviceName}
+          />
         </div>
       )}
 

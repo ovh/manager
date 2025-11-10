@@ -1,11 +1,11 @@
 import { Suspense, useCallback, useMemo } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, Datagrid, type DatagridColumn } from '@ovh-ux/muk';
+import { BaseLayout, Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/Tracking.constants';
 import SnapshotActionsCell from '@/components/partition/snapshots/SnapshotActionsCell.component';
@@ -29,6 +29,7 @@ export default function SnapshotsPage() {
   }>();
   const { t } = useTranslation(['common', 'partition']);
   const { trackClick } = useOvhTracking();
+  const navigate = useNavigate();
 
   // Fetch data
   const { data: customSnapshots, isLoading: isCustomSnapshotsLoading } =
@@ -75,34 +76,34 @@ export default function SnapshotsPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'snapshots', 'create'],
     });
-    // TODO: Implement create snapshot form/modal
-  }, [trackClick]);
+    navigate('create');
+  }, [trackClick, navigate]);
 
-  // Define columns
+  // Define columns using accessorKey and header as required by MUK Datagrid
   const columns = useMemo<DatagridColumn<SnapshotRow>[]>(
     () => [
       {
-        id: 'type',
-        label: t('partition:snapshots.columns.type'),
-        cell: ({ type }) => type,
+        accessorKey: 'type',
+        header: t('partition:snapshots.columns.type'),
+        cell: ({ row }) => row.original.type,
         isSortable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'name',
-        label: t('partition:snapshots.columns.name'),
-        cell: ({ name }) => name,
+        accessorKey: 'name',
+        header: t('partition:snapshots.columns.name'),
+        cell: ({ row }) => row.original.name,
         isSortable: true,
         isSearchable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'actions',
-        label: '',
-        cell: (row: SnapshotRow) => (
-          <SnapshotActionsCell snapshotName={row.name} isCustom={row.isCustom} />
+        accessorKey: 'actions',
+        header: '',
+        cell: ({ row }) => (
+          <SnapshotActionsCell snapshotName={row.original.name} isCustom={row.original.isCustom} />
         ),
         isSortable: false,
         enableHiding: false,
@@ -117,14 +118,9 @@ export default function SnapshotsPage() {
   // Topbar CTA button
   const topbarCTA = useMemo(
     () => (
-      <button
-        type="button"
-        onClick={handleCreateSnapshot}
-        disabled={!canCreateSnapshot}
-        className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
-      >
+      <Button variant="default" onClick={handleCreateSnapshot} disabled={!canCreateSnapshot}>
         {t('partition:snapshots.create', 'Create snapshot')}
-      </button>
+      </Button>
     ),
     [t, canCreateSnapshot, handleCreateSnapshot],
   );

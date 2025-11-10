@@ -17,6 +17,15 @@ const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'
 const PartitionsListPage = React.lazy(
   () => import('@/pages/dashboard/partitions/PartitionsList.page'),
 );
+const CreatePartitionPage = React.lazy(
+  () => import('@/pages/dashboard/partitions/create/CreatePartition.page'),
+);
+const DeletePartitionPage = React.lazy(
+  () => import('@/pages/dashboard/partitions/delete/DeletePartition.page'),
+);
+const TaskTrackerPage = React.lazy(
+  () => import('@/pages/dashboard/partitions/task-tracker/TaskTracker.page'),
+);
 const PartitionDetailPage = React.lazy(
   () => import('@/pages/dashboard/partition/PartitionDetail.page'),
 );
@@ -28,8 +37,20 @@ const EditSizePage = React.lazy(
   () => import('@/pages/dashboard/partition/edit-size/EditSize.page'),
 );
 const AccessesPage = React.lazy(() => import('@/pages/dashboard/partition/accesses/Accesses.page'));
+const CreateAccessPage = React.lazy(
+  () => import('@/pages/dashboard/partition/accesses/create/CreateAccess.page'),
+);
+const DeleteAccessPage = React.lazy(
+  () => import('@/pages/dashboard/partition/accesses/delete/DeleteAccess.page'),
+);
 const SnapshotsPage = React.lazy(
   () => import('@/pages/dashboard/partition/snapshots/Snapshots.page'),
+);
+const CreateSnapshotPage = React.lazy(
+  () => import('@/pages/dashboard/partition/snapshots/create/CreateSnapshot.page'),
+);
+const DeleteSnapshotPage = React.lazy(
+  () => import('@/pages/dashboard/partition/snapshots/delete/DeleteSnapshot.page'),
 );
 
 export default (
@@ -98,7 +119,41 @@ export default (
               pageType: PageType.dashboard,
             },
           }}
-        />
+        >
+          {/* Create partition route */}
+          <Route
+            path="create"
+            Component={CreatePartitionPage}
+            handle={{
+              tracking: {
+                pageName: 'create-partition',
+                pageType: PageType.dashboard,
+              },
+            }}
+          />
+          {/* Delete partition route */}
+          <Route
+            path=":partitionName/delete"
+            Component={DeletePartitionPage}
+            handle={{
+              tracking: {
+                pageName: 'delete-partition',
+                pageType: PageType.dashboard,
+              },
+            }}
+          />
+          {/* Task tracker route */}
+          <Route
+            path="task-tracker"
+            Component={TaskTrackerPage}
+            handle={{
+              tracking: {
+                pageName: 'task-tracker',
+                pageType: PageType.dashboard,
+              },
+            }}
+          />
+        </Route>
 
         {/* Edit name route */}
         <Route
@@ -157,7 +212,30 @@ export default (
                 pageType: PageType.dashboard,
               },
             }}
-          />
+          >
+            {/* Create access route */}
+            <Route
+              path="create"
+              Component={CreateAccessPage}
+              handle={{
+                tracking: {
+                  pageName: 'create-access',
+                  pageType: PageType.dashboard,
+                },
+              }}
+            />
+            {/* Delete access route */}
+            <Route
+              path="delete/:ip"
+              Component={DeleteAccessPage}
+              handle={{
+                tracking: {
+                  pageName: 'delete-access',
+                  pageType: PageType.dashboard,
+                },
+              }}
+            />
+          </Route>
 
           {/* Snapshots route */}
           <Route
@@ -169,7 +247,30 @@ export default (
                 pageType: PageType.dashboard,
               },
             }}
-          />
+          >
+            {/* Create snapshot route */}
+            <Route
+              path="create"
+              Component={CreateSnapshotPage}
+              handle={{
+                tracking: {
+                  pageName: 'create-snapshot',
+                  pageType: PageType.dashboard,
+                },
+              }}
+            />
+            {/* Delete snapshot route */}
+            <Route
+              path="delete/:customSnapshotName"
+              Component={DeleteSnapshotPage}
+              handle={{
+                tracking: {
+                  pageName: 'delete-snapshot',
+                  pageType: PageType.dashboard,
+                },
+              }}
+            />
+          </Route>
         </Route>
       </Route>
 

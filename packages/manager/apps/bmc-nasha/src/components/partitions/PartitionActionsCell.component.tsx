@@ -42,7 +42,7 @@ export default function PartitionActionsCell({ partitionName }: PartitionActions
         navigate(`../partition/${partitionName}/zfs-options`);
         break;
       case 'delete':
-        navigate(`../partitions/${partitionName}/delete`);
+        navigate(`${partitionName}/delete`);
         break;
       default:
         break;

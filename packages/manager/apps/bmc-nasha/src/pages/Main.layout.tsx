@@ -4,6 +4,7 @@ import { Outlet, useLocation, useMatches } from 'react-router-dom';
 
 import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { Notifications } from '@ovh-ux/muk';
 
 import { appName } from '@/App.constants';
 
@@ -35,8 +36,11 @@ export default function MainLayout() {
   }, [shell]);
 
   return (
-    <Suspense fallback={null /* Replace with loader if desired */}>
-      <Outlet />
-    </Suspense>
+    <>
+      <Notifications />
+      <Suspense fallback={null /* Replace with loader if desired */}>
+        <Outlet />
+      </Suspense>
+    </>
   );
 }

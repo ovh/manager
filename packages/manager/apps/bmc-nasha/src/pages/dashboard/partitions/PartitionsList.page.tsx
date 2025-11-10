@@ -1,9 +1,9 @@
 import { Suspense, useMemo, useCallback } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { Datagrid, type DatagridColumn } from '@ovh-ux/muk';
+import { Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -15,6 +15,7 @@ import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/nasha.constant
 import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitions } from '@/hooks/partitions/usePartitions';
+import { useUpdateMonitored } from '@/hooks/partitions/useUpdateMonitored';
 import { urls } from '@/routes/Routes.constants';
 import { APP_NAME } from '@/Tracking.constants';
 
@@ -41,37 +42,34 @@ export default function PartitionsListPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
   const { t } = useTranslation(['common', 'partitions']);
   const { trackClick } = useOvhTracking();
+  const navigate = useNavigate();
 
   // Fetch data
   const { data: partitions, isLoading } = usePartitions(serviceName ?? '');
   const { data: nasha } = useNashaDetail(serviceName ?? '');
   const { canCreatePartitions } = useCanCreatePartitions(serviceName ?? '');
-
-  // Get URLs
-  const { data: createPartitionUrl } = useNavigationGetUrl([
-    'dedicated',
-    `#/nasha/${serviceName}/partitions/create`,
-    {},
-  ]);
+  const updateMonitoredMutation = useUpdateMonitored();
 
   // Handle monitored change
-  const handleMonitoredChange = useCallback(async (monitored: boolean) => {
-    if (!nasha) return;
+  const handleMonitoredChange = useCallback(
+    async (monitored: boolean) => {
+      if (!nasha || !serviceName) return;
 
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: [
-        APP_NAME,
-        PREFIX_TRACKING_DASHBOARD_PARTITIONS,
-        `usage-notification::${monitored ? 'enable' : 'disable'}`,
-      ],
-    });
+      trackClick({
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: [
+          APP_NAME,
+          PREFIX_TRACKING_DASHBOARD_PARTITIONS,
+          `usage-notification::${monitored ? 'enable' : 'disable'}`,
+        ],
+      });
 
-    // TODO: Implement API call to update monitored status
-    // await updateNashaMonitored(serviceName, monitored);
-  }, [nasha, trackClick]);
+      updateMonitoredMutation.mutate({ serviceName, monitored });
+    },
+    [nasha, serviceName, trackClick, updateMonitoredMutation],
+  );
 
   // Handle renew click
   const handleRenewClick = useCallback(() => {
@@ -91,52 +89,50 @@ export default function PartitionsListPage() {
       actionType: 'action',
       actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'create-partition'],
     });
-    if (createPartitionUrl) {
-      window.location.href = createPartitionUrl as string;
-    }
-  }, [trackClick, createPartitionUrl]);
+    navigate(`../${urls.partitions.replace(':serviceName', serviceName ?? '')}/create`);
+  }, [trackClick, navigate, serviceName]);
 
 
-  // Define columns
+  // Define columns using accessorKey and header as required by MUK Datagrid
   const columns = useMemo<DatagridColumn<Partition>[]>(
     () => [
       {
-        id: 'partitionName',
-        label: t('partitions:columns.partition_name'),
-        cell: ({ partitionName }) => <PartitionNameCell partitionName={partitionName} />,
+        accessorKey: 'partitionName',
+        header: t('partitions:columns.partition_name'),
+        cell: ({ row }) => <PartitionNameCell partitionName={row.original.partitionName} />,
         isSortable: true,
         isSearchable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'protocol',
-        label: t('partitions:columns.protocol'),
-        cell: ({ protocol }) => protocol || '-',
+        accessorKey: 'protocol',
+        header: t('partitions:columns.protocol'),
+        cell: ({ row }) => row.original.protocol || '-',
         isSortable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'use',
-        label: t('partitions:columns.use'),
-        cell: ({ use }) => (use ? <SpaceMeter usage={use} /> : '-'),
+        accessorKey: 'use',
+        header: t('partitions:columns.use'),
+        cell: ({ row }) => (row.original.use ? <SpaceMeter usage={row.original.use} /> : '-'),
         enableHiding: true,
       },
       {
-        id: 'partitionDescription',
-        label: t('partitions:columns.description'),
-        cell: ({ partitionDescription }) => partitionDescription || '-',
+        accessorKey: 'partitionDescription',
+        header: t('partitions:columns.description'),
+        cell: ({ row }) => row.original.partitionDescription || '-',
         isSortable: true,
         isSearchable: true,
         isFilterable: true,
         enableHiding: true,
       },
       {
-        id: 'actions',
-        label: '',
-        cell: (partition: Partition) => (
-          <PartitionActionsCell partitionName={partition.partitionName} />
+        accessorKey: 'actions',
+        header: '',
+        cell: ({ row }) => (
+          <PartitionActionsCell partitionName={row.original.partitionName} />
         ),
         isSortable: false,
         enableHiding: false,
@@ -148,14 +144,13 @@ export default function PartitionsListPage() {
   // Topbar CTA button
   const topbarCTA = useMemo(
     () => (
-      <button
-        type="button"
+      <Button
+        variant="default"
         onClick={handleCreatePartitionClick}
         disabled={!canCreatePartitions}
-        className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {t('partitions:create')}
-      </button>
+      </Button>
     ),
     [t, canCreatePartitions, handleCreatePartitionClick],
   );

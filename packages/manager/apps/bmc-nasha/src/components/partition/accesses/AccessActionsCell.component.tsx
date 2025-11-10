@@ -28,12 +28,7 @@ export default function AccessActionsCell({ ip }: AccessActionsCellProps) {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'accesses', 'delete'],
     });
-    navigate(
-      `../${urls.partitionAccessDelete
-        .replace(':serviceName', serviceName ?? '')
-        .replace(':partitionName', partitionName ?? '')
-        .replace(':ip', ip)}`,
-    );
+    navigate(`delete/${encodeURIComponent(ip)}`);
   };
 
   return (
