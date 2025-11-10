@@ -278,7 +278,7 @@ interface DatagridColumn<T> extends ColumnDef<T> {
 | **ServiceStateBadge** | `status`, `size?`, `showIcon?` | Service status |
 | **TagsList** | `tags`, `onAdd?`, `onRemove?`, `onEdit?`, `editable?`, `addLabel?` | Tag management |
 | **TagsTile** | `tags`, `maxDisplay?`, `onTagClick?`, `showCount?` | Tag display |
-| **UpdateNameModal** | `open`, `onOpenChange`, `defaultValue`, `onSubmit` | Update resource name |
+| **UpdateNameModal** | `isOpen`, `onClose`, `updateDisplayName`, `defaultValue`, `headline`, `inputLabel`, `isLoading?`, `error?` (string), `pattern?`, `patternMessage?` | Update resource name (see [Modals Guide](../30-best-practices/muk-modals-guide.md)) |
 | **DeleteModal** | `open`, `onOpenChange`, `title`, `description?`, `onConfirm` | Deletion confirmation |
 | **Order** | `items`, `onSubmit?`, `summary?` | Order configuration and summary |
 
