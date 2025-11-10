@@ -2,12 +2,10 @@ import { JSX } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { CARD_COLOR, Card, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import { CARD_COLOR, Card, Icon, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { Badge } from '@/components/badge/Badge.component';
 import type { LinkCardBadge, LinkCardProps } from '@/components/link-card/LinkCard.props';
-import { Link } from '@/components/link/Link.component';
-import { LinkType } from '@/components/link/Link.props';
 
 import './translations/translations';
 
@@ -73,9 +71,14 @@ export function LinkCard({
           )}
 
           <div className="mt-auto">
-            <Link tab-index="-1" type={externalHref ? LinkType.external : LinkType.next}>
+            <span className="inline-flex items-center gap-1 text-[--ods-color-primary-500]">
               {hrefLabel ?? t('see_more_label')}
-            </Link>
+              {externalHref ? (
+                <Icon name="external-link" aria-hidden="true" />
+              ) : (
+                <Icon name="arrow-right" aria-hidden="true" />
+              )}
+            </span>
           </div>
         </div>
       </Card>

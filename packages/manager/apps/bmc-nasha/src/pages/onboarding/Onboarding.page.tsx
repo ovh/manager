@@ -32,6 +32,10 @@ export default function OnboardingPage() {
 
   // Build guides tiles with localized links
   const guideTiles = useMemo(() => {
+    if (!Array.isArray(tiles) || tiles.length === 0) {
+      return [];
+    }
+
     return tiles
       .map((tile) => {
         const guideLinks = ONBOARDING_GUIDES[tile.key as keyof typeof ONBOARDING_GUIDES];
@@ -40,8 +44,8 @@ export default function OnboardingPage() {
         return {
           id: tile.id,
           texts: {
-            title: t(`onboarding:${tile.key}_title`),
-            description: t(`onboarding:${tile.key}_content`),
+            title: t(`onboarding:${tile.key}_title`, tile.key),
+            description: t(`onboarding:${tile.key}_content`, ''),
             category: t('onboarding:tutorial', 'Tutorial'),
           },
           href: link,
@@ -78,16 +82,23 @@ export default function OnboardingPage() {
   const img = useMemo(
     () => ({
       src: onboardingImage,
-      alt: heroImage?.alt ?? t('onboarding:hero_alt', { productName, defaultValue: productName }),
+      alt:
+        heroImage?.alt ??
+        (t('onboarding:hero_alt', { productName: productName || 'NAS-HA' }) ||
+          productName ||
+          'NAS-HA'),
     }),
     [heroImage, t, productName],
   );
 
+  // Ensure productName is defined
+  const displayProductName = productName || 'NAS-HA';
+
   return (
     <OnboardingLayout
-      title={productName}
+      title={displayProductName}
       img={img}
-      description={t('onboarding:content')}
+      description={<p>{t('onboarding:content')}</p>}
       orderButtonLabel={t('onboarding:order')}
       onOrderButtonClick={handleOrderClick}
     >
