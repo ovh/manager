@@ -144,6 +144,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
               urls.lastDeploymentGit
                 .replace(subRoutes.serviceName, serviceName)
                 .replace(subRoutes.path, path ?? ''),
+              { state: { serviceName, path } },
             ),
           label: t('last_deployment_git'),
         }),
