@@ -27,7 +27,7 @@ export type NotificationRouting = {
 
 export const CreateRoutingSchema = z
   .object({
-    active: z.boolean({ required_error: 'error_required_field' }),
+    active: z.boolean(),
     name: z
       .string({ required_error: 'error_required_field' })
       .trim()
@@ -35,7 +35,7 @@ export const CreateRoutingSchema = z
     rules: z
       .array(
         z.object({
-          continue: z.boolean({ required_error: 'error_required_field' }),
+          continue: z.boolean(),
           condition: z.object({
             category: z.array(
               z.string({ required_error: 'error_required_field' }),
