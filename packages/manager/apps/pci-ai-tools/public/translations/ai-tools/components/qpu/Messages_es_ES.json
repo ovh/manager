@@ -2,7 +2,7 @@
   "fieldQpuDescription": "Seleccionar el tipo de recurso",
   "tableHeadType": "Tipo",
   "tableHeadDescription": "Descripción",
-  "tableHeadQubits": "cúbits",
+  "tableHeadQubits": "Cúbits",
   "tableHeadMemory": "RAM",
   "tableHeadStorage": "Almacenamiento",
   "tableHeadPrice": "Precio/hora",

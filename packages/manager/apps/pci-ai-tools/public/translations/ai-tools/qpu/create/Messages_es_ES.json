@@ -53,7 +53,7 @@
   "successCreatingNotebookDescription": "Su notebook se ha creado correctamente.",
   "qpuPrice": "Tiempo QPU",
   "totalPrice": "Total",
-  "notePriceDesc": "El tiempo QPU se cobra por segundo. El tiempo QPU solo se le cobrará por su tiempo de uso de la QPU",
+  "notePriceDesc": "El tiempo QPU se factura por segundos. El tiempo de QPU solo se facturará por el tiempo de uso de la QPU",
   "pricingLabel": "Precio",
-  "notebookPrice": "Recursos de Notebook"
+  "notebookPrice": "Recursos del Notebook"
 }

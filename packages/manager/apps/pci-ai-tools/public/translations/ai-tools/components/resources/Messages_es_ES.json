@@ -10,5 +10,5 @@
   "temporaryLocalStorageHelper": "Almacenamiento local potente, pero sin copia de seguridad",
   "modifyLabel": "Modificar",
   "disabledButtonTooltip": "El notebook debe estar en estado detenido",
-  "qpuQubitsFiel": "Cúbits: {{ qubits }}"
+  "qpuQubitsFiel": "Qubits: {{ qubits }} "
 }

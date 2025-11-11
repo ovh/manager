@@ -3,13 +3,13 @@
   "sms_order_time2chat_description": "Please fill in the information below so that we can process your order.",
   "sms_order_time2chat_action_order": "Continue",
   "sms_order_time2chat_action_cancel": "Cancel",
-  "sms_order_time2chat_label_phonenumber": "Phone number (in international format 0033 or +33)",
+  "sms_order_time2chat_label_phonenumber": "Telephone number (in international format 0033 or +33)",
   "sms_order_time2chat_label_website": "Website",
   "sms_order_time2chat_label_name": "Name",
-  "sms_order_time2chat_label_company_name": "Name of company",
-  "sms_order_time2chat_label_brand_name": "Brand using the service",
-  "sms_order_time2chat_label_primary_use_case": "Main use case",
+  "sms_order_time2chat_label_company_name": "Company name",
+  "sms_order_time2chat_label_brand_name": "Trademark using the service",
+  "sms_order_time2chat_label_primary_use_case": "Primary use cases",
   "sms_order_time2chat_label_operational_contact_name": "Contact name",
   "sms_order_time2chat_label_operational_contact_email": "Contact email",
-  "sms_order_time2chat_message_error": "An error occurred: {{error}}"
+  "sms_order_time2chat_message_error": "An error has occurred: {{error}}"
 }
