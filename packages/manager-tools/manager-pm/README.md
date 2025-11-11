@@ -654,7 +654,6 @@ package_path=$(yarn -s manager-pm --silent --action lerna list -ap --scope="XXX"
 
 ```bash
 yarn pm:add:app --app <name|package|path>
-yarn install
 ```
 What happens:
 - App is moved from **Yarn catalog** → **PNPM catalog**
@@ -670,7 +669,6 @@ What happens:
 
 ```bash
 yarn pm:remove:app --app <name|package|path>
-yarn install
 ```
 - App is moved back to **Yarn catalog**
 - PNPM leftovers cleaned; root restored

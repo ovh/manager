@@ -150,7 +150,7 @@
   "packages/manager/modules/vrack",
   "packages/manager/modules/web-universe-components",
   "packages/manager-tools/manager-cli",
-  "packages/manager-tools/manager-generator",
+  "packages/manager-tools/manager-forge-cli",
   "packages/manager-tools/manager-legacy-tools/codename-generator",
   "packages/manager-tools/manager-legacy-tools/component-rollup-config",
   "packages/manager-tools/manager-legacy-tools/dev-server",
