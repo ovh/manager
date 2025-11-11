@@ -32,7 +32,7 @@ const useHostingUrlWithOptions = (
   const hostingUrl = useHostingUrl(serviceName);
   const boostUrl = useHostingUrl(serviceName, 'boost');
   if (withMultisite) {
-    return `/#/web-hosting${multisiteUrl}`;
+    return `#${multisiteUrl}`;
   }
   if (withBoost) {
     return boostUrl;
