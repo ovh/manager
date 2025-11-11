@@ -14,6 +14,7 @@ import {
   WebHostingWebsiteType,
 } from '@/data/types/product/webHosting';
 import { GitStatus, ServiceStatus } from '@/data/types/status';
+import { useHostingUrl } from '@/hooks/useHostingUrl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 interface ActionButtonMultisiteProps {
@@ -37,7 +38,14 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   const navigate = useNavigate();
   const { t } = useTranslation('common');
   const { serviceName } = useParams();
-
+  const associateGitLink = useHostingUrl(
+    serviceName,
+    `multisite/git-association?path=${path ?? ''}`,
+  );
+  const configureGitLink = useHostingUrl(
+    serviceName,
+    `multisite/git-configuration?path=${path ?? ''}`,
+  );
   const { data: websites = [] } = useWebHostingWebsite(serviceName) as {
     data?: WebHostingWebsiteType[];
     isLoading: boolean;
@@ -111,22 +119,12 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
         },
         actionCondition(canAssociateGit, {
           id: 6,
-          onClick: () =>
-            navigate(
-              urls.associateGit
-                .replace(subRoutes.serviceName, serviceName)
-                .replace(subRoutes.path, path ?? ''),
-            ),
+          onClick: () => window.location.replace(associateGitLink),
           label: t('associate_git'),
         }),
         actionCondition(canConfigureGit, {
           id: 7,
-          onClick: () =>
-            navigate(
-              urls.configureGit
-                .replace(subRoutes.serviceName, serviceName)
-                .replace(subRoutes.path, path ?? ''),
-            ),
+          onClick: () => window.location.replace(configureGitLink),
           label: t('configure_git'),
         }),
         actionCondition(canDeployGit, {
@@ -213,7 +211,20 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
 
       return domainActions;
     }
-  }, [context, domains, t, websites, siteId, navigate, serviceName, path, domainId, domain]);
+  }, [
+    context,
+    domains,
+    t,
+    websites,
+    siteId,
+    navigate,
+    serviceName,
+    path,
+    domainId,
+    domain,
+    associateGitLink,
+    configureGitLink,
+  ]);
 
   return (
     <ActionMenu
