@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type OnboardingLinksType = {
   discover: string;
   tutorial: string;
