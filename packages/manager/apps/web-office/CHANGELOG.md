@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.36](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.35...@ovh-ux/manager-web-office-app@0.4.36) (2025-11-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
 ## [0.4.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.34...@ovh-ux/manager-web-office-app@0.4.35) (2025-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app
