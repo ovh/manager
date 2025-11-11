@@ -1,9 +1,9 @@
 {
-  "dedicatedCloud_datacenter_zerto_site_state_no_site_configured": "No site configured",
-  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 site delivered",
-  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_warning": "1 site pending",
-  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_error": "1 site in error",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "{{numbers}} sites delivered",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_warning": "{{numbers}} sites pending",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_error": "{{numbers}} sites in error"
+  "dedicatedCloud_datacenter_zerto_site_state_no_site_configured": "No sites configured",
+  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 website delivered",
+  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_warning": "1 website pending",
+  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_error": "1 website in error",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "{{numbers}} websites delivered",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_warning": "{{numbers}} websites pending",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_error": "{{numbers}} websites with errors"
 }

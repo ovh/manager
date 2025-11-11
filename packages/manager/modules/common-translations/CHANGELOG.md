@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.22.1...@ovh-ux/manager-common-translations@0.22.2) (2025-11-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4457] ([5978840](https://github.com/ovh/manager/commit/59788408c090b30a06d78afff1a8ca3b1022dfc9))
+
+
+
+
+
 ## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.22.0...@ovh-ux/manager-common-translations@0.22.1) (2025-11-06)
 
 
