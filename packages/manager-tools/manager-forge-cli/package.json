@@ -7,7 +7,11 @@
   "author": "OVH SAS",
   "type": "module",
   "bin": {
-    "manager-forge-application": "bin/manager-forge-application.mjs"
+    "manager-forge-application": "bin/manager-forge-application.mjs",
+    "manager-forge-api": "bin/manager-forge-api.mjs",
+    "manager-forge-component": "bin/manager-forge-component.mjs",
+    "manager-forge-hook": "bin/manager-forge-hook.mjs",
+    "manager-forge-page": "bin/manager-forge-page.mjs"
   },
   "scripts": {
     "build": "tsc && tsc-alias",
