@@ -8,6 +8,7 @@ import {
   Notifications,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
+import { Meter, Text } from '@ovh-ux/muk';
 import { Outlet } from 'react-router-dom';
 
 import { toASCII } from 'punycode';
@@ -122,6 +123,10 @@ export default function ServiceList() {
       header={header}
       message={notifications.length ? <Notifications /> : null}
     >
+      <div className="pb-5">
+        {/* <Text preset="heading-1">Meter from MUK</Text> */}
+        <Meter />
+      </div>
       <div data-testid="datagrid">
         <Datagrid
           columns={columns}

@@ -1,4 +1,4 @@
-import { ElementRef, ForwardedRef, forwardRef, useMemo } from 'react';
+import { ElementRef, ForwardRefExoticComponent, forwardRef, RefAttributes, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { ModalProps } from '@/components/modal/Modal.props';
 
-export const Modal = forwardRef(
+export const Modal: ForwardRefExoticComponent<ModalProps & RefAttributes<ElementRef<typeof ModalContent>>> = forwardRef<ElementRef<typeof ModalContent>, ModalProps>(
   (
     {
       heading,
@@ -32,8 +32,8 @@ export const Modal = forwardRef(
       open = true,
       children,
       step,
-    }: ModalProps,
-    ref: ForwardedRef<ElementRef<typeof ModalContent>>,
+    },
+    ref,
   ) => {
     const { t } = useTranslation(NAMESPACES.FORM);
     const buttonColor = useMemo(

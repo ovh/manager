@@ -4,6 +4,7 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
+import { Meter, Text } from '@ovh-ux/muk';
 
 import {
   Notifications,
@@ -67,6 +68,10 @@ const ListingTablePage: React.FC<ListingTablePageProps> = ({
       </div>
 
       <Notifications />
+      <div className="pb-5">
+        <Text preset="heading-1">Meter from MUK</Text>
+        <Meter />
+      </div>
       <TableContainer data={data} refetchSavingsPlans={refetchSavingsPlans} />
     </>
   );
