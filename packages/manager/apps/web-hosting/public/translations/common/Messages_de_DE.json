@@ -163,5 +163,7 @@
   "hosting_tab_DOMAINS_configuration_autoconfigure_remove_text": "Die automatische Konfiguration entspricht der Löschung der A- und AAAA-Einträge in der DNS-Zone des Domainnamens.",
   "hosting_tab_DOMAINS_configuration_remove_step1_www": "Auch den Domainnamen {{domain}} löschen",
   "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Wenn Sie Ihre Domain trennen möchten, müssen Sie zuvor Ihre Git-Konfiguration löschen, um mögliche Probleme bei der Verfolgung von Änderungen und der Verwaltung von Bereitstellungen zu vermeiden.",
-  "hosting_dashboard_ssl_delete_error": "Ein Fehler ist beim Löschen eines SSL-Zertifikats aufgetreten. {{error}}"
+  "hosting_dashboard_ssl_delete_error": "Ein Fehler ist beim Löschen eines SSL-Zertifikats aufgetreten. {{error}}",
+  "hosting_tab_DOMAINS_configuration_remove_failure": "Ein Fehler ist aufgetreten, als die Domain von Ihrem Shared Hosting getrennt wurde.",
+  "hosting_tab_DOMAINS_configuration_remove_success": "Die Domain wird von Ihrem Shared Hosting getrennt."
 }
