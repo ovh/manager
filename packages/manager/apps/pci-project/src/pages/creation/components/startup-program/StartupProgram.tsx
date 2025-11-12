@@ -10,7 +10,7 @@ export default function StartupProgram({ value }: StartupProgramProps) {
   const { t } = useTranslation('new/startup-program');
 
   return (
-    <div>
+    <div className="mt-8">
       <OdsText preset="heading-3" className="mb-4">
         {t('pci_project_new_payment_startup_program_title')}
       </OdsText>

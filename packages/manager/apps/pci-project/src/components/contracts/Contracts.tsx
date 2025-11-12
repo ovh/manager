@@ -38,7 +38,7 @@ export default function Contracts({
         {isLoading ? (
           <ContractsSkeleton />
         ) : (
-          <ul className="flex flex-col">
+          <ul className="flex flex-col list-none gap-[8px]">
             {contracts.map((contract) => (
               <li key={contract.url}>
                 <OdsLink
