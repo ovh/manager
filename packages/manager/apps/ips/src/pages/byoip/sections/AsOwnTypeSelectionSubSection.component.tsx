@@ -58,7 +58,7 @@ export const AsOwnTypeSelectionSubSection: React.FC = () => {
             ))}
           </div>
           <div className="flex flex-col mt-3">
-            <OdsText preset={ODS_TEXT_PRESET.caption}>
+            <OdsText preset={ODS_TEXT_PRESET.span}>
               {t('ip_byoip_as_number_label')}
             </OdsText>
             <OdsInput
