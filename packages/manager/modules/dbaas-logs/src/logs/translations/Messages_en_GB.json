@@ -304,7 +304,7 @@
   "logs_streams_update_title": "Modify data stream",
   "logs_streams_update_description": "For the <strong>{{name}}</strong> data stream",
   "logs_streams_enable_indexing": "Enable indexation",
-  "logs_streams_enable_indexing_description": "Explore your logs on Graylog and OpenSearch ({{t0}} ex. VAT/GB/month for the first {{t1}}GB, {{t2}} ex. VAT/GB/month for larger volumes)",
+  "logs_streams_enable_indexing_description": "Explore your logs on Graylog and OpenSearch.",
   "logs_streams_no_limit": "No limit",
   "logs_streams_enable_websocket": "Enable WebSocket broadcasting",
   "logs_streams_enable_websocket_description": "Monitor the logs you receive in real time, via the WebSocket protocol.",
@@ -803,5 +803,8 @@
   "streams_subscriptions_resource_products_account-api": "OVHcloud &amp; OVHcloud API Control Panel",
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Logs Audit",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
-  "logs_encryption_keys_get_error": "An error has occurred loading the encryption keys: {{message}}"
+  "logs_encryption_keys_get_error": "An error has occurred loading the encryption keys: {{message}}",
+  "logs_streams_enable_indexing_description_detail_small": "Log storage < {{t0}} GB of logs: Free",
+  "logs_streams_enable_indexing_description_detail_medium": "Log storage from {{t0}} to {{t1}} GB of logs: {{t2}} ex. VAT/GB/month",
+  "logs_streams_enable_indexing_description_detail_large": "Log storage for larger volumes (above {{t0}} GB): {{t1}} ex. VAT/GB/month"
 }
