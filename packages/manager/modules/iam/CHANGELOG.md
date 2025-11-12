@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.3...@ovh-ux/manager-iam@1.23.0) (2025-11-12)
+
+
+### Features
+
+* **iam:** add 'Roadmap & Changelog' links ([764ef11](https://github.com/ovh/manager/commit/764ef11cbc04548f91141a060cba1585427a971d)), closes [#MAIAM-44](https://github.com/ovh/manager/issues/MAIAM-44)
+
+
+
+
+
 ## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.2...@ovh-ux/manager-iam@1.22.3) (2025-11-06)
 
 
