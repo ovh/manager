@@ -4,7 +4,6 @@ import {
   OdsDivider,
   OdsFormField,
   OdsInput,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -53,7 +52,7 @@ export default function ConfigStep({
   const isPending = isHdsPending || isContractsFetching;
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       <OdsFormField
         className="w-full"
         error={
@@ -62,9 +61,9 @@ export default function ConfigStep({
             : t('error_required_field', { ns: NAMESPACES.FORM })
         }
       >
-        <OdsText className="font-bold" preset="caption">
+        <label htmlFor="project-description" slot="label">
           {t('pci_project_new_config_description_label')}
-        </OdsText>
+        </label>
 
         <OdsInput
           name="project-description"
