@@ -119,7 +119,11 @@ export default class ExchangeTabInformationCtrl {
   }
 
   shouldDisplayDiagnostic() {
-    return this.exchangeVersion.isAfter(2010);
+    return (
+      this.exchangeVersion.isAfter(2010) &&
+      (this.exchangeServiceInfrastructure.isDedicated() ||
+        this.exchangeServiceInfrastructure.isDedicatedCluster())
+    );
   }
 
   shouldDisplaySSLRenew() {
