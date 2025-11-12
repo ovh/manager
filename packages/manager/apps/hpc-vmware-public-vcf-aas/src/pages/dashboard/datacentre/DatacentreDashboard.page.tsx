@@ -25,7 +25,7 @@ import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard
 import { VRACK_LABEL } from '../dashboard.constants';
 import { FEATURE_FLAGS } from '@/app.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
-import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility';
+// import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility'; // TODO: [EDGE] implement when unmocking (testing only)
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -34,8 +34,12 @@ function DatacentreDashboardPage() {
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: featuresAvailable } = useFeatureAvailability([
     FEATURE_FLAGS.VRACK,
+    FEATURE_FLAGS.EDGE_GATEWAY,
   ]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
+  const isEdgeFeatureAvailable =
+    featuresAvailable?.[FEATURE_FLAGS.EDGE_GATEWAY];
+
   const navigate = useNavigate();
 
   useAutoRefetch({
@@ -76,7 +80,8 @@ function DatacentreDashboardPage() {
       title: EDGE_GATEWAY_LABEL,
       to: useResolvedPath(subRoutes.edgeGateway).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.edgeGateway,
-      disabled: isEdgeCompatibleVDC(vcdDatacentre?.data), // TODO: [EDGE] inverse condition when unmocking (testing only)
+      disabled: !isEdgeFeatureAvailable, // TODO: [EDGE] replace by !isEdgeCompatible when unmocking (testing only)
+      // disabled: !isEdgeCompatibleVDC(vcdDatacentre?.data) // TODO: [EDGE] implement when unmocking (testing only)
     },
   ].filter(({ disabled }) => !disabled);
 
