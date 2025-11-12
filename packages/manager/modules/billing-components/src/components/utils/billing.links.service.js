@@ -95,10 +95,12 @@ export default class BillingLinksService {
         `${autorenewLink}/resiliation?serviceId=${service.id}&serviceName=${service.serviceId}${serviceTypeParam}`;
 
       if (this.coreConfig.isRegion('US')) {
-        links.resiliateLink = this.buildResiliateModalLink(
-          autorenewLink,
-          service,
-        );
+        if (service.serviceType !== 'VRACK')
+          // Currently vRack termination is not handled by backend for vRack
+          links.resiliateLink = this.buildResiliateModalLink(
+            autorenewLink,
+            service,
+          );
         return links;
       }
 
