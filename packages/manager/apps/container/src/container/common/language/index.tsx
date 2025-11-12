@@ -14,12 +14,14 @@ export type Props = {
   onChange(show: boolean): void;
   setUserLocale(locale: string): void;
   userLocale?: string;
+  contrast?: boolean;
 };
 
 function LanguageMenu({
   onChange,
   setUserLocale,
   userLocale = '',
+  contrast = false
 }: Props): JSX.Element {
   const { i18n } = useTranslation('language');
   const ref = useRef();
@@ -77,7 +79,7 @@ function LanguageMenu({
 
   return (
     <div className="oui-navbar-dropdown" ref={ref} data-testid="languageMenu">
-      <LanguageButton show={show} onClick={(nextShow) => setShow(nextShow)}>
+      <LanguageButton show={show} onClick={(nextShow) => setShow(nextShow)} contrast={contrast}>
         {getLanguageLabel()}
       </LanguageButton>
       <LanguageList
