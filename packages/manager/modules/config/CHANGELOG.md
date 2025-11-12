@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.6.8...@ovh-ux/manager-config@8.7.0) (2025-11-12)
+
+
+### Features
+
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* resolve error message issue for axios ([b837d29](https://github.com/ovh/manager/commit/b837d297a7630fed1a6a96fa2dc004548f3b8c49)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [8.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.6.7...@ovh-ux/manager-config@8.6.8) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-config
