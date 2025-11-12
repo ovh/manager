@@ -16,6 +16,10 @@ export const getServiceInformation = async (
     `/services?resourceName=${serviceName}&routes=${serviceRoutes}`,
   );
 
+  if (!serviceNameId) {
+    return null;
+  }
+
   const { data } = await v6.get(`/services/${serviceNameId}`);
   return data;
 };
