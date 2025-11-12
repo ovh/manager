@@ -1,78 +1,71 @@
 import React from 'react';
-import z from 'zod';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
-import { Secret } from '@secret-manager/types/secret.type';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { useUpdateSecret } from '@secret-manager/data/hooks/useUpdateSecret';
 import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  SecretCasRequiredFormField,
   casRequiredToFormValue,
   formValueToCasRequired,
+  SecretCasRequiredFormField,
 } from '@secret-manager/components/form/SecretCasRequiredFormField.component';
+import {
+  SecretConfig,
+  SecretConfigReference,
+} from '@secret-manager/types/secret.type';
+import z from 'zod';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
-import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { useUpdateSecretConfigOkms } from '@secret-manager/data/hooks/useUpdateSecretConfigOkms';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
-import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
 import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
 
-type EditMetadataDrawerFormProps = {
-  secret: Secret;
+type EditOkmsSecretConfigDrawerFormProps = {
   okmsId: string;
-  secretPath: string;
-  secretConfig: SecretSmartConfig;
+  secretConfig: SecretConfig;
+  secretConfigReference: SecretConfigReference;
   onDismiss: () => void;
 };
 
-export const EditMetadataDrawerForm = ({
-  secret,
+export const EditOkmsSecretConfigDrawerForm = ({
   okmsId,
-  secretPath,
   secretConfig,
+  secretConfigReference,
   onDismiss,
-}: EditMetadataDrawerFormProps) => {
-  const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+}: EditOkmsSecretConfigDrawerFormProps) => {
+  const { t } = useTranslation([
+    'key-management-service/dashboard',
+    NAMESPACES.ACTIONS,
+  ]);
 
   const {
-    mutateAsync: updateSecret,
+    mutateAsync: updateSecretConfigOkms,
     isPending: isUpdating,
     error: updateError,
-  } = useUpdateSecret();
+  } = useUpdateSecretConfigOkms();
 
-  const metadataSchema = useSecretConfigSchema();
+  const secretConfigSchema = useSecretConfigSchema();
 
-  type FormSchema = z.infer<typeof metadataSchema>;
+  type FormSchema = z.infer<typeof secretConfigSchema>;
   const { control, handleSubmit } = useForm({
-    resolver: zodResolver(metadataSchema),
+    resolver: zodResolver(secretConfigSchema),
     defaultValues: {
-      casRequired: casRequiredToFormValue(secret?.metadata.casRequired),
-      deactivateVersionAfter: secret?.metadata.deactivateVersionAfter || '',
-      maxVersions: secret?.metadata.maxVersions || 0,
+      casRequired: casRequiredToFormValue(secretConfig.casRequired),
+      deactivateVersionAfter: secretConfig.deactivateVersionAfter || '',
+      maxVersions: secretConfig.maxVersions || 0,
     },
   });
 
   const handleSubmitForm = async (data: FormSchema) => {
     try {
-      await updateSecret({
+      await updateSecretConfigOkms({
         okmsId,
-        path: decodeSecretPath(secretPath),
-        cas: addCurrentVersionToCas(
-          secret?.metadata?.currentVersion,
-          secretConfig.casRequired.value,
-          formValueToCasRequired(data.casRequired),
-        ),
-        data: {
-          metadata: {
-            ...data,
-            casRequired: formValueToCasRequired(data.casRequired),
-          },
+        secretConfig: {
+          ...data,
+          casRequired: formValueToCasRequired(data.casRequired),
         },
       });
       onDismiss();
@@ -98,13 +91,9 @@ export const EditMetadataDrawerForm = ({
           <SecretMaxVersionsFormField
             name="maxVersions"
             control={control}
-            defaultMaxVersions={secretConfig.maxVersionsDefault}
+            defaultMaxVersions={secretConfigReference.maxVersions}
           />
-          <SecretCasRequiredFormField
-            name="casRequired"
-            control={control}
-            isCasRequiredSetOnOkms={secretConfig?.isCasRequiredSetOnOkms}
-          />
+          <SecretCasRequiredFormField name="casRequired" control={control} />
         </form>
       </DrawerContent>
       <DrawerFooter

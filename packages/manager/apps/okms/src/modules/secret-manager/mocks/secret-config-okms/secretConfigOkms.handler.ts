@@ -23,3 +23,26 @@ export const getSecretConfigOkmsMock = ({
     api: 'v2',
   },
 ];
+
+// PUT Secret Config
+export const updateSecretConfigErrorMessage = 'put-secret-config-error-message';
+
+export type UpdateSecretConfigOkmsMockParams = {
+  isUpdateSecretConfigKO?: boolean;
+};
+
+export const updateSecretConfigOkmsMock = ({
+  isUpdateSecretConfigKO,
+}: UpdateSecretConfigOkmsMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/secretConfig',
+    response: buildMswResponseMock({
+      data: mockSecretConfigOkms,
+      errorMessage: updateSecretConfigErrorMessage,
+      isError: isUpdateSecretConfigKO,
+    }),
+    status: isUpdateSecretConfigKO ? 500 : 200,
+    api: 'v2',
+    method: 'put',
+  },
+];

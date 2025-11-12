@@ -36,6 +36,12 @@ const OkmsTerminateModal = React.lazy(() =>
   ),
 );
 
+const OkmsEditSecretConfigDrawer = React.lazy(() =>
+  import(
+    '@secret-manager/pages/okms-dashboard/okms-edit-secret-config-drawer/OkmsEditSecretConfigDrawer.page'
+  ),
+);
+
 const SecretList = React.lazy(() =>
   import('@/modules/secret-manager/pages/secret-list/SecretList.page'),
 );
@@ -136,6 +142,10 @@ export default (
         <Route
           path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`}
           Component={OkmsTerminateModal}
+        />
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.editSecretConfig}`}
+          Component={OkmsEditSecretConfigDrawer}
         />
       </Route>
       <Route path={SECRET_MANAGER_URL_PARAMS.secretPath} Component={Secret}>

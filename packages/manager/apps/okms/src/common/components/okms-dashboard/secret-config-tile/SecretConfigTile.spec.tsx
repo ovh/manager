@@ -9,8 +9,11 @@ import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { SecretConfigTile } from './SecretConfigTile.component';
 import { SECRET_CONFIG_TILE_TEST_IDS } from './SecretConfigTile.constants';
 import { renderWithClient } from '@/common/utils/tests/testUtils';
+import useProductType, { ProductType } from '@/common/hooks/useProductType';
 
 let i18nValue: i18n;
+
+vi.mock('@/common/hooks/useProductType');
 
 vi.mock(
   import('@secret-manager/data/api/secretConfigOkms'),
@@ -46,6 +49,13 @@ vi.mock('./items/CasTileItem.component', async (original) => ({
   ...(await original()),
   CasTileItem: vi.fn(() => (
     <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.cas} />
+  )),
+}));
+
+vi.mock('./items/EditSecretConfigLinkTileItem.component', async (original) => ({
+  ...(await original()),
+  EditSecretConfigLinkTileItem: vi.fn(() => (
+    <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.editSecretConfigLink} />
   )),
 }));
 
@@ -117,4 +127,41 @@ describe('OKMS Rest Api Tile test suite', () => {
       }),
     );
   });
+
+  type UseCases = {
+    productType: ProductType;
+    visibleTileItems?: string[];
+    invisibleTileItems?: string[];
+  };
+
+  const useCases: UseCases[] = [
+    {
+      productType: 'secret-manager',
+      visibleTileItems: [SECRET_CONFIG_TILE_TEST_IDS.editSecretConfigLink],
+    },
+    {
+      productType: 'key-management-service',
+      invisibleTileItems: [SECRET_CONFIG_TILE_TEST_IDS.editSecretConfigLink],
+    },
+  ];
+
+  it.each(useCases)(
+    'should handle productType $productType',
+    async ({ productType, visibleTileItems, invisibleTileItems }) => {
+      // GIVEN
+      vi.mocked(useProductType).mockReturnValue(productType);
+
+      // WHEN
+      await renderTile();
+
+      // THEN
+      visibleTileItems?.forEach((item) => {
+        expect(screen.getByTestId(item)).toBeInTheDocument();
+      });
+
+      invisibleTileItems?.forEach((item) => {
+        expect(screen.queryByTestId(item)).not.toBeInTheDocument();
+      });
+    },
+  );
 });

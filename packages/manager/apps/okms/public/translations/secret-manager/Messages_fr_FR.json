@@ -30,6 +30,7 @@
   "delete_version_modal_description": "Êtes-vous sûr de vouloir supprimer cette version ? Cette action est irréversible.",
   "delete_version_modal_title": "Supprimer la version {{versionId}}",
   "edit_metadata": "Modifier les paramètres",
+  "edit_okms_secret_config": "Modifier les paramètres par défaut des secrets",
   "editor": "Éditeur JSON",
   "error_duplicate_keys": "Vous ne pouvez pas avoir deux clés identiques.",
   "error_empty_keys": "Vous ne pouvez pas avoir de clé vide.",

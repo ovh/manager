@@ -20,7 +20,6 @@ const commonLabels = allLabels.common;
 
 const mockUpdateSecret = vi.fn();
 const mockUseUpdateSecret = vi.fn();
-const mockUseSecretMetadataSchema = vi.fn();
 
 vi.mock('@secret-manager/data/hooks/useUpdateSecret', () => ({
   useUpdateSecret: () => mockUseUpdateSecret(),
@@ -86,10 +85,6 @@ describe('EditMetadataDrawerForm component test suite', () => {
       mutateAsync: mockUpdateSecret,
       isPending: false,
       error: null,
-    });
-
-    mockUseSecretMetadataSchema.mockReturnValue({
-      safeParse: vi.fn().mockReturnValue({ success: true, data: {} }),
     });
   });
 
