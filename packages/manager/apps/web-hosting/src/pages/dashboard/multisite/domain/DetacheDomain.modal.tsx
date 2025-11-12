@@ -39,11 +39,11 @@ export default function DetacheDomainModal() {
   const { deleteAttachedDomains } = useDeleteAttachedDomains(
     serviceName,
     () => {
-      addSuccess(t('hosting_dashboard_ssl_delete_success'), true);
+      addSuccess(t('hosting_tab_DOMAINS_configuration_remove_success'), true);
     },
     (error) => {
       addWarning(
-        t('hosting_dashboard_ssl_delete_error', {
+        t('hosting_tab_DOMAINS_configuration_remove_failure', {
           error: error?.response?.data?.message,
         }),
         true,
