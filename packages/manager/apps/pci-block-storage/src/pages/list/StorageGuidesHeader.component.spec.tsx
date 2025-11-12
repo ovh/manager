@@ -1,5 +1,8 @@
+import { vi } from 'vitest';
 import { StorageGuidesHeader } from './StorageGuidesHeader.component';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+
+vi.mock('react-router-dom');
 
 describe('StorageGuidesHeader', () => {
   it('should renders', () => {

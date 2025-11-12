@@ -6,7 +6,6 @@ import {
   detachVolume,
   getAllVolumes,
   getVolume,
-  getVolumeSnapshot,
 } from './volume';
 
 vi.mock('@ovh-ux/manager-core-api');
@@ -20,21 +19,6 @@ describe('getVolume', () => {
 
     expect(v6.get).toHaveBeenCalledWith('/cloud/project/123/volume/1');
     expect(volume).toEqual(mockVolume);
-  });
-});
-
-describe('getVolumeSnapshot', () => {
-  it('fetches volume snapshots for given projectId', async () => {
-    const mockVolumeSnapshots = [
-      { id: '1', name: 'Snapshot 1' },
-      { id: '2', name: 'Snapshot 2' },
-    ];
-    vi.mocked(v6.get).mockResolvedValue({ data: mockVolumeSnapshots });
-
-    const volumeSnapshots = await getVolumeSnapshot('123');
-
-    expect(v6.get).toHaveBeenCalledWith('/cloud/project/123/volume/snapshot');
-    expect(volumeSnapshots).toEqual(mockVolumeSnapshots);
   });
 });
 
