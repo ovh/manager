@@ -163,5 +163,7 @@
   "hosting_tab_DOMAINS_configuration_autoconfigure_remove_text": "A configuração automática corresponde à eliminação dos campos A e AAAA na zona DNS do nome de domínio.",
   "hosting_tab_DOMAINS_configuration_remove_step1_www": "Remover também o nome de domínio {{domain}}",
   "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se quiser desvincular o seu nome de domínio, deve primeiro remover a sua configuração Git para evitar possíveis problemas de rastreamento de alterações e de gestão de implantações.",
-  "hosting_dashboard_ssl_delete_error": "Ocorreu um erro ao remover um certificado SSL. {{error}}"
+  "hosting_dashboard_ssl_delete_error": "Ocorreu um erro ao remover um certificado SSL. {{error}}",
+  "hosting_tab_DOMAINS_configuration_remove_failure": "Ocorreu um erro ao desvincular o domínio do seu alojamento partilhado.",
+  "hosting_tab_DOMAINS_configuration_remove_success": "O domínio será desvinculado do seu alojamento partilhado."
 }
