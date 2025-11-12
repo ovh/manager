@@ -2,7 +2,7 @@ manager-pm — Hybrid **PNPM + Yarn** Orchestration for Incremental Adoption
 
 `manager-pm` enables a smooth, reversible migration where the monorepo keeps **Yarn** at the root while selected apps adopt **PNPM** in isolation. It manages catalogs of apps, patches configs safely, bootstraps a pinned PNPM binary, and gives you one CLI to build/test/lint across **both** worlds.
 
-> Repo assumptions: applications live under `packages/manager/apps/*` and modules (public and private) under `packages/manager/{core,modules,tools}` and `packages/components`.
+> Repo assumptions: applications live under `packages/manager/apps/*` and modules (public and private) under `packages/manager/{core,modules,tools}`, `packages/manager-ui-kit` and `packages/components`.
 
 ---
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.16...@ovh-ux/manager-models@2.5.17) (2025-11-12)
+
+
+### Bug Fixes
+
+* **billing:** add error message for renew bulk actions ([b56ae66](https://github.com/ovh/manager/commit/b56ae666de3c2974463bdbd009b6ab2447a853f9)), closes [#MANAGER-20226](https://github.com/ovh/manager/issues/MANAGER-20226)
+
+
+
+
+
 ## [2.5.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.15...@ovh-ux/manager-models@2.5.16) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

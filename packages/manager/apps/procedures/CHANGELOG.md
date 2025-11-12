@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.15...@ovh-ux/manager-procedures-app@0.17.0) (2025-11-12)
+
+
+### Features
+
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [0.16.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.14...@ovh-ux/manager-procedures-app@0.16.15) (2025-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

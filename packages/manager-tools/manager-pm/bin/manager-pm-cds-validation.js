@@ -22,6 +22,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import { logger } from '../src/kernel/utils/log-manager.js';
+import { VALIDATION_MANUAL_CASES } from './manager-pm-validation-config.js';
 
 const config = {
   workspace: path.resolve(process.cwd()),
@@ -207,34 +208,6 @@ roots.forEach((root) => {
 });
 
 /**
- * Manual mappings for known naming mismatches
- */
-const manualMappings = {
-  // Core + tools
-  '@ovh-ux/manager-core-test-utils': 'packages/manager-tools/manager-legacy-tools/test-utils',
-  '@ovh-ux/manager-documentation': 'docs',
-  '@ovh-ux/manager-react-core-application': 'packages/manager/core/application',
-
-  // Apps
-  '@ovh-ux/manager-emaildomain-app': 'packages/manager/apps/email-domain',
-
-  // Modules
-  '@ovh-ux/manager-module-common-api': 'packages/manager/modules/common-api',
-  '@ovh-ux/manager-module-order': 'packages/manager/modules/order',
-  '@ovh-ux/manager-module-vcd-api': 'packages/manager/modules/vcd-api',
-  '@ovh-ux/manager-veeam-enterprise-app': 'packages/manager/apps/veeam-enterprise',
-  '@ovh-ux/manager-veeam-enterprise': 'packages/manager/modules/veeam-enterprise',
-
-  // Angular “ng-ovh” universe components
-  '@ovh-ux/ng-ovh-cloud-universe-components': 'packages/manager/modules/cloud-universe-components',
-  '@ovh-ux/ng-ovh-pci-universe-components': 'packages/manager/modules/pci-universe-components',
-  '@ovh-ux/ng-ovh-telecom-universe-components':
-    'packages/manager/modules/telecom-universe-components',
-  '@ovh-ux/ng-ovh-web-universe-components': 'packages/manager/modules/web-universe-components',
-  '@ovh-ux/ng-ovh-request-tagger': 'packages/manager/modules/request-tagger',
-};
-
-/**
  * Normalize names for fuzzy matching
  */
 function normalizeName(name) {
@@ -258,8 +231,8 @@ const missingPkgs = affectedPkgs.filter((pkg) => {
   const normPkg = normalizeName(pkg);
 
   // 1️⃣ Manual mapping override
-  if (manualMappings[pkg]) {
-    const manualPath = path.join(config.workspace, manualMappings[pkg]);
+  if (VALIDATION_MANUAL_CASES[pkg]) {
+    const manualPath = path.join(config.workspace, VALIDATION_MANUAL_CASES[pkg]);
     if (exists(manualPath)) return false;
   }
 

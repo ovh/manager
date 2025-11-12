@@ -78,8 +78,6 @@ export const Overview: Story = {
     docs: {
       source: { ...staticSourceRenderConfig() },
     },
-  },
-  parameters: {
     layout: 'centered',
   },
   render: ({}) => (

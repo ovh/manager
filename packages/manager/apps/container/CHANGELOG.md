@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.162.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.11...@ovh-ux/manager-container-app@0.162.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* fix usage of useOvhPaymentMethod in apps and packages ([79eef98](https://github.com/ovh/manager/commit/79eef988152e4c5a959336733060cae90b1f0a13)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+### Features
+
+* **container:** migrate from reket to axios ([12256c8](https://github.com/ovh/manager/commit/12256c833c4fa35966ae0f42f569589e41852ac3)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* resolve error message issue for axios ([b837d29](https://github.com/ovh/manager/commit/b837d297a7630fed1a6a96fa2dc004548f3b8c49)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [0.161.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.10...@ovh-ux/manager-container-app@0.161.11) (2025-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
