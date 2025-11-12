@@ -8,11 +8,11 @@ import {
   getPackageNameFromModule,
 } from '../helpers/modules-workspace-helper.js';
 import {
-  getCatalogPaths,
-  isAppInCatalog,
+  addPrivateModuleToCatalog,
+  getCatalogsPaths,
+  isTargetInCatalog,
   removePrivateModuleFromCatalog,
-  updateCatalog,
-  updatePrivateModulesCatalog,
+  updateCatalogs,
 } from '../utils/catalog-utils.js';
 import { normalizeCriticalDependencies } from '../utils/dependencies-utils.js';
 import { logger } from '../utils/log-manager.js';
@@ -43,16 +43,16 @@ export async function addModuleToPnpm(moduleRef, { isPrivate = false } = {}) {
   displayAddHelpBanner(relModulePath);
 
   try {
-    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogPaths();
+    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogsPaths();
 
-    if (await isAppInCatalog(pnpmCatalogPath, relModulePath)) {
+    if (await isTargetInCatalog(pnpmCatalogPath, relModulePath)) {
       logger.info(`ℹ️ Module "${relModulePath}" already in PNPM. Nothing to do.`);
       return;
     }
 
     await normalizeCriticalDependencies(relModulePath);
 
-    const success = await updateCatalog({
+    const success = await updateCatalogs({
       fromPath: yarnCatalogPath,
       toPath: pnpmCatalogPath,
       appPath: relModulePath,
@@ -63,7 +63,7 @@ export async function addModuleToPnpm(moduleRef, { isPrivate = false } = {}) {
     if (isPrivate) {
       const packageName = await getPackageNameFromModule(relModulePath);
       const turboFilter = `--filter ${packageName}`;
-      await updatePrivateModulesCatalog({
+      await addPrivateModuleToCatalog({
         turboFilter,
         pnpmPath: relModulePath,
       });
@@ -108,14 +108,14 @@ export async function removeModuleFromPnpm(moduleRef, { isPrivate = false } = {}
   displayRemoveHelpBanner(relModulePath);
 
   try {
-    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogPaths();
+    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogsPaths();
 
-    if (!(await isAppInCatalog(pnpmCatalogPath, relModulePath))) {
+    if (!(await isTargetInCatalog(pnpmCatalogPath, relModulePath))) {
       logger.info(`ℹ️ Module "${relModulePath}" not in PNPM. Nothing to do.`);
       return;
     }
 
-    const success = await updateCatalog({
+    const success = await updateCatalogs({
       fromPath: pnpmCatalogPath,
       toPath: yarnCatalogPath,
       appPath: relModulePath,

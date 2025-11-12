@@ -2,8 +2,8 @@ import process from 'node:process';
 import { setImmediate } from 'node:timers';
 import { setTimeout } from 'node:timers/promises';
 
-import { clearRootWorkspaces } from './catalog-utils.js';
 import { logger } from './log-manager.js';
+import { clearRootWorkspaces } from './workspace-utils.js';
 
 /**
  * Registers process-level listeners for graceful shutdown.

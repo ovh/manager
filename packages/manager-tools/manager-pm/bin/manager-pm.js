@@ -33,15 +33,15 @@ import {
   testModule,
 } from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
-import {
-  clearRootWorkspaces,
-  updateRootWorkspacesFromCatalogs,
-} from '../src/kernel/utils/catalog-utils.js';
 import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
 import {
   attachCleanupSignals,
   handleProcessAbortSignals,
 } from '../src/kernel/utils/process-utils.js';
+import {
+  clearRootWorkspaces,
+  updateRootWorkspacesFromCatalogs,
+} from '../src/kernel/utils/workspace-utils.js';
 
 const VERSION = '0.2.0';
 

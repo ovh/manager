@@ -7,9 +7,9 @@
  */
 import process from 'node:process';
 
-import { updateRootWorkspacesFromCatalogs } from './kernel/utils/catalog-utils.js';
 import { logger } from './kernel/utils/log-manager.js';
 import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
+import { updateRootWorkspacesFromCatalogs } from './kernel/utils/workspace-utils.js';
 
 attachCleanupSignals(handleProcessAbortSignals);
 

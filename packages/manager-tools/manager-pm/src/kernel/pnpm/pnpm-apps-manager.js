@@ -4,7 +4,7 @@ import {
   displayRemoveHelpBanner,
 } from '../commons/banner-helper.js';
 import { buildApplicationWorkspacePath } from '../helpers/apps-workspace-helper.js';
-import { getCatalogPaths, isAppInCatalog, updateCatalog } from '../utils/catalog-utils.js';
+import { getCatalogsPaths, isTargetInCatalog, updateCatalogs } from '../utils/catalog-utils.js';
 import { normalizeCriticalDependencies } from '../utils/dependencies-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { runYarnInstall } from '../utils/tasks-utils.js';
@@ -35,16 +35,16 @@ export async function addApplicationToPnpm(appRef) {
   displayAddHelpBanner(relAppPath);
 
   try {
-    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogPaths();
+    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogsPaths();
 
-    if (await isAppInCatalog(pnpmCatalogPath, relAppPath)) {
+    if (await isTargetInCatalog(pnpmCatalogPath, relAppPath)) {
       logger.info(`ℹ️ App "${relAppPath}" already in PNPM. Nothing to do.`);
       return;
     }
 
     await normalizeCriticalDependencies(relAppPath);
 
-    const success = await updateCatalog({
+    const success = await updateCatalogs({
       fromPath: yarnCatalogPath,
       toPath: pnpmCatalogPath,
       appPath: relAppPath,
@@ -90,14 +90,14 @@ export async function removeApplicationFromPnpm(appRef) {
   displayRemoveHelpBanner(relAppPath);
 
   try {
-    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogPaths();
+    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogsPaths();
 
-    if (!(await isAppInCatalog(pnpmCatalogPath, relAppPath))) {
+    if (!(await isTargetInCatalog(pnpmCatalogPath, relAppPath))) {
       logger.info(`ℹ️ App "${relAppPath}" not in PNPM. Nothing to do.`);
       return;
     }
 
-    const success = await updateCatalog({
+    const success = await updateCatalogs({
       fromPath: pnpmCatalogPath,
       toPath: yarnCatalogPath,
       appPath: relAppPath,

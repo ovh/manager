@@ -1,30 +1,25 @@
 import { Buffer } from 'node:buffer';
-import { exec } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { promisify } from 'node:util';
 
 import {
   managerRootPath,
   pnpmAppsPlaybookPath,
   privateModulesPath,
-  rootPackageJsonPath,
   yarnAppsPlaybookPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
 
-const execAsync = promisify(exec);
-
 /**
- * Resolve canonical catalog file paths.
+ * Resolve canonical catalogs files paths.
  *
  * Supports both the current `catalog/*.json` layout
  * and legacy `apps/*.json` / `registry/*.json` layouts for compatibility.
  */
-export function getCatalogPaths() {
-  logger.debug('Resolving catalog paths');
+export function getCatalogsPaths() {
+  logger.debug('Resolving catalogs paths');
   return {
     pnpmCatalogPath: pnpmAppsPlaybookPath,
     yarnCatalogPath: yarnAppsPlaybookPath,
@@ -126,71 +121,73 @@ export async function writeCatalog(file, items) {
 }
 
 /**
- * Check if an app is listed in a catalog and is a valid workspace.
+ * Check if an target is listed in a catalog and is a valid workspace.
  *
  * @param {string} catalogPath - Path to the catalog JSON.
- * @param {string} appPath - Relative app workspace path.
- * @returns {Promise<boolean>} True if app exists in catalog and has a package.json.
+ * @param {string} targetPath - Relative target workspace path.
+ * @returns {Promise<boolean>} True if target exists in catalog and has a package.json.
  */
-export async function isAppInCatalog(catalogPath, appPath) {
-  logger.debug(`isAppInCatalog(catalog="${catalogPath}", app="${appPath}")`);
+export async function isTargetInCatalog(catalogPath, targetPath) {
+  logger.debug(`isTargetInCatalog(catalog="${catalogPath}", targetPath="${targetPath}")`);
   try {
-    const pkgFile = path.join(appPath, 'package.json');
+    const pkgFile = path.join(targetPath, 'package.json');
     if (!existsSync(pkgFile)) {
-      logger.warn(`⚠️ Workspace path "${appPath}" has no package.json. Skipping check.`);
+      logger.warn(`⚠️ Workspace path "${targetPath}" has no package.json. Skipping check.`);
       return false;
     }
 
     const list = await readCatalog(catalogPath);
-    const found = Array.isArray(list) && list.includes(appPath);
+    const found = Array.isArray(list) && list.includes(targetPath);
 
     if (found) {
-      logger.debug(`✔ "${appPath}" found in catalog ${path.relative(process.cwd(), catalogPath)}`);
+      logger.debug(
+        `✔ "${targetPath}" found in catalog ${path.relative(process.cwd(), catalogPath)}`,
+      );
     } else {
       logger.info(
-        `ℹ "${appPath}" is not listed in catalog ${path.relative(process.cwd(), catalogPath)}`,
+        `ℹ "${targetPath}" is not listed in catalog ${path.relative(process.cwd(), catalogPath)}`,
       );
     }
 
     return found;
   } catch (err) {
-    logger.error(`❌ Failed to check catalog ${catalogPath} for "${appPath}": ${err.message}`);
+    logger.error(`❌ Failed to check catalog ${catalogPath} for "${targetPath}": ${err.message}`);
     logger.debug(`Stack trace: ${err.stack}`);
     return false;
   }
 }
 
 /**
- * Add an app path to a given catalog file.
+ * Add a target path to a given catalog file.
  *
  * @param {string} catalogPath - Path to the catalog file.
- * @param {string} appPath - Path of the app to add.
+ * @param {string} targetPath - Path of the target to add.
  * @returns {Promise<"added"|"noop"|"invalid"|"error">}
  */
-export async function addAppPathToCatalog(catalogPath, appPath) {
-  logger.debug(`addAppPathToCatalog(catalog="${catalogPath}", appPath="${appPath}")`);
+export async function addTargetPathToCatalog(catalogPath, targetPath) {
+  logger.debug(`addTargetPathToCatalog(catalog="${catalogPath}", targetPath="${targetPath}")`);
   try {
-    const pkgFile = path.join(appPath, 'package.json');
+    const pkgFile = path.join(targetPath, 'package.json');
     if (!existsSync(pkgFile)) {
-      logger.warn(`⚠️ "${appPath}" is not a valid workspace (no package.json).`);
+      logger.warn(`⚠️ "${targetPath}" is not a valid workspace (no package.json).`);
       return 'invalid';
     }
 
-    const isInCatalog = await isAppInCatalog(catalogPath, appPath);
+    const isInCatalog = await isTargetInCatalog(catalogPath, targetPath);
     if (isInCatalog) {
       return 'noop';
     }
 
     const list = await readCatalog(catalogPath);
-    list.push(appPath);
+    list.push(targetPath);
     await writeCatalog(catalogPath, list);
     logger.success(
-      `➕ Added app "${appPath}" to catalog: ${path.relative(process.cwd(), catalogPath)}`,
+      `➕ Added target "${targetPath}" to catalog: ${path.relative(process.cwd(), catalogPath)}`,
     );
     return 'added';
   } catch (err) {
     logger.error(
-      `❌ Unexpected failure adding "${appPath}" to catalog "${catalogPath}": ${err.message}`,
+      `❌ Unexpected failure adding "${targetPath}" to catalog "${catalogPath}": ${err.message}`,
     );
     logger.debug(`Stack trace: ${err.stack}`);
     return 'error';
@@ -198,35 +195,35 @@ export async function addAppPathToCatalog(catalogPath, appPath) {
 }
 
 /**
- * Remove an app path from a given catalog file.
+ * Remove a target path from a given catalog file.
  *
  * @param {string} catalogPath - Path to the catalog file.
- * @param {string} appPath - Path of the app to remove.
+ * @param {string} targetPath - Path of the target to remove.
  * @returns {Promise<"removed"|"noop"|"invalid"|"error">}
  */
-export async function removeAppPathFromCatalog(catalogPath, appPath) {
-  logger.debug(`removeAppPathFromCatalog(catalog="${catalogPath}", appPath="${appPath}")`);
+export async function removeTargetPathFromCatalog(catalogPath, targetPath) {
+  logger.debug(`removeTargetPathFromCatalog(catalog="${catalogPath}", targetPath="${targetPath}")`);
   try {
-    const pkgFile = path.join(appPath, 'package.json');
+    const pkgFile = path.join(targetPath, 'package.json');
     if (!existsSync(pkgFile)) {
-      logger.warn(`⚠️ "${appPath}" is not a valid workspace (no package.json).`);
+      logger.warn(`⚠️ "${targetPath}" is not a valid workspace (no package.json).`);
       return 'invalid';
     }
 
     const catalogApps = await readCatalog(catalogPath);
-    if (!catalogApps.includes(appPath)) {
+    if (!catalogApps.includes(targetPath)) {
       return 'noop';
     }
 
-    const updatedCatalogApps = catalogApps.filter((catalogApp) => catalogApp !== appPath);
+    const updatedCatalogApps = catalogApps.filter((catalogApp) => catalogApp !== targetPath);
     await writeCatalog(catalogPath, updatedCatalogApps);
     logger.success(
-      `🗑️ Removed app "${appPath}" from catalog: ${path.relative(process.cwd(), catalogPath)}`,
+      `🗑️ Removed target "${targetPath}" from catalog: ${path.relative(process.cwd(), catalogPath)}`,
     );
     return 'removed';
   } catch (err) {
     logger.error(
-      `❌ Unexpected failure removing "${appPath}" from catalog "${catalogPath}": ${err.message}`,
+      `❌ Unexpected failure removing "${targetPath}" from catalog "${catalogPath}": ${err.message}`,
     );
     logger.debug(`Stack trace: ${err.stack}`);
     return 'error';
@@ -234,227 +231,33 @@ export async function removeAppPathFromCatalog(catalogPath, appPath) {
 }
 
 /**
- * Update the root `package.json` workspaces.packages field
- * with the merged content of both Yarn and PNPM catalogs.
- *
- * - Yarn catalog defines the base set (order preserved).
- * - PNPM catalog apps are appended (duplicates removed).
- *
- * @returns {Promise<string[]>} Final merged workspace paths.
- */
-export async function updateRootWorkspacesFromCatalogs() {
-  logger.debug('updateRootWorkspacesFromCatalogs()');
-  try {
-    const { pnpmCatalogPath, yarnCatalogPath } = getCatalogPaths();
-    logger.info(`YARN catalog path: ${yarnCatalogPath}`);
-    logger.info(`PNPM catalog path: ${pnpmCatalogPath}`);
-
-    const yarnList = await readCatalog(yarnCatalogPath);
-    const pnpmList = await readCatalog(pnpmCatalogPath);
-
-    logger.info(`📦 Yarn apps: ${yarnList.length}, PNPM apps: ${pnpmList.length}`);
-
-    const yarnSet = new Set(yarnList);
-    const pnpmOnly = pnpmList.filter((p) => !yarnSet.has(p));
-    const merged = [...yarnList, ...pnpmOnly];
-
-    logger.debug(
-      `Merged workspace entries (sample): ${merged.slice(0, 5).join(', ')}${merged.length > 5 ? ' ...' : ''}`,
-    );
-
-    const raw = await fs.readFile(rootPackageJsonPath, 'utf-8');
-    const pkg = JSON.parse(raw);
-
-    if (!pkg.workspaces || typeof pkg.workspaces !== 'object') {
-      logger.warn('⚠️ Root package.json had no valid workspaces field. Creating a new one.');
-      pkg.workspaces = { packages: merged };
-    } else {
-      pkg.workspaces.packages = merged;
-    }
-
-    await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
-    logger.success(`✔ Updated root workspaces.packages (${merged.length} entries)`);
-    return merged;
-  } catch (err) {
-    logger.error(`❌ Failed to update root workspaces from catalogs: ${err.message}`);
-    logger.debug(`Stack trace: ${err.stack}`);
-    return [];
-  }
-}
-
-/**
- * Overwrite root workspaces.packages with the Yarn catalog only.
- * Use before running `yarn install` so Yarn installs only its subset.
- *
- * @returns {Promise<string[]>} Yarn-only workspace paths.
- */
-export async function updateRootWorkspacesToYarnOnly() {
-  logger.debug('updateRootWorkspacesToYarnOnly()');
-  try {
-    const { yarnCatalogPath } = getCatalogPaths();
-    logger.info(`Yarn catalog path: ${yarnCatalogPath}`);
-
-    const yarnList = await readCatalog(yarnCatalogPath);
-    logger.info(`📦 Switching root workspaces to Yarn-only (${yarnList.length} apps)`);
-
-    const raw = await fs.readFile(rootPackageJsonPath, 'utf-8');
-    const pkg = JSON.parse(raw);
-
-    if (!pkg.workspaces || typeof pkg.workspaces !== 'object') {
-      logger.warn('⚠️ Root package.json had no valid workspaces field. Creating a new one.');
-      pkg.workspaces = { packages: yarnList };
-    } else {
-      pkg.workspaces.packages = yarnList;
-    }
-
-    await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
-    logger.success(`✔ Updated root workspaces.packages to Yarn-only (${yarnList.length} entries)`);
-    return yarnList;
-  } catch (err) {
-    logger.error(`❌ Failed to update root workspaces to Yarn-only: ${err.message}`);
-    logger.debug(`Stack trace: ${err.stack}`);
-    return [];
-  }
-}
-
-/**
- * Overwrite root workspaces.packages with the PNPM catalog only.
- * Useful for debugging or isolated PNPM operations.
- *
- * @returns {Promise<string[]>} PNPM-only workspace paths.
- */
-export async function updateRootWorkspacesToPnpmOnly() {
-  logger.debug('updateRootWorkspacesToPnpmOnly()');
-  try {
-    const { pnpmCatalogPath } = getCatalogPaths();
-    logger.info(`PNPM catalog path: ${pnpmCatalogPath}`);
-
-    const pnpmList = await readCatalog(pnpmCatalogPath);
-    logger.info(`📦 Switching root workspaces to PNPM-only (${pnpmList.length} apps)`);
-
-    const raw = await fs.readFile(rootPackageJsonPath, 'utf-8');
-    const pkg = JSON.parse(raw);
-
-    if (!pkg.workspaces || typeof pkg.workspaces !== 'object') {
-      logger.warn('⚠️ Root package.json had no valid workspaces field. Creating a new one.');
-      pkg.workspaces = { packages: pnpmList };
-    } else {
-      pkg.workspaces.packages = pnpmList;
-    }
-
-    await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
-    logger.success(`✔ Updated root workspaces.packages to PNPM-only (${pnpmList.length} entries)`);
-    return pnpmList;
-  } catch (err) {
-    logger.error(`❌ Failed to update root workspaces to PNPM-only: ${err.message}`);
-    logger.debug(`Stack trace: ${err.stack}`);
-    return [];
-  }
-}
-
-/**
- * Try to restore package.json from Git.
- *
- * @param {string} directory - Directory containing package.json
- * @param {string} file - Filename of package.json
- * @returns {Promise<boolean>} True if restored successfully
- */
-async function tryGitRestore(directory, file) {
-  try {
-    logger.info(`Attempting to restore ${file} using Git...`);
-    await execAsync(`git restore ${file}`, { cwd: directory });
-    logger.success(`✔ Successfully restored ${file} from Git`);
-    return true;
-  } catch (err) {
-    logger.warn(`⚠️ Git restore failed: ${err.message}`);
-    logger.debug(`Git error stack: ${err.stack}`);
-    return false;
-  }
-}
-
-/**
- * Manually clear the workspaces field in root package.json.
- *
- * @returns {Promise<void>}
- */
-async function clearWorkspacesManually() {
-  try {
-    logger.info('Falling back to manual workspace clearing...');
-    const rootPackageJsonContent = await fs.readFile(rootPackageJsonPath, 'utf-8');
-    const rootPackageJson = JSON.parse(rootPackageJsonContent);
-
-    if (
-      !rootPackageJson.workspaces ||
-      typeof rootPackageJson.workspaces !== 'object' ||
-      Array.isArray(rootPackageJson.workspaces)
-    ) {
-      logger.warn('⚠️ Invalid or missing "workspaces" field. Creating new object form.');
-      rootPackageJson.workspaces = { packages: [] };
-    } else {
-      rootPackageJson.workspaces.packages = [];
-    }
-
-    await fs.writeFile(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2));
-    logger.success('✔ Cleared root workspaces.packages (manual fallback successful)');
-  } catch (err) {
-    logger.error(`❌ Failed to manually clear root workspaces: ${err.message}`);
-    logger.debug(`Stack trace: ${err.stack}`);
-  }
-}
-
-/**
- * Attempt to restore the root `package.json` from Git.
- * Falls back to manually clearing workspaces if Git is unavailable or fails.
- *
- * - Uses `git restore` (requires Git ≥ 2.23, cross-platform)
- * - Ensures the file returns to a consistent empty state even on failure
- *
- * @returns {Promise<string[]>} Always returns an empty array.
- */
-export async function clearRootWorkspaces() {
-  logger.debug('clearRootWorkspaces()');
-
-  const cwd = path.dirname(rootPackageJsonPath);
-  const file = path.basename(rootPackageJsonPath);
-
-  // --- Try Git restore first ---
-  if (await tryGitRestore(cwd, file)) {
-    return [];
-  }
-
-  // --- Fallback: manual clear ---
-  await clearWorkspacesManually();
-  return [];
-}
-
-/**
- * Update workspace catalogs by removing the application path
+ * Update workspace catalogs by removing the target path
  * from one catalog and adding it to another.
  *
  * @async
  * @param {Object} params - Function parameters.
  * @param {string} params.fromPath - Source catalog path (to remove from).
  * @param {string} params.toPath - Target catalog path (to add to).
- * @param {string} params.appPath - Relative path of the application.
+ * @param {string} params.targetPath - Relative path of the target.
  * @returns {Promise<boolean>} - True if catalog update succeeded,
  *   false if skipped due to invalid workspace.
  * @throws {Error} If catalog update fails with an error status.
  */
-export async function updateCatalog({ fromPath, toPath, appPath }) {
-  const removed = await removeAppPathFromCatalog(fromPath, appPath);
-  const added = await addAppPathToCatalog(toPath, appPath);
+export async function updateCatalogs({ fromPath, toPath, targetPath }) {
+  const removed = await removeTargetPathFromCatalog(fromPath, targetPath);
+  const added = await addTargetPathToCatalog(toPath, targetPath);
 
   logger.info(`ℹ️ Catalog updates:
        • Removed from ${fromPath.includes('pnpm') ? 'PNPM' : 'Yarn'} → ${removed}
        • Added to ${toPath.includes('pnpm') ? 'PNPM' : 'Yarn'} → ${added}`);
 
   if (removed === 'invalid' || added === 'invalid') {
-    logger.warn(`⚠️ Skipped: "${appPath}" is not a valid workspace.`);
+    logger.warn(`⚠️ Skipped: "${targetPath}" is not a valid workspace.`);
     return false;
   }
 
   if (removed === 'error' || added === 'error') {
-    throw new Error(`Catalog update failed for "${appPath}"`);
+    throw new Error(`Catalog update failed for "${targetPath}"`);
   }
 
   return true;
@@ -468,8 +271,8 @@ export async function updateCatalog({ fromPath, toPath, appPath }) {
  * @param {string} params.pnpmPath - Relative path to the module (e.g., "packages/manager/core/utils")
  * @returns {Promise<boolean>} True if added, false if already present or invalid.
  */
-export async function updatePrivateModulesCatalog({ turboFilter, pnpmPath }) {
-  logger.debug(`updatePrivateModulesCatalog(turboFilter="${turboFilter}", pnpmPath="${pnpmPath}")`);
+export async function addPrivateModuleToCatalog({ turboFilter, pnpmPath }) {
+  logger.debug(`addPrivateModuleToCatalog(turboFilter="${turboFilter}", pnpmPath="${pnpmPath}")`);
 
   try {
     // 1️⃣ Ensure catalog file exists or initialize an empty one
