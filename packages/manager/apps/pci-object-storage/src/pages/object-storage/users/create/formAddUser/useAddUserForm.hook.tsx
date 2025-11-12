@@ -11,6 +11,9 @@ export const useAddUserForm = () => {
 
   const form = useForm<ValidationSchema>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      userName: '',
+    },
   });
 
   return { form, schema };
