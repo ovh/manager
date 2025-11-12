@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { HighlightSearch } from '../highligthSearch/HighlightSearch.component';
-import { Tmessage } from '../../../../../data/api/logTailMessages';
+import { HighlightSearch } from '@/components/logTail/logMessages/log/highligthSearch/HighlightSearch.component';
+import { Tmessage } from '@/data/api/logTailMessages';
 
 export const LogTimestamp = ({
   timestamp,

@@ -36,7 +36,13 @@ export default {
 
 To integrate the module into your UApp, create a log tab on your product dashboard and add the `LogsToCustomerModule` to the page content.
 
+**Important**: You must import the CSS file in your app entry point (e.g., `index.tsx`) to ensure styles are loaded globally:
+
 ```tsx
+// app entry point
+import '@ovh-ux/logs-to-customer/dist/style.css';
+
+// component
 export default function LogsPage() {
   // ...
 
@@ -64,24 +70,53 @@ export default function LogsPage() {
 }
 ```
 
-### configure your uapp routes
+### configure your µapp routes
 
 To allow the module to handle all logs-related routes, configure your routes as follows:
 
-```tsx
-// Import the module routes
-import { logsRoutes } from '@ovh-ux/logs-to-customer';
-//...
 
-export default [
-  // ...
-  {
-    // Add the `*` to let React Router know that all sub-routes will be handled by the children config
-    path: `path/to/product/log/page/*`,
-    ...lazyRouteConfig(() => import('@/pages/dashboard/logs/Logs.page')),
-    // Use the module routes here
-    children: [...logsRoutes],
-  },
-  // ...
-];
+_**routes.tsx**_
+```tsx
+
+// ...
+<Route path="path/to/parent/component" Component={ParentComponent} id="parent-component">
+  <Route
+    path="path/to/logs/page/*"
+    id="logs"
+    Component={LogsPage}
+  />
+</Route>
+// ...
 ```
+> **Important**
+> `'*'` is mandatory as routing is defined and managed inside the module
+
+### Troubleshooting
+
+You might face to the following issue
+
+```sh
+LogMessages.component.tsx:XX Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
+```
+
+To fix it, add the following `dedupe` vite configuration inside your consumer application
+
+_**vite.config.mjs**_
+```js
+export default defineConfig({
+  ...getBaseConfig(),
+  resolve: {
+    alias: {
+      '@': resolve(join(process.cwd(), 'src')),
+      ),
+    },
+    dedupe: ['@tanstack/react-virtual'],
+  },
+  root: resolve(process.cwd()),
+});
+```
+

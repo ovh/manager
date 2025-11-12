@@ -5,7 +5,7 @@ import {
   ODS_BADGE_COLOR,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { Stream } from '../../data/types/dbaas/logs';
+import { Stream } from '@/data/types/dbaas/logs';
 
 export const DATA_STREAM_INDEXING_STATUS_TEST_ID =
   'data-stream-indexing-status-test-id';

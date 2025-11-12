@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { LogsContext } from '../../LogsToCustomer.context';
+import { LogsContext } from '@/LogsToCustomer.context';
 import {
   getLogSubscriptionsQueryKey,
   useLogSubscriptions,
 } from '../../data/hooks/useLogSubscriptions';
-import SubscriptionTile from './SubscriptionTile.component';
-import SubscriptionEmpty from './SubscriptionEmpty.component';
-import ApiError from '../apiError/ApiError.component';
-import { useZoomedInOut } from '../../hooks/useZoomedInOut';
+import SubscriptionTile from '@/components/subscriptions/SubscriptionTile.component';
+import SubscriptionEmpty from '@/components/subscriptions/SubscriptionEmpty.component';
+import ApiError from '@/components/apiError/ApiError.component';
+import { useZoomedInOut } from '@/hooks/useZoomedInOut';
 
 export default function LogsSubscriptions() {
   const { t } = useTranslation('logSubscription');
