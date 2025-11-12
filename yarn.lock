@@ -3527,14 +3527,14 @@
   integrity sha512-Fze56Qv4qkucB3/w5/bl1lNVCNKlOdSBKYDVLaHNCJhHs+JbHCtMR4Ki29dA+Lk8mti0r3g1fdMZ7Hb2YBZ8gA==
 
 "@datatr-ux/ovhcloud-types@^1.0.34":
-  version "1.0.71"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.71.tgz#038380f05d4a1cd7fd363e29f6df869ffaec348a"
-  integrity sha512-I89CMgZGN1i/45qQco4QqlcJsMwcENY2suPq6HGOwgFNFNwRkgYTtoBCU/SnOakdgKXXAHaOdaPvY+XGcejmXQ==
+  version "1.0.38"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.38.tgz#db207335ed3e66f29023cedc8d6611fd928802d0"
+  integrity sha512-3DJcNoCsosdLAmd0UX+pTBMUxc4Zl69JjrNtVBBbUjHsau2l16nQnBQSU1GcExsln2gn91OyPg87B1eHRoLvHQ==
 
 "@datatr-ux/ovhcloud-types@^1.0.40":
-  version "1.0.46"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.46.tgz#beea265197e86185e584208da20ed5e2bc0998fc"
-  integrity sha512-SsozOIZ/lmHLel3AEwVUHVwM8u5rBSMcAr4N3N17rLUiFtoNXa1igxnawNUJ4WVM5uHGJHdGErDiLKr2zSpkRg==
+  version "1.0.76"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.76.tgz#1410e04157bcd3637d541e616acce6ad3d3f6a4c"
+  integrity sha512-Zi4yP9w3PZCmgW4nJyJqZAH7H2PZXE4iB7wp80iwA4gTOyvTrjl1jCoPMf9nSmHuPPQKEU+Mf/IT00/Y/zOtcA==
 
 "@datatr-ux/uxlib@0.0.10":
   version "0.0.10"
@@ -7385,15 +7385,19 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"
   integrity sha512-5upqmSqpbbNtg+/R2L+F7h9aJHilANq7BkgVUuEOaWgN8KMC1fTdnivQUFrC23mdnhD/H3LpDXKi+8+GajP39Q==
 
-"@ovh-ux/manager-common-translations@^0.19.1":
-  version "0.19.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.19.3.tgz#19e7de4b08b88bc24944860cd79eed6d4879be5f"
-  integrity sha512-1gJ3W7uiyJEIvllqwfFUfZ0HtwpmiMIBMydyhXnw9XOrX4gwUpTzffgwEHJG0HltZv85ZNh7pRV8Tn5krs3png==
-
 "@ovh-ux/manager-common-translations@^0.9.1":
   version "0.9.1"
   resolved "https://registry.npmjs.org/@ovh-ux/manager-common-translations/-/manager-common-translations-0.9.1.tgz#9e79e284f461fa5396d70cd7641f0e4c694bd115"
   integrity sha512-UJ/8hLplbB9qi+Nh4NoJO62PG0ZMBx9gZLJOsT83m1uL7trknY8ZOEuH5p3YWJwSbRc6G4mEHEwwsoG5w/zwiw==
+
+"@ovh-ux/manager-core-api@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.10.1.tgz#139b02351d8bd72479fbc5a6861dae17a875108e"
+  integrity sha512-rDoN7OHsqeRoW4iepD1FrFApOkN/RBkIwxT7dqZmPQfnq0J+a1szoXPRzDiN2g/SXRSsTqUEhSPdoGvhooapvg==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.0"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    axios "^1.1.2"
 
 "@ovh-ux/manager-core-api@^0.12.0":
   version "0.12.1"
@@ -7413,7 +7417,7 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
-"@ovh-ux/manager-core-sso@^0.3.2":
+"@ovh-ux/manager-core-sso@^0.3.0", "@ovh-ux/manager-core-sso@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
   integrity sha512-22M6BY5AkjzOFMATSg+EpoFXkxYKVbqI2hev7eD2EsfNRCnBINjXMWy9FDD0cXMuwkP7RwxbLuf8dAC4x+JZtA==
@@ -7588,7 +7592,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.24.10.tgz#88926c05c7a5e0622605f651661d9a8ae633af17"
   integrity sha512-S8b0RO/KaVTgapWGxR21aqQe5jLe7BGy9KPPKDq5fZ+v+NGd0itieNAaeS9Cj8sohp7wiCpQmjUP9RIkaABSrw==
 
-"@ovh-ux/request-tagger@^0.4.1":
+"@ovh-ux/request-tagger@^0.4.0", "@ovh-ux/request-tagger@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.4.1.tgz#ae77381d54f345e657a5c6c3195ece119fe375a8"
   integrity sha512-4mLN1zVa5CvpAQn+TGnUbxMM6Qr2zytQQQexw1a7WkoxuY/SQ+57PW/2/7VrQ1c1wLnjSUG2h88Wcy5AapZZAA==
