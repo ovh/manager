@@ -37,4 +37,5 @@ export const getIpSpamStats = async (
       params.ipSpamming,
     )}/stats`,
     page: 1,
+    disableCache: true,
   });

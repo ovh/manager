@@ -28,5 +28,10 @@ export const useGetIpSpamStats = ({
     retry: false,
   });
 
-  return { ipSpamStats: ipSpamStatsResponse.data, isLoading, isError, error };
+  return {
+    ipSpamStats: ipSpamStatsResponse?.data ?? [],
+    isLoading,
+    isError,
+    error,
+  };
 };
