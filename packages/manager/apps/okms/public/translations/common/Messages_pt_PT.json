@@ -1,0 +1,10 @@
+{
+  "region_1_az_description": "Desdobramento resiliente e económico em 1 zona de disponibilidade.",
+  "region_3_az_description": "Desdobramento de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade",
+  "region_continent_AFRICA": "África",
+  "region_continent_ASIA": "Ásia-Pacífico",
+  "region_continent_NORTH_AMERICA": "América do Norte",
+  "region_continent_EUROPE": "Europe",
+  "region_continent_OTHERS": "Outras regiões",
+  "region_local_zone_description": "Desdobramento das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e a residência dos dados."
+}
