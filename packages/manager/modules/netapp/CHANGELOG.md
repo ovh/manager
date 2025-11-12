@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.2...@ovh-ux/manager-netapp@2.15.3) (2025-11-12)
+
+
+### Bug Fixes
+
+* **dedicated:** update currentEditedRow after delete ([cb65aac](https://github.com/ovh/manager/commit/cb65aac94f7119015db53118e226198817d2ea68)), closes [#MANAGER-20046](https://github.com/ovh/manager/issues/MANAGER-20046)
+
+
+
+
+
 ## [2.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.1...@ovh-ux/manager-netapp@2.15.2) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

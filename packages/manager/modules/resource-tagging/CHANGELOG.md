@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-resource-tagging@1.2.0...@ovh-ux/manager-resource-tagging@1.3.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4428] ([57ca295](https://github.com/ovh/manager/commit/57ca295c52ece3d6d4327501f5cee8d5da62e1af))
+
+
+### Features
+
+* **dedicated:** add custom & ovhcloud types and link to guide doc ([0da7540](https://github.com/ovh/manager/commit/0da754084f7978b82e1506030f31cfc60ffa834e)), closes [#MANAGER-18134](https://github.com/ovh/manager/issues/MANAGER-18134)
+
+
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-resource-tagging@1.1.4...@ovh-ux/manager-resource-tagging@1.2.0) (2025-09-22)
 
 

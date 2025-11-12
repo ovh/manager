@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.20.1...@ovh-ux/manager-nasha@2.20.2) (2025-11-12)
+
+
+### Bug Fixes
+
+* **dedicated:** fix nasha progressbar and tooltip overflow ([f8cbf15](https://github.com/ovh/manager/commit/f8cbf15a0fc3a790df9782e9fcd9e84abdb62f2d)), closes [#MANAGER-20100](https://github.com/ovh/manager/issues/MANAGER-20100)
+
+
+
+
+
 ## [2.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.20.0...@ovh-ux/manager-nasha@2.20.1) (2025-07-02)
 
 

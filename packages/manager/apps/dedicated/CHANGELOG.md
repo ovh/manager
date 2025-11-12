@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.11...@ovh-ux/manager-dedicated@20.64.0) (2025-11-12)
+
+
+### Features
+
+* **dedicated:** add a success message when ordering a host or a datastore ([60c2974](https://github.com/ovh/manager/commit/60c2974e9f5a17a8552575f4a4393311437b96a5)), closes [#MANAGER-16352](https://github.com/ovh/manager/issues/MANAGER-16352)
+
+
+
+
+
 ## [20.63.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.10...@ovh-ux/manager-dedicated@20.63.11) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
