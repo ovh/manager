@@ -24,6 +24,6 @@
   "status_error": "Error",
   "status_disabled": "Desactivado",
   "status_valid": "Activo",
-  "status_to_validate": "En espera",
-  "error_rate_limit_message": "Has alcanzado el límite de solicitudes. Por favor, inténtalo de nuevo más tarde."
+  "status_to_validate": "Pendiente",
+  "error_rate_limit_message": "Ha alcanzado el límite de peticiones. Por favor, inténtelo de nuevo más tarde."
 }
