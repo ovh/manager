@@ -34,7 +34,7 @@ export default function Layout() {
             {/* header component */}
             <Header />
             {/* app component */}
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto px-6">
               <div className="flex flex-col min-h-full">
                 <div className="flex flex-9 flex-col flex-auto items-center justify-center">
                   <div className="w-full p-6 sm:p-0 max-w-lg">
