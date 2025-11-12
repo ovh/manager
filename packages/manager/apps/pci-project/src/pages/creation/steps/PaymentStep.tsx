@@ -57,7 +57,7 @@ export default function PaymentStep({
   );
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <Voucher
         cartId={cart.cartId}
         itemId={cartProjectItem.itemId}
