@@ -70,7 +70,15 @@ export const useReplicationForm = ({
           storages.ReplicationRuleDeleteMarkerReplicationStatusEnum.disabled,
         ),
       isReplicationApplicationLimited: z.boolean().default(false),
-      tags: z.record(z.string()).default({}),
+      tags: z
+        .record(
+          z.coerce.number(),
+          z.object({
+            key: z.string(),
+            value: z.string(),
+          }),
+        )
+        .default({}),
     })
     .superRefine(async (data, ctx) => {
       if (!data.destination.name || !data.destination.region) {
