@@ -1,0 +1,20 @@
+{
+  "updateS3PolicyTitle": "Dodaj użytkownika do mojego kontenera S3",
+  "updateS3PolicyDescription": "Wybierz użytkownika do dodania do swojego kontenera. Jeśli nie pojawia się na tej liście, proszę go utworzyć w dedykowanej sekcji.",
+  "userIdFieldLabel": "Użytkownik",
+  "inputUserPlaceholder": "Szukaj użytkownika",
+  "noUserFound": "Nie znaleziono użytkownika",
+  "userRoleFieldLabel": "Rola",
+  "rolePlaceholder": "Wybierz rolę",
+  "inputRolePlaceholder": "Szukaj roli",
+  "noUserRoleFound": "Nie znaleziono roli",
+  "role_deny": "Odmów",
+  "role_admin": "Administrator",
+  "role_readOnly": "Tylko do odczytu",
+  "role_readWrite": "Odczyt i zapis",
+  "updateS3PolicyButtonCancel": "Anuluj",
+  "updateS3PolicyButtonConfirm": "Dodaj",
+  "updateS3PolicyToastErrorTitle": "Wystąpił błąd",
+  "updateS3PolicyToastSuccessTitle": "Sukces",
+  "updateS3PolicyToastSuccessDescription": "Użytkownik został pomyślnie dodany"
+}

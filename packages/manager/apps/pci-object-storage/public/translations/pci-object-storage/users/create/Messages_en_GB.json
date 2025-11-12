@@ -1,0 +1,19 @@
+{
+  "addUserTitle": "Create a user",
+  "userNameLabel": "User description",
+  "addUserButtonCancel": "Cancel",
+  "addUserButtonConfirm": "Create",
+  "formAddUserButtonClose": "Close",
+  "addUserToastErrorTitle": "An error occurred",
+  "addUserToastSuccessTitle": "Success",
+  "addUserToastSuccessDescription": "User {{ name }} has been successfully created.",
+  "newUserCreationInProgress": "Creating user...",
+  "newUserInformationTitle": "User information",
+  "downloadUserButton": "Download",
+  "newUserInformationLabel": "Below are the Object Storage credentials for user {{ name }}.",
+  "newUserUsernameLabel": "Your username:",
+  "newUserDescriptionLabel": "Your description:",
+  "newUserAccessKeyLabel": "Your access key:",
+  "newUserPwdLabel": "Your secret key:",
+  "passwordCopy": "Copied!"
+}

@@ -1,0 +1,15 @@
+{
+  "rcloneTitle": "Download an rclone configuration file",
+  "rcloneDescription": "You are going to download a configuration file that allows you to connect with rclone.",
+  "rcloneDoc": "Get started",
+  "typeLabel": "File type",
+  "swiftTypeLabel": "Swift",
+  "s3TypeLabel": "S3 Compatible",
+  "regionLabel": "Select the region in which this file will apply:",
+  "regionPlaceholder": "Select a region",
+  "noRegionFound": "No results",
+  "rcloneInfo": "For security reasons, the configuration file does not contain your password. It is therefore necessary to edit the configuration file to manually add your password.",
+  "rcloneButtonConfirm": "Download",
+  "rcloneButtonCancel": "Cancel",
+  "userRcloneDownloadFailed": "An error occurred"
+}

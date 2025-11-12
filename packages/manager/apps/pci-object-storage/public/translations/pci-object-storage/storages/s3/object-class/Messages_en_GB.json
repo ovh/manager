@@ -1,0 +1,7 @@
+{
+  "objectClassDefault": "Identical to the source",
+  "objectClass_STANDARD": "Standard",
+  "objectClass_HIGH_PERF": "High performance",
+  "objectClass_DEEP_ARCHIVE": "Deep archive",
+  "objectClass_STANDARD_IA": "Infrequent Access"
+}

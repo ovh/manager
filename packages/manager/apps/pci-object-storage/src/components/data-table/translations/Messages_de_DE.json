@@ -6,7 +6,7 @@
   "common_criteria_adder_operator_starts_with": "beginnt mit",
   "common_criteria_adder_operator_ends_with": "endet mit",
   "common_criteria_adder_operator_is_equal": "ist gleich",
-  "common_criteria_adder_operator_is_different": "ist nicht gleich",
+  "common_criteria_adder_operator_is_different": "ist unterschiedlich von",
   "common_criteria_adder_operator_is_lower": "ist kleiner als",
   "common_criteria_adder_operator_is_higher": "ist größer als",
   "common_criteria_adder_operator_is_before": "ist vor",

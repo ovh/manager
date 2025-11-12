@@ -12,6 +12,8 @@
   "region_GRA_micro": "Gravelines ({{ micro }})",
   "region_PAR": "Paris",
   "region_PAR_micro": "Paris ({{ micro }})",
+  "region_TOR": "Toronto",
+  "region_TOR_micro": "Toronto ({{ micro }})",
   "region_EU-WEST-PAR": "Paris",
   "region_EU-WEST-PAR_micro": "Paris ({{ micro }})",
   "region_LIM": "Limburg",
@@ -64,6 +66,7 @@
   "region_location_US": "États-Unis",
   "region_continent_SBG": "Europe centrale",
   "region_continent_WAW": "Europe centrale",
+  "region_continent_TOR": "Amérique du Nord",
   "region_continent_BHS": "Amérique du Nord",
   "region_continent_GRA": "Europe de l'Ouest",
   "region_continent_PAR": "Europe de l'Ouest",
@@ -84,5 +87,6 @@
   "region_continent_all": "Toutes les localisations",
   "help-link-more-info": "En savoir plus",
   "region-description-1AZ": "Une région 1-AZ (zone de disponibilité) regroupe un ou plusieurs datacenters localisés sur un même site.",
-  "region-description-3AZ": " Une région 3-AZ comprend trois zones de disponibilités situées dans une même aire métropolitaine, séparées par quelques kilomètres. Elle répond aux exigences les plus élevées en matière de résilience tout en garantissant une latence extrêmement faible entre les AZ."
+  "region-description-3AZ": " Une région 3-AZ comprend trois zones de disponibilités situées dans une même aire métropolitaine, séparées par quelques kilomètres. Elle répond aux exigences les plus élevées en matière de résilience tout en garantissant une latence extrêmement faible entre les AZ.",
+  "region-description-localzone": "Une Local Zone correspond à un mode de déploiement des produits Public Cloud d’OVHcloud dans des datacenters situés au plus près des utilisateurs finaux."
 }
