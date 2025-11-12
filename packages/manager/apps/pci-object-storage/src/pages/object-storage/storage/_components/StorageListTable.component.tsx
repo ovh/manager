@@ -34,7 +34,14 @@ export default function StoragesList({ storages }: StoragesListProps) {
       );
     },
   });
-  const storagesFilters = useGetFilters();
+  const regionNames = storages.reduce<string[]>((acc, storage) => {
+    if (storage.regionObj?.name && !acc.includes(storage.regionObj.name)) {
+      acc.push(storage.regionObj.name);
+    }
+    return acc;
+  }, []);
+
+  const storagesFilters = useGetFilters(regionNames);
 
   return (
     <DataTable.Provider

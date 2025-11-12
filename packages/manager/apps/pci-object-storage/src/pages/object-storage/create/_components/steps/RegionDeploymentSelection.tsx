@@ -125,9 +125,7 @@ export const DeploymentModeSelection = ({
                   <div>
                     <div className="flex items-center gap-2">
                       <CheckboxIndicator />
-                      <p className="font-bold text-sm text-[--ods-color-heading]">
-                        {title}
-                      </p>
+                      <h5>{title}</h5>
                       <RegionTypeBadge type={regionType} />
                     </div>
                     <div className="text-xs flex-1 flex flex-col mt-3">
