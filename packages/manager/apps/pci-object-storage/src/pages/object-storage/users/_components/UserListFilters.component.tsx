@@ -9,5 +9,10 @@ export const useGetFilters = () => {
       label: t('tableHeaderName'),
       comparators: FilterCategories.String,
     },
+    {
+      id: 'description',
+      label: t('tableHeaderDescription'),
+      comparators: FilterCategories.String,
+    },
   ];
 };

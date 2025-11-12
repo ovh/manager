@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
 import { FilterCategories } from '@/lib/filters';
-import { REGIONS_OPTIONS } from './StorageListFilters.constants';
+import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
+import { ObjectStorageTypeEnum } from '@/types/Storages';
 
-export const useGetFilters = () => {
+export const useGetFilters = (regionNames: string[]) => {
   const { t } = useTranslation('pci-object-storage/storages');
-  const { t: tRegions } = useTranslation('regions');
+  const { translateMicroRegion } = useTranslatedMicroRegions();
   return [
     {
       id: 'name',
@@ -16,16 +17,25 @@ export const useGetFilters = () => {
       id: 'region',
       label: t('tableHeaderLocation'),
       comparators: FilterCategories.Options,
-      options: REGIONS_OPTIONS.map((region) => ({
-        label: tRegions(`region_${region}`),
+      options: regionNames.map((region) => ({
+        label: translateMicroRegion(region),
         value: region,
       })),
     },
     {
-      id: 'regionType',
+      id: 'regionObj.type',
       label: t('tableHeaderDeploymentMode'),
       comparators: FilterCategories.Options,
       options: Object.values(RegionTypeEnum).map((rType) => ({
+        label: rType,
+        value: rType,
+      })),
+    },
+    {
+      id: 'storageType',
+      label: t('tableHeaderOffer'),
+      comparators: FilterCategories.Options,
+      options: Object.values(ObjectStorageTypeEnum).map((rType) => ({
         label: rType,
         value: rType,
       })),

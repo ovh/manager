@@ -14,13 +14,11 @@ import {
 import DataTable from '@/components/data-table';
 import Link from '@/components/links/Link.component';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
-import Flag from '@/components/flag/Flag.component';
 import storages, {
   FormattedStorage,
   ObjectStorageTypeEnum,
 } from '@/types/Storages';
 import { octetConverter } from '@/lib/bytesHelper';
-import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import { RegionTypeBadge } from '@/components/region-type-badge/RegionTypeBadge.component';
 import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
