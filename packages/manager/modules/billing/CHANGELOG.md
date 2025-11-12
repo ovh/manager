@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.52.4...@ovh-ux/manager-billing@0.53.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* **billing:** add error message for renew bulk actions ([b56ae66](https://github.com/ovh/manager/commit/b56ae666de3c2974463bdbd009b6ab2447a853f9)), closes [#MANAGER-20226](https://github.com/ovh/manager/issues/MANAGER-20226)
+
+
+### Features
+
+* resolve error message issue for axios ([b837d29](https://github.com/ovh/manager/commit/b837d297a7630fed1a6a96fa2dc004548f3b8c49)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [0.52.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.52.3...@ovh-ux/manager-billing@0.52.4) (2025-11-03)
 
 

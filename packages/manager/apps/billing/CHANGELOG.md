@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.59](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.58...@ovh-ux/manager-billing-app@0.4.59) (2025-11-12)
+
+
+### Bug Fixes
+
+* **payment-methode:** fix the user locale undefined issue ([e0bdb54](https://github.com/ovh/manager/commit/e0bdb54433b9b790a14b4a5faea93cd17869b99a)), closes [#INC0163710](https://github.com/ovh/manager/issues/INC0163710) [#MANAGER-20223](https://github.com/ovh/manager/issues/MANAGER-20223)
+
+
+
+
+
 ## [0.4.58](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.57...@ovh-ux/manager-billing-app@0.4.58) (2025-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.1.2...@ovh-ux/manager-account-creation-app@0.2.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* **account-creation:** handle area, ux issues, required asterisks ([4637ad7](https://github.com/ovh/manager/commit/4637ad76e540f31f78966c330c9994c16e086adb)), closes [#MANAGER-19805](https://github.com/ovh/manager/issues/MANAGER-19805)
+
+
+### Features
+
+* **account-creation:** update design and add popover in choose account creation ([ebe0aff](https://github.com/ovh/manager/commit/ebe0aff7c50d0e204641d793f896ea273f255b8e)), closes [#MANAGER-19990](https://github.com/ovh/manager/issues/MANAGER-19990)
+
+
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.1.1...@ovh-ux/manager-account-creation-app@0.1.2) (2025-11-11)
 
 

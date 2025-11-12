@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.13...@ovh-ux/manager-hub-app@0.26.0) (2025-11-12)
+
+
+### Features
+
+* **hub:** remove phishing info banner ([514c19c](https://github.com/ovh/manager/commit/514c19cee72e0f51bc1d220ff746d82118a56912)), closes [#MANAGER-19964](https://github.com/ovh/manager/issues/MANAGER-19964)
+
+
+
+
+
 ## [0.25.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.12...@ovh-ux/manager-hub-app@0.25.13) (2025-11-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
