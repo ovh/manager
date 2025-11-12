@@ -19,6 +19,7 @@ vue/src
 packages/components/ovh-at-internet/src/ovh-at-internet.ts
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/container
+
 packages/manager/core/api
 packages/manager/core/application
 packages/manager/core/ovh-product-icons
@@ -50,12 +51,3 @@ packages/manager/apps/web-domains
 packages/manager/apps/web-hosting
 packages/manager/apps/web-office
 packages/manager/apps/zimbra
-!.storybook
-manager-static-analysis-kit
-manager-generator
-lint-runner.js
-lint-cli.js
-packages/manager-tools/manager-generator/bin/manager-generator.js
-packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
-packages/manager-ui-kit
-packages/manager-wiki

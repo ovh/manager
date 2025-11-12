@@ -13,6 +13,7 @@ import Search from './Search';
 import Universes from './Universes';
 
 import useContainer from '@/core/container';
+import CloudShellLink from '@/container/common/cloud-shell';
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
@@ -115,6 +116,9 @@ function Navbar(): JSX.Element {
                 setIsNotificationsSidebarVisible(false);
               }}
             ></LanguageMenu>
+          </div>
+          <div className="oui-navbar-list__item">
+            <CloudShellLink />
           </div>
           <div className="oui-navbar-list__item">
             <Notifications />
