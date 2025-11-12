@@ -2,51 +2,47 @@ export const EXCHANGE_LOG_KINDS_KEYS = ['message'];
 
 export const GUIDE = {
   DEFAULT:
-    'https://www.ovhcloud.com/en-ie/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   DE:
-    'https://www.ovhcloud.com/de/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/de-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073324',
   ES:
-    'https://www.ovhcloud.com/es-es/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/es-es-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073329',
   FR:
-    'https://www.ovhcloud.com/fr/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/fr-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073325',
   IE:
-    'https://www.ovhcloud.com/en-ie/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   IT:
-    'https://www.ovhcloud.com/it/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/it-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073323',
   NL:
-    'https://www.ovhcloud.com/nl/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   PL:
-    'https://www.ovhcloud.com/pl/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/pl-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073326',
   PT:
-    'https://www.ovhcloud.com/pt/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/pt-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073330',
   GB:
-    'https://www.ovhcloud.com/en-gb/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-gb-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073321',
   CA:
-    'https://www.ovhcloud.com/en-ca/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   QC:
-    'https://www.ovhcloud.com/fr-ca/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/fr-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073325',
   WS:
-    'https://www.ovhcloud.com/es/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/es-es-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073329',
   MA:
-    'https://www.ovhcloud.com/fr-ma/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/fr-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073325',
   SN:
-    'https://www.ovhcloud.com/fr-sn/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/fr-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073325',
   TN:
-    'https://www.ovhcloud.com/fr-tn/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/fr-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073325',
   AU:
-    'https://www.ovhcloud.com/en-au/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   SG:
-    'https://www.ovhcloud.com/en-sg/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   ASIA:
-    'https://www.ovhcloud.com/asia/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   IN:
-    'https://www.ovhcloud.com/en-in/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
   WE:
-    'https://www.ovhcloud.com/en-ie/identity-security-operations/logs-data-platform/',
-  US:
-    'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
-  WW:
-    'https://www.ovhcloud.com/en/identity-security-operations/logs-data-platform/',
+    'https://help.ovhcloud.com/csm/en-ie-exchange-logs-management?id=kb_article_view&sysparm_article=KB0073322',
 };
 
 const logsPrefix = 'Web::microsoft::exchange::logs';
