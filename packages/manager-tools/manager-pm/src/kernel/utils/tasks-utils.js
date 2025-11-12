@@ -11,8 +11,8 @@ import {
   buildModuleWorkspacePath,
   getPackageNameFromModule,
 } from '../helpers/modules-workspace-helper.js';
-import { clearRootWorkspaces } from './catalog-utils.js';
 import { logger } from './log-manager.js';
+import { clearRootWorkspaces } from './workspace-utils.js';
 
 /**
  * Internal helper: derive the best Turbo filter value for a given `appRef`.

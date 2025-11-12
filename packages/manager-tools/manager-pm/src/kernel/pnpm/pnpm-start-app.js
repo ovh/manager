@@ -5,9 +5,10 @@ import process from 'node:process';
 
 import { containerPackageName, managerRootPath } from '../../playbook/playbook-config.js';
 import { getApplicationId, getApplications } from '../helpers/apps-workspace-helper.js';
-import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
+import { clearRootWorkspaces } from '../utils/catalog-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { resolveApplicationBuildFilter } from '../utils/tasks-utils.js';
+import { updateRootWorkspacesFromCatalogs } from '../utils/workspace-utils.js';
 
 /**
  * @typedef {Object} StartAppOptions

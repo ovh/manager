@@ -5,8 +5,8 @@ import path, { basename } from 'node:path';
 import { applicationsBasePath, managerRootPath } from '../../playbook/playbook-config.js';
 import { parseAppPackageJson } from '../utils/json-utils.js';
 import { logger } from '../utils/log-manager.js';
-import { toPosix } from '../utils/path-utils.js';
-import { isWorkspaceRelativePath, stripRepositoryRoot } from '../utils/workspace-utils.js';
+import { stripRepositoryRoot, toPosix } from '../utils/path-utils.js';
+import { isWorkspaceRelativePath } from '../utils/workspace-utils.js';
 
 /**
  * List absolute paths of all valid app directories under `packages/manager/apps`.

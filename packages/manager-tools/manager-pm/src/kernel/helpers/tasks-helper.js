@@ -1,11 +1,11 @@
 import { managerRootPath } from '../../playbook/playbook-config.js';
-import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
 import {
   resolveApplicationBuildFilter,
   resolveModuleBuildFilter,
   runCommand,
   runTaskFromRoot,
 } from '../utils/tasks-utils.js';
+import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/workspace-utils.js';
 
 /**
  * Execute a task within a safe workspace context.

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { IntervalUnitType, OvhSubsidiary, Price } from '@ovh-ux/muk';
+import { IntervalUnit, OvhSubsidiary, Price } from '@ovh-ux/muk';
 
 const meta = {
   title: 'Manager UI Kit/Components/Price',
@@ -25,7 +25,7 @@ const meta = {
     intervalUnit: {
       description: 'The interval unit for the price (day, month, year)',
       control: 'select',
-      options: Object.values(IntervalUnitType),
+      options: Object.values(IntervalUnit),
     },
     ovhSubsidiary: {
       description: 'The OVH subsidiary to determine price format',
@@ -92,7 +92,7 @@ export const WithTax: Story = {
 export const WithInterval: Story = {
   args: {
     value: 3948000000,
-    intervalUnit: IntervalUnitType.month,
+    intervalUnit: IntervalUnit.month,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
   },
@@ -101,7 +101,7 @@ export const WithInterval: Story = {
       source: {
         code: `<Price
   value={3948000000}
-  intervalUnit={IntervalUnitType.month}
+  intervalUnit={IntervalUnit.month}
   ovhSubsidiary={OvhSubsidiary.FR}
   locale="fr-FR"
 />`,
@@ -115,7 +115,7 @@ export const WithTaxAndInterval: Story = {
   args: {
     value: 3948000000,
     tax: 789600000,
-    intervalUnit: IntervalUnitType.month,
+    intervalUnit: IntervalUnit.month,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
   },
@@ -125,7 +125,7 @@ export const WithTaxAndInterval: Story = {
         code: `<Price
   value={3948000000}
   tax={789600000}
-  intervalUnit={IntervalUnitType.month}
+  intervalUnit={IntervalUnit.month}
   ovhSubsidiary={OvhSubsidiary.FR}
   locale="fr-FR"
 />`,
@@ -156,7 +156,7 @@ export const AsiaFormat: Story = {
 export const Daily: Story = {
   args: {
     value: 3948000000,
-    intervalUnit: IntervalUnitType.day,
+    intervalUnit: IntervalUnit.day,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
   },
@@ -165,7 +165,7 @@ export const Daily: Story = {
 export const Monthly: Story = {
   args: {
     value: 3948000000,
-    intervalUnit: IntervalUnitType.month,
+    intervalUnit: IntervalUnit.month,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
   },
@@ -174,7 +174,7 @@ export const Monthly: Story = {
 export const Yearly: Story = {
   args: {
     value: 3948000000,
-    intervalUnit: IntervalUnitType.year,
+    intervalUnit: IntervalUnit.year,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
   },
@@ -184,7 +184,7 @@ export const Yearly: Story = {
 export const WithIntervalConversion: Story = {
   args: {
     value: 3948000000,
-    intervalUnit: IntervalUnitType.month,
+    intervalUnit: IntervalUnit.month,
     isConvertIntervalUnit: true,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
@@ -206,7 +206,7 @@ export const Complete: Story = {
   args: {
     value: 3948000000,
     tax: 789600000,
-    intervalUnit: IntervalUnitType.month,
+    intervalUnit: IntervalUnit.month,
     isConvertIntervalUnit: true,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',

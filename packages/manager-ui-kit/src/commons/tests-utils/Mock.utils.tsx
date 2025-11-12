@@ -10,9 +10,13 @@ import type { IMe } from '@/hooks';
 import { UseQueryResult } from '@/hooks/data-api/infra/tanstack';
 import { IamCheckResponse } from '@/hooks/iam/IAM.type';
 import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
+import { locations1AZ, locations3AZ, locationsLZ } from '@/hooks/location/__mocks__/location';
 
 export const mockTrackPage = vitest.fn();
 export const mockGetEnvironment = vitest.fn();
+export const mockGetLocations = vitest.fn(() =>
+  Promise.resolve([...locations3AZ, ...locations1AZ, ...locationsLZ]),
+);
 
 export const shellContext = {
   shell: {
@@ -23,8 +27,11 @@ export const shellContext = {
       reload: vitest.fn(),
     },
     ux: { hidePreloader: vitest.fn() },
+    location: {
+      getLocations: mockGetLocations,
+    },
   },
-};
+} as unknown as ShellContextType;
 
 export const buildShellContextMock = (me: IMe | null | undefined): Partial<ShellContextType> => {
   const env = new Environment();
@@ -42,7 +49,9 @@ export const buildShellContextMock = (me: IMe | null | undefined): Partial<Shell
       i18n: { getLocale: vi.fn(() => 'en_GB') },
       routing: { getRoute: vi.fn() },
       auth: { login: vi.fn(), logout: vi.fn() },
-      location: { getURL: vi.fn() },
+      location: {
+        getLocations: mockGetLocations,
+      },
       logger: { log: vi.fn(), error: vi.fn() },
     } as unknown as ShellContextType['shell'],
   };

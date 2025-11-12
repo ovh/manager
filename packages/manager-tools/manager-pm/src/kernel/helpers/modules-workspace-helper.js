@@ -3,8 +3,8 @@ import path from 'node:path';
 
 import { managerRootPath, modulesBasePaths } from '../../playbook/playbook-config.js';
 import { logger } from '../utils/log-manager.js';
-import { toPosix } from '../utils/path-utils.js';
-import { isWorkspaceRelativePath, stripRepositoryRoot } from '../utils/workspace-utils.js';
+import { stripRepositoryRoot, toPosix } from '../utils/path-utils.js';
+import { isWorkspaceRelativePath } from '../utils/workspace-utils.js';
 
 /**
  * List absolute paths of all valid module directories under known module roots.

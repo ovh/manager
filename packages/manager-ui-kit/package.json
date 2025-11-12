@@ -17,10 +17,11 @@
     ".": {
       "types": "./dist/types/src/lib.d.ts",
       "import": "./dist/manager-ui-kit-lib.es.js",
-      "require": "./dist/src/lib.js"
+      "require": "./dist/manager-ui-kit-lib.umd.cjs"
     },
     "./dist/style.css": "./dist/style.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./public/assets/*": "./dist/public/assets/*"
   },
   "main": "dist/manager-ui-kit-lib.umd.cjs",
   "module": "dist/manager-ui-kit-lib.es.js",
