@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Badge, RadioTile } from '@datatr-ux/uxlib';
+import { Badge, RadioIndicator, RadioTile } from '@datatr-ux/uxlib';
 import { format } from 'date-fns';
 import { Engine } from '@/types/orderFunnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
@@ -19,7 +19,8 @@ export const EngineTile = ({ engine }: { engine: Engine }) => {
       className="flex flex-col gap-2 p-4"
     >
       <div className="flex justify-between items-center w-full">
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          <RadioIndicator />
           <h5 className={'capitalize'}>
             {humanizeEngine(engine.name as database.EngineEnum)}
           </h5>

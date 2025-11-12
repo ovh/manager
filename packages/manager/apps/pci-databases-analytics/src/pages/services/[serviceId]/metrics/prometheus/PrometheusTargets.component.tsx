@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react';
 import {
+  Clipboard,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Table,
-  TableBody,
 } from '@datatr-ux/uxlib';
+import { useTranslation } from 'react-i18next';
 import { PrometheusData } from '@/data/api/database/prometheus.api';
 import * as database from '@/types/cloud/project/database';
-import PrometheusTableRow from './PrometheusTableRow.component';
 
 interface PrometheusTargetsProps {
   prometheusData: PrometheusData;
 }
 const PrometheusTargets = ({ prometheusData }: PrometheusTargetsProps) => {
   const [selectedHost, setSelectedHost] = useState('');
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/metrics/prometheus',
+  );
   const promData = prometheusData as database.service.PrometheusEndpoint;
   useEffect(() => {
     if (selectedHost === '' && promData && 'targets' in promData)
@@ -45,13 +47,20 @@ const PrometheusTargets = ({ prometheusData }: PrometheusTargetsProps) => {
           </SelectContent>
         </Select>
       )}
-      <Table data-testid="prometheus-data-table">
-        <TableBody>
-          <PrometheusTableRow name="username" value={promData.username} />
-          <PrometheusTableRow name="host" value={target?.host} />
-          <PrometheusTableRow name="port" value={target?.port.toString()} />
-        </TableBody>
-      </Table>
+      <div data-testid="prometheus-data-table" className="space-y-2 mb-4">
+        <div>
+          <p className="font-semibold capitalize">{t('username')}</p>
+          <Clipboard value={`${promData.username}`} />
+        </div>
+        <div>
+          <p className="font-semibold capitalize">{t('host')}</p>
+          <Clipboard value={`${target?.host}`} />
+        </div>
+        <div>
+          <p className="font-semibold capitalize">{t('port')}</p>
+          <Clipboard value={`${target?.port.toString()}`} />
+        </div>
+      </div>
     </div>
   );
 };

@@ -175,7 +175,7 @@ describe('PrometheusConfigTile', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'errorToastTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

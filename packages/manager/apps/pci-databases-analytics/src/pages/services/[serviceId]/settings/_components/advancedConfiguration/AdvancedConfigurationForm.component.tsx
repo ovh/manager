@@ -20,8 +20,6 @@ import {
   RadioGroupItem,
   Input,
   useToast,
-  ScrollArea,
-  ScrollBar,
   Button,
   Popover,
   PopoverContent,
@@ -36,6 +34,8 @@ import {
   AccordionItem,
   AccordionTrigger,
   CommandList,
+  Code,
+  json,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import {
@@ -73,7 +73,7 @@ const AdvancedConfigurationForm = ({
   } = useEditAdvancedConfiguration({
     onError: (error) => {
       toast.toast({
-        variant: 'destructive',
+        variant: 'critical',
         title: t('advancedConfigurationUpdateErrorTitle'),
         description: getCdbApiErrorMessage(error),
       });
@@ -223,7 +223,17 @@ const AdvancedConfigurationForm = ({
               <Button
                 role="combobox"
                 aria-expanded={open}
-                className="text-text border border-input bg-background h-10 w-full rounded-md px-3 py-2 text-sm justify-between hover:bg-background active:bg-background"
+                mode="ghost"
+                className={cn(
+                  // Match ODS Input look
+                  'box-border flex h-8 w-full items-center justify-between rounded-sm border border-[#b3b3b3] bg-white px-2.5 py-[3px] text-base text-text placeholder:text-neutral-500 font-normal',
+                  // Hover + focus
+                  'hover:border-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+                  // Disabled
+                  'disabled:cursor-not-allowed disabled:border-border-disabled disabled:bg-background-disabled disabled:text-text-disabled',
+                  // Invalid
+                  'data-[invalid]:border-critical data-[invalid]:hover:border-critical-600',
+                )}
               >
                 {value
                   ? model.lists.availableProperties.find(
@@ -287,16 +297,15 @@ const AdvancedConfigurationForm = ({
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <ScrollArea
-              className="p-2 bg-[#122844] text-white whitespace-pre w-full"
-              viewportClassName="max-h-[400px]"
-            >
-              <div>
-                {model.result.payload &&
-                  JSON.stringify(model.result.payload, null, 2)}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+            <Code
+              className="max-h-[400px]"
+              lang={json}
+              code={
+                model.result.payload
+                  ? JSON.stringify(model.result.payload, null, 2)
+                  : '{}'
+              }
+            ></Code>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

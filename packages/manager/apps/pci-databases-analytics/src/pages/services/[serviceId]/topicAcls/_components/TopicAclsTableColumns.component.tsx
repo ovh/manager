@@ -71,7 +71,7 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
               >
                 <DropdownMenuItem
                   data-testid="topic-action-delete-button"
-                  variant="destructive"
+                  variant="critical"
                   disabled={
                     service.capabilities.topicAcl?.delete ===
                     database.service.capability.StateEnum.disabled

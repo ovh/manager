@@ -1,12 +1,11 @@
-import odsPlugin from '@datatr-ux/ods-tailwind-config';
 import path from 'path';
 import { createRequire } from 'node:module';
+import odsPreset from '@datatr-ux/uxlib/tailwind.preset';
 
 const require = createRequire(import.meta.url);
 
-
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     path.join(
       path.dirname(require.resolve('@ovh-ux/manager-react-components')),
@@ -16,24 +15,15 @@ module.exports = {
       path.dirname(require.resolve('@ovh-ux/manager-pci-common')),
       '**/*.{js,jsx,ts,tsx}',
     ),
+    './node_modules/@datatr-ux/uxlib/dist/components/ui/**/*.{js,jsx,ts,tsx}',
     './src/**/*.{js,jsx,ts,tsx}',
-    '../../../../node_modules/@datatr-ux/uxlib/**/*.{js,jsx,ts,tsx}',
   ],
+  presets: [odsPreset],
   theme: {
-    extend: {
-      colors: {
-        // Override colors for ODS17 theme
-        // 'primary-50': '#f5feff',
-        heading: '#4d5693',
-      },
-      borderRadius: {
-        // Override radiuses for ODS17 theme
-        sm: '0.25rem',
-        DEFAULT: '0.25rem',
-        md: '0.5rem',
-        lg: '0.5rem',
-      },
-    },
+    extend: {},
   },
-  plugins: [odsPlugin],
+  plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 };

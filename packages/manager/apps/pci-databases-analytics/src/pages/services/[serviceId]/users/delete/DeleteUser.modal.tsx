@@ -35,7 +35,7 @@ const DeleteUser = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -65,7 +65,7 @@ const DeleteUser = () => {
 
   return (
     <RouteModal isLoading={!users || !deletedUser}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-user-modal">
             {t('deleteUserTitle')}
@@ -74,11 +74,11 @@ const DeleteUser = () => {
             {t('deleteUserDescription', { name: deletedUser?.username })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               type="button"
-              mode="outline"
+              mode="ghost"
               data-testid="delete-user-cancel-button"
             >
               {t('deleteUserButtonCancel')}
