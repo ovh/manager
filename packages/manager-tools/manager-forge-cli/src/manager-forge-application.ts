@@ -1,8 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { APPS_DIR, HELP_APPLICATION, TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
-import { runForgeCli } from '@/helpers/manager-forge-cli-helper.js';
+import { APPS_DIR, TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
 import { addAppToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 import {
   applyTemplateReplacements,
@@ -79,14 +78,6 @@ function forgeApplication(answers: Answers): void {
  * @param {Answers} answers - Application metadata collected from prompts.
  * @returns {Promise<void>}
  */
-export function forgeApplicationCli(answers: Answers): Promise<void> {
-  return runForgeCli(
-    () => forgeApplication(answers),
-    {
-      clearScreen: true,
-      showBanner: true,
-      showSpinner: true,
-    },
-    HELP_APPLICATION,
-  );
+export function forgeApplicationCli(answers: Answers): void {
+  forgeApplication(answers); // no banner, no spinner here!
 }

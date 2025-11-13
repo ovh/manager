@@ -4,6 +4,5 @@
   "packages/manager/apps/pci-contacts",
   "packages/manager/apps/pci-instances",
   "packages/manager/apps/web-hosting",
-  "packages/manager/apps/web-ongoing-operations",
-  "packages/manager/apps/digital-awesome"
+  "packages/manager/apps/web-ongoing-operations"
 ]
