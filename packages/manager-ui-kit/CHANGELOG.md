@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.2...@ovh-ux/muk@0.5.3) (2025-11-13)
+
+
+### Bug Fixes
+
+* muk build issues ([6a0c402](https://github.com/ovh/manager/commit/6a0c402f2a3277e6293c3b997f53f25241e82904)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+* muk lint issues ([0272909](https://github.com/ovh/manager/commit/02729097b1f6130440d853b78c15122a9e82dc1a)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.1...@ovh-ux/muk@0.5.2) (2025-11-13)
 
 **Note:** Version bump only for package @ovh-ux/muk
