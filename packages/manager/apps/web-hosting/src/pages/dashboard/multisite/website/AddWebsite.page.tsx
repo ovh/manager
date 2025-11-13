@@ -7,8 +7,15 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsDivider, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsDivider,
+  OdsIcon,
+  OdsLink,
+  OdsText,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
 
 import { LinkType, Links, useNotifications } from '@ovh-ux/manager-react-components';
 
@@ -28,7 +35,7 @@ export default function AddWebsitePage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const { addSuccess, addWarning } = useNotifications();
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['common', 'multisite']);
   const [step, setStep] = useState<number>(1);
 
   type FormData = z.infer<typeof websiteFormSchema>;
@@ -110,6 +117,16 @@ export default function AddWebsitePage() {
         label={t('common:web_hosting_common_sites_backlink')}
         className="mb-4"
       />
+      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+        {t('multisite:multisite_add_website_title')}
+      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+        {t('multisite:multisite_add_website_choose_domain_title')}
+        <OdsIcon id="cdn-tooltip" name={ODS_ICON_NAME.circleInfo} className="cursor-pointer ml-4" />
+        <OdsTooltip triggerId="cdn-tooltip">
+          <OdsText>{t('multisite:multisite_add_website_domain_info')}</OdsText>
+        </OdsTooltip>
+      </OdsText>
       <DomainAssociation
         control={control}
         controlValues={controlValues}

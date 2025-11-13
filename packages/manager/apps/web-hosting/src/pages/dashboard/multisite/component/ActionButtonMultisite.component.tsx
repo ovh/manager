@@ -30,6 +30,7 @@ interface ActionButtonMultisiteProps {
 const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   context,
   siteId,
+  site,
   domainId,
   domain,
   path,
@@ -88,7 +89,10 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
       const siteActions: ActionMenuItem[] = [
         {
           id: 1,
-          onClick: () => navigate(urls.addDomain.replace(subRoutes.serviceName, serviceName)),
+          onClick: () =>
+            navigate(urls.addDomain.replace(subRoutes.serviceName, serviceName), {
+              state: { site, path },
+            }),
           label: t('add_domain'),
         },
         // @TODO FOR NEXT STEP
@@ -219,6 +223,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     t,
     websites,
     siteId,
+    site,
     navigate,
     serviceName,
     path,
