@@ -3,5 +3,6 @@
   "packages/manager/apps/web-office",
   "packages/manager/apps/zimbra",
   "packages/manager/apps/pci-instances",
-  "packages/manager/apps/web-hosting"
+  "packages/manager/apps/web-hosting",
+  "packages/manager/modules/observability-to-customer"
 ]
