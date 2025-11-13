@@ -574,9 +574,12 @@ export default (
           Component={AddDomainPage}
           handle={{
             tracking: {
-              pageName: ADD_DOMAIN,
-              pageType: PageType.popup,
+              pageType: PageType.listing,
             },
+            breadcrumb: {
+              label: 'common:add_website',
+            },
+            isOverridePage: true,
           }}
         />
       </Route>
