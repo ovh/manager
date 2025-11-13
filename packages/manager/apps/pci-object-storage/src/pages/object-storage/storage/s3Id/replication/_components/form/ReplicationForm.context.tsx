@@ -1,6 +1,8 @@
 import React, { createContext, useContext } from 'react';
 import { UseFormReturn, FormProvider } from 'react-hook-form';
 import { ReplicationFormValues } from './useReplicationForm.hook';
+import storages from '@/types/Storages';
+import { is3AZRegion } from '@/lib/regionHelper';
 
 interface ReplicationFormContextProps {
   form: UseFormReturn<ReplicationFormValues>;
@@ -10,6 +12,7 @@ interface ReplicationFormContextProps {
   showStorageClassField: boolean;
   isDeleteMarkerDisabled: boolean;
   isTagsDisabled: boolean;
+  availableStorageClasses: storages.StorageClassEnum[];
 }
 
 const ReplicationFormContext = createContext<ReplicationFormContextProps | null>(
@@ -49,12 +52,21 @@ export const ReplicationFormProvider = ({
   const isDeleteMarkerEnabled =
     formValues.deleteMarkerReplication === 'enabled';
 
+  const storageClasses = Object.values(storages.StorageClassEnum).filter(
+    (st) => st !== storages.StorageClassEnum.DEEP_ARCHIVE,
+  );
+
+  const availableStorageClasses = is3AZRegion(formValues.destination.region)
+    ? storageClasses.filter((st) => st !== storages.StorageClassEnum.HIGH_PERF)
+    : storageClasses;
+
   const contextValue: ReplicationFormContextProps = {
     form,
     isPending,
     isEditMode,
     showScopeFields: formValues.isReplicationApplicationLimited,
     showStorageClassField: formValues.useStorageClass,
+    availableStorageClasses,
     isDeleteMarkerDisabled: hasTags,
     isTagsDisabled: isDeleteMarkerEnabled,
   };
