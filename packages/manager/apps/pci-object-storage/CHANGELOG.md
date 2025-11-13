@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.19.7...@ovh-ux/manager-pci-object-storage-app@0.20.0) (2025-11-13)
+
+
+### Features
+
+* **pci.os:** rework object storage app ([ea07150](https://github.com/ovh/manager/commit/ea07150c545d86a342206ce063cf628f49305a42)), closes [#DATATR-2533](https://github.com/ovh/manager/issues/DATATR-2533)
+
+
+
+
+
 ## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.19.6...@ovh-ux/manager-pci-object-storage-app@0.19.7) (2025-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
