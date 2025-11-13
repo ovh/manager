@@ -2,7 +2,7 @@ import '@/setupTests';
 import React from 'react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { dns } from '@/__mocks__/dns';
 import Dns from '@/pages/dashboard/dns/Dns';
@@ -68,10 +68,10 @@ describe('Dns datagrid', () => {
       data: serviceInfo,
     });
 
-    const { getByTestId } = render(<Dns />, { wrapper });
+    render(<Dns />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('datagrid')).toBeInTheDocument();
-      const dnsName = getByTestId('testpuwebdomain.us');
+      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+      const dnsName = screen.getByTestId('testpuwebdomain.us');
       expect(dnsName).toBeInTheDocument();
       expect(dnsName).toHaveAttribute(
         'href',
@@ -95,10 +95,10 @@ describe('Dns datagrid', () => {
       data: undefined,
     });
 
-    const { getByTestId } = render(<Dns />, { wrapper });
+    render(<Dns />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('datagrid')).toBeInTheDocument();
-      const dnsName = getByTestId('testpuwebdomain.us');
+      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+      const dnsName = screen.getByTestId('testpuwebdomain.us');
       expect(dnsName).toBeInTheDocument();
       expect(dnsName).toHaveAttribute(
         'href',
