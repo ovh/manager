@@ -1,7 +1,10 @@
-import { Skeleton, Text } from '@ovhcloud/ods-react';
-import { useFormatDate } from '@ovh-ux/manager-react-components';
-import { useGetServiceInformation } from '@/domain/hooks/data/query';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { Skeleton } from '@ovhcloud/ods-react';
+import {
+  DataGridTextCell,
+  useFormatDate,
+} from '@ovh-ux/manager-react-components';
+import { ServiceRoutes } from '@/common/enum/common.enum';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface DatagridColumnExpirationProps {
   serviceName: string;
@@ -11,6 +14,7 @@ export default function DatagridColumnExpiration({
   serviceName,
 }: DatagridColumnExpirationProps) {
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
+    'domain',
     serviceName,
     ServiceRoutes.Domain,
   );
@@ -27,7 +31,9 @@ export default function DatagridColumnExpiration({
   return (
     <>
       {serviceInfo && (
-        <Text>{formatDate({ date: serviceInfo.billing?.expirationDate })}</Text>
+        <DataGridTextCell>
+          {formatDate({ date: serviceInfo.billing?.expirationDate })}
+        </DataGridTextCell>
       )}
     </>
   );

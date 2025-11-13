@@ -1,9 +1,9 @@
 import { Badge, Icon, Skeleton } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useGetServiceInformation } from '@/domain/hooks/data/query';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 import { domainStatusToBadge } from '@/domain/utils/domainStatus';
 import { DOMAIN_PENDING_ACTIONS } from '@/domain/constants/serviceDetail';
+import { ServiceRoutes } from '@/common/enum/common.enum';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface DatagridColumnPendingActionsProps {
   serviceName: string;
@@ -14,6 +14,7 @@ export default function DatagridColumnPendingActions({
 }: DatagridColumnPendingActionsProps) {
   const { t } = useTranslation('domain');
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
+    'domain',
     serviceName,
     ServiceRoutes.Domain,
   );

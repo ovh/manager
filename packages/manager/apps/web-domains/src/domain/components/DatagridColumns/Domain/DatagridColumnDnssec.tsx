@@ -1,4 +1,4 @@
-import { Badge, BADGE_COLOR, Icon, Skeleton } from '@ovhcloud/ods-react';
+import { Badge, BADGE_COLOR, Icon } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { domainStatusToBadge } from '@/domain/utils/domainStatus';
 import { useGetDnssecStatus } from '@/domain/hooks/data/query';
@@ -12,12 +12,8 @@ export default function DatagridColumnDnssec({
   serviceName,
 }: DatagridColumnStatusProps) {
   const { t } = useTranslation('domain');
-  const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
-    serviceName,
-  );
-  if (isDnssecStatusLoading) {
-    return <Skeleton />;
-  }
+  const { dnssecStatus } = useGetDnssecStatus(serviceName);
+
   if (!dnssecStatus) {
     return (
       <Badge

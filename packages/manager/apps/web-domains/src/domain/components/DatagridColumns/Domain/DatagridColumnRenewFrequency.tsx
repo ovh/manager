@@ -7,9 +7,12 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useGetServiceInformation } from '@/domain/hooks/data/query';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
-import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import {
+  ServiceInfoRenewModeEnum,
+  ServiceRoutes,
+} from '@/common/enum/common.enum';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface DatagridColumnRenewFrequencyProps {
   serviceName: string;
@@ -20,6 +23,7 @@ export default function DatagridColumnRenewFrequency({
 }: DatagridColumnRenewFrequencyProps) {
   const { t } = useTranslation('domain');
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
+    'domain',
     serviceName,
     ServiceRoutes.Domain,
   );
@@ -51,7 +55,9 @@ export default function DatagridColumnRenewFrequency({
     <>
       {serviceInfo && (
         <>
-          {translateRenewPeriod(serviceInfo.billing?.renew?.current.period)}
+          <DataGridTextCell>
+            {translateRenewPeriod(serviceInfo.billing?.renew?.current.period)}
+          </DataGridTextCell>
           {serviceInfo.billing?.renew?.current.mode ===
             ServiceInfoRenewModeEnum.Manual && (
             <Tooltip>
