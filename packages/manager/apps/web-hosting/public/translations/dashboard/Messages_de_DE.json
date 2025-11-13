@@ -211,5 +211,8 @@
   "cdn_shared_modal_confirm_info": "Klicken Sie auf „Bestätigen“, um die Änderungen an Ihrer Konfiguration anzuwenden. Wenn Sie auf „Abbrechen“ klicken, gehen alle Ihre letzten Änderungen verloren.",
   "cdn_shared_modal_confirm_perf": "Leistungsoptionen",
   "cdn_shared_modal_confirm_cache": "Cache-Optionen",
-  "cdn_shared_modal_confirm_security": "Sicherheitsoptionen"
+  "cdn_shared_modal_confirm_security": "Sicherheitsoptionen",
+  "deploy_git": "GIT bereitstellen",
+  "deploy_git_description": "Sie sind dabei, den Inhalt Ihres Remote-Repositorys manuell auf Ihrem Hosting bereitzustellen oder zu aktualisieren.",
+  "deploy_git_overwrite_local_changes": "Im Falle eines Änderungs-Konflikts die Remote-Änderungen in Ihr lokales Repository erzwingen."
 }
