@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.35.0...@ovh-ux/manager-pm@0.36.0) (2025-11-13)
+
+
+### Features
+
+* **web-ongoing-operations:** pnpm migration ([06a047e](https://github.com/ovh/manager/commit/06a047e72705f825e17d7acec8150cd43e688b1f)), closes [#DCE-73](https://github.com/ovh/manager/issues/DCE-73)
+
+
+
+
+
 # [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.34.0...@ovh-ux/manager-pm@0.35.0) (2025-11-13)
 
 
