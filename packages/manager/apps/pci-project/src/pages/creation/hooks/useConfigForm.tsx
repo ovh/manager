@@ -25,25 +25,32 @@ export const useConfigForm = (
     isHdsChecked: false,
   });
 
-  const { data: projectItem, isLoading: isLoadingProject } = useGetProjectItem(
+  /**
+   * Get existing project item
+   * when cartId exist on the url
+   */
+  const { data: existingProjectItem } = useGetProjectItem(cartId);
+
+  /**
+   * Get existing project description
+   * when the cartId exists on the url or when the project item exists
+   */
+  const { data: cartConfigurationDescription } = useGetCartConfiguration(
+    'description',
     cartId,
+    existingProjectItem?.itemId,
   );
 
-  const {
-    data: cartConfiguration,
-    isLoading: isLoadingCartConfig,
-  } = useGetCartConfiguration('description', cartId, projectItem?.itemId);
-
-  const { data: hdsItem, isLoading: isLoadingHds } = useIsHdsChecked(cartId);
+  const { data: hdsItem } = useIsHdsChecked(cartId);
 
   useEffect(() => {
-    if (cartConfiguration) {
+    if (cartConfigurationDescription) {
       setForm((prev) => ({
         ...prev,
-        description: cartConfiguration.value || '',
+        description: cartConfigurationDescription.value || '',
       }));
     }
-  }, [cartConfiguration, setForm]);
+  }, [cartConfigurationDescription, setForm]);
 
   useEffect(() => {
     if (hdsItem) {
@@ -68,6 +75,7 @@ export const useConfigForm = (
     form,
     setForm,
     isConfigFormValid,
-    isLoading: isLoadingProject || isLoadingCartConfig || isLoadingHds,
+    existingProjectItem,
+    cartConfigurationDescription,
   };
 };
