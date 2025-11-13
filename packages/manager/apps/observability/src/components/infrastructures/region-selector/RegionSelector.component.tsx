@@ -1,15 +1,26 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsSpinner, OdsTab, OdsTabs, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  FormField,
+  FormFieldHelper,
+  SPINNER_SIZE,
+  Spinner,
+  Tab,
+  TabList,
+  Tabs,
+  TabsValueChangeEvent,
+} from '@ovhcloud/ods-react';
+
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { RadioCard } from '@/components/form/radio-card/RadioCard.component';
 import { RegionBadgeType } from '@/components/infrastructures/region-badge-type/RegionBadgeType.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useInfrastructures } from '@/data/hooks/infrastructures/useInfrastructures.hook';
+import { GroupedInfrastructures } from '@/types/infrastructures.type';
 import { TenantFormData } from '@/types/tenants.type';
 import { toParenthesesLabel } from '@/utils/form.utils';
 import { ALL_ZONE } from '@/utils/infrastructures.constants';
@@ -22,7 +33,6 @@ export default function RegionSelector() {
     formState: { errors },
   } = useFormContext<TenantFormData>();
   const { selectedService } = useObservabilityServiceContext();
-  const [activeZone, setActiveZone] = useState<string>(ALL_ZONE);
 
   const { data: infrastructures, isLoading } = useInfrastructures({
     resourceName: selectedService?.id || '',
@@ -38,54 +48,58 @@ export default function RegionSelector() {
     return getZones(groupedInfrastructures);
   }, [groupedInfrastructures]);
 
+  const [selectedZone, setSelectedZone] = useState<keyof GroupedInfrastructures>(ALL_ZONE);
+
   if (isLoading) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
+    return <Spinner size={SPINNER_SIZE.sm} />;
   }
 
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('infrastructure.region.title')}</OdsText>
-      <OdsFormField className="block my-4">
+      <Text preset={TEXT_PRESET.heading4}>{t('infrastructure.region.title')}</Text>
+      <FormField className="block my-4">
         <Controller
           name="infrastructureId"
           control={control}
           render={({ field }) => (
             <>
-              <OdsTabs
-                onOdsTabsSelected={(event) => {
-                  const selectedZone = (event.detail.target as HTMLElement).id;
-                  setActiveZone(selectedZone);
+              <Tabs
+                value={selectedZone}
+                onValueChange={(value: TabsValueChangeEvent) => {
+                  setSelectedZone(value?.value);
                 }}
               >
-                {zones.map((zone) => (
-                  <OdsTab key={zone} id={zone} isSelected={activeZone === zone}>
-                    {t(`infrastructure.region.${zone}`)}
-                  </OdsTab>
-                ))}
-              </OdsTabs>
+                <TabList>
+                  {zones.map((zone) => (
+                    <Tab key={zone} value={zone}>
+                      {t(`infrastructure.region.${zone}`)}
+                    </Tab>
+                  ))}
+                </TabList>
+              </Tabs>
               <div className="space-y-4 mt-4">
-                {groupedInfrastructures[activeZone]?.map(({ id, locationDetails }) => (
+                {groupedInfrastructures[selectedZone]?.map((infrastructure) => (
                   <RadioCard
-                    id={id}
+                    id={infrastructure.id}
                     onChange={(event) => field.onChange(event.target.value)}
                     selected={field.value}
-                    key={id}
+                    key={infrastructure.id}
                     name="infrastructureId"
-                    title={locationDetails.location}
-                    subTitle={toParenthesesLabel(locationDetails.name)}
-                    badges={<RegionBadgeType type={locationDetails.type} />}
+                    title={infrastructure.locationDetails.location}
+                    subTitle={toParenthesesLabel(infrastructure.locationDetails.name)}
+                    badges={<RegionBadgeType type={infrastructure.locationDetails.type} />}
                   />
                 ))}
               </div>
               {errors?.infrastructureId && (
-                <OdsText preset={ODS_TEXT_PRESET.caption}>
-                  {errors?.infrastructureId?.message}
-                </OdsText>
+                <FormFieldHelper>
+                  <Text preset={TEXT_PRESET.caption}>{errors.infrastructureId.message}</Text>
+                </FormFieldHelper>
               )}
             </>
           )}
         />
-      </OdsFormField>
+      </FormField>
     </>
   );
 }
