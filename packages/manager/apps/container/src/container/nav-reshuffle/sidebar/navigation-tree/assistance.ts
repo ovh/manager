@@ -5,32 +5,6 @@ export const assistanceTree: Node = {
   translation: 'sidebar_assistance_title',
   children: [
     {
-      id: 'help',
-      translation: 'sidebar_assistance_help_center',
-      url: 'help',
-      hasService: false,
-      isExternal: true,
-    },
-    {
-      id: 'tickets',
-      translation: 'sidebar_assistance_tickets',
-      isExternal: true,
-      url: 'support',
-      hasService: false,
-      region: ['EU', 'CA'],
-    },
-    {
-      id: 'tickets',
-      translation: 'sidebar_assistance_tickets',
-      isExternal: false,
-      routing: {
-        application: 'dedicated',
-        hash: '#/ticket',
-      },
-      hasService: false,
-      region: ['US'],
-    },
-    {
       id: 'roadmap_changelog',
       translation: 'sidebar_roadmap_changelog',
       routing: {
@@ -39,33 +13,11 @@ export const assistanceTree: Node = {
       },
     },
     {
-      id: 'marketplace',
-      translation: 'sidebar_marketplace',
-      url: 'marketplace',
-      hasService: false,
-      isExternal: true,
-      region: ['EU'],
-    },
-    {
       id: 'assistance_status',
       translation: 'sidebar_assistance_status',
       url: 'status',
       hasService: false,
       isExternal: true,
-    },
-    {
-      id: 'createTicket',
-      translation: 'sidebar_create_ticket',
-      url: 'createTicket',
-      hasService: false,
-      isExternal: true,
-      region: ['EU', 'CA'],
-    },
-    {
-      id: 'livechat',
-      features: ['livechat'],
-      translation: 'sidebar_assistance_live_chat',
-      hasService: false,
     },
     {
       id: 'carbon_calculator',

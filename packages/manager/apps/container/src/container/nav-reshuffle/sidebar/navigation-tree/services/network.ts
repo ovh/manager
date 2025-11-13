@@ -1,4 +1,3 @@
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/network.png';
 import { Node } from '../node';
 
@@ -8,7 +7,7 @@ const networkUniverse: Node = {
   translation: 'sidebar_network',
   shortTranslation: 'sidebar_network_short',
   illustration,
-  svgIcon: OvhProductName.NETWORKV2,
+  svgIcon: 'network',
   features: [
     'vrack:bare-metal-cloud',
     'ip',

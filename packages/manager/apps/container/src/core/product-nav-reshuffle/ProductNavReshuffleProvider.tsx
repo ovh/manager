@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context/useApplicationContext';
 import ProductNavReshuffleContext, {
   ProductNavReshuffleContextType,
@@ -8,6 +9,11 @@ import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
 import useOnboarding, { ONBOARDING_OPENED_STATE_ENUM } from '../onboarding';
 import rootTree from '@/container/nav-reshuffle/sidebar/navigation-tree/root';
+import {
+  initTree,
+  findNodeById,
+  initFeatureNames,
+} from '@/container/nav-reshuffle/sidebar/utils';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -28,6 +34,27 @@ export const ProductNavReshuffleProvider = ({
   );
   const skipToTheMainContentSlot = useRef(null);
   const [popoverPosition, setPopoverPosition] = useState<number>(0);
+  const environment = shell.getPlugin('environment');
+
+  /** Initialize navigation tree */
+  useEffect(() => {
+    const initializeNavigationTree = async () => {
+      if (currentNavigationNode) return;
+      const features = initFeatureNames(navigationTree);
+
+      const results = await fetchFeatureAvailabilityData(features);
+
+      const region = environment.getEnvironment().getRegion();
+      const [tree] = initTree([navigationTree], results, region);
+
+      const mxPlanNode = findNodeById(tree, 'mxplan');
+      if (mxPlanNode && region === 'CA') {
+        mxPlanNode.routing.hash = '#/email_mxplan';
+      }
+      setNavigationTree(tree);
+    };
+    initializeNavigationTree();
+  }, []);
 
   const onboarding = useOnboarding();
 

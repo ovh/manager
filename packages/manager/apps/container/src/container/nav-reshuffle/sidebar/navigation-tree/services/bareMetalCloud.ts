@@ -1,4 +1,3 @@
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
 import { Node } from '../node';
 
@@ -8,7 +7,7 @@ const baremetalUniverse: Node = {
   translation: 'sidebar_bare_metal_cloud',
   shortTranslation: 'sidebar_bare_metal_cloud_short',
   illustration,
-  svgIcon: OvhProductName.SERVERV2,
+  svgIcon: 'server',
   features: ['bare-metal-cloud'],
   routing: {
     application: 'dedicated',
