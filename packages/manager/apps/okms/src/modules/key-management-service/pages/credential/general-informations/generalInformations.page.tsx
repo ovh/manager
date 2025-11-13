@@ -56,7 +56,11 @@ const CredentialGeneralInformations = () => {
       id: 'name',
       label: t('key_management_service_credential_dashboard_name'),
       value: (
-        <OdsText preset={ODS_TEXT_PRESET.span}>
+        <OdsText
+          preset={ODS_TEXT_PRESET.span}
+          // Temporary fix: wrap text without whitespace
+          style={{ 'overflow-wrap': 'anywhere' }}
+        >
           {credential.name || credential.id}
         </OdsText>
       ),
@@ -70,7 +74,11 @@ const CredentialGeneralInformations = () => {
       id: 'description',
       label: t('key_management_service_credential_dashboard_description'),
       value: (
-        <OdsText preset={ODS_TEXT_PRESET.span}>
+        <OdsText
+          preset={ODS_TEXT_PRESET.span}
+          // Temporary fix: wrap text without whitespace
+          style={{ 'overflow-wrap': 'anywhere' }}
+        >
           {credential.description || ''}
         </OdsText>
       ),
