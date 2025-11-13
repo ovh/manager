@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { useGetIpdetails } from '@/data/hooks/ip';
+import { useGetIpdetails, useMoveIpTasks } from '@/data/hooks/ip';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { getLinkByServiceName } from '@/utils';
 
@@ -22,6 +22,10 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
   const [serviceUrl, setServiceUrl] = useState<string>();
 
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { hasOnGoingMoveIpTask, isTasksLoading } = useMoveIpTasks({
+    ip,
+    enabled: ipDetails?.routedTo?.serviceName !== undefined,
+  });
 
   useEffect(() => {
     getLinkByServiceName({
@@ -31,9 +35,10 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
   }, [ipDetails]);
 
   return (
-    <SkeletonCell isLoading={isLoading}>
-      {!ipDetails?.routedTo?.serviceName && <>-</>}
-      {ipDetails?.routedTo?.serviceName && (
+    <SkeletonCell
+      isLoading={isLoading || isTasksLoading || hasOnGoingMoveIpTask}
+    >
+      {ipDetails?.routedTo?.serviceName ? (
         <>
           {serviceUrl ? (
             <OdsLink
@@ -45,6 +50,8 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
             ipDetails.routedTo.serviceName
           )}
         </>
+      ) : (
+        <>-</>
       )}
     </SkeletonCell>
   );
