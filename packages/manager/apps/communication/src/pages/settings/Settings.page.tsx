@@ -15,6 +15,7 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useAuthorization } from '@/hooks';
 import { NotificationRouting } from '@/data/types/routing.type';
 import { useAccountUrn } from '@/data';
@@ -27,22 +28,46 @@ import RoutingStatusChip from '@/components/routing/routingStatus/RoutingStatus.
 import { urls } from '@/routes/routes.constant';
 import { useUpdateRoutingStatus } from '@/data/hooks/useNotificationRouting/useNotificationRouting';
 import RoutingError from '@/components/routing/routingError/RoutingError.component';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
   const { t } = useTranslation(['settings', NAMESPACES.ACTIONS, 'common']);
   const navigate = useNavigate();
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { data: accountUrn } = useAccountUrn();
+  const { trackClick, trackErrorBanner, trackInfoBanner } = useTracking();
+
+  const trackDatagridActionClick = (actions: string[]) =>
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions,
+      subApp: TrackingSubApps.Settings,
+    });
 
   const { mutate: updateRoutingStatus } = useUpdateRoutingStatus({
     routingId: routing.id,
-    onSuccess: () => {
+    onSuccess: (r) => {
       clearNotifications();
       addSuccess(t('edit_routing_success_message'));
+      trackInfoBanner({
+        pageName: `${r.active ? 'activate' : 'deactivate'}_rule_success_${t(
+          'edit_routing_success_message',
+        )}`,
+        subApp: TrackingSubApps.Settings,
+      });
     },
     onError: () => {
       clearNotifications();
       addError(t('edit_routing_error_message'));
+      trackErrorBanner({
+        pageName: `${routing.active ? 'activate' : 'deactivate'}_rule_error_${t(
+          'edit_routing_error_message',
+        )}`,
+        subApp: TrackingSubApps.Settings,
+      });
     },
   });
 
@@ -59,21 +84,30 @@ function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
         displayActionMenuItem(routing, NotificationRoutingActions.DISABLE) && {
           id: 2,
           label: t('table_action_deactivate'),
-          onClick: () => updateRoutingStatus(false),
+          onClick: () => {
+            trackDatagridActionClick(['deactivate_rule']);
+            updateRoutingStatus(false);
+          },
           iamActions: ['account:apiovh:notification/routing/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(routing, NotificationRoutingActions.EDIT) && {
           id: 3,
           label: t('modify', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => navigate(urls.routing.editTo(routing.id)),
+          onClick: () => {
+            trackDatagridActionClick(['modify_rule']);
+            navigate(urls.routing.editTo(routing.id));
+          },
           iamActions: ['account:apiovh:notification/routing/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(routing, NotificationRoutingActions.DELETE) && {
           id: 4,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => navigate(urls.routing.deleteTo(routing.id)),
+          onClick: () => {
+            trackDatagridActionClick(['delete_rule']);
+            navigate(urls.routing.deleteTo(routing.id));
+          },
           iamActions: ['account:apiovh:notification/routing/delete'],
           urn: accountUrn,
         },
@@ -100,6 +134,7 @@ function SettingsPage() {
   ]);
 
   const navigate = useNavigate();
+  const { trackClick } = useTracking();
 
   const columns: DatagridColumn<NotificationRouting>[] = useMemo(
     () => [
@@ -194,7 +229,16 @@ function SettingsPage() {
             label={t('add_routing_button')}
             aria-label={t('add_routing_button')}
             size="sm"
-            onClick={() => navigate(urls.routing.create)}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['create_rule'],
+                subApp: TrackingSubApps.Settings,
+              });
+              navigate(urls.routing.create);
+            }}
           />
         }
         totalItems={flattenData?.length || 0}

@@ -128,8 +128,8 @@ export default (
         Component={RoutingListingPage}
         handle={{
           tracking: {
-            pageName: 'preference-center',
-            pageType: PageType.dashboard,
+            pageName: 'rules-parameter',
+            pageType: PageType.listing,
             subApp: TrackingSubApps.Settings,
           },
         }}
@@ -139,8 +139,9 @@ export default (
           Component={DeleteRoutingPage}
           handle={{
             tracking: {
-              pageName: 'preference-center::delete',
+              pageName: 'delete_rule',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Settings,
             },
           }}
         />
@@ -150,8 +151,8 @@ export default (
         Component={CreateRoutingPage}
         handle={{
           tracking: {
-            pageName: 'preference-center::create',
-            pageType: PageType.popup,
+            pageName: 'create_rule',
+            pageType: PageType.funnel,
             subApp: TrackingSubApps.Settings,
           },
         }}
@@ -161,7 +162,7 @@ export default (
         Component={EditRoutingPage}
         handle={{
           tracking: {
-            pageName: 'preference-center::edit',
+            pageName: 'modify_rule',
             pageType: PageType.popup,
             subApp: TrackingSubApps.Settings,
           },

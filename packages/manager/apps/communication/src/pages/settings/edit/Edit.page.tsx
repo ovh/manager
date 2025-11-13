@@ -9,23 +9,36 @@ import {
   RedirectionGuard,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { useNotificationRouting } from '@/data';
 import RuleForm from '@/components/routing/ruleForm/RuleForm.component';
 import { useUpdateRouting } from '@/data/hooks/useNotificationRouting/useNotificationRouting';
 import { CreateRouting } from '@/data/types/routing.type';
 import { useAuthorization } from '@/hooks';
+import useTracking from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 export default function EditSettingsPage() {
   const formRef = useRef<{ submit: () => void }>(null);
   const { t } = useTranslation(['settings', NAMESPACES.ACTIONS, 'common']);
   const { routingId } = useParams();
+  const { trackClick, trackErrorBanner, trackInfoBanner } = useTracking();
   const navigate = useNavigate();
   const { addSuccess, clearNotifications, addError } = useNotifications();
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/routing/get',
     'account:apiovh:notification/routing/edit',
   ]);
+
+  const trackButtonClick = (actions: string[]) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions,
+      subApp: TrackingSubApps.Settings,
+    });
 
   const { data: routing, isLoading: isLoadingRouting } = useNotificationRouting(
     {
@@ -41,11 +54,19 @@ export default function EditSettingsPage() {
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('edit_routing_success_message'));
+      trackInfoBanner({
+        pageName: `modify_rule_success_${t('edit_routing_success_message')}`,
+        subApp: TrackingSubApps.Settings,
+      });
       navigate(urls.routing.listing);
     },
     onError: () => {
       clearNotifications();
       addError(t('edit_routing_error_message'));
+      trackErrorBanner({
+        pageName: `modify_rule_error_${t('edit_routing_error_message')}`,
+        subApp: TrackingSubApps.Settings,
+      });
     },
   });
 
@@ -82,13 +103,19 @@ export default function EditSettingsPage() {
             variant={ODS_BUTTON_VARIANT.outline}
             label={t('cancel', { ns: NAMESPACES.ACTIONS })}
             size="sm"
-            onClick={() => navigate(urls.routing.listing)}
+            onClick={() => {
+              trackButtonClick(['modify_rule', 'cancel']);
+              navigate(urls.routing.listing);
+            }}
           />
           <OdsButton
             variant={ODS_BUTTON_VARIANT.default}
             label={t('save', { ns: NAMESPACES.ACTIONS })}
             size="sm"
-            onClick={() => formRef.current?.submit()}
+            onClick={() => {
+              trackButtonClick(['modify_rule', 'confirm']);
+              formRef.current?.submit();
+            }}
             isLoading={isUpdatePending}
           />
         </div>
