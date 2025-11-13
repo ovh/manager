@@ -21,6 +21,7 @@ import {
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
+import { SecretManagerGuidesButton } from '@secret-manager/components/secret-manager-guides/SecretManagerGuideButton';
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 import { OkmsDomainDashboardTiles } from '@/common/components/okms-dashboard/OkmsDomainDashboardTiles.component';
 import { OkmsDashboardOutletContext } from './OkmsDashboard.type';
@@ -62,6 +63,7 @@ export default function OkmsDashboardPage() {
       header={{
         title: t('okms_dashboard_title'),
         changelogButton: <SecretManagerChangelogButton />,
+        headerButton: <SecretManagerGuidesButton />,
       }}
       backLinkLabel={t('back_to_secret_list')}
       onClickReturn={() => navigate('..')}
