@@ -211,5 +211,8 @@
   "cdn_shared_modal_confirm_info": "Clicca su « Convalida » per applicare le modifiche apportate alla tua configurazione. Cliccando su « Annulla », tutte le tue ultime modifiche andranno perse.",
   "cdn_shared_modal_confirm_perf": "Opzioni di prestazioni",
   "cdn_shared_modal_confirm_cache": "Opzioni di cache",
-  "cdn_shared_modal_confirm_security": "Opzioni di sicurezza"
+  "cdn_shared_modal_confirm_security": "Opzioni di sicurezza",
+  "deploy_git": "Distribuire GIT",
+  "deploy_git_description": "Stai per distribuire o aggiornare manualmente il contenuto del tuo repository remoto sul tuo hosting.",
+  "deploy_git_overwrite_local_changes": "In caso di conflitto di modifica, forzare le modifiche remote sul tuo repository locale."
 }
