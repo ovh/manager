@@ -47,7 +47,7 @@ const QuotaOvhLink = ({
 }) => (
   <OvhLink
     application="public-cloud"
-    path={`#/pci/projects/${projectId}/quotas`}
+    path={`#/pci/projects/${projectId}/quota`}
     target="_blank"
     rel="noopener noreferrer"
   >
