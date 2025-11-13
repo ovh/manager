@@ -7,7 +7,6 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { ListingContextProvider } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 import { IpAttachedService, IpAttachedServiceProps } from './IpAttachedService';
 import { getLinkByHref } from '@/test-utils';
@@ -18,8 +17,13 @@ const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
 );
 
+const useMoveIpTasksMocks = vi.hoisted(() =>
+  vi.fn(() => ({ hasOnGoingMoveIpTask: false, isTasksLoading: false })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
+  useMoveIpTasks: useMoveIpTasksMocks,
 }));
 
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
