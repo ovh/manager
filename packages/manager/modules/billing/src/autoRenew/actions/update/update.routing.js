@@ -14,22 +14,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     layout: 'modal',
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('accountMigrationService')
-        .then((accountMigrationService) =>
-          accountMigrationService.getMigrationDates(),
-        )
-        .then((migrationDates) => {
-          if (migrationDates) {
-            return moment().isBefore(moment(migrationDates.START, 'MM/DD/YYYY'))
-              ? null
-              : 'billing.autorenew.services.configure-renew-impossible';
-          }
-          return null;
-        })
-        .catch(() => null),
     resolve: {
       addPaymentMean: /* @ngInject */ ($state) => () =>
         $state.go('billing.payment.method.add'),
