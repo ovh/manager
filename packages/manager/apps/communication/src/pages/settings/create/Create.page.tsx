@@ -13,20 +13,34 @@ import {
   RedirectionGuard,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import RuleForm from '@/components/routing/ruleForm/RuleForm.component';
 import { urls } from '@/routes/routes.constant';
 import { useCreateRouting } from '@/data/hooks/useNotificationRouting/useNotificationRouting';
 import { CreateRouting } from '@/data/types/routing.type';
 import { useAuthorization } from '@/hooks';
+import useTracking from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 export default function CreateSettingsPage() {
   const formRef = useRef<{ submit: () => void }>(null);
   const { t } = useTranslation(['settings', NAMESPACES.ACTIONS, 'common']);
   const navigate = useNavigate();
+  const { trackClick, trackErrorBanner, trackInfoBanner } = useTracking();
   const { addSuccess, clearNotifications, addError } = useNotifications();
   const { isAuthorized, isLoading } = useAuthorization([
     'account:apiovh:notification/routing/create',
   ]);
+
+  const trackButtonClick = (actions: string[]) =>
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions,
+      subApp: TrackingSubApps.Settings,
+    });
+
   const {
     mutate: createRouting,
     isPending: isCreatePending,
@@ -34,11 +48,19 @@ export default function CreateSettingsPage() {
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('add_routing_success_message'));
+      trackInfoBanner({
+        pageName: `create_rule_success_${t('add_routing_success_message')}`,
+        subApp: TrackingSubApps.Settings,
+      });
       navigate(urls.routing.listing);
     },
     onError: () => {
       clearNotifications();
       addError(t('add_routing_error_message'));
+      trackErrorBanner({
+        pageName: `create_rule_error_${t('add_routing_error_message')}`,
+        subApp: TrackingSubApps.Settings,
+      });
     },
   });
 
@@ -55,7 +77,18 @@ export default function CreateSettingsPage() {
     >
       <div className="flex flex-col gap-6 max-w-4xl">
         <div className="flex flex-row justify-start gap-5">
-          <Link to={urls.routing.listing}>
+          <Link
+            to={urls.routing.listing}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.link,
+                actionType: 'navigation',
+                actions: ['go-back-listing-rules-parameter'],
+                subApp: TrackingSubApps.Settings,
+              });
+            }}
+          >
             <OdsButton
               variant="ghost"
               icon="arrow-left"
@@ -77,13 +110,19 @@ export default function CreateSettingsPage() {
             variant={ODS_BUTTON_VARIANT.outline}
             label={t('cancel', { ns: NAMESPACES.ACTIONS })}
             size="sm"
-            onClick={() => navigate(urls.routing.listing)}
+            onClick={() => {
+              trackButtonClick(['create-rule', 'cancel']);
+              navigate(urls.routing.listing);
+            }}
           />
           <OdsButton
             variant={ODS_BUTTON_VARIANT.default}
             label={t('create', { ns: NAMESPACES.ACTIONS })}
             size="sm"
-            onClick={() => formRef.current?.submit()}
+            onClick={() => {
+              trackButtonClick(['create-rule', 'confirm']);
+              formRef.current?.submit();
+            }}
             isLoading={isCreatePending}
           />
         </div>
