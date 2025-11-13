@@ -1,10 +1,10 @@
+import React from 'react';
+
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { InformationFormProps } from '@/components/form/information-form/InformationForm.props';
 import { TextField } from '@/components/form/text-field/TextField.component';
@@ -24,7 +24,7 @@ export const InformationForm = ({
 
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{title}</OdsText>
+      <Text preset={TEXT_PRESET.heading4}>{title}</Text>
       <div className="space-y-4 mt-6">
         <Controller
           name="title"

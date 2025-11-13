@@ -1,0 +1,7 @@
+/* Override TabsComponent content area styles */
+.region-selector-tabs > div > div.bg-\[--ods-color-primary-050\]:last-child,
+.region-selector-tabs > div > div:last-child {
+  background-color: var(--ods-color-primary-000);
+  border: none;
+}
+
