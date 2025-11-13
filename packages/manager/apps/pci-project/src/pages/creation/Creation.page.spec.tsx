@@ -57,6 +57,7 @@ const mockUseGetCart = vi.fn();
 const mockuseGetProjectItem = vi.fn();
 const mockUseOrderProjectItem = vi.fn();
 const mockUseAttachConfigurationToCartItem = vi.fn();
+const mockUseDeleteConfigurationItemFromCart = vi.fn();
 
 vi.mock('@/data/hooks/useCart', () => ({
   useCreateAndAssignCart: () => mockUseCreateAndAssignCart(),
@@ -65,6 +66,8 @@ vi.mock('@/data/hooks/useCart', () => ({
   useOrderProjectItem: () => mockUseOrderProjectItem(),
   useAttachConfigurationToCartItem: () =>
     mockUseAttachConfigurationToCartItem(),
+  useDeleteConfigurationItemFromCart: () =>
+    mockUseDeleteConfigurationItemFromCart(),
 }));
 
 // Mock useConfigForm hook
@@ -238,7 +241,8 @@ describe('Creation Page', () => {
       form: {},
       setForm: vi.fn(),
       isConfigFormValid: vi.fn(() => true),
-      isLoading: false,
+      existingProjectItem: undefined,
+      cartConfigurationDescription: undefined,
     });
 
     mockUseStepper.mockReturnValue({
@@ -276,6 +280,12 @@ describe('Creation Page', () => {
     });
 
     mockUseAttachConfigurationToCartItem.mockReturnValue({
+      mutate: vi.fn(),
+      isLoading: false,
+      error: null,
+    });
+
+    mockUseDeleteConfigurationItemFromCart.mockReturnValue({
       mutate: vi.fn(),
       isLoading: false,
       error: null,
