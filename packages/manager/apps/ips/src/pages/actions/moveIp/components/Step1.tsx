@@ -1,5 +1,5 @@
 import React from 'react';
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsCombobox,
@@ -7,7 +7,6 @@ import {
   OdsComboboxItem,
   OdsInput,
   OdsText,
-  OdsMessage,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -15,6 +14,8 @@ import { TRANSLATION_NAMESPACES } from '@/utils';
 import { ipParkingOptionValue } from '@/types';
 import { MoveIpAvailableDestinationsResponse } from '@/data/api';
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
+import { useGetProductServices } from '@/data/hooks';
+import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 
 type Step1Props = {
   ip: string;
@@ -38,6 +39,9 @@ export default function Step1({
   setNextHop,
 }: Step1Props) {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.moveIp);
+  const { serviceList: productList } = useGetProductServices(
+    Object.values(PRODUCT_PATHS_AND_CATEGORIES),
+  );
 
   return (
     <div className="flex flex-col">
@@ -87,6 +91,10 @@ export default function Step1({
                   <ComboboxServiceItem
                     key={`${key}-${index}-${service}`}
                     name={service}
+                    displayName={
+                      productList?.find((s) => s.serviceName === service)
+                        ?.displayName
+                    }
                     isDisabled={service === currentService}
                   />
                 ))}
@@ -105,29 +113,29 @@ export default function Step1({
         </OdsCombobox>
       </OdsFormField>
 
-      {nextHopList.length > 0 && (
-        <OdsFormField className="w-full mt-7">
-          <label htmlFor="next-hop" slot="label">
-            {t('step1NextHopLabel')}
-          </label>
-          <OdsCombobox
-            id="next-hop"
-            name="next-hop"
-            className="w-full"
-            onOdsChange={(event) => setNextHop(event.detail.value as string)}
-            isClearable
-            allowNewElement={false}
-            placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
-            value={nextHop}
-          >
-            {nextHopList.map((hop) => (
-              <OdsComboboxItem key={hop} value={hop}>
-                {hop}
-              </OdsComboboxItem>
-            ))}
-          </OdsCombobox>
-        </OdsFormField>
-      )}
+      <OdsFormField
+        className={`w-full mt-7 ${nextHopList.length === 0 ? 'hidden' : ''}`}
+      >
+        <label htmlFor="next-hop" slot="label">
+          {t('step1NextHopLabel')}
+        </label>
+        <OdsCombobox
+          id="next-hop"
+          name="next-hop"
+          className="w-full"
+          onOdsChange={(event) => setNextHop(event.detail.value as string)}
+          isClearable
+          allowNewElement={false}
+          placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
+          value={nextHop}
+        >
+          {nextHopList.map((hop) => (
+            <OdsComboboxItem key={hop} value={hop}>
+              {hop}
+            </OdsComboboxItem>
+          ))}
+        </OdsCombobox>
+      </OdsFormField>
     </div>
   );
 }
