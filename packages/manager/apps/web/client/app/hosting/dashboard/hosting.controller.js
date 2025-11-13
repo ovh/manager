@@ -131,7 +131,6 @@ export default class {
     this.HostingCdnOrderService = HostingCdnOrderService;
     this.indyLink = indyLink;
     this.moduleLink = moduleLink;
-    this.multisiteLink = multisiteLink;
     this.pendingTasks = pendingTasks;
     this.PrivateDatabase = PrivateDatabase;
     this.privateDatabasesDetachable = privateDatabasesDetachable;
@@ -155,6 +154,11 @@ export default class {
     this.localSEOLink = coreURLBuilder.buildURL(
       'web-hosting',
       '#/:serviceName/localSeo',
+      { serviceName },
+    );
+    this.multisiteLink = coreURLBuilder.buildURL(
+      'web-hosting',
+      '#/:serviceName/multisite',
       { serviceName },
     );
   }
