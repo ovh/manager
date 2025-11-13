@@ -210,5 +210,8 @@
   "cdn_shared_modal_confirm_info": "Cliquez sur « Valider » pour appliquer les changements effectués sur votre configuration. En cliquant sur « Annuler », toutes vos dernières modifications seront perdues.",
   "cdn_shared_modal_confirm_perf": "Options de perf",
   "cdn_shared_modal_confirm_cache": "Options de cache",
-  "cdn_shared_modal_confirm_security": "Options de securité"
+  "cdn_shared_modal_confirm_security": "Options de securité",
+  "deploy_git": "Déployer GIT",
+  "deploy_git_description": "Vous êtes sur le point de déployer ou mettre à jour manuellement le contenu de votre dépôt distant sur votre hébergement.",
+  "deploy_git_overwrite_local_changes": "En cas de conflit de modification, forcer les modifications distantes sur votre dépôt local."
 }
