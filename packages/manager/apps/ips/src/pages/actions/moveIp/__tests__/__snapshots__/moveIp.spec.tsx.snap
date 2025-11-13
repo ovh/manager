@@ -22,3 +22,28 @@ exports[`Move IP modal > lets you go to step 2 if you fill correctly destination
   </span>
 </ods-text>
 `;
+
+exports[`Move IP modal > lets you go to step 2 if you fill correctly destination service and next hop 2`] = `
+<ods-text
+  class="block mb-4 text-center flex-1 ods-text"
+  preset="paragraph"
+>
+  <span
+    class="text-sm"
+  >
+    Voulez vous vraiment déplacer l'IP 
+    <b>
+      239.99.244.14/32
+    </b>
+     vers 
+    <b>
+      01234506
+    </b>
+     sur 
+    <b>
+      111.22.333.444
+    </b>
+     ?
+  </span>
+</ods-text>
+`;
