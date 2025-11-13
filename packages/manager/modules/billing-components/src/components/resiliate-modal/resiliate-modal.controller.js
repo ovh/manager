@@ -1,3 +1,5 @@
+import { SERVICE_TYPE } from '../utils/constants';
+
 export default class ResiliateModalController {
   /* @ngInject */
   constructor(
@@ -14,6 +16,7 @@ export default class ResiliateModalController {
     this.RESILIATION_CAPACITIES = RESILIATION_CAPACITIES;
     this.RESILIATION_DEFAULT_CAPABILITY = RESILIATION_DEFAULT_CAPABILITY;
     this.coreConfig = coreConfig;
+    this.SERVICE_TYPE = SERVICE_TYPE;
   }
 
   $onInit() {
