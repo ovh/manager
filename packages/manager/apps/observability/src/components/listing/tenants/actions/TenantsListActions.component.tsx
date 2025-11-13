@@ -1,16 +1,18 @@
+import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_POPOVER_POSITION,
-} from '@ovhcloud/ods-components';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import {
+  ActionMenu,
+  ActionMenuItemProps,
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  ICON_NAME,
+  POPOVER_POSITION,
+} from '@ovh-ux/muk';
 
 import { getDeleteTenantUrl } from '@/routes/Routes.utils';
 
@@ -20,7 +22,8 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
   const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
-  const items: ActionMenuItem[] = [
+  // TODO: add urn resource for IAM actions
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('tenants:listing.details_action'),
@@ -47,7 +50,7 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
     {
       id: 6,
       label: t(`${NAMESPACES.ACTIONS}:delete`),
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
       onClick: () => {
         navigate(getDeleteTenantUrl(tenantId));
       },
@@ -59,9 +62,9 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
       <ActionMenu
         items={items}
         isCompact
-        variant={ODS_BUTTON_VARIANT.ghost}
-        icon={ODS_ICON_NAME.ellipsisVertical}
-        popoverPosition={ODS_POPOVER_POSITION.bottomEnd}
+        variant={BUTTON_VARIANT.ghost}
+        icon={ICON_NAME.ellipsisVertical}
+        popoverPosition={POPOVER_POSITION.bottomEnd}
         id={`actions-${tenantId}`}
       />
     </div>
