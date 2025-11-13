@@ -1,0 +1,8 @@
+{
+  "addTagTitle": "Agregar una etiqueta",
+  "keyFieldLabel": "Clave",
+  "valueFieldLabel": "Valor",
+  "existingKeyError": "Esta clave ya existe",
+  "cancelButton": "Cancelar",
+  "confirmButton": "Añadir"
+}
