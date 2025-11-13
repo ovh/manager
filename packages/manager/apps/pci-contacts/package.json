@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-contacts-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "PCI Contacts react application",
   "repository": {
