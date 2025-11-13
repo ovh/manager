@@ -14,6 +14,7 @@ import {
   fetchDeploymentLogs,
   fetchHostingWebsiteIds,
   fetchWebsiteDeployments,
+  postWebsiteDeploy,
 } from '@/data/api/git';
 import { getWebHostingWebsiteV6 } from '@/data/api/webHosting';
 import { TAttachedDomain, TCreateAttachedDomain } from '@/data/types/product/domain';
@@ -60,6 +61,32 @@ export const useGetDeploymentLogs = (
     queryFn: () => fetchDeploymentLogs(serviceName, websiteId, deploymentId),
     enabled: Boolean(serviceName && websiteId !== undefined && deploymentId !== undefined),
   });
+
+export const usePostWebsiteDeploy = (
+  serviceName: string,
+  websiteId?: number,
+  {
+    onSuccess,
+    onError,
+  }: {
+    onSuccess?: () => void;
+    onError?: (err: Error) => void;
+  } = {},
+) => {
+  return useMutation<void, Error, { reset: boolean }>({
+    mutationFn: async ({ reset }) => {
+      if (!serviceName) {
+        throw new Error('serviceName is required to trigger a deployment');
+      }
+      if (websiteId === undefined) {
+        throw new Error('websiteId is required to trigger a deployment');
+      }
+      await postWebsiteDeploy(serviceName, websiteId, reset);
+    },
+    onSuccess,
+    onError,
+  });
+};
 
 export const useGetHostingServiceWebsite = (serviceName: string, path?: string) =>
   useQuery<string[]>({
