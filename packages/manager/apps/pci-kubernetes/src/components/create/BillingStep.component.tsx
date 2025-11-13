@@ -66,6 +66,13 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
   const savingsPlanUrl = `${projectURL}/savings-plan`;
   const showSavingPlan = useSavingsPlanAvailable();
 
+  const calculatePrice = (basePrice: number | null, zonesNumber?: number | null): number => {
+    const price = Number(basePrice);
+    return zonesNumber ? zonesNumber * price : price;
+  };
+  const computedPrice = calculatePrice(props.price, props.selectedAvailabilityZonesNumber);
+  const hourlyPrice = getFormattedHourlyCatalogPrice(computedPrice);
+  const monthlyPrice = getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(computedPrice));
   return (
     <>
       <div className="my-6">
@@ -149,7 +156,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
               <strong>
                 {t('flavor-billing:pci_project_flavors_billing_price_hourly_price_label')}
               </strong>
-              {` ${getFormattedHourlyCatalogPrice(Number(props.price))}`}
+              {hourlyPrice}
             </OsdsText>
             <OsdsText
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -157,7 +164,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
               color={ODS_THEME_COLOR_INTENT.text}
             >
               <strong>{t('node-pool:kube_common_node_pool_estimation_cost_tile')}:</strong>
-              {` ${getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(props.selectedAvailabilityZonesNumber ? props.selectedAvailabilityZonesNumber * Number(props.price) : Number(props.price)))}`}
+              {monthlyPrice}
             </OsdsText>
           </div>
         </OsdsTile>

@@ -53,7 +53,7 @@ const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
       };
     }
     return null;
-  }, [noNetwork, invalidGateway, t]);
+  }, [noNetwork, invalidGateway, t, privateNetworkURL, createPrivateGatewayURL]);
 
   if (!content) return null;
 
