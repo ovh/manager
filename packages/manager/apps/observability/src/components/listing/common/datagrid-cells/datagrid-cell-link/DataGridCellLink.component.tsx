@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Links } from '@ovh-ux/manager-react-components';
+import { Link } from '@ovh-ux/muk';
 
 import { DataGridCellLinkProps } from './DataGridCellLink.props';
 
@@ -8,12 +8,14 @@ export default function DatagridCellLink({ id, label, path }: DataGridCellLinkPr
   const navigate = useNavigate();
 
   return (
-    <Links
-      onClickReturn={() => {
+    <Link
+      onClick={() => {
         navigate(path);
       }}
-      label={label}
+      href="#"
       data-testid={`cell-link-${id}`}
-    />
+    >
+      {label}
+    </Link>
   );
 }

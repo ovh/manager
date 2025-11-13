@@ -1,5 +1,5 @@
 import { Infrastructure, Retention } from '@/types/infrastructures.type';
-import { TObservabilityResource } from '@/types/observability.type';
+import { TIdentifier, TObservabilityResource } from '@/types/observability.type';
 
 type TMetricLimits = {
   numberOfSeries: {
@@ -29,3 +29,13 @@ export type TenantFormData = {
   retentionId: string;
   maxSeries: number | null;
 };
+
+export type TenantListing = {
+  name: string;
+  endpoint: string | undefined;
+  infrastructure: Infrastructure | undefined;
+  retention: string | undefined;
+  numberOfSeries: number | undefined;
+  tags: string;
+  tagsArray: string[];
+} & TIdentifier;

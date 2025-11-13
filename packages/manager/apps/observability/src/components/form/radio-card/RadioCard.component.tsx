@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovh-ux/muk';
 
 import { RadioCardProps } from '@/components/form/radio-card/RadioCard.props';
 
@@ -15,7 +15,7 @@ export const RadioCard = ({
   selected,
   onChange,
 }: RadioCardProps) => {
-  const isChecked = selected === id;
+  const isChecked = Boolean(selected && selected === id);
 
   return (
     <label
@@ -48,14 +48,10 @@ export const RadioCard = ({
               disabled={isDisabled}
               className="m-0"
             />
-            <OdsText preset="heading-6">{title}</OdsText>
+            <Text preset="heading-6">{title}</Text>
+            {subTitle && <Text preset="span">{subTitle}</Text>}
             {badges && <span>{badges}</span>}
           </div>
-          {subTitle && (
-            <div>
-              <OdsText preset="span">{subTitle}</OdsText>
-            </div>
-          )}
         </div>
         {/* BODY */}
         {children}
