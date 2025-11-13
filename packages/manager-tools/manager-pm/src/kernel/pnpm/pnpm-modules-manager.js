@@ -55,7 +55,7 @@ export async function addModuleToPnpm(moduleRef, { isPrivate = false } = {}) {
     const success = await updateCatalogs({
       fromPath: yarnCatalogPath,
       toPath: pnpmCatalogPath,
-      appPath: relModulePath,
+      targetPath: relModulePath,
     });
 
     if (!success) return;
@@ -118,7 +118,7 @@ export async function removeModuleFromPnpm(moduleRef, { isPrivate = false } = {}
     const success = await updateCatalogs({
       fromPath: pnpmCatalogPath,
       toPath: yarnCatalogPath,
-      appPath: relModulePath,
+      targetPath: relModulePath,
     });
 
     if (!success) return;

@@ -47,7 +47,7 @@ export async function addApplicationToPnpm(appRef) {
     const success = await updateCatalogs({
       fromPath: yarnCatalogPath,
       toPath: pnpmCatalogPath,
-      appPath: relAppPath,
+      targetPath: relAppPath,
     });
 
     if (!success) return;
@@ -100,7 +100,7 @@ export async function removeApplicationFromPnpm(appRef) {
     const success = await updateCatalogs({
       fromPath: pnpmCatalogPath,
       toPath: yarnCatalogPath,
-      appPath: relAppPath,
+      targetPath: relAppPath,
     });
 
     if (!success) return;
