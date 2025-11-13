@@ -6,7 +6,7 @@ import { vi } from 'vitest';
 
 import { ConfirmationModal } from '@/components/listing/common/confirmation-modal/ConfirmationModal.component';
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   Modal: ({
     children,
     'data-testid': dataTestId,
