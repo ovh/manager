@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OnboardingLayout, RedirectionGuard } from '@ovh-ux/manager-react-components';
+import { OnboardingLayout, RedirectionGuard, Text } from '@ovh-ux/muk';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { urls } from '@/routes/Routes.constants';
@@ -28,9 +26,9 @@ const TenantsOnboarding: React.FC = () => {
       <OnboardingLayout
         title={LABELS.TENANT}
         description={
-          <OdsText preset="paragraph" className="text-center">
+          <Text preset="paragraph" className="text-center">
             {t('tenants:onboarding.description')}
-          </OdsText>
+          </Text>
         }
         img={ONBOARDING_IMG_SRC}
         orderIam={{
