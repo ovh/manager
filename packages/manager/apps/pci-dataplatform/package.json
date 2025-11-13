@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-dataplatform-app",
-  "version": "1.6.17",
+  "version": "1.6.18",
   "private": true,
   "description": "pci-dataplatform",
   "repository": {
