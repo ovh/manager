@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useSearchParams } from 'react-router-dom';
 import {
   useAttachConfigurationToCartItem,
   useDeleteConfigurationItemFromCart,
@@ -20,6 +21,8 @@ export function useVoucher({
   ) => void;
   initialVoucher?: string | null;
 }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [voucher, setVoucher] = useState('');
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -27,6 +30,13 @@ export function useVoucher({
     onSuccess: (data: CartConfiguration) => {
       setError(undefined);
       setVoucherConfiguration(data);
+      /**
+       * Add the voucher code to the search params
+       */
+      setSearchParams({
+        ...Object.fromEntries(searchParams.entries()),
+        voucher,
+      });
     },
   });
 
