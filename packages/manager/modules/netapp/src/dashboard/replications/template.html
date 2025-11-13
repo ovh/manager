@@ -1,0 +1,89 @@
+<section ng-if="$ctrl.hasReplications">
+    <h1
+        class="oui-header__title mb-3"
+        data-translate="netapp_replications_title"
+    ></h1>
+    <p data-translate="netapp_replications_information"></p>
+    <oui-datagrid data-rows="$ctrl.replications">
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_source_efs_id' | translate"
+            data-property="source"
+            data-prevent-customization
+        >
+            <p
+                ng-if="$row.source.serviceID !== $row.description"
+                data-ng-bind="$ctrl.sourceEFSNames[$row.source.serviceID]"
+            ></p>
+            <a
+                data-translate="netapp_replications_efs_link_volume"
+                data-translate-value-shareid="{{$row.source.shareID}}"
+                ui-sref="netapp.dashboard.volumes.dashboard({ serviceName: $row.source.serviceID, volumeId: $row.source.shareID })"
+            ></a>
+            <br />
+            <a
+                data-translate="netapp_replications_efs_link_service"
+                data-translate-value-shareid="{{$row.source.serviceID}}"
+                ui-sref="netapp.dashboard({ serviceName: $row.source.serviceID })"
+            ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_destination_efs_id' | translate"
+            data-property="destination"
+            data-prevent-customization
+        >
+            <p
+                data-ng-bind="$ctrl.sourceEFSNames[$row.destination.serviceID]"
+            ></p>
+            <span ng-if="!$row.destination.shareID">-</span>
+            <br ng-if="!$row.destination.shareID" />
+            <a
+                ng-if="$row.destination.shareID"
+                data-translate="netapp_replications_efs_link_volume"
+                data-translate-value-shareid="{{$row.destination.shareID}}"
+                ui-sref="netapp.dashboard.volumes.dashboard({ serviceName: $row.destination.serviceID, volumeId: $row.destination.shareID })"
+            ></a>
+            <br ng-if="$row.destination.shareID" />
+            <a
+                data-translate="netapp_replications_efs_link_service"
+                data-translate-value-shareid="{{$row.destination.serviceID}}"
+                ui-sref="netapp.dashboard({ serviceName: $row.destination.serviceID })"
+            ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_status' | translate"
+            data-property="status"
+            data-prevent-customization
+        >
+            <div>
+                <span
+                    class="{{ 'oui-badge oui-badge_' + $ctrl.status[$row.status].color }}"
+                    data-translate="{{ 'netapp_replications_status_' + $ctrl.status[$row.status].wording }}"
+                >
+                </span>
+                <span
+                    class="fa fa-info-circle small"
+                    data-ng-if="$row.status === 'pending'"
+                    data-oui-tooltip="{{:: 'netapp_replications_pending_help' | translate }}"
+                    data-oui-tooltip-placement="bottom"
+                >
+                </span>
+            </div>
+            <div ng-if="$row.progress" class="oui-progress">
+                <div
+                    class="oui-progress__bar oui-progress__bar_info"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    data-ng-style="{ 'width': $row.progress }"
+                ></div>
+            </div>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</section>
+<section ng-if="!$ctrl.hasReplications">
+    <h1
+        class="oui-header__title mb-3"
+        data-translate="netapp_replications_title_no_replication"
+    ></h1>
+    <p data-translate="netapp_replications_information"></p>
+</section>
