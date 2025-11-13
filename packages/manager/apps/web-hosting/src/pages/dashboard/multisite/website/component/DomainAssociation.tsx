@@ -51,12 +51,6 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
 
   return (
     <div className="flex flex-col space-y-5">
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
-        {t('multisite:multisite_add_website_title')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
-        {t('multisite:multisite_add_website_choose_domain_title')}
-      </OdsText>
       <Controller
         name="associationType"
         control={control}
