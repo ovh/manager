@@ -1,0 +1,16 @@
+import { GuideItem } from '@ovh-ux/manager-react-components';
+import { useTranslation } from 'react-i18next';
+import { GUIDES_REST_API } from './guideRestApi.constants';
+import { useGuideLink } from '@/common/utils/guides/useGuideLink';
+
+export const useGuideItemRestApi = (id: number): GuideItem => {
+  const { t } = useTranslation('secret-manager');
+  const guideLink = useGuideLink(GUIDES_REST_API);
+
+  return {
+    id,
+    href: guideLink,
+    target: '_blank',
+    label: t('guide_use_with_rest_api'),
+  };
+};
