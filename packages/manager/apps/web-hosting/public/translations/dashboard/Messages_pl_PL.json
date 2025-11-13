@@ -211,5 +211,8 @@
   "cdn_shared_modal_confirm_info": "Kliknij „Zatwierdź”, aby zastosować wprowadzone zmiany w konfiguracji. Klikając „Anuluj”, wszystkie ostatnie zmiany zostaną utracone.",
   "cdn_shared_modal_confirm_perf": "Opcje wydajności",
   "cdn_shared_modal_confirm_cache": "Opcje pamięci podręcznej",
-  "cdn_shared_modal_confirm_security": "Opcje bezpieczeństwa"
+  "cdn_shared_modal_confirm_security": "Opcje bezpieczeństwa",
+  "deploy_git": "Wdrożyć GIT",
+  "deploy_git_description": "Jesteś gotowy do wdrożenia lub ręcznej aktualizacji zawartości swojego zdalnego repozytorium na swoim hostingu.",
+  "deploy_git_overwrite_local_changes": "W przypadku konfliktu zmian wymuś zmiany zdalne na swoim lokalnym repozytorium."
 }
