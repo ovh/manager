@@ -38,7 +38,7 @@ export default function DashboardLayout() {
       to: useResolvedPath(urls.contact.listing).pathname,
     },
     {
-      name: 'preference-center',
+      name: 'rules-parameter',
       title: t('tab_settings'),
       to: useResolvedPath(urls.routing.listing).pathname,
     },
