@@ -1,21 +1,14 @@
-import React, { forwardRef } from 'react';
+import React, { RefObject, forwardRef } from 'react';
 
-import {
-  ODS_TEXT_PRESET,
-  OdsInputChangeEventDetail,
-  OdsInputCustomEvent,
-  OdsTextareaChangeEventDetail,
-  OdsTextareaCustomEvent,
-} from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsText, OdsTextarea } from '@ovhcloud/ods-components/react';
+import { FormField, FormFieldHelper, FormFieldLabel, Input, Textarea } from '@ovhcloud/ods-react';
+
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { TextFieldProps } from '@/components/form/text-field/TextField.props';
 
-type OnChangeEvent =
-  | OdsInputCustomEvent<OdsInputChangeEventDetail>
-  | OdsTextareaCustomEvent<OdsTextareaChangeEventDetail>;
+type TextFieldRefElement = HTMLInputElement | HTMLTextAreaElement;
 
-export const TextField = forwardRef<HTMLOdsInputElement | HTMLOdsTextareaElement, TextFieldProps>(
+export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
   (
     {
       id,
@@ -33,51 +26,49 @@ export const TextField = forwardRef<HTMLOdsInputElement | HTMLOdsTextareaElement
     },
     ref,
   ) => {
-    const handleValueChange = (event: OnChangeEvent) => {
-      const newValue = event.detail.value as string;
+    const handleValueChange = (event: React.ChangeEvent<TextFieldRefElement>) => {
+      const newValue = event.target.value;
       onChange?.(newValue);
     };
 
     return (
-      <OdsFormField className={className}>
-        <label htmlFor={id} slot="label">
-          <OdsText preset={ODS_TEXT_PRESET.paragraph} slot="label">
-            {label}
-          </OdsText>
-        </label>
+      <FormField className={className}>
+        <FormFieldLabel htmlFor={name || id}>
+          <Text preset={TEXT_PRESET.paragraph}>{label}</Text>
+        </FormFieldLabel>
         {type === 'textarea' ? (
-          <OdsTextarea
-            ref={ref as React.Ref<HTMLOdsTextareaElement>}
+          <Textarea
+            ref={ref as RefObject<HTMLTextAreaElement>}
             id={id}
-            isRequired={isRequired}
+            required={isRequired}
             name={name || id}
             value={value}
             placeholder={placeholder}
             rows={rows}
-            onOdsChange={handleValueChange}
-            onOdsBlur={onBlur}
-            hasError={!!error}
+            onChange={handleValueChange}
+            onBlur={onBlur}
+            invalid={!!error}
           />
         ) : (
-          <OdsInput
-            ref={ref as React.Ref<HTMLOdsInputElement>}
+          <Input
+            ref={ref as RefObject<HTMLInputElement>}
             type={type}
             id={id}
             name={name || id}
             value={value}
-            isRequired={isRequired}
+            required={isRequired}
             placeholder={placeholder}
-            onOdsChange={handleValueChange}
-            onOdsBlur={onBlur}
-            hasError={!!error}
+            onChange={handleValueChange}
+            onBlur={onBlur}
+            invalid={!!error}
           />
         )}
         {error && (
-          <OdsText preset={ODS_TEXT_PRESET.caption} slot="helper">
-            {error}
-          </OdsText>
+          <FormFieldHelper>
+            <Text preset={TEXT_PRESET.caption}>{error}</Text>
+          </FormFieldHelper>
         )}
-      </OdsFormField>
+      </FormField>
     );
   },
 );

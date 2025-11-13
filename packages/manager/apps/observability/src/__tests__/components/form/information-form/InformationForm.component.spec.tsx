@@ -66,8 +66,11 @@ vi.mock('@/components/form/text-field/TextField.component', () => ({
 }));
 
 // Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsText: ({ children }: { children: React.ReactNode }) => <span>{children}</span>,
+vi.mock('@ovh-ux/muk', () => ({
+  Text: ({ children }: { children: React.ReactNode }) => <span>{children}</span>,
+  TEXT_PRESET: {
+    heading4: 'heading4',
+  },
 }));
 
 // Mock translation namespaces
