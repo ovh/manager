@@ -13,18 +13,18 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   useAttachConfigurationToCartItem,
   useCreateAndAssignCart,
+  useDeleteConfigurationItemFromCart,
   useGetCart,
-  useGetProjectItem,
   useOrderProjectItem,
 } from '@/data/hooks/useCart';
 import FullPageSpinner from '@/components/full-page-spinner/FullPageSpinner';
+import CreditConfirmation from './components/credit/CreditConfirmation.component';
 import { useConfigForm } from './hooks/useConfigForm';
 import { useProjectCreation } from './hooks/useProjectCreation';
 import { Step, useStepper } from './hooks/useStepper';
+import { useWillPayment } from './hooks/useWillPayment';
 import ConfigStep from './steps/ConfigStep';
 import PaymentStep from './steps/PaymentStep';
-import { useWillPayment } from './hooks/useWillPayment';
-import CreditConfirmation from './components/credit/CreditConfirmation.component';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
@@ -45,6 +45,7 @@ export default function ProjectCreation() {
     mutate: createAndAssignCart,
     data: createdCart,
   } = useCreateAndAssignCart();
+
   const { data: existingCart } = useGetCart(
     searchParams.get('cartId') || undefined,
   );
@@ -53,25 +54,22 @@ export default function ProjectCreation() {
     form,
     setForm,
     isConfigFormValid,
-    isLoading: isLoadingConfigForm,
+    existingProjectItem,
+    cartConfigurationDescription,
   } = useConfigForm(ovhSubsidiary, searchParams.get('cartId') || undefined);
-
-  const cart = hasInitialCart ? existingCart : createdCart;
 
   const {
     mutate: orderProjectItem,
     data: createdProjectItem,
   } = useOrderProjectItem();
 
-  const { data: existingProjectItem } = useGetProjectItem(
-    searchParams.get('cartId') || undefined,
-  );
-
-  const projectItem = hasInitialCart ? existingProjectItem : createdProjectItem;
-
   const {
     mutate: attachConfigurationToCartItem,
   } = useAttachConfigurationToCartItem();
+
+  const {
+    mutate: deleteConfigurationItemFromCart,
+  } = useDeleteConfigurationItemFromCart();
 
   const {
     goToConfig,
@@ -86,6 +84,9 @@ export default function ProjectCreation() {
     isCreditConfirmationChecked,
     isCreditConfirmationLocked,
   } = useStepper();
+
+  const cart = hasInitialCart ? existingCart : createdCart;
+  const projectItem = hasInitialCart ? existingProjectItem : createdProjectItem;
 
   const {
     isSubmitting,
@@ -110,34 +111,18 @@ export default function ProjectCreation() {
   } = useWillPayment();
 
   useEffect(() => {
-    if (isLoadingConfigForm) {
-      return;
-    }
-
-    if (!isConfigFormValid()) {
-      return;
-    }
-
-    // Proceed to the next step
-    goToPayment();
-  }, [isLoadingConfigForm]);
-
-  useEffect(() => {
     // If the cartId is in the URL it means the cart has already been created
     if (hasInitialCart) {
+      goToPayment();
       return;
     }
 
     createAndAssignCart(
       { ovhSubsidiary },
       {
-        onSuccess: (justCreatedCart) => {
+        onSuccess: ({ cartId }) => {
           orderProjectItem({
-            cartId: justCreatedCart.cartId,
-          });
-          setSearchParams({
-            ...Object.fromEntries(searchParams.entries()),
-            cartId: justCreatedCart.cartId,
+            cartId,
           });
         },
       },
@@ -145,7 +130,15 @@ export default function ProjectCreation() {
   }, [createAndAssignCart, orderProjectItem, ovhSubsidiary, hasInitialCart]);
 
   const handleConfigNext = () => {
-    if (!cart || !projectItem) return;
+    if (!projectItem) return;
+
+    if (cartConfigurationDescription) {
+      deleteConfigurationItemFromCart({
+        cartId: projectItem.cartId,
+        itemId: projectItem.itemId,
+        configurationId: cartConfigurationDescription.id,
+      });
+    }
 
     attachConfigurationToCartItem(
       {
@@ -157,7 +150,13 @@ export default function ProjectCreation() {
         },
       },
       {
-        onSuccess: () => goToPayment(),
+        onSuccess: () => {
+          goToPayment();
+          setSearchParams({
+            ...Object.fromEntries(searchParams.entries()),
+            cartId: projectItem.cartId,
+          });
+        },
       },
     );
   };
