@@ -49,7 +49,6 @@ const ROUTES: RouteObject[] = [
                 pageType: PageType.popup,
               },
             },
-            children: [],
           },
           {
             path: 'detach',
@@ -61,10 +60,11 @@ const ROUTES: RouteObject[] = [
               import('@/pages/detach/DetachStorage.page'),
             ),
             handle: {
-              pageName: 'detach_instance',
-              pageType: PageType.popup,
+              tracking: {
+                pageName: 'detach_instance',
+                pageType: PageType.popup,
+              },
             },
-            children: [],
           },
           {
             path: 'delete',
