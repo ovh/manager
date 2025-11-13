@@ -50,7 +50,7 @@ vi.mock('@ovhcloud/ods-components', () => ({
 }));
 
 // Mock manager-react-components
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   ActionMenu: ({
     items,
     isCompact,

@@ -1,26 +1,24 @@
+import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button, Divider, Text } from '@ovh-ux/muk';
 
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
 import RegionSelector from '@/components/infrastructures/region-selector/RegionSelector.component';
 import { TenantConfigurationForm } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useCreateTenants } from '@/data/hooks/tenants/useCreateTenants.hook';
+import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
+import { TenantsFormLayout } from '@/pages/tenants/TenantsForm.layout';
 import { urls } from '@/routes/Routes.constants';
 import type { TenantFormData } from '@/types/tenants.type';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
-
-import { useTenantsFormSchema } from '../../hooks/form/useTenantsFormSchema.hook';
-import { TenantsFormLayout } from './TenantsForm.layout';
 
 export const TenantsForm = () => {
   const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
@@ -70,6 +68,7 @@ export const TenantsForm = () => {
     createTenant(formData);
   };
 
+  // FIXME: fix warning "React does not recognize the `isIamTrigger` prop on a DOM element."
   return (
     <TenantsFormLayout>
       <FormProvider {...form}>
@@ -79,13 +78,13 @@ export const TenantsForm = () => {
             void form.handleSubmit(handleSubmit)(e);
           }}
         >
-          <OdsText className="block mt-6" preset="heading-2">
+          <Text className="block mt-6" preset="heading-2">
             {t('tenants:creation.title')}
-          </OdsText>
+          </Text>
           <section className="mt-6">
             <RegionSelector />
           </section>
-          <OdsDivider spacing="24" />
+          <Divider spacing="24" />
           <section className="mt-6">
             <InformationForm
               title={t('tenants:creation.tenantInformation')}
@@ -93,31 +92,34 @@ export const TenantsForm = () => {
               descriptionPlaceholder={t('tenants:creation.descriptionPlaceholder')}
             />
           </section>
-          <OdsDivider spacing="24" />
+          <Divider spacing="24" />
           <section className="mt-6">
             <TenantConfigurationForm />
           </section>
           <section className="flex flex-row gap-6 mt-10 mx-auto justify-between">
-            <ManagerButton
+            <Button
               id="cancel-tenant"
-              variant={ODS_BUTTON_VARIANT.ghost}
-              label={t(`${NAMESPACES.ACTIONS}:cancel`)}
+              variant={BUTTON_VARIANT.ghost}
               onClick={goBack}
-              size={ODS_BUTTON_SIZE.sm}
-              color={ODS_BUTTON_COLOR.neutral}
-              isDisabled={isPending}
-            />
-            <ManagerButton
+              size={BUTTON_SIZE.sm}
+              color={BUTTON_COLOR.neutral}
+              disabled={isPending}
+            >
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
+            </Button>
+            <Button
               id="create-tenant"
-              label={t(`${NAMESPACES.ACTIONS}:create`)}
               type="submit"
-              size={ODS_BUTTON_SIZE.sm}
-              color={ODS_BUTTON_COLOR.primary}
-              isDisabled={!selectedService || isPending || !form.formState.isValid}
-              isLoading={isPending}
+              size={BUTTON_SIZE.sm}
+              color={BUTTON_COLOR.primary}
+              disabled={!selectedService || isPending || !form.formState.isValid}
+              loading={isPending}
               iamActions={IAM_ACTIONS.CREATE_TENANT}
               urn={selectedService?.iam?.urn}
-            />
+              isIamTrigger={true}
+            >
+              {t(`${NAMESPACES.ACTIONS}:create`)}
+            </Button>
           </section>
         </form>
       </FormProvider>

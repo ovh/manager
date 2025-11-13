@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Breadcrumb } from '@ovh-ux/muk';
 
 import { AppConfig, appName } from '@/App.constants';
 

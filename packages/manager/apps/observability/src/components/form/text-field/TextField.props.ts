@@ -1,12 +1,12 @@
-import { OdsInputType } from '@ovhcloud/ods-components';
+import type { INPUT_TYPE } from '@ovh-ux/muk';
 
-export type TextFieldType = OdsInputType | 'textarea';
+type InputType = `${INPUT_TYPE}`;
 
 export type TextFieldProps = {
   id: string;
   name?: string;
   label: string;
-  type?: TextFieldType;
+  type?: InputType | 'textarea'; // TODO no export of InputType from @ovh-ux/muk
   value?: string;
   placeholder?: string;
   rows?: number;
