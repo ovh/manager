@@ -1,8 +1,11 @@
+import React from 'react';
+
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsQuantity, OdsText } from '@ovhcloud/ods-components/react';
+import { FormField, FormFieldHelper } from '@ovhcloud/ods-react';
+
+import { Quantity, QuantityControl, QuantityInput, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectField } from '@/components/form/select-field/SelectField.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
@@ -29,65 +32,69 @@ export const TenantConfigurationForm = () => {
     name: 'infrastructureId',
   });
 
-  const { data: retentions, isPending } = useRetentions({
+  const {
+    data: retentions,
+    isPending,
+    isLoading,
+  } = useRetentions({
     resourceName: selectedService?.id || '',
     infrastructureId: infrastructureId || '',
   });
 
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('configuration.title')}</OdsText>
+      <Text preset={TEXT_PRESET.heading4}>{t('configuration.title')}</Text>
       <div className="space-y-4">
         <Controller
           name="retentionId"
           control={control}
           render={({ field }) => (
-            <OdsFormField className="block">
-              <SelectField
-                key={infrastructureId || 'no-infrastructure'}
-                isDisabled={!infrastructureId || isPending}
-                value={field.value}
-                name="select-retention"
-                label={toRequiredLabel(t('configuration.retention'))}
-                placeholder={t('configuration.retentionPlaceholder')}
-                onOdsChange={(v: { detail: { value?: string | null } }) => {
-                  const value = v.detail.value ?? '';
-                  field.onChange(value);
-                }}
-                error={errors.retentionId?.message}
-              >
-                {retentions?.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {formatDuration(option.duration, dateFnsLocale)}
-                  </option>
-                ))}
-              </SelectField>
-            </OdsFormField>
+            <SelectField
+              key={infrastructureId || 'no-infrastructure'}
+              isDisabled={!infrastructureId || isPending}
+              isLoading={isLoading}
+              value={field.value}
+              name="select-retention"
+              label={toRequiredLabel(t('configuration.retention'))}
+              placeholder={t('configuration.retentionPlaceholder')}
+              onChange={(value) => field.onChange(value ?? '')}
+              options={retentions?.map((option) => ({
+                value: option.id,
+                label: formatDuration(option.duration, dateFnsLocale),
+              }))}
+              error={errors.retentionId?.message}
+            />
           )}
         />
 
-        <OdsText preset={ODS_TEXT_PRESET.heading6}>{t('configuration.limit.title')}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('configuration.limit.description')}</OdsText>
+        <Text preset={TEXT_PRESET.heading6}>{t('configuration.limit.title')}</Text>
+        <Text preset={TEXT_PRESET.paragraph}>{t('configuration.limit.description')}</Text>
 
         <Controller
           name="maxSeries"
           control={control}
           render={({ field }) => (
-            <OdsFormField className="block">
-              <OdsQuantity
+            <FormField className="block">
+              <Quantity
                 name="limit-quantity"
                 min={INGESTION_BOUNDS.MIN}
                 max={INGESTION_BOUNDS.MAX}
-                value={field.value}
-                onOdsChange={(e) => field.onChange(e.detail.value as number)}
-                hasError={!!errors.maxSeries}
-              />
-              {errors.maxSeries && (
-                <OdsText preset={ODS_TEXT_PRESET.caption} slot="helper">
-                  {errors.maxSeries.message}
-                </OdsText>
-              )}
-            </OdsFormField>
+                value={field.value?.toString() || ''}
+                onValueChange={(detail) =>
+                  field.onChange(detail.value ? parseInt(detail.value, 10) : null)
+                }
+                invalid={!!errors.maxSeries}
+              >
+                <QuantityControl>
+                  <QuantityInput className="w-[6.25rem]" />
+                </QuantityControl>
+              </Quantity>
+              <FormFieldHelper>
+                {errors.maxSeries && (
+                  <Text preset={TEXT_PRESET.caption}>{errors.maxSeries.message}</Text>
+                )}
+              </FormFieldHelper>
+            </FormField>
           )}
         />
       </div>
