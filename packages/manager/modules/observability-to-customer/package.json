@@ -24,14 +24,14 @@
     "date-fns": "^3.6.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.4",
+    "@ovh-ux/manager-core-api": "0.18.4",
     "@ovh-ux/manager-core-test-utils": "*",
-    "@ovh-ux/manager-react-components": "^2.41.1",
+    "@ovh-ux/manager-react-components": "2.41.1",
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "*",
-    "@ovhcloud/ods-react": "^19.1.0",
-    "@ovhcloud/ods-themes": "^19.1.0",
+    "@ovhcloud/ods-react": "19.1.0",
+    "@ovhcloud/ods-themes": "19.1.0",
     "react-i18next": "^14.0.5",
     "recharts": "^2.13.3",
     "tailwindcss": "^3.4.4",
