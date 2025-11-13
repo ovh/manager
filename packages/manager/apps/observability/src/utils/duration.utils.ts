@@ -1,5 +1,5 @@
 import { Locale, formatDuration as formatDurationFns } from 'date-fns';
-import * as duration from 'duration-fns';
+import { parse } from 'duration-fns';
 
 /**
  * Formats an ISO 8601 duration string (e.g., "P1M", "P3M", "P6M") into a human-readable format
@@ -17,7 +17,7 @@ import * as duration from 'duration-fns';
 export const formatDuration = (durationString: string, locale: Locale): string => {
   try {
     // Parse the ISO 8601 duration string into a Duration object
-    const parsedDuration = duration.parse(durationString);
+    const parsedDuration = parse(durationString);
 
     // Format the duration using date-fns with the provided locale
     return formatDurationFns(parsedDuration, {
