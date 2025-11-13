@@ -15,7 +15,7 @@ const tenantsDataset: Tenant[] = [
         },
         retention: {
           id: 'retention-1',
-          duration: '36 mois',
+          duration: 'P6M',
           link: 'retention_link_1',
         },
       },
@@ -43,7 +43,7 @@ const tenantsDataset: Tenant[] = [
         },
         retention: {
           id: 'retention-2',
-          duration: '12 mois',
+          duration: 'P1Y',
           link: 'retention_link_2',
         },
       },
