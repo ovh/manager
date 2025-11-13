@@ -31,7 +31,7 @@ describe('Configure game firewall page', () => {
 
     const cell = await getTableCellByContentText({
       container,
-      text: 'ns123456.ip-239-99-244.net',
+      text: 'serviceName3',
     });
 
     const row = cell.parentElement;

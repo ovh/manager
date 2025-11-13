@@ -9,6 +9,7 @@
   "step2DescriptionWithoutNextHop": "Voulez vous vraiment déplacer l'IP <b>{{ip}}</b> vers <b>{{destinationService}}</b> ?",
   "moveIpOnGoingTaskMessage": "Cette IP est déjà en cours de déplacement.",
   "moveIpSuccessMessage": "L'IP {{ip}} sera disponible dans \"{{destinationService}}\" d'ici quelques minutes.",
+  "moveIpDoneMessage": "L'IP {{ip}} a été déplacée avec succès.",
   "service_destination_ipLoadbalancing_option_group_label": "IP Load Balancing",
   "service_destination_dedicatedServer_option_group_label": "Serveur dédié",
   "service_destination_dedicatedCloud_option_group_label": "Cloud dédié",

@@ -15,6 +15,7 @@ import {
 } from './get-ip-game-firewall';
 import {
   IpAntihackType,
+  IpEdgeFirewallRule,
   IpEdgeFirewallStateEnum,
   IpEdgeFirewallType,
   IpGameFirewallStateEnum,
@@ -83,6 +84,31 @@ export const getIpsMocks = ({
     api: 'v6',
     method: 'post',
     status: getIpMoveKo ? 400 : 200,
+  },
+  {
+    url: '/ip/:ip/task/:taskId',
+    response: (
+      _: unknown,
+      params: PathParams,
+    ): IpTask | { message: string } => {
+      if (getIpTaskKo) {
+        return { message: 'Task Api Error' };
+      }
+      return {
+        comment: null,
+        destination: {
+          serviceName: 'my-new-service',
+        },
+        doneDate: null,
+        lastUpdate: null,
+        function: IpTaskFunction.genericMoveFloatingIp,
+        startDate: '2024-06-10T14:00:00+00:00',
+        status: IpTaskStatus.doing,
+        taskId: parseInt(params.taskId as string, 10),
+      };
+    },
+    api: 'v6',
+    status: getIpTaskKo ? 400 : 200,
   },
   {
     url: '/ip/:ip/task',
@@ -199,6 +225,17 @@ export const getIpsMocks = ({
         state: gameFirewallConfig?.state,
       }),
     api: 'v6',
+  },
+  {
+    url: '/ip/:ip/firewall/:ipOnFirewall/rule',
+    response: (): IpEdgeFirewallRule[] => [],
+    api: 'v6',
+  },
+  {
+    url: '/ip/:ip/firewall/:ipOnFirewall',
+    response: (): void => null,
+    api: 'v6',
+    method: 'put',
   },
   {
     url: '/ip/:ip/firewall/:ipOnFirewall',

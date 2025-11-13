@@ -52,12 +52,13 @@ describe('Configure edge network firewall page', () => {
       container,
       text: labels.edgeNetworkFirewall.enable_firewall_modal_title,
     });
+    const modal = container.querySelector('ods-modal') as HTMLElement;
 
     const confirmButton = await getButtonByLabel({
-      container,
+      container: container.querySelector('ods-modal') as HTMLElement,
       label: 'validate',
     });
     await waitFor(() => fireEvent.click(confirmButton));
-    await assertOdsModalVisibility({ container, isVisible: false });
+    await waitFor(() => expect(modal).toHaveAttribute('is-open', 'false'));
   });
 });

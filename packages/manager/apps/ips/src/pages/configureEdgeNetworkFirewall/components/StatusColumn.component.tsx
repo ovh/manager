@@ -8,9 +8,9 @@ import { TRANSLATION_NAMESPACES } from '@/utils';
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 const translationKeyByStatus: Record<IpEdgeFirewallRuleState, string> = {
-  ok: 'ok',
-  removalPending: 'deleting',
-  creationPending: 'creating',
+  [IpEdgeFirewallRuleState.OK]: 'ok',
+  [IpEdgeFirewallRuleState.REMOVAL_PENDING]: 'deleting',
+  [IpEdgeFirewallRuleState.CREATION_PENDING]: 'creating',
 };
 
 export const StatusColumn = (
@@ -34,11 +34,15 @@ export const StatusColumn = (
   return (
     <OdsBadge
       size={ODS_BADGE_SIZE.lg}
-      color={firewallModeEnabled ? color : ODS_BADGE_COLOR.neutral}
+      color={
+        !firewallModeEnabled && rule?.state === IpEdgeFirewallRuleState.OK
+          ? ODS_BADGE_COLOR.neutral
+          : color
+      }
       label={
-        firewallModeEnabled
-          ? t(translationKeyByStatus[rule?.state], { ns: NAMESPACES.STATUS })
-          : t('disabled_status')
+        rule?.state === IpEdgeFirewallRuleState.OK && !firewallModeEnabled
+          ? t('disabled_status')
+          : t(translationKeyByStatus[rule?.state], { ns: NAMESPACES.STATUS })
       }
     />
   );

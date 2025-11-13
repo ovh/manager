@@ -41,13 +41,12 @@ export const useGetIpEdgeFirewall = ({
     },
     enabled,
     retry: false,
-    refetchInterval: (query) => {
-      return query.state.error ||
-        !query.state.data?.data?.state ||
-        query.state.data?.data?.state === IpEdgeFirewallStateEnum.OK
+    refetchInterval: (query) =>
+      query.state.error ||
+      !query.state.data?.data?.state ||
+      query.state.data?.data?.state === IpEdgeFirewallStateEnum.OK
         ? undefined
-        : refetchInterval;
-    },
+        : refetchInterval,
   });
 
   return {

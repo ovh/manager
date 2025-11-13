@@ -1,5 +1,5 @@
 import { v6, ApiResponse } from '@ovh-ux/manager-core-api';
-import { IpTaskFunction, IpTaskStatus } from '@/types';
+import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
 
 export type GetIpTaskParams = {
   ip: string;
@@ -33,3 +33,20 @@ export const getIpTaskList = ({
     }${params.toString()}`,
   );
 };
+
+export type GetIpTaskDetailsParams = {
+  ip: string;
+  taskId: number;
+};
+
+export const getIpTaskDetailsQueryKey = (params: GetIpTaskDetailsParams) => [
+  'ipTaskDetails',
+  params.ip,
+  params.taskId,
+];
+
+export const getIpTaskDetails = ({
+  ip,
+  taskId,
+}: GetIpTaskDetailsParams): Promise<ApiResponse<IpTask>> =>
+  v6.get(`/ip/${encodeURIComponent(ip)}/task/${taskId}`);
