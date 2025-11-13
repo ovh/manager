@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.23...@ovh-ux/manager-web-domains-app@1.3.24) (2025-11-13)
+
+
+### Bug Fixes
+
+* **web-domains:** fix undefined value ([5ed508f](https://github.com/ovh/manager/commit/5ed508ff727e59aa5285874e7435b86e437221a9)), closes [#DCE-92](https://github.com/ovh/manager/issues/DCE-92)
+* **web-domains:** fix undefined value ([5ce8d92](https://github.com/ovh/manager/commit/5ce8d924a99c7a0c30189c73245750a7e745bd3e)), closes [#DCE-92](https://github.com/ovh/manager/issues/DCE-92)
+
+
+
+
+
 ## [1.3.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.22...@ovh-ux/manager-web-domains-app@1.3.23) (2025-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app
