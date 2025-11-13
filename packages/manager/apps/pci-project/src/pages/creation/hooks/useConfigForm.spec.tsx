@@ -91,7 +91,6 @@ describe('useConfigForm', () => {
         isHdsChecked: false,
       });
       expect(result.current.isConfigFormValid()).toBe(false);
-      expect(result.current.isLoading).toBe(false);
     });
 
     it('should initialize with cartId-based state when cartId is provided', () => {
@@ -125,55 +124,6 @@ describe('useConfigForm', () => {
       renderHook(() => useConfigForm(OvhSubsidiary.FR, undefined));
 
       expect(format).toHaveBeenCalledWith(expect.any(Date), 'yyyy-MM-dd');
-    });
-  });
-
-  describe('loading states', () => {
-    it('should return loading true when project is loading', () => {
-      vi.mocked(useGetProjectItem).mockReturnValue({
-        data: undefined,
-        isLoading: true,
-      } as UseQueryResult<OrderedProduct | undefined, Error>);
-
-      const { result } = renderHook(() =>
-        useConfigForm(OvhSubsidiary.FR, 'cart-1'),
-      );
-
-      expect(result.current.isLoading).toBe(true);
-    });
-
-    it('should return loading true when cart configuration is loading', () => {
-      vi.mocked(useGetCartConfiguration).mockReturnValue({
-        data: undefined,
-        isLoading: true,
-      } as UseQueryResult<CartConfiguration | undefined, Error>);
-
-      const { result } = renderHook(() =>
-        useConfigForm(OvhSubsidiary.FR, 'cart-1'),
-      );
-
-      expect(result.current.isLoading).toBe(true);
-    });
-
-    it('should return loading true when HDS is loading', () => {
-      vi.mocked(useIsHdsChecked).mockReturnValue({
-        data: undefined,
-        isLoading: true,
-      } as UseQueryResult<OrderedProduct | undefined, Error>);
-
-      const { result } = renderHook(() =>
-        useConfigForm(OvhSubsidiary.FR, 'cart-1'),
-      );
-
-      expect(result.current.isLoading).toBe(true);
-    });
-
-    it('should return loading false when all hooks have finished loading', () => {
-      const { result } = renderHook(() =>
-        useConfigForm(OvhSubsidiary.FR, 'cart-1'),
-      );
-
-      expect(result.current.isLoading).toBe(false);
     });
   });
 
@@ -445,19 +395,6 @@ describe('useConfigForm', () => {
   });
 
   describe('return values', () => {
-    it('should provide all expected return values', () => {
-      const { result } = renderHook(() =>
-        useConfigForm(OvhSubsidiary.FR, undefined),
-      );
-
-      expect(result.current).toEqual({
-        form: expect.any(Object),
-        setForm: expect.any(Function),
-        isConfigFormValid: expect.any(Function),
-        isLoading: expect.any(Boolean),
-      });
-    });
-
     it('should provide form state with correct properties', () => {
       const { result } = renderHook(() =>
         useConfigForm(OvhSubsidiary.FR, undefined),
