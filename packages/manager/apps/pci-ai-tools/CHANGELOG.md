@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.14.4...@ovh-ux/manager-pci-ai-tools-app@1.15.0) (2025-11-13)
+
+
+### Features
+
+* **pci-ai-tools:** integrate emulators suggestion route ([7a3dd25](https://github.com/ovh/manager/commit/7a3dd25fbf2a43ab56c408e5bc3e884187bde245)), closes [#AIS-1737](https://github.com/ovh/manager/issues/AIS-1737)
+
+
+
+
+
 ## [1.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.14.3...@ovh-ux/manager-pci-ai-tools-app@1.14.4) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
