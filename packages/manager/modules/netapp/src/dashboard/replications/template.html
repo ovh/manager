@@ -1,0 +1,88 @@
+<section
+    ng-repeat="(type, rows) in $ctrl.replications track by $index"
+    ng-if="type === $ctrl.ongoingStatus || type !== $ctrl.ongoingStatus && rows.length"
+>
+    <h1
+        class="oui-header__title mb-3"
+        data-translate="{{'netapp_replications_title_' + type}}"
+    ></h1>
+    <p
+        ng-if="type === $ctrl.ongoingStatus"
+        data-translate="netapp_replications_information"
+    ></p>
+    <oui-datagrid data-rows="rows">
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_volume_id' | translate"
+            data-property="id"
+        >
+            <a
+                href
+                data-ng-bind="$row.id"
+                data-ng-click="$ctrl.goToVolumeDetails($row.id)"
+            ></a>
+            <p data-ng-bind="$row.description"></p>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_source_efs_id' | translate"
+            data-property="source"
+            data-prevent-customization
+        >
+            <a
+                href
+                data-ng-bind="$row.source.serviceID"
+                data-ng-click="$ctrl.goToService()"
+                data-ng-if="$row.source.serviceID"
+            ></a>
+            <p data-ng-bind="$ctrl.sourceEfsNames[$row.source.serviceID]"></p>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_destination_efs_id' | translate"
+            data-property="destination"
+            data-prevent-customization
+        >
+            <a
+                href
+                data-ng-bind="$row.destination.serviceID"
+                data-ng-click="$ctrl.goToService()"
+                data-ng-if="$row.destination.serviceID"
+            ></a>
+            <p
+                data-ng-if="$row.destination.serviceID"
+                data-ng-bind="$ctrl.sourceEfsNames[$row.destination.serviceID]"
+            ></p>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_status' | translate"
+            data-property="status"
+            data-prevent-customization
+        >
+            <span
+                class="{{ 'oui-badge oui-badge_' + $ctrl.status[$row.status].color }}"
+                data-translate="{{ 'netapp_replications_status_' + $ctrl.status[$row.status].wording | translate}}"
+            >
+            </span>
+            <span
+                class="fa fa-info-circle small"
+                data-ng-if="$row.status === 'pending'"
+                data-oui-tooltip="{{:: 'netapp_replications_pending_help' | translate }}"
+                data-oui-tooltip-placement="bottom"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_progress' | translate"
+            data-property="progress"
+            data-prevent-customization
+        >
+            <div class="oui-progress">
+                <div
+                    class="oui-progress__bar oui-progress__bar_info"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    data-ng-style="{ 'width': $row.progress }"
+                ></div>
+            </div>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</section>
