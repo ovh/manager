@@ -68,7 +68,7 @@ export default function Auth() {
             >
               <div className="flex flex-row gap-5 items-center">
                 <AlertCircle className="shrink-0 size-6" />
-                <p>{t('discoveryMode')}</p>
+                <p>{t('discoveryMode', { type: 'AI' })}</p>
               </div>
               <Button variant="primary" mode="default" type="button" asChild>
                 <OvhLink

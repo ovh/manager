@@ -1,5 +1,5 @@
 {
-  "discoveryMode": "Atualmente, está no modo “Descoberta”. Para aceder aos produtos AI disponibilizados pela OVHcloud, deve ativar o seu projeto.",
+  "discoveryMode": "Atualmente, está no modo “Descoberta”. Para aceder aos produtos {{type}} disponibilizados pela OVHcloud, deve ativar o seu projeto.",
   "discoveryModeActivate": "Ative o seu projeto",
   "authActivateProjectButton": "Ativar o seu projeto AI",
   "authDescription": "De modo a utilizar os serviços AI da OVHcloud, deve autenticar-se antes de criar o seu primeiro notebook, job ou app.",
@@ -9,5 +9,5 @@
   "formActiveUserToastSuccessDescription": "O seu projeto foi devidamente ativado",
   "authQuantumActivateProjectButton": "Ativar o seu projeto quântico",
   "authQuantumDescription": "De modo a utilizar os serviços quânticos da OVHcloud, deve autenticar-se antes de criar o seu primeiro emulador.",
-  "quantumTitle": "Emuladores Quânticos"
+  "quantumTitle": "Quantum"
 }
