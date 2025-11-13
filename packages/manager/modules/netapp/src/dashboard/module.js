@@ -17,6 +17,7 @@ import routing from './routing';
 
 import index from './index/module';
 import snapshotPolicies from './snapshot-policies';
+import replications from './replications';
 import volumes from './volumes';
 import networkConfiguration from './network-configuration';
 import vrackConfiguration from './vrack-configuration';
@@ -37,6 +38,7 @@ angular
     'ngOvhUtils',
     ApiV2ListHelper.moduleName,
     snapshotPolicies,
+    replications,
     volumes,
     networkConfiguration,
     vrackConfiguration,
