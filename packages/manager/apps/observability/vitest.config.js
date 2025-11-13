@@ -6,6 +6,7 @@ import {
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
+  sharedCssConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -27,6 +28,7 @@ export default mergeConfig(
           '**/Test.utils.tsx',
         ],
       },
+      ...sharedCssConfig,
     },
     resolve: {
       dedupe: [...defaultDedupedDependencies],

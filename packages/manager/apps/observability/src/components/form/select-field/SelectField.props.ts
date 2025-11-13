@@ -16,5 +16,5 @@ export interface SelectFieldProps {
   isLoading?: boolean;
   isDisabled?: boolean;
   error?: string;
-  onOdsChange?: (event: { detail: { value?: string | null } }) => void;
+  onChange?: (value: string | null) => void;
 }

@@ -6,61 +6,63 @@ import { vi } from 'vitest';
 import { SelectField } from '@/components/form/select-field/SelectField.component';
 import { SelectFieldProps, SelectOption } from '@/components/form/select-field/SelectField.props';
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsFormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
     </div>
   ),
-  OdsSelect: ({
-    children,
+  Select: ({
     className,
     value,
     name,
-    placeholder,
-    onOdsChange,
-    hasError,
+    onValueChange,
+    invalid,
+    disabled,
+    items,
   }: {
-    children: React.ReactNode;
     className?: string;
-    value?: string;
+    value?: string[];
     name: string;
-    placeholder?: string;
-    onOdsChange?: (event: { detail: { value?: string | null } }) => void;
-    hasError?: boolean;
+    onValueChange?: (detail: { value?: string[] }) => void;
+    invalid?: boolean;
+    disabled?: boolean;
+    items: Array<{ label: string; value: string }>;
   }) => {
-    const [selectValue, setSelectValue] = React.useState(value || '');
+    const [selectValue, setSelectValue] = React.useState(value?.[0] || '');
 
     React.useEffect(() => {
-      setSelectValue(value || '');
+      setSelectValue(value?.[0] || '');
     }, [value]);
 
     return (
       <select
-        {...({
-          'data-testid': 'select-field',
-          className,
-          value: selectValue,
-          name,
-          placeholder,
-          onChange: (e: React.ChangeEvent<HTMLSelectElement>) => {
-            setSelectValue(e.target.value);
-            onOdsChange?.({ detail: { value: e.target.value } });
-          },
-          'data-has-error': hasError,
-        } as unknown as React.ChangeEvent<HTMLSelectElement>)}
+        data-testid="select-field"
+        className={className}
+        value={selectValue}
+        name={name}
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+          setSelectValue(e.target.value);
+          onValueChange?.({ value: [e.target.value] });
+        }}
+        data-has-error={invalid}
+        disabled={disabled}
       >
-        {children}
+        {items?.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
+        ))}
       </select>
     );
   },
-  OdsSkeleton: ({ className }: { className?: string }) => (
+  Skeleton: ({ className }: { className?: string }) => (
     <div data-testid="skeleton" className={className}>
       Loading...
     </div>
   ),
-  OdsText: ({
+  Text: ({
     children,
     preset,
     slot,
@@ -73,11 +75,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       {children}
     </span>
   ),
-}));
-
-// Mock ODS constants
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_TEXT_PRESET: {
+  TEXT_PRESET: {
     paragraph: 'paragraph',
     caption: 'caption',
   },
@@ -249,18 +247,18 @@ describe('SelectField', () => {
   });
 
   describe('Event Handling', () => {
-    it('should call onOdsChange when select value changes', () => {
-      const mockOnOdsChange = vi.fn();
-      render(<SelectField {...defaultProps} options={mockOptions} onOdsChange={mockOnOdsChange} />);
+    it('should call onChange when select value changes', () => {
+      const mockOnChange = vi.fn();
+      render(<SelectField {...defaultProps} options={mockOptions} onChange={mockOnChange} />);
 
       const select = screen.getByTestId('select-field');
       fireEvent.change(select, { target: { value: 'option2' } });
 
-      expect(mockOnOdsChange).toHaveBeenCalledTimes(1);
-      expect(mockOnOdsChange).toHaveBeenCalledWith({ detail: { value: 'option2' } });
+      expect(mockOnChange).toHaveBeenCalledTimes(1);
+      expect(mockOnChange).toHaveBeenCalledWith('option2');
     });
 
-    it('should not throw error when onOdsChange is not provided', () => {
+    it('should not throw error when onChange is not provided', () => {
       render(<SelectField {...defaultProps} options={mockOptions} />);
 
       const select = screen.getByTestId('select-field');

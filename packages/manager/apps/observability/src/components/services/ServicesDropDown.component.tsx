@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
 import { SelectField } from '@/components/form/select-field/SelectField.component';
+import { ServicesDropDownProps } from '@/components/services/ServicesDropDown.props';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { ObservabilityService } from '@/types/observability.type';
-
-import { ServicesDropDownProps } from './ServicesDropDown.props';
 
 export default function ServicesDropDown({ onChange }: ServicesDropDownProps) {
   const { t } = useTranslation('metrics');
@@ -23,17 +22,14 @@ export default function ServicesDropDown({ onChange }: ServicesDropDownProps) {
       name="select-observability-service"
       placeholder={t('listing.select_observability_service')}
       isLoading={isLoading}
-      onOdsChange={(v: { detail: { value?: string | null } }) => {
-        const value = v.detail.value?.toString();
+      onChange={(value) => {
         setSelectedService(services?.find((service) => service.id === value) ?? undefined);
         onChange?.();
       }}
-    >
-      {services?.map(({ id, currentState: { displayName } }: ObservabilityService) => (
-        <option key={id} value={id}>
-          {displayName ?? id}
-        </option>
-      ))}
-    </SelectField>
+      options={services?.map(({ id, currentState: { displayName } }: ObservabilityService) => ({
+        value: id,
+        label: displayName ?? id,
+      }))}
+    />
   );
 }
