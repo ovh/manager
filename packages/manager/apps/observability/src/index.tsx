@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom/client';
 
 import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
+import App from '@/App';
 import { appName } from '@/App.constants';
 
-import App from './App';
 import './index.scss';
 import './vite-hmr';
 

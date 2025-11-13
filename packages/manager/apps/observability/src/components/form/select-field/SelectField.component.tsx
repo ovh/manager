@@ -1,5 +1,8 @@
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsSelect, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import React, { useMemo } from 'react';
+
+import { FormField, FormFieldHelper, FormFieldLabel, Skeleton } from '@ovhcloud/ods-react';
+
+import { Select, SelectContent, SelectControl, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectFieldProps } from '@/components/form/select-field/SelectField.props';
 
@@ -10,46 +13,53 @@ export const SelectField = ({
   name,
   className,
   options,
-  children,
   isLoading = false,
   isDisabled = false,
   error,
-  onOdsChange,
+  onChange,
 }: SelectFieldProps) => {
+  const items = useMemo(
+    () =>
+      options?.map(({ value: optionValue, label: optionLabel }) => ({
+        label: optionLabel,
+        value: optionValue,
+      })) || [],
+    [options],
+  );
+
   return (
-    <OdsFormField className="my-4 w-full">
+    <FormField className="my-4 w-full">
       {isLoading ? (
-        <OdsSkeleton className={className} />
+        <Skeleton className={className} />
       ) : (
         <>
           {label && (
-            <OdsText preset={ODS_TEXT_PRESET.paragraph} slot="label">
-              {label}
-            </OdsText>
+            <FormFieldLabel htmlFor={name}>
+              <Text preset={TEXT_PRESET.paragraph}>{label}</Text>
+            </FormFieldLabel>
           )}
-          <OdsSelect
+          <Select
             className={className}
-            value={value}
+            fitControlWidth={true}
+            value={value ? [value] : []}
             name={name}
-            placeholder={placeholder}
-            onOdsChange={onOdsChange}
-            hasError={!!error && !isDisabled}
-            isDisabled={isDisabled}
+            onValueChange={(detail) => {
+              onChange?.(detail.value?.[0] || null);
+            }}
+            invalid={!!error && !isDisabled}
+            disabled={isDisabled}
+            items={items}
           >
-            {children ||
-              options?.map(({ value: optionValue, label: optionLabel }) => (
-                <option key={optionValue} value={optionValue}>
-                  {optionLabel}
-                </option>
-              ))}
-          </OdsSelect>
+            <SelectControl placeholder={placeholder} />
+            <SelectContent />
+          </Select>
           {error && (
-            <OdsText preset={ODS_TEXT_PRESET.caption} slot="helper">
-              {error}
-            </OdsText>
+            <FormFieldHelper>
+              <Text preset={TEXT_PRESET.caption}>{error}</Text>
+            </FormFieldHelper>
           )}
         </>
       )}
-    </OdsFormField>
+    </FormField>
   );
 };
