@@ -1,9 +1,8 @@
-import { RedirectionGuard } from '@ovh-ux/manager-react-components';
+import { RedirectionGuard } from '@ovh-ux/muk';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
+import { TenantsForm } from '@/pages/tenants/TenantsForm.component';
 import { urls } from '@/routes/Routes.constants';
-
-import { TenantsForm } from './TenantsForm.component';
 
 export default function TenantsCreationPage() {
   const { selectedService, isLoading, isSuccess } = useObservabilityServiceContext();

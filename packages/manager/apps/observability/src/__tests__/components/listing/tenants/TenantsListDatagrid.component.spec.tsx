@@ -24,7 +24,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   Datagrid: ({
     topbar,
     columns,
