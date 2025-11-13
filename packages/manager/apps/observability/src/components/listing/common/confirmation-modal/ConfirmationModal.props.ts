@@ -1,11 +1,11 @@
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { MODAL_COLOR } from '@ovh-ux/muk';
 
 export interface ConfirmationModalProps {
   title: string;
   message?: string;
   onDismiss: () => void;
   onConfirm?: () => void;
-  type?: ODS_MODAL_COLOR;
+  type?: MODAL_COLOR;
   isLoading?: boolean;
   confirmButtonLabel?: string;
   isConfirmButtonLoading?: boolean;

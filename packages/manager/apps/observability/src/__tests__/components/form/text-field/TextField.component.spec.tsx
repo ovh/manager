@@ -407,7 +407,7 @@ describe('TextField', () => {
 
   describe('Ref Forwarding', () => {
     it('should forward ref to input element', () => {
-      const ref = React.createRef<HTMLOdsInputElement>();
+      const ref = React.createRef<HTMLInputElement>();
       render(<TextField {...defaultProps} ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
@@ -415,7 +415,7 @@ describe('TextField', () => {
     });
 
     it('should forward ref to textarea element', () => {
-      const ref = React.createRef<HTMLOdsTextareaElement>();
+      const ref = React.createRef<HTMLTextAreaElement>();
       render(<TextField {...defaultProps} type="textarea" ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLTextAreaElement);
