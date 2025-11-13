@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
-import { SecretManagerGuidesButton } from '@secret-manager/components/secret-manager-guides/SecretManagerGuideButton';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
 import { OkmsManagement } from './OkmsManagement.component';
 import { SecretForm } from './SecretForm.component';
 import { OrderOkmsModalProvider } from '@/common/pages/order-okms-modal/OrderOkmsModalContext';
