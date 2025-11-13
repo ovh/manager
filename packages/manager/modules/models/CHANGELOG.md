@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.17...@ovh-ux/manager-models@2.6.0) (2025-11-13)
+
+
+### Features
+
+* **models.billingservice:** enable stop cancellation of manual renvew service ([58d5be0](https://github.com/ovh/manager/commit/58d5be0264978e1f90538f0f43db5c445e826ece)), closes [#INC0166234](https://github.com/ovh/manager/issues/INC0166234)
+
+
+
+
+
 ## [2.5.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.16...@ovh-ux/manager-models@2.5.17) (2025-11-12)
 
 
