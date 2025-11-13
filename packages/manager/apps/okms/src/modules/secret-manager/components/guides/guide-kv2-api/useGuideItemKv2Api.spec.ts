@@ -1,8 +1,8 @@
 import { vi } from 'vitest';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderHookWithI18n } from '@/common/utils/tests/testUtils';
-import { useGuideItemKV2Api } from './useGuideItemKV2Api';
-import { GUIDES_KV2 } from './guideKV2.constants';
+import { useGuideItemKv2Api } from './useGuideItemKv2Api';
+import { GUIDES_KV2 } from './guideKv2.constants';
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
 const MOCKED_LINK = 'mocked-link';
@@ -12,12 +12,12 @@ vi.mock('@/common/utils/guides/useGuideLink', () => ({
   useGuideLink: vi.fn(() => MOCKED_LINK),
 }));
 
-describe('useGuideItemKV2Api test suite', () => {
+describe('useGuideItemKv2Api test suite', () => {
   it('should return a guide item', async () => {
     // GIVEN
     // WHEN
     const { result } = await renderHookWithI18n(() =>
-      useGuideItemKV2Api(MOCKED_ID),
+      useGuideItemKv2Api(MOCKED_ID),
     );
 
     // THEN

@@ -25,7 +25,7 @@ import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { RegionSelector } from '@secret-manager/components/region-selector/RegionSelector.component';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
 import { useBackToOkmsListUrl } from '@secret-manager/hooks/useBackToOkmsListUrl';
-import { SecretManagerGuidesButton } from '@secret-manager/components/secret-manager-guides/SecretManagerGuideButton';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
 import {
   DatagridAction,
   DatagridCellPath,

@@ -17,8 +17,8 @@ vi.mock('./guide-manager/useGuideItemManager', () => ({
   })),
 }));
 
-vi.mock('./guide-KV2-api/useGuideItemKV2Api', () => ({
-  useGuideItemKV2Api: vi.fn(() => ({
+vi.mock('./guide-kv2-api/useGuideItemKv2Api', () => ({
+  useGuideItemKv2Api: vi.fn(() => ({
     id: 1,
     dataTestid: GUIDES_TEST_IDS.kv2Api,
   })),

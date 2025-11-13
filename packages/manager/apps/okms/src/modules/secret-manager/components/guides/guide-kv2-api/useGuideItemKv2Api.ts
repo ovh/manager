@@ -1,9 +1,9 @@
 import { GuideItem } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { GUIDES_KV2 } from './guideKV2.constants';
+import { GUIDES_KV2 } from './guideKv2.constants';
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
-export const useGuideItemKV2Api = (id: number): GuideItem => {
+export const useGuideItemKv2Api = (id: number): GuideItem => {
   const { t } = useTranslation('secret-manager');
   const guideLink = useGuideLink(GUIDES_KV2);
 
