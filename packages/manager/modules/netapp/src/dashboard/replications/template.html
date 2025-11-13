@@ -1,0 +1,44 @@
+<section>
+    <h1
+        class="oui-header__title mb-3"
+        data-translate="netapp_replicationson_going_title"
+    ></h1>
+    <p data-translate="netapp_replications_information"></p>
+    <oui-datagrid data-rows="$ctrl.replications">
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_volume_id' | translate"
+            data-property="id"
+        >
+            <a
+                href
+                data-ng-bind="$row.id"
+                data-ng-click="$ctrl.goToVolumeDetails($row)"
+            ></a>
+            <p data-ng-bind="$row.description"></p>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_source_efs_id' | translate"
+            data-property="source"
+            data-prevent-customization
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_destination_efs_id' | translate"
+            data-property="destination-efs-id"
+            data-prevent-customization
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_status' | translate"
+            data-property="status"
+            data-prevent-customization
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'netapp_replications_progress' | translate"
+            data-property="progress"
+            data-prevent-customization
+        >
+        </oui-datagrid-column>
+    </oui-datagrid>
+</section>
