@@ -1,7 +1,7 @@
 {
   "dedicatedCloud_options_title": "Opciones de Hosted Private Cloud",
   "dedicatedCloud_options_zerto": "DRP Zerto",
-  "dedicatedCloud_options_zerto_status_vpn_notConfigured": "VPN a configurar",
+  "dedicatedCloud_options_zerto_status_vpn_notConfigured": "VPN pendiente de configurar",
   "dedicatedCloud_options_zerto_status_vpn_configuring": "Configurando la VPN...",
   "dedicatedCloud_options_zerto_status_vpn_error": "Configuración de la VPN en error",
   "dedicatedCloud_options_zerto_status_delivered": "Activado",

@@ -1,14 +1,14 @@
 {
   "dedicatedCloud_datacenter_pcc_name_EPCC": "Name der Private Cloud: {{pcc}}",
-  "dedicatedCloud_datacenter_main_datacenter_name_EPCC": "Identifikator des entsprechenden Private Cloud-Rechenzentrums",
-  "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Wählen Sie Ihr Haupt-Rechenzentrum",
-  "dedicatedCloud_datacenter_main_ip_address_pool_available": "Verfügbarer Pool öffentlicher IP-Adressen",
-  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Wählen Sie eine freie öffentliche IP-Adresse",
-  "dedicatedCloud_datacenter_local_vra_network": "VRA-Netzwerk Rechenzentrum OVH",
-  "dedicatedCloud_datacenter_local_vra_network_help": "Sie können Ihr lokales VRA-Subnetz wählen oder das oben von OVH vorgeschlagene verwenden",
-  "dedicatedCloud_datacenter_local_vra_network_placeholder": "Geben Sie das lokale VRA-Subnetz ein",
-  "dedicatedCloud_datacenter_no_ip_pool": "Sie haben keinen verfügbaren Pool von IP-Adressen.",
-  "dedicatedCloud_datacenter_order_please": "Bitte bestellen Sie einen",
-  "dedicatedCloud_datacenter_pcc_name_MBM": "Name der Essentials: {{pcc}}",
-  "dedicatedCloud_datacenter_main_datacenter_name_MBM": "Identifikator des entsprechenden Essentials-Rechenzentrums"
+  "dedicatedCloud_datacenter_main_datacenter_name_EPCC": "Kennung des zugehörigen Private Cloud Datacenters",
+  "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Wählen Sie Ihr primäres Datacenter",
+  "dedicatedCloud_datacenter_main_ip_address_pool_available": "Pool öffentlicher IP-Adressen verfügbar",
+  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Wählen Sie eine freie öffentliche IP-Adresse aus",
+  "dedicatedCloud_datacenter_local_vra_network": "OVHcloud vRA-Netzwerk Rechenzentrum",
+  "dedicatedCloud_datacenter_local_vra_network_help": "Sie können Ihr vRA-Subnetz selbst auswählen oder das nachstehende von OVHcloud vorgeschlagene Subnetz verwenden",
+  "dedicatedCloud_datacenter_local_vra_network_placeholder": "Geben Sie das Subnetz des lokalen vRA-Netzes an",
+  "dedicatedCloud_datacenter_no_ip_pool": "Sie haben keinen IP-Adressen-Pool zu Ihrer Verfügung.",
+  "dedicatedCloud_datacenter_order_please": "Bitte bestellen Sie einen solchen.",
+  "dedicatedCloud_datacenter_pcc_name_MBM": "Name des Essentials Produkts: {{pcc}}",
+  "dedicatedCloud_datacenter_main_datacenter_name_MBM": "Kennung des entsprechenden Essentials-Rechenzentrums "
 }
