@@ -269,6 +269,8 @@ const DatagridComponent = ({
     if (isError) addError(errorMessage, true);
   }, [isError, addError, t, errorMessage]);
 
+  if (isError) return null;
+
   return (
     <div className="overflow-x-auto mt-8">
       <Datagrid
