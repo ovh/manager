@@ -17,7 +17,7 @@ import { RegionSelector } from '@secret-manager/components/region-selector/Regio
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
 import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms';
-import { SecretManagerGuidesButton } from '@secret-manager/components/secret-manager-guides/SecretManagerGuideButton';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 import { isErrorResponse } from '@/common/utils/api/api';
 
