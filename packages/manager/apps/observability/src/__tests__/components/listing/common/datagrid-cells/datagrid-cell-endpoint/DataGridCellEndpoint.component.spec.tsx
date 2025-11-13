@@ -37,7 +37,7 @@ vi.mock('@ovhcloud/ods-components', () => ({
   },
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="text-cell">{children}</div>
   ),

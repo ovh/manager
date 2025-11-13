@@ -99,21 +99,21 @@ vi.mock('@/components/form/select-field/SelectField.component', () => ({
     value,
     name,
     label,
-    onOdsChange,
+    onChange,
     error,
     isDisabled,
     className,
-    children,
+    options,
   }: {
     value?: string;
     name: string;
     label?: string;
     placeholder?: string;
-    onOdsChange?: (event: { detail: { value?: string | null } }) => void;
+    onChange?: (value: string | null) => void;
     error?: string;
     isDisabled?: boolean;
     className?: string;
-    children?: React.ReactNode;
+    options?: Array<{ value: string; label: string }>;
   }) => {
     const [selectValue, setSelectValue] = React.useState(value || '');
 
@@ -132,10 +132,14 @@ vi.mock('@/components/form/select-field/SelectField.component', () => ({
           className={className}
           onChange={(e) => {
             setSelectValue(e.target.value);
-            onOdsChange?.({ detail: { value: e.target.value } });
+            onChange?.(e.target.value);
           }}
         >
-          {children}
+          {options?.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
         {error && <span data-testid="select-error">{error}</span>}
       </div>

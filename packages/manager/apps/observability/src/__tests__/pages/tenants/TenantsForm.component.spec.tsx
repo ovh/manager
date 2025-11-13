@@ -68,7 +68,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
   ),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   ManagerButton: ({
     id,
     label,
