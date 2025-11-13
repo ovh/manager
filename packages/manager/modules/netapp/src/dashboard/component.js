@@ -7,6 +7,7 @@ export default {
     dashboardLink: '<',
     storage: '<',
     snapshotPoliciesLink: '<',
+    replicationsLink: '<',
     volumesLink: '<',
     isSnapshotPoliciesAvailable: '<',
     trackClick: '<',
