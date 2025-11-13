@@ -64,3 +64,16 @@ export const fetchDeploymentLogs = async (
 
   return data;
 };
+
+export const postWebsiteDeploy = async (
+  serviceName: string,
+  websiteId: number,
+  reset?: boolean,
+) => {
+  const { data } = await v6.post<void>(
+    `/hosting/web/${encodeURIComponent(serviceName)}/website/${websiteId}/deploy`,
+    { reset },
+  );
+
+  return data;
+};
