@@ -40,7 +40,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 capabilities.capacities.includes(
                   LogsConstants.CONSUMPTION_CAPACITY,
                 ) &&
-                capabilities.maximumQuantity === LogsConstants.INDEXING_TIERING,
+                capabilities.maximumQuantity ===
+                  LogsConstants.INDEXING_TIERING.MEDIUM,
             );
             const indexingSecondStepPrice = indexingCapacities.plan.details.pricings.default.find(
               (capabilities) =>
