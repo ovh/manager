@@ -66,5 +66,6 @@
   "packages/manager/apps/web",
   "packages/manager/apps/web-domains",
   "packages/manager/core/shell-client",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/modules/observability-to-customer"
 ]
