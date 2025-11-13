@@ -7,9 +7,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
+import queryClient from '@/QueryClient';
 import Routes from '@/routes/Routes';
-
-import queryClient from './QueryClient';
 
 function App() {
   const { shell } = useContext(ShellContext);
