@@ -1,4 +1,3 @@
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/telecom.png';
 import { Node } from '../node';
 
@@ -8,7 +7,7 @@ const telecomUniverse: Node = {
   translation: 'sidebar_telecom',
   shortTranslation: 'sidebar_telecom_short',
   illustration,
-  svgIcon: OvhProductName.PHONE,
+  svgIcon: 'phone',
   features: ['telecom'],
   forceNavigate: true,
   routing: {

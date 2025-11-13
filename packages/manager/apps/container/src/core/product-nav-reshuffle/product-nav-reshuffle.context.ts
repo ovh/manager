@@ -8,7 +8,6 @@ export type ProductNavReshuffleContextType = {
   currentNavigationNode: Node;
   navigationTree: Node;
   isMobile: boolean;
-  isAnimated: boolean;
   popoverPosition: number;
   skipToTheMainContentSlot: MutableRefObject<any>,
   startOnboarding: () => void;
@@ -20,8 +19,6 @@ export type ProductNavReshuffleContextType = {
   openNavigationSidebar: () => void;
   closeNavigationSidebar: () => void;
   setCurrentNavigationNode: (node: Node) => void;
-  setNavigationTree: (tree: Node) => void;
-  setIsAnimated: (isAnimated: boolean) => void;
   setPopoverPosition: (value: number) => void;
 };
 

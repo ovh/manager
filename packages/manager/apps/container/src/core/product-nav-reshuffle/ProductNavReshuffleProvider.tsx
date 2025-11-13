@@ -1,11 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { useLocation } from 'react-router-dom';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context/useApplicationContext';
-import ProductNavReshuffleContext, { ProductNavReshuffleContextType } from './product-nav-reshuffle.context';
+import ProductNavReshuffleContext, {
+  ProductNavReshuffleContextType,
+} from './product-nav-reshuffle.context';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
 import useOnboarding, { ONBOARDING_OPENED_STATE_ENUM } from '../onboarding';
+import rootTree from '@/container/nav-reshuffle/sidebar/navigation-tree/root';
+import {
+  initTree,
+  findNodeById,
+  initFeatureNames,
+} from '@/container/nav-reshuffle/sidebar/utils';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -14,18 +22,39 @@ type Props = {
 export const ProductNavReshuffleProvider = ({
   children = null,
 }: Props): JSX.Element => {
-
-  const location = useLocation();
-  const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
-  const [navigationTree, setNavigationTree] = useState({});
+  const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(
+    null,
+  );
+  const [navigationTree, setNavigationTree] = useState(rootTree);
   const shell = useShell();
-  const [isMobile, setIsMobile] = useState(useMediaQuery({
-    query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
-  }));
-  const skipToTheMainContentSlot = useRef(null)
-  const [isAnimated, setIsAnimated] = useState(false);
-  const [isLocationChangesOnce, setIsLocationChangesOnce] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    useMediaQuery({
+      query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
+    }),
+  );
+  const skipToTheMainContentSlot = useRef(null);
   const [popoverPosition, setPopoverPosition] = useState<number>(0);
+  const environment = shell.getPlugin('environment');
+
+  /** Initialize navigation tree */
+  useEffect(() => {
+    const initializeNavigationTree = async () => {
+      if (currentNavigationNode) return;
+      const features = initFeatureNames(navigationTree);
+
+      const results = await fetchFeatureAvailabilityData(features);
+
+      const region = environment.getEnvironment().getRegion();
+      const [tree] = initTree([navigationTree], results, region);
+
+      const mxPlanNode = findNodeById(tree, 'mxplan');
+      if (mxPlanNode && region === 'CA') {
+        mxPlanNode.routing.hash = '#/email_mxplan';
+      }
+      setNavigationTree(tree);
+    };
+    initializeNavigationTree();
+  }, []);
 
   const onboarding = useOnboarding();
 
@@ -81,28 +110,22 @@ export const ProductNavReshuffleProvider = ({
 
   useEffect(() => {
     const handleResize = () => {
-      if(window.innerWidth <= MOBILE_WIDTH_RESOLUTION){
+      if (window.innerWidth <= MOBILE_WIDTH_RESOLUTION) {
         setIsMobile(true);
-      } else{
+      } else {
         setIsMobile(false);
       }
-    }
+    };
 
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-    }
+    };
   }, []);
 
-  useEffect(() => {
-    if (isAnimated) return;
-    if (isLocationChangesOnce) setIsAnimated(true);
-    setIsLocationChangesOnce(true);
-  }, [location])
-
   const pnrContext: ProductNavReshuffleContextType = {
-   // onboarding
+    // onboarding
     onboardingOpenedState,
     openOnboarding,
     startOnboarding,
@@ -119,11 +142,8 @@ export const ProductNavReshuffleProvider = ({
     currentNavigationNode,
     setCurrentNavigationNode,
     navigationTree,
-    setNavigationTree,
     isMobile,
     skipToTheMainContentSlot,
-    isAnimated,
-    setIsAnimated,
     popoverPosition,
     setPopoverPosition,
   };

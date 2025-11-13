@@ -1,4 +1,3 @@
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/security-identity-operations.png';
 import { Node, NodeTag } from '../node';
 
@@ -8,7 +7,7 @@ const sioUniverse: Node = {
   translation: 'sidebar_security_identity_operations',
   shortTranslation: 'sidebar_security_identity_operations_short',
   illustration,
-  svgIcon: OvhProductName.SHIELDCHECK,
+  svgIcon: 'shield-check',
   routing: {
     application: 'iam',
   },
