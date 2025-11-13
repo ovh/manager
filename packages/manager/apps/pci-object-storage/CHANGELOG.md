@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.19.6...@ovh-ux/manager-pci-object-storage-app@0.19.7) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.19.5...@ovh-ux/manager-pci-object-storage-app@0.19.6) (2025-11-13)
+
+
+### Bug Fixes
+
+* **object-storage:** fix issue on non available region ([ab4948d](https://github.com/ovh/manager/commit/ab4948dc7f1ce8fd393b0b2b0dc18600a8f74ced)), closes [#TAPC-5206](https://github.com/ovh/manager/issues/TAPC-5206)
+* **object-storage:** link for fr sub ([a49cbe8](https://github.com/ovh/manager/commit/a49cbe80db36522374596998433182d340204d1e)), closes [#TAPC-5104](https://github.com/ovh/manager/issues/TAPC-5104)
+
+
+
+
+
 ## [0.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.19.4...@ovh-ux/manager-pci-object-storage-app@0.19.5) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

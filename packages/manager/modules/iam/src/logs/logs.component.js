@@ -9,5 +9,6 @@ export default {
     activityLogsAvailability: '<',
     accessPolicyLogsAvailability: '<',
     onboardingGuides: '<',
+    changelogLinks: '<',
   },
 };

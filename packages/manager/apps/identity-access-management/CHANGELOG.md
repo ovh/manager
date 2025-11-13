@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.0...@ovh-ux/manager-identity-access-management-app@0.3.1) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.2.15...@ovh-ux/manager-identity-access-management-app@0.3.0) (2025-11-12)
+
+
+### Features
+
+* **iam:** add 'Roadmap & Changelog' links in tag-manager ([660be50](https://github.com/ovh/manager/commit/660be50151efad659a0a5af46529e2c51f9cea62)), closes [#MAIAM-43](https://github.com/ovh/manager/issues/MAIAM-43)
+
+
+
+
+
 ## [0.2.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.2.14...@ovh-ux/manager-identity-access-management-app@0.2.15) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.33.0...@ovh-ux/manager-dbaas-logs@1.34.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4456] ([3d47b81](https://github.com/ovh/manager/commit/3d47b81da7dffd20183891bb16f78182fde9d440))
+
+
+### Features
+
+* **dedicated.dbaas:** add revamp free tier details ([07451c0](https://github.com/ovh/manager/commit/07451c05e9fc87bf3394ffe47cb8f669eb1e9a51)), closes [#MAOBS-134](https://github.com/ovh/manager/issues/MAOBS-134)
+
+
+
+
+
 # [1.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.32.0...@ovh-ux/manager-dbaas-logs@1.33.0) (2025-09-22)
 
 

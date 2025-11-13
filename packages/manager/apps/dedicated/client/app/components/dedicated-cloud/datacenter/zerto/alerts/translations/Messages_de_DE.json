@@ -1,14 +1,14 @@
 {
-  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "Ihr Zerto Wiederherstellungsplan zwischen diesem Private Cloud und ",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "Ihr Zerto Disaster Recovery Plan zwischen dieser Private Cloud und ",
   "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "der Private Cloud {{pccId}} wurde erfolgreich installiert!",
-  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "Ihre Remote-Infrastruktur wurde erfolgreich installiert!",
-  "dedicatedCloud_options_zerto_delivered_message_part_three": "Sie haben Ihr ZSSP-Passwort an die E-Mail-Adresse {{email}} erhalten.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Ihr Zerto PRA wird aktiviert. Der Vorgang kann bis zu 4 Stunden dauern.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Zögern Sie nicht, die Aufgabe enableDisasterRecovery des Haupt-PCC zu überprüfen, um den Fortschritt zu verfolgen.",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "Ihrer Remote-Infrastruktur wurde erfolgreich installiert!",
+  "dedicatedCloud_options_zerto_delivered_message_part_three": "Ihr ZSSP-Passwort wurde an die E-Mail-Adresse {{email}} versandt.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Zerto DRP wird aktiviert. Dieser Vorgang kann bis zu 4 Stunden dauern.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Sie können die Task enableDisasterRecovery Ihrer primären Private Cloud überprüfen, um den Fortschritt der DRP-Aktivierung nachzuverfolgen.",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Um die Aktivierung Ihrer Zerto-Option abzuschließen, konfigurieren Sie bitte die Einstellungen Ihres Standorts über die Seite zur ",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "Konfiguration.",
-  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Um die Aktivierung Ihres Zerto PRA abzuschließen, laden wir Sie ein, die IPs des VPN unten hinzuzufügen.",
-  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "Ihr Zerto Wiederherstellungsplan zwischen diesem Essentials und ",
-  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "der Essentials {{pccId}} wurde erfolgreich installiert!",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Zögern Sie nicht, die Aufgabe enableDisasterRecovery des Haupt-Essentials zu überprüfen, um den Fortschritt zu verfolgen."
+  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Um die Aktivierung Ihres Zerto DRP abzuschließen, geben Sie bitte unten die VPN-IPs an",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "Ihr Zerto Disaster Recovery Plan zwischen diesem Essentials Produkt und ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "dem Essentials Produkt {{pccId}} wurde erfolgreich installiert!",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Sie können die Task enableDisasterRecovery Ihres primären Essentials Produkts überprüfen, um den Fortschritt nachzuverfolgen."
 }

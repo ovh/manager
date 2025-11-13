@@ -1,0 +1,7 @@
+{
+  "title": "Kontoeinstellungen auswählen",
+  "description": "Sie haben bereits einen Account? <Link label=\"Connectez-vous\"></Link>",
+  "country_setting": "Land des steuerlichen Wohnsitzes",
+  "currency_setting": "Währung",
+  "site_setting": "Website (Sprache)"
+}

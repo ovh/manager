@@ -93,8 +93,8 @@ export function useOrderFunnel(
       privacy: suggestions?.suggestions?.find(
         (sug) => sug?.region === suggestions?.defaultRegion,
       )?.unsecureHttp
-        ? PrivacyEnum.private
-        : PrivacyEnum.public,
+        ? PrivacyEnum.public
+        : PrivacyEnum.private,
       labels: [],
       sshKey: [],
       volumes: [],
