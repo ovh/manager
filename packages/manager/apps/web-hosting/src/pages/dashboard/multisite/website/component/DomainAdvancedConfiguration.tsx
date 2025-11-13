@@ -30,11 +30,13 @@ type FormData = z.infer<typeof websiteFormSchema>;
 interface DomainAdvancedConfigurationProps {
   control: Control<FormData, unknown, FormData>;
   controlValues: FormData;
+  isAddingDomain?: boolean;
 }
 
 export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationProps> = ({
   control,
   controlValues,
+  isAddingDomain = false,
 }: DomainAdvancedConfigurationProps) => {
   const { serviceName } = useParams();
 
@@ -60,6 +62,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 type={ODS_INPUT_TYPE.text}
                 className="w-full"
                 name="website-path"
+                isDisabled={isAddingDomain}
                 value={field.value}
                 onOdsChange={(e) => field.onChange(e.target.value)}
               />
