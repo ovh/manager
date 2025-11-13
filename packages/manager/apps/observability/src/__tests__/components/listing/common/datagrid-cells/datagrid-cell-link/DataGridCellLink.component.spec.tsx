@@ -11,7 +11,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 // Mock ODS components
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   Links: ({
     onClickReturn,
     label,
