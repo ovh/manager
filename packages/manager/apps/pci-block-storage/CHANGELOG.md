@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.26...@ovh-ux/manager-pci-block-storage-app@0.21.0) (2025-11-13)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** fix classic 3AZ info link ([3bcfa44](https://github.com/ovh/manager/commit/3bcfa44620753f71233afb12fd704a0743714d17)), closes [#TAPC-5228](https://github.com/ovh/manager/issues/TAPC-5228)
+
+
+### Features
+
+* **pci-block-storage:** update tracking ([eeb6642](https://github.com/ovh/manager/commit/eeb6642602c77cf508a0ef98490c029d7e5acd75)), closes [#TAPC-3911](https://github.com/ovh/manager/issues/TAPC-3911)
+
+
+
+
+
 ## [0.20.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.25...@ovh-ux/manager-pci-block-storage-app@0.20.26) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
