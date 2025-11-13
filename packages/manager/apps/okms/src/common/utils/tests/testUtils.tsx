@@ -101,6 +101,28 @@ export const renderWithI18n = async (ui: React.ReactElement) => {
 };
 
 /**
+ * Renders a hook with i18n provider wrapper
+ * @param callback - The hook function to test
+ * @param options - Additional render options (excluding wrapper since we provide it)
+ * @returns RenderHookResult with the hook's return value and utilities
+ */
+export const renderHookWithI18n = async <TProps, TResult>(
+  callback: (props: TProps) => TResult,
+  options?: Omit<RenderHookOptions<TProps>, 'wrapper'>,
+): Promise<RenderHookResult<TResult, TProps>> => {
+  if (!i18nValue) {
+    i18nValue = await initTestI18n();
+  }
+  const Wrappers = ({ children }: { children: React.ReactNode }) => (
+    <I18nextProvider i18n={i18nValue}>{children}</I18nextProvider>
+  );
+  return renderHook(callback, {
+    wrapper: Wrappers,
+    ...options,
+  });
+};
+
+/**
  * Create API response mock for tests
  */
 export const createErrorResponseMock = (message: string): ErrorResponse => {
