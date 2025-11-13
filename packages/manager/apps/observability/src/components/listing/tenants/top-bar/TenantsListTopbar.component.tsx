@@ -1,10 +1,10 @@
+import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { BUTTON_VARIANT, Button } from '@ovh-ux/muk';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { urls } from '@/routes/Routes.constants';
@@ -20,19 +20,22 @@ export default function TenantsListTopbar() {
     navigate(urls.tenantsCreation);
   };
 
+  // FIXME: fix warning "React does not recognize the `isIamTrigger` prop on a DOM element."
   return (
     <div className="flex justify-between w-full items-center mr-4">
-      <ManagerButton
-        id="assign-tag"
-        label={t('tenants:listing.create_tenant_button')}
+      <Button
+        id="create-tenant"
         onClick={addNewTenant}
-        variant={ODS_BUTTON_VARIANT.default}
+        variant={BUTTON_VARIANT.default}
         urn={selectedService?.iam?.urn ?? ''}
         iamActions={IAM_ACTIONS.CREATE_TENANT}
+        isIamTrigger={true}
         displayTooltip={true}
-        isDisabled={isLoading}
-        isLoading={isLoading}
-      ></ManagerButton>
+        disabled={isLoading}
+        loading={isLoading}
+      >
+        {t('tenants:listing.create_tenant_button')}
+      </Button>
     </div>
   );
 }
