@@ -16,5 +16,6 @@
   "tableActionStop": "Anhalten",
   "tableActionDelete": "Löschen",
   "deleteTableTooltip": "Das Notebook muss sich im Status „Beendet“ befinden",
-  "quantumTitle": "Emulators"
+  "quantumTitle": "Emulators",
+  "qpuTitle": "QPUs"
 }

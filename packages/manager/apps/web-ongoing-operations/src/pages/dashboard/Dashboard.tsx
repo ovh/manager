@@ -114,20 +114,21 @@ export default function DashboardPage() {
       tabs={
         <Tabs defaultValue={ParentEnum.DOMAIN}>
           <TabList>
-            {tabsList.map((tab: DashboardTabItemProps) => {
-              if (tab.hide) return <></>;
-              return (
-                <NavLink
-                  key={`osds-tab-bar-item-${tab.name}`}
-                  to={tab.to}
-                  className="no-underline"
-                >
-                  <Tab id={tab.name} role="tab" value={tab.name}>
-                    {tab.title}
-                  </Tab>
-                </NavLink>
-              );
-            })}
+            {tabsList
+              .filter((tab: DashboardTabItemProps) => !tab.hide)
+              .map((tab: DashboardTabItemProps) => {
+                return (
+                  <NavLink
+                    key={`osds-tab-bar-item-${tab.name}`}
+                    to={tab.to}
+                    className="no-underline"
+                  >
+                    <Tab id={tab.name} role="tab" value={tab.name}>
+                      {tab.title}
+                    </Tab>
+                  </NavLink>
+                );
+              })}
           </TabList>
         </Tabs>
       }

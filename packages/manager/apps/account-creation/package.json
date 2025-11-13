@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-creation-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Application used to finalize an account creation",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/manager-gcj-module": "^0.3.3",
     "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-react-core-application": "^0.12.14",
-    "@ovh-ux/manager-react-shell-client": "^0.11.1",
+    "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.4.1",
     "@ovh-ux/shell": "^4.8.0",
     "@ovhcloud/ods-components": "^18.6.2",
