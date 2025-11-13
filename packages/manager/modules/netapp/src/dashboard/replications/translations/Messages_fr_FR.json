@@ -1,0 +1,20 @@
+{
+  "netapp_replications_breadcrumb": "Réplications",
+  "netapp_replications_title": "Liste des réplications",
+  "netapp_replications_title_no_replication": "Pas de réplication",
+  "netapp_replications_information": "Gérez ici les réplications de volumes entrants et sortants, y compris les demandes de synchronisation et le suivi de leur progression.",
+  "netapp_replications_source_efs_id": "Source",
+  "netapp_replications_destination_efs_id": "Destination",
+  "netapp_replications_efs_link_service": "Service : {{ shareid }}",
+  "netapp_replications_efs_link_volume": "Volume : {{ shareid }}",
+  "netapp_replications_status": "Réplication status",
+  "netapp_replications_status_pending": "En attente d'approbation",
+  "netapp_replications_status_cutover": "En cours de promotion",
+  "netapp_replications_status_completed": "Migré",
+  "netapp_replications_status_error": "Erreur",
+  "netapp_replications_status_accepted_synch_error": "Erreur de synchronisation",
+  "netapp_replications_status_accepted_synchronize": "Synchronisé",
+  "netapp_replications_status_accepted_synchronizating": "En cours de synchronisation",
+  "netapp_replications_status_deleting": "Suppression en cours",
+  "netapp_replications_pending_help": "Ce volume est en attente d'une confirmation de la réplication. Pour approuver, vous devez accepter la réplication à partir du service de destination. Une fois confirmée la réplication commencera."
+}
