@@ -65,6 +65,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('netapp.dashboard.snapshotPolicies', $transition$.params()),
       volumesLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard.volumes', $transition$.params()),
+      replicationsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('netapp.dashboard.replications', $transition$.params()),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       storage: /* @ngInject */ ($http, serviceName) =>

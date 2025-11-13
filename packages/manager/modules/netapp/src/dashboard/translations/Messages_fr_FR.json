@@ -4,5 +4,6 @@
   "netapp_dashboard_snapshot_policies": "Snapshot policies",
   "netapp_dashboard_global_error": "L'erreur suivante est survenue : <br> {{message}}<br> request_id: {{requestId}}",
   "netapp_dashboard_guide_title": "Guides",
-  "netapp_dashboard_guide_network_configuration": "Enterprise File Storage - Configuration du réseau privé"
+  "netapp_dashboard_guide_network_configuration": "Enterprise File Storage - Configuration du réseau privé",
+  "netapp_dashboard_replications": "Réplications"
 }
