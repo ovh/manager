@@ -4,6 +4,7 @@ import {
   getClickProps,
   TrackingPageParams,
   TrackingClickParams,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 import { useMatches } from 'react-router-dom';
@@ -71,6 +72,25 @@ export const useTracking = () => {
     );
   };
 
+  const trackInfoBanner = ({
+    pageName,
+    subApp,
+  }: Omit<CommunicationTrackingPageParams, 'pageType'>) =>
+    trackPage({
+      pageName,
+      pageType: PageType.bannerInfo,
+      subApp,
+    });
+  const trackErrorBanner = ({
+    pageName,
+    subApp,
+  }: Omit<CommunicationTrackingPageParams, 'pageType'>) =>
+    trackPage({
+      pageName,
+      pageType: PageType.bannerError,
+      subApp,
+    });
+
   const trackClick = ({
     subApp,
     location,
@@ -97,6 +117,8 @@ export const useTracking = () => {
   return {
     trackPage,
     trackClick,
+    trackErrorBanner,
+    trackInfoBanner,
   };
 };
 

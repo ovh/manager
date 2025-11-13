@@ -4,10 +4,13 @@ import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useDeleteRouting } from '@/data/hooks/useNotificationRouting/useNotificationRouting';
 import { useAuthorization, usePendingRedirect } from '@/hooks';
 import { urls } from '@/routes/routes.constant';
 import { useNotificationRouting } from '@/data';
+import { TrackingSubApps } from '@/tracking.constant';
+import { useTracking } from '@/hooks/useTracking/useTracking';
 
 export default function DeleteContactPage() {
   const { routingId } = useParams();
@@ -17,17 +20,35 @@ export default function DeleteContactPage() {
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/routing/delete',
   ]);
+  const { trackClick, trackErrorBanner, trackInfoBanner } = useTracking();
+
+  const trackButtonClick = (actions: string[]) =>
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions,
+      subApp: TrackingSubApps.Settings,
+    });
 
   const { mutate, isPending } = useDeleteRouting({
     routingId: routingId as string,
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('delete_routing_success_message'));
+      trackInfoBanner({
+        pageName: `delete_rule_success_${t('delete_routing_success_message')}`,
+        subApp: TrackingSubApps.Settings,
+      });
       navigate(urls.routing.listing);
     },
     onError: () => {
       clearNotifications();
       addError(t('delete_routing_error_message'));
+      trackErrorBanner({
+        pageName: `delete_rule_error_${t('delete_routing_error_message')}`,
+        subApp: TrackingSubApps.Settings,
+      });
       navigate(urls.routing.listing);
     },
   });
@@ -41,6 +62,7 @@ export default function DeleteContactPage() {
 
   const onConfirm = () => {
     if (isPending) return;
+    trackButtonClick(['delete_rule', 'confirm']);
     mutate();
   };
 
@@ -57,7 +79,10 @@ export default function DeleteContactPage() {
       type={ODS_MODAL_COLOR.warning}
       heading={t('delete_routing_modal_title')}
       onDismiss={() => navigate(urls.routing.listing)}
-      onSecondaryButtonClick={() => navigate(urls.routing.listing)}
+      onSecondaryButtonClick={() => {
+        trackButtonClick(['delete_rule', 'cancel']);
+        navigate(urls.routing.listing);
+      }}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       onPrimaryButtonClick={onConfirm}
