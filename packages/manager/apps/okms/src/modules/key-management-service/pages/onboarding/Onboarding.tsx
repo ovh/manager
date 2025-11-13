@@ -9,15 +9,16 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import useGuideUtils from '@key-management-service/hooks/guide/useGuideUtils';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { GUIDES_QUICK_START } from '@key-management-service/components/guide/guide-quick-start/guideQuickStart.constants';
 import onboardingImgSrc from './onboarding-img.png';
+import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
 export default function Onboarding() {
   const { t } = useTranslation('key-management-service/onboarding');
   const navigate = useNavigate();
-  const guideLinks = useGuideUtils();
   const { trackClick } = useOvhTracking();
+  const guideQuickStart = useGuideLink(GUIDES_QUICK_START);
   const descriptionsKeys = ['description', 'description_secondary'];
 
   return (
@@ -48,7 +49,7 @@ export default function Onboarding() {
         navigate(KMS_ROUTES_URLS.kmsCreate);
       }}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
-      moreInfoHref={guideLinks?.quickStart}
+      moreInfoHref={guideQuickStart}
     />
   );
 }

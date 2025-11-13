@@ -1,41 +1,39 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
 import {
   useFeatureAvailability,
   UseFeatureAvailabilityResult,
 } from '@ovh-ux/manager-module-common-api';
-import {
-  GUIDE_LIST,
-  SUPPORT_URL,
-} from '@key-management-service/hooks/guide/guidesLinks.constant';
 import KmsGuidesHeader from './KmsGuidesHeader';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-  }),
-}));
-
-const environment = {
-  getUser: vi.fn().mockReturnValue({ ovhSubsidiary: 'FR' }),
-  getUserLocale: vi.fn().mockReturnValue('fr_FR'),
+const MOCKED_GUIDE_ITEM_TEST_IDS = {
+  quickStart: 'quick-start',
+  usage: 'usage',
+  kmip: 'kmip',
 };
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  ShellContext: React.createContext({
-    environment: {
-      getEnvironment: vi.fn(() => environment),
-    },
-    shell: {
-      environment: {
-        getEnvironment: vi.fn(() => environment),
-      },
-    },
-  }),
-  useOvhTracking: () => ({ trackClick: vi.fn() }),
+vi.mock('./guide-quick-start/useGuideItemQuickStart', () => ({
+  useGuideItemQuickStart: vi.fn(() => ({
+    id: 0,
+    dataTestid: MOCKED_GUIDE_ITEM_TEST_IDS.quickStart,
+  })),
+}));
+
+vi.mock('./guide-usage/useGuideItemUsage', () => ({
+  useGuideItemUsage: vi.fn(() => ({
+    id: 1,
+    dataTestid: MOCKED_GUIDE_ITEM_TEST_IDS.usage,
+  })),
+}));
+
+vi.mock('./guide-kmip/useGuideItemKmip', () => ({
+  useGuideItemKmip: vi.fn(() => ({
+    id: 2,
+    dataTestid: MOCKED_GUIDE_ITEM_TEST_IDS.kmip,
+  })),
 }));
 
 vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
@@ -46,18 +44,8 @@ vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
 });
 
 describe('KMS Guides Header tests suite', () => {
-  const renderComponent = () => {
-    const queryClient = new QueryClient();
-
-    return render(
-      <QueryClientProvider client={queryClient}>
-        <KmsGuidesHeader />
-      </QueryClientProvider>,
-    );
-  };
-
   it('should display all guides when feature flipping is true', async () => {
-    // setup
+    // GIVEN
     vi.mocked(useFeatureAvailability).mockReturnValue(({
       data: {
         [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: true,
@@ -65,39 +53,23 @@ describe('KMS Guides Header tests suite', () => {
       },
     } as unknown) as UseFeatureAvailabilityResult);
 
-    // act
-    const { getByTestId } = renderComponent();
+    // WHEN
+    await renderWithI18n(<KmsGuidesHeader />);
 
-    // then
-    await waitFor(() => {
-      let guideElement = getByTestId('guides_header_quick_start');
-      expect(guideElement).toBeInTheDocument();
-      let odsLinkElement = guideElement.closest('ods-link');
-      expect(odsLinkElement).toHaveAttribute(
-        'href',
-        `${SUPPORT_URL.EU}${GUIDE_LIST.quickStart.FR}`,
-      );
-
-      guideElement = getByTestId('guides_header_kms_usage');
-      expect(guideElement).toBeInTheDocument();
-      odsLinkElement = guideElement.closest('ods-link');
-      expect(odsLinkElement).toHaveAttribute(
-        'href',
-        `${SUPPORT_URL.EU}${GUIDE_LIST.usage.FR}`,
-      );
-
-      guideElement = getByTestId('guides_header_connect_kmip_product');
-      expect(guideElement).toBeInTheDocument();
-      odsLinkElement = guideElement.closest('ods-link');
-      expect(odsLinkElement).toHaveAttribute(
-        'href',
-        `${SUPPORT_URL.EU}${GUIDE_LIST.kmip.FR}`,
-      );
-    });
+    // THEN
+    expect(
+      screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.quickStart),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.usage),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.kmip),
+    ).toBeInTheDocument();
   });
 
   it('should only display quick start guide when feature flipping is false', async () => {
-    // setup
+    // GIVEN
     vi.mocked(useFeatureAvailability).mockReturnValue(({
       data: {
         [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: false,
@@ -105,16 +77,18 @@ describe('KMS Guides Header tests suite', () => {
       },
     } as unknown) as UseFeatureAvailabilityResult);
 
-    // act
-    const { getByTestId, queryByTestId } = renderComponent();
+    // WHEN
+    await renderWithI18n(<KmsGuidesHeader />);
 
-    // then
-    await waitFor(() => {
-      expect(getByTestId('guides_header_quick_start')).toBeInTheDocument();
-      expect(queryByTestId('guides_header_kms_usage')).not.toBeInTheDocument();
-      expect(
-        queryByTestId('guides_header_connect_kmip_product'),
-      ).not.toBeInTheDocument();
-    });
+    // THEN
+    expect(
+      screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.quickStart),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.usage),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.kmip),
+    ).not.toBeInTheDocument();
   });
 });
