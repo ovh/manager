@@ -1,0 +1,11 @@
+{
+  "addUserPolicyTitle": "Importar un archivo",
+  "addUserPolicyDescription": "Puede importar un archivo JSON para gestionar los derechos de su usuario.",
+  "userPolicyToastErrorTitle": "Error",
+  "userPolicySuccessTitle": "Éxito",
+  "userPolicyToastSuccessDescription": "La política ha sido importada",
+  "userPolicyJSONToastError": "Se ha producido un error al leer el archivo JSON.",
+  "errorFileRequired": "Por favor, seleccione 1 archivo",
+  "fileUploaderButtonCancel": "Cancelar",
+  "fileUploaderButtonConfirm": "Importar"
+}

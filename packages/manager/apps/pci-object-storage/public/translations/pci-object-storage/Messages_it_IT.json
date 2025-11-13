@@ -1,0 +1,8 @@
+{
+  "title": "Object Storage",
+  "description": "Ospita il tuo catalogo di dati nella nostra soluzione di storage di oggetti. Puoi gestire questi dati dalla tua applicazione utilizzando API compatibili S3.",
+  "crumb-object-storage": "Object Storage",
+  "containerTab": "I miei archivi",
+  "usersTab": "Utenti",
+  "settingsTab": "Configurazioni"
+}

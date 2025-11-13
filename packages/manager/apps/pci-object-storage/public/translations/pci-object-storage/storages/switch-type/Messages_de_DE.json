@@ -1,0 +1,10 @@
+{
+  "switchTypeTitle": "Ändern Sie den Typ Ihres Containers",
+  "switchToPublicDescription": "Möchten Sie den Datencache öffentlich machen?",
+  "switchToPrivateDescription": "Möchten Sie den Datencache privat machen?",
+  "switchTypeButtonCancel": "Abbrechen",
+  "switchTypeButtonConfirm": "Bestätigen",
+  "updateContainerToastErrorTitle": "Es ist ein Fehler aufgetreten",
+  "updateContainerToastSuccessTitle": "Erfolg",
+  "updateContainerToastSuccessDescription": "Der Container wurde geändert"
+}

@@ -1,0 +1,19 @@
+{
+  "addUserTitle": "Criar um utilizador",
+  "userNameLabel": "Descrição do utilizador",
+  "addUserButtonCancel": "Anular",
+  "addUserButtonConfirm": "Criar",
+  "formAddUserButtonClose": "Fechar",
+  "addUserToastErrorTitle": "Ocorreu um erro",
+  "addUserToastSuccessTitle": "Sucesso",
+  "addUserToastSuccessDescription": "O utilizador {{ name }} foi criado com sucesso.",
+  "newUserCreationInProgress": "Criação do utilizador em curso...",
+  "newUserInformationTitle": "Informações do utilizador",
+  "downloadUserButton": "Descarregar",
+  "newUserInformationLabel": "Encontre abaixo as informações de autenticação do Object Storage para o utilizador {{ name }}.",
+  "newUserUsernameLabel": "O seu nome de utilizador:",
+  "newUserDescriptionLabel": "A sua descrição:",
+  "newUserAccessKeyLabel": "A sua chave de acesso:",
+  "newUserPwdLabel": "A sua chave secreta:",
+  "passwordCopy": "Copiado!"
+}

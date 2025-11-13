@@ -1,0 +1,16 @@
+{
+  "errorFileRequired": "Bitte wählen Sie mindestens eine Datei aus",
+  "errorFileNumber": "Sie können nur eine Datei auswählen",
+  "errorJsonFile": "Die Datei muss ein JSON sein",
+  "prefixRequiredError": "Dieses Feld muss ausgefüllt werden",
+  "prefixFieldLabel": "Präfix",
+  "prefixFieldPlaceholder": "Geben Sie ein Präfix ein",
+  "importFileLabel": "Dateien importieren",
+  "importFileButton": "Dateien auswählen...",
+  "fileUploaderButtonCancel": "Abbrechen",
+  "fileUploaderButtonConfirm": "Importieren",
+  "storageClassLabel": "Speicherklasse",
+  "popOverDesc1": "Finden Sie Informationen zu:",
+  "popOverDesc2": "Die Speicherklassen",
+  "popOverDesc3": "Die Preise"
+}

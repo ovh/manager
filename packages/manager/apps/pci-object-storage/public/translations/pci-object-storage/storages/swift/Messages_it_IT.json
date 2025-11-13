@@ -1,0 +1,12 @@
+{
+  "dashboardTitle": "Cruscotto",
+  "informationTitle": "Informazioni",
+  "spaceUsedTableHeader": "Spazio utilizzato",
+  "endpointRegionTableHeader": "Punto finale",
+  "cnameTableHeader": "Registrazione CNAME/TXT",
+  "configurationTitle": "Gestione del servizio",
+  "swiftIdLabel": "ID del contenitore",
+  "copyLabel": "Copiato",
+  "deleteSwiftButton": "Eliminare",
+  "settingsTitle": "Configurazioni"
+}

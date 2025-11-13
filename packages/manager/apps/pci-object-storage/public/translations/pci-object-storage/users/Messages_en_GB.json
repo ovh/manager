@@ -1,0 +1,17 @@
+{
+  "createNewUser": "Create a user",
+  "tableHeaderName": "Name",
+  "tableHeaderDescription": "Description",
+  "tableHeaderAccessKey": "Access key",
+  "tableActionImportUserAccess": "Import a user access policy (JSON)",
+  "tableActionDowloadUserAccess": "Download the user access policy (JSON)",
+  "tableActionDowloadRclone": "Download the rclone file",
+  "tableHeaderS3Enabler": "S3 user",
+  "tableS3Disable": "S3 disabled",
+  "tableS3Enable": "S3 enabled",
+  "s3InfoHelper": "To use a user with your S3 buckets, you need to generate credentials using the enable option in the menu on the right",
+  "tableActionShowSecretKey": "View secret key",
+  "tableActionEnable": "Enable",
+  "tableActionDisable": "Disable",
+  "userPolicyDownloadFailed": "An error occurred"
+}

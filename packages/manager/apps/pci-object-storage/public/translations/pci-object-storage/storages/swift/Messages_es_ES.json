@@ -1,0 +1,12 @@
+{
+  "dashboardTitle": "Tablero",
+  "informationTitle": "Más información",
+  "spaceUsedTableHeader": "Espacio utilizado",
+  "endpointRegionTableHeader": "Punto final",
+  "cnameTableHeader": "Registro CNAME/TXT",
+  "configurationTitle": "Gestión del servicio",
+  "swiftIdLabel": "Id del contenedor",
+  "copyLabel": "Copiado",
+  "deleteSwiftButton": "Eliminar",
+  "settingsTitle": "Configuraciones"
+}

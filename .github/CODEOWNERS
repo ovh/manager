@@ -52,6 +52,7 @@
 /packages/manager/apps/pci-ai-tools @ovh/dev-manager-pci-ai
 /packages/manager/apps/pci-databases-analytics @ovh/dev-manager-pci-database
 /packages/manager/apps/pci-dataplatform @ovh/dev-manager-pci-database
+/packages/manager/apps/pci-object-storage @ovh/dev-manager-pci-database
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
 /packages/manager/apps/restricted @ovh/dev-manager-enablers-all

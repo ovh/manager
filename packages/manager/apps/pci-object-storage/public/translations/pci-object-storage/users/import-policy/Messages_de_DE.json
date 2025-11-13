@@ -1,0 +1,11 @@
+{
+  "addUserPolicyTitle": "Eine Datei importieren",
+  "addUserPolicyDescription": "Sie können eine JSON-Datei importieren, um die Berechtigungen Ihres Benutzers zu verwalten.",
+  "userPolicyToastErrorTitle": "Fehler",
+  "userPolicySuccessTitle": "Erfolg",
+  "userPolicyToastSuccessDescription": "Die Richtlinie wurde importiert",
+  "userPolicyJSONToastError": "Beim Lesen der JSON-Datei ist ein Fehler aufgetreten.",
+  "errorFileRequired": "Bitte wählen Sie 1 Datei aus",
+  "fileUploaderButtonCancel": "Abbrechen",
+  "fileUploaderButtonConfirm": "Importieren"
+}
