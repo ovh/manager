@@ -1,0 +1,21 @@
+{
+  "createNewStorage": "Załóż kontener obiektów",
+  "tableHeaderName": "Nazwa",
+  "tableHeaderLocation": "Lokalizacja",
+  "tableHeaderDeploymentMode": "Tryb wdrożenia",
+  "tableHeaderOffer": "Oferta",
+  "tableSwiftOffer": "Szybki",
+  "tableS3Offer": "Kompatybilne z S3",
+  "tableHeaderObjectNumber": "Liczba obiektów",
+  "tableHeaderSpaceUsed": "Zajęta przestrzeń",
+  "tableHeaderType": "Rodzaj",
+  "tablePublicType": "Public",
+  "tablePrivateType": "Prywatny",
+  "tableStaticType": "Statyczny",
+  "tableActionManage": "Szczegóły",
+  "tableActionCopy": "Kopiuj ID",
+  "tableActionSwitchToPublic": "Przejdź na publiczny",
+  "tableActionSwitchToPrivate": "Przejdź na prywatny",
+  "tableActionAddUser": "Dodaj użytkownika",
+  "tableActionDelete": "Usuń"
+}
