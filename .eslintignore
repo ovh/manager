@@ -35,6 +35,7 @@ packages/manager/modules/config
 packages/manager/modules/gcj
 packages/manager/modules/logs-to-customer
 packages/manager/modules/network-common
+packages/manager/modules/observability-to-customer
 packages/manager/modules/order
 packages/manager-tools/manager-cli
 packages/manager-tools/manager-generator
@@ -47,6 +48,7 @@ packages/manager-tools/manager-pm
 packages/manager-tools/manager-muk-cli
 packages/manager/apps/pci-instances
 packages/manager/apps/pci-workflow
+packages/manager/apps/observability
 packages/manager/apps/web-domains
 packages/manager/apps/web-hosting
 packages/manager/apps/web-office
