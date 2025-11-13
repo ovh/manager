@@ -1,4 +1,6 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
+import { UUID } from 'node:crypto';
+
+import { CurrencyCode } from '@ovh-ux/muk';
 
 import { OngoingTaskStatus } from '../status';
 
@@ -145,7 +147,7 @@ export type WebHostingType = {
 export type TaskDetailsType = {
   doneDate: string;
   function: string;
-  id: number;
+  id: UUID;
   lastUpdate: string;
   objectId: string;
   objectType: string;
