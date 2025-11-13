@@ -3,7 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsCard, OdsDivider, OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsBadge,
+  OdsButton,
+  OdsCard,
+  OdsDivider,
+  OdsRadio,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -50,9 +57,14 @@ export const DomainDnsConfiguration: React.FC<DomainDnsConfigurationProps> = ({
                   onOdsChange={() => field.onChange(true)}
                 />
                 <label>
-                  <OdsText preset={ODS_TEXT_PRESET.heading6}>
+                  <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-5">
                     {t('multisite:multisite_add_website_advanced_options_dns_auto')}
                   </OdsText>
+                  <OdsBadge
+                    label={t(
+                      'multisite:multisite_add_website_advanced_options_dns_auto_recommanded',
+                    )}
+                  />
                 </label>
               </div>
               <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
