@@ -211,5 +211,8 @@
   "cdn_shared_modal_confirm_info": "Clique em « Validar » para aplicar as alterações feitas na sua configuração. Ao clicar em « Cancelar », todas as suas últimas modificações serão perdidas.",
   "cdn_shared_modal_confirm_perf": "Opções de desempenho",
   "cdn_shared_modal_confirm_cache": "Opções de cache",
-  "cdn_shared_modal_confirm_security": "Opções de segurança"
+  "cdn_shared_modal_confirm_security": "Opções de segurança",
+  "deploy_git": "Implantar GIT",
+  "deploy_git_description": "Você está prestes a implantar ou atualizar manualmente o conteúdo do seu repositório remoto em sua hospedagem.",
+  "deploy_git_overwrite_local_changes": "Em caso de conflito de modificação, forçar as modificações remotas em seu repositório local."
 }

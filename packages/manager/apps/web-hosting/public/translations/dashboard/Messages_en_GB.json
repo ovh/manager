@@ -211,5 +211,8 @@
   "cdn_shared_modal_confirm_info": "Click 'Validate' to apply the changes made to your configuration. By clicking 'Cancel', all your recent changes will be lost.",
   "cdn_shared_modal_confirm_perf": "Performance options",
   "cdn_shared_modal_confirm_cache": "Cache options",
-  "cdn_shared_modal_confirm_security": "Security options"
+  "cdn_shared_modal_confirm_security": "Security options",
+  "deploy_git": "Deploy GIT",
+  "deploy_git_description": "You are about to deploy or manually update the content of your remote repository on your hosting.",
+  "deploy_git_overwrite_local_changes": "In case of modification conflict, force the remote changes onto your local repository."
 }
