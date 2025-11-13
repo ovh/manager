@@ -21,7 +21,6 @@ import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 import ngOvhContacts from '@ovh-ux/ng-ovh-contacts';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
-import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 
 import 'bootstrap';
@@ -54,7 +53,6 @@ angular
     'ngUiRouterBreadcrumb',
     ngAtInternetUiRouterPlugin,
     ngQAllSettled,
-    ovhManagerAccountMigration,
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
