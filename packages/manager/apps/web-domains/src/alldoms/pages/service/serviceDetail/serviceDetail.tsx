@@ -58,10 +58,6 @@ export default function ServiceDetail() {
     serviceName,
   });
 
-  if (isError) {
-    return <NotFound />;
-  }
-
   const {
     data: domainServiceList,
     listLoading: domainServiceListLoading,
@@ -74,6 +70,10 @@ export default function ServiceDetail() {
       .map((domain) => domain.name),
     serviceRoute: ServiceRoutes.Domain,
   });
+
+  if (isError) {
+    return <NotFound />;
+  }
 
   const alldomService = alldom;
   if (
