@@ -1,35 +1,55 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { APPS_DIR, TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
+import { APPS_DIR, HELP_APPLICATION, TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
+import { runForgeCli } from '@/helpers/manager-forge-cli-helper.js';
+import { addAppToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 import {
   applyTemplateReplacements,
   copyTemplate,
   ensureDirectory,
 } from '@/helpers/manager-forge-template-helper.js';
 import type { Answers } from '@/types/PromptType.js';
-import { addAppToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 
-export function forgeApplication(answers: Answers): void {
-  const appDir = path.join(APPS_DIR, answers.appName);
+/**
+ * Generates a new full forge application using templates,
+ * applies variable replacements, and registers the app inside the workspace.
+ *
+ * @param {Answers} answers - The user-provided application metadata.
+ */
+function forgeApplication(answers: Answers): void {
+  const applicationDirectory = path.join(APPS_DIR, answers.appName);
 
-  if (fs.existsSync(appDir)) {
-    console.error(`❌ Application "${answers.appName}" already exists.`);
+  // ────────────────────────────────────────────────────────────
+  // 1. Prevent overwriting an existing application
+  // ────────────────────────────────────────────────────────────
+  if (fs.existsSync(applicationDirectory)) {
+    console.error(`❌ Application "${answers.appName}" already exists at: ${applicationDirectory}`);
     process.exit(1);
   }
 
-  console.log(`🔨 Creating application at ${appDir}`);
-  ensureDirectory(appDir);
+  // ────────────────────────────────────────────────────────────
+  // 2. Create application directory
+  // ────────────────────────────────────────────────────────────
+  console.log(`🔨 Creating application at ${applicationDirectory}`);
+  ensureDirectory(applicationDirectory);
 
+  // ────────────────────────────────────────────────────────────
+  // 3. Copy base template into the new application directory
+  // ────────────────────────────────────────────────────────────
   console.log('📦 Copying template files...');
-  copyTemplate(TEMPLATE_DIR, appDir);
+  copyTemplate(TEMPLATE_DIR, applicationDirectory);
 
+  // ────────────────────────────────────────────────────────────
+  // 4. Apply replacements to template files
+  // ────────────────────────────────────────────────────────────
   console.log('🧩 Applying replacements...');
+
   applyTemplateReplacements(
     [
-      path.join(appDir, 'package.json'),
-      path.join(appDir, 'src/Tracking.constants.ts'),
-      path.join(appDir, 'src/App.constants.ts'),
+      path.join(applicationDirectory, 'package.json'),
+      path.join(applicationDirectory, 'src/Tracking.constants.ts'),
+      path.join(applicationDirectory, 'src/App.constants.ts'),
     ],
     {
       appNameKebab: answers.appName,
@@ -44,7 +64,29 @@ export function forgeApplication(answers: Answers): void {
     },
   );
 
-  console.log(`✅ Successfully forged ${answers.appName}`);
-
+  // ────────────────────────────────────────────────────────────
+  // 5. Finalize + register the app inside the workspace
+  // ────────────────────────────────────────────────────────────
+  console.log(`\n✅ Successfully forged application "${answers.appName}"\n`);
   addAppToWorkspace(answers.appName);
+}
+
+/**
+ * CLI entrypoint wrapper for generating a full application.
+ * Delegates execution to the generic CLI runner so the UX
+ * is consistent with all forge commands (banner, spinner, errors).
+ *
+ * @param {Answers} answers - Application metadata collected from prompts.
+ * @returns {Promise<void>}
+ */
+export function forgeApplicationCli(answers: Answers): Promise<void> {
+  return runForgeCli(
+    () => forgeApplication(answers),
+    {
+      clearScreen: true,
+      showBanner: true,
+      showSpinner: true,
+    },
+    HELP_APPLICATION,
+  );
 }

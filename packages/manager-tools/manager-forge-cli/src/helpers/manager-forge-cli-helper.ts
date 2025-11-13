@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import gradient from 'gradient-string';
 import ora, { Ora } from 'ora';
 
+import { ForgeCliOptions } from '@/types/GenerationType.js';
 import { Answers } from '@/types/PromptType.js';
 import { Theme } from '@/types/ThemeType.js';
 
@@ -124,4 +125,48 @@ export function displayAppGenerationSummary(answers: Answers): void {
   console.log(`${chalk.hex(theme.primary)('Tracking SubUniverse:')} ${answers.subUniverse}`);
 
   console.log('\n' + chalk.hex(theme.accent).bold('✨ All inputs collected. Proceeding...\n'));
+}
+
+/**
+ * Runs a forge CLI command with unified UX and optional help display.
+ *
+ * @param runCommand - The CLI command callback.
+ * @param options - Visual/UI options for the CLI runner.
+ * @param helpText - Optional help text to display when user passes --help or -h.
+ */
+export async function runForgeCli(
+  runCommand: () => void | Promise<void>,
+  options: ForgeCliOptions = {},
+  helpText?: string,
+): Promise<void> {
+  const { clearScreen = true, showBanner = true, showSpinner = true } = options;
+
+  // ────────────────────────────────────────────────────────────
+  // HELP MODE (before banner, before spinner)
+  // ────────────────────────────────────────────────────────────
+  const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    if (helpText) {
+      console.log(helpText);
+    } else {
+      console.log('No help available for this command.');
+    }
+    return; // exit without running command
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // NORMAL MODE (banner, spinner, etc.)
+  // ────────────────────────────────────────────────────────────
+  if (clearScreen) console.clear();
+  if (showBanner) renderBanner();
+  if (showSpinner) await showInitializationSpinner();
+
+  try {
+    console.log('\n');
+    await runCommand();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(chalk.red(message));
+    process.exit(1);
+  }
 }

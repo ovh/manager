@@ -4,6 +4,8 @@ import path from 'node:path';
 
 import { CaseStyle, GeneratorOptions } from '@/types/GenerationType.js';
 
+const APPLICATIONS_FOLDER_PATH = 'packages/manager/apps';
+
 /**
  * Parses CLI arguments of the form `--flag value` into an object map.
  * Skips flags without a following value and ensures type safety.
@@ -154,7 +156,7 @@ export function generateFile({
   appName,
   itemName,
   options,
-  appsDir = 'packages/apps',
+  appsDir = '',
 }: {
   appName: string;
   itemName: string;
@@ -205,5 +207,5 @@ export function forgeGenerateCli(argv: string[], options: GeneratorOptions): voi
   assertNonEmpty(appName, '--app');
   assertNonEmpty(entityName, `--${options.argKey}`);
 
-  generateFile({ appName, itemName: entityName, options });
+  generateFile({ appName, itemName: entityName, options, appsDir: APPLICATIONS_FOLDER_PATH });
 }

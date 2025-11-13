@@ -25,3 +25,34 @@ export interface GeneratorOptions {
   /** Naming convention style to apply to the entity name. */
   caseStyle: CaseStyle;
 }
+
+/**
+ * Optional configuration flags controlling the visual behavior of the
+ * generic Forge CLI runner (`runForgeCli`).
+ *
+ * These options allow each CLI command to enable or disable
+ * screen clearing, banner display, and loading spinner animations,
+ * while preserving a unified UX by default.
+ */
+export interface ForgeCliOptions {
+  /**
+   * Whether to clear the terminal screen before running the CLI command.
+   *
+   * @default true
+   */
+  clearScreen?: boolean;
+
+  /**
+   * Whether to display the ASCII banner at the beginning of the CLI execution.
+   *
+   * @default true
+   */
+  showBanner?: boolean;
+
+  /**
+   * Whether to show the loading spinner animation during initialization.
+   *
+   * @default true
+   */
+  showSpinner?: boolean;
+}
