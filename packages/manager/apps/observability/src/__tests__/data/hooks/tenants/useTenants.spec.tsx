@@ -4,12 +4,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { getTenants } from '../../../../data/api/tenant';
-import { useTenants } from '../../../../data/hooks/tenants/useTenants';
-import { Tenant } from '../../../../types/observability.type';
+import { getTenants } from '@/data/api/tenants.api';
+import { useTenants } from '@/data/hooks/tenants/useTenants';
+import { Tenant } from '@/types/tenants.type';
 
 // Mock the tenant
-vi.mock('@/data/api/tenant', () => ({
+vi.mock('@/data/api/tenants.api', () => ({
   getTenants: vi.fn(),
 }));
 
