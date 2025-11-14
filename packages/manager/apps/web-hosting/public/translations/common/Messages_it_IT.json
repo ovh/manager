@@ -165,5 +165,6 @@
   "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Se desideri scollegare il tuo nome di dominio, devi prima rimuovere la tua configurazione Git per prevenire eventuali problemi di tracciamento delle modifiche e gestione dei deployment.",
   "hosting_dashboard_ssl_delete_error": "Si è verificato un errore durante la rimozione di un certificato SSL. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_failure": "Si è verificato un errore durante il distacco del dominio dal tuo hosting condiviso.",
-  "hosting_tab_DOMAINS_configuration_remove_success": "Il dominio verrà distaccato dal tuo hosting condiviso."
+  "hosting_tab_DOMAINS_configuration_remove_success": "Il dominio verrà distaccato dal tuo hosting condiviso.",
+  "activate_cdn": "Attivare il CDN"
 }
