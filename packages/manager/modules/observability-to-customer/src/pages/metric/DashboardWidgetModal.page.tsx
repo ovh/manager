@@ -3,20 +3,23 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
+  ModalBody,
+  ModalContent,
+  ModalOpenChangeDetail,
+} from '@ovhcloud/ods-react';
+
+import {
   BUTTON_VARIANT,
   Button,
   MESSAGE_COLOR,
   MODAL_COLOR,
   Message,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalOpenChangeDetail,
+  Modal,  
   SPINNER_SIZE,
   Spinner,
   TEXT_PRESET,
   Text,
-} from '@ovhcloud/ods-react';
+} from '@ovh-ux/muk';
 
 import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
 import { TimeControls } from '@/components';
@@ -50,8 +53,8 @@ const DashboardWidgetModal = <TData,>() => {
   const onDismiss = () => {
     navigate('..');
   };
-  const onOpenChange = (detail: ModalOpenChangeDetail) => {
-    if (!detail.open) {
+  const onOpenChange = (detail?: ModalOpenChangeDetail) => {
+    if (!detail?.open) {
       onDismiss();
     }
   };

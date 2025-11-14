@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Message, MessageBody } from '@ovhcloud/ods-react';
+import { Message, MessageBody } from '@ovh-ux/muk';
 
 import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
 import { Dashboard, Loader } from '@/components';
