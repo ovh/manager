@@ -11,11 +11,13 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
+  OdsBadge,
   OdsButton,
   OdsCard,
   OdsCheckbox,
   OdsDivider,
   OdsInput,
+  OdsRadio,
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
@@ -179,6 +181,67 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
           </OdsText>
         </OdsCard>
       </div>
+      <OdsDivider />
+      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+        {t('multisite:multisite_add_website_advanced_options_dns_title')}
+      </OdsText>
+      <Controller
+        name="autoConfigureDns"
+        control={control}
+        render={({ field }) => (
+          <div className="flex flex-row space-x-4">
+            <OdsCard
+              className="w-1/2 p-4"
+              color={
+                controlValues.autoConfigureDns ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral
+              }
+            >
+              <div className="flex gap-4 items-center">
+                <OdsRadio
+                  name="auto-configuration"
+                  isChecked={field.value}
+                  onOdsChange={() => field.onChange(true)}
+                />
+                <label>
+                  <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-5">
+                    {t('multisite:multisite_add_website_advanced_options_dns_auto')}
+                  </OdsText>
+                  <OdsBadge
+                    label={t(
+                      'multisite:multisite_add_website_advanced_options_dns_auto_recommanded',
+                    )}
+                  />
+                </label>
+              </div>
+              <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
+                {t('multisite:multisite_add_website_advanced_options_dns_auto_text')}
+              </OdsText>
+            </OdsCard>
+            <OdsCard
+              className="w-1/2 p-4"
+              color={
+                !controlValues.autoConfigureDns ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral
+              }
+            >
+              <div className="flex gap-4 items-center">
+                <OdsRadio
+                  name="manual-configuration"
+                  isChecked={!field.value}
+                  onOdsChange={() => field.onChange(false)}
+                />
+                <label>
+                  <OdsText preset={ODS_TEXT_PRESET.heading6}>
+                    {t('multisite:multisite_add_website_advanced_options_dns_manual')}
+                  </OdsText>
+                </label>
+              </div>
+              <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
+                {t('multisite:multisite_add_website_advanced_options_dns_manual_text')}
+              </OdsText>
+            </OdsCard>
+          </div>
+        )}
+      />
     </>
   );
 };
