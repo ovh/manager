@@ -1,13 +1,9 @@
-import React from 'react';
 import { OdsButton, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  isStatusTerminated,
-  VCDCompute,
-  VCDStorage,
-} from '@ovh-ux/manager-module-vcd-api';
+import { isStatusTerminated, VCDCompute } from '@ovh-ux/manager-module-vcd-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import TEST_IDS from '@/utils/testIds.constants';
+import { useComputeDeletionAccess } from '@/hooks/datacentre/useComputeDeletionAccess';
 
 export const DatagridIdCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
@@ -44,27 +40,34 @@ export const DatagridRamCountCell = (vcdCompute: VCDCompute) => {
   );
 };
 
-export const ActionDeleteCell = (resource: VCDCompute | VCDStorage) => {
-  const { t } = useTranslation('datacentres');
+export const ActionDeleteComputeCell = (vcdCompute: VCDCompute) => {
+  const {
+    navigateToDeletePage,
+    isDeletionAllowed,
+    tooltipLabel,
+  } = useComputeDeletionAccess(vcdCompute);
+  const buttonId = `delete-tooltip-trigger-${vcdCompute.id}`;
+  const shouldShowTooltip = !isDeletionAllowed && tooltipLabel;
 
   return (
     <>
       <OdsButton
-        id={`delete-tooltip-trigger-${resource?.id}`}
+        id={buttonId}
         size="sm"
         variant="ghost"
-        isDisabled
+        isDisabled={!isDeletionAllowed}
+        onClick={navigateToDeletePage}
         label=""
         icon="trash"
-        aria-label="delete-datacentre-resource"
+        aria-label="delete-datacentre-compute"
         data-testid={TEST_IDS.cellDeleteCta}
       />
-      {!isStatusTerminated(resource.resourceStatus) && (
+      {!isStatusTerminated(vcdCompute.resourceStatus) && shouldShowTooltip && (
         <OdsTooltip
-          triggerId={`delete-tooltip-trigger-${resource?.id}`}
+          triggerId={buttonId}
           data-testid={TEST_IDS.cellDeleteTooltip}
         >
-          <OdsText>{t('managed_vcd_vdc_contact_support')}</OdsText>
+          <OdsText>{tooltipLabel}</OdsText>
         </OdsTooltip>
       )}
     </>
