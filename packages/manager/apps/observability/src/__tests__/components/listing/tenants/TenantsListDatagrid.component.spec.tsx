@@ -7,7 +7,7 @@ import { vi } from 'vitest';
 import TenantsListDatagrid from '@/components/listing/tenants/TenantsListDatagrid.component';
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
 import { Infrastructure } from '@/types/infrastructures.type';
-import { Tenant } from '@/types/tenants.type';
+import { Tenant, TenantListing } from '@/types/tenants.type';
 
 // Mock the hooks and components
 vi.mock('@/data/hooks/infrastructures/useLocations.hook', () => ({
@@ -24,16 +24,29 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+vi.mock('@/utils/duration.utils', () => ({
+  formatDuration: (duration: string) => {
+    // Mock simple duration formatting
+    return duration; // Just return the duration as-is (e.g., "30d")
+  },
+}));
+
 vi.mock('@ovh-ux/muk', () => ({
   Datagrid: ({
     topbar,
     columns,
-    items,
+    data,
     isLoading,
   }: {
     topbar?: React.ReactNode;
-    columns: Array<{ id: string; cell: (row: unknown) => React.ReactNode }>;
-    items?: unknown[];
+    columns: Array<{
+      id: string;
+      accessorKey?: string;
+      cell?:
+        | ((context: { row: { original: unknown }; getValue: () => unknown }) => React.ReactNode)
+        | React.ReactNode;
+    }>;
+    data?: unknown[];
     isLoading?: boolean;
   }) => (
     <div data-testid="datagrid">
@@ -41,12 +54,43 @@ vi.mock('@ovh-ux/muk', () => ({
       <div data-testid="datagrid-content">
         {isLoading && <div data-testid="loading-indicator">Loading...</div>}
         <div data-testid="datagrid-items">
-          {items?.map((item: unknown, index: number) => (
+          {data?.map((item: unknown, index: number) => (
             <div key={index} data-testid={`datagrid-item-${index}`}>
               {columns.map((column) => {
+                // Mock the CellContext structure that TanStack Table provides
+                const cellContext = {
+                  row: { original: item },
+                  getValue: () => {
+                    // Get the value for this specific column
+                    if (column.accessorKey) {
+                      return (item as TenantListing)[column.accessorKey as keyof TenantListing];
+                    }
+                    return item;
+                  },
+                };
+
+                let cellContent: React.ReactNode;
+                if (typeof column.cell === 'function') {
+                  cellContent = column.cell(cellContext);
+                } else if (column.cell) {
+                  cellContent = column.cell;
+                } else if (column.accessorKey) {
+                  // If no custom cell function, render the value from accessorKey
+                  const value = (item as TenantListing)[column.accessorKey as keyof TenantListing];
+                  // Convert to renderable content (primitives only)
+                  cellContent =
+                    typeof value === 'string' ||
+                    typeof value === 'number' ||
+                    typeof value === 'boolean'
+                      ? value
+                      : null;
+                } else {
+                  cellContent = null;
+                }
+
                 return (
                   <div key={column.id} data-testid={`column-${column.id}`}>
-                    {column.cell(item)}
+                    {cellContent}
                   </div>
                 );
               })}
@@ -56,9 +100,6 @@ vi.mock('@ovh-ux/muk', () => ({
       </div>
     </div>
   ),
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <span data-testid="text-cell">{children}</span>
-  ),
   useColumnFilters: () => ({
     filters: [],
     addFilter: vi.fn(),
@@ -67,6 +108,7 @@ vi.mock('@ovh-ux/muk', () => ({
   useNotifications: () => ({
     addError: vi.fn(),
   }),
+  useDateFnsLocale: () => 'en-US',
 }));
 
 vi.mock('@ovh-ux/manager-core-api', () => ({
@@ -272,24 +314,36 @@ describe('TenantsListDatagrid', () => {
       expect(screen.getAllByTestId('endpoint-cell')).toHaveLength(3);
     });
 
-    it('should render retention column', () => {
-      render(<TenantsListDatagrid {...defaultProps} />, {
+    it('should render retention column with correct values', () => {
+      const { container } = render(<TenantsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
       });
 
-      expect(screen.getByText('30d')).toBeInTheDocument();
-      expect(screen.getByText('7d')).toBeInTheDocument();
-      expect(screen.getByText('90d')).toBeInTheDocument();
+      // Check that retention column cells are rendered with correct values
+      const retentionColumns = container.querySelectorAll('[data-testid="column-retention"]');
+      expect(retentionColumns.length).toBe(3);
+
+      // Check the retention values (mocked formatDuration returns the duration as-is)
+      expect(retentionColumns[0]).toHaveTextContent('30d');
+      expect(retentionColumns[1]).toHaveTextContent('7d');
+      expect(retentionColumns[2]).toHaveTextContent('90d');
     });
 
-    it('should render active metrics column', () => {
-      render(<TenantsListDatagrid {...defaultProps} />, {
+    it('should render active metrics column with correct values', () => {
+      const { container } = render(<TenantsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
       });
 
-      expect(screen.getByText('100')).toBeInTheDocument();
-      expect(screen.getByText('50')).toBeInTheDocument();
-      expect(screen.getByText('200')).toBeInTheDocument();
+      // Check that active metrics column cells are rendered with correct values
+      const activeMetricsColumns = container.querySelectorAll(
+        '[data-testid="column-active-metrics"]',
+      );
+      expect(activeMetricsColumns.length).toBe(3);
+
+      // Check the numberOfSeries values
+      expect(activeMetricsColumns[0]).toHaveTextContent('100');
+      expect(activeMetricsColumns[1]).toHaveTextContent('50');
+      expect(activeMetricsColumns[2]).toHaveTextContent('200');
     });
 
     it('should render tags column', () => {
