@@ -15,7 +15,7 @@ describe('ActionButtonMultisite component', () => {
   });
 
   it('should render site actions correctly', () => {
-    const { container } = render(<ActionButtonMultisite context="site" siteId={1} path="www" />);
+    const { container } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />);
 
     expect(container).toBeInTheDocument();
 
@@ -27,7 +27,7 @@ describe('ActionButtonMultisite component', () => {
   });
 
   it('should navigate correctly when clicking a site action', () => {
-    const { container } = render(<ActionButtonMultisite context="site" siteId={1} path="www" />);
+    const { container } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />);
     const addDomainButton = container.querySelector('ods-button[label="Ajouter un domaine"]');
     expect(addDomainButton).toBeInTheDocument();
 
@@ -39,7 +39,7 @@ describe('ActionButtonMultisite component', () => {
     const { container } = render(
       <ActionButtonMultisite
         context="domain"
-        domainId={1}
+        domainId={'1'}
         domain="test.site"
         domains={WebHostingWebsiteDomainMocks}
       />,
