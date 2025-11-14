@@ -1,14 +1,5 @@
-import { useEffect, useState } from 'react';
-import {
-  Button,
-  Divider,
-  Icon,
-  ICON_NAME,
-  Message,
-  MessageBody,
-  MessageIcon,
-  Text,
-} from '@ovhcloud/ods-react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
+import { Button, Divider, Icon, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { SshKeyHelper } from './sshKey/SshKeyHelper.component';
 import { useSshKeys } from '@/data/hooks/ssh/useSshKeys';
@@ -16,9 +7,13 @@ import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectSshKeys } from '../view-models/sshKeysViewModel';
 import AddSshKey from './sshKey/AddSshKey.component';
-import { SubmitHandler, useFormContext } from 'react-hook-form';
-import { TInstanceCreationForm } from '../CreateInstance.page';
+import { SubmitHandler, useFormContext, useWatch } from 'react-hook-form';
 import { TAddSshKeyForm } from '../CreateInstance.schema';
+import Banner from '@/components/banner/Banner.component';
+import SshKeySelector, {
+  TCustomSelectSshKeyData,
+} from './sshKey/SshKeySelector.component';
+import { TInstanceCreationForm } from '../CreateInstance.page';
 
 type TSshKeyProps = {
   microRegion: string;
@@ -27,27 +22,90 @@ type TSshKeyProps = {
 const SshKey = ({ microRegion }: TSshKeyProps) => {
   const projectId = useProjectId();
   const { t } = useTranslation('creation');
+
   const [openSshKeyform, setOpenSshKeyForm] = useState<boolean>(false);
-  const { setValue } = useFormContext<TInstanceCreationForm>();
+  const [newSshKeys, setNewSshKeys] = useState<TCustomSelectSshKeyData[]>([]);
+  const [openSshKeyAddedMessage, setOpenSshKeyAddedMessage] = useState<boolean>(
+    false,
+  );
 
   const { isLoading } = useSshKeys(microRegion);
 
-  const sshKeys = selectSshKeys(deps)(projectId, microRegion);
+  const sshKeys = useMemo(
+    () => (isLoading ? [] : selectSshKeys(deps)(projectId, microRegion)),
+    [isLoading, microRegion, projectId],
+  );
+
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const selectedSshKeyId = useWatch({
+    control,
+    name: 'sshKeyId',
+  });
+
+  const unavailableSshKeyIds = useMemo(
+    () => [...newSshKeys, ...sshKeys].map(({ value }) => value),
+    [newSshKeys, sshKeys],
+  );
+
+  const sshKeyItems = useMemo(() => {
+    const existingSshKeys = sshKeys.map((item) => ({
+      ...item,
+      newSshPublicKey: null,
+    }));
+
+    return [...newSshKeys, ...existingSshKeys];
+  }, [newSshKeys, sshKeys]);
 
   const handleOpenSshKeyForm = () => setOpenSshKeyForm(true);
 
+  const handleCloseSshKeyForm = () => setOpenSshKeyForm(false);
+
+  const handleCloseSshKeyAddedMessage = () => setOpenSshKeyAddedMessage(false);
+
   const handleAddSshKey: SubmitHandler<TAddSshKeyForm> = ({
-    sshName,
-    sshKey,
+    sshKeyId,
+    sshPublicKey,
   }) => {
-    setValue('sshName', sshName);
-    setValue('sshKey', sshKey);
-    setOpenSshKeyForm(false);
+    setNewSshKeys((prevSshKeys) => [
+      {
+        label: sshKeyId,
+        value: sshKeyId,
+        newSshPublicKey: sshPublicKey,
+      },
+      ...prevSshKeys,
+    ]);
+
+    handleCloseSshKeyForm();
+    setOpenSshKeyAddedMessage(true);
+  };
+
+  const handleCancelAddSshKey = () => {
+    if (sshKeys.length === 0 && newSshKeys.length === 0) return;
+    handleCloseSshKeyForm();
+  };
+
+  const updateSshKeyFields = useCallback(
+    (sshKey: TCustomSelectSshKeyData) => {
+      setValue('sshKeyId', sshKey.value);
+      setValue('newSshPublicKey', sshKey.newSshPublicKey);
+    },
+    [setValue],
+  );
+
+  const handleSelectSshKey = (sshKey: TCustomSelectSshKeyData) => {
+    updateSshKeyFields(sshKey);
+    handleCloseSshKeyAddedMessage();
   };
 
   useEffect(() => {
     if (!isLoading && sshKeys.length === 0) setOpenSshKeyForm(true);
   }, [isLoading, sshKeys]);
+
+  useEffect(() => {
+    const selectedSshKey = sshKeyItems[0];
+
+    if (selectedSshKey) updateSshKeyFields(selectedSshKey);
+  }, [sshKeyItems, updateSshKeyFields]);
 
   return (
     <section>
@@ -61,27 +119,46 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
       <Text className="mt-4" preset="paragraph">
         {t('creation:pci_instance_creation_select_sshKey_description')}
       </Text>
+      {openSshKeyAddedMessage && (
+        <div className="mt-4">
+          <Banner
+            color="information"
+            dismissible
+            onRemove={handleCloseSshKeyAddedMessage}
+          >
+            {t('creation:pci_instance_creation_select_sshKey_add_key_done')}
+          </Banner>
+        </div>
+      )}
       {!isLoading && (
         <>
-          {sshKeys.length === 0 && (
+          {sshKeys.length === 0 && newSshKeys.length === 0 && (
             <div className="mt-4">
-              <Message color="warning">
-                <MessageIcon name={ICON_NAME.triangleExclamation} />
-                <MessageBody>
-                  {t(
-                    'creation:pci_instance_creation_select_sshKey_missing_warning',
-                  )}
-                </MessageBody>
-              </Message>
+              <Banner color="warning">
+                {t(
+                  'creation:pci_instance_creation_select_sshKey_missing_warning',
+                )}
+              </Banner>
             </div>
           )}
           {openSshKeyform ? (
-            <AddSshKey onSubmit={handleAddSshKey} />
+            <AddSshKey
+              unavailableSshKeyIds={unavailableSshKeyIds}
+              onSubmit={handleAddSshKey}
+              onCancel={handleCancelAddSshKey}
+            />
           ) : (
-            <Button variant="ghost" onClick={handleOpenSshKeyForm}>
-              <Icon name="plus" />
-              {t('creation:pci_instance_creation_select_sshKey_add_new')}
-            </Button>
+            <>
+              <SshKeySelector
+                items={sshKeyItems}
+                value={selectedSshKeyId ? [selectedSshKeyId] : []}
+                onValueChange={handleSelectSshKey}
+              />
+              <Button variant="ghost" onClick={handleOpenSshKeyForm}>
+                <Icon name="plus" />
+                {t('creation:pci_instance_creation_select_sshKey_add_new')}
+              </Button>
+            </>
           )}
         </>
       )}

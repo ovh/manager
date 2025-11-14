@@ -87,5 +87,8 @@
   "pci_instance_creation_select_sshKey_add_key_label": "Enter your SSH key",
   "pci_instance_creation_select_sshKey_add_key_description": "Accepted SSH keys are of type RSA, ECDSA, and ED25519. Your SSH key will be available across all OVHcloud regions and datacenters for your project.",
   "pci_instance_creation_select_sshKey_add_key_submit_btn": "Validate the key",
-  "pci_instance_creation_select_sshKey_add_new": "Create a new SSH key"
+  "pci_instance_creation_select_sshKey_add_new": "Create a new SSH key",
+  "pci_instance_creation_select_sshKey_dropdown_label": "Select an existing key",
+  "pci_instance_creation_select_sshKey_add_key_done": "Your SSH key will be created at the end of the setup process.",
+  "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Thank you for choosing a different name, this one is already in use."
 }
