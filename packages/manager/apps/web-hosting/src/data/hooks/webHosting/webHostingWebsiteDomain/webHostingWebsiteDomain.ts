@@ -10,7 +10,7 @@ import {
 import { PostWebHostingWebsitePayload } from '@/data/types/product/webHosting';
 import queryClient from '@/utils/queryClient';
 
-export const useWebHostingWebsiteDomain = (serviceName: string, id: number) => {
+export const useWebHostingWebsiteDomain = (serviceName: string, id: string) => {
   return useQuery({
     queryKey: getWebHostingWebsiteDomainQueryKey(serviceName, id),
     queryFn: () => getWebHostingWebsiteDomain(serviceName, id),

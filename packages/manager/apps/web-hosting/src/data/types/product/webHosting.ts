@@ -148,7 +148,7 @@ export type WebHostingType = {
 export type TaskDetailsType = {
   doneDate: string;
   function: string;
-  id: number;
+  id: string;
   lastUpdate: string;
   objectId: string;
   objectType: string;
@@ -157,7 +157,7 @@ export type TaskDetailsType = {
 };
 
 export type WebHostingWebsiteType = {
-  id: number;
+  id: string;
   checksum: string;
   currentState?: {
     path: string;
@@ -181,7 +181,7 @@ export type WebHostingWebsiteType = {
 };
 
 export type WebHostingWebsiteDomainType = {
-  id: number;
+  id: string;
   checksum: string;
   currentState: {
     fqdn: string;
@@ -189,7 +189,7 @@ export type WebHostingWebsiteDomainType = {
     cdn: { status: ServiceStatus };
     name: string;
     path: string;
-    websiteId: number;
+    websiteId: string;
   };
   currentTasks?: {
     id?: string;
@@ -215,6 +215,20 @@ export type PostWebHostingWebsitePayload = {
     name?: string;
     path?: string;
   };
+};
+
+type LowercaseServiceStatus = 'active' | 'inactive' | 'none';
+
+export type PostWebHostingAttachedDomainPayload = {
+  bypassDNSConfiguration?: boolean;
+  cdn?: LowercaseServiceStatus;
+  domain?: string;
+  firewall?: LowercaseServiceStatus;
+  ipLocation?: HostingCountries;
+  ownLog?: string;
+  path?: string;
+  runtimeId?: string;
+  ssl?: boolean;
 };
 
 export type PutWebHostingWebsitePayload = {
