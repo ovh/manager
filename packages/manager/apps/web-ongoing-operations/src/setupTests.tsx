@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
-import 'element-internals-polyfill';
 import { NavLinkProps } from 'react-router-dom';
 
 vi.mock('react-i18next', () => ({
