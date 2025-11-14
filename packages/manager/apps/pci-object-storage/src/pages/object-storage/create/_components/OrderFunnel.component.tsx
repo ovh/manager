@@ -19,6 +19,7 @@ import OrderSummary from './OrderSummary.component';
 import RegionsStep from './steps/RegionStep.component';
 import OffsiteReplicationStep from './steps/OffsiteReplicationStep.component';
 import VersionningStep from './steps/VersionningStep.component';
+import ObjectLockStep from './steps/ObjectLockStep.component';
 import ContainerTypeStep from './steps/ContainerTypeStep.component';
 import UserStep from './steps/UserStep.component';
 import EncryptStep from './steps/EncryptStep.component';
@@ -62,7 +63,7 @@ const OrderFunnel = ({
   const storagePricesLink = useLink(STORAGE_PRICES_LINK);
   const replicationLink = useLink(STORAGE_ASYNC_REPLICATION_LINK);
 
-  const { form, availableRegions, model, result } = useOrderFunnel({
+  const { form, availableRegions, model, versioning, result } = useOrderFunnel({
     regions,
     users,
     availabilities,
@@ -203,6 +204,7 @@ const OrderFunnel = ({
 
               {!isLZ && (
                 <>
+                  {/* Versioning */}
                   <OrderSection
                     id="versions"
                     title={t('labelVersioning')}
@@ -220,6 +222,20 @@ const OrderFunnel = ({
                     </FormField>
                   </OrderSection>
 
+                  {/* Object Lock */}
+                  <OrderSection
+                    id="object-lock"
+                    title={t('labelObjectLock')}
+                    description={t('descriptionObjectLock')}
+                  >
+                    <FormField name="objectLock" form={form}>
+                      {(field) => (
+                        <ObjectLockStep versioning={versioning} {...field} />
+                      )}
+                    </FormField>
+                  </OrderSection>
+
+                  {/* User */}
                   <OrderSection
                     id="user"
                     title={t('labelUser')}
@@ -230,6 +246,7 @@ const OrderFunnel = ({
                     </FormField>
                   </OrderSection>
 
+                  {/* Encryption */}
                   <OrderSection
                     id="encryption"
                     title={t('labelEncryption')}
