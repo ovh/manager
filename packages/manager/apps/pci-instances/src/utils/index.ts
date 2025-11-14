@@ -57,3 +57,8 @@ export const groupBy = <T, K>(array: T[], getValue: (item: T) => K) => {
     return acc;
   }, new Map<K, T[]>());
 };
+
+export const getLocalZoneTranslationKey = (regionName: string) =>
+  regionName.split('-').slice(-1)[0];
+
+export const isEven = (nb: number) => nb % 2 === 0;

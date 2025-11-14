@@ -71,6 +71,9 @@ export type TPrice = {
 
 export type TRegionType = 'region' | 'localzone' | 'region-3-az' | string;
 
+export const DEPLOYMENT_MODES = ['region', 'localzone', 'region-3-az'] as const;
+export type TDeploymentMode = typeof DEPLOYMENT_MODES[number];
+
 export type TSubnet = {
   id: string;
   name: string;
@@ -79,6 +82,12 @@ export type TSubnet = {
     id: string;
     name: string;
   };
+};
+
+export type TFlavor = {
+  name: string;
+  memory: number;
+  vcore: number;
 };
 
 export type TFlavorSpec = {
@@ -104,3 +113,24 @@ export type TStatusSeverity = {
   label: TStatus;
   severity: TSeverity;
 };
+
+export type TFlavorTag = 'new' | 'savings_plan' | 'coming_soon';
+
+export const DISTRIBUTION_IMAGE_NAME = [
+  'almalinux',
+  'centOS',
+  'cPanel',
+  'debian',
+  'docker',
+  'fedora',
+  'freeBSD',
+  'linux',
+  'n8n',
+  'nvidia',
+  'plesk',
+  'rockylinux',
+  'ubuntu',
+  'windows',
+] as const;
+
+export type TDistributionImageName = typeof DISTRIBUTION_IMAGE_NAME[number];

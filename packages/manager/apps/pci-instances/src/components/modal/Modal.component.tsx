@@ -9,9 +9,23 @@ import {
   ModalContent,
   Text,
   TEXT_PRESET,
+  ModalProp,
 } from '@ovhcloud/ods-react';
 
 export type TModalVariant = 'primary' | 'warning' | 'critical';
+
+type TModalProps = ModalProp & {
+  title: string;
+  onModalClose: () => void;
+  children: React.ReactNode;
+  isPending: boolean;
+  handleInstanceAction?: () => void;
+  variant?: TModalVariant;
+  dismissible?: boolean;
+  disabled?: boolean;
+  className?: string;
+  wrapper?: React.ComponentType<PropsWithChildren<unknown>>;
+};
 
 const Modal = ({
   title,
@@ -23,26 +37,15 @@ const Modal = ({
   dismissible = false,
   disabled,
   className,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   wrapper: Wrapper = Fragment,
-}: {
-  title: string;
-  onModalClose: () => void;
-  children: React.ReactNode;
-  isPending: boolean;
-  handleInstanceAction?: () => void;
-  variant?: TModalVariant;
-  dismissible?: boolean;
-  disabled?: boolean;
-  className?: string;
-  wrapper?: React.ComponentType<PropsWithChildren<unknown>>;
-}) => {
+  ...props
+}: TModalProps) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const id = useId();
 
   return (
     <ODSModal
-      defaultOpen
+      {...('open' in props ? { open: props.open } : { defaultOpen: true })}
       onOpenChange={onModalClose}
       closeOnInteractOutside
       closeOnEscape

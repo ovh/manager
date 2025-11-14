@@ -117,6 +117,7 @@ type TInstanceBackupDto = TBackup;
 export type TInstanceDto = {
   id: string;
   name: string;
+  quantity: number;
   region: string;
   regionType: TInstanceRegionTypeDto;
   availabilityZone: string | null;
