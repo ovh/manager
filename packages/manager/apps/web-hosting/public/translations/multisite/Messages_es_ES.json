@@ -23,7 +23,7 @@
   "multisite_add_website_back_to_website": "Volver a mis sitios",
   "multisite_add_website_title": "Agregar un sitio",
   "multisite_add_website_choose_domain_title": "Elija cómo asociar su dominio",
-  "multisite_add_website_existing_domain_card_title": "Asociar un dominio OVH cloud existente",
+  "multisite_add_website_existing_domain_card_title": "Asociar un dominio existente de OVHcloud",
   "multisite_add_website_existing_domain_card_text": "Utilizar un nombre de dominio ya registrado en OVHcloud.",
   "multisite_add_website_external_domain_card_title": "Asociar un dominio externo",
   "multisite_add_website_external_domain_card_text": "Utilizar un nombre de dominio registrado en otro proveedor.",
@@ -104,5 +104,9 @@
   "multisite_modal_domain_configuration_modify_countriesIp": "IP del país",
   "multisite_modal_domain_configuration_modify_countriesIp_none": "Ninguno",
   "multisite_modal_domain_configuration_modify_ssl_help": "Activar la opción SSL para beneficiarse del acceso a su sitio en https",
-  "multisite_modal_domain_configuration_modify_git_warning": "Si desea modificar su carpeta raíz, debe eliminar previamente su configuración de Git del directorio para prevenir posibles problemas de seguimiento de cambios y gestión de despliegues."
+  "multisite_modal_domain_configuration_modify_git_warning": "Si desea modificar su carpeta raíz, debe eliminar previamente su configuración de Git del directorio para prevenir posibles problemas de seguimiento de cambios y gestión de despliegues.",
+  "multisite_cdn_activate_description": "El CDN acelera la carga de sus páginas y refuerza la seguridad de su sitio bloqueando el tráfico malicioso.",
+  "multisite_cdn_activate_question": "¿Desea activarlo ahora?",
+  "multisite_cdn_activate_success": "El CDN se ha activado con éxito",
+  "multisite_cdn_activate_error": "Se ha producido un error al activar el CDN"
 }

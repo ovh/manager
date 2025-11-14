@@ -23,7 +23,7 @@
   "multisite_add_website_back_to_website": "Powrót do moich stron",
   "multisite_add_website_title": "Dodaj stronę",
   "multisite_add_website_choose_domain_title": "Wybierz, jak powiązać swoją domenę",
-  "multisite_add_website_existing_domain_card_title": "Powiąż istniejącą domenę OVH cloud",
+  "multisite_add_website_existing_domain_card_title": "Połączyć istniejącą domenę OVHcloud",
   "multisite_add_website_existing_domain_card_text": "Użyj nazwy domeny już zarejestrowanej w OVHcloud.",
   "multisite_add_website_external_domain_card_title": "Powiąż domenę zewnętrzną",
   "multisite_add_website_external_domain_card_text": "Użyj nazwy domeny zarejestrowanej u innego dostawcy.",
@@ -104,5 +104,9 @@
   "multisite_modal_domain_configuration_modify_countriesIp": "IP kraju",
   "multisite_modal_domain_configuration_modify_countriesIp_none": "Z żadnej",
   "multisite_modal_domain_configuration_modify_ssl_help": "Aktywuj opcję SSL, aby uzyskać dostęp do swojej strony przez https",
-  "multisite_modal_domain_configuration_modify_git_warning": "Jeśli chcesz zmienić swój folder główny, musisz najpierw usunąć swoją konfigurację Git z katalogu, aby zapobiec ewentualnym problemom z śledzeniem zmian i zarządzaniem wdrożeniami."
+  "multisite_modal_domain_configuration_modify_git_warning": "Jeśli chcesz zmienić swój folder główny, musisz najpierw usunąć swoją konfigurację Git z katalogu, aby zapobiec ewentualnym problemom z śledzeniem zmian i zarządzaniem wdrożeniami.",
+  "multisite_cdn_activate_description": "CDN przyspiesza ładowanie Twoich stron i wzmacnia bezpieczeństwo Twojej witryny, blokując złośliwy ruch.",
+  "multisite_cdn_activate_question": "Czy chcesz go teraz aktywować?",
+  "multisite_cdn_activate_success": "CDN został pomyślnie aktywowany",
+  "multisite_cdn_activate_error": "Wystąpił błąd podczas aktywacji CDN"
 }
