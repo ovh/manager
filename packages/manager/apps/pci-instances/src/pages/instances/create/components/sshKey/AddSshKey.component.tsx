@@ -18,7 +18,7 @@ import {
 } from '../../CreateInstance.schema';
 
 type TAddSshKeyProps = {
-  unavailableNames: string[];
+  unavailableSshKeyIds: string[];
   onSubmit: SubmitHandler<TAddSshKeyForm>;
   onCancel: () => void;
 };
@@ -26,7 +26,7 @@ type TAddSshKeyProps = {
 const AddSshKey: FC<TAddSshKeyProps> = ({
   onSubmit,
   onCancel,
-  unavailableNames,
+  unavailableSshKeyIds,
 }) => {
   const { t } = useTranslation([
     'creation',
@@ -41,16 +41,16 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
   } = useForm({
     resolver: zodResolver(
       buildAddSshKeyFormSchema({
-        unavailableNames,
+        unavailableSshKeyIds,
         unavailableNameError: t(
           'creation:pci_instance_creation_select_sshKey_add_name_unavailable_error',
         ),
-        requiredError: t(`${NAMESPACES.FORM}:error_required_field`),
+        requiredMessageError: t(`${NAMESPACES.FORM}:error_required_field`),
       }),
     ),
     defaultValues: {
-      sshName: '',
-      sshKey: '',
+      sshKeyId: '',
+      sshPublicKey: '',
     },
     mode: 'onChange',
   });
@@ -74,7 +74,7 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
     >
       <Controller
         control={control}
-        name="sshName"
+        name="sshKeyId"
         render={({ field, fieldState }) => (
           <div>
             <FormField>
@@ -98,7 +98,7 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
       />
       <Controller
         control={control}
-        name="sshKey"
+        name="sshPublicKey"
         render={({ field, fieldState }) => (
           <FormField>
             <FormFieldLabel>

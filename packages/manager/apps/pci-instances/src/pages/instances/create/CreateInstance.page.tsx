@@ -18,9 +18,8 @@ import {
   quantitySchema,
   distributionImageTypeSchema,
   distributionImageNameSchema,
-  sshNameSchema,
-  sshKeySchema,
-  sshIdSchema,
+  sshKeyIdSchema,
+  sshPublicKeySchema,
 } from '@/pages/instances/create/CreateInstance.schema';
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
@@ -40,9 +39,8 @@ export const instanceCreationSchema = z.object({
   availabilityZone: availabilityZoneSelectionSchema,
   distributionImageType: distributionImageTypeSchema,
   distributionImageName: distributionImageNameSchema,
-  sshName: sshNameSchema.nullable(),
-  sshId: sshIdSchema,
-  sshKey: sshKeySchema.optional(),
+  sshKeyId: sshKeyIdSchema,
+  sshPublicKey: sshPublicKeySchema.nullable(),
 });
 
 const CreateInstance: FC = () => {

@@ -34,34 +34,35 @@ export const distributionImageTypeSchema = z.string().nullable();
 
 export const distributionImageNameSchema = z.string().nullable();
 
-export const sshNameSchema = z.string().nonempty();
+export const sshKeyIdSchema = z
+  .string()
+  .nonempty()
+  .nullable();
 
-export const sshIdSchema = z.string().optional();
-
-export const sshKeySchema = z
+export const sshPublicKeySchema = z
   .string()
   .trim()
   .regex(sshKeyRegex);
 
 type TAddSshKeyFormSchemaBuilderArgs = Partial<{
-  unavailableNames: string[];
-  requiredError: string;
+  unavailableSshKeyIds: string[];
+  requiredMessageError: string;
   unavailableNameError: string;
 }>;
 
 export const buildAddSshKeyFormSchema = ({
-  unavailableNames = [],
-  requiredError,
+  unavailableSshKeyIds = [],
+  requiredMessageError: requiredError,
   unavailableNameError,
 }: TAddSshKeyFormSchemaBuilderArgs = {}) =>
   z.object({
-    sshName: z
+    sshKeyId: z
       .string()
       .nonempty(requiredError)
-      .refine((name) => !unavailableNames.includes(name), {
+      .refine((id) => !unavailableSshKeyIds.includes(id), {
         message: unavailableNameError,
       }),
-    sshKey: sshKeySchema,
+    sshPublicKey: sshPublicKeySchema,
   });
 
 export type TAddSshKeyForm = z.infer<

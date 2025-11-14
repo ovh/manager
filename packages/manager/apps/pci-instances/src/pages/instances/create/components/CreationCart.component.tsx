@@ -28,7 +28,7 @@ export const CreationCart = () => {
     quantity,
     flavorId,
     distributionImageName,
-    sshName,
+    sshKeyId,
   ] = useWatch({
     control,
     name: [
@@ -39,7 +39,7 @@ export const CreationCart = () => {
       'quantity',
       'flavorId',
       'distributionImageName',
-      'sshName',
+      'sshKeyId',
     ],
   });
 
@@ -108,19 +108,19 @@ export const CreationCart = () => {
 
   const sshKeyDetails = useMemo(
     () =>
-      sshName
+      sshKeyId
         ? [
             {
               name: t('common:pci_instances_common_ssh_key_label'),
               description: (
                 <Text preset="heading-6" className="text-[--ods-color-heading]">
-                  {sshName}
+                  {sshKeyId}
                 </Text>
               ),
             },
           ]
         : [],
-    [sshName, t],
+    [sshKeyId, t],
   );
 
   const cartItems: TCartItem[] = useMemo(
