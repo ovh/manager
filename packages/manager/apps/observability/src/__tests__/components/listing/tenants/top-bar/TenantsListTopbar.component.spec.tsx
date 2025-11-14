@@ -22,18 +22,11 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_BUTTON_VARIANT: {
-    default: 'default',
-  },
-}));
-
-// Mock manager-react-components
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  ManagerButton: ({
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  Button: ({
     id,
-    label,
+    children,
     onClick,
     variant,
     urn,
@@ -41,7 +34,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     displayTooltip,
   }: {
     id: string;
-    label: string;
+    children: React.ReactNode;
     onClick: () => void;
     variant: string;
     urn: string;
@@ -56,9 +49,12 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       data-iam-actions={iamActions.join(',')}
       data-display-tooltip={displayTooltip}
     >
-      {label}
+      {children}
     </button>
   ),
+  BUTTON_VARIANT: {
+    default: 'default',
+  },
 }));
 
 // Mock context

@@ -24,78 +24,63 @@ vi.mock('@/utils/form.utils', () => ({
   toParenthesesLabel: vi.fn((label: string) => `(${label})`),
 }));
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsFormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
     </div>
   ),
-  OdsSpinner: ({ size }: { size?: string }) => (
+  FormFieldHelper: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="form-field-helper">{children}</div>
+  ),
+  Spinner: ({ size }: { size?: string }) => (
     <div data-testid="spinner" data-size={size}>
       Loading...
     </div>
   ),
-  OdsText: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
+  Text: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
     <span data-testid="text" data-preset={preset}>
       {children}
     </span>
   ),
-  OdsTabs: ({
-    children,
-    onOdsTabsSelected,
+  TabsComponent: ({
+    items,
+    titleElement,
+    contentElement,
   }: {
-    children: React.ReactNode;
-    onOdsTabsSelected?: (event: { detail: { target: HTMLElement } }) => void;
-  }): React.ReactElement => (
-    <div data-testid="tabs" data-on-select={!!onOdsTabsSelected}>
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          const childProps = child.props as { id: string };
-          return React.cloneElement(child as React.ReactElement<{ onClick?: () => void }>, {
-            onClick: () => {
-              const mockEvent = {
-                detail: {
-                  target: { id: childProps.id } as HTMLElement,
-                },
-              };
-              onOdsTabsSelected?.(mockEvent);
-            },
-          });
-        }
-        return child;
-      })}
-    </div>
-  ),
-  OdsTab: ({
-    children,
-    id,
-    isSelected,
-    onClick,
-  }: {
-    children: React.ReactNode;
-    id: string;
-    isSelected?: boolean;
-    onClick?: () => void;
-  }) => (
-    <button
-      data-testid={`tab-${id}`}
-      data-tab-id={id}
-      data-selected={isSelected}
-      onClick={onClick}
-      type="button"
-    >
-      {children}
-    </button>
-  ),
-}));
+    items: string[];
+    titleElement: ({ item }: { item: string }) => React.ReactElement;
+    contentElement: ({ item }: { item: string }) => React.ReactElement;
+  }) => {
+    const [selectedTab, setSelectedTab] = React.useState(items[0]);
 
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_SPINNER_SIZE: {
+    return (
+      <div data-testid="tabs-component">
+        {items.map((item) => (
+          <div key={item}>
+            <button
+              type="button"
+              data-testid={`tab-${item}`}
+              data-selected={selectedTab === item ? 'true' : 'false'}
+              onClick={() => setSelectedTab(item)}
+              style={{ cursor: 'pointer' }}
+            >
+              {titleElement({ item })}
+            </button>
+            {selectedTab === item && (
+              <div data-testid={`tab-content-${item}`}>{contentElement({ item })}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
+  },
+  SPINNER_SIZE: {
     sm: 'sm',
     md: 'md',
   },
-  ODS_TEXT_PRESET: {
+  TEXT_PRESET: {
     heading4: 'heading-4',
     caption: 'caption',
   },
@@ -582,7 +567,7 @@ describe('RegionSelector', () => {
       {
         description: 'should render tabs with "all" tab even when no infrastructures',
         assertion: () => {
-          expect(screen.queryByTestId('tabs')).toBeInTheDocument();
+          expect(screen.queryByTestId('tabs-component')).toBeInTheDocument();
           expect(screen.queryByTestId('tab-all')).toBeInTheDocument();
         },
       },

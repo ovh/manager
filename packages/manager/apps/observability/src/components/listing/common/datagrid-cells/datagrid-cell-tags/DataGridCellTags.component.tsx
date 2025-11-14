@@ -1,5 +1,6 @@
-import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import React from 'react';
+
+import { BADGE_COLOR, BADGE_SIZE, Badge } from '@ovh-ux/muk';
 
 import { DataGridCellTagsProps } from './DataGridCellTags.props';
 
@@ -11,12 +12,9 @@ export default function DatagridTenantCellTags({ tags }: DataGridCellTagsProps) 
   return (
     <div className="grid grid-cols-3 gap-3 w-max">
       {tags.map((tag: string, index: number) => (
-        <OdsBadge
-          key={`tag-${index}`}
-          size={ODS_BADGE_SIZE.md}
-          color={ODS_BADGE_COLOR.neutral}
-          label={tag}
-        />
+        <Badge key={`tag-${index}`} size={BADGE_SIZE.md} color={BADGE_COLOR.neutral}>
+          {tag}
+        </Badge>
       ))}
     </div>
   );

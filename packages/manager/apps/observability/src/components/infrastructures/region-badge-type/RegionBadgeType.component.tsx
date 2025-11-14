@@ -1,9 +1,16 @@
-import { useId, useMemo } from 'react';
+import React, { useId, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import {
+  BADGE_COLOR,
+  Badge,
+  ICON_NAME,
+  Icon,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { RegionType } from '@/types/infrastructures.type';
 import { REGION_BADGE_LABELS } from '@/utils/labels.constants';
@@ -11,21 +18,20 @@ import { REGION_BADGE_LABELS } from '@/utils/labels.constants';
 import { RegionBadgeTypeProps } from './RegionBadgeType.props';
 
 const bgColors: Record<RegionType, string> = {
-  'LOCAL-ZONE': '[&::part(badge)]:bg-[--ods-color-primary-100]',
-  'REGION-1-AZ': '[&::part(badge)]:bg-[--ods-color-primary-400]',
-  'REGION-3-AZ': '[&::part(badge)]:bg-[--ods-color-primary-700]',
+  'LOCAL-ZONE': 'bg-[--ods-color-primary-100]',
+  'REGION-1-AZ': 'bg-[--ods-color-primary-400]',
+  'REGION-3-AZ': 'bg-[--ods-color-primary-700]',
 };
 
-const textColors: Record<RegionType, ODS_BADGE_COLOR> = {
-  'LOCAL-ZONE': ODS_BADGE_COLOR.information,
-  'REGION-1-AZ': ODS_BADGE_COLOR.promotion,
-  'REGION-3-AZ': ODS_BADGE_COLOR.promotion,
+const textColors: Record<RegionType, BADGE_COLOR> = {
+  'LOCAL-ZONE': BADGE_COLOR.information,
+  'REGION-1-AZ': BADGE_COLOR.promotion,
+  'REGION-3-AZ': BADGE_COLOR.promotion,
 };
 
 export const RegionBadgeType = ({ type }: RegionBadgeTypeProps) => {
   const { t } = useTranslation('infrastructure');
   const id = useId();
-
   const tooltipLabels: Record<RegionType, string> = useMemo(
     () => ({
       'LOCAL-ZONE': t('infrastructure.region.zone.local'),
@@ -36,21 +42,16 @@ export const RegionBadgeType = ({ type }: RegionBadgeTypeProps) => {
   );
 
   return (
-    <>
-      <OdsBadge
-        id={id}
-        label={REGION_BADGE_LABELS[type]}
-        color={textColors[type]}
-        className={bgColors[type]}
-        icon="circle-info"
-        iconAlignment="right"
-        size="sm"
-      />
-      <OdsTooltip triggerId={id} position="right" withArrow>
-        <OdsText preset="caption" className="w-56">
-          <span>{tooltipLabels[type]}</span>
-        </OdsText>
-      </OdsTooltip>
-    </>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Badge id={id} color={textColors[type]} className={bgColors[type]} size="sm">
+          {REGION_BADGE_LABELS[type]}
+          <Icon name={ICON_NAME.circleInfo} className="ml-1" />
+        </Badge>
+      </TooltipTrigger>
+      <TooltipContent id={`tooltip-${id}`} className="w-56">
+        {tooltipLabels[type]}
+      </TooltipContent>
+    </Tooltip>
   );
 };

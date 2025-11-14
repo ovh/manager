@@ -8,21 +8,77 @@ import ServicesDropDown from '@/components/services/ServicesDropDown.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { ObservabilityService } from '@/types/observability.type';
 
+// Mock the API client
+vi.mock('@ovh-ux/manager-core-api', () => ({
+  apiClient: {
+    v2: {
+      get: vi.fn(),
+    },
+  },
+}));
+
+// Mock i18next
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
+// Mock SelectField component (simplified mock that matches MUK structure)
+vi.mock('@/components/form/select-field/SelectField.component', () => ({
+  SelectField: ({
+    label,
+    value,
+    name,
+    placeholder,
+    isLoading,
+    onChange,
+    options,
+    className,
+  }: {
+    label?: string;
+    value?: string;
+    name: string;
+    placeholder?: string;
+    isLoading?: boolean;
+    onChange: (value: string | null) => void;
+    options?: Array<{ value: string; label: string }>;
+    className?: string;
+  }) => {
+    if (isLoading) {
+      return <div data-testid="skeleton" className={className} />;
+    }
+    return (
+      <div data-testid="form-field">
+        {label && <label data-testid="label">{label}</label>}
+        <select
+          data-testid="select"
+          name={name}
+          data-placeholder={placeholder}
+          value={value || ''}
+          className={className}
+          onChange={(e) => {
+            const selectedValue = e.target.value || null;
+            onChange(selectedValue);
+          }}
+        >
+          {options?.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  },
+}));
+
 // Mock the context
 vi.mock('@/contexts/ObservabilityService.context', () => ({
   useObservabilityServiceContext: vi.fn(),
 }));
 
 const mockUseObservabilityServiceContext = vi.mocked(useObservabilityServiceContext);
-
-// Helper function to get ODS elements by tag name
-const getOdsElement = (container: HTMLElement, tagName: string) => {
-  return container.querySelector(tagName);
-};
-
-const getOdsElements = (container: HTMLElement, tagName: string) => {
-  return container.querySelectorAll(tagName);
-};
 
 // Test wrapper for React Query
 const createWrapper = () => {
@@ -78,13 +134,13 @@ describe('ServicesDropDown', () => {
       });
 
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      expect(getOdsElement(container, 'ods-skeleton')).toBeInTheDocument();
-      expect(getOdsElement(container, 'ods-select')).not.toBeInTheDocument();
+      expect(screen.getByTestId('skeleton')).toBeInTheDocument();
+      expect(screen.queryByTestId('select')).not.toBeInTheDocument();
       expect(screen.queryByText('listing.service')).not.toBeInTheDocument();
     });
 
@@ -100,13 +156,13 @@ describe('ServicesDropDown', () => {
       });
 
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      expect(getOdsElement(container, 'ods-skeleton')).not.toBeInTheDocument();
-      expect(getOdsElement(container, 'ods-select')).toBeInTheDocument();
+      expect(screen.queryByTestId('skeleton')).not.toBeInTheDocument();
+      expect(screen.getByTestId('select')).toBeInTheDocument();
     });
   });
 
@@ -143,12 +199,12 @@ describe('ServicesDropDown', () => {
       });
 
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      expect(getOdsElement(container, 'ods-select')).toBeInTheDocument();
+      expect(screen.getByTestId('select')).toBeInTheDocument();
     });
   });
 
@@ -166,25 +222,25 @@ describe('ServicesDropDown', () => {
 
     it('should render form field with label', () => {
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
       expect(screen.getByText('listing.service')).toBeInTheDocument();
-      expect(getOdsElement(container, 'ods-select')).toBeInTheDocument();
+      expect(screen.getByTestId('select')).toBeInTheDocument();
     });
 
     it('should render select with correct attributes', () => {
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      const select = getOdsElement(container, 'ods-select');
+      const select = screen.getByTestId('select');
       expect(select).toHaveAttribute('name', 'select-observability-service');
-      expect(select).toHaveAttribute('placeholder', 'listing.select_observability_service');
+      expect(select).toHaveAttribute('data-placeholder', 'listing.select_observability_service');
     });
 
     it('should render all service options', () => {
@@ -194,7 +250,7 @@ describe('ServicesDropDown', () => {
       });
 
       // Assert
-      const options = getOdsElements(container, 'option');
+      const options = container.querySelectorAll('option');
       expect(options).toHaveLength(3);
 
       expect(screen.getByText('Service One')).toBeInTheDocument();
@@ -209,7 +265,7 @@ describe('ServicesDropDown', () => {
       });
 
       // Assert
-      const options = getOdsElements(container, 'option');
+      const options = container.querySelectorAll('option');
       const optionsArray = Array.from(options);
 
       expect(optionsArray.find((opt) => opt.textContent === 'Service One')).toHaveAttribute(
@@ -251,50 +307,38 @@ describe('ServicesDropDown', () => {
       });
 
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      const select = getOdsElement(container, 'ods-select');
-      expect(select).toHaveAttribute('value', 'service-1');
+      const select = screen.getByTestId('select');
+      expect((select as HTMLSelectElement).value).toBe('service-1');
     });
 
     it('should call setSelectedService when selection changes', () => {
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      const select = getOdsElement(container, 'ods-select');
-
-      // Note: The actual ODS component uses onOdsChange with event.detail.value
-      // We need to simulate the ODS-specific event structure
-      const odsChangeEvent = new CustomEvent('odsChange', {
-        detail: { value: 'service-2' },
-      });
-
-      if (select) fireEvent(select, odsChangeEvent);
+      const select = screen.getByTestId('select');
+      fireEvent.change(select, { target: { value: 'service-2' } });
 
       expect(mockSetSelectedService).toHaveBeenCalledWith(mockServices[1]);
     });
 
-    it('should handle undefined value in onOdsChange', () => {
+    it('should handle undefined value in onChange', () => {
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      const select = getOdsElement(container, 'ods-select');
+      const select = screen.getByTestId('select');
+      fireEvent.change(select, { target: { value: '' } });
 
-      // Simulate change event with undefined value
-      const odsChangeEvent = new CustomEvent('odsChange', {
-        detail: { value: undefined },
-      });
-
-      if (select) fireEvent(select, odsChangeEvent);
       expect(mockSetSelectedService).toHaveBeenCalledWith(undefined);
     });
   });
@@ -311,25 +355,14 @@ describe('ServicesDropDown', () => {
       });
     });
 
-    it('should apply correct CSS classes to form field', () => {
-      // Act
-      const { container } = render(<ServicesDropDown />, {
-        wrapper: createWrapper(),
-      });
-
-      // Assert
-      const formField = getOdsElement(container, 'ods-form-field');
-      expect(formField).toHaveClass('my-4', 'w-full');
-    });
-
     it('should apply correct CSS classes to select', () => {
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      const select = getOdsElement(container, 'ods-select');
+      const select = screen.getByTestId('select');
       expect(select).toHaveClass('max-w-[20rem]');
     });
 
@@ -345,12 +378,12 @@ describe('ServicesDropDown', () => {
       });
 
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      const skeleton = getOdsElement(container, 'ods-skeleton');
+      const skeleton = screen.getByTestId('skeleton');
       expect(skeleton).toHaveClass('max-w-[20rem]');
     });
   });
@@ -369,28 +402,27 @@ describe('ServicesDropDown', () => {
 
     it('should have proper label association', () => {
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
       const label = screen.getByText('listing.service');
-      const select = getOdsElement(container, 'ods-select');
+      const select = screen.getByTestId('select');
 
-      // The label should be associated with the select via slot="label"
-      expect(label).toHaveAttribute('slot', 'label');
+      expect(label).toBeInTheDocument();
       expect(select).toHaveAttribute('name', 'select-observability-service');
     });
 
     it('should have meaningful placeholder text', () => {
       // Act
-      const { container } = render(<ServicesDropDown />, {
+      render(<ServicesDropDown />, {
         wrapper: createWrapper(),
       });
 
       // Assert
-      const select = getOdsElement(container, 'ods-select');
-      expect(select).toHaveAttribute('placeholder', 'listing.select_observability_service');
+      const select = screen.getByTestId('select');
+      expect(select).toHaveAttribute('data-placeholder', 'listing.select_observability_service');
     });
   });
 
@@ -467,7 +499,7 @@ describe('ServicesDropDown', () => {
       });
 
       // Assert
-      const options = getOdsElements(container, 'option');
+      const options = container.querySelectorAll('option');
       expect(options).toHaveLength(100);
       expect(screen.getByText('Service 0')).toBeInTheDocument();
       expect(screen.getByText('Service 99')).toBeInTheDocument();

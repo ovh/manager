@@ -10,19 +10,19 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-// Mock ODS components
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  Links: ({
-    onClickReturn,
-    label,
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  Link: ({
+    onClick,
+    children,
     'data-testid': testId,
   }: {
-    onClickReturn: () => void;
-    label: string;
+    onClick: () => void;
+    children: React.ReactNode;
     'data-testid'?: string;
   }) => (
-    <button data-testid={testId} onClick={onClickReturn} type="button">
-      {label}
+    <button data-testid={testId} onClick={onClick} type="button">
+      {children}
     </button>
   ),
 }));
