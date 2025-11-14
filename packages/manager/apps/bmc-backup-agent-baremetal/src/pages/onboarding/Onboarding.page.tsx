@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { Card } from '@ovh-ux/manager-react-components';
 
+import { OnboardingLayout } from '@/components/onboardingLayout/OnboardingLayout.component';
+import { useBaremetalDetails } from '@/data/hooks/baremetal/getBaremetals';
 import { useGuideLinks, useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
 import { OnboardingLinksType } from '@/types/Onboarding.type';
 
@@ -14,22 +16,20 @@ export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
   const { productName, productCategory, brand, title, heroImage, tiles } = useOnboardingContent();
   const links: OnboardingLinksType = useGuideLinks();
+  const { data, isLoading } = useBaremetalDetails();
 
   // Build localized description paragraph.
-  const description = useMemo(
-    () => (
-      <section className="text-center">
-        <OdsText className="my-6 block">
-          {t('onboarding:description_part1', {
-            productName,
-            productCategory,
-            brand,
-          })}
-        </OdsText>
-        <OdsText>{t('onboarding:description_part2', { productName })}</OdsText>
-      </section>
-    ),
-    [t, productName, productCategory, brand],
+  const description = (
+    <section className="text-center">
+      <OdsText className="my-6 block">
+        {t('onboarding:description_part1', {
+          productName,
+          productCategory,
+          brand,
+        })}
+      </OdsText>
+      <OdsText>{t('onboarding:description_part2', { productName })}</OdsText>
+    </section>
   );
 
   // Build hero image object with fallback alt text.
@@ -59,6 +59,11 @@ export default function OnboardingPage() {
       onOrderButtonClick={() => {}}
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
       onMoreInfoButtonClick={() => {}}
+      isOrderLoading={isLoading}
+      orderHref=""
+      moreInfoHref="/#/"
+      isOrderDisabled={!data?.length}
+      tooltipContent={!data?.length ? t('no_baremetal_available') : undefined}
     >
       {validTiles.map(({ id, key, linkKey }) => {
         const href = links[linkKey];
