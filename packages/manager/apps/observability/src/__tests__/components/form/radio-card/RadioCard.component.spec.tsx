@@ -6,9 +6,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { RadioCard } from '@/components/form/radio-card/RadioCard.component';
 import { RadioCardProps } from '@/components/form/radio-card/RadioCard.props';
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsText: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  Text: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
     <span data-testid="text" data-preset={preset}>
       {children}
     </span>

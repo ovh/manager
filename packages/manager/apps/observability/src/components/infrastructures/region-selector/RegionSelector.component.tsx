@@ -60,8 +60,10 @@ export default function RegionSelector() {
               <div className="region-selector-tabs">
                 <TabsComponent
                   items={zones}
-                  titleElement={({ item }) => <>{t(`infrastructure.region.${item}`)}</>}
-                  contentElement={({ item }) => (
+                  titleElement={({ item }: { item: string }) => (
+                    <>{t(`infrastructure.region.${item}`)}</>
+                  )}
+                  contentElement={({ item }: { item: string }) => (
                     <div className="space-y-4 mt-4">
                       {groupedInfrastructures[item]?.map((infrastructure) => (
                         <RadioCard

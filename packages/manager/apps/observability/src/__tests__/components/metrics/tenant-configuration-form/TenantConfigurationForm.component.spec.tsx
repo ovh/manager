@@ -43,27 +43,116 @@ vi.mock('@/utils/form.utils', () => ({
   toRequiredLabel: vi.fn((label: string) => `${label}*`),
 }));
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsFormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
     </div>
   ),
-  OdsQuantity: ({
+  FormFieldHelper: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="form-field-helper">{children}</div>
+  ),
+  Quantity: ({
+    children,
     name,
     min,
     max,
     value,
-    onOdsChange,
-    hasError,
+    onValueChange,
+    invalid,
   }: {
-    name: string;
-    min: number;
-    max: number;
-    value: number | null;
-    onOdsChange?: (event: { detail: { value: number } }) => void;
-    hasError?: boolean;
+    children: React.ReactNode;
+    name?: string;
+    min?: number;
+    max?: number;
+    value?: string;
+    onValueChange?: (detail: { value: string }) => void;
+    invalid?: boolean;
+  }) => (
+    <div data-testid="quantity">
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(
+            child as React.ReactElement<{
+              name?: string;
+              min?: number;
+              max?: number;
+              value?: string;
+              onValueChange?: (detail: { value: string }) => void;
+              invalid?: boolean;
+            }>,
+            {
+              name,
+              min,
+              max,
+              value,
+              onValueChange,
+              invalid,
+            },
+          );
+        }
+        return child;
+      })}
+    </div>
+  ),
+  QuantityControl: ({
+    children,
+    name,
+    min,
+    max,
+    value,
+    onValueChange,
+    invalid,
+  }: {
+    children?: React.ReactNode;
+    name?: string;
+    min?: number;
+    max?: number;
+    value?: string;
+    onValueChange?: (detail: { value: string }) => void;
+    invalid?: boolean;
+  }) => (
+    <div data-testid="quantity-control">
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(
+            child as React.ReactElement<{
+              name?: string;
+              min?: number;
+              max?: number;
+              value?: string;
+              onValueChange?: (detail: { value: string }) => void;
+              invalid?: boolean;
+            }>,
+            {
+              name,
+              min,
+              max,
+              value,
+              onValueChange,
+              invalid,
+            },
+          );
+        }
+        return child;
+      })}
+    </div>
+  ),
+  QuantityInput: ({
+    name,
+    min,
+    max,
+    value,
+    onValueChange,
+    invalid,
+  }: {
+    name?: string;
+    min?: number;
+    max?: number;
+    value?: string;
+    onValueChange?: (detail: { value: string }) => void;
+    invalid?: boolean;
   }) => (
     <input
       data-testid="quantity-input"
@@ -73,13 +162,12 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       max={max}
       value={value || ''}
       onChange={(e) => {
-        const numValue = parseInt(e.target.value, 10);
-        onOdsChange?.({ detail: { value: numValue } });
+        onValueChange?.({ value: e.target.value });
       }}
-      data-has-error={hasError}
+      data-has-error={invalid}
     />
   ),
-  OdsText: ({
+  Text: ({
     children,
     preset,
     slot,
@@ -92,6 +180,12 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       {children}
     </span>
   ),
+  TEXT_PRESET: {
+    heading4: 'heading4',
+    heading6: 'heading6',
+    paragraph: 'paragraph',
+    caption: 'caption',
+  },
 }));
 
 vi.mock('@/components/form/select-field/SelectField.component', () => ({
@@ -144,16 +238,6 @@ vi.mock('@/components/form/select-field/SelectField.component', () => ({
         {error && <span data-testid="select-error">{error}</span>}
       </div>
     );
-  },
-}));
-
-// Mock ODS constants
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_TEXT_PRESET: {
-    heading4: 'heading4',
-    heading6: 'heading6',
-    paragraph: 'paragraph',
-    caption: 'caption',
   },
 }));
 
@@ -461,7 +545,9 @@ describe('TenantConfigurationForm', () => {
 
       const quantityInput = screen.getByTestId('quantity-input');
       expect(quantityInput).toHaveAttribute('data-has-error', 'true');
-      expect(screen.getByTestId('text-helper')).toHaveTextContent('Must be between 1 and 1000');
+
+      const errorHelper = screen.getByTestId('form-field-helper');
+      expect(errorHelper).toHaveTextContent('Must be between 1 and 1000');
     });
 
     it('should not display error when maxSeries is valid', () => {

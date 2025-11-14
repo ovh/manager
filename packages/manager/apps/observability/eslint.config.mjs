@@ -1,4 +1,4 @@
-import { tailwindSyntax } from '@eslint/css/syntax';
+import { tailwind4 } from 'tailwind-csstree';
 
 import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 import {
@@ -38,11 +38,13 @@ export default [
     files: ['**/*.css', '**/*.scss'],
     languageOptions: {
       ...cssEslintConfig.languageOptions,
-      customSyntax: tailwindSyntax,
+      customSyntax: tailwind4,
     },
     rules: {
       ...cssEslintConfig.rules,
       'css/no-invalid-properties': 'off',
+      'css/no-invalid-at-rules': 'off',
+      'css/no-invalid-at-rule-placement': 'off',
     },
   },
 ];

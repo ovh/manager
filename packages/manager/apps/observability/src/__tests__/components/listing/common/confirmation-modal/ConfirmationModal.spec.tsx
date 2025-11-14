@@ -20,6 +20,51 @@ vi.mock('@ovh-ux/muk', () => ({
       {children}
     </div>
   ),
+  Text: ({ children }: { children: React.ReactNode }) => <span>{children}</span>,
+  Button: ({
+    children,
+    onClick,
+    'data-testid': dataTestId,
+    disabled,
+    loading,
+  }: {
+    children: React.ReactNode;
+    onClick?: () => void;
+    'data-testid'?: string;
+    disabled?: boolean;
+    loading?: boolean;
+  }) => (
+    <button data-testid={dataTestId} onClick={onClick} disabled={disabled || loading}>
+      {children}
+    </button>
+  ),
+  Message: ({
+    children,
+    'data-testid': dataTestId,
+  }: {
+    children: React.ReactNode;
+    'data-testid'?: string;
+  }) => <div data-testid={dataTestId}>{children}</div>,
+  Spinner: () => <div>Loading...</div>,
+  MODAL_COLOR: {
+    critical: 'critical',
+    warning: 'warning',
+    info: 'info',
+  },
+  BUTTON_COLOR: {
+    critical: 'critical',
+    primary: 'primary',
+  },
+  BUTTON_VARIANT: {
+    default: 'default',
+    outline: 'outline',
+  },
+  SPINNER_SIZE: {
+    md: 'md',
+  },
+  TEXT_PRESET: {
+    paragraph: 'paragraph',
+  },
 }));
 
 describe('ConfirmationModal', () => {

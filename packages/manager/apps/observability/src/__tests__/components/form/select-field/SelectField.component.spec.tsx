@@ -13,6 +13,46 @@ vi.mock('@ovh-ux/muk', () => ({
       {children}
     </div>
   ),
+  FormFieldLabel: ({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) => (
+    <label data-testid="form-field-label" htmlFor={htmlFor}>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+          return React.cloneElement(child as React.ReactElement<{ slot?: string }>, {
+            slot: 'label',
+          });
+        }
+        return child;
+      })}
+    </label>
+  ),
+  FormFieldHelper: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="form-field-helper">
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+          return React.cloneElement(child as React.ReactElement<{ slot?: string }>, {
+            slot: 'helper',
+          });
+        }
+        return child;
+      })}
+    </div>
+  ),
+  SelectControl: ({
+    children,
+    className,
+    placeholder,
+  }: {
+    children?: React.ReactNode;
+    className?: string;
+    placeholder?: string;
+  }) => (
+    <div data-testid="select-control" className={className} data-placeholder={placeholder}>
+      {children}
+    </div>
+  ),
+  SelectContent: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="select-content">{children}</div>
+  ),
   Select: ({
     className,
     value,
@@ -21,6 +61,7 @@ vi.mock('@ovh-ux/muk', () => ({
     invalid,
     disabled,
     items,
+    children,
   }: {
     className?: string;
     value?: string[];
@@ -29,6 +70,7 @@ vi.mock('@ovh-ux/muk', () => ({
     invalid?: boolean;
     disabled?: boolean;
     items: Array<{ label: string; value: string }>;
+    children?: React.ReactNode;
   }) => {
     const [selectValue, setSelectValue] = React.useState(value?.[0] || '');
 
@@ -37,24 +79,27 @@ vi.mock('@ovh-ux/muk', () => ({
     }, [value]);
 
     return (
-      <select
-        data-testid="select-field"
-        className={className}
-        value={selectValue}
-        name={name}
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          setSelectValue(e.target.value);
-          onValueChange?.({ value: [e.target.value] });
-        }}
-        data-has-error={invalid}
-        disabled={disabled}
-      >
-        {items?.map((item) => (
-          <option key={item.value} value={item.value}>
-            {item.label}
-          </option>
-        ))}
-      </select>
+      <>
+        {children}
+        <select
+          data-testid="select-field"
+          className={className}
+          value={selectValue}
+          name={name}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            setSelectValue(e.target.value);
+            onValueChange?.({ value: [e.target.value] });
+          }}
+          data-has-error={invalid}
+          disabled={disabled}
+        >
+          {items?.map((item) => (
+            <option key={item.value} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+      </>
     );
   },
   Skeleton: ({ className }: { className?: string }) => (
@@ -123,7 +168,10 @@ describe('SelectField', () => {
     it('should render with placeholder when provided', () => {
       render(<SelectField {...defaultProps} placeholder="Select an option" />);
 
-      expect(screen.getByTestId('select-field')).toHaveAttribute('placeholder', 'Select an option');
+      expect(screen.getByTestId('select-control')).toHaveAttribute(
+        'data-placeholder',
+        'Select an option',
+      );
     });
 
     it('should render with value when provided', () => {
@@ -160,22 +208,16 @@ describe('SelectField', () => {
       expect(options[2]).toHaveTextContent('Option 3');
     });
 
-    it('should render children instead of options when both are provided', () => {
-      render(
-        <SelectField {...defaultProps} options={mockOptions}>
-          <option value="child1">Child Option 1</option>
-          <option value="child2">Child Option 2</option>
-        </SelectField>,
-      );
+    it('should render options from options prop (children not supported in MUK)', () => {
+      render(<SelectField {...defaultProps} options={mockOptions} />);
 
       const select = screen.getByTestId('select-field');
       const options = select.querySelectorAll('option');
 
-      expect(options).toHaveLength(2);
-      expect(options[0]).toHaveValue('child1');
-      expect(options[0]).toHaveTextContent('Child Option 1');
-      expect(options[1]).toHaveValue('child2');
-      expect(options[1]).toHaveTextContent('Child Option 2');
+      // MUK Select uses items prop, not children
+      expect(options).toHaveLength(3);
+      expect(options[0]).toHaveValue('option1');
+      expect(options[0]).toHaveTextContent('Option 1');
     });
 
     it('should render empty select when no options or children provided', () => {
@@ -290,11 +332,12 @@ describe('SelectField', () => {
       const formField = container.querySelector('[data-testid="form-field"]');
       const children = Array.from(formField?.children || []);
 
-      // Should have label, select, and error in that order
-      expect(children).toHaveLength(3);
-      expect(children[0]).toHaveAttribute('data-testid', 'text-label');
-      expect(children[1]).toHaveAttribute('data-testid', 'select-field');
-      expect(children[2]).toHaveAttribute('data-testid', 'text-helper');
+      // Should have label, SelectControl, SelectContent, select field, and error helper
+      // MUK Select renders children (SelectControl, SelectContent) before the actual select
+      expect(children.length).toBeGreaterThanOrEqual(3);
+      expect(children[0]).toHaveAttribute('data-testid', 'form-field-label');
+      expect(container.querySelector('[data-testid="select-field"]')).toBeInTheDocument();
+      expect(container.querySelector('[data-testid="form-field-helper"]')).toBeInTheDocument();
     });
   });
 
