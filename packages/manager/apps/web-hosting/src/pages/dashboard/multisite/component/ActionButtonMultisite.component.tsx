@@ -170,6 +170,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     } else {
       const currentDomain = domains?.find((d) => d.id === domainId);
       const canAccesscdn = currentDomain?.currentState?.cdn.status !== ServiceStatus.NONE;
+      const canActivateCdn = currentDomain?.currentState?.cdn.status === ServiceStatus.NONE;
 
       const domainActions: ActionMenuItem[] = [
         {
@@ -204,6 +205,17 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
             ),
           label: t('detache_domain'),
         },
+        actionCondition(canActivateCdn, {
+          id: 15,
+          onClick: () =>
+            navigate(
+              urls.activateCdn
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.domain, domain ?? ''),
+              { state: { domain, serviceName } },
+            ),
+          label: t('activate_cdn'),
+        }),
         actionCondition(canAccesscdn, {
           id: 13,
           onClick: () =>

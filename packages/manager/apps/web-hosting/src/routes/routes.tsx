@@ -52,6 +52,7 @@ import {
   WORDPRESS_MANAGED_SERVICE,
 } from '../utils/tracking.constants';
 import {
+  ActivateCdnModal,
   AdvancedFlushCdnModal,
   CdnCacheRuleModal,
   CdnConfirmationModal,
@@ -428,6 +429,17 @@ export default (
           handle={{
             tracking: {
               pageName: DEPLOYE_GIT,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id="activate-cdn"
+          path={urls.activateCdn}
+          Component={ActivateCdnModal}
+          handle={{
+            tracking: {
+              pageName: 'activate-cdn',
               pageType: PageType.popup,
             },
           }}
