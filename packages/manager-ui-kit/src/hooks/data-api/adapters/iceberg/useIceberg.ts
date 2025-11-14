@@ -5,11 +5,14 @@ import type { SortingState } from '@tanstack/react-table';
 import { fetchWithIceberg } from '@ovh-ux/manager-core-api';
 import type { IcebergFetchResult } from '@ovh-ux/manager-core-api';
 
+import {
+  DEFAULT_DATA_API_RESPONSE,
+  DEFAULT_PAGE_SIZE,
+} from '@/hooks/data-api/ports/useDataApi.constants';
 import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
 import { useDataRetrievalOperations } from '@/hooks/data-api/useDataRetrievalOperations';
 
 import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack';
-import { DEFAULT_PAGE_SIZE } from '../../ports/useDataApi.constants';
 import { API_V6_MAX_PAGE_SIZE } from './useIceberg.constants';
 import { UseIcebergData, UseIcebergParams } from './useIceberg.type';
 
@@ -92,10 +95,21 @@ export const useIceberg = <TData = Record<string, unknown>>({
   });
 
   useEffect(() => {
-    if (fetchAll && hasNextPage) {
+    if (fetchAll && hasNextPage && enabled) {
       void fetchNextPage();
     }
-  }, [dataSelected]);
+  }, [dataSelected, fetchAll, hasNextPage, fetchNextPage, enabled]);
+
+  if (!enabled) {
+    return {
+      ...DEFAULT_DATA_API_RESPONSE,
+      sorting: {
+        sorting: [],
+        setSorting: () => {},
+        manualSorting: false,
+      },
+    };
+  }
 
   return {
     ...(dataSelected && { ...dataSelected }),
