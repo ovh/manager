@@ -64,5 +64,9 @@
   "multisite_add_website_module_cms_choice_joomla_text": "Ein Content-Management-System zum Erstellen von Blogs und maßgeschneiderten E-Commerce-Websites.",
   "multisite_add_website_success": "Ihre Website wurde erfolgreich hinzugefügt! Die Zuordnung Ihrer Domain kann bis zu 48 Stunden dauern.",
   "multisite_add_website_error": "Beim Hinzufügen Ihrer Website ist ein Fehler aufgetreten. {{ error }}",
-  "multisite_add_website_in_progress": "Aktuelle Aufgaben verfolgen"
+  "multisite_add_website_in_progress": "Aktuelle Aufgaben verfolgen",
+  "multisite_add_domain_title": "Einen Domain hinzufügen",
+  "multisite_add_website_advanced_options_dns_auto_recommanded": "Empfohlen",
+  "multisite_add_website_domain_info": "Der Domainname entspricht der Adresse Ihrer Website",
+  "multisite_add_website_domain_configuration": "Domainkonfiguration"
 }
