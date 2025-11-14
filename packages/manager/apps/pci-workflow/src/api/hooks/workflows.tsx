@@ -24,14 +24,15 @@ import {
   getRegionsWorkflows,
 } from '@/api/data/region-workflow';
 import { deleteWorkflow } from '@/api/data/workflow';
-import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { paginateResults } from '@/helpers';
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
 import { enableRegion } from '../data/region';
 import { useMe } from './user';
 
-export const WORKFLOW_TYPE = 'instance_backup';
+export enum WorkflowType {
+  INSTANCE_BACKUP = 'instance_backup',
+}
 
 export type TWorkflow = TRemoteWorkflow & {
   instanceName: string;
@@ -199,8 +200,8 @@ export const usePaginatedWorkflows = (
     combine: (results) => {
       const workflowsWithInstanceIds = workflows.map((workflow, i) => ({
         ...workflow,
-        type: WORKFLOW_TYPE,
-        typeLabel: t(`pci_workflow_type_${WORKFLOW_TYPE}_title`),
+        type: WorkflowType.INSTANCE_BACKUP,
+        typeLabel: t(`pci_workflow_type_${WorkflowType.INSTANCE_BACKUP}_title`),
         instanceName: results[i].data?.name,
         backup: !!workflow.distantRegion
           ? TWorkflowBackup.LOCAL_AND_DISTANT
@@ -258,15 +259,48 @@ export const useDeleteWorkflow = ({
 };
 
 interface UseAddWorkflowProps {
-  cron: string;
-  instanceId: TInstance['id'];
+  type: WorkflowType;
+  resource: { id: string; region: string };
   name: string;
+  cron: string;
   rotation: number;
   maxExecutionCount: number;
-  distantRegion: string | null;
 }
 
+type UseAddInstanceBackupWorkflowProps = UseAddWorkflowProps & {
+  type: WorkflowType.INSTANCE_BACKUP;
+  distantRegion: string | null;
+};
+
 export const useAddWorkflow = ({
+  projectId,
+  onError,
+  onSuccess,
+}: {
+  projectId: string;
+  onSuccess: () => void;
+  onError: (error: Error) => void;
+}) => {
+  const { addInstanceBackupWorkflow, isPending: isAddingInstanceBackupWorkflow } =
+    useAddInstanceBackupWorkflow({
+      projectId,
+      onError,
+      onSuccess,
+    });
+
+  const addWorkflow = (props: UseAddInstanceBackupWorkflowProps) => {
+    if (props.type === WorkflowType.INSTANCE_BACKUP) {
+      addInstanceBackupWorkflow(props);
+    }
+  };
+
+  return {
+    addWorkflow,
+    isPending: isAddingInstanceBackupWorkflow,
+  };
+};
+
+export const useAddInstanceBackupWorkflow = ({
   projectId,
   onError,
   onSuccess,
@@ -283,7 +317,7 @@ export const useAddWorkflow = ({
   });
 
   const mutation = useMutation({
-    mutationFn: async ({ instanceId, distantRegion, ...type }: UseAddWorkflowProps) => {
+    mutationFn: async ({ resource, distantRegion, ...rest }: UseAddInstanceBackupWorkflowProps) => {
       if (
         distantRegion &&
         productAvailability?.plans.find(
@@ -295,20 +329,20 @@ export const useAddWorkflow = ({
         await enableRegion({ projectId, region: distantRegion });
       }
 
-      return addWorkflow(projectId, instanceId.region, instanceId.id, {
-        name: type.name,
-        cron: type.cron,
-        rotation: type.rotation,
+      return addWorkflow(projectId, resource.region, resource.id, {
+        name: rest.name,
+        cron: rest.cron,
+        rotation: rest.rotation,
         imageName: '',
         distRegionName: distantRegion,
         distImageName: null,
       });
     },
     onError,
-    onSuccess: async (_res, { instanceId }) => {
+    onSuccess: async (_res, { resource }) => {
       await Promise.all(
         [
-          getWorkflowQueryOptions(projectId, instanceId.region),
+          getWorkflowQueryOptions(projectId, resource.region),
           getCatalogQuery(me.ovhSubsidiary),
           getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
             addonFamily: 'snapshot',
@@ -320,7 +354,7 @@ export const useAddWorkflow = ({
   });
 
   return {
-    addWorkflow: mutation.mutate,
+    addInstanceBackupWorkflow: mutation.mutate,
     ...mutation,
   };
 };

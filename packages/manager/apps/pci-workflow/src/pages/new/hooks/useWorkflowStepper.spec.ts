@@ -2,13 +2,9 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it } from 'vitest';
 
 import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { WorkflowType } from '@/api/hooks/workflows';
 
-import {
-  DEFAULT_FORM_STATE,
-  TWorkflowScheduling,
-  WorkflowType,
-  useWorkflowStepper,
-} from './useWorkflowStepper';
+import { DEFAULT_FORM_STATE, TWorkflowScheduling, useWorkflowStepper } from './useWorkflowStepper';
 
 const INSTANCE_MOCK = {
   BASE: { id: buildInstanceId('instanceId', 'regionId') } as TInstance,
