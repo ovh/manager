@@ -15,6 +15,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { useHeader } from '@/components/Header/Header';
+import { SurveyLink } from '@/components/SurveyLink/SurveyLink';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -45,28 +46,33 @@ export default function Listing() {
     <BaseLayout
       header={header}
       tabs={
-        <OdsTabs className="mb-4">
-          {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab
-              key={`ods-tab-bar-item-${tab.to}`}
-              id={tab.to}
-              isSelected={location.pathname === tab.to}
-              className="flex items-center justify-center"
-              title={tab.title}
-              onClick={() => {
-                trackClick({
-                  actionType: 'navigation',
-                  buttonType: ButtonType.tab,
-                  location: PageLocation.page,
-                  actions: [tab.to],
-                });
-                navigate(tab.to);
-              }}
-            >
-              {tab.title}
-            </OdsTab>
-          ))}
-        </OdsTabs>
+        <>
+          <div className=" w-full flex justify-end">
+            <SurveyLink />
+          </div>
+          <OdsTabs className="mb-4">
+            {tabsList.map((tab: DashboardTabItemProps) => (
+              <OdsTab
+                key={`ods-tab-bar-item-${tab.to}`}
+                id={tab.to}
+                isSelected={location.pathname === tab.to}
+                className="flex items-center justify-center"
+                title={tab.title}
+                onClick={() => {
+                  trackClick({
+                    actionType: 'navigation',
+                    buttonType: ButtonType.tab,
+                    location: PageLocation.page,
+                    actions: [tab.to],
+                  });
+                  navigate(tab.to);
+                }}
+              >
+                {tab.title}
+              </OdsTab>
+            ))}
+          </OdsTabs>
+        </>
       }
       message={<Notifications />}
     >
