@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import React from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -19,8 +20,8 @@ import { subRoutes, urls } from '@/routes/routes.constants';
 
 interface ActionButtonMultisiteProps {
   context: 'site' | 'domain';
-  siteId?: number;
-  domainId?: number;
+  siteId?: string;
+  domainId?: string;
   site?: string;
   domain?: string;
   path?: string;
@@ -51,7 +52,6 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     data?: WebHostingWebsiteType[];
     isLoading: boolean;
   };
-
   const actionCondition = (
     condition: boolean,
     action: Omit<ActionMenuItem, 'id'> & { id: number },
@@ -179,7 +179,19 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
               urls.modifyDomain
                 .replace(subRoutes.serviceName, serviceName)
                 .replace(subRoutes.domain, domain ?? ''),
+              {
+                state: {
+                  serviceName,
+                  path,
+                  domain,
+                  gitStatus: websites.find((w) => w.id === currentDomain?.currentState.websiteId)
+                    ?.currentState?.git?.status,
+                  firewallStatus: currentDomain?.currentState?.firewall?.status,
+                  cdnStatus: currentDomain?.currentState?.cdn?.status,
+                },
+              },
             ),
+
           label: t('modify_domain'),
         },
         {

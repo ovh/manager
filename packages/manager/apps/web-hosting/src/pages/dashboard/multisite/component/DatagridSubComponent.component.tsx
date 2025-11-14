@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +20,7 @@ export const DatagridSubComponent = ({
   headerRefs,
 }: {
   serviceName: string;
-  siteId: number;
+  siteId: string;
   headerRefs: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
 }) => {
   const { data, isLoading, refetch } = useWebHostingWebsiteDomain(serviceName, siteId) as {
