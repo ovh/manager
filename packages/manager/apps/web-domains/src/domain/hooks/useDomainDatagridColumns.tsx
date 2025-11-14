@@ -18,34 +18,16 @@ import DatagridColumnContact from '../components/DatagridColumns/Domain/Datagrid
 import DatagridColumnDnsType from '../components/DatagridColumns/Domain/DatagridColumnDnsType';
 import DatagridColumnDns from '../components/DatagridColumns/Domain/DatagridColumnDns';
 import DatagridColumnActions from '../components/DatagridColumns/Domain/DatagridColumnActions';
-import DatagridColumnCheckBox from '../components/DatagridColumns/Domain/DatagrdColumnCheckBox';
 
 interface DomainDatagridColumnsProps {
   readonly openModal: (serviceNames: string[]) => void;
-  readonly selectedServiceNames: string[];
-  readonly onToggleCheckbox: (serviceName: string, checked: boolean) => void;
 }
 export const useDomainDatagridColumns = ({
   openModal,
-  selectedServiceNames,
-  onToggleCheckbox,
 }: DomainDatagridColumnsProps): DatagridColumn<DomainService>[] => {
   const { t } = useTranslation('domain');
 
   const columns: DatagridColumn<DomainService>[] = [
-    {
-      id: 'select',
-      cell: (props: DomainService) => (
-        <DatagridColumnCheckBox
-          serviceName={props.domain}
-          isSelected={selectedServiceNames.includes(props.domain)}
-          onToggle={onToggleCheckbox}
-        />
-      ),
-      label: '',
-      isFilterable: false,
-      enableHiding: false,
-    },
     {
       id: 'domain',
       cell: (props: DomainService) => (
@@ -80,23 +62,25 @@ export const useDomainDatagridColumns = ({
       isFilterable: true,
       enableHiding: false,
     },
-
+    {
+      id: 'transferProtection',
+      cell: (props: DomainService) => (
+        <DatagridColumnStatus
+          state={props.transferLockStatus}
+          mapping={DOMAIN_TRANSFER_LOCK_STATUS}
+        />
+      ),
+      comparator: FilterCategories.String,
+      label: t('domain_table_header_transfer_protection'),
+      isFilterable: true,
+      enableHiding: true,
+    },
     {
       id: 'renewFrequency',
       cell: (props: DomainService) => (
         <DatagridColumnRenewFrequency serviceName={props.domain} />
       ),
       label: t('domain_table_header_renew_frequency'),
-      isFilterable: true,
-      enableHiding: false,
-    },
-    {
-      id: 'expiration',
-      cell: (props: DomainService) => (
-        <DatagridColumnExpiration serviceName={props.domain} />
-      ),
-      comparator: FilterCategories.Date,
-      label: t('domain_table_header_expiration'),
       isFilterable: true,
       enableHiding: false,
     },
@@ -111,6 +95,16 @@ export const useDomainDatagridColumns = ({
       enableHiding: false,
     },
     {
+      id: 'expiration',
+      cell: (props: DomainService) => (
+        <DatagridColumnExpiration serviceName={props.domain} />
+      ),
+      comparator: FilterCategories.Date,
+      label: t('domain_table_header_expiration'),
+      isFilterable: true,
+      enableHiding: false,
+    },
+    {
       id: 'tags',
       cell: (props: DomainService) => (
         <DatagridColumnTags tags={props.iam.tags} />
@@ -118,19 +112,6 @@ export const useDomainDatagridColumns = ({
       comparator: FilterCategories.Tags,
       label: t('domain_table_header_tags'),
       isFilterable: false,
-      enableHiding: true,
-    },
-    {
-      id: 'transferProtection',
-      cell: (props: DomainService) => (
-        <DatagridColumnStatus
-          state={props.transferLockStatus}
-          mapping={DOMAIN_TRANSFER_LOCK_STATUS}
-        />
-      ),
-      comparator: FilterCategories.String,
-      label: t('domain_table_header_transfer_protection'),
-      isFilterable: true,
       enableHiding: true,
     },
     {

@@ -63,7 +63,7 @@ export default function RenewRestoreModal({
           </Text>
           <Message
             dismissible={false}
-            className="my-4 w-full"
+            className="my-2 w-full"
             color={MESSAGE_COLOR.information}
           >
             <MessageIcon name="circle-check" />
@@ -71,6 +71,18 @@ export default function RenewRestoreModal({
               {t('domain_table_modal_renew_restore_message_info')}
             </MessageBody>
           </Message>
+          {serviceNames.length > 20 && (
+            <Message
+              color={MESSAGE_COLOR.warning}
+              className="w-full"
+              dismissible={false}
+            >
+              <MessageIcon name="circle-info" />
+              <MessageBody>
+                {t('domain_table_modal_renew_restore_message_limit_warning')}
+              </MessageBody>
+            </Message>
+          )}
           <div
             style={{
               alignSelf: 'flex-end',
@@ -85,7 +97,9 @@ export default function RenewRestoreModal({
               {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </Button>
             <Button onClick={() => window.open(renewUrl, '_blank')}>
-              {t('domain_table_modal_renew_restore_button')}
+              {t('domain_table_modal_renew_restore_button', {
+                count: serviceNames?.length,
+              })}
             </Button>
           </div>
         </ModalBody>
