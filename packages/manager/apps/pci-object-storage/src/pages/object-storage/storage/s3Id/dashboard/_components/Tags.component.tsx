@@ -23,7 +23,7 @@ const Tags = () => {
     [s3],
   );
 
-  const { udpateS3Storage, isPending } = useUpdateS3({
+  const { updateS3Storage, isPending } = useUpdateS3({
     onError: (err) => {
       toast.toast({
         title: t('toastErrorTitle'),
@@ -49,7 +49,7 @@ const Tags = () => {
         return acc;
       }, {} as { [key: string]: string });
 
-    udpateS3Storage({
+    updateS3Storage({
       projectId,
       region: s3.region,
       name: s3.name,
@@ -60,7 +60,7 @@ const Tags = () => {
   };
 
   const handleAddLabel = (label: Label) => {
-    udpateS3Storage({
+    updateS3Storage({
       projectId,
       region: s3.region,
       name: s3.name,

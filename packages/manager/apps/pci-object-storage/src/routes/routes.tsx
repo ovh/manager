@@ -234,11 +234,29 @@ export default [
                     ),
                   },
                   {
+                    path: 'restore-object',
+                    id: 's3.objects.restore',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/restore/Restore.modal'
+                      ),
+                    ),
+                  },
+                  {
                     path: 'delete-object',
                     id: 's3.objects.delete',
                     ...lazyLoadRoute(() =>
                       import(
                         '@/pages/object-storage/storage/s3Id/objects/delete/DeleteObject.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete-version/:versionId',
+                    id: 's3.object.version.delete',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/object/versions/delete/DeleteObjectVersion.modal'
                       ),
                     ),
                   },
