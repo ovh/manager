@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import {
   createAttachedDomainService,
@@ -8,6 +8,7 @@ import {
   getDomainZone,
   getHostingService,
   getServiceInfos,
+  updateAttachedDomainService,
   updateHostingService,
 } from '@/data/api/dashboard';
 import {
@@ -203,5 +204,37 @@ export const useCreateAttachedDomainsService = (
     createAttachedDomainsService: mutation.mutate,
     createAttachedDomainsServiceAsync: mutation.mutateAsync,
     ...mutation,
+  };
+};
+
+export const useUpdateAttachedDomainService = (
+  serviceName: string,
+  onSuccess?: () => void,
+  onError?: (error: Error) => void,
+) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation<TAttachedDomain, Error, { domain: string; cdn: string }>({
+    mutationFn: async ({ domain, cdn }) => {
+      return updateAttachedDomainService(serviceName, domain, cdn);
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['hosting', 'web', serviceName, 'attachedDomain'],
+      });
+      void queryClient.invalidateQueries({
+        queryKey: ['hosting', 'web', serviceName, 'website'],
+      });
+      onSuccess?.();
+    },
+    onError: (error) => {
+      onError?.(error);
+    },
+  });
+
+  return {
+    updateAttachedDomainService: mutation.mutate,
+    updateAttachedDomainServiceAsync: mutation.mutateAsync,
+    isPending: mutation.isPending,
   };
 };

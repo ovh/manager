@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -13,7 +13,6 @@ import {
 import { OdsButton, OdsInput, OdsMessage, OdsTab, OdsText } from '@ovhcloud/ods-components/react';
 
 import {
-  ActionMenu,
   BaseLayout,
   ChangelogButton,
   GuideButton,
@@ -35,14 +34,12 @@ import { EmailOptionType } from '@/data/types/product/service';
 import { DashboardTab } from '@/data/types/product/ssl';
 import { useEmailsUrl, useHostingUrl } from '@/hooks';
 import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
-import { subRoutes, urls } from '@/routes/routes.constants';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
 import { GUIDE_URL } from '../websites/websites.constants';
 
 export default function Layout() {
   const { shell } = useContext(ShellContext);
-  const navigate = useNavigate();
   const { serviceName } = useParams();
   const { t } = useTranslation('dashboard');
   const isOverridedPage = useOverridePage();
@@ -247,19 +244,6 @@ export default function Layout() {
         <>
           <div className="flex items-center justify-between mb-7">
             <OdsText>{data?.serviceName}</OdsText>
-            <div className="flex flex-wrap justify-end">
-              <ActionMenu
-                id="add_domain"
-                items={[
-                  {
-                    id: 1,
-                    label: t('hosting_action_add_domain'),
-                    onClick: () =>
-                      navigate(urls.orderDomain.replace(subRoutes.serviceName, serviceName)),
-                  },
-                ]}
-              />
-            </div>
           </div>
           <ExpirationDate />
           {onUpdateError && (

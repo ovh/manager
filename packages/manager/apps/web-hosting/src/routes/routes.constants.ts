@@ -64,6 +64,7 @@ export const urls = {
   cdnEditUrls: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/cdn-edit-urls`,
   cdnCorsResourceSharing: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/cdn-cors-resource-sharing`,
   cdnConfirmation: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/cdn-confirmation`,
+  activateCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/activate-cdn`,
 
   // MODULE
   addModule: `/${subRoutes.serviceName}/multisite/add-module`,
