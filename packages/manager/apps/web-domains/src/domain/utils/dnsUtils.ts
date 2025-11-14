@@ -5,7 +5,7 @@ import {
   TNameServer,
   TNameServerWithType,
 } from '@/domain/types/domainResource';
-import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
+import { StatusEnum } from '@/domain/enum/Status.enum';
 import { PublicNameServerTypeEnum } from '@/domain/enum/publicNameServerType.enum';
 import {
   ActiveConfigurationTypeEnum,
@@ -74,7 +74,7 @@ export function isIncluded(
 
 export function transformCurrent(
   dns: TNameServerWithType,
-  status: NameServerStatusEnum,
+  status: StatusEnum,
 ): TDatagridDnsDetails {
   let type: PublicNameServerTypeEnum;
 
@@ -102,7 +102,7 @@ export function transformCurrent(
 
 export function transformTarget(
   dns: TNameServer,
-  status: NameServerStatusEnum,
+  status: StatusEnum,
 ): TDatagridDnsDetails {
   return {
     name: dns.nameServer,
