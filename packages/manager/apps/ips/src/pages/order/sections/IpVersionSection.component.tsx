@@ -5,6 +5,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { IpVersion } from '@/types';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
@@ -22,46 +23,48 @@ export const IpVersionSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <OrderSection
-      title={t('ip_version_title')}
-      description={t('ip_version_description')}
-    >
-      <div className="grid grid-cols-2 gap-3">
-        <IpVersionOptionCard
-          title={t('ipv4_card_title')}
-          description={t('ipv4_card_description')}
-          isSelected={ipVersion === IpVersion.ipv4}
-          onClick={() => {
-            trackClick({
-              actionType: 'action',
-              buttonType: ButtonType.button,
-              location: PageLocation.funnel,
-              actions: ['IPv4'],
-            });
-            setIpVersion(IpVersion.ipv4);
-          }}
-          isLoading={isLoading}
-          isStartingPrice
-          price={ipv4LowestPrice}
-          priceSuffix={t('per_ip')}
-        />
-        <IpVersionOptionCard
-          title={t('ipv6_card_title')}
-          description={t('ipv6_card_description')}
-          isSelected={ipVersion === IpVersion.ipv6}
-          onClick={() => {
-            trackClick({
-              actionType: 'action',
-              buttonType: ButtonType.button,
-              location: PageLocation.funnel,
-              actions: ['IPv6'],
-            });
-            setIpVersion(IpVersion.ipv6);
-          }}
-          isLoading={isLoading}
-          price={ipv6LowestPrice}
-        />
-      </div>
-    </OrderSection>
+    <React.Suspense fallback={<OdsSpinner />}>
+      <OrderSection
+        title={t('ip_version_title')}
+        description={t('ip_version_description')}
+      >
+        <div className="grid grid-cols-2 gap-3">
+          <IpVersionOptionCard
+            title={t('ipv4_card_title')}
+            description={t('ipv4_card_description')}
+            isSelected={ipVersion === IpVersion.ipv4}
+            onClick={() => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: ['IPv4'],
+              });
+              setIpVersion(IpVersion.ipv4);
+            }}
+            isLoading={isLoading}
+            isStartingPrice
+            price={ipv4LowestPrice}
+            priceSuffix={t('per_ip')}
+          />
+          <IpVersionOptionCard
+            title={t('ipv6_card_title')}
+            description={t('ipv6_card_description')}
+            isSelected={ipVersion === IpVersion.ipv6}
+            onClick={() => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: ['IPv6'],
+              });
+              setIpVersion(IpVersion.ipv6);
+            }}
+            isLoading={isLoading}
+            price={ipv6LowestPrice}
+          />
+        </div>
+      </OrderSection>
+    </React.Suspense>
   );
 };
