@@ -3,6 +3,7 @@ export default class ResiliateModalController {
   constructor(
     $translate,
     atInternet,
+    coreConfig,
     BillingService,
     RESILIATION_CAPACITIES,
     RESILIATION_DEFAULT_CAPABILITY,
@@ -12,6 +13,7 @@ export default class ResiliateModalController {
     this.BillingService = BillingService;
     this.RESILIATION_CAPACITIES = RESILIATION_CAPACITIES;
     this.RESILIATION_DEFAULT_CAPABILITY = RESILIATION_DEFAULT_CAPABILITY;
+    this.isUSRegion = coreConfig.isRegion('US');
   }
 
   $onInit() {
@@ -19,7 +21,9 @@ export default class ResiliateModalController {
       .filter((option) => this.RESILIATION_CAPACITIES.includes(option))
       .map((value) => ({
         value,
-        label: this.$translate.instant(`billing_resiliate_${value}`),
+        label: this.$translate.instant(
+          `billing_resiliate_${value}${this.isUSRegion ? '_us' : ''}`,
+        ),
       }));
 
     this.resiliateOption =
