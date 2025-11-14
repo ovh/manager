@@ -11,6 +11,8 @@ import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg?url';
 import { TRACKING } from '@/tracking.constants';
 import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
+import { DISCOVER_VCD_REDIRECTION_URL } from '@/utils/discoverVcdRedirection.constants';
+
 import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 export default function Onboarding() {
@@ -89,6 +91,14 @@ export default function Onboarding() {
           window.open(
             ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
               ORDER_VCD_REDIRECTION_URL.DEFAULT,
+            '_blank',
+          );
+        }}
+        moreInfoButtonLabel={t(`${NAMESPACES.ACTIONS}:discover`)}
+        onMoreInfoButtonClick={() => {
+          window.open(
+            DISCOVER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
+              DISCOVER_VCD_REDIRECTION_URL.DEFAULT,
             '_blank',
           );
         }}
