@@ -10,11 +10,12 @@
     <p id="acl_access_description">
         <span
             class="block"
-            data-translate="netapp_volumes_acl_description_part_1"
+            data-translate="netapp_volumes_acl_description_common"
         ></span>
+
         <span
             class="block"
-            data-translate="netapp_volumes_acl_description_part_2"
+            data-translate="{{$ctrl.isNetworkAvailable ? 'netapp_volumes_acl_description_network' : 'netapp_volumes_acl_description_no_network'}}"
         ></span>
     </p>
     <oui-button
