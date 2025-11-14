@@ -69,7 +69,7 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
       <span className="text-sm font-medium leading-none">
         {t('newUserPwdLabel')}
       </span>
-      <Clipboard value={newUser.openstackId} onCopy={onCopy} secret />
+      <Clipboard value={pwd} onCopy={onCopy} secret />
     </div>
   );
 };

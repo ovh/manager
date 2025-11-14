@@ -11,12 +11,10 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { FileInput } from '@/components/file-input/FileInput.component';
 import storages from '@/types/Storages';
-import { useS3Data } from '../../S3.context';
 import StorageClassSelector from '@/components/storage-class-selector/StorageClassSelector.component';
-import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
-import { useIs3AZ } from '@/hooks/useIs3AZ.hook';
-import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import { FormField } from '@/components/form-field/FormField.component';
+import { useAvailableStorageClasses } from '@/hooks/useAvailableStorageClasses.hook';
+import { useS3Data } from '../../S3.context';
 
 interface AddS3FormProps {
   onSubmit: SubmitHandler<{
@@ -37,6 +35,8 @@ interface AddS3FormProps {
 }
 const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
   const { t } = useTranslation('components/file-uploader');
+  const { s3 } = useS3Data();
+  const availableStorageClasses = useAvailableStorageClasses(s3.region);
   const schema = z.object({
     prefix: z.string().optional(),
     storageClass: z.nativeEnum(storages.StorageClassEnum),
@@ -55,10 +55,7 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
       files: [],
     },
   });
-  const { s3 } = useS3Data();
-  const { regions } = useObjectStorageData();
-  const is3AZ = useIs3AZ(s3, regions);
-  const isLocalZone = useIsLocaleZone(s3, regions);
+
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit, onError)}
@@ -78,8 +75,7 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
           <StorageClassSelector
             storageClass={field.value}
             onStorageClassChange={field.onChange}
-            is3AZ={is3AZ}
-            isLZ={isLocalZone}
+            availableStorageClasses={availableStorageClasses}
           />
         )}
       </FormField>

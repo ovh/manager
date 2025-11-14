@@ -16,5 +16,6 @@
   "deleteObjectDescription": "Deseja remover permanentemente o objeto {{- name }}? Esta ação não pode ser desfeita.",
   "deleteObjectConfirmation": "Digite ELIMINAR PERMANENTEMENTE para confirmar",
   "deleteObjectButtonCancel": "Anular",
-  "deleteObjectButtonConfirm": "Suprimir"
+  "deleteObjectButtonConfirm": "Suprimir",
+  "seeVersionsSwitchLabel": "Ver as versões"
 }
