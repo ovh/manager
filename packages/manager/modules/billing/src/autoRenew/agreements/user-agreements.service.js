@@ -79,7 +79,8 @@ export default /* @ngInject */ function UserAccountAgreementsService(
           }
         }
         return response;
-      });
+      })
+      .then(getSuccessDataOrReject);
   };
 
   this.getContract = function getContract(contractId) {
