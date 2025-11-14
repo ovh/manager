@@ -1,10 +1,14 @@
-import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import { ApiResponse, apiClient, v2 } from '@ovh-ux/manager-core-api';
 import {
+  GetDatacentreComputeParams,
+  VCDCompute,
   VCDDatacentre,
   VCDDatacentreTargetSpec,
   VCDOrderableResourceData,
 } from '../types';
 import {
+  getVcdDatacentreComputeListRoute,
+  getVcdDatacentreComputeRoute,
   getVcdDatacentreRoute,
   getVcdDatacentresRoute,
   getVdcOrderableResourceRoute,
@@ -41,3 +45,18 @@ export const getVdcOrderableResource = async (
   vdcId: string,
 ): Promise<ApiResponse<VCDOrderableResourceData>> =>
   apiClient.v2.get(getVdcOrderableResourceRoute(id, vdcId));
+
+export const getVcdDatacentreCompute = async (
+  id: string,
+  vdcId: string,
+): Promise<VCDCompute[]> => {
+  const { data } = await v2.get(getVcdDatacentreComputeListRoute(id, vdcId));
+  return data;
+};
+
+export const deleteVcdDatacentreCompute = async (
+  params: GetDatacentreComputeParams,
+): Promise<VCDCompute> => {
+  const { data } = await v2.delete(getVcdDatacentreComputeRoute(params));
+  return data;
+};

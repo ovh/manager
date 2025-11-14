@@ -8,5 +8,8 @@
   "managed_vcd_vdc_usage": "Usage",
   "managed_vcd_vdc_contact_support": "Merci de contacter le support",
   "managed_vcd_vdc_associate_vrack": "Associer un vRack",
-  "managed_vcd_vdc_associate_vrack_disabled": "L'association d'un vRack à un Public VCF as-a-Service n'est pas encore disponible"
+  "managed_vcd_vdc_associate_vrack_disabled": "L'association d'un vRack à un Public VCF as-a-Service n'est pas encore disponible",
+  "managed_vcd_vdc_delete_resource": "Supprimer la ressource",
+  "managed_vcd_vdc_delete_resource_success": "La demande de résiliation de votre ressource a été prise en compte.",
+  "managed_vcd_vdc_delete_resource_error": "Une erreur est survenue lors de la résiliation de la ressource : {{error}}"
 }
