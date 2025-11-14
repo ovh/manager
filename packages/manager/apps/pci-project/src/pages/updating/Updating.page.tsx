@@ -36,7 +36,7 @@ export default function UpdatingPage() {
   const [isDelivered, setIsDelivered] = useState(false);
 
   const orderId = useParam('orderId');
-  const voucherCode = useParam('voucherCode');
+  const voucherCode = useParam('voucherCode', false);
 
   const navigate = useNavigate();
 
