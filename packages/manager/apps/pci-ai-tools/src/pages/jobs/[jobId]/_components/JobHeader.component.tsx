@@ -66,13 +66,13 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
             <Badge variant="outline">
               {job.spec.unsecureHttp ? (
                 <div className="flex flex-row gap-1 items-center">
-                  <span>{t('publicAccessLabel')}</span>
-                  <Globe className="size-3" />
+                  <span>{t('privateAccessLabel')}</span>
+                  <LockKeyhole className="size-3" />
                 </div>
               ) : (
                 <div className="flex flex-row gap-1 items-center">
-                  <span>{t('privateAccessLabel')}</span>
-                  <LockKeyhole className="size-3" />
+                  <span>{t('publicAccessLabel')}</span>
+                  <Globe className="size-3" />
                 </div>
               )}
             </Badge>
