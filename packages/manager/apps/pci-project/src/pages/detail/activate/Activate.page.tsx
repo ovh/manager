@@ -33,7 +33,6 @@ import CreditConfirmation from '@/pages/creation/components/credit/CreditConfirm
 import WillPaymentComponent from '@/pages/creation/components/payment/WillPayment.component';
 import Voucher from '@/pages/creation/components/voucher/Voucher';
 import { useWillPayment } from '@/pages/creation/hooks/useWillPayment';
-import { useWillPaymentConfig } from '@/pages/creation/hooks/useWillPaymentConfig';
 import { useProjectActivation } from './hooks/useActivateProject';
 import DiscoveryVoucher from '@/pages/creation/components/voucher/DiscoveryVoucher';
 
@@ -108,10 +107,6 @@ export default function ActivatePage() {
     handleChallengeRequired,
   } = useWillPayment();
 
-  const willPaymentConfig = useWillPaymentConfig({
-    onPaymentStatusChange: handlePaymentStatusChange,
-  });
-
   const handleSubmit = () => {
     if (needsSave && !isCreditPayment) {
       savePaymentMethod();
@@ -180,6 +175,7 @@ export default function ActivatePage() {
           <WillPaymentComponent
             onNoUserActionNeeded={handleNoUserActionNeeded}
             onRequiredChallengeEvent={handleChallengeRequired}
+            onPaymentStatusChange={handlePaymentStatusChange}
           />
 
           {creditPaymentAmount && (
