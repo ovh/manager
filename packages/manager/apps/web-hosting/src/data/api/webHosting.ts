@@ -1,6 +1,7 @@
 import { fetchIcebergV2, v2, v6 } from '@ovh-ux/manager-core-api';
 
 import {
+  PostWebHostingAttachedDomainPayload,
   PostWebHostingWebsitePayload,
   PutWebHostingWebsitePayload,
   WebHostingWebsiteDomainType,
@@ -110,7 +111,7 @@ export const putWebHostingWebsite = async (
   return data;
 };
 
-export const getWebHostingWebsiteDomainQueryKey = (serviceName: string, id: number) => [
+export const getWebHostingWebsiteDomainQueryKey = (serviceName: string, id: string) => [
   'get',
   'webhosting',
   'resource',
@@ -119,7 +120,7 @@ export const getWebHostingWebsiteDomainQueryKey = (serviceName: string, id: numb
   id,
   'domain',
 ];
-export const getWebHostingWebsiteDomain = async (serviceName: string, id: number) => {
+export const getWebHostingWebsiteDomain = async (serviceName: string, id: string) => {
   const { data } = await v2.get<WebHostingWebsiteDomainType[]>(
     `/webhosting/resource/${serviceName}/website/${id}/domain`,
   );
@@ -163,4 +164,15 @@ export const getWebHostingWebsiteV6 = async (serviceName: string, path?: string)
     : `/hosting/web/${serviceName}/website`;
   const { data } = await v6.get<string[]>(url);
   return data;
+};
+
+export const putAttachedDomain = async (
+  serviceName: string,
+  domain: string,
+  payload: PostWebHostingAttachedDomainPayload,
+) => {
+  await v6.put<PostWebHostingAttachedDomainPayload>(
+    `/hosting/web/${serviceName}/attachedDomain/${domain}`,
+    payload,
+  );
 };
