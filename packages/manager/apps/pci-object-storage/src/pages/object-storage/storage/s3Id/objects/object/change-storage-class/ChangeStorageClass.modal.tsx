@@ -19,6 +19,7 @@ import storages from '@/types/Storages';
 import RouteModal from '@/components/route-modal/RouteModal';
 import StorageClassSelector from '@/components/storage-class-selector/StorageClassSelector.component';
 import { getAvailableStorageClasses } from '@/lib/s3StorageHelper';
+import { is3AZRegion } from '@/lib/regionHelper';
 
 const ChangeStorageClassModal = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
@@ -38,7 +39,7 @@ const ChangeStorageClassModal = () => {
   });
 
   // TODO: Api should return list of available service for a container
-  const is3AZ = s3.region === 'EU-WEST-PAR';
+  const is3AZ = is3AZRegion(s3.region);
 
   const availableStorageClasses = useMemo(
     () => getAvailableStorageClasses({ is3AZ }),
