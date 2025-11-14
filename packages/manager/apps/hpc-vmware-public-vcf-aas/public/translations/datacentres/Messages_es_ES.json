@@ -10,5 +10,8 @@
   "managed_vcd_vdc_usage": "Modo de utilización",
   "managed_vcd_vdc_contact_support": "Por favor, contacte con el soporte.",
   "managed_vcd_vdc_associate_vrack": "Asociar un vRack",
-  "managed_vcd_vdc_associate_vrack_disabled": "La asociación de un vRack a un Public VCF as-a-Service todavía no está disponible"
+  "managed_vcd_vdc_associate_vrack_disabled": "La asociación de un vRack a un Public VCF as-a-Service todavía no está disponible",
+  "managed_vcd_vdc_delete_resource": "Eliminar el recurso",
+  "managed_vcd_vdc_delete_resource_success": "La solicitud de baja del recurso se ha enviado correctamente.",
+  "managed_vcd_vdc_delete_resource_error": "Se ha producido un error al dar de baja el recurso: {{error}}"
 }
