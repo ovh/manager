@@ -22,5 +22,9 @@
   "pci_workflow_executions_status": "Estado",
   "pci_workflow_add": "Crear una planificación",
   "pci_workflow_executions": "Ejecuciones",
-  "pci_workflow_id": "ID"
+  "pci_workflow_id": "ID",
+  "pci_workflow_backup": "Backup",
+  "pci_workflow_backup_local": "Local",
+  "pci_workflow_backup_local_and_distant": "Local, remoto",
+  "pci_workflow_localisation": "Localización"
 }
