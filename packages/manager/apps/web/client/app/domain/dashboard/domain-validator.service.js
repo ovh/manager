@@ -25,13 +25,14 @@ angular.module('services').service(
         DKIM_p: /^(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/,
         DKIM_s: /^(?:\*|email)$/,
         DKIM_t: /^(?:y(?::s)?|s(?::y)?)$/,
-        DMARC: /^(?:\s*(v|p|pct|rua|sp|aspf)\s*=\s*[^=;]*\s*(?:;\s*$|;|$))+/,
+        DMARC: /^(?:\s*(v|p|pct|rua|sp|aspf|adkim)\s*=\s*[^=;]*\s*(?:;\s*$|;|$))+/,
         DMARC_v: /^DMARC1$/,
         DMARC_p: /^none|quarantine|reject$/,
         DMARC_pct: /^0$|^\d\d?$|^100$/,
         DMARC_sp: /^$|none|quarantine|reject$/,
         DMARC_rua: /^([a-z][a-z0-9+.-]*):(?:\/\/((?:(?=((?:[a-z0-9-._~!$&'()*+,;=:]|%[0-9A-F]{2})*))(\3)@)?(?=(\[[0-9A-F:.]{2,}\]|(?:[a-z0-9-._~!$&'()*+,;=]|%[0-9A-F]{2})*))\5(?::(?=(\d*))\6)?)(\/(?=((?:[a-z0-9-._~!$&'()*+,;=:@/]|%[0-9A-F]{2})*))\8)?|(\/?(?!\/)(?=((?:[a-z0-9-._~!$&'()*+,;=:@/]|%[0-9A-F]{2})*))\10)?)(?:\?(?=((?:[a-z0-9-._~!$&'()*+,;=:@/?]|%[0-9A-F]{2})*))\11)?(?:#(?=((?:[a-z0-9-._~!$&'()*+,;=:@/?]|%[0-9A-F]{2})*))\12)?$/,
         DMARC_aspf: /^r|s$/,
+        DMARC_adkim: /^r|s$/,
         LOC: /^(\d+)\s+(?:|(\d+)\s+(?:(\d+(?:\.\d{1,3})?)\s+)?)(N|S)\s+(\d+)\s+(?:|(\d+)\s+(?:(\d+(?:\.\d{1,3})?)\s+)?)(E|W)\s+(-?(?:\d+)(?:\.\d{1,2})?)m(?:\s+(\d+(?:\.\d{1,2})?)m(?:\s+(\d+(?:\.\d{1,2})?)m(?:\s+(?:(\d+(?:\.\d{1,2})?)m)|)|))?$/,
         MX: /^(\d+)\s+(\S+)$/,
         NAPTR: /^(\d+)\s+(\d+)\s+"([A-Z0-9])"\s+"(\S+)"\s+"(?:(\S+)?)"\s?(\S*\.)$/,
@@ -750,6 +751,7 @@ angular.module('services').service(
       value += get(target, 'rua', false) ? `rua=${target.rua};` : ''; // Addresses to send feedback
       value += get(target, 'sp', false) ? `sp=${target.sp};` : ''; // SubDomain Policy
       value += get(target, 'aspf', false) ? `aspf=${target.aspf};` : ''; // SPF Alignment Mode
+      value += get(target, 'adkim', false) ? `adkim=${target.adkim};` : ''; // DKIM Alignment Mode
 
       return value;
     }
