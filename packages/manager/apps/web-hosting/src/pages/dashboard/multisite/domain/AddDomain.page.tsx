@@ -27,7 +27,6 @@ import { websiteFormSchema } from '@/utils/formSchemas.utils';
 
 import { DomainAssociation } from '../website/component/DomainAssociation';
 import { DomainConfiguration } from '../website/component/DomainConfiguration';
-import { DomainDnsConfiguration } from '../website/component/DomainDnsConfiguration';
 import { DomainManagement } from '../website/component/DomainManagement';
 
 interface AddDomainPageState {
@@ -45,7 +44,7 @@ export default function AddWDomainPage() {
   type FormData = z.infer<typeof websiteFormSchema>;
   const { state } = useLocation() as Location<AddDomainPageState>;
 
-  const { control, handleSubmit, watch } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset } = useForm<FormData>({
     defaultValues: {
       name: state?.site ?? '',
       path: state?.path ?? 'public_html',
@@ -61,7 +60,7 @@ export default function AddWDomainPage() {
     () => {
       addSuccess(
         <>
-          <OdsText>{t('multisite:multisite_add_website_success')}</OdsText>
+          <OdsText className="mr-2">{t('multisite:multisite_add_website_success')}</OdsText>
           <OdsLink
             href={`#/${serviceName}/task`}
             label={t('multisite:multisite_add_website_in_progress')}
@@ -138,20 +137,20 @@ export default function AddWDomainPage() {
         controlValues={controlValues}
         setStep={setStep}
         isNextButtonVisible={step === 1}
+        reset={reset}
+        isAddingDomain={true}
       />
-      <OdsDivider />
-      {step >= 2 ? (
-        <DomainConfiguration
-          control={control}
-          controlValues={controlValues}
-          setStep={setStep}
-          isNextButtonVisible={step === 2}
-          isAddingDomain={true}
-        />
-      ) : (
-        <OdsText preset={ODS_TEXT_PRESET.heading4}>
-          {t('multisite:multisite_add_website_configure_domain_title')}
-        </OdsText>
+      {step >= 2 && (
+        <>
+          <OdsDivider />
+          <DomainConfiguration
+            control={control}
+            controlValues={controlValues}
+            setStep={setStep}
+            isNextButtonVisible={step === 2}
+            isAddingDomain={true}
+          />
+        </>
       )}
       {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
         <>
@@ -164,19 +163,11 @@ export default function AddWDomainPage() {
         </>
       )}
       {controlValues.associationType === AssociationType.EXISTING && step >= 3 && (
-        <>
-          <DomainDnsConfiguration
-            control={control}
-            controlValues={controlValues}
-            setStep={setStep}
-            isNextButtonVisible={false}
-          />
-          <OdsButton
-            label={t('common:web_hosting_common_action_continue')}
-            onClick={() => void handleSubmit(onSubmit)()}
-            isDisabled={!controlValues.fqdn}
-          />
-        </>
+        <OdsButton
+          label={t('common:web_hosting_common_action_continue')}
+          onClick={() => void handleSubmit(onSubmit)()}
+          isDisabled={!controlValues.fqdn}
+        />
       )}
     </form>
   );
