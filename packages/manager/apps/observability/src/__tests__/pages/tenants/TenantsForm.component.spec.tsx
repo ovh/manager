@@ -48,12 +48,12 @@ vi.mock('@/components/metrics/tenant-configuration-form/TenantConfigurationForm.
   )),
 }));
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsDivider: ({ spacing }: { spacing?: string }) => (
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  Divider: ({ spacing }: { spacing?: string }) => (
     <div data-testid="divider" data-spacing={spacing} />
   ),
-  OdsText: ({
+  Text: ({
     children,
     preset,
     className,
@@ -66,34 +66,43 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       {children}
     </span>
   ),
-}));
-
-vi.mock('@ovh-ux/muk', () => ({
-  ManagerButton: ({
+  Button: ({
     id,
-    label,
+    children,
     onClick,
     type,
-    isDisabled,
-    isLoading,
+    disabled,
+    loading,
   }: {
     id: string;
-    label: string;
+    children: React.ReactNode;
     onClick?: () => void;
     type?: 'button' | 'submit' | 'reset';
-    isDisabled?: boolean;
-    isLoading?: boolean;
+    disabled?: boolean;
+    loading?: boolean;
   }) => (
     <button
       data-testid={id}
       onClick={onClick}
       type={type}
-      disabled={isDisabled}
-      data-loading={isLoading}
+      disabled={disabled}
+      data-loading={loading}
     >
-      {label}
+      {children}
     </button>
   ),
+  BUTTON_VARIANT: {
+    outline: 'outline',
+  },
+  BUTTON_SIZE: {
+    sm: 'sm',
+  },
+  BUTTON_COLOR: {
+    primary: 'primary',
+  },
+  TEXT_PRESET: {
+    heading4: 'heading4',
+  },
 }));
 
 // Mock translation namespaces
