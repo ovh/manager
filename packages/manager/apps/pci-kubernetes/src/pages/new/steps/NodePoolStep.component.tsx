@@ -26,6 +26,7 @@ import NodePoolName from './node-pool/NodePoolName.component';
 import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolToggle from './node-pool/NodePoolToggle.component';
 import NodePoolType from './node-pool/NodePoolType.component';
+import PublicConnectivity from './node-pool/PublicConnectivity.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
 
 const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreationStepper> }) => {
@@ -75,6 +76,19 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               />
             )}
           </div>
+          {featureFlipping3az && (
+            <PublicConnectivity
+              disabled={false}
+              checked={Boolean(state.nodePoolState.attachFloatingIPs?.enabled)}
+              price={state.priceFloatingIp}
+              onChange={(value) => {
+                actions.setNodePoolState((prevState) => ({
+                  ...prevState,
+                  attachFloatingIPs: { enabled: value },
+                }));
+              }}
+            />
+          )}
           {featureFlipping3az && state.nodePoolState.selectedAvailabilityZones && (
             <div className="mb-6 gap-4">
               <DeploymentZone
@@ -93,7 +107,10 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
             <NodePoolSize
               isMonthlyBilled={state.isMonthlyBilled}
               onScaleChange={(scaling: TScalingState) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, scaling }))
+                actions.setNodePoolState((prevState) => ({
+                  ...prevState,
+                  scaling,
+                }))
               }
               initialScaling={state.nodePoolState.scaling?.quantity}
               antiAffinity={state.nodePoolState.antiAffinity}
@@ -106,7 +123,10 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               isChecked={state.nodePoolState.antiAffinity}
               isEnabled={!state.nodePoolState.scaling?.isAutoscale}
               onChange={(antiAffinity: boolean) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, antiAffinity }))
+                actions.setNodePoolState((prevState) => ({
+                  ...prevState,
+                  antiAffinity,
+                }))
               }
             />
           </div>
@@ -129,11 +149,17 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
           <div className="mb-6">
             <NodePoolName
               onTouched={(isTouched: boolean) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, isTouched }))
+                actions.setNodePoolState((prevState) => ({
+                  ...prevState,
+                  isTouched,
+                }))
               }
               error={view.error}
               onNameChange={(name: string) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, name }))
+                actions.setNodePoolState((prevState) => ({
+                  ...prevState,
+                  name,
+                }))
               }
               name={state.nodePoolState.name}
             />
@@ -151,7 +177,9 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
             onClick={actions.createNodePool}
           >
             {numberOfZoneSelected && numberOfZoneSelected > 1
-              ? t('node-pool:kube_common_add_node_pool_plural', { count: numberOfZoneSelected })
+              ? t('node-pool:kube_common_add_node_pool_plural', {
+                  count: numberOfZoneSelected,
+                })
               : t('node-pool:kube_common_add_node_pool')}
           </OsdsButton>
         )}

@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
 import {
-  FormField,
   TEXT_PRESET,
   Text,
   Toggle,
@@ -16,12 +15,19 @@ type NodePoolAntiAffinityProps = {
   isEnabled: boolean;
   onChange: (val: boolean) => void;
 };
-const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAffinityProps) => {
+const NodePoolAntiAffinity = ({
+  isChecked,
+  onChange,
+  isEnabled,
+}: NodePoolAntiAffinityProps) => {
   const { t } = useTranslation('billing-anti-affinity');
 
   return (
     <div className="mb-6 max-w-3xl">
-      <Text className="text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
+      <Text
+        className="text-[--ods-color-text-500]"
+        preset={TEXT_PRESET.heading4}
+      >
         {t('kubernetes_node_pool_anti_affinity')}
       </Text>
       <Text>
@@ -31,6 +37,7 @@ const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAf
       </Text>
       <div className="mt-8">
         <Toggle
+          withLabels
           data-testid="toggle-anti-affinity"
           disabled={!isEnabled}
           color="primary"
@@ -38,10 +45,8 @@ const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAf
           onChange={() => isEnabled && onChange(!isChecked)}
         >
           <ToggleControl />
-          <ToggleLabel>
-            <Text className="ml-4 font-bold">
-              {t(`kubernetes_node_pool_anti_affinity_${isChecked}`)}
-            </Text>
+          <ToggleLabel className="font-semibold text-[--ods-color-text]">
+            {t(`kubernetes_node_pool_anti_affinity_${isChecked}`)}
           </ToggleLabel>
         </Toggle>
       </div>

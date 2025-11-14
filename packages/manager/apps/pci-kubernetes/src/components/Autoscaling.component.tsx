@@ -5,15 +5,29 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
-import { Icon, Link, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
+import {
+  Icon,
+  Link,
+  Text,
+  Toggle,
+  ToggleControl,
+  ToggleLabel,
+} from '@ovhcloud/ods-react';
 
 import { useMe } from '@ovh-ux/manager-react-components';
 
 import { QuantitySelector } from '@/components/quantity-selector/QuantitySelector.component';
-import { ANTI_AFFINITY_MAX_NODES, AUTOSCALING_LINK, NODE_RANGE } from '@/constants';
+import {
+  ANTI_AFFINITY_MAX_NODES,
+  AUTOSCALING_LINK,
+  NODE_RANGE,
+} from '@/constants';
 import { TScalingState } from '@/types';
 
-function getDesiredQuantity(quantity: { min: number; desired: number }, maxValue: number) {
+function getDesiredQuantity(
+  quantity: { min: number; desired: number },
+  maxValue: number,
+) {
   if (quantity.min >= NODE_RANGE.MAX) return 0;
   if (quantity.min >= maxValue) return maxValue;
   return quantity.desired;
@@ -38,7 +52,8 @@ export function Autoscaling({
   const { t } = useTranslation('autoscaling');
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infosURL =
-    AUTOSCALING_LINK[ovhSubsidiary as keyof typeof AUTOSCALING_LINK] || AUTOSCALING_LINK.DEFAULT;
+    AUTOSCALING_LINK[ovhSubsidiary as keyof typeof AUTOSCALING_LINK] ||
+    AUTOSCALING_LINK.DEFAULT;
 
   const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
 
@@ -56,7 +71,9 @@ export function Autoscaling({
           totalNodes ? `(${t('kubernetes_node_pool_autoscaling_by_zone')})` : ''
         }`}
         description={
-          totalNodes ? t('kubernetes_node_pool_autoscaling_total_nodes', { totalNodes }) : undefined
+          totalNodes
+            ? t('kubernetes_node_pool_autoscaling_total_nodes', { totalNodes })
+            : undefined
         }
         value={quantity.desired}
         onValueChange={(valueAsNumber) => {
@@ -71,6 +88,7 @@ export function Autoscaling({
 
       <div className="mt-8">
         <Toggle
+          withLabels
           disabled={isAntiAffinity}
           checked={isAutoscale}
           onChange={() => {
@@ -80,10 +98,10 @@ export function Autoscaling({
           }}
         >
           <ToggleControl />
-          <ToggleLabel>
-            <Text className="ml-4 font-bold" color="text">
-              {t(`kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`)}
-            </Text>
+          <ToggleLabel className="font-semibold text-[--ods-color-text]">
+            {t(
+              `kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`,
+            )}
           </ToggleLabel>
         </Toggle>
       </div>
@@ -97,7 +115,12 @@ export function Autoscaling({
             target={OdsHTMLAnchorElementTarget._blank}
           >
             {t('kubernetes_node_pool_autoscaling_description_link')}
-            <Icon className="ml-3" slot="end" name="external-link" color="primary" />
+            <Icon
+              className="ml-3"
+              slot="end"
+              name="external-link"
+              color="primary"
+            />
           </Link>
         )}
       </Text>

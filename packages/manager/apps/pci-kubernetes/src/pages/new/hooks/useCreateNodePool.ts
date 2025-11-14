@@ -8,6 +8,7 @@ import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector
 import { NODE_RANGE, TAGS_BLOB } from '@/constants';
 import { ensureNameIsUnique, generateUniqueName } from '@/helpers';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
 import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
 import { NodePoolPrice, NodePoolState } from '@/types';
 
@@ -76,6 +77,11 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     },
   );
 
+  const { price: priceFloatingIp } = useFloatingIpsPrice(
+    isMonthlyBilled ? 'month' : 'hour',
+    regionInformations?.type ?? null,
+  );
+
   const createNodePool = useCallback(() => {
     if (!nodes || !nodePoolState.scaling || !selectedFlavor) return;
 
@@ -92,6 +98,9 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
       autoscale: nodePoolState.scaling.isAutoscale,
       ...(zone && { availabilityZones: [zone] }),
       localisation: zone ?? name ?? null,
+      ...(nodePoolState.attachFloatingIPs && {
+        attachFloatingIPs: nodePoolState.attachFloatingIPs,
+      }),
       desiredNodes: nodePoolState.scaling.quantity.desired,
       ...(nodePoolState.scaling.isAutoscale && {
         minNodes: nodePoolState.scaling.quantity.min,
@@ -139,13 +148,20 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     (regionInformations &&
       hasInvalidScalingOrAntiAffinityConfig(regionInformations?.type, nodePoolState));
 
-  const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(TAGS_BLOB.COMING_SOON);
+  const isPricingComingSoon = selectedFlavor?.blobs?.tags.includes(TAGS_BLOB.COMING_SOON);
 
   const isStepUnlocked = !isLocked;
 
   const canSubmit = canSubmitNodePools(isStepUnlocked, nodePoolEnabled, nodes);
 
   useEffect(() => setIsMonthlyBilled(false), [selectedFlavor]);
+
+  useEffect(() => {
+    // TODO in the future replace by standard plan as soon as it is available
+    if (regionInformations?.availabilityZones.length) {
+      setNodePoolState((state) => ({ ...state, attachFloatingIPs: { enabled: false } }));
+    }
+  }, [regionInformations?.availabilityZones]);
 
   useEffect(() => {
     if (regionInformations?.availabilityZones.length) {
@@ -184,6 +200,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
       isMonthlyBilled,
       nodePoolEnabled,
       price,
+      priceFloatingIp,
     },
 
     actions: {

@@ -5,11 +5,16 @@ import { isMonoDeploymentZone } from '.';
 
 export const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
 
-export const isZoneAzChecked = (type: DeploymentMode, nodePoolState: NodePoolState) =>
+export const isZoneAzChecked = (
+  type: DeploymentMode,
+  nodePoolState: NodePoolState,
+) =>
   !!isMonoDeploymentZone(type) ||
   !!nodePoolState.selectedAvailabilityZones?.some((zone) => zone.checked);
 
-export const isScalingValid = (nodePoolState: Pick<NodePoolState, 'scaling'>) => {
+export const isScalingValid = (
+  nodePoolState: Pick<NodePoolState, 'scaling'>,
+) => {
   if (!nodePoolState.scaling) return true;
 
   const { isAutoscale, quantity } = nodePoolState.scaling;
@@ -40,3 +45,18 @@ export const hasInvalidScalingOrAntiAffinityConfig = (
   !isScalingValid(nodePoolState) ||
   !hasMax5NodesAntiAffinity(nodePoolState) ||
   !isZoneAzChecked(type, nodePoolState);
+
+export const getPlanCodeFloatingIps = (
+  time: 'hour' | 'month',
+  deploymentMode: DeploymentMode | null,
+): string | null => {
+  if (
+    (deploymentMode === DeploymentMode.MULTI_ZONES && time === 'month') ||
+    !deploymentMode
+  ) {
+    return null;
+  }
+  return `floatingip.floatingip.${time}.consumption${
+    deploymentMode === DeploymentMode.MULTI_ZONES ? '.3AZ' : ''
+  }`;
+};
