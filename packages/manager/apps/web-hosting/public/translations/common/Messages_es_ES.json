@@ -165,5 +165,6 @@
   "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Si desea desvincular su nombre de dominio, primero debe eliminar su configuración de Git para evitar posibles problemas de seguimiento de cambios y gestión de despliegues.",
   "hosting_dashboard_ssl_delete_error": "Se produjo un error al eliminar un certificado SSL. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_failure": "Se ha producido un error al desvincular el dominio de su alojamiento compartido.",
-  "hosting_tab_DOMAINS_configuration_remove_success": "El dominio va a ser desvinculado de su alojamiento compartido."
+  "hosting_tab_DOMAINS_configuration_remove_success": "El dominio va a ser desvinculado de su alojamiento compartido.",
+  "activate_cdn": "Activar el CDN"
 }
