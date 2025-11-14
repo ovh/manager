@@ -5,19 +5,24 @@ import DataGridCellTags from '@/components/listing/common/datagrid-cells/datagri
 import { DataGridCellTagsProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-tags/DataGridCellTags.props';
 
 // Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsBadge: ({ label, size, color }: { label: string; size: string; color: string }) => (
+vi.mock('@ovh-ux/muk', () => ({
+  Badge: ({
+    children,
+    size,
+    color,
+  }: {
+    children: React.ReactNode;
+    size: string;
+    color: string;
+  }) => (
     <span data-testid="badge-tag" data-size={size} data-color={color}>
-      {label}
+      {children}
     </span>
   ),
-}));
-
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_BADGE_SIZE: {
+  BADGE_SIZE: {
     md: 'md',
   },
-  ODS_BADGE_COLOR: {
+  BADGE_COLOR: {
     neutral: 'neutral',
   },
 }));

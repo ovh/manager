@@ -6,14 +6,38 @@ import { vi } from 'vitest';
 import { TextField } from '@/components/form/text-field/TextField.component';
 import { TextFieldProps } from '@/components/form/text-field/TextField.props';
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsFormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
+  FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
     </div>
   ),
-  OdsInput: React.forwardRef<
+  FormFieldLabel: ({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) => (
+    <label data-testid="form-field-label" htmlFor={htmlFor}>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+          return React.cloneElement(child as React.ReactElement<{ slot?: string }>, {
+            slot: 'label',
+          });
+        }
+        return child;
+      })}
+    </label>
+  ),
+  FormFieldHelper: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="form-field-helper">
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+          return React.cloneElement(child as React.ReactElement<{ slot?: string }>, {
+            slot: 'helper',
+          });
+        }
+        return child;
+      })}
+    </div>
+  ),
+  Input: React.forwardRef<
     HTMLInputElement,
     {
       id: string;
@@ -21,12 +45,12 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       type?: string;
       value?: string;
       placeholder?: string;
-      isRequired?: boolean;
-      onOdsChange?: (event: { detail: { value: string } }) => void;
-      onOdsBlur?: () => void;
-      hasError?: boolean;
+      required?: boolean;
+      onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+      onBlur?: () => void;
+      invalid?: boolean;
     }
-  >(({ id, name, type, value, placeholder, isRequired, onOdsChange, onOdsBlur, hasError }, ref) => {
+  >(({ id, name, type, value, placeholder, required, onChange, onBlur, invalid }, ref) => {
     const [inputValue, setInputValue] = React.useState(value || '');
 
     React.useEffect(() => {
@@ -42,17 +66,17 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
         type={type}
         value={inputValue}
         placeholder={placeholder}
-        required={isRequired}
+        required={required}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setInputValue(e.target.value);
-          onOdsChange?.({ detail: { value: e.target.value } });
+          onChange?.(e);
         }}
-        onBlur={onOdsBlur}
-        data-has-error={hasError}
+        onBlur={onBlur}
+        data-has-error={invalid}
       />
     );
   }),
-  OdsTextarea: React.forwardRef<
+  Textarea: React.forwardRef<
     HTMLTextAreaElement,
     {
       id: string;
@@ -60,12 +84,12 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       value?: string;
       placeholder?: string;
       rows?: number;
-      isRequired?: boolean;
-      onOdsChange?: (event: { detail: { value: string } }) => void;
-      onOdsBlur?: () => void;
-      hasError?: boolean;
+      required?: boolean;
+      onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+      onBlur?: () => void;
+      invalid?: boolean;
     }
-  >(({ id, name, value, placeholder, rows, isRequired, onOdsChange, onOdsBlur, hasError }, ref) => {
+  >(({ id, name, value, placeholder, rows, required, onChange, onBlur, invalid }, ref) => {
     const [textareaValue, setTextareaValue] = React.useState(value || '');
 
     React.useEffect(() => {
@@ -81,17 +105,17 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
         value={textareaValue}
         placeholder={placeholder}
         rows={rows}
-        required={isRequired}
+        required={required}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
           setTextareaValue(e.target.value);
-          onOdsChange?.({ detail: { value: e.target.value } });
+          onChange?.(e);
         }}
-        onBlur={onOdsBlur}
-        data-has-error={hasError}
+        onBlur={onBlur}
+        data-has-error={invalid}
       />
     );
   }),
-  OdsText: ({
+  Text: ({
     children,
     preset,
     slot,
@@ -104,11 +128,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       {children}
     </span>
   ),
-}));
-
-// Mock ODS constants
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_TEXT_PRESET: {
+  TEXT_PRESET: {
     paragraph: 'paragraph',
     caption: 'caption',
   },
@@ -236,9 +256,11 @@ describe('TextField', () => {
     it('should display error message when error is provided', () => {
       render(<TextField {...defaultProps} error="This field is required" />);
 
+      const errorHelper = screen.getByTestId('form-field-helper');
+      expect(errorHelper).toBeInTheDocument();
+      expect(errorHelper).toHaveTextContent('This field is required');
+
       const errorText = screen.getByTestId('text-helper');
-      expect(errorText).toBeInTheDocument();
-      expect(errorText).toHaveTextContent('This field is required');
       expect(errorText).toHaveAttribute('data-preset', 'caption');
     });
 
@@ -257,7 +279,7 @@ describe('TextField', () => {
     it('should not display error message when error is not provided', () => {
       render(<TextField {...defaultProps} />);
 
-      expect(screen.queryByTestId('text-helper')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('form-field-helper')).not.toBeInTheDocument();
     });
 
     it('should not set hasError when error is not provided', () => {
@@ -269,7 +291,7 @@ describe('TextField', () => {
     it('should not display error message when error is empty string', () => {
       render(<TextField {...defaultProps} error="" />);
 
-      expect(screen.queryByTestId('text-helper')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('form-field-helper')).not.toBeInTheDocument();
     });
 
     it('should not set hasError when error is empty string', () => {
@@ -356,7 +378,7 @@ describe('TextField', () => {
       expect(children).toHaveLength(3);
       expect(children[0]?.tagName).toBe('LABEL');
       expect(children[1]).toHaveAttribute('data-testid', 'input-field');
-      expect(children[2]).toHaveAttribute('data-testid', 'text-helper');
+      expect(children[2]).toHaveAttribute('data-testid', 'form-field-helper');
     });
 
     it('should render textarea structure correctly', () => {
@@ -371,7 +393,7 @@ describe('TextField', () => {
       expect(children).toHaveLength(3);
       expect(children[0]?.tagName).toBe('LABEL');
       expect(children[1]).toHaveAttribute('data-testid', 'textarea-field');
-      expect(children[2]).toHaveAttribute('data-testid', 'text-helper');
+      expect(children[2]).toHaveAttribute('data-testid', 'form-field-helper');
     });
   });
 

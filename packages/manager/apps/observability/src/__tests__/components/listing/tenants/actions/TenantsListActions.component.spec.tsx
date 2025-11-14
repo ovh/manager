@@ -33,23 +33,7 @@ vi.mock('react-i18next', () => ({
   })),
 }));
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_BUTTON_COLOR: {
-    critical: 'critical',
-  },
-  ODS_BUTTON_VARIANT: {
-    ghost: 'ghost',
-  },
-  ODS_ICON_NAME: {
-    ellipsisVertical: 'ellipsis-vertical',
-  },
-  ODS_POPOVER_POSITION: {
-    bottomEnd: 'bottom-end',
-  },
-}));
-
-// Mock manager-react-components
+// Mock MUK components
 vi.mock('@ovh-ux/muk', () => ({
   ActionMenu: ({
     items,
@@ -88,6 +72,18 @@ vi.mock('@ovh-ux/muk', () => ({
     </div>
   ),
   ActionMenuItem: {},
+  BUTTON_COLOR: {
+    critical: 'critical',
+  },
+  BUTTON_VARIANT: {
+    ghost: 'ghost',
+  },
+  ICON_NAME: {
+    ellipsisVertical: 'ellipsis-vertical',
+  },
+  POPOVER_POSITION: {
+    bottomEnd: 'bottom-end',
+  },
 }));
 
 vi.mock('@/routes/Routes.utils', () => ({
