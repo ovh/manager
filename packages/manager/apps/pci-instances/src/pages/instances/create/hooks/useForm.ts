@@ -71,7 +71,7 @@ export const useForm = (projectId: string) => {
 
   const sshKeyIdDefaultValue = null;
 
-  const sshPublicKeyDefaultValue = null;
+  const newSshPublicKeyDefaultValue = null;
 
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
@@ -89,7 +89,7 @@ export const useForm = (projectId: string) => {
       distributionImageType: distributionImageTypeDefaultValue,
       distributionImageName: distributionImageNameDefaultValue,
       sshKeyId: sshKeyIdDefaultValue,
-      sshPublicKey: sshPublicKeyDefaultValue,
+      newSshPublicKey: newSshPublicKeyDefaultValue,
     },
     mode: 'onChange',
   });

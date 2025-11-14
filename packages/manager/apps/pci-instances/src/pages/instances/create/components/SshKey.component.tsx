@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { Button, Divider, Icon, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { SshKeyHelper } from './sshKey/SshKeyHelper.component';
@@ -7,12 +7,13 @@ import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectSshKeys } from '../view-models/sshKeysViewModel';
 import AddSshKey from './sshKey/AddSshKey.component';
-import { SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useFormContext, useWatch } from 'react-hook-form';
 import { TAddSshKeyForm } from '../CreateInstance.schema';
 import Banner from '@/components/banner/Banner.component';
 import SshKeySelector, {
   TCustomSelectSshKeyData,
 } from './sshKey/SshKeySelector.component';
+import { TInstanceCreationForm } from '../CreateInstance.page';
 
 type TSshKeyProps = {
   microRegion: string;
@@ -21,9 +22,10 @@ type TSshKeyProps = {
 const SshKey = ({ microRegion }: TSshKeyProps) => {
   const projectId = useProjectId();
   const { t } = useTranslation('creation');
+
   const [openSshKeyform, setOpenSshKeyForm] = useState<boolean>(false);
   const [newSshKeys, setNewSshKeys] = useState<TCustomSelectSshKeyData[]>([]);
-  const [openSshKeyAddedMessage, setopenSshKeyAddedMessage] = useState<boolean>(
+  const [openSshKeyAddedMessage, setOpenSshKeyAddedMessage] = useState<boolean>(
     false,
   );
 
@@ -34,16 +36,31 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
     [isLoading, microRegion, projectId],
   );
 
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const selectedSshKeyId = useWatch({
+    control,
+    name: 'sshKeyId',
+  });
+
   const unavailableSshKeyIds = useMemo(
     () => [...newSshKeys, ...sshKeys].map(({ value }) => value),
     [newSshKeys, sshKeys],
   );
 
+  const sshKeyItems = useMemo(() => {
+    const existingSshKeys = sshKeys.map((item) => ({
+      ...item,
+      newSshPublicKey: null,
+    }));
+
+    return [...newSshKeys, ...existingSshKeys];
+  }, [newSshKeys, sshKeys]);
+
   const handleOpenSshKeyForm = () => setOpenSshKeyForm(true);
 
   const handleCloseSshKeyForm = () => setOpenSshKeyForm(false);
 
-  const handleCloseSshKeyAddedMessage = () => setopenSshKeyAddedMessage(false);
+  const handleCloseSshKeyAddedMessage = () => setOpenSshKeyAddedMessage(false);
 
   const handleAddSshKey: SubmitHandler<TAddSshKeyForm> = ({
     sshKeyId,
@@ -53,13 +70,13 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
       {
         label: sshKeyId,
         value: sshKeyId,
-        sshPublicKey,
+        newSshPublicKey: sshPublicKey,
       },
       ...prevSshKeys,
     ]);
 
     handleCloseSshKeyForm();
-    setopenSshKeyAddedMessage(true);
+    setOpenSshKeyAddedMessage(true);
   };
 
   const handleCancelAddSshKey = () => {
@@ -67,9 +84,28 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
     handleCloseSshKeyForm();
   };
 
+  const updateSshKeyFields = useCallback(
+    (sshKey: TCustomSelectSshKeyData) => {
+      setValue('sshKeyId', sshKey.value);
+      setValue('newSshPublicKey', sshKey.newSshPublicKey);
+    },
+    [setValue],
+  );
+
+  const handleSelectSshKey = (sshKey: TCustomSelectSshKeyData) => {
+    updateSshKeyFields(sshKey);
+    handleCloseSshKeyAddedMessage();
+  };
+
   useEffect(() => {
     if (!isLoading && sshKeys.length === 0) setOpenSshKeyForm(true);
   }, [isLoading, sshKeys]);
+
+  useEffect(() => {
+    const selectedSshKey = sshKeyItems[0];
+
+    if (selectedSshKey) updateSshKeyFields(selectedSshKey);
+  }, [sshKeyItems, updateSshKeyFields]);
 
   return (
     <section>
@@ -114,9 +150,9 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
           ) : (
             <>
               <SshKeySelector
-                sshKeysItems={sshKeys}
-                newSshKeys={newSshKeys}
-                onValueChange={handleCloseSshKeyAddedMessage}
+                items={sshKeyItems}
+                value={selectedSshKeyId ? [selectedSshKeyId] : []}
+                onValueChange={handleSelectSshKey}
               />
               <Button variant="ghost" onClick={handleOpenSshKeyForm}>
                 <Icon name="plus" />

@@ -40,7 +40,7 @@ export const instanceCreationSchema = z.object({
   distributionImageType: distributionImageTypeSchema,
   distributionImageName: distributionImageNameSchema,
   sshKeyId: sshKeyIdSchema,
-  sshPublicKey: sshPublicKeySchema.nullable(),
+  newSshPublicKey: sshPublicKeySchema.nullable(),
 });
 
 const CreateInstance: FC = () => {
