@@ -46,17 +46,6 @@ export const DomainManagement: React.FC<DomainManagementProps> = ({
         })}
       </OdsText>
       <OdsClipboard value={hostingService?.data?.hostingIp} />
-      {controlValues.wwwNeeded && (
-        <>
-          <OdsText preset={ODS_TEXT_PRESET.heading6}>
-            {t('multisite:multisite_add_website_domain_management_point_field', {
-              field: 'A',
-              domain: `www.${controlValues?.fqdn}`,
-            })}
-          </OdsText>
-          <OdsClipboard value={hostingService?.data?.hostingIp} />
-        </>
-      )}
       <OdsText preset={ODS_TEXT_PRESET.heading6}>
         {t('multisite:multisite_add_website_domain_management_point_field', {
           field: 'AAAA',
@@ -64,17 +53,6 @@ export const DomainManagement: React.FC<DomainManagementProps> = ({
         })}
       </OdsText>
       <OdsClipboard value={hostingService?.data?.hostingIpv6} />
-      {controlValues.wwwNeeded && (
-        <>
-          <OdsText preset={ODS_TEXT_PRESET.heading6}>
-            {t('multisite:multisite_add_website_domain_management_point_field', {
-              field: 'AAAA',
-              domain: `www.${controlValues?.fqdn}`,
-            })}
-          </OdsText>
-          <OdsClipboard value={hostingService?.data?.hostingIpv6} />
-        </>
-      )}
       <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
         {t('multisite:multisite_add_website_domain_management_propagation')}
       </OdsMessage>

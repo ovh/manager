@@ -28,7 +28,6 @@ import { websiteFormSchema } from '@/utils/formSchemas.utils';
 import { DomainAssociation } from './component/DomainAssociation';
 import { DomainCmsModule } from './component/DomainCmsModule';
 import { DomainConfiguration } from './component/DomainConfiguration';
-import { DomainDnsConfiguration } from './component/DomainDnsConfiguration';
 import { DomainManagement } from './component/DomainManagement';
 
 export default function AddWebsitePage() {
@@ -40,7 +39,7 @@ export default function AddWebsitePage() {
 
   type FormData = z.infer<typeof websiteFormSchema>;
 
-  const { control, handleSubmit, watch } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset } = useForm<FormData>({
     defaultValues: {
       path: 'public_html',
       autoConfigureDns: true,
@@ -55,7 +54,7 @@ export default function AddWebsitePage() {
     () => {
       addSuccess(
         <>
-          <OdsText>{t('multisite:multisite_add_website_success')}</OdsText>
+          <OdsText className="mr-2">{t('multisite:multisite_add_website_success')}</OdsText>
           <OdsLink
             href={`#/${serviceName}/task`}
             label={t('multisite:multisite_add_website_in_progress')}
@@ -132,19 +131,18 @@ export default function AddWebsitePage() {
         controlValues={controlValues}
         setStep={setStep}
         isNextButtonVisible={step === 1}
+        reset={reset}
       />
-      <OdsDivider />
-      {step >= 2 ? (
-        <DomainConfiguration
-          control={control}
-          controlValues={controlValues}
-          setStep={setStep}
-          isNextButtonVisible={step === 2}
-        />
-      ) : (
-        <OdsText preset={ODS_TEXT_PRESET.heading4}>
-          {t('multisite:multisite_add_website_configure_domain_title')}
-        </OdsText>
+      {step >= 2 && (
+        <>
+          <OdsDivider />
+          <DomainConfiguration
+            control={control}
+            controlValues={controlValues}
+            setStep={setStep}
+            isNextButtonVisible={step === 2}
+          />
+        </>
       )}
       {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
         <>
@@ -156,17 +154,9 @@ export default function AddWebsitePage() {
           />
         </>
       )}
-      {controlValues.associationType === AssociationType.EXISTING && step >= 3 && (
-        <DomainDnsConfiguration
-          control={control}
-          controlValues={controlValues}
-          setStep={setStep}
-          isNextButtonVisible={step === 3}
-        />
-      )}
-      <OdsDivider />
-      {step === 4 ? (
+      {step === 4 && (
         <>
+          <OdsDivider />
           <DomainCmsModule control={control} controlValues={controlValues} />
           <OdsButton
             label={t('common:web_hosting_common_action_continue')}
@@ -174,10 +164,6 @@ export default function AddWebsitePage() {
             isDisabled={!controlValues.fqdn}
           />
         </>
-      ) : (
-        <OdsText preset={ODS_TEXT_PRESET.heading4}>
-          {t('multisite:multisite_add_website_module_cms_title')}
-        </OdsText>
       )}
     </form>
   );

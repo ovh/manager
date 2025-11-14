@@ -22,6 +22,8 @@ interface DomainAssociationProps {
   controlValues: FormData;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isNextButtonVisible: boolean;
+  reset?: (values?: Partial<FormData>) => void;
+  isAddingDomain?: boolean;
 }
 
 export const DomainAssociation: React.FC<DomainAssociationProps> = ({
@@ -29,6 +31,8 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
   controlValues,
   setStep,
   isNextButtonVisible,
+  reset,
+  isAddingDomain = false,
 }: DomainAssociationProps) => {
   const { t } = useTranslation(['common', 'multisite', 'dashboard']);
   const context = useContext(ShellContext);
@@ -69,7 +73,16 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                   name={AssociationType.EXISTING}
                   value={AssociationType.EXISTING}
                   isChecked={field.value === AssociationType.EXISTING}
-                  onOdsChange={() => field.onChange(AssociationType.EXISTING)}
+                  onOdsChange={() => {
+                    reset({
+                      associationType: AssociationType.EXISTING,
+                      autoConfigureDns: true,
+                      path: controlValues.path,
+                      fqdn: '',
+                      name: isAddingDomain ? controlValues.name : '',
+                    });
+                    setStep(1);
+                  }}
                 />
                 <label>
                   <OdsText preset={ODS_TEXT_PRESET.heading6}>
@@ -94,7 +107,14 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                   name={AssociationType.EXTERNAL}
                   value={AssociationType.EXTERNAL}
                   isChecked={field.value === AssociationType.EXTERNAL}
-                  onOdsChange={() => field.onChange(AssociationType.EXTERNAL)}
+                  onOdsChange={() => {
+                    reset({
+                      associationType: AssociationType.EXTERNAL,
+                      fqdn: '',
+                      name: isAddingDomain ? controlValues.name : '',
+                    });
+                    setStep(1);
+                  }}
                 />
                 <label>
                   <OdsText preset={ODS_TEXT_PRESET.heading6}>
@@ -119,7 +139,10 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                   name={AssociationType.ORDER}
                   value={AssociationType.ORDER}
                   isChecked={field.value === AssociationType.ORDER}
-                  onOdsChange={() => field.onChange(AssociationType.ORDER)}
+                  onOdsChange={() => {
+                    field.onChange(AssociationType.ORDER);
+                    setStep(1);
+                  }}
                 />
                 <label>
                   <OdsText preset={ODS_TEXT_PRESET.heading6}>
