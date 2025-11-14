@@ -8,7 +8,11 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsBreadcrumb,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
@@ -22,14 +26,17 @@ import {
 
 import { usePrefetchInstances } from '@/api/hooks/instance/useInstances';
 import { usePrefetchSnapshotPricing } from '@/api/hooks/order/order';
-import { useAddWorkflow } from '@/api/hooks/workflows';
+import { WorkflowType, useAddWorkflow } from '@/api/hooks/workflows';
 import { useSafeParam } from '@/hooks/useSafeParam';
 
 import { useWorkflowStepper } from './hooks/useWorkflowStepper';
 import { WorkflowName } from './steps/WorkflowName.component';
 import { WorkflowResource } from './steps/WorkflowResource.component';
-import { WorkflowScheduling, getCron } from './steps/WorkflowScheduling.component';
-import { WorkflowType } from './steps/WorkflowType.component';
+import {
+  WorkflowScheduling,
+  getCron,
+} from './steps/WorkflowScheduling.component';
+import { WorkflowTypeSelector } from './steps/WorkflowType.component';
 
 export default function NewPage() {
   const { t } = useTranslation('workflow-add');
@@ -55,7 +62,9 @@ export default function NewPage() {
         <Translation ns="workflow-add">
           {(tr) =>
             tr('pci_workflow_add_error', {
-              message: isApiCustomError(err) ? err.response?.data.message : err.message,
+              message: isApiCustomError(err)
+                ? err.response?.data.message
+                : err.message,
             })
           }
         </Translation>,
@@ -110,7 +119,10 @@ export default function NewPage() {
           isDisabled: stepper.scheduling.step.isLocked,
         }}
       >
-        <WorkflowType step={stepper.type.step} onSubmit={stepper.type.submit} />
+        <WorkflowTypeSelector
+          step={stepper.type.step}
+          onSubmit={stepper.type.submit}
+        />
       </StepComponent>
       <div className="mt-8">
         <StepComponent
@@ -168,8 +180,9 @@ export default function NewPage() {
               onSubmit={(scheduling, distantRegion) => {
                 stepper.scheduling.submit(scheduling, distantRegion);
                 addWorkflow({
+                  type: WorkflowType.INSTANCE_BACKUP,
                   cron: getCron(scheduling),
-                  instanceId: stepper.form.instanceId,
+                  resource: stepper.form.instanceId,
                   name: stepper.form.name,
                   rotation: scheduling.rotation,
                   maxExecutionCount: scheduling.maxExecutionCount,
@@ -179,7 +192,11 @@ export default function NewPage() {
             />
             {isAdding && (
               <div className="mt-5">
-                <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="align-middle" />
+                <OsdsSpinner
+                  inline
+                  size={ODS_SPINNER_SIZE.md}
+                  className="align-middle"
+                />
                 <OsdsText
                   className="ml-8"
                   color={ODS_THEME_COLOR_INTENT.text}

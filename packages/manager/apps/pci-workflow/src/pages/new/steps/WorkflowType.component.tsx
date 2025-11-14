@@ -8,19 +8,20 @@ import {
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 
+import { WorkflowType } from '@/api/hooks/workflows';
 import { PciTile } from '@/pages/new/components/PciTile.component';
 import { StepState } from '@/pages/new/hooks/useStep';
-import {
-  TWorkflowCreationForm,
-  WorkflowType as WorkflowTypeEnum,
-} from '@/pages/new/hooks/useWorkflowStepper';
+import { TWorkflowCreationForm } from '@/pages/new/hooks/useWorkflowStepper';
 
 interface WorkflowTypeProps {
   step: StepState;
   onSubmit: (workflowType: TWorkflowCreationForm['type']) => void;
 }
 
-export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
+export function WorkflowTypeSelector({
+  step,
+  onSubmit,
+}: Readonly<WorkflowTypeProps>) {
   const { t } = useTranslation('workflow-add');
   const { t: tListing } = useTranslation('listing');
   const { t: tCommon } = useTranslation('pci-common');
@@ -35,10 +36,12 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
       </OsdsText>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
         <PciTile
-          title={tListing(`pci_workflow_type_${WorkflowTypeEnum.INSTANCE_BACKUP}_title`)}
+          title={tListing(
+            `pci_workflow_type_${WorkflowType.INSTANCE_BACKUP}_title`,
+          )}
           isChecked
           description={t(
-            `pci_workflow_create_type_${WorkflowTypeEnum.INSTANCE_BACKUP}_description`,
+            `pci_workflow_create_type_${WorkflowType.INSTANCE_BACKUP}_description`,
           )}
         ></PciTile>
       </div>
@@ -47,7 +50,7 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
           className="w-fit mt-6"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => onSubmit(WorkflowTypeEnum.INSTANCE_BACKUP)}
+          onClick={() => onSubmit(WorkflowType.INSTANCE_BACKUP)}
         >
           {tCommon('common_stepper_next_button_label')}
         </OsdsButton>

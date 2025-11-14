@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import {
+  TInstance,
+  buildInstanceId,
+} from '@/api/hooks/instance/selector/instances.selector';
+import { WorkflowType } from '@/api/hooks/workflows';
 import { useStep } from '@/pages/new/hooks/useStep';
-
-export const enum WorkflowType {
-  INSTANCE_BACKUP = 'instance_backup',
-}
 
 export type TWorkflowCreationForm = {
   type: WorkflowType | null;
@@ -45,7 +45,9 @@ export function useWorkflowStepper() {
     const queryRegion = searchParams.get('region');
 
     const instanceId =
-      !!queryInstanceId && !!queryRegion ? buildInstanceId(queryInstanceId, queryRegion) : null;
+      !!queryInstanceId && !!queryRegion
+        ? buildInstanceId(queryInstanceId, queryRegion)
+        : null;
 
     return {
       ...DEFAULT_FORM_STATE,

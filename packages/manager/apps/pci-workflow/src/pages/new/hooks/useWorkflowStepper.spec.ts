@@ -1,12 +1,15 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it } from 'vitest';
 
-import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import {
+  TInstance,
+  buildInstanceId,
+} from '@/api/hooks/instance/selector/instances.selector';
+import { WorkflowType } from '@/api/hooks/workflows';
 
 import {
   DEFAULT_FORM_STATE,
   TWorkflowScheduling,
-  WorkflowType,
   useWorkflowStepper,
 } from './useWorkflowStepper';
 
@@ -35,7 +38,9 @@ describe('useWorkflowStepper hook', () => {
       result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
       result.current.type.edit();
     });
-    await waitFor(() => expect(result.current.form).toEqual(DEFAULT_FORM_STATE));
+    await waitFor(() =>
+      expect(result.current.form).toEqual(DEFAULT_FORM_STATE),
+    );
   });
 
   it('updates instance and opens scheduling step on resource submit', () => {

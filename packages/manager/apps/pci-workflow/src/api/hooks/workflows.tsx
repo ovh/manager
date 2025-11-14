@@ -1,6 +1,11 @@
 import { useMemo } from 'react';
 
-import { queryOptions, useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
+import {
+  queryOptions,
+  useMutation,
+  useQueries,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { addMinutes, format, parseISO } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
@@ -24,14 +29,15 @@ import {
   getRegionsWorkflows,
 } from '@/api/data/region-workflow';
 import { deleteWorkflow } from '@/api/data/workflow';
-import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { paginateResults } from '@/helpers';
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
 import { enableRegion } from '../data/region';
 import { useMe } from './user';
 
-export const WORKFLOW_TYPE = 'instance_backup';
+export enum WorkflowType {
+  INSTANCE_BACKUP = 'instance_backup',
+}
 
 export type TWorkflow = TRemoteWorkflow & {
   instanceName: string;
@@ -50,13 +56,17 @@ export const useWorkflows = (projectId: string) => {
   const { i18n } = useTranslation('pci-common');
   const userLocale = getDateFnsLocale(i18n.language);
 
-  const { data: regions, isPending: isRegionsPending } = useProjectRegions(projectId);
+  const { data: regions, isPending: isRegionsPending } = useProjectRegions(
+    projectId,
+  );
 
   const filteredRegionNames = useMemo(
     () =>
       (regions || [])
         .filter((region) =>
-          region.services.some(({ name, status }) => name === 'workflow' && status === 'UP'),
+          region.services.some(
+            ({ name, status }) => name === 'workflow' && status === 'UP',
+          ),
         )
         .map((region) => region.name),
     [regions],
@@ -87,10 +97,10 @@ export const useWorkflows = (projectId: string) => {
               };
             }
 
-            let [lastExecutionAt, lastExecutionStatus]: [Date, TExecutionState | undefined] = [
-              new Date(),
-              undefined,
-            ];
+            let [lastExecutionAt, lastExecutionStatus]: [
+              Date,
+              TExecutionState | undefined,
+            ] = [new Date(), undefined];
 
             if (Array.isArray(w.executions) && w.executions.length) {
               const executions = w.executions
@@ -107,10 +117,14 @@ export const useWorkflows = (projectId: string) => {
             return {
               ...w,
               lastExecution: format(
-                addMinutes(lastExecutionAt, lastExecutionAt.getTimezoneOffset()),
+                addMinutes(
+                  lastExecutionAt,
+                  lastExecutionAt.getTimezoneOffset(),
+                ),
                 'dd MMM yyyy HH:mm:ss',
                 {
-                  locale: dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
+                  locale:
+                    dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
                 },
               ),
               lastExecutionStatus,
@@ -121,13 +135,14 @@ export const useWorkflows = (projectId: string) => {
   });
 };
 
-export const defaultCompareFunction =
-  (key: keyof Omit<TWorkflow, 'executions'>) => (a: TWorkflow, b: TWorkflow) => {
-    const aValue = a[key] || '';
-    const bValue = b[key] || '';
+export const defaultCompareFunction = (
+  key: keyof Omit<TWorkflow, 'executions'>,
+) => (a: TWorkflow, b: TWorkflow) => {
+  const aValue = a[key] || '';
+  const bValue = b[key] || '';
 
-    return aValue.localeCompare(bValue);
-  };
+  return aValue.localeCompare(bValue);
+};
 
 export const sortWorkflows = (
   workflows: TWorkflow[],
@@ -139,7 +154,9 @@ export const sortWorkflows = (
   if (sorting) {
     const { id: sortKey, desc } = sorting;
 
-    data.sort(defaultCompareFunction(sortKey as keyof Omit<TWorkflow, 'executions'>));
+    data.sort(
+      defaultCompareFunction(sortKey as keyof Omit<TWorkflow, 'executions'>),
+    );
     if (desc) {
       data.reverse();
     }
@@ -151,7 +168,9 @@ export const sortWorkflows = (
     return data.filter((workflow) =>
       keys.some((key) =>
         searchQueries.some(
-          (query) => workflow[key] && workflow[key].toLowerCase().includes(query.toLowerCase()),
+          (query) =>
+            workflow[key] &&
+            workflow[key].toLowerCase().includes(query.toLowerCase()),
         ),
       ),
     );
@@ -187,20 +206,23 @@ export const usePaginatedWorkflows = (
   },
 ) => {
   const { t } = useTranslation('listing');
-  const { data: workflows, isPending: isWorkflowsPending } = useWorkflows(projectId);
+  const { data: workflows, isPending: isWorkflowsPending } = useWorkflows(
+    projectId,
+  );
 
   return useQueries({
     queries: workflows.map((workflow) => ({
       queryKey: [projectId, 'instances', workflow.instanceId],
-      queryFn: async () => getInstance(projectId, workflow.region, workflow.instanceId),
+      queryFn: async () =>
+        getInstance(projectId, workflow.region, workflow.instanceId),
       staleTime: Infinity,
       enabled: !isWorkflowsPending,
     })),
     combine: (results) => {
       const workflowsWithInstanceIds = workflows.map((workflow, i) => ({
         ...workflow,
-        type: WORKFLOW_TYPE,
-        typeLabel: t(`pci_workflow_type_${WORKFLOW_TYPE}_title`),
+        type: WorkflowType.INSTANCE_BACKUP,
+        typeLabel: t(`pci_workflow_type_${WorkflowType.INSTANCE_BACKUP}_title`),
         instanceName: results[i].data?.name,
         backup: !!workflow.distantRegion
           ? TWorkflowBackup.LOCAL_AND_DISTANT
@@ -213,12 +235,14 @@ export const usePaginatedWorkflows = (
       return {
         data: paginateResults<TWorkflow>(
           applyFilters(
-            sortWorkflows(workflowsWithInstanceIds, sorting, searchQueries) || [],
+            sortWorkflows(workflowsWithInstanceIds, sorting, searchQueries) ||
+              [],
             filters,
           ),
           pagination,
         ),
-        isPending: results.some((result) => result.isPending) || isWorkflowsPending,
+        isPending:
+          results.some((result) => result.isPending) || isWorkflowsPending,
       };
     },
   });
@@ -258,15 +282,50 @@ export const useDeleteWorkflow = ({
 };
 
 interface UseAddWorkflowProps {
-  cron: string;
-  instanceId: TInstance['id'];
+  type: WorkflowType;
+  resource: { id: string; region: string };
   name: string;
+  cron: string;
   rotation: number;
   maxExecutionCount: number;
-  distantRegion: string | null;
 }
 
+type UseAddInstanceBackupWorkflowProps = UseAddWorkflowProps & {
+  type: WorkflowType.INSTANCE_BACKUP;
+  distantRegion: string | null;
+};
+
 export const useAddWorkflow = ({
+  projectId,
+  onError,
+  onSuccess,
+}: {
+  projectId: string;
+  onSuccess: () => void;
+  onError: (error: Error) => void;
+}) => {
+  const {
+    addInstanceBackupWorkflow,
+    isPending: isAddingInstanceBackupWorkflow,
+  } = useAddInstanceBackupWorkflow({
+    projectId,
+    onError,
+    onSuccess,
+  });
+
+  const addWorkflow = (props: UseAddInstanceBackupWorkflowProps) => {
+    if (props.type === WorkflowType.INSTANCE_BACKUP) {
+      addInstanceBackupWorkflow(props);
+    }
+  };
+
+  return {
+    addWorkflow,
+    isPending: isAddingInstanceBackupWorkflow,
+  };
+};
+
+export const useAddInstanceBackupWorkflow = ({
   projectId,
   onError,
   onSuccess,
@@ -283,7 +342,11 @@ export const useAddWorkflow = ({
   });
 
   const mutation = useMutation({
-    mutationFn: async ({ instanceId, distantRegion, ...type }: UseAddWorkflowProps) => {
+    mutationFn: async ({
+      resource,
+      distantRegion,
+      ...rest
+    }: UseAddInstanceBackupWorkflowProps) => {
       if (
         distantRegion &&
         productAvailability?.plans.find(
@@ -295,20 +358,20 @@ export const useAddWorkflow = ({
         await enableRegion({ projectId, region: distantRegion });
       }
 
-      return addWorkflow(projectId, instanceId.region, instanceId.id, {
-        name: type.name,
-        cron: type.cron,
-        rotation: type.rotation,
+      return addWorkflow(projectId, resource.region, resource.region, {
+        name: rest.name,
+        cron: rest.cron,
+        rotation: rest.rotation,
         imageName: '',
         distRegionName: distantRegion,
         distImageName: null,
       });
     },
     onError,
-    onSuccess: async (_res, { instanceId }) => {
+    onSuccess: async (_res, { resource }) => {
       await Promise.all(
         [
-          getWorkflowQueryOptions(projectId, instanceId.region),
+          getWorkflowQueryOptions(projectId, resource.region),
           getCatalogQuery(me.ovhSubsidiary),
           getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
             addonFamily: 'snapshot',
@@ -320,7 +383,7 @@ export const useAddWorkflow = ({
   });
 
   return {
-    addWorkflow: mutation.mutate,
+    addInstanceBackupWorkflow: mutation.mutate,
     ...mutation,
   };
 };
