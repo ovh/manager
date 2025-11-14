@@ -12,16 +12,20 @@ import uniq from 'lodash/uniq';
 import sortBy from 'lodash/sortBy';
 
 import { SPECIAL_NUMBER_PREFIX } from '../../special/repayments/repayments.constants';
+import { REGEX } from '../portabilities/portabilities.constants';
 
 export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtrl(
   $q,
   $scope,
   $stateParams,
+  $timeout,
   $translate,
   moment,
   tucVoipBillingAccount,
+  tucVoipService,
   OvhApiMe,
   OvhApiOrder,
+  TelephonyPortabilitiesService,
   TucBankHolidays,
   TucToast,
   canOrderSpecialPortability,
@@ -131,13 +135,21 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     };
 
     // fetch list of billing accounts
-    return tucVoipBillingAccount
-      .fetchAll()
-      .then((groups) => {
+    // load one french 0033 service (needed for autocomplete the entreprise field)
+    return $q
+      .all({
+        groups: tucVoipBillingAccount.fetchAll(),
+        services: tucVoipService.fetchAllIds($stateParams.billingAccount),
+      })
+      .then(({ groups, services }) => {
         self.billingAccounts = sortBy(groups, [
           (group) => group.getDisplayedName(),
         ]);
         self.order.billingAccount = $stateParams.billingAccount;
+        self.serviceForFetchEntrepriseInfos =
+          services.length > 0
+            ? services.find((number) => startsWith(number, '0033'))
+            : null;
       })
       .catch((err) => {
         TucToast.error(get(err, 'data.message'));
@@ -311,6 +323,37 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     params.desireDate = moment(params.desireDate).format('Y-MM-DD');
 
     return params;
+  };
+
+  self.onSiretChange = function onSiretChange() {
+    if (
+      self.order.siret?.match(REGEX.siret) &&
+      self.serviceForFetchEntrepriseInfos &&
+      self.order.country === 'france'
+    ) {
+      // we have to poll because api call is not synchronous
+      self
+        .fetchEntrepriseInformations()
+        .then((infos) => {
+          self.order.name = infos?.informations.isValid
+            ? infos?.informations.name
+            : '';
+        })
+        .catch(() => null);
+    }
+  };
+
+  self.fetchEntrepriseInformations = function fetchEntrepriseInformations() {
+    return TelephonyPortabilitiesService.fetchEntrepriseInformations(
+      $stateParams.billingAccount,
+      self.serviceForFetchEntrepriseInfos,
+      self.order.siret,
+    ).then((infos) => {
+      if (['todo', 'doing'].includes(infos?.status)) {
+        return $timeout(() => self.fetchEntrepriseInformations(), 500);
+      }
+      return infos;
+    });
   };
 
   self.fetchPriceAndContracts = function fetchPriceAndContracts() {

@@ -61,6 +61,21 @@ export default class {
           );
         });
       })
+      .then(() => {
+        const promises = this.additionalDisks.map((elem) =>
+          this.VpsService.hasPendingTerminate(elem.serviceName),
+        );
+        return this.$q.all(promises).then((pendingInfos) => {
+          this.additionalDisks.forEach((elm, index) => {
+            this.additionalDisks[index] = {
+              ...elm,
+              ...pendingInfos.find(
+                ({ resourceName }) => resourceName === elm.serviceName,
+              ),
+            };
+          });
+        });
+      })
       .catch((error) => {
         this.CucCloudMessage.error(
           this.$translate.instant('vps_additional_disk_info_fail'),

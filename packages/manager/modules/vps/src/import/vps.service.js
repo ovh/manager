@@ -1533,4 +1533,18 @@ export default /* @ngInject */ function VpsService(
       })
       .then(({ data }) => data);
   };
+
+  this.hasPendingTerminate = function hasPendingTerminate(resourceName) {
+    return iceberg('/services', { resourceName })
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => ({
+        resourceName,
+        expirationDate: data[0].billing.expirationDate,
+        pendingTerminate: data[0].billing.lifecycle.current.pendingActions.includes(
+          'terminateAtExpirationDate',
+        ),
+      }));
+  };
 }

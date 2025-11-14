@@ -106,7 +106,7 @@ export const EmailAccountsDatagrid = () => {
         id: 'quota',
         cell: (item) => (
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {formatBytes(item.used, 2, 1024)} / {formatBytes(item.available, 0, 1024)}
+            {formatBytes(item.available, 0, 1024)}
           </OdsText>
         ),
         label: 'zimbra_account_datagrid_quota',

@@ -3,7 +3,6 @@ import template from './sms-options.html';
 
 export default {
   bindings: {
-    classes: '<',
     model: '=',
   },
   controller,
