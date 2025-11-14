@@ -27,6 +27,7 @@ export default class {
   }
 
   $onInit() {
+    this.isUSRegion = this.coreConfig.isRegion('US');
     this.user = this.coreConfig.getUser();
     this.isLoadingService = true;
     this.paymentMethod = null;
