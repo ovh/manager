@@ -64,5 +64,9 @@
   "multisite_add_website_module_cms_choice_joomla_text": "A content management system to create custom blogs and e-commerce sites.",
   "multisite_add_website_success": "Your site has been successfully added! The association of your domain may take up to 48 hours.",
   "multisite_add_website_error": "An error has occurred while adding your site. {{ error }}",
-  "multisite_add_website_in_progress": "Track ongoing tasks"
+  "multisite_add_website_in_progress": "Track ongoing tasks",
+  "multisite_add_domain_title": "Add a domain",
+  "multisite_add_website_advanced_options_dns_auto_recommanded": "Recommended",
+  "multisite_add_website_domain_info": "The domain name is your site address",
+  "multisite_add_website_domain_configuration": "Domain configuration"
 }
