@@ -5,6 +5,7 @@ import type { SortingState } from '@tanstack/react-table';
 import { v6 } from '@ovh-ux/manager-core-api';
 
 import { useQuery } from '@/hooks/data-api/infra/tanstack';
+import { DEFAULT_DATA_API_RESPONSE } from '@/hooks/data-api/ports/useDataApi.constants';
 import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
 import { useDataRetrievalOperations } from '@/hooks/data-api/useDataRetrievalOperations';
 
@@ -56,17 +57,28 @@ export const useV6 = <TData = Record<string, unknown>>({
   });
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && enabled) {
       setTotalCount(filteredAndSortedData.length);
       setPageIndex(0);
       setFlattenData(filteredAndSortedData);
     }
-  }, [filteredAndSortedData]);
+  }, [filteredAndSortedData, isLoading, enabled]);
 
   const fetchNextPage = useCallback(
     () => setPageIndex((previousPageIndex) => previousPageIndex + 1),
-    [pageIndex],
+    [],
   );
+
+  if (!enabled) {
+    return {
+      ...DEFAULT_DATA_API_RESPONSE,
+      sorting: {
+        sorting: [],
+        setSorting: () => {},
+        manualSorting: false,
+      },
+    };
+  }
 
   return {
     error,
