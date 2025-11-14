@@ -1,3 +1,5 @@
+/* REMOVE ME */
+
 import React, { useEffect, Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
