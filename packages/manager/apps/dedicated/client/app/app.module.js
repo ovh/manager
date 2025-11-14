@@ -207,6 +207,7 @@ export default async (containerEl, shellClient) => {
         ngOvhExportCsv,
         ngPaginationFront,
         ngQAllSettled,
+        'ovh-api-services',
         ovhManagerDbaasLogs,
         ovhManagerIplb,
         ovhManagerSupport,

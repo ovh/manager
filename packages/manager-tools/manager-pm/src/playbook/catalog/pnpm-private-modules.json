@@ -16,10 +16,6 @@
     "pnpm": "packages/manager/modules/account"
   },
   {
-    "turbo": "--filter @ovh-ux/manager-account-migration",
-    "pnpm": "packages/manager/modules/account-migration"
-  },
-  {
     "turbo": "--filter @ovh-ux/manager-advices",
     "pnpm": "packages/manager/modules/advices"
   },
