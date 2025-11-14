@@ -92,10 +92,32 @@ export const useIceberg = <TData = Record<string, unknown>>({
   });
 
   useEffect(() => {
-    if (fetchAll && hasNextPage) {
+    if (fetchAll && hasNextPage && enabled) {
       void fetchNextPage();
     }
-  }, [dataSelected]);
+  }, [dataSelected, fetchAll, hasNextPage, fetchNextPage, enabled]);
+
+  if (!enabled) {
+    return {
+      isLoading: false,
+      isError: false,
+      error: null,
+      isSuccess: false,
+      isFetching: false,
+      status: 'pending',
+      fetchNextPage: () => {},
+      hasNextPage: false,
+      isFetchingNextPage: false,
+      pageIndex: 0,
+      totalCount: 0,
+      flattenData: [],
+      sorting: {
+        sorting: [],
+        setSorting: () => {},
+        manualSorting: false,
+      },
+    };
+  }
 
   return {
     ...(dataSelected && { ...dataSelected }),

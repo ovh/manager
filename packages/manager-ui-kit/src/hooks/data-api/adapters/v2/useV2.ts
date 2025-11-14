@@ -42,10 +42,27 @@ export const useV2 = <TData = Record<string, unknown>>({
     });
 
   useEffect(() => {
-    if (fetchAll && hasNextPage) {
+    if (fetchAll && hasNextPage && enabled) {
       void fetchNextPage();
     }
-  }, [data]);
+  }, [data, fetchAll, hasNextPage, fetchNextPage, enabled]);
+
+  if (!enabled) {
+    return {
+      isLoading: false,
+      isError: false,
+      error: null,
+      isSuccess: false,
+      isFetching: false,
+      status: 'pending',
+      fetchNextPage: () => {},
+      hasNextPage: false,
+      isFetchingNextPage: false,
+      pageIndex: 0,
+      totalCount: 0,
+      flattenData: [],
+    };
+  }
 
   return {
     ...(data && { ...data }),

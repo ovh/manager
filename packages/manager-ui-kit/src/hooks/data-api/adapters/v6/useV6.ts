@@ -56,17 +56,39 @@ export const useV6 = <TData = Record<string, unknown>>({
   });
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && enabled) {
       setTotalCount(filteredAndSortedData.length);
       setPageIndex(0);
       setFlattenData(filteredAndSortedData);
     }
-  }, [filteredAndSortedData]);
+  }, [filteredAndSortedData, isLoading, enabled]);
 
   const fetchNextPage = useCallback(
     () => setPageIndex((previousPageIndex) => previousPageIndex + 1),
-    [pageIndex],
+    [],
   );
+
+  if (!enabled) {
+    return {
+      isLoading: false,
+      isError: false,
+      error: null,
+      isSuccess: false,
+      isFetching: false,
+      status: 'pending',
+      fetchNextPage: () => {},
+      hasNextPage: false,
+      isFetchingNextPage: false,
+      pageIndex: 0,
+      totalCount: 0,
+      flattenData: [],
+      sorting: {
+        sorting: [],
+        setSorting: () => {},
+        manualSorting: false,
+      },
+    };
+  }
 
   return {
     error,
