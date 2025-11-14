@@ -1,14 +1,10 @@
 import { TStatus } from './common.type';
 
-type TAttachedInstance = {
-  id: string;
-};
-
-export type TVolumeDto = {
+export type TVolume = {
   id: string;
   name: string;
   size: number;
+  attachedInstances: string[];
   availabilityZone: string | null | 'any';
-  attachedTo: TAttachedInstance[];
   status: TStatus;
 };
