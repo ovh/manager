@@ -41,6 +41,9 @@ export const useApplicationBreadcrumbItems = () => {
     [subRoutes.datacentreComputeOrder]: t(
       'datacentres/compute:managed_vcd_vdc_compute_order_cta',
     ),
+    [subRoutes.datacentreComputeDelete]: t(
+      'datacentres/compute:managed_vcd_vdc_compute_delete',
+    ),
     [subRoutes.datacentreStorage]: STORAGE_LABEL,
     [subRoutes.datacentreStorageOrder]: t(
       'datacentres/storage:managed_vcd_vdc_storage_order_cta',

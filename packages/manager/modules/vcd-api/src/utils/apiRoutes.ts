@@ -1,3 +1,5 @@
+import { GetDatacentreComputeParams } from '../types';
+
 export const VCD_ORGANIZATION_ROUTE = '/vmwareCloudDirector/organization';
 
 export const getVcdOrganizationRoute = (id: string) => {
@@ -23,8 +25,16 @@ export const getVcdDatacentreRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentresRoute(id)}/${vdcId}`;
 };
 
-export const getVcdDatacentreComputeRoute = (id: string, vdcId: string) => {
+export const getVcdDatacentreComputeListRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/compute`;
+};
+
+export const getVcdDatacentreComputeRoute = ({
+  id,
+  vdcId,
+  computeId,
+}: GetDatacentreComputeParams) => {
+  return `${getVcdDatacentreRoute(id, vdcId)}/compute/${computeId}`;
 };
 
 export const getVcdDatacentreStorageRoute = (id: string, vdcId: string) => {
