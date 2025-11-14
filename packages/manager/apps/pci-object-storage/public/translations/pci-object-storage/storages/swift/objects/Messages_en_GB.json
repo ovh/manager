@@ -16,5 +16,6 @@
   "deleteObjectDescription": "Do you want to permanently delete the object {{- name }}? This action cannot be undone.",
   "deleteObjectConfirmation": "Type PERMANENTLY DELETE to confirm",
   "deleteObjectButtonCancel": "Cancel",
-  "deleteObjectButtonConfirm": "Delete"
+  "deleteObjectButtonConfirm": "Delete",
+  "seeVersionsSwitchLabel": "See the versions"
 }
