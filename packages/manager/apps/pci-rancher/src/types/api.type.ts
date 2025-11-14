@@ -55,7 +55,7 @@ export interface RancherService {
     plan: string;
     iamAuthEnabled: boolean;
     version: string;
-    ipRestrictions: [
+    ipRestrictions?: [
       {
         cidrBlock: string;
         description: string;
@@ -100,6 +100,7 @@ export enum ResourceStatus {
   CREATING = 'CREATING',
   DELETING = 'DELETING',
   ERROR = 'ERROR',
+  ENABLED = 'ENABLED',
 }
 
 export type RancherReferenceStatus = 'AVAILABLE' | 'UNAVAILABLE';

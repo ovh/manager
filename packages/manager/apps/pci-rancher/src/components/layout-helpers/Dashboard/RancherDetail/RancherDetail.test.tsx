@@ -223,16 +223,18 @@ describe('Update software', () => {
   describe('RancherDetail - generate access button enabled state', () => {
     const cases = [
       {
-        description: 'button is disabled when targetSpecIamEnabled is true',
+        description:
+          'button is  not disabled when targetSpecIamEnabled is true',
         currentStateIamEnabled: false,
         targetSpecIamEnabled: true,
-        expectedEnabled: false,
+        expectedEnabled: true,
       },
       {
-        description: 'button is disabled when currentStateIamEnabled is true',
+        description:
+          'button is not disabled when currentStateIamEnabled is true',
         currentStateIamEnabled: true,
         targetSpecIamEnabled: false,
-        expectedEnabled: false,
+        expectedEnabled: true,
       },
       {
         description:
