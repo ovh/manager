@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { Secret, SecretConfig } from '@secret-manager/types/secret.type';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { mockSecretConfigReference } from '@secret-manager/mocks/secretReference/secretReference.mock';
+import { mockSecretConfigReference } from '@secret-manager/mocks/secret-reference/secretReference.mock';
 import {
   buildSecretSmartConfig,
   NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,

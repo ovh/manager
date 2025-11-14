@@ -1,6 +1,6 @@
 import { waitFor } from '@testing-library/react';
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-import { getOdsButtonByIcon } from '@/utils/tests/uiTestHelpers';
+import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
 
 export const assertRegionSelectorIsVisible = async (container: HTMLElement) => {
   await waitFor(async () => {

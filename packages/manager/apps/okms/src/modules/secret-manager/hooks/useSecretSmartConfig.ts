@@ -8,9 +8,9 @@ import {
   buildSecretSmartConfig,
   SecretSmartConfig,
 } from '@secret-manager/utils/secretSmartConfig';
-import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
-import { useOkmsById } from '@/data/hooks/useOkms';
-import { ErrorResponse } from '@/types/api.type';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
+import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
+import { ErrorResponse } from '@/common/types/api.type';
 
 export type UseSecretSmartConfigResult =
   | {

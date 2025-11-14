@@ -1,6 +1,6 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { versionListMock, createVersionResponseMock } from './versions.mock';
-import { buildMswResponseMock } from '@/utils/tests/msw';
+import { buildMswResponseMock } from '@/common/utils/tests/msw';
 import { findVersionMockById } from './versionsMock.utils';
 
 // LIST VERSION
