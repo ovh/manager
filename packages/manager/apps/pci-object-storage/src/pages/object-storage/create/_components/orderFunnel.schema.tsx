@@ -37,6 +37,7 @@ export const createOrderFunnelFormSchema = (t: typeof i18next.t) => {
     encryption: z.nativeEnum(storages.EncryptionAlgorithmEnum).optional(),
     replication: replicationSchema,
     versioning: z.nativeEnum(storages.VersioningStatusEnum).optional(),
+    objectLock: z.nativeEnum(storages.ObjectLockStatusEnum).optional(),
   });
 
   const swiftSchema = baseSchema.extend({
