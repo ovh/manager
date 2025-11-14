@@ -15,6 +15,7 @@
     >
         <oui-checkbox-label>
             {{:: 'iam_advanced_policy_search_criteria_identities' | translate}}
+            <span>({{$ctrl.parameterList.identities.length}})</span>
         </oui-checkbox-label>
     </oui-checkbox>
 
@@ -160,6 +161,7 @@
         <oui-chips
             items="$ctrl.model.identities.manual"
             closable="true"
+            on-remove="$ctrl.updateIdentitiesParametersList()"
         ></oui-chips>
     </oui-collapsible>
 
@@ -171,6 +173,7 @@
     >
         <oui-checkbox-label>
             {{:: 'iam_advanced_policy_search_criteria_ressources' | translate}}
+            <span>({{$ctrl.parameterList.resources.length}})</span>
         </oui-checkbox-label>
     </oui-checkbox>
 
@@ -197,6 +200,7 @@
     >
         <oui-checkbox-label>
             {{:: 'iam_advanced_policy_search_criteria_actions' | translate}}
+            <span>({{$ctrl.parameterList.actions.length}})</span>
         </oui-checkbox-label>
     </oui-checkbox>
 

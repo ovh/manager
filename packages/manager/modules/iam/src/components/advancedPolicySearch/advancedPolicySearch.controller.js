@@ -104,6 +104,7 @@ export default class AdvancedPolicySearchController {
       {},
     );
     this.model.identities.manual = identitiesParam?.manual || [];
+    this.updateIdentitiesParametersList();
   }
 
   getIdentitiesParam() {
@@ -115,9 +116,12 @@ export default class AdvancedPolicySearchController {
   }
 
   updateIdentitiesParametersList() {
-    const params = this.getIdentitiesParam();
-    this.parameterList.identities = [...params.selection, ...params.manual];
-    this.onModelChange();
+    // Timeout needed because 'on-change' is called before model update.
+    this.$timeout(() => {
+      const params = this.getIdentitiesParam();
+      this.parameterList.identities = [...params.selection, ...params.manual];
+      this.onModelChange();
+    }, 0);
   }
 
   loadLocalUsers(openingCollapsible) {
@@ -221,6 +225,7 @@ export default class AdvancedPolicySearchController {
     }
     this.model.resources.types = resourcesParam?.types || [];
     this.model.resources.selection = resourcesParam?.selection || [];
+    this.updateResourcesParametersList();
   }
 
   getResourcesParam() {
@@ -244,6 +249,7 @@ export default class AdvancedPolicySearchController {
     }
     this.model.actions.selection = actionsParam?.selection || [];
     this.model.permissionsGroups = actionsParam?.groups || [];
+    this.updateActionsParametersList();
   }
 
   getActionsParam() {
