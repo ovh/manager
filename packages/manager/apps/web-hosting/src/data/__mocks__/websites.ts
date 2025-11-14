@@ -142,7 +142,7 @@ export const websitesMocks: WebsiteType[] = [
 
 export const WebHostingWebsiteMocks: WebHostingWebsiteType[] = [
   {
-    id: 1,
+    id: '1',
     checksum: '',
     currentState: {
       path: 'www',
@@ -164,7 +164,7 @@ export const WebHostingWebsiteMocks: WebHostingWebsiteType[] = [
 ];
 export const WebHostingWebsiteDomainMocks: WebHostingWebsiteDomainType[] = [
   {
-    id: 1,
+    id: '1',
     checksum: '',
     currentState: {
       fqdn: 'test.site',
@@ -172,7 +172,7 @@ export const WebHostingWebsiteDomainMocks: WebHostingWebsiteDomainType[] = [
       cdn: { status: ServiceStatus.ACTIVE },
       name: 'deuxieme site',
       path: 'testsuppression',
-      websiteId: 1,
+      websiteId: '1',
     },
     currentTasks: [],
     resourceStatus: ResourceStatus.READY,
@@ -182,7 +182,7 @@ export const WebHostingWebsiteDomainMocks: WebHostingWebsiteDomainType[] = [
     },
   },
   {
-    id: 2,
+    id: '2',
     checksum: '',
     currentState: {
       fqdn: 'www.test.site',
@@ -190,7 +190,7 @@ export const WebHostingWebsiteDomainMocks: WebHostingWebsiteDomainType[] = [
       cdn: { status: ServiceStatus.ACTIVE },
       name: 'premier site',
       path: '.',
-      websiteId: 1,
+      websiteId: '1',
     },
     currentTasks: [],
     resourceStatus: ResourceStatus.READY,

@@ -14,7 +14,7 @@ describe('useWebHostingWebsiteDomain', () => {
   });
 
   it('should return webhosting websites domains list', async () => {
-    const { result } = renderHook(() => useWebHostingWebsiteDomain('test', 1), {
+    const { result } = renderHook(() => useWebHostingWebsiteDomain('test', '1'), {
       wrapper,
     });
 
@@ -24,7 +24,7 @@ describe('useWebHostingWebsiteDomain', () => {
       await result.current.refetch();
     });
 
-    expect(getWebHostingWebsiteDomain).toHaveBeenCalledWith('test', 1);
+    expect(getWebHostingWebsiteDomain).toHaveBeenCalledWith('test', '1');
 
     await waitFor(
       () => {
