@@ -23,7 +23,7 @@
   "multisite_add_website_back_to_website": "Zurück zu meinen Seiten",
   "multisite_add_website_title": "Eine Seite hinzufügen",
   "multisite_add_website_choose_domain_title": "Wählen Sie aus, wie Sie Ihre Domain zuordnen möchten",
-  "multisite_add_website_existing_domain_card_title": "Einen bestehenden OVH Cloud-Domain zuordnen",
+  "multisite_add_website_existing_domain_card_title": "Einen bestehenden OVHcloud-Domain zuordnen",
   "multisite_add_website_existing_domain_card_text": "Verwenden Sie einen bereits bei OVHcloud registrierten Domainnamen.",
   "multisite_add_website_external_domain_card_title": "Einen externen Domain zuordnen",
   "multisite_add_website_external_domain_card_text": "Verwenden Sie einen bei einem anderen Anbieter registrierten Domainnamen.",
@@ -104,5 +104,9 @@
   "multisite_modal_domain_configuration_modify_countriesIp": "IP des Landes",
   "multisite_modal_domain_configuration_modify_countriesIp_none": "Keine",
   "multisite_modal_domain_configuration_modify_ssl_help": "Aktivieren Sie die SSL-Option, um Zugriff auf Ihre Website über https zu erhalten.",
-  "multisite_modal_domain_configuration_modify_git_warning": "Wenn Sie Ihr Stammverzeichnis ändern möchten, müssen Sie zuvor Ihre Git-Konfiguration aus dem Verzeichnis entfernen, um mögliche Probleme mit der Änderungsverfolgung und dem Deployment-Management zu vermeiden."
+  "multisite_modal_domain_configuration_modify_git_warning": "Wenn Sie Ihr Stammverzeichnis ändern möchten, müssen Sie zuvor Ihre Git-Konfiguration aus dem Verzeichnis entfernen, um mögliche Probleme mit der Änderungsverfolgung und dem Deployment-Management zu vermeiden.",
+  "multisite_cdn_activate_description": "Das CDN beschleunigt das Laden Ihrer Seiten und verstärkt die Sicherheit Ihrer Website, indem es bösartigen Verkehr blockiert.",
+  "multisite_cdn_activate_question": "Möchten Sie es jetzt aktivieren?",
+  "multisite_cdn_activate_success": "Das CDN wurde erfolgreich aktiviert",
+  "multisite_cdn_activate_error": "Bei der Aktivierung des CDN ist ein Fehler aufgetreten"
 }
