@@ -21,3 +21,6 @@ export const CdnCorsResourceSharingModal = React.lazy(
 export const CdnConfirmationModal = React.lazy(
   () => import('@/pages/dashboard/multisite/cdn/CdnConfirmation.modal'),
 );
+export const ActivateCdnModal = React.lazy(
+  () => import('@/pages/dashboard/multisite/cdn/ActivateCdn.modal'),
+);
