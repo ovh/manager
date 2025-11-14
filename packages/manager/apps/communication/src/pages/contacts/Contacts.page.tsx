@@ -217,7 +217,7 @@ function ContactsPage() {
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/contactMean/get',
   ]);
-  const { trackPage, trackClick } = useTracking();
+  const { trackClick } = useTracking();
 
   const columns: DatagridColumn<ContactMean>[] = [
     {
