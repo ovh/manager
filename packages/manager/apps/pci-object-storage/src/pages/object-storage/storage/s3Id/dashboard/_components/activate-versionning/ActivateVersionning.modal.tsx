@@ -23,7 +23,7 @@ const ActivateVersionning = () => {
   const { projectId, region, s3Name } = useParams();
   const s3Query = useGetS3({ projectId, region, name: s3Name });
 
-  const { udpateS3Storage, isPending } = useUpdateS3({
+  const { updateS3Storage, isPending } = useUpdateS3({
     onError: (err) => {
       toast.toast({
         title: t('toastErrorTitle'),
@@ -41,7 +41,7 @@ const ActivateVersionning = () => {
   });
 
   const onSubmit = () => {
-    udpateS3Storage({
+    updateS3Storage({
       projectId,
       region,
       name: s3Name,
