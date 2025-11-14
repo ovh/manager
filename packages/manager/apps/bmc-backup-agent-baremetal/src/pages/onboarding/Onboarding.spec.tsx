@@ -1,9 +1,19 @@
 import { ReactNode } from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
+
 import OnboardingPage from './Onboarding.page';
+
+vi.mock('react-router-dom', () => ({
+  Link: ({ to, children, ...props }: { to: string; children: React.ReactNode }) => (
+    <a href={to} {...props}>
+      {children}
+    </a>
+  ),
+}));
 
 // --- Mock translation ---
 vi.mock('react-i18next', () => ({
@@ -14,6 +24,16 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+const { useBaremetalDetailsMock } = vi.hoisted(() => ({
+  useBaremetalDetailsMock: vi
+    .fn()
+    .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
+}));
+
+vi.mock('@/data/hooks/baremetal/getBaremetals', () => ({
+  useBaremetalDetails: useBaremetalDetailsMock,
+}));
+
 // --- Mock manager-react-components ---
 interface OnboardingLayoutProps {
   title: string;
@@ -21,6 +41,8 @@ interface OnboardingLayoutProps {
   description: ReactNode;
   orderButtonLabel: string;
   children?: ReactNode;
+  isOrderDisabled: boolean;
+  tooltipContent: string;
 }
 
 interface CardProps {
@@ -29,23 +51,32 @@ interface CardProps {
   hrefLabel: string;
 }
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@/components/onboardingLayout/OnboardingLayout.component', () => ({
+  /* eslint-disable react/no-multi-comp */
   OnboardingLayout: ({
     title,
     img,
     description,
     orderButtonLabel,
     children,
+    isOrderDisabled,
+    tooltipContent,
   }: OnboardingLayoutProps) => (
     <div>
       <h1 data-testid="title">{title}</h1>
       {img && <img data-testid="hero" src={img.src} alt={img.alt} />}
       <div data-testid="description">{description}</div>
-      <button data-testid="order">{orderButtonLabel}</button>
+      <button data-testid="order" data-disabled={isOrderDisabled}>
+        {orderButtonLabel}
+      </button>
       <div data-testid="cards">{children}</div>
+      {tooltipContent && <span>{tooltipContent}</span>}
     </div>
   ),
-  // eslint-disable-next-line react/no-multi-comp
+}));
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  /* eslint-disable react/no-multi-comp */
   Card: ({ href, texts, hrefLabel }: CardProps) => (
     <a data-testid="card" href={href}>
       <h2>{texts.title}</h2>
@@ -98,4 +129,29 @@ describe('OnboardingPage', () => {
     expect(cards[0]).toHaveAttribute('href', '/discover-link');
     expect(cards[1]).toHaveAttribute('href', '/faq-link');
   });
+
+  it.each([
+    [BAREMETAL_MOCK, false],
+    [[], true],
+  ])(
+    'renders onboarding and exepected disabled if no baremetal : $expectedDisabled ',
+    async (mock, expectedDisabled) => {
+      useBaremetalDetailsMock.mockReturnValue({
+        data: mock,
+        isLoading: false,
+        isError: false,
+      });
+
+      render(<OnboardingPage />);
+
+      await waitFor(
+        () =>
+          expect(screen.getByTestId('order')).toHaveAttribute(
+            'data-disabled',
+            `${expectedDisabled}`,
+          ),
+        { timeout: 1000 },
+      );
+    },
+  );
 });
