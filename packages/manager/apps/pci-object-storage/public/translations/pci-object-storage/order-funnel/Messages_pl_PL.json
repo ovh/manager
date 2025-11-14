@@ -86,5 +86,14 @@
   "pci_instances_common_instance_localzone_deployment_mode_description": "Wdrażanie aplikacji blisko użytkowników w celu minimalizacji opóźnień i zapewnienia lokalnego przechowywania danych.",
   "selectGeographicalZone": "Wybierz obszar geograficzny",
   "showAllRegions": "Wyświetl wszystkie regiony",
-  "summaryEncryptionPlaintext": "Brak"
+  "summaryEncryptionPlaintext": "Brak",
+  "labelObjectLock": "Object Lock",
+  "descriptionObjectLock": "Z funkcją Object Lock przechowuj obiekty w trybie WORM (Write Once, Read Many), zapewniając ich integralność poprzez uniemożliwienie jakiejkolwiek modyfikacji lub usunięcia po zapisaniu. <0>Dowiedz się więcej</0>",
+  "objectLockTypeDisabledPopover": "Aby włączyć funkcję Object Lock, należy aktywować wersjonowanie",
+  "objectLockCannotDisableAlert": "Na tym etapie oferowane jest tylko włączenie funkcji. Szczegółowa konfiguracja Object Lock (tryb, okres przechowywania itp.) nastąpi po utworzeniu koszyka. Proszę pamiętać, że ta akcja jest nieodwracalna: po włączeniu, Object Lock nie może być wyłączony w koszyku.",
+  "summaryObjectLockSection": "Object Lock",
+  "summaryObjectLockEnabled": "Object Lock włączony",
+  "summaryObjectLockDisabled": "Object Lock wyłączony",
+  "objectLockAcknowledgementLabel": "Rozumiem działanie i konsekwencje włączenia funkcji Object Lock. <0>Dowiedz się więcej</0>",
+  "objectLockAcknowledgementRequired": "Musisz uznać działanie Object Lock przed kontynuowaniem"
 }

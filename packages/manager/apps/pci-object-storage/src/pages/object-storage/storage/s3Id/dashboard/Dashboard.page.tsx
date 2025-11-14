@@ -46,17 +46,6 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         <div className="space-y-2">
-          <Card className="w-full">
-            <CardHeader>
-              <h4>
-                <FolderLock className="size-4 inline mr-2" />
-                <span>{t('objectLockTitle')}</span>
-              </h4>
-            </CardHeader>
-            <CardContent>
-              <ObjectLock />
-            </CardContent>
-          </Card>
           {!isLocaleZone && (
             <Card className="w-full">
               <CardHeader>
@@ -70,6 +59,17 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           )}
+          <Card className="w-full">
+            <CardHeader>
+              <h4>
+                <FolderLock className="size-4 inline mr-2" />
+                <span>{t('objectLockTitle')}</span>
+              </h4>
+            </CardHeader>
+            <CardContent>
+              <ObjectLock />
+            </CardContent>
+          </Card>
           <Card className="w-full">
             <CardHeader>
               <h4>
