@@ -52,23 +52,35 @@ const UpdateTable = () => {
       cell: `${humanizeEngine(service.engine)} ${service.version}`,
       onClick: () => navigate('./update-version'),
       updateButtonDisplayed: availabilitiesVersionQuery.data?.length > 1,
+      disable:
+        service.capabilities.service.update ===
+        database.service.capability.StateEnum.disabled,
     },
     {
       title: t('tablePlan'),
       cell: service.plan,
       onClick: () => navigate('./update-plan'),
       updateButtonDisplayed: availabilitiesPlanQuery.data?.length > 1,
+      disable:
+        service.capabilities.service.update ===
+        database.service.capability.StateEnum.disabled,
     },
     {
       title: t('tableFlavor'),
       cell: service.flavor,
       onClick: () => navigate('./update-flavor'),
       updateButtonDisplayed: availabilitiesFlavorQuery.data?.length > 1,
+      disable:
+        service.capabilities.serviceFlavor.update ===
+        database.service.capability.StateEnum.disabled,
     },
     service.storage?.size.value && {
       title: t('tableStorage'),
       cell: `${formatStorage(service.storage.size)} ${service.storage.type}`,
       onClick: () => navigate('./update-flavor'),
+      disable:
+        service.capabilities.serviceDisk.update ===
+        database.service.capability.StateEnum.disabled,
       updateButtonDisplayed:
         availabilitiesFlavorQuery.data?.length > 0 &&
         availabilitiesFlavorQuery.data[0].specifications.storage &&
@@ -91,10 +103,7 @@ const UpdateTable = () => {
                   data-testid={`update-button-${row.title}`}
                   className="py-0 h-auto"
                   onClick={row.onClick}
-                  disabled={
-                    service.capabilities.service.update ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={row.disable}
                 >
                   {t('tableUpdateButton')}
                 </Button>
