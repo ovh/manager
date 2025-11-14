@@ -11,6 +11,7 @@ export enum ResourceStatus {
 export enum ServiceStatus {
   ACTIVE = 'ACTIVE',
   NONE = 'NONE',
+  INACTIVE = 'INACTIVE',
 }
 
 export enum GitStatus {
