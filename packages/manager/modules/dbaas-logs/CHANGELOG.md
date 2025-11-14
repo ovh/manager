@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.34.0...@ovh-ux/manager-dbaas-logs@1.34.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix ldp account order error ([41a8db4](https://github.com/ovh/manager/commit/41a8db4580ce62d6f7dfc240f9df892292f2fb32)), closes [#MAOBS-144](https://github.com/ovh/manager/issues/MAOBS-144) [#INC0167547](https://github.com/ovh/manager/issues/INC0167547)
+
+
+
+
+
 # [1.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.33.0...@ovh-ux/manager-dbaas-logs@1.34.0) (2025-11-12)
 
 
