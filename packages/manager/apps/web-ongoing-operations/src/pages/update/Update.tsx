@@ -3,7 +3,7 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -20,12 +20,14 @@ import { useDomain } from '@/hooks/data/query';
 import UpdateContentComponent from '@/components/Update/UpdateContent.component';
 import UpdateActions from '@/components/Update/Content/UpdateActions.component';
 import { urls } from '@/routes/routes.constant';
-import { ContactControlProperties, DomainOperationsEnum } from '@/constants';
+import { DomainOperationsEnum } from '@/constants';
 import ActionMeDnsComponent from '@/components/Update/Content/Update.Me.Dns.component';
 import { processUploadedFiles } from '@/utils/update.utils';
 import { updateTask } from '@/data/api/web-ongoing-operations';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 export default function Update() {
+  const { trackPageNavivationButton } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
   const { id } = useParams<{ id: string }>();
   const { product } = useParams<{ product: string }>();
@@ -66,7 +68,9 @@ export default function Update() {
           {t(`domain_operations_${actionName}_success`)}
         </Text>,
       );
-      navigate(`${urls.root}${product}`);
+      const url = `${urls.root}${product}`;
+      trackPageNavivationButton(url);
+      navigate(url);
     },
     onError: () => {
       setIsActionLoading(false);
@@ -197,7 +201,6 @@ export default function Update() {
               <div key={`${domain.id}-${index}`}>
                 <UpdateContentComponent
                   argument={argument}
-                  operationId={domain.id}
                   domainName={domain.domain}
                   operationName={domain.function}
                   onChange={onChange}
