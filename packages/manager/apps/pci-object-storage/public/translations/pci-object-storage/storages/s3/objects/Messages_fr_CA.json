@@ -53,8 +53,10 @@
   "restoreDaysMaxError": "Le nombre de jours doit être au maximum 30",
   "restoreButtonCancel": "Annuler",
   "restoreButtonConfirm": "Restaurer",
+  "restoreAvailableUntil": "L'objet sera disponible jusqu'au",
   "restoreObjectToastSuccessDescription": "La restauration de l'objet a été lancée",
   "extendRestoreObjectToastSuccessDescription": "La prolongation a bien été prise en compte",
   "inProgressRestore": "Restauration en cours...",
-  "available": "Disponible jusqu'au"
+  "available": "Disponible jusqu'au",
+  "seeVersionsSwitchLabel": "Voir les versions"
 }
