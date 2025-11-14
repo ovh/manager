@@ -65,8 +65,8 @@ export const useProjectActivation = ({
   const navigateToUpdating = useCallback(
     (orderId: number) => {
       const path = promotionVoucher
-        ? `../updating/${orderId}/${DISCOVERY_PROMOTION_VOUCHER}`
-        : `../updating/${orderId}`;
+        ? `../../updating/${orderId}/${DISCOVERY_PROMOTION_VOUCHER}`
+        : `../../updating/${orderId}`;
       navigate(path);
     },
     [navigate, promotionVoucher],
