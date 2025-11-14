@@ -64,5 +64,9 @@
   "multisite_add_website_module_cms_choice_joomla_text": "Um sistema de gestão de conteúdo para criar blogs e sites e-commerce sob medida.",
   "multisite_add_website_success": "O seu site foi adicionado com sucesso! A associação do seu domínio pode levar até 48 horas.",
   "multisite_add_website_error": "Ocorreu um erro ao adicionar o seu site. {{ error }}",
-  "multisite_add_website_in_progress": "Acompanhar as tarefas em andamento"
+  "multisite_add_website_in_progress": "Acompanhar as tarefas em andamento",
+  "multisite_add_domain_title": "Adicionar um domínio",
+  "multisite_add_website_advanced_options_dns_auto_recommanded": "Recomendado",
+  "multisite_add_website_domain_info": "O nome de domínio corresponde ao endereço do seu site",
+  "multisite_add_website_domain_configuration": "Configuração do domínio"
 }
