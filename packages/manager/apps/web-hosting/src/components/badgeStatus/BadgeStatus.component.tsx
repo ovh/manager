@@ -21,7 +21,7 @@ export type BadgeStatusProps = {
   label?: string;
 };
 
-const getStatusColor = (status: Status) => {
+export const getStatusColor = (status: Status) => {
   switch (status) {
     case GitStatus.CREATED:
     case ResourceStatus.READY:

@@ -5,6 +5,9 @@ import { Path, To } from 'react-router-dom';
 import { vi } from 'vitest';
 
 import {
+  WebHostingWebsiteDomainMocks,
+  WebHostingWebsiteMocks,
+  WebHostingWebsiteV6Mock,
   attachedDomainDigStatusMock,
   domainInformationMock,
   domainZoneMock,
@@ -12,6 +15,7 @@ import {
   webHostingMock,
   websitesMocks,
 } from '@/data/__mocks__';
+import { cdnOptionMock, cdnPropertiesMock, serviceNameCdnMock } from '@/data/__mocks__/cdn';
 import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
 import {
   managedWordpressResourceDetailsMock,
@@ -44,12 +48,15 @@ const mocksHostingUrl = vi.hoisted(() => ({
   },
 }));
 
+export const deleteMock = vi.fn();
+
 vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@ovh-ux/manager-core-api')>()),
   v6: {
     put: vi.fn().mockResolvedValue({ data: {} }),
     post: vi.fn().mockResolvedValue({ data: {} }),
-    delete: vi.fn(),
+    delete: deleteMock,
+    fetchIcebergV2: vi.fn().mockResolvedValue({ data: {}, cursorNext: null }),
   },
 }));
 
@@ -143,7 +150,6 @@ vi.mock('react-router-dom', async (importActual) => {
     ),
   };
 });
-
 vi.mock('@/data/api/local-seo', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/data/api/local-seo')>();
   return {
@@ -152,8 +158,7 @@ vi.mock('@/data/api/local-seo', async (importOriginal) => {
     hostingDeleteLocation: vi.fn().mockResolvedValue('OK'),
   };
 });
-
-vi.mock('@/data/api/index', () => ({
+vi.mock('@/data/api/webHosting', () => ({
   getWebHostingAttachedDomain: vi.fn().mockResolvedValue({
     data: websitesMocks,
     cursorNext: null,
@@ -162,6 +167,13 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
   getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
+  getWebHostingWebsite: vi.fn(() => Promise.resolve(WebHostingWebsiteMocks)),
+  getWebHostingWebsiteDomain: vi.fn(() => Promise.resolve(WebHostingWebsiteDomainMocks)),
+  getWebHostingWebsiteDomainQueryKey: vi.fn(),
+  useWebHostingWebsite: vi.fn(),
+  useWebHostingWebsiteDomain: vi.fn(),
+  deleteAttachedDomains: vi.fn(),
+  getWebHostingWebsiteV6: vi.fn(() => Promise.resolve(WebHostingWebsiteV6Mock)),
 }));
 
 vi.mock('@/data/api/dashboard', async (importActual) => {
@@ -173,12 +185,41 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
     getDomainService: vi.fn(() => Promise.resolve(domainInformationMock)),
   };
 });
+vi.mock('@/data/api/git', () => ({
+  deleteGitAssociation: vi.fn(),
+}));
+
+vi.mock('@/data/api/cdn', () => ({
+  getCDNProperties: vi.fn(() => Promise.resolve(cdnPropertiesMock)),
+}));
+
+vi.mock('@/data/hooks/cdn', () => ({
+  useGetCDNProperties: vi.fn(),
+  flushCDNDomainCache: vi.fn(),
+  flushCdn: vi.fn(),
+}));
+
+vi.mock('@/data/hooks/cdn/useCdn', async (importActual) => {
+  const actual = await importActual<typeof import('@/data/hooks/cdn/useCdn')>();
+  return {
+    ...actual,
+    useGetServiceNameCdn: vi.fn(() => ({
+      data: serviceNameCdnMock,
+      isSuccess: true,
+    })),
+    useGetCdnOption: vi.fn(() => ({
+      data: cdnOptionMock,
+      isSuccess: true,
+    })),
+  };
+});
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useCreateAttachedDomainsService: vi.fn(),
   useGetAddDomainExisting: vi.fn(),
   useGetDomainZone: vi.fn(),
   useGetHostingService: vi.fn(),
+  useGetHostingServiceWebsite: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (importActual) => {
@@ -218,3 +259,23 @@ vi.mock('@/data/api/managedWordpress', () => ({
 afterEach(() => {
   vi.clearAllMocks();
 });
+
+vi.mock(
+  '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain',
+  async (importActual) => {
+    const actual =
+      await importActual<
+        typeof import('@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain')
+      >();
+    return {
+      ...actual,
+      useWebHostingAttachedDomain: vi.fn(() => ({
+        data: websitesMocks,
+        isSuccess: true,
+        isLoading: false,
+        isError: false,
+        status: 'success',
+      })),
+    };
+  },
+);

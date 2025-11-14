@@ -26,10 +26,10 @@ export const getDomainService = async (serviceName: string): Promise<DomainServi
 
 export const getAddDomainExisting = async (
   serviceName: string,
-  path: string,
+  tokenNeeded: boolean,
 ): Promise<TExistingDomain> => {
   const { data } = await aapi.get<TExistingDomain>(
-    `/sws/hosting/web/${serviceName}/add-domain-existing?tokenNeeded=${path === 'B'}`,
+    `/sws/hosting/web/${serviceName}/add-domain-existing?tokenNeeded=${tokenNeeded}`,
   );
   return data;
 };
@@ -117,4 +117,16 @@ export const createAttachedDomainsService = async ({
   }
 
   return results;
+};
+
+export const updateAttachedDomainService = async (
+  serviceName: string,
+  domain: string,
+  cdn: string,
+): Promise<TAttachedDomain> => {
+  const { data } = await v6.put<TAttachedDomain>(
+    `/hosting/web/${serviceName}/attachedDomain/${domain}`,
+    { cdn },
+  );
+  return data;
 };
