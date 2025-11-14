@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.22.2...@ovh-ux/manager-common-translations@0.23.0) (2025-11-14)
+
+
+### Features
+
+* **common-translations:** add missing regions and datacenters ([03ab1a9](https://github.com/ovh/manager/commit/03ab1a91141ef3a68157dff56be42dcef10bef7a)), closes [#MANAGER-20134](https://github.com/ovh/manager/issues/MANAGER-20134)
+
+
+
+
+
 ## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.22.1...@ovh-ux/manager-common-translations@0.22.2) (2025-11-11)
 
 

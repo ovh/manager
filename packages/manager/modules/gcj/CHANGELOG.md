@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.3.3...@ovh-ux/manager-gcj-module@0.4.0) (2025-11-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4466] ([5b0902e](https://github.com/ovh/manager/commit/5b0902e4163cce078140abd846a9ddc955ee97d1))
+
+
+### Features
+
+* **gcj:** standardize GCJ module config ([685c5e7](https://github.com/ovh/manager/commit/685c5e7bb2da61a6c9bfff33642150553c7a7967)), closes [#MANAGER-19942](https://github.com/ovh/manager/issues/MANAGER-19942)
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.3.2...@ovh-ux/manager-gcj-module@0.3.3) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-gcj-module

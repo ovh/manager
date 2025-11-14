@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.3...@ovh-ux/muk@0.6.0) (2025-11-14)
+
+
+### Bug Fixes
+
+* **muk:** update dist name lib of manager ui kit ([e440e19](https://github.com/ovh/manager/commit/e440e19b3775b9283fadcdf6cb79d777b7d71a7d)), closes [#MANAGER-20205](https://github.com/ovh/manager/issues/MANAGER-20205)
+
+
+### Features
+
+* **mrc:** add hooks to use location data ([3232c18](https://github.com/ovh/manager/commit/3232c1875ea244ca4d67a34515c53dacb7df2adc)), closes [#MANAGER-18341](https://github.com/ovh/manager/issues/MANAGER-18341) [#15916](https://github.com/ovh/manager/issues/15916)
+
+
+
+
+
 ## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.2...@ovh-ux/muk@0.5.3) (2025-11-13)
 
 
