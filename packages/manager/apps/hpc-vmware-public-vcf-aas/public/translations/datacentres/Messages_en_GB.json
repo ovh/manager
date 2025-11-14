@@ -10,5 +10,8 @@
   "managed_vcd_vdc_usage": "Usage",
   "managed_vcd_vdc_contact_support": "Please contact Support",
   "managed_vcd_vdc_associate_vrack": "Attach a vRack",
-  "managed_vcd_vdc_associate_vrack_disabled": "Linking a vRack to Public VCF as-a-Service is not yet supported."
+  "managed_vcd_vdc_associate_vrack_disabled": "Linking a vRack to Public VCF as-a-Service is not yet supported.",
+  "managed_vcd_vdc_delete_resource": "Delete resource",
+  "managed_vcd_vdc_delete_resource_success": "Your resource cancellation request has been processed.",
+  "managed_vcd_vdc_delete_resource_error": "An error has occurred cancelling the resource: {{error}}"
 }
