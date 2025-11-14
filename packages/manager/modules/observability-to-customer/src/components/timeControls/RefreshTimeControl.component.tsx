@@ -6,15 +6,16 @@ import {
   Button,
   ICON_NAME,
   Icon,
-  SPINNER_SIZE,
   Select,
   SelectContent,
   SelectControl,
-  SelectOptionItem,
-  SelectValueChangeDetail,
-  Spinner,
   TEXT_PRESET,
   Text,
+} from '@ovh-ux/muk';
+
+import {
+  SelectOptionItem,
+  SelectValueChangeDetail,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
@@ -50,17 +51,16 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
   return (
     <div className="inline-flex">
       <Button
+        loading={isLoading}
         className="rounded-r-none flex items-center justify-center"
         size={BUTTON_SIZE.md}
         variant={BUTTON_VARIANT.outline}
-        onClick={onClickRefresh}
+        onClick={onClickRefresh}        
       >
-        {isLoading ? (
-          <Spinner className="ps-2" size={SPINNER_SIZE.xs} />
-        ) : (
+        <>
           <Icon name={ICON_NAME.refresh} />
-        )}
-        <span>{t(isLoading ? 'button_cancel' : 'button_refresh')}</span>
+          <span>{t(isLoading ? 'button_cancel' : 'button_refresh')}</span>
+        </>
       </Button>
 
       <Select

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import { SWITCH_SIZE, Switch, SwitchItem } from '@ovhcloud/ods-react';
+import { SWITCH_SIZE, Switch, SwitchItem } from '@ovh-ux/muk';
 
 import { FeatureSwitcherProps } from './FeatureSwitcher.props';
 

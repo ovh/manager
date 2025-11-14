@@ -5,7 +5,10 @@ import { Routes } from 'react-router-dom';
 import { IObservabilityToCustomerModule } from '@/IObservabilityToCustomerModule.interface';
 import { DashboardProvider } from '@/contexts';
 import getObservabilityRoute from '@/routes/routes';
+
 import '@/public/translations';
+
+import '@ovh-ux/muk/dist/style.css';
 
 export function ObservabilityToCustomerModule(
   moduleProps: Readonly<IObservabilityToCustomerModule>,

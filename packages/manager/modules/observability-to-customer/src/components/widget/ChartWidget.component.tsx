@@ -15,7 +15,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovhcloud/ods-react';
+} from '@ovh-ux/muk';
 
 import { ChartWidgetProps } from './ChartWidget.props';
 
