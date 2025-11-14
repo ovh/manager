@@ -24,7 +24,7 @@
   "multisite_add_website_title": "Ajouter un site",
   "multisite_add_domain_title": "Ajouter un domaine",
   "multisite_add_website_choose_domain_title": "Choisissez comment associer votre domaine",
-  "multisite_add_website_existing_domain_card_title": "Associer un domain OVH cloud existant",
+  "multisite_add_website_existing_domain_card_title": "Associer un domaine OVHcloud existant",
   "multisite_add_website_existing_domain_card_text": "Utiliser un nom de domaine déjà enregistré chez OVHcloud.",
   "multisite_add_website_external_domain_card_title": "Associer un domaine externe",
   "multisite_add_website_external_domain_card_text": "Utiliser un nom de domaine enregistré chez un autre fournisseur.",
