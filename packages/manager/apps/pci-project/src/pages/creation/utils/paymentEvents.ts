@@ -9,6 +9,7 @@ const NO_USER_ACTION_NEEDED_EVENT = 'WP::USER_ACTION::NO_USER_ACTION_NEEDED';
 const REQUIRED_CHALLENGE_EVENT =
   'WP::USER_ACTION::DEFAULT_PAYMENT_METHOD_CHALLENGE_REQUIRED';
 const SUBMIT_CHALLENGE_EVENT = 'WP::DEFAULT_PAYMENT_METHOD_CHALLENGE::SUBMIT';
+const EDIT_DEFAULT_PAYMENT_METHOD_EVENT = 'WP::BUTTON_CHANGE_DEFAULT_PM::CLICK';
 
 /**
  * Triggers the save payment method event via DOM
@@ -41,9 +42,10 @@ export const triggerSubmitChallengeEvent = (): boolean => {
  * @param handler - Function to handle the event
  * @returns cleanup function to remove the listener
  */
-export const setupRequiredActionsMethodListener = (
+export const setupWillPaymentEventListeners = (
   noUserActionNeededHandler: (event: CustomEvent) => void,
   challengeHandler: (event: CustomEvent) => void,
+  editDefaultPaymentMethodHandler: (event: CustomEvent) => void,
 ): (() => void) | null => {
   const eventBus = document.getElementById(EVENT_BUS_ID);
   if (!eventBus) {
@@ -56,12 +58,19 @@ export const setupRequiredActionsMethodListener = (
   const challengeEventHandler = (event: Event) => {
     challengeHandler(event as CustomEvent);
   };
+  const editDefaultPaymentMethodEventHandler = (event: Event) => {
+    editDefaultPaymentMethodHandler(event as CustomEvent);
+  };
 
   eventBus.addEventListener(
     NO_USER_ACTION_NEEDED_EVENT,
     noUserActionNeededEventHandler,
   );
   eventBus.addEventListener(REQUIRED_CHALLENGE_EVENT, challengeEventHandler);
+  eventBus.addEventListener(
+    EDIT_DEFAULT_PAYMENT_METHOD_EVENT,
+    editDefaultPaymentMethodEventHandler,
+  );
 
   // Return cleanup function
   return () => {
@@ -72,6 +81,10 @@ export const setupRequiredActionsMethodListener = (
     eventBus.removeEventListener(
       REQUIRED_CHALLENGE_EVENT,
       challengeEventHandler,
+    );
+    eventBus.removeEventListener(
+      EDIT_DEFAULT_PAYMENT_METHOD_EVENT,
+      editDefaultPaymentMethodEventHandler,
     );
   };
 };
