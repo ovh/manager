@@ -8,7 +8,7 @@ const isProductType = (productType: string): productType is ProductType => {
   return productTypes.includes(productType as ProductType);
 };
 
-const useProductType = (): ProductType | null => {
+export const useProductType = (): ProductType | null => {
   const location = useLocation();
   // Split the pathname by '/' and get the first non-empty segment
   const pathSegments = location.pathname
@@ -22,5 +22,3 @@ const useProductType = (): ProductType | null => {
   }
   return productType;
 };
-
-export default useProductType;

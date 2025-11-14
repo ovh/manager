@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useLocation } from 'react-router-dom';
-import useProductType, { ProductType } from './useProductType';
+import { useProductType, ProductType } from './useProductType';
 
 vi.mock('react-router-dom', async () => {
   const router = await vi.importActual<typeof import('react-router-dom')>(

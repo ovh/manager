@@ -22,6 +22,8 @@ const URLS = {
   kmsOnboarding: `/${URIS.root}/${URIS.kmsOnboarding}`,
   kmsListing: `/${URIS.root}`,
   kmsCreate: `/${URIS.root}/${URIS.kmsCreate}`,
+  kmsCreateOrderModal: (region: string) =>
+    `/${URIS.root}/${URIS.kmsCreate}/${region}`,
   kmsDashboard: (okmsId: string) => `/${URIS.root}/${okmsId}`,
   kmsDashboardTerminate: (okmsId: string) =>
     `/${URIS.root}/${URIS.root}/${okmsId}/${URIS.kmsTerminate}`,
@@ -56,6 +58,7 @@ export const KMS_URL_PARAMS = {
   okmsId: ':okmsId',
   keyId: ':keyId',
   credentialId: ':credentialId',
+  region: ':region',
 };
 
 export const KMS_ROUTES_URIS = URIS;

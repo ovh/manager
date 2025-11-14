@@ -53,6 +53,7 @@ export const DatagridCellName = (
       isRouterLink
       data-testid={OKMS_LIST_CELL_TEST_IDS.name(okms.id)}
       onClick={() => {
+        console.log('CLICKED CLICKED CLICKED CLICKED CLICKED CLICKED ');
         if (tracking[type].length > 0) {
           trackClick({
             location: PageLocation.datagrid,

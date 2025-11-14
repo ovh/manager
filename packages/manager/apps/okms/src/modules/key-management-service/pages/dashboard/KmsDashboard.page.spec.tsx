@@ -50,7 +50,7 @@ describe('KMS dashboard test suite', () => {
         expect(screen.getByTestId(logTabTestId)).toBeVisible();
       },
 
-      WAIT_FOR_DEFAULT_OPTIONS,
+      { timeout: 3000 },
     );
 
     expect(screen.queryByAltText('OOPS')).not.toBeInTheDocument();
