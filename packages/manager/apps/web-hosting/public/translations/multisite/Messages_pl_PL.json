@@ -64,5 +64,9 @@
   "multisite_add_website_module_cms_choice_joomla_text": "System zarządzania treścią do tworzenia blogów i dostosowanych witryn e-commerce.",
   "multisite_add_website_success": "Twoja strona została pomyślnie dodana! Powiązanie twojej domeny może zająć do 48 godzin.",
   "multisite_add_website_error": "Wystąpił błąd podczas dodawania twojej strony. {{ error }}",
-  "multisite_add_website_in_progress": "Śledź bieżące zadania"
+  "multisite_add_website_in_progress": "Śledź bieżące zadania",
+  "multisite_add_domain_title": "Dodaj domenę",
+  "multisite_add_website_advanced_options_dns_auto_recommanded": "Rekomendujemy",
+  "multisite_add_website_domain_info": "Nazwa domeny odpowiada adresowi Twojej strony",
+  "multisite_add_website_domain_configuration": "Konfiguracja domeny"
 }
