@@ -18,7 +18,7 @@ export const GeneralInformationsTile = ({
   const { t } = useTranslation(NAMESPACES.DASHBOARD);
 
   return (
-    <ManagerTile>
+    <ManagerTile data-testid={'xxyyzz'}>
       <ManagerTile.Title>{t('general_information')}</ManagerTile.Title>
       <ManagerTile.Divider />
       <NameTileItem okms={okms} />

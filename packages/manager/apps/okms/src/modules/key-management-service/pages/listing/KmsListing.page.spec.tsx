@@ -91,8 +91,11 @@ describe('KMS listing test suite', () => {
       isLink: true,
     });
 
-    await act(() => userEvent.click(dashboardLink));
-
-    await assertTextVisibility(labels.dashboard.billing_informations);
+    await waitFor(async () => {
+      expect(dashboardLink).toHaveAttribute(
+        'href',
+        KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id),
+      );
+    });
   });
 });

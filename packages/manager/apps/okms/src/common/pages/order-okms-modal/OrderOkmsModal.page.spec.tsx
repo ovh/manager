@@ -16,6 +16,7 @@ import {
   postOrderCartCartIdCheckout,
 } from '@ovh-ux/manager-module-order';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import OrderOkmsModal from './OrderOkmsModal.page';
 import {
@@ -25,12 +26,14 @@ import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
 } from './OrderOkmsModal.page.constants';
-import { OrderOkmsModalProvider } from './OrderOkmsModalContext';
 import {
   renderWithClient,
   promiseWithDelayMock,
   wait,
+  createErrorResponseMock,
 } from '@/common/utils/tests/testUtils';
+import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
+import { useProductType } from '@/common/hooks/useProductType';
 
 let i18nValue: i18n;
 
@@ -57,7 +60,14 @@ const mockedContracts: Contract[] = [
 
 const navigate = vi.fn();
 
-// Mock modules at the top level
+vi.mock('@/common/hooks/useProductType', async () => ({
+  useProductType: vi.fn(),
+}));
+
+vi.mock('@/common/store/pendingOkmsOrder', async () => ({
+  registerPendingOrder: vi.fn(),
+}));
+
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
   return {
@@ -81,6 +91,8 @@ const mockedCreateCart = vi.mocked(createCart);
 const mockedPostOrderCartCartIdCheckout = vi.mocked(
   postOrderCartCartIdCheckout,
 );
+const mockedRegisterPendingOrder = vi.mocked(registerPendingOrder);
+const mockedUseProductType = vi.mocked(useProductType);
 
 const renderOrderOkmsModal = async () => {
   if (!i18nValue) {
@@ -92,9 +104,7 @@ const renderOrderOkmsModal = async () => {
       <ShellContext.Provider
         value={(shellContext as unknown) as ShellContextType}
       >
-        <OrderOkmsModalProvider>
-          <OrderOkmsModal />
-        </OrderOkmsModalProvider>
+        <OrderOkmsModal />
       </ShellContext.Provider>
     </I18nextProvider>,
   );
@@ -127,6 +137,15 @@ const clickOnConfirmButton = async (user: UserEvent) => {
   return confirmButton;
 };
 
+const submitOrder = async (user: UserEvent) => {
+  await assertTextVisibility(
+    labels.secretManager.create_okms_terms_and_conditions_title,
+  );
+
+  await clickOnConfirmCheckbox();
+  await clickOnConfirmButton(user);
+};
+
 describe('Order Okms Modal test suite', () => {
   beforeEach(() => {
     // Reset all mocks before each test to ensure clean state
@@ -141,6 +160,8 @@ describe('Order Okms Modal test suite', () => {
     mockedPostOrderCartCartIdCheckout.mockResolvedValue(
       {} as AxiosResponse<Order>,
     );
+
+    mockedUseProductType.mockReturnValue('secret-manager');
   });
 
   afterEach(() => {
@@ -285,47 +306,66 @@ describe('Order Okms Modal test suite', () => {
       });
     });
 
-    it('should close the modal on success', async () => {
+    it('should register the pending order on success', async () => {
+      const user = userEvent.setup();
+
+      // GIVEN
+      await renderOrderOkmsModal();
+
+      // // WHEN
+      await submitOrder(user);
+
+      // THEN
+      await waitFor(() => {
+        expect(mockedRegisterPendingOrder).toHaveBeenCalledWith(mockedRegion);
+      });
+    });
+
+    it('should close the modal on success for secret manager', async () => {
+      mockedUseProductType.mockReturnValue('secret-manager');
+
       const user = userEvent.setup();
 
       // GIVEN - Use fast default mock
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
 
       // WHEN
-      await clickOnConfirmCheckbox();
-      await clickOnConfirmButton(user);
+      await submitOrder(user);
 
       // THEN
-      await waitFor(
-        () => {
-          expect(navigate).toHaveBeenCalledTimes(1);
-        },
-        { timeout: 5000 },
-      );
-      expect(navigate).toHaveBeenCalledWith('..');
+      await waitFor(() => {
+        expect(navigate).toHaveBeenCalledWith('..');
+      });
+    });
+
+    it('should navigate to the kms listing page on success for key management service', async () => {
+      mockedUseProductType.mockReturnValue('key-management-service');
+
+      const user = userEvent.setup();
+
+      // GIVEN - Use fast default mock
+      await renderOrderOkmsModal();
+
+      // WHEN
+      await submitOrder(user);
+
+      // THEN
+      await waitFor(() => {
+        expect(navigate).toHaveBeenCalledWith(KMS_ROUTES_URLS.kmsListing);
+      });
     });
 
     it('should display a notification on error', async () => {
       const user = userEvent.setup();
 
       // GIVEN
-      const mockError = {
-        response: { data: { message: 'Failed to submit order' } },
-      };
-
+      const mockError = createErrorResponseMock('Failed to submit order');
       mockedPostOrderCartCartIdCheckout.mockRejectedValueOnce(mockError);
 
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
 
       // WHEN
-      await clickOnConfirmCheckbox();
-      await clickOnConfirmButton(user);
+      await submitOrder(user);
 
       // THEN
       await assertTextVisibility(

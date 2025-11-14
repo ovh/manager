@@ -37,14 +37,16 @@ export const useOkmsList = (
 
 type UseOkmsDatagridListParams = {
   pageSize?: number;
+  isPollingEnabled?: boolean;
 };
 
 export const useOkmsDatagridList = (params: UseOkmsDatagridListParams = {}) => {
-  const { pageSize = 10 } = params;
+  const { pageSize = 10, isPollingEnabled = false } = params;
 
   return useResourcesIcebergV2<OKMS>({
     route: '/okms/resource',
     queryKey: okmsQueryKeys.listDatagrid,
     pageSize,
+    refetchInterval: isPollingEnabled ? 1000 : undefined,
   });
 };

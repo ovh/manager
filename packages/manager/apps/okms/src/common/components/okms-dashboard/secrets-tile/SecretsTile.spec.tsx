@@ -6,7 +6,7 @@ import { I18nextProvider } from 'react-i18next';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { renderWithClient } from '@/common/utils/tests/testUtils';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
+import { useProductType, ProductType } from '@/common/hooks/useProductType';
 import { SECRETS_TILE_TEST_IDS } from './SecretsTile.constants';
 import { SecretsTile } from './SecretsTile.component';
 
