@@ -1,5 +1,11 @@
 import { BillingType, VCDResourceStatus, Task } from './vcd-utility.type';
 
+export type GetDatacentreComputeParams = {
+  id: string;
+  vdcId: string;
+  computeId: string;
+};
+
 export type VCDComputeState = {
   billingType: BillingType;
   profile: string;

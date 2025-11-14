@@ -1,5 +1,5 @@
 import {
-  getVcdDatacentreComputeRoute,
+  getVcdDatacentreComputeListRoute,
   getVdcComputeQueryKey,
   isStatusTerminated,
   useVcdDatacentre,
@@ -10,12 +10,12 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ID_LABEL } from '../../dashboard.constants';
 import { VHOST_LABEL, VHOSTS_LABEL } from './datacentreCompute.constants';
 import {
-  ActionDeleteCell,
+  ActionDeleteComputeCell,
   DatagridBillingCell,
   DatagridCpuCountCell,
   DatagridIdCell,
@@ -73,7 +73,7 @@ export default function ComputeListingPage() {
     },
     {
       id: 'actions',
-      cell: ActionDeleteCell,
+      cell: ActionDeleteComputeCell,
       isSortable: false,
     },
   ] as DatagridColumn<unknown>[];
@@ -100,7 +100,7 @@ export default function ComputeListingPage() {
         queryKey={getVdcComputeQueryKey(vdcId)}
         columns={columns}
         route={{
-          api: getVcdDatacentreComputeRoute(id, vdcId),
+          api: getVcdDatacentreComputeListRoute(id, vdcId),
           onboarding: urls.datacentreComputeOrder
             .replace(subRoutes.dashboard, id)
             .replace(subRoutes.vdcId, vdcId),
@@ -120,6 +120,7 @@ export default function ComputeListingPage() {
           />
         }
       />
+      <Outlet />
     </>
   );
 }

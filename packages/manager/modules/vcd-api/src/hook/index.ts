@@ -1,3 +1,4 @@
+export * from './useDeleteVcdDatacentreCompute';
 export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
 export * from './useResetVcdPassword';
@@ -6,6 +7,7 @@ export * from './useUpdateVcdOrganization';
 export * from './useUpdateVcdVrackSegment';
 export * from './useVcdCatalog';
 export * from './useVcdDatacentre';
+export * from './useVcdDatacentreCompute';
 export * from './useVcdOrder';
 export * from './useVcdOrganization';
 export * from './useVeeamBackup';
