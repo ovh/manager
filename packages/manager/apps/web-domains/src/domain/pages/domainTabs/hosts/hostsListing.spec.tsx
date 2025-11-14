@@ -19,7 +19,11 @@ vi.mock('@/domain/hooks/data/query', () => ({
 }));
 
 describe('Host Columns', () => {
-  const { result } = renderHook(() => useHostsDatagridColumns());
+  const setDrawer = vi.fn();
+  const setFormData = vi.fn();
+  const { result } = renderHook(() =>
+    useHostsDatagridColumns({ setDrawer, setFormData }),
+  );
   const columns = result.current;
   it('should return the correct number of column', () => {
     expect(columns).toHaveLength(4);

@@ -86,7 +86,10 @@ export default function HostDrawer({
             hosts: [
               ...hostsTargetSpec,
               {
-                host: `${formData.host}.${serviceName}`,
+                host:
+                  drawerAction === DrawerActionEnum.Add
+                    ? `${formData.host}.${serviceName}`
+                    : formData.host,
                 ips: formData.ips,
               },
             ],
@@ -122,7 +125,7 @@ export default function HostDrawer({
       </Text>
 
       <HostForm
-        drawerAction={DrawerActionEnum.Add}
+        drawerAction={drawerAction}
         formData={formData}
         setFormData={setFormData}
         ipsSupported={ipsSupported}

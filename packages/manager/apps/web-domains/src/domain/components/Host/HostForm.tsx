@@ -66,8 +66,9 @@ export default function HostForm({
           <div className="relative">
             <Input
               name="input"
-              className="w-full"
+              className="relative w-full"
               value={formData.host}
+              readOnly={drawerAction === DrawerActionEnum.Modify}
               onChange={(e) => {
                 const { value } = e.target;
                 setFormData((prev) => ({
@@ -96,12 +97,12 @@ export default function HostForm({
             </FormFieldError>
 
             <Text
-              className={`absolute right-4 pl-3
+              className={`absolute z-90 right-4 pl-3
                 ${error.errorHost ? 'bottom-[1.75rem]' : 'bottom-3'}
                  ${
                    drawerAction === DrawerActionEnum.Add
                      ? 'bg-white'
-                     : 'bg-[var(--ods-color-neutral-50)]'
+                     : 'bg-[--ods-color-neutral-050]'
                  }`}
             >
               {`.${serviceName}`}
