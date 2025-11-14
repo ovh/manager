@@ -121,3 +121,15 @@ export const createAttachedDomainsService = async ({
 
   return results;
 };
+
+export const updateAttachedDomainService = async (
+  serviceName: string,
+  domain: string,
+  cdn: string,
+): Promise<TAttachedDomain> => {
+  const { data } = await v6.put<TAttachedDomain>(
+    `/hosting/web/${serviceName}/attachedDomain/${domain}`,
+    { cdn },
+  );
+  return data;
+};
