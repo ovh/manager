@@ -48,13 +48,9 @@ const Service = () => {
         availabilities={availabilityQuery.data}
         catalog={pricingQuery.data}
       />
-      <div className="pt-2">
-        <Card className="w-full">
-          <CardContent className="px-6 py-4 text-sm text-muted-foreground">
-            {t('s3LegalMentions')}
-          </CardContent>
-        </Card>
-      </div>
+      <p className="pt-2 text-sm text-muted-foreground">
+        {t('s3LegalMentions')}
+      </p>
     </>
   );
 };

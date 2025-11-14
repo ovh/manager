@@ -1,18 +1,15 @@
 import { useMemo } from 'react';
-import { ProductAvailability } from '@/types/Availability';
 import { ObjectContainerOffers } from './orderFunnel.const';
 import order from '@/types/Order';
 import cloud from '@/types/Cloud';
 
 interface UseOrderPricingProps {
-  availabilities: ProductAvailability;
   offer: ObjectContainerOffers;
   region: cloud.Region;
   catalog: order.catalog._public.Catalog;
   replicationEnabled: boolean;
 }
 export function useOrderPricing({
-  availabilities,
   offer,
   region,
   catalog,
@@ -24,7 +21,7 @@ export function useOrderPricing({
       [cloud.RegionTypeEnum['region-3-az']]: '-3AZ',
     };
     if (offer === ObjectContainerOffers['s3-standard']) {
-      const regionPrefix = REGION_TYPE_PREFIX[region.type] || '';
+      const regionPrefix = REGION_TYPE_PREFIX[region?.type] || '';
       const offerPlanCode = `storage-standard${regionPrefix}.consumption`;
       const replicationOptionPlanCode = `storage-standard-ia.consumption`;
       return {
@@ -45,7 +42,7 @@ export function useOrderPricing({
       ),
       replication: null,
     };
-  }, [availabilities, catalog, offer, region, replicationEnabled]);
+  }, [catalog, offer, region, replicationEnabled]);
 
   return pricings;
 }

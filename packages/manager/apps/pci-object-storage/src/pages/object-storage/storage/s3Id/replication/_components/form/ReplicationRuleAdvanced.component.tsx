@@ -23,6 +23,7 @@ export const ReplicationRuleAdvanced = () => {
     isPending,
     isDeleteMarkerDisabled,
     showStorageClassField,
+    availableStorageClasses,
   } = useReplicationFormContext();
   const { t } = useTranslation('pci-object-storage/replication');
   const { t: tObj } = useTranslation(
@@ -61,15 +62,13 @@ export const ReplicationRuleAdvanced = () => {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.values(storages.StorageClassEnum)
-                      .filter(
-                        (st) => st !== storages.StorageClassEnum.DEEP_ARCHIVE,
-                      )
-                      .map((storeClass: storages.StorageClassEnum) => (
+                    {availableStorageClasses.map(
+                      (storeClass: storages.StorageClassEnum) => (
                         <SelectItem key={storeClass} value={storeClass}>
                           {tObj(`objectClass_${storeClass}`)}
                         </SelectItem>
-                      ))}
+                      ),
+                    )}
                   </SelectContent>
                 </Select>
               </>

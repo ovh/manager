@@ -90,7 +90,6 @@ export function useOrderFunnel({
   });
 
   const pricings = useOrderPricing({
-    availabilities,
     offer,
     region: currentRegion,
     catalog,
@@ -134,7 +133,7 @@ export function useOrderFunnel({
     };
     // If we are not using localzone, more steps are available
     if (
-      regions.find((r) => r.name === region).type !== RegionTypeEnum.localzone
+      regions.find((r) => r.name === region)?.type !== RegionTypeEnum.localzone
     ) {
       s3.ownerId = user;
       s3.encryption = {

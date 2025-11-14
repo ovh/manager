@@ -55,7 +55,7 @@ const Objects = () => {
               checked={withVersion}
               onCheckedChange={setWithVersion}
             />
-            <Label htmlFor="versions">Voir les versions</Label>
+            <Label htmlFor="versions">{t('seeVersionsSwitchLabel')}</Label>
           </div>
         )}
       </div>

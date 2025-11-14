@@ -16,16 +16,14 @@ import { useLocale } from '@/hooks/useLocale';
 interface StorageClassSelectorProps {
   storageClass: storages.StorageClassEnum;
   onStorageClassChange: (storageClass: storages.StorageClassEnum) => void;
-  is3AZ?: boolean;
-  isLZ?: boolean;
+  availableStorageClasses: storages.StorageClassEnum[];
   disabled?: boolean;
 }
 
 const StorageClassSelector = ({
   storageClass,
   onStorageClassChange,
-  is3AZ = false,
-  isLZ = false,
+  availableStorageClasses,
   disabled = false,
 }: StorageClassSelectorProps) => {
   const { t } = useTranslation('components/file-uploader');
@@ -84,23 +82,16 @@ const StorageClassSelector = ({
         onValueChange={onStorageClassChange}
         disabled={disabled}
       >
-        {Object.values(storages.StorageClassEnum)
-          .filter((st) => {
-            if (st === storages.StorageClassEnum.DEEP_ARCHIVE) return false;
-            if ((is3AZ || isLZ) && st === storages.StorageClassEnum.HIGH_PERF)
-              return false;
-            if (isLZ && st === storages.StorageClassEnum.STANDARD_IA)
-              return false;
-            return true;
-          })
-          .map((storeClass: storages.StorageClassEnum) => (
+        {availableStorageClasses.map(
+          (storeClass: storages.StorageClassEnum) => (
             <div key={storeClass} className="flex items-center gap-3">
               <RadioGroupItem value={storeClass} id={storeClass} />
               <Label htmlFor={storeClass}>
                 {tObj(`objectClass_${storeClass}`)}
               </Label>
             </div>
-          ))}
+          ),
+        )}
       </RadioGroup>
     </div>
   );

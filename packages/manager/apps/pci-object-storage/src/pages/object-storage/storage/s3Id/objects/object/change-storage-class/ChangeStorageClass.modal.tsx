@@ -18,6 +18,7 @@ import { useS3Data } from '../../../S3.context';
 import storages from '@/types/Storages';
 import RouteModal from '@/components/route-modal/RouteModal';
 import StorageClassSelector from '@/components/storage-class-selector/StorageClassSelector.component';
+import { useAvailableStorageClasses } from '@/hooks/useAvailableStorageClasses.hook';
 
 const ChangeStorageClassModal = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
@@ -36,8 +37,7 @@ const ChangeStorageClassModal = () => {
     key: objectKey,
   });
 
-  // TODO: Api should return list of available service for a container
-  const is3AZ = s3.region === 'EU-WEST-PAR';
+  const availableStorageClasses = useAvailableStorageClasses(s3.region);
 
   const [storageClass, setStorageClass] = useState<storages.StorageClassEnum>(
     objectQuery.data?.storageClass || storages.StorageClassEnum.STANDARD,
@@ -89,7 +89,7 @@ const ChangeStorageClassModal = () => {
           <StorageClassSelector
             storageClass={storageClass}
             onStorageClassChange={setStorageClass}
-            is3AZ={is3AZ}
+            availableStorageClasses={availableStorageClasses}
           />
         </DialogBody>
         <DialogFooter className="flex justify-end">
