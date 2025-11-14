@@ -1,3 +1,5 @@
+import { GetEdgeGatewayParams } from '../types';
+
 const vcdBaseKey = 'vmwareCloudDirector';
 const vdcBaseKey = 'virtualDataCenter';
 const veeamBackupBaseKey = 'backup';
@@ -69,6 +71,7 @@ export const updateVdcDetailsMutationKey = (vdcId: string) => [
   ...getVdcQueryKey(vdcId),
 ];
 
+// Vrack
 export const getVrackSegmentListQueryKey = (id: string, vdcId: string) => [
   ...getVcdDatacentreQueryKey(id, vdcId),
   'vrackSegment',
@@ -83,3 +86,20 @@ export const getVrackSegmentQueryKey = ({
   vdcId: string;
   vrackSegmentId: string;
 }) => [...getVrackSegmentListQueryKey(id, vdcId), vrackSegmentId];
+
+// Edge Gateway
+export const getVcdEdgeGatewayListQueryKey = (id: string, vdcId: string) => [
+  ...getVcdDatacentreQueryKey(id, vdcId),
+  'edgeGateway',
+];
+
+export const getVcdEdgeGatewayQueryKey = (params: GetEdgeGatewayParams) => [
+  ...getVcdEdgeGatewayListQueryKey(params.id, params.vdcId),
+  params.edgeGatewayId,
+];
+
+// IP Block
+export const getVcdIpBlockListQueryKey = (id: string) => [
+  ...getVcdOrganizationQueryKey(id),
+  'ipBlock',
+];
