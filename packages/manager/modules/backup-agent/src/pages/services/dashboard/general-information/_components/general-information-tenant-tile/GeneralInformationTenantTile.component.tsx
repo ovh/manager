@@ -5,7 +5,7 @@ type GeneralInformationTenantTileProps = {
   tenantId: string
 };
 
-export function GeneralInformationTenantTile({ tenantId }: GeneralInformationTenantTileProps) {
+export function GeneralInformationTenantTile({ tenantId }: Readonly<GeneralInformationTenantTileProps>) {
   const { data, isLoading } = useBackupTenantDetails({ tenantId })
 
   return <GeneralInformationTile resourceDetails={data} isLoading={isLoading} />

@@ -12,7 +12,7 @@ export type GeneralInformationTileProps<T extends { name: string }> = {
   isLoading: boolean;
 };
 
-export function GeneralInformationTile<T extends { name: string }>({ resourceDetails, isLoading }: GeneralInformationTileProps<T>) {
+export function GeneralInformationTile<T extends { name: string }>({ resourceDetails, isLoading }: Readonly<GeneralInformationTileProps<T>>) {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.STATUS, NAMESPACES.REGION, 'dashboard']);
   const { data: locationData, isLoading: isLocationLoading } = useLocationDetails(resourceDetails?.currentState.region)
 

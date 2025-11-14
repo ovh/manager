@@ -1,4 +1,4 @@
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import {Tenant} from '@/types/Tenant.type';
@@ -29,3 +29,5 @@ export const useBackupTenantsMocks = () =>
       }),
     select: (res): Resource<WithRegion<Tenant>>[] => res.data.map((tenantResource) => mapTenantResourceToTenantResourceWithRegion(tenantResource)),
   });
+
+  

@@ -26,3 +26,22 @@ export const useBackupTenantDetails = (
   select: (data):  Resource<WithRegion<Tenant>> => mapTenantResourceToTenantResourceWithRegion(data),
   ...options
 })
+
+export const useBackupTenantDetailsMocks = (  {
+  tenantId
+}: {
+  tenantId: string;
+} & Partial<Omit<DefinedInitialDataOptions<Resource<Tenant>, unknown, Resource<WithRegion<Tenant>>>, "queryKey" | "queryFn">>,
+) =>
+  useQuery({
+    queryKey: BACKUP_TENANT_DETAILS_QUERY_KEY(tenantId),
+    queryFn: () =>
+      new Promise<{ data: Resource<Tenant> }>((resolve) => {
+        console.log("🛜 mocking useBackupTenants api call...");
+        setTimeout(() => {
+          resolve({ data: TENANTS_MOCKS[1]! });
+        });
+      }),
+    select: (res): Resource<WithRegion<Tenant>> =>
+      mapTenantResourceToTenantResourceWithRegion(res.data),
+  });
