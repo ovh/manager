@@ -1,14 +1,14 @@
 {
-  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "Twój Plan Odzyskiwania Działalności Zerto między tym Private Cloud a ",
-  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "Private Cloud {{pccId}} został pomyślnie zainstalowany!",
-  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "Twoja infrastruktura zdalna została pomyślnie zainstalowana!",
-  "dedicatedCloud_options_zerto_delivered_message_part_three": "Otrzymałeś swoje hasło ZSSP na adres e-mail {{email}}.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Twój PRA Zerto jest w trakcie aktywacji. Operacja może zająć do 4 godzin.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Nie wahaj się sprawdzić zadania enableDisasterRecovery głównego PCC, aby śledzić jego postęp.",
-  "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Aby dokończyć aktywację opcji Zerto, skonfiguruj ustawienia witryny na stronie ",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "Plan Zerto DRP między tą infrastrukturą Hosted Private Cloud a ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "Hosted Private Cloud {{pccId}} został zainstalowany!",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "Twoja zdalna infrastruktura została zainstalowana!",
+  "dedicatedCloud_options_zerto_delivered_message_part_three": "Na adres {{email}} przesłaliśmy hasło ZSSP.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Trwa aktywacja Zerto DRP. Operacja może potrwać do 4 godzin.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Sprawdź zadanie enableDisasterRecovery na głównej infrastrukturze Hosted Private Cloud i śledź jego postęp.",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Aby dokończyć aktywację opcji Zerto, skonfiguruj ustawienia lokalizacji na stronie ",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "Konfiguracja",
-  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Aby zakończyć aktywację swojego PRA Zerto, zapraszamy do dodania poniższych adresów IP VPN",
-  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "Twój Plan Odzyskiwania Działalności Zerto między tym Essentials a ",
-  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "Essentials {{pccId}} został pomyślnie zainstalowany!",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Nie wahaj się sprawdzić zadania enableDisasterRecovery głównego Essentials, aby śledzić jego postęp."
+  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Aby dokończyć aktywację Zerto DRP, w ustawieniach DRP w sieci VPN dodaj adresy IP.",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "Plan Zerto DRP między tą infrastrukturą Essentials a ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "Essentials {{pccId}} został zainstalowany!",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Sprawdź zadanie enableDisasterRecovery na głównej infrastrukturze Essentials i śledź jego postęp."
 }
