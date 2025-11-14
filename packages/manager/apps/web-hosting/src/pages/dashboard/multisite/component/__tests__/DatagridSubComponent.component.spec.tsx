@@ -30,7 +30,7 @@ describe('DatagridSubComponent component', () => {
       Record<string, HTMLTableCellElement>
     >;
 
-    render(<DatagridSubComponent serviceName="testService" siteId={1} headerRefs={headerRefs} />);
+    render(<DatagridSubComponent serviceName="testService" siteId={'1'} headerRefs={headerRefs} />);
 
     await waitFor(() => {
       expect(refetchMock).toHaveBeenCalledTimes(1);
@@ -59,7 +59,7 @@ describe('DatagridSubComponent component', () => {
     const headerRefs = { current: {} } as React.MutableRefObject<
       Record<string, HTMLTableCellElement>
     >;
-    render(<DatagridSubComponent serviceName="testService" siteId={1} headerRefs={headerRefs} />);
+    render(<DatagridSubComponent serviceName="testService" siteId={'1'} headerRefs={headerRefs} />);
     expect(screen.getByRole('table')).toBeInTheDocument();
   });
 
@@ -72,7 +72,7 @@ describe('DatagridSubComponent component', () => {
     const headerRefs = { current: {} } as React.MutableRefObject<
       Record<string, HTMLTableCellElement>
     >;
-    render(<DatagridSubComponent serviceName="testService" siteId={1} headerRefs={headerRefs} />);
+    render(<DatagridSubComponent serviceName="testService" siteId={'1'} headerRefs={headerRefs} />);
     expect(screen.getByRole('table')).toBeInTheDocument();
   });
 });
