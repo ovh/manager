@@ -18,6 +18,7 @@ $z-index-sidebar: 700;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
+  z-index: 101;
 }
 
 .sidebar::-webkit-scrollbar {
