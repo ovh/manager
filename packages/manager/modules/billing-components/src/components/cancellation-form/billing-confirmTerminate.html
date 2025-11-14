@@ -25,7 +25,20 @@
         ></span
     ></oui-message>
 
-    <form name="terminationForm" novalidate class="mt-3">
+    <oui-message
+        data-type="info"
+        data-ng-if="$ctrl.shouldHideQuestions"
+        class="mt-3"
+    >
+        <span data-translate="billing_confirm_termination_unnecessary"></span>
+    </oui-message>
+
+    <form
+        data-ng-if="!$ctrl.shouldHideQuestions"
+        name="terminationForm"
+        novalidate
+        class="mt-3"
+    >
         <oui-field
             data-ng-repeat="question in $ctrl.questions track by question.question"
             data-label="{{:: (question.question === 'commentary_future_use' ? '' : 'billing_confirm_termination_question_' + question.question) | translate}}"
