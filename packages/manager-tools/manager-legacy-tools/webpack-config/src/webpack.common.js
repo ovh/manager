@@ -59,6 +59,11 @@ module.exports = (opts) => {
     output: {
       publicPath: '',
     },
+
+    stats: {
+      warningsFilter: [/flag-icon/, /sass-loader/],
+    },
+
     plugins: [
       ...plugins,
 
@@ -170,6 +175,11 @@ module.exports = (opts) => {
               options: {
                 sassOptions: {
                   quietDeps: true,
+                  silenceDeprecations: [
+                    'import',
+                    'slash-div',
+                    'legacy-js-api',
+                  ],
                 },
               },
             },

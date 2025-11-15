@@ -10,8 +10,12 @@
  */
 import process from 'node:process';
 
+import { buildCI } from './kernel/helpers/tasks-helper.js';
 import { yarnPostInstall } from './kernel/pnpm/pnpm-deps-manager.js';
 import { logger } from './kernel/utils/log-manager.js';
+import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
+
+attachCleanupSignals(handleProcessAbortSignals);
 
 /**
  * Main entrypoint for the post-installation routine.
@@ -31,11 +35,13 @@ async function main() {
   const start = Date.now();
   try {
     await yarnPostInstall();
+    await buildCI(['--filter=@ovh-ux/muk']);
     const elapsed = ((Date.now() - start) / 1000).toFixed(2);
     logger.success(`✅ manager-pm postinstall completed successfully in ${elapsed}s`);
   } catch (err) {
     logger.error('❌ manager-pm postinstall failed:');
     logger.error(err.stack || err.message || err);
+    await handleProcessAbortSignals('postinstall-error', err);
     process.exit(1);
   }
 }

@@ -15,7 +15,7 @@ export const reportOutputBasePath = resolve(__dirname, '../../../../migration-st
 export const buildReportFileName = (name, format) => {
   if (format === 'json') return `${reportOutputBasePath}/${name}-migration-report.json`;
   if (format === 'html') return `${reportOutputBasePath}/${name}-migration-report.html`;
-  return null; // console output only
+  return null;
 };
 
 /**
@@ -179,7 +179,7 @@ export const renderReport = (report, { title, statusKeys, format, filename }) =>
 };
 
 /**
- * Build a merged migration report map for all apps.
+ * Build a merged migration report map for all.
  * Each entry includes migration results tagged with scope (react/all).
  *
  * @returns {Array<{Application: string, scopeResults: Record<string, {value: string, scope: 'react'|'all'}>}>}
@@ -320,7 +320,7 @@ export function renderConsoleSummary(summaryByType) {
 }
 
 /**
- * Render tabbed app details (React Apps vs All Apps) with grid layout.
+ * Render tabbed app details (React Apps vs All) with grid layout.
  *
  * @param {ReturnType<typeof buildMergedMigrationReport>} merged - Array of merged migration results.
  * @returns {string} HTML snippet with tabs and grid content.
@@ -336,7 +336,7 @@ export function renderTabsHtml(merged) {
   return `
   <div class="tabs">
     <div class="tab active" data-target="react">React Apps</div>
-    <div class="tab" data-target="all">All Apps</div>
+    <div class="tab" data-target="all">All</div>
   </div>
   <div class="tab-content">
     <div id="react" class="tab-pane active">
@@ -373,7 +373,7 @@ export function renderHtmlSummaryCards(summaryByType) {
 }
 
 /**
- * Render final merged report (React vs All Apps) with global summary per migration type.
+ * Render final merged report (React vs All) with global summary per migration type.
  *
  * @param {object} options - Rendering options.
  * @param {'console'|'json'|'html'} options.format - Output format.

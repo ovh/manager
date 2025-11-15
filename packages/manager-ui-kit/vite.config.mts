@@ -42,6 +42,19 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss],
     },
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: [
+          'import',
+          'global-builtin',
+          'color-functions',
+          'legacy-js-api',
+          'abs-percent',
+          'slash-div',
+          'function-units',
+        ],
+      },
+    },
   },
   test: {
     globals: true,

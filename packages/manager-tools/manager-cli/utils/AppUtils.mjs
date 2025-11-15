@@ -72,8 +72,8 @@ export const getAvailableApps = () => {
   }
 
   try {
-    return readdirSync(applicationsBasePath).filter((name) => {
-      const fullPath = resolve(applicationsBasePath, name);
+    return readdirSync(applicationsBasePath).filter((appName) => {
+      const fullPath = resolve(applicationsBasePath, appName);
       return statSync(fullPath).isDirectory();
     });
   } catch (error) {

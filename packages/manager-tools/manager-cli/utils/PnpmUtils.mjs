@@ -2,10 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { applicationsBasePath } from './AppUtils.mjs';
-
-// adjust if path differs
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
@@ -30,73 +26,34 @@ if (fs.existsSync(catalogPath)) {
 }
 
 /**
- * Check if the app is in pnpm-catalog.json
+ * Check if the target is in pnpm-catalog.json
  */
-function isInCatalog(app) {
-  return pnpmCatalog.some((entry) => {
-    // Normalize path entries like "packages/manager/apps/zimbra" -> "zimbra"
-    const normalized = entry.replace(/^packages\/manager\/apps\//, '');
-    return normalized === app;
+function isInPnpmCatalog(target, targetBasePath) {
+  return pnpmCatalog.some((pnpmTargetEntry) => {
+    const targetFullPath = `${targetBasePath}/${target}`;
+    return pnpmTargetEntry === targetFullPath;
   });
-}
-
-/**
- * Check if app's vitest.config.js/ts has dedupe: [...defaultDedupedDependencies]
- */
-function hasDedupedDependencies(app, { verbose = false } = {}) {
-  const jsPath = path.join(applicationsBasePath, app, 'vitest.config.js');
-  const tsPath = path.join(applicationsBasePath, app, 'vitest.config.ts');
-
-  const configPath = [jsPath, tsPath].find(fs.existsSync);
-  if (!configPath) {
-    if (verbose)
-      console.log(`📦 ${app}: no vitest.config.js/ts found under ${applicationsBasePath}`);
-    return false;
-  }
-
-  const content = fs.readFileSync(configPath, 'utf-8');
-
-  if (verbose) {
-    console.log(`📦 ${app}: checking ${configPath}`);
-    console.log(
-      content
-        .split('\n')
-        .filter((l) => l.includes('dedupe'))
-        .join('\n'),
-    );
-  }
-
-  // More permissive regex: allows spaces, newlines, trailing commas
-  return /dedupe\s*:\s*\[\s*\.{3}\s*defaultDedupedDependencies\s*\],?/.test(content);
 }
 
 /**
  * Compute PNPM migration status
  */
-export function getPnpmMigrationStatus(app, { verbose = false } = {}) {
+export function getPnpmMigrationStatus(target, targetBasePath, { verbose = false } = {}) {
   try {
-    const inCatalog = isInCatalog(app);
-    const hasDedupe = hasDedupedDependencies(app);
+    const isTargetInCatalog = isInPnpmCatalog(target, targetBasePath);
 
     if (verbose) {
-      console.log(`📦 ${app}: inCatalog → ${inCatalog ? '✅' : '📝'}`);
-      console.log(`📦 ${app}: vitest dedupe → ${hasDedupe ? '✅' : '📝'}`);
+      console.log(`📦 ${target}: pnpm migration status → ${isTargetInCatalog ? '✅' : '📝'}`);
     }
 
-    const missing = [];
-    if (!inCatalog) missing.push('catalog');
-    if (!hasDedupe) missing.push('dedupe');
-
-    if (missing.length === 0) {
+    if (isTargetInCatalog) {
       return '✅ Done';
     }
 
-    const hint = `missing: ${missing.join(', ')}`;
-    const hasAny = inCatalog || hasDedupe;
-    return hasAny ? `⚠️ Partial — ${hint}` : `📝 TODO — ${hint}`;
+    return `📝 TODO — ${target} is not inside pnpm catalog`;
   } catch (err) {
     if (verbose) {
-      console.error(`⚠️ Error while checking PNPM migration for ${app}: ${err.message}`);
+      console.error(`⚠️ Error while checking PNPM migration for ${target}: ${err.message}`);
     }
     return '📝 TODO — error';
   }
