@@ -24,7 +24,7 @@ import MessageSuspendedService from '@/components/message/MessageSuspendedServic
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'datacentres/compute']);
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: featuresAvailable } = useFeatureAvailability([
@@ -98,6 +98,10 @@ function DatacentreDashboardPage() {
     {
       id: subRoutes.vrackSegments,
       label: VRACK_LABEL,
+    },
+    {
+      id: subRoutes.datacentreComputeDelete,
+      label: t('datacentres/compute:managed_vcd_vdc_compute_delete'),
     },
     {
       id: subRoutes.edit,
