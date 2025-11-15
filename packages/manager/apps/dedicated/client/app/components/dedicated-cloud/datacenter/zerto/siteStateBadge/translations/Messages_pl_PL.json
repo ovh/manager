@@ -1,9 +1,9 @@
 {
-  "dedicatedCloud_datacenter_zerto_site_state_no_site_configured": "Brak skonfigurowanych witryn",
-  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 witryna wydana",
-  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_warning": "1 witryna w oczekiwaniu",
-  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_error": "1 witryna z błędem",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "{{numbers}} witryn wydanych",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_warning": "{{numbers}} witryn w oczekiwaniu",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_error": "{{numbers}} witryn z błędem"
+  "dedicatedCloud_datacenter_zerto_site_state_no_site_configured": "Brak skonfigurowanych lokalizacji",
+  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 gotowa lokalizacja",
+  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_warning": "1 lokalizacja w trybie oczekiwania",
+  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_error": "1 lokalizacja z błędem",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "Gotowych lokalizacji: {{numbers}}",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_warning": "Lokalizacji w trybie oczekiwania: {{numbers}}",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_error": "Lokalizacji z błędami: {{numbers}}"
 }

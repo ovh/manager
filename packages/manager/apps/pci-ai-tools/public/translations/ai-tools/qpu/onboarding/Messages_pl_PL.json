@@ -1,7 +1,7 @@
 {
-  "Title": "QPUs",
+  "Title": "Komputery kwantowe (QPU)",
   "createNotebookButton": "Stwórz notebook",
-  "Description1": "Realizuj projekty z zakresu informatyki kwantowej, korzystając z gotowych notebooków w chmurze",
-  "Description2": "Symuluj do 20 kubitów w kilka sekund - bez instalacji i konfiguracji.",
-  "Description3": "Korzystaj z prekonfigurowanego środowiska kompatybilnego z popularnymi frameworkami (Pulser, Mimiq, Perceval, Callisto, Qleo, Qiskit, MyQLM, etc.) i współpracuj z zespołem przy użyciu bezpiecznej, współdzielonej przestrzeni roboczej"
+  "Description1": "Wykonuj obliczenia kwantowe w modelu QaaS, korzystając z platformy OVHcloud.",
+  "Description2": "Uruchamiaj algorytmy na fizycznych procesorach kwantowych (QPU) w bezpiecznym środowisku, które nie wymaga zarządzania infrastrukturą.",
+  "Description3": "Kontroluj koszty dzięki pełnej integracji z emulatorami i modelowi płatności za sekundę."
 }

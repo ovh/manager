@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.17.4...@ovh-ux/manager-wiki@0.18.0) (2025-11-14)
+
+
+### Bug Fixes
+
+* **manager-wiki:** correct build wiki ([5b534df](https://github.com/ovh/manager/commit/5b534df6ced98c6b64c5824a18ca03a13026b08f)), closes [#MANAGER-20205](https://github.com/ovh/manager/issues/MANAGER-20205)
+* **muk:** update dist name lib of manager ui kit ([e440e19](https://github.com/ovh/manager/commit/e440e19b3775b9283fadcdf6cb79d777b7d71a7d)), closes [#MANAGER-20205](https://github.com/ovh/manager/issues/MANAGER-20205)
+
+
+### Features
+
+* **mrc:** add hooks to use location data ([3232c18](https://github.com/ovh/manager/commit/3232c1875ea244ca4d67a34515c53dacb7df2adc)), closes [#MANAGER-18341](https://github.com/ovh/manager/issues/MANAGER-18341) [#15916](https://github.com/ovh/manager/issues/15916)
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.17.3...@ovh-ux/manager-wiki@0.17.4) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
 ## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.17.2...@ovh-ux/manager-wiki@0.17.3) (2025-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki
