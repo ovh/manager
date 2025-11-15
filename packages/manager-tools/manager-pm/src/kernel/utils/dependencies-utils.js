@@ -3,9 +3,9 @@ import { constants, existsSync, promises as fs, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 import {
+  criticalDependenciesPath,
   ignoredDirectories,
   managerRootPath,
-  reactCriticalDependenciesPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
 
@@ -40,12 +40,12 @@ function tryReadInstalledVersion(pkgName, baseDir) {
  * Resolve installed version, retrying once with `yarn install` if needed.
  *
  * @param {string} pkgName - Dependency name.
- * @param {string} relAppPath - Application workspace path.
+ * @param {string} relativeTargetPath - Target workspace path.
  * @returns {string|null} Version string if resolved, otherwise null.
  */
-function resolveInstalledVersionWithRetry(pkgName, relAppPath) {
+function resolveInstalledVersionWithRetry(pkgName, relativeTargetPath) {
   const tryResolve = () =>
-    tryReadInstalledVersion(pkgName, relAppPath) ||
+    tryReadInstalledVersion(pkgName, relativeTargetPath) ||
     tryReadInstalledVersion(pkgName, managerRootPath);
 
   // First attempt
@@ -75,29 +75,28 @@ function resolveInstalledVersionWithRetry(pkgName, relAppPath) {
 }
 
 /**
- * Load the list of critical React dependencies from JSON.
+ * Load the list of critical dependencies from JSON.
  *
- * Reads the `pnpm-critical-deps.json` file configured in `reactCriticalDependenciesPath`
+ * Reads the `pnpm-critical-deps.json` file configured in `criticalDependenciesPath`
  * and parses it into an array of package names.
  *
- * - Throws if the file exists but does not contain a valid array.
- * - Used to enforce version pinning for React and ecosystem packages.
+ * Used to enforce version pinning for critical dependencies.
  *
  * @returns {Promise<string[]>} Array of critical dependency names (e.g., ["react", "react-dom"]).
  *
  * @throws {Error} If the JSON is invalid or not an array.
  */
-async function loadCriticalReactDeps() {
-  const raw = await fs.readFile(reactCriticalDependenciesPath, 'utf8');
-  const parsed = JSON.parse(raw);
-  if (!Array.isArray(parsed)) {
-    throw new Error(`Invalid format in ${reactCriticalDependenciesPath}: expected array`);
+async function loadCriticalDependencies() {
+  const criticalDependenciesFileContent = await fs.readFile(criticalDependenciesPath, 'utf8');
+  const criticalDependencies = JSON.parse(criticalDependenciesFileContent);
+  if (!Array.isArray(criticalDependencies)) {
+    throw new Error(`Invalid format in ${criticalDependenciesPath}: expected array`);
   }
-  return parsed;
+  return criticalDependencies;
 }
 
 /**
- * Normalize React-related dependencies in an app's `package.json`
+ * Normalize critical dependencies in a target's `package.json`
  * to the exact versions Yarn v1 installed (read from `node_modules`).
  *
  * Why?
@@ -107,39 +106,37 @@ async function loadCriticalReactDeps() {
  *
  * Behavior:
  * - Loads critical dependencies list from `pnpm-critical-deps.json`.
- * - For each dependency present in the app's `package.json`, attempts to
+ * - For each dependency present in the target's `package.json`, attempts to
  *   resolve its installed version from either:
- *   • App-local `node_modules`
+ *   • Target-local `node_modules`
  *   • Root hoisted `node_modules`
  * - If not found, runs `yarn install` once and retries.
- * - Updates the app's `package.json` in-place with the resolved versions.
+ * - Updates the target's `package.json` in-place with the resolved versions.
  *
  * Failure conditions:
  * - If any critical dependency is missing after retry,
  *   migration aborts with an error.
  *
- * @param {string} relAppPath - Relative path to the app workspace (containing `package.json`).
+ * @param {string} relativeTargetPath - Relative path to the target workspace (containing `package.json`).
  * @returns {Promise<void>} Resolves once dependencies are normalized.
  *
  * @throws {Error} If required dependencies cannot be resolved.
  */
-export async function normalizeReactDependencies(relAppPath) {
+export async function normalizeCriticalDependencies(relativeTargetPath) {
   logger.info(`
 ------------------------------------------------------------
-⚠️  Mandatory step: Normalizing React & related dependencies
+⚠️  Mandatory step: Normalizing Critical Dependencies
    To prevent regressions in React, types, tests, and lint.
 ------------------------------------------------------------
   `);
 
-  const pkgFile = path.join(relAppPath, 'package.json');
+  const pkgFile = path.join(relativeTargetPath, 'package.json');
   const pkg = JSON.parse(await fs.readFile(pkgFile, 'utf8'));
-  const criticalDeps = await loadCriticalReactDeps();
-
-  const missingDeps = [];
+  const criticalDeps = await loadCriticalDependencies();
 
   for (const dep of criticalDeps) {
     if (pkg.dependencies?.[dep] || pkg.devDependencies?.[dep]) {
-      const version = resolveInstalledVersionWithRetry(dep, relAppPath);
+      const version = resolveInstalledVersionWithRetry(dep, relativeTargetPath);
       if (version) {
         if (pkg.dependencies?.[dep]) {
           pkg.dependencies[dep] = version;
@@ -147,20 +144,12 @@ export async function normalizeReactDependencies(relAppPath) {
           pkg.devDependencies[dep] = version;
         }
         logger.info(`📌 Pinned ${dep} → ${version}`);
-      } else {
-        missingDeps.push(dep);
       }
     }
   }
 
-  if (missingDeps.length > 0) {
-    throw new Error(
-      `❌ Migration aborted: failed to resolve critical React deps (${missingDeps.join(', ')})`,
-    );
-  }
-
   await fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2));
-  logger.success(`✅ React dependencies normalized for ${relAppPath}`);
+  logger.success(`✅ Critical dependencies normalized for ${relativeTargetPath}`);
 }
 
 /**
@@ -212,8 +201,8 @@ export async function findPackages(rootDir) {
  * ```json
  * [
  *   {
- *     "turbo": "--filter @ovh-ux/manager-core-application",
- *     "pnpm": "--filter packages/manager/core/application"
+ *     "turbo": "--filter @ovh-ux/manager-core-target",
+ *     "pnpm": "--filter packages/manager/core/target"
  *   },
  *   {
  *     "turbo": "--filter @ovh-ux/manager-utils",

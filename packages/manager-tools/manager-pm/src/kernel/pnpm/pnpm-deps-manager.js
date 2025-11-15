@@ -9,16 +9,12 @@ import {
   privateModulesPath,
   rootPackageJsonPath,
 } from '../../playbook/playbook-config.js';
-import {
-  clearRootWorkspaces,
-  getCatalogPaths,
-  readCatalog,
-  updateRootWorkspacesToYarnOnly,
-} from '../utils/catalog-utils.js';
+import { getCatalogsPaths, readCatalog } from '../utils/catalog-utils.js';
 import { getPnpmPrivateModules, getTurboPrivateFilters } from '../utils/dependencies-utils.js';
 import { loadJson } from '../utils/json-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../utils/package-manager-utils.js';
+import { clearRootWorkspaces, updateRootWorkspacesToYarnOnly } from '../utils/workspace-utils.js';
 import { bootstrapPnpm, getPnpmPlatformExecutablePath } from './pnpm-bootstrap.js';
 
 /**
@@ -240,7 +236,7 @@ export async function yarnPostInstall() {
   logger.info('🧩 Yarn postinstall: bootstrap PNPM, link privates, install PNPM apps');
 
   try {
-    const { pnpmCatalogPath } = getCatalogPaths();
+    const { pnpmCatalogPath } = getCatalogsPaths();
     const pnpmApps = await readCatalog(pnpmCatalogPath);
 
     if (pnpmApps?.length > 0) {

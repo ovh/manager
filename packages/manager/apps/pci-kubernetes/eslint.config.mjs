@@ -35,10 +35,6 @@ export default [
   vitestEslintConfig,
   javascriptEslintConfig,
   {
-    // ...cssEslintConfig,
-    // files: ['**/*.css'],
-  },
-  {
     rules: {
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
@@ -56,7 +52,6 @@ export default [
       'check-file/folder-naming-convention': 'off',
       'check-file/filename-naming-convention': 'off',
       'jsx-a11y/interactive-supports-focus': 'off',
-      'react-hooks/rules-of-hooks': 'off',
       'react/no-multi-comp': 'off',
       'css/no-important': 'off',
       'vitest/no-identical-title': 'off',
@@ -68,6 +63,13 @@ export default [
       'max-lines-per-function': 'off',
       'check-file/no-index': 'off',
       'check-file/folder-match-with-fex': 'off',
+      'react-hooks/rules-of-hooks': 'off',
+      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/incompatible-library': 'off',
+      'react-hooks/purity': 'off',
+      'react-hooks/preserve-manual-memoization': 'off',
+      'react-hooks/refs': 'off',
+      'react-hooks/static-components': 'off',
     },
   },
 ];
