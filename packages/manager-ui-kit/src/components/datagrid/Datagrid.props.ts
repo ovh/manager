@@ -10,6 +10,8 @@ import type {
   VisibilityState,
 } from '@tanstack/react-table';
 
+import { TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
+
 import {
   FilterTypeCategories as DatagridColumnTypes,
   FilterComparator,
@@ -69,9 +71,11 @@ export type DatagridProps<T extends ExpandableRow<T>> = {
   rowSelection?: RowSelectionProps<T>;
   search?: SearchProps;
   sorting?: SortingProps;
+  size?: TABLE_SIZE;
   subComponentHeight?: number;
   topbar?: ReactNode;
   totalCount?: number;
+  variant?: TABLE_VARIANT;
   onFetchAllPages?: () => void;
   onFetchNextPage?: () => void;
   renderSubComponent?: (
@@ -86,7 +90,18 @@ export enum ColumnMetaType {
   BADGE = 'badge',
 }
 
-// export type ManagerColumnDef<T> = ColumnDef<T> & {
+export enum RowHeight {
+  sm = 32.5,
+  md = 48.5,
+  lg = 64.5,
+}
+
+export enum ContainerHeight {
+  sm = 375,
+  md = 550,
+  lg = 725,
+}
+
 export type DatagridColumn<T> = ColumnDef<T> & {
   /** set column comparator for the filter */
   comparator?: FilterComparator[];

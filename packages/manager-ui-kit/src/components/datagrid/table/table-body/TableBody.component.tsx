@@ -41,16 +41,15 @@ export const TableBody = <T,>({
     }
   }, [rows?.length]);
 
-  const EXPANDED_SIZE = subComponentHeight;
   const getOffset = useCallback(
     (index: number) => {
       let count = 0;
       for (let i = 0; i < index; i += 1) {
         if (rows[i]?.getIsExpanded()) count += 1;
       }
-      return count * EXPANDED_SIZE;
+      return count * subComponentHeight;
     },
-    [rows],
+    [subComponentHeight],
   );
 
   const totalHeight = useMemo(() => {
@@ -67,7 +66,7 @@ export const TableBody = <T,>({
   return (
     <tbody
       key={`table-body-${rows.length}`}
-      className="w-full relative p-0 overflow-hidden"
+      className="relative p-0 overflow-hidden"
       style={{
         height: totalHeight,
       }}
@@ -75,9 +74,7 @@ export const TableBody = <T,>({
       {rowVirtualizer.getVirtualItems().map((virtualRow) => {
         const row = rows[virtualRow?.index];
         if (!row) return null;
-
-        const offset = renderSubComponent ? getOffset(virtualRow.index) : 0;
-
+        const offset = renderSubComponent ? getOffset(virtualRow?.index) : 0;
         return (
           <Fragment key={`table-body-tr-${row.id}`}>
             <tr
@@ -94,7 +91,7 @@ export const TableBody = <T,>({
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
-                  className={`py-[8px] ${contentAlignLeft ? 'pl-4' : 'text-center'}`}
+                  className={`${contentAlignLeft ? 'pl-4' : 'text-center'}`}
                   style={{
                     width: cell.column.getSize(),
                     minWidth: cell.column.columnDef.minSize ?? 0,
@@ -102,7 +99,10 @@ export const TableBody = <T,>({
                     borderTop: 'none',
                   }}
                 >
-                  <div className="overflow-hidden text-ellipsis block w-full">
+                  <div
+                    className="overflow-hidden text-ellipsis flex items-center w-full"
+                    style={{ lineHeight: 1 }}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </div>
                 </td>
@@ -116,7 +116,7 @@ export const TableBody = <T,>({
                 offset={offset}
                 renderSubComponent={renderSubComponent}
                 subComponentHeight={subComponentHeight}
-                maxRowHeight={maxRowHeight}
+                maxRowHeight={virtualRow?.size ?? maxRowHeight}
               />
             )}
           </Fragment>
