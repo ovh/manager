@@ -8,6 +8,12 @@
                 data-ng-bind="ctrl.serviceName"
             ></h2>
         </div>
+
+        <changelog-button
+            links="ctrl.constants.CHANGELOG.dbaas_logs.links"
+            chapters="ctrl.constants.CHANGELOG.dbaas_logs.chapters"
+        ></changelog-button>
+
         <oui-guide-menu data-text="{{ ::ctrl.guides.title }}" placement="end">
             <oui-guide-menu-item
                 data-ng-repeat="guideItem in ctrl.guides.list track by guideItem.url"
