@@ -20,5 +20,7 @@
   "creating": "Criação em curso",
   "updating": "Atualização",
   "unconfigured": "Não configurado",
-  "unPaid": "Fatura por pagar"
+  "unPaid": "Fatura por pagar",
+  "error": "Erro",
+  "ready": "Ativo"
 }
