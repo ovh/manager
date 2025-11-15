@@ -1,24 +1,26 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { TabsComponent } from '../Tabs.component';
+import { TilesInputGroupTabs } from '../TilesInputGroupTabs.component';
 
-describe('TabsComponent', () => {
+describe('TilesInputGroupTabs', () => {
   const mockItems = ['tab1', 'tab2', 'tab3'];
 
   describe('Snapshot tests', () => {
     it('should match snapshot with default props', () => {
-      const { container } = render(<TabsComponent items={mockItems} />);
+      const { container } = render(<TilesInputGroupTabs items={mockItems} />);
       expect(container).toMatchSnapshot();
     });
 
     it('should match snapshot with empty items array', () => {
-      const { container } = render(<TabsComponent items={[]} />);
+      const { container } = render(<TilesInputGroupTabs items={[]} />);
       expect(container).toMatchSnapshot();
     });
 
     it('should match snapshot with custom className', () => {
-      const { container } = render(<TabsComponent items={mockItems} className="custom-class" />);
+      const { container } = render(
+        <TilesInputGroupTabs items={mockItems} className="custom-class" />,
+      );
       expect(container).toMatchSnapshot();
     });
 
@@ -36,7 +38,7 @@ describe('TabsComponent', () => {
       );
 
       const { container } = render(
-        <TabsComponent items={mockItems} titleElement={customTitleElement} />,
+        <TilesInputGroupTabs items={mockItems} titleElement={customTitleElement} />,
       );
       expect(container).toMatchSnapshot();
     });
@@ -47,13 +49,13 @@ describe('TabsComponent', () => {
       );
 
       const { container } = render(
-        <TabsComponent items={mockItems} contentElement={customContentElement} />,
+        <TilesInputGroupTabs items={mockItems} contentElement={customContentElement} />,
       );
       expect(container).toMatchSnapshot();
     });
 
     it('should match snapshot with single item', () => {
-      const { container } = render(<TabsComponent items={['single-tab']} />);
+      const { container } = render(<TilesInputGroupTabs items={['single-tab']} />);
       expect(container).toMatchSnapshot();
     });
 
@@ -86,7 +88,7 @@ describe('TabsComponent', () => {
       );
 
       const { container } = render(
-        <TabsComponent<CustomItem>
+        <TilesInputGroupTabs<CustomItem>
           items={customItems}
           titleElement={customTitleElement}
           contentElement={customContentElement}

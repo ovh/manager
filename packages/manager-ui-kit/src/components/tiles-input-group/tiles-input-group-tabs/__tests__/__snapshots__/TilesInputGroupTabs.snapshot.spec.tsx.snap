@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TabsComponent > Snapshot tests > should match snapshot with custom className 1`] = `
+exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custom className 1`] = `
 <div>
   <div
     class="custom-class"
@@ -101,7 +101,7 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with custom clas
 </div>
 `;
 
-exports[`TabsComponent > Snapshot tests > should match snapshot with custom contentElement 1`] = `
+exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custom contentElement 1`] = `
 <div>
   <div>
     <div
@@ -205,7 +205,7 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with custom cont
 </div>
 `;
 
-exports[`TabsComponent > Snapshot tests > should match snapshot with custom item types 1`] = `
+exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custom item types 1`] = `
 <div>
   <div>
     <div
@@ -301,7 +301,7 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with custom item
 </div>
 `;
 
-exports[`TabsComponent > Snapshot tests > should match snapshot with custom titleElement 1`] = `
+exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custom titleElement 1`] = `
 <div>
   <div>
     <div
@@ -418,7 +418,7 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with custom titl
 </div>
 `;
 
-exports[`TabsComponent > Snapshot tests > should match snapshot with default props 1`] = `
+exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with default props 1`] = `
 <div>
   <div>
     <div
@@ -517,7 +517,7 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with default pro
 </div>
 `;
 
-exports[`TabsComponent > Snapshot tests > should match snapshot with empty items array 1`] = `
+exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with empty items array 1`] = `
 <div>
   <div>
     <div
@@ -556,7 +556,7 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with empty items
 </div>
 `;
 
-exports[`TabsComponent > Snapshot tests > should match snapshot with single item 1`] = `
+exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with single item 1`] = `
 <div>
   <div>
     <div

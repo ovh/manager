@@ -1,32 +1,18 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import {
-  Tab,
-  TabContent,
-  TabList,
-  Tabs,
-  type TabsProp,
-  type TabsValueChangeEvent,
-} from '@ovhcloud/ods-react';
-import {
-  excludeFromDemoControls,
-  orderControls,
-} from '../../../base-documents/helpers/controls';
+import { Tabs, TabList, Tab, TabContent, type TabsProp, type TabsValueChangeEvent } from '@ovhcloud/ods-react';
+import { excludeFromDemoControls, orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TabsProp>;
+// type DemoArg = Partial<TabListProp>;
 
-(Tabs as any).__docgenInfo = docgenMap.tabs;
-(Tab as any).__docgenInfo = docgenMap.tab;
-(TabList as any).__docgenInfo = docgenMap.tabList;
-(TabContent as any).__docgenInfo = docgenMap.tabContent;
+(Tabs as any).__docgenInfo = docgenMap.table;
 
 const meta: Meta<TabsProp> = {
   component: Tabs,
-  subcomponents: { TabList, Tab, TabContent },
-  argTypes: excludeFromDemoControls(['defaultValue', 'onValueChange', 'value']),
   title: 'Manager UI Kit/Components/Tabs/Base',
 };
 
@@ -85,9 +71,6 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
   },
   render: ({}) => (
     <Tabs defaultValue="tab1">
@@ -137,11 +120,6 @@ export const Default: Story = {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
-  parameters: {
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
-  },
   render: ({}) => (
     <Tabs defaultValue='tab1'>
       <TabList>
@@ -158,11 +136,6 @@ export const Disabled: Story = {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
-  parameters: {
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
-  },
   render: ({}) => (
     <Tabs defaultValue="tab1">
       <TabList>
@@ -179,11 +152,6 @@ export const Overflow: Story = {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
-  parameters: {
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
-  },
   render: ({}) => (
     <div style={{ width: '300px' }}>
       <Tabs defaultValue="tab1">
@@ -205,11 +173,6 @@ export const WithArrows: Story = {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
-  parameters: {
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
-  },
   render: ({}) => (
     <Tabs
       defaultValue="tab1"
@@ -240,11 +203,6 @@ export const WithContent: Story = {
     imports: `import { Tabs, TabContent, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
-  parameters: {
-    docs: {
-      source: { ...staticSourceRenderConfig() },
-    },
-  },
   render: ({}) => (
     <Tabs defaultValue="tab1">
       <TabList>
