@@ -1,0 +1,62 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+import { OptionCard } from '@/components/OptionCard/OptionCard.component';
+import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
+import { ByoipContext } from '../Byoip.context';
+import { getConfigValues } from '../Byoip.utils';
+
+export const RirSelectionSection: React.FC = () => {
+  const { t } = useTranslation('byoip');
+  const { data: catalog, isLoading } = useGetCatalog();
+  const { ipRir, setIpRir } = React.useContext(ByoipContext);
+  const { trackClick } = useOvhTracking();
+
+  const ipRirValues = getConfigValues(
+    catalog?.details.product.configurations,
+    CONFIG_NAME.IPRIR,
+  ) as string[];
+
+  if (isLoading) {
+    return (
+      <div>
+        <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
+      </div>
+    );
+  }
+
+  return (
+    <OrderSection
+      title={t('rir_selection_title')}
+      description={t('rir_selection_description')}
+    >
+      <div className="grid grid-cols-3 gap-3">
+        {ipRirValues.map((value) => (
+          <OptionCard
+            key={value}
+            title={value}
+            subtitle={t(`rir_selection_${value}_description`)}
+            hasRadioButton={true}
+            isSelected={ipRir === value}
+            onClick={() => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: [value],
+              });
+              setIpRir(value);
+            }}
+          />
+        ))}
+      </div>
+    </OrderSection>
+  );
+};
