@@ -68,6 +68,10 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       url: '/confirmTerminate?id&token',
       component: 'billingConfirmTermination',
       resolve: {
+        goBack: /* @ngInject */ ($state) => () =>
+          $state.go('billing.autorenew.services', {
+            refresh: true,
+          }),
         confirmTermination: /* @ngInject */ (
           BillingTerminate,
           service,

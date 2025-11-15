@@ -4,7 +4,7 @@ import template from './activation.html';
 export default {
   bindings: {
     activateAutorenew: '<',
-    goBack: '<',
+    goToAutorenew: '<',
   },
   controller,
   template,

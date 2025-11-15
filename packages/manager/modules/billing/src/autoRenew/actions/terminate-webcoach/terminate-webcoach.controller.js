@@ -7,13 +7,15 @@ export default class {
   }
 
   onSuccess() {
-    this.goBack(
+    this.goToAutorenew(
       this.$translate.instant('autorenew_webcoach_close_service_success'),
+      'success',
+      true,
     );
   }
 
   onError(error) {
-    this.goBack(
+    this.goToAutorenew(
       this.$translate.instant(
         'autorenew_webcoach_close_service_error',
         get(error, 'data.message'),

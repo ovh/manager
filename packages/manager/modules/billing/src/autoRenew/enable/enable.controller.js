@@ -29,17 +29,19 @@ export default class {
   update(services) {
     return this.updateRenew(services)
       .then(() =>
-        this.goBack(
+        this.goToAutorenew(
           this.$translate.instant('billing_autorenew_enable_success'),
+          'success',
+          true,
         ),
       )
-      .catch((error) => {
-        return this.goBack(
+      .catch((error) =>
+        this.goToAutorenew(
           this.$translate.instant('billing_autorenew_enable_error', {
             message: getBulkActionMessage(error?.messages),
           }),
           'danger',
-        );
-      });
+        ),
+      );
   }
 }
