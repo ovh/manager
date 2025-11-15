@@ -1,15 +1,15 @@
 {
   "sms_order_time2chat_title": "Zamów numer Time2Chat",
-  "sms_order_time2chat_description": "Proszę wypełnić poniższe informacje, abyśmy mogli przetworzyć Twoje zamówienie.",
+  "sms_order_time2chat_description": "Wypełnij poniższe dane, abyśmy mogli przetworzyć Twoje zamówienie.",
   "sms_order_time2chat_action_order": "Kontynuuj",
   "sms_order_time2chat_action_cancel": "Anuluj",
   "sms_order_time2chat_label_phonenumber": "Numer telefonu (w formacie międzynarodowym 0033 lub +33)",
   "sms_order_time2chat_label_website": "Strona internetowa",
   "sms_order_time2chat_label_name": "Nazwa",
-  "sms_order_time2chat_label_company_name": "Nazwa firmy",
+  "sms_order_time2chat_label_company_name": "Nazwa handlowa",
   "sms_order_time2chat_label_brand_name": "Marka korzystająca z usługi",
-  "sms_order_time2chat_label_primary_use_case": "Główny przypadek użycia",
+  "sms_order_time2chat_label_primary_use_case": "Główne zastosowania",
   "sms_order_time2chat_label_operational_contact_name": "Imię i nazwisko kontaktu",
-  "sms_order_time2chat_label_operational_contact_email": "Email kontaktu",
+  "sms_order_time2chat_label_operational_contact_email": "E-mail kontaktu",
   "sms_order_time2chat_message_error": "Wystąpił błąd: {{error}}"
 }

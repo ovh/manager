@@ -22,7 +22,7 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_configuring": "Trwa konfiguracja VPN",
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Wystąpił błąd podczas konfiguracji VPN.",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Skonfiguruj",
-  "ovhManagerPccDashboardOptions_security_drp_action_add_site": "Dodaj stronę",
+  "ovhManagerPccDashboardOptions_security_drp_action_add_site": "Dodaj lokalizację",
   "ovhManagerPccDashboardOptions_security_drp_action_activate": "Włącz",
   "ovhManagerPccDashboardOptions_security_drp_action_delete": "Usuń"
 }

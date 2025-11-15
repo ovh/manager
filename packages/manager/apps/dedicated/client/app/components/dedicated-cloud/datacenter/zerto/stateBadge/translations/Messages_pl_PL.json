@@ -1,11 +1,11 @@
 {
-  "dedicatedCloud_zerto_site_status_vpn_creating": "Trwa konfiguracja ...",
-  "dedicatedCloud_zerto_site_status_vpn_deleting": "Trwa dezaktywacja ...",
-  "dedicatedCloud_zerto_site_status_vpn_delivered": "Konfiguracja wdrożona",
+  "dedicatedCloud_zerto_site_status_vpn_creating": "Trwa konfiguracja...",
+  "dedicatedCloud_zerto_site_status_vpn_deleting": "Trwa wyłączanie...",
+  "dedicatedCloud_zerto_site_status_vpn_delivered": "Konfiguracja zakończona",
   "dedicatedCloud_zerto_site_status_vpn_error": "Wykryto błąd",
-  "dedicatedCloud_zerto_site_status_vpn_toCreate": "Trwa konfiguracja ...",
-  "dedicatedCloud_zerto_site_status_vpn_toDelete": "Trwa dezaktywacja ...",
-  "dedicatedCloud_zerto_site_status_vpn_toUpdate": "Trwa aktualizacja ...",
+  "dedicatedCloud_zerto_site_status_vpn_toCreate": "Trwa konfiguracja...",
+  "dedicatedCloud_zerto_site_status_vpn_toDelete": "Trwa wyłączanie...",
+  "dedicatedCloud_zerto_site_status_vpn_toUpdate": "Trwa aktualizacja...",
   "dedicatedCloud_zerto_site_status_vpn_unknown": "Nieznany",
-  "dedicatedCloud_zerto_site_status_vpn_updating": "Trwa aktualizacja ..."
+  "dedicatedCloud_zerto_site_status_vpn_updating": "Trwa aktualizacja..."
 }

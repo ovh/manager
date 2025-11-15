@@ -1,5 +1,5 @@
 {
-  "dedicatedCloud_datacenter_add_site_title": "Skonfiguruj stronę Zerto",
+  "dedicatedCloud_datacenter_add_site_title": "Skonfiguruj lokalizację Zerto",
   "dedicatedCloud_datacenter_zerto_label": "Etykieta",
-  "dedicatedCloud_datacenter_add_site_success_message": "Strona została skonfigurowana."
+  "dedicatedCloud_datacenter_add_site_success_message": "Lokalizacja została skonfigurowana."
 }
