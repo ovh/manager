@@ -7,7 +7,7 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     }
   },
   /* Custom Config To Keep Extension */

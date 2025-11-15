@@ -3,15 +3,15 @@ import chalk from 'chalk';
 
 import { HELP_APPLICATION } from '../dist/src/configs/manager-forge-config.js';
 import { runForgeCli } from '../dist/src/helpers/manager-forge-cli-helper.js';
+import { askApplicationInfos } from '../dist/src/helpers/manager-forge-prompts-helper.js';
 import { forgeApplicationCli } from '../dist/src/manager-forge-application.js';
-import { askApplicationInfos } from '../dist/src/manager-forge-prompts.js';
 
 async function main() {
   try {
     await runForgeCli(
       async () => {
-        const answers = await askApplicationInfos(); // prompt AFTER banner+spinner
-        await forgeApplicationCli(answers); // no banner here anymore
+        const answers = await askApplicationInfos();
+        await forgeApplicationCli(answers);
       },
       {
         clearScreen: true,
