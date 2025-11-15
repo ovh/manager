@@ -78,6 +78,7 @@ export class TrackingPlugin extends OvhAtInternet {
       visitorId: user?.customerCode,
       legalform: user?.legalform,
       subsidiary: user?.ovhSubsidiary,
+      language: user?.language,
     };
 
     this.setDefaults(defaultConfig);
