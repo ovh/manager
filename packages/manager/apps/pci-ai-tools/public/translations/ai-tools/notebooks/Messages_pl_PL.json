@@ -17,5 +17,5 @@
   "tableActionDelete": "Usuń",
   "deleteTableTooltip": "Notebook musi być w stanie zatrzymania",
   "quantumTitle": "Emulators",
-  "qpuTitle": "QPU"
+  "qpuTitle": "QPUs"
 }
