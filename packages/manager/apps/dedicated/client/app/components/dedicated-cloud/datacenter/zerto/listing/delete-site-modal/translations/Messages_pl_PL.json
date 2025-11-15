@@ -1,8 +1,8 @@
 {
-  "dedicatedCloud_datacenter_drp_delete_site_title": "Usuń stronę Zerto",
-  "dedicatedCloud_datacenter_drp_delete_site_confirmation": "Czy na pewno chcesz usunąć stronę Zerto {{siteLabel}}?",
+  "dedicatedCloud_datacenter_drp_delete_site_title": "Usuń lokalizację Zerto",
+  "dedicatedCloud_datacenter_drp_delete_site_confirmation": "Czy na pewno chcesz usunąć lokalizację Zerto {{siteLabel}}?",
   "dedicatedCloud_datacenter_drp_delete_site_confirm": "Zatwierdź",
   "dedicatedCloud_datacenter_drp_delete_site_cancel": "Anuluj",
-  "dedicatedCloud_datacenter_drp_delete_site_success_banner": "Strona Zerto została usunięta.",
-  "dedicatedCloud_datacenter_drp_delete_site_error_banner": "Wystąpił błąd podczas usuwania strony Zerto"
+  "dedicatedCloud_datacenter_drp_delete_site_success_banner": "Lokalizacja Zerto została usunięta.",
+  "dedicatedCloud_datacenter_drp_delete_site_error_banner": "Wystąpił błąd podczas usuwania lokalizacji Zerto"
 }

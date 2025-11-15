@@ -1,0 +1,10 @@
+{
+  "switchTypeTitle": "Cambia il tipo del tuo contenitore",
+  "switchToPublicDescription": "Vuoi rendere il contenitore di dati pubblico?",
+  "switchToPrivateDescription": "Vuoi rendere il contenitore di dati privato?",
+  "switchTypeButtonCancel": "Annulla",
+  "switchTypeButtonConfirm": "Conferma",
+  "updateContainerToastErrorTitle": "Si è verificato un errore",
+  "updateContainerToastSuccessTitle": "Successo",
+  "updateContainerToastSuccessDescription": "Il contenitore è stato modificato"
+}
