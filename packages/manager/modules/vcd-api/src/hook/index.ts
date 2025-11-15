@@ -11,3 +11,4 @@ export * from './useVcdOrganization';
 export * from './useVeeamBackup';
 export * from './useVeeamBackupCatalog';
 export * from './useVcdVrackSegment';
+export * from './useUpdateVcdNetworkAcl';

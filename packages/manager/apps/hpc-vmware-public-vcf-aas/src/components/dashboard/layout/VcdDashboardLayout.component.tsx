@@ -12,7 +12,7 @@ export type DashboardTab = {
   name: string;
   title: string;
   to: string;
-  trackingActions: string[];
+  trackingActions?: string[];
 };
 
 export type TDashboardLayoutProps = {
@@ -54,9 +54,11 @@ export default function VcdDashboardLayout({
                 to={tab.to}
                 className="no-underline"
                 key={tab.name}
-                onClick={() =>
-                  trackClick(getTabTrackingParams(tab.trackingActions))
-                }
+                onClick={() => {
+                  if (tab.trackingActions) {
+                    trackClick(getTabTrackingParams(tab.trackingActions));
+                  }
+                }}
               >
                 <OdsTab isSelected={tab?.name === activeTab?.name}>
                   {tab.title}

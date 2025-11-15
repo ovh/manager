@@ -9,3 +9,4 @@ export * from './vcd-organization.type';
 export * from './vcd-storage.type';
 export * from './vcd-utility.type';
 export * from './vcd-vrack-segment.type';
+export * from './vcd-network-acl.type';
