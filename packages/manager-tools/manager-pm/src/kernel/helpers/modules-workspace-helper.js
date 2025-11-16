@@ -103,7 +103,11 @@ export function buildModuleWorkspacePath(moduleRef) {
     const candidate = path.join(managerRootPath, basePath, moduleRef);
     if (existsSync(path.join(candidate, 'package.json'))) {
       const workspacePath = path.posix.join(basePath, moduleRef);
-      logger.info(`📂 Resolved bare folder name: ${workspacePath}`);
+      logger.info(`📂 Resolved bare folder name (candidate): ${workspacePath}`);
+      return workspacePath;
+    } else if (basePath.includes(moduleRef)) {
+      const workspacePath = path.posix.join(basePath);
+      logger.info(`📂 Resolved bare folder name (default): ${workspacePath}`);
       return workspacePath;
     }
   }
