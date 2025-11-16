@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.19...@ovh-ux/logs-to-customer@1.8.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 ## [1.7.19](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.18...@ovh-ux/logs-to-customer@1.7.19) (2025-11-13)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer

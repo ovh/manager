@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-order-tracking",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "private": true,
   "description": "OVH order tracking",
   "keywords": [
@@ -39,7 +39,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.1.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",

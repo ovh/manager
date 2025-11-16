@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.2.2...@ovh-ux/manager-account-creation-app@0.2.3) (2025-11-16)
+
+
+### Bug Fixes
+
+* resolve flaky test ([e6882cb](https://github.com/ovh/manager/commit/e6882cbd16a021e333f51f0cb35caa980f4b5da3)), closes [#MANAGER-19484](https://github.com/ovh/manager/issues/MANAGER-19484)
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.2.1...@ovh-ux/manager-account-creation-app@0.2.2) (2025-11-14)
 
 
