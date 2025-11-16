@@ -72,7 +72,9 @@ export const normalizedVersionsPath = path.join(
  * @type {string}
  */
 export const criticalDependenciesPath = path.join(
+export const criticalDependenciesPath = path.join(
   managerPMPath,
+  'src/playbook/catalog/pnpm-critical-deps.json',
   'src/playbook/catalog/pnpm-critical-deps.json',
 );
 
@@ -126,6 +128,4 @@ export const modulesBasePaths = [
   'packages/manager-tools',
   'packages/manager/modules',
   'packages/manager/core',
-  'packages/manager-ui-kit',
-  'packages/manager-wiki',
 ];
