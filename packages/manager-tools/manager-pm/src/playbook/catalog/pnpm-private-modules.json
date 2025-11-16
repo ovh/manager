@@ -276,8 +276,8 @@
     "pnpm": "packages/manager-tools/manager-tests-setup"
   },
   {
-    "turbo": "--filter @ovh-ux/manager-generator",
-    "pnpm": "packages/manager-tools/manager-generator"
+    "turbo": "--filter @ovh-ux/manager-forge-cli",
+    "pnpm": "packages/manager-tools/manager-forge-cli"
   },
   {
     "turbo": "--filter @ovh-ux/manager-core-test-utils",
