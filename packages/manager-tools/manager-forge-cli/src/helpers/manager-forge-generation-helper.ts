@@ -113,7 +113,7 @@ export function toCamelCase(input: string): string {
  * formatName('user profile', 'KEBAB_CASE'); // 'user-profile'
  * formatName('user profile', 'PASCAL_CASE'); // 'UserProfile'
  */
-export function formatName(input: string, style: CaseStyle): string {
+export function formatName(input: string, style?: CaseStyle): string {
   switch (style) {
     case 'PASCAL_CASE':
       return toPascalCase(input);
@@ -181,6 +181,27 @@ export function generateFile({
 
   fs.writeFileSync(targetFilePath, `// ${options.type}: ${formattedName}\n`, 'utf8');
   console.log(chalk.green(`✅ Created ${path.relative(process.cwd(), targetFilePath)}`));
+}
+
+/**
+ * Ensures hook names always start with "use", with the rest in PascalCase.
+ *
+ * Examples:
+ *  datauser      → useDatauser
+ *  DataUser      → useDataUser
+ *  useDataUser   → useDataUser
+ *  usedatauser   → useDatauser
+ */
+export function normalizeHookName(raw: string): string {
+  const cleaned = raw.trim();
+
+  if (cleaned.startsWith('use')) {
+    // Already has use prefix → just PascalCase the rest
+    const rest = cleaned.slice(3); // remove "use"
+    return 'use' + toPascalCase(rest);
+  }
+
+  return 'use' + toPascalCase(cleaned);
 }
 
 /**

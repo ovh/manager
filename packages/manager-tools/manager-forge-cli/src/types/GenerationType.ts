@@ -23,7 +23,7 @@ export interface GeneratorOptions {
   /** File extension to use (e.g. `.ts`, `.tsx`, `.api.ts`). */
   extension: string;
   /** Naming convention style to apply to the entity name. */
-  caseStyle: CaseStyle;
+  caseStyle?: CaseStyle;
 }
 
 /**
