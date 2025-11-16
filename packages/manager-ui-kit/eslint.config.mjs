@@ -172,6 +172,10 @@ export default [
     rules: {
       'react/prop-types': 'off', // handled by TS types
       'react-hooks/exhaustive-deps': 'off', // temporarily relaxed
+      'react-hooks/set-state-in-effect': 'off', // temporarily relaxed
+      'react-hooks/preserve-manual-memoization': 'off', // temporarily relaxed
+      'react-hooks/incompatible-library': 'off', // temporarily relaxed
+      'react-hooks/refs': 'off', // temporarily relaxed
     },
   },
 

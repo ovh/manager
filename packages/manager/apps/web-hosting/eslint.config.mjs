@@ -24,7 +24,17 @@ export default [
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
-  // cssEslintConfig,
+  {
+    ...reactEslintConfig,
+    rules: {
+      ...reactEslintConfig.rules,
+      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/incompatible-library': 'off',
+      'react-hooks/refs': 'off',
+      'react-hooks/immutability': 'off',
+      'react-hooks/preserve-manual-memoization': 'off',
+    },
+  },
   {
     files: ['**/*.spec.*'],
     rules: {

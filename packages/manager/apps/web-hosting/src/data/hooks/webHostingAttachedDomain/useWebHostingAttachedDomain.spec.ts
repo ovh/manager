@@ -19,7 +19,7 @@ describe('useWebHostingAttachedDomain', () => {
     vi.clearAllMocks();
   });
 
-  it('should return webhosting attached domain list ', async () => {
+  it('should return webhosting attached domain list', async () => {
     const { result } = renderHook(() => useWebHostingAttachedDomain(), {
       wrapper,
     });
