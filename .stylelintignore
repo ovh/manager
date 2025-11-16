@@ -8,3 +8,5 @@ packages/manager/apps/pci-contacts
 **/.type-coverage/
 packages/manager-ui-kit
 packages/manager-wiki
+packages/manager-tools/manager-forge-cli
+packages/manager-tools/manager-forge-cli/template

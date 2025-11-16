@@ -4,7 +4,6 @@ coverage
 .turbo
 build
 .type-coverage
-packages/manager/core/generator/app/templates
 packages/components/ovh-shell
 www
 screenshot
@@ -37,8 +36,6 @@ packages/manager/modules/logs-to-customer
 packages/manager/modules/network-common
 packages/manager/modules/order
 packages/manager-tools/manager-cli
-packages/manager-tools/manager-generator
-packages/manager-tools/manager-generator/template
 packages/manager-tools/manager-static-analysis-kit
 packages/manager-tools/manager-tailwind-config
 packages/manager-tools/manager-tests-setup
@@ -52,8 +49,8 @@ packages/manager/apps/web-hosting
 packages/manager/apps/web-office
 packages/manager/apps/zimbra
 packages/manager-tools/manager-static-analysis-kit
-packages/manager-tools/manager-generator
-packages/manager-tools/manager-generator/bin/manager-generator.js
+packages/manager-tools/manager-forge-cli
+packages/manager-tools/manager-forge-cli/template
 packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
 packages/manager-ui-kit
 packages/manager-wiki
