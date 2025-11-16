@@ -126,4 +126,6 @@ export const modulesBasePaths = [
   'packages/manager-tools',
   'packages/manager/modules',
   'packages/manager/core',
+  'packages/manager-ui-kit',
+  'packages/manager-wiki',
 ];
