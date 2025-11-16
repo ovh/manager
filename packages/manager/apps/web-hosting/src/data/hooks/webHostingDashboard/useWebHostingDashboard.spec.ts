@@ -62,7 +62,7 @@ describe('useWebHostingDashboard', () => {
     });
   });
 
-  it('useGetHostingService: should return webhosting service ', async () => {
+  it('useGetHostingService: should return webhosting service', async () => {
     const { result } = renderHook(() => useGetHostingService('serviceName'), {
       wrapper,
     });
@@ -72,7 +72,7 @@ describe('useWebHostingDashboard', () => {
     expect(result.current.data).toEqual(webHostingMock);
   });
 
-  it('useGetDomainZone: should return domain zone ', async () => {
+  it('useGetDomainZone: should return domain zone', async () => {
     const { result } = renderHook(() => useGetDomainZone(), {
       wrapper,
     });
@@ -82,7 +82,7 @@ describe('useWebHostingDashboard', () => {
     expect(result.current.data).toEqual(domainZoneMock);
   });
 
-  it('useGetServiceInfos: should return webhosting service ', async () => {
+  it('useGetServiceInfos: should return webhosting service', async () => {
     const { result } = renderHook(() => useGetServiceInfos('serviceName'), {
       wrapper,
     });
@@ -92,7 +92,7 @@ describe('useWebHostingDashboard', () => {
     expect(result.current.data).toEqual(serviceInfosMock);
   });
 
-  it('useGetDomainService: should return webhosting service ', async () => {
+  it('useGetDomainService: should return webhosting service', async () => {
     const { result } = renderHook(() => useGetDomainService('serviceName'), {
       wrapper,
     });
