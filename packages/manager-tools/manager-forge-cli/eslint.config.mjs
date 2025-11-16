@@ -24,4 +24,17 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   tailwindJsxConfig,
+
+  /* ------------------------------------------------------------------------ */
+  /*  Node JS Configuration Adjustment                                        */
+  /* ------------------------------------------------------------------------ */
+  {
+    files: ['setupTests.ts', 'vitest.config.js'],
+    languageOptions: {
+      globals: {
+        global: 'readonly',
+      },
+      env: { node: true },
+    },
+  },
 ];
