@@ -56,9 +56,9 @@ const ignorePatterns =
  * Determines legacy lint targets.
  */
 const legacyPattern = appName
-  ? [`packages/manager/apps/${appName}/**/*.{tsx,ts}`]
+  ? [`packages/manager/apps/${appName}/**/*.ts`]
   : [
-      'packages/manager/apps/**/*.{tsx,ts}'
+      'packages/manager/apps/**/*.ts'
     ];
 
 if (verbose) {

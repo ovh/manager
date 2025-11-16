@@ -79,7 +79,7 @@ describe('<Order> tests suite', () => {
     expect(onCancelSpy).toHaveBeenCalled();
   });
 
-  it('should open order link and display order summary when order configuration is confirmed ', () => {
+  it('should open order link and display order summary when order configuration is confirmed', () => {
     vi.spyOn(window, 'open');
     const { getByTestId, queryByText } = renderComponent(true, orderLink, '');
 
