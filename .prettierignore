@@ -15,3 +15,5 @@ packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts
 packages/manager-ui-kit
 packages/manager-wiki
+packages/manager-tools/manager-forge-cli
+packages/manager-tools/manager-forge-cli/template
