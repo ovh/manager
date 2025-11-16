@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.24...@ovh-ux/manager-pci-workflow-app@0.10.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 ## [0.9.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.23...@ovh-ux/manager-pci-workflow-app@0.9.24) (2025-11-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app

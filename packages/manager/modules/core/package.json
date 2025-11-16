@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "13.2.18",
+  "version": "13.2.19",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
@@ -25,13 +25,13 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.2.5",
-    "@ovh-ux/url-builder": "^2.1.7",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.6",
+    "@ovh-ux/url-builder": "^2.1.8",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.1.0",
-    "@ovh-ux/manager-models": "^2.6.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0",
+    "@ovh-ux/manager-models": "^2.6.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-tests-setup",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Manager common tests configuration",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -12,9 +12,9 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./src/index.js",
   "module": "./src/index.js",
-  "type": "module",
   "bin": {
     "manager-test": "./bin/manager-tests-setup-cli.js"
   },
@@ -24,7 +24,7 @@
     "test": "vitest run --config src/__tests__/vite.config.mjs"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.12.0",
+    "@ovh-ux/manager-static-analysis-kit": "^0.13.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@vitejs/plugin-react-swc": "3.10.2",

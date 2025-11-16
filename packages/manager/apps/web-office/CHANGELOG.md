@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.39...@ovh-ux/manager-web-office-app@0.5.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 ## [0.4.39](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.38...@ovh-ux/manager-web-office-app@0.4.39) (2025-11-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app

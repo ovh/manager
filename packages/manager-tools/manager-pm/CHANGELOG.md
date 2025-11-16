@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.36.0...@ovh-ux/manager-pm@0.37.0) (2025-11-16)
+
+
+### Features
+
+* forge cli to generate app and its parts ([402cb76](https://github.com/ovh/manager/commit/402cb7665cb62f6bdff08cb21716b2e97cc4b2f1))
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+* pnpm migration documentation ([0fec031](https://github.com/ovh/manager/commit/0fec0319caa33951d3b0f4588a0b6f3897f73afb)), closes [#MANAGER-20071](https://github.com/ovh/manager/issues/MANAGER-20071)
+
+
+
+
+
 # [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.35.0...@ovh-ux/manager-pm@0.36.0) (2025-11-13)
 
 

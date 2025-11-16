@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.12.14...@ovh-ux/manager-react-core-application@0.13.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 ## [0.12.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.12.13...@ovh-ux/manager-react-core-application@0.12.14) (2025-11-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-core-application

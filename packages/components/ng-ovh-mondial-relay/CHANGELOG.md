@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.8.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.8.7...@ovh-ux/ng-ovh-mondial-relay@8.8.8) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-mondial-relay
+
+
+
+
+
 ## [8.8.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-mondial-relay@8.8.6...@ovh-ux/ng-ovh-mondial-relay@8.8.7) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-mondial-relay
