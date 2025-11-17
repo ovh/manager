@@ -103,7 +103,9 @@ export default class AdvancedPolicySearchController {
       (acc, key) => ({ ...acc, [key]: true }),
       {},
     );
-    this.model.identities.manual = identitiesParam?.manual || [];
+    this.model.identities.manual = (
+      identitiesParam?.manual || []
+    ).map((name) => ({ name }));
     this.updateIdentitiesParametersList();
   }
 
@@ -111,7 +113,7 @@ export default class AdvancedPolicySearchController {
     const { selected } = this.model.identities;
     return {
       selection: Object.keys(selected).filter((key) => !!selected[key]),
-      manual: this.model.identities.manual,
+      manual: this.model.identities.manual.map((d) => d.name),
     };
   }
 
