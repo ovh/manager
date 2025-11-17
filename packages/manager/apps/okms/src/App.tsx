@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
   RouterProvider,
@@ -11,14 +11,7 @@ import secretManagerRoutes from '@secret-manager/routes/routes';
 import Loading from '@/common/components/loading/Loading';
 import rootRoutes from '@/common/routes/routes';
 import { useShellContext } from '@/common/hooks/useShellContext';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 300_000,
-    },
-  },
-});
+import { queryClient } from '@/common/utils/react-query/queryClient';
 
 function App() {
   const { shell } = useShellContext();
