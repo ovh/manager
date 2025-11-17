@@ -108,5 +108,7 @@
   "multisite_cdn_activate_description": "Il CDN accelera il caricamento delle tue pagine e rafforza la sicurezza del tuo sito bloccando il traffico dannoso.",
   "multisite_cdn_activate_question": "Vuoi attivarlo adesso?",
   "multisite_cdn_activate_success": "Il CDN è stato attivato con successo",
-  "multisite_cdn_activate_error": "Si è verificato un errore durante l'attivazione del CDN"
+  "multisite_cdn_activate_error": "Si è verificato un errore durante l'attivazione del CDN",
+  "multisite_linked_domain": "{{ linkedDomains }} dominio",
+  "multisite_linked_domains": "{{ linkedDomains }} domini"
 }
