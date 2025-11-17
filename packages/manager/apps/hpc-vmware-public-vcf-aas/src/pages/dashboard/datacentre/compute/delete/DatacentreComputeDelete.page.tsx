@@ -27,7 +27,7 @@ export default function ComputeDeletePage() {
       addSuccess({
         content: t('managed_vcd_vdc_delete_resource_success'),
         includedSubRoutes: [subRoutes.datacentreCompute],
-        excludedSubRoutes: [subRoutes.order],
+        excludedSubRoutes: [subRoutes.datacentreComputeOrder],
       });
     },
     onError: (error) => {
@@ -36,7 +36,7 @@ export default function ComputeDeletePage() {
           error: error.message,
         }),
         includedSubRoutes: [subRoutes.datacentreCompute],
-        excludedSubRoutes: [subRoutes.order],
+        excludedSubRoutes: [subRoutes.datacentreComputeOrder],
       });
     },
     onSettled: closeModal,
