@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Clipboard,
   DataGridTextCell,
-  Region,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import {

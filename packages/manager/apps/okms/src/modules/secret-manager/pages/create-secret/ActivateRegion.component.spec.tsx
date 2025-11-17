@@ -1,21 +1,17 @@
 import React from 'react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import userEvent from '@testing-library/user-event';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { render, screen } from '@testing-library/react';
-import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.contants';
+import { screen } from '@testing-library/react';
+import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
 import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
-import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
 import {
   ActivateRegion,
   ActivateRegionParams,
 } from './ActivateRegion.component';
-
-let i18nValue: i18n;
+import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
+import { renderWithClient } from '@/common/utils/tests/testUtils';
 
 const navigate = vi.fn();
 
@@ -28,24 +24,9 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 const renderActivateRegion = async ({
-  isOkmsOrderProcessing,
   selectedRegion,
 }: ActivateRegionParams) => {
-  const queryClient = new QueryClient();
-  if (!i18nValue) {
-    i18nValue = await initTestI18n();
-  }
-
-  return render(
-    <I18nextProvider i18n={i18nValue}>
-      <QueryClientProvider client={queryClient}>
-        <ActivateRegion
-          isOkmsOrderProcessing={isOkmsOrderProcessing}
-          selectedRegion={selectedRegion}
-        />
-      </QueryClientProvider>
-    </I18nextProvider>,
-  );
+  return renderWithClient(<ActivateRegion selectedRegion={selectedRegion} />);
 };
 
 describe('ActivateRegion test suite', () => {
@@ -58,11 +39,9 @@ describe('ActivateRegion test suite', () => {
       const user = userEvent.setup();
       // GIVEN
       const selectedRegionMock = REGION_EU_WEST_RBX;
-      const isOkmsOrderProcessing = false;
 
       // WHEN
       await renderActivateRegion({
-        isOkmsOrderProcessing,
         selectedRegion: selectedRegionMock,
       });
 
@@ -85,11 +64,10 @@ describe('ActivateRegion test suite', () => {
     it('should render a loading state', async () => {
       // GIVEN
       const selectedRegionMock = REGION_EU_WEST_RBX;
-      const isOkmsOrderProcessing = true;
+      registerPendingOrder(selectedRegionMock);
 
       // WHEN
       await renderActivateRegion({
-        isOkmsOrderProcessing,
         selectedRegion: selectedRegionMock,
       });
 
@@ -99,9 +77,7 @@ describe('ActivateRegion test suite', () => {
       );
       expect(Spinner).toBeVisible();
 
-      await assertTextVisibility(
-        labels.secretManager.okms_activation_in_progress,
-      );
+      await assertTextVisibility('okms_activation_in_progress');
     });
   });
 });
