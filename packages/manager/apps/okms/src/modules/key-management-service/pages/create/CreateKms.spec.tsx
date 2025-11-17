@@ -1,6 +1,6 @@
 import { act, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import userEvent from '@testing-library/user-event';
+import userEvent, { UserEvent } from '@testing-library/user-event';
 import {
   assertTextVisibility,
   getOdsButtonByLabel,
@@ -11,28 +11,44 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
-import kmsListingTestIds from '../listing/KmsListing.constants';
-import * as useGetOkmsOrderLink from './useGetOkmsOrderLink';
+import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
+
+// ----- MOCKS ----- //
 
 Object.assign(window, {
   open: vi.fn().mockImplementation(() => Promise.resolve()),
 });
 
-const mockedUrl = 'mocked-order-url';
-const mockedGetOrderLink = () => mockedUrl;
-vi.spyOn(useGetOkmsOrderLink, 'useGetOkmsOrderLink').mockReturnValue({
-  getOrderLink: mockedGetOrderLink,
+// mock on react-router navigate
+const navigate = vi.fn();
+vi.mock('react-router-dom', async (importOriginal) => {
+  const module: typeof import('react-router-dom') = await importOriginal();
+  return {
+    ...module,
+    useNavigate: () => navigate,
+  };
 });
-
-const mrcCancelButtonTestId = 'cta-order-configuration-cancel';
-const mrcOrderButtonTestId = 'cta-order-configuration-order';
-const mrcFinishButtonTestId = 'cta-order-summary-finish';
 
 const regionListMock = catalogMock.plans[0].configurations[0].values;
 const firstRegionMock = locationsMock.find(
   (location) => location.name === regionListMock[0],
 );
 const firstRegionNameMock = firstRegionMock?.location || '';
+
+// ----- HELPERS ----- //
+
+const pickRegion = async (user: UserEvent) => {
+  const firstRegionOption = await screen.findByText(firstRegionNameMock);
+  await act(() => user.click(firstRegionOption));
+};
+
+const waitOrderButtonToBeEnabled = async () => {
+  await waitFor(() => {
+    expect(screen.getByTestId(CREATE_KMS_TEST_IDS.CTA_ORDER)).toBeEnabled();
+  });
+};
+
+// ----- TESTS ----- //
 
 describe('KMS creation page test suite', () => {
   it('should display the KMS creation page', async () => {
@@ -46,8 +62,8 @@ describe('KMS creation page test suite', () => {
 
     await assertTextVisibility(firstRegionNameMock);
 
-    expect(screen.getByTestId(mrcCancelButtonTestId)).toBeEnabled();
-    expect(screen.getByTestId(mrcOrderButtonTestId)).toBeDisabled();
+    expect(screen.getByTestId(CREATE_KMS_TEST_IDS.CTA_CANCEL)).toBeEnabled();
+    expect(screen.getByTestId(CREATE_KMS_TEST_IDS.CTA_ORDER)).toBeDisabled();
   });
 
   it(`should navigate back to the list on click on ${labels.create.key_management_service_create_cta_cancel}`, async () => {
@@ -61,7 +77,7 @@ describe('KMS creation page test suite', () => {
 
     await act(() => user.click(cancelButton));
 
-    expect(await screen.findByTestId(kmsListingTestIds.ctaOrder)).toBeVisible();
+    expect(navigate).toHaveBeenCalledWith(KMS_ROUTES_URLS.kmsListing);
   });
 
   it('should display an error if the API is KO', async () => {
@@ -76,69 +92,29 @@ describe('KMS creation page test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
-    await assertTextVisibility(firstRegionNameMock);
+    await pickRegion(user);
 
-    const firstRegionOption = screen.getByText(firstRegionNameMock);
+    await waitOrderButtonToBeEnabled();
+  });
 
-    await act(() => user.click(firstRegionOption));
+  it('should open the order modal on order button click', async () => {
+    const user = userEvent.setup();
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
-    await waitFor(() => {
-      expect(screen.getByTestId(mrcOrderButtonTestId)).toBeEnabled();
+    await pickRegion(user);
+
+    await waitOrderButtonToBeEnabled();
+
+    // Click on order button
+    await act(() => {
+      user.click(screen.getByTestId(CREATE_KMS_TEST_IDS.CTA_ORDER));
     });
-  });
-});
 
-const renderAndInitiateOrder = async () => {
-  const user = userEvent.setup();
-  await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
-
-  // Pick a region
-  await assertTextVisibility(firstRegionNameMock);
-
-  const firstRegionOption = screen.getByText(firstRegionNameMock);
-
-  await act(() => user.click(firstRegionOption));
-
-  // Click on order button
-  await waitFor(() => {
-    expect(screen.getByTestId(mrcOrderButtonTestId)).toBeEnabled();
-  });
-
-  await act(() => {
-    user.click(screen.getByTestId(mrcOrderButtonTestId));
-  });
-
-  // Wait for the order confirmation page to be displayed
-  await waitFor(() =>
-    expect(screen.getByTestId(mrcFinishButtonTestId)).toBeVisible(),
-  );
-};
-
-describe('order KMS test suite', () => {
-  it('should display the order confirmation page', async () => {
-    await renderAndInitiateOrder();
-
-    expect(screen.getByTestId(mrcFinishButtonTestId)).toBeVisible();
-  });
-
-  it('should open the order page on a new tab on page load', async () => {
-    await renderAndInitiateOrder();
-
-    expect(window.open).toHaveBeenCalledWith(
-      mockedUrl,
-      '_blank',
-      'noopener,noreferrer',
+    // Wait for the order modal page to be displayed
+    await waitFor(() =>
+      expect(navigate).toHaveBeenCalledWith(
+        KMS_ROUTES_URLS.kmsCreateOrderModal(firstRegionMock.name),
+      ),
     );
-  });
-
-  it(`should navigate to the listing page on click on "Terminé"`, async () => {
-    await renderAndInitiateOrder();
-
-    const ctaFinish = screen.getByTestId(mrcFinishButtonTestId);
-    expect(ctaFinish).toBeEnabled();
-
-    await act(() => userEvent.click(ctaFinish));
-
-    expect(await screen.findByTestId(kmsListingTestIds.ctaOrder)).toBeVisible();
   });
 });
