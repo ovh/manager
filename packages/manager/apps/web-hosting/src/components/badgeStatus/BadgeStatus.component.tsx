@@ -2,10 +2,19 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { BADGE_COLOR, Badge } from '@ovh-ux/muk';
 
-import { DnsStatus, GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
+import {
+  DnsStatus,
+  GitStatus,
+  ResourceStatus,
+  ServiceStatus,
+} from '@/data/types/status';
 import { DATAGRID_LINK, WEBSITE } from '@/utils/tracking.constants';
 
 type Status = GitStatus | ResourceStatus | ServiceStatus | DnsStatus;
@@ -70,7 +79,8 @@ export const BadgeStatus: React.FC<BadgeStatusProps> = ({
       }}
       data-testid={`badge-status-${itemStatus}`}
       color={statusColor}
-      className="mr-4 cursor-pointer inline-block"
+      // className="mr-4 cursor-pointer inline-block"
+      className="mr-4 cursor-pointer"
       isLoading={isLoading}
     >
       {label || t(`web_hosting_status_${itemStatus.toLowerCase()}`)}

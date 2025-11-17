@@ -10,7 +10,14 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { Message, SPINNER_SIZE, Spinner, TEXT_PRESET, Text, useNotifications } from '@ovh-ux/muk';
+import {
+  Message,
+  SPINNER_SIZE,
+  Spinner,
+  TEXT_PRESET,
+  Text,
+  useNotifications,
+} from '@ovh-ux/muk';
 
 import {
   postManagedCmsResourceWebsite,
@@ -31,12 +38,19 @@ interface ImportFormLocationState {
   step?: number;
 }
 export default function ImportForm() {
-  const { t } = useTranslation([NAMESPACES.FORM, NAMESPACES.ERROR, 'common', 'managedWordpress']);
+  const { t } = useTranslation([
+    NAMESPACES.FORM,
+    NAMESPACES.ERROR,
+    'common',
+    'managedWordpress',
+  ]);
   const { serviceName } = useParams();
   const { state } = useLocation() as {
     state: ImportFormLocationState;
   };
-  const [websiteId, setWebsiteId] = useState<string | null>(state?.websiteId ?? null);
+  const [websiteId, setWebsiteId] = useState<string | null>(
+    state?.websiteId ?? null,
+  );
   const [step, setStep] = useState<number>(state?.step ?? 1);
   const { addError, addSuccess } = useNotifications();
 
@@ -55,7 +69,10 @@ export default function ImportForm() {
     resolver: zodResolver(zForm(t).ADD_SITE_FORM_SCHEMA),
   });
 
-  const { data, refetch } = useManagedWordpressWebsiteDetails(serviceName, websiteId);
+  const { data, refetch } = useManagedWordpressWebsiteDetails(
+    serviceName,
+    websiteId,
+  );
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = useCallback(() => navigate(goBackUrl), [navigate, goBackUrl]);
@@ -77,7 +94,11 @@ export default function ImportForm() {
         } else if (attempts >= maxAttempts) {
           clearInterval(interval);
           addError(
-            <Text>{t('managedWordpress:web_hosting_managed_wordpress_import_timeout')}</Text>,
+            <Text>
+              {t(
+                'managedWordpress:web_hosting_managed_wordpress_import_timeout',
+              )}
+            </Text>,
             true,
           );
           onClose();
@@ -110,7 +131,12 @@ export default function ImportForm() {
       });
     },
     onSuccess: (response: { id?: string } | void) => {
-      if (response && typeof response === 'object' && 'id' in response && response.id) {
+      if (
+        response &&
+        typeof response === 'object' &&
+        'id' in response &&
+        response.id
+      ) {
         setWebsiteId(response.id);
       }
     },
@@ -137,7 +163,8 @@ export default function ImportForm() {
 
   // form control for step 2
   const defaultValuesStep2 = useMemo<Step2FormValues | null>(() => {
-    const wordpressData = data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress;
+    const wordpressData =
+      data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress;
 
     if (!wordpressData) {
       return null;
@@ -184,7 +211,8 @@ export default function ImportForm() {
   const taskId = data?.currentTasks?.[0]?.id;
 
   useEffect(() => {
-    const wordpressData = data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress;
+    const wordpressData =
+      data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress;
 
     if (wordpressData) {
       step2Form.reset({
@@ -236,10 +264,14 @@ export default function ImportForm() {
       addSuccess(
         <div>
           <span className="block font-bold">
-            {t('managedWordpress:web_hosting_managed_wordpress_import_success_message_part_1')}
+            {t(
+              'managedWordpress:web_hosting_managed_wordpress_import_success_message_part_1',
+            )}
           </span>
           <Text preset={TEXT_PRESET.paragraph} className="block">
-            {t('managedWordpress:web_hosting_managed_wordpress_import_success_message_part_2')}
+            {t(
+              'managedWordpress:web_hosting_managed_wordpress_import_success_message_part_2',
+            )}
           </Text>
         </div>,
         true,
@@ -284,14 +316,14 @@ export default function ImportForm() {
         />
       )}
 
-      {websiteId && step === 1 && (
+      {/* {websiteId && step === 1 && (
         <>
           <Message dismissible={false} className="w-full">
             {t('managedWordpress:web_hosting_managed_wordpress_import_before_select_element')}
             <Spinner size={SPINNER_SIZE.sm} className="ml-auto inline-block" />
           </Message>
         </>
-      )}
+      )} */}
       {step === 2 && websiteId && (
         <Step2
           t={t}

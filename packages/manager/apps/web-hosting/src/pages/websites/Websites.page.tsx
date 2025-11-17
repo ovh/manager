@@ -1,6 +1,7 @@
 import { useContext, useMemo, useRef, useState } from 'react';
 
-import { Row, VisibilityState } from '@tanstack/react-table';
+import { RowSelectionState } from '@tanstack/react-table';
+import { VisibilityState } from '@tanstack/react-table';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
 import punycode from 'punycode/punycode';
 import { useTranslation } from 'react-i18next';
@@ -51,24 +52,39 @@ export default function Websites() {
   const { t } = useTranslation('common');
   const [isExportPopoverOpen, setIsExportPopoverOpen] = useState(false);
   const [isCSVLoading, setIsCSVLoading] = useState(false);
-  const csvPopoverRef = useRef<{ hide?: () => void | Promise<void> } | null>(null);
+  const csvPopoverRef = useRef<{ hide?: () => void | Promise<void> } | null>(
+    null,
+  );
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const { notifications, addSuccess } = useNotifications();
-  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
-    useDebouncedValue('');
+  const [
+    searchInput,
+    setSearchInput,
+    debouncedSearchInput,
+    setDebouncedSearchInput,
+  ] = useDebouncedValue('');
 
-  const { data, isLoading, hasNextPage, fetchAllPages, fetchNextPage, isFetchingNextPage } =
-    useWebHostingAttachedDomain({
-      domain: punycode.toASCII(debouncedSearchInput),
-    });
+  const {
+    data,
+    isLoading,
+    hasNextPage,
+    fetchAllPages,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useWebHostingAttachedDomain({
+    domain: punycode.toASCII(debouncedSearchInput),
+  });
   const { trackClick } = useOvhTracking();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
 
-  function getResource(
-    rowOrRecord: Record<string, unknown> | Row<Record<string, unknown>>,
-  ): WebsiteType {
-    if ('original' in rowOrRecord && typeof rowOrRecord.original === 'object') {
+  const isRowLike = (
+    value: unknown,
+  ): value is { original: Record<string, unknown> } =>
+    typeof value === 'object' && value !== null && 'original' in value;
+
+  function getResource(rowOrRecord: unknown): WebsiteType {
+    if (isRowLike(rowOrRecord) && typeof rowOrRecord.original === 'object') {
       return rowOrRecord.original as WebsiteType;
     }
     return rowOrRecord as WebsiteType;
@@ -81,7 +97,9 @@ export default function Websites() {
         header: t('web_hosting_status_header_fqdn'),
         cell: ({ row }) => {
           const fqdn = getResource(row).currentState.fqdn || '';
-          const containsPunycode = fqdn.split('.').some((part) => part.startsWith('xn--'));
+          const containsPunycode = fqdn
+            .split('.')
+            .some((part) => part.startsWith('xn--'));
           const decodedFqdn = punycode.toUnicode(fqdn);
 
           return (
@@ -185,7 +203,9 @@ export default function Websites() {
           <BadgeStatusCell
             webSiteItem={getResource(row)}
             status={
-              getResource(row)?.currentState.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE
+              getResource(row)?.currentState.ownLog
+                ? ServiceStatus.ACTIVE
+                : ServiceStatus.NONE
             }
             tracking="ownLog"
             withMultisite
@@ -247,7 +267,9 @@ export default function Websites() {
       {
         id: 'actions',
         header: '',
-        cell: ({ row }) => <ActionButtonStatistics webSiteItem={getResource(row)} />,
+        cell: ({ row }) => (
+          <ActionButtonStatistics webSiteItem={getResource(row)} />
+        ),
         enableHiding: false,
       },
     ],
@@ -293,7 +315,8 @@ export default function Websites() {
     {
       id: 'git',
       label: t('web_hosting_status_header_git'),
-      getValue: (item) => t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
     },
     {
       id: 'ownLog',
@@ -309,18 +332,22 @@ export default function Websites() {
     {
       id: 'CDN',
       label: t('web_hosting_status_header_cdn'),
-      getValue: (item) => t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
     },
     {
       id: 'ssl',
       label: t('web_hosting_status_header_ssl'),
-      getValue: (item) => t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
     },
     {
       id: 'firewall',
       label: t('web_hosting_status_header_firewall'),
       getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`),
+        t(
+          `web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`,
+        ),
     },
     {
       id: 'boostOffer',
@@ -362,7 +389,7 @@ export default function Websites() {
     );
 
     const csv = generateCsv(csvConfig)(csvData);
-    const csvString = csv as unknown as string;
+    const csvString = (csv as unknown) as string;
     const blob = new Blob([csvString], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
 
@@ -425,6 +452,9 @@ export default function Websites() {
       label: t('web_hosting_export_label_all'),
     },
   ];
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  console.info('rowSelection', rowSelection);
+  console.info('items', items);
   return (
     <BaseLayout
       header={{
@@ -433,7 +463,12 @@ export default function Websites() {
       }}
       message={notifications.length ? <Notifications /> : null}
     >
+      <div>coucou toto</div>
       <Datagrid
+        rowSelection={{
+          rowSelection,
+          setRowSelection,
+        }}
         data-testid="websites-page-datagrid"
         columns={displayColumns}
         data={items}
@@ -475,7 +510,11 @@ export default function Websites() {
                     <>
                       <Icon
                         className="mr-2"
-                        name={isExportPopoverOpen ? ICON_NAME.chevronUp : ICON_NAME.chevronDown}
+                        name={
+                          isExportPopoverOpen
+                            ? ICON_NAME.chevronUp
+                            : ICON_NAME.chevronDown
+                        }
                       />
                       {t('web_hosting_export_label')}
                     </>
@@ -506,6 +545,14 @@ export default function Websites() {
           onSearch: (search) => setDebouncedSearchInput(search),
         }}
       />
+      {Object.keys(rowSelection)?.length > 0 && (
+        <div className="p-4">
+          <h3>Row Selection</h3>
+          <div className="bg-gray-100 p-2 rounded-md">
+            {JSON.stringify(rowSelection)}
+          </div>
+        </div>
+      )}
     </BaseLayout>
   );
 }

@@ -48,11 +48,16 @@ export default function MyWebsitesPage() {
     fetchAllPages,
     refetch,
     isFetching,
-  } = useManagedWordpressWebsites();
+  } = useManagedWordpressWebsites({
+    disableRefetchInterval: true,
+  });
 
-  const { data: resourceDetails, refetch: refetchResourceDetails } =
-    useManagedWordpressResourceDetails(serviceName);
+  const {
+    data: resourceDetails,
+    refetch: refetchResourceDetails,
+  } = useManagedWordpressResourceDetails(serviceName);
 
+  // const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const importPage = useGenerateUrl(`./import`, 'href');
@@ -102,7 +107,9 @@ export default function MyWebsitesPage() {
 
   const isRowSelectable = useCallback(
     (item: ManagedWordpressWebsites) =>
-      [ResourceStatus.READY, ResourceStatus.ERROR].includes(item.resourceStatus),
+      [ResourceStatus.READY, ResourceStatus.ERROR].includes(
+        item.resourceStatus,
+      ),
     [],
   );
 
@@ -123,15 +130,18 @@ export default function MyWebsitesPage() {
     () => [
       {
         id: 'defaultFQDN',
-        accessorFn: (row) => row.currentState.defaultFQDN,
+        accessorFn: (row) => row.currentState?.defaultFQDN ?? '',
         cell: ({ getValue }) => {
           const defaultFQDN = getValue<string>();
           return (
-            <div>{!defaultFQDN ? t('common:web_hosting_status_creating_label') : defaultFQDN}</div>
+            <div>
+              {!defaultFQDN
+                ? t('common:web_hosting_status_creating_label')
+                : defaultFQDN}
+            </div>
           );
         },
         header: t('common:web_hosting_status_header_fqdn'),
-        isSortable: true,
       },
       {
         id: 'resourceStatus',
@@ -139,6 +149,7 @@ export default function MyWebsitesPage() {
         cell: ({ getValue }) => {
           const status = getValue<ResourceStatus>();
           const statusColor = getStatusColor(status);
+          console.info('status :', status);
           return (
             <Badge color={statusColor}>
               {t(`common:web_hosting_status_${status?.toLowerCase()}`)}
@@ -163,90 +174,29 @@ export default function MyWebsitesPage() {
         header: '',
       },
     ],
-    [getActionItems, t],
+    [getActionItems],
   );
-  console.log('rowSelection', rowSelection);
 
   return (
     <>
-      <Datagrid<ManagedWordpressWebsites>
-        columns={columns}
-        rowSelection={{
-          rowSelection,
-          setRowSelection,
-        }}
-        data={items}
-        totalCount={items.length}
-        hasNextPage={!isFetchingNextPage && hasNextPage}
-        onFetchNextPage={(): void => {
-          void fetchNextPage();
-        }}
-        onFetchAllPages={fetchAllPages}
-        isLoading={isLoading || isFetchingNextPage}
-        topbar={
-          <div>
-            <Text preset={TEXT_PRESET.span} className="mb-4 block">
-              {t('dashboard:hosting_managed_wordpress_websites_description')}
-            </Text>
-            <div className="flex flex-wrap items-center gap-4 m-4">
-              <Button id="my-websites-create" onClick={handleCreateClick}>
-                {t(`${NAMESPACES.ACTIONS}:create`)}
-              </Button>
-              <Button
-                id="my-websites-import"
-                variant={BUTTON_VARIANT.outline}
-                onClick={handleImportClick}
-              >
-                {t('common:web_hosting_action_import')}
-              </Button>
-              <Button
-                id="my-websites-manage"
-                variant={BUTTON_VARIANT.outline}
-                onClick={handleManageClick}
-                disabled={!items?.length}
-              >
-                <>
-                  {t('common:web_hosting_action_manage_my_sites')}
-                  <Icon name={ICON_NAME.externalLink} className="ml-2" />
-                </>
-              </Button>
-              {!!Object.keys(rowSelection).length && (
-                <Button
-                  id="my-websites-delete-all"
-                  color={BUTTON_COLOR.critical}
-                  variant={BUTTON_VARIANT.outline}
-                  onClick={handleDeleteModalClick}
-                >
-                  <>
-                    {Object.keys(rowSelection).length > 1
-                      ? t('delete_my_websites', {
-                          number: Object.keys(rowSelection).length,
-                        })
-                      : t('common:delete_my_website')}
-                    <Icon name={ICON_NAME.trash} className="ml-2" />
-                  </>
-                </Button>
-              )}
-              <Text preset={TEXT_PRESET.span} className="self-center">
-                {t('managedWordpress:web_hosting_managed_wordpress_quota_used', {
-                  used: resourceDetails?.currentState?.quotas?.websites?.totalUsage || 0,
-                  total: resourceDetails?.currentState?.quotas?.websites?.totalQuota || 0,
-                })}
-              </Text>
-              <Button
-                id="refresh"
-                onClick={handleRefreshClick}
-                data-testid="refresh"
-                variant={BUTTON_VARIANT.outline}
-                loading={isFetching}
-                className="ml-auto"
-              >
-                <Icon name={ICON_NAME.refresh} />
-              </Button>
-            </div>
+      {data && data?.length > 0 && (
+        <Datagrid
+          columns={columns}
+          rowSelection={{
+            rowSelection,
+            setRowSelection,
+          }}
+          data={data}
+        />
+      )}
+      {Object.keys(rowSelection)?.length > 0 && (
+        <div className="p-4">
+          <h3>Row Selection</h3>
+          <div className="bg-gray-100 p-2 rounded-md">
+            {JSON.stringify(rowSelection)}
           </div>
-        }
-      />
+        </div>
+      )}
       <Outlet />
     </>
   );

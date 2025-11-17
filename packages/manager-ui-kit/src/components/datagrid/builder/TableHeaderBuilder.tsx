@@ -44,7 +44,8 @@ export const getRowSelection = <T,>() => ({
     <Checkbox
       id={row.id}
       name={`select-${row.id}`}
-      onChange={() => row.toggleSelected()}
+      // onChange={() => row.toggleSelected()}
+      onCheckedChange={() => row.toggleSelected()}
       checked={row.getIsSelected()}
       disabled={!row.getCanSelect()}
     >
@@ -57,12 +58,13 @@ export const getRowSelection = <T,>() => ({
     <Checkbox
       id="select-all"
       name="select-all"
-      onChange={() => table.toggleAllRowsSelected()}
+      // onChange={() => table.toggleAllRowsSelected()}
+      onCheckedChange={() => table.toggleAllRowsSelected()}
       checked={table.getIsAllRowsSelected()}
     >
       <CheckboxControl />
     </Checkbox>
   ),
   id: 'select',
-  maxSize: 20,
+  minSize: 20,
 });
