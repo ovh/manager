@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.53.0...@ovh-ux/manager-billing@0.54.0) (2025-11-17)
+
+
+### Features
+
+* **billing:** us ftc compliance, commitment wording on my services ([581052b](https://github.com/ovh/manager/commit/581052b7b1c66e3e7eb34874db4b5f8baece06ef)), closes [#MANAGER-19940](https://github.com/ovh/manager/issues/MANAGER-19940)
+
+
+
+
+
 # [0.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.52.4...@ovh-ux/manager-billing@0.53.0) (2025-11-12)
 
 
