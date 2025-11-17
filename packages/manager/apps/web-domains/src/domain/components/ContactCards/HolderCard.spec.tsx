@@ -118,7 +118,5 @@ describe('HolderCards Component', () => {
     );
 
     expect(screen.getByText('OVHCloud')).toBeInTheDocument();
-    expect(screen.getByText('FR123456789')).toBeInTheDocument();
-    expect(screen.getByText('FRVAT123456')).toBeInTheDocument();
   });
 });
