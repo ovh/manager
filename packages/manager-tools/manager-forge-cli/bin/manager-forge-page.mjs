@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 
-import { HELP_PAGE } from '../dist/src/configs/manager-forge-config.js';
+import { HELP_PAGE } from '../dist/src/configs/manager-forge-help-config.js';
 import { runForgeCli } from '../dist/src/helpers/manager-forge-cli-helper.js';
 import { forgePageCli } from '../dist/src/manager-forge-page.js';
 
