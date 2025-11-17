@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.0...@ovh-ux/manager-pci-instances-app@0.10.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* **pci-instances:** hide datagrid on query error ([2b08626](https://github.com/ovh/manager/commit/2b086262dd49106e18644b6b4366939bc1f92de5)), closes [#TAPC-5302](https://github.com/ovh/manager/issues/TAPC-5302)
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.8...@ovh-ux/manager-pci-instances-app@0.10.0) (2025-11-16)
 
 
