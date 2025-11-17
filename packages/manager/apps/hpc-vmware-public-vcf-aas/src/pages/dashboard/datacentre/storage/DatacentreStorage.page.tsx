@@ -97,7 +97,7 @@ export default function StorageListingPage() {
           isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
           onClick={() => {
             trackClick(TRACKING.storage.addStorage);
-            navigate(subRoutes.order);
+            navigate(subRoutes.datacentreStorageOrder);
           }}
           data-testid={TEST_IDS.storageOrderCta}
         />

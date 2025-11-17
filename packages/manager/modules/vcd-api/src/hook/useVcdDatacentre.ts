@@ -22,5 +22,6 @@ export const useVcdDatacentre = (id: string, vdcId: string) => {
     queryFn: () => getVcdDatacentre(id, vdcId),
     retry: false,
     placeholderData: keepPreviousData,
+    enabled: !!id && !!vdcId,
   });
 };

@@ -4,7 +4,6 @@ import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
-import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { MessageList } from '@/components/message/MessageList.component';
 import { getTabTrackingParams } from '@/tracking.constants';
 
@@ -17,7 +16,6 @@ export type DashboardTab = {
 
 export type TDashboardLayoutProps = {
   tabs: DashboardTab[];
-  breadcrumbItems: BreadcrumbItem[];
   header: HeadersProps;
   message?: React.ReactElement;
   backLinkLabel?: string;
@@ -26,7 +24,6 @@ export type TDashboardLayoutProps = {
 
 export default function VcdDashboardLayout({
   tabs,
-  breadcrumbItems,
   header,
   message,
   backLinkLabel,
@@ -65,7 +62,7 @@ export default function VcdDashboardLayout({
             ))}
           </OdsTabs>
         }
-        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        breadcrumb={<Breadcrumb />}
         message={
           message ? (
             <>
