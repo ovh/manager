@@ -65,5 +65,9 @@
   "errorCreatingApp": "Error",
   "successCreatingAppTitle": "Realizado",
   "successCreatingAppDescription": "La app se ha creado correctamente",
-  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
+  "summaryCustomMetricsUrlLabel": "URL: ",
+  "summaryCustomMetricsFormatLabel": "Formato: {{for}}",
+  "summaryCustomMetricsLocationLabel": "Ubicación: ",
+  "summaryCustomMetricsTargetValueLabel": "Valor: {{val}}"
 }

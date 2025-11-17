@@ -64,7 +64,17 @@ export function useOrderFunnel(
         replicasMax: z.number().optional(),
         replicasMin: z.number().optional(),
         resourceType: z
-          .nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum)
+          .union([
+            z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+            z.literal('CUSTOM'),
+          ])
+          .optional(),
+        metricUrl: z.string().optional(),
+        dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
+        dataLocation: z.string().optional(),
+        targetMetricValue: z.number().optional(),
+        aggregationType: z
+          .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
           .optional(),
       })
       .optional(),
@@ -129,6 +139,11 @@ export function useOrderFunnel(
         replicasMax: 1,
         replicasMin: 1,
         resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+        metricUrl: '',
+        dataFormat: ai.app.CustomMetricsFormatEnum.JSON,
+        dataLocation: '',
+        targetMetricValue: 0,
+        aggregationType: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
       },
       httpPort: 8080,
       labels: [],

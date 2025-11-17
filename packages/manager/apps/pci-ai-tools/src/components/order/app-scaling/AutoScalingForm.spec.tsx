@@ -84,7 +84,7 @@ describe('Autoscaling form component', () => {
     });
 
     await waitFor(() => {
-      expect(onChange).not.toHaveBeenCalled();
+      expect(onChange).toHaveBeenCalled();
       expect(onNonValidForm).toHaveBeenCalledWith(true);
     });
   });

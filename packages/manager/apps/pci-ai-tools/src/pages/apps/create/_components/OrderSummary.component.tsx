@@ -199,6 +199,8 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 
 const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
+  const isCustomMetric = order.scaling.resourceType === 'CUSTOM';
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-2">
@@ -237,13 +239,15 @@ const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
               })}
             </span>
           </div>
-          <div className="flex items-center pl-4 gap-2">
-            <span>
-              {t('summaryScalingAverage', {
-                tresh: order.scaling.averageUsageTarget,
-              })}
-            </span>
-          </div>
+          {!isCustomMetric && (
+            <div className="flex items-center pl-4 gap-2">
+              <span>
+                {t('summaryScalingAverage', {
+                  tresh: order.scaling.averageUsageTarget,
+                })}
+              </span>
+            </div>
+          )}
         </div>
       ) : (
         <div>

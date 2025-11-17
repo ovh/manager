@@ -27,5 +27,9 @@
   "deleteAppButton": "Delete application",
   "cliTitle": "CLI",
   "cliCodeTitle": "You can create the same application using these command lines in your ovhai CLI.",
-  "cliEquivalentToastMessage": "CLI command copied"
+  "cliEquivalentToastMessage": "CLI command copied",
+  "customMetricsUrlLabel": "URL: ",
+  "customMetricsFormatLabel": "Format: {{for}}",
+  "customMetricsLocationLabel": "Location: ",
+  "customMetricsTargetValueLabel": "Value: {{val}}"
 }
