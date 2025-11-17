@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.14...@ovh-ux/manager-pci-rancher-app@1.30.0) (2025-11-17)
+
+
+### Features
+
+* **pci-rancher:** add iam listing ([b31df1b](https://github.com/ovh/manager/commit/b31df1b8ecaadf037a4d912207589d93830252a4)), closes [#TAPC-4729](https://github.com/ovh/manager/issues/TAPC-4729)
+* **pci-rancher:** add warning on generate access modal ([9b4e6bf](https://github.com/ovh/manager/commit/9b4e6bfcc7863c0a2974e6949c5f54b19c14b5f4)), closes [#TAPC-5136](https://github.com/ovh/manager/issues/TAPC-5136)
+* **pci-rancher:** create iam authentification ([e82f4c0](https://github.com/ovh/manager/commit/e82f4c0fea332e90ed2f25d130b2a6df9f5351dd)), closes [#TAPC-4728](https://github.com/ovh/manager/issues/TAPC-4728)
+
+
+
+
+
 ## [1.29.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.13...@ovh-ux/manager-pci-rancher-app@1.29.14) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
