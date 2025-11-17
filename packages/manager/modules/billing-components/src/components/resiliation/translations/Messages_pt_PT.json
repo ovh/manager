@@ -10,5 +10,7 @@
   "billing_resiliation_success": "O seu pedido de rescisão foi efetuado.",
   "billing_resiliation_error": "Lamentamos, mas ocorreu um erro aquando do pedido de rescisão.",
   "billing_resiliation_cancel": "Não, recusar",
-  "billing_resiliation_validate": "Sim, rescindir"
+  "billing_resiliation_validate": "Sim, rescindir",
+  "billing_resiliation_title_us": "Rescindir o seu compromisso",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE_us": "Cancelar o seu compromisso e manter o seu serviço sem compromisso."
 }

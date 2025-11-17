@@ -4,5 +4,9 @@
   "billing_cancel_commitment_success": "Die Anfrage zur Stornierung der Abonnementbestellung wurde registriert",
   "billing_cancel_commitment_error": "Bei der Stornierung ist ein Fehler aufgetreten.",
   "billing_cancel_commitment_confirm": "Bestätigen",
-  "billing_cancel_commitment_cancel": "Abbrechen"
+  "billing_cancel_commitment_cancel": "Abbrechen",
+  "billing_cancel_commitment_us": "Anfrage zur Vertragsbindung stornieren",
+  "billing_cancel_commitment_description_us": "Sind Sie sicher, dass Sie die Anfrage zur Vertragsbindung stornieren möchten? In diesem Fall erhalten Sie keinen Vorzugspreis",
+  "billing_cancel_commitment_success_us": "Die Anfrage zur Stornierung der Vertragsbindung wurde registriert.",
+  "billing_cancel_commitment_error_us": "Bei der Stornierung ist ein Fehler aufgetreten."
 }

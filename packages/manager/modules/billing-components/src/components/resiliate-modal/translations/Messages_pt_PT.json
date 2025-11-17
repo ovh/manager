@@ -13,5 +13,7 @@
   "billing_resiliate_terminateAtEngagementDate_error": "Ocorreu um erro aquando do pedido de rescisão à data de fim do compromisso deste serviço:",
   "billing_resiliate_terminateAtExpirationDate_success": "O pedido de rescisão deste serviço na data de expiração foi registado com sucesso.",
   "billing_resiliate_terminateAtExpirationDate_error": "Ocorreu um erro aquando do pedido de rescisão do serviço na data de expiração:",
-  "billing_resiliate_error": "Lamentamos, mas ocorreu um erro aquando do pedido de rescisão:"
+  "billing_resiliate_error": "Lamentamos, mas ocorreu um erro aquando do pedido de rescisão:",
+  "billing_resiliate_terminateAtEngagementDate_us": "Rescindir o serviço na data de fim do compromisso",
+  "billing_resiliate_terminateAtEngagementDate_error_us": "Ocorreu um erro aquando do pedido de rescisão à data de fim do compromisso deste serviço:"
 }
