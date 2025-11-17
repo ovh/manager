@@ -97,13 +97,13 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 />
               )}
             />
-            <label className="ml-2 cursor-pointer">
+            <label className="ml-4 cursor-pointer">
               <OdsText preset={ODS_TEXT_PRESET.heading6}>
                 {t('dashboard:hosting_multisite_domain_configuration_countriesIp')}
               </OdsText>
             </label>
           </div>
-          <OdsText preset={ODS_TEXT_PRESET.caption}>
+          <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 mt-4 mb-5">
             {t('multisite:multisite_add_website_advanced_options_ip')}
           </OdsText>
           <Controller
@@ -143,13 +143,13 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 />
               )}
             />
-            <label className="ml-2 cursor-pointer">
+            <label className="ml-4 cursor-pointer">
               <OdsText preset={ODS_TEXT_PRESET.heading6}>
                 {t('dashboard:hosting_add_step3_firewall')}
               </OdsText>
             </label>
           </div>
-          <OdsText preset={ODS_TEXT_PRESET.caption}>
+          <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 mt-4">
             {t('multisite:multisite_add_website_advanced_options_firewall')}
           </OdsText>
         </OdsCard>
@@ -170,13 +170,13 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 />
               )}
             />
-            <label className="ml-2 cursor-pointer">
+            <label className="ml-4 cursor-pointer">
               <OdsText preset={ODS_TEXT_PRESET.heading6}>
                 {t('dashboard:hosting_multisite_domain_configuration_cdn')}
               </OdsText>
             </label>
           </div>
-          <OdsText preset={ODS_TEXT_PRESET.caption}>
+          <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 mt-4">
             {t('multisite:multisite_add_website_advanced_options_cdn')}
           </OdsText>
         </OdsCard>

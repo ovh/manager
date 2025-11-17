@@ -30,7 +30,7 @@ describe('useGetCDNProperties', () => {
   });
 });
 
-it('useGetServiceNameCdn: should return webhosting cdn ', async () => {
+it('useGetServiceNameCdn: should return webhosting cdn', async () => {
   const { result } = renderHook(() => useGetServiceNameCdn('serviceName'), {
     wrapper,
   });
@@ -40,7 +40,7 @@ it('useGetServiceNameCdn: should return webhosting cdn ', async () => {
   expect(result.current.data).toEqual(serviceNameCdnMock);
 });
 
-it('useGetCdnOption: should return webhosting cdn options ', async () => {
+it('useGetCdnOption: should return webhosting cdn options', async () => {
   const { result } = renderHook(() => useGetCdnOption('serviceName', 'domain'), {
     wrapper,
   });
