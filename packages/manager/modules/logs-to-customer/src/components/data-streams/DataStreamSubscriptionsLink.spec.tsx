@@ -6,10 +6,13 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { i18n } from 'i18next';
 import DataStreamSubscriptionsLink from './DataStreamSubscriptionsLink.component';
 
-let i18nForTests: i18n;
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (translationKey: string) => translationKey,
+  }),
+}));
 
 describe('DataStreamSubscriptionsLink', () => {
   const shellContext = {
@@ -28,13 +31,11 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('renders a link with correct nbSubscription count', async () => {
     render(
-      <I18nextProvider i18n={i18nForTests}>
-        <ShellContext.Provider
-          value={(shellContext as unknown) as ShellContextType}
-        >
-          <DataStreamSubscriptionsLink {...props} />
-        </ShellContext.Provider>
-      </I18nextProvider>,
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <DataStreamSubscriptionsLink {...props} />
+      </ShellContext.Provider>,
     );
 
     await waitFor(() => {
@@ -45,13 +46,11 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('enables the link if this is not a substream (parentStreamId is not provided)', async () => {
     render(
-      <I18nextProvider i18n={i18nForTests}>
-        <ShellContext.Provider
-          value={(shellContext as unknown) as ShellContextType}
-        >
-          <DataStreamSubscriptionsLink {...props} />
-        </ShellContext.Provider>
-      </I18nextProvider>,
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <DataStreamSubscriptionsLink {...props} />
+      </ShellContext.Provider>,
     );
 
     await waitFor(() => {
@@ -62,16 +61,14 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('disables the link if this is a substream (parentStreamId is provided)', async () => {
     render(
-      <I18nextProvider i18n={i18nForTests}>
-        <ShellContext.Provider
-          value={(shellContext as unknown) as ShellContextType}
-        >
-          <DataStreamSubscriptionsLink
-            {...props}
-            parentStreamId="testParentStreamId"
-          />
-        </ShellContext.Provider>
-      </I18nextProvider>,
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <DataStreamSubscriptionsLink
+          {...props}
+          parentStreamId="testParentStreamId"
+        />
+      </ShellContext.Provider>,
     );
 
     await waitFor(() => {
@@ -82,13 +79,11 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('does not renders tooltip if this is not a substream (parentStreamId is not provided)', async () => {
     render(
-      <I18nextProvider i18n={i18nForTests}>
-        <ShellContext.Provider
-          value={(shellContext as unknown) as ShellContextType}
-        >
-          <DataStreamSubscriptionsLink {...props} />
-        </ShellContext.Provider>
-      </I18nextProvider>,
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <DataStreamSubscriptionsLink {...props} />
+      </ShellContext.Provider>,
     );
 
     await waitFor(() => {
@@ -100,16 +95,14 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('render tooltip if this is a substream (parentStreamId is provided)', async () => {
     render(
-      <I18nextProvider i18n={i18nForTests}>
-        <ShellContext.Provider
-          value={(shellContext as unknown) as ShellContextType}
-        >
-          <DataStreamSubscriptionsLink
-            {...props}
-            parentStreamId="testParentStreamId"
-          />
-        </ShellContext.Provider>
-      </I18nextProvider>,
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <DataStreamSubscriptionsLink
+          {...props}
+          parentStreamId="testParentStreamId"
+        />
+      </ShellContext.Provider>,
     );
 
     await waitFor(() => {
