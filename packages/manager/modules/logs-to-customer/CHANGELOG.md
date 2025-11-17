@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.8.0...@ovh-ux/logs-to-customer@1.8.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* logs to custom ts issues ([dccfb01](https://github.com/ovh/manager/commit/dccfb01792d634c3b4079c658691b24bd6796037))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.19...@ovh-ux/logs-to-customer@1.8.0) (2025-11-16)
 
 
