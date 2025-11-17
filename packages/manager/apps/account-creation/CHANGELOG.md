@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.2.3...@ovh-ux/manager-account-creation-app@0.3.0) (2025-11-17)
+
+
+### Features
+
+* **account-creation:** manage redirection from settings page ([68b8c3f](https://github.com/ovh/manager/commit/68b8c3fe3308b7ab9cfaa256fa7cbed850023081)), closes [#MANAGER-17394](https://github.com/ovh/manager/issues/MANAGER-17394)
+
+
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.2.2...@ovh-ux/manager-account-creation-app@0.2.3) (2025-11-16)
 
 
