@@ -69,11 +69,12 @@ describe('useRetentions', () => {
       const params: Omit<RetentionParams, 'signal'> = {
         resourceName: 'test-resource',
         infrastructureId: 'infra-123',
+        retentionTypes: 'METRICS_TENANT',
       };
 
       const queryKey = getRetentionsQueryKey(params);
 
-      expect(queryKey).toEqual(['retentions', 'test-resource', 'infra-123']);
+      expect(queryKey).toEqual(['retentions', 'test-resource', 'infra-123', 'METRICS_TENANT']);
     });
 
     it('should generate different query keys for different parameters', () => {
@@ -110,6 +111,7 @@ describe('useRetentions', () => {
         expect(mockGetRetentions).toHaveBeenCalledWith({
           resourceName,
           infrastructureId,
+          retentionTypes: 'METRICS_TENANT',
           signal: expect.any(AbortSignal) as AbortSignal,
         });
       });
@@ -265,6 +267,7 @@ describe('useRetentions', () => {
         expect(mockGetRetentions).toHaveBeenCalledWith({
           resourceName,
           infrastructureId,
+          retentionTypes: 'METRICS_TENANT',
           signal: expect.any(AbortSignal) as AbortSignal,
         });
       });
@@ -351,11 +354,13 @@ describe('useRetentions', () => {
       expect(mockGetRetentions).toHaveBeenCalledWith({
         resourceName,
         infrastructureId: infrastructureId1,
+        retentionTypes: 'METRICS_TENANT',
         signal: expect.any(AbortSignal) as AbortSignal,
       });
       expect(mockGetRetentions).toHaveBeenCalledWith({
         resourceName,
         infrastructureId: infrastructureId2,
+        retentionTypes: 'METRICS_TENANT',
         signal: expect.any(AbortSignal) as AbortSignal,
       });
     });
