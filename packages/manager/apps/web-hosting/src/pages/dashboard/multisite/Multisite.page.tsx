@@ -69,7 +69,16 @@ export default function MultisitePage() {
         id: 'linkedDomains',
         label: t('web_hosting_status_header_linked_domains'),
         isSortable: false,
-        cell: (item) => <span>{item.currentState?.linkedDomains}</span>,
+        cell: (item) => (
+          <span>
+            {t(
+              `multisite:multisite_linked_${
+                item.currentState?.linkedDomains > 1 ? 'domains' : 'domain'
+              }`,
+              { linkedDomains: item.currentState?.linkedDomains },
+            )}
+          </span>
+        ),
       },
       {
         id: 'path',
