@@ -7,22 +7,71 @@
         data-wizard-on-finish="updateResource"
         data-wizard-title="'exchange_tab_RESOURCES_edit_resource' | translate"
     >
-        <div data-wizard-step data-wizard-step-valid="ctrl.isValid()">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadResourceData"
+            data-wizard-step-valid="isValid()"
+        >
             <p
                 data-translate="exchange_tab_RESOURCES_edit_resource_step2_title"
                 data-translate-values="{ t0: ctrl.model.slicedEmail }"
             ></p>
-
-            <form name="ctrl.updateResourceForm">
+            <oui-spinner data-ng-if="ctrl.isLoading"></oui-spinner>
+            <form name="ctrl.updateResourceForm" data-ng-if="!ctrl.isLoading">
                 <div
                     class="form-group"
-                    data-ng-class="{'has-error': ctrl.updateResourceForm.displayName.$dirty && ctrl.updateResourceForm.displayName.$invalid}"
+                    data-ng-class="{'has-error': ctrl.updateResourceForm.resourceEmail.$dirty && (ctrl.takenEmailError || ctrl.updateResourceForm.resourceEmail.$invalid)}"
                 >
                     <label
                         class="control-label required"
+                        for="resourceEmail"
+                        data-translate="exchange_tab_RESOURCES_add_resource_email"
+                    ></label>
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="resourceEmail"
+                            maxlength="256"
+                            name="resourceEmail"
+                            required
+                            data-ng-change="ctrl.checkTakenEmails()"
+                            data-ng-model="ctrl.model.resourceEmailAddress"
+                            data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/"
+                        />
+                        <span class="input-group-addon">@</span>
+                        <select
+                            class="form-control"
+                            required
+                            data-ng-change="ctrl.checkTakenEmails()"
+                            disabled
+                            data-ng-model="ctrl.model.resourceEmailDomain"
+                            data-ng-options="domain for domain in ctrl.availableDomains track by domain"
+                        >
+                        </select>
+                    </div>
+                    <small
+                        class="help-block"
+                        data-translate="exchange_tab_RESOURCES_add_resource_taken_email_warning"
+                        data-ng-if="ctrl.takenEmailError"
+                    ></small>
+                </div>
+
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.updateResourceForm.displayName.$dirty && (ctrl.takenEmailError || ctrl.updateResourceForm.displayName.$invalid)}"
+                >
+                    <label
+                        class="control-label d-inline-block required"
                         for="displayName"
                         data-translate="exchange_tab_RESOURCES_add_resource_name"
                     ></label>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{ 'exchange_tab_RESOURCES_add_resource_name_helper' | translate }}"
+                        data-oui-popover-placement="right"
+                    ></button>
                     <input
                         type="text"
                         class="form-control"
@@ -31,27 +80,9 @@
                         name="displayName"
                         required
                         data-ng-model="ctrl.model.displayName"
-                        data-ng-pattern="/^[^<>]+$/"
                     />
                 </div>
-                <div
-                    class="form-group"
-                    data-ng-class="{'has-error': ctrl.updateResourceForm.company.$dirty && ctrl.updateResourceForm.company.$invalid}"
-                >
-                    <label
-                        for="company"
-                        data-translate="exchange_tab_RESOURCES_add_resource_company"
-                    ></label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="company"
-                        maxlength="256"
-                        name="company"
-                        data-ng-model="ctrl.model.company"
-                        data-ng-pattern="/^[^<>]+$/"
-                    />
-                </div>
+
                 <div
                     class="form-group"
                     data-ng-class="{'has-error': ctrl.updateResourceForm.resourceCapacity.$dirty && ctrl.updateResourceForm.resourceCapacity.$invalid}"
@@ -67,9 +98,7 @@
                         id="resourceCapacity"
                         name="resourceCapacity"
                         required
-                        data-ng-min="0"
                         min="0"
-                        data-ng-max="1024"
                         max="1024"
                         data-ng-model="ctrl.model.capacity"
                         data-oui-tooltip="{{'exchange_tab_RESOURCES_add_resource_capacity_tooltip' | translate}}"
@@ -81,13 +110,186 @@
                     ></small>
                 </div>
 
-                <oui-checkbox
-                    id="allowConflict"
-                    data-model="ctrl.model.allowConflict"
-                    ><span
-                        data-translate="exchange_tab_RESOURCES_add_resource_allow_conflict"
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.updateResourceForm.maximumDuration.$dirty && ctrl.updateResourceForm.maximumDuration.$invalid}"
+                >
+                    <label
+                        class="control-label d-inline-block"
+                        for="maximumDuration"
+                        data-translate="exchange_tab_RESOURCES_add_resource_maximum_duration"
+                    ></label>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{ 'exchange_tab_RESOURCES_add_resource_maximum_duration_helper' | translate }}"
+                        data-oui-popover-placement="right"
+                    ></button>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="maximumDuration"
+                        name="maximumDuration"
+                        min="0"
+                        data-ng-model="ctrl.model.maximumDuration"
+                    />
+                </div>
+
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.updateResourceForm.company.$dirty && ctrl.updateResourceForm.company.$invalid}"
+                >
+                    <label
+                        for="company"
+                        data-translate="exchange_tab_RESOURCES_add_resource_company"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="company"
+                        maxlength="256"
+                        name="company"
+                        data-ng-model="ctrl.model.company"
+                    />
+                </div>
+
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.updateResourceForm.location.$dirty && ctrl.updateResourceForm.location.$invalid}"
+                    data-ng-if="ctrl.services.navigation.currentActionData.type !== 'equipment'"
+                >
+                    <label
+                        for="location"
+                        data-translate="exchange_tab_RESOURCES_add_resource_location"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="location"
+                        maxlength="256"
+                        name="location"
+                        data-ng-model="ctrl.model.location"
+                    />
+                </div>
+
+                <oui-button
+                    class="mb-4"
+                    data-variant="link"
+                    data-icon-right="{{'oui-icon-chevron-' + ($ctrl.displayAdvancedSections ? 'up' : 'down')}}"
+                    data-ng-click="$ctrl.displayAdvancedSections = !$ctrl.displayAdvancedSections"
+                >
+                    <span
+                        data-translate="exchange_tab_RESOURCES_more_options"
                     ></span>
-                </oui-checkbox>
+                </oui-button>
+
+                <div data-ng-if="$ctrl.displayAdvancedSections">
+                    <div class="form-group">
+                        <label
+                            class="control-label d-inline-block"
+                            data-translate="exchange_tab_RESOURCES_add_resource_show_meeting_details"
+                        ></label>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{ 'exchange_tab_RESOURCES_add_resource_show_meeting_details_helper' | translate }}"
+                            data-oui-popover-placement="right"
+                        ></button>
+                        <div
+                            class="oui-radio"
+                            data-ng-repeat="detail in ctrl.availableShowMeetingDetails track by $index"
+                        >
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="showMeetingDetails-{{$index}}"
+                                name="showMeetingDetails"
+                                data-ng-model="ctrl.model.showMeetingDetails"
+                                data-ng-value="detail"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="showMeetingDetails-{{$index}}"
+                            >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-ng-bind="('exchange_tab_RESOURCES_add_resource_show_meeting_details_' + detail) | translate"
+                                    ></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': ctrl.updateResourceForm.bookingWindow.$dirty && ctrl.updateResourceForm.bookingWindow.$invalid}"
+                    >
+                        <label
+                            class="control-label d-inline-block"
+                            for="bookingWindow"
+                            data-translate="exchange_tab_RESOURCES_add_resource_booking_window"
+                        ></label>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{ 'exchange_tab_RESOURCES_add_resource_booking_window_helper' | translate }}"
+                            data-oui-popover-placement="right"
+                        ></button>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="bookingWindow"
+                            name="bookingWindow"
+                            min="0"
+                            data-ng-pattern="/^\d*$/"
+                            data-ng-model="ctrl.model.bookingWindow"
+                        />
+                    </div>
+
+                    <oui-checkbox
+                        id="allowConflict"
+                        data-model="ctrl.model.allowConflict"
+                        ><span
+                            data-translate="exchange_tab_RESOURCES_add_resource_allow_conflict"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{ 'exchange_tab_RESOURCES_add_resource_allow_conflict_helper' | translate }}"
+                            data-oui-popover-placement="right"
+                        ></button>
+                    </oui-checkbox>
+
+                    <oui-checkbox
+                        id="deleteComments"
+                        data-model="ctrl.model.deleteComments"
+                        ><span
+                            data-translate="exchange_tab_RESOURCES_add_resource_delete_comments"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{ 'exchange_tab_RESOURCES_add_resource_delete_comments_helper' | translate }}"
+                            data-oui-popover-placement="right"
+                        ></button>
+                    </oui-checkbox>
+
+                    <oui-checkbox
+                        id="deleteSubject"
+                        data-model="ctrl.model.deleteSubject"
+                        ><span
+                            data-translate="exchange_tab_RESOURCES_add_resource_delete_subject"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover="{{ 'exchange_tab_RESOURCES_add_resource_delete_subject_helper' | translate }}"
+                            data-oui-popover-placement="right"
+                        ></button>
+                    </oui-checkbox>
+                </div>
             </form>
         </div>
 
@@ -98,38 +300,88 @@
             ></p>
             <dl class="dl-horizontal dl-lg">
                 <dt
-                    data-ng-if="ctrl.model.displayName"
-                    data-translate="exchange_tab_RESOURCES_add_resource_name"
+                    data-translate="exchange_tab_RESOURCES_add_resource_email"
                 ></dt>
-                <dd
-                    class="word-break"
-                    data-ng-if="ctrl.model.displayName"
-                    data-ng-bind-html="ctrl.model.displayName | wucSliceContent: 150"
-                ></dd>
+                <dd data-ng-bind="ctrl.buildEmailAddress()"></dd>
+
                 <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_name"
                     data-ng-if="ctrl.model.company"
-                    data-translate="exchange_tab_RESOURCES_add_resource_company"
                 ></dt>
                 <dd
                     class="word-break"
+                    data-ng-bind="ctrl.model.company | wucSliceContent: 150"
                     data-ng-if="ctrl.model.company"
-                    data-ng-bind-html="ctrl.model.company | wucSliceContent: 150"
                 ></dd>
+
                 <dt
                     data-translate="exchange_tab_RESOURCES_add_resource_capacity"
                 ></dt>
                 <dd data-ng-bind="ctrl.model.capacity"></dd>
 
                 <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_maximum_duration"
+                    data-ng-if="ctrl.model.maximumDuration"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.model.maximumDuration"
+                    data-ng-if="ctrl.model.maximumDuration"
+                ></dd>
+
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_company"
+                    data-ng-if="ctrl.model.company"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.model.company | wucSliceContent: 150"
+                    data-ng-if="ctrl.model.company"
+                ></dd>
+
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_location"
+                    data-ng-if="ctrl.model.location"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.model.location"
+                    data-ng-if="ctrl.model.location"
+                ></dd>
+
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_show_meeting_details"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_tab_RESOURCES_add_resource_show_meeting_details_' + ctrl.model.showMeetingDetails) | translate"
+                ></dd>
+
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_booking_window"
+                    data-ng-if="ctrl.model.bookingWindow"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.model.bookingWindow"
+                    data-ng-if="ctrl.model.bookingWindow"
+                ></dd>
+
+                <dt
                     data-translate="exchange_tab_RESOURCES_add_resource_allow_conflict"
                 ></dt>
                 <dd
-                    data-ng-if="ctrl.model.allowConflict"
-                    data-translate="exchange_tab_RESOURCES_allow_conflicts_true"
+                    data-translate="exchange_tab_RESOURCES_{{ ctrl.model.allowConflict }}"
                 ></dd>
+
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_delete_comments"
+                ></dt>
                 <dd
-                    data-ng-if="!ctrl.model.allowConflict"
-                    data-translate="exchange_tab_RESOURCES_allow_conflicts_false"
+                    data-translate="exchange_tab_RESOURCES_{{ ctrl.model.deleteComments }}"
+                ></dd>
+
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_delete_subject"
+                ></dt>
+                <dd
+                    data-translate="exchange_tab_RESOURCES_{{ ctrl.model.deleteSubject }}"
                 ></dd>
             </dl>
         </div>
