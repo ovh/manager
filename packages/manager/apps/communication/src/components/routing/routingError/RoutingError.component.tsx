@@ -3,11 +3,13 @@ import { OdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { NotificationRoutingRule } from '@/data/types';
 
+type RoutingErrorProps = {
+  rules: NotificationRoutingRule[];
+};
+
 export default function RoutingError({
   rules,
-}: {
-  rules: NotificationRoutingRule[];
-}) {
+}: RoutingErrorProps) {
   const hasRoutingError = useMemo(() => {
     return rules.some((rule) =>
       rule.contactMeans.some((contactMean) => contactMean.error),

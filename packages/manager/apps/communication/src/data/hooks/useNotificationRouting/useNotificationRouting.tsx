@@ -38,8 +38,8 @@ export const useNotificationRouting = ({
   });
 
 type UseCreateRoutingParams = {
-  onSuccess: (routing: NotificationRouting) => void;
-  onError: (error: ApiError) => void;
+  onSuccess?: (routing: NotificationRouting) => void;
+  onError?: (error: ApiError) => void;
 };
 export const useCreateRouting = ({
   onSuccess,
@@ -61,8 +61,8 @@ export const useCreateRouting = ({
 
 type UseUpdateRoutingParams = {
   routingId: string;
-  onSuccess: (routing: NotificationRouting) => void;
-  onError: (error: ApiError) => void;
+  onSuccess?: (routing: NotificationRouting) => void;
+  onError?: (error: ApiError) => void;
 };
 export const useUpdateRouting = ({
   routingId,
@@ -123,8 +123,8 @@ export const useUpdateRoutingStatus = ({
 
 type UseDeleteRoutingParams = {
   routingId: string;
-  onSuccess: (routing: NotificationRouting) => void;
-  onError: (error: ApiError) => void;
+  onSuccess?: (routing: NotificationRouting) => void;
+  onError?: (error: ApiError) => void;
 };
 export const useDeleteRouting = ({
   routingId,
