@@ -23,6 +23,9 @@ const KmsTerminateModal = React.lazy(() =>
 const KmsCreate = React.lazy(() =>
   import('@key-management-service/pages/create/CreateKms.page'),
 );
+const KmsCreateOrderOkmsModal = React.lazy(() =>
+  import('@/common/pages/order-okms-modal/OrderOkmsModal.page'),
+);
 const KmsOnboarding = React.lazy(() =>
   import('@key-management-service/pages/onboarding/Onboarding'),
 );
@@ -140,7 +143,7 @@ export default (
       }}
     />
     <Route
-      path={KMS_ROUTES_URIS.serviceKeyCreate}
+      path={KMS_ROUTES_URIS.kmsCreate}
       Component={KmsCreate}
       handle={{
         tracking: {
@@ -148,7 +151,9 @@ export default (
           pageType: PageType.funnel,
         },
       }}
-    />
+    >
+      <Route path={KMS_URL_PARAMS.region} Component={KmsCreateOrderOkmsModal} />
+    </Route>
     <Route
       path={KMS_ROUTES_URIS.kmsOnboarding}
       Component={KmsOnboarding}

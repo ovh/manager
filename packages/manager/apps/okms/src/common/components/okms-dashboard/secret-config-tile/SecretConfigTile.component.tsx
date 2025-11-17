@@ -10,7 +10,7 @@ import { DeactivateVersionAfterTileItem } from './items/DeactivateVersionAfterTi
 import { CasTileItem } from './items/CasTileItem.component';
 import { TileError } from '@/common/components/tile-error/TileError.component';
 import { EditSecretConfigLinkTileItem } from './items/EditSecretConfigLinkTileItem.component';
-import useProductType from '@/common/hooks/useProductType';
+import { useProductType } from '@/common/hooks/useProductType';
 
 type SecretConfigTileProps = {
   okms: OKMS;
