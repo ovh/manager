@@ -54,22 +54,6 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     ?.filter((item) => item?.type === CdnOptionType.CACHE_RULE)
     .sort((a, b) => a.config.priority - b.config.priority);
 
-  const TopbarCTA = () => (
-    <OdsButton
-      icon={ODS_ICON_NAME.plus}
-      size={ODS_BUTTON_SIZE.sm}
-      variant={ODS_BUTTON_VARIANT.outline}
-      label={t('cdn_shared_option_cache_rule_btn_add_rule')}
-      onClick={() =>
-        navigate(
-          urls.cdnCacheRule
-            .replace(subRoutes.serviceName, serviceName)
-            .replace(subRoutes.domain, domain),
-        )
-      }
-    />
-  );
-
   const DatagridActionCell = (props: CdnOption) => {
     const items: ActionMenuItem[] = [
       {
@@ -222,7 +206,21 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
             setSearchInput,
             onSearch: (search) => setDebouncedSearchInput(search),
           }}
-          topbar={<TopbarCTA />}
+          topbar={
+            <OdsButton
+              icon={ODS_ICON_NAME.plus}
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.outline}
+              label={t('cdn_shared_option_cache_rule_btn_add_rule')}
+              onClick={() =>
+                navigate(
+                  urls.cdnCacheRule
+                    .replace(subRoutes.serviceName, serviceName)
+                    .replace(subRoutes.domain, domain),
+                )
+              }
+            />
+          }
         />
       )}
     </React.Suspense>

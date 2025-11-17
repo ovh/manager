@@ -54,7 +54,7 @@ export default function AddWebsitePage() {
     () => {
       addSuccess(
         <>
-          <OdsText className="mr-2">{t('multisite:multisite_add_website_success')}</OdsText>
+          <OdsText className="mr-3">{t('multisite:multisite_add_website_success')}</OdsText>
           <OdsLink
             href={`#/${serviceName}/task`}
             label={t('multisite:multisite_add_website_in_progress')}
