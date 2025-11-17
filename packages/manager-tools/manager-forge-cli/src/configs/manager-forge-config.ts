@@ -11,8 +11,15 @@ const __dirname = path.dirname(__filename);
  * Base paths.
  */
 const ROOT_DIR = path.resolve(__dirname, '../../../../..');
-export const APPS_DIR = path.join(ROOT_DIR, 'manager/apps');
-export const TEMPLATE_DIR = path.join(ROOT_DIR, 'manager-tools/manager-forge-cli/template');
+export const MANAGER_APPLICATIONS_DIR = path.join(ROOT_DIR, 'manager/apps');
+export const APPLICATION_TEMPLATE_DIR = path.join(
+  ROOT_DIR,
+  'manager-tools/manager-forge-cli/template/application',
+);
+export const MODULE_TEMPLATE_DIR = path.join(
+  ROOT_DIR,
+  'manager-tools/manager-forge-cli/template/module',
+);
 
 export const HELP_PAGE = `
 Usage:

@@ -26,6 +26,7 @@
     "generate:uapp:component": "yarn manager-forge-component",
     "generate:uapp:hook": "yarn manager-forge-hook",
     "generate:uapp:page": "yarn manager-forge-page",
+    "generate:module": "yarn manager-forge-module",
     "preinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-preinstall.js",
     "postinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-postinstall.js",
     "lint": "run-s lint:css lint:html lint:js lint:md && yarn pm:lint",

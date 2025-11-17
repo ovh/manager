@@ -76,7 +76,7 @@ It will ask for:
 
 Forge-CLI then:
 
-- Creates a new application under the **apps root** (`APPS_DIR` from `manager-forge-config.ts`)
+- Creates a new application under the **apps root** (`MANAGER_APPLICATIONS_DIR` from `manager-forge-config.ts`)
 - Copies the base template from the template directory
 - Applies template replacements to: `package.json`, `src/Tracking.constants.ts` and `src/App.constants.ts`.
 - Registers the new app in the workspace (via `addAppToWorkspace`).

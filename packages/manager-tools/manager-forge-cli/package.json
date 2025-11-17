@@ -11,7 +11,8 @@
     "manager-forge-application": "bin/manager-forge-application.mjs",
     "manager-forge-component": "bin/manager-forge-component.mjs",
     "manager-forge-hook": "bin/manager-forge-hook.mjs",
-    "manager-forge-page": "bin/manager-forge-page.mjs"
+    "manager-forge-page": "bin/manager-forge-page.mjs",
+    "manager-forge-module": "bin/manager-forge-module.mjs"
   },
   "scripts": {
     "build": "tsc && tsc-alias",

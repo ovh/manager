@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { APPS_DIR, TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
+import { MANAGER_APPLICATIONS_DIR, APPLICATION_TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
 import { addAppToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 import {
   applyTemplateReplacements,
@@ -17,7 +17,7 @@ import type { Answers } from '@/types/PromptType.js';
  * @param {Answers} answers - The user-provided application metadata.
  */
 function forgeApplication(answers: Answers): void {
-  const applicationDirectory = path.join(APPS_DIR, answers.appName);
+  const applicationDirectory = path.join(MANAGER_APPLICATIONS_DIR, answers.appName);
 
   // ────────────────────────────────────────────────────────────
   // 1. Prevent overwriting an existing application
@@ -37,7 +37,7 @@ function forgeApplication(answers: Answers): void {
   // 3. Copy base template into the new application directory
   // ────────────────────────────────────────────────────────────
   console.log('📦 Copying template files...');
-  copyTemplate(TEMPLATE_DIR, applicationDirectory);
+  copyTemplate(APPLICATION_TEMPLATE_DIR, applicationDirectory);
 
   // ────────────────────────────────────────────────────────────
   // 4. Apply replacements to template files
