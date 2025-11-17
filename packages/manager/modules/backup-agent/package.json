@@ -23,6 +23,7 @@
     "date-fns": "^3.6.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-billing-informations": "*",
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-core-api": "^0.18.7",
     "@ovh-ux/manager-module-common-api": "*",
@@ -40,6 +41,7 @@
     "tailwindcss": "^3.4.4"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-billing-informations": "*",
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.10.1",
