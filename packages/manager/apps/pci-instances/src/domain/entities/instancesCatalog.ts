@@ -18,9 +18,12 @@ export type TFlavorCategoryID = TFlavorCategoryName;
 type TFlavorTypeName = string;
 export type TFlavorTypeID = TFlavorTypeName;
 
+type TOsType = 'baremetal-linux' | 'linux' | 'windows';
+
 type TFlavorName = string;
 export type TFlavorID = TFlavorName;
 export type TRegionalizedFlavorID = TFlavorID;
+export type TRegionalizedFlavorOsTypeID = TFlavorID;
 export type TFlavorPricesID = TRegionalizedFlavorID;
 
 export type TFlavorType = {
@@ -91,20 +94,38 @@ export type TFlavorPrices = {
   prices: TPrice[];
 };
 
-export type TRegionalizedFlavor = {
-  id: TRegionalizedFlavorID;
+export type TRegionalizedFlavorOsType = {
+  /**
+   *  id: flavor_region_osType
+   *  Ex: 'B3-8_BHS1.PREPROD_linux'
+   */
+  id: string;
   flavorId: TFlavorID;
-  regionID: string;
+  osType: TOsType;
   quota: number;
   hasStock: boolean;
-  tags: string[] | null;
-  priceId: TFlavorPricesID;
+};
+
+export type TRegionalizedFlavor = {
+  /**
+   *  id: flavor_region
+   *  Ex: 'B3-8_BHS1.PREPROD'
+   *
+   *  hasStock: If Linux or Windows stock => true
+   *  quota: Linux or Windows quota, they are the same
+   */
+  id: string;
+  regionId: TMicroRegionID;
+  flavorId: TFlavorID;
+  hasStock: boolean;
+  quota: number;
+  osTypes: TOsType[];
+  tags: TTags;
 };
 
 export type TFlavor = {
   name: TFlavorName;
   specifications: TSpecifications;
-  osType: string;
   regionalizedFlavorIds: TRegionalizedFlavorID[];
 };
 
@@ -141,6 +162,10 @@ export type TInstancesCatalog = {
     regionalizedFlavors: {
       byId: Map<TRegionalizedFlavorID, TRegionalizedFlavor>;
       allIds: TRegionalizedFlavorID[];
+    };
+    regionalizedFlavorOsTypes: {
+      byId: Map<TRegionalizedFlavorOsTypeID, TRegionalizedFlavorOsType>;
+      allIds: TRegionalizedFlavorOsTypeID[];
     };
     flavorPrices: {
       byId: Map<TFlavorPricesID, TFlavorPrices>;
