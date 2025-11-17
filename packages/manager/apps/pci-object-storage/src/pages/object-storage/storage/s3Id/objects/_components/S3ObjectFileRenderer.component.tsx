@@ -26,7 +26,7 @@ import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
-import Link from '@/components/links/Link.component';
+import ConditionalLink from '@/components/links/ConditionalLink.component';
 import useDownload from '@/hooks/useDownload';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
@@ -220,7 +220,8 @@ const S3ObjectFileRenderer = ({
       >
         {/* NAME */}
         <div className="flex items-center gap-2 min-w-0">
-          <Link
+          <ConditionalLink
+            condition={!object.isDeleteMarker}
             to={`./object?objectKey=${encodeURIComponent(object.key)}`}
             className="flex items-center gap-2 min-w-0"
           >
@@ -230,12 +231,13 @@ const S3ObjectFileRenderer = ({
                 .split('/')
                 .pop()}
             </span>
-            {object.isDeleteMarker && (
-              <Badge className="ml-2" variant="information">
-                {t('tableSuppressionBadgeLabel')}
-              </Badge>
-            )}
-          </Link>
+          </ConditionalLink>
+
+          {object.isDeleteMarker && (
+            <Badge className="ml-2" variant="information">
+              {t('tableSuppressionBadgeLabel')}
+            </Badge>
+          )}
           <div className="hidden lg:block">{getDeepArchiveBadge(object)}</div>
         </div>
         {/* SIZE + DATE */}
