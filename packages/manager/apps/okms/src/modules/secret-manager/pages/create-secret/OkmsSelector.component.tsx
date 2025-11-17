@@ -29,7 +29,6 @@ type OkmsSelectorProps = {
   okmsList: OKMS[];
   selectedOkms: string;
   selectedRegion: string;
-  isOkmsOrderProcessing: boolean;
   onOkmsSelection: (okmsId: string) => void;
 };
 
@@ -37,22 +36,18 @@ export const OkmsSelector = ({
   okmsList,
   selectedOkms,
   selectedRegion,
-  isOkmsOrderProcessing,
   onOkmsSelection,
 }: OkmsSelectorProps) => {
   const { t } = useTranslation('secret-manager');
 
+  // If no region is selected, do not display the selector
+  // If there is only one OKMS, do not display the selector
   if (!selectedRegion || okmsList.length === 1) {
     return null;
   }
 
   if (okmsList.length === 0) {
-    return (
-      <ActivateRegion
-        isOkmsOrderProcessing={isOkmsOrderProcessing}
-        selectedRegion={selectedRegion}
-      />
-    );
+    return <ActivateRegion selectedRegion={selectedRegion} />;
   }
 
   return (
