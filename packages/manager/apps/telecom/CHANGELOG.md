@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.4...@ovh-ux/manager-telecom@16.18.5) (2025-11-17)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** add auto complete enterprise name on french portability ([2887c9d](https://github.com/ovh/manager/commit/2887c9dc576db9c28fc6fb89c8155c04bb76bcce)), closes [#PRDCOL-33](https://github.com/ovh/manager/issues/PRDCOL-33)
+
+
+
+
+
 ## [16.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.3...@ovh-ux/manager-telecom@16.18.4) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
