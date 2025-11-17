@@ -62,6 +62,7 @@ type TSelectFlavorData = (
 export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
   return (projectId, regionalizedFlavorId) => {
     if (!regionalizedFlavorId) return null;
+
     const { instancesCatalogPort } = deps;
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
