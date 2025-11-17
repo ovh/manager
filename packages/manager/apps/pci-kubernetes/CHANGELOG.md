@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.36.0...@ovh-ux/manager-pci-kubernetes-app@0.36.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** fix issue private network ([425c1bb](https://github.com/ovh/manager/commit/425c1bb3b07fc0b10def2b1e3026cb2c569f8433)), closes [#TAPC-5312](https://github.com/ovh/manager/issues/TAPC-5312)
+
+
+
+
+
 # [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.35.7...@ovh-ux/manager-pci-kubernetes-app@0.36.0) (2025-11-16)
 
 
