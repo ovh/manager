@@ -71,7 +71,6 @@ const OrderFunnel = ({
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
-  const [invalidScalingInput, setInvalidScalingInput] = useState(false);
   const [activeTab, setActiveTab] = useState<'customerImage' | 'partnerImage'>(
     'customerImage',
   );
@@ -178,7 +177,7 @@ const OrderFunnel = ({
   };
 
   const onSubmit = model.form.handleSubmit(
-    () => {
+    (validatedData) => {
       // if partner Image and contract not checked, throw error
       if (!model.result.isContractChecked) throwErrorContract();
       // if partner Image and contract need to be sign
@@ -193,9 +192,26 @@ const OrderFunnel = ({
         // Sign and deploy app
         signPartnerContract(signPartnerInfo);
       } else {
-        // Deploy the app
+        // Deploy the app - utiliser validatedData pour avoir les nombres coercés
+        const resultWithCoercedScaling = {
+          ...model.result,
+          scaling: {
+            autoScaling: validatedData.autoScaling,
+            replicas: validatedData.replicas,
+            replicasMin: validatedData.replicasMin,
+            replicasMax: validatedData.replicasMax,
+            resourceType: validatedData.resourceType,
+            averageUsageTarget: validatedData.averageUsageTarget,
+            metricUrl: validatedData.metricUrl,
+            dataFormat: validatedData.dataFormat,
+            dataLocation: validatedData.dataLocation,
+            targetMetricValue: validatedData.targetMetricValue,
+            aggregationType: validatedData.aggregationType,
+          },
+        };
+
         const appInfo: ai.app.AppSpecInput = getAppSpec(
-          model.result,
+          resultWithCoercedScaling,
           model.lists.appImages,
         );
 
@@ -268,7 +284,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             <Card
               id="region"
               data-testid="region-section"
@@ -300,7 +315,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             <Card
               id="flavor"
               data-testid="flavor-section"
@@ -378,7 +392,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             <Card
               id="image"
               data-testid="image-section"
@@ -439,28 +452,11 @@ const OrderFunnel = ({
                 <CardTitle>{t('fielddScalingLabel')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <FormField
-                  control={model.form.control}
-                  name="scaling"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <ScalingStrategy
-                          {...field}
-                          scaling={field.value}
-                          onChange={(newScaling) =>
-                            model.form.setValue('scaling', newScaling)
-                          }
-                          onNonValidForm={(val) => setInvalidScalingInput(val)}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <ScalingStrategy
+                  pricingFlavor={model.result.pricing?.resourcePricing}
                 />
               </CardContent>
             </Card>
-
             {!isPartnerSelected && (
               <Card
                 id="httpPort"
@@ -495,7 +491,6 @@ const OrderFunnel = ({
                 </CardContent>
               </Card>
             )}
-
             <Card
               id="access"
               data-testid="access-section"
@@ -521,7 +516,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             {/* Advanced configuration */}
             <section id="advancedConfig" data-testid="advance-config-section">
               <Card className="mt-4">
@@ -603,7 +597,6 @@ const OrderFunnel = ({
                         />
                       </section>
                     )}
-
                     <section id="labels">
                       <FormField
                         control={model.form.control}
@@ -780,7 +773,7 @@ const OrderFunnel = ({
                 type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                disabled={isPendingAddApp || invalidScalingInput}
+                disabled={isPendingAddApp}
               >
                 {t('orderButton')}
               </Button>
