@@ -6,6 +6,7 @@ import {
   NotebookOrderResult,
   OrderVolumes,
 } from '@/types/orderFunnel';
+import { ResourceType } from '@/components/order/app-scaling/scalingHelper';
 
 export function humanizeFramework(
   framework: ai.capabilities.notebook.Framework,
@@ -192,12 +193,29 @@ export function getAppSpec(
   }
 
   if (formResult.scaling.autoScaling) {
+    const isCustom = formResult.scaling.resourceType === ResourceType.CUSTOM;
+
     appInfos.scalingStrategy = {
       automatic: {
         replicasMin: formResult.scaling.replicasMin,
         replicasMax: formResult.scaling.replicasMax,
-        averageUsageTarget: formResult.scaling.averageUsageTarget,
-        resourceType: formResult.scaling.resourceType,
+        ...((!isCustom && {
+          averageUsageTarget: formResult.scaling.averageUsageTarget,
+          resourceType: formResult.scaling
+            .resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
+        }) ||
+          {}),
+        ...(isCustom && {
+          customMetrics: {
+            apiUrl: formResult.scaling.metricUrl,
+            format: formResult.scaling
+              .dataFormat as ai.app.CustomMetricsFormatEnum,
+            targetValue: formResult.scaling.targetMetricValue,
+            valueLocation: formResult.scaling.dataLocation,
+            aggregationType: formResult.scaling
+              .aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
+          },
+        }),
       },
     };
   } else {
