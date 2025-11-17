@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.7...@ovh-ux/manager-emailpro@3.17.8) (2025-11-17)
+
+
+### Bug Fixes
+
+* **emailpro:** show password helper in update account form ([17c6dec](https://github.com/ovh/manager/commit/17c6decd71cca2bc04b4210e9b4fc69e5d241b41)), closes [#PRDCOL-179](https://github.com/ovh/manager/issues/PRDCOL-179)
+
+
+
+
+
 ## [3.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.6...@ovh-ux/manager-emailpro@3.17.7) (2025-10-14)
 
 

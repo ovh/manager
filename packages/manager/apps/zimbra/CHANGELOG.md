@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.39.0...@ovh-ux/manager-zimbra-app@0.39.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* **zimbra:** fix tracking config with the correct level2 id ([5c90d3c](https://github.com/ovh/manager/commit/5c90d3cf6fd7bfb3ad87ce94afd441aa4454e0f1)), closes [#PRDCOL-216](https://github.com/ovh/manager/issues/PRDCOL-216)
+* **zimbra:** hide storage quota quota ([7295f89](https://github.com/ovh/manager/commit/7295f8920cffa906afbdfc8a92c2872eb689e850)), closes [#PRDCOL-251](https://github.com/ovh/manager/issues/PRDCOL-251)
+
+
+
+
+
 # [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.38.7...@ovh-ux/manager-zimbra-app@0.39.0) (2025-11-16)
 
 

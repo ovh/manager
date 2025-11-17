@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.5...@ovh-ux/manager-sms@8.19.6) (2025-11-17)
+
+
+### Bug Fixes
+
+* **telecom.sms:** delete sms classType on batch sms ([b465582](https://github.com/ovh/manager/commit/b465582e435634c3733be27e5f81dda75caa2de7)), closes [#PRDCOL-247](https://github.com/ovh/manager/issues/PRDCOL-247)
+
+
+
+
+
 ## [8.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.4...@ovh-ux/manager-sms@8.19.5) (2025-11-16)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.29.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.29.2...@ovh-ux/ng-ovh-telecom-universe-components@7.29.3) (2025-11-17)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** add auto complete enterprise name on french portability ([2887c9d](https://github.com/ovh/manager/commit/2887c9dc576db9c28fc6fb89c8155c04bb76bcce)), closes [#PRDCOL-33](https://github.com/ovh/manager/issues/PRDCOL-33)
+
+
+
+
+
 ## [7.29.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.29.1...@ovh-ux/ng-ovh-telecom-universe-components@7.29.2) (2025-10-23)
 
 

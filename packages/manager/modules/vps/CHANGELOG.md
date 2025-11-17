@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.11...@ovh-ux/manager-vps@2.50.12) (2025-11-17)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** add terminate information on additional disk ([265bf2a](https://github.com/ovh/manager/commit/265bf2abca938eb74755c1660ea516ee6f442ef1)), closes [#PRDCOL-230](https://github.com/ovh/manager/issues/PRDCOL-230)
+
+
+
+
+
 ## [2.50.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.10...@ovh-ux/manager-vps@2.50.11) (2025-11-05)
 
 

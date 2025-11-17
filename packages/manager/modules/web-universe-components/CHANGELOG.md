@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.21.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.21.1...@ovh-ux/ng-ovh-web-universe-components@9.21.2) (2025-11-17)
+
+
+### Bug Fixes
+
+* **web.exchange:** add several settings for resources ([7d9178e](https://github.com/ovh/manager/commit/7d9178e63d593d87ce41866f7af076260e3715f7)), closes [#PRDCOL-210](https://github.com/ovh/manager/issues/PRDCOL-210)
+
+
+
+
+
 ## [9.21.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.21.0...@ovh-ux/ng-ovh-web-universe-components@9.21.1) (2025-10-30)
 
 
