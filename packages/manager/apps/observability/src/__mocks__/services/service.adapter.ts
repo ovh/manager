@@ -6,7 +6,7 @@ import { ObservabilityService } from '@/types/observability.type';
 export const getObservabilityServices = async (
   signal: AbortSignal,
 ): Promise<ObservabilityService[]> => {
-  const isMockEnabled = apiConfig.mode === 'mock';
+  const isMockEnabled = apiConfig.service === 'mock';
   console.info('[MOCK-ADAPTER][getObservabilityServices] Mock enabled -> ', isMockEnabled);
   return isMockEnabled
     ? getObservabilityServicesFromMock(signal)
