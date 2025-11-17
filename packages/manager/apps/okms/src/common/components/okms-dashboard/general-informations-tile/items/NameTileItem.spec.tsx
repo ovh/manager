@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { NameTileItem } from './NameTileItem.component';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
+import { useProductType, ProductType } from '@/common/hooks/useProductType';
 import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';

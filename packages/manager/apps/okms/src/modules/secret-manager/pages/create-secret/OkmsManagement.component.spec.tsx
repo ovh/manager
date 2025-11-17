@@ -22,7 +22,7 @@ import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
-import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.contants';
+import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { getOrderCatalogOKMS } from '@key-management-service/data/api/orderCatalogOKMS';
 import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
@@ -39,7 +39,6 @@ import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
 import { OkmsManagement } from './OkmsManagement.component';
 import * as locationApi from '@/common/data/api/location';
 import { ErrorResponse } from '@/common/types/api.type';
-import { OrderOkmsModalProvider } from '@/common/pages/order-okms-modal/OrderOkmsModalContext';
 import { REGION_PICKER_TEST_IDS } from '@/common/components/region-picker/regionPicker.constants';
 import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
 
@@ -114,7 +113,7 @@ const TestComponent = () => {
   );
 };
 
-const renderOkmsManagement = async (processingRegion?: string) => {
+const renderOkmsManagement = async () => {
   const queryClient = new QueryClient();
   if (!i18nValue) {
     i18nValue = await initTestI18n();
@@ -126,9 +125,7 @@ const renderOkmsManagement = async (processingRegion?: string) => {
         <ShellContext.Provider
           value={(shellContext as unknown) as ShellContextType}
         >
-          <OrderOkmsModalProvider region={processingRegion}>
-            <TestComponent />
-          </OrderOkmsModalProvider>
+          <TestComponent />
         </ShellContext.Provider>
       </QueryClientProvider>
     </I18nextProvider>,
@@ -190,15 +187,6 @@ const assertActivateButtonIsNotInTheDocument = async () => {
   );
   await waitFor(() => {
     expect(activateButton).toBeNull();
-  });
-};
-
-const assertLoadingListIsInTheDocument = async () => {
-  const activateSpinner = screen.queryByTestId(
-    SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER,
-  );
-  await waitFor(() => {
-    expect(activateSpinner).toBeVisible();
   });
 };
 
@@ -286,26 +274,6 @@ describe('OKMS management test suite', () => {
         await assertLoadingListIsNotInTheDocument();
         // assert we reset the selectedOkmsId
         expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(undefined);
-      });
-
-      it('should display a loading state when an order is processing', async () => {
-        const user = userEvent.setup();
-        // GIVEN
-        mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
-
-        await renderOkmsManagement('rbx');
-        await assertTextVisibility(
-          labels.secretManager.create_secret_form_region_section_title,
-        );
-        await assertTextVisibility(regionWithoutOkms.region);
-
-        // WHEN
-        await selectRegion(user, regionWithoutOkms.region);
-
-        // THEN
-        await assertOkmsListIsNotInTheDocument(okmsMock);
-        await assertActivateButtonIsNotInTheDocument();
-        await assertLoadingListIsInTheDocument();
       });
     });
 

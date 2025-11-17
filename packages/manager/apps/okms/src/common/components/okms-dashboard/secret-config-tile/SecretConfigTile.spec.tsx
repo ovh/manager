@@ -9,7 +9,7 @@ import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { SecretConfigTile } from './SecretConfigTile.component';
 import { SECRET_CONFIG_TILE_TEST_IDS } from './SecretConfigTile.constants';
 import { renderWithClient } from '@/common/utils/tests/testUtils';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
+import { useProductType, ProductType } from '@/common/hooks/useProductType';
 
 let i18nValue: i18n;
 

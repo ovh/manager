@@ -7,7 +7,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
+import { useProductType, ProductType } from '@/common/hooks/useProductType';
 
 const useRenameLink = (okms: OKMS) => {
   const productType = useProductType();

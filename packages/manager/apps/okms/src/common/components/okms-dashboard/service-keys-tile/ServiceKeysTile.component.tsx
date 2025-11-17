@@ -3,7 +3,7 @@ import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { ServiceKeyCountTileItem } from './items/ServiceKeyCountTileItem.component';
-import useProductType from '@/common/hooks/useProductType';
+import { useProductType } from '@/common/hooks/useProductType';
 import { ServiceKeyListLinkTileItem } from './items/ServiceKeyListLinkTileItem.component';
 
 type ServiceKeysTileProps = {
