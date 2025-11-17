@@ -1,6 +1,7 @@
 import { useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import i18n from 'i18next';
+import { useSearchParams } from 'react-router-dom';
 import {
   TWillPaymentConfig,
   GlobalStateStatus,
@@ -20,6 +21,9 @@ export const useWillPaymentConfig = ({
   const { environment } = useContext(ShellContext);
   const user = environment.getUser();
 
+  const [searchParams] = useSearchParams();
+  const cartId = searchParams.get('cartId');
+
   return useMemo(
     () => ({
       baseUrl: window.location.origin,
@@ -28,6 +32,6 @@ export const useWillPaymentConfig = ({
       language: i18n.language,
       hostApp: 'pci',
     }),
-    [onPaymentStatusChange, user.ovhSubsidiary, i18n.language],
+    [onPaymentStatusChange, user.ovhSubsidiary, i18n.language, cartId],
   );
 };
