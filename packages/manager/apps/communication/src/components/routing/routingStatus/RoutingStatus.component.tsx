@@ -3,7 +3,11 @@ import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 
-export default function RoutingStatusChip({ active }: { active: boolean }) {
+type RoutingStatusChipProps = {
+  active: boolean;
+};
+
+export default function RoutingStatusChip({ active }: RoutingStatusChipProps) {
   const { t } = useTranslation(NAMESPACES.STATUS);
   return (
     <OdsBadge

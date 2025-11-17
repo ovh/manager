@@ -103,7 +103,7 @@ export const useChangeContactMeanStatus = ({
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (status: 'DISABLED' | 'VALID') => {
+    mutationFn: async (status: ContactMeanStatus.DISABLED | ContactMeanStatus.VALID) => {
       const contactMean = await queryClient.fetchQuery<ContactMean>({
         queryKey: getContactMeanQueryKey(contactMeanId),
         queryFn: async () => getContactMean(contactMeanId),
@@ -112,7 +112,7 @@ export const useChangeContactMeanStatus = ({
         contactMeanId,
         data: {
           description: contactMean.description,
-          status: status as ContactMeanStatus,
+          status,
         },
       });
     },
