@@ -30,12 +30,6 @@ export default function HolderInformation({
         </li>,
         <li key={'email'}>{domainContact.email}</li>,
         <li key={'phone'}>{domainContact.phone}</li>,
-        domainContact.legalForm !== LegalFormEnum.Individual && [
-          <li key={'organisation'}>
-            {domainContact.nationalIdentificationNumber}
-          </li>,
-          <li key={'vat'}>{domainContact.vat}</li>,
-        ],
       ]}
     </ul>
   );
