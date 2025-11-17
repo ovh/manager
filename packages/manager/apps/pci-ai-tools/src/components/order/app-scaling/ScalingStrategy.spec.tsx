@@ -6,14 +6,12 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import { useForm, FormProvider } from 'react-hook-form';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
-import { Scaling } from '@/types/orderFunnel';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import ScalingStrategy from './ScalingStrategy.component';
-import {
-  mockedAppPricing1,
-  mockedOrderScaling,
-} from '@/__tests__/helpers/mocks/app/appHelper';
+import { mockedAppPricing1 } from '@/__tests__/helpers/mocks/app/appHelper';
+import ai from '@/types/AI';
 
 describe('Scaling strategy component', () => {
   beforeEach(() => {
@@ -36,18 +34,40 @@ describe('Scaling strategy component', () => {
     vi.clearAllMocks();
   });
 
-  const onChange = vi.fn();
-  const onNonValidForm = vi.fn();
-  it('should display Autoscaling form with value', async () => {
-    render(
-      <ScalingStrategy
-        onChange={onChange}
-        scaling={mockedOrderScaling}
-        pricingFlavor={mockedAppPricing1}
-        onNonValidForm={onNonValidForm}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
+  const TestWrapper = ({
+    autoScaling = false,
+    replicas = 1,
+  }: {
+    autoScaling?: boolean;
+    replicas?: number;
+  }) => {
+    const form = useForm({
+      defaultValues: {
+        autoScaling,
+        replicas,
+        replicasMin: 1,
+        replicasMax: 1,
+        resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+        averageUsageTarget: 75,
+        metricUrl: '',
+        dataFormat: ai.app.CustomMetricsFormatEnum.JSON,
+        dataLocation: '',
+        targetMetricValue: 0,
+        aggregationType: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
+      },
+    });
+
+    return (
+      <FormProvider {...form}>
+        <ScalingStrategy pricingFlavor={mockedAppPricing1} />
+      </FormProvider>
     );
+  };
+
+  it('should display Autoscaling form with value', async () => {
+    render(<TestWrapper autoScaling={true} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     await waitFor(() => {
       expect(screen.getByTestId('scaling-strat-container')).toBeTruthy();
       expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
@@ -55,15 +75,9 @@ describe('Scaling strategy component', () => {
   });
 
   it('should display Fixed scaling on switch click', async () => {
-    render(
-      <ScalingStrategy
-        onChange={onChange}
-        scaling={mockedOrderScaling}
-        pricingFlavor={mockedAppPricing1}
-        onNonValidForm={onNonValidForm}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+    render(<TestWrapper autoScaling={true} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     await waitFor(() => {
       expect(screen.getByTestId('scaling-strat-container')).toBeTruthy();
       expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
@@ -73,41 +87,17 @@ describe('Scaling strategy component', () => {
       fireEvent.click(screen.getByTestId('switch-scaling-button'));
     });
     await waitFor(() => {
-      expect(onChange).toHaveBeenCalledWith({
-        ...mockedOrderScaling,
-        autoScaling: false,
-      });
+      expect(screen.getByTestId('fixed-scaling-container')).toBeTruthy();
     });
   });
 
-  it('should trigger onChange on fixed input', async () => {
-    const fixedScaling: Scaling = {
-      ...mockedOrderScaling,
-      autoScaling: false,
-    };
-    render(
-      <ScalingStrategy
-        onChange={onChange}
-        scaling={fixedScaling}
-        pricingFlavor={mockedAppPricing1}
-        onNonValidForm={onNonValidForm}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
+  it('should display fixed scaling form', async () => {
+    render(<TestWrapper autoScaling={false} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
     await waitFor(() => {
       expect(screen.getByTestId('fixed-scaling-container')).toBeTruthy();
       expect(screen.getByTestId('replicas-input')).toBeTruthy();
-    });
-
-    act(() => {
-      fireEvent.change(screen.getByTestId('replicas-input'), {
-        target: {
-          value: 4,
-        },
-      });
-    });
-    await waitFor(() => {
-      expect(onChange).toHaveBeenCalledWith({ ...fixedScaling, replicas: 4 });
     });
   });
 });
