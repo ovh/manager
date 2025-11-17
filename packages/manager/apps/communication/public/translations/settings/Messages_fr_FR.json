@@ -28,8 +28,8 @@
   "rule_form_condition_category_label": "Si la catégorie est",
   "rule_form_condition_priority_label": "Si la priorité est",
   "rule_form_condition_contact_means_label": "Alors envoyer le message à",
-  "rule_form_rule_continue_label": "Passer à l'étape suivante",
-  "rule_form_rule_continue_tooltip": "Appliquer la condition suivante de votre règle de distribution même si la condition actuelle a été appliquée.",
+  "rule_form_rule_continue_label": "Et continuer le traitement de règles",
+  "rule_form_rule_continue_tooltip": "Lorsque les conditions de cette règle sont remplies, elle est appliquée. <br>Si cette option est activée, les règles suivantes seront également évaluées. <br>Sinon, l'évaluation s'arrête ici.",
   "rule_form_rule_delete_button": "Supprimer la condition",
   "rule_form_rule_add_button": "Ajouter une condition",
   "rule_form_rules_error_message": "Au moins une condition est requise"

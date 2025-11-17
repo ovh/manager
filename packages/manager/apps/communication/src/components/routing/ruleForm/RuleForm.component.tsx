@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useMemo } from 'react';
+import { forwardRef, useImperativeHandle, useMemo, useEffect } from 'react';
 import {
   Controller,
   SubmitHandler,
@@ -6,7 +6,7 @@ import {
   useForm,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   OdsButton,
@@ -52,6 +52,8 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
   const {
     control,
     handleSubmit,
+    register,
+    setValue,
     formState: { errors },
   } = useForm<CreateRouting>({
     resolver: zodResolver(CreateRoutingSchema),
@@ -65,7 +67,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
             priority: [],
           },
           contactMeans: [],
-          continue: true,
+          continue: false,
         },
       ],
     },
@@ -115,6 +117,14 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
     control,
     name: 'rules',
   });
+
+  // Avoid having a desync between the UI and the form state
+  useEffect(() => {
+    if (fields.length > 0) {
+      const lastIndex = fields.length - 1;
+      setValue(`rules.${lastIndex}.continue`, false);
+    }
+  }, [fields.length, setValue]);
 
   useImperativeHandle(ref, () => ({
     submit: handleSubmit(onSubmit),
@@ -351,42 +361,59 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                   )}
                 />
               </div>
-              <Controller
-                control={control}
-                name={`rules.${index}.continue`}
-                render={({ field: { onChange, value, onBlur, name } }) => (
-                  <OdsFormField className="flex flex-row gap-4 items-center">
-                    <OdsToggle
-                      name={name}
-                      withLabel
-                      value={Boolean(value)}
-                      onBlur={onBlur}
-                      onOdsChange={(
-                        e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>,
-                      ) => {
-                        onChange(!!e.detail.value);
-                      }}
-                      hasError={!!errors.rules?.[index]?.continue}
-                    />
-                    <label
-                      htmlFor={name}
-                      aria-label={t('rule_form_rule_continue_label')}
-                    >
-                      <OdsText preset="span">
-                        {t('rule_form_rule_continue_label')}{' '}
-                        <OdsIcon
-                          name="circle-question"
-                          id={`${name}-tooltip`}
-                          color="primary"
-                        />
-                        <OdsTooltip triggerId={`${name}-tooltip`}>
-                          {t('rule_form_rule_continue_tooltip')}
-                        </OdsTooltip>
-                      </OdsText>
-                    </label>
-                  </OdsFormField>
-                )}
-              />
+              {index === fields.length - 1 ? (
+                <>
+                  {/** Last rule, so we need to hide the continue toggle and force the value to false */}
+                  <input
+                    type="hidden"
+                    {...register(`rules.${index}.continue`)}
+                    value="false"
+                  />
+                </>
+              ) : (
+                <Controller
+                  control={control}
+                  name={`rules.${index}.continue`}
+                  render={({ field: { onChange, value, onBlur, name } }) => (
+                    <OdsFormField className="flex flex-row gap-4 items-center">
+                      <OdsToggle
+                        name={name}
+                        withLabel
+                        value={Boolean(value)}
+                        onBlur={onBlur}
+                        onOdsChange={(
+                          e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>,
+                        ) => {
+                          onChange(!!e.detail.value);
+                        }}
+                        hasError={!!errors.rules?.[index]?.continue}
+                      />
+                      <label
+                        htmlFor={name}
+                        aria-label={t('rule_form_rule_continue_label')}
+                      >
+                        <OdsText preset="span">
+                          {t('rule_form_rule_continue_label')}{' '}
+                          <OdsIcon
+                            name="circle-question"
+                            id={`${name}-tooltip`}
+                            color="primary"
+                          />
+                          <OdsTooltip triggerId={`${name}-tooltip`}>
+                            <Trans
+                              i18nKey="rule_form_rule_continue_tooltip"
+                              t={t}
+                              components={{
+                                br: <br />,
+                              }}
+                            />
+                          </OdsTooltip>
+                        </OdsText>
+                      </label>
+                    </OdsFormField>
+                  )}
+                />
+              )}
             </div>
           </div>
         ))}
@@ -405,7 +432,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                     priority: [],
                   },
                   contactMeans: [],
-                  continue: true,
+                  continue: false,
                 });
                 return false;
               }}
