@@ -63,5 +63,14 @@
   "version_state_delete": "Löschen",
   "version_state_deleted": "Gelöscht",
   "version_state_reactivate": "Reaktivieren",
-  "versions": "Versionen"
+  "versions": "Versionen",
+  "add_row": "Eine Zeile hinzufügen",
+  "error_duplicate_keys": "Sie können nicht zwei identische Schlüssel haben.",
+  "error_empty_keys": "Sie können keinen leeren Schlüssel haben.",
+  "error_key_value_conversion": "Der Wert des Geheimnisses kann nicht in Schlüssel-Wert-Paare umgewandelt werden.",
+  "key": "Schlüssel",
+  "key_value": "Schlüsselwert",
+  "okms_dashboard_title": "Detail der OKMS-Domain",
+  "okms_manage_label": "Verwalten Sie meine OKMS-Domain",
+  "value": "Wert"
 }

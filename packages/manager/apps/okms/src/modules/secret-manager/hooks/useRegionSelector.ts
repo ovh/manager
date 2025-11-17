@@ -1,22 +1,23 @@
 import { useMemo } from 'react';
-import { Location } from '@secret-manager/types/location.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { useLocations } from '@secret-manager/data/hooks/useLocation';
 import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
-import { useOkmsList } from '@/data/hooks/useOkms';
+import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
+import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { Location } from '@/common/types/location.type';
+import { useLocations } from '@/common/data/hooks/useLocation';
 import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
-import { OKMS } from '@/types/okms.type';
-import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
+import { ContinentCode } from '@/common/types/continents.type';
+import { getContinentCodeFromGeographyCode } from '@/common/utils/location/continents';
 
 export type RegionOption = {
-  label: string;
   region: string;
-  geographyLabel: string;
+  continentCode: ContinentCode;
   href: string;
 };
 
 export type GeographyGroup = {
-  geographyLabel: string;
+  continentCode: ContinentCode;
   regions: RegionOption[];
 };
 
@@ -46,9 +47,10 @@ const buildRegionOptions = (
       const regionOkmsList = okmsList.filter((okms) => okms.region === region);
 
       return {
-        label: location.location,
         region: location.name,
-        geographyLabel: location.geographyName,
+        continentCode: getContinentCodeFromGeographyCode(
+          location.geographyCode,
+        ),
         href:
           // If only one okms is available, redirect to the secrets listing page
           regionOkmsList.length === 1
@@ -67,14 +69,14 @@ const groupRegionOptions = (
 ): GeographyGroup[] => {
   return regionOptions.reduce<GeographyGroup[]>((acc, regionOption) => {
     const existingRegion = acc.find(
-      (group) => group.geographyLabel === regionOption.geographyLabel,
+      (group) => group.continentCode === regionOption.continentCode,
     );
 
     if (existingRegion) {
       existingRegion.regions.push(regionOption);
     } else {
       acc.push({
-        geographyLabel: regionOption.geographyLabel,
+        continentCode: regionOption.continentCode,
         regions: [regionOption],
       });
     }
