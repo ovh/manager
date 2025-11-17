@@ -1,5 +1,9 @@
 import { useMemo } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
+import { ProgressBar, Text } from '@ovh-ux/muk';
+
 type Usage = {
   [key: string]: {
     unit: string;
@@ -15,11 +19,12 @@ type SpaceMeterProps = {
 };
 
 /**
- * Simplified SpaceMeter component
- * Displays storage usage with a progress bar
- * TODO: Implement full space-meter with legend when needed
+ * SpaceMeter component that reproduces the original nasha-components-space-meter
+ * Displays storage usage with multiple progress bars (one per usage type)
  */
 export default function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterProps) {
+  const { t } = useTranslation(['dashboard', 'common']);
+
   const maxSize = useMemo(() => {
     const size = usage.size;
     return size ? parseInt(String(size.value), 10) : 0;
@@ -31,6 +36,7 @@ export default function SpaceMeter({ usage, large = false, legend = false }: Spa
       .map(([type, data]) => ({
         type,
         value: data.value,
+        unit: data.unit,
         name: data.name || type,
       }));
   }, [usage]);
@@ -39,38 +45,124 @@ export default function SpaceMeter({ usage, large = false, legend = false }: Spa
     return usageItems.reduce((sum, item) => sum + item.value, 0);
   }, [usageItems]);
 
+  // Calculate space left (like the original filter)
+  // The original uses usage.used, not totalUsed
+  const spaceLeft = useMemo(() => {
+    if (!usage.size || !usage.used || maxSize === 0) return null;
+    const used = usage.used.value;
+    const total = maxSize;
+    const ratio = total > 0 ? ((used / total) * 100).toFixed(2) : '0.00';
+
+    return {
+      used: { value: used, unit: usage.used.unit },
+      total: { value: total, unit: usage.size.unit },
+      ratio: parseFloat(ratio),
+    };
+  }, [usage.size, usage.used, maxSize]);
+
+  // Get color for each usage type
+  const getColorForType = (type: string) => {
+    switch (type) {
+      case 'usedbysnapshots':
+        return '#ffcd00'; // Yellow
+      case 'used':
+      default:
+        return '#64afa0'; // Teal
+    }
+  };
+
+  if (!usage.size || maxSize === 0) {
+    return <div className="text-sm text-gray-500">No usage data available</div>;
+  }
+
   return (
     <div className="space-meter">
-      {legend && (
+      {/* Space Left Display */}
+      {spaceLeft && (
         <div className="mb-4">
-          <div className="text-sm font-semibold mb-2">Utilisation</div>
-          <div className="space-y-1">
-            {usageItems.map((item) => (
-              <div key={item.type} className="flex justify-between text-sm">
-                <span>{item.name}:</span>
-                <span>
-                  {item.value} {usage[item.type]?.unit}
-                </span>
-              </div>
-            ))}
-          </div>
+          <Text
+            preset="body"
+            className={`text-sm ${large ? 'font-semibold' : ''}`}
+          >
+            {spaceLeft.used.value} {spaceLeft.used.unit} / {spaceLeft.total.value}{' '}
+            {spaceLeft.total.unit} ({spaceLeft.ratio}%)
+          </Text>
         </div>
       )}
-      <div className="w-full">
-        <div className="flex justify-between text-sm mb-2">
-          <span>Utilisé: {totalUsed} {usage.size?.unit}</span>
-          <span>Total: {maxSize} {usage.size?.unit}</span>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-4">
+
+      {/* Legend and Progress Bars Layout */}
+      <div className={legend ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}>
+        {/* Legend */}
+        {legend && usageItems.length > 0 && (
+          <div>
+            <Text preset="body" className="text-sm font-semibold mb-2">
+              {t('dashboard:configuration.usage', 'Usage')}
+            </Text>
+            <ul className="space-y-1">
+              {usageItems.map((item) => (
+                <li key={item.type} className="flex justify-between text-sm items-center">
+                  <span className="flex items-center gap-2">
+                    <span
+                      className="inline-block w-3 h-3 rounded"
+                      style={{ backgroundColor: getColorForType(item.type) }}
+                    />
+                    <span>{item.name}:</span>
+                  </span>
+                  <span>
+                    {item.value} {item.unit}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Progress Bars Container - Single bar with multiple segments (like oui-progress) */}
+        <div className={legend ? '' : 'w-full'}>
           <div
-            className="bg-primary h-4 rounded-full transition-all"
-            style={{ width: `${(totalUsed / maxSize) * 100}%` }}
-          />
+            className="relative overflow-hidden rounded"
+            style={{
+              height: large ? '1.125rem' : '0.75rem',
+              backgroundColor: '#fff',
+              border: '1px solid #ccc',
+              padding: '1px',
+            }}
+          >
+            {usageItems.map((item, index) => {
+              const previousValue = usageItems
+                .slice(0, index)
+                .reduce((sum, prevItem) => sum + prevItem.value, 0);
+              const percentage = maxSize > 0 ? (item.value / maxSize) * 100 : 0;
+              const previousPercentage = maxSize > 0 ? (previousValue / maxSize) * 100 : 0;
+
+              return (
+                <div
+                  key={item.type}
+                  className="absolute top-0 bottom-0"
+                  style={{
+                    left: `${previousPercentage}%`,
+                    width: `${percentage}%`,
+                    backgroundColor: getColorForType(item.type),
+                    position: 'relative',
+                  }}
+                >
+                  {item.type === 'used' && (
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        backgroundImage: `repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) 40%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%)`,
+                        backgroundSize: '8px 8px',
+                        backgroundPosition: '-1.25rem 0',
+                        zIndex: 1,
+                      }}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-
-
