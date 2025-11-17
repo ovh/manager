@@ -23,3 +23,7 @@ vi.mock('react-router-dom', async () => {
     useParams: () => ({ projectId: '123' }),
   };
 });
+
+vi.mock('@/hooks/useIamActivated', () => ({
+  useIamActivated: vi.fn().mockReturnValue(true),
+}));
