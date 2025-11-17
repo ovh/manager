@@ -40,8 +40,8 @@
   "kube_common_estimation_price_free": "Kostenlos",
   "kube_common_estimation_total_price": "Geschätzter Gesamtpreis:",
   "kube_common_node_pool_estimation_cost_tile": "Monatliche Schätzung",
-  "kube_common_node_pool_select_zone": "Sie müssen mindestens eine Verfügbarkeitszone auswählen.",
-  "kube_common_add_node_pool_plural": "Fügen Sie {{count}} Knotenpools hinzu",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Wenn mehrere Verfügbarkeitszonen (AZ) ausgewählt sind, wird die Konfiguration automatisch dupliziert, um einen separaten Knotenpool in jeder Zone zu erstellen.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "AZ-Aufteilung"
+  "kube_common_node_pool_select_zone": "Sie müssen mindestens eine Availability Zone auswählen.",
+  "kube_common_add_node_pool_plural": "{{count}} Node-Pools hinzufügen",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Wenn mehrere Availability Zones (AZs) ausgewählt sind, wird die Konfiguration automatisch dupliziert, um in jeder Zone einen separaten Node-Pool zu erstellen.",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "AZ-Verteilung"
 }
