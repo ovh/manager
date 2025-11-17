@@ -29,7 +29,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
             preset="span"
             data-testid={SECRET_TEST_IDS.PATH}
             // Temporary fix: wrap text without whitespace
-            style={{ 'overflow-wrap': 'anywhere' }}
+            // style={{ 'overflow-wrap': 'anywhere' }}
           >
             {secret.path}
           </OdsText>

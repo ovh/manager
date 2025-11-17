@@ -7,7 +7,7 @@ import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
 import { BillingTile } from './BillingTile.component';
 import { BILLING_TILE_TEST_IDS } from './BillingTile.constants';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
+import { useProductType, ProductType } from '@/common/hooks/useProductType';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const okmsMocked = okmsMock[0];

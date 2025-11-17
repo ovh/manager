@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
@@ -13,10 +12,7 @@ import {
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { OkmsSelector } from './OkmsSelector.component';
 import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
-import { useOrderOkmsModalContext } from '@/common/pages/order-okms-modal/OrderOkmsModalContext';
-
-const OKMS_LIST_REFETCH_INTERVAL_DISABLE = 0;
-const OKMS_LIST_REFETCH_INTERVAL_IN_MS = 2000; // 2 seconds
+import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
 
 type OkmsManagementProps = {
   selectedOkmsId: string;
@@ -28,47 +24,22 @@ export const OkmsManagement = ({
   setSelectedOkmsId,
 }: OkmsManagementProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR]);
-  const { addSuccess } = useNotifications();
+
+  // Poll for new OKMS and handle the pending order
+  // Then select the new OKMS when it's available
+  usePendingOkmsOrder({
+    onSuccess: (okmsId) => {
+      setSelectedOkmsId(okmsId);
+    },
+  });
 
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
-
-  const {
-    orderProcessingRegion,
-    resetOrderProcessingRegion,
-  } = useOrderOkmsModalContext();
-  const isOkmsOrderProcessing = Boolean(orderProcessingRegion);
-
-  const [refetchInterval, setRefetchInterval] = useState(
-    OKMS_LIST_REFETCH_INTERVAL_DISABLE,
-  );
 
   const {
     data: okmsList,
     error: okmsError,
     isLoading: isOkmsListLoading,
-  } = useOkmsList({ refetchInterval });
-
-  // Manage Okms order processing
-  useEffect(() => {
-    if (!orderProcessingRegion) return;
-
-    const regionOkmsList = filterOkmsListByRegion(
-      okmsList,
-      orderProcessingRegion,
-    );
-    // If region has no okms then when we refresh the list periodically
-    if (regionOkmsList.length === 0) {
-      setRefetchInterval(OKMS_LIST_REFETCH_INTERVAL_IN_MS);
-      return;
-    }
-
-    // Handle successfully created okms
-    setRefetchInterval(OKMS_LIST_REFETCH_INTERVAL_DISABLE);
-    resetOrderProcessingRegion();
-    addSuccess(t('create_okms_success'), true);
-    setSelectedRegion(orderProcessingRegion);
-    setSelectedOkmsId(regionOkmsList[0].id);
-  }, [okmsList, orderProcessingRegion]);
+  } = useOkmsList();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -143,7 +114,6 @@ export const OkmsManagement = ({
         okmsList={filterOkmsListByRegion(okmsList, selectedRegion)}
         selectedRegion={selectedRegion}
         selectedOkms={selectedOkmsId}
-        isOkmsOrderProcessing={isOkmsOrderProcessing}
         onOkmsSelection={setSelectedOkmsId}
       />
     </div>
