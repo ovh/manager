@@ -1,4 +1,5 @@
 export type TRegionDeploymentModeDTO = 'region' | 'localzone' | 'region-3-az';
+type TOsTypeDTO = 'baremetal-linux' | 'linux' | 'windows';
 
 export type TDeploymentModeDTO = {
   name: TRegionDeploymentModeDTO;
@@ -62,6 +63,7 @@ export type TSpecificationsDTO = {
 export type TFlavorRegionDTO = {
   name: string;
   flavorId: string;
+  osType: TOsTypeDTO;
   quota: number;
   availableStocks: boolean;
   tags: string[] | null;
@@ -75,13 +77,14 @@ type TPriceDetailsDTO = {
 };
 
 export type TPriceDTO = {
-  type: 'hour' | 'month';
+  type: 'hour' | 'month' | 'licence';
   price: TPriceDetailsDTO;
   includeVat: boolean;
 };
 
 export type TPricingDTO = {
   regions: string[];
+  osType: string;
   prices: TPriceDTO[];
 };
 
@@ -90,7 +93,6 @@ export type TFlavorDTO = {
   specifications: TSpecificationsDTO;
   regions: TFlavorRegionDTO[];
   pricings: TPricingDTO[];
-  osType: string;
 };
 
 export type TInstancesCatalogDTO = {

@@ -202,51 +202,85 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
           quota: 800,
           availableStocks: true,
           tags: [],
+          osType: 'linux',
+        },
+        {
+          name: 'UK1',
+          flavorId: 'ddec2110-81db-4360-947f-f54g64rg5r64',
+          quota: 600,
+          availableStocks: true,
+          tags: [],
+          osType: 'windows',
+        },
+        {
+          name: 'GRA-STAGING-A',
+          flavorId: 'ddec2f08-9ddb-4367-949f-wwwjwjjjgyzg',
+          quota: 300,
+          availableStocks: true,
+          tags: [],
+          osType: 'windows',
         },
       ],
       pricings: [
         {
-          regions: [
-            'UK1',
-            'INTERNAL.GRA1',
-            'WAW1',
-            'SYD1',
-            'SGP1',
-            'GRA-STAGING-A',
-            'GRA9',
-            'GRA11',
-            'RBX-A',
-            'SBG5',
-            'GRA7',
-            'SBG7',
-            'BHS5',
-            'DE1',
-          ],
+          regions: ['GRA-STAGING-A'],
+          osType: 'linux',
           prices: [
             {
               type: 'hour',
               price: {
                 currencyCode: 'EUR',
-                priceInUcents: 991000,
-                text: '0.01 €',
-                value: 0.00991,
+                priceInUcents: 4650000,
+                text: '0.05 €',
+                value: 0.0465,
+              },
+              includeVat: false,
+            },
+          ],
+        },
+        {
+          regions: ['UK1'],
+          osType: 'linux',
+          prices: [
+            {
+              type: 'hour',
+              price: {
+                currencyCode: 'EUR',
+                priceInUcents: 4650000,
+                text: '0.04 €',
+                value: 0.0465,
+              },
+              includeVat: false,
+            },
+          ],
+        },
+        {
+          regions: ['GRA-STAGING-A'],
+          osType: 'windows',
+          prices: [
+            {
+              type: 'hour',
+              price: {
+                currencyCode: 'EUR',
+                priceInUcents: 4650000,
+                text: '0.05 €',
+                value: 0.0465,
               },
               includeVat: false,
             },
             {
-              type: 'month',
+              type: 'licence',
               price: {
                 currencyCode: 'EUR',
-                priceInUcents: 549000000,
-                text: '5.49 €',
-                value: 5.49,
+                priceInUcents: 500000000,
+                text: '5 €',
+                value: 5,
               },
               includeVat: false,
             },
           ],
         },
       ],
-      osType: 'linux',
     },
   ],
 };
@@ -472,8 +506,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
                 },
               },
             },
-            osType: 'linux',
-            regionalizedFlavorIds: ['ddec2f08-9ddb-4367-949f-f369674c6c4d'],
+            regionalizedFlavorIds: ['d2-2_GRA-STAGING-A', 'd2-2_UK1'],
           },
         ],
       ]),
@@ -482,48 +515,135 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
     flavorPrices: {
       byId: new Map([
         [
-          'd2-2-0-price',
+          'd2-2_GRA-STAGING-A_linux_price',
           {
-            id: 'd2-2-0-price',
+            id: 'd2-2_GRA-STAGING-A_linux_price',
             prices: [
               {
                 type: 'hour',
                 currencyCode: 'EUR',
                 includeVat: false,
-                value: 0.00991,
-                priceInUcents: 991000,
-                text: '0.01 €',
+                value: 0.0465,
+                priceInUcents: 4650000,
+                text: '0.05 €',
               },
+            ],
+          },
+        ],
+        [
+          'd2-2_UK1_linux_price',
+          {
+            id: 'd2-2_UK1_linux_price',
+            prices: [
               {
-                type: 'month',
+                type: 'hour',
                 currencyCode: 'EUR',
                 includeVat: false,
-                value: 5.49,
-                priceInUcents: 549000000,
-                text: '5.49 €',
+                value: 0.0465,
+                priceInUcents: 4650000,
+                text: '0.04 €',
+              },
+            ],
+          },
+        ],
+        [
+          'd2-2_GRA-STAGING-A_windows_price',
+          {
+            id: 'd2-2_GRA-STAGING-A_windows_price',
+            prices: [
+              {
+                type: 'hour',
+                currencyCode: 'EUR',
+                includeVat: false,
+                value: 0.0465,
+                priceInUcents: 4650000,
+                text: '0.05 €',
+              },
+              {
+                type: 'licence',
+                currencyCode: 'EUR',
+                includeVat: false,
+                value: 5,
+                priceInUcents: 500000000,
+                text: '5 €',
               },
             ],
           },
         ],
       ]),
-      allIds: ['d2-2-0-price'],
+      allIds: [
+        'd2-2_GRA-STAGING-A_linux_price',
+        'd2-2_UK1_linux_price',
+        'd2-2_GRA-STAGING-A_windows_price',
+      ],
     },
     regionalizedFlavors: {
       byId: new Map([
         [
-          'ddec2f08-9ddb-4367-949f-f369674c6c4d',
+          'd2-2_GRA-STAGING-A',
           {
-            id: 'ddec2f08-9ddb-4367-949f-f369674c6c4d',
-            flavorId: 'd2-2',
+            id: 'd2-2_GRA-STAGING-A',
             hasStock: true,
-            priceId: 'd2-2-0-price',
             quota: 800,
-            regionID: 'GRA-STAGING-A',
+            regionId: 'GRA-STAGING-A',
+            flavorId: 'd2-2',
             tags: [],
+            osTypes: ['linux', 'windows'],
+          },
+        ],
+        [
+          'd2-2_UK1',
+          {
+            id: 'd2-2_UK1',
+            hasStock: true,
+            quota: 600,
+            regionId: 'UK1',
+            flavorId: 'd2-2',
+            tags: [],
+            osTypes: ['windows'],
           },
         ],
       ]),
-      allIds: ['ddec2f08-9ddb-4367-949f-f369674c6c4d'],
+      allIds: ['d2-2_GRA-STAGING-A', 'd2-2_UK1'],
+    },
+    regionalizedFlavorOsTypes: {
+      byId: new Map([
+        [
+          'd2-2_GRA-STAGING-A_linux',
+          {
+            id: 'd2-2_GRA-STAGING-A_linux',
+            flavorId: 'ddec2f08-9ddb-4367-949f-f369674c6c4d',
+            osType: 'linux',
+            hasStock: true,
+            quota: 800,
+          },
+        ],
+        [
+          'd2-2_UK1_windows',
+          {
+            id: 'd2-2_UK1_windows',
+            flavorId: 'ddec2110-81db-4360-947f-f54g64rg5r64',
+            osType: 'windows',
+            hasStock: true,
+            quota: 600,
+          },
+        ],
+        [
+          'd2-2_GRA-STAGING-A_windows',
+          {
+            id: 'd2-2_GRA-STAGING-A_windows',
+            flavorId: 'ddec2f08-9ddb-4367-949f-wwwjwjjjgyzg',
+            osType: 'windows',
+            hasStock: true,
+            quota: 300,
+          },
+        ],
+      ]),
+      allIds: [
+        'd2-2_GRA-STAGING-A_linux',
+        'd2-2_UK1_windows',
+        'd2-2_GRA-STAGING-A_windows',
+      ],
     },
   },
   relations: {

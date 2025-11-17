@@ -1,6 +1,8 @@
+/* eslint-disable max-lines */
 import { Deps } from '@/deps/deps';
 import {
   TFlavor,
+  TFlavorPrices,
   TInstancesCatalog,
   TMacroRegion,
   TRegionalizedFlavor,
@@ -10,6 +12,10 @@ import { Reader } from '@/types/utils.type';
 import { getRegionNameKey } from './localizationsViewModel';
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
+import {
+  getRegionalizedFlavorId,
+  getRegionalizedFlavorOsTypePriceId,
+} from '@/utils';
 
 export type TFlavorData = {
   id: string;
@@ -92,6 +98,33 @@ type TSelectFlavorsArgs = {
   withUnavailable: boolean;
 };
 
+type TMinimumPrices = {
+  minimumHourlyPrice: number | null;
+  minimumMonthlyPrice: number | null;
+};
+
+const getMinimumPrices = (pricings: TFlavorPrices[]) =>
+  pricings.reduce<TMinimumPrices>(
+    (acc, pricing) => {
+      pricing.prices.forEach((price) => {
+        if (
+          price.type === 'hour' &&
+          (!acc.minimumHourlyPrice || acc.minimumHourlyPrice > price.value)
+        ) {
+          acc.minimumHourlyPrice = price.value;
+        }
+        if (
+          price.type === 'month' &&
+          (!acc.minimumMonthlyPrice || acc.minimumMonthlyPrice > price.value)
+        ) {
+          acc.minimumMonthlyPrice = price.value;
+        }
+      });
+      return acc;
+    },
+    { minimumHourlyPrice: null, minimumMonthlyPrice: null },
+  );
+
 export type TSelectFlavors = (
   args: TSelectFlavorsArgs,
 ) => TFlavorDataForTable[];
@@ -104,20 +137,26 @@ const addMicroRegionAvailableFlavor = (
 ) => {
   const { microRegions, macroRegions, flavorPrices } = entities;
 
-  const macroRegionId = microRegions.byId.get(regionalizedFlavor.regionID)
+  const macroRegionId = microRegions.byId.get(regionalizedFlavor.regionId)
     ?.macroRegionId;
   if (!macroRegionId) return acc;
 
   const deploymentMode = macroRegions.byId.get(macroRegionId)?.deploymentMode;
   if (!deploymentMode) return acc;
 
-  const pricing = flavorPrices.byId.get(regionalizedFlavor.priceId);
-  if (!pricing) return acc;
+  const pricings = regionalizedFlavor.osTypes.flatMap((osType) => {
+    const flavorPriceId = getRegionalizedFlavorOsTypePriceId(
+      flavor.name,
+      regionalizedFlavor.regionId,
+      osType,
+    );
+    const pricing = flavorPrices.byId.get(flavorPriceId);
+    return pricing ? [pricing] : [];
+  });
 
-  const hourlyPrice =
-    pricing.prices.find((price) => price.type === 'hour')?.value ?? null;
-  const monthlyPrice =
-    pricing.prices.find((price) => price.type === 'month')?.value ?? null;
+  const { minimumHourlyPrice, minimumMonthlyPrice } = getMinimumPrices(
+    pricings,
+  );
 
   acc.push({
     id: regionalizedFlavor.id,
@@ -128,8 +167,8 @@ const addMicroRegionAvailableFlavor = (
     vCore: flavor.specifications.cpu.value,
     storage: flavor.specifications.storage.value,
     mode: deploymentMode,
-    hourlyPrice: hourlyPrice,
-    monthlyPrice: monthlyPrice,
+    hourlyPrice: minimumHourlyPrice,
+    monthlyPrice: minimumMonthlyPrice,
   });
 
   return acc;
@@ -182,8 +221,13 @@ export const selectFlavors: Reader<Deps, TSelectFlavors> = (deps) => {
       );
 
       regionalizedFlavors.map((regionalizedFlavor, index) => {
+        const regionalizedFlavorId = getRegionalizedFlavorId(
+          flavorName,
+          microRegionId,
+        );
+
         const isFlavorInSelectedMicroRegion =
-          regionalizedFlavor.regionID === microRegionId;
+          regionalizedFlavor.id === regionalizedFlavorId;
 
         const isLastRegionalizedFlavorFromList =
           index === regionalizedFlavors.length - 1;
@@ -253,8 +297,8 @@ const mapToAvailableRegionOption = (
       regionalizedFlavorId: regionalizedFlavor.id,
     },
     label:
-      macroRegion.microRegions.length > 1 ? regionalizedFlavor.regionID : city,
-    value: regionalizedFlavor.regionID,
+      macroRegion.microRegions.length > 1 ? regionalizedFlavor.regionId : city,
+    value: regionalizedFlavor.regionId,
   };
 };
 
@@ -271,7 +315,7 @@ const mapAvailableRegions = (
 
   regionalizedFlavorsWithStock.forEach((regionalizedFlavor) => {
     const macroRegionId = data.entities.microRegions.byId.get(
-      regionalizedFlavor.regionID,
+      regionalizedFlavor.regionId,
     )?.macroRegionId;
     if (!macroRegionId) return;
 

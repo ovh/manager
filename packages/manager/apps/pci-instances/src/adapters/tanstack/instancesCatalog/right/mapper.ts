@@ -14,6 +14,7 @@ import {
   TRegionalizedFlavor,
   TFlavorPrices,
   TPrice,
+  TRegionalizedFlavorOsType,
 } from '@/domain/entities/instancesCatalog';
 import {
   TContinentRegionsDTO,
@@ -30,6 +31,11 @@ import {
   TSpecificationsDTO,
 } from './dto.type';
 import { iscountryISOCode } from '@/components/flag/country-iso-code';
+import {
+  getRegionalizedFlavorId,
+  getRegionalizedFlavorOsTypeId,
+  getRegionalizedFlavorOsTypePriceId,
+} from '@/utils';
 
 type TNormalizedEntity<ID, Entity> = {
   byId: Map<ID, Entity>;
@@ -201,44 +207,78 @@ type TNormalizeFlavorMappers = {
   regionalizedFlavorMapper: (
     flavorRegionDTO: TFlavorRegionDTO,
     flavorName: string,
+    regionalizedFlavorsById: Map<string, TRegionalizedFlavor>,
+  ) => TRegionalizedFlavor;
+  regionalizedFlavorOsTypeMapper: (
+    regionalizedFlavorOsTypeName: string,
+    regionFlavorDTO: TFlavorRegionDTO,
     pricings: TPricingDTO[],
-  ) => TRegionalizedFlavor[];
+  ) => TRegionalizedFlavorOsType;
   flavorPricesMapper: (
     flavorPricingDTO: TPricingDTO,
     priceId: string,
   ) => TFlavorPrices;
 };
 
-const getFlavorPriceId = (flavorNameWithPricingIndex: string) =>
-  `${flavorNameWithPricingIndex}-price`;
-
 const mapFlavorDTOToFlavorEntity = (flavorDTO: TFlavorDTO): TFlavor => ({
   name: flavorDTO.name,
   specifications: mapFlavorSpecifications(flavorDTO.specifications),
-  osType: flavorDTO.osType,
-  regionalizedFlavorIds: flavorDTO.regions.map((region) => region.flavorId),
+  regionalizedFlavorIds: Array.from(
+    new Set(
+      flavorDTO.regions.map((region) =>
+        getRegionalizedFlavorId(flavorDTO.name, region.name),
+      ),
+    ),
+  ),
 });
 
 const mapFlavorDTOToRegionalizedFlavorEntity = (
-  flavorRegionDTO: TFlavorRegionDTO,
-  flavorName: string,
-  pricings: TPricingDTO[],
-): TRegionalizedFlavor[] =>
-  pricings.flatMap((pricing, index) =>
-    pricing.regions.includes(flavorRegionDTO.name)
-      ? [
-          {
-            id: flavorRegionDTO.flavorId,
-            flavorId: flavorName,
-            regionID: flavorRegionDTO.name,
-            quota: flavorRegionDTO.quota,
-            hasStock: flavorRegionDTO.availableStocks,
-            tags: flavorRegionDTO.tags,
-            priceId: getFlavorPriceId(`${flavorName}-${index}`),
-          },
-        ]
-      : [],
+  regionalizedFlavor: TFlavorRegionDTO,
+  regionalizedFlavorName: string,
+  regionalizedFlavorsById: Map<string, TRegionalizedFlavor>,
+): TRegionalizedFlavor => {
+  const regionalizedFlavorId = getRegionalizedFlavorId(
+    regionalizedFlavorName,
+    regionalizedFlavor.name,
   );
+
+  const regionalizedFlavorFound = regionalizedFlavorsById.get(
+    regionalizedFlavorId,
+  );
+
+  if (!regionalizedFlavorFound) {
+    const regionalizedFlavorToAdd = {
+      id: regionalizedFlavorId,
+      hasStock: regionalizedFlavor.availableStocks,
+      regionId: regionalizedFlavor.name,
+      flavorId: regionalizedFlavorName,
+      quota: regionalizedFlavor.quota,
+      osTypes: [regionalizedFlavor.osType],
+      tags: regionalizedFlavor.tags,
+    };
+    return regionalizedFlavorToAdd;
+  } else {
+    const updatedRegionalizedRegion = {
+      ...regionalizedFlavorFound,
+      hasStock:
+        regionalizedFlavorFound.hasStock || regionalizedFlavor.availableStocks,
+      quota: regionalizedFlavorFound.quota || regionalizedFlavor.quota,
+      osTypes: [...regionalizedFlavorFound.osTypes, regionalizedFlavor.osType],
+    };
+    return updatedRegionalizedRegion;
+  }
+};
+
+const mapFlavorDTOToRegionalizedFlavorOsTypeEntity = (
+  regionalizedFlavorOsTypeName: string,
+  regionFlavorDTO: TFlavorRegionDTO,
+): TRegionalizedFlavorOsType => ({
+  id: regionalizedFlavorOsTypeName,
+  flavorId: regionFlavorDTO.flavorId,
+  osType: regionFlavorDTO.osType,
+  quota: regionFlavorDTO.quota,
+  hasStock: regionFlavorDTO.availableStocks,
+});
 
 const mapFlavorPricesDTOToFlavorPricesEntity = (
   priceDTO: TPriceDTO,
@@ -262,6 +302,10 @@ const mapFlavorPricingDTOToFlavorPricesEntity = (
 type TFlavors = {
   flavors: TNormalizedEntity<string, TFlavor>;
   regionalizedFlavors: TNormalizedEntity<string, TRegionalizedFlavor>;
+  regionalizedFlavorOsTypes: TNormalizedEntity<
+    string,
+    TRegionalizedFlavorOsType
+  >;
   flavorPrices: TNormalizedEntity<string, TFlavorPrices>;
 };
 
@@ -274,29 +318,63 @@ const setFlavors = (
     acc.flavors.allIds.push(flavorDTO.name);
   acc.flavors.byId.set(flavorDTO.name, flavorMapper(flavorDTO));
 };
+
 const setRegionalizedFlavors = (
   acc: TFlavors,
   flavorDTO: TFlavorDTO,
   regionalizedFlavorMapper: (
     flavorRegionDTO: TFlavorRegionDTO,
-    flavorName: string,
-    pricings: TPricingDTO[],
-  ) => TRegionalizedFlavor[],
+    regionalizedFlavorId: string,
+    regionalizedFlavorsById: Map<string, TRegionalizedFlavor>,
+  ) => TRegionalizedFlavor,
 ) =>
-  flavorDTO.regions.map((regionFlavorDTO) => {
-    if (!acc.regionalizedFlavors.allIds.includes(regionFlavorDTO.flavorId))
-      acc.regionalizedFlavors.allIds.push(regionFlavorDTO.flavorId);
-    const mappedRegionalizedFlavor = regionalizedFlavorMapper(
-      regionFlavorDTO,
+  flavorDTO.regions.forEach((regionFlavorDTO) => {
+    const regionalizedFlavorId = getRegionalizedFlavorId(
       flavorDTO.name,
-      flavorDTO.pricings,
-    )[0];
-    if (mappedRegionalizedFlavor) {
-      acc.regionalizedFlavors.byId.set(
-        regionFlavorDTO.flavorId,
-        mappedRegionalizedFlavor,
-      );
-    }
+      regionFlavorDTO.name,
+    );
+
+    if (!acc.regionalizedFlavors.allIds.includes(regionalizedFlavorId))
+      acc.regionalizedFlavors.allIds.push(regionalizedFlavorId);
+
+    acc.regionalizedFlavors.byId.set(
+      regionalizedFlavorId,
+      regionalizedFlavorMapper(
+        regionFlavorDTO,
+        flavorDTO.name,
+        acc.regionalizedFlavors.byId,
+      ),
+    );
+  });
+
+const setRegionalizedFlavorOsTypes = (
+  acc: TFlavors,
+  flavorDTO: TFlavorDTO,
+  regionalizedFlavorOsTypeMapper: (
+    regionalizedFlavorOsTypeName: string,
+    flavorRegionDTO: TFlavorRegionDTO,
+    pricings: TPricingDTO[],
+  ) => TRegionalizedFlavorOsType,
+) =>
+  flavorDTO.regions.forEach((flavorRegionDTO) => {
+    const regionalizedFlavorOsTypeId = getRegionalizedFlavorOsTypeId(
+      flavorDTO.name,
+      flavorRegionDTO.name,
+      flavorRegionDTO.osType,
+    );
+
+    if (
+      !acc.regionalizedFlavorOsTypes.allIds.includes(regionalizedFlavorOsTypeId)
+    )
+      acc.regionalizedFlavorOsTypes.allIds.push(regionalizedFlavorOsTypeId);
+    acc.regionalizedFlavorOsTypes.byId.set(
+      regionalizedFlavorOsTypeId,
+      regionalizedFlavorOsTypeMapper(
+        regionalizedFlavorOsTypeId,
+        flavorRegionDTO,
+        flavorDTO.pricings,
+      ),
+    );
   });
 
 const setFlavorPrices = (
@@ -306,33 +384,46 @@ const setFlavorPrices = (
     flavorPricingDTO: TPricingDTO,
     priceId: string,
   ) => TFlavorPrices,
-) => {
-  flavorDTO.pricings.forEach((flavorPricingDTO, index) => {
-    const priceId = getFlavorPriceId(`${flavorDTO.name}-${index}`);
-    if (!acc.flavorPrices.allIds.includes(priceId))
-      acc.flavorPrices.allIds.push(priceId);
-    acc.flavorPrices.byId.set(
-      priceId,
-      flavorPricesMapper(flavorPricingDTO, priceId),
-    );
+) =>
+  flavorDTO.pricings.forEach((flavorPricingDTO) => {
+    flavorPricingDTO.regions.forEach((region) => {
+      const regionalizedFlavorOsTypePriceId = getRegionalizedFlavorOsTypePriceId(
+        flavorDTO.name,
+        region,
+        flavorPricingDTO.osType,
+      );
+
+      if (!acc.flavorPrices.allIds.includes(regionalizedFlavorOsTypePriceId))
+        acc.flavorPrices.allIds.push(regionalizedFlavorOsTypePriceId);
+      acc.flavorPrices.byId.set(
+        regionalizedFlavorOsTypePriceId,
+        flavorPricesMapper(flavorPricingDTO, regionalizedFlavorOsTypePriceId),
+      );
+    });
   });
-};
 
 const normalizeFlavor = ({
   flavorMapper,
   regionalizedFlavorMapper,
+  regionalizedFlavorOsTypeMapper,
   flavorPricesMapper,
 }: TNormalizeFlavorMappers) => (flavorsDTO: TFlavorDTO[]) =>
   flavorsDTO.reduce<TFlavors>(
     (acc, flavorDTO) => {
       setFlavors(acc, flavorDTO, flavorMapper);
       setRegionalizedFlavors(acc, flavorDTO, regionalizedFlavorMapper);
+      setRegionalizedFlavorOsTypes(
+        acc,
+        flavorDTO,
+        regionalizedFlavorOsTypeMapper,
+      );
       setFlavorPrices(acc, flavorDTO, flavorPricesMapper);
       return acc;
     },
     {
       flavors: { byId: new Map(), allIds: [] },
       regionalizedFlavors: { byId: new Map(), allIds: [] },
+      regionalizedFlavorOsTypes: { byId: new Map(), allIds: [] },
       flavorPrices: { byId: new Map(), allIds: [] },
     },
   );
@@ -417,6 +508,7 @@ export const mapInstancesCatalogDtoToEntity = (
       ...normalizeFlavor({
         flavorMapper: mapFlavorDTOToFlavorEntity,
         regionalizedFlavorMapper: mapFlavorDTOToRegionalizedFlavorEntity,
+        regionalizedFlavorOsTypeMapper: mapFlavorDTOToRegionalizedFlavorOsTypeEntity,
         flavorPricesMapper: mapFlavorPricingDTOToFlavorPricesEntity,
       })(catalogDTO.flavors),
     },
