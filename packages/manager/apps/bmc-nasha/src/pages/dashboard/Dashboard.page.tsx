@@ -12,30 +12,20 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  BaseLayout,
-  Button,
-  ChangelogMenu,
-  GuideMenu,
-  Icon,
-  Message,
-  Meter,
-  Text,
-  Tile,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@ovh-ux/muk';
+import { BaseLayout, ChangelogMenu, GuideMenu, Message } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/Tracking.constants';
 import BillingTile from '@/components/BillingTile/BillingTile.component';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
-import { GUIDES_URL, NASHA_USE_SIZE_NAME } from '@/constants/nasha.constants';
+import ConfigurationTile from '@/components/dashboard/ConfigurationTile.component';
+import InformationTile from '@/components/dashboard/InformationTile.component';
+import { GUIDES_URL } from '@/constants/nasha.constants';
 import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions';
 import { useIsCommitmentAvailable } from '@/hooks/dashboard/useIsCommitmentAvailable';
 import { useIsNashaEolServiceBannerAvailable } from '@/hooks/dashboard/useIsNashaEolServiceBannerAvailable';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { useServiceInfo } from '@/hooks/dashboard/useServiceInfo';
+import { useUsageMetrics } from '@/hooks/dashboard/useUsageMetrics';
 
 export default function DashboardPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -91,36 +81,8 @@ export default function DashboardPage() {
     return activeTab?.name || tabs[0]?.name || '';
   }, [tabs]);
 
-  // Calculate space left display (like the original filter)
-  // The original uses usage.used, not totalUsed
-  const spaceLeftDisplay = useMemo(() => {
-    if (!nasha?.use || !nasha.use[NASHA_USE_SIZE_NAME] || !nasha.use.used) return null;
-    const size = nasha.use[NASHA_USE_SIZE_NAME];
-    const used = nasha.use.used;
-    const maxSize = size.value;
-    const usedValue = used.value;
-    const ratio = maxSize > 0 ? ((usedValue / maxSize) * 100).toFixed(2) : '0.00';
-
-    return {
-      used: { value: usedValue, unit: used.unit },
-      total: { value: maxSize, unit: size.unit },
-      ratio: parseFloat(ratio),
-    };
-  }, [nasha?.use]);
-
-  // Calculate usage percentage for Meter (using totalUsed for the meter)
-  const usagePercentage = useMemo(() => {
-    if (!nasha?.use) return 0;
-    const size = nasha.use[NASHA_USE_SIZE_NAME];
-    if (!size) return 0;
-
-    const maxSize = size.value;
-    const totalUsed = Object.entries(nasha.use)
-      .filter(([key]) => key !== NASHA_USE_SIZE_NAME)
-      .reduce((sum, [, data]) => sum + (data.value || 0), 0);
-
-    return maxSize > 0 ? Math.round((totalUsed / maxSize) * 100) : 0;
-  }, [nasha?.use]);
+  // Calculate usage metrics
+  const { spaceLeftDisplay, usagePercentage } = useUsageMetrics(nasha?.use);
 
   // Header actions
   const handleEditName = () => {
@@ -226,107 +188,16 @@ export default function DashboardPage() {
       {!location.pathname.includes('/partitions') && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-4">
           {/* Information Tile */}
-          <Tile.Root title={t('dashboard:information.title')}>
-            <Tile.Item.Root>
-              <Tile.Item.Term label={t('dashboard:information.name')} />
-              <Tile.Item.Description>
-                <div className="flex items-center">
-                  <span>{displayName}</span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleEditName}
-                    className="ml-2"
-                    aria-label={t('dashboard:edit', 'Edit')}
-                  >
-                    <Icon name="pen" />
-                  </Button>
-                </div>
-              </Tile.Item.Description>
-            </Tile.Item.Root>
-            <Tile.Item.Root>
-              <Tile.Item.Term label={t('dashboard:information.id')} />
-              <Tile.Item.Description>{nasha.serviceName}</Tile.Item.Description>
-            </Tile.Item.Root>
-            <Tile.Item.Root>
-              <Tile.Item.Term label={t('dashboard:information.datacenter')} />
-              <Tile.Item.Description>{nasha.localeDatacenter}</Tile.Item.Description>
-            </Tile.Item.Root>
-            <Tile.Item.Root>
-              <Tile.Item.Term label={t('dashboard:information.disk_type')} />
-              <Tile.Item.Description>{nasha.diskType}</Tile.Item.Description>
-            </Tile.Item.Root>
-            <Tile.Item.Root>
-              <Tile.Item.Term label={t('dashboard:information.disk_size')} />
-              <Tile.Item.Description>{nasha.diskSize}</Tile.Item.Description>
-            </Tile.Item.Root>
-          </Tile.Root>
+          <InformationTile nasha={nasha} displayName={displayName} onEditName={handleEditName} />
 
           {/* Configuration Tile */}
-          <Tile.Root title={t('dashboard:configuration.title')}>
-            <Tile.Item.Root>
-              <Tile.Item.Term label={t('dashboard:configuration.quota')} />
-              <Tile.Item.Description>
-                <div className="space-y-4">
-                  {/* Space Left Display (like original) */}
-                  {spaceLeftDisplay && (
-                    <div className="mb-4 flex items-center gap-2">
-                      <Text preset="paragraph" className="text-sm font-semibold">
-                        {spaceLeftDisplay.used.value} {spaceLeftDisplay.used.unit} /{' '}
-                        {spaceLeftDisplay.total.value} {spaceLeftDisplay.total.unit} (
-                        {spaceLeftDisplay.ratio}%)
-                      </Text>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Icon
-                            name="circle-question"
-                            className="ml-2 cursor-help"
-                            aria-label={t('dashboard:configuration.quota_help', 'Help')}
-                          />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <Text preset="paragraph">
-                            {t(
-                              'dashboard:configuration.quota_help_text',
-                              'The total capacity displayed corresponds to your HA-NAS volume — 20% more storage is added to it for your snapshots.',
-                            )}
-                          </Text>
-                        </TooltipContent>
-                      </Tooltip>
-                    </div>
-                  )}
-
-                  {/* Meter */}
-                  {nasha.use && (
-                    <div className="w-full">
-                      <Meter
-                        value={usagePercentage}
-                        min={0}
-                        max={100}
-                        low={40}
-                        high={80}
-                        optimum={30}
-                      />
-                    </div>
-                  )}
-
-                  {/* Create partition link */}
-                  <Button
-                    variant="outline"
-                    size="md"
-                    onClick={handleCreatePartition}
-                    disabled={!canCreatePartitions}
-                    className="mt-4"
-                  >
-                    <span className="flex items-center">
-                      {t('dashboard:configuration.link')}
-                      <Icon name="arrow-right" className="ml-2" />
-                    </span>
-                  </Button>
-                </div>
-              </Tile.Item.Description>
-            </Tile.Item.Root>
-          </Tile.Root>
+          <ConfigurationTile
+            usage={nasha.use}
+            spaceLeftDisplay={spaceLeftDisplay}
+            usagePercentage={usagePercentage}
+            canCreatePartitions={canCreatePartitions}
+            onCreatePartition={handleCreatePartition}
+          />
 
           {/* Billing Tile */}
           <BillingTile

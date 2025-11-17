@@ -590,7 +590,11 @@ export default {
 ## ⚖️ The Build Config's Moral
 
 - **Standardized configuration** ensures consistent build behavior across all applications
-- **Development features** provide efficient development workflow with hot reload and proxy
+- **Development features** provide efficient development workflow with hot reload and proxy// ✅ Bon : Page listing comme home
+<Route index Component={ListingPage} />
+
+// ❌ Éviter : SmartRedirect complexe
+<Route index element={<SmartRedirectPage />} />
 - **Production optimization** ensures fast and efficient production builds
 - **Environment handling** enables flexible deployment across different environments
 

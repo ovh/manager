@@ -52,6 +52,9 @@ const CreateSnapshotPage = React.lazy(
 const DeleteSnapshotPage = React.lazy(
   () => import('@/pages/dashboard/partition/snapshots/delete/DeleteSnapshot.page'),
 );
+const ZfsOptionsPage = React.lazy(
+  () => import('@/pages/dashboard/partitions/zfs-options/ZfsOptions.page'),
+);
 
 export default (
   <>
@@ -138,6 +141,17 @@ export default (
             handle={{
               tracking: {
                 pageName: 'delete-partition',
+                pageType: PageType.dashboard,
+              },
+            }}
+          />
+          {/* ZFS Options route */}
+          <Route
+            path=":partitionName/zfs-options"
+            Component={ZfsOptionsPage}
+            handle={{
+              tracking: {
+                pageName: 'zfs-options',
                 pageType: PageType.dashboard,
               },
             }}
