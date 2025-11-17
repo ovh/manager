@@ -48,7 +48,7 @@ export const createTenants = async ({
 }: CreateTenantsPayload): Promise<Tenant> => {
   const { data } = await apiClient.v2.post<Tenant>(
     `/observability/resource/${resourceName}/metric/tenant`,
-    targetSpec,
+    { targetSpec },
     { signal },
   );
   return data;
