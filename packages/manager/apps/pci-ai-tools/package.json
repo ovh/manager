@@ -14,13 +14,14 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
+    "lint": "eslint ./src",
     "start": "vite",
     "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true --pool=threads"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "^1.0.3",
-    "@datatr-ux/ovhcloud-types": "^1.0.34",
+    "@datatr-ux/ovhcloud-types": "^1.0.83",
     "@datatr-ux/uxlib": "^0.0.11-beta-8",
     "@hookform/resolvers": "^5.0.1",
     "@ovh-ux/manager-config": "^8.7.2",

@@ -27,6 +27,23 @@ interface AppsListColumnsProps {
   onDeleteClicked: (app: ai.app.App) => void;
 }
 
+const getAppReplicas = (
+  scalingStrategy: ai.app.ScalingStrategy | undefined,
+  availableReplicas: number,
+): number => {
+  if (scalingStrategy?.fixed) {
+    return scalingStrategy.fixed.replicas;
+  }
+
+  if (scalingStrategy?.automatic) {
+    return availableReplicas > 0
+      ? availableReplicas
+      : scalingStrategy.automatic.replicasMin;
+  }
+
+  return availableReplicas;
+};
+
 export const getColumns = ({
   onStartClicked,
   onStopClicked,
@@ -129,16 +146,18 @@ export const getColumns = ({
     },
     {
       id: 'replicas',
-      accessorFn: (row) => row.spec.scalingStrategy,
+      accessorFn: (row) => row.status.availableReplicas,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderReplicas')}
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => {
-        const replicas = row.original.spec.scalingStrategy?.fixed
-          ? row.original.spec.scalingStrategy?.fixed.replicas
-          : row.original.spec.scalingStrategy?.automatic?.replicasMin;
+        const replicas = getAppReplicas(
+          row.original.spec.scalingStrategy,
+          row.original.status.availableReplicas,
+        );
+
         return (
           <span>
             {t('tableReplic', {
