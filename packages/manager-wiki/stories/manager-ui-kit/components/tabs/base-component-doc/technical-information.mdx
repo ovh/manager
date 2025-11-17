@@ -1,12 +1,10 @@
 import { Canvas, Meta } from '@storybook/blocks';
-import * as SpecificationsTabs from '@ovhcloud/ods-react';
+import SpecificationsTabs from '@ovhcloud/ods-react';
 import { Banner } from '../../../base-documents/components/banner/Banner';
 import { Canvas as OdsCanvas } from '../../../base-documents/components/canvas/Canvas';
 import { Heading } from '../../../base-documents/components/heading/Heading';
 import { TechnicalSpecification } from '../../../base-documents/components/technicalSpecification/TechnicalSpecification';
 import * as TabsStories from './tabs.stories';
-
-<Meta of={ TabsStories } name="Technical information" />
 
 <Banner of={ TabsStories } />
 
@@ -16,7 +14,7 @@ import * as TabsStories from './tabs.stories';
 
 <Heading label="Anatomy" level={ 2 } />
 
-![Component anatomy](./base-assets/components/tabs/anatomy-tech.png "Component anatomy")
+![Component anatomy](components/tabs/anatomy-tech.png "Component anatomy")
 
 1. **Tabs**
 2. **Tab List**
@@ -54,10 +52,6 @@ import * as TabsStories from './tabs.stories';
   of={ TabsStories } />
 
 <Heading label="Examples" level={ 2 } />
-
-<Heading label="Default" level={ 3 } />
-
-<OdsCanvas of={ TabsStories.Default } sourceState="shown" />
 
 <Heading label="Disabled tab" level={ 3 } />
 
