@@ -21,7 +21,7 @@ import {
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import { useAuthorization } from '@/hooks';
-import { ContactMean } from '@/data/types/contact-mean.type';
+import { ContactMean, ContactMeanStatus } from '@/data/types/contact-mean.type';
 import ContactMeanStatusChip from '@/components/contact/contactMeanStatus/contactMeanStatus.component';
 import { useAccountUrn } from '@/data';
 import { urls } from '@/routes/routes.constant';
@@ -42,6 +42,16 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { data: accountUrn } = useAccountUrn();
   const { trackPage, trackClick } = useTracking();
+
+  const trackDatagridActionClick = (actions: string[]) =>
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions,
+      subApp: TrackingSubApps.Contacts,
+    });
+
   const { mutate: disableContactMean } = useChangeContactMeanStatus({
     contactMeanId: contactMean.id,
     onSuccess: ({ status }) => {
@@ -98,13 +108,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           id: 1,
           label: t('table_action_edit'),
           onClick: () => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['rename_contact'],
-              subApp: TrackingSubApps.Contacts,
-            });
+            trackDatagridActionClick(['rename_contact']);
             navigate(urls.contact.editTo(contactMean.id));
           },
           iamActions: ['account:apiovh:notification/contactMean/edit'],
@@ -114,13 +118,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           id: 2,
           label: t('table_action_enter_verification_code'),
           onClick: () => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['enter_validation_code'],
-              subApp: TrackingSubApps.Contacts,
-            });
+            trackDatagridActionClick(['enter_validation_code']);
             navigate(urls.contact.validateTo(contactMean.id));
           },
           iamActions: ['account:apiovh:notification/contactMean/validate'],
@@ -133,13 +131,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           id: 3,
           label: t('table_action_resend_verification_code'),
           onClick: () => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['resend_validation_code'],
-              subApp: TrackingSubApps.Contacts,
-            });
+            trackDatagridActionClick(['resend_validation_code']);
             return restartValidationContactMean();
           },
           iamActions: [
@@ -151,14 +143,8 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           id: 4,
           label: t('table_action_deactivate'),
           onClick: () => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['deactivate_contact'],
-              subApp: TrackingSubApps.Contacts,
-            });
-            disableContactMean('DISABLED');
+            trackDatagridActionClick(['deactivate_contact']);
+            disableContactMean(ContactMeanStatus.DISABLED);
           },
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
@@ -167,14 +153,8 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           id: 5,
           label: t('activate', { ns: NAMESPACES.ACTIONS }),
           onClick: () => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['activate_contact'],
-              subApp: TrackingSubApps.Contacts,
-            });
-            disableContactMean('VALID');
+            trackDatagridActionClick(['activate_contact']);
+            disableContactMean(ContactMeanStatus.VALID);
           },
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
@@ -183,13 +163,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           id: 6,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
           onClick: () => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['delete_contact'],
-              subApp: TrackingSubApps.Contacts,
-            });
+            trackDatagridActionClick(['delete_contact']);
             navigate(urls.contact.deleteTo(contactMean.id));
           },
           iamActions: ['account:apiovh:notification/contactMean/delete'],
