@@ -28,7 +28,7 @@ export default function DetacheDomainModal() {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { data } = useWebHostingAttachedDomain({ domain });
   const domainData = data?.find((d) => d?.currentState?.fqdn === domain);
-  const canDetachDomainWithGit = domainData?.currentState?.git?.status === GitStatus?.DISABLED;
+  const canDetachDomainWithGit = domainData?.currentState?.git?.status === GitStatus?.CREATED;
   const domainExisting = useGetAddDomainExisting(serviceName, false, Boolean(serviceName));
   const wwwDomainExists = domainExisting?.data?.existingDomains?.includes(`www.${domain}`);
 
