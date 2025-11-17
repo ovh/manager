@@ -103,7 +103,7 @@ describe('useWebHostingDashboard', () => {
     });
     expect(result.current.data).toEqual(domainInformationMock);
   });
-  it('useGetHostingServiceWebsite: should return webhosting website list ', async () => {
+  it('useGetHostingServiceWebsite: should return webhosting website list', async () => {
     const { result } = renderHook(() => useGetHostingServiceWebsite('serviceName', 'path'), {
       wrapper,
     });
