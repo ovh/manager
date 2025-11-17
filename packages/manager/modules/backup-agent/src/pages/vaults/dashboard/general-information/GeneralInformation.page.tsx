@@ -1,4 +1,4 @@
-import { BillingInformationsTileStandard } from "@ovh-ux/billing-informations"
+import { BillingInformationsTileStandard } from "@ovh-ux/manager-billing-informations"
 
 import { GeneralInformationVaultTile } from "./_components/general-information-vault-tile/GeneralInformationVaultTile.component";
 import { useParams } from "react-router-dom";
