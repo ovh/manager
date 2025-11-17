@@ -8,7 +8,12 @@ global.fetch = fetch;
 // TODO remove during unmocking phase
 vi.mock('@/__mocks__/mock.config', () => ({
   apiConfig: {
-    mode: 'api',
+    tenant: 'api',
+    service: 'api',
+    infrastructure: 'api',
+    grafana: 'api',
+    log: 'api',
+    metric: 'api',
   },
 }));
 
