@@ -9,6 +9,7 @@ import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { renderTest } from '../../../../../test-utils';
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
+import { subRoutes } from '../../../../../routes/routes.constant';
 
 const queryModalTitle = () => {
   return screen.queryByText(
@@ -39,7 +40,7 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const expectSubmitButton = (container) =>
+const expectSubmitButton = (container: HTMLElement) =>
   expect(container.querySelector('ods-button[label="modify"]'));
 
 const submitForm = (container: HTMLElement) => {
@@ -82,12 +83,12 @@ const checkErrorBannerIsVisible = () => {
   );
 };
 
+const initialRoute = `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/${subRoutes.vrackEditVlanId}`;
+
 // Check modal is closed and success message is shown
 describe('Edit Vrack Segment Id Page', () => {
   it('The form is displayed and can be submitted', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/edit`,
-    });
+    const { container } = await renderTest({ initialRoute });
 
     await waitFor(
       () => {
@@ -125,7 +126,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
   it('The form is displayed and can be submitted and we show error', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/edit`,
+      initialRoute,
       isVrackSegmentUpdateKo: true,
     });
 
@@ -154,10 +155,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
   // TODO : unskip when page is unmocked
   it.skip('The form is not visible and we see error', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/edit`,
-      isVrackSegmentKO: true,
-    });
+    await renderTest({ initialRoute, isVrackSegmentKO: true });
 
     await waitFor(() => {
       expect(queryModalTitle()).toBeInTheDocument();
