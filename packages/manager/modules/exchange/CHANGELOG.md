@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.9...@ovh-ux/manager-exchange@4.15.10) (2025-11-17)
+
+
+### Bug Fixes
+
+* **web.exchange:** add several settings for resources ([7d9178e](https://github.com/ovh/manager/commit/7d9178e63d593d87ce41866f7af076260e3715f7)), closes [#PRDCOL-210](https://github.com/ovh/manager/issues/PRDCOL-210)
+* **web.exchange:** fix guide link for exchange log feature ([6a8a955](https://github.com/ovh/manager/commit/6a8a95531e45dcd9290c651a823f1b903d9ae749)), closes [#PRDCOL-253](https://github.com/ovh/manager/issues/PRDCOL-253)
+
+
+
+
+
 ## [4.15.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.8...@ovh-ux/manager-exchange@4.15.9) (2025-11-04)
 
 
