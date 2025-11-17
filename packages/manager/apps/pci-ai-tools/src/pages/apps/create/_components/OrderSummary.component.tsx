@@ -13,6 +13,7 @@ import { Button, Skeleton } from '@datatr-ux/uxlib';
 import { bytesConverter } from '@/lib/bytesHelper';
 import ai from '@/types/AI';
 import { OrderVolumes, Scaling } from '@/types/orderFunnel';
+import { ResourceType } from '@/components/order/app-scaling/scalingHelper';
 
 interface OrderSummaryProps {
   order: {
@@ -197,8 +198,13 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   );
 };
 
-const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
+function ScalingStrategySummary({
+  order,
+  onSectionClicked,
+}: OrderSummaryProps) {
   const { t } = useTranslation('ai-tools/apps/create');
+  const isCustomMetric = order.scaling.resourceType === ResourceType.CUSTOM;
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-2">
@@ -237,13 +243,15 @@ const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
               })}
             </span>
           </div>
-          <div className="flex items-center pl-4 gap-2">
-            <span>
-              {t('summaryScalingAverage', {
-                tresh: order.scaling.averageUsageTarget,
-              })}
-            </span>
-          </div>
+          {!isCustomMetric && (
+            <div className="flex items-center pl-4 gap-2">
+              <span>
+                {t('summaryScalingAverage', {
+                  tresh: order.scaling.averageUsageTarget,
+                })}
+              </span>
+            </div>
+          )}
         </div>
       ) : (
         <div>
@@ -262,7 +270,7 @@ const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
       )}
     </div>
   );
-};
+}
 
 const HttpPortDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t } = useTranslation('ai-tools/apps/create');
@@ -416,7 +424,10 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <RegionDetails order={order} onSectionClicked={onSectionClicked} />
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
       <ImageDetails order={order} onSectionClicked={onSectionClicked} />
-      <ScalingStrategy order={order} onSectionClicked={onSectionClicked} />
+      <ScalingStrategySummary
+        order={order}
+        onSectionClicked={onSectionClicked}
+      />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
       {!order?.version && (
         <HttpPortDetails order={order} onSectionClicked={onSectionClicked} />
