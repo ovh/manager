@@ -16,6 +16,7 @@ import { labels, renderTest } from '../../../../test-utils';
 import { PERFORMANCE_CLASS_LABEL } from './datacentreStorageOrder.constants';
 import TEST_IDS from '../../../../utils/testIds.constants';
 import { IOPS_LABEL } from '../../../../utils/label.constants';
+import { subRoutes } from '../../../../routes/routes.constant';
 
 // remove mock when ods element-internals-polyfill is fixed
 vitest.mock('@ovhcloud/ods-components/react', async () => {
@@ -32,12 +33,12 @@ vitest.mock('@ovhcloud/ods-components/react', async () => {
 const orderLabel = labels.datacentresStorage.managed_vcd_vdc_storage_order_cta;
 const orderTitle = labels.datacentresOrder.managed_vcd_vdc_order_storage_title;
 const orderError = labels.datacentresOrder.managed_vcd_vdc_order_unavailable;
+const initialRoute = `/${organizationList[0].id}/${subRoutes.virtualDatacenters}/${datacentreList[0].id}/storage`;
+const orderRoute = `${initialRoute}/${subRoutes.datacentreStorageOrder}`;
 
 describe('Datacentre Storage Order Page', () => {
   it('access and display storage order page', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage`,
-    });
+    await renderTest({ initialRoute });
 
     const { name, performanceClass } = orderableResourceData.storage[0];
 
@@ -64,34 +65,22 @@ describe('Datacentre Storage Order Page', () => {
   });
 
   it('display an error if orderableResource service is KO', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      isOrderableResourceKO: true,
-    });
+    await renderTest({ initialRoute: orderRoute, isOrderableResourceKO: true });
     await assertTextVisibility(orderError);
   });
 
   it('display an error if there is no orderableResource', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      nbOrderableResource: 0,
-    });
+    await renderTest({ initialRoute: orderRoute, nbOrderableResource: 0 });
     await assertTextVisibility(orderError);
   });
 
   it('display an error if catalog service is KO', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      isCatalogKO: true,
-    });
+    await renderTest({ initialRoute: orderRoute, isCatalogKO: true });
     await assertTextVisibility(orderError);
   });
 
   it('display an error if there is no catalog products', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      nbCatalogProduct: 0,
-    });
+    await renderTest({ initialRoute: orderRoute, nbCatalogProduct: 0 });
     await assertTextVisibility(orderError);
   });
 });
