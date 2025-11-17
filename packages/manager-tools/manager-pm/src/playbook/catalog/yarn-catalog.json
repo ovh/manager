@@ -69,6 +69,7 @@
   "packages/manager/modules/account",
   "packages/manager/modules/advices",
   "packages/manager/modules/at-internet-configuration",
+  "packages/manager/modules/backup-agent",
   "packages/manager/modules/banner",
   "packages/manager/modules/beta-preference",
   "packages/manager/modules/billing",
