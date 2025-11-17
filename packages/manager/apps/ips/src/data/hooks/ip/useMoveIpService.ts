@@ -17,6 +17,7 @@ import {
   getIpDetailsQueryKey,
   getIpTaskDetailsQueryKey,
   getIpTaskDetails,
+  MoveIpAvailableDestinationsResponse,
 } from '@/data/api';
 import { IpTaskStatus, IpTaskFunction, IpTask } from '@/types';
 import { INVALIDATED_REFRESH_PERIOD, TRANSLATION_NAMESPACES } from '@/utils';
@@ -145,7 +146,22 @@ export function useMoveIpService({
     error: availableDestinationsError,
   } = useQuery({
     queryKey: getMoveIpAvailableDestinationsQueryKey(ip),
-    queryFn: () => getMoveIpAvailableDestinations(ip),
+    queryFn: async () => {
+      try {
+        return await getMoveIpAvailableDestinations(ip);
+      } catch {
+        return {
+          data: {
+            dedicatedCloud: [],
+            ipLoadbalancing: [],
+            vps: [],
+            hostingReseller: [],
+            cloudProject: [],
+            dedicatedServer: [],
+          } as MoveIpAvailableDestinationsResponse,
+        };
+      }
+    },
     enabled: !isTasksLoading && !taskError && !hasOnGoingMoveIpTask,
   });
 
