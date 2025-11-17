@@ -1,4 +1,8 @@
-import { InfrastructureType, InfrastructureUsage } from '@/types/infrastructures.type';
+import {
+  InfrastructureType,
+  InfrastructureUsage,
+  RetentionType,
+} from '@/types/infrastructures.type';
 
 export type InfrastructuresParams = {
   resourceName: string;
@@ -11,4 +15,5 @@ export type RetentionParams = {
   resourceName: string;
   infrastructureId: string;
   signal?: AbortSignal;
+  retentionTypes?: RetentionType;
 };
