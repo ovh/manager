@@ -98,7 +98,7 @@
   "multisite_modal_domain_configuration_modify_options_choose": "Escolha uma opção",
   "multisite_modal_domain_configuration_cdn_help": "Ative o CDN para acelerar a acessibilidade do seu site no mundo.",
   "multisite_modal_domain_configuration_modify_country_ip_help": "Ative o IP do país para geolocalizar as partes internacionais do seu site a fim de otimizar seu SEO.",
-  "multisite_modal_domain_configuration_modify_firewall_help": "Ative o firewall para obter uma proteção reforçada do seu site.",
+  "multisite_modal_domain_configuration_modify_firewall_help": "Ative o firewall para beneficiar de uma proteção reforçada do seu site.",
   "multisite_modal_domain_configuration_modify_ownlog_help": "Ative esta opção para ter registros separados para o seu multisite.",
   "multisite_modal_domain_configuration_modify_path_help": "Os caracteres aceitos para as pastas são letras, números e os caracteres -_./ Além disso, é proibido acessar as pastas pai usando ..",
   "multisite_modal_domain_configuration_modify_countriesIp": "Ip do país",
@@ -108,5 +108,7 @@
   "multisite_cdn_activate_description": "A CDN acelera o carregamento das suas páginas e reforça a segurança do seu site ao bloquear o tráfego malicioso.",
   "multisite_cdn_activate_question": "Deseja ativá-lo agora?",
   "multisite_cdn_activate_success": "A CDN foi ativada com sucesso",
-  "multisite_cdn_activate_error": "Ocorreu um erro ao ativar a CDN"
+  "multisite_cdn_activate_error": "Ocorreu um erro ao ativar a CDN",
+  "multisite_linked_domain": "{{ linkedDomains }} domínio",
+  "multisite_linked_domains": "{{ linkedDomains }} domínios"
 }
