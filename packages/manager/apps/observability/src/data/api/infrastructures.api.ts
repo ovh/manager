@@ -34,12 +34,16 @@ export const getLocations = async (signal: AbortSignal): Promise<Location[]> => 
 export const getRetentions = async ({
   resourceName,
   infrastructureId,
+  retentionTypes,
   signal,
 }: RetentionParams): Promise<Retention[]> => {
   const { data } = await apiClient.v2.get<Retention[]>(
     `/observability/resource/${resourceName}/setting/infrastructure/${infrastructureId}/retention`,
     {
       signal,
+      params: {
+        retentionTypes,
+      },
     },
   );
   return data;

@@ -13,13 +13,13 @@ import { Infrastructure, Retention } from '@/types/infrastructures.type';
 export const getInfrastructures = async (
   params: InfrastructuresParams,
 ): Promise<Infrastructure[]> => {
-  const isMockEnabled = apiConfig.mode === 'mock';
+  const isMockEnabled = apiConfig.infrastructure === 'mock';
   console.info('[MOCK-ADAPTER][getInfrastructures] Mock enabled -> ', isMockEnabled);
   return isMockEnabled ? getInfrastructuresFromMock(params) : getInfrastructuresFromApi(params);
 };
 
 export const getRetentions = async (params: RetentionParams): Promise<Retention[]> => {
-  const isMockEnabled = apiConfig.mode === 'mock';
+  const isMockEnabled = apiConfig.infrastructure === 'mock';
   console.info('[MOCK-ADAPTER][getRetentions] Mock enabled -> ', isMockEnabled);
   return isMockEnabled ? getRetentionsFromMock(params) : getRetentionsFromApi(params);
 };
