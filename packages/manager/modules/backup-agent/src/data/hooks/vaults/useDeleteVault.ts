@@ -14,11 +14,11 @@ export const useDeleteVault = (options: UseDeleteVaultParams = {}) => {
   return useMutation({
     mutationFn: (vaultId: string) => deleteVault(vaultId),
     ...options,
-    onSuccess: async (data, variables, context) => {
+    onSuccess: async (...params) => {
       await queryClient.invalidateQueries({
         queryKey: BACKUP_VAULTS_LIST_QUERY_KEY,
       });
-      options.onSuccess?.(data, variables, context);
+      options.onSuccess?.(...params);
     },
   });
 };
