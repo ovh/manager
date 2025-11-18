@@ -1,7 +1,8 @@
+import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
-import { wrapper } from '@/alldoms/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import ServiceDetail from '@/alldoms/pages/service/serviceDetail/serviceDetail';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
