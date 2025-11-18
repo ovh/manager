@@ -6,6 +6,7 @@ import {
   buildInstanceSelectedResource,
 } from '@/api/hooks/instance/selector/instances.selector';
 import { usePaginatedInstances } from '@/api/hooks/instance/useInstances';
+import { WorkflowType } from '@/api/hooks/workflows';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { wrapper } from '@/wrapperRenders';
 
@@ -53,6 +54,7 @@ describe('WorkflowResource Component', () => {
     const { getByTestId } = render(
       <WorkflowResource
         step={unlockedStep as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
         selectedResource={null}
@@ -66,6 +68,7 @@ describe('WorkflowResource Component', () => {
     const { getByText } = render(
       <WorkflowResource
         step={unlockedStep as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
         selectedResource={null}
@@ -79,6 +82,7 @@ describe('WorkflowResource Component', () => {
     const { getByText } = render(
       <WorkflowResource
         step={unlockedStep as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
         selectedResource={instanceId}
@@ -93,6 +97,7 @@ describe('WorkflowResource Component', () => {
     const { getByTestId } = render(
       <WorkflowResource
         step={unlockedStep as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
         selectedResource={instanceId}
@@ -102,13 +107,14 @@ describe('WorkflowResource Component', () => {
 
     fireEvent.click(getByTestId('radio-button-instance1'));
 
-    expect(mockOnUpdate).toHaveBeenCalledWith(instance1);
+    expect(mockOnUpdate).toHaveBeenCalledWith(instanceId);
   });
 
   it('cannot select instance where workflow is not available', () => {
     const { getByTestId } = render(
       <WorkflowResource
         step={unlockedStep as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
         selectedResource={instanceId}

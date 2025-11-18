@@ -1,73 +1,77 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it } from 'vitest';
 
-import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
-import { WorkflowType } from '@/api/hooks/workflows';
+import { TWorkflowSelectedResource, WorkflowType } from '@/api/hooks/workflows';
 
 import { DEFAULT_FORM_STATE, TWorkflowScheduling, useWorkflowStepper } from './useWorkflowStepper';
 
-const INSTANCE_MOCK = {
-  BASE: { id: buildInstanceId('instanceId', 'regionId') } as TInstance,
-};
+const selectedResource = {
+  id: 'instanceId',
+  region: 'regionId',
+  label: 'label',
+} as TWorkflowSelectedResource;
 
 describe('useWorkflowStepper hook', () => {
   it('initializes with default form state', () => {
     const { result } = renderHook(() => useWorkflowStepper());
+
     expect(result.current.form).toEqual(DEFAULT_FORM_STATE);
   });
 
-  it('updates type and opens resource step on type submit', () => {
+  it('updates type and opens resource step on type update', () => {
     const { result } = renderHook(() => useWorkflowStepper());
+
     act(() => {
-      result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.update(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.submit();
     });
+
     expect(result.current.form.type).toBe(WorkflowType.INSTANCE_BACKUP);
     expect(result.current.resource.step.isOpen).toBe(true);
   });
 
   it('resets to default form state except type on type edit', async () => {
     const { result } = renderHook(() => useWorkflowStepper());
+
     act(() => {
-      result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.update(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.submit();
       result.current.type.edit();
     });
+
     await waitFor(() => expect(result.current.form).toEqual(DEFAULT_FORM_STATE));
   });
 
   it('updates instance and opens scheduling step on resource submit', () => {
-    const instance = INSTANCE_MOCK.BASE;
     const { result } = renderHook(() => useWorkflowStepper());
+
     act(() => {
-      result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
-      result.current.resource.update(instance);
+      result.current.type.update(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.submit();
+      result.current.resource.update(selectedResource);
       result.current.resource.submit();
     });
-    expect(result.current.form.resource).toEqual({
-      id: instance.id.id,
-      region: instance.id.region,
-      label: instance.id.id,
-    });
+
+    expect(result.current.form.resource).toEqual(selectedResource);
     expect(result.current.naming.step.isOpen).toBe(true);
   });
 
   it('resets to default form state except type and instance on resource edit', async () => {
-    const instance = INSTANCE_MOCK.BASE;
     const { result } = renderHook(() => useWorkflowStepper());
+
     act(() => {
-      result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
-      result.current.resource.update(instance);
+      result.current.type.update(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.submit();
+      result.current.resource.update(selectedResource);
       result.current.resource.submit();
       result.current.resource.edit();
     });
+
     await waitFor(() =>
       expect(result.current.form).toEqual({
         ...DEFAULT_FORM_STATE,
         type: WorkflowType.INSTANCE_BACKUP,
-        resource: {
-          id: INSTANCE_MOCK.BASE.id.id,
-          region: INSTANCE_MOCK.BASE.id.region,
-          label: INSTANCE_MOCK.BASE.id.id,
-        },
+        resource: selectedResource,
       }),
     );
   });
@@ -75,12 +79,15 @@ describe('useWorkflowStepper hook', () => {
   it('updates scheduling and opens naming step on scheduling submit', () => {
     const scheduling = { name: 'scheduling1' } as TWorkflowScheduling;
     const { result } = renderHook(() => useWorkflowStepper());
+
     act(() => {
-      result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
-      result.current.resource.update(INSTANCE_MOCK.BASE);
+      result.current.type.update(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.submit();
+      result.current.resource.update(selectedResource);
       result.current.resource.submit();
       result.current.scheduling.submit(scheduling, null);
     });
+
     expect(result.current.form.scheduling).toBe(scheduling);
     expect(result.current.naming.step.isOpen).toBe(true);
   });
@@ -88,8 +95,9 @@ describe('useWorkflowStepper hook', () => {
   it('resets to default form state except type and instance on naming edit', async () => {
     const { result } = renderHook(() => useWorkflowStepper());
     act(() => {
-      result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
-      result.current.resource.update(INSTANCE_MOCK.BASE);
+      result.current.type.update(WorkflowType.INSTANCE_BACKUP);
+      result.current.type.submit();
+      result.current.resource.update(selectedResource);
       result.current.resource.submit();
       result.current.naming.submit();
       result.current.naming.edit();
@@ -98,11 +106,7 @@ describe('useWorkflowStepper hook', () => {
       expect(result.current.form).toEqual({
         ...DEFAULT_FORM_STATE,
         type: WorkflowType.INSTANCE_BACKUP,
-        resource: {
-          id: INSTANCE_MOCK.BASE.id.id,
-          region: INSTANCE_MOCK.BASE.id.region,
-          label: INSTANCE_MOCK.BASE.id.id,
-        },
+        resource: selectedResource,
       });
     });
   });

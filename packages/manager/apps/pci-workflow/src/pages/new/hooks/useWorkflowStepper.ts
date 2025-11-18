@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import {
-  TInstance,
-  buildInstanceSelectedResource,
-} from '@/api/hooks/instance/selector/instances.selector';
+import { buildInstanceSelectedResource } from '@/api/hooks/instance/selector/instances.selector';
 import { TWorkflowSelectedResource, WorkflowType } from '@/api/hooks/workflows';
 import { useStep } from '@/pages/new/hooks/useStep';
 
@@ -107,10 +104,10 @@ export function useWorkflowStepper() {
           step.close();
         });
       },
-      update: (instance: TInstance) => {
+      update: (resource: TWorkflowSelectedResource) => {
         setForm((f) => ({
           ...f,
-          resource: { ...instance.id, label: instance.id.id },
+          resource,
         }));
       },
       submit: () => {

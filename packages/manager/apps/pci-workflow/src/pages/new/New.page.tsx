@@ -131,9 +131,10 @@ export default function NewPage() {
         >
           <WorkflowResource
             step={stepper.resource.step}
-            onSubmit={stepper.resource.submit}
+            selectedWorkflowType={stepper.form.type}
             selectedResource={stepper.form.resource}
             onUpdate={stepper.resource.update}
+            onSubmit={stepper.resource.submit}
           />
         </StepComponent>
       </div>
