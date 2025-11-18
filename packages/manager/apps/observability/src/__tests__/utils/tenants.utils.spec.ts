@@ -62,6 +62,7 @@ describe('tenants.utils', () => {
           numberOfSeries: 100,
           tags: 'production;monitoring',
           tagsArray: ['production', 'monitoring'],
+          search: 'Test Tenant https://example.com formatted-30d 100 production;monitoring',
         },
       ] as TenantListing[]);
     });
@@ -239,6 +240,7 @@ describe('tenants.utils', () => {
           numberOfSeries: 100,
           tags: 'first',
           tagsArray: ['first'],
+          search: 'First Tenant https://first.com formatted-30d 100 first',
         },
         {
           id: 'tenant-2',
@@ -249,6 +251,7 @@ describe('tenants.utils', () => {
           numberOfSeries: 50,
           tags: 'second;test',
           tagsArray: ['second', 'test'],
+          search: 'Second Tenant  formatted-7d 50 second;test',
         },
       ]);
     });
@@ -358,6 +361,7 @@ describe('tenants.utils', () => {
           numberOfSeries: undefined,
           tags: '',
           tagsArray: [],
+          search: 'Tenant 1    ',
         },
         {
           id: 'unique-id-2',
@@ -368,6 +372,7 @@ describe('tenants.utils', () => {
           numberOfSeries: undefined,
           tags: '',
           tagsArray: [],
+          search: 'Tenant 2    ',
         },
       ]);
     });

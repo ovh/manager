@@ -73,7 +73,7 @@ vi.mock('@/utils/iam.constants', () => ({
 
 // Helper function to get button element
 const getButton = (container: HTMLElement) => {
-  return container.querySelector('button[data-testid="assign-tag"]');
+  return container.querySelector('button[data-testid="create-tenant"]');
 };
 
 // Helper function to get container element
@@ -450,7 +450,7 @@ describe('TenantsListTopbar', () => {
 
       // Assert
       const button = getButton(container);
-      expect(button).toHaveAttribute('data-testid', 'assign-tag');
+      expect(button).toHaveAttribute('data-testid', 'create-tenant');
     });
   });
 
