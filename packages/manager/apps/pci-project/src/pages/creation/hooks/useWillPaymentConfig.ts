@@ -1,10 +1,9 @@
-import { useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import i18n from 'i18next';
-import { useSearchParams } from 'react-router-dom';
+import { useContext, useMemo } from 'react';
 import {
-  TWillPaymentConfig,
   GlobalStateStatus,
+  TWillPaymentConfig,
 } from '@/types/WillPayment.type';
 
 export type WillPaymentConfigOptions = {
@@ -21,8 +20,7 @@ export const useWillPaymentConfig = ({
   const { environment } = useContext(ShellContext);
   const user = environment.getUser();
 
-  const [searchParams] = useSearchParams();
-  const cartId = searchParams.get('cartId');
+  const eventBus = document.getElementById('will-payment-event-bus');
 
   return useMemo(
     () => ({
@@ -31,7 +29,8 @@ export const useWillPaymentConfig = ({
       subsidiary: user.ovhSubsidiary,
       language: i18n.language,
       hostApp: 'pci',
+      eventBus: eventBus ?? undefined,
     }),
-    [onPaymentStatusChange, user.ovhSubsidiary, i18n.language, cartId],
+    [onPaymentStatusChange, user.ovhSubsidiary, i18n.language, eventBus],
   );
 };
