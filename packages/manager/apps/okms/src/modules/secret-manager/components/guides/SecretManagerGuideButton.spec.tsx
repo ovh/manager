@@ -1,4 +1,3 @@
-import React from 'react';
 import { vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';

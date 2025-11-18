@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import React from 'react';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { DeactivateVersionAfterTileItem } from './DeactivateVersionAfterTileItem.component';

@@ -1,5 +1,4 @@
 import { OnboardingLayout } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import {
   ButtonType,
   PageLocation,

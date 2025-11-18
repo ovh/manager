@@ -1,4 +1,3 @@
-import React from 'react';
 import z from 'zod';
 import { useTranslation } from 'react-i18next';
 import { useForm, FormProvider } from 'react-hook-form';

@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import React from 'react';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { getOdsClipboardByValue } from '@/common/utils/tests/uiTestHelpers';
 import { IdTileItem } from './IdTileItem.component';

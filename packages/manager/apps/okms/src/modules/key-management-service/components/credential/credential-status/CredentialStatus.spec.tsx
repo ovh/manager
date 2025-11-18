@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ODS_BADGE_COLOR,
   OdsBadge as OdsBadgeType,

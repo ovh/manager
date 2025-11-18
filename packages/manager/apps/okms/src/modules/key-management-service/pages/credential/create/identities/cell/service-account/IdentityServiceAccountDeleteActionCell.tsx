@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,

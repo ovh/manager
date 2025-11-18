@@ -1,4 +1,3 @@
-import React from 'react';
 import { ManagerTile, Clipboard } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { ENDPOINT_RSA_LABEL } from '@/constants';

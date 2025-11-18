@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { SecretPageOutletContext } from '@secret-manager/pages/secret/Secret.type';
 import { DashboardGridLayout } from '@ovh-ux/manager-react-components';
 import { Outlet, useOutletContext } from 'react-router-dom';

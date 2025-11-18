@@ -1,4 +1,3 @@
-import React from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
