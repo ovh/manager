@@ -151,9 +151,10 @@ export default function NewPage() {
           title={t('pci_workflow_create_general-info_title')}
         >
           <WorkflowName
-            name={stepper.form.name}
-            selectedResource={stepper.form.resource}
             step={stepper.naming.step}
+            selectedWorkflowType={stepper.form.type}
+            selectedResource={stepper.form.resource}
+            name={stepper.form.name}
             onNameChange={stepper.naming.update}
             onSubmit={stepper.naming.submit}
           />

@@ -21,14 +21,16 @@ import {
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
+import { getResourcePricing } from '@/api/hooks/resource';
 import { TWorkflowSelectedResource } from '@/api/hooks/workflows';
 import { StepState } from '@/pages/new/hooks/useStep';
+import { TWorkflowCreationForm } from '@/pages/new/hooks/useWorkflowStepper';
 
 interface WorkflowNameProps {
-  name: string;
-  selectedResource: TWorkflowSelectedResource;
   step: StepState;
+  selectedWorkflowType: TWorkflowCreationForm['type'];
+  selectedResource: TWorkflowSelectedResource;
+  name: string;
   onNameChange: (name: string) => void;
   onSubmit: () => void;
 }
@@ -36,9 +38,10 @@ interface WorkflowNameProps {
 const VALID_NAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
 
 export function WorkflowName({
-  name,
-  selectedResource,
   step,
+  selectedWorkflowType,
+  selectedResource,
+  name,
   onNameChange,
   onSubmit,
 }: Readonly<WorkflowNameProps>) {
@@ -51,7 +54,7 @@ export function WorkflowName({
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const { pricing, isPending } = useInstanceSnapshotPricing(projectId, {
+  const { pricing, isPending } = getResourcePricing(selectedWorkflowType)(projectId, {
     id: selectedResource.id,
     region: selectedResource.region,
   } as TInstance['id']);
