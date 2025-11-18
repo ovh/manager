@@ -75,3 +75,5 @@ export function GeneralInformationTile<T extends { name: string }>({
     </ManagerTile>
   );
 }
+
+export default GeneralInformationTile;
