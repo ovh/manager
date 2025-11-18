@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-rancher-app",
-  "version": "1.29.14",
+  "version": "1.30.0",
   "private": true,
   "description": "pci-rancher",
   "repository": {
@@ -76,5 +76,8 @@
     "CA",
     "EU",
     "US"
+  ],
+  "universes": [
+    "@ovh-ux/manager-public-cloud"
   ]
 }
