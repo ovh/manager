@@ -11,7 +11,9 @@ type UseBaremetalsListParams = {
   pageSize: number;
 };
 
-export const useBaremetalsList = ({ pageSize = 9999 }: UseBaremetalsListParams = { pageSize: 9000 }) =>
+export const useBaremetalsList = (
+  { pageSize = 9999 }: UseBaremetalsListParams = { pageSize: 9000 },
+) =>
   useResourcesIcebergV6<Baremetal>({
     route: BAREMETAL_LIST_ROUTE,
     queryKey: BAREMETAL_QUERY_KEYS.baremetals,

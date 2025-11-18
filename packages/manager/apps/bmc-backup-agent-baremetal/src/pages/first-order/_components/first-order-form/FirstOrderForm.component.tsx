@@ -31,7 +31,7 @@ export const FirstOrderFormComponent = () => {
   return (
     <form
       className={`flex justify-center ${!!errors.baremetal ? 'items-center' : 'items-end'} gap-4 w-full`}
-      onSubmit={void handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
         name="baremetal"
