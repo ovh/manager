@@ -1,19 +1,15 @@
 import { useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, Modal, MODAL_COLOR } from '@ovh-ux/muk';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useTranslation } from 'react-i18next';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, MODAL_COLOR, Modal } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE } from '@/constants/nasha.constants';
-import { useDeletePartition } from '@/hooks/partitions/useDeletePartition';
 import { APP_NAME } from '@/Tracking.constants';
+import { useDeletePartition } from '@/hooks/partitions/useDeletePartition';
 
 export default function DeletePartitionPage() {
   const { serviceName, partitionName } = useParams<{
@@ -25,14 +21,14 @@ export default function DeletePartitionPage() {
   const { trackClick } = useOvhTracking();
   const deletePartitionMutation = useDeletePartition();
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen] = useState(true);
 
   const handleClose = () => {
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE, 'cancel'],
+      actions: [APP_NAME, 'partitions', 'delete', 'cancel'],
     });
     // Navigate back to partitions list using relative path
     navigate('..', { replace: true });
@@ -47,7 +43,7 @@ export default function DeletePartitionPage() {
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITION_DELETE, 'confirm'],
+      actions: [APP_NAME, 'partitions', 'delete', 'confirm'],
     });
 
     try {
@@ -59,7 +55,7 @@ export default function DeletePartitionPage() {
       // Navigate to task tracker if task was returned
       const taskId = result?.taskId || result?.id;
       if (taskId) {
-        navigate(`../task-tracker`, {
+        navigate('../task-tracker', {
           state: {
             taskId,
             operation: 'clusterLeclercPartitionDelete',
@@ -71,7 +67,7 @@ export default function DeletePartitionPage() {
         // If no task, just go back to partitions list
         navigate('..');
       }
-    } catch (error) {
+    } catch {
       // Error is handled by the mutation hook
       // Keep modal open on error
     }
@@ -81,28 +77,33 @@ export default function DeletePartitionPage() {
     <BaseLayout>
       <Modal
         open={isOpen}
-        onOpenChange={(open) => {
-          if (!open) {
+        onOpenChange={(open?: { open: boolean }) => {
+          if (!open || !open.open) {
             handleClose();
           }
         }}
         type={MODAL_COLOR.critical}
-        heading={t('partitions:delete.title')}
+        heading={t('partitions:delete.title', 'Delete a partition')}
         primaryButton={{
-          label: t('partitions:delete.submit'),
-          onClick: handleConfirm,
+          label: t('partitions:delete.submit', 'Delete partition'),
+          onClick: () => {
+            void handleConfirm();
+          },
           loading: deletePartitionMutation.isPending,
           testId: 'delete-partition-confirm',
         }}
         secondaryButton={{
-          label: t('partitions:delete.cancel'),
+          label: t('partitions:delete.cancel', 'Close'),
           onClick: handleClose,
           testId: 'delete-partition-cancel',
         }}
       >
-        <p>{t('partitions:delete.content', { partitionName })}</p>
+        <p>
+          {t('partitions:delete.content', {
+            partitionName,
+          })}
+        </p>
       </Modal>
     </BaseLayout>
   );
 }
-

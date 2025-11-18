@@ -11,8 +11,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 
 import { APP_FEATURES } from '@/App.constants';
-import { useDeleteAccess } from '@/hooks/partitions/useDeleteAccess';
 import { APP_NAME } from '@/Tracking.constants';
+import { useDeleteAccess } from '@/hooks/partitions/useDeleteAccess';
 
 export default function DeleteAccessPage() {
   const { serviceName, partitionName, ip } = useParams<{

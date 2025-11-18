@@ -1,40 +1,39 @@
-import { Suspense, useMemo, useCallback } from 'react';
+import { Suspense, useCallback, useMemo } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
 
-import { Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
-import {
-  ButtonType,
-  PageLocation,
-  useNavigationGetUrl,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button, Datagrid, type DatagridColumn } from '@ovh-ux/muk';
 
+import { APP_NAME } from '@/Tracking.constants';
+import Metrics from '@/components/Metrics/Metrics.component';
+import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
+import PartitionActionsCell from '@/components/partitions/PartitionActionsCell.component';
+import PartitionNameCell from '@/components/partitions/PartitionNameCell.component';
 import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/nasha.constants';
 import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitions } from '@/hooks/partitions/usePartitions';
 import { useUpdateMonitored } from '@/hooks/partitions/useUpdateMonitored';
-import { APP_NAME } from '@/Tracking.constants';
 
-import Metrics from '@/components/Metrics/Metrics.component';
-import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
-import PartitionNameCell from '@/components/partitions/PartitionNameCell.component';
-import PartitionActionsCell from '@/components/partitions/PartitionActionsCell.component';
+type PartitionUse = {
+  [key: string]: {
+    unit: string;
+    value: number;
+    name?: string;
+  };
+};
 
 type Partition = {
+  id?: string;
   partitionName: string;
   partitionDescription?: string;
   protocol?: string;
   size: number;
-  use?: {
-    [key: string]: {
-      unit: string;
-      value: number;
-      name?: string;
-    };
-  };
+  use?: PartitionUse;
+  subRows?: Partition[];
 };
 
 export default function PartitionsListPage() {
@@ -49,9 +48,18 @@ export default function PartitionsListPage() {
   const { canCreatePartitions } = useCanCreatePartitions(serviceName ?? '');
   const updateMonitoredMutation = useUpdateMonitored();
 
+  // Map partitions to add id for ExpandableRow compatibility
+  const partitionsWithId = useMemo<Partition[]>(() => {
+    if (!Array.isArray(partitions)) return [];
+    return partitions.map((partition) => ({
+      ...partition,
+      id: partition.partitionName,
+    }));
+  }, [partitions]);
+
   // Handle monitored change
   const handleMonitoredChange = useCallback(
-    async (monitored: boolean) => {
+    (monitored: boolean) => {
       if (!nasha || !serviceName) return;
 
       trackClick({
@@ -90,8 +98,7 @@ export default function PartitionsListPage() {
     });
     // Navigate to create partition route using relative path
     navigate('create');
-  }, [trackClick, navigate, serviceName]);
-
+  }, [navigate, trackClick]);
 
   // Define columns using accessorKey and header as required by MUK Datagrid
   const columns = useMemo<DatagridColumn<Partition>[]>(
@@ -131,9 +138,7 @@ export default function PartitionsListPage() {
       {
         accessorKey: 'actions',
         header: '',
-        cell: ({ row }) => (
-          <PartitionActionsCell partitionName={row.original.partitionName} />
-        ),
+        cell: ({ row }) => <PartitionActionsCell partitionName={row.original.partitionName} />,
         isSortable: false,
         enableHiding: false,
       },
@@ -156,31 +161,31 @@ export default function PartitionsListPage() {
   );
 
   return (
-    <div className="nasha-dashboard-partitions">
-      <div className="flex flex-col">
-        <h4 className="mb-4">{t('partitions:metrics')}</h4>
-        {serviceName && (
-          <Metrics
-            serviceName={serviceName}
-            onRenewClick={handleRenewClick}
-            onMonitoredChanged={handleMonitoredChange}
-          />
-        )}
-        <h4 className="mb-4">{t('partitions:title')}</h4>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Datagrid
-            columns={columns}
-            data={Array.isArray(partitions) ? partitions : []}
-            totalCount={Array.isArray(partitions) ? partitions.length : 0}
-            isLoading={isLoading}
-            topbar={topbarCTA}
-            enableSearch
-            enableFilter
-            enableColumnVisibility
-          />
-        </Suspense>
+    <>
+      <div className="nasha-dashboard-partitions">
+        <div className="flex flex-col">
+          <h4 className="mb-4">{t('partitions:metrics')}</h4>
+          {serviceName && (
+            <Metrics
+              serviceName={serviceName}
+              onRenewClick={handleRenewClick}
+              onMonitoredChanged={handleMonitoredChange}
+            />
+          )}
+          <h4 className="mb-4">{t('partitions:title')}</h4>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Datagrid
+              columns={columns}
+              data={partitionsWithId}
+              totalCount={partitionsWithId.length}
+              isLoading={isLoading}
+              topbar={topbarCTA}
+            />
+          </Suspense>
+        </div>
       </div>
-    </div>
+      {/* Outlet for child routes (create, delete, zfs-options) */}
+      <Outlet />
+    </>
   );
 }
-

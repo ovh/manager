@@ -1,6 +1,6 @@
 import { Suspense, useCallback, useMemo } from 'react';
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -126,36 +126,40 @@ export default function SnapshotsPage() {
   );
 
   return (
-    <BaseLayout
-      header={{
-        title: t('partition:snapshots.title', 'Snapshot policies'),
-        description: t(
-          'partition:snapshots.description',
-          'Manage snapshot policies for this partition',
-        ),
-      }}
-    >
-      <div className="mb-4">
-        <p className="font-semibold mb-2">
-          {t('partition:snapshots.count_title', 'Custom snapshots count')}
-        </p>
-        <p>
-          {snapshotsCount} ({t('partition:snapshots.count_max', 'max')})
-        </p>
-      </div>
+    <>
+      <BaseLayout
+        header={{
+          title: t('partition:snapshots.title', 'Snapshot policies'),
+          description: t(
+            'partition:snapshots.description',
+            'Manage snapshot policies for this partition',
+          ),
+        }}
+      >
+        <div className="mb-4">
+          <p className="font-semibold mb-2">
+            {t('partition:snapshots.count_title', 'Custom snapshots count')}
+          </p>
+          <p>
+            {snapshotsCount} ({t('partition:snapshots.count_max', 'max')})
+          </p>
+        </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <Datagrid
-          columns={columns}
-          data={Array.isArray(snapshotRows) ? snapshotRows : []}
-          totalCount={Array.isArray(snapshotRows) ? snapshotRows.length : 0}
-          isLoading={isLoading}
-          topbar={topbarCTA}
-          enableSearch
-          enableFilter
-          enableColumnVisibility
-        />
-      </Suspense>
-    </BaseLayout>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Datagrid
+            columns={columns}
+            data={Array.isArray(snapshotRows) ? snapshotRows : []}
+            totalCount={Array.isArray(snapshotRows) ? snapshotRows.length : 0}
+            isLoading={isLoading}
+            topbar={topbarCTA}
+            enableSearch
+            enableFilter
+            enableColumnVisibility
+          />
+        </Suspense>
+      </BaseLayout>
+      {/* Outlet for child routes (create, delete snapshot modals) */}
+      <Outlet />
+    </>
   );
 }

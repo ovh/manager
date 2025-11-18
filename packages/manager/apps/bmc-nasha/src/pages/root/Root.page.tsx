@@ -13,17 +13,25 @@ import { urls } from '@/routes/Routes.constants';
  */
 export default function RootPage() {
   const navigate = useNavigate();
-  const { data, isLoading } = useNashaServicesCheck();
+  const { data, isLoading, isError } = useNashaServicesCheck();
 
   useEffect(() => {
-    if (!isLoading && data) {
+    if (isLoading) return;
+
+    if (isError) {
+      // On error, redirect to listing as fallback
+      navigate(urls.listing, { replace: true });
+      return;
+    }
+
+    if (data) {
       if (data.hasServices) {
         navigate(urls.listing, { replace: true });
       } else {
         navigate('onboarding', { replace: true });
       }
     }
-  }, [data, isLoading, navigate]);
+  }, [data, isLoading, isError, navigate]);
 
   // Show nothing while checking (or a loading spinner if desired)
   return null;

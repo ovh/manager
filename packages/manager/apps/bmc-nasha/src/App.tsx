@@ -16,6 +16,9 @@ function App() {
 
   const router = createHashRouter(createRoutesFromElements(Routes));
 
+  // Debug: Log all routes
+  console.log('[App] Router routes:', router.routes);
+
   useEffect(() => {
     const hidePreloader = async () => {
       try {

@@ -76,10 +76,10 @@ export function useUpdateZfsOptions() {
         queryKey: zfsOptionsKeys.all(data.serviceName, data.partitionName),
       });
       queryClient.invalidateQueries({
-        queryKey: ['partitions', data.serviceName],
+        queryKey: ['nasha-partitions', data.serviceName],
       });
       queryClient.invalidateQueries({
-        queryKey: ['partition', data.serviceName, data.partitionName],
+        queryKey: ['nasha-partition', data.serviceName, data.partitionName],
       });
     },
     onError: (error: Error) => {
@@ -90,5 +90,7 @@ export function useUpdateZfsOptions() {
     },
   });
 }
+
+
 
 

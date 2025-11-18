@@ -1,7 +1,7 @@
 import { Suspense, useMemo, useCallback } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Outlet } from 'react-router-dom';
 
 import { BaseLayout, Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
 import {
@@ -94,25 +94,29 @@ export default function AccessesPage() {
   );
 
   return (
-    <BaseLayout
-      header={{
-        title: t('partition:accesses.title', 'Access control (ACL)'),
-        description: t('partition:accesses.description', 'Manage IP access to this partition'),
-      }}
-    >
-      <Suspense fallback={<div>Loading...</div>}>
-        <Datagrid
-          columns={columns}
-          data={Array.isArray(accesses) ? accesses : []}
-          totalCount={Array.isArray(accesses) ? accesses.length : 0}
-          isLoading={isLoading}
-          topbar={topbarCTA}
-          enableSearch
-          enableFilter
-          enableColumnVisibility
-        />
-      </Suspense>
-    </BaseLayout>
+    <>
+      <BaseLayout
+        header={{
+          title: t('partition:accesses.title', 'Access control (ACL)'),
+          description: t('partition:accesses.description', 'Manage IP access to this partition'),
+        }}
+      >
+        <Suspense fallback={<div>Loading...</div>}>
+          <Datagrid
+            columns={columns}
+            data={Array.isArray(accesses) ? accesses : []}
+            totalCount={Array.isArray(accesses) ? accesses.length : 0}
+            isLoading={isLoading}
+            topbar={topbarCTA}
+            enableSearch
+            enableFilter
+            enableColumnVisibility
+          />
+        </Suspense>
+      </BaseLayout>
+      {/* Outlet for child routes (create, delete access modals) */}
+      <Outlet />
+    </>
   );
 }
 

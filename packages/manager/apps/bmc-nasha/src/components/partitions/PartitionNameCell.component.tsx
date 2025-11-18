@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -9,7 +10,7 @@ type PartitionNameCellProps = {
   partitionName: string;
 };
 
-export default function PartitionNameCell({ partitionName }: PartitionNameCellProps) {
+function PartitionNameCell({ partitionName }: PartitionNameCellProps) {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
@@ -29,3 +30,6 @@ export default function PartitionNameCell({ partitionName }: PartitionNameCellPr
     </button>
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(PartitionNameCell);

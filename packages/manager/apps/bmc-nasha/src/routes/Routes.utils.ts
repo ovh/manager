@@ -12,5 +12,6 @@ export function getRoot(): string {
     return `${prefix}/pci/projects/:projectId/${appSlug}`;
   }
 
-  return `${prefix}/${appSlug}`;
+  // Return root path without appSlug - the hash router basename handles the prefix
+  return prefix || '/';
 }

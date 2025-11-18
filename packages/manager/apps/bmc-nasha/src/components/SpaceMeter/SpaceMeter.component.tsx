@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -22,7 +22,7 @@ type SpaceMeterProps = {
  * SpaceMeter component that reproduces the original nasha-components-space-meter
  * Displays storage usage with multiple progress bars (one per usage type)
  */
-export default function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterProps) {
+function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterProps) {
   const { t } = useTranslation(['dashboard', 'common']);
 
   const maxSize = useMemo(() => {
@@ -166,3 +166,6 @@ export default function SpaceMeter({ usage, large = false, legend = false }: Spa
     </div>
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(SpaceMeter);

@@ -1,20 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { UpdateNameModal } from '@ovh-ux/muk';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-
-import { APP_FEATURES } from '@/App.constants';
-import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
-import { APP_NAME } from '@/Tracking.constants';
+import { useTranslation } from 'react-i18next';
 
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { UpdateNameModal } from '@ovh-ux/muk';
+
+import { APP_FEATURES } from '@/App.constants';
+import { APP_NAME } from '@/Tracking.constants';
+import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 
 const NAME_PATTERN = /^[^<>]+$/;
 const PREFIX_TRACKING_EDIT_NAME = 'dashboard::edit-name';
@@ -83,19 +79,27 @@ export default function EditNamePage() {
   return (
     <UpdateNameModal
       isOpen={true}
-      headline={t('edit-name:title', { name: nasha.serviceName }, `Edit name for ${nasha.serviceName}`)}
+      headline={t('edit-name:title', `Edit name for ${nasha.serviceName}`, {
+        name: nasha.serviceName,
+      })}
       description={t('edit-name:description', 'Update the display name for this service')}
-      inputLabel={t('edit-name:label', { name: nasha.serviceName }, `Name for ${nasha.serviceName}`)}
+      inputLabel={t('edit-name:label', `Name for ${nasha.serviceName}`, {
+        name: nasha.serviceName,
+      })}
       defaultValue={customName}
       isLoading={isUpdating}
       onClose={handleClose}
-      updateDisplayName={handleUpdateName}
+      updateDisplayName={(newName: string) => {
+        void handleUpdateName(newName);
+      }}
       error={error ? error.message : null}
       pattern={NAME_PATTERN.source}
-      patternMessage={t('edit-name:rules', 'Only alphanumeric characters, hyphens and underscores are allowed')}
+      patternMessage={t(
+        'edit-name:rules',
+        'Only alphanumeric characters, hyphens and underscores are allowed',
+      )}
       cancelButtonLabel={t('edit-name:cancel', 'Cancel')}
       confirmButtonLabel={t('edit-name:confirm', 'Confirm')}
     />
   );
 }
-

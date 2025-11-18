@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
@@ -12,41 +13,44 @@ type PartitionActionsCellProps = {
   partitionName: string;
 };
 
-export default function PartitionActionsCell({ partitionName }: PartitionActionsCellProps) {
+function PartitionActionsCell({ partitionName }: PartitionActionsCellProps) {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation(['partitions']);
 
   const handlePartitionAction = (action: string) => {
+    if (action !== 'delete') {
+      // Handle other actions normally
+      switch (action) {
+        case 'show':
+          navigate(`../partition/${partitionName}`);
+          break;
+        case 'snapshots':
+          navigate(`../partition/${partitionName}/snapshots`);
+          break;
+        case 'accesses':
+          navigate(`../partition/${partitionName}/accesses`);
+          break;
+        case 'edit-size':
+          navigate(`../partition/${partitionName}/edit-size`);
+          break;
+        case 'zfs-options':
+          navigate(`${partitionName}/zfs-options`);
+          break;
+        default:
+          break;
+      }
+      return;
+    }
+
+    // Handle delete action with tracking
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITIONS, action],
+      actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'delete'],
     });
-
-    switch (action) {
-      case 'show':
-        navigate(`../partition/${partitionName}`);
-        break;
-      case 'snapshots':
-        navigate(`../partition/${partitionName}/snapshots`);
-        break;
-      case 'accesses':
-        navigate(`../partition/${partitionName}/accesses`);
-        break;
-      case 'edit-size':
-        navigate(`../partition/${partitionName}/edit-size`);
-        break;
-      case 'zfs-options':
-        navigate(`../partition/${partitionName}/zfs-options`);
-        break;
-      case 'delete':
-        navigate(`${partitionName}/delete`);
-        break;
-      default:
-        break;
-    }
+    navigate(`${partitionName}/delete`);
   };
 
   return (
@@ -87,3 +91,6 @@ export default function PartitionActionsCell({ partitionName }: PartitionActions
     />
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(PartitionActionsCell);

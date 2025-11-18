@@ -10,11 +10,11 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
+import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
+
 import { APP_FEATURES } from '@/App.constants';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
 import { APP_NAME } from '@/Tracking.constants';
-
-import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
 
 const DESCRIPTION_MAX = 50;
 

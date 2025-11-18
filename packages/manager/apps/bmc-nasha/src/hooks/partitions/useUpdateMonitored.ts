@@ -22,10 +22,10 @@ export function useUpdateMonitored() {
     onSuccess: (_, variables) => {
       // Invalidate queries to refresh data
       queryClient.invalidateQueries({
-        queryKey: ['nasha', variables.serviceName],
+        queryKey: ['nasha-detail', variables.serviceName],
       });
       queryClient.invalidateQueries({
-        queryKey: ['partitions', variables.serviceName],
+        queryKey: ['nasha-partitions', variables.serviceName],
       });
       addSuccess(
         `Usage notification ${variables.monitored ? 'enabled' : 'disabled'} successfully`,
