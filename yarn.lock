@@ -3588,10 +3588,10 @@
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.38.tgz#db207335ed3e66f29023cedc8d6611fd928802d0"
   integrity sha512-3DJcNoCsosdLAmd0UX+pTBMUxc4Zl69JjrNtVBBbUjHsau2l16nQnBQSU1GcExsln2gn91OyPg87B1eHRoLvHQ==
 
-"@datatr-ux/ovhcloud-types@^1.0.40":
-  version "1.0.76"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.76.tgz#1410e04157bcd3637d541e616acce6ad3d3f6a4c"
-  integrity sha512-Zi4yP9w3PZCmgW4nJyJqZAH7H2PZXE4iB7wp80iwA4gTOyvTrjl1jCoPMf9nSmHuPPQKEU+Mf/IT00/Y/zOtcA==
+"@datatr-ux/ovhcloud-types@^1.0.68":
+  version "1.0.82"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.82.tgz#0573d989af8390e5f9f2eaf3cc17c37896462f55"
+  integrity sha512-Hr2HFHeLlJCUTKOohysD3/PKMRfuLbyn0y37gSwVNY+d5p/MAR29cDIoUm18+sccj5IkaMH1jmf27NoviEntaA==
 
 "@datatr-ux/uxlib@0.0.10":
   version "0.0.10"
@@ -10766,6 +10766,11 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.51.9.tgz#eb2e02c715068d5664680b773e39eb44db6b48d8"
   integrity sha512-HsAwaY5J19MD18ykZDS3aVVh+bAt0i7m6uQlFC2b77DLV9djo+xEN7MWQAQQTR8IM+7r/zbozTQ7P0xr0bHuew==
 
+"@tanstack/query-core@5.61.5":
+  version "5.61.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.61.5.tgz#3ba80527f6474b5edbf348c1b0a6254b3cdfe160"
+  integrity sha512-iG5vqurEOEbv+paP6kW3zPENa99kSIrd1THISJMaTwVlJ+N5yjVDNOUwp9McK2DWqWCXM3v13ubBbAyhxT78UQ==
+
 "@tanstack/query-core@5.72.2":
   version "5.72.2"
   resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.72.2.tgz#448dbdc68c6c836d7b202eafdd1b89fb9379f3d4"
@@ -10847,6 +10852,13 @@
   integrity sha512-4Kq2x0XpDlpvSnaLG+8pHNH60zEc3mBvb3B2tOMDjcPCi/o+Du3p/9qpPLwJOTliVxxPJAP27fuIhLrsRdCr7A==
   dependencies:
     "@tanstack/query-core" "5.51.9"
+
+"@tanstack/react-query@5.61.5":
+  version "5.61.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.61.5.tgz#abe26e5f2d7c9c6c0643579abfd9119ac22a88c8"
+  integrity sha512-rjy8aqPgBBEz/rjJnpnuhi8TVkVTorMUsJlM3lMvrRb5wK6yzfk34Er0fnJ7w/4qyF01SnXsLB/QsTBsLF5PaQ==
+  dependencies:
+    "@tanstack/query-core" "5.61.5"
 
 "@tanstack/react-query@5.90.2":
   version "5.90.2"
