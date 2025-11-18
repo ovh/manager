@@ -1,32 +1,29 @@
 import { IamObject } from '@ovh-ux/manager-react-components';
 
-export type BaremetalDetails = {
+export type Baremetal = {
+  ip: string;
+  os: string;
   iam: IamObject;
-  spla: boolean;
-  sslV3: boolean;
+  name: string;
+  rack: string;
   state: string;
-  version: {
-    build: string;
-    major: string;
-    minor: string;
-  };
-  location: string;
-  bandwidth: string;
-  vScopeUrl: string;
-  generation: string;
-  billingType: string;
-  description: string;
-  serviceName: string;
-  canMigrateToVCD: boolean;
+  bootId: number;
+  region: string;
+  reverse: string;
+  serverId: number;
+  linkSpeed: number;
+  bootScript: string | null;
+  datacenter: string;
+  monitoring: boolean;
+  powerState: string;
+  rescueMail: string | null;
+  rootDevice: string | null;
+  rescueSshKey: string;
+  supportLevel: string;
+  noIntervention: boolean;
   commercialRange: string;
-  servicePackName: string;
-  webInterfaceUrl: string;
-  advancedSecurity: boolean;
-  productReference: string;
-  userAccessPolicy: string;
-  userLogoutPolicy: string;
-  userSessionTimeout: number;
-  managementInterface: string;
-  certifiedInterfaceUrl: string;
-  userLimitConcurrentSession: number;
+  professionalUse: boolean;
+  availabilityZone: string;
+  newUpgradeSystem: boolean;
+  efiBootloaderPath: string;
 };
