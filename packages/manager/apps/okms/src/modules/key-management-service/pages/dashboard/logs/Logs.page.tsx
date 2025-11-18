@@ -3,7 +3,6 @@ import {
   RedirectionGuard,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';

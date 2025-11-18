@@ -1,4 +1,3 @@
-import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';

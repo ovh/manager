@@ -1,4 +1,3 @@
-import React from 'react';
 import { i18n } from 'i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { screen } from '@testing-library/react';

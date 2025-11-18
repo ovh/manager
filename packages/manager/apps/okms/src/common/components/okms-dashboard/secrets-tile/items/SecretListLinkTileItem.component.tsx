@@ -1,4 +1,3 @@
-import React from 'react';
 import { Links, LinkType, ManagerTile } from '@ovh-ux/manager-react-components';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useNavigate } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { OdsInput } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';

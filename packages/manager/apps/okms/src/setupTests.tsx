@@ -1,5 +1,4 @@
 import { vi } from 'vitest';
-import React from 'react';
 import { SetupServer, setupServer } from 'msw/node';
 import {
   toMswHandlers,
