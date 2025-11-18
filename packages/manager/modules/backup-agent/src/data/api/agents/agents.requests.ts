@@ -1,2 +1,2 @@
-export const getBackupAgentsListRoute =
-  (vspcTenantId: string) => `/backup/tenant/vspc/${vspcTenantId}/backupAgent`;
+export const getBackupAgentsListRoute = (vspcTenantId: string) =>
+  `/backup/tenant/vspc/${vspcTenantId}/backupAgent`;

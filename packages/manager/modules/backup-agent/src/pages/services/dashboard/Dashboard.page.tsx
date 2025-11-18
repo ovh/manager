@@ -1,4 +1,4 @@
-import React, { Suspense, startTransition, useMemo, useContext } from 'react';
+import React, { Suspense, startTransition, useContext, useMemo } from 'react';
 
 import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
@@ -6,20 +6,20 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { BackupAgentContext } from '@/BackupAgent.context';
+import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
 import { urls } from '@/routes/Routes.constants';
 
 import { useTenantDashboardTabs } from './_hooks/useTenantDashboardTabs';
-import { BackupAgentContext } from "@/BackupAgent.context";
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {useBackupTenantDetails} from "@/data/hooks/tenants/useBackupTenantDetails";
 
 export default function DashboardPage() {
-  const { appName } = useContext(BackupAgentContext)
+  const { appName } = useContext(BackupAgentContext);
   const { tenantId } = useParams<{ tenantId: string }>();
-  const { data: tenantResource } = useBackupTenantDetails({ tenantId: tenantId! })
+  const { data: tenantResource } = useBackupTenantDetails({ tenantId: tenantId! });
   const { t } = useTranslation([NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 

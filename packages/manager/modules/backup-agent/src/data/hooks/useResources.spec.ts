@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-// eslint-disable-next-line max-lines-per-function
 describe.skip('useResources', () => {
+  // eslint-disable-next-line vitest/no-commented-out-tests
   // it('uses v6Iceberg when APP_FEATURES.listingApi === "v6Iceberg"', async () => {
   //   const { useResources, mocks } = await loadSubject('v6Iceberg');
   //
@@ -31,6 +31,7 @@ describe.skip('useResources', () => {
   //   expect(result.current.status).toBe('success');
   // });
   //
+  // eslint-disable-next-line vitest/no-commented-out-tests
   // it('uses v2 when APP_FEATURES.listingApi === "v2"', async () => {
   //   const { useResources, mocks } = await loadSubject('v2');
   //
@@ -58,6 +59,7 @@ describe.skip('useResources', () => {
   //   expect(result.current.hasNextPage).toBe(true);
   // });
   //
+  // eslint-disable-next-line vitest/no-commented-out-tests
   // it('falls back to v6 when APP_FEATURES.listingApi is "v6" or anything else', async () => {
   //   const { useResources, mocks } = await loadSubject('v6');
   //

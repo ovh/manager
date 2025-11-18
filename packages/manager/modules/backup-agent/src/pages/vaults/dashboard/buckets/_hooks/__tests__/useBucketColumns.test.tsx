@@ -9,11 +9,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-const COLUMNS_EXPECTED = [
-  'name',
-  'localisation',
-  'region',
-];
+const COLUMNS_EXPECTED = ['name', 'localisation', 'region'];
 
 describe('useColumns on Listing Page', () => {
   it('Have all required columns in columns array', () => {

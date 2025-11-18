@@ -10,9 +10,9 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useDeleteVSPCTenant } from '@/data/hooks/tenants/useDeleteTenant';
 import { useVSPCTenantsMocks } from '@/data/hooks/tenants/useVspcTenants';
-import {BACKUP_AGENT_NAMESPACES} from "@/BackupAgent.translations";
 
 export default function DeleteTenantPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_LISTING, NAMESPACES.ACTIONS]);

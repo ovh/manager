@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { mockLocations } from '@/mocks/location/locations';
 import { mockVaults } from '@/mocks/vaults/vaults';
+
 import { ResourceRegionCell } from '../ResourceRegionCell.components';
 
 const { mockLocationDetails } = vi.hoisted(() => {

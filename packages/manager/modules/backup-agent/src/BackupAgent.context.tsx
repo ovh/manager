@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-export type BackupAgentScope = "Unknown" | "Enterprise" | "Baremetal"
+export type BackupAgentScope = 'Unknown' | 'Enterprise' | 'Baremetal';
 
 export interface BackupAgentProviderProps {
   appName: string;
@@ -8,6 +8,6 @@ export interface BackupAgentProviderProps {
 }
 
 export const BackupAgentContext = createContext<BackupAgentProviderProps>({
-  appName: "Backup Agent",
-  scope: "Unknown"
+  appName: 'Backup Agent',
+  scope: 'Unknown',
 });

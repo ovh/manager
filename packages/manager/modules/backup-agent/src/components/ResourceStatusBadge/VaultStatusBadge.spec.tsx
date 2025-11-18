@@ -1,14 +1,16 @@
-import React from "react";
-import { vi } from "vitest"
-import {render, screen } from "@testing-library/react"
-import {ResourceStatusBadge} from "./ResourceStatusBadge.components";
+import React from 'react';
+
+import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { ResourceStatusBadge } from './ResourceStatusBadge.components';
 
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({t: (key: string) => key}),
+  useTranslation: () => ({ t: (key: string) => key }),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({children}: { children: React.ReactNode }) => (
+  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="cell">{children}</div>
   ),
 }));
@@ -23,8 +25,7 @@ vi.mock('@ovhcloud/ods-components', () => ({
 }));
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  // eslint-disable-next-line react/no-multi-comp
-  OdsBadge: ({color, label}: { color: string; label: string }) => (
+  OdsBadge: ({ color, label }: { color: string; label: string }) => (
     <span data-testid="badge" data-color={color}>
       {label}
     </span>

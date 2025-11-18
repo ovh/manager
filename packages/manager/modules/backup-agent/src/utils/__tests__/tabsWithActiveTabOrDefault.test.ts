@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest';
-import { tabsWithActiveTabOrDefault } from '../tabsWithActiveTabOrDefault';
+import { describe, expect, it } from 'vitest';
+
 import { DashboardTabType } from '@/types/Dashboard.type';
+
+import { tabsWithActiveTabOrDefault } from '../tabsWithActiveTabOrDefault';
 
 describe('tabsWithActiveTabOrDefault', () => {
   it.each([
@@ -45,21 +47,13 @@ describe('tabsWithActiveTabOrDefault', () => {
     },
     {
       description: 'should handle single tab that is inactive and default',
-      input: [
-        { id: '1', name: 'Tab 1', isActive: false, isDefault: true },
-      ],
-      expected: [
-        { id: '1', name: 'Tab 1', isActive: true, isDefault: true },
-      ],
+      input: [{ id: '1', name: 'Tab 1', isActive: false, isDefault: true }],
+      expected: [{ id: '1', name: 'Tab 1', isActive: true, isDefault: true }],
     },
     {
       description: 'should handle single tab that is active and not default',
-      input: [
-        { id: '1', name: 'Tab 1', isActive: true, isDefault: false },
-      ],
-      expected: [
-        { id: '1', name: 'Tab 1', isActive: true, isDefault: false },
-      ],
+      input: [{ id: '1', name: 'Tab 1', isActive: true, isDefault: false }],
+      expected: [{ id: '1', name: 'Tab 1', isActive: true, isDefault: false }],
     },
   ])('$description', ({ input, expected }) => {
     const result = tabsWithActiveTabOrDefault(input);
