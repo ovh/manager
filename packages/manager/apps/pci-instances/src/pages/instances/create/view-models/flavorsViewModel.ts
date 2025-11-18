@@ -1,4 +1,5 @@
 /* eslint-disable max-lines */
+/* eslint-disable max-lines-per-function */
 import { Deps } from '@/deps/deps';
 import {
   TFlavor,
@@ -127,7 +128,7 @@ const getMinimumPrices = (pricings: TFlavorPrices[]) =>
 
 export type TSelectFlavors = (
   args: TSelectFlavorsArgs,
-) => TFlavorDataForTable[];
+) => { flavors: TFlavorDataForTable[]; preselecteFlavordId: string | null };
 
 const addMicroRegionAvailableFlavor = (
   acc: TFlavorDataForTable[],
@@ -200,57 +201,74 @@ const addUnavailableMicroRegionFlavor = (
 
 export const selectFlavors: Reader<Deps, TSelectFlavors> = (deps) => {
   return ({ projectId, flavorType, microRegionId, withUnavailable }) => {
-    if (!flavorType || !microRegionId) return [];
+    const emptyResult = {
+      flavors: [],
+      preselecteFlavordId: null,
+    };
+    if (!flavorType || !microRegionId) return emptyResult;
 
     const { instancesCatalogPort } = deps;
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
-    if (!data) return [];
+    if (!data) return emptyResult;
 
     const flavorsNames = data.entities.flavorTypes.byId.get(flavorType)
       ?.flavors;
-    if (!flavorsNames) return [];
+    if (!flavorsNames) return emptyResult;
 
-    return flavorsNames.reduce<TFlavorDataForTable[]>((acc, flavorName) => {
-      const flavor = data.entities.flavors.byId.get(flavorName);
-      if (!flavor) return acc;
+    const flavorsData = flavorsNames.reduce<TFlavorDataForTable[]>(
+      (acc, flavorName) => {
+        const flavor = data.entities.flavors.byId.get(flavorName);
+        if (!flavor) return acc;
 
-      const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
-        (regionalizedFlavorId) =>
-          data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ??
-          [],
-      );
-
-      regionalizedFlavors.map((regionalizedFlavor, index) => {
-        const regionalizedFlavorId = getRegionalizedFlavorId(
-          flavorName,
-          microRegionId,
+        const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
+          (regionalizedFlavorId) =>
+            data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ??
+            [],
         );
 
-        const isFlavorInSelectedMicroRegion =
-          regionalizedFlavor.id === regionalizedFlavorId;
-
-        const isLastRegionalizedFlavorFromList =
-          index === regionalizedFlavors.length - 1;
-
-        const shouldAddUnavailableMicroRegionFlavor =
-          withUnavailable &&
-          isLastRegionalizedFlavorFromList &&
-          !isFlavorInSelectedMicroRegion;
-
-        if (isFlavorInSelectedMicroRegion)
-          addMicroRegionAvailableFlavor(
-            acc,
-            data.entities,
-            regionalizedFlavor,
-            flavor,
+        regionalizedFlavors.map((regionalizedFlavor, index) => {
+          const regionalizedFlavorId = getRegionalizedFlavorId(
+            flavorName,
+            microRegionId,
           );
 
-        if (shouldAddUnavailableMicroRegionFlavor)
-          addUnavailableMicroRegionFlavor(acc, flavor);
-      });
+          const isFlavorInSelectedMicroRegion =
+            regionalizedFlavor.id === regionalizedFlavorId;
 
-      return acc;
-    }, []);
+          const isLastRegionalizedFlavorFromList =
+            index === regionalizedFlavors.length - 1;
+
+          const shouldAddUnavailableMicroRegionFlavor =
+            withUnavailable &&
+            isLastRegionalizedFlavorFromList &&
+            !isFlavorInSelectedMicroRegion;
+
+          if (isFlavorInSelectedMicroRegion)
+            addMicroRegionAvailableFlavor(
+              acc,
+              data.entities,
+              regionalizedFlavor,
+              flavor,
+            );
+
+          if (shouldAddUnavailableMicroRegionFlavor)
+            addUnavailableMicroRegionFlavor(acc, flavor);
+        });
+
+        return acc;
+      },
+      [],
+    );
+
+    const preselectedFirstAvailableFlavorId =
+      flavorsData.find(
+        (flavor) => !flavor.unavailable && !flavor.unavailableQuota,
+      )?.id ?? null;
+
+    return {
+      flavors: flavorsData,
+      preselecteFlavordId: preselectedFirstAvailableFlavorId,
+    };
   };
 };
 

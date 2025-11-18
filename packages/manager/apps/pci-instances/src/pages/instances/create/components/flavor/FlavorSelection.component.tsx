@@ -49,7 +49,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   );
   const { trackClick } = useOvhTracking();
 
-  const flavorsData = useMemo(
+  const { flavors, preselecteFlavordId } = useMemo(
     () =>
       selectFlavors(deps)({
         projectId,
@@ -63,7 +63,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   const { columns, rows } = useMemo(() => {
     if (flavorCategory === 'Cloud GPU') {
       // TODO: will be changed in future PR
-      const gpuFlavors = (flavorsData as unknown) as TGpuFlavorDataForTable[];
+      const gpuFlavors = (flavors as unknown) as TGpuFlavorDataForTable[];
       return {
         columns: GpuFlavorColumnsBuilder(t),
         rows: GpuFlavorRowsBuilder(
@@ -74,7 +74,6 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       };
     }
 
-    const flavors = flavorsData;
     return {
       columns: FlavorColumnsBuilder(t),
       rows: FlavorRowsBuilder(
@@ -83,14 +82,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
         withUnavailable,
       ),
     };
-  }, [
-    flavorCategory,
-    flavorsData,
-    renderName,
-    renderRadio,
-    t,
-    withUnavailable,
-  ]);
+  }, [flavorCategory, flavors, renderName, renderRadio, t, withUnavailable]);
 
   const availableRegions = useMemo(
     () =>
@@ -109,7 +101,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   ) => {
     if (!flavorId) return;
 
-    const flavor = flavorsData.find(({ id }) => id === flavorId);
+    const flavor = flavors.find(({ id }) => id === flavorId);
 
     field.onChange(flavorId);
 
@@ -145,14 +137,15 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   };
 
   useEffect(() => {
-    const availablePreviousSelectedFlavor = flavorsData.find(
+    if (!flavorId) return;
+    const availablePreviousSelectedFlavor = flavors.find(
       (flavor) => flavor.id === flavorId,
     );
 
-    if (!availablePreviousSelectedFlavor && flavorsData[0]?.id) {
-      setValue('flavorId', flavorsData[0].id);
+    if (!availablePreviousSelectedFlavor) {
+      setValue('flavorId', preselecteFlavordId);
     }
-  }, [flavorId, flavorsData, setValue]);
+  }, [flavorId, flavors, preselecteFlavordId, setValue]);
 
   return (
     <section className="mt-8">
