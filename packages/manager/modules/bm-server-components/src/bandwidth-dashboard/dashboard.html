@@ -7,7 +7,7 @@
 </server-public-bandwidth-tile-definition>
 
 <oui-tile-button
-    data-ng-if="$ctrl.server.canOrderBandwith"
+    data-ng-if="$ctrl.server.canOrderBandwidth"
     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
     data-href="{{ $ctrl.orderPublicLink }}"
 >
@@ -15,7 +15,7 @@
 </oui-tile-button>
 
 <oui-tile-definition
-    data-ng-if="$ctrl.specifications.vrack.bandwidth"
+    data-ng-if="$ctrl.specifications.bandwidth && !!$ctrl.specifications.vrack.bandwidth"
     data-term="{{:: 'dedicated_' + ($ctrl.isOldCluster ? 'cluster' : 'server') + '_bandwidth_private' | translate }}"
 >
     <oui-tile-description>
@@ -49,7 +49,7 @@
     </oui-tile-description>
 </oui-tile-definition>
 <oui-tile-button
-    data-ng-if="!$ctrl.server.isExpired && $ctrl.server.canOrderVrackBandwith && !$ctrl.isOldCluster"
+    data-ng-if="!$ctrl.server.isExpired && $ctrl.server.canOrderVrackBandwidth && !$ctrl.isOldCluster"
     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
     data-href="{{ $ctrl.orderPrivateLink }}"
 >

@@ -32,7 +32,7 @@ export default class BandwidthVrackOrderService extends BaseDedicatedService {
   }
 
   getOrderableBandwidths(server) {
-    if (!server.canOrderVrackBandwith) {
+    if (!server.canOrderVrackBandwidth) {
       return this.$q.resolve(null);
     }
     return this.Server.getOrderables(server.name, 'bandwidthvRack')

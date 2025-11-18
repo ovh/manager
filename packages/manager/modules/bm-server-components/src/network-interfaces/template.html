@@ -142,7 +142,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ui-sref=".bandwidth-public-order"
-                data-ng-if="$row.isPublic() && $ctrl.server.canOrderBandwith"
+                data-ng-if="$row.isPublic() && $ctrl.server.canOrderBandwidth"
             >
                 <span
                     data-translate="dedicated_server_interfaces_order_public_bandwidth_label"
@@ -150,7 +150,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ui-sref=".bandwidth-private-order"
-                data-ng-if="$row.isPrivate() && $ctrl.server.canOrderVrackBandwith"
+                data-ng-if="$row.isPrivate() && $ctrl.server.canOrderVrackBandwidth"
             >
                 <span
                     data-translate="dedicated_server_interfaces_order_private_bandwidth_label"
