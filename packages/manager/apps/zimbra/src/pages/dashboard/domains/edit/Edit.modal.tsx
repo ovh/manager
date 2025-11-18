@@ -7,8 +7,17 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import {
+  OdsFormField,
+  OdsInput,
+  OdsSelect,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -41,7 +50,10 @@ export const EditDomainModal = () => {
     domainId,
     gcTime: 0,
   });
-  const { data: organizations, isLoading: isLoadingOrganizations } = useOrganizations({
+  const {
+    data: organizations,
+    isLoading: isLoadingOrganizations,
+  } = useOrganizations({
     shouldFetchAll: true,
   });
 
@@ -61,7 +73,9 @@ export const EditDomainModal = () => {
         pageName: EDIT_DOMAIN,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:edit_success_message')}</OdsText>,
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('common:edit_success_message')}
+        </OdsText>,
         true,
       );
     },
@@ -148,7 +162,10 @@ export const EditDomainModal = () => {
       secondaryButtonTestId="cancel-btn"
       onSecondaryButtonClick={handleCancelClick}
     >
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleConfirmClick)}>
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(handleConfirmClick)}
+      >
         <OdsFormField>
           <label htmlFor="domain" slot="label">
             {t('common:domain')} *
@@ -188,7 +205,7 @@ export const EditDomainModal = () => {
               >
                 {organizations?.map((organization) => (
                   <option key={organization.id} value={organization.id}>
-                    {organization.currentState.label}
+                    {organization.currentState.name}
                   </option>
                 ))}
               </OdsSelect>

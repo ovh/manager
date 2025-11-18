@@ -13,8 +13,16 @@ import {
 import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  Datagrid,
+  DatagridColumn,
+  ManagerButton,
+} from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { BadgeStatus, LabelChip } from '@/components';
 import { AccountStatistics, DomainType, ResourceStatus } from '@/data/api';
@@ -28,40 +36,6 @@ import ActionButtonDomain from './ActionButton.component';
 import { CnameBadge } from './CnameBadge.component';
 import { DomainItem } from './Domains.types';
 
-const columns: DatagridColumn<DomainItem>[] = [
-  {
-    id: 'domains',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
-    label: 'common:domain',
-    isSearchable: true,
-  },
-  {
-    id: 'organization',
-    cell: (item) => <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>,
-    label: 'common:organization',
-  },
-  {
-    id: 'account',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>,
-    label: 'common:number_of_accounts',
-  },
-  {
-    id: 'status',
-    cell: (item) =>
-      item.cnameToCheck && item.status === ResourceStatus.CREATING ? (
-        <CnameBadge item={item} />
-      ) : (
-        <BadgeStatus status={item.status}></BadgeStatus>
-      ),
-    label: `${NAMESPACES.STATUS}:status`,
-  },
-  {
-    id: 'tooltip',
-    cell: (item: DomainItem) => <ActionButtonDomain item={item} />,
-    label: '',
-  },
-];
-
 export const Domains = () => {
   const { t } = useTranslation(['domains', 'common', NAMESPACES.STATUS]);
   const { trackClick } = useOvhTracking();
@@ -69,8 +43,12 @@ export const Domains = () => {
   const navigate = useNavigate();
   const isOverridedPage = useOverridePage();
 
-  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
-    useDebouncedValue('');
+  const [
+    searchInput,
+    setSearchInput,
+    debouncedSearchInput,
+    setDebouncedSearchInput,
+  ] = useDebouncedValue('');
 
   const {
     data: domains,
@@ -89,6 +67,54 @@ export const Domains = () => {
   const { data: organizations } = useOrganizations({
     enabled: !isOverridedPage,
   });
+
+  const columns: DatagridColumn<DomainItem>[] = useMemo(
+    () => [
+      {
+        id: 'domains',
+        cell: (item) => (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
+        ),
+        label: 'common:domain',
+        isSearchable: true,
+      },
+      {
+        id: 'organization',
+        cell: (item) => {
+          const organizationName =
+            organizations?.find((org) => org?.id === item?.organizationId)
+              ?.currentState?.name || '';
+          return (
+            <LabelChip id={item.organizationId}>{organizationName}</LabelChip>
+          );
+        },
+        label: 'common:organization',
+      },
+      {
+        id: 'account',
+        cell: (item) => (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>
+        ),
+        label: 'common:number_of_accounts',
+      },
+      {
+        id: 'status',
+        cell: (item) =>
+          item.cnameToCheck && item.status === ResourceStatus.CREATING ? (
+            <CnameBadge item={item} />
+          ) : (
+            <BadgeStatus status={item.status}></BadgeStatus>
+          ),
+        label: `${NAMESPACES.STATUS}:status`,
+      },
+      {
+        id: 'tooltip',
+        cell: (item: DomainItem) => <ActionButtonDomain item={item} />,
+        label: '',
+      },
+    ],
+    [organizations],
+  );
 
   const hrefAddDomain = useGenerateUrl('./add', 'path');
 
@@ -110,7 +136,8 @@ export const Domains = () => {
         organizationId: item.currentState?.organizationId,
         organizationLabel: item.currentState?.organizationLabel,
         account: item.currentState?.accountsStatistics.reduce(
-          (acc: number, current: AccountStatistics) => acc + current.configuredAccountsCount,
+          (acc: number, current: AccountStatistics) =>
+            acc + current.configuredAccountsCount,
           0,
         ),
         status: item.resourceStatus,
@@ -141,7 +168,10 @@ export const Domains = () => {
                 />
               </div>
               {(isLoading || organizations?.length === 0) && (
-                <OdsTooltip role="tooltip" triggerId={'tooltip-trigger-domain-btn'}>
+                <OdsTooltip
+                  role="tooltip"
+                  triggerId={'tooltip-trigger-domain-btn'}
+                >
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     {t('zimbra_domains_tooltip_need_organization')}
                   </OdsText>
