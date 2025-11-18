@@ -60,7 +60,7 @@ const mockGetLocations = vi.mocked(getLocations);
 // Mock the useCurrentRegion hook
 const mockUseCurrentRegion = vi.fn();
 vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
-  useCurrentRegion: (okmsList: OKMS[]) => mockUseCurrentRegion(okmsList),
+  useCurrentRegion: (okmsList: OKMS[]): unknown => mockUseCurrentRegion(okmsList),
 }));
 
 // Mock the useNotifications hook

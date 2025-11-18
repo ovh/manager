@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
@@ -20,6 +21,17 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsUpdateSecretConfigDrawer(
   mockOkmsId,
 );
 
+// We mock @ovh-ux/manager-billing-informations module because it takes 3 secondes to load
+// And make the test suite slow
+vi.mock(
+  '@ovh-ux/manager-billing-informations',
+   () => ({
+    BillingInformationsTileStandard: vi.fn(() => (
+      <div>BillingInformationsTileStandard</div>
+    )),
+  }),
+);
+
 const renderPage = async (mockParams = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(mockPageUrl, mockParams);
@@ -33,7 +45,7 @@ const renderPage = async (mockParams = {}) => {
         ),
       ).toBeInTheDocument();
     },
-    { timeout: 6000 },
+    { timeout: 2000 },
   );
 
   return { user, container };

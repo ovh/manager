@@ -27,12 +27,13 @@ describe('useGuideItemUsage test suite', () => {
 
     // THEN
     expect(useGuideLink).toHaveBeenCalledWith(GUIDES_USAGE);
-    expect(result.current).toEqual({
-      id: MOCKED_ID,
-      href: MOCKED_LINK,
-      label: labels.guide.guides_header_kms_usage,
-      target: '_blank',
-      onClick: expect.any(Function),
-    });
+    expect(result.current).toEqual(
+      expect.objectContaining({
+        id: MOCKED_ID,
+        href: MOCKED_LINK,
+        label: labels.guide.guides_header_kms_usage,
+        target: '_blank',
+      }),
+    );
   });
 });

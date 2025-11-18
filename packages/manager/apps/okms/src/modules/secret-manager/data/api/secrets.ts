@@ -113,8 +113,7 @@ export const deleteSecret = async ({
   okmsId,
   secretPath,
 }: DeleteSecretParams) => {
-  const { data } = await apiClient.v2.delete(
+  await apiClient.v2.delete(
     `okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}`,
   );
-  return data;
 };

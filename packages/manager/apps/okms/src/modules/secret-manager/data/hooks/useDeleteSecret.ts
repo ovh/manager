@@ -13,10 +13,10 @@ export const useDeleteSecret = () => {
   const queryClient = useQueryClient();
   const { addSuccess } = useNotifications();
 
-  return useMutation<null, ErrorResponse, DeleteSecretParams>({
+  return useMutation<void, ErrorResponse, DeleteSecretParams>({
     mutationFn: deleteSecret,
-    onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (_, variables) => {
+      await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.list(variables.okmsId),
       });
       addSuccess(t('delete_secret_success'), true);

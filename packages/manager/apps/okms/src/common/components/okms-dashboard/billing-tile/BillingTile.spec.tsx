@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import userEvent from '@testing-library/user-event';
@@ -37,7 +37,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 vi.mock('@ovh-ux/manager-billing-informations', async (original) => ({
   ...(await original()),
   BillingInformationsTileStandard: vi.fn(
-    ({ onResiliateLinkClick, resourceName }) => (
+    ({ onResiliateLinkClick, resourceName }: { onResiliateLinkClick: () => void, resourceName: string }) => (
       <div
         data-testid={BILLING_TILE_TEST_IDS.billingInformationsTile}
         id={resourceName}
@@ -83,7 +83,10 @@ describe('OKMS Billing Tile test suite', () => {
       expect(mockedBillingTile).toBeInTheDocument();
       expect(mockedBillingTile).toHaveAttribute('id', okmsMocked.id);
 
-      await user.click(mockedBillingTile);
+      await act(async () => {
+        await user.click(mockedBillingTile);
+      });
+
       expect(mockNavigate).toHaveBeenCalledWith(resiliateLink);
     },
   );

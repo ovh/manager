@@ -91,7 +91,7 @@ describe('KMS listing test suite', () => {
       isLink: true,
     });
 
-    await waitFor(async () => {
+    await waitFor(() => {
       expect(dashboardLink).toHaveAttribute(
         'href',
         KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id),

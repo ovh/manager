@@ -42,7 +42,7 @@ describe('useBackToOkmsListUrl tests suite', () => {
   });
 
   describe('when data is loading', () => {
-    it('should return null when API call are pending', async () => {
+    it('should return null when API call are pending',  () => {
       // GIVEN
       mockGetOkmsList.mockImplementation(() =>
         promiseWithDelayMock<OKMS[]>({} as OKMS[], 2000),
@@ -55,7 +55,7 @@ describe('useBackToOkmsListUrl tests suite', () => {
       expect(result.current).toBeNull();
     });
 
-    it('should return null when error on API call', async () => {
+    it('should return null when error on API call',  () => {
       // GIVEN
       const mockError: ErrorResponse = {
         response: { data: { message: 'errorOkmsList' }, status: 500 },

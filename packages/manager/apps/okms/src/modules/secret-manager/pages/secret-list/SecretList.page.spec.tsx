@@ -30,7 +30,7 @@ const renderPage = async () => {
 
 // TEMP fix to ensure ods links and buttons are properly rendered
 const assertDatagridIsLoaded = async (container: HTMLElement) => {
-  await waitFor(async () => {
+  await waitFor(() => {
     const skeletons = container.querySelectorAll<HTMLElement>('ods-skeleton');
     expect(skeletons.length).toBe(0);
   });
