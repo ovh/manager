@@ -5,7 +5,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useSecretDataSchema } from '@secret-manager/validation';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { SecretWithData } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
