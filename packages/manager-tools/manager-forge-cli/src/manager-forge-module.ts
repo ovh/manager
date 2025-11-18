@@ -55,6 +55,7 @@ function forgeModule(answers: Answers): void {
     path.join(moduleDir, 'package.json'),
     path.join(moduleDir, 'README.md'),
     path.join(moduleDir, 'tsconfig.json'),
+    path.join(moduleDir, 'src/__tests__/lib.spec.ts'),
   ].filter(Boolean);
 
   applyTemplateReplacements(templateFiles, {

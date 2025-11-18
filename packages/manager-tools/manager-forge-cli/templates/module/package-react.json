@@ -15,10 +15,9 @@
   "types": "dist/types/src/lib.d.ts",
   "scripts": {
     "build": "tsc && tsc-alias",
-    "dev": "tsc && tsc-alias",
     "dev:watch": "concurrently \"tsc --watch\" \"tsc-alias --watch\"",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint:modern": "manager-lint --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
@@ -40,11 +39,13 @@
     "@types/react-dom": "18.3.0",
     "i18next": "23.8.2",
     "i18next-http-backend": "2.5.0",
+    "concurrently": "^9.2.1",
     "msw": "2.1.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "14.1.0",
     "react-router-dom": "6.16.0",
+    "tsc-alias": "^1.8.16",
     "typescript": "5.9.3"
   },
   "peerDependencies": {

@@ -15,10 +15,9 @@
   "types": "dist/types/src/lib.d.ts",
   "scripts": {
     "build": "tsc && tsc-alias",
-    "dev": "tsc && tsc-alias",
     "dev:watch": "concurrently \"tsc --watch\" \"tsc-alias --watch\"",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint:modern": "manager-lint --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
@@ -33,7 +32,9 @@
     "@ovh-ux/manager-static-analysis-kit": "0.13.0",
     "@ovh-ux/manager-tests-setup": "0.6.0",
     "@ovh-ux/manager-vite-config": "0.15.0",
+    "concurrently": "^9.2.1",
     "msw": "2.1.7",
+    "tsc-alias": "^1.8.16",
     "typescript": "5.9.3"
   },
   "peerDependencies": {
