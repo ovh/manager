@@ -10,6 +10,7 @@ import {
   TABLE_SIZE,
   TABLE_VARIANT,
 } from '@ovhcloud/ods-react';
+import type { Row } from '@tanstack/react-table';
 import { Datagrid, DatagridProps, useColumnFilters } from '@ovh-ux/muk';
 import {
   applyFilters,
@@ -430,6 +431,7 @@ RowSelection.args = {
     rowSelection: [],
     setRowSelection: () => {},
     onRowSelectionChange: () => {},
+    enableRowSelection: (row: Row<DatagridStoryData>) => row?.original?.age === 26,
   },
 };
 

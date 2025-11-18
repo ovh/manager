@@ -266,6 +266,43 @@ describe('Datagrid', () => {
       expect(targetDivBody).toHaveAttribute('id', 'checkbox:1');
     });
 
+    it('should disable row checkbox when enableRowSelection returns false', () => {
+      const { container } = renderDataGrid({
+        columns: mockBasicColumns,
+        data: mockData,
+        rowSelection: {
+          ...mockRowSelection,
+          enableRowSelection: ({ original }) => original.id !== '1',
+        },
+      });
+
+      const firstRowCheckbox = container.querySelector('#checkbox\\:1\\:input');
+      const secondRowCheckbox = container.querySelector('#checkbox\\:2\\:input');
+
+      expect(firstRowCheckbox).toBeDisabled();
+      expect(secondRowCheckbox).not.toBeDisabled();
+    });
+
+    it('should call enableRowSelection for each row', () => {
+      const enableRowSelection = vi.fn(() => true);
+
+      renderDataGrid({
+        columns: mockBasicColumns,
+        data: mockData,
+        rowSelection: {
+          ...mockRowSelection,
+          enableRowSelection,
+        },
+      });
+
+      expect(enableRowSelection).toHaveBeenCalledWith(
+        expect.objectContaining({ original: mockData[0] }),
+      );
+      expect(enableRowSelection).toHaveBeenCalledWith(
+        expect.objectContaining({ original: mockData[1] }),
+      );
+    });
+
     it('should handle expandable rows', () => {
       const { container } = renderDataGrid({
         columns: mockBasicColumns,

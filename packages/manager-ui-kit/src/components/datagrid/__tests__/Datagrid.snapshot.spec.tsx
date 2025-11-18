@@ -191,4 +191,16 @@ describe('Datagrid Snapshot Tests', () => {
     });
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  it('should match snapshot with conditional row selection', () => {
+    const { container } = renderDataGrid({
+      columns: mockBasicColumns,
+      data: mockData,
+      rowSelection: {
+        ...mockRowSelection,
+        enableRowSelection: ({ original }) => original.id !== '1',
+      },
+    });
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
