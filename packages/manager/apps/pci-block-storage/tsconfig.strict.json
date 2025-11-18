@@ -1,0 +1,8 @@
+{
+  "extends": [
+    // Use strict config
+    "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+    // Inherit app specific config
+    "./tsconfig"
+  ]
+}
