@@ -14,6 +14,8 @@ import {
 import { FC, PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TCustomRegionItemData } from '../view-models/flavorsViewModel';
+import { useFormContext } from 'react-hook-form';
+import { TInstanceCreationForm } from '../CreateInstance.page';
 
 export type TCustomRegionSelected = {
   macroRegionId: string;
@@ -46,6 +48,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
   const { t } = useTranslation(['creation', 'common']);
   const [region, setRegion] = useState<TCustomRegionSelected | null>(null);
   const [selectRegionValue, setSelectRegionValue] = useState<string[]>([]);
+  const { setValue } = useFormContext<TInstanceCreationForm>();
 
   const handleSelect = ({ items, value }: TSelectRegionChageDetail) => {
     const newRegion = items[0];
@@ -67,6 +70,11 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
     onClose();
   };
 
+  const handleCancel = () => {
+    setValue('flavorId', null);
+    handleClose();
+  };
+
   const handleValidate = () => {
     if (region) onValidateSelect(region);
 
@@ -80,7 +88,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
       isPending={false}
       disabled={!region}
       handleInstanceAction={handleValidate}
-      onModalClose={handleClose}
+      onModalClose={handleCancel}
       variant="primary"
     >
       <div className="mt-4">

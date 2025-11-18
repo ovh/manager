@@ -51,13 +51,12 @@ export const useForm = (projectId: string) => {
   const flavorTypeDefaultValue =
     selectTypes(deps)(projectId, flavorCategoryDefaultValue)[0]?.value ?? null;
 
-  const flavorIdDefaultValue =
-    selectFlavors(deps)({
-      projectId,
-      flavorType: flavorTypeDefaultValue,
-      microRegionId: microRegionDefaultValue,
-      withUnavailable: true,
-    })[0]?.id ?? null;
+  const { preselecteFlavordId } = selectFlavors(deps)({
+    projectId,
+    flavorType: flavorTypeDefaultValue,
+    microRegionId: microRegionDefaultValue,
+    withUnavailable: true,
+  });
 
   const availabilityZoneDefaultValue = null;
 
@@ -82,7 +81,7 @@ export const useForm = (projectId: string) => {
       continent: continentDefaultValue,
       flavorCategory: flavorCategoryDefaultValue,
       flavorType: flavorTypeDefaultValue,
-      flavorId: flavorIdDefaultValue,
+      flavorId: preselecteFlavordId,
       macroRegion: macroRegionDefaultValue,
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,
