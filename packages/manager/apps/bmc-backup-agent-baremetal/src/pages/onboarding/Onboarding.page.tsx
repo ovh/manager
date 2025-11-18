@@ -2,47 +2,24 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Card } from '@ovh-ux/manager-react-components';
 
-import { OnboardingLayout } from '@/components/onboardingLayout/OnboardingLayout.component';
-import { useBaremetalDetails } from '@/data/hooks/baremetal/getBaremetals';
+import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
+import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/OnboardingLayout.component';
+import { useBaremetalsList } from '@/data/hooks/baremetal/useBaremetalsList';
 import { useGuideLinks, useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
+import { useOnboardingHeroImage } from '@/hooks/onboarding/useOnboardingHeroImage';
 import { OnboardingLinksType } from '@/types/Onboarding.type';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
-  const { productName, productCategory, brand, title, heroImage, tiles } = useOnboardingContent();
+  const { productName, title, tiles } = useOnboardingContent();
   const links: OnboardingLinksType = useGuideLinks();
-  const { data, isLoading } = useBaremetalDetails();
-
-  // Build localized description paragraph.
-  const description = (
-    <section className="text-center">
-      <OdsText className="my-6 block">
-        {t('onboarding:description_part1', {
-          productName,
-          productCategory,
-          brand,
-        })}
-      </OdsText>
-      <OdsText>{t('onboarding:description_part2', { productName })}</OdsText>
-    </section>
-  );
+  const { flattenData, isLoading } = useBaremetalsList({ pageSize: 1 });
 
   // Build hero image object with fallback alt text.
-  const img = useMemo(
-    () =>
-      heroImage
-        ? {
-            src: heroImage.src,
-            alt: heroImage.alt ?? t('onboarding:hero_alt', { productName }),
-          }
-        : undefined,
-    [heroImage, t, productName],
-  );
+  const img = useOnboardingHeroImage();
 
   // Filter tiles to include only those with matching guide links.
   const validTiles = useMemo(
@@ -54,7 +31,7 @@ export default function OnboardingPage() {
     <OnboardingLayout
       title={title ?? t('onboarding:title_fallback', { productName })}
       img={img}
-      description={description}
+      description={<OnboardingDescription />}
       orderButtonLabel={t(`${NAMESPACES.ACTIONS}:start`)}
       onOrderButtonClick={() => {}}
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
@@ -62,8 +39,8 @@ export default function OnboardingPage() {
       isOrderLoading={isLoading}
       orderHref=""
       moreInfoHref="/#/"
-      isOrderDisabled={!data?.length}
-      tooltipContent={!data?.length ? t('no_baremetal_available') : undefined}
+      isOrderDisabled={!flattenData?.length}
+      tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
     >
       {validTiles.map(({ id, key, linkKey }) => {
         const href = links[linkKey];
