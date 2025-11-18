@@ -1,0 +1,83 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+import { MANAGER_MODULES_DIR, MODULE_TEMPLATE_DIR } from '@/configs/manager-forge-path-config.js';
+import { addModuleToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
+import {
+  applyTemplateReplacements,
+  copyTemplate,
+  ensureDirectory,
+  selectModulePackageJsonTemplate,
+} from '@/helpers/manager-forge-template-helper.js';
+import type { Answers } from '@/types/PromptType.js';
+
+/**
+ * Generates a new Manager Forge module using templates,
+ * applies replacements, and configures metadata files.
+ *
+ * @param {Answers} answers - The module metadata from prompts.
+ */
+function forgeModule(answers: Answers): void {
+  const moduleDir = path.join(MANAGER_MODULES_DIR, answers.moduleName ?? '');
+
+  // ────────────────────────────────────────────────────────────
+  // 1. Prevent overwriting an existing module
+  // ────────────────────────────────────────────────────────────
+  if (fs.existsSync(moduleDir)) {
+    console.error(`❌ Module "${answers.moduleName}" already exists at: ${moduleDir}`);
+    process.exit(1);
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // 2. Create module directory
+  // ────────────────────────────────────────────────────────────
+  console.log(`🔨 Creating module at ${moduleDir}`);
+  ensureDirectory(moduleDir);
+
+  // ────────────────────────────────────────────────────────────
+  // 3. Copy module template files
+  // ────────────────────────────────────────────────────────────
+  console.log('📦 Copying module template...');
+  copyTemplate(MODULE_TEMPLATE_DIR, moduleDir);
+
+  // ────────────────────────────────────────────────────────────
+  // 4. Select correct package.json file based on module type
+  // ────────────────────────────────────────────────────────────
+  console.log(`🧭 Selecting correct package.json for module type: ${answers.moduleType}`);
+  selectModulePackageJsonTemplate(moduleDir, answers.moduleType!);
+
+  // ────────────────────────────────────────────────────────────
+  // 5. Apply replacements
+  // ────────────────────────────────────────────────────────────
+  console.log('🧩 Applying module template replacements...');
+
+  const templateFiles = [
+    path.join(moduleDir, 'package.json'),
+    path.join(moduleDir, 'README.md'),
+    path.join(moduleDir, 'tsconfig.json'),
+  ].filter(Boolean);
+
+  applyTemplateReplacements(templateFiles, {
+    moduleNameKebab: answers.moduleName ?? '',
+    modulePackageName: answers.modulePackageName ?? '',
+    moduleDescription: answers.moduleDescription ?? '',
+    moduleRepositoryUrl: `packages/manager/modules/${answers.moduleName}`,
+    isPrivate: answers.isPrivate ? 'true' : 'false',
+    moduleType: answers.moduleType ?? '',
+  });
+
+  // ────────────────────────────────────────────────────────────
+  // 6. Final output
+  // ────────────────────────────────────────────────────────────
+  console.log(`\n✅ Successfully forged module "${answers.moduleName}"\n`);
+  addModuleToWorkspace(answers.moduleName!, answers.isPrivate!);
+}
+
+/**
+ * CLI entry wrapper for module generation.
+ *
+ * @param {Answers} answers
+ */
+export function forgeModuleCli(answers: Answers): void {
+  forgeModule(answers);
+}

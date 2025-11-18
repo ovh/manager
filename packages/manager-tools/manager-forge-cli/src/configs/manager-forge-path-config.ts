@@ -18,13 +18,14 @@ const ROOT_DIR = path.resolve(__dirname, '../../../../..');
 export const MANAGER_APPLICATIONS_DIR = path.join(ROOT_DIR, 'manager/apps');
 export const APPLICATION_TEMPLATE_DIR = path.join(
   ROOT_DIR,
-  'manager-tools/manager-forge-cli/template/application',
+  'manager-tools/manager-forge-cli/templates/application',
 );
 
 /**
  * Modules related paths.
  */
+export const MANAGER_MODULES_DIR = path.join(ROOT_DIR, 'manager/modules');
 export const MODULE_TEMPLATE_DIR = path.join(
   ROOT_DIR,
-  'manager-tools/manager-forge-cli/template/module',
+  'manager-tools/manager-forge-cli/templates/module',
 );

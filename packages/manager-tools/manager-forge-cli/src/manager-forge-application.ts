@@ -1,7 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { MANAGER_APPLICATIONS_DIR, APPLICATION_TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
+import {
+  APPLICATION_TEMPLATE_DIR,
+  MANAGER_APPLICATIONS_DIR,
+} from '@/configs/manager-forge-path-config.js';
 import { addAppToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 import {
   applyTemplateReplacements,
@@ -47,14 +50,15 @@ function forgeApplication(answers: Answers): void {
   applyTemplateReplacements(
     [
       path.join(applicationDirectory, 'package.json'),
+      path.join(applicationDirectory, 'README.md'),
       path.join(applicationDirectory, 'src/Tracking.constants.ts'),
       path.join(applicationDirectory, 'src/App.constants.ts'),
     ],
     {
       appNameKebab: answers.appName,
-      packageName: answers.packageName,
-      description: answers.description,
-      repositoryUrl: `packages/manager/apps/${answers.appName}`,
+      appPackageName: answers.packageName,
+      appDescription: answers.description,
+      appRepositoryUrl: `packages/manager/apps/${answers.appName}`,
       regions: answers.regions,
       universes: answers.universes,
       trackingLevel2: answers.level2,

@@ -1,8 +1,8 @@
-# {{appNameKebab}} — OVHcloud Manager Application
+# {{modulePackageName}} — OVHcloud Manager Module
 
 ## Overview
 
-{{appDescription}}
+{{moduleDescription}}
 
 ---
 

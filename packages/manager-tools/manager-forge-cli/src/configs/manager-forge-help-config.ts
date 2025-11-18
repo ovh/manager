@@ -123,3 +123,37 @@ Examples:
   yarn generate:uapp
   → starts an interactive wizard guiding you through all required fields.
 `;
+
+export const HELP_MODULE = `
+Usage:
+  yarn generate:module
+
+Description:
+  Interactively creates a new OVHcloud Manager module inside:
+    packages/manager/modules/<moduleName>/
+
+  This command:
+    • Copies the module base template
+    • Applies template variable replacements
+    • Configures package.json (name, privacy, description)
+    • Generates initial src/ structure
+    • Applies the correct TypeScript configuration based on module type (react or node)
+    • Optionally prepares translation folders if requested
+
+Options:
+  -h, --help     Show this help message
+
+Notes:
+  This command does not accept flags. The following values will be requested
+  through an interactive prompt:
+    • Module name (kebab-case)
+    • NPM package name (@ovh-ux/manager-<name>-module)
+    • Description
+    • Whether the module is private or public
+    • Module type (React frontend or Node/pure TypeScript module)
+    • Whether the module includes translations
+
+Examples:
+  yarn generate:module
+  → starts an interactive wizard guiding you through all required module fields.
+`;

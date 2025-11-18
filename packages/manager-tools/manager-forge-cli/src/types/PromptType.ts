@@ -12,5 +12,11 @@ export interface Answers {
   level2: Level2Code;
   universe: Universe;
   subUniverse: Universe;
+  moduleName?: string;
+  modulePackageName?: string;
+  moduleDescription?: string;
+  isPrivate?: boolean;
+  moduleType?: 'react' | 'node';
+  hasTranslations?: boolean;
   [key: string]: unknown;
 }

@@ -141,3 +141,32 @@ export function applyTemplateReplacements(
     safeWriteFile(filePath, replaced);
   }
 }
+
+/**
+ * Selects the correct package template (React or Node) and renames it to package.json.
+ * Removes the unused template file.
+ *
+ * @param {string} targetDir - The module directory
+ * @param {'react' | 'node'} moduleType
+ */
+export function selectModulePackageJsonTemplate(
+  targetDir: string,
+  moduleType: 'react' | 'node',
+): void {
+  const reactPkg = path.join(targetDir, 'package-react.json');
+  const nodePkg = path.join(targetDir, 'package-node.json');
+  const finalPkg = path.join(targetDir, 'package.json');
+
+  if (!fs.existsSync(reactPkg) || !fs.existsSync(nodePkg)) {
+    console.error('❌ Missing package-react.json or package-node.json in module template.');
+    process.exit(1);
+  }
+
+  if (moduleType === 'react') {
+    fs.renameSync(reactPkg, finalPkg);
+    fs.rmSync(nodePkg);
+  } else {
+    fs.renameSync(nodePkg, finalPkg);
+    fs.rmSync(reactPkg);
+  }
+}
