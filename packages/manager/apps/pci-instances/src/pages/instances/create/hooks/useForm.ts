@@ -17,7 +17,7 @@ import {
 } from '@/__mocks__/instance/constants';
 import { selectFlavors } from '../view-models/flavorsViewModel';
 
-// eslint-disable-next-line max-lines-per-function
+// eslint-disable-next-line max-lines-per-function, complexity
 export const useForm = (projectId: string) => {
   const deploymentModesDefaultValue: TDeploymentMode[] = [
     'region',
@@ -63,10 +63,19 @@ export const useForm = (projectId: string) => {
   const distributionImageTypeDefaultValue =
     mockedDistributionImageType[0]?.value ?? null;
 
-  const distributionImageNameDefaultValue =
-    mockedDistributionImageList.find(
-      ({ type }) => type === distributionImageTypeDefaultValue,
-    )?.id ?? null;
+  const distributionImage = mockedDistributionImageList.find(
+    ({ type }) => type === distributionImageTypeDefaultValue,
+  );
+
+  const distributionImageNameDefaultValue = distributionImage?.id ?? null;
+
+  const flavorImagePriceDefaultValue = distributionImage?.pricing?.hour ?? null;
+
+  const distributionImageVersionDefaultValue =
+    distributionImage?.versions?.[0]?.value ?? null;
+
+  const distributionLicencePrice =
+    distributionImage?.pricing?.licence?.total ?? null;
 
   const sshKeyIdDefaultValue = null;
 
@@ -87,6 +96,9 @@ export const useForm = (projectId: string) => {
       availabilityZone: availabilityZoneDefaultValue,
       distributionImageType: distributionImageTypeDefaultValue,
       distributionImageName: distributionImageNameDefaultValue,
+      flavorImagePrice: flavorImagePriceDefaultValue,
+      distributionImageVersion: distributionImageVersionDefaultValue,
+      distributionLicencePrice,
       sshKeyId: sshKeyIdDefaultValue,
       newSshPublicKey: newSshPublicKeyDefaultValue,
     },

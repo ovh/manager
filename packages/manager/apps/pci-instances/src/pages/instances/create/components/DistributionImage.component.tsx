@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ImageHelper } from './distributionImage/ImageHelper.component';
 import DistributionImageType from './distributionImage/DistributionImageType.component';
 import DistributionImageList from './distributionImage/DistributionImageList.component';
+import DistributionVersionList from './distributionImage/DistributionVersionList.component';
 
 const DistributionImage: FC = () => {
   const { t } = useTranslation('creation');
@@ -19,6 +20,7 @@ const DistributionImage: FC = () => {
       </div>
       <DistributionImageType />
       <DistributionImageList />
+      <DistributionVersionList />
     </section>
   );
 };

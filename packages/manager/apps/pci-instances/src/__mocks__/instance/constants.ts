@@ -1380,70 +1380,247 @@ export const mockedDistributionImageList = [
     type: 'unix',
     label: 'Linux',
     name: 'linux',
+    pricing: {
+      hour: '0.05 €',
+    },
+    versions: [
+      {
+        label: 'Rocky Linux 10',
+        value: 'Rocky Linux 10',
+      },
+      {
+        label: 'Rocky Linux 9',
+        value: 'Rocky Linux 9',
+      },
+      {
+        label: 'Rocky Linux 8',
+        value: 'Rocky Linux 8',
+        disabled: true,
+        customRendererData: {
+          unavailable: true,
+        },
+      },
+      {
+        label: 'Rocky Linux 10 - UEFI',
+        value: 'Rocky Linux 10 - UEFI',
+      },
+    ],
   },
   {
     id: 'centos',
     type: 'unix',
     label: 'CentOS',
     name: 'centOS',
+    pricing: {
+      hour: '0.05 €',
+    },
   },
   {
     id: 'almalinux',
     type: 'unix',
     label: 'Alma Linux',
     name: 'almalinux',
+    pricing: {
+      hour: '0.05 €',
+    },
+    versions: [
+      {
+        label: 'AlmaLinux 10 - UEFI',
+        value: 'AlmaLinux 10 - UEFI',
+      },
+      {
+        label: 'AlmaLinux 9 - UEFI',
+        value: 'AlmaLinux 9 - UEFI',
+      },
+      {
+        label: 'AlmaLinux 8 - UEFI',
+        value: 'AlmaLinux 8 - UEFI',
+      },
+    ],
   },
   {
     id: 'debian',
     type: 'unix',
     label: 'Debian',
     name: 'debian',
+    pricing: {
+      hour: '0.05 €',
+    },
+    versions: [
+      {
+        label: 'Debian 13',
+        value: 'Debian 13',
+      },
+      {
+        label: 'Debian 12',
+        value: 'Debian 12',
+      },
+      {
+        label: 'Debian 11',
+        value: 'Debian 11',
+      },
+      {
+        label: 'Debian 13 - UEFI',
+        value: 'Debian 13 - UEFI',
+      },
+      {
+        label: 'Debian 12 - UEFI',
+        value: 'Debian 12 - UEFI',
+      },
+      {
+        label: 'Debian 11 - UEFI',
+        value: 'Debian 11 - UEFI',
+      },
+    ],
   },
   {
     id: 'fedora',
     type: 'unix',
     label: 'Fedora',
     name: 'fedora',
+    pricing: {
+      hour: '0.05 €',
+    },
+    versions: [
+      {
+        label: 'Fedora 43',
+        value: 'Fedora 43',
+      },
+      {
+        label: 'Fedora 42',
+        value: 'Fedora 42',
+      },
+      {
+        label: 'Fedora 40',
+        value: 'Fedora 40',
+        disabled: true,
+        customRendererData: {
+          unavailable: true,
+        },
+      },
+      {
+        label: 'Fedora 43 - UEFI',
+        value: 'Fedora 43 - UEFI',
+      },
+      {
+        label: 'Fedora 42 - UEFI',
+        value: 'Fedora 42 - UEFI',
+      },
+      {
+        label: 'Fedora 40 - UEFI',
+        value: 'Fedora 40 - UEFI',
+      },
+    ],
   },
   {
     id: 'freebsd',
     type: 'unix',
     label: 'FreeBSD',
     name: 'freeBSD',
+    pricing: {
+      hour: '0.05 €',
+    },
   },
   {
     id: 'ubuntu',
     type: 'unix',
     label: 'Ubuntu',
     name: 'ubuntu',
+    pricing: {
+      hour: '0.05 €',
+    },
+    versions: [
+      {
+        label: 'Ubuntu 25.04',
+        value: 'Ubuntu 25.04',
+      },
+      {
+        label: 'Ubuntu 24.04',
+        value: 'Ubuntu 24.04',
+      },
+      {
+        label: 'Ubuntu 22.04',
+        value: 'Ubuntu 22.04',
+      },
+      {
+        label: 'Ubuntu 25.04 - UEFI',
+        value: 'Ubuntu 25.04 - UEFI',
+      },
+      {
+        label: 'Ubuntu 24.04 - UEFI',
+        value: 'Ubuntu 24.04 - UEFI',
+      },
+      {
+        label: 'Ubuntu 22.04 - UEFI',
+        value: 'Ubuntu 22.04 - UEFI',
+      },
+    ],
   },
   {
     id: 'win-2025',
     type: 'windows',
     label: 'Windows Server 2025 Standard (Desktop)',
     name: 'windows',
-    price: '+0,0347 € HT/vCore/heure',
+    pricing: {
+      licence: {
+        total: '0,555 €',
+        vcore: '+0,0347 € HT/vCore/heure',
+      },
+      hour: '0.05 €',
+    },
+    versions: [
+      {
+        label: 'Windows Server 2025 Standard',
+        value: 'Windows Server 2025 Standard',
+      },
+      {
+        label: 'Windows Server 2022 Standard',
+        value: 'Windows Server 2022 Standard',
+      },
+      {
+        label: 'Windows Server 2019 Standard',
+        value: 'Windows Server 2019 Standard',
+      },
+    ],
   },
   {
     id: 'win-2022',
     type: 'windows',
     label: 'Windows Server 2022 Standard (Desktop)',
     name: 'windows',
-    price: '+0,0347 € HT/vCore/heure',
+    pricing: {
+      licence: {
+        total: '0,555 €',
+        vcore: '+0,0347 € HT/vCore/heure',
+      },
+      hour: '0.05 €',
+    },
   },
   {
     id: 'win-2016',
     type: 'windows',
     label: 'Windows Server 2016 Standard (Desktop)',
     name: 'windows',
-    price: '+0,0347 € HT/vCore/heure',
+    pricing: {
+      licence: {
+        total: '0,555 €',
+        vcore: '+0,0347 € HT/vCore/heure',
+      },
+      hour: '0.05 €',
+    },
   },
   {
     id: 'win-2023',
     type: 'windows',
     label: 'Windows Server 2023 Standard (Desktop)',
     name: 'windows',
-    price: '+0,0347 € HT/vCore/heure',
+    pricing: {
+      licence: {
+        total: '0,555 €',
+        vcore: '+0,0347 € HT/vCore/heure',
+      },
+      hour: '0.05 €',
+    },
   },
   {
     id: 'backup-1',
@@ -1460,29 +1637,44 @@ export const mockedDistributionImageList = [
     type: 'apps',
     label: 'cPanel',
     name: 'cPanel',
+    pricing: {
+      hour: '0.05 €',
+    },
   },
   {
     id: 'docker',
     type: 'apps',
     label: 'Docker',
     name: 'docker',
+    pricing: {
+      hour: '0.05 €',
+    },
   },
   {
     id: 'plesk',
     type: 'apps',
     label: 'Plesk',
     name: 'plesk',
+    pricing: {
+      hour: '0.05 €',
+    },
   },
   {
     id: 'n8n',
     type: 'apps',
     label: 'n8n',
     name: 'n8n',
+    pricing: {
+      hour: '0.05 €',
+    },
   },
   {
     id: 'nvidia',
     type: 'apps',
     label: 'NVIDIA GPU Cloud (NGC)',
     name: 'nvidia',
+    pricing: {
+      hour: '0.05 €',
+    },
   },
 ];
