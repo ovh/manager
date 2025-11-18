@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.15.2...@ovh-ux/manager-pci-ai-tools-app@1.15.3) (2025-11-18)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:** fix qpu auth page, add quantum guides and fix translations ([0bab9d2](https://github.com/ovh/manager/commit/0bab9d2dd3c6b263804079831bb3151068e4b469)), closes [#AIS-1346](https://github.com/ovh/manager/issues/AIS-1346) [#AIS-1758](https://github.com/ovh/manager/issues/AIS-1758)
+
+
+
+
+
 ## [1.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.15.1...@ovh-ux/manager-pci-ai-tools-app@1.15.2) (2025-11-16)
 
 

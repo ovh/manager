@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.20.1...@ovh-ux/manager-pci-object-storage-app@0.21.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **object-storage:** disable hub view for deleted object ([55c5e6b](https://github.com/ovh/manager/commit/55c5e6bb14c139b4462ef12cf93119122ccb1d81)), closes [#DATATR-2669](https://github.com/ovh/manager/issues/DATATR-2669)
+
+
+### Features
+
+* **pci.os:** add deep archive and fiew fixes ([cf6b9ad](https://github.com/ovh/manager/commit/cf6b9add910a922e7079d7c868edbdb18e734817)), closes [#DATATR-2628](https://github.com/ovh/manager/issues/DATATR-2628) [#DATATR-2665](https://github.com/ovh/manager/issues/DATATR-2665) [#DATATR-2668](https://github.com/ovh/manager/issues/DATATR-2668) [#DATATR-2670](https://github.com/ovh/manager/issues/DATATR-2670)
+
+
+
+
+
 ## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.20.0...@ovh-ux/manager-pci-object-storage-app@0.20.1) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
