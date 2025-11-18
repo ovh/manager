@@ -3,8 +3,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import {AgentActionsCell} from "@/pages/services/dashboard/agents/_components";
-import {mockAgents} from "@/mocks/agents/agents";
+import { mockAgents } from '@/mocks/agents/agents';
+import { AgentActionsCell } from '@/pages/services/dashboard/agents/_components';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
@@ -14,12 +14,13 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 // --- Mock translation ---
 vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn().mockImplementation(() => ({t: (key: string) => `translated_${key.split(':')[1]}`})),
+  useTranslation: vi
+    .fn()
+    .mockImplementation(() => ({ t: (key: string) => `translated_${key.split(':')[1]}` })),
 }));
 
 describe('AgentActionCell', () => {
   it('renders agent action', async () => {
-
     const { container } = render(<AgentActionsCell {...mockAgents[0]!} />);
 
     await expect(container).toBeAccessible();

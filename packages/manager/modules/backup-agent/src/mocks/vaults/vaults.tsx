@@ -1,5 +1,5 @@
-import {Vault} from '@/types/Vault.type';
-import {Resource} from "@/types/Resource.type";
+import { Resource } from '@/types/Resource.type';
+import { Vault } from '@/types/Vault.type';
 
 export const mockVaults: Resource<Vault>[] = [
   {
@@ -45,7 +45,7 @@ export const mockVaults: Resource<Vault>[] = [
           region: 'ca-central-1',
           role: 'PRIMARY',
           status: 'SUSPENDED',
-        }
+        },
       ],
       region: 'eu-central-waw',
       id: 'a1b2c3d4-1234-4000-85b0-badd52fc7a01',
@@ -80,7 +80,6 @@ export const mockVaults: Resource<Vault>[] = [
   {
     createdAt: '2025-09-24T14:22:33.789Z',
     currentState: {
-
       buckets: [
         {
           id: 'staging-web-001',
@@ -105,7 +104,7 @@ export const mockVaults: Resource<Vault>[] = [
           region: 'eu-central-waw',
           role: 'REPLICATED',
           status: 'READY',
-        }
+        },
       ],
       region: 'eu-west-rbx',
       id: 'b2c3d4e5-2345-4000-85b0-badd52fc7a02',
@@ -143,7 +142,6 @@ export const mockVaults: Resource<Vault>[] = [
   {
     createdAt: '2025-09-26T10:15:44.332Z',
     currentState: {
-
       buckets: [
         {
           id: 'dev-temp-001',
@@ -152,7 +150,7 @@ export const mockVaults: Resource<Vault>[] = [
           region: 'eu-west-sbg',
           role: 'PRIMARY',
           status: 'CREATING',
-        }
+        },
       ],
       region: 'eu-west-sbg',
       id: 'c3d4e5f6-3456-4000-85b0-badd52fc7a03',
@@ -197,7 +195,6 @@ export const mockVaults: Resource<Vault>[] = [
   {
     createdAt: '2025-09-23T16:45:12.678Z',
     currentState: {
-
       buckets: [
         {
           id: 'archive-legal-001',
@@ -302,7 +299,7 @@ export const mockVaults: Resource<Vault>[] = [
           region: 'us-east-1',
           role: 'REPLICATED',
           status: 'READY',
-        }
+        },
       ],
       region: 'ap-southeast-1c',
       id: 'd4e5f6g7-4567-4000-85b0-badd52fc7a04',
@@ -517,7 +514,7 @@ export const mockVaults: Resource<Vault>[] = [
           region: 'ap-southeast-3',
           role: 'REPLICATED',
           status: 'READY',
-        }
+        },
       ],
       region: 'eu-west-3a',
       id: 'e5f6g7h8-5678-4000-85b0-badd52fc7a05',

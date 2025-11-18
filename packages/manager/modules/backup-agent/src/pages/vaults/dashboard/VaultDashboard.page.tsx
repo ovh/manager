@@ -9,14 +9,15 @@ import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { BackupAgentContext } from '@/BackupAgent.context';
+import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
+
 import { useVaultDashboardTabs } from './_hooks/useVaultDashboardTabs';
-import { useBackupVaultDetails } from "@/data/hooks/vaults/getVaultDetails";
-import { BackupAgentContext } from "@/BackupAgent.context";
 
 export default function VaultDashboardPage() {
-  const { appName } = useContext(BackupAgentContext)
+  const { appName } = useContext(BackupAgentContext);
   const { vaultId } = useParams<{ vaultId: string }>();
-  const { data: vaultResource } = useBackupVaultDetails({ vaultId: vaultId! })
+  const { data: vaultResource } = useBackupVaultDetails({ vaultId: vaultId! });
   const { t } = useTranslation(['common', 'dashboard']);
   const navigate = useNavigate();
 
