@@ -9,7 +9,7 @@ import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/Onboa
 import { useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
 import { useOnboardingHeroImage } from '@/hooks/onboarding/useOnboardingHeroImage';
 
-import { FirstOrderFormComponent } from './_components/firstOrderForm/firstOrderForm.component';
+import { FirstOrderFormComponent } from './_components/first-order-form/FirstOrderForm.component';
 
 export default function FirstOrderPage() {
   const { t } = useTranslation([

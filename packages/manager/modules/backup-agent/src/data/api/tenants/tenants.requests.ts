@@ -6,9 +6,9 @@ import {
   v2,
 } from '@ovh-ux/manager-core-api';
 
+import { Resource } from '@/types/Resource.type';
 import { Tenant } from '@/types/Tenant.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
-import { Resource } from '@/types/Resource.type';
 
 export const GET_BACKUP_TENANTS_ROUTE = '/backup/tenants';
 export const GET_VSPC_TENANTS_ROUTE = `${GET_BACKUP_TENANTS_ROUTE}/vspc`;
@@ -27,7 +27,6 @@ export const getTenantDetails = async (tenantId: string) =>
 
 export const getVSPCTenantDetails = async (vspcTenantId: string) =>
   (await v2.get<Tenant>(getDetailsVspcTenantRoute(vspcTenantId))).data;
-
 
 export const getVSPCTenants = async (
   params?: Omit<IcebergFetchParamsV2, 'route'>,

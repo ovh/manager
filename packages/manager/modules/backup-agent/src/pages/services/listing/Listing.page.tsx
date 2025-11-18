@@ -9,12 +9,12 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { Datagrid } from '@ovh-ux/manager-react-components';
 
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import { useBackupTenantsMocks } from '@/data/hooks/tenants/useBackupTenants';
 import { useVSPCTenantsMocks } from '@/data/hooks/tenants/useVspcTenants';
 import { urls } from '@/routes/Routes.constants';
 
 import { useTenantListingColumns } from './_hooks/useVspcTenantListingColumns';
-import { BACKUP_AGENT_NAMESPACES } from "@/BackupAgent.translations";
-import {useBackupTenantsMocks} from "@/data/hooks/tenants/useBackupTenants";
 
 export default function ListingPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_LISTING]);

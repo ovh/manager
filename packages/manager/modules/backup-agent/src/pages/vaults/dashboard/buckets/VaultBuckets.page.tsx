@@ -1,22 +1,26 @@
-import React from 'react';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
+
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import {
+  BACKUP_VAULT_DETAILS_QUERY_KEY,
+  useBackupVaultDetails,
+} from '@/data/hooks/vaults/getVaultDetails';
+
 import { useBucketColumns } from './_hooks/useBucketColumns.hooks';
-import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import {BACKUP_AGENT_NAMESPACES } from "@/BackupAgent.translations";
-import {BACKUP_VAULT_DETAILS_QUERY_KEY, useBackupVaultDetails} from "@/data/hooks/vaults/getVaultDetails";
 
 export default function VaultBucketsPage() {
   const { vaultId } = useParams<{ vaultId: string }>();
-  const { data: vaultResource, isLoading } = useBackupVaultDetails({ vaultId: vaultId! })
+  const { data: vaultResource, isLoading } = useBackupVaultDetails({ vaultId: vaultId! });
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING, NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
   const columns = useBucketColumns();

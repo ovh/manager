@@ -9,8 +9,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
 
-import { FirstOrderFormComponent } from '../firstOrderForm/firstOrderForm.component';
-
+import { FirstOrderFormComponent } from '../first-order-form/FirstOrderForm.component';
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
@@ -45,14 +44,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
   OdsFormField: vi
     .fn()
     .mockImplementation(
-      ({
-        children,
-        error,
-        ...props
-      }: {
-        children: React.ReactNode;
-        error: string;
-      }) => (
+      ({ children, error, ...props }: { children: React.ReactNode; error: string }) => (
         <div {...props}>
           {children}
           {!!error && <div>{error}</div>}
