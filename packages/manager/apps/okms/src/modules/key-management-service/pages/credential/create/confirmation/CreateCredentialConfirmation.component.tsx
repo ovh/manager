@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';

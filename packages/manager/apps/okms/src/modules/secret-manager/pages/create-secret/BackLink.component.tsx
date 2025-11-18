@@ -4,7 +4,6 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref, useSearchParams } from 'react-router-dom';
 

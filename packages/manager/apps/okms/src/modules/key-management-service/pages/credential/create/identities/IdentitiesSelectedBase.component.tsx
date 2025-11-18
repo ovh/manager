@@ -1,4 +1,3 @@
-import React from 'react';
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
   ODS_BUTTON_SIZE,

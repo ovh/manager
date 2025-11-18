@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import {
   ODS_ICON_NAME,

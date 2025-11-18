@@ -1,4 +1,3 @@
-import React from 'react';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { useOrderCatalogOkms } from '@key-management-service/data/hooks/useOrderCatalogOkms';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';

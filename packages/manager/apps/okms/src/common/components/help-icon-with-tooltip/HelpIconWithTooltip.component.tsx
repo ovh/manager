@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import { useId } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText, OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
 

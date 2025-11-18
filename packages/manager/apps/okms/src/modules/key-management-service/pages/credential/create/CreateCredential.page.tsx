@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 

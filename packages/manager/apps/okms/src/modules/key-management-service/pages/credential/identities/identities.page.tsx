@@ -1,4 +1,3 @@
-import React from 'react';
 import { filterIdentities } from '@key-management-service/utils/credential/filterIdentities';
 import Users from './users.component';
 import UserGroups from './userGroups.component';
