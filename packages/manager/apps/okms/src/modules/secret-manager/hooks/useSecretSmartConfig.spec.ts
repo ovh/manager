@@ -24,25 +24,25 @@ vi.mock('react-router-dom', () => ({
 // Mock the useCurrentRegion hook
 const mockUseCurrentRegion = vi.fn();
 vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
-  useCurrentRegion: (domains: unknown[]) => mockUseCurrentRegion(domains),
+  useCurrentRegion: (domains: unknown[]): unknown => mockUseCurrentRegion(domains),
 }));
 
 // Mock the useOkmsById hook
 const mockUseOkmsById = vi.fn();
 vi.mock('@key-management-service/data/hooks/useOkms', () => ({
-  useOkmsById: (domainId: string) => mockUseOkmsById(domainId),
+  useOkmsById: (domainId: string): unknown => mockUseOkmsById(domainId),
 }));
 
 // Mock the useOkmsSecretConfig hook
 const mockUseOkmsSecretConfig = vi.fn();
 vi.mock('@secret-manager/data/hooks/useSecretConfigOkms', () => ({
-  useSecretConfigOkms: (domainId: string) => mockUseOkmsSecretConfig(domainId),
+  useSecretConfigOkms: (domainId: string): unknown => mockUseOkmsSecretConfig(domainId),
 }));
 
 // Mock the useSecretConfigReference hook
 const mockUseSecretConfigReference = vi.fn();
 vi.mock('@secret-manager/data/hooks/useSecretConfigReference', () => ({
-  useSecretConfigReference: (region: string) =>
+  useSecretConfigReference: (region: string): unknown =>
     mockUseSecretConfigReference(region),
 }));
 

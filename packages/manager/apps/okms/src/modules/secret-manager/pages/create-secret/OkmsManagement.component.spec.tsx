@@ -12,7 +12,7 @@ import userEvent, { UserEvent } from '@testing-library/user-event';
 import {
   ServiceDetails,
   useServiceDetails,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-module-common-api';
 import {
   QueryClient,
   QueryClientProvider,
@@ -60,13 +60,13 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
     useSearchParams: vi.fn(),
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const module: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
+vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
+  const module: typeof import('@ovh-ux/manager-module-common-api') = await importOriginal();
   return {
     ...module,
     useServiceDetails: vi.fn(),
@@ -155,7 +155,7 @@ const assertInitialRegionList = async () => {
 
 const assertOkmsListIsNotInTheDocument = async (okmsList: OKMS[]) => {
   await waitFor(() => {
-    okmsList.forEach(async (okms) => {
+    okmsList.forEach( (okms) => {
       const okmsRadioCard = screen.queryByTestId(okms.id);
       expect(okmsRadioCard).toBeNull();
     });
@@ -164,8 +164,8 @@ const assertOkmsListIsNotInTheDocument = async (okmsList: OKMS[]) => {
 
 const assertOkmsListIsInTheDocument = async (okmsList: OKMS[]) => {
   await waitFor(() => {
-    okmsList.forEach((okms) => {
-      assertTextVisibility(okms.iam.displayName);
+    okmsList.forEach(async (okms) => {
+      await assertTextVisibility(okms.iam.displayName);
       const okmsRadioCard = screen.getByTestId(okms.id);
       expect(okmsRadioCard).toBeVisible();
     });

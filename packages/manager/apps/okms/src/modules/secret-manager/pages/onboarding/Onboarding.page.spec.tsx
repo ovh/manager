@@ -7,6 +7,7 @@ import {
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { labels } from '@/common/utils/tests/init.i18n';
+import { act } from 'react-dom/test-utils';
 
 describe('Secret Manager onboarding test suite', () => {
   it('should display the onboarding page', async () => {
@@ -18,7 +19,7 @@ describe('Secret Manager onboarding test suite', () => {
     await assertTextVisibility(labels.secretManager.onboarding_description_1);
     await assertTextVisibility(labels.secretManager.onboarding_description_2);
 
-    getOdsButtonByLabel({
+    await getOdsButtonByLabel({
       container,
       label: labels.secretManager.create_a_secret,
       ...WAIT_FOR_DEFAULT_OPTIONS,
@@ -37,7 +38,9 @@ describe('Secret Manager onboarding test suite', () => {
       ...WAIT_FOR_DEFAULT_OPTIONS,
     });
 
-    await user.click(button);
+    await act(async () => {
+      await user.click(button);
+    });
 
     await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(

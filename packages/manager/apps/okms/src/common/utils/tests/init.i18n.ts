@@ -73,7 +73,7 @@ export const initTestI18n = () =>
       interpolation: {
         escapeValue: false,
       },
-    });
+    }).catch(error => console.error(error));
 
     if (i18next.isInitialized) {
       addTranslations();

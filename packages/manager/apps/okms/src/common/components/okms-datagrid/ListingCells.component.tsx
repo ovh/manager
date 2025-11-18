@@ -1,8 +1,8 @@
 import {
   Clipboard,
   DataGridTextCell,
-  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import {
   ButtonType,
   PageLocation,

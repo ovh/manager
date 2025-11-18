@@ -33,6 +33,8 @@ import {
 } from '@/common/utils/tests/testUtils';
 import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
 import { useProductType } from '@/common/hooks/useProductType';
+import { OdsCheckbox } from '@ovhcloud/ods-components';
+import { getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
 
 let i18nValue: i18n;
 
@@ -59,11 +61,11 @@ const mockedContracts: Contract[] = [
 
 const navigate = vi.fn();
 
-vi.mock('@/common/hooks/useProductType', async () => ({
+vi.mock('@/common/hooks/useProductType',  () => ({
   useProductType: vi.fn(),
 }));
 
-vi.mock('@/common/store/pendingOkmsOrder', async () => ({
+vi.mock('@/common/store/pendingOkmsOrder',  () => ({
   registerPendingOrder: vi.fn(),
 }));
 
@@ -109,14 +111,15 @@ const renderOrderOkmsModal = async () => {
   );
 };
 
-const clickOnConfirmCheckbox = async () => {
+const clickOnConfirmCheckbox =  () => {
   const confirmCheckbox = screen.getByTestId(
     ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ) as any;
+  ) as unknown as OdsCheckbox;
   act(() => {
     confirmCheckbox.odsChange.emit({
-      checked: 'true',
+      name: 'confirm-contract',
+      value: 'confirm-contract',
+      checked: true,
     });
   });
 };
@@ -131,7 +134,9 @@ const clickOnConfirmButton = async (user: UserEvent) => {
     confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
     expect(confirmButton).toHaveAttribute('is-disabled', 'false');
   });
-  await act(() => user.click(confirmButton));
+  await act(async () => {
+    await user.click(confirmButton);
+  });
 
   return confirmButton;
 };
@@ -141,7 +146,7 @@ const submitOrder = async (user: UserEvent) => {
     labels.secretManager.create_okms_terms_and_conditions_title,
   );
 
-  await clickOnConfirmCheckbox();
+  clickOnConfirmCheckbox();
   await clickOnConfirmButton(user);
 };
 
@@ -233,7 +238,7 @@ describe('Order Okms Modal test suite', () => {
       // GIVEN - Use default mock
 
       // WHEN
-      await renderOrderOkmsModal();
+      const { container } = await renderOrderOkmsModal();
 
       // THEN
       await assertTextVisibility(
@@ -243,9 +248,13 @@ describe('Order Okms Modal test suite', () => {
         labels.secretManager.create_okms_terms_and_conditions_description,
       );
 
-      mockedContracts.forEach(async (contract) => {
-        await assertTextVisibility(contract.name);
-      });
+      for (const contract of mockedContracts) {
+        await getOdsButtonByLabel({
+          container,
+          label: contract.name,
+          isLink: true,
+        });
+      }
 
       const confirmCheckbox = screen.getByTestId(
         ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
@@ -272,7 +281,7 @@ describe('Order Okms Modal test suite', () => {
       );
 
       // WHEN
-      await clickOnConfirmCheckbox();
+      clickOnConfirmCheckbox();
 
       // THEN
       const confirmButton = screen.getByTestId(
@@ -297,7 +306,7 @@ describe('Order Okms Modal test suite', () => {
       // WHEN
 
       // THEN - Test loading state
-      await clickOnConfirmCheckbox();
+      clickOnConfirmCheckbox();
       const confirmButton = await clickOnConfirmButton(user);
       // THEN - Test loading state
       await waitFor(() => {

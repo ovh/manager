@@ -106,8 +106,8 @@ describe('KMS creation page test suite', () => {
     await waitOrderButtonToBeEnabled();
 
     // Click on order button
-    await act(() => {
-      user.click(screen.getByTestId(CREATE_KMS_TEST_IDS.CTA_ORDER));
+    await act(async () => {
+      await user.click(screen.getByTestId(CREATE_KMS_TEST_IDS.CTA_ORDER));
     });
 
     // Wait for the order modal page to be displayed

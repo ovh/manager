@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   getOdsButtonByLabel,
@@ -50,7 +50,7 @@ describe('Credential general informations test suite', () => {
 
     // Check modal is closed
     await waitFor(async () => {
-      assertOdsModalVisibility({ container, isVisible: false });
+      await assertOdsModalVisibility({ container, isVisible: false });
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     // Wait for the delete button to be enabled by iam rights
@@ -68,11 +68,14 @@ describe('Credential general informations test suite', () => {
       label: deleteButtonLabel,
       disabled: false,
     });
-    user.click(deleteButton);
+
+    await act(async () => {
+      await user.click(deleteButton);
+    });
 
     // Check modal is opened
-    await waitFor(() => {
-      assertOdsModalVisibility({ container, isVisible: true });
+    await waitFor(async () => {
+      await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 });

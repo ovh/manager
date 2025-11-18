@@ -19,7 +19,7 @@ vi.mock('@key-management-service/data/hooks/useOkms', () => ({
 }));
 
 vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(() => ({ t: vi.fn((key) => key) })),
+  useTranslation: vi.fn(() => ({ t: vi.fn((key: string) => key) })),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
@@ -77,8 +77,8 @@ describe('usePendingOkmsOrder', () => {
 
     expect(mockPollOnNewOkms).toHaveBeenCalledWith({
       refetch: mockRefetch,
-      onSuccess: expect.any(Function),
-      onExpired: expect.any(Function),
+      onSuccess: expect.any(Function) as (okmsId: string) => void,
+      onExpired: expect.any(Function) as () => void,
       expirationInMinutes: ORDER_EXPIRATION_IN_MINUTES,
     });
 
@@ -101,8 +101,9 @@ describe('usePendingOkmsOrder', () => {
 
   it('calls the onSuccess callback when a new OKMS is found', async () => {
     const mockOnSuccess = vi.fn();
-    mockPollOnNewOkms.mockImplementation(async ({ onSuccess }) => {
+    mockPollOnNewOkms.mockImplementation(({ onSuccess }) => {
       onSuccess('new-okms-id');
+      return Promise.resolve();
     });
 
     vi.useFakeTimers();
