@@ -52,10 +52,8 @@ const mockUseParams = vi.mocked(useParams);
 // 2 okms in Roubaix, 1 in Strasbourg
 const okmsMock = [okmsRoubaix1Mock, okmsRoubaix2Mock, okmsStrasbourg1Mock];
 
-// eslint-disable-next-line import/first, import/newline-after-import
 const mockGetOkmsList = vi.mocked(getOkmsList);
 
-// eslint-disable-next-line import/first, import/newline-after-import
 import { getLocations } from '@/common/data/api/location';
 const mockGetLocations = vi.mocked(getLocations);
 
