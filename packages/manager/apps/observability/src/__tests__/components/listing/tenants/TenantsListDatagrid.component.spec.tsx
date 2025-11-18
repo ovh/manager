@@ -42,6 +42,7 @@ vi.mock('@ovh-ux/muk', () => ({
     columns: Array<{
       id: string;
       accessorKey?: string;
+      accessorFn?: (row: unknown) => unknown;
       cell?:
         | ((context: { row: { original: unknown }; getValue: () => unknown }) => React.ReactNode)
         | React.ReactNode;
@@ -62,6 +63,9 @@ vi.mock('@ovh-ux/muk', () => ({
                   row: { original: item },
                   getValue: () => {
                     // Get the value for this specific column
+                    if (column.accessorFn) {
+                      return column.accessorFn(item);
+                    }
                     if (column.accessorKey) {
                       return (item as TenantListing)[column.accessorKey as keyof TenantListing];
                     }
@@ -74,6 +78,14 @@ vi.mock('@ovh-ux/muk', () => ({
                   cellContent = column.cell(cellContext);
                 } else if (column.cell) {
                   cellContent = column.cell;
+                } else if (column.accessorFn) {
+                  const value = column.accessorFn(item);
+                  cellContent =
+                    typeof value === 'string' ||
+                    typeof value === 'number' ||
+                    typeof value === 'boolean'
+                      ? value
+                      : null;
                 } else if (column.accessorKey) {
                   // If no custom cell function, render the value from accessorKey
                   const value = (item as TenantListing)[column.accessorKey as keyof TenantListing];
@@ -116,9 +128,9 @@ vi.mock('@ovh-ux/manager-core-api', () => ({
   FilterComparator: {
     Includes: 'includes',
   },
-  FilterTypeCategories: {
+  FilterCategories: {
     String: 'string',
-    Numeric: 'numeric',
+    Tags: 'tags',
   },
 }));
 
