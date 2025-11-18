@@ -1,4 +1,3 @@
-import React from 'react';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import {

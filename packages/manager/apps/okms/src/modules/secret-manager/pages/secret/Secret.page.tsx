@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import {
   BaseLayout,

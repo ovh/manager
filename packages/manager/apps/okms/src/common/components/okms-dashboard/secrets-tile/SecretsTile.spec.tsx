@@ -1,5 +1,4 @@
 import { screen, waitFor } from '@testing-library/react';
-import React from 'react';
 import { vi } from 'vitest';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';

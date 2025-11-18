@@ -1,4 +1,3 @@
-import React from 'react';
 import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from './secretValueToggle.constants';

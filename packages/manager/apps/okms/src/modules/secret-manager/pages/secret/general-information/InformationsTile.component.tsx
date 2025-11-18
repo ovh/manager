@@ -1,4 +1,3 @@
-import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsClipboard } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';

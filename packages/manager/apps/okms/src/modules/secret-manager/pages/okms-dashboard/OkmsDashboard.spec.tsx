@@ -2,7 +2,6 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import React from 'react';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
