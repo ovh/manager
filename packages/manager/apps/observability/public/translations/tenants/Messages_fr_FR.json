@@ -10,7 +10,8 @@
     "details_action": "Details",
     "access_grafana_action": "Accéder à Grafana",
     "copy_uid_action": "Copier l'UID du tenant",
-    "generate_access_token_action": "Générer un jeton d'accès"
+    "generate_access_token_action": "Générer un jeton d'accès",
+    "filter_search_key": "recherche"
   },
   "delete": {
     "delete_tenant_title": "Supprimer le Tenant",
