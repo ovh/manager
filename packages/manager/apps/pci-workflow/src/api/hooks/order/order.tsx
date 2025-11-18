@@ -21,6 +21,15 @@ export type ContinentRegion = Pick<TProductAvailabilityRegion, 'enabled' | 'name
   price: number | null;
 };
 
+export const useGetInstanceSnapshotPricingHook = (enabled: boolean) => {
+  return useMemo(() => {
+    if (enabled) {
+      return useInstanceSnapshotPricing;
+    }
+    return () => ({}) as ReturnType<typeof useInstanceSnapshotPricing>;
+  }, [enabled]);
+};
+
 export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInstance['id']) => {
   const { me } = useMe();
   const { translateMicroRegion, translateContinent } = useRegionTranslation();

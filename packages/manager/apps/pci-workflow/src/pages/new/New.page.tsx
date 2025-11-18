@@ -170,8 +170,9 @@ export default function NewPage() {
           <>
             <Notifications />
             <WorkflowScheduling
-              resource={stepper.form.resource}
               step={stepper.scheduling.step}
+              selectedWorkflowType={stepper.form.type}
+              resource={stepper.form.resource}
               onSubmit={(scheduling, distantRegion) => {
                 stepper.scheduling.submit(scheduling, distantRegion);
                 addWorkflow({
