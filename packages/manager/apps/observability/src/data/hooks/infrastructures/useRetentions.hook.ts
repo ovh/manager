@@ -7,15 +7,30 @@ import { Retention } from '@/types/infrastructures.type';
 export const getRetentionsQueryKey = ({
   resourceName,
   infrastructureId,
-}: Omit<RetentionParams, 'signal'>) => ['retentions', resourceName, infrastructureId];
+  retentionTypes,
+}: Omit<RetentionParams, 'signal'>) => [
+  'retentions',
+  resourceName,
+  infrastructureId,
+  retentionTypes,
+];
 
 export const useRetentions = (
-  { resourceName, infrastructureId }: Omit<RetentionParams, 'signal'>,
+  {
+    resourceName,
+    infrastructureId,
+    retentionTypes = 'METRICS_TENANT',
+  }: Omit<RetentionParams, 'signal'>,
   queryOptions?: Omit<UseQueryOptions<Retention[], Error>, 'queryKey' | 'queryFn'>,
 ) => {
   return useQuery<Retention[], Error>({
-    queryKey: getRetentionsQueryKey({ resourceName, infrastructureId }),
-    queryFn: ({ signal }) => getRetentions({ resourceName, infrastructureId, signal }),
+    queryKey: getRetentionsQueryKey({
+      resourceName,
+      infrastructureId,
+      retentionTypes,
+    }),
+    queryFn: ({ signal }) =>
+      getRetentions({ resourceName, infrastructureId, retentionTypes, signal }),
     enabled: !!resourceName && !!infrastructureId,
     ...queryOptions,
   });
