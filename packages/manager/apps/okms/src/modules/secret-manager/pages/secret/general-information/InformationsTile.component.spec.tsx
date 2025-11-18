@@ -1,4 +1,3 @@
-import React from 'react';
 import { describe, vi } from 'vitest';
 import { screen, render } from '@testing-library/react';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';

@@ -1,5 +1,4 @@
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useIdentityData } from '@key-management-service/hooks/credential/useIdentityData';

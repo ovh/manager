@@ -1,4 +1,3 @@
-import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';

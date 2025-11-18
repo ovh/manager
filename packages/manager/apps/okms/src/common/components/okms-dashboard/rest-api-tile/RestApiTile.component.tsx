@@ -1,4 +1,3 @@
-import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { REST_API_LABEL } from '@/constants';

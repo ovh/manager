@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 import { isStringValidForKeyValueForm } from '@secret-manager/components/form/key-values-editor/utils/keyValue';
 import {

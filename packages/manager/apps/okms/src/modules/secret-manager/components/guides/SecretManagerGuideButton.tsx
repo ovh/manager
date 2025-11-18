@@ -1,4 +1,3 @@
-import React from 'react';
 import { GuideButton } from '@ovh-ux/manager-react-components';
 import { useGuideItemManager } from './guide-manager/useGuideItemManager';
 import { useGuideItemKv2Api } from './guide-kv2-api/useGuideItemKv2Api';
