@@ -42,7 +42,7 @@ describe('Logs page tests suite', () => {
 
   const renderLogsPage = () => render(<KmsLogs />);
 
-  it('should display logs if logs feature is enabled', async () => {
+  it('should display logs if logs feature is enabled', () => {
     vi.mocked(useFeatureAvailability).mockReturnValue(({
       data: { [KMS_FEATURES.LOGS]: true },
     } as unknown) as UseFeatureAvailabilityResult);
@@ -69,7 +69,7 @@ describe('Logs page tests suite', () => {
     );
   });
 
-  it('should redirect to dashboard if logs feature is disabled', async () => {
+  it('should redirect to dashboard if logs feature is disabled', () => {
     vi.mocked(useFeatureAvailability).mockReturnValue(({
       data: { [KMS_FEATURES.LOGS]: false },
     } as unknown) as UseFeatureAvailabilityResult);

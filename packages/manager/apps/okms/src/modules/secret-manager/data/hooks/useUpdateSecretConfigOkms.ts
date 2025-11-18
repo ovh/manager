@@ -11,8 +11,8 @@ export const useUpdateSecretConfigOkms = () => {
   const queryClient = useQueryClient();
   return useMutation<SecretConfigResponse, ApiError, SecretConfigParams>({
     mutationFn: (params) => updateSecretConfigOkms(params),
-    onSuccess: (_, params) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (_, params) => {
+      await queryClient.invalidateQueries({
         queryKey: secretConfigOkmsQueryKey(params.okmsId),
       });
     },

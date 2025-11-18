@@ -5,7 +5,7 @@ import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useSecretDataSchema } from '@secret-manager/validation';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SecretWithData } from '@secret-manager/types/secret.type';
+import { SecretVersionDataField, SecretWithData } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
 import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
@@ -64,7 +64,7 @@ export const CreateVersionDrawerForm = ({
       await createSecretVersion({
         okmsId,
         path: decodeSecretPath(secretPath),
-        data: JSON.parse(data.data),
+        data: JSON.parse(data.data) as SecretVersionDataField,
         cas: addCurrentVersionToCas(
           secret?.metadata?.currentVersion,
           secretConfig.casRequired.value,

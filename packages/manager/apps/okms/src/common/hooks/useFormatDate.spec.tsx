@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { useFormatDate } from './useFormatDate';
 
 // Mock the manager-react-components hook
-const mockFormatDateMrc = vi.fn(({ date }) => date);
+const mockFormatDateMrc = vi.fn(({ date }: { date: string }) => date);
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFormatDate: () => mockFormatDateMrc,
 }));

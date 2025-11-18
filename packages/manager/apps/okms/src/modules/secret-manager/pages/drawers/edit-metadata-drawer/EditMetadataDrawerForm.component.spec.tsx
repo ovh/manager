@@ -21,7 +21,7 @@ const mockUpdateSecret = vi.fn();
 const mockUseUpdateSecret = vi.fn();
 
 vi.mock('@secret-manager/data/hooks/useUpdateSecret', () => ({
-  useUpdateSecret: () => mockUseUpdateSecret(),
+  useUpdateSecret: (): unknown => mockUseUpdateSecret(),
 }));
 
 const mockSecret: Secret = mockSecret1;
@@ -138,14 +138,13 @@ describe('EditMetadataDrawerForm component test suite', () => {
         expect(mockUpdateSecret).toHaveBeenCalledWith({
           okmsId: 'test-okms-id',
           path: 'test-secret-path',
-          cas: expect.any(Number),
+          cas: expect.any(Number) as number,
           data: {
             metadata: expect.objectContaining({
               casRequired: mockSecretConfig.casRequired.value,
-              deactivateVersionAfter:
-                mockSecretConfig.deactivateVersionAfter.value,
+              deactivateVersionAfter: mockSecretConfig.deactivateVersionAfter.value,
               maxVersions: mockSecretConfig.maxVersions.value,
-            }),
+            }) as Record<string, unknown>,
           },
         });
       });

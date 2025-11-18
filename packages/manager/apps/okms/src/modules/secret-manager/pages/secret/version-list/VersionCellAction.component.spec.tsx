@@ -76,7 +76,9 @@ const renderAndOpenMenu = async (versionMock: SecretVersion) => {
     iconName: 'ellipsis-vertical',
   });
 
-  await act(() => user.click(actionButton));
+  await act(async () => {
+    await user.click(actionButton);
+  });
 
   return { container, user };
 };
@@ -189,9 +191,9 @@ describe('VersionCellAction test suite', () => {
         label: labels.secretManager.version_state_deactivate,
       });
 
-      user.click(deactivateButton);
+      await user.click(deactivateButton);
 
-      waitFor(() =>
+      await waitFor(() =>
         expect(mockUpdateSecretVersion).toHaveBeenCalledWith({
           okmsId: mockOkmsId,
           path: mockSecretPath,
@@ -211,13 +213,13 @@ describe('VersionCellAction test suite', () => {
         label: labels.secretManager.version_state_reactivate,
       });
 
-      user.click(reactivateButton);
+      await user.click(reactivateButton);
 
-      waitFor(() =>
+      await waitFor(() =>
         expect(mockUpdateSecretVersion).toHaveBeenCalledWith({
           okmsId: mockOkmsId,
           path: mockSecretPath,
-          version: versionActiveMock.id,
+          version: versionDeactivatedMock.id,
           state: 'ACTIVE',
         }),
       );
@@ -233,7 +235,7 @@ describe('VersionCellAction test suite', () => {
         label: labels.secretManager.version_state_delete,
       });
 
-      user.click(deleteButton);
+      await user.click(deleteButton);
 
       const modalUrl = SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(
         mockOkmsId,
@@ -241,7 +243,7 @@ describe('VersionCellAction test suite', () => {
         versionDeactivatedMock.id,
       );
 
-      waitFor(() => {
+      await waitFor(() => {
         expect(mockNavigate).toHaveBeenCalledWith(modalUrl);
       });
     });
@@ -260,7 +262,7 @@ describe('VersionCellAction test suite', () => {
         label: labels.secretManager.version_state_deactivate,
       });
 
-      user.click(deactivateButton);
+      await user.click(deactivateButton);
 
       await waitFor(() => {
         expect(mockAddError).toHaveBeenCalledWith('Update Failed');

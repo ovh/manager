@@ -21,6 +21,12 @@ export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
 
   const { data: secretConfig, isPending, error } = useSecretConfigOkms(okms.id);
 
+  const handleRetry = () => {
+    void queryClient.refetchQueries({
+      queryKey: secretConfigOkmsQueryKey(okms.id),
+    });
+  };
+
   return (
     <ManagerTile>
       <ManagerTile.Title>{t('okms_secret_config')}</ManagerTile.Title>
@@ -29,11 +35,7 @@ export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
           <ManagerTile.Divider />
           <TileError
             error={error}
-            onRetry={() =>
-              queryClient.refetchQueries({
-                queryKey: secretConfigOkmsQueryKey(okms.id),
-              })
-            }
+            onRetry={handleRetry}
           />
         </>
       ) : (

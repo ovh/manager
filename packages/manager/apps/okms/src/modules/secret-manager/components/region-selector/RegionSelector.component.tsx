@@ -70,8 +70,8 @@ export const RegionSelector = () => {
                       href={link.href}
                       label={translateRegionName(link.region)}
                       isRouterLink
-                      onClick={() => {
-                        popoverRef.current?.hide();
+                      onClick={async () => {
+                        await popoverRef.current?.hide();
                       }}
                     />
                   ))}

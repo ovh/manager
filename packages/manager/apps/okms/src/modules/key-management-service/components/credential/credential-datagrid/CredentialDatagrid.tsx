@@ -31,7 +31,7 @@ type CredentialDatagridProps = {
 const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const { state } = useLocation() as { state: { deletingCredentialId?: string } };
 
   const {
     data: credentials,
@@ -42,6 +42,12 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
     deletingCredentialId: state?.deletingCredentialId,
   });
 
+  const handleReloadPage = () => {
+    queryClient.refetchQueries({
+      queryKey: getOkmsCredentialsQueryKey(okms.id),
+    }).catch(error => console.error(error));
+  };
+
   if (isLoadingCredentials) return <Loading />;
 
   if (credentialsError)
@@ -49,11 +55,7 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
       <ErrorBanner
         error={credentialsError}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: getOkmsCredentialsQueryKey(okms.id),
-          })
-        }
+        onReloadPage={handleReloadPage}
       />
     );
 

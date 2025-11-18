@@ -152,7 +152,7 @@ export const changeOdsInputValueByTestId = async (
     input = await screen.findByTestId(inputTestId);
   }
 
-  await act(() => {
+  act(() => {
     fireEvent.change(input, {
       target: { value },
     });
