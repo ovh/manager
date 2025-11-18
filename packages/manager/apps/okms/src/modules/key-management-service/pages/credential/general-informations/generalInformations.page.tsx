@@ -58,7 +58,7 @@ const CredentialGeneralInformations = () => {
         <OdsText
           preset={ODS_TEXT_PRESET.span}
           // Temporary fix: wrap text without whitespace
-          style={{ 'overflow-wrap': 'anywhere' }}
+          style={{ 'overflowWrap': 'anywhere' }}
         >
           {credential.name || credential.id}
         </OdsText>
@@ -76,7 +76,7 @@ const CredentialGeneralInformations = () => {
         <OdsText
           preset={ODS_TEXT_PRESET.span}
           // Temporary fix: wrap text without whitespace
-          style={{ 'overflow-wrap': 'anywhere' }}
+          style={{ 'overflowWrap': 'anywhere' }}
         >
           {credential.description || ''}
         </OdsText>

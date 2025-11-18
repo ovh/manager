@@ -95,7 +95,7 @@ export const DownloadOkmsPublicCaLink = ({
       <OdsLink
         href="#"
         color={ODS_BUTTON_COLOR.primary}
-        onClick={handleDownloadCa}
+        onClick={(event) => void handleDownloadCa(event)}
         label={resources[type].label}
         isDisabled={loading}
         icon="download"

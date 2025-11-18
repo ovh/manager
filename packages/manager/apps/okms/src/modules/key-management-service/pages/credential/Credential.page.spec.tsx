@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -50,7 +50,9 @@ describe('Credential dashboard test suite', () => {
       isLink: true,
     });
 
-    user.click(backLink);
+    await act(async () => {
+      await user.click(backLink);
+    });
 
     await assertTextVisibility(
       labels.credentials.key_management_service_credential_headline,
@@ -76,7 +78,9 @@ describe('Credential dashboard test suite', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    user.click(screen.getByText(identitiesTabLabel));
+    await act(async () => {
+      await user.click(screen.getByText(identitiesTabLabel));
+    });
 
     await waitFor(() => {
       expect(screen.getByText(userTitleLabel)).toBeVisible();

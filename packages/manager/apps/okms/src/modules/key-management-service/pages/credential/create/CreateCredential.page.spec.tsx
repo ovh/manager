@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { act, screen, waitFor, fireEvent } from '@testing-library/react';
+import { screen, waitFor, fireEvent, act } from '@testing-library/react';
 import {
   getOdsButtonByLabel,
   assertOdsModalVisibility,
@@ -127,8 +127,8 @@ const testContentStep2 = async (container: HTMLElement) => {
 
 const testContentStep2AddUsersModal = async (container: HTMLElement) => {
   // Wait for modal to open
-  await waitFor(() => {
-    assertOdsModalVisibility({ container, isVisible: true });
+  await waitFor(async () => {
+    await assertOdsModalVisibility({ container, isVisible: true });
   }, WAIT_TIMEOUT);
 
   // Check modal title
@@ -235,7 +235,9 @@ const testStep1 = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Submit step 1
-  await act(() => user.click(buttonNextStep));
+  await act(async () => {
+    await user.click(buttonNextStep);
+  });
 };
 
 const testStep1CustomCsr = async (container: HTMLElement, user: UserEvent) => {
@@ -257,7 +259,9 @@ const testStep1CustomCsr = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // choose the custom csr option
-  await act(() => user.click(inputMethodKey));
+  await act(async () => {
+    await user.click(inputMethodKey);
+  });
 
   // check that the form has updated properly
   const inputCsr = screen.getByTestId('textarea-csr');
@@ -277,7 +281,9 @@ const testStep1CustomCsr = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Submit step 1
-  await act(() => user.click(buttonNextStep));
+  await act(async () => {
+    await user.click(buttonNextStep);
+  });
 };
 
 const testStep2 = async (container: HTMLElement, user: UserEvent) => {
@@ -288,7 +294,9 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   } = await testContentStep2(container);
 
   // Open user selection modal
-  await act(() => user.click(buttonAddUsersModal));
+  await act(async () => {
+    await user.click(buttonAddUsersModal);
+  });
 
   // Check modal title
   const { user1Card, buttonAddUsers } = await testContentStep2AddUsersModal(
@@ -296,14 +304,18 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   );
 
   // Select user 1
-  await act(() => user.click(user1Card));
+  await act(async () => {
+    await user.click(user1Card);
+  });
 
   // Close modal
-  await act(() => user.click(buttonAddUsers));
+  await act(async () => {
+    await user.click(buttonAddUsers);
+  });
 
   // Wait for modal to close
-  await waitFor(() => {
-    assertOdsModalVisibility({ container, isVisible: false });
+  await waitFor(async () => {
+    await assertOdsModalVisibility({ container, isVisible: false });
   }, WAIT_TIMEOUT);
 
   // Check user1 is added to the list
@@ -317,7 +329,9 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   }, WAIT_TIMEOUT);
 
   // Submit step 2
-  await act(() => user.click(buttonCreateCredentials));
+  await act(async () => {
+    await user.click(buttonCreateCredentials);
+  });
 };
 
 const testStep3 = async (container: HTMLElement, user: UserEvent) => {
@@ -334,7 +348,9 @@ const testStep3 = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Submit step 3
-  await act(() => user.click(buttonFinish));
+  await act(async () => {
+    await user.click(buttonFinish);
+  });
 };
 
 /* TESTS */

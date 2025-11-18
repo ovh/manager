@@ -92,7 +92,7 @@ describe('Service Key list test suite', () => {
       ],
     );
 
-    await act(() => {
+    act(() => {
       fireEvent.change(keyNameInput, { target: { value: '' } });
       fireEvent.change(keyNameInput, {
         target: { value: 'New Key' },

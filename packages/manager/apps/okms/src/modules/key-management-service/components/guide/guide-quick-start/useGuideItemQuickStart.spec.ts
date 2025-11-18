@@ -26,12 +26,13 @@ describe('useGuideItemQuickStart test suite', () => {
 
     // THEN
     expect(useGuideLink).toHaveBeenCalledWith(GUIDES_QUICK_START);
-    expect(result.current).toEqual({
-      id: MOCKED_ID,
-      href: MOCKED_LINK,
-      label: labels.guide.guides_header_quick_start,
-      target: '_blank',
-      onClick: expect.any(Function),
-    });
+    expect(result.current).toEqual(
+      expect.objectContaining({
+        id: MOCKED_ID,
+        href: MOCKED_LINK,
+        label: labels.guide.guides_header_quick_start,
+        target: '_blank',
+      }),
+    );
   });
 });

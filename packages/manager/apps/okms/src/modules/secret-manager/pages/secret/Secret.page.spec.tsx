@@ -135,7 +135,9 @@ describe('Secret page test suite', () => {
       ).toHaveLength(2);
 
       // WHEN
-      user.click(screen.getByText(labels.secretManager.versions));
+      await act(async () => {
+        await user.click(screen.getByText(labels.secretManager.versions));
+      });
 
       // THEN
       await assertVersionDatagridVisilibity();

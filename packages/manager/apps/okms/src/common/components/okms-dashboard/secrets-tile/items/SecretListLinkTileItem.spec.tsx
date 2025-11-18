@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
@@ -60,7 +60,9 @@ describe('OKMS Secret List link Tile Item test suite', () => {
     );
     expect(secretListLink).toHaveAttribute('type', LinkType.next);
 
-    await user.click(secretListLink);
+    await act(async () => {
+      await user.click(secretListLink);
+    });
     expect(mockNavigate).toHaveBeenCalledWith(
       SECRET_MANAGER_ROUTES_URLS.secretList(okmsMocked.id),
     );
