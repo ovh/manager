@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@ovhcloud/ods-react';
+import { Button } from '@ovh-ux/muk';
 
 import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
 

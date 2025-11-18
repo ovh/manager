@@ -1,4 +1,4 @@
-import { BUTTON_SIZE, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
+import { BUTTON_SIZE, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovh-ux/muk';
 
 import { useActionClick } from '@/hooks';
 
