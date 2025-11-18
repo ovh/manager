@@ -15,10 +15,17 @@ import { TWorkflowCreationForm } from '@/pages/new/hooks/useWorkflowStepper';
 
 interface WorkflowTypeProps {
   step: StepState;
-  onSubmit: (workflowType: TWorkflowCreationForm['type']) => void;
+  selectedWorkflowType: TWorkflowCreationForm['type'];
+  onChange: (workflowType: TWorkflowCreationForm['type']) => void;
+  onSubmit: () => void;
 }
 
-export function WorkflowTypeSelector({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
+export function WorkflowTypeSelector({
+  step,
+  selectedWorkflowType,
+  onChange,
+  onSubmit,
+}: Readonly<WorkflowTypeProps>) {
   const { t } = useTranslation('workflow-add');
   const { t: tListing } = useTranslation('listing');
   const { t: tCommon } = useTranslation('pci-common');
@@ -32,18 +39,25 @@ export function WorkflowTypeSelector({ step, onSubmit }: Readonly<WorkflowTypePr
         {t('pci_workflow_create_type_description')}
       </OsdsText>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
-        <PciTile
-          title={tListing(`pci_workflow_type_${WorkflowType.INSTANCE_BACKUP}_title`)}
-          isChecked
-          description={t(`pci_workflow_create_type_${WorkflowType.INSTANCE_BACKUP}_description`)}
-        ></PciTile>
+        {Object.values(WorkflowType).map((type) => {
+          return (
+            <PciTile
+              key={type}
+              title={tListing(`pci_workflow_type_${type}_title`)}
+              isChecked={type === selectedWorkflowType}
+              description={t(`pci_workflow_create_type_${type}_description`)}
+              onClick={() => onChange(type)}
+            />
+          );
+        })}
       </div>
       {!step.isLocked && (
         <OsdsButton
           className="w-fit mt-6"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => onSubmit(WorkflowType.INSTANCE_BACKUP)}
+          {...(selectedWorkflowType ? {} : { disabled: true })}
+          onClick={onSubmit}
         >
           {tCommon('common_stepper_next_button_label')}
         </OsdsButton>

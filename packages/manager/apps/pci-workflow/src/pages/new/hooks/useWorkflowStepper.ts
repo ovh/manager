@@ -29,7 +29,7 @@ export type TWorkflowScheduling = {
 };
 
 export const DEFAULT_FORM_STATE: TWorkflowCreationForm = {
-  type: null,
+  type: WorkflowType.INSTANCE_BACKUP,
   resource: null,
   scheduling: null,
   name: '',
@@ -52,7 +52,7 @@ export function useWorkflowStepper() {
     return {
       ...DEFAULT_FORM_STATE,
       resource,
-      type: !!resource ? WorkflowType.INSTANCE_BACKUP : null,
+      type: !!resource ? WorkflowType.INSTANCE_BACKUP : DEFAULT_FORM_STATE.type,
     };
   });
 
@@ -83,16 +83,18 @@ export function useWorkflowStepper() {
           step.unlock();
           step.close();
         });
-        setForm({ ...DEFAULT_FORM_STATE });
+        setForm((f) => ({ ...DEFAULT_FORM_STATE, type: f.type }));
       },
-      submit: (type: TWorkflowCreationForm['type']) => {
-        typeStep.check();
-        typeStep.lock();
-        resourceStep.open();
+      update: (type: TWorkflowCreationForm['type']) => {
         setForm((f) => ({
           ...f,
           type,
         }));
+      },
+      submit: () => {
+        typeStep.check();
+        typeStep.lock();
+        resourceStep.open();
       },
     },
     resource: {

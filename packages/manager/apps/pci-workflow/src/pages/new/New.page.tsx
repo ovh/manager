@@ -110,7 +110,12 @@ export default function NewPage() {
           isDisabled: stepper.scheduling.step.isLocked,
         }}
       >
-        <WorkflowTypeSelector step={stepper.type.step} onSubmit={stepper.type.submit} />
+        <WorkflowTypeSelector
+          step={stepper.type.step}
+          selectedWorkflowType={stepper.form.type}
+          onChange={stepper.type.update}
+          onSubmit={stepper.type.submit}
+        />
       </StepComponent>
       <div className="mt-8">
         <StepComponent
