@@ -38,4 +38,5 @@ export type TenantListing = {
   numberOfSeries: number | undefined;
   tags: string;
   tagsArray: string[];
+  search: string;
 } & TIdentifier;

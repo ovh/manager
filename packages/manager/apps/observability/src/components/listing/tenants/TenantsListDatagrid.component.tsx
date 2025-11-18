@@ -4,7 +4,7 @@ import { VisibilityState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { FilterComparator, FilterTypeCategories, applyFilters } from '@ovh-ux/manager-core-api';
+import { FilterCategories, FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   DatagridColumn,
@@ -16,6 +16,10 @@ import {
 import DatagridCellEnpoint from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component';
 import DatagridCellLink from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component';
 import DatagridTenantCellTags from '@/components/listing/common/datagrid-cells/datagrid-cell-tags/DataGridCellTags.component';
+import {
+  DATAGRID_HEADER_HEIGHT,
+  DATAGRID_ROW_HEIGHT,
+} from '@/components/listing/tenants/TenantsListDatagrid.constants';
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
 import TenantsListActions from '@/components/listing/tenants/actions/TenantsListActions.component';
 import TenantsListTopbar from '@/components/listing/tenants/top-bar/TenantsListTopbar.component';
@@ -45,74 +49,68 @@ export default function TenantsListDatagrid({
     () => [
       {
         id: 'name',
-        accessorKey: 'name',
-        isSearchable: true,
-        isSortable: true,
-        isFilterable: true,
-        enableHiding: false,
-        cell: (context) => {
-          const { id, name } = context.row.original;
+        header: t(`${NAMESPACES.DASHBOARD}:name`),
+        label: t(`${NAMESPACES.DASHBOARD}:name`),
+        accessorFn: (row: TenantListing) => row,
+        cell: ({ getValue }) => {
+          const { id, name } = getValue() as TenantListing;
           return <DatagridCellLink id={id} label={name} path={id} />;
         },
-        header: t(`${NAMESPACES.DASHBOARD}:name`),
-        type: FilterTypeCategories.String,
+        comparator: FilterCategories.String,
+        isSearchable: true,
+        isFilterable: true,
       },
       {
         id: 'endpoint',
-        isSearchable: true,
-        isSortable: true,
-        isFilterable: true,
-        enableHiding: true,
-        cell: (context) => {
-          const { infrastructure } = context.row.original;
+        header: t(`tenants:listing.endpoint_cell`),
+        label: t(`tenants:listing.endpoint_cell`),
+        accessorFn: (row: TenantListing) => row,
+        cell: ({ getValue }) => {
+          const { infrastructure } = getValue() as TenantListing;
           return <DatagridCellEnpoint infrastructure={infrastructure} />;
         },
-        header: t('tenants:listing.endpoint_cell'),
-        type: FilterTypeCategories.String,
+        comparator: FilterCategories.String,
+        isSearchable: true,
+        isFilterable: true,
       },
       {
         id: 'retention',
-        isSearchable: true,
-        isSortable: true,
-        isFilterable: true,
-        enableHiding: true,
-        accessorKey: 'retention',
         header: t('tenants:listing.retention_cell'),
-        type: FilterTypeCategories.String,
+        label: t('tenants:listing.retention_cell'),
+        accessorKey: 'retention',
+        comparator: FilterCategories.String,
+        isSearchable: true,
+        isFilterable: true,
       },
       {
         id: 'active-metrics',
-        isSearchable: true,
-        isSortable: true,
-        isFilterable: true,
-        enableHiding: true,
-        accessorKey: 'numberOfSeries',
         header: t('tenants:listing.active_metrics_cell'),
-        type: FilterTypeCategories.Numeric,
+        label: t('tenants:listing.active_metrics_cell'),
+        accessorKey: 'numberOfSeries',
+        comparator: FilterCategories.String,
+        isSearchable: true,
+        isFilterable: true,
       },
       {
         id: 'tags',
-        isSearchable: true,
-        isSortable: false,
-        isFilterable: true,
-        enableHiding: true,
-        type: FilterTypeCategories.String,
         header: t('tenants:listing.tags_cell'),
-        cell: (context) => {
-          const { tagsArray: tags } = context.row.original;
-          return <DatagridTenantCellTags tags={tags} />;
+        label: t('tenants:listing.tags_cell'),
+        accessorFn: (row: TenantListing) => row.tagsArray,
+        cell: ({ getValue }) => {
+          return <DatagridTenantCellTags tags={getValue<string[]>()} />;
         },
-        size: 100,
+        comparator: FilterCategories.Tags,
+        isSearchable: true,
+        isFilterable: true,
       },
       {
         id: 'actions',
-        isSearchable: false,
-        isSortable: false,
-        isFilterable: false,
-        enableHiding: true,
-        accessorKey: 'id',
         header: '',
+        accessorFn: (row: TenantListing) => row.id,
         cell: ({ getValue }) => <TenantsListActions tenantId={getValue<string>()} />,
+        comparator: FilterCategories.String,
+        isSearchable: false,
+        isFilterable: false,
       },
     ],
     [t],
@@ -141,6 +139,11 @@ export default function TenantsListDatagrid({
 
   const topbar = useMemo(() => <TenantsListTopbar />, []);
 
+  const containerHeight = useMemo(
+    () => DATAGRID_HEADER_HEIGHT + DATAGRID_ROW_HEIGHT * filteredTenants.length,
+    [filteredTenants],
+  );
+
   const columnVisibilityProps = useMemo(
     () => ({ columnVisibility, setColumnVisibility }),
     [columnVisibility, setColumnVisibility],
@@ -150,12 +153,15 @@ export default function TenantsListDatagrid({
 
   const onSearch = useCallback(
     (newSearch: string) => {
-      add({
-        key: 'name',
-        label: t(`${NAMESPACES.DASHBOARD}:name`),
-        value: newSearch,
-        comparator: FilterComparator.Includes,
-      });
+      if (newSearch && newSearch.length) {
+        add({
+          key: 'search',
+          label: t(`tenants:listing.filter_search_key`),
+          value: newSearch,
+          comparator: FilterComparator.Includes,
+        });
+        setSearchInput('');
+      }
     },
     [add, t],
   );
@@ -176,11 +182,12 @@ export default function TenantsListDatagrid({
   return (
     <React.Suspense>
       <Datagrid
+        containerHeight={containerHeight}
         topbar={topbar}
         columns={columns}
         columnVisibility={columnVisibilityProps}
         data={filteredTenants}
-        totalCount={tenantsList.length}
+        totalCount={filteredTenants.length}
         filters={filtersProps}
         search={searchProps}
         isLoading={isLoading}
