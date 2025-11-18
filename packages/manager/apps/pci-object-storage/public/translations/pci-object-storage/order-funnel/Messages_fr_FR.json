@@ -89,5 +89,6 @@
   "showAllRegions": "Afficher toutes les régions",
   "labelObjectLock": "Object Lock",
   "descriptionObjectLock": "Empêche la suppression ou la modification d'objets afin de protéger vos données contre les suppressions accidentelles.",
-  "objectLockTypeDisabledPopover": "L'Object Lock ne peut pas être activé car le versioning est désactivé. Modifiez l'étape Versioning si vous souhaitez l'activer."
+  "objectLockTypeDisabledPopover": "L'Object Lock ne peut pas être activé car le versioning est désactivé. Modifiez l'étape Versioning si vous souhaitez l'activer.",
+  "objectLockCannotDisableAlert": " Une fois l'Object Lock activé, vous ne pourrez plus le désactiver"
 }

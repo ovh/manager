@@ -1,4 +1,6 @@
 import {
+  Alert,
+  AlertDescription,
   RadioGroup,
   RadioGroupItem,
   Label,
@@ -6,7 +8,7 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@datatr-ux/uxlib';
-import { HelpCircleIcon } from 'lucide-react';
+import { HelpCircleIcon, Info } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import storages from '@/types/Storages';
@@ -23,6 +25,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
     const { t } = useTranslation('pci-object-storage/order-funnel');
     const isVersioningDisabled =
       versioning === storages.VersioningStatusEnum.disabled;
+    const isObjectLockEnabled = value === storages.ObjectLockStatusEnum.enabled;
 
     return (
       <RadioGroup
@@ -33,6 +36,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
         data-testid="object-lock-select-container"
         ref={ref}
       >
+        {/* Disabled option */}
         <div className="flex items-center gap-3">
           <RadioGroupItem
             value={storages.ObjectLockStatusEnum.disabled}
@@ -48,6 +52,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
           </Label>
         </div>
 
+        {/* Enabled option with versioning constraint */}
         <div className="flex items-center gap-3">
           <RadioGroupItem
             value={storages.ObjectLockStatusEnum.enabled}
@@ -65,6 +70,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
               )}
             </span>
           </Label>
+          {/* Help popover shown when versioning is disabled */}
           {isVersioningDisabled && (
             <Popover>
               <PopoverTrigger asChild>
@@ -76,6 +82,15 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
             </Popover>
           )}
         </div>
+        {/* Alert shown when Object Lock is enabled */}
+        {isObjectLockEnabled && (
+          <Alert variant="information">
+            <AlertDescription className="flex gap-2 items-center">
+              <Info className="size-4" />
+              {t('objectLockCannotDisableAlert')}
+            </AlertDescription>
+          </Alert>
+        )}
       </RadioGroup>
     );
   },
