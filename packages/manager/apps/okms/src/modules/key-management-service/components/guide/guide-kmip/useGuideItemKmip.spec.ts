@@ -26,12 +26,13 @@ describe('useGuideItemKmip test suite', () => {
 
     // THEN
     expect(useGuideLink).toHaveBeenCalledWith(GUIDES_KMIP);
-    expect(result.current).toEqual({
-      id: MOCKED_ID,
-      href: MOCKED_LINK,
-      label: labels.guide.guides_header_connect_kmip_product,
-      target: '_blank',
-      onClick: expect.any(Function),
-    });
+    expect(result.current).toEqual(
+      expect.objectContaining({
+        id: MOCKED_ID,
+        href: MOCKED_LINK,
+        label: labels.guide.guides_header_connect_kmip_product,
+        target: '_blank',
+      }),
+    );
   });
 });

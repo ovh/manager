@@ -19,7 +19,7 @@ const labels = allLabels.secretManager;
 // Mock the useSecretSmartConfig hook
 const mockUseSecretSmartConfig = vi.fn();
 vi.mock('@secret-manager/hooks/useSecretSmartConfig', () => ({
-  useSecretSmartConfig: (secret: Secret) => mockUseSecretSmartConfig(secret),
+  useSecretSmartConfig: (secret: Secret): unknown => mockUseSecretSmartConfig(secret),
 }));
 
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -27,7 +27,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
   };
 });
 

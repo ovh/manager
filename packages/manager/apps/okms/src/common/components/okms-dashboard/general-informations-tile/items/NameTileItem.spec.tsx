@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import userEvent from '@testing-library/user-event';
@@ -84,7 +84,9 @@ describe('OKMS Name Tile Item test suite', () => {
 
       expect(editNameButton).toBeVisible();
 
-      await user.click(editNameButton);
+      await act(async () => {
+        await user.click(editNameButton);
+      });
       expect(mockNavigate).toHaveBeenCalledWith(expectedLink);
     },
   );

@@ -6,43 +6,34 @@ export const useServiceKeyOperationsTranslations = (
 ) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
 
-  const {
-    encrypt,
-    decrypt,
-    sign,
-    verify,
-    wrapKey,
-    unwrapKey,
-  } = OkmsServiceKeyOperations;
-
   const translatedOperations = operations.map((operation) => {
     switch (operation) {
-      case encrypt:
+      case 'encrypt':
         return t(
           'key_management_service_service-keys_dashboard_field_operations_encrypt',
         );
 
-      case decrypt:
+      case 'decrypt':
         return t(
           'key_management_service_service-keys_dashboard_field_operations_decrypt',
         );
 
-      case sign:
+      case 'sign':
         return t(
           'key_management_service_service-keys_dashboard_field_operations_sign',
         );
 
-      case verify:
+      case 'verify':
         return t(
           'key_management_service_service-keys_dashboard_field_operations_verify',
         );
 
-      case wrapKey:
+      case 'wrapKey':
         return t(
           'key_management_service_service-keys_dashboard_field_operations_wrapKey',
         );
 
-      case unwrapKey:
+      case 'unwrapKey':
         return t(
           'key_management_service_service-keys_dashboard_field_operations_unwrapKey',
         );

@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
 import userEvent from '@testing-library/user-event';
@@ -53,7 +53,9 @@ describe('OKMS edit secret config link Tile Item test suite', () => {
     );
     expect(secretListLink).toHaveAttribute('type', LinkType.next);
 
-    await user.click(secretListLink);
+    await act(async () => {
+      await user.click(secretListLink);
+    });
     expect(mockNavigate).toHaveBeenCalledWith(
       SECRET_MANAGER_ROUTES_URLS.okmsUpdateSecretConfigDrawer(okmsMocked.id),
     );

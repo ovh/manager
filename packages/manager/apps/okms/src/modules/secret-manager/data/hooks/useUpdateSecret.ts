@@ -11,8 +11,8 @@ export const useUpdateSecret = () => {
   const queryClient = useQueryClient();
   return useMutation<UpdateSecretResponse, ApiError, UpdateSecretParams>({
     mutationFn: (params) => updateSecret(params),
-    onSuccess: (_, params) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (_, params) => {
+      await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.detail(params.okmsId, params.path),
       });
     },

@@ -67,7 +67,7 @@ export const pollOnNewOkms = async ({
   clearPendingOrder();
 
   // Invalidate the okms list query to update the UI
-  queryClient.invalidateQueries({ queryKey: okmsQueryKeys.listDatagrid });
+  await queryClient.invalidateQueries({ queryKey: okmsQueryKeys.listDatagrid });
 
   // Show a success notification
   onSuccess(newOkms.id);

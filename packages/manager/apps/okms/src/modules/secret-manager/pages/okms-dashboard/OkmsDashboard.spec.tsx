@@ -8,15 +8,18 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { PAGE_SPINNER_TEST_ID } from '@/common/components/page-spinner/PageSpinner.constants';
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
+import { OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS } from '@/common/components/okms-dashboard/okms-domain-dashboard-tiles/OkmsDomainDashboardTiles.constants';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsMock[0].id);
 
+
+// We mock @ovh-ux/manager-billing-informations module because it takes 3 secondes to load
+// And make the test suite slow
 vi.mock(
-  '@/common/components/okms-dashboard/OkmsDomainDashboardTiles.component',
-  async (original) => ({
-    ...(await original()),
-    OkmsDomainDashboardTiles: vi.fn(() => (
-      <div data-testid={OKMS_DASHBOARD_TEST_IDS.okmsDashboardTiles} />
+  '@ovh-ux/manager-billing-informations',
+   () => ({
+    BillingInformationsTileStandard: vi.fn(() => (
+      <div>BillingInformationsTileStandard</div>
     )),
   }),
 );
@@ -31,7 +34,6 @@ describe('OkmsDashboard page test suite', () => {
     // THEN
     await waitFor(
       () => expect(screen.getByTestId(PAGE_SPINNER_TEST_ID)).toBeVisible(),
-      { timeout: 5000 },
     );
   });
 
@@ -69,7 +71,7 @@ describe('OkmsDashboard page test suite', () => {
     ]);
 
     expect(
-      screen.getByTestId(OKMS_DASHBOARD_TEST_IDS.okmsDashboardTiles),
+      screen.getByTestId(OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS.okmsDashboardTiles),
     ).toBeInTheDocument();
   });
 });

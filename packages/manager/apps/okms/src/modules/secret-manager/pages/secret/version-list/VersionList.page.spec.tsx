@@ -9,6 +9,7 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { act } from '@testing-library/react';
 
 const mockOkmsId = '123123';
 
@@ -43,7 +44,9 @@ describe('Version list page test suite', () => {
     });
 
     // WHEN
-    user.click(versionLink);
+    await act(async () => {
+      await user.click(versionLink);
+    });
 
     // THEN
     await assertTextVisibility(labels.secretManager.values);
