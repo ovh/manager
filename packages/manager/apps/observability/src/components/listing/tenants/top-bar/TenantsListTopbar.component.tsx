@@ -24,7 +24,7 @@ export default function TenantsListTopbar() {
   return (
     <div className="flex justify-between w-full items-center mr-4">
       <Button
-        id="assign-tag"
+        id="create-tenant"
         onClick={addNewTenant}
         variant={BUTTON_VARIANT.default}
         urn={selectedService?.iam?.urn ?? ''}
