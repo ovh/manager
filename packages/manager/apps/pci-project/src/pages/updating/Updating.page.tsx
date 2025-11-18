@@ -11,6 +11,7 @@ import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
 import ImageSlider from '@/components/image-slider/ImageSlider';
 import LargeSpinner from '@/components/large-spinner/LargeSpinner';
 import { UPDATING_GUIDE_URLS } from '@/constants';
@@ -21,6 +22,7 @@ import {
 import { useParam } from '@/hooks/useParam';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import { useUpdatingTracking } from './hooks/useUpdatingTracking';
+import queryClient from '@/queryClient';
 
 export default function UpdatingPage() {
   const { t } = useTranslation('updating');
@@ -62,6 +64,9 @@ export default function UpdatingPage() {
     onProjectIdDelivered: (projectId: string) => {
       trackProjectUpdated();
       trackActivateProjectSuccess({ voucherCode });
+      queryClient.invalidateQueries({
+        queryKey: getProjectQueryKey(projectId),
+      });
       navigate(`../${projectId}`);
     },
   });
