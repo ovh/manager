@@ -7269,10 +7269,24 @@
     "@ovh-ux/request-tagger" "^0.4.0"
     axios "^1.1.2"
 
+"@ovh-ux/manager-core-api@^0.19.4":
+  version "0.19.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.19.4.tgz#7aa6dc10a986a719aeee5d72595e1da0dbe72e27"
+  integrity sha512-suQAiFgR3p50fkzgUq/qHf3qJt/cIWkPgjczgLXkcovEXEGlZFderBFEP7XId2j9lgV6zb1m4YjoJceOHXs79w==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.5.0"
+    "@ovh-ux/request-tagger" "^0.5.9"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-core-sso@^0.3.0":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
   integrity sha512-22M6BY5AkjzOFMATSg+EpoFXkxYKVbqI2hev7eD2EsfNRCnBINjXMWy9FDD0cXMuwkP7RwxbLuf8dAC4x+JZtA==
+
+"@ovh-ux/manager-core-sso@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.5.0.tgz#31757c0ecc5460fdae0b1a648d72f36af7f1faff"
+  integrity sha512-KOsrhyfFL3nH4OWuvyshWT2b4wfN54EOeDYf/SlLbEqAomADHpTLU2ow3+AcyCopcD8NprnaPUJ1Zy+VvUqrxw==
 
 "@ovh-ux/manager-pci-common@^0.16.4":
   version "0.16.4"
