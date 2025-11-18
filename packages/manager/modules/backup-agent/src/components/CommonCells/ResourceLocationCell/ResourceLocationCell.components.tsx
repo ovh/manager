@@ -8,7 +8,7 @@ import { useLocationDetails } from '@/data/hooks/location/getLocationDetails';
 
 export type ResourceLocationCellProps = {
   region: string;
-}
+};
 
 export const ResourceLocationCell = ({ region }: ResourceLocationCellProps) => {
   const { data, isLoading, isError } = useLocationDetails(region);

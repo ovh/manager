@@ -1,5 +1,6 @@
-import {ResourceStatus} from "@/types/Resource.type";
-import {ODS_BADGE_COLOR} from "@ovhcloud/ods-components";
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
+import { ResourceStatus } from '@/types/Resource.type';
 
 export const vaultStatusColor: Record<ResourceStatus, ODS_BADGE_COLOR> = {
   CREATING: ODS_BADGE_COLOR.information,
