@@ -1,14 +1,20 @@
-import { DefinedInitialDataOptions, UseQueryResult, useQueries, useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
+
+import {
+  DefinedInitialDataOptions,
+  UseQueryResult,
+  useQueries,
+  useQuery,
+} from '@tanstack/react-query';
 
 import { VSPC_TENANTS_MOCKS } from '@/mocks/tenant/vspcTenants.mock';
 import { Resource } from '@/types/Resource.type';
+import { AssociatedTenantVSPC } from '@/types/Tenant.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
+import { countBackupAgents } from '@/utils/countBackupAgents';
 
 import { getVSPCTenantDetails, getVSPCTenants } from '../../api/tenants/tenants.requests';
 import { BACKUP_TENANTS_QUERY_KEY } from './useBackupTenants';
-import { useMemo } from 'react';
-import { AssociatedTenantVSPC } from '@/types/Tenant.type';
-import { countBackupAgents } from '@/utils/countBackupAgents';
 
 type TUseVSPCTenantsResult = UseQueryResult<Resource<VSPCTenant>[], Error>;
 
@@ -35,29 +41,27 @@ export const useVSPCTenantsMocks = (): TUseVSPCTenantsResult =>
 
 export const useInstalledBackupAgents = ({
   vspcTenants,
-}: {
-  vspcTenants: AssociatedTenantVSPC[];
-} & Partial<Omit<DefinedInitialDataOptions<Resource<VSPCTenant>, unknown>, "queryKey" | "queryFn">>) => {
-  const vspcTenantIds = useMemo(() => {
-    if (!vspcTenants) return [];
-    return vspcTenants.map((vspc) => vspc.id);
-  }, [vspcTenants]);
-  const vspcTenantQueries = useQueries({
+}: Readonly<{
+  vspcTenants: readonly AssociatedTenantVSPC[];
+}> &
+  Readonly<
+    Partial<Omit<DefinedInitialDataOptions<Resource<VSPCTenant>, unknown>, 'queryKey' | 'queryFn'>>
+  >) => {
+  const vspcTenantIds = vspcTenants?.map((v) => v.id) ?? [];
+
+  return useQueries({
     queries: vspcTenantIds.map((vspcTenantId) => ({
       queryKey: ['vspcTenantDetails', vspcTenantId],
       queryFn: () => getVSPCTenantDetails(vspcTenantId),
       enabled: !!vspcTenantId,
     })),
     combine: (results) => {
-      const tenants = results
-      .map((r) => r.data)
-      .filter((tenant): tenant is VSPCTenant => !!tenant);
-      
+      const tenants = results.map((r) => r.data).filter((t): t is VSPCTenant => Boolean(t));
+
       return {
         installedBackupAgents: countBackupAgents(tenants),
         isLoading: results.some((q) => q.isLoading),
-      }
+      };
     },
   });
-  return vspcTenantQueries;
 };

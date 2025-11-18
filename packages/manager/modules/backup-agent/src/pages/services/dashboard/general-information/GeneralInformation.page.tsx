@@ -1,9 +1,11 @@
 import { useParams } from 'react-router-dom';
 
 import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
-import { GeneralInformationTenantTile } from "./_components/general-information-tenant-tile/GeneralInformationTenantTile.component";
-import { useBackupTenantDetails } from "@/data/hooks/tenants/useBackupTenantDetails";
-import { SubscriptionTile } from "./_components/subscription-tile/SubscriptionTile.component";
+
+import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
+
+import GeneralInformationTenantTile from './_components/general-information-tenant-tile/GeneralInformationTenantTile.component';
+import SubscriptionTile from './_components/subscription-tile/SubscriptionTile.component';
 
 export default function GeneralInformationPage() {
   const { tenantId } = useParams<{ tenantId: string }>();

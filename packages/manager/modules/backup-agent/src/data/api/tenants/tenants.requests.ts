@@ -35,4 +35,3 @@ export const getVSPCTenants = async (
 
 export const deleteVSPCTenant = async (vspcTenantId: string): Promise<ApiResponse<string>> =>
   v2.delete(`${GET_VSPC_TENANTS_ROUTE}/${vspcTenantId}`);
-
