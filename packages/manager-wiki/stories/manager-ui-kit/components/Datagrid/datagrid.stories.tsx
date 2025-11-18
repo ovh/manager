@@ -7,7 +7,10 @@ import {
   Icon,
   ICON_NAME,
   Input,
+  TABLE_SIZE,
+  TABLE_VARIANT,
 } from '@ovhcloud/ods-react';
+import type { Row } from '@tanstack/react-table';
 import { Datagrid, DatagridProps, useColumnFilters } from '@ovh-ux/muk';
 import {
   applyFilters,
@@ -121,6 +124,8 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
     subComponentHeight,
     maxRowHeight,
     isLoading,
+    size,
+    variant,
     totalCount,
     topbar,
   } = args;
@@ -196,6 +201,8 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
       <Datagrid
         columns={colsArgs}
         data={applyFilters(itemsArgs, filters)}
+        {...('size' in args && { size })}
+        {...('variant' in args && { variant })}
         {...('containerHeight' in args && {
           containerHeight: containerHeightStyle,
         })}
@@ -275,6 +282,29 @@ Default.args = {
   data,
 };
 
+export const Size = DatagridStory.bind({});
+
+Size.args = {
+  columns,
+  data,
+  size: TABLE_SIZE.sm,
+  hasNextPage: true,
+  onFetchNextPage: () => {},
+  onFetchAllPages: () => {},
+};
+
+
+
+export const Variant = DatagridStory.bind({});
+
+Variant.args = {
+  columns,
+  data,
+  variant: TABLE_VARIANT.striped,
+};
+
+
+
 export const Sorting = DatagridStory.bind({});
 
 Sorting.args = {
@@ -339,6 +369,7 @@ SubComponent.args = {
     </>
   ),
   subComponentHeight: 80,
+  size: TABLE_SIZE.md,
 };
 
 export const Expandable = DatagridStory.bind({});
@@ -400,6 +431,7 @@ RowSelection.args = {
     rowSelection: [],
     setRowSelection: () => {},
     onRowSelectionChange: () => {},
+    enableRowSelection: (row: Row<DatagridStoryData>) => row?.original?.age === 26,
   },
 };
 
@@ -472,6 +504,16 @@ const meta = {
   },
   args: {},
   argTypes: {
+    size: {
+      description: 'Controls the table row size',
+      control: 'select',
+      options: [TABLE_SIZE.sm, TABLE_SIZE.md, TABLE_SIZE.lg],
+    },
+    variant: {
+      description: 'Controls the table variant style',
+      control: 'select',
+      options: [TABLE_VARIANT.default, TABLE_VARIANT.striped],
+    },
     hasNextPage: {
       description: 'Controls whether pagination buttons are shown',
       control: 'boolean',

@@ -1,7 +1,7 @@
 {
-  "Title": "QPU",
+  "Title": "Computer quantistici (QPU)",
   "createNotebookButton": "Crea un notebook",
-  "Description1": "Esplora il calcolo quantistico in totale libertà grazie ai nostri notebook pronti all'uso nel cloud",
-  "Description2": "Simula fino a 20 qubit in pochi secondi, senza limiti di installazione e configurazione.",
-  "Description3": "Accedi a un ambiente preconfigurato, compatibile con i principali framework (Pulser, Mimiq, Perceval, Callisto, Qleo, Qiskit, MyQLM, etc.) e collabora facilmente con i tuoi team tramite un'interfaccia condivisa e sicura."
+  "Description1": "Accedi alla potenza reale dell’informatica quantistica con il QaaS di OVHcloud.",
+  "Description2": "Esegui i tuoi algoritmi su processori quantistici fisici (QPU), in tutta sicurezza e senza infrastrutture da gestire.",
+  "Description3": "Approfitta di un’integrazione trasparente con i nostri emulatori e una fatturazione al secondo per gestire al meglio i tuoi costi."
 }
