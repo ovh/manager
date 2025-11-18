@@ -28,7 +28,7 @@ const ActivateEncryption = () => {
   const s3Query = useGetS3({ projectId, region, name: s3Name });
   const locale = useLocale();
 
-  const { udpateS3Storage, isPending } = useUpdateS3({
+  const { updateS3Storage, isPending } = useUpdateS3({
     onError: (err) => {
       toast.toast({
         title: t('toastErrorTitle'),
@@ -46,7 +46,7 @@ const ActivateEncryption = () => {
   });
 
   const onSubmit = () => {
-    udpateS3Storage({
+    updateS3Storage({
       projectId,
       region,
       name: s3Name,

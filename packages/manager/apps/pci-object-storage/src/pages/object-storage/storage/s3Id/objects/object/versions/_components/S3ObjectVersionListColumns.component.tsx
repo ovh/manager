@@ -85,8 +85,9 @@ export const getColumns = ({
       ),
       cell: ({ row }) => (
         <Badge variant="outline">
-          {!row.original.isDeleteMarker &&
-            tObj(`objectClass_${row.original.storageClass}`)}
+          {!row.original.isDeleteMarker
+            ? tObj(`objectClass_${row.original.storageClass}`)
+            : '-'}
         </Badge>
       ),
     },
