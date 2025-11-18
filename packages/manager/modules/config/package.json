@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.10.1",
-    "@ovh-ux/manager-core-sso": "^0.4.3"
+    "@ovh-ux/manager-core-sso": "^0.4.9"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
