@@ -1,12 +1,12 @@
-import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
 import { GeneralInformationTile } from '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component';
+import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
 
 type GeneralInformationVaultTileProps = {
-  vaultId: string
+  vaultId: string;
 };
 
 export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVaultTileProps) {
-  const { data, isLoading } = useBackupVaultDetails({ vaultId })
+  const { data, isLoading } = useBackupVaultDetails({ vaultId });
 
-  return <GeneralInformationTile resourceDetails={data} isLoading={isLoading} />
+  return <GeneralInformationTile resourceDetails={data} isLoading={isLoading} />;
 }

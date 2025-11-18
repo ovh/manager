@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { mockVaults } from '@/mocks/vaults/vaults';
+
 import { VaultBucketsCell } from '../VaultBucketsCell.components';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({

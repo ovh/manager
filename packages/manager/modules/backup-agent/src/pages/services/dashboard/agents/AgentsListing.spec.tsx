@@ -1,15 +1,15 @@
-import {screen, waitFor} from '@testing-library/react';
-import {describe, expect, it} from 'vitest';
+import { screen, waitFor } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
-import {TENANTS_MOCKS} from '@/mocks/tenant/tenants.mock';
-import {renderTest} from '@/test-utils/Test.utils';
-import {labels} from '@/test-utils/i18ntest.utils';
-import {urls} from "@/routes/Routes.constants";
+import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
+import { urls } from '@/routes/Routes.constants';
+import { renderTest } from '@/test-utils/Test.utils';
+import { labels } from '@/test-utils/i18ntest.utils';
 
 describe('[INTEGRATION] - Agent listing page', () => {
   it('display datagrid', async () => {
     // when
-    await renderTest({initialRoute: urls.listingTenants});
+    await renderTest({ initialRoute: urls.listingTenants });
 
     // then
     const tenantId = TENANTS_MOCKS[0]?.id as string;
@@ -26,9 +26,8 @@ describe('[INTEGRATION] - Agent listing page', () => {
       labels.status.status,
     ];
 
-
-    COLUMNS_NAME.forEach((columnName) => expect(
-      screen.getByRole('columnheader', {name: columnName})
-    ).toBeVisible());
+    COLUMNS_NAME.forEach((columnName) =>
+      expect(screen.getByRole('columnheader', { name: columnName })).toBeVisible(),
+    );
   });
 });

@@ -19,7 +19,6 @@ const makeResponse = <T>(data: T): AxiosResponse<T> => ({
   } as InternalAxiosRequestConfig,
 });
 
-// eslint-disable-next-line max-lines-per-function
 describe('API client helpers', () => {
   const mockGet = vi.fn();
   const mockPost = vi.fn();

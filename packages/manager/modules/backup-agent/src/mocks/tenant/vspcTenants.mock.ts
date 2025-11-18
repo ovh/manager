@@ -1,5 +1,5 @@
-import {VSPCTenant} from "@/types/VspcTenant.type";
-import {Resource} from "@/types/Resource.type";
+import { Resource } from '@/types/Resource.type';
+import { VSPCTenant } from '@/types/VspcTenant.type';
 
 export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
   {
