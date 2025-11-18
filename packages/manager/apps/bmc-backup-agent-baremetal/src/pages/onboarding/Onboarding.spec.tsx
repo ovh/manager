@@ -24,14 +24,14 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-const { useBaremetalDetailsMock } = vi.hoisted(() => ({
-  useBaremetalDetailsMock: vi
+const { useBaremetalsListMock } = vi.hoisted(() => ({
+  useBaremetalsListMock: vi
     .fn()
     .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
 }));
 
-vi.mock('@/data/hooks/baremetal/getBaremetals', () => ({
-  useBaremetalDetails: useBaremetalDetailsMock,
+vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => ({
+  useBaremetalsList: useBaremetalsListMock,
 }));
 
 // --- Mock manager-react-components ---
@@ -51,8 +51,7 @@ interface CardProps {
   hrefLabel: string;
 }
 
-vi.mock('@/components/onboardingLayout/OnboardingLayout.component', () => ({
-  /* eslint-disable react/no-multi-comp */
+vi.mock('@/components/onboarding/onboardingLayout/OnboardingLayout.component', () => ({
   OnboardingLayout: ({
     title,
     img,
@@ -76,7 +75,6 @@ vi.mock('@/components/onboardingLayout/OnboardingLayout.component', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  /* eslint-disable react/no-multi-comp */
   Card: ({ href, texts, hrefLabel }: CardProps) => (
     <a data-testid="card" href={href}>
       <h2>{texts.title}</h2>
@@ -107,7 +105,7 @@ vi.mock('@/hooks/onboarding/useOnboardingData', () => ({
   }),
 }));
 
-describe('OnboardingPage', () => {
+describe('FirstOrderPage', () => {
   it('renders title, description, and order button', () => {
     render(<OnboardingPage />);
     expect(screen.getByTestId('title')).toHaveTextContent('Welcome!');
@@ -134,10 +132,10 @@ describe('OnboardingPage', () => {
     [BAREMETAL_MOCK, false],
     [[], true],
   ])(
-    'renders onboarding and exepected disabled if no baremetal : $expectedDisabled ',
+    'renders onboarding and expected disabled if no baremetal : $expectedDisabled',
     async (mock, expectedDisabled) => {
-      useBaremetalDetailsMock.mockReturnValue({
-        data: mock,
+      useBaremetalsListMock.mockReturnValue({
+        flattenData: mock,
         isLoading: false,
         isError: false,
       });
