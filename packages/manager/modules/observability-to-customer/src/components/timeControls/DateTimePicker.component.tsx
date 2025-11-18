@@ -6,7 +6,7 @@ import {
   FormFieldLabel,
   Timepicker,
   TimepickerControl,
-} from '@ovhcloud/ods-react';
+} from '@ovh-ux/muk';
 
 import { formatTimeFromDate } from '@/utils/dateTimeUtils';
 

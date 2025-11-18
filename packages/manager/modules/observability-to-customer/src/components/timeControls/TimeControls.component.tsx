@@ -11,7 +11,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@ovhcloud/ods-react';
+} from '@ovh-ux/muk';
 
 import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
@@ -72,8 +72,10 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
                       ${value === 'custom' ? 'bg-[var(--ods-color-primary-200)] text-initial' : ''}
                     `}
                 >
-                  <span>{t('option_custom')}</span>
-                  <Icon name={ICON_NAME.calendar} />
+                  <>
+                    <span>{t('option_custom')}</span>
+                    <Icon name={ICON_NAME.calendar} />
+                  </>
                 </Button>
               </PopoverTrigger>
               <PopoverContent>

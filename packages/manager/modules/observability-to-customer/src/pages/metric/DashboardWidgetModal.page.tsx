@@ -9,14 +9,11 @@ import {
   MODAL_COLOR,
   Message,
   Modal,
-  ModalBody,
-  ModalContent,
-  ModalOpenChangeDetail,
   SPINNER_SIZE,
   Spinner,
   TEXT_PRESET,
   Text,
-} from '@ovhcloud/ods-react';
+} from '@ovh-ux/muk';
 
 import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
 import { TimeControls } from '@/components';
@@ -50,11 +47,6 @@ const DashboardWidgetModal = <TData,>() => {
   const onDismiss = () => {
     navigate('..');
   };
-  const onOpenChange = (detail: ModalOpenChangeDetail) => {
-    if (!detail.open) {
-      onDismiss();
-    }
-  };
 
   const onStateChange = <TValue,>(key: string, value: TValue) => {
     // TODO
@@ -72,10 +64,9 @@ const DashboardWidgetModal = <TData,>() => {
   const { id, title, chart } = config;
 
   return (
-    <Modal onOpenChange={onOpenChange} open={true}>
-      <ModalContent
+    <Modal onOpenChange={onDismiss} open={true} dismissible={false}>
+      <div
         id="dashboard-widget-modal-content"
-        dismissible={false}
         color={MODAL_COLOR.neutral}
         className="pt-5 px-5 text-left"
       >
@@ -87,7 +78,7 @@ const DashboardWidgetModal = <TData,>() => {
             <TimeControls isLoading={isLoading} state={state} onStateChange={onStateChange} />
           </div>
         </div>
-        <ModalBody>
+        <div>
           {isLoading ? (
             <div data-testid="spinner" className="flex justify-center my-5">
               <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>
@@ -131,8 +122,8 @@ const DashboardWidgetModal = <TData,>() => {
               </Button>
             </div>
           </div>
-        </ModalBody>
-      </ModalContent>
+        </div>
+      </div>
     </Modal>
   );
 };

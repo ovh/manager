@@ -1,4 +1,4 @@
-import { SPINNER_COLOR, SPINNER_SIZE, Spinner } from '@ovhcloud/ods-react';
+import { SPINNER_COLOR, SPINNER_SIZE, Spinner } from '@ovh-ux/muk';
 
 import { LoaderProps } from './Loader.props';
 

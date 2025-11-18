@@ -1,6 +1,4 @@
-import { SelectOptionItem } from '@ovhcloud/ods-react';
-
-import { SelectItemExtraData } from './RefreshTimeControl.type';
+import { SelectItemExtraData, SelectOptionItem } from './RefreshTimeControl.type';
 
 export const defaultRefreshTimeOptions: SelectOptionItem<SelectItemExtraData>[] = [
   {
