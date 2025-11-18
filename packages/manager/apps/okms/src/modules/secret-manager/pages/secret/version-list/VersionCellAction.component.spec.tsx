@@ -74,7 +74,6 @@ const renderAndOpenMenu = async (versionMock: SecretVersion) => {
 
   const actionButton = await getOdsButtonByIcon({
     container,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     iconName: 'ellipsis-vertical',
   });
 
