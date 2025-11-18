@@ -8,8 +8,8 @@ import { OdsButton, OdsLink, OdsText, OdsTooltip } from '@ovhcloud/ods-component
 import placeholderImg from '@/../public/assets/img.png';
 
 type OnboardingLayoutButtonProps = {
-  orderButtonLabel: string;
-  orderHref: string;
+  orderButtonLabel?: string;
+  orderHref?: string;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
   onOrderButtonClick?: () => void;
@@ -41,7 +41,7 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   isOrderLoading,
 }) => {
   const tooltipId = useId();
-  if (!orderButtonLabel && !moreInfoButtonLabel) {
+  if (!orderButtonLabel || !moreInfoButtonLabel || !orderHref) {
     return null;
   }
   return (

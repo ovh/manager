@@ -13,11 +13,11 @@ export const useDeleteVSPCTenant = (options: UseDeleteVSPCTenantParams = {}) => 
   return useMutation({
     mutationFn: (vspcTenantId: string) => deleteVSPCTenant(vspcTenantId),
     ...options,
-    onSuccess: async (data, variables, context) => {
+    onSuccess: async (...params) => {
       await queryClient.invalidateQueries({
         queryKey: GET_VSPC_TENANTS_QUERY_KEY,
       });
-      options.onSuccess?.(data, variables, context);
+      options.onSuccess?.(...params);
     },
   });
 };
