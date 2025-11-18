@@ -13,6 +13,8 @@ import Search from './Search';
 import Universes from './Universes';
 
 import useContainer from '@/core/container';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import CloudShellLink from '@/container/common/cloud-shell';
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
@@ -41,6 +43,10 @@ function Navbar(): JSX.Element {
   const isMobile = useMediaQuery({
     query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
   });
+
+  const { data: cloudShellAvailability } = useFeatureAvailability(
+    ['cloud-shell'],
+  );
 
   const [searchURL] = useState<string>();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -116,6 +122,11 @@ function Navbar(): JSX.Element {
               }}
             ></LanguageMenu>
           </div>
+          {cloudShellAvailability?.['cloud-shell'] && (
+          <div className="oui-navbar-list__item">
+            <CloudShellLink />
+          </div>
+          )}
           <div className="oui-navbar-list__item">
             <Notifications />
           </div>
