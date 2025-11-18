@@ -12,6 +12,7 @@ import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const FirstOrderPage = React.lazy(() => import('@/pages/firstOrder/FirstOrder.page'));
 
 export default (
   <>
@@ -33,6 +34,13 @@ export default (
         Component={OnboardingPage}
         handle={{
           tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+        }}
+      />
+      <Route
+        path={subRoutes.firstOrder}
+        Component={FirstOrderPage}
+        handle={{
+          tracking: { pageName: 'order', pageType: PageType.funnel },
         }}
       />
       {BackupAgentRoutes}
