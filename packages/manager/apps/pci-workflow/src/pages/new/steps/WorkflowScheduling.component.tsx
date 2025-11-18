@@ -6,6 +6,7 @@ import { Button } from '@ovhcloud/ods-react';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
+import { TWorkflowSelectedResource } from '@/api/hooks/workflows';
 import { ButtonLink } from '@/components/button-link/ButtonLink.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
 import { CronInput } from '@/pages/new/components/CronInput.component';
@@ -20,7 +21,7 @@ interface SchedulingProps {
     scheduling: TWorkflowScheduling,
     distantRegion: TWorkflowCreationForm['distantRegion'],
   ) => void;
-  instanceId: TInstance['id'];
+  resource: TWorkflowSelectedResource;
 }
 
 export const DEFAULT_HOURS = [0, 1, 2, 3, 4, 5, 22, 23];
@@ -57,10 +58,13 @@ const CUSTOM: TWorkflowScheduling = {
   maxExecutionCount: 0,
 };
 
-export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<SchedulingProps>) {
+export function WorkflowScheduling({ step, onSubmit, resource }: Readonly<SchedulingProps>) {
   const { t } = useTranslation(['workflow-add', 'pci-common', 'global']);
   const projectId = useSafeParam('projectId');
-  const { distantContinents } = useInstanceSnapshotPricing(projectId, instanceId);
+  const { distantContinents } = useInstanceSnapshotPricing(projectId, {
+    id: resource.id,
+    region: resource.region,
+  } as TInstance['id']);
 
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
   const [distantRegion, setDistantRegion] = useState<string | null>(null);

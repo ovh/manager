@@ -127,7 +127,7 @@ export default function NewPage() {
           <WorkflowResource
             step={stepper.resource.step}
             onSubmit={stepper.resource.submit}
-            instanceId={stepper.form.instanceId}
+            selectedResource={stepper.form.resource}
             onUpdate={stepper.resource.update}
           />
         </StepComponent>
@@ -146,7 +146,7 @@ export default function NewPage() {
         >
           <WorkflowName
             name={stepper.form.name}
-            instanceId={stepper.form.instanceId}
+            selectedResource={stepper.form.resource}
             step={stepper.naming.step}
             onNameChange={stepper.naming.update}
             onSubmit={stepper.naming.submit}
@@ -163,14 +163,14 @@ export default function NewPage() {
           <>
             <Notifications />
             <WorkflowScheduling
-              instanceId={stepper.form.instanceId}
+              resource={stepper.form.resource}
               step={stepper.scheduling.step}
               onSubmit={(scheduling, distantRegion) => {
                 stepper.scheduling.submit(scheduling, distantRegion);
                 addWorkflow({
                   type: WorkflowType.INSTANCE_BACKUP,
                   cron: getCron(scheduling),
-                  resource: stepper.form.instanceId,
+                  resourceId: stepper.form.resource,
                   name: stepper.form.name,
                   rotation: scheduling.rotation,
                   maxExecutionCount: scheduling.maxExecutionCount,

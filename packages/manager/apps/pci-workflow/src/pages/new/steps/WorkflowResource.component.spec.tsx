@@ -1,8 +1,11 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
-import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstance, usePaginatedInstances } from '@/api/hooks/instance/useInstances';
+import {
+  TInstance,
+  buildInstanceSelectedResource,
+} from '@/api/hooks/instance/selector/instances.selector';
+import { usePaginatedInstances } from '@/api/hooks/instance/useInstances';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { wrapper } from '@/wrapperRenders';
 
@@ -10,27 +13,28 @@ import { WorkflowResource } from './WorkflowResource.component';
 
 vi.mock('@/api/hooks/instance/useInstances');
 
-vi.mocked(useInstance).mockReturnValue({ instance: null });
-
 describe('WorkflowResource Component', () => {
   const mockOnSubmit = vi.fn();
   const mockOnUpdate = vi.fn();
-  const instanceId = buildInstanceId('instance1', 'region1');
+  const instanceId = buildInstanceSelectedResource('instance1', 'region1');
   const unlockedStep = { isLocked: false };
+  const instance1 = {
+    id: { id: 'instance1', region: 'region1' },
+    label: 'instance1',
+    region: { label: 'regionLabel1' },
+    status: { group: 'A' },
+    flavor: { label: 'flavor1' },
+    autoBackup: true,
+  } as TInstance;
   vi.mocked(usePaginatedInstances).mockReturnValue({
     isPending: false,
     data: {
       rows: [
+        instance1,
         {
-          label: 'instance1',
-          region: { label: 'region1' },
-          status: { group: 'A' },
-          flavor: { label: 'flavor1' },
-          autoBackup: true,
-        } as TInstance,
-        {
+          id: { id: 'instance2', region: 'region2' },
           label: 'instance2',
-          region: { label: 'region2' },
+          region: { label: 'regionLabel2' },
           status: { group: 'B' },
           flavor: { label: 'flavor1' },
           autoBackup: false,
@@ -51,7 +55,7 @@ describe('WorkflowResource Component', () => {
         step={unlockedStep as StepState}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
-        instanceId={instanceId}
+        selectedResource={null}
       />,
       { wrapper },
     );
@@ -64,7 +68,7 @@ describe('WorkflowResource Component', () => {
         step={unlockedStep as StepState}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
-        instanceId={null}
+        selectedResource={null}
       />,
       { wrapper },
     );
@@ -72,17 +76,33 @@ describe('WorkflowResource Component', () => {
   });
 
   it('enables next button when an instance is selected', () => {
-    const { getByTestId, getByText } = render(
+    const { getByText } = render(
       <WorkflowResource
         step={unlockedStep as StepState}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
-        instanceId={instanceId}
+        selectedResource={instanceId}
       />,
       { wrapper },
     );
-    fireEvent.click(getByTestId('radio-button-instance1')); // Simulate selecting an instance
+
     expect(getByText(/common_stepper_next_button_label/i)).not.toBeDisabled();
+  });
+
+  it('triggers onUpdate an instance is selected', () => {
+    const { getByTestId } = render(
+      <WorkflowResource
+        step={unlockedStep as StepState}
+        onSubmit={mockOnSubmit}
+        onUpdate={mockOnUpdate}
+        selectedResource={instanceId}
+      />,
+      { wrapper },
+    );
+
+    fireEvent.click(getByTestId('radio-button-instance1'));
+
+    expect(mockOnUpdate).toHaveBeenCalledWith(instance1);
   });
 
   it('cannot select instance where workflow is not available', () => {
@@ -91,7 +111,7 @@ describe('WorkflowResource Component', () => {
         step={unlockedStep as StepState}
         onSubmit={mockOnSubmit}
         onUpdate={mockOnUpdate}
-        instanceId={instanceId}
+        selectedResource={instanceId}
       />,
       { wrapper },
     );

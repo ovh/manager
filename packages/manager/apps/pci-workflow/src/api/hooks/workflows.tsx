@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { useMemo } from 'react';
 
 import { queryOptions, useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
@@ -258,9 +259,12 @@ export const useDeleteWorkflow = ({
   };
 };
 
+export type TWorkflowResourceId = { id: string; region: string };
+export type TWorkflowSelectedResource = TWorkflowResourceId & { label: string };
+
 interface UseAddWorkflowProps {
   type: WorkflowType;
-  resource: { id: string; region: string };
+  resourceId: TWorkflowResourceId;
   name: string;
   cron: string;
   rotation: number;
@@ -317,7 +321,11 @@ export const useAddInstanceBackupWorkflow = ({
   });
 
   const mutation = useMutation({
-    mutationFn: async ({ resource, distantRegion, ...rest }: UseAddInstanceBackupWorkflowProps) => {
+    mutationFn: async ({
+      resourceId,
+      distantRegion,
+      ...rest
+    }: UseAddInstanceBackupWorkflowProps) => {
       if (
         distantRegion &&
         productAvailability?.plans.find(
@@ -329,7 +337,7 @@ export const useAddInstanceBackupWorkflow = ({
         await enableRegion({ projectId, region: distantRegion });
       }
 
-      return addWorkflow(projectId, resource.region, resource.id, {
+      return addWorkflow(projectId, resourceId.region, resourceId.id, {
         name: rest.name,
         cron: rest.cron,
         rotation: rest.rotation,
@@ -339,10 +347,10 @@ export const useAddInstanceBackupWorkflow = ({
       });
     },
     onError,
-    onSuccess: async (_res, { resource }) => {
+    onSuccess: async (_res, { resourceId }) => {
       await Promise.all(
         [
-          getWorkflowQueryOptions(projectId, resource.region),
+          getWorkflowQueryOptions(projectId, resourceId.region),
           getCatalogQuery(me.ovhSubsidiary),
           getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
             addonFamily: 'snapshot',

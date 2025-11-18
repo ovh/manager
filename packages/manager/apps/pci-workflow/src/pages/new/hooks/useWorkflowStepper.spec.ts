@@ -42,7 +42,11 @@ describe('useWorkflowStepper hook', () => {
       result.current.resource.update(instance);
       result.current.resource.submit();
     });
-    expect(result.current.form.instanceId).toBe(instance.id);
+    expect(result.current.form.resource).toEqual({
+      id: instance.id.id,
+      region: instance.id.region,
+      label: instance.id.id,
+    });
     expect(result.current.naming.step.isOpen).toBe(true);
   });
 
@@ -59,7 +63,11 @@ describe('useWorkflowStepper hook', () => {
       expect(result.current.form).toEqual({
         ...DEFAULT_FORM_STATE,
         type: WorkflowType.INSTANCE_BACKUP,
-        instanceId: INSTANCE_MOCK.BASE.id,
+        resource: {
+          id: INSTANCE_MOCK.BASE.id.id,
+          region: INSTANCE_MOCK.BASE.id.region,
+          label: INSTANCE_MOCK.BASE.id.id,
+        },
       }),
     );
   });
@@ -90,7 +98,11 @@ describe('useWorkflowStepper hook', () => {
       expect(result.current.form).toEqual({
         ...DEFAULT_FORM_STATE,
         type: WorkflowType.INSTANCE_BACKUP,
-        instanceId: INSTANCE_MOCK.BASE.id,
+        resource: {
+          id: INSTANCE_MOCK.BASE.id.id,
+          region: INSTANCE_MOCK.BASE.id.region,
+          label: INSTANCE_MOCK.BASE.id.id,
+        },
       });
     });
   });

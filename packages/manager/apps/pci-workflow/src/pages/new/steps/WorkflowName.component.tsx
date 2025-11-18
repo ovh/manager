@@ -22,11 +22,12 @@ import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-re
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
+import { TWorkflowSelectedResource } from '@/api/hooks/workflows';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 interface WorkflowNameProps {
   name: string;
-  instanceId: TInstance['id'];
+  selectedResource: TWorkflowSelectedResource;
   step: StepState;
   onNameChange: (name: string) => void;
   onSubmit: () => void;
@@ -36,7 +37,7 @@ const VALID_NAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
 
 export function WorkflowName({
   name,
-  instanceId,
+  selectedResource,
   step,
   onNameChange,
   onSubmit,
@@ -50,7 +51,10 @@ export function WorkflowName({
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const { pricing, isPending } = useInstanceSnapshotPricing(projectId, instanceId);
+  const { pricing, isPending } = useInstanceSnapshotPricing(projectId, {
+    id: selectedResource.id,
+    region: selectedResource.region,
+  } as TInstance['id']);
 
   if (isPending) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="loading-spinner" />;

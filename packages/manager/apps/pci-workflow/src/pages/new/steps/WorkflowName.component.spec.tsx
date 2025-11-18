@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { useCatalogPrice, useMe } from '@ovh-ux/manager-react-components';
 
-import { buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { buildInstanceSelectedResource } from '@/api/hooks/instance/selector/instances.selector';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 
 import { WorkflowName } from './WorkflowName.component';
@@ -32,7 +32,7 @@ describe('WorkflowName', () => {
     const { getByTestId } = render(
       <WorkflowName
         name="foo"
-        instanceId={buildInstanceId('instance1', 'region1')}
+        selectedResource={buildInstanceSelectedResource('instance1', 'region1')}
         step={{ isOpen: true, isChecked: false, isLocked: false }}
         onNameChange={null}
         onSubmit={null}

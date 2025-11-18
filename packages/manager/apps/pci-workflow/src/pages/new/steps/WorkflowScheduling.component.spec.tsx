@@ -3,7 +3,7 @@ import { userEvent } from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
 
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
-import { buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { buildInstanceSelectedResource } from '@/api/hooks/instance/selector/instances.selector';
 import { ContinentRegion, useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 import { StepState } from '@/pages/new/hooks/useStep';
 
@@ -19,7 +19,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 describe('WorkflowScheduling Component', () => {
   const mockOnSubmit = vi.fn();
-  const mockInstanceId = buildInstanceId('instance1', 'region1');
+  const mockInstanceId = buildInstanceSelectedResource('instance1', 'region1');
   const stepUnlocked = { isLocked: false };
   const stepLocked = { isLocked: true };
 
@@ -37,7 +37,7 @@ describe('WorkflowScheduling Component', () => {
       <WorkflowScheduling
         step={stepUnlocked as StepState}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
+        resource={mockInstanceId}
       />,
     );
     expect(getByText('pci_workflow_create_schedule_rotate7_title')).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe('WorkflowScheduling Component', () => {
       <WorkflowScheduling
         step={stepLocked as StepState}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
+        resource={mockInstanceId}
       />,
     );
     // Assuming ROTATE_7 is the default selected schedule
@@ -62,7 +62,7 @@ describe('WorkflowScheduling Component', () => {
       <WorkflowScheduling
         step={stepUnlocked as StepState}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
+        resource={mockInstanceId}
       />,
     );
     fireEvent.click(getByText('pci_workflow_create'));
@@ -74,7 +74,7 @@ describe('WorkflowScheduling Component', () => {
       <WorkflowScheduling
         step={stepUnlocked as StepState}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
+        resource={mockInstanceId}
       />,
     );
     fireEvent.click(getByText('pci_workflow_create_schedule_custom_title'));
@@ -86,7 +86,7 @@ describe('WorkflowScheduling Component', () => {
       <WorkflowScheduling
         step={stepUnlocked as StepState}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
+        resource={mockInstanceId}
       />,
     );
 
@@ -117,7 +117,7 @@ describe('WorkflowScheduling Component', () => {
       <WorkflowScheduling
         step={stepUnlocked as StepState}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
+        resource={mockInstanceId}
       />,
     );
 

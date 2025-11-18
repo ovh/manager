@@ -32,36 +32,37 @@ import {
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 
-import { TInstance, isSameInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { usePaginatedInstances } from '@/api/hooks/instance/useInstances';
+import { isSameResource } from '@/api/hooks/resource';
+import { TWorkflowSelectedResource } from '@/api/hooks/workflows';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
 import StatusComponent from '@/components/new/Status.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
 
 const useDatagridColumn = (
-  selectedInstance: TInstance | null,
+  selectedInstance: TWorkflowSelectedResource | null,
   onSelectInstance: (instance: TInstance) => void,
 ) => {
   const { t } = useTranslation('new');
   return [
     {
       id: 'actions',
-      cell: (instance) => (
+      cell: (resource) => (
         <div className="text-center">
-          <NotSupportedTooltipComponent supported={instance.autoBackup}>
+          <NotSupportedTooltipComponent supported={resource.autoBackup}>
             <OsdsRadioButton
               checked={
-                (!!selectedInstance && isSameInstanceId(selectedInstance.id, instance.id)) ||
-                undefined
+                (!!selectedInstance && isSameResource(selectedInstance, resource.id)) || undefined
               }
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_RADIO_BUTTON_SIZE.xs}
-              data-testid={`radio-button-${instance.label}`}
-              disabled={!instance.autoBackup || undefined}
+              data-testid={`radio-button-${resource.label}`}
+              disabled={!resource.autoBackup || undefined}
               className="mx-auto"
               onClick={() => {
-                if (instance.autoBackup) {
-                  onSelectInstance(instance);
+                if (resource.autoBackup) {
+                  onSelectInstance(resource);
                 }
               }}
             />
@@ -72,9 +73,9 @@ const useDatagridColumn = (
     },
     {
       id: 'name',
-      cell: (instance) => (
-        <NotSupportedTooltipComponent supported={instance.autoBackup}>
-          <DataGridTextCell>{instance.name}</DataGridTextCell>
+      cell: (resource) => (
+        <NotSupportedTooltipComponent supported={resource.autoBackup}>
+          <DataGridTextCell>{resource.name}</DataGridTextCell>
         </NotSupportedTooltipComponent>
       ),
       label: t('pci_projects_project_workflow_instance_name_label'),
@@ -104,14 +105,14 @@ const useDatagridColumn = (
   ] satisfies DatagridColumn<TInstance>[];
 };
 
-export type ResourceSelectorComponentProps = {
-  selectedInstance: TInstance | null;
+export type InstanceSelectorComponentProps = {
+  selectedInstance: TWorkflowSelectedResource | null;
   onSelectInstance: (instance: TInstance) => void;
 };
-export default function ResourceSelectorComponent({
+export const InstanceSelectorComponent = ({
   selectedInstance,
   onSelectInstance,
-}: Readonly<ResourceSelectorComponentProps>) {
+}: Readonly<InstanceSelectorComponentProps>) => {
   const { t } = useTranslation('new');
   const { t: tFilter } = useTranslation('filter');
   const projectId = useSafeParam('projectId');
@@ -219,4 +220,4 @@ export default function ResourceSelectorComponent({
       )}
     </>
   );
-}
+};
