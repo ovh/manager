@@ -12,7 +12,7 @@ import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const FirstOrderPage = React.lazy(() => import('@/pages/firstOrder/FirstOrder.page'));
+const FirstOrderPage = React.lazy(() => import('@/pages/first-order/FirstOrder.page'));
 
 export default (
   <>
