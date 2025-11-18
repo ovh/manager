@@ -10,3 +10,5 @@ export function GeneralInformationTenantTile({ tenantId }: GeneralInformationTen
 
   return <GeneralInformationTile resourceDetails={data} isLoading={isLoading} />;
 }
+
+export default GeneralInformationTenantTile;
