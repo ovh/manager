@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import React from 'react';
 import { vi } from 'vitest';
 import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';

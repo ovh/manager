@@ -1,4 +1,3 @@
-import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OKMS } from '@key-management-service/types/okms.type';

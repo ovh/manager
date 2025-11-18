@@ -1,4 +1,3 @@
-import React from 'react';
 import { GuideButton } from '@ovh-ux/manager-react-components';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';

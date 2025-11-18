@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {

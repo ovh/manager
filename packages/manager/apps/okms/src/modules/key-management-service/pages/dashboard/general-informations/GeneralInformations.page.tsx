@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet, useOutletContext } from 'react-router-dom';
 import { KmsDashboardOutletContext } from '@key-management-service/pages/dashboard/KmsDashboard.type';
 import { OkmsDomainDashboardTiles } from '@/common/components/okms-dashboard/OkmsDomainDashboardTiles.component';

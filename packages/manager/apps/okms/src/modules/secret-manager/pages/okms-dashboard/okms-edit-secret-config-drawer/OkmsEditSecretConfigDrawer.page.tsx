@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
 import { Drawer } from '@ovh-ux/manager-react-components';

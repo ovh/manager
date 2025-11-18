@@ -1,4 +1,3 @@
-import React from 'react';
 import { IdentityUser } from '@key-management-service/types/identity.type';
 import IdentitiesStatusBadge from '../../badge/IdentitiesStatusBadge.component';
 

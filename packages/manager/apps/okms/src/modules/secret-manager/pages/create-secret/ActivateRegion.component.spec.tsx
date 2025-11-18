@@ -1,4 +1,3 @@
-import React from 'react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
