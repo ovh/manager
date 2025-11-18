@@ -12,8 +12,13 @@ import S3LZObjectFileRenderer from './S3LZObjectFileRenderer.component';
 interface S3ObjectBrowserProps {
   objects: StorageObject[];
   isLocaleZone?: boolean;
+  showVersion: boolean;
 }
-const S3ObjectBrowser = ({ objects, isLocaleZone }: S3ObjectBrowserProps) => {
+const S3ObjectBrowser = ({
+  objects,
+  isLocaleZone,
+  showVersion = false,
+}: S3ObjectBrowserProps) => {
   const [dropped, setDropped] = useState<DroppedFiles>(null);
   return (
     <>
@@ -32,7 +37,7 @@ const S3ObjectBrowser = ({ objects, isLocaleZone }: S3ObjectBrowserProps) => {
               isLocaleZone ? (
                 <S3LZObjectFileRenderer object={file} />
               ) : (
-                <S3ObjectFileRenderer object={file} />
+                <S3ObjectFileRenderer object={file} showVersion={showVersion} />
               )
             }
           />

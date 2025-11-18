@@ -1,5 +1,5 @@
 import { getCoreRowModel, getExpandedRowModel, getSortedRowModel } from '@tanstack/react-table';
-import type { TableOptions } from '@tanstack/react-table';
+import type { Row, TableOptions } from '@tanstack/react-table';
 
 import { ExpandableRow } from '@/components/datagrid/Datagrid.props';
 
@@ -70,7 +70,10 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
     },
     setRowSelection: () => {
       if (rowSelection) {
-        params.enableRowSelection = true;
+        params.enableRowSelection = (row: Row<T>) => {
+          if (rowSelection?.enableRowSelection) return rowSelection.enableRowSelection(row);
+          return !!rowSelection;
+        };
         params.onRowSelectionChange = rowSelection.setRowSelection;
       }
       return builder;

@@ -16,5 +16,6 @@
   "deleteObjectDescription": "Czy na pewno chcesz trwale usunąć obiekt {{- name }}? Ta akcja nie może być anulowana.",
   "deleteObjectConfirmation": "Wpisz TRWALE USUŃ, aby potwierdzić",
   "deleteObjectButtonCancel": "Anuluj",
-  "deleteObjectButtonConfirm": "Usuń"
+  "deleteObjectButtonConfirm": "Usuń",
+  "seeVersionsSwitchLabel": "Zobacz wersje"
 }

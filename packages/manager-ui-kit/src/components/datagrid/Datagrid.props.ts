@@ -20,6 +20,7 @@ import {
 import type { FilterOption, FilterProps } from '@/components/filters/Filter.props';
 
 export interface RowSelectionProps<T> {
+  enableRowSelection?: (row: Row<T>) => boolean;
   onRowSelectionChange?: (selectedRows: T[]) => void;
   rowSelection: RowSelectionState;
   setRowSelection: Dispatch<SetStateAction<RowSelectionState>>;

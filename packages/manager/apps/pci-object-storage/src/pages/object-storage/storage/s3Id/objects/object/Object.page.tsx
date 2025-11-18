@@ -104,39 +104,41 @@ const Object = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <h5>
-              <Archive className="size-4 inline mr-2" />
-              <span>{t('tableHeaderStorageClass')}</span>
-            </h5>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-row justify-between">
-              <Badge variant="outline">
-                {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-              </Badge>
+        {objectQuery.data.storageClass && (
+          <Card>
+            <CardHeader>
+              <h5>
+                <Archive className="size-4 inline mr-2" />
+                <span>{t('tableHeaderStorageClass')}</span>
+              </h5>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-row justify-between">
+                <Badge variant="outline">
+                  {tObj(`objectClass_${objectQuery.data.storageClass}`)}
+                </Badge>
 
-              <Button
-                className="h-6"
-                mode="outline"
-                size="sm"
-                onClick={() =>
-                  navigate(
-                    `./change-storage-class?objectKey=${encodeURIComponent(
-                      objectKey,
-                    )}`,
-                  )
-                }
-              >
-                <Settings className="size-4" />
-                <span className="font-semibold">
-                  {t('changeStorageClassLink')}
-                </span>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+                <Button
+                  className="h-6"
+                  mode="outline"
+                  size="sm"
+                  onClick={() =>
+                    navigate(
+                      `./change-storage-class?objectKey=${encodeURIComponent(
+                        objectKey,
+                      )}`,
+                    )
+                  }
+                >
+                  <Settings className="size-4" />
+                  <span className="font-semibold">
+                    {t('changeStorageClassLink')}
+                  </span>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       <Outlet />

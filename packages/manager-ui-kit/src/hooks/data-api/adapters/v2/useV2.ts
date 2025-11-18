@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { fetchV2 } from '@ovh-ux/manager-core-api';
 import type { FetchV2Result } from '@ovh-ux/manager-core-api';
 
+import { DEFAULT_DATA_API_RESPONSE } from '@/hooks/data-api/ports/useDataApi.constants';
 import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
 
 import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack';
@@ -42,10 +43,14 @@ export const useV2 = <TData = Record<string, unknown>>({
     });
 
   useEffect(() => {
-    if (fetchAll && hasNextPage) {
+    if (fetchAll && hasNextPage && enabled) {
       void fetchNextPage();
     }
-  }, [data]);
+  }, [data, fetchAll, hasNextPage, fetchNextPage, enabled]);
+
+  if (!enabled) {
+    return DEFAULT_DATA_API_RESPONSE;
+  }
 
   return {
     ...(data && { ...data }),

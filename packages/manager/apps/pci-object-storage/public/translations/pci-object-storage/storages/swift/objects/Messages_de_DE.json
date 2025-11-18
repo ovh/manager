@@ -16,5 +16,6 @@
   "deleteObjectDescription": "Möchten Sie das Objekt {{- name }} dauerhaft löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
   "deleteObjectConfirmation": "TIPPEN SIE PERMANENTLY DELETE ein, um zu bestätigen",
   "deleteObjectButtonCancel": "Abbrechen",
-  "deleteObjectButtonConfirm": "Löschen"
+  "deleteObjectButtonConfirm": "Löschen",
+  "seeVersionsSwitchLabel": "Versionen anzeigen"
 }
