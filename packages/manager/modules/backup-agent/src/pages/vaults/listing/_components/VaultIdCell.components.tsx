@@ -1,13 +1,14 @@
 import React from 'react';
 
+import { useHref } from 'react-router-dom';
+
 import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 
+import { urlParams, urls } from '@/routes/Routes.constants';
 import { VaultResource } from '@/types/Vault.type';
-import { useHref } from "react-router-dom";
-import {urlParams, urls} from "@/routes/Routes.constants";
 
 export const VaultIdCell = (vaultResource: VaultResource) => {
-  const dashboardLink = useHref(urls.dashboardVaults.replace(urlParams.vaultId, vaultResource.id))
+  const dashboardLink = useHref(urls.dashboardVaults.replace(urlParams.vaultId, vaultResource.id));
 
   return (
     <DataGridTextCell>
