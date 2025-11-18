@@ -90,5 +90,7 @@
   "pci_instance_creation_select_sshKey_add_new": "Crear una nueva clave SSH",
   "pci_instance_creation_select_sshKey_dropdown_label": "Seleccione una clave existente",
   "pci_instance_creation_select_sshKey_add_key_done": "Su clave SSH se creará al final del proceso de configuración.",
-  "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Gracias por elegir un nombre diferente, este ya está en uso."
+  "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Gracias por elegir un nombre diferente, este ya está en uso.",
+  "pci_instance_creation_select_image_distribution_version_label": "Versión de la imagen",
+  "pci_instance_creation_select_image_distribution_version_unavailable": "Versión no disponible"
 }

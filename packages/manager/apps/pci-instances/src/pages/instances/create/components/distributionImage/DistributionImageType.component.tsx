@@ -35,12 +35,22 @@ const DistributionImageType: FC = () => {
 
     if (!imageType) return;
 
-    const distributionImageName =
-      mockedDistributionImageList.find(({ type }) => type === imageType)?.id ??
-      null;
+    const distribution = mockedDistributionImageList.find(
+      ({ type }) => type === imageType,
+    );
+
+    const distributionImageName = distribution?.id ?? null;
+
+    const distributionVersion = distribution?.versions?.[0]?.value ?? null;
+    const flavorImagePrice = distribution?.pricing?.hour ?? null;
+    const distributionLicencePrice =
+      distribution?.pricing?.licence?.total ?? null;
 
     setValue('distributionImageType', imageType);
     setValue('distributionImageName', distributionImageName);
+    setValue('flavorImagePrice', flavorImagePrice);
+    setValue('distributionImageVersion', distributionVersion);
+    setValue('distributionLicencePrice', distributionLicencePrice);
 
     trackClick({
       location: PageLocation.funnel,

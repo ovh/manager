@@ -48,7 +48,18 @@ const DistributionImageList: FC = () => {
   const handleSelectImage = (distributionImage: string | null) => {
     if (!distributionImage) return;
 
+    const distribution = distributions.find(
+      ({ id }) => id === distributionImage,
+    );
+    const distributionImageVersion = distribution?.versions?.[0]?.value ?? null;
+    const flavorImagePrice = distribution?.pricing?.hour ?? null;
+    const distributionLicencePrice =
+      distribution?.pricing?.licence?.total ?? null;
+
     setValue('distributionImageName', distributionImage);
+    setValue('flavorImagePrice', flavorImagePrice);
+    setValue('distributionImageVersion', distributionImageVersion);
+    setValue('distributionLicencePrice', distributionLicencePrice);
 
     trackClick({
       location: PageLocation.funnel,
@@ -67,7 +78,7 @@ const DistributionImageList: FC = () => {
       render={() => (
         <RadioGroup
           className={clsx(
-            'grid gap-6 mt-10',
+            'grid gap-6 mt-8',
             getGridColumnClassname(distributions.length),
           )}
           value={selectedDistributionImageName}
@@ -93,9 +104,9 @@ const DistributionImageList: FC = () => {
                     <DistributionImageLabel name={distribution.name}>
                       <span className="flex-1 max-w-full pr-8">
                         {distribution.label}
-                        {distribution.price && (
+                        {distribution.pricing?.licence && (
                           <Text className="text-sm font-medium text-[--ods-color-success-500]">
-                            {distribution.price}
+                            {distribution.pricing.licence.vcore}
                           </Text>
                         )}
                       </span>

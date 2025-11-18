@@ -28,6 +28,9 @@ export const CreationCart = () => {
     quantity,
     flavorId,
     distributionImageName,
+    flavorImagePrice,
+    distributionImageVersion,
+    distributionLicencePrice,
     sshKeyId,
   ] = useWatch({
     control,
@@ -39,6 +42,9 @@ export const CreationCart = () => {
       'quantity',
       'flavorId',
       'distributionImageName',
+      'flavorImagePrice',
+      'distributionImageVersion',
+      'distributionLicencePrice',
       'sshKeyId',
     ],
   });
@@ -73,10 +79,20 @@ export const CreationCart = () => {
               'creation:pci_instance_creation_select_flavor_cart_section',
             ),
             description: (
-              <FlavorDetails
-                quantity={quantity}
-                flavor={selectedFlavorDetails}
-              />
+              <>
+                <FlavorDetails
+                  quantity={quantity}
+                  flavor={selectedFlavorDetails}
+                />
+                {flavorImagePrice && (
+                  <Text
+                    preset="heading-6"
+                    className="text-[--ods-color-heading]"
+                  >
+                    {flavorImagePrice}
+                  </Text>
+                )}
+              </>
             ),
           },
         ]
@@ -89,9 +105,21 @@ export const CreationCart = () => {
               'creation:pci_instance_creation_cart_distribution_image_title',
             ),
             description: (
-              <Text preset="heading-6" className="text-[--ods-color-heading]">
-                {distributionImageName} - version x
-              </Text>
+              <>
+                <Text preset="heading-6" className="text-[--ods-color-heading]">
+                  {[distributionImageName, distributionImageVersion]
+                    .filter((distribution) => distribution)
+                    .join(' - ')}
+                </Text>
+                {distributionLicencePrice && (
+                  <Text
+                    preset="heading-6"
+                    className="text-[--ods-color-heading]"
+                  >
+                    {distributionLicencePrice}
+                  </Text>
+                )}
+              </>
             ),
           },
         ]
@@ -104,6 +132,9 @@ export const CreationCart = () => {
     selectedFlavorDetails,
     quantity,
     distributionImageName,
+    flavorImagePrice,
+    distributionImageVersion,
+    distributionLicencePrice,
   ]);
 
   const sshKeyDetails = useMemo(
