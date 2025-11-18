@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   getOdsButtonByLabel,
@@ -34,8 +34,8 @@ describe('Credential delete modal test suite', () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     // Check modal is opened
-    await waitFor(() => {
-      assertOdsModalVisibility({ container, isVisible: true });
+    await waitFor(async () => {
+      await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 
@@ -44,8 +44,8 @@ describe('Credential delete modal test suite', () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     // Wait for modal to open
-    await waitFor(() => {
-      assertOdsModalVisibility({ container, isVisible: true });
+    await waitFor(async () => {
+      await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     const submitButton = await getOdsButtonByLabel({
@@ -54,7 +54,9 @@ describe('Credential delete modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Check navigation
     await waitFor(() => {
@@ -80,8 +82,8 @@ describe('Credential delete modal test suite', () => {
     });
 
     // Wait for modal to open
-    await waitFor(() => {
-      assertOdsModalVisibility({ container, isVisible: true });
+    await waitFor(async () => {
+      await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     const submitButton = await getOdsButtonByLabel({
@@ -91,7 +93,9 @@ describe('Credential delete modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Check navigation
     await waitFor(

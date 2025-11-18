@@ -2,7 +2,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
 import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import {
@@ -22,7 +22,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const renderActivateRegion = async ({
+const renderActivateRegion =  ({
   selectedRegion,
 }: ActivateRegionParams) => {
   return renderWithClient(<ActivateRegion selectedRegion={selectedRegion} />);
@@ -40,7 +40,7 @@ describe('ActivateRegion test suite', () => {
       const selectedRegionMock = REGION_EU_WEST_RBX;
 
       // WHEN
-      await renderActivateRegion({
+      renderActivateRegion({
         selectedRegion: selectedRegionMock,
       });
 
@@ -50,7 +50,9 @@ describe('ActivateRegion test suite', () => {
       );
       expect(activateButton).toBeVisible();
 
-      await user.click(activateButton);
+      await act(async () => {
+        await user.click(activateButton);
+      });
 
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(navigate).toHaveBeenCalledWith(
@@ -60,13 +62,13 @@ describe('ActivateRegion test suite', () => {
   });
 
   describe('when okms list is updating', () => {
-    it('should render a loading state', async () => {
+    it('should render a loading state',  async () => {
       // GIVEN
       const selectedRegionMock = REGION_EU_WEST_RBX;
       registerPendingOrder(selectedRegionMock);
 
       // WHEN
-      await renderActivateRegion({
+       renderActivateRegion({
         selectedRegion: selectedRegionMock,
       });
 

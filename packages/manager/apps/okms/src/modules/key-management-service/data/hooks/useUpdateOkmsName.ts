@@ -65,17 +65,18 @@ export const useUpdateOkmsName = ({
       // 2. Invalidate the OKMS list query so that the list is refetched when the user returns to it.
       queryClient.invalidateQueries({
         queryKey: okmsQueryKeys.listDatagrid,
-      });
+      }).catch(error => console.error(error));
 
       // 3. Invalidate the OKMS list and detail queries after a delay to synchronize the front-end cache with the back-end.
-      setTimeout(async () => {
+      setTimeout(() => {
         queryClient.invalidateQueries({
           queryKey: okmsQueryKeys.detail(okms.id),
-        });
+        }).catch(error => console.error(error));
+
         // Invalidate the list query again to handle the case where the user returns to the list before the data is propagated in the back-end.
-        queryClient.invalidateQueries({
+        void queryClient.invalidateQueries({
           queryKey: okmsQueryKeys.listDatagrid,
-        });
+        }).catch(error => console.error(error));
       }, 3000);
 
       clearNotifications();

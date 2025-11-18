@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
@@ -35,6 +36,7 @@ describe('pollOnNewOkms', () => {
   const mockOnExpired = vi.fn();
   const expirationInMinutes = 1;
 
+
   beforeEach(() => {
     vi.clearAllMocks();
     // Reset store to initial state
@@ -42,6 +44,8 @@ describe('pollOnNewOkms', () => {
     // Spy on store actions
     vi.spyOn(pendingOkmsOrderStore, 'clearPendingOrder');
     vi.spyOn(pendingOkmsOrderStore, 'saveInitialOkmsIds');
+    // Spy on queryClient method
+    vi.spyOn(queryClient, 'invalidateQueries');
     vi.useFakeTimers();
   });
 

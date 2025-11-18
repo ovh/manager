@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { TagsList, useServiceDetails } from '@ovh-ux/manager-react-components';
+import { TagsList } from '@ovh-ux/manager-react-components';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
