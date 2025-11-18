@@ -163,6 +163,8 @@ export const SERVICE_INFOS_URLS_BY_TYPE = {
   NUTANIX: `/nutanix/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
 };
 
+export const UNIT_YEARLY = 'Y';
+
 export default {
   AUTORENEW_EVENT,
   CONTRACTS_IDS,
@@ -174,4 +176,5 @@ export default {
   URL_PARAMETER_SEPARATOR,
   SERVICE_INFOS_URLS_BY_TYPE,
   SERVICE_NAME_PLACEHOLDER,
+  UNIT_YEARLY,
 };
