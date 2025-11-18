@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, ReactElement, ReactNode } from 'react';
+import { ChangeEventHandler, ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { OdsText } from '@ovhcloud/ods-components/react';
 

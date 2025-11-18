@@ -1,5 +1,4 @@
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsCard } from '@ovhcloud/ods-components/react';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';

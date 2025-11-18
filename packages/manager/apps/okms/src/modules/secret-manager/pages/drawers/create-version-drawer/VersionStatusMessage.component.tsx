@@ -1,4 +1,3 @@
-import React from 'react';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { SecretVersionState } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';

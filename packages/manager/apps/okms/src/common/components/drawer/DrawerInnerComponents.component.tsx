@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 // Sub components for the drawer

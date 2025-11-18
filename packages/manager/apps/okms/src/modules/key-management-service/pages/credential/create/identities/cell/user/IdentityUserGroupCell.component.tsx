@@ -1,4 +1,3 @@
-import React from 'react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { IdentityUser } from '@key-management-service/types/identity.type';
 

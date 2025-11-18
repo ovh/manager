@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,

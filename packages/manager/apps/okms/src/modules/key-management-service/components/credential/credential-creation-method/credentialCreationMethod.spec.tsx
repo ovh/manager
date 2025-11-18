@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import CredentialCreationMethod from './credentialCreationMethod.component';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';

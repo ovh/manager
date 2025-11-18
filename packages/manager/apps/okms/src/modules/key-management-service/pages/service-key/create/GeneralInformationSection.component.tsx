@@ -1,4 +1,3 @@
-import React from 'react';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {

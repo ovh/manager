@@ -1,7 +1,6 @@
 import { I18nextProvider } from 'react-i18next';
 import { i18n } from 'i18next';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { SecretVersionState } from '@secret-manager/types/secret.type';
 import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
