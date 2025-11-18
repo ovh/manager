@@ -106,7 +106,7 @@ function buildPackageNameQuestion<T extends string>({
     message: `What is the package name of the new ${label}?`,
     initial: (_value, state) => {
       const name = getPreviousAnswer<string>(nameKey, _value, state);
-      return `@ovh-ux/manager-${prefix}-${typeof name === 'string' ? name : ''}`;
+      return `@ovh-ux/${prefix}-${typeof name === 'string' ? name : ''}`;
     },
   };
 }
@@ -137,7 +137,7 @@ function buildUniversesQuestion(): PromptOptions<'universes'> {
     type: 'multiselect',
     name: 'universes',
     message: 'Select universes',
-    choices: UNIVERSES.map((u) => ({ name: u, value: u })),
+    choices: UNIVERSES.map((universe) => ({ name: universe, value: universe })),
     validate: (value: unknown) =>
       Array.isArray(value) && value.length > 0 ? true : 'Pick at least one universe',
   };
@@ -167,7 +167,7 @@ function buildUniverseQuestion(): PromptOptions<'universe'> {
     type: 'select',
     name: 'universe',
     message: 'Select universe for tracking',
-    choices: UNIVERSES.map((u) => ({ name: u, value: u })),
+    choices: UNIVERSES.map((universe) => ({ name: universe, value: universe })),
   };
 }
 
@@ -181,7 +181,7 @@ function buildSubUniverseQuestion(): PromptOptions<'subUniverse'> {
     type: 'select',
     name: 'subUniverse',
     message: 'Select sub-universe for tracking',
-    choices: SUB_UNIVERSES.map((s) => ({ name: s, value: s })),
+    choices: SUB_UNIVERSES.map((subUniverse) => ({ name: subUniverse, value: subUniverse })),
   };
 }
 
@@ -238,6 +238,13 @@ function buildModuleTypeQuestion(): PromptOptions<'moduleType'> {
       { name: 'React (frontend)', value: 'react' },
       { name: 'Node (backend/pure JS)', value: 'node' },
     ],
+    initial: () => 0,
+    result: (value) => {
+      const found = ['react', 'node'].find(
+        (option) => typeof value === 'string' && value.toLowerCase().includes(option),
+      );
+      return found ?? value;
+    },
   };
 }
 
