@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { waitFor } from '@testing-library/react';
+import { act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   getOdsButtonByLabel,
@@ -58,7 +58,9 @@ describe('Delete secret modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Check navigation
     await waitFor(() => {
@@ -80,7 +82,9 @@ describe('Delete secret modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     await assertTextVisibility(deleteSecretErrorMessage);
 

@@ -17,16 +17,15 @@ import {
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import {
   GeographyGroup,
-  RegionOption,
+  useRegionSelector,
 } from '@/modules/secret-manager/hooks/useRegionSelector';
 import { RegionSelector } from './RegionSelector.component';
 
 let i18nValue: i18n;
 
 // Mock the useRegionSelector hook
-const mockUseRegionSelector = vi.fn();
 vi.mock('@/modules/secret-manager/hooks/useRegionSelector', () => ({
-  useRegionSelector: () => mockUseRegionSelector(),
+  useRegionSelector: vi.fn(),
 }));
 
 // Mock react-router-dom
@@ -35,7 +34,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
   };
 });
 
@@ -104,7 +103,7 @@ const mockGeographyGroups: GeographyGroup[] = [
 
 const mockCurrentRegion = mockGeographyGroups[0].regions.find(
   (region) => region.region === LOCATION_EU_WEST_GRA.name,
-) as RegionOption;
+);
 
 describe('RegionSelector Component', () => {
   beforeEach(() => {
@@ -114,7 +113,7 @@ describe('RegionSelector Component', () => {
   describe('Loading state', () => {
     it('should display loading state when isLoading is true', async () => {
       // Given
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: [],
         currentRegion: undefined,
         isLoading: true,
@@ -137,7 +136,7 @@ describe('RegionSelector Component', () => {
   describe('Error state', () => {
     it('should render nothing when isError is true', async () => {
       // Given
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: [],
         currentRegion: undefined,
         isLoading: false,
@@ -154,7 +153,7 @@ describe('RegionSelector Component', () => {
 
   describe('Normal state', () => {
     beforeEach(() => {
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: mockGeographyGroups,
         currentRegion: mockCurrentRegion,
         isLoading: false,
@@ -240,7 +239,7 @@ describe('RegionSelector Component', () => {
   describe('Edge cases', () => {
     it('should handle empty geography groups', async () => {
       // Given
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: [],
         currentRegion: undefined,
         isLoading: false,

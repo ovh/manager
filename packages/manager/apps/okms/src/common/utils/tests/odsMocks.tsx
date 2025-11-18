@@ -10,10 +10,14 @@ import {
   OdsTextarea,
 } from '@ovhcloud/ods-components/react';
 
+type DataTestIdProps = {
+  'data-testid'?: string;
+};
+
 /**
  * Mocks the OdsInput component
  */
-type OdsInputProps = ComponentProps<typeof OdsInput>;
+type OdsInputProps = ComponentProps<typeof OdsInput> & DataTestIdProps;
 
 export const odsInputMock = (props: OdsInputProps) => {
   const handleChange = (props.onOdsChange as unknown) as ChangeEventHandler<
@@ -27,7 +31,7 @@ export const odsInputMock = (props: OdsInputProps) => {
       name={props.name}
       value={props.value}
       data-testid={
-        props['data-testid' as keyof ComponentProps<typeof OdsInput>]
+        props['data-testid']
       }
       onChange={handleChange}
       onBlur={handleChange}
@@ -38,7 +42,7 @@ export const odsInputMock = (props: OdsInputProps) => {
 /**
  * Mocks the OdsTextarea component
  */
-type OdsTextareaProps = ComponentProps<typeof OdsTextarea>;
+type OdsTextareaProps = ComponentProps<typeof OdsTextarea> & DataTestIdProps;
 
 export const odsTextareaMock = (props: OdsTextareaProps) => {
   const handleChange = (props.onOdsChange as unknown) as ChangeEventHandler<
@@ -52,7 +56,7 @@ export const odsTextareaMock = (props: OdsTextareaProps) => {
       name={props.name}
       value={props.value}
       data-testid={
-        props['data-testid' as keyof ComponentProps<typeof OdsTextarea>]
+        props['data-testid']
       }
       onChange={handleChange}
       onBlur={handleChange}
@@ -63,11 +67,11 @@ export const odsTextareaMock = (props: OdsTextareaProps) => {
 /**
  * Mocks the OdsSwitch component
  */
-type OdsSwitchProps = ComponentProps<typeof OdsSwitch>;
+type OdsSwitchProps = ComponentProps<typeof OdsSwitch> & DataTestIdProps;
 
 export const odsSwitchMock = (props: OdsSwitchProps) => {
   return (
-    <div data-testid={props['data-testid' as keyof OdsSwitchProps]}>
+    <div data-testid={props['data-testid']}>
       {props.children}
     </div>
   );
@@ -76,7 +80,7 @@ export const odsSwitchMock = (props: OdsSwitchProps) => {
 /**
  * Mocks the OdsSwitchItem component
  */
-type OdsSwitchItemProps = ComponentProps<typeof OdsSwitchItem>;
+type OdsSwitchItemProps = ComponentProps<typeof OdsSwitchItem> & DataTestIdProps;
 
 export const odsSwitchItemMock = (props: OdsSwitchItemProps) => {
   const handleClick = (props.onClick as unknown) as MouseEventHandler<
@@ -86,7 +90,7 @@ export const odsSwitchItemMock = (props: OdsSwitchItemProps) => {
   return (
     <button
       type="button"
-      data-testid={props['data-testid' as keyof OdsSwitchItemProps]}
+      data-testid={props['data-testid']}
       data-checked={props.isChecked}
       onClick={handleClick}
     >

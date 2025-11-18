@@ -109,13 +109,15 @@ export type DeleteSecretMockParams = {
   isDeleteSecretKO?: boolean;
 };
 
+
+
 export const deleteSecretMock = ({
   isDeleteSecretKO,
 }: DeleteSecretMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:path',
     response: buildMswResponseMock({
-      data: null,
+      data: {},
       errorMessage: deleteSecretErrorMessage,
       isError: isDeleteSecretKO,
     }),

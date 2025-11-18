@@ -10,7 +10,7 @@ import {
 import useServiceKeyActionsList from './useServiceKeyActionsList';
 
 vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(() => ({ t: vi.fn((key) => key) })),
+  useTranslation: vi.fn(() => ({ t: vi.fn((key: string) => key) })),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
@@ -204,7 +204,9 @@ describe('useServiceKeyActionsList', () => {
       );
       expect(result.current).toEqual(
         expect.arrayContaining(
-          expectedActions.map((action) => expect.objectContaining(action)),
+          expectedActions.map((action) =>
+            expect.objectContaining(action) as unknown,
+          ),
         ),
       );
     });

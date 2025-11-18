@@ -28,6 +28,7 @@ import {
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
 import { SecretFormBackLink } from './BackLink.component';
 import { PATH_LABEL } from '@/constants';
+import { SecretVersionDataField } from '@secret-manager/types/secret.type';
 
 type SecretFormProps = {
   okmsId?: string;
@@ -83,7 +84,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
       okmsId,
       data: {
         path: formData.path,
-        version: { data: JSON.parse(formData.data) },
+        version: { data: JSON.parse(formData.data) as SecretVersionDataField },
       },
     });
   };

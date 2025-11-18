@@ -16,8 +16,8 @@ export const useUpdateSecretVersion = () => {
     UpdateSecretVersionParams
   >({
     mutationFn: updateSecretVersion,
-    onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (_, variables) => {
+      await queryClient.invalidateQueries({
         queryKey: secretVersionsQueryKeys.list(
           variables.okmsId,
           variables.path,

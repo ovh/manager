@@ -127,7 +127,7 @@ describe('Secret create version drawer page test suite', () => {
       expect(secretVersionsApi.createSecretVersion).toHaveBeenCalledWith({
         okmsId: mockOkmsId,
         path: mockedSecret.path,
-        data: JSON.parse(MOCK_NEW_DATA),
+        data: JSON.parse(MOCK_NEW_DATA) as Record<string, unknown>,
         cas: mockedSecret.metadata.currentVersion,
       });
     });

@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import {
   assertTextVisibility,
   getOdsButtonByLabel,
@@ -88,7 +88,9 @@ describe('Okms List page test suite', () => {
       label: labels.secretManager.create_a_secret,
     });
 
-    user.click(button);
+    await act(async () => {
+      await user.click(button);
+    });
 
     await assertTextVisibility(
       labels.secretManager.create_secret_form_region_section_title,
@@ -102,12 +104,14 @@ describe('Okms List page test suite', () => {
       container,
     );
 
-    user.click(okmsNameLink);
+    await act(async () => {
+      await user.click(okmsNameLink);
+    });
 
     await assertTextVisibility(labels.secretManager.secret_manager);
   });
 
-  describe('should redirect to the default region page', async () => {
+  describe('should redirect to the default region page', () => {
     it('when the kms list is empty', async () => {
       const { container } = await renderTestApp(
         SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithoutOkms.region),

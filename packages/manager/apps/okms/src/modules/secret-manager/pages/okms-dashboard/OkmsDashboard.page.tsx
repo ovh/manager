@@ -22,7 +22,7 @@ import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
-import { OkmsDomainDashboardTiles } from '@/common/components/okms-dashboard/OkmsDomainDashboardTiles.component';
+import { OkmsDomainDashboardTiles } from '@/common/components/okms-dashboard/okms-domain-dashboard-tiles/OkmsDomainDashboardTiles.component';
 import { OkmsDashboardOutletContext } from './OkmsDashboard.type';
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 

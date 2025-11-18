@@ -126,7 +126,7 @@ export default function CreateKey() {
         pageType: PageType.bannerSuccess,
         pageName: 'create_encryption_key',
       });
-    } catch (error) {
+    } catch  {
       trackPage({
         pageType: PageType.bannerError,
         pageName: 'create_encryption_key',
