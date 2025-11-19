@@ -3,14 +3,10 @@ import { useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useGetIpGameFirewall, useIpGameFirewallRules } from '@/data/hooks';
-import {
-  fromIdToIp,
-  ipFormatter,
-  INVALIDATED_REFRESH_PERIOD,
-  TRANSLATION_NAMESPACES,
-} from '@/utils';
+import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
 import {
   addIpGameFirewallRule,
   getGameFirewallRuleQueryKey,
@@ -86,6 +82,7 @@ export const GameFirewallContextProvider: React.FC<{
 }> = ({ children }) => {
   const qc = useQueryClient();
   const { clearNotifications, addSuccess, addError } = useNotifications();
+  const { trackPage } = useOvhTracking();
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.gameFirewall,
     TRANSLATION_NAMESPACES.error,
@@ -177,6 +174,10 @@ export const GameFirewallContextProvider: React.FC<{
         queryKey: getGameFirewallRuleQueryKey({ ip: ipGroup, ipOnGame }),
       });
       addSuccess(t('add_rule_success_message'), true);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'configure_game-firewall_add-rule_success',
+      });
       hideNewRuleRow();
     },
     onError: (err?: ApiError) => {
@@ -190,6 +191,10 @@ export const GameFirewallContextProvider: React.FC<{
           }),
           true,
         );
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: 'configure_game-firewall_add-rule_error',
+        });
       }
     },
   });

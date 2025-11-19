@@ -111,6 +111,7 @@ export default function Step2({
         )}
       </div>
       <ModalButtonGroup
+        currentStep={2}
         onCancel={onCancel}
         onPrevious={onPrevious}
         onNext={onNext}
