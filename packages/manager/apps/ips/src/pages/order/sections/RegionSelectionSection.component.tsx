@@ -2,6 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useAdditionalIpsRegions } from '@/data/hooks/catalog';
 import { useIpv6Availability } from '@/data/hooks/useIpv6Availability';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
@@ -17,6 +22,7 @@ export const RegionSelectionSection: React.FC = () => {
     ipVersion,
     setSelectedOrganisation,
   } = React.useContext(OrderContext);
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('order');
   const { regionList, isLoading, isError, error } = useAdditionalIpsRegions({
     ipVersion,
@@ -47,6 +53,12 @@ export const RegionSelectionSection: React.FC = () => {
   const handleSelectRegion = (updatedRegion: React.SetStateAction<string>) => {
     setSelectedRegion(updatedRegion);
     setSelectedOrganisation(undefined);
+    trackClick({
+      actionType: 'action',
+      buttonType: ButtonType.button,
+      location: PageLocation.funnel,
+      actions: [`select_${updatedRegion}`],
+    });
   };
 
   return (

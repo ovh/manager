@@ -83,7 +83,7 @@ export default function AntiSpamModal() {
   const closeModal = () => navigate(`..?${search.toString()}`);
 
   const { isPending, mutate: unblockAntiSpamHandler } = useMutation({
-    mutationFn: () => unblockAntiSpamIp({ ip, ipBlocked }),
+    mutationFn: () => unblockAntiSpamIp({ ip: parentIp, ipBlocked }),
     onSuccess: async () => {
       clearNotifications();
       trackPage({
@@ -92,7 +92,7 @@ export default function AntiSpamModal() {
       });
       addSuccess(t('unblock_anti_spam_ip_success', { ipBlocked }));
       await queryClient.invalidateQueries({
-        queryKey: getIpSpamQueryKey({ ip }),
+        queryKey: getIpSpamQueryKey({ ip: parentIp }),
       });
       closeModal();
     },
@@ -117,7 +117,7 @@ export default function AntiSpamModal() {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
-      actionType: 'exit',
+      actionType: 'action',
       actions: ['anti-spam-unblock', 'cancel'],
     });
     closeModal();
@@ -186,7 +186,15 @@ export default function AntiSpamModal() {
       onDismiss={closeHandler}
       heading={t('unblock_anti_spam_title', { ipBlocked })}
       primaryLabel={t('unblock_anti_spam_ip_action')}
-      onPrimaryButtonClick={() => unblockAntiSpamHandler()}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['configure_anti-spam-unblock', 'confirm'],
+        });
+        unblockAntiSpamHandler();
+      }}
       isPrimaryButtonLoading={isPending}
       isPrimaryButtonDisabled={isUnblockingDisabled}
       secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}

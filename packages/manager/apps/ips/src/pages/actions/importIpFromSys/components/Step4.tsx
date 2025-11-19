@@ -78,6 +78,7 @@ export default function Step4({
       </OdsFormField>
       <ApiErrorMessage className="my-4" error={error} />
       <ModalButtonGroup
+        currentStep={4}
         onCancel={onCancel}
         onPrevious={() => {
           setIsContractChecked(false);

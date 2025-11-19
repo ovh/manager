@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { useNotifications, Links } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useTranslation } from 'react-i18next';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useGetIcebergIpReverse } from '@/data/hooks/ip';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
@@ -9,7 +9,6 @@ import { ListingContext } from '@/pages/listing/listingContext';
 import { useDeleteIpReverse } from '@/data/hooks/ip/useDeleteIpReverse';
 import { useUpdateIpReverse } from '@/data/hooks/ip/useUpdateIpReverse';
 import { EditInline } from '@/components/EditInline/edit-inline.component';
-import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
 import { IpReverseError } from '@/components/IpReverseError/IpReverseError';
 
 export type IpReverseProps = {
@@ -27,14 +26,9 @@ export type IpReverseProps = {
  * @returns React Component
  */
 export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
-  const { t } = useTranslation([
-    'ip-reverse',
-    TRANSLATION_NAMESPACES.error,
-    'error',
-  ]);
-  const { links } = useGuideUtils();
   const { expiredIps } = useContext(ListingContext);
   const { addError } = useNotifications();
+  const { trackPage } = useOvhTracking();
 
   // Check if ip is not /32
   const { ip: formattedIp, isGroup } = ipFormatter(ip);
@@ -50,6 +44,10 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   // Add error notification
   const onError = (apiError: ApiError) => {
     addError(<IpReverseError apiError={apiError} />, true);
+    trackPage({
+      pageType: PageType.bannerError,
+      pageName: 'update_reverse-dns_error',
+    });
   };
 
   // Prepare delete mutation with
