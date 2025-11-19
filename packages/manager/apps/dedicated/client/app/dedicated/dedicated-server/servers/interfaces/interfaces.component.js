@@ -18,6 +18,7 @@ export default {
     specifications: '<',
     resiliatePublicBandwidthLink: '<',
     resiliatePrivateBandwidthLink: '<',
+    isLacpBannerAvailable: '<',
     trafficInformation: '<',
     urls: '<',
     user: '<',
