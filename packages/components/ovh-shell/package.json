@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "4.8.1",
+  "version": "4.8.2",
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
