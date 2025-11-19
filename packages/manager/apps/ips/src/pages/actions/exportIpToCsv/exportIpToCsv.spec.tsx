@@ -2,6 +2,11 @@ import React from 'react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  initShellContext,
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import ExportIpToCsv from './exportIpToCsv.page';
 import { useExportIpToCsv } from '@/data/hooks';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -23,15 +28,19 @@ vi.mock('react-i18next', () => ({
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
   useSearchParams: () => ['', vi.fn()],
+  useMatches: () => [] as any[],
 }));
 
-const renderComponent = () => {
+const renderComponent = async () => {
+  const context = (await initShellContext('ips')) as ShellContextType;
   return render(
-    <QueryClientProvider client={queryClient}>
-      <ListingContext.Provider value={listingContextDefaultParams}>
-        <ExportIpToCsv />
-      </ListingContext.Provider>
-    </QueryClientProvider>,
+    <ShellContext.Provider value={context}>
+      <QueryClientProvider client={queryClient}>
+        <ListingContext.Provider value={listingContextDefaultParams}>
+          <ExportIpToCsv />
+        </ListingContext.Provider>
+      </QueryClientProvider>
+    </ShellContext.Provider>,
   );
 };
 
@@ -46,8 +55,8 @@ describe('ExportIpToCsv Component', () => {
     });
   });
 
-  it('should render the export modal with title and buttons', () => {
-    renderComponent();
+  it('should render the export modal with title and buttons', async () => {
+    await renderComponent();
 
     expect(screen.getByText('exportIpToCsvTitle')).toBeInTheDocument();
     expect(screen.getByTestId('secondary-button')).toBeInTheDocument();

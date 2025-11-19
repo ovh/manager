@@ -79,6 +79,7 @@ export default function Step1({
         </OdsFormField>
       </div>
       <ModalButtonGroup
+        currentStep={1}
         onCancel={onCancel}
         onNext={onNext}
         isNextButtonDisabled={isNextButtonDisabled}

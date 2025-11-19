@@ -20,6 +20,12 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useAddVirtualMacToIp,
   useAddIpToVirtualMac,
   useGetServerModels,
@@ -28,6 +34,8 @@ import { useGetIpVmac } from '@/data/hooks/ip';
 import { VirtualMac } from '@/data/api';
 import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 import Loading from '@/pages/listing/manageOrganisations/components/Loading/Loading';
+
+const MAX_CHARACTERS = 250;
 
 export default function AddVirtualMacModal() {
   const { t } = useTranslation(['virtual-mac', NAMESPACES.ACTIONS, 'error']);
@@ -44,10 +52,16 @@ export default function AddVirtualMacModal() {
   const { models, isLoading: isServerModelsLoading } = useGetServerModels({
     enabled: true,
   });
+  const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
-  const MAX_CHARACTERS = 250;
 
   const closeModal = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add_virtual-mac', 'cancel'],
+    });
     navigate(`..?${search.toString()}`);
   };
 
@@ -72,6 +86,10 @@ export default function AddVirtualMacModal() {
     onSuccess: () => {
       closeModal();
       addSuccess(t('addVirtualMacAddNewSuccess', { t0: ip }));
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'add_virtual-mac_success',
+      });
     },
     onError: (err) => {
       closeModal();
@@ -83,6 +101,10 @@ export default function AddVirtualMacModal() {
         }),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'add_virtual-mac_error',
+      });
     },
   });
 
@@ -98,6 +120,10 @@ export default function AddVirtualMacModal() {
     onSuccess: () => {
       closeModal();
       addSuccess(t('addVirtualMacAddExistingSuccess', { t0: ip }));
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'add_virtual-mac_success',
+      });
     },
     onError: (err) => {
       closeModal();
@@ -109,6 +135,10 @@ export default function AddVirtualMacModal() {
         }),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'add_virtual-mac_error',
+      });
     },
   });
 
@@ -129,8 +159,15 @@ export default function AddVirtualMacModal() {
   };
 
   // If its new vmac creation selection call addVirtualMacToIp function or else addIpToVirtualMac
-  const onSubmit = () =>
-    createNewVirtualMac ? addVirtualMacToIp() : addIpToVirtualMac();
+  const onSubmit = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add_virtual-mac', 'confirm'],
+    });
+    return createNewVirtualMac ? addVirtualMacToIp() : addIpToVirtualMac();
+  };
 
   return (
     <OdsModal isOpen isDismissible onOdsClose={closeModal}>

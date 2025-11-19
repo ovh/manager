@@ -5,6 +5,7 @@ import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { useQueryClient } from '@tanstack/react-query';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { getIpGameFirewallQueryKey } from '@/data/api';
 import { useUpdateIpGameFirewall } from '@/data/hooks';
 import { TRANSLATION_NAMESPACES } from '@/utils';
@@ -12,6 +13,7 @@ import { GameFirewallContext } from '../gamefirewall.context';
 
 export const StrategyModal: React.FC = () => {
   const queryClient = useQueryClient();
+  const { trackPage } = useOvhTracking();
   const {
     isStrategyConfirmationModalVisible,
     hideStrategyConfirmationModal,
@@ -39,6 +41,10 @@ export const StrategyModal: React.FC = () => {
           : t('default_deny_strategy_disabled_success_message'),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'apply_default-refusal-strategy_success',
+      });
       queryClient.invalidateQueries({
         queryKey: getIpGameFirewallQueryKey({ ip }),
       });
@@ -52,6 +58,10 @@ export const StrategyModal: React.FC = () => {
         }),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'apply_default-refusal-strategy_error',
+      });
     },
     onSettled: hideStrategyConfirmationModal,
   });

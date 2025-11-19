@@ -2,6 +2,12 @@ import React from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { TRANSLATION_NAMESPACES, startCaseFormat } from '@/utils';
@@ -21,6 +27,7 @@ export const DeleteRuleModal: React.FC = () => {
   } = React.useContext(GameFirewallContext);
   const qc = useQueryClient();
   const { addSuccess, addError, clearNotifications } = useNotifications();
+  const { trackPage, trackClick } = useOvhTracking();
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.gameFirewall,
     NAMESPACES.ACTIONS,
@@ -36,6 +43,10 @@ export const DeleteRuleModal: React.FC = () => {
       });
       clearNotifications();
       addSuccess(t('delete_rule_success_message'), true);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'configure_game-firewall_delete-rule_success',
+      });
     },
     onError: (err: ApiError) => {
       clearNotifications();
@@ -47,6 +58,10 @@ export const DeleteRuleModal: React.FC = () => {
         }),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'configure_game-firewall_delete-rule_error',
+      });
     },
     onSettled: hideConfirmDeleteModal,
   });
@@ -60,7 +75,15 @@ export const DeleteRuleModal: React.FC = () => {
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       isSecondaryButtonDisabled={isPending}
       isPrimaryButtonLoading={isPending}
-      onPrimaryButtonClick={deleteRule}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['configure_game-firewall', 'delete-rule', 'confirm'],
+        });
+        deleteRule();
+      }}
       onSecondaryButtonClick={hideConfirmDeleteModal}
     >
       {t('confirmDeleteRuleDescription', {

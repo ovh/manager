@@ -1,7 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
@@ -24,18 +22,11 @@ export const RirSelectionSection: React.FC = () => {
     CONFIG_NAME.IPRIR,
   ) as string[];
 
-  if (isLoading) {
-    return (
-      <div>
-        <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
-      </div>
-    );
-  }
-
   return (
     <OrderSection
       title={t('rir_selection_title')}
       description={t('rir_selection_description')}
+      isLoading={isLoading}
     >
       <div className="grid grid-cols-3 gap-3">
         {ipRirValues.map((value) => (
@@ -50,7 +41,7 @@ export const RirSelectionSection: React.FC = () => {
                 actionType: 'action',
                 buttonType: ButtonType.button,
                 location: PageLocation.funnel,
-                actions: [value],
+                actions: [`select_${value.toLowerCase()}`],
               });
               setIpRir(value);
             }}
