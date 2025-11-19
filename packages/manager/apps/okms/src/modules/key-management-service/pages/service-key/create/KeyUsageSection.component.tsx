@@ -41,7 +41,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
         setKeyOperations([operation.value]);
       }
     });
-  }, [serviceKey]);
+  }, [serviceKey, setKeyOperations]);
 
   const onCheckboxChange = (operation: OkmsServiceKeyReferenceOperations) => {
     setKeyOperations((prev) => {
