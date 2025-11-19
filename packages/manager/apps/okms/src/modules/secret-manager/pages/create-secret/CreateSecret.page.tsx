@@ -34,7 +34,7 @@ export default function SecretCreatePage() {
       }
       message={notifications.length > 0 ? <Notifications /> : null}
     >
-      <div className="flex flex-col gap-8 max-w-2xl">
+      <div className="flex max-w-2xl flex-col gap-8">
         <OkmsManagement selectedOkmsId={selectedOkmsId} setSelectedOkmsId={setSelectedOkmsId} />
         <SecretForm okmsId={selectedOkmsId} />
       </div>
