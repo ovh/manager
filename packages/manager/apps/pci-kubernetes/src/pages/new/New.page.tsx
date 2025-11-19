@@ -37,7 +37,7 @@ import {
   TNonNullableForm,
   useClusterCreationStepper,
 } from './hooks/useCusterCreationStepper';
-import stepsConfig from './view-models/stepsConfig';
+import stepsConfig from './steps/stepsConfig';
 
 const formIsNonNullable = (form: TClusterCreationForm): form is TNonNullableForm => {
   if (!form.region?.type) return false;
