@@ -1,0 +1,4 @@
+{
+  "rule_form_rule_continue_label": "I kontynuuj przetwarzanie reguł",
+  "rule_form_rule_continue_tooltip": "Gdy warunki tej reguły są spełnione, jest ona stosowana. <br>Jeśli ta opcja jest włączona, będą również oceniane następujące reguły. <br>W przeciwnym razie ocena zatrzymuje się tutaj."
+}

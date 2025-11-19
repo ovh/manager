@@ -1,0 +1,4 @@
+{
+  "rule_form_rule_continue_label": "Und die Regelverarbeitung fortsetzen",
+  "rule_form_rule_continue_tooltip": "Wenn die Bedingungen dieser Regel erfüllt sind, wird sie angewendet. <br>Wenn diese Option aktiviert ist, werden auch die folgenden Regeln bewertet. <br>Andernfalls wird die Bewertung hier gestoppt."
+}

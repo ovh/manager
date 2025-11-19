@@ -1,0 +1,4 @@
+{
+  "rule_form_rule_continue_label": "Y continuar el tratamiento de reglas",
+  "rule_form_rule_continue_tooltip": "Cuando se cumplen las condiciones de esta regla, se aplica. <br>Si esta opción está activada, las siguientes reglas también se evaluarán. <br>De lo contrario, la evaluación se detiene aquí."
+}
