@@ -3,6 +3,11 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  initShellContext,
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import { ListingContext } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 import { IpGameFirewall, IpGameFirewallProps } from './IpGameFirewall';
@@ -28,18 +33,27 @@ vi.mock('@/data/hooks/ip', () => ({
   useGetIpGameFirewall,
 }));
 
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => vi.fn(),
+  useSearchParams: () => ['', vi.fn()],
+  useMatches: () => [] as any[],
+}));
+
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
 /** RENDER */
-const renderComponent = (params: IpGameFirewallProps) => {
+const renderComponent = async (params: IpGameFirewallProps) => {
+  const context = (await initShellContext('ips')) as ShellContextType;
   return render(
-    <QueryClientProvider client={queryClient}>
-      <ListingContext.Provider value={listingContextDefaultParams}>
-        <IpGameFirewall {...params} />
-      </ListingContext.Provider>
-    </QueryClientProvider>,
+    <ShellContext.Provider value={context}>
+      <QueryClientProvider client={queryClient}>
+        <ListingContext.Provider value={listingContextDefaultParams}>
+          <IpGameFirewall {...params} />
+        </ListingContext.Provider>
+      </QueryClientProvider>
+    </ShellContext.Provider>,
   );
 };
 
@@ -56,7 +70,7 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { container } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { container } = await renderComponent({ ip: ipDetailsList[0].ip });
     const badge = await getOdsBadgeByLabel({
       container,
       label: 'listingColumnsIpGameFirewallAvailable',
@@ -78,7 +92,7 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText, container } = renderComponent({
+    const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0].ip,
     });
     const badge = await getOdsBadgeByLabel({
@@ -105,7 +119,7 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { queryByText, container } = renderComponent({
+    const { queryByText, container } = await renderComponent({
       ip: ipDetailsList[1].ip,
     });
 
@@ -136,7 +150,7 @@ describe('IpGameFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { queryByText, container } = renderComponent({
+    const { queryByText, container } = await renderComponent({
       ip: ipDetailsList[0].ip,
     });
     await getOdsBadgeByLabel({

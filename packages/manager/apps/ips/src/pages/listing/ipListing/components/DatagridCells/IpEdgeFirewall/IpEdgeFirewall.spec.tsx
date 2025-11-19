@@ -2,6 +2,11 @@ import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  initShellContext,
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { ListingContext } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
@@ -28,13 +33,22 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
-const renderComponent = (params: IpEdgeFirewallProps) => {
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => vi.fn(),
+  useSearchParams: () => ['', vi.fn()],
+  useMatches: () => [] as any[],
+}));
+
+const renderComponent = async (params: IpEdgeFirewallProps) => {
+  const context = (await initShellContext('ips')) as ShellContextType;
   return render(
-    <QueryClientProvider client={queryClient}>
-      <ListingContext.Provider value={listingContextDefaultParams}>
-        <IpEdgeFirewall {...params} />
-      </ListingContext.Provider>
-    </QueryClientProvider>,
+    <ShellContext.Provider value={context}>
+      <QueryClientProvider client={queryClient}>
+        <ListingContext.Provider value={listingContextDefaultParams}>
+          <IpEdgeFirewall {...params} />
+        </ListingContext.Provider>
+      </QueryClientProvider>
+    </ShellContext.Provider>,
   );
 };
 
@@ -48,7 +62,7 @@ describe('IpEdgeFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText, container } = renderComponent({
+    const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0].ip,
     });
     const badge = await getOdsBadgeByLabel({
@@ -69,7 +83,7 @@ describe('IpEdgeFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText, container } = renderComponent({
+    const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0].ip,
     });
     const badge = await getOdsBadgeByLabel({
@@ -93,7 +107,7 @@ describe('IpEdgeFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText, container } = renderComponent({
+    const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0].ip,
     });
     const badge = await getOdsBadgeByLabel({
@@ -117,7 +131,7 @@ describe('IpEdgeFirewall Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText, container } = renderComponent({
+    const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0].ip,
     });
     const badge = await getOdsBadgeByLabel({

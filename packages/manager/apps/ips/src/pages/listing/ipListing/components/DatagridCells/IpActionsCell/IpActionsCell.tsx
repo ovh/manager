@@ -203,7 +203,7 @@ export const IpActionsCell = ({
       !hasCloudServiceAttachedToIP &&
       Boolean(ipGameFirewall?.length) && {
         id: 2,
-        label: t('listingActionManageGameMitigation'),
+        label: t('listingActionManageGameFirewall'),
         trackingLabel: 'configure_game-firewall',
         onClick: () =>
           navigate(

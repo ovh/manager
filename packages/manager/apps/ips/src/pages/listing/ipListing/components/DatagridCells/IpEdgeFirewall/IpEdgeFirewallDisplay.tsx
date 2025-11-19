@@ -1,8 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
 import { BadgeCell } from '../BadgeCell/BadgeCell';
+import { fromIpToId } from '@/utils';
 
 export type IpEdgeFirewallDetailsProps = {
   ipEdgeFirewall: IpEdgeFirewallType;
@@ -23,9 +31,28 @@ export const IpEdgeFirewallDisplay = ({
 }: IpEdgeFirewallDetailsProps) => {
   const id = `edgefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation('listing');
+  const navigate = useNavigate();
+  const [search] = useSearchParams();
+  const { trackClick } = useOvhTracking();
 
   return (
-    <>
+    <div
+      className="cursor-pointer"
+      onClick={() => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['configure_edge-network-firewall'],
+        });
+        navigate(
+          `${urls.configureEdgeNetworkFirewall.replace(
+            urlDynamicParts.id,
+            fromIpToId(ip),
+          )}?${search.toString()}`,
+        );
+      }}
+    >
       {!ipEdgeFirewall && (
         <BadgeCell
           badgeColor={ODS_BADGE_COLOR.neutral}
@@ -64,6 +91,6 @@ export const IpEdgeFirewallDisplay = ({
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
