@@ -1,8 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { DashboardTabType } from '@/types/Dashboard.type';
-
 import { useDashboardTabs } from './useDashboardTabs';
 
 // --- Mock react-router-dom ---

@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { mockVaults } from '@/mocks/vaults/vaults';
 
-import { VaultReferenceCell } from '../VaultReferenceCell.components';
+import { VaultBucketsCell } from '../VaultBucketsCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
@@ -13,12 +13,12 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ),
 }));
 
-describe('VaultReferenceCell', () => {
-  it('renders resourceName from currentState', () => {
+describe('VaultBucketsCell', () => {
+  it('renders the number of buckets from vspc length', () => {
     const vault = mockVaults[0]!;
 
-    render(<VaultReferenceCell {...vault} />);
+    render(<VaultBucketsCell {...vault} />);
 
-    expect(screen.getByTestId('cell')).toHaveTextContent(vault.currentState.resourceName);
+    expect(screen.getByTestId('cell')).toHaveTextContent('3');
   });
 });
