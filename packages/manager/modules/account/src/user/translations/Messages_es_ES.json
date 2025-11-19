@@ -599,7 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "¡Vaya! Se ha producido un error al eliminar los códigos de seguridad:",
   "user_account_security_ip_restrictions_alt": "Restricción de acceso por IP",
   "user_account_title_infos": "Mi cuenta",
-  "user_account_description": "Administre su cuenta de cliente. Desde aquí podrá gestionar la seguridad de su cuenta, el nivel de soporte y los usuarios. También puede consultar los mensajes recibidos relacionados con sus servicios.",
+  "user_account_description": "Administre su cuenta de cliente. Desde aquí podrá gestionar la seguridad de su cuenta, el nivel de soporte y los usuarios.",
   "user_account_title_subscriptions": "Mis suscripciones",
   "user_agreements_accepting": "Guardando...",
   "user_account_emails_title": "Mensajes recibidos",
