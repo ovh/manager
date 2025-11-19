@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsDivider } from '@ovhcloud/ods-components/react';
+import { Divider } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { DashboardTile, ManagerText } from '@ovh-ux/manager-react-components';
+import { GridLayout, Text, Tile } from '@ovh-ux/muk';
 
 import { BadgeStatus, GuideLink } from '@/components';
 import { useOrganization, usePlatform } from '@/data/hooks';
@@ -44,13 +44,9 @@ export const GeneralInformations = () => {
         id: 'ongoing-task',
         label: t('zimbra_dashboard_tile_status_ongoingTask'),
         value: platformUrn && (
-          <ManagerText
-            className="flex w-full"
-            urn={platformUrn}
-            iamActions={[IAM_ACTIONS.task.get]}
-          >
+          <Text className="flex w-full" urn={platformUrn} iamActions={[IAM_ACTIONS.task.get]}>
             <OngoingTasks />
-          </ManagerText>
+          </Text>
         ),
       },
     ];
@@ -62,7 +58,7 @@ export const GeneralInformations = () => {
         id: 'account-offer',
         label: t('zimbra_dashboard_tile_serviceConsumption_accountOffer'),
         value: platformUrn ? (
-          <ManagerText
+          <Text
             data-testid="account-offers"
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.account.get]}
@@ -76,7 +72,7 @@ export const GeneralInformations = () => {
                   ))
                 : t('common:no_email_account')}
             </div>
-          </ManagerText>
+          </Text>
         ) : null,
       },
     ];
@@ -94,7 +90,7 @@ export const GeneralInformations = () => {
               <div className={`mb-4 ${!isFirst ? 'mt-4' : ''}`}>
                 <GuideLink label={t(key)} guide={value} />
               </div>
-              {!isLast && <OdsDivider />}
+              {!isLast && <Divider />}
             </div>
           );
         }),
@@ -103,29 +99,34 @@ export const GeneralInformations = () => {
   }, [links]);
 
   return (
-    <div className="grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-      <div className="p-3">
-        <DashboardTile
-          data-testid="status"
-          title={t(`${NAMESPACES.STATUS}:status`)}
-          items={itemsStatus}
-        />
-      </div>
-      <div className="p-3">
-        <DashboardTile
-          data-testid="platform-accounts"
-          title={t('zimbra_dashboard_tile_serviceConsumption_title')}
-          items={itemsConsumption}
-        />
-      </div>
-      <div className="p-3">
-        <DashboardTile
-          data-testid="useful-links"
-          title={t('common:useful_links')}
-          items={itemsUsefulLinks}
-        />
-      </div>
-    </div>
+    <GridLayout>
+      <Tile.Root title={t(`${NAMESPACES.STATUS}:status`)} data-testid="status">
+        {itemsStatus.map((item, index) => (
+          <Tile.Item.Root key={index}>
+            <Tile.Item.Term label={item.label}></Tile.Item.Term>
+            <Tile.Item.Description divider={false}>{item.value}</Tile.Item.Description>
+          </Tile.Item.Root>
+        ))}
+      </Tile.Root>
+      <Tile.Root
+        title={t('zimbra_dashboard_tile_serviceConsumption_title')}
+        data-testid="platform-accounts"
+      >
+        {itemsConsumption.map((item, index) => (
+          <Tile.Item.Root key={index}>
+            <Tile.Item.Term label={item.label}></Tile.Item.Term>
+            <Tile.Item.Description divider={false}>{item.value}</Tile.Item.Description>
+          </Tile.Item.Root>
+        ))}
+      </Tile.Root>
+      <Tile.Root title={t('common:useful_links')} data-testid="useful-links">
+        {itemsUsefulLinks.map((item, index) => (
+          <Tile.Item.Root key={index}>
+            <Tile.Item.Description divider={false}>{item.value}</Tile.Item.Description>
+          </Tile.Item.Root>
+        ))}
+      </Tile.Root>
+    </GridLayout>
   );
 };
 

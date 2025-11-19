@@ -5,18 +5,17 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { MODAL_COLOR, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { deleteZimbraPlatformRedirection, getZimbraPlatformRedirectionsQueryKey } from '@/data/api';
 import { useRedirections } from '@/data/hooks';
@@ -77,9 +76,9 @@ export const DeleteOrganizationModal = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_redirections_delete_success_message')}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -89,11 +88,11 @@ export const DeleteOrganizationModal = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_redirections_delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -128,41 +127,42 @@ export const DeleteOrganizationModal = () => {
 
   return (
     <Modal
-      type={ODS_MODAL_COLOR.critical}
+      type={MODAL_COLOR.critical}
       heading={redirectionId ? t('common:delete_redirection') : t('common:delete_redirections')}
-      isOpen
-      onDismiss={() => onClose(false)}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      onPrimaryButtonClick={handleConfirmClick}
-      isPrimaryButtonLoading={isSending || isLoading}
-      primaryButtonTestId="delete-btn"
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      secondaryButtonTestId="cancel-btn"
+      open
+      loading={isSending || isLoading}
+      onOpenChange={() => onClose(false)}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
+        onClick: handleConfirmClick,
+        loading: isSending,
+        testId: 'delete-btn',
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+        testId: 'cancel-btn',
+      }}
     >
       <>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="my-5" data-testid="modal-content">
-          {redirectionId
-            ? t('zimbra_redirections_delete_modal_content')
-            : t('zimbra_redirections_delete_selected_modal_content')}
-        </OdsText>
-        <div className="flex flex-col">
-          {redirections.map((item) => (
-            <div className="flex gap-6" key={item?.id}>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
-                {t('zimbra_redirections_from')}
-                {': '}
-                {item?.from}
-              </OdsText>
+        <Text preset={TEXT_PRESET.paragraph} className="my-5" data-testid="modal-content">
+          {t('zimbra_redirections_delete_modal_content')}
+        </Text>
+        {redirections.map((item) => (
+          <div className="flex gap-6" key={item?.id}>
+            <Text preset={TEXT_PRESET.paragraph}>
+              {t('zimbra_redirections_from')}
+              {': '}
+              {item?.from}
+            </Text>
 
-              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
-                {t('zimbra_redirections_to')}
-                {': '}
-                {item?.to}
-              </OdsText>
-            </div>
-          ))}
-        </div>
+            <Text preset={TEXT_PRESET.paragraph}>
+              {t('zimbra_redirections_to')}
+              {': '}
+              {item?.to}
+            </Text>
+          </div>
+        ))}
       </>
     </Modal>
   );

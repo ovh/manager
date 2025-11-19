@@ -2,9 +2,10 @@ import React from 'react';
 
 import { useLocation } from 'react-router-dom';
 
+import { waitFor } from '@testing-library/dom';
 import { describe, expect, vi } from 'vitest';
 
-import { render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import TabsPanel from './TabsPanel.component';
 
@@ -43,10 +44,10 @@ describe('TabsPanel component', () => {
     const link2 = getByText('2');
 
     await waitFor(() => {
-      expect(link1).toHaveAttribute('is-selected', 'true');
+      expect(link1).toHaveAttribute('aria-selected', 'true');
     });
 
-    expect(link2).toHaveAttribute('is-selected', 'false');
+    expect(link2).toHaveAttribute('aria-selected', 'false');
   });
 
   it('should render correctly with second tab active', async () => {
@@ -66,9 +67,9 @@ describe('TabsPanel component', () => {
     const link2 = getByText('2');
 
     await waitFor(() => {
-      expect(link2).toHaveAttribute('is-selected', 'true');
+      expect(link2).toHaveAttribute('aria-selected', 'true');
     });
 
-    expect(link1).toHaveAttribute('is-selected', 'false');
+    expect(link1).toHaveAttribute('aria-selected', 'false');
   });
 });

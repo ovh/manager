@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { screen } from '@testing-library/dom';
 import { describe, expect } from 'vitest';
 
 import { ZimbraOffer } from '@/data/api';
@@ -10,7 +11,7 @@ import ActionButtonSlot from './ActionButton.component';
 
 describe('Slots datagrid action menu', () => {
   it('should have the defined actions', () => {
-    const { container } = render(
+    render(
       <ActionButtonSlot
         item={{
           id: '1',
@@ -19,10 +20,8 @@ describe('Slots datagrid action menu', () => {
       />,
     );
 
-    const menuItems = container.querySelectorAll('ods-popover ods-button');
-
+    const menuItems = screen.getAllByTestId('manager-button');
     expect(menuItems.length).toBe(2);
-
-    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.configure_account);
+    expect(menuItems[0]).toHaveTextContent(commonTranslation.configure_account);
   });
 });
