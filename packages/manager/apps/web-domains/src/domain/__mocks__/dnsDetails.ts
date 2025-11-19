@@ -3,6 +3,7 @@ import { DomainStateEnum } from '../enum/domainState.enum';
 import { ProtectionStateEnum } from '../enum/protectionState.enum';
 import { PublicNameServerTypeEnum } from '../enum/publicNameServerType.enum';
 import { ResourceStatusEnum } from '../enum/resourceStatus.enum';
+import { StatusEnum } from '../enum/Status.enum';
 import { SuspensionStateEnum } from '../enum/suspensionState.enum';
 import {
   TDatagridDnsDetails,
@@ -49,6 +50,19 @@ export const baseDomainResource: TDomainResource = {
       contactOwner: { id: 'owner-id' },
       contactTechnical: { id: 'technical-id' },
     },
+    hostsConfiguration: {
+      ipv4Supported: true,
+      ipv6Supported: true,
+      multipleIPsSupported: true,
+      hostSupported: true,
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
+        },
+      ],
+    },
     createdAt: '2025-10-11T11:00:00',
   },
   currentTasks: [],
@@ -58,6 +72,9 @@ export const baseDomainResource: TDomainResource = {
   targetSpec: {
     dnsConfiguration: {
       nameServers: [],
+    },
+    hostsConfiguration: {
+      hosts: [],
     },
   },
 };

@@ -7361,15 +7361,6 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
-"@ovh-ux/manager-core-api@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.16.0.tgz#a59f178b52b96af26b60c8a20f7c734c0b140160"
-  integrity sha512-NPc3IiEuzddzcddsaa7HDCXSeX9FmFz/pdjDRKtmTuTS9lGcjH2bn2rAF0/n0mtXnbs3fiXO24YDsH+b/E1HKQ==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.3.2"
-    "@ovh-ux/request-tagger" "^0.4.1"
-    axios "^1.1.2"
-
 "@ovh-ux/manager-core-sso@^0.3.0", "@ovh-ux/manager-core-sso@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
