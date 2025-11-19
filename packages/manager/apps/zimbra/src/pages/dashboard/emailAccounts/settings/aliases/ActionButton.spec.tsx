@@ -13,8 +13,7 @@ describe('Alias datagrid action button', () => {
     );
 
     const btn = getByTestId('delete-alias');
-
-    expect(btn).toHaveAttribute('is-disabled', 'false');
+    expect(btn).toBeEnabled();
   });
 
   it('should render correctly with disabled button', () => {
@@ -23,7 +22,6 @@ describe('Alias datagrid action button', () => {
     );
 
     const btn = getByTestId('delete-alias');
-
-    expect(btn).toHaveAttribute('is-disabled', 'true');
+    expect(btn).toBeDisabled();
   });
 });

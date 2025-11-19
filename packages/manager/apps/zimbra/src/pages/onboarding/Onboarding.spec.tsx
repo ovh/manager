@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { act, fireEvent } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
-import { act, fireEvent, render } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import Onboarding from './Onboarding.page';
 
@@ -16,13 +17,11 @@ describe('Onboarding page', () => {
   });
 
   it('should call window open on click', () => {
-    const { container } = render(<Onboarding />);
+    const { getByText } = render(<Onboarding />);
 
     const spy = vi.spyOn(window, 'open');
 
-    const button = container.querySelector(
-      `ods-button[label="${onboardingTranslation.orderButtonLabel}"]`,
-    );
+    const button = getByText(onboardingTranslation.orderButtonLabel);
 
     act(() => {
       fireEvent.click(button);

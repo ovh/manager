@@ -1,5 +1,5 @@
 import { IcebergFetchParamsV6, fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import { ServiceDetails } from '@ovh-ux/manager-react-components';
+import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 import { buildURLSearchParams } from '@/utils';
 

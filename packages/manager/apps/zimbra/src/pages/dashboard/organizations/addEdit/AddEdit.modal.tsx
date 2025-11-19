@@ -8,28 +8,30 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_ICON_NAME,
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsIcon,
-  OdsInput,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  ICON_NAME,
+  INPUT_TYPE,
+  Icon,
+  Input,
+  MODAL_COLOR,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import {
   OrganizationBodyParamsType,
@@ -77,13 +79,13 @@ export const AddEditOrganizationModal = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(
             organizationId
               ? 'common:edit_success_message'
               : 'zimbra_organization_add_success_message',
           )}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -93,14 +95,14 @@ export const AddEditOrganizationModal = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(
             organizationId ? 'common:edit_error_message' : 'zimbra_organization_add_error_message',
             {
               error: error.response?.data?.message,
             },
           )}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -161,92 +163,106 @@ export const AddEditOrganizationModal = () => {
   return (
     <Modal
       heading={organizationId ? t('common:edit_organization') : t('common:add_organization')}
-      isOpen
-      type={ODS_MODAL_COLOR.information}
-      onDismiss={onClose}
-      isLoading={isLoading}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      primaryButtonTestId="confirm-btn"
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      isPrimaryButtonLoading={isLoading || isSending}
-      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
+      open
+      type={MODAL_COLOR.information}
+      onOpenChange={onClose}
+      loading={isLoading}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
+        testId: 'confirm-btn',
+        disabled: !isDirty || !isValid,
+        loading: isLoading || isSending,
+        onClick: handleSubmit(handleSaveClick),
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+      }}
     >
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleSaveClick)}>
         {!organizationId && (
           <div>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <Text preset={TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_modal_content_part1')}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text preset={TEXT_PRESET.paragraph}>
               {t('zimbra_organization_add_modal_content_part2')}
-            </OdsText>
+            </Text>
           </div>
         )}
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-        </OdsText>
+        <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
         <Controller
           control={control}
           name="name"
-          render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
+          render={({
+            field: { name, value, onChange, onBlur },
+            fieldState: { isDirty, isTouched },
+          }) => (
+            <FormField
               data-testid="field-name"
-              error={errors?.[name]?.message}
+              invalid={(isDirty || isTouched) && !!errors?.[name]}
               className="w-full"
             >
-              <label htmlFor={name} slot="label">
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_organization_add_form_input_name_title')} *
-              </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              </FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 data-testid="input-name"
                 placeholder={t('zimbra_organization_add_form_input_name_placeholder')}
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={(isDirty || isTouched) && !!errors[name]}
                 value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
-            </OdsFormField>
+                onBlur={onBlur}
+                onChange={onChange}
+              />
+              {(isDirty || isTouched) && errors?.[name]?.message && (
+                <FormFieldError>{errors[name].message}</FormFieldError>
+              )}
+            </FormField>
           )}
         />
         <Controller
           control={control}
           name="label"
-          render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
+          render={({
+            field: { name, value, onChange, onBlur },
+            fieldState: { isDirty, isTouched },
+          }) => (
+            <FormField
               data-testid="field-label"
-              error={errors?.[name]?.message}
+              invalid={(isDirty || isTouched) && !!errors?.[name]}
               className="w-full"
             >
-              <label htmlFor={name} slot="label">
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_organization_add_form_input_label_title')} *
-                <OdsIcon
-                  id="tooltip-trigger"
-                  className="ml-3 text-xs"
-                  name={ODS_ICON_NAME.circleQuestion}
-                ></OdsIcon>
-                <OdsTooltip role="tooltip" strategy="fixed" triggerId="tooltip-trigger">
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t('zimbra_organization_add_form_input_label_tooltip')}
-                  </OdsText>
-                </OdsTooltip>
-              </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon className="ml-3 text-xs" name={ICON_NAME.circleQuestion} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <Text preset={TEXT_PRESET.paragraph}>
+                      {t('zimbra_organization_add_form_input_label_tooltip')}
+                    </Text>
+                  </TooltipContent>
+                </Tooltip>
+              </FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 data-testid="input-label"
                 placeholder={t('zimbra_organization_add_form_input_label_placeholder')}
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={(isDirty || isTouched) && !!errors[name]}
                 value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
-            </OdsFormField>
+                onBlur={onBlur}
+                onChange={onChange}
+              />
+              {(isDirty || isTouched) && errors?.[name]?.message && (
+                <FormFieldError>{errors[name].message}</FormFieldError>
+              )}
+            </FormField>
           )}
         />
       </form>

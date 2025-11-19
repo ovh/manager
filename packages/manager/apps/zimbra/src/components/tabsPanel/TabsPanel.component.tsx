@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { Location, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Location, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
@@ -61,7 +61,7 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
 
   useEffect(() => {
     if (!location.pathname) {
-      setActivePanel(tabs[0].name);
+      setActivePanel(tabs[0].to);
       navigate(tabs[0].to);
     } else {
       const activeTab = tabs.find((tab) => {
@@ -72,21 +72,23 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
         );
       });
       if (activeTab) {
-        setActivePanel(activeTab.name);
+        setActivePanel(activeTab.to);
       }
     }
   }, [location.pathname, tabs]);
 
   return (
-    <OdsTabs>
-      {tabs.map(
-        (tab: TabItemProps) =>
-          !tab.hidden && (
-            <NavLink
+    <Tabs value={activePanel} onValueChange={(event) => navigate(event.value)}>
+      <TabList>
+        {tabs
+          .filter((tab) => !tab.hidden)
+          .map((tab: TabItemProps) => (
+            <Tab
               key={`osds-tab-bar-item-${tab.name}`}
-              to={tab.to}
-              className="no-underline"
-              tabIndex={-1}
+              id={tab.name}
+              data-testid={tab.name}
+              value={tab.to}
+              disabled={tab.isDisabled}
               onClick={(e) => {
                 if (tab.isDisabled) {
                   e.preventDefault();
@@ -100,19 +102,11 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
                 });
               }}
             >
-              <OdsTab
-                id={tab.name}
-                data-testid={tab.name}
-                role="tab"
-                isSelected={activePanel === tab.name}
-                isDisabled={tab.isDisabled}
-              >
-                {tab.title}
-              </OdsTab>
-            </NavLink>
-          ),
-      )}
-    </OdsTabs>
+              {tab.title}
+            </Tab>
+          ))}
+      </TabList>
+    </Tabs>
   );
 };
 
