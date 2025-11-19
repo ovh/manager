@@ -45,7 +45,7 @@ const PublicConnectivity = ({
 
   return (
     <div className="max-w-3xl">
-      <Text className="text-[--ods-color-text-500] my-6" preset={TEXT_PRESET.heading4}>
+      <Text className="text-[--ods-color-text-500] my-6 font-bold" preset={TEXT_PRESET.heading4}>
         {t('kube_common_node_pool_public_connetivity_title')}
       </Text>
       <div className="mb-6">
@@ -58,8 +58,11 @@ const PublicConnectivity = ({
               onCheckedChange={(detail) => onChange(detail.checked)}
             >
               <ToggleControl />
-              <ToggleLabel className="font-semibold text-[--ods-color-text]" color="text">
-                {t('kube_common_node_pool_public_connetivity_toggle')}
+              <ToggleLabel className=" text-[--ods-color-text]" color="text">
+                <span className="font-semibold">
+                  {t('kube_common_node_pool_public_connetivity_toggle')}
+                </span>
+                {price && <span> {` (${price?.hourFormatted} / ${t('kube_common_node_pool_node')})`}</span>}
               </ToggleLabel>
             </Toggle>
             <PopoverTrigger asChild>
@@ -93,7 +96,7 @@ const PublicConnectivity = ({
                     <Trans
                       ns="node-pool"
                       components={{
-                        a: <Link target="_blank" href={ipDoc} />,
+                        a: <Link target="_blank" href={priceDoc} />,
                       }}
                       i18nKey="kube_common_node_pool_deploy_floating_ip_content3"
                     />
@@ -117,26 +120,21 @@ const PublicConnectivity = ({
                     i18nKey="kube_common_node_pool_public_connectivity_warning_description_in_place"
                     components={{ strong: <strong /> }}
                   />
-                </Text>
-                <Text>
+
                   <Trans
                     ns="node-pool"
                     i18nKey={'kube_common_node_pool_public_connectivity_warning_description_more'}
                     components={{
                       strong: <strong />,
-                      a: <Link target="_blank" href={priceDoc} />,
+                      a: <Link target="_blank" href={ipDoc} />,
                     }}
                   />
+                  {'.'}
                 </Text>
               </div>
             </PopoverContent>
           </Popover>
         </div>
-        {price && (
-          <Text className="text-sm">
-            {price.hourFormatted} / {t('kube_common_node_pool_node')}
-          </Text>
-        )}
       </div>
     </div>
   );

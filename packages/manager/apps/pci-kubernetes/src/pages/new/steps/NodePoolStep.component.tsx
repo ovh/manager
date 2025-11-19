@@ -44,9 +44,9 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
       getDatagridColumns({
         onDelete: actions.onDelete,
         t,
-        showFloatingIp: Boolean(state.nodes?.some((node) => node.attachFloatingIPs?.enabled)),
+        showFloatingIp: Boolean(state.nodePoolState.selectedAvailabilityZones),
       }),
-    [actions.onDelete, state.nodes, t],
+    [actions.onDelete, state.nodePoolState.selectedAvailabilityZones, t],
   );
 
   const { projectId } = useSafeParams('projectId');
@@ -138,11 +138,15 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
           <div className="mb-8">
             <BillingStep
               selectedAvailabilityZonesNumber={
-                state.nodePoolState.selectedAvailabilityZones?.filter((e) => e.checked).length ??
-                null
+                state.nodePoolState.selectedAvailabilityZones?.filter((e) => e.checked).length
               }
               price={state.price?.hour ?? null}
-              isFloatingIpsEnabled={state.nodePoolState.attachFloatingIPs?.enabled}
+              priceFloatingIp={
+                state.nodePoolState.attachFloatingIPs?.enabled && state.selectedFlavor
+                  ? state.priceFloatingIp
+                  : null
+              }
+              numberOfNodes={state.nodePoolState.scaling?.quantity.desired}
               monthlyPrice={state.price?.month}
               monthlyBilling={{
                 isComingSoon: view.isPricingComingSoon ?? false,

@@ -6,16 +6,15 @@ export const getPriceByDesiredScale = (
   hour?: number,
   month?: number,
   desiredScaling = 0,
-  floatingIpPrices?: { hour?: number; month?: number } | null,
 ): {
   month?: number;
   hour: number;
 } | null => {
   if (!hour) return null;
   return {
-    hour: hour * desiredScaling + (!floatingIpPrices?.hour ? 0 : floatingIpPrices.hour),
+    hour: hour * desiredScaling,
     ...(month && {
-      month: month * desiredScaling + (!floatingIpPrices?.month ? 0 : floatingIpPrices.month),
+      month: month * desiredScaling,
     }),
   };
 };
