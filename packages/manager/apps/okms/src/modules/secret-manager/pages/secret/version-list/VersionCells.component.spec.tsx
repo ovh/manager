@@ -79,12 +79,13 @@ describe('VersionCellId test suite', () => {
         const { container } = await renderVersionLink(version);
 
         // THEN
-        await getOdsButtonByLabel({
+        const link = await getOdsButtonByLabel({
           container,
           label: version.id.toString(),
           isLink: true,
           disabled: isLinkDisabled,
         });
+        expect(link).toBeInTheDocument();
       },
     );
   });
