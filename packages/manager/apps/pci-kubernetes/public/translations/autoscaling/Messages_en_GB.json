@@ -3,7 +3,7 @@
   "kubernetes_node_pool_autoscaling_description_link": "More information.",
   "kubernetes_node_pool_autoscaling_autoscale": "Autoscaling",
   "kubernetes_node_pool_autoscaling_autoscale_toggle_true": "Autoscaling enabled",
-  "kubernetes_node_pool_autoscaling_autoscale_toggle_false": "Autoscaling disabled",
+  "kubernetes_node_pool_autoscaling_autoscale_toggle_false": "Autoscaling inactive",
   "kubernetes_node_pool_autoscaling_lowest_nodes_size": "Minimum",
   "kubernetes_node_pool_autoscaling_desired_nodes_size": "Number of nodes",
   "kubernetes_node_pool_autoscaling_highest_nodes_size": "Maximum",
