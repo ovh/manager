@@ -1,21 +1,18 @@
 import React from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  render,
-  renderHook,
-  RenderHookOptions,
-  RenderHookResult,
-} from '@testing-library/react';
+import { RenderHookOptions, RenderHookResult, render, renderHook } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+
 import { ErrorResponse } from '@/common/types/api.type';
+
 import { initTestI18n } from './init.i18n';
 
 /**
  * Wait for x miliseconds
  */
-export const wait = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+export const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Create a promise mock with a delay
@@ -41,9 +38,7 @@ const createTestQueryClient = () =>
 /**
  * Render a component with a test query client
  */
-export function renderWithClient(
-  ui: React.ReactElement,
-): ReturnType<typeof render> & {
+export function renderWithClient(ui: React.ReactElement): ReturnType<typeof render> & {
   rerender: (rerenderUi: React.ReactElement) => void;
 } {
   const queryClient = createTestQueryClient();
@@ -53,11 +48,7 @@ export function renderWithClient(
   return {
     ...result,
     rerender: (rerenderUi: React.ReactElement) =>
-      rerender(
-        <QueryClientProvider client={queryClient}>
-          {rerenderUi}
-        </QueryClientProvider>,
-      ),
+      rerender(<QueryClientProvider client={queryClient}>{rerenderUi}</QueryClientProvider>),
   };
 }
 

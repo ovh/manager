@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
+
 import { OKMS } from '@key-management-service/types/okms.type';
+import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 
 /**
  * Custom hook to determine the current region based on the URL parameters.

@@ -1,6 +1,8 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { catalogMock } from './catalog.mock';
+
 import { buildMswResponseMock } from '@/common/utils/tests/msw';
+
+import { catalogMock } from './catalog.mock';
 
 export type GetCatalogKmsMocksParams = {
   isCatalogOkmsKo?: boolean;

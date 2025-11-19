@@ -1,15 +1,14 @@
 import { useState } from 'react';
+
+import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsButton,
-  OdsCheckbox,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+
+import { OdsButton, OdsCheckbox, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
-import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
+
 import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
@@ -27,36 +26,26 @@ export const OrderOkmsModalTermsAndConditions = ({
   onSuccess,
   onCancel,
 }: OrderOkmsModalTermsAndConditionsProps) => {
-  const { t } = useTranslation([
-    'secret-manager',
-    NAMESPACES.ERROR,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR, NAMESPACES.ACTIONS]);
 
   const [isContractAccepted, setIsContractAccepted] = useState(false);
 
-  const { mutate: requestOrder, isPending, error } = useCheckoutOrder({
+  const {
+    mutate: requestOrder,
+    isPending,
+    error,
+  } = useCheckoutOrder({
     onSuccess,
   });
 
   return (
     <>
       <div className="flex flex-col gap-3 pb-6">
-        <OdsText preset="heading-4">
-          {t('create_okms_terms_and_conditions_title')}
-        </OdsText>
-        <OdsText preset="paragraph">
-          {t('create_okms_terms_and_conditions_description')}
-        </OdsText>
+        <OdsText preset="heading-4">{t('create_okms_terms_and_conditions_title')}</OdsText>
+        <OdsText preset="paragraph">{t('create_okms_terms_and_conditions_description')}</OdsText>
         <div className="flex flex-col gap-2">
           {cart.contractList.map(({ name, url }) => (
-            <Links
-              key={name}
-              href={url}
-              target="_blank"
-              type={LinkType.external}
-              label={name}
-            />
+            <Links key={name} href={url} target="_blank" type={LinkType.external} label={name} />
           ))}
         </div>
         <div className="flex gap-3 items-center">
@@ -68,9 +57,7 @@ export const OrderOkmsModalTermsAndConditions = ({
             onOdsChange={(event) => setIsContractAccepted(event.detail.checked)}
           />
           <label className="cursor-pointer" htmlFor="confirm-contract">
-            <OdsText preset="span">
-              {t('create_okms_terms_and_conditions_confirm_label')}
-            </OdsText>
+            <OdsText preset="span">{t('create_okms_terms_and_conditions_confirm_label')}</OdsText>
           </label>
         </div>
         {error && (

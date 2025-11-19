@@ -55,7 +55,7 @@ export function isStringValidForKeyValueForm(obj: string | undefined): boolean {
     }
     const parsedObj = JSON.parse(obj) as object;
     return isKeyValueObject(parsedObj);
-  } catch  {
+  } catch {
     return false;
   }
 }
@@ -81,7 +81,7 @@ export function formatKeyValueArrayFromString(obj: string): KeyValuePair[] {
       key: String(key),
       value: String(value),
     }));
-  } catch  {
+  } catch {
     return [emptyPair];
   }
 }
@@ -99,7 +99,5 @@ export function formatStringFromKeyValueArray(pairs: KeyValuePair[]): string {
   if (pairs.length === 0) {
     return '';
   }
-  return JSON.stringify(
-    Object.fromEntries(pairs.map(({ key, value }) => [key, value])),
-  );
+  return JSON.stringify(Object.fromEntries(pairs.map(({ key, value }) => [key, value])));
 }

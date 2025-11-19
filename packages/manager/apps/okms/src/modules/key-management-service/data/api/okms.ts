@@ -1,5 +1,6 @@
-import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
 import { OKMS, OkmsPublicCa } from '@key-management-service/types/okms.type';
+
+import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
 
 export const okmsQueryKeys = {
   list: ['okms'],

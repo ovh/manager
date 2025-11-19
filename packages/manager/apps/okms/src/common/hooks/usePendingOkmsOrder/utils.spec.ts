@@ -1,6 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { isOrderExpired, findNewOkmsId } from './utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { findNewOkmsId, isOrderExpired } from './utils';
 
 describe('isOrderExpired', () => {
   beforeEach(() => {

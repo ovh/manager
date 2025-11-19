@@ -1,7 +1,4 @@
-import {
-  IdentityUser,
-  IdentityStatus,
-} from '@key-management-service/types/identity.type';
+import { IdentityStatus, IdentityUser } from '@key-management-service/types/identity.type';
 
 export const identityUsers: IdentityUser[] = [
   {

@@ -1,13 +1,15 @@
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { vi } from 'vitest';
+
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { renderWithClient } from '@/common/utils/tests/testUtils';
-import { useProductType, ProductType } from '@/common/hooks/useProductType';
-import { SECRETS_TILE_TEST_IDS } from './SecretsTile.constants';
+
 import { SecretsTile } from './SecretsTile.component';
+import { SECRETS_TILE_TEST_IDS } from './SecretsTile.constants';
 
 let i18nValue: i18n;
 
@@ -24,9 +26,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 
 vi.mock('./items/SecretCountTileItem.component', async (original) => ({
   ...(await original()),
-  SecretCountTileItem: vi.fn(() => (
-    <div data-testid={SECRETS_TILE_TEST_IDS.secretCount} />
-  )),
+  SecretCountTileItem: vi.fn(() => <div data-testid={SECRETS_TILE_TEST_IDS.secretCount} />),
 }));
 
 vi.mock('./items/SecretVersionCountTileItem.component', async (original) => ({
@@ -38,9 +38,7 @@ vi.mock('./items/SecretVersionCountTileItem.component', async (original) => ({
 
 vi.mock('./items/SecretListLinkTileItem.component', async (original) => ({
   ...(await original()),
-  SecretListLinkTileItem: vi.fn(() => (
-    <div data-testid={SECRETS_TILE_TEST_IDS.linkToSecretList} />
-  )),
+  SecretListLinkTileItem: vi.fn(() => <div data-testid={SECRETS_TILE_TEST_IDS.linkToSecretList} />),
 }));
 
 const renderTile = async () => {
@@ -62,19 +60,14 @@ describe('OKMS Secrets Tile test suite', () => {
 
   it('should display tile content', async () => {
     // GIVEN
-    const tileItems = [
-      SECRETS_TILE_TEST_IDS.secretCount,
-      SECRETS_TILE_TEST_IDS.secretVersionCount,
-    ];
+    const tileItems = [SECRETS_TILE_TEST_IDS.secretCount, SECRETS_TILE_TEST_IDS.secretVersionCount];
 
     // WHEN
     await renderTile();
 
     // THEN
     expect(
-      screen.getByText(
-        labels.listing.key_management_service_listing_secret_cell,
-      ),
+      screen.getByText(labels.listing.key_management_service_listing_secret_cell),
     ).toBeVisible();
 
     await waitFor(() =>

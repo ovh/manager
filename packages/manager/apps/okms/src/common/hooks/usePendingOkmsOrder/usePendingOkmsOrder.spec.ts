@@ -1,12 +1,12 @@
-import { renderHook } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
-import {
-  registerPendingOrder,
-  clearPendingOrder,
-} from '@/common/store/pendingOkmsOrder';
+import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { clearPendingOrder, registerPendingOrder } from '@/common/store/pendingOkmsOrder';
+
 import { pollOnNewOkms } from './pollOnNewOkms';
 import {
   OKMS_LIST_REFETCH_INTERVAL_IN_MS,
@@ -51,9 +51,9 @@ describe('usePendingOkmsOrder', () => {
       addWarning: mockAddWarning,
     });
 
-    mockUseOkmsList.mockReturnValue(({
+    mockUseOkmsList.mockReturnValue({
       refetch: mockRefetch,
-    } as unknown) as ReturnType<typeof useOkmsList>);
+    } as unknown as ReturnType<typeof useOkmsList>);
   });
 
   it('returns the hasPendingOrder flag from the store', () => {

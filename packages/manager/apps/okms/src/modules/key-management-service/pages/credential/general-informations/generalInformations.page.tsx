@@ -1,32 +1,33 @@
-import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
+import CredentialCreationMethod from '@key-management-service/components/credential/credential-creation-method/credentialCreationMethod.component';
+import { CredentialStatus } from '@key-management-service/components/credential/credential-status/CredentialStatus.component';
+import { TileValueDate } from '@key-management-service/components/dashboard/tile-value-date/tileValueDate.component';
+import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
+import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
+import { useTranslation } from 'react-i18next';
+
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_BUTTON_COLOR,
-  ODS_LINK_COLOR,
   ODS_ICON_NAME,
+  ODS_LINK_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   Clipboard,
   DashboardTile,
   DashboardTileBlockItem,
   ManagerButton,
 } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { CredentialStatus } from '@key-management-service/components/credential/credential-status/CredentialStatus.component';
-import { TileValueDate } from '@key-management-service/components/dashboard/tile-value-date/tileValueDate.component';
-import CredentialCreationMethod from '@key-management-service/components/credential/credential-creation-method/credentialCreationMethod.component';
-import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
-import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
-import { useOutletCredential } from '../Credential.page';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
+
+import { useOutletCredential } from '../Credential.page';
 
 const dateFormat: Intl.DateTimeFormatOptions = {
   hour12: false,
@@ -44,11 +45,7 @@ const CredentialGeneralInformations = () => {
   const { t } = useTranslation('key-management-service/credential');
   const { trackClick } = useOvhTracking();
 
-  const {
-    filename,
-    href: downloadHref,
-    isDisabled,
-  } = getDownloadCredentialParameters(credential);
+  const { filename, href: downloadHref, isDisabled } = getDownloadCredentialParameters(credential);
 
   const items: DashboardTileBlockItem[] = [
     {
@@ -58,7 +55,7 @@ const CredentialGeneralInformations = () => {
         <OdsText
           preset={ODS_TEXT_PRESET.span}
           // Temporary fix: wrap text without whitespace
-          style={{ 'overflowWrap': 'anywhere' }}
+          style={{ overflowWrap: 'anywhere' }}
         >
           {credential.name || credential.id}
         </OdsText>
@@ -76,7 +73,7 @@ const CredentialGeneralInformations = () => {
         <OdsText
           preset={ODS_TEXT_PRESET.span}
           // Temporary fix: wrap text without whitespace
-          style={{ 'overflowWrap': 'anywhere' }}
+          style={{ overflowWrap: 'anywhere' }}
         >
           {credential.description || ''}
         </OdsText>
@@ -90,11 +87,7 @@ const CredentialGeneralInformations = () => {
     {
       id: 'type',
       label: t('key_management_service_credential_dashboard_type'),
-      value: (
-        <OdsText preset={ODS_TEXT_PRESET.span}>
-          {credential.certificateType}
-        </OdsText>
-      ),
+      value: <OdsText preset={ODS_TEXT_PRESET.span}>{credential.certificateType}</OdsText>,
     },
     {
       id: 'origin',
@@ -104,16 +97,12 @@ const CredentialGeneralInformations = () => {
     {
       id: 'creation',
       label: t('key_management_service_credential_dashboard_creation'),
-      value: (
-        <TileValueDate value={credential.createdAt} options={dateFormat} />
-      ),
+      value: <TileValueDate value={credential.createdAt} options={dateFormat} />,
     },
     {
       id: 'expiration',
       label: t('key_management_service_credential_dashboard_expiration'),
-      value: (
-        <TileValueDate value={credential.expiredAt} options={dateFormat} />
-      ),
+      value: <TileValueDate value={credential.expiredAt} options={dateFormat} />,
     },
   ];
 
@@ -165,9 +154,7 @@ const CredentialGeneralInformations = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 break-words">
       <DashboardTile
-        title={t(
-          'key_management_service_credential_dashboard_tile_general_informations',
-        )}
+        title={t('key_management_service_credential_dashboard_tile_general_informations')}
         items={items}
       />
       <Outlet />

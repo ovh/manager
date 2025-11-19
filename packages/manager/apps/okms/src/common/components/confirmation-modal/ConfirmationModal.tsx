@@ -1,18 +1,20 @@
+import { useTranslation } from 'react-i18next';
+
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_MODAL_COLOR,
-  ODS_BUTTON_COLOR,
-  ODS_TEXT_PRESET,
   ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   OdsButton,
-  OdsModal,
-  OdsText,
-  OdsSpinner,
   OdsMessage,
+  OdsModal,
+  OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 type ConfirmationModalProps = {
