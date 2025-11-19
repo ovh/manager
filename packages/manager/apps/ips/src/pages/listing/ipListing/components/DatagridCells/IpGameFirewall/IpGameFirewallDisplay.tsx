@@ -1,6 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { fromIpToId } from '@/utils';
 import { IpGameFirewallStateEnum, IpGameFirewallType } from '@/data/api';
 import { BadgeCell } from '../BadgeCell/BadgeCell';
 
@@ -27,9 +35,28 @@ export const IpGameFirewallDisplay = ({
 }: IpGameFirewallDisplayProps) => {
   const id = `gamefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation('listing');
+  const { trackClick } = useOvhTracking();
+  const navigate = useNavigate();
+  const [search] = useSearchParams();
 
   return (
-    <>
+    <div
+      className="cursor-pointer"
+      onClick={() => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['configure_game-firewall'],
+        });
+        navigate(
+          `${urls.configureGameFirewall.replace(
+            urlDynamicParts.id,
+            fromIpToId(ip),
+          )}?${search.toString()}`,
+        );
+      }}
+    >
       {enabled && ipGameFirewall?.state === IpGameFirewallStateEnum.OK && (
         <BadgeCell
           badgeColor={ODS_BADGE_COLOR.information}
@@ -48,6 +75,6 @@ export const IpGameFirewallDisplay = ({
             trigger={id}
           />
         )}
-    </>
+    </div>
   );
 };
