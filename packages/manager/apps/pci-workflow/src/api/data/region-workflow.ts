@@ -10,7 +10,7 @@ export type TWorkflowExecution = {
   executedAtTime?: string;
 };
 
-export type TRemoteWorkflow = {
+export type TRemoteInstanceBackupWorkflow = {
   backupName: string;
   name: string;
   id: string;
@@ -20,8 +20,8 @@ export type TRemoteWorkflow = {
   distantRegion?: string;
 };
 
-export const getRegionsWorkflows = async (projectId: string, regionName: string) => {
-  const { data } = await v6.get<TRemoteWorkflow[]>(
+export const getInstanceBackupWorkflows = async (projectId: string, regionName: string) => {
+  const { data } = await v6.get<TRemoteInstanceBackupWorkflow[]>(
     `/cloud/project/${projectId}/region/${regionName}/workflow/backup`,
   );
   return data;
@@ -36,13 +36,13 @@ export type TAddWorkflow = {
   distRegionName: string | null;
 };
 
-export const addWorkflow = async (
+export const addInstanceBackupWorkflow = async (
   projectId: string,
   regionName: string,
   instanceId: string,
   type: TAddWorkflow,
 ) => {
-  const { data } = await v6.post<TRemoteWorkflow[]>(
+  const { data } = await v6.post<TRemoteInstanceBackupWorkflow[]>(
     `/cloud/project/${projectId}/region/${regionName}/instance/${instanceId}/automaticBackup`,
     { ...type },
   );
