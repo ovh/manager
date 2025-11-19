@@ -1,4 +1,10 @@
+import '@testing-library/jest-dom';
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import { vi } from 'vitest';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 
 import {
   AccountType,
@@ -21,6 +27,51 @@ import {
   taskMocks,
   zimbraUpgradeOrderMock,
 } from '@/data/api';
+import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
+import accountAliasTranslation from '@/public/translations/accounts/alias/Messages_fr_FR.json';
+import accountFormTranslation from '@/public/translations/accounts/form/Messages_fr_FR.json';
+import accountOrderTranslation from '@/public/translations/accounts/order/Messages_fr_FR.json';
+import autoRepliesTranslation from '@/public/translations/auto-replies/Messages_fr_FR.json';
+import autoRepliesFormTranslation from '@/public/translations/auto-replies/form/Messages_fr_FR.json';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
+import domainsTranslation from '@/public/translations/domains/Messages_fr_FR.json';
+import domainsDiagnosticTranslation from '@/public/translations/domains/diagnostic/Messages_fr_FR.json';
+import domainsFormTranslation from '@/public/translations/domains/form/Messages_fr_FR.json';
+import mailingListsTranslation from '@/public/translations/mailing-lists/Messages_fr_FR.json';
+import mailingListsFormTranslation from '@/public/translations/mailing-lists/form/Messages_fr_FR.json';
+import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
+import organizationsTranslation from '@/public/translations/organizations/Messages_fr_FR.json';
+import organizationsFormTranslation from '@/public/translations/organizations/form/Messages_fr_FR.json';
+import redirectionsTranslation from '@/public/translations/redirections/Messages_fr_FR.json';
+
+await i18next.use(initReactI18next).init({
+  lng: 'fr',
+  fallbackLng: 'fr',
+  resources: {
+    fr: {
+      common: commonTranslation,
+      dashboard: dashboardTranslation,
+      organizations: organizationsTranslation,
+      'organizations/form': organizationsFormTranslation,
+      domains: domainsTranslation,
+      'domains/form': domainsFormTranslation,
+      'domains/diagnostic': domainsDiagnosticTranslation,
+      accounts: accountTranslation,
+      'accounts/form': accountFormTranslation,
+      'accounts/alias': accountAliasTranslation,
+      'accounts/order': accountOrderTranslation,
+      'mailing-lists': mailingListsTranslation,
+      'mailing-lists/form': mailingListsFormTranslation,
+      redirections: redirectionsTranslation,
+      'auto-replies': autoRepliesTranslation,
+      'auto-replies/form': autoRepliesFormTranslation,
+      onboarding: onboardingTranslation,
+      [NAMESPACES.ACTIONS]: actionsCommonTranslation,
+    },
+  },
+  ns: ['dashboard'],
+});
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -212,6 +263,31 @@ vi.mock('react-router-dom', async (importActual) => {
     })),
   };
 });
+
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+
+class MockPointerEvent extends Event {
+  button: number;
+  ctrlKey: boolean;
+  pointerType: string;
+
+  constructor(type: string, props: PointerEventInit) {
+    super(type, props);
+    this.button = props.button || 0;
+    this.ctrlKey = props.ctrlKey || false;
+    this.pointerType = props.pointerType || 'mouse';
+  }
+}
+
+window.PointerEvent = MockPointerEvent as any;
+window.HTMLElement.prototype.scrollIntoView = vi.fn();
+window.HTMLElement.prototype.hasPointerCapture = vi.fn();
+window.HTMLElement.prototype.releasePointerCapture = vi.fn();
 
 afterEach(() => {
   vi.clearAllMocks();

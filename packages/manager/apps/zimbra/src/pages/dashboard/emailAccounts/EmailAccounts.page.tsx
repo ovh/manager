@@ -4,15 +4,9 @@ import { Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsSwitch, OdsSwitchItem, OdsText } from '@ovhcloud/ods-components/react';
+import { Switch, SwitchItem, TEXT_PRESET } from '@ovhcloud/ods-react';
 
-import {
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-  ManagerText,
-} from '@ovh-ux/manager-react-components';
+import { Link, LinkType, Text } from '@ovh-ux/muk';
 
 import { AccountStatistics } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -57,69 +51,65 @@ export const EmailAccounts = () => {
       {!isOverridedPage && (
         <>
           <div className="mb-6 flex gap-8">
-            <div>
-              <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
+            <div className="flex">
+              <Text preset={TEXT_PRESET.heading6} className="mr-4">
                 {t('common:webmail')}
                 {' :'}
-              </OdsText>
-              <Links
-                iconAlignment={IconLinkAlignmentType.right}
-                color={ODS_LINK_COLOR.primary}
-                href={webmailUrl}
-                type={LinkType.external}
-                label={webmailUrl}
-                target="_blank"
-              />
+              </Text>
+              <Link href={webmailUrl} type={LinkType.external} target="_blank">
+                {webmailUrl}
+              </Link>
             </div>
-            <ManagerText
-              className="flex gap-8"
-              data-testid="account-offers"
-              urn={platformUrn}
-              iamActions={[IAM_ACTIONS.account.get]}
-            >
+            <div className="flex gap-8" data-testid="account-offers">
               <div className="flex gap-8">
                 {accountsStatistics?.length > 0
                   ? accountsStatistics?.map((stats: AccountStatistics) => (
-                      <span key={stats.offer}>
-                        <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
+                      <div key={stats.offer} className="flex">
+                        <Text
+                          preset={TEXT_PRESET.heading6}
+                          className="mr-4"
+                          urn={platformUrn}
+                          iamActions={[IAM_ACTIONS.account.get]}
+                        >
                           {`Zimbra ${capitalize(stats.offer.toLowerCase())} :`}
-                        </OdsText>
-                        <span>{`${stats.configuredAccountsCount} / ${
-                          stats.configuredAccountsCount + stats.availableAccountsCount
-                        }`}</span>
-                      </span>
+                        </Text>
+                        <Text urn={platformUrn} iamActions={[IAM_ACTIONS.account.get]}>
+                          {`${stats.configuredAccountsCount} / ${
+                            stats.configuredAccountsCount + stats.availableAccountsCount
+                          }`}
+                        </Text>
+                      </div>
                     ))
                   : t('common:no_email_account_available')}
               </div>
-            </ManagerText>
+            </div>
           </div>
-          <OdsSwitch
+          <Switch
             key={
               Date.now() /* This component has an issue where rerender can cause it to loose the checked input inside... */
             }
             className="mb-6"
-            name="switchState"
+            value={switchState}
             data-testid="switch"
+            onValueChange={({ value }: { value: 'ACCOUNTS' | 'SLOTS' }) => setSwitchState(value)}
           >
-            <OdsSwitchItem
+            <SwitchItem
               data-testid="switch-accounts"
-              isChecked={switchState === switchStateEnum.ACCOUNTS}
               value={switchStateEnum.ACCOUNTS}
               onClick={() => setSwitchState(switchStateEnum.ACCOUNTS)}
             >
               {t('zimbra_account_configured', { value: accountsConfigured })}
-            </OdsSwitchItem>
-            <OdsSwitchItem
+            </SwitchItem>
+            <SwitchItem
               data-testid="switch-slots"
-              isChecked={switchState === switchStateEnum.SLOTS}
               value={switchStateEnum.SLOTS}
               onClick={() => setSwitchState(switchStateEnum.SLOTS)}
             >
               {t('zimbra_account_unconfigured', {
                 value: accountsUnconfigured,
               })}
-            </OdsSwitchItem>
-          </OdsSwitch>
+            </SwitchItem>
+          </Switch>
           {switchState === switchStateEnum.ACCOUNTS ? <EmailAccountsDatagrid /> : <SlotsDatagrid />}
         </>
       )}
