@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { ResourceLocationCell } from '@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.components';
-import { ResourceRegionCell } from '@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.components';
+import { ResourceLocationCell } from '@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.component';
+import { ResourceRegionCell } from '@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.component';
 import { BucketNameCell } from '@/pages/vaults/dashboard/buckets/_components/BucketNameCell.component';
 import { Bucket } from '@/types/Bucket.type';
 
