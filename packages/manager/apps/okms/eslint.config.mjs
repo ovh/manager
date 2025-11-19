@@ -11,7 +11,6 @@ import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/esli
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 
-import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 import {
   complexityJsxTsxConfig,
   complexityTsJsConfig,
@@ -24,6 +23,7 @@ import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/ta
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
 */
+import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
@@ -34,6 +34,10 @@ export default [
   javascriptEslintConfig,
   reactEslintConfig,
   prettierEslintConfig,
+  {
+    ...a11yEslintConfig,
+    ignores: ['**/*.spec.tsx'],
+  },
   {
     rules: {
       '@typescript-eslint/no-misused-promises': 'off',
