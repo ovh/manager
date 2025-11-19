@@ -1,4 +1,4 @@
-import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+import { ChangelogMenuLinks } from '@ovh-ux/muk';
 
 import {
   GUIDE_ADMINISTRATOR,
@@ -215,7 +215,7 @@ export const GUIDES_LIST: Record<string, Guide> = {
   },
 };
 
-export const CHANGELOG_LINKS: ChangelogLinks = {
+export const CHANGELOG_LINKS: ChangelogMenuLinks = {
   changelog:
     'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Collaboration&pane=info',
   roadmap:

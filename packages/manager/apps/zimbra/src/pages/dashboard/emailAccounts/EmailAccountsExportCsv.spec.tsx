@@ -9,8 +9,7 @@ import { EmailAccountsExportCsv } from './EmailAccountsExportCsv.component';
 describe('EmailAccountsExportCsv Component', () => {
   test('renders Export CSV button', () => {
     const { getByTestId } = render(<EmailAccountsExportCsv />);
-    expect(getByTestId('export-csv')).toHaveAttribute(
-      'label',
+    expect(getByTestId('export-csv')).toHaveTextContent(
       actionsCommonTranslation.export_as.replace('{{ format }}', 'CSV'),
     );
   });

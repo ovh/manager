@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { fireEvent } from '@testing-library/dom';
 import { describe, expect, vi } from 'vitest';
 
 import { containsDigit, containsLowercase, containsSpecial, containsUppercase } from '@/utils';
-import { fireEvent, render } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import GeneratePasswordButton from './GeneratePasswordButton.component';
 

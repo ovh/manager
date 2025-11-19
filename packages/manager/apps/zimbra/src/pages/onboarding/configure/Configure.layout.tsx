@@ -4,8 +4,8 @@ import { Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { usePlatform } from '@/data/hooks';
@@ -29,15 +29,17 @@ export const ConfigureLayout: React.FC = () => {
         // temporary fix margin even if empty
         notifications.length ? <Notifications clearAfterRead /> : null
       }
-      backLinkLabel={t('configure_exit')}
-      hrefPrevious={backLink}
-      onClickReturn={() => {
-        trackClick({
-          location: PageLocation.funnel,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: [ONBOARDING_CONFIGURE, EXIT],
-        });
+      backLink={{
+        label: t('configure_exit'),
+        previousPageLink: backLink,
+        onClick: () => {
+          trackClick({
+            location: PageLocation.funnel,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: [ONBOARDING_CONFIGURE, EXIT],
+          });
+        },
       }}
     >
       <Suspense fallback={<Loading />}>
