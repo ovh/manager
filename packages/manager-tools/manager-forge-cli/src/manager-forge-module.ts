@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { MANAGER_MODULES_DIR, MODULE_TEMPLATE_DIR } from '@/configs/manager-forge-path-config.js';
+import { updateIgnoreFiles } from '@/helpers/manager-forge-generation-helper.js';
 import { addModuleToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 import {
   applyTemplateReplacements,
@@ -82,10 +83,15 @@ function forgeModule(answers: Answers): void {
   });
 
   // ────────────────────────────────────────────────────────────
-  // 6. Final output
+  // 6.  Finalize + register the module inside the workspace
   // ────────────────────────────────────────────────────────────
   logger.log(`\n✅ Successfully forged module "${answers.moduleName}"\n`);
   addModuleToWorkspace(answers.moduleName!, answers.isPrivate!);
+
+  // ────────────────────────────────────────────────────────────
+  // 7. Ensures that a given relative path (app/module) is added to all ignore files
+  // ────────────────────────────────────────────────────────────
+  updateIgnoreFiles('module', answers.moduleName!);
 }
 
 /**

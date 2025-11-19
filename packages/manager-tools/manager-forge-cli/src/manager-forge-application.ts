@@ -5,6 +5,7 @@ import {
   APPLICATION_TEMPLATE_DIR,
   MANAGER_APPLICATIONS_DIR,
 } from '@/configs/manager-forge-path-config.js';
+import { updateIgnoreFiles } from '@/helpers/manager-forge-generation-helper.js';
 import { addAppToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 import {
   applyTemplateReplacements,
@@ -73,6 +74,11 @@ function forgeApplication(answers: Answers): void {
   // ────────────────────────────────────────────────────────────
   logger.log(`\n✅ Successfully forged application "${answers.appName}"\n`);
   addAppToWorkspace(answers.appName);
+
+  // ────────────────────────────────────────────────────────────
+  // 6. Ensures that a given relative path (app/module) is added to all ignore files
+  // ────────────────────────────────────────────────────────────
+  updateIgnoreFiles('app', answers.appName);
 }
 
 /**

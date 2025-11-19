@@ -2,10 +2,49 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import {
+  APPLICATIONS_FOLDER_PATH,
+  IGNORE_TARGETS,
+  MODULES_FOLDER_PATH,
+} from '@/configs/manager-forge-path-config.js';
 import { CaseStyle, GeneratorOptions } from '@/types/GenerationType.js';
 import { logger } from '@/utils/log-manager.js';
 
-const APPLICATIONS_FOLDER_PATH = 'packages/manager/apps';
+/**
+ * Ensures that a given relative path (app/module) is added
+ * to all ignore files (.eslintignore, .prettierignore, .stylelintignore)
+ * without duplicating entries.
+ *
+ * @param {'app' | 'module'} type
+ * @param {string} name - appName or moduleName
+ */
+export function updateIgnoreFiles(type: 'app' | 'module', name: string): void {
+  const entry =
+    type === 'app' ? `${APPLICATIONS_FOLDER_PATH}/${name}` : `${MODULES_FOLDER_PATH}/${name}`;
+
+  IGNORE_TARGETS.forEach(({ file, label }) => {
+    const filePath = path.join(process.cwd(), file);
+
+    // If ignore file doesn't exist, skip silently
+    if (!fs.existsSync(filePath)) {
+      logger.warn(`⚠️ ${label} ignore file "${file}" not found. Skipping.`);
+      return;
+    }
+
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    if (content.includes(entry)) {
+      logger.log(`ℹ️ ${label}: entry already exists in ${file}`);
+      return;
+    }
+
+    // Append with proper newline handling
+    const updated = content.endsWith('\n') ? content + `${entry}\n` : content + `\n${entry}\n`;
+
+    fs.writeFileSync(filePath, updated, 'utf8');
+    logger.log(`✅ Added "${entry}" to ${file} (${label})`);
+  });
+}
 
 /**
  * Parses CLI arguments of the form `--flag value` into an object map.
