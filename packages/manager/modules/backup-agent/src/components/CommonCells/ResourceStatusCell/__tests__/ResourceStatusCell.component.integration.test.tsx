@@ -8,7 +8,7 @@ import { labels } from '@/test-utils/i18ntest.utils';
 import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 import { ResourceStatus } from '@/types/Resource.type';
 
-import { ResourceStatusCell } from '../ResourceStatusCell.components';
+import { ResourceStatusCell } from '../ResourceStatusCell.component';
 
 describe('ResourceStatusCell', () => {
   it('renders translated status and maps READY to success color', async () => {

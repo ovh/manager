@@ -11,6 +11,7 @@ describe('[INTEGRATION] - Bucket Listing page', () => {
       initialRoute: '/vaults/dashboard/a1b2c3d4-1234-4000-82dc-5366d6786f80/buckets',
     });
 
+    /* eslint-disable max-nested-callbacks */
     await waitFor(
       () => {
         COLUMN_NAME.forEach((columnName) => {
