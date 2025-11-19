@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest';
 
-import { DashboardTabType } from '@/types/Dashboard.type';
-
 import { tabsWithActiveTabOrDefault } from '../tabsWithActiveTabOrDefault';
 
 describe('tabsWithActiveTabOrDefault', () => {
