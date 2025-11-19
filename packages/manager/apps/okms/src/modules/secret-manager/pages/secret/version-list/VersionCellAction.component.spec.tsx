@@ -1,27 +1,25 @@
-import { i18n } from 'i18next';
 import { useNavigate } from 'react-router-dom';
-import { I18nextProvider } from 'react-i18next';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { waitFor, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+
 import { useUpdateSecretVersion } from '@secret-manager/data/hooks/useUpdateSecretVersion';
-import { SecretVersion } from '@secret-manager/types/secret.type';
 import {
   versionActiveMock,
   versionDeactivatedMock,
   versionDeletedMock,
 } from '@secret-manager/mocks/versions/versions.mock';
-import {
-  getOdsButtonByLabel,
-  getOdsButtonByIcon,
-} from '@/common/utils/tests/uiTestHelpers';
-import {
-  createErrorResponseMock,
-  renderWithClient,
-} from '@/common/utils/tests/testUtils';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { SecretVersion } from '@secret-manager/types/secret.type';
+import { act, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { createErrorResponseMock, renderWithClient } from '@/common/utils/tests/testUtils';
+import { getOdsButtonByIcon, getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
+
 import { VersionCellAction } from './VersionCellAction.component';
 
 let i18nValue: i18n;
@@ -95,10 +93,10 @@ describe('VersionCellAction test suite', () => {
     vi.mocked(useNotifications).mockReturnValue({
       addError: mockAddError,
     });
-    vi.mocked(useUpdateSecretVersion).mockReturnValue(({
+    vi.mocked(useUpdateSecretVersion).mockReturnValue({
       mutateAsync: mockUpdateSecretVersion,
       isPending: false,
-    } as unknown) as ReturnType<typeof useUpdateSecretVersion>);
+    } as unknown as ReturnType<typeof useUpdateSecretVersion>);
   });
 
   describe('Rendering', () => {
@@ -204,9 +202,7 @@ describe('VersionCellAction test suite', () => {
     });
 
     it('should call updateSecretVersion with ACTIVE state when activate button is clicked', async () => {
-      const { container, user } = await renderAndOpenMenu(
-        versionDeactivatedMock,
-      );
+      const { container, user } = await renderAndOpenMenu(versionDeactivatedMock);
 
       const reactivateButton = await getOdsButtonByLabel({
         container,
@@ -226,9 +222,7 @@ describe('VersionCellAction test suite', () => {
     });
 
     it('should navigate to delete modal when delete button is clicked', async () => {
-      const { container, user } = await renderAndOpenMenu(
-        versionDeactivatedMock,
-      );
+      const { container, user } = await renderAndOpenMenu(versionDeactivatedMock);
 
       const deleteButton = await getOdsButtonByLabel({
         container,

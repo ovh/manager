@@ -1,6 +1,9 @@
-import { IamCheckResponse } from '@ovh-ux/manager-react-components';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
+
+import { IamCheckResponse } from '@ovh-ux/manager-react-components';
+
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
+
 import { okmsMock } from '../kms/okms.mock';
 import { serviceKeyMock } from '../service-keys/serviceKeys.mock';
 

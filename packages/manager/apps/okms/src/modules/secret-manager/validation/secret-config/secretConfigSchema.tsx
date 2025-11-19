@@ -1,5 +1,6 @@
-import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const MAX_VERSIONS_MIN_VALUE = 0;

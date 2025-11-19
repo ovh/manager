@@ -1,10 +1,12 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
-  UpdateSecretResponse,
-  updateSecret,
   UpdateSecretParams,
+  UpdateSecretResponse,
   secretQueryKeys,
+  updateSecret,
 } from '../api/secrets';
 
 export const useUpdateSecret = () => {

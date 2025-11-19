@@ -1,29 +1,26 @@
 import React from 'react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { ServiceKeyOperationCheckbox } from '@key-management-service/components/service-key/create/serviceKeyOperationCheckbox';
-import {
-  OkmsServiceKeyReference,
-  OkmsServiceKeyReferenceOperations,
-} from '@key-management-service/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
   OkmsServiceKeyOperations,
 } from '@key-management-service/types/okmsServiceKey.type';
+import {
+  OkmsServiceKeyReference,
+  OkmsServiceKeyReferenceOperations,
+} from '@key-management-service/types/okmsServiceKeyReference.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 export type KeyUsageSectionProps = {
   serviceKey: OkmsServiceKeyReference | undefined;
   keyType: OkmsKeyTypes | undefined;
   keyOperations: OkmsServiceKeyOperations[][];
-  setKeyOperations: React.Dispatch<
-    React.SetStateAction<OkmsServiceKeyOperations[][]>
-  >;
+  setKeyOperations: React.Dispatch<React.SetStateAction<OkmsServiceKeyOperations[][]>>;
 };
 
 export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
@@ -45,9 +42,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
 
   const onCheckboxChange = (operation: OkmsServiceKeyReferenceOperations) => {
     setKeyOperations((prev) => {
-      const newOperations: OkmsServiceKeyOperations[][] = prev.includes(
-        operation.value,
-      )
+      const newOperations: OkmsServiceKeyOperations[][] = prev.includes(operation.value)
         ? prev.filter((op) => op !== operation.value)
         : [...prev, operation.value];
       trackClick({
@@ -64,14 +59,10 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
     <OdsFormField>
       <div slot="label" className="space-y-2 mb-2">
         <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-          {t(
-            'key_management_service_service-keys_create_crypto_field_usage_title',
-          )}
+          {t('key_management_service_service-keys_create_crypto_field_usage_title')}
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(
-            'key_management_service_service-keys_create_crypto_field_usage_subtitle',
-          )}
+          {t('key_management_service_service-keys_create_crypto_field_usage_subtitle')}
         </OdsText>
       </div>
       <div className="grid gap-2">
@@ -81,9 +72,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
             key={operation.value[0]}
             operation={operation}
             isChecked={keyOperations?.includes(operation.value)}
-            isDisabled={
-              keyType === OkmsKeyTypes.EC || keyType === OkmsKeyTypes.RSA
-            }
+            isDisabled={keyType === OkmsKeyTypes.EC || keyType === OkmsKeyTypes.RSA}
             onOdsChange={() => onCheckboxChange(operation)}
           />
         ))}

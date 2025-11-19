@@ -1,26 +1,27 @@
-import { vi } from 'vitest';
+import * as router from 'react-router-dom';
+
+import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
 import {
-  getOdsButtonByLabel,
-  assertOdsModalVisibility,
   WAIT_FOR_DEFAULT_OPTIONS,
+  assertOdsModalVisibility,
+  getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
-import * as router from 'react-router-dom';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 const mockCredentialItem = credentialMock[0];
 const mockPageUrl = KMS_ROUTES_URLS.credentialDashboardDelete(
   okmsMock[0].id,
   mockCredentialItem.id,
 );
-const mockCredentialListPageUrl = KMS_ROUTES_URLS.credentialListing(
-  okmsMock[0].id,
-);
+const mockCredentialListPageUrl = KMS_ROUTES_URLS.credentialListing(okmsMock[0].id);
 
 describe('Credential delete modal test suite', () => {
   const mockNavigate = vi.fn();
@@ -68,9 +69,7 @@ describe('Credential delete modal test suite', () => {
     // Check notification
     await waitFor(() => {
       expect(
-        screen.getByText(
-          labels.credentials.key_management_service_credential_delete_success,
-        ),
+        screen.getByText(labels.credentials.key_management_service_credential_delete_success),
       ).toBeVisible();
     });
   });
@@ -98,20 +97,13 @@ describe('Credential delete modal test suite', () => {
     });
 
     // Check navigation
-    await waitFor(
-      () => expect(mockNavigate).toHaveBeenCalledWith('..'),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('..'), WAIT_FOR_DEFAULT_OPTIONS);
 
     // Check notification
     await waitFor(() => {
-      const notificationLabel = labels.credentials.key_management_service_credential_delete_error.replace(
-        ' {{error}}',
-        '',
-      );
-      expect(
-        screen.getByText((content) => content.includes(notificationLabel)),
-      ).toBeVisible();
+      const notificationLabel =
+        labels.credentials.key_management_service_credential_delete_error.replace(' {{error}}', '');
+      expect(screen.getByText((content) => content.includes(notificationLabel))).toBeVisible();
     });
   });
 });

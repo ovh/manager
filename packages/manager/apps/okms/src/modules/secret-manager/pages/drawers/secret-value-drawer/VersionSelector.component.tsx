@@ -1,23 +1,23 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  OdsMessage,
-  OdsSelect,
-  OdsSkeleton,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+
 import { VersionState } from '@secret-manager/components/version-state/VersionState.component';
 import { useSecretVersionList } from '@secret-manager/data/hooks/useSecretVersionList';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useTranslation } from 'react-i18next';
+
+import { OdsMessage, OdsSelect, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { isErrorResponse } from '@/common/utils/api/api';
+
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
   VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
   VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
 } from './VersionSelector.constants';
-import { isErrorResponse } from '@/common/utils/api/api';
 
 type VersionSelectorParams = {
   okmsId: string;
@@ -36,11 +36,7 @@ export const VersionSelector = ({
 }: VersionSelectorParams) => {
   const secretPathDecoded = decodeSecretPath(secretPath);
 
-  const { t } = useTranslation([
-    'secret-manager',
-    NAMESPACES.STATUS,
-    NAMESPACES.ERROR,
-  ]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS, NAMESPACES.ERROR]);
 
   const { data, isPending, isFetching, error } = useSecretVersionList({
     okmsId,
@@ -49,16 +45,10 @@ export const VersionSelector = ({
   });
 
   if (error) {
-    const message = isErrorResponse(error)
-      ? error.response.data.message
-      : undefined;
+    const message = isErrorResponse(error) ? error.response.data.message : undefined;
 
     return (
-      <OdsMessage
-        className="mt-4"
-        color="critical"
-        data-testid={VERSION_SELECTOR_ERROR_TEST_ID}
-      >
+      <OdsMessage className="mt-4" color="critical" data-testid={VERSION_SELECTOR_ERROR_TEST_ID}>
         {t('error_message', {
           message,
           ns: NAMESPACES.ERROR,
@@ -88,15 +78,11 @@ export const VersionSelector = ({
             className="flex-grow"
             name="version-selector"
             onOdsChange={(value) =>
-              setSelectedVersion(
-                versions.find((v) => v.id === Number(value.detail.value)),
-              )
+              setSelectedVersion(versions.find((v) => v.id === Number(value.detail.value)))
             }
             defaultValue={
               versionId
-                ? versions
-                    .find((version) => version.id.toString() === versionId)
-                    .id.toString()
+                ? versions.find((version) => version.id.toString() === versionId).id.toString()
                 : versions[0].id.toString()
             }
             isDisabled={versions.length === 1}

@@ -1,11 +1,8 @@
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_BUTTON_COLOR,
-} from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
 import { useIdentityData } from '@key-management-service/hooks/credential/useIdentityData';
 import { IdentityGroup } from '@key-management-service/types/identity.type';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
 const IdentityGroupDeleteActionCell = (group: IdentityGroup) => {
   const { setGroupList } = useIdentityData();

@@ -1,9 +1,11 @@
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { DeleteModal } from '@ovh-ux/manager-react-components';
+
 import { useDeleteOkmsCredential } from '@key-management-service/data/hooks/useDeleteOkmsCredential';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { DeleteModal } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 const DeleteCredentialPage = () => {
   const navigate = useNavigate();
@@ -47,9 +49,7 @@ const DeleteCredentialPage = () => {
     <DeleteModal
       isOpen
       headline={t('key_management_service_credential_delete_modal_headline')}
-      deleteInputLabel={t(
-        'key_management_service_credential_delete_modal_input_label',
-      )}
+      deleteInputLabel={t('key_management_service_credential_delete_modal_input_label')}
       closeModal={onClose}
       onConfirmDelete={onConfirm}
       isLoading={isPending}

@@ -1,9 +1,12 @@
-import { vi } from 'vitest';
-import { Subsidiary, User } from '@ovh-ux/manager-config';
 import { renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { Subsidiary, User } from '@ovh-ux/manager-config';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
-import { useGuideLink } from './useGuideLink';
+
 import { useShellContext } from '@/common/hooks/useShellContext';
+
+import { useGuideLink } from './useGuideLink';
 
 const mockedGuides = { FR: 'fr-link', GB: 'gb-link' };
 
@@ -30,16 +33,16 @@ describe('useGuideLink test suite', () => {
     'should return $expectedLink for subsidiary $subsidiary',
     ({ subsidiary, expectedLink }) => {
       // GIVEN
-      vi.mocked(useShellContext).mockReturnValue(({
+      vi.mocked(useShellContext).mockReturnValue({
         environment: {
           getUser: vi.fn(
             () =>
               ({
                 ovhSubsidiary: subsidiary,
-              } as User),
+              }) as User,
           ),
         },
-      } as unknown) as ShellContextType);
+      } as unknown as ShellContextType);
 
       // WHEN
       const { result } = renderHook(() => useGuideLink(mockedGuides));

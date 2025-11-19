@@ -1,22 +1,25 @@
-import z from 'zod';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Secret } from '@secret-manager/types/secret.type';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { useUpdateSecret } from '@secret-manager/data/hooks/useUpdateSecret';
-import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
 import {
   SecretCasRequiredFormField,
   casRequiredToFormValue,
   formValueToCasRequired,
 } from '@secret-manager/components/form/SecretCasRequiredFormField.component';
+import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
+import { useUpdateSecret } from '@secret-manager/data/hooks/useUpdateSecret';
+import { Secret } from '@secret-manager/types/secret.type';
+import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
-import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import z from 'zod';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import {
   DrawerContent,
   DrawerFooter,
@@ -86,14 +89,10 @@ export const EditMetadataDrawerForm = ({
         <form className="flex flex-col gap-4 p-1">
           {updateError && (
             <OdsMessage color="danger" className="mb-4">
-              {updateError?.response?.data?.message ||
-                t('error_update_settings')}
+              {updateError?.response?.data?.message || t('error_update_settings')}
             </OdsMessage>
           )}
-          <SecretDeactivateVersionAfterFormField
-            name="deactivateVersionAfter"
-            control={control}
-          />
+          <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
           <SecretMaxVersionsFormField
             name="maxVersions"
             control={control}

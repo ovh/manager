@@ -1,15 +1,23 @@
-import { useTranslation } from 'react-i18next';
-import { TagsList } from '@ovh-ux/manager-react-components';
-import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { TagsList } from '@ovh-ux/manager-react-components';
+
 import { RadioCard } from '@/common/components/radio-card/RadioCard.component';
+
 import { ActivateRegion } from './ActivateRegion.component';
 
 const OkmsStatus = ({ id }: { id: string }) => {
-  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
+  const {
+    data: OkmsServiceInfos,
+    isLoading,
+    isError,
+  } = useServiceDetails({
     resourceName: id,
   });
 
@@ -17,12 +25,7 @@ const OkmsStatus = ({ id }: { id: string }) => {
 
   if (isError) return null;
 
-  return (
-    <OkmsServiceState
-      state={OkmsServiceInfos.data.resource.state}
-      size={ODS_BADGE_SIZE.sm}
-    />
-  );
+  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} size={ODS_BADGE_SIZE.sm} />;
 };
 
 type OkmsSelectorProps = {
@@ -52,9 +55,7 @@ export const OkmsSelector = ({
 
   return (
     <div className="flex flex-col gap-3">
-      <OdsText preset="heading-4">
-        {t('create_secret_form_okms_selector_title')}
-      </OdsText>
+      <OdsText preset="heading-4">{t('create_secret_form_okms_selector_title')}</OdsText>
       <div className="space-y-3">
         {okmsList.map((okms) => (
           <RadioCard

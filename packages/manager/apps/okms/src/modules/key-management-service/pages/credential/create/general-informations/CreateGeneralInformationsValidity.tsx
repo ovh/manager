@@ -1,18 +1,16 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import {
-  OdsDatepicker,
-  OdsFormField,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
 import { ValidityPeriodErrorsType } from '@key-management-service/utils/credential/validateValidityDate';
 import {
   addDaysToDate,
   getDateFromDays,
   getDaysFromDate,
 } from '@key-management-service/utils/credential/validityDateUtils';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsDatepicker, OdsFormField, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+
 import { VALIDITY_PERIOD_PRESET } from '../CreateGeneralInformations.constants';
 
 type CreateGeneralInformationsValidityProps = {
@@ -31,25 +29,15 @@ const CreateGeneralInformationsValidity = ({
   const getPresetForDays = (days: number): number =>
     VALIDITY_PERIOD_PRESET.find((preset) => preset.days === days)?.days ?? -1;
 
-  const [validityPresetPeriod, setValidityPresetPeriod] = useState(
-    getPresetForDays(validity),
-  );
-  const [validityDatepicker, setValidityDatepicker] = useState<Date>(
-    getDateFromDays(validity),
-  );
+  const [validityPresetPeriod, setValidityPresetPeriod] = useState(getPresetForDays(validity));
+  const [validityDatepicker, setValidityDatepicker] = useState<Date>(getDateFromDays(validity));
 
-  const getValidityErrorMessage = (
-    error: ValidityPeriodErrorsType | undefined,
-  ) => {
+  const getValidityErrorMessage = (error: ValidityPeriodErrorsType | undefined) => {
     switch (error) {
       case 'MIN_PERIOD':
-        return t(
-          'key_management_service_credential_update_validity_error_min_period',
-        );
+        return t('key_management_service_credential_update_validity_error_min_period');
       case 'MAX_PERIOD':
-        return t(
-          'key_management_service_credential_update_validity_error_max_period',
-        );
+        return t('key_management_service_credential_update_validity_error_max_period');
       default:
         return undefined;
     }
@@ -69,14 +57,10 @@ const CreateGeneralInformationsValidity = ({
       <OdsFormField>
         <div slot="label" className="space-y-2 mb-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-            {t(
-              'key_management_service_credential_create_general_information_validity_title',
-            )}
+            {t('key_management_service_credential_create_general_information_validity_title')}
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t(
-              'key_management_service_credential_create_general_information_validity_subtitle',
-            )}
+            {t('key_management_service_credential_create_general_information_validity_subtitle')}
           </OdsText>
         </div>
         <OdsSelect
@@ -95,9 +79,7 @@ const CreateGeneralInformationsValidity = ({
       {validityPresetPeriod === -1 && (
         <OdsFormField error={getValidityErrorMessage(credentialValidityError)}>
           <OdsText slot="label" preset={ODS_TEXT_PRESET.heading5}>
-            {t(
-              'key_management_service_credential_create_validity_custom_date_label',
-            )}
+            {t('key_management_service_credential_create_validity_custom_date_label')}
           </OdsText>
           <OdsDatepicker
             name="credentialValidity"
@@ -111,9 +93,7 @@ const CreateGeneralInformationsValidity = ({
             min={addDaysToDate(1)}
           />
           <OdsText slot="visual-hint" preset={ODS_TEXT_PRESET.span}>
-            {t(
-              'key_management_service_credential_update_validity_error_max_period',
-            )}
+            {t('key_management_service_credential_update_validity_error_max_period')}
           </OdsText>
         </OdsFormField>
       )}

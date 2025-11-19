@@ -6,12 +6,8 @@ import { OKMS } from '@key-management-service/types/okms.type';
  * @param expirationInMinutes - The number of minutes after which the order will expire
  * @returns True if the order has expired, false otherwise
  */
-export const isOrderExpired = (
-  createdAt: string,
-  expirationInMinutes: number,
-): boolean => {
-  const expirationTime =
-    new Date(createdAt).getTime() + expirationInMinutes * 60_000;
+export const isOrderExpired = (createdAt: string, expirationInMinutes: number): boolean => {
+  const expirationTime = new Date(createdAt).getTime() + expirationInMinutes * 60_000;
   return Date.now() > expirationTime;
 };
 
@@ -21,11 +17,6 @@ export const isOrderExpired = (
  * @param okmsList - The list of OKMSs
  * @returns The new OKMS id if found, undefined otherwise
  */
-export const findNewOkmsId = (
-  initialOkmsIds: string[],
-  okmsList: OKMS[],
-): OKMS | undefined => {
-  return okmsList.find(
-    (okms) => !initialOkmsIds.some((initial) => initial === okms.id),
-  );
+export const findNewOkmsId = (initialOkmsIds: string[], okmsList: OKMS[]): OKMS | undefined => {
+  return okmsList.find((okms) => !initialOkmsIds.some((initial) => initial === okms.id));
 };

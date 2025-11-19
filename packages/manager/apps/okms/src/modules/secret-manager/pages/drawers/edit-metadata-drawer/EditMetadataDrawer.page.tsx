@@ -1,12 +1,17 @@
 import { Suspense } from 'react';
-import { Drawer } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+
 import { useSecret } from '@secret-manager/data/hooks/useSecret';
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { LocationPathParams } from '@secret-manager/routes/routes.constants';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useTranslation } from 'react-i18next';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { Drawer } from '@ovh-ux/manager-react-components';
+
 import { EditMetadataDrawerForm } from './EditMetadataDrawerForm.component';
 
 export default function EditMetadataDrawerPage() {
