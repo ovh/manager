@@ -20,7 +20,7 @@ type EnquirerPromptInstance = { state?: { answers?: Record<string, unknown> } };
  * @param {Partial<Answers>} [state] - Current prompt state containing previous answers.
  * @returns {T | undefined} - The extracted previous answer if available.
  */
-function getPreviousAnswer<T = unknown>(
+export function getPreviousAnswer<T = unknown>(
   key: keyof Answers,
   value: unknown,
   state?: Partial<Answers>,
@@ -36,7 +36,7 @@ function getPreviousAnswer<T = unknown>(
  * @param {{ key: T, label: string }} params
  * @returns {PromptOptions<T>}
  */
-function buildNameQuestion<T extends string>({
+export function buildNameQuestion<T extends string>({
   key,
   label,
 }: {
@@ -59,7 +59,7 @@ function buildNameQuestion<T extends string>({
  * @param {{ key: T, label: string }} params
  * @returns {PromptOptions<T>}
  */
-function buildDescriptionQuestion<T extends string>({
+export function buildDescriptionQuestion<T extends string>({
   key,
   label,
 }: {
@@ -89,16 +89,18 @@ function buildDescriptionQuestion<T extends string>({
  * }} params
  * @returns {PromptOptions<T>}
  */
-function buildPackageNameQuestion<T extends string>({
+export function buildPackageNameQuestion<T extends string>({
   key,
   nameKey,
   label,
   prefix,
+  suffix,
 }: {
   key: T;
   nameKey: keyof Answers;
   label: string;
   prefix: string;
+  suffix?: string;
 }): PromptOptions<T> {
   return {
     type: 'input',
@@ -106,7 +108,8 @@ function buildPackageNameQuestion<T extends string>({
     message: `What is the package name of the new ${label}?`,
     initial: (_value, state) => {
       const name = getPreviousAnswer<string>(nameKey, _value, state);
-      return `@ovh-ux/${prefix}-${typeof name === 'string' ? name : ''}`;
+      const packageSuffix = suffix && name?.length && !name?.endsWith(suffix) ? `-${suffix}` : '';
+      return `@ovh-ux/${prefix}-${typeof name === 'string' ? name : ''}${packageSuffix}`;
     },
   };
 }
@@ -116,7 +119,7 @@ function buildPackageNameQuestion<T extends string>({
  *
  * @returns {PromptOptions<'regions'>}
  */
-function buildRegionQuestion(): PromptOptions<'regions'> {
+export function buildRegionQuestion(): PromptOptions<'regions'> {
   return {
     type: 'multiselect',
     name: 'regions',
@@ -132,7 +135,7 @@ function buildRegionQuestion(): PromptOptions<'regions'> {
  *
  * @returns {PromptOptions<'universes'>}
  */
-function buildUniversesQuestion(): PromptOptions<'universes'> {
+export function buildUniversesQuestion(): PromptOptions<'universes'> {
   return {
     type: 'multiselect',
     name: 'universes',
@@ -148,7 +151,7 @@ function buildUniversesQuestion(): PromptOptions<'universes'> {
  *
  * @returns {PromptOptions<'level2'>}
  */
-function buildLevel2Question(): PromptOptions<'level2'> {
+export function buildLevel2Question(): PromptOptions<'level2'> {
   return {
     type: 'select',
     name: 'level2',
@@ -162,7 +165,7 @@ function buildLevel2Question(): PromptOptions<'level2'> {
  *
  * @returns {PromptOptions<'universe'>}
  */
-function buildUniverseQuestion(): PromptOptions<'universe'> {
+export function buildUniverseQuestion(): PromptOptions<'universe'> {
   return {
     type: 'select',
     name: 'universe',
@@ -176,7 +179,7 @@ function buildUniverseQuestion(): PromptOptions<'universe'> {
  *
  * @returns {PromptOptions<'subUniverse'>}
  */
-function buildSubUniverseQuestion(): PromptOptions<'subUniverse'> {
+export function buildSubUniverseQuestion(): PromptOptions<'subUniverse'> {
   return {
     type: 'select',
     name: 'subUniverse',
@@ -198,6 +201,7 @@ export async function askApplicationInfos(): Promise<Answers> {
       nameKey: 'appName',
       label: 'app',
       prefix: 'manager',
+      suffix: 'app',
     }),
     buildDescriptionQuestion({ key: 'description', label: 'app' }),
     buildRegionQuestion(),
@@ -215,7 +219,7 @@ export async function askApplicationInfos(): Promise<Answers> {
  *
  * @returns {PromptOptions<'isPrivate'>}
  */
-function buildModulePrivateQuestion(): PromptOptions<'isPrivate'> {
+export function buildModulePrivateQuestion(): PromptOptions<'isPrivate'> {
   return {
     type: 'confirm',
     name: 'isPrivate',
@@ -229,7 +233,7 @@ function buildModulePrivateQuestion(): PromptOptions<'isPrivate'> {
  *
  * @returns {PromptOptions<'moduleType'>}
  */
-function buildModuleTypeQuestion(): PromptOptions<'moduleType'> {
+export function buildModuleTypeQuestion(): PromptOptions<'moduleType'> {
   return {
     type: 'select',
     name: 'moduleType',
