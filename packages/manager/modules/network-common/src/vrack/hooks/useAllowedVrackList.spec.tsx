@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { InternalAxiosRequestConfig } from 'axios';
 import { vi } from 'vitest';
 
-import { vrackListMocks } from '../../mocks';
+import { vrackListMocks } from '../../__mocks__';
 import { getVrackAllowedServices, getVrackList } from '../api';
 import { useAllowedVrackList } from './useAllowedVrackList';
 
