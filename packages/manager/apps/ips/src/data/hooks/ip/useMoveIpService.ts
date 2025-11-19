@@ -19,14 +19,134 @@ import {
   getIpTaskDetailsQueryKey,
   getIpTaskDetails,
   MoveIpAvailableDestinationsResponse,
+  getVrackTaskList,
+  getVrackTaskQueryKey,
+  getVrackTaskDetailsQueryKey,
+  getVrackTaskDetails,
 } from '@/data/api';
-import { IpTaskStatus, IpTaskFunction, IpTask } from '@/types';
-import { INVALIDATED_REFRESH_PERIOD, TRANSLATION_NAMESPACES } from '@/utils';
+import {
+  IpTaskStatus,
+  IpTaskFunction,
+  IpTask,
+  VrackTask,
+  VrackTaskStatus,
+  VrackTaskFunction,
+} from '@/types';
+import {
+  getTypeByServiceName,
+  INVALIDATED_REFRESH_PERIOD,
+  TRANSLATION_NAMESPACES,
+} from '@/utils';
+import { IpTypeEnum } from '@/data/constants';
 
 const getMoveIpOngoingTasksQueryKey = (ip: string) => [
   'ipMoveOngoingTasks',
   ip.includes('/') ? ip : `${ip}/32`,
 ];
+
+export function useVrackMoveTasks({
+  ip,
+  serviceName,
+  enabled = true,
+}: {
+  ip: string;
+  serviceName?: string;
+  enabled?: boolean;
+}) {
+  const queryClient = useQueryClient();
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.ips,
+    TRANSLATION_NAMESPACES.moveIp,
+  ]);
+  const { clearNotifications, addSuccess } = useNotifications();
+  const { trackPage } = useOvhTracking();
+  const { data, isLoading } = useQuery({
+    queryKey: getVrackTaskQueryKey({ serviceName }),
+    queryFn: () => getVrackTaskList({ serviceName }),
+    enabled:
+      !!serviceName &&
+      getTypeByServiceName(serviceName) === IpTypeEnum.VRACK &&
+      enabled,
+  });
+
+  const queries = useQueries({
+    queries: (data?.data ?? []).map((taskId) => ({
+      queryKey: getVrackTaskDetailsQueryKey({ serviceName, taskId }),
+      queryFn: async () => {
+        try {
+          return await getVrackTaskDetails({ serviceName, taskId });
+        } catch (err) {
+          if ((err as ApiError).status === 404) {
+            clearNotifications();
+            addSuccess(
+              t('moveIpDoneMessage', {
+                ip,
+                ns: TRANSLATION_NAMESPACES.moveIp,
+              }),
+            );
+            trackPage({
+              pageType: PageType.bannerSuccess,
+              pageName: 'move-ip_success',
+            });
+            queryClient.invalidateQueries({
+              queryKey: getIpDetailsQueryKey({ ip }),
+            });
+            return {} as ApiResponse<VrackTask>;
+          }
+          throw err;
+        }
+      },
+      refetchInterval: (query: Query<ApiResponse<VrackTask>, ApiError>) => {
+        if (
+          !query.state.error &&
+          [
+            VrackTaskFunction.addBlockToBridgeDomain,
+            VrackTaskFunction.removeBlockFromBridgeDomain,
+          ].includes(query.state.data?.data?.function)
+        ) {
+          if (
+            [
+              VrackTaskStatus.init,
+              VrackTaskStatus.todo,
+              VrackTaskStatus.doing,
+            ].includes(query.state.data?.data?.status)
+          ) {
+            return INVALIDATED_REFRESH_PERIOD;
+          }
+
+          if (query.state.data?.data?.status === VrackTaskStatus.done) {
+            clearNotifications();
+            addSuccess(
+              t('moveIpDoneMessage', {
+                ip,
+                ns: TRANSLATION_NAMESPACES.moveIp,
+              }),
+            );
+            trackPage({
+              pageType: PageType.bannerSuccess,
+              pageName: 'move-ip_success',
+            });
+            queryClient.invalidateQueries({
+              queryKey: getIpDetailsQueryKey({ ip }),
+            });
+          }
+
+          return undefined;
+        }
+
+        return undefined;
+      },
+    })),
+  });
+
+  return {
+    isVrackTasksLoading: isLoading || queries.some((q) => q.isLoading),
+    vrackTasksError: queries.find((q) => q.error)?.error as ApiError,
+    hasOnGoingVrackMoveTasks:
+      queries.map((q) => q.data).filter((d): d is ApiResponse<VrackTask> => !!d)
+        .length > 0,
+  };
+}
 
 export function useMoveIpTasks({
   ip,
@@ -140,12 +260,24 @@ export function useMoveIpTasks({
 
 export function useMoveIpService({
   ip,
+  serviceName,
   onMoveIpSuccess,
 }: {
   ip: string;
+  serviceName?: string;
   onMoveIpSuccess?: () => void;
 }) {
   const queryClient = useQueryClient();
+  const {
+    hasOnGoingVrackMoveTasks,
+    isVrackTasksLoading,
+    vrackTasksError,
+  } = useVrackMoveTasks({
+    ip,
+    serviceName,
+    enabled:
+      !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK,
+  });
   const { hasOnGoingMoveIpTask, isTasksLoading, taskError } = useMoveIpTasks({
     ip,
   });
@@ -172,7 +304,13 @@ export function useMoveIpService({
         };
       }
     },
-    enabled: !isTasksLoading && !taskError && !hasOnGoingMoveIpTask,
+    enabled:
+      !isTasksLoading &&
+      !taskError &&
+      !hasOnGoingMoveIpTask &&
+      !hasOnGoingVrackMoveTasks &&
+      !isVrackTasksLoading &&
+      !vrackTasksError,
   });
 
   const isDedicatedCloudService = useCallback(
@@ -210,7 +348,10 @@ export function useMoveIpService({
     mutationFn: apiPostMoveIp,
     onSuccess: async () => {
       queryClient.invalidateQueries({
-        queryKey: getMoveIpOngoingTasksQueryKey(ip),
+        queryKey:
+          serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK
+            ? getVrackTaskQueryKey({ serviceName })
+            : getMoveIpOngoingTasksQueryKey(ip),
       });
       onMoveIpSuccess?.();
     },
