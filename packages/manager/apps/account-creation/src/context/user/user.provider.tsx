@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Country,
   LegalForm,
@@ -24,6 +24,7 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
+  const [ searchParams ] = useSearchParams();
   const { setUser } = useTrackingContext();
   const { data: me, isFetched, error } = useMe({ retry: 0 });
   const { data: availability } = useFeatureAvailability(
@@ -50,7 +51,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   useEffect(() => {
     if (isFetched) {
       if (error?.status === 401) {
-        navigate(urls.settings);
+        navigate(`${urls.settings}?${searchParams.toString()}`);
         return;
       }
       setLegalForm(me?.legalform);
@@ -70,7 +71,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
       if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
         redirectToLegacySignup();
       } else {
-        navigate(urls.accountType);
+        navigate(`${urls.accountType}?${searchParams.toString()}`);
       }
     }
   }, [availability]);
