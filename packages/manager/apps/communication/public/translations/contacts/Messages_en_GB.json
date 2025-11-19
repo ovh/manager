@@ -39,5 +39,7 @@
   "validation_pending_modal_title": "Confirm your contact",
   "validation_pending_contact_email_info": "A confirmation link has been sent to <strong>{{email}}</strong>.",
   "validation_pending_resend_validation_code_label": "Resend the confirmation link",
-  "validation_pending_validate_contact_label": "Enter the code"
+  "validation_pending_validate_contact_label": "Enter the code",
+  "activate_contact_success_message": "The contact has been successfully activated.",
+  "activate_contact_error_message": "An error occurred while activating the contact."
 }

@@ -39,5 +39,7 @@
   "validation_pending_modal_title": "Convalida del tuo contatto",
   "validation_pending_contact_email_info": "Un link di convalida è stato inviato a <strong>{{email}}</strong>.",
   "validation_pending_resend_validation_code_label": "Reinviare il link di convalida",
-  "validation_pending_validate_contact_label": "Inserire il codice"
+  "validation_pending_validate_contact_label": "Inserire il codice",
+  "activate_contact_success_message": "Il contatto è stato attivato con successo.",
+  "activate_contact_error_message": "Si è verificato un errore durante l'attivazione del contatto."
 }

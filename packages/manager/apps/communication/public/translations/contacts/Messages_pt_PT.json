@@ -39,5 +39,7 @@
   "validation_pending_modal_title": "Validação do seu contato",
   "validation_pending_contact_email_info": "Um link de validação foi enviado para <strong>{{email}}</strong>.",
   "validation_pending_resend_validation_code_label": "Reenviar o link de validação",
-  "validation_pending_validate_contact_label": "Inserir o código"
+  "validation_pending_validate_contact_label": "Inserir o código",
+  "activate_contact_success_message": "O contacto foi ativado com sucesso.",
+  "activate_contact_error_message": "Ocorreu um erro ao ativar o contacto."
 }

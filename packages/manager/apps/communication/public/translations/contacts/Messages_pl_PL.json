@@ -39,5 +39,7 @@
   "validation_pending_modal_title": "Potwierdzenie Twojego kontaktu",
   "validation_pending_contact_email_info": "Link potwierdzający został wysłany na <strong>{{email}}</strong>.",
   "validation_pending_resend_validation_code_label": "Prześlij ponownie link potwierdzający",
-  "validation_pending_validate_contact_label": "Wprowadź kod"
+  "validation_pending_validate_contact_label": "Wprowadź kod",
+  "activate_contact_success_message": "Kontakt został pomyślnie nawiązany.",
+  "activate_contact_error_message": "Wystąpił błąd podczas aktywacji styku."
 }

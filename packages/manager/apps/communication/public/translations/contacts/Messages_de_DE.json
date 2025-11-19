@@ -39,5 +39,7 @@
   "validation_pending_modal_title": "Bestätigung Ihres Kontakts",
   "validation_pending_contact_email_info": "Ein Bestätigungslink wurde an <strong>{{email}}</strong> gesendet.",
   "validation_pending_resend_validation_code_label": "Den Bestätigungslink erneut senden",
-  "validation_pending_validate_contact_label": "Geben Sie den Code ein"
+  "validation_pending_validate_contact_label": "Geben Sie den Code ein",
+  "activate_contact_success_message": "Der Kontakt wurde erfolgreich aktiviert.",
+  "activate_contact_error_message": "Ein Fehler ist bei der Aktivierung des Kontakts aufgetreten."
 }
