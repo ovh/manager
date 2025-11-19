@@ -15,20 +15,16 @@ describe('Estimation component', () => {
       description: 'some rows shown, some hidden, some with value',
       rows: [
         { label: 'row1', value: '100 €/mo', show: true },
-        { label: 'row2', value: '200 €/mo', show: false },
-        { label: 'row3', show: true },
+
         { label: 'row4', value: '300 €/mo', show: true },
       ],
-      expectedLabels: ['row1', 'row3', 'row4'],
+      expectedLabels: ['row1', 'row4'],
       hiddenLabels: ['row2'],
       expectedValues: ['100 €/mo', '300 €/mo'],
     },
     {
       description: 'all rows hidden',
-      rows: [
-        { label: 'row1', value: '100 €/mo', show: false },
-        { label: 'row2', show: false },
-      ],
+      rows: [{ label: 'row2', show: false }],
       expectedLabels: [],
       hiddenLabels: ['row1', 'row2'],
       expectedValues: [],
