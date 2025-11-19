@@ -83,7 +83,7 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
           </OdsText>
         </div>
         <OdsFormField>
-          <div slot="label" className="space-y-2 mb-2">
+          <div slot="label" className="mb-2 space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t('key_management_service_service-keys_create_crypto_field_type_title')}
             </OdsText>
@@ -108,7 +108,7 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
 
       {serviceKey && [OkmsKeyTypes.oct, OkmsKeyTypes.RSA].includes(serviceKey.type) && (
         <OdsFormField key={serviceKey.type}>
-          <div slot="label" className="space-y-2 mb-2">
+          <div slot="label" className="mb-2 space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t('key_management_service_service-keys_create_crypto_field_size_title')}
             </OdsText>
@@ -133,7 +133,7 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
       )}
       {serviceKey?.type === OkmsKeyTypes.EC && (
         <OdsFormField>
-          <div slot="label" className="space-y-2 mb-2">
+          <div slot="label" className="mb-2 space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t('key_management_service_service-keys_create_crypto_field_curve_title')}
             </OdsText>

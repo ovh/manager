@@ -57,7 +57,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
 
   return (
     <OdsFormField>
-      <div slot="label" className="space-y-2 mb-2">
+      <div slot="label" className="mb-2 space-y-2">
         <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
           {t('key_management_service_service-keys_create_crypto_field_usage_title')}
         </OdsText>
