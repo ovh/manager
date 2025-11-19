@@ -2,16 +2,16 @@ import React, { useContext, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { getOrderURL } from '@ovh-ux/manager-module-order';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import {
   ZIMBRA_ADMINISTRATOR_GUIDE,
@@ -79,14 +79,14 @@ export const Onboarding = () => {
     <OnboardingLayout
       title={t('title')}
       img={{ src: onboardingImgSrc }}
-      description={<OdsText className="text-center">{t('description')}</OdsText>}
+      description={<Text className="text-center">{t('description')}</Text>}
       orderButtonLabel={t('orderButtonLabel')}
       onOrderButtonClick={onOrderButtonClick}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={WEBSITE_LINK[ovhSubsidiary] || WEBSITE_LINK.DEFAULT}
     >
       {onboardingGuides.map(({ href, key, tracking }) => (
-        <Card
+        <LinkCard
           key={key}
           href={href}
           texts={{

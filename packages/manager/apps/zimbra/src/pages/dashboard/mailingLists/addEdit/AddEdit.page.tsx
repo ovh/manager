@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { IconLinkAlignmentType, LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Link, LinkType } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import { ADD_MAILING_LIST, BACK_PREVIOUS_PAGE, EDIT_MAILING_LIST } from '@/tracking.constants';
@@ -23,12 +23,11 @@ export const AddEditMailingList = () => {
   return (
     <>
       <div className="mb-5 flex flex-col items-start space-y-4" data-testid="page-title">
-        <Links
+        <Link
           data-testid="back-btn"
           type={LinkType.back}
-          iconAlignment={IconLinkAlignmentType.left}
           href={goBackUrl}
-          onClickReturn={() => {
+          onClick={() => {
             trackClick({
               location: PageLocation.page,
               buttonType: ButtonType.link,
@@ -36,12 +35,12 @@ export const AddEditMailingList = () => {
               actions: [mailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST, BACK_PREVIOUS_PAGE],
             });
           }}
-          color={ODS_LINK_COLOR.primary}
-          label={t('zimbra_mailinglist_add_cta_back')}
-        />
-        <Subtitle>
+        >
+          {t('zimbra_mailinglist_add_cta_back')}
+        </Link>
+        <Text preset={TEXT_PRESET.heading3}>
           {mailingListId ? t('common:edit_mailing_list') : t('common:add_mailing_list')}
-        </Subtitle>
+        </Text>
       </div>
       <MailingListForm />
     </>

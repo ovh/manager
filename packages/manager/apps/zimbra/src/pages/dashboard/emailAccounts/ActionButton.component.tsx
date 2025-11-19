@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu } from '@ovh-ux/muk';
 
 import { ResourceStatus, ServiceBillingState } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -135,7 +135,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.delete],
       label: t(`${NAMESPACES.ACTIONS}:delete`),
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     },
   ];
 
@@ -146,7 +146,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
       label: t(`${NAMESPACES.ACTIONS}:terminate`),
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     });
   }
 
@@ -157,7 +157,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
       label: t('undo_cancel_slot'),
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     });
   }
 
@@ -166,7 +166,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       id={item.id}
       isDisabled={item.status !== ResourceStatus.READY}
       items={actionItems}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       isCompact
     />
   );

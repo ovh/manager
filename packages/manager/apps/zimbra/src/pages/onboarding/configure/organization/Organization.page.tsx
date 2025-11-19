@@ -7,12 +7,20 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  BUTTON_COLOR,
+  Button,
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -20,6 +28,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -55,12 +64,12 @@ export const ConfigureOrganization: React.FC = () => {
   const {
     control,
     handleSubmit,
-    formState: { isDirty, isValid, errors },
+    formState: { isValid, errors },
   } = useForm({
     defaultValues: {
       name: user?.organisation ?? user?.name ?? '',
     },
-    mode: 'onTouched',
+    mode: 'onChange',
     resolver: zodResolver(simpleOrganizationSchema),
   });
 
@@ -74,11 +83,11 @@ export const ConfigureOrganization: React.FC = () => {
         pageName: ONBOARDING_CONFIGURE_ORGANIZATION,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('organizations/form:zimbra_organization_add_error_message', {
             error: error.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -109,47 +118,59 @@ export const ConfigureOrganization: React.FC = () => {
       className="flex w-full flex-col gap-4 md:w-1/2"
       onSubmit={handleSubmit(handleConfirmClick)}
     >
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('common:add_organization')}</OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.heading4}>{t('common:add_organization')}</Text>
+      <Text preset={TEXT_PRESET.paragraph}>
         {t('organizations/form:zimbra_organization_add_modal_content_part1')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      </Text>
+      <Text preset={TEXT_PRESET.paragraph}>
         {t('organizations/form:zimbra_organization_add_modal_content_part2')}
-      </OdsText>
+      </Text>
       <Controller
         control={control}
         name="name"
-        render={({ field: { name, value, onChange, onBlur } }) => (
-          <OdsFormField data-testid="field-name" error={errors?.[name]?.message} className="w-full">
-            <label htmlFor={name} slot="label">
+        defaultValue={user?.organisation ?? user?.name ?? ''}
+        render={({
+          field: { name, value, onChange, onBlur },
+          fieldState: { isDirty, isTouched },
+        }) => (
+          <FormField
+            data-testid="field-name"
+            invalid={(isDirty || isTouched) && !!errors?.[name]}
+            className="w-full"
+          >
+            <FormFieldLabel>
               {t('organizations/form:zimbra_organization_add_form_input_name_title')}
               {' *'}
-            </label>
-            <OdsInput
-              type={ODS_INPUT_TYPE.text}
+            </FormFieldLabel>
+            <Input
+              type={INPUT_TYPE.text}
               data-testid="input-name"
               placeholder={t(
                 'organizations/form:zimbra_organization_add_form_input_name_placeholder',
               )}
               id={name}
               name={name}
-              hasError={!!errors[name]}
+              invalid={(isDirty || isTouched) && !!errors[name]}
               value={value}
-              onOdsBlur={onBlur}
-              onOdsChange={onChange}
-            ></OdsInput>
-          </OdsFormField>
+              onBlur={onBlur}
+              onChange={onChange}
+            />
+            {(isDirty || isTouched) && errors?.[name]?.message && (
+              <FormFieldError>{errors[name].message}</FormFieldError>
+            )}
+          </FormField>
         )}
       />
-      <OdsButton
+      <Button
         className="self-start"
         data-testid="add-organization-submit-btn"
         type="submit"
-        color={ODS_BUTTON_COLOR.primary}
-        isDisabled={!isDirty || !isValid}
-        isLoading={isSending}
-        label={`${t(`${NAMESPACES.ACTIONS}:next`)} 1/3`}
-      ></OdsButton>
+        color={BUTTON_COLOR.primary}
+        disabled={!isValid}
+        loading={isSending}
+      >
+        {`${t(`${NAMESPACES.ACTIONS}:next`)} 1/3`}
+      </Button>
     </form>
   );
 };

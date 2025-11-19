@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { fireEvent, waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import { describe, expect } from 'vitest';
 
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import EmailAccounts from './EmailAccounts.page';
 
@@ -18,9 +20,9 @@ describe('EmailAccounts page', () => {
 
     const button = getByTestId('add-account-btn');
 
-    expect(button).toHaveAttribute('label', accountTranslation.zimbra_account_account_add);
+    expect(button).toHaveTextContent(accountTranslation.zimbra_account_account_add);
 
-    expect(button).toHaveAttribute('is-disabled', 'true');
+    expect(button).toBeDisabled();
   });
 
   it('should have accounts displayed by default', async () => {
@@ -32,7 +34,7 @@ describe('EmailAccounts page', () => {
 
     const switchAccounts = getByTestId('switch-accounts');
 
-    expect(switchAccounts).toHaveAttribute('is-checked', 'true');
+    expect(switchAccounts).toHaveAttribute('aria-checked', 'true');
 
     expect(getByText(commonTranslation.email_account)).toBeTruthy();
   });

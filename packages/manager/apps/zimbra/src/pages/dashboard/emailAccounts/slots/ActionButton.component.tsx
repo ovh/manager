@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu, ActionMenuProps } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuProps } from '@ovh-ux/muk';
 
 import { ServiceBillingState } from '@/data/api';
 import { SlotWithService, usePlatform } from '@/data/hooks';
@@ -105,7 +105,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
       label: t(`${NAMESPACES.ACTIONS}:terminate`),
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     });
   }
 
@@ -116,13 +116,11 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
       label: t('undo_cancel_slot'),
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     });
   }
 
-  return (
-    <ActionMenu id={item.id} items={actionItems} variant={ODS_BUTTON_VARIANT.ghost} isCompact />
-  );
+  return <ActionMenu id={item.id} items={actionItems} variant={BUTTON_VARIANT.ghost} isCompact />;
 };
 
 export default ActionButtonSlot;
