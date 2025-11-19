@@ -23,6 +23,8 @@ const IdentitiesGroupTile = ({
     if (
       selectedGroupList.some((groupInList) => groupInList.urn === group.urn)
     ) {
+      // TODO: This is freaking bad and should be fixed someday
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsChecked(true);
     }
   }, [selectedGroupList, group]);

@@ -13,9 +13,11 @@ export const SecretFormBackLink = () => {
   const [searchParams] = useSearchParams();
   const backOkmsId = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.okmsId);
 
-  const backLink = backOkmsId
-    ? useHref(SECRET_MANAGER_ROUTES_URLS.secretList(backOkmsId))
-    : useHref(SECRET_MANAGER_ROUTES_URLS.root);
+  const url = backOkmsId
+    ? SECRET_MANAGER_ROUTES_URLS.secretList(backOkmsId)
+    : SECRET_MANAGER_ROUTES_URLS.root;
+
+  const backLink = useHref(url);
 
   return (
     <Links

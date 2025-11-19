@@ -73,7 +73,7 @@ const CreateGeneralInformations = ({
     } else {
       setCertificateType(null);
     }
-  }, [isCustomCsr]);
+  }, [isCustomCsr, setCsr, setCertificateType]);
 
   return (
     <div className="max-w-lg gap-4 lg:gap-6">

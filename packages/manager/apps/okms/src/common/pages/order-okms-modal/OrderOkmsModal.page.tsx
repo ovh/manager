@@ -54,7 +54,7 @@ const OrderOkmsModal = () => {
   );
 
   /* STEP 1 - create cart on mount */
-  useEffect(createCart, []);
+  useEffect(createCart, [createCart]);
 
   return (
     <OdsModal isOpen onOdsClose={cancel}>

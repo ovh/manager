@@ -13,5 +13,5 @@ export const useFormattedDate = ({ date, options }: UseDateProps): string => {
     return Intl.DateTimeFormat(userLocale.replace('_', '-'), options).format(
       date,
     );
-  }, [userLocale, date]);
+  }, [userLocale, date, options]);
 };
