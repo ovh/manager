@@ -105,7 +105,7 @@ export const getDatagridColumns = ({
                 />
               </TextCell>
             ),
-            label: t('Floating IP'),
+            label: 'Floating IPs',
           },
         ]
       : []),

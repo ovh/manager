@@ -108,9 +108,7 @@ describe('useFloatingIpsPrice', () => {
         vi.mocked(getPlanCodeFloatingIps).mockReturnValue(planCode);
       }
 
-      const { result } = renderHook(() =>
-        useFloatingIpsPrice(enabled, 'hour', DeploymentMode.MONO_ZONE),
-      );
+      const { result } = renderHook(() => useFloatingIpsPrice(enabled, DeploymentMode.MONO_ZONE));
 
       expect(result.current).toEqual({
         isPending: expectedIsPending,
@@ -140,9 +138,7 @@ describe('useFloatingIpsPrice', () => {
 
     vi.mocked(getPlanCodeFloatingIps).mockReturnValue('floatingip.floatingip.hour.consumption');
 
-    const { result } = renderHook(() =>
-      useFloatingIpsPrice(true, 'hour', DeploymentMode.MONO_ZONE),
-    );
+    const { result } = renderHook(() => useFloatingIpsPrice(true, DeploymentMode.MONO_ZONE));
 
     expect(result.current).toEqual({
       isPending: false,
@@ -152,132 +148,123 @@ describe('useFloatingIpsPrice', () => {
 
   it.each([
     {
-      description: 'MONO_ZONE deployment with hourly billing',
+      description: 'MONO_ZONE deployment',
       deploymentMode: DeploymentMode.MONO_ZONE,
-      time: 'hour' as const,
-      planCode: 'floatingip.floatingip.hour.consumption',
+      planCodeHour: 'floatingip.floatingip.hour.consumption',
+      planCodeMonth: 'floatingip.floatingip.month.consumption',
       expectedPrice: {
         hour: 0.5,
         month: 5,
         hourFormatted: '0.5 €/hour',
         monthFormatted: '5 €/month',
       },
-      expectFormatterCalls: true,
     },
     {
-      description: 'MULTI_ZONES deployment with hourly billing',
+      description: 'MULTI_ZONES deployment',
       deploymentMode: DeploymentMode.MULTI_ZONES,
-      time: 'hour' as const,
-      planCode: 'floatingip.floatingip.hour.consumption.3AZ',
+      planCodeHour: 'floatingip.floatingip.hour.consumption.3AZ',
+      planCodeMonth: null,
       expectedPrice: {
         hour: 1.5,
         month: 15,
         hourFormatted: '1.5 €/hour',
         monthFormatted: '15 €/month',
       },
-      expectFormatterCalls: true,
     },
     {
-      description: 'LOCAL_ZONE deployment with hourly billing',
+      description: 'LOCAL_ZONE deployment',
       deploymentMode: DeploymentMode.LOCAL_ZONE,
-      time: 'hour' as const,
-      planCode: 'floatingip.floatingip.hour.consumption',
+      planCodeHour: 'floatingip.floatingip.hour.consumption',
+      planCodeMonth: 'floatingip.floatingip.month.consumption',
       expectedPrice: {
         hour: 0.5,
         month: 5,
         hourFormatted: '0.5 €/hour',
         monthFormatted: '5 €/month',
       },
-      expectFormatterCalls: false,
-    },
-    {
-      description: 'MONO_ZONE deployment with monthly billing',
-      deploymentMode: DeploymentMode.MONO_ZONE,
-      time: 'month' as const,
-      planCode: 'floatingip.floatingip.month.consumption',
-      expectedPrice: {
-        hour: 5,
-        month: 50,
-        hourFormatted: '5 €/hour',
-        monthFormatted: '50 €/month',
-      },
-      expectFormatterCalls: false,
     },
   ])(
     'should return formatted prices for $description',
-    ({ deploymentMode, time, planCode, expectedPrice, expectFormatterCalls }) => {
+    ({ deploymentMode, planCodeHour, planCodeMonth, expectedPrice }) => {
       vi.mocked(useCatalog).mockReturnValue({
         data: mockCatalog,
         isPending: false,
       } as ReturnType<typeof useCatalog>);
 
-      vi.mocked(getPlanCodeFloatingIps).mockReturnValue(planCode);
+      vi.mocked(getPlanCodeFloatingIps).mockImplementation((time) => {
+        if (time === 'hour') return planCodeHour;
+        if (time === 'month') return planCodeMonth;
+        return null;
+      });
 
-      const { result } = renderHook(() => useFloatingIpsPrice(true, time, deploymentMode));
+      const { result } = renderHook(() => useFloatingIpsPrice(true, deploymentMode));
 
       expect(result.current).toEqual({
         isPending: false,
         price: expectedPrice,
       });
 
-      if (expectFormatterCalls) {
-        expect(mockGetFormattedHourlyCatalogPrice).toHaveBeenCalledWith(expectedPrice.hour);
-        expect(mockGetFormattedMonthlyCatalogPrice).toHaveBeenCalledWith(expectedPrice.month);
-      }
+      expect(mockGetFormattedHourlyCatalogPrice).toHaveBeenCalledWith(expectedPrice.hour);
+      expect(mockGetFormattedMonthlyCatalogPrice).toHaveBeenCalledWith(expectedPrice.month);
     },
   );
 
-  it.each([
-    {
-      description: 'null deploymentMode',
-      catalog: mockCatalog,
-      planCode: null,
-      deploymentMode: null,
-      expectedPrice: null,
-      expectGetPlanCodeCall: true,
-    },
-    {
-      description: 'price of 0',
-      catalog: {
-        addons: [
-          {
-            planCode: 'floatingip.floatingip.hour.consumption',
-            pricings: [{ price: 0 }],
-          },
-        ],
-      },
-      planCode: 'floatingip.floatingip.hour.consumption',
-      deploymentMode: DeploymentMode.MONO_ZONE,
-      expectedPrice: {
+  it('should handle null deploymentMode', () => {
+    vi.mocked(useCatalog).mockReturnValue({
+      data: mockCatalog,
+      isPending: false,
+    } as ReturnType<typeof useCatalog>);
+
+    vi.mocked(getPlanCodeFloatingIps).mockReturnValue(null);
+
+    const { result } = renderHook(() => useFloatingIpsPrice(true, null));
+
+    expect(result.current).toEqual({
+      isPending: false,
+      price: null,
+    });
+
+    expect(getPlanCodeFloatingIps).toHaveBeenCalledWith('hour', null);
+    expect(getPlanCodeFloatingIps).toHaveBeenCalledWith('month', null);
+  });
+
+  it('should handle price of 0', () => {
+    const catalogWithZeroPrice = {
+      addons: [
+        {
+          planCode: 'floatingip.floatingip.hour.consumption',
+          pricings: [{ price: 0 }],
+        },
+        {
+          planCode: 'floatingip.floatingip.month.consumption',
+          pricings: [{ price: 0 }],
+        },
+      ],
+    };
+
+    vi.mocked(useCatalog).mockReturnValue({
+      data: catalogWithZeroPrice,
+      isPending: false,
+    } as unknown as ReturnType<typeof useCatalog>);
+
+    vi.mocked(getPlanCodeFloatingIps).mockImplementation((time) => {
+      if (time === 'hour') return 'floatingip.floatingip.hour.consumption';
+      if (time === 'month') return 'floatingip.floatingip.month.consumption';
+      return null;
+    });
+
+    const { result } = renderHook(() => useFloatingIpsPrice(true, DeploymentMode.MONO_ZONE));
+
+    expect(result.current).toEqual({
+      isPending: false,
+      price: {
         hour: 0,
         month: 0,
         hourFormatted: '0 €/hour',
         monthFormatted: '0 €/month',
       },
-      expectGetPlanCodeCall: false,
-    },
-  ])(
-    'should handle $description',
-    ({ catalog, planCode, deploymentMode, expectedPrice, expectGetPlanCodeCall }) => {
-      vi.mocked(useCatalog).mockReturnValue({
-        data: catalog,
-        isPending: false,
-      } as ReturnType<typeof useCatalog>);
-
-      vi.mocked(getPlanCodeFloatingIps).mockReturnValue(planCode);
-
-      const { result } = renderHook(() => useFloatingIpsPrice(true, 'hour', deploymentMode));
-
-      expect(result.current).toEqual({
-        isPending: false,
-        price: expectedPrice,
-      });
-
-      if (expectGetPlanCodeCall) {
-        expect(getPlanCodeFloatingIps).toHaveBeenCalledWith('hour', null);
-      }
-    },
-  );
+    });
+  });
 
   it('should use useCatalogPrice with precision of 5', () => {
     vi.mocked(useCatalog).mockReturnValue({
@@ -285,7 +272,7 @@ describe('useFloatingIpsPrice', () => {
       isPending: false,
     } as unknown as ReturnType<typeof useCatalog>);
 
-    renderHook(() => useFloatingIpsPrice(true, 'hour', DeploymentMode.MONO_ZONE));
+    renderHook(() => useFloatingIpsPrice(true, DeploymentMode.MONO_ZONE));
 
     expect(useCatalogPrice).toHaveBeenCalledWith(5);
   });
@@ -296,11 +283,12 @@ describe('useFloatingIpsPrice', () => {
       isPending: false,
     } as unknown as ReturnType<typeof useCatalog>);
 
-    vi.mocked(getPlanCodeFloatingIps).mockReturnValue('floatingip.floatingip.hour.consumption.3AZ');
+    vi.mocked(getPlanCodeFloatingIps).mockImplementation((time) => {
+      if (time === 'hour') return 'floatingip.floatingip.hour.consumption.3AZ';
+      return null;
+    });
 
-    const { result } = renderHook(() =>
-      useFloatingIpsPrice(true, 'hour', DeploymentMode.MULTI_ZONES),
-    );
+    const { result } = renderHook(() => useFloatingIpsPrice(true, DeploymentMode.MULTI_ZONES));
 
     expect(result.current.price?.hour).toBe(1.5);
   });
@@ -313,9 +301,7 @@ describe('useFloatingIpsPrice', () => {
 
     vi.mocked(getPlanCodeFloatingIps).mockReturnValue('floatingip.floatingip.hour.consumption');
 
-    const { result } = renderHook(() =>
-      useFloatingIpsPrice(true, 'hour', DeploymentMode.MONO_ZONE),
-    );
+    const { result } = renderHook(() => useFloatingIpsPrice(true, DeploymentMode.MONO_ZONE));
 
     expect(result.current).toEqual({
       isPending: false,

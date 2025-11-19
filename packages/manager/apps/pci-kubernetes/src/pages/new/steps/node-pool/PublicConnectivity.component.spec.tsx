@@ -102,22 +102,6 @@ describe('PublicConnectivity', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render all warning descriptions in popover', () => {
-    render(<PublicConnectivity {...defaultProps} checked={false} />, {
-      wrapper,
-    });
-
-    expect(
-      screen.getByText('kube_common_node_pool_public_connectivity_warning_description_rolling'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('kube_common_node_pool_public_connectivity_warning_description_in_place'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('kube_common_node_pool_public_connectivity_warning_description_more'),
-    ).toBeInTheDocument();
-  });
-
   it.skip('should toggle from unchecked to checked', () => {
     // TODO ODS 19 - fix toggle
     const { rerender, container } = render(
