@@ -3,7 +3,16 @@ import { ReactElement } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { Card, ICON_NAME, Icon, Link, Message, MessageIcon, Text } from '@ovhcloud/ods-react';
+import {
+  Card,
+  ICON_NAME,
+  Icon,
+  Link,
+  Message,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import {
   convertHourlyPriceToMonthly,
@@ -22,14 +31,21 @@ const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 export type TBillingStepProps = {
   price: number | null;
   monthlyPrice?: number;
-  selectedAvailabilityZonesNumber?: number | null;
-  isFloatingIpsEnabled?: boolean;
+  selectedAvailabilityZonesNumber?: number;
+  numberOfNodes?: number | null;
+  priceFloatingIp?: { hour: number | null; month: number | null } | null;
   monthlyBilling: {
     isComingSoon: boolean;
     isChecked: boolean;
     check: (val: boolean) => void;
   };
   warn: boolean;
+};
+
+const calculatePrice = (basePrice: number | null, zonesNumber = 1, optionalPrice = 0): number => {
+  const price = Number(basePrice);
+
+  return zonesNumber * (price + optionalPrice);
 };
 
 export default function BillingStep(props: TBillingStepProps): ReactElement {
@@ -47,18 +63,20 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
   const savingsPlanUrl = `${projectURL}/savings-plan`;
   const showSavingPlan = useSavingsPlanAvailable();
 
-  const calculatePrice = (basePrice: number | null, zonesNumber?: number | null): number => {
-    const price = Number(basePrice);
-    return zonesNumber ? zonesNumber * price : price;
-  };
-  const computedPrice = calculatePrice(props.price, props.selectedAvailabilityZonesNumber);
+  const computedPrice = calculatePrice(
+    props.price,
+    props.selectedAvailabilityZonesNumber,
+    (props.priceFloatingIp?.hour ?? 0) * (props.numberOfNodes ?? 0),
+  );
   const hourlyPrice = getFormattedHourlyCatalogPrice(computedPrice);
   const monthlyPrice = getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(computedPrice));
-  const monthlyLegacyPrice = getFormattedMonthlyCatalogPrice(props.monthlyPrice ?? 0);
+  const monthlyLegacyPrice = getFormattedMonthlyCatalogPrice(
+    (props.monthlyPrice ?? 0) + (props.priceFloatingIp?.month ?? 0),
+  );
   return (
-    <>
+    <div className="max-w-3xl">
       <div className="my-6">
-        <Text className="text-[--ods-color-text-500] my-6">
+        <Text className="text-[--ods-color-text-500] my-6" preset={TEXT_PRESET.heading4}>
           {t('flavor-billing:pci_projects_project_instances_configure_billing_type')}
         </Text>
         {props.monthlyBilling.isComingSoon && showSavingPlan ? (
@@ -106,11 +124,11 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
             </Text>
             <Text>
               <span className="font-bold">
-                {t('node-pool:kube_common_node_pool_estimation_cost_tile')}:
+                {t('node-pool:kube_common_node_pool_estimation_cost_tile')}:{' '}
               </span>
               {monthlyPrice}
             </Text>
-            {props.isFloatingIpsEnabled && (
+            {props.priceFloatingIp && (
               <Text className="block italic">
                 {t(
                   'flavor-billing:pci_projects_project_instances_configure_billing_type_floating_ip_cost',
@@ -142,7 +160,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
                 </span>
                 {monthlyLegacyPrice}
               </Text>
-              {props.isFloatingIpsEnabled && (
+              {props.priceFloatingIp && (
                 <Text className="block italic">
                   {t(
                     'flavor-billing:pci_projects_project_instances_configure_billing_type_floating_ip_cost',
@@ -162,6 +180,6 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
       )}
 
       <Text className="block">{t('kubernetes_add_billing_type_payment_method')}</Text>
-    </>
+    </div>
   );
 }

@@ -1,14 +1,14 @@
 import { ComponentType } from 'react';
 
 import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
-import { ClusterConfirmationStep } from '../steps/ClusterConfirmStep.component';
-import { ClusterNameStep } from '../steps/ClusterNameStep.component';
-import Loader from '../steps/Loader';
-import { LocationStep } from '../steps/LocationStep.component';
-import { NetworkStep } from '../steps/NetworkStep.component';
-import NodePoolStep from '../steps/NodePoolStep.component';
-import PlanStep from '../steps/PlanStep.component';
-import { VersionAndUpdatePolicyStep } from '../steps/VersionAndUpdatePolicyStep.component';
+import { ClusterConfirmationStep } from './ClusterConfirmStep.component';
+import { ClusterNameStep } from './ClusterNameStep.component';
+import Loader from './Loader';
+import { LocationStep } from './LocationStep.component';
+import { NetworkStep } from './NetworkStep.component';
+import NodePoolStep from './NodePoolStep.component';
+import PlanStep from './PlanStep.component';
+import { VersionAndUpdatePolicyStep } from './VersionAndUpdatePolicyStep.component';
 
 type StepComponentProps = Record<string, unknown>;
 
@@ -75,9 +75,11 @@ const stepsConfig = ({
   {
     key: 'confirm',
     component: !stepper.confirm.step.isLocked ? ClusterConfirmationStep : Loader,
+
     titleKey: 'stepper:common_stepper_submit_button_cluster',
     extraProps: {
       nodePools: stepper.form.nodePools,
+      type: stepper.form.region?.type,
       plan: stepper.form.plan,
       onSubmit: () => {
         stepper.confirm.step.lock();

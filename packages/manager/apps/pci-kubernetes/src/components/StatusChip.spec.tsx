@@ -11,7 +11,7 @@ describe('StatusChip', () => {
     const { container } = render(<StatusChip label="" />);
 
     const spinner = container.querySelector('[data-ods="spinner"]');
-    expect(spinner).toBeInTheDocument();
+    expect(spinner).toBeVisible();
   });
 
   it('should return null for an invalid status', () => {
@@ -34,16 +34,9 @@ describe('StatusChip', () => {
       const { container } = render(<StatusChip label={status} />);
 
       const badge = container.querySelector('[data-ods="badge"]');
-      expect(badge).toBeInTheDocument();
+      expect(badge).toBeVisible();
       expect(badge).toHaveTextContent(expectedText);
       expect(badge).toHaveClass(new RegExp(`badge--${expectedColor}`));
     },
   );
-
-  it('should call translation function with the label', () => {
-    const { container } = render(<StatusChip label={ResourceStatus.READY} />);
-
-    const badge = container.querySelector('[data-ods="badge"]');
-    expect(badge).toHaveTextContent('READY');
-  });
 });
