@@ -8,15 +8,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import Loading from '@/common/components/loading/Loading';
 
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: false, gcTime: 0 }, mutations: { retry: false } },
+});
+
 export function TestApp({ initialRoute = '/' }: { initialRoute: string }) {
   const router = createMemoryRouter(createRoutesFromElements([kmsRoutes, secretManagerRoutes]), {
     initialEntries: [initialRoute],
     initialIndex: 0,
   });
 
-  const queryClient = new QueryClient({
-    defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
-  });
+  queryClient.clear();
 
   return (
     <Suspense fallback={<Loading />}>
