@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.37.1...@ovh-ux/manager-pm@0.38.0) (2025-11-18)
+
+
+### Features
+
+* **cloud-shell:** add cloud-shell app ([d4b9f7c](https://github.com/ovh/manager/commit/d4b9f7c735941b4979db8c497b636cbe42030c27)), closes [#MANAGER-20239](https://github.com/ovh/manager/issues/MANAGER-20239)
+
+
+
+
+
 ## [0.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.37.0...@ovh-ux/manager-pm@0.37.1) (2025-11-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm
