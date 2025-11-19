@@ -16,37 +16,35 @@ export const AsTypeSelectionSection: React.FC = () => {
   const { asType, setAsType } = React.useContext(ByoipContext);
   const { trackClick } = useOvhTracking();
 
-  const handleAsTypeChange = (value: string) => {
-    startTransition(() => {
-      setAsType(value);
-    });
-  };
-
   return (
-    <OrderSection
-      title={t('ip_byoip_as_system_title')}
-      description={t('ip_byoip_as_system_description')}
-    >
-      <div className="grid grid-cols-2 gap-3">
-        {AS_OPTIONS.map((value) => (
-          <OptionCard
-            key={value}
-            hasRadioButton={true}
-            title={t(`ip_byoip_as_type_${value}`)}
-            isSelected={asType === value}
-            onClick={() => {
-              trackClick({
-                actionType: 'action',
-                buttonType: ButtonType.button,
-                location: PageLocation.funnel,
-                actions: [value],
-              });
-              handleAsTypeChange(value);
-            }}
-          />
-        ))}
-      </div>
-      {asType && asType === 'own' && <AsOwnTypeSelectionSubSection />}
-    </OrderSection>
+    <>
+      <OrderSection
+        title={t('ip_byoip_as_system_title')}
+        description={t('ip_byoip_as_system_description')}
+      >
+        <div className="grid grid-cols-2 gap-3">
+          {AS_OPTIONS.map((value) => (
+            <OptionCard
+              key={value}
+              hasRadioButton={true}
+              title={t(`ip_byoip_as_type_${value}`)}
+              isSelected={asType === value}
+              onClick={() => {
+                trackClick({
+                  actionType: 'action',
+                  buttonType: ButtonType.button,
+                  location: PageLocation.funnel,
+                  actions: [`select_${value}`],
+                });
+                startTransition(() => {
+                  setAsType(value);
+                });
+              }}
+            />
+          ))}
+        </div>
+      </OrderSection>
+      {asType === 'own' && <AsOwnTypeSelectionSubSection />}
+    </>
   );
 };

@@ -85,6 +85,17 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
   };
 
   const handleClose = () => {
+    trackClick({
+      actionType: 'action',
+      buttonType: ButtonType.button,
+      location: PageLocation.funnel,
+      actions: [
+        'go-to_bring-your-own-ip',
+        'cancel',
+        `rir_${ipRir.toLowerCase()}`,
+        `Ip-location_${selectedRegion.toLowerCase()}`,
+      ],
+    });
     startTransition(() => {
       navigate(urls.byoip);
     });
@@ -109,18 +120,25 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
         </OdsText>
 
         {declarationItems.map(({ declaration, translationKey }) => (
-          <div key={declaration} className="flex items-start gap-2">
-            <OdsCheckbox
-              name={declaration}
-              isChecked={checkedItems[declaration]}
-              onOdsChange={handleCheckboxChange(declaration)}
-            />
-            <label htmlFor={declaration} className="flex-1">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t(translationKey)}
-              </OdsText>
-            </label>
-          </div>
+          <label
+            key={declaration}
+            className="flex items-center hover:bg-gray-100 cursor-pointer"
+            htmlFor={declaration}
+            slot="label"
+          >
+            <div className="flex items-center">
+              <OdsCheckbox
+                className="mr-3"
+                inputId={declaration}
+                name={declaration}
+                isChecked={checkedItems[declaration]}
+                onOdsChange={handleCheckboxChange(declaration)}
+              />
+            </div>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              {t(translationKey)}
+            </OdsText>
+          </label>
         ))}
 
         <OdsText preset={ODS_TEXT_PRESET.span}>
@@ -190,7 +208,12 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
               actionType: 'action',
               buttonType: ButtonType.button,
               location: PageLocation.funnel,
-              actions: ['BYOIP-order-confirm'],
+              actions: [
+                'go-to_bring-your-own-ip',
+                'confirm',
+                `rir_${ipRir.toLowerCase()}`,
+                `Ip-location_${selectedRegion.toLowerCase()}`,
+              ],
             });
 
             startTransition(() => {

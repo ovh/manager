@@ -34,7 +34,7 @@ export const Routes: RouteObject[] = [
             ),
             handle: {
               tracking: {
-                pageName: 'network::ip',
+                pageName: 'all-ip',
                 pageType: PageType.listing,
               },
             },
@@ -49,7 +49,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: subRoutes.configureReverseDns,
+                    pageName: 'configure_reverse-dns',
                     pageType: PageType.popup,
                   },
                 },
@@ -62,7 +62,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-terminate-ip',
+                    pageName: 'terminate_additional-ip',
                     pageType: PageType.popup,
                   },
                 },
@@ -75,7 +75,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-terminate-byoip',
+                    pageName: 'terminate_bring-your-own-ip',
                     pageType: PageType.popup,
                   },
                 },
@@ -88,7 +88,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-move-ip',
+                    pageName: 'configure_move-ip',
                     pageType: PageType.popup,
                   },
                 },
@@ -103,7 +103,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-upsert-description',
+                    pageName: 'edit_description',
                     pageType: PageType.popup,
                   },
                 },
@@ -116,7 +116,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-add-virtual-mac',
+                    pageName: 'add_virtual-mac',
                     pageType: PageType.popup,
                   },
                 },
@@ -129,7 +129,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-view-virtual-mac',
+                    pageName: 'view_virtual-mac',
                     pageType: PageType.popup,
                   },
                 },
@@ -144,7 +144,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-view-ip-block-information',
+                    pageName: 'edit_ip-block-information',
                     pageType: PageType.popup,
                   },
                 },
@@ -157,7 +157,8 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-delete-virtual-mac',
+                    pageName: 'delete_virtual-mac',
+                    pageType: PageType.popup,
                   },
                 },
               },
@@ -171,7 +172,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'import-ip-from-sys',
+                    pageName: 'import_sys-ip',
                     pageType: PageType.popup,
                   },
                 },
@@ -184,7 +185,8 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-unblock-anti-hack',
+                    pageName: 'configure_unblock-anti-hack',
+                    pageType: PageType.popup,
                   },
                 },
               },
@@ -196,7 +198,8 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'listing-unblock-anti-spam',
+                    pageName: 'configure_unblock-anti-spam',
+                    pageType: PageType.popup,
                   },
                 },
               },
@@ -260,8 +263,8 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: 'manage-organisations-open',
-                    pageType: PageType.listing,
+                    pageName: 'edit_manage-organizations',
+                    pageType: PageType.popup,
                   },
                 },
               },
@@ -275,7 +278,7 @@ export const Routes: RouteObject[] = [
                 ),
                 handle: {
                   tracking: {
-                    pageName: subRoutes.deleteOrganisation,
+                    pageName: 'delete_manage-organizations',
                     pageType: PageType.popup,
                   },
                 },
@@ -283,7 +286,7 @@ export const Routes: RouteObject[] = [
             ],
             handle: {
               tracking: {
-                pageName: 'manage-organisations',
+                pageName: 'manage-organizations',
                 pageType: PageType.listing,
               },
             },
@@ -319,19 +322,18 @@ export const Routes: RouteObject[] = [
         ),
         handle: {
           tracking: {
-            pageName: 'configure-edge-network-firewall',
+            pageName: 'configure-edge-firewall',
             pageType: PageType.listing,
           },
         },
       },
-
       {
         id: 'onboarding',
         path: urls.onboarding,
         ...lazyRouteConfig(() => import('@/pages/onboarding')),
         handle: {
           tracking: {
-            pageName: 'onboarding',
+            pageName: '',
             pageType: PageType.onboarding,
           },
         },
@@ -342,7 +344,7 @@ export const Routes: RouteObject[] = [
         ...lazyRouteConfig(() => import('@/pages/order/Order.page')),
         handle: {
           tracking: {
-            pageName: 'order',
+            pageName: 'order_ip',
             pageType: PageType.funnel,
           },
         },
@@ -360,15 +362,15 @@ export const Routes: RouteObject[] = [
             ),
             handle: {
               tracking: {
-                pageName: 'byoip-order',
-                pageType: PageType.listing,
+                pageName: 'bring-your-own_ip',
+                pageType: PageType.popup,
               },
             },
           },
         ],
         handle: {
           tracking: {
-            pageName: 'byoip',
+            pageName: 'bring-your-own_ip',
             pageType: PageType.funnel,
           },
         },

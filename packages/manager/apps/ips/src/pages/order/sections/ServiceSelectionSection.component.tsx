@@ -8,6 +8,11 @@ import {
   OdsComboboxItem,
 } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
 import { OrderContext } from '../order.context';
@@ -66,6 +71,7 @@ export const ServiceSelectionSection: React.FC = () => {
     addDisabledService,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
+  const { trackClick } = useOvhTracking();
 
   const {
     serviceByCategory,
@@ -117,6 +123,14 @@ export const ServiceSelectionSection: React.FC = () => {
             setSelectedServiceType(
               getServiceType(serviceId, serviceByCategory),
             );
+            if (serviceId) {
+              trackClick({
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actionType: 'action',
+                actions: [`select_${serviceId}`],
+              });
+            }
           }}
           isClearable
           allowNewElement={false}

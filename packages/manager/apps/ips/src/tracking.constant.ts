@@ -1,20 +1,20 @@
 export const LEVEL2 = {
   EU: {
     config: {
-      level2: '85',
+      level2: 'Manager-Network',
     },
   },
   CA: {
     config: {
-      level2: '85',
+      level2: 'Manager-Network',
     },
   },
   US: {
     config: {
-      level2: '57',
+      level2: 'Manager-Network',
     },
   },
 };
-export const UNIVERSE = 'Dedicated';
-export const SUB_UNIVERSE = 'Network';
+export const UNIVERSE = 'Network';
+export const SUB_UNIVERSE = 'ip';
 export const APP_NAME = 'ips';

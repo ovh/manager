@@ -40,7 +40,7 @@ export default function ManageOrganisationsPage() {
               actionType: 'action',
               buttonType: ButtonType.button,
               location: PageLocation.page,
-              actions: [t('manageOrganisationsAddButtonLabel')],
+              actions: ['add_organization'],
             });
           }}
           label={t('manageOrganisationsOrderButtonLabel')}

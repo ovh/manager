@@ -9,6 +9,7 @@ import {
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   getMoveIpAvailableDestinations,
   getMoveIpAvailableDestinationsQueryKey,
@@ -40,6 +41,7 @@ export function useMoveIpTasks({
     TRANSLATION_NAMESPACES.moveIp,
   ]);
   const { clearNotifications, addError, addSuccess } = useNotifications();
+  const { trackPage } = useOvhTracking();
 
   const taskQuery = useQuery<number[], ApiError>({
     queryKey: getMoveIpOngoingTasksQueryKey(ip),
@@ -92,6 +94,10 @@ export function useMoveIpTasks({
             }),
             true,
           );
+          trackPage({
+            pageType: PageType.bannerError,
+            pageName: 'move-ip_error',
+          });
         }
 
         if (query.state.data?.data?.status === IpTaskStatus.done) {
@@ -102,6 +108,10 @@ export function useMoveIpTasks({
               ns: TRANSLATION_NAMESPACES.moveIp,
             }),
           );
+          trackPage({
+            pageType: PageType.bannerSuccess,
+            pageName: 'move-ip_success',
+          });
         }
 
         queryClient.setQueryData(

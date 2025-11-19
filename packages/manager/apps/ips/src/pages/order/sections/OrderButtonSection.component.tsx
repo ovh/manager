@@ -80,7 +80,12 @@ export const OrderButtonSection: React.FC = () => {
             actionType: 'action',
             buttonType: ButtonType.button,
             location: PageLocation.funnel,
-            actions: ['Order-additional-IPs'],
+            actions: [
+              'order_ip',
+              'confirm',
+              `Ip-version_${ipVersion.toLowerCase()}`,
+              selectedGeolocation && `Ip-location_${selectedGeolocation}`,
+            ],
           });
           navigate(urls.listing);
         }}
@@ -90,7 +95,20 @@ export const OrderButtonSection: React.FC = () => {
         size={ODS_BUTTON_SIZE.md}
         variant={ODS_BUTTON_VARIANT.ghost}
         label={t('cancel_button_label')}
-        onClick={() => navigate(urls.listing)}
+        onClick={() => {
+          trackClick({
+            actionType: 'action',
+            buttonType: ButtonType.button,
+            location: PageLocation.funnel,
+            actions: [
+              'order_ip',
+              'cancel',
+              `Ip-version_${ipVersion.toLowerCase()}`,
+              selectedGeolocation && `Ip-location_${selectedGeolocation}`,
+            ],
+          });
+          navigate(urls.listing);
+        }}
       />
     </div>
   );

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import { useGetIpdetails, useMoveIpTasks } from '@/data/hooks/ip';
@@ -20,6 +25,7 @@ export type IpAttachedServiceProps = {
 export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
   const { shell } = React.useContext(ShellContext);
   const [serviceUrl, setServiceUrl] = useState<string>();
+  const { trackClick } = useOvhTracking();
 
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
   const { hasOnGoingMoveIpTask, isTasksLoading } = useMoveIpTasks({
@@ -45,6 +51,14 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
               href={serviceUrl}
               color={ODS_LINK_COLOR.primary}
               label={ipDetails.routedTo.serviceName}
+              onClick={() => {
+                trackClick({
+                  location: PageLocation.datagrid,
+                  buttonType: ButtonType.link,
+                  actionType: 'action',
+                  actions: ['details_attached-service'],
+                });
+              }}
             />
           ) : (
             ipDetails.routedTo.serviceName
