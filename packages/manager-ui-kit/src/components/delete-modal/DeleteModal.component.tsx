@@ -18,7 +18,7 @@ import { Text } from '@/components/text/Text.component';
 import './translations/translations';
 
 export const DeleteModal: React.FC<DeleteModalProps> = ({
-  open = false,
+  open = true,
   serviceTypeName,
   isLoading,
   onConfirmDelete,

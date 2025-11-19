@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Meta } from '@storybook/react';
-import { DeleteModal, DeleteModalProps } from '@ovh-ux/muk';
+import { DeleteModal, DeleteModalProps, Button, } from '@ovh-ux/muk';
 
 export const DeleteModalDefault = (props: DeleteModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  return <DeleteModal {...props} open={isOpen} onClose={handleClose} />;
+  const [isOpen, setIsOpen] = useState(props.open);
+  const onOpenChange = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <DeleteModal
+        {...props}
+        open={isOpen}
+        onClose={onOpenChange}
+        onOpenChange={onOpenChange} />
+    </>
+  );
 };
 
 DeleteModalDefault.parameters = {
@@ -26,36 +33,41 @@ DeleteModalDefault.parameters = {
 };
 
 export const DeleteModalWithError = (props: DeleteModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
+  const [isOpen, setIsOpen] = useState(props.open);
+  const onOpenChange = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
   return (
-    <DeleteModal
-      {...props}
-      error="Error Message"
-      open={isOpen}
-      onClose={handleClose}
-    />
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <DeleteModal
+        {...props}
+        error="Error Message"
+        open={isOpen}
+        onClose={onOpenChange}
+        onOpenChange={onOpenChange}
+      />
+    </>
   );
 };
 
 export const DeleteModalIsLoading = (props: DeleteModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const [isOpen, setIsOpen] = useState(props.open);
+  const onOpenChange = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
 
   return (
-    <DeleteModal
-      {...props}
-      open={isOpen}
-      onClose={handleClose}
-      isLoading={true}
-    />
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <DeleteModal
+        {...props}
+        open={isOpen}
+        onClose={onOpenChange}
+        onOpenChange={onOpenChange}
+        isLoading={true}
+      />
+    </>
   );
 };
 
@@ -74,6 +86,7 @@ const meta: Meta = {
     },
     serviceTypeName: 'SQL Server',
     isLoading: false,
+    open: false,
   },
 };
 
