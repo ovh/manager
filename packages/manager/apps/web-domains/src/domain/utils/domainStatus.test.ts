@@ -29,9 +29,15 @@ describe('domainStatusToBadge', () => {
     expect(domainStatusToBadge(mapping, 'unknown')).toBeUndefined();
   });
 
-  it('should be case-sensitive', () => {
-    expect(domainStatusToBadge(mapping, 'Active')).toBeUndefined();
-    expect(domainStatusToBadge(mapping, 'Suspended')).toBeUndefined();
+  it('should be case-insensitive', () => {
+    expect(domainStatusToBadge(mapping, 'Active')).toEqual({
+      statusColor: BADGE_COLOR.alpha,
+      i18nKey: 'domain.status.active',
+    });
+    expect(domainStatusToBadge(mapping, 'SUSPENDED')).toEqual({
+      statusColor: BADGE_COLOR.beta,
+      i18nKey: 'domain.status.suspended',
+    });
   });
 
   it('should return undefined for an empty mapping', () => {

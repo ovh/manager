@@ -1,5 +1,5 @@
 import { ParamValueType } from '@ovh-ux/url-builder';
-import { BADGE_COLOR } from '@ovhcloud/ods-react';
+import { BADGE_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import {
   AdditionalDomainStateEnum,
@@ -120,9 +120,131 @@ export type BannerResultDetails = {
 export type StatusDetails = {
   statusColor: BADGE_COLOR;
   i18nKey: string;
+  icon?: ICON_NAME;
 };
 
 export type ServiceType =
   | { serviceDetected: AssociatedEmailsServicesEnum.ZIMBRA; data: string }
   | { serviceDetected: AssociatedEmailsServicesEnum.MXPLAN; data: string }
   | { serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION; data: string };
+
+export enum DnssecStateEnum {
+  DISABLED = 'disabled',
+  ENABLED = 'enabled',
+  NOT_SUPPORTED = 'not_supported',
+}
+
+export enum NameServerTypeEnum {
+  ANYCAST = 'anycast',
+  DEDICATED = 'dedicated',
+  EMPTY = 'empty',
+  EXTERNAL = 'external',
+  HOLD = 'hold',
+  HOSTED = 'hosted',
+  HOSTING = 'hosting',
+  MIXED = 'mixed',
+  PARKING = 'parking',
+}
+
+export enum OfferEnum {
+  DIAMOND = 'diamond',
+  GOLD = 'gold',
+  PLATINUM = 'platinum',
+}
+
+export enum IAMStateEnum {
+  EXPIRED = 'EXPIRED',
+  IN_CREATION = 'IN_CREATION',
+  OK = 'OK',
+  SUSPENDED = 'SUSPENDED',
+}
+
+export enum ParentServiceTypeEnum {
+  ALL_DOM = '/allDom',
+}
+
+export enum RenewalStateEnum {
+  AUTOMATIC_RENEW = 'automatic_renew',
+  CANCELLATION_COMPLETE = 'cancellation_complete',
+  CANCELLATION_REQUESTED = 'cancellation_requested',
+  MANUAL_RENEW = 'manual_renew',
+  UNPAID = 'unpaid',
+}
+
+export enum DomainServiceStateEnum {
+  AUTORENEW_IN_PROGRESS = 'autorenew_in_progress',
+  AUTORENEW_REGISTRY_IN_PROGRESS = 'autorenew_registry_in_progress',
+  DELETED = 'deleted',
+  DISPUTE = 'dispute',
+  EXPIRED = 'expired',
+  OK = 'ok',
+  OUTGOING_TRANSFER = 'outgoing_transfer',
+  PENDING_CREATE = 'pending_create',
+  PENDING_DELETE = 'pending_delete',
+  PENDING_INCOMING_TRANSFER = 'pending_incoming_transfer',
+  PENDING_INSTALLATION = 'pending_installation',
+  REGISTRY_SUSPENDED = 'registry_suspended',
+  RESTORABLE = 'restorable',
+  TECHNICAL_SUSPENDED = 'technical_suspended',
+}
+
+export enum TransferLockStatusEnum {
+  LOCKED = 'locked',
+  LOCKING = 'locking',
+  UNAVAILABLE = 'unavailable',
+  UNLOCKED = 'unlocked',
+  UNLOCKING = 'unlocking',
+}
+
+export interface ContactData {
+  id: string;
+}
+
+export interface IAM {
+  displayName: string | null;
+  id: string; // UUID
+  state: IAMStateEnum | null;
+  tags: Record<string, string> | null;
+  urn: string;
+}
+
+export interface ParentService {
+  name: string;
+  type: ParentServiceTypeEnum;
+}
+
+export interface NameServer {
+  id: number;
+  ipv4: string | null;
+  ipv6: string | null;
+  nameServer: string;
+  nameServerType: NameServerTypeEnum;
+}
+
+export type DomainService = {
+  contactAdmin: ContactData;
+  contactBilling: ContactData;
+  contactOwner: ContactData;
+  contactTech: ContactData;
+  dnssecState: DnssecStateEnum;
+  dnssecSupported: boolean;
+  domain: string;
+  expirationDate: string;
+  glueRecordIpv6Supported: boolean;
+  glueRecordMultiIpSupported: boolean;
+  hostSupported: boolean;
+  iam: IAM | null;
+  lastUpdate: string;
+  nameServerType?: NameServerTypeEnum;
+  nameServers?: NameServer[];
+  offer: OfferEnum;
+  owoSupported: boolean;
+  parentService: ParentService | null;
+  renewalDate: string;
+  renewalState: RenewalStateEnum;
+  serviceId: number;
+  state: DomainServiceStateEnum;
+  suspensionState: SuspensionStateEnum;
+  transferLockStatus?: TransferLockStatusEnum;
+  whoisOwner: string;
+};

@@ -55,7 +55,7 @@ describe('AnycastOrderButtonComponent', () => {
       />,
     );
     expect(
-      screen.getByText('domain_dns_tab_button_order_anycast'),
+      screen.getByText('domain_tab_DNS_anycast_order'),
     ).toBeInTheDocument();
   });
 

@@ -14,8 +14,9 @@ import {
   ActionEnum,
   LifecycleCapacitiesEnum,
 } from '@/alldoms/enum/service.enum';
-import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
+import { allDomManagerService } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
+import { RENEW_URL } from '@/common/constants';
 
 interface DatagridColumnActionMenuProps {
   readonly id: string;
