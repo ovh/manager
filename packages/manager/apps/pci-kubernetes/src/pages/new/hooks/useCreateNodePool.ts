@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { TRegionType, useParam } from '@ovh-ux/manager-pci-common';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import { convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
 
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
@@ -40,7 +40,7 @@ function canSubmitNodePools(
   return Array.isArray(nodes) && nodes.length > 0;
 }
 
-const getIsButtonDisabled = (
+const hasInvalidConfig = (
   isNodePoolValid: boolean,
   type: DeploymentMode | null,
   nodePoolState: NodePoolState,
@@ -73,11 +73,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     nodes,
   );
 
-  const { price: priceFloatingIp } = useFloatingIpsPrice(
-    Boolean(nodePoolState.attachFloatingIPs?.enabled),
-    isMonthlyBilled ? 'month' : 'hour',
-    regionInformations?.type ?? null,
-  );
+  const { price: priceFloatingIp } = useFloatingIpsPrice(true, regionInformations?.type ?? null);
 
   const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
     projectId,
@@ -89,7 +85,6 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
           flavor.pricingsHourly?.price,
           flavor.pricingsMonthly?.price,
           nodePoolState.scaling?.quantity.desired,
-          priceFloatingIp,
         );
       },
     },
@@ -156,7 +151,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   const isNodePoolValid =
     !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName && !error?.exists);
 
-  const isButtonDisabled = getIsButtonDisabled(
+  const isButtonDisabled = hasInvalidConfig(
     isNodePoolValid,
     regionInformations?.type ?? null,
     nodePoolState,
