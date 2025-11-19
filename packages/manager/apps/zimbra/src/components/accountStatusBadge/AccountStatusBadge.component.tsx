@@ -2,10 +2,16 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_BADGE_ICON_ALIGNMENT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-
-import { TOOLTIP_POSITION, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  BADGE_COLOR,
+  Badge,
+  ICON_NAME,
+  Icon,
+  TOOLTIP_POSITION,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { CurrentAccountStatus, ResourceStatus } from '@/data/api';
 import { EmailAccountItem } from '@/pages/dashboard/emailAccounts/EmailAccounts.types';
@@ -26,9 +32,9 @@ const getStatusColor = (status: keyof typeof CurrentAccountStatus) => {
   switch (status) {
     case CurrentAccountStatus.BILLINGLOCKED:
     case CurrentAccountStatus.BLOCKEDFORSPAM:
-      return ODS_BADGE_COLOR.critical;
+      return BADGE_COLOR.critical;
     default:
-      return ODS_BADGE_COLOR.information;
+      return BADGE_COLOR.information;
   }
 };
 
@@ -40,14 +46,14 @@ export const AccountStatusBadge: React.FC<EmailAccountItem> = (props) => {
       return CurrentAccountStatusLabels[status] ? (
         <Tooltip key={`${props.id}_${status}`} position={TOOLTIP_POSITION.bottom}>
           <TooltipTrigger asChild>
-            <OdsBadge
+            <Badge
               data-testid={`${props.id}_${status}`}
               color={getStatusColor(status)}
               className="capitalize m-1"
-              label={t(CurrentAccountStatusLabels[status])}
-              iconAlignment={ODS_BADGE_ICON_ALIGNMENT.right}
-              {...(CurrentAccountTooltipContent[status] ? { icon: ODS_ICON_NAME.circleInfo } : {})}
-            />
+            >
+              {t(CurrentAccountStatusLabels[status])}
+              {CurrentAccountTooltipContent[status] && <Icon name={ICON_NAME.circleInfo} />}
+            </Badge>
           </TooltipTrigger>
           {CurrentAccountTooltipContent[status] && (
             <TooltipContent withArrow>{t(CurrentAccountTooltipContent[status])}</TooltipContent>

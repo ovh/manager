@@ -4,11 +4,18 @@ import { useNavigate } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  BADGE_COLOR,
+  Badge,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import { VERIFY_DOMAIN } from '@/tracking.constants';
@@ -42,11 +49,10 @@ export const CnameBadge: React.FC<CnameBadgeProps> = ({ item }) => {
     >
       <Tooltip>
         <TooltipTrigger asChild>
-          <OdsBadge
-            color={ODS_BADGE_COLOR.warning}
-            label={t('zimbra_domains_datagrid_cname_label')}
-            icon={ODS_ICON_NAME.circleInfo}
-          />
+          <Badge color={BADGE_COLOR.warning}>
+            {t('zimbra_domains_datagrid_cname_label')}
+            <Icon name={ICON_NAME.circleInfo} />
+          </Badge>
         </TooltipTrigger>
         <TooltipContent className="max-w-96 text-center" withArrow>
           <Text className="mb-4" preset={TEXT_PRESET.heading6}>

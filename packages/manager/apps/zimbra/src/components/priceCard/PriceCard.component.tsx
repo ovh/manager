@@ -2,11 +2,13 @@ import React, { useMemo } from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsCard, OdsIcon, OdsRadio, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsCard, OdsIcon, OdsRadio, OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 import {
+  BADGE_COLOR,
+  Badge,
   TEXT_PRESET,
   TOOLTIP_POSITION,
   Text,
@@ -96,11 +98,9 @@ export const PriceCard: React.FC<PriceCardProps> = ({
         </div>
         <div className="flex gap-4">
           {tags?.map((tag) => (
-            <OdsBadge
-              key={tag}
-              label={t(tag)}
-              color={isDisabled ? ODS_BADGE_COLOR.neutral : ODS_BADGE_COLOR.new}
-            />
+            <Badge key={tag} color={isDisabled ? BADGE_COLOR.neutral : BADGE_COLOR.new}>
+              {t(tag)}
+            </Badge>
           ))}
         </div>
       </div>

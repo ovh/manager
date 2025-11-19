@@ -2,11 +2,14 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_BADGE_ICON_ALIGNMENT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { useFormatDate } from '@ovh-ux/manager-react-components';
 import {
+  BADGE_COLOR,
+  Badge,
+  ICON_NAME,
+  Icon,
   TEXT_PRESET,
   TOOLTIP_POSITION,
   Text,
@@ -26,14 +29,14 @@ export type BillingStateBadgeProps = {
 const getColor = (status: keyof typeof ServiceBillingState) => {
   switch (status) {
     case ServiceBillingState.AUTOMATIC_RENEWAL:
-      return ODS_BADGE_COLOR.success;
+      return BADGE_COLOR.success;
     case ServiceBillingState.CANCELED:
     case ServiceBillingState.CANCELATION_PLANNED:
-      return ODS_BADGE_COLOR.critical;
+      return BADGE_COLOR.critical;
     case ServiceBillingState.MANUAL_RENEWAL:
-      return ODS_BADGE_COLOR.warning;
+      return BADGE_COLOR.warning;
     default:
-      return ODS_BADGE_COLOR.neutral;
+      return BADGE_COLOR.neutral;
   }
 };
 
@@ -81,13 +84,10 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
   return (
     <Tooltip position={TOOLTIP_POSITION.bottom}>
       <TooltipTrigger asChild>
-        <OdsBadge
-          data-testid={props['data-testid']}
-          color={color}
-          label={label}
-          iconAlignment={ODS_BADGE_ICON_ALIGNMENT.right}
-          {...(BILLING_STATE_TOOLTIP[service.state] ? { icon: ODS_ICON_NAME.circleInfo } : {})}
-        />
+        <Badge data-testid={props['data-testid']} color={color}>
+          {label}
+          {BILLING_STATE_TOOLTIP[service.state] && <Icon name={ICON_NAME.circleInfo} />}
+        </Badge>
       </TooltipTrigger>
       {BILLING_STATE_TOOLTIP[service.state] && (
         <TooltipContent withArrow>

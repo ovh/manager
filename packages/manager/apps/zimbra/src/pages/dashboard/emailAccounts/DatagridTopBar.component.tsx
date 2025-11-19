@@ -18,6 +18,8 @@ import {
   BUTTON_COLOR,
   BUTTON_SIZE,
   Button,
+  ICON_NAME,
+  Icon,
   TEXT_PRESET,
   Text,
   Tooltip,
@@ -100,9 +102,9 @@ export const DatagridTopbar = () => {
             iamActions={[IAM_ACTIONS.account.create]}
             onClick={handleAddEmailAccountClick}
             data-testid="add-account-btn"
-            icon={ODS_ICON_NAME.plus}
             isDisabled={!canCreateAccount}
           >
+            <Icon name={ICON_NAME.plus} />
             {t('zimbra_account_account_add')}
           </Button>
         </TooltipTrigger>
