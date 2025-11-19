@@ -8,6 +8,12 @@ import {
   OdsText,
   OdsTextarea,
 } from '@ovhcloud/ods-components/react';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useUpsertIpDescription } from '@/data/hooks/ip/useUpsertIpDescription';
 import { useGetIpdetails } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
@@ -15,6 +21,7 @@ import { fromIdToIp, ipFormatter } from '@/utils';
 export default function UpsertDescriptionModal() {
   const navigate = useNavigate();
   const [search] = useSearchParams();
+  const { trackClick, trackPage } = useOvhTracking();
   const { id, parentId } = useParams();
   const { ipAddress: ip } = id
     ? ipFormatter(fromIdToIp(id))
@@ -30,6 +37,12 @@ export default function UpsertDescriptionModal() {
   );
 
   const closeModal = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['edit_description', 'cancel'],
+    });
     navigate(`..?${search.toString()}`);
   };
 
@@ -40,8 +53,12 @@ export default function UpsertDescriptionModal() {
     ip: ip ?? ipGroup,
     description,
     onSuccess: () => {
-      closeModal();
       addSuccess(t('listingUpsertDescriptionSuccessMessage', { value: ip }));
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'edit_description_success',
+      });
+      closeModal();
     },
   });
 
@@ -67,7 +84,15 @@ export default function UpsertDescriptionModal() {
       }
       isPrimaryButtonLoading={upsertIpDescriptionPending}
       primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={upsertIpDescription}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['edit_description', 'confirm'],
+        });
+        upsertIpDescription();
+      }}
       primaryButtonTestId="confirm-button"
       onSecondaryButtonClick={closeModal}
       secondaryButtonTestId="cancel-button"

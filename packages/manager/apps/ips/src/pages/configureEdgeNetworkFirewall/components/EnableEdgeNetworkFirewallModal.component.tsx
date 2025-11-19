@@ -6,6 +6,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 import { getIpEdgeFirewallQueryKey, putIpEdgeFirewall } from '@/data/api';
@@ -20,6 +21,7 @@ export const EnableEdgeNetworkFirewallModal: React.FC = () => {
   } = React.useContext(EdgeNetworkFirewallContext);
   const queryClient = useQueryClient();
   const { addError } = useNotifications();
+  const { trackPage } = useOvhTracking();
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.edgeNetworkFirewall,
     NAMESPACES.ACTIONS,
@@ -46,6 +48,10 @@ export const EnableEdgeNetworkFirewallModal: React.FC = () => {
         }),
         true,
       );
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'enable_edge-network-firewall_error',
+      });
     },
     onSettled: hideEnableFirewallModal,
   });
