@@ -42,6 +42,8 @@ const assertDatagridIsLoaded = async (container: HTMLElement) => {
 describe('Secret list page test suite', () => {
   it('should display the secrets list page', async () => {
     await renderPage();
+
+    await assertTextVisibility(labels.secretManager.secret_manager);
   });
 
   it('should display the breadcrumb', async () => {
@@ -102,7 +104,7 @@ describe('Secret list page test suite', () => {
     expect(dashboardPageLabels.length).toBeGreaterThan(0);
   });
 
-  it('should navigate to OKMS dashboard on click on "manage okms" button ', async () => {
+  it('should navigate to OKMS dashboard on click on "manage okms" button', async () => {
     // GIVEN
     const user = userEvent.setup();
     const { container } = await renderPage();

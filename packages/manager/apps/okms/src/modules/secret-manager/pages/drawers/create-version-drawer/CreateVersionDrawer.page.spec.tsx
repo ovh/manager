@@ -66,11 +66,12 @@ describe('Secret create version drawer page test suite', () => {
     const { container } = await renderPage();
 
     // Check disabled sumbit button
-    await getOdsButtonByLabel({
+    const button = await getOdsButtonByLabel({
       container,
       label: labels.common.actions.add,
       disabled: true,
     });
+    expect(button).toBeInTheDocument();
   });
 
   it('should display the current secret value', async () => {
