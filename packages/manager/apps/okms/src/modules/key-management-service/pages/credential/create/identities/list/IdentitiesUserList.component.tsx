@@ -41,7 +41,7 @@ const IdentitiesUserList = ({
         onOdsChange={(event) => filterTerms(event.detail.value as string)}
         type="search"
       />
-      <div className="grid gap-3 mb-4">
+      <div className="mb-4 grid gap-3">
         {sortedFilteredUsers.map((user) => (
           <IdentitiesUserTile
             key={user.urn}

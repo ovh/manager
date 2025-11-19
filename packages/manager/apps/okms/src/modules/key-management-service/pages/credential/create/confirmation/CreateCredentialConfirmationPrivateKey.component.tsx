@@ -40,7 +40,7 @@ const CreateCredentialConfirmationPrivateKey = ({
 
   return (
     <OdsCard className="p-4">
-      <div className="flex flex-col w-full gap-4 md:gap-5">
+      <div className="flex w-full flex-col gap-4 md:gap-5">
         <Subtitle>
           {t('key_management_service_credential_create_confirmation_private-key_title')}
         </Subtitle>

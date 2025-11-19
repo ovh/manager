@@ -43,7 +43,7 @@ const IdentitiesServiceAccountList = ({
         onOdsChange={(event) => filterTerms(event.detail.value as string)}
         type="search"
       />
-      <div className="grid gap-3 mb-4">
+      <div className="mb-4 grid gap-3">
         {sortedFilteredServiceAccount.map((serviceAccount) => (
           <IdentitiesServiceAccountTile
             serviceAccount={serviceAccount}
