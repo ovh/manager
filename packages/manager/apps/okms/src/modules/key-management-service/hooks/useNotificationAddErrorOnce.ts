@@ -22,5 +22,5 @@ export const useNotificationAddErrorOnce = (
       addError(error.message);
     }
     errorAdded.current = true;
-  }, [error]);
+  }, [error, addError]);
 };

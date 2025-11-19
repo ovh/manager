@@ -43,6 +43,7 @@ type TestWrapperProps = {
 
 const TestWrapper = ({ defaultValues }: TestWrapperProps) => {
   const methods = useForm<FormFieldInput>({ defaultValues });
+  // eslint-disable-next-line react-hooks/incompatible-library
   const value = methods.watch('data');
 
   return (

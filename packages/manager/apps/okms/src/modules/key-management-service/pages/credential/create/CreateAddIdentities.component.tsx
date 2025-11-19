@@ -63,7 +63,7 @@ const CreateAddIdentities = ({
               .filter((identity) => identity !== null),
           ],
     );
-  }, [userList, groupList, serviceAccountList, isRootAccount]);
+  }, [userList, groupList, serviceAccountList, isRootAccount, region, auth.account, setIdentityURNs]);
 
   return (
     <div className="max-w-screen-lg">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   IntervalUnitType,
   OvhSubsidiary,
@@ -17,28 +17,18 @@ export const ProtectionLevelSection: React.FC = () => {
   const { ovhSubsidiary } = environment.getUser();
   const userLocale = environment.getUserLocale();
   const { data: catalog, isLoading, isPending } = useOrderCatalogOkms();
-  const [pricingData, setPricingData] = useState({
-    price: 0,
-    tax: 0,
-    intervalUnit: IntervalUnitType.none,
-  });
 
-  const getServiceKeyPriceData = () => {
-    const plan = catalog?.plans.find((p) => p.planCode === 'okms');
-    const addon = catalog?.addons.find(
-      (a) => a.planCode === 'okms-servicekey-monthly-consumption',
-    );
+  // Computed pricing data from catalog
+  const plan = catalog?.plans.find((p) => p.planCode === 'okms');
+  const addon = catalog?.addons.find(
+    (a) => a.planCode === 'okms-servicekey-monthly-consumption',
+  );
 
-    setPricingData({
-      price: addon?.pricings[0]?.price || 0,
-      tax: addon?.pricings[0]?.tax || 0,
-      intervalUnit: plan?.pricings[0]?.intervalUnit || IntervalUnitType.none,
-    });
+  const pricingData = {
+    price: addon?.pricings[0]?.price || 0,
+    tax: addon?.pricings[0]?.tax || 0,
+    intervalUnit: plan?.pricings[0]?.intervalUnit || IntervalUnitType.none,
   };
-
-  useEffect(() => {
-    getServiceKeyPriceData();
-  }, [catalog]);
 
   return (
     <div className="flex flex-col gap-3 md:gap-4">
