@@ -89,7 +89,10 @@ export default function HostDrawer({
             hosts: [
               ...hostsConfiguration.hosts,
               {
-                host: `${formData.host}.${serviceName}`,
+                host:
+                  drawer.action === DrawerActionEnum.Add
+                    ? `${formData.host}.${serviceName}`
+                    : formData.host,
                 ips: formData.ips,
               },
             ],

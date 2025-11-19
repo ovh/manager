@@ -49,6 +49,10 @@ export default function HostForm({
 }: HostFormProps) {
   const { t } = useTranslation('domain');
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const hostname =
+    drawerAction === DrawerActionEnum.Add
+      ? formData.host
+      : formData.host.split('.')[0];
 
   return (
     <section className="flex flex-col gap-y-6" data-testid="host-form">
@@ -67,8 +71,9 @@ export default function HostForm({
           <div className="relative">
             <Input
               name="input"
-              className="w-full"
-              value={formData.host}
+              className="relative w-full"
+              value={hostname}
+              readOnly={drawerAction === DrawerActionEnum.Modify}
               onChange={(e) => {
                 const { value } = e.target;
                 setFormData((prev) => ({ ...prev, host: value }));
@@ -89,6 +94,7 @@ export default function HostForm({
                   }));
                 }, 500);
               }}
+              data-testid="hostname-input"
             />
 
             <FormFieldError className="text-sm">
@@ -96,12 +102,12 @@ export default function HostForm({
             </FormFieldError>
 
             <Text
-              className={`absolute right-4 pl-3
+              className={`absolute z-90 right-4 pl-3
                 ${error.errorHost ? 'bottom-[1.75rem]' : 'bottom-3'}
                  ${
                    drawerAction === DrawerActionEnum.Add
                      ? 'bg-white'
-                     : 'bg-[var(--ods-color-neutral-50)]'
+                     : 'bg-[--ods-color-neutral-050]'
                  }`}
             >
               {`.${serviceName}`}
@@ -141,6 +147,7 @@ export default function HostForm({
                 });
               }, 700);
             }}
+            data-testid="ips-input"
           />
 
           <FormFieldError className="text-sm">

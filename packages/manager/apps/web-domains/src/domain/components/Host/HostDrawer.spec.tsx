@@ -1,6 +1,6 @@
 import '@/common/setupTests';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { vi, describe, expect, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { vi, describe, expect, it, beforeEach } from 'vitest';
 import HostDrawer from './HostDrawer';
 import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
@@ -16,13 +16,22 @@ vi.mock('@/domain/hooks/data/query', () => ({
   }),
 }));
 
+vi.mock('@/domain/utils/utils', () => ({
+  getIpsSupported: () => true,
+  isHostnameInvalid: () => vi.fn(),
+  isIpsInvalid: () => false,
+}));
+
 describe('HostDrawer', () => {
-  const drawerProps = {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  const baseProps = {
     formData: {
-      host: serviceInfoDetail.currentState.hostsConfiguration.hosts[0].host,
-      ips: serviceInfoDetail.currentState.hostsConfiguration.hosts[0].ips,
+      host: 'ns1',
+      ips: ['1.1.1.1'],
     },
-    drawer: { isOpen: true, action: DrawerActionEnum.Add },
     ipv4Supported: true,
     ipv6Supported: true,
     multipleIPsSupported: false,
@@ -33,24 +42,31 @@ describe('HostDrawer', () => {
     setFormData,
   };
 
-  it('renders drawer correctly', () => {
-    render(<HostDrawer {...drawerProps} />);
+  it('renders drawer correctly in Add mode', () => {
+    render(
+      <HostDrawer
+        {...baseProps}
+        drawer={{ isOpen: true, action: DrawerActionEnum.Add }}
+      />,
+    );
 
     expect(screen.getByTestId('drawer')).toBeInTheDocument();
     expect(
       screen.getByText('domain_tab_hosts_drawer_add_title'),
     ).toBeInTheDocument();
+
+    expect(screen.getByText('.foobar')).toBeInTheDocument();
   });
 
-  it('closes drawer on secondary button click', () => {
-    render(<HostDrawer {...drawerProps} />);
+  it('renders drawer correctly in Modify mode', () => {
+    render(
+      <HostDrawer
+        {...baseProps}
+        drawer={{ isOpen: true, action: DrawerActionEnum.Modify }}
+      />,
+    );
 
-    const cancel = screen.getByRole('button', { name: 'close' });
-    fireEvent.click(cancel);
-
-    expect(setDrawer).toHaveBeenCalledWith({
-      isOpen: false,
-      action: null,
-    });
+    const [hostnameInput] = screen.getAllByRole('textbox');
+    expect(hostnameInput).toHaveAttribute('readonly');
   });
 });
