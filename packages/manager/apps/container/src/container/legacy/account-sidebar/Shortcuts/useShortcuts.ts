@@ -58,16 +58,12 @@ const useShortcuts = (): UseShortcuts => {
               url: navigation.getURL('catalog', '#/'),
             },
           ]),
-      ...(['EU', 'CA'].includes(region)
-        ? [
-            {
-              id: 'emails',
-              icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_LETTER_CONCEPT),
-              url: navigation.getURL('dedicated', '#/useraccount/emails'),
-              tracking: 'hub::sidebar::shortcuts::go-to-emails',
-            },
-          ]
-        : []),
+      {
+        id: 'emails',
+        icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_LETTER_CONCEPT),
+        url: navigation.getURL('communication', '#/'),
+        tracking: 'hub::sidebar::shortcuts::go-to-emails',
+      },
       ...(['EU', 'CA'].includes(region)
         ? [
             {

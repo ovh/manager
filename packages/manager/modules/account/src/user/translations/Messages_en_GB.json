@@ -599,7 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Oops! An error has occurred deleting the backup codes:",
   "user_account_security_ip_restrictions_alt": "IP access restriction",
   "user_account_title_infos": "My account",
-  "user_account_description": "Manage your customer account. In this topic, you manage your account security, support level, and users. You can also check the emails received for your services.",
+  "user_account_description": "Manage your customer account. In this topic, you manage your account security, support level, and users.",
   "user_account_title_subscriptions": "My subscriptions",
   "user_agreements_accepting": "Saving...",
   "user_account_emails_title": "Emails received",
