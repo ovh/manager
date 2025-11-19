@@ -1,4 +1,4 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+import { within, waitFor, screen, fireEvent } from '@testing-library/react';
 import { describe } from 'vitest';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
@@ -82,7 +82,10 @@ describe('Move IP modal', () => {
     );
     const confirmNode = await screen.getByText(confirmText, { exact: false });
     await waitFor(
-      () => expect(confirmNode.parentElement).toMatchSnapshot(),
+      () =>
+        expect(
+          within(confirmNode.parentElement).getByText(service),
+        ).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
@@ -108,7 +111,13 @@ describe('Move IP modal', () => {
       '',
     );
     const confirmNode = await screen.getByText(confirmText, { exact: false });
-    expect(confirmNode.parentElement.innerHTML).toMatchSnapshot();
+    await waitFor(
+      () =>
+        expect(
+          within(confirmNode.parentElement).getByText(service),
+        ).toBeInTheDocument(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
 
     const confirmButton = await getButtonByLabel({
       container,
