@@ -78,4 +78,6 @@ export const websiteFormSchema = z.object({
     .optional(),
   advancedConfiguration: z.boolean().optional(),
   wwwNeeded: z.boolean().optional(),
+  hasSubdomain: z.boolean().optional(),
+  subdomain: z.string().optional(),
 });
