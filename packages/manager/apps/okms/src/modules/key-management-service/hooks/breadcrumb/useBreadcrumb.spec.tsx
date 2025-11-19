@@ -84,7 +84,7 @@ describe('useBreadcumb test suite', () => {
     expect(result.current[1].navigateTo).toEqual(items[1].navigateTo);
   });
 
-  it('should not have a navigateTo url when no corresponding given item is found ', () => {
+  it('should not have a navigateTo url when no corresponding given item is found', () => {
     // given
     const { result } = renderHook(() => useBreadcrumb({ items }));
 

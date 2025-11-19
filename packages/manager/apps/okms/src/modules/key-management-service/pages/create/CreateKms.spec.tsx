@@ -40,7 +40,7 @@ const pickRegion = async (user: UserEvent) => {
   await act(() => user.click(firstRegionOption));
 };
 
-const waitOrderButtonToBeEnabled = async () => {
+const expectOrderButtonToBeEnabled = async () => {
   await waitFor(() => {
     expect(screen.getByTestId(CREATE_KMS_TEST_IDS.CTA_ORDER)).toBeEnabled();
   });
@@ -90,7 +90,7 @@ describe('KMS creation page test suite', () => {
 
     await pickRegion(user);
 
-    await waitOrderButtonToBeEnabled();
+    await expectOrderButtonToBeEnabled();
   });
 
   it('should open the order modal on order button click', async () => {
@@ -99,7 +99,7 @@ describe('KMS creation page test suite', () => {
 
     await pickRegion(user);
 
-    await waitOrderButtonToBeEnabled();
+    await expectOrderButtonToBeEnabled();
 
     // Click on order button
     await act(async () => {

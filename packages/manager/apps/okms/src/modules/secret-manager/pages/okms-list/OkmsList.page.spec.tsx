@@ -16,7 +16,7 @@ import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/te
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithMultipleOkms.region);
 
-const checkOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
+const expectOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
 
   // Check the page title
@@ -44,7 +44,7 @@ describe('Okms List page test suite', () => {
   it('should display the okms listing page', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    await checkOkmsListPageToBeDisplayed(container);
+    await expectOkmsListPageToBeDisplayed(container);
   });
 
   it('should display the breadcrumb', async () => {
@@ -62,7 +62,7 @@ describe('Okms List page test suite', () => {
   it('should display the listing table with all columns', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    await checkOkmsListPageToBeDisplayed(container);
+    await expectOkmsListPageToBeDisplayed(container);
 
     const name = labels.listing.key_management_service_listing_name_cell;
     const id = labels.listing.key_management_service_listing_id_cell;
@@ -78,7 +78,7 @@ describe('Okms List page test suite', () => {
   it(`should navigate to the secret creation page on click on create a secret button`, async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    const { user } = await checkOkmsListPageToBeDisplayed(container);
+    const { user } = await expectOkmsListPageToBeDisplayed(container);
 
     const button = await getOdsButtonByLabel({
       container,
@@ -95,7 +95,7 @@ describe('Okms List page test suite', () => {
   it('should navigate to the secrets listing page on click on okms name', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    const { user, okmsNameLink } = await checkOkmsListPageToBeDisplayed(container);
+    const { user, okmsNameLink } = await expectOkmsListPageToBeDisplayed(container);
 
     await act(async () => {
       await user.click(okmsNameLink);
@@ -112,7 +112,7 @@ describe('Okms List page test suite', () => {
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await checkOkmsListPageToBeDisplayed(container);
+      await expectOkmsListPageToBeDisplayed(container);
     });
 
     it('when the region is not valid', async () => {
@@ -122,7 +122,7 @@ describe('Okms List page test suite', () => {
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await checkOkmsListPageToBeDisplayed(container);
+      await expectOkmsListPageToBeDisplayed(container);
     });
   });
 
