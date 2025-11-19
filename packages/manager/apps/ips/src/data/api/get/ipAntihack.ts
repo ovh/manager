@@ -30,4 +30,5 @@ export const getIpAntihack = async (
   fetchIcebergV6<IpAntihackType>({
     route: `/ip/${encodeURIComponent(params.ip)}/antihack`,
     page: 1,
+    disableCache: true,
   });

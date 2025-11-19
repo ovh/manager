@@ -102,7 +102,7 @@ export default function AntiHackModal() {
   );
 
   const { isPending, mutate: unblockAntihackHandler } = useMutation({
-    mutationFn: () => unblockAntiHackIp({ ip, ipBlocked }),
+    mutationFn: () => unblockAntiHackIp({ ip: parentIp, ipBlocked: ip }),
     onSuccess: async () => {
       clearNotifications();
       trackPage({
