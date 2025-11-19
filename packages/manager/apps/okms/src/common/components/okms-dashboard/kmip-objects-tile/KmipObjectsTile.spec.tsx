@@ -1,10 +1,12 @@
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
+
 import { KmipObjectsTile } from './KmipObjectsTile.component';
 import { KMIP_OBJECTS_TILE_TEST_IDS } from './KmipObjectsTile.constants';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 vi.mock('./items/KmipObjectCountTileItem.component', async (original) => ({
   ...(await original()),

@@ -1,12 +1,15 @@
-import { act, screen } from '@testing-library/react';
-import { vi } from 'vitest';
-import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
-import userEvent from '@testing-library/user-event';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { EditSecretConfigLinkTileItem } from './EditSecretConfigLinkTileItem.component';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
+import { LinkType, LinksProps } from '@ovh-ux/manager-react-components';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
+
+import { EditSecretConfigLinkTileItem } from './EditSecretConfigLinkTileItem.component';
 
 const okmsMocked = okmsMock[0];
 
@@ -20,17 +23,11 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return {
     ...actual,
     Links: ({ onClickReturn, ...rest }: LinksProps) => (
-      <a
-        data-testid={'edit-secret-config-link'}
-        onClick={onClickReturn}
-        {...rest}
-      />
+      <a data-testid={'edit-secret-config-link'} onClick={onClickReturn} {...rest} />
     ),
   };
 });
@@ -47,10 +44,7 @@ describe('OKMS edit secret config link Tile Item test suite', () => {
     const secretListLink = screen.getByTestId('edit-secret-config-link');
 
     expect(secretListLink).toBeVisible();
-    expect(secretListLink).toHaveAttribute(
-      'label',
-      labels.secretManager.edit_metadata,
-    );
+    expect(secretListLink).toHaveAttribute('label', labels.secretManager.edit_metadata);
     expect(secretListLink).toHaveAttribute('type', LinkType.next);
 
     await act(async () => {

@@ -1,6 +1,8 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { mockSecretConfigOkms } from './secretConfigOkms.mock';
+
 import { buildMswResponseMock } from '@/common/utils/tests/msw';
+
+import { mockSecretConfigOkms } from './secretConfigOkms.mock';
 
 // GET Secret Config
 export const getSecretConfigErrorMessage = 'get-secret-config-error-message';

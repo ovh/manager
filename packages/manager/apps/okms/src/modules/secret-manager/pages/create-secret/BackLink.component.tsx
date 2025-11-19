@@ -1,11 +1,13 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import { useHref, useSearchParams } from 'react-router-dom';
+
 import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
-import { useHref, useSearchParams } from 'react-router-dom';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
 
 export const SecretFormBackLink = () => {
   const { t } = useTranslation([NAMESPACES.ACTIONS]);
@@ -20,10 +22,6 @@ export const SecretFormBackLink = () => {
   const backLink = useHref(url);
 
   return (
-    <Links
-      label={t('back', { ns: NAMESPACES.ACTIONS })}
-      type={LinkType.back}
-      href={backLink}
-    />
+    <Links label={t('back', { ns: NAMESPACES.ACTIONS })} type={LinkType.back} href={backLink} />
   );
 };

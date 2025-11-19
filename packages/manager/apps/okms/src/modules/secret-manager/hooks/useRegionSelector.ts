@@ -1,14 +1,16 @@
 import { useMemo } from 'react';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
+
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { Location } from '@/common/types/location.type';
+import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+
 import { useLocations } from '@/common/data/hooks/useLocation';
-import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
 import { ContinentCode } from '@/common/types/continents.type';
+import { Location } from '@/common/types/location.type';
 import { getContinentCodeFromGeographyCode } from '@/common/utils/location/continents';
+import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
 
 export type RegionOption = {
   region: string;
@@ -32,10 +34,7 @@ type UseRegionSelectorReturn = {
  * Builds a list of regions with an available okms
  * Locations are used to get the region name and geography label
  */
-const buildRegionOptions = (
-  locations: Location[],
-  okmsList: OKMS[],
-): RegionOption[] => {
+const buildRegionOptions = (locations: Location[], okmsList: OKMS[]): RegionOption[] => {
   // Deduplicate regions
   const uniqueRegions = [...new Set(okmsList.map((okms) => okms.region))];
 
@@ -48,9 +47,7 @@ const buildRegionOptions = (
 
       return {
         region: location.name,
-        continentCode: getContinentCodeFromGeographyCode(
-          location.geographyCode,
-        ),
+        continentCode: getContinentCodeFromGeographyCode(location.geographyCode),
         href:
           // If only one okms is available, redirect to the secrets listing page
           regionOkmsList.length === 1
@@ -64,13 +61,9 @@ const buildRegionOptions = (
 /**
  * Group regionsOptions by geographyLabel (e.g., "Europe", "North America")
  */
-const groupRegionOptions = (
-  regionOptions: RegionOption[],
-): GeographyGroup[] => {
+const groupRegionOptions = (regionOptions: RegionOption[]): GeographyGroup[] => {
   return regionOptions.reduce<GeographyGroup[]>((acc, regionOption) => {
-    const existingRegion = acc.find(
-      (group) => group.continentCode === regionOption.continentCode,
-    );
+    const existingRegion = acc.find((group) => group.continentCode === regionOption.continentCode);
 
     if (existingRegion) {
       existingRegion.regions.push(regionOption);
@@ -98,16 +91,8 @@ const findCurrentRegionOption = (
 };
 
 export const useRegionSelector = (): UseRegionSelectorReturn => {
-  const {
-    data: locations,
-    isPending: isPendingLocations,
-    error: errorLocations,
-  } = useLocations();
-  const {
-    data: okmsList,
-    isPending: isPendingOkmsList,
-    error: errorOkmsList,
-  } = useOkmsList();
+  const { data: locations, isPending: isPendingLocations, error: errorLocations } = useLocations();
+  const { data: okmsList, isPending: isPendingOkmsList, error: errorOkmsList } = useOkmsList();
 
   const currentRegionId = useCurrentRegion(okmsList || []);
 

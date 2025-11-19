@@ -1,5 +1,7 @@
 import { useOutletContext } from 'react-router-dom';
+
 import OkmsUpdateNameModal from '@/common/components/okms-update-name-modal/OkmsUpdateNameModal.component';
+
 import { OkmsDashboardOutletContext } from '../OkmsDashboard.type';
 
 const OkmsUpdateNameModalPage = () => {

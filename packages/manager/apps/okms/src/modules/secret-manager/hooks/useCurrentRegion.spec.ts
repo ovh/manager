@@ -1,11 +1,13 @@
-import { renderHook } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+
 import {
   okmsMock,
   okmsRoubaix1Mock,
   okmsStrasbourg1Mock,
 } from '@key-management-service/mocks/kms/okms.mock';
+import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { useCurrentRegion } from './useCurrentRegion';
 
 // Mock react-router-dom
@@ -117,8 +119,8 @@ describe('useCurrentRegion tests suite', () => {
 
     it('should handle when useParams returns null values', () => {
       mockUseParams.mockReturnValue({
-        okmsId: (null as unknown) as string,
-        region: (null as unknown) as string,
+        okmsId: null as unknown as string,
+        region: null as unknown as string,
       });
 
       const { result } = renderHook(() => useCurrentRegion(okmsMock));
@@ -134,12 +136,9 @@ describe('useCurrentRegion tests suite', () => {
         region: undefined,
       });
 
-      const { result, rerender } = renderHook(
-        ({ okmsList }) => useCurrentRegion(okmsList),
-        {
-          initialProps: { okmsList: okmsMock },
-        },
-      );
+      const { result, rerender } = renderHook(({ okmsList }) => useCurrentRegion(okmsList), {
+        initialProps: { okmsList: okmsMock },
+      });
 
       expect(result.current).toBe(okmsRoubaix1Mock.region);
 

@@ -9,7 +9,8 @@ export const CredentialDescriptionErrors = {
   tooManyCharacters: 'TOO_MANY_CHARACTERS',
 } as const;
 
-export type CredentialDescriptionErrorsType = typeof CredentialDescriptionErrors[keyof typeof CredentialDescriptionErrors];
+export type CredentialDescriptionErrorsType =
+  (typeof CredentialDescriptionErrors)[keyof typeof CredentialDescriptionErrors];
 
 export const CredentialDescriptionMaxCharacters = 200;
 
@@ -18,8 +19,7 @@ export const validateCredentialDescription = (description: string | null) => {
   if (description.length > CredentialDescriptionMaxCharacters)
     return CredentialDescriptionErrors.tooManyCharacters;
 
-  if (!/^[ -~]+$/.test(description))
-    return CredentialDescriptionErrors.invalidCharacters;
+  if (!/^[ -~]+$/.test(description)) return CredentialDescriptionErrors.invalidCharacters;
 
   return undefined;
 };

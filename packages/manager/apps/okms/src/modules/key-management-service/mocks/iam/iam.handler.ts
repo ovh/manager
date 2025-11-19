@@ -1,17 +1,16 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { kmsIamMock } from './iam.mock';
 
 export type GetIamAuthorizationMockParams = {
   isIamKO?: boolean;
 };
 
-const findResourceByUrn = (params: PathParams) =>
-  kmsIamMock.find(({ urn }) => urn === params.urn);
+const findResourceByUrn = (params: PathParams) => kmsIamMock.find(({ urn }) => urn === params.urn);
 
-export const getIamMocks = ({
-  isIamKO,
-}: GetIamAuthorizationMockParams): Handler[] => [
+export const getIamMocks = ({ isIamKO }: GetIamAuthorizationMockParams): Handler[] => [
   {
     method: 'post',
     url: '/iam/resource/:urn/authorization/check',

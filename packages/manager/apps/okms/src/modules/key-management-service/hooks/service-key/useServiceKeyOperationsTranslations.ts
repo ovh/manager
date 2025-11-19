@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import { OkmsServiceKeyOperations } from '@key-management-service/types/okmsServiceKey.type';
+import { useTranslation } from 'react-i18next';
 
 export const useServiceKeyOperationsTranslations = (
   operations: OkmsServiceKeyOperations[] | string[],
@@ -9,34 +9,22 @@ export const useServiceKeyOperationsTranslations = (
   const translatedOperations = operations.map((operation) => {
     switch (operation) {
       case 'encrypt':
-        return t(
-          'key_management_service_service-keys_dashboard_field_operations_encrypt',
-        );
+        return t('key_management_service_service-keys_dashboard_field_operations_encrypt');
 
       case 'decrypt':
-        return t(
-          'key_management_service_service-keys_dashboard_field_operations_decrypt',
-        );
+        return t('key_management_service_service-keys_dashboard_field_operations_decrypt');
 
       case 'sign':
-        return t(
-          'key_management_service_service-keys_dashboard_field_operations_sign',
-        );
+        return t('key_management_service_service-keys_dashboard_field_operations_sign');
 
       case 'verify':
-        return t(
-          'key_management_service_service-keys_dashboard_field_operations_verify',
-        );
+        return t('key_management_service_service-keys_dashboard_field_operations_verify');
 
       case 'wrapKey':
-        return t(
-          'key_management_service_service-keys_dashboard_field_operations_wrapKey',
-        );
+        return t('key_management_service_service-keys_dashboard_field_operations_wrapKey');
 
       case 'unwrapKey':
-        return t(
-          'key_management_service_service-keys_dashboard_field_operations_unwrapKey',
-        );
+        return t('key_management_service_service-keys_dashboard_field_operations_unwrapKey');
 
       default:
         return operation;

@@ -1,30 +1,27 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_MESSAGE_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_COLOR,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
-import {
-  BaseLayout,
-  Notifications,
-  RedirectionGuard,
-  useNotifications,
-  HeadersProps,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import kmsListingTestIds from './KmsListing.constants';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
+
+import {
+  BaseLayout,
+  HeadersProps,
+  Notifications,
+  RedirectionGuard,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
+
+import kmsListingTestIds from './KmsListing.constants';
 
 export default function Listing() {
   const { t } = useTranslation(['key-management-service/listing', 'common']);
@@ -36,13 +33,7 @@ export default function Listing() {
   const { hasPendingOrder } = usePendingOkmsOrder();
   const hasNotifications = notifications.length > 0 || hasPendingOrder;
 
-  const {
-    data,
-    isError,
-    isPending,
-    fetchNextPage,
-    hasNextPage,
-  } = useOkmsDatagridList({
+  const { data, isError, isPending, fetchNextPage, hasNextPage } = useOkmsDatagridList({
     pageSize: 10,
   });
   const flattenData = data?.pages.flatMap((page) => page.data);
@@ -73,11 +64,7 @@ export default function Listing() {
           hasNotifications && (
             <div>
               {hasPendingOrder && (
-                <OdsMessage
-                  color="information"
-                  className="mb-4"
-                  isDismissible={false}
-                >
+                <OdsMessage color="information" className="mb-4" isDismissible={false}>
                   {t('common:okms_order_pending')}
                 </OdsMessage>
               )}

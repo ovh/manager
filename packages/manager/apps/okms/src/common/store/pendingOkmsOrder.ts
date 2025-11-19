@@ -30,8 +30,7 @@ export const registerPendingOrder = (region: string) => {
   });
 };
 
-export const saveInitialOkmsIds = (initialOkmsIds: string[]) =>
-  store.setState({ initialOkmsIds });
+export const saveInitialOkmsIds = (initialOkmsIds: string[]) => store.setState({ initialOkmsIds });
 
 export const clearPendingOrder = () => {
   store.setState({

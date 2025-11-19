@@ -29,8 +29,7 @@ const URLS = {
 
   okmsList: (regionId: string) => `/${URIS.root}/${URIS.region}/${regionId}`,
 
-  okmsDashboard: (okmsId: string) =>
-    `/${URIS.root}/${okmsId}/${URIS.dashboard}`,
+  okmsDashboard: (okmsId: string) => `/${URIS.root}/${okmsId}/${URIS.dashboard}`,
 
   okmsUpdateNameModal: (okmsId: string) =>
     `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.update}`,
@@ -50,9 +49,7 @@ const URLS = {
     `/${URIS.root}/${okmsId}/${URIS.value}/${encodeSecretPath(secretPath)}`,
 
   secretListCreateVersionDrawer: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${URIS.createVersion}/${encodeSecretPath(
-      secretPath,
-    )}`,
+    `/${URIS.root}/${okmsId}/${URIS.createVersion}/${encodeSecretPath(secretPath)}`,
 
   secret: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}`,
@@ -61,42 +58,26 @@ const URLS = {
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.value}`,
 
   secretCreateVersionDrawer: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
-      URIS.createVersion
-    }`,
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.createVersion}`,
 
   secretEditMetadataDrawer: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
-      URIS.editMetadata
-    }`,
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.editMetadata}`,
 
   secretDeleteSecret: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.delete}`,
 
   versionList: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
-      URIS.versionList
-    }`,
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.versionList}`,
 
   versionListCreateVersionDrawer: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
-      URIS.versionList
-    }/${URIS.create}`,
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.versionList}/${URIS.create}`,
 
-  versionListDeleteVersionModal: (
-    okmsId: string,
-    secretPath: string,
-    versionId: number,
-  ) =>
+  versionListDeleteVersionModal: (okmsId: string, secretPath: string, versionId: number) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
       URIS.versionList
     }/${URIS.delete}/${versionId}`,
 
-  versionListSecretValueDrawer: (
-    okmsId: string,
-    secretPath: string,
-    versionId: number,
-  ) =>
+  versionListSecretValueDrawer: (okmsId: string, secretPath: string, versionId: number) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
       URIS.versionList
     }/${URIS.value}/${versionId}`,

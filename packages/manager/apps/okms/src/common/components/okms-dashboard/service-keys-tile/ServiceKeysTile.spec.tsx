@@ -1,14 +1,16 @@
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { vi } from 'vitest';
+
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
 import { initTestI18n } from '@/common/utils/tests/init.i18n';
 import { renderWithClient } from '@/common/utils/tests/testUtils';
-import { useProductType, ProductType } from '@/common/hooks/useProductType';
-import { SERVICE_KEYS_TILE_TEST_IDS } from './ServiceKeysTile.constants';
 import { SERVICE_KEYS_LABEL } from '@/constants';
+
 import { ServiceKeysTile } from './ServiceKeysTile.component';
+import { SERVICE_KEYS_TILE_TEST_IDS } from './ServiceKeysTile.constants';
 
 let i18nValue: i18n;
 

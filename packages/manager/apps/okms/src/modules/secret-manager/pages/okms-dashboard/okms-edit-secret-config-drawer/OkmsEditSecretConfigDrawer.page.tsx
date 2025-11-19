@@ -1,12 +1,18 @@
 import { Suspense } from 'react';
+
 import { useNavigate, useOutletContext } from 'react-router-dom';
+
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
-import { Drawer } from '@ovh-ux/manager-react-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
 import { useSecretConfigReference } from '@secret-manager/data/hooks/useSecretConfigReference';
+import { useTranslation } from 'react-i18next';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Drawer } from '@ovh-ux/manager-react-components';
+
 import { EditOkmsSecretConfigDrawerForm } from '@/common/components/okms-secret-config-drawer-form/EditOkmsSecretConfigDrawerForm.component';
+
 import { OkmsDashboardOutletContext } from '../OkmsDashboard.type';
 import { OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS } from './OkmsEditSecretConfigDrawer.page.constants';
 

@@ -5,7 +5,8 @@ import {
   IdentityType,
 } from '@key-management-service/types/identity.type';
 
-const urnIdentityRegExp = /^urn:v(\d):(eu|ca|us|labeu):([a-z]+):([a-z]+):([a-z]{2}\d{1,6}-ovh)\/?(.+?)?$/i;
+const urnIdentityRegExp =
+  /^urn:v(\d):(eu|ca|us|labeu):([a-z]+):([a-z]+):([a-z]{2}\d{1,6}-ovh)\/?(.+?)?$/i;
 
 export const decodeIdentity = (identityUrn: string): IdentityObject | null => {
   const [match, version, region, entity, type, account, id] =

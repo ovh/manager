@@ -1,15 +1,18 @@
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { secretConfigOkmsQueryKey } from '@secret-manager/data/api/secretConfigOkms';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { MaxVersionTileItem } from './items/MaxVersionTileItem.component';
-import { DeactivateVersionAfterTileItem } from './items/DeactivateVersionAfterTileItem.component';
-import { CasTileItem } from './items/CasTileItem.component';
+import { secretConfigOkmsQueryKey } from '@secret-manager/data/api/secretConfigOkms';
+import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
+import { useTranslation } from 'react-i18next';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+
 import { TileError } from '@/common/components/tile-error/TileError.component';
-import { EditSecretConfigLinkTileItem } from './items/EditSecretConfigLinkTileItem.component';
 import { useProductType } from '@/common/hooks/useProductType';
+
+import { CasTileItem } from './items/CasTileItem.component';
+import { DeactivateVersionAfterTileItem } from './items/DeactivateVersionAfterTileItem.component';
+import { EditSecretConfigLinkTileItem } from './items/EditSecretConfigLinkTileItem.component';
+import { MaxVersionTileItem } from './items/MaxVersionTileItem.component';
 
 type SecretConfigTileProps = {
   okms: OKMS;
@@ -33,23 +36,14 @@ export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
       {error ? (
         <>
           <ManagerTile.Divider />
-          <TileError
-            error={error}
-            onRetry={handleRetry}
-          />
+          <TileError error={error} onRetry={handleRetry} />
         </>
       ) : (
         <>
           <ManagerTile.Divider />
-          <MaxVersionTileItem
-            secretConfig={secretConfig}
-            isPending={isPending}
-          />
+          <MaxVersionTileItem secretConfig={secretConfig} isPending={isPending} />
           <ManagerTile.Divider />
-          <DeactivateVersionAfterTileItem
-            secretConfig={secretConfig}
-            isPending={isPending}
-          />
+          <DeactivateVersionAfterTileItem secretConfig={secretConfig} isPending={isPending} />
           <ManagerTile.Divider />
           <CasTileItem secretConfig={secretConfig} isPending={isPending} />
           {productType === 'secret-manager' && (
