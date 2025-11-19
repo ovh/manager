@@ -171,6 +171,9 @@ export const IpActionsCell = ({
       label: ipDetails?.description
         ? t('listingActionEditDescription')
         : t('listingActionAddDescription'),
+      trackingLabel: ipDetails?.description
+        ? 'edit_description'
+        : 'add_description',
       onClick: () =>
         navigate(
           `${urls.upsertDescription
@@ -184,6 +187,7 @@ export const IpActionsCell = ({
     {
       id: 1,
       label: t('listingMenuReverseDns'),
+      trackingLabel: 'configure_reverse-dns',
       onClick: () =>
         navigate(
           `${urls.listingConfigureReverseDns
@@ -200,6 +204,7 @@ export const IpActionsCell = ({
       Boolean(ipGameFirewall?.length) && {
         id: 2,
         label: t('listingActionManageGameMitigation'),
+        trackingLabel: 'configure_game-firewall',
         onClick: () =>
           navigate(
             `${urls.configureGameFirewall.replace(
@@ -214,6 +219,7 @@ export const IpActionsCell = ({
       !hasHousingServiceAttachedToIp && {
         id: 3,
         label: t('listingActionConfigureEdgeNetworkFirewall'),
+        trackingLabel: 'configure_edge-network-firewall',
         onClick: () =>
           navigate(
             `${urls.configureEdgeNetworkFirewall.replace(
@@ -226,6 +232,7 @@ export const IpActionsCell = ({
       ipDetails?.type === IpTypeEnum.VRACK && {
         id: 4,
         label: t('listingActionManageSubnetInVrack'),
+        trackingLabel: 'manage_subnet-in-vrack',
         onClick: () => {
           window.top.location.href = vrackPage;
         },
@@ -235,6 +242,7 @@ export const IpActionsCell = ({
       ipDetails?.type === IpTypeEnum.ADDITIONAL && {
         id: 5,
         label: t('listingActionAddVirtualMac'),
+        trackingLabel: 'add_virtual-mac',
         onClick: () =>
           navigate(
             `${urls.addVirtualMac
@@ -257,6 +265,7 @@ export const IpActionsCell = ({
       hasDedicatedServiceAttachedToIp && {
         id: 6,
         label: t('listingActionViewVirtualMac'),
+        trackingLabel: 'view_virtual-mac',
         onClick: () =>
           navigate(
             `${urls.viewVirtualMac
@@ -273,6 +282,7 @@ export const IpActionsCell = ({
       isVmacAlreadyExist && {
         id: 7,
         label: t('listingActionDeleteVirtualMac'),
+        trackingLabel: 'delete_virtual-mac',
         onClick: () =>
           navigate(
             `${urls.deleteVirtualMac
@@ -289,6 +299,7 @@ export const IpActionsCell = ({
       !isByoipSlice && {
         id: 8,
         label: `${t('move', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        trackingLabel: 'move_additional-ip',
         onClick: () =>
           navigate(
             `${urls.listingMoveIp.replace(
@@ -302,6 +313,7 @@ export const IpActionsCell = ({
       !!hasAlerts?.antihack?.length && {
         id: 9,
         label: t('listingActionUnblockHackedIP'),
+        trackingLabel: 'unblock_hacked-ip',
         onClick: () =>
           navigate(
             `${urls.unblockAntiHack
@@ -318,6 +330,7 @@ export const IpActionsCell = ({
       !!hasAlerts?.spam?.length && {
         id: 10,
         label: t('listingActionUnblockSpammedIP'),
+        trackingLabel: 'unblock_spammed-ip',
         onClick: () =>
           navigate(
             `${urls.unblockAntiSpam
@@ -332,6 +345,7 @@ export const IpActionsCell = ({
     canSliceByoipIp({ isByoipSlice, ip, ipDetails }) && {
       id: 11,
       label: t('listingActionSlice'),
+      trackingLabel: 'slice_bring-your-own-ip',
       isDisabled:
         onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
       onClick: () =>
@@ -350,6 +364,7 @@ export const IpActionsCell = ({
     }) && {
       id: 12,
       label: t('listingActionAggregate'),
+      trackingLabel: 'aggregate_bring-your-own-ip',
       isDisabled:
         onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
       onClick: () =>
@@ -370,6 +385,7 @@ export const IpActionsCell = ({
         label: `${t('terminate', {
           ns: NAMESPACES.ACTIONS,
         })} Additional IP`,
+        trackingLabel: 'terminate_additional-ip',
         isLoading,
         onClick: () =>
           navigate(
@@ -386,6 +402,7 @@ export const IpActionsCell = ({
     }) && {
       id: 14,
       label: t('listingActionByoipTerminate'),
+      trackingLabel: 'terminate_bring-your-own-ip',
       isLoading,
       onClick: () =>
         navigate(
@@ -407,6 +424,7 @@ export const IpActionsCell = ({
       ].includes(ipDetails?.type) && {
         id: 15,
         label: t('listingActionUpdateIpBlockInformation'),
+        trackingLabel: 'update_ip-block-information',
         onClick: () =>
           navigate(
             `${urls.ipBlockInformation.replace(
@@ -422,9 +440,9 @@ export const IpActionsCell = ({
       onClick: () => {
         trackClick({
           location: PageLocation.datagrid,
-          actionType: 'navigation',
           buttonType: ButtonType.button,
-          actions: [item.label],
+          actionType: 'action',
+          actions: [item.trackingLabel || item.label],
         });
         item.onClick?.();
       },

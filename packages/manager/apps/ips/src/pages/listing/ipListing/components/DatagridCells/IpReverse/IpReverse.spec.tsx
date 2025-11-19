@@ -23,6 +23,12 @@ vi.mock('@/data/hooks/ip', () => ({
   useGetIcebergIpReverse: useGetIcebergIpReverseMock,
 }));
 
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => vi.fn(),
+  useSearchParams: () => ['', vi.fn()],
+  useMatches: () => [] as any[],
+}));
+
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));

@@ -5,7 +5,11 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
-
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useIpHasVmac, useGetIpVmacDetails } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
 
@@ -18,6 +22,7 @@ export default function ViewVirtualMacModal() {
   const [search] = useSearchParams();
   const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
+  const { trackClick } = useOvhTracking();
 
   const { ipvmac, isLoading: isVmacLoading } = useIpHasVmac({
     serviceName: service,
@@ -51,6 +56,12 @@ export default function ViewVirtualMacModal() {
   }, [dedicatedServerVmacWithIpResponse]);
 
   const closeModal = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['view_virtual-mac', 'cancel'],
+    });
     navigate(`..?${search.toString()}`);
   };
 

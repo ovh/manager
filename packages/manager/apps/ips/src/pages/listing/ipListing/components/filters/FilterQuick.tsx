@@ -52,7 +52,7 @@ export const QuickFilter = ({ className }: { className?: string }) => {
                   actionType: 'action',
                   buttonType: ButtonType.button,
                   location: PageLocation.page,
-                  actions: ['Quick-filter', 'IPv4'],
+                  actions: ['Quick-filters', 'IPv4'],
                 });
                 setApiFilter((prev) => ({
                   ...prev,
@@ -79,7 +79,7 @@ export const QuickFilter = ({ className }: { className?: string }) => {
                   actionType: 'action',
                   buttonType: ButtonType.button,
                   location: PageLocation.page,
-                  actions: ['Quick-filter', 'IPv6'],
+                  actions: ['Quick-filters', 'IPv6'],
                 });
                 setApiFilter((prev) => ({
                   ...prev,
@@ -107,7 +107,7 @@ export const QuickFilter = ({ className }: { className?: string }) => {
                   actionType: 'action',
                   buttonType: ButtonType.button,
                   location: PageLocation.page,
-                  actions: ['Quick-filter', 'Parked-IPs'],
+                  actions: ['Quick-filters', 'Parked-IPs'],
                 });
                 setApiFilter((prev) => ({
                   ...prev,

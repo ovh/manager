@@ -3,6 +3,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import ipaddr from 'ipaddr.js';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   getIpEdgeFirewallQueryKey,
   getIpEdgeNetworkFirewallRuleListQueryKey,
@@ -105,6 +106,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
     TRANSLATION_NAMESPACES.error,
   ]);
   const { addSuccess, addError, clearNotifications } = useNotifications();
+  const { trackPage } = useOvhTracking();
   return useMutation({
     mutationFn: async () => {
       clearNotifications();
@@ -159,6 +161,10 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
 
       if (hasError) {
         addError(t('createRuleErrorMessage'), true);
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: 'edge_firewall_add_rule_error',
+        });
         return Promise.reject();
       }
 
@@ -201,6 +207,10 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
       }
 
       addSuccess(t('add_rule_success_message'), true);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'edge_firewall_add_rule_success',
+      });
       hideNewRuleRow();
     },
     onError: (err?: ApiError) => {
@@ -214,6 +224,10 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
           }),
           true,
         );
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: 'edge_firewall_add_rule_error',
+        });
       }
     },
   });

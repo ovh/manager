@@ -1,6 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { useAvailableGeolocationFromPlanCode } from '@/data/hooks/catalog';
 import { OrderContext } from '../order.context';
@@ -18,6 +23,7 @@ export const GeolocationSection: React.FC = () => {
     selectedOffer,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
+  const { trackClick } = useOvhTracking();
   const { geolocations } = useAvailableGeolocationFromPlanCode({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -50,7 +56,17 @@ export const GeolocationSection: React.FC = () => {
               : geolocations?.[0]
           }
           onChange={(event) => {
-            setSelectedGeolocation(event.detail.value as string);
+            const newLocation = event.detail.value as string;
+            setSelectedGeolocation(newLocation);
+
+            if (newLocation) {
+              trackClick({
+                actionType: 'action',
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actions: [`select_${newLocation}`],
+              });
+            }
           }}
         />
       </React.Suspense>

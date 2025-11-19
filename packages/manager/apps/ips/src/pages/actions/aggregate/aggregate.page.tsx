@@ -12,6 +12,12 @@ import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   fromIdToIp,
   ipFormatter,
   TRANSLATION_NAMESPACES,
@@ -37,6 +43,7 @@ export default function AggregateModal() {
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
   const [search] = useSearchParams();
+  const { trackClick, trackPage } = useOvhTracking();
   const [aggregationIp, setAggregationIp] = React.useState('');
 
   const closeModal = () => {
@@ -54,6 +61,10 @@ export default function AggregateModal() {
     ip: ipGroup,
     onSuccess: () => {
       addSuccess(t('aggregateSuccessMessage'));
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'aggregate_success',
+      });
       closeModal();
       const childrenIps =
         aggregate.find((a) => a.aggregationIp === aggregationIp)?.childrenIps ||
@@ -69,6 +80,12 @@ export default function AggregateModal() {
   });
 
   const cancel = React.useCallback(() => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['aggregate', 'cancel'],
+    });
     closeModal();
   }, []);
 
@@ -89,7 +106,15 @@ export default function AggregateModal() {
       isLoading={isLoading}
       onDismiss={cancel}
       onSecondaryButtonClick={cancel}
-      onPrimaryButtonClick={() => postAggregate({ aggregationIp })}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['aggregate', 'confirm'],
+        });
+        postAggregate({ aggregationIp });
+      }}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       primaryButtonTestId="confirm-button"
       isPrimaryButtonLoading={isAggregatePending}

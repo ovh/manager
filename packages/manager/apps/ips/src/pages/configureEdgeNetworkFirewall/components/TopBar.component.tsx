@@ -79,7 +79,15 @@ export const TopBar: React.FC = () => {
             isIpMitigationLoading ||
             ipMitigation?.length > 0
           }
-          onClick={showNewRuleRow}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['add_rule'],
+            });
+            showNewRuleRow();
+          }}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
         />
@@ -139,13 +147,10 @@ export const TopBar: React.FC = () => {
             setTmpToggleState(!event?.currentTarget?.value);
             showEnableFirewallModal();
             trackClick({
-              actionType: 'action',
               location: PageLocation.page,
               buttonType: ButtonType.button,
-              actions: [
-                'Enabled/Disabled Edge Network Firewall',
-                !event?.currentTarget?.value ? 'enable' : 'disable',
-              ],
+              actionType: 'action',
+              actions: ['apply_default-refusal-strategy'],
             });
           }}
         />

@@ -124,6 +124,7 @@ export default function Step3({
       </div>
       <ApiErrorMessage error={error} />
       <ModalButtonGroup
+        currentStep={3}
         onCancel={onCancel}
         onPrevious={onPrevious}
         onNext={onNext}

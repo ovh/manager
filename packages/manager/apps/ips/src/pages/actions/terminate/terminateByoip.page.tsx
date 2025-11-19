@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -26,18 +26,14 @@ export default function TerminateByoip() {
   const { environment } = useContext(ShellContext);
   const region = environment.getRegion();
 
-  const closeModal = () => {
-    navigate(`..?${search.toString()}`);
-  };
-
   const closeHandler = () => {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
-      actionType: 'exit',
-      actions: ['delete_byoip', 'cancel'],
+      actionType: 'action',
+      actions: ['terminate_bring-your-own-ip', 'cancel'],
     });
-    closeModal();
+    navigate(`..?${search.toString()}`);
   };
 
   return (

@@ -5,6 +5,12 @@ import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { OdsModal, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
@@ -28,9 +34,16 @@ export default function ImportIpFromSys() {
     NAMESPACES.FORM,
     NAMESPACES.ACTIONS,
   ]);
+  const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
 
   const closeModal = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['import_sys-ip', 'cancel'],
+    });
     navigate(`..?${search.toString()}`);
   };
 
@@ -126,13 +139,23 @@ export default function ImportIpFromSys() {
             onPrevious={() => setCurrentStep(() => 4)}
             orderData={ipMigrationOrderData?.data}
             onConfirm={() => {
+              trackClick({
+                location: PageLocation.popup,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['import_sys-ip', 'confirm'],
+              });
               window.open(ipMigrationOrderData?.data?.url);
               addSuccess(
                 t('step5SuccessMessage', {
                   orderId: ipMigrationOrderData?.data?.orderId,
                 }),
               );
-              closeModal();
+              trackPage({
+                pageType: PageType.bannerSuccess,
+                pageName: 'import_sys-ip_success',
+              });
+              navigate(`..?${search.toString()}`);
             }}
           />
         )}

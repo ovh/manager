@@ -96,8 +96,8 @@ export default function DeleteVirtualMac() {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
-      actionType: 'exit',
-      actions: ['mac-delete', 'cancel'],
+      actionType: 'action',
+      actions: ['delete_virtual-mac', 'cancel'],
     });
     closeModal();
   };
@@ -108,7 +108,15 @@ export default function DeleteVirtualMac() {
       onDismiss={closeHandler}
       heading={t('deleteVirtualMacTitle')}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() => deleteVirtualMacHandler()}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete_virtual-mac', 'confirm'],
+        });
+        deleteVirtualMacHandler();
+      }}
       isPrimaryButtonLoading={isPending}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       isSecondaryButtonDisabled={isPending}

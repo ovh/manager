@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -8,6 +8,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGuideUtils } from '@/utils';
 import onboardingImgSrc from './onboarding-img.png';
 import { urls } from '@/routes/routes.constant';
@@ -17,6 +22,7 @@ import { IpOptionTable } from './onboardingIpOptionTable';
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const { guides, links } = useGuideUtils();
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   return (
@@ -24,49 +30,80 @@ export default function Onboarding() {
       title={t('title')}
       img={{ src: onboardingImgSrc }}
       description={
-        <div className="text-center">
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading2}>
-            {t('titleBis')}
-          </OdsText>
-          <OdsText className="block">{t('description')}</OdsText>
+        <Suspense>
+          <div className="text-center">
+            <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading2}>
+              {t('titleBis')}
+            </OdsText>
+            <OdsText className="block">{t('description')}</OdsText>
 
-          <div className="mt-8">
-            <OnboardingIpOptionsAdvantages />
+            <div className="mt-8">
+              <OnboardingIpOptionsAdvantages />
 
-            <IpOptionTable />
+              <IpOptionTable />
 
-            <div className="mt-4 text-left">
-              <OdsText preset={ODS_TEXT_PRESET.span}>
-                * {t('optionsFootnote')}
-              </OdsText>
-              <OdsText preset={ODS_TEXT_PRESET.span}>
-                ** {t('geolocationNote')}
+              <div className="mt-4 text-left">
+                <OdsText preset={ODS_TEXT_PRESET.span}>
+                  * {t('optionsFootnote')}
+                </OdsText>
+                <OdsText preset={ODS_TEXT_PRESET.span}>
+                  ** {t('geolocationNote')}
+                </OdsText>
+              </div>
+
+              <OdsText className="mt-4 text-left">
+                {t('moreInfoText')}{' '}
+                <Links
+                  href={links?.presentationLink}
+                  label={t('moreInfoProductPage')}
+                />{' '}
+                {t('moreInfoOr')}{' '}
+                <Links
+                  href={links?.documentationLink}
+                  label={t('moreInfoDocPages')}
+                />
+                .
               </OdsText>
             </div>
-
-            <OdsText className="mt-4 text-left">
-              {t('moreInfoText')}{' '}
-              <Links
-                href={links?.presentationLink}
-                label={t('moreInfoProductPage')}
-              />{' '}
-              {t('moreInfoOr')}{' '}
-              <Links
-                href={links?.documentationLink}
-                label={t('moreInfoDocPages')}
-              />
-              .
-            </OdsText>
           </div>
-        </div>
+        </Suspense>
       }
-      onOrderButtonClick={() => navigate(urls.order)}
+      onOrderButtonClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['order_ip'],
+        });
+        navigate(urls.order);
+      }}
       orderButtonLabel={t('orderButtonLabel')}
       moreInfoButtonLabel={t('byoipButtonLabel')}
-      onmoreInfoButtonClick={() => navigate(urls.byoip)}
+      onMoreInfoButtonClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['bring-your-own_ip'],
+        });
+        navigate(urls.byoip);
+      }}
+      moreInfoButtonIcon={null}
     >
       {guides?.map((tile) => (
-        <Card key={tile.href} {...tile} />
+        <Card
+          key={tile.href}
+          {...tile}
+          onClick={(e) => {
+            trackClick({
+              location: PageLocation.tile,
+              buttonType: ButtonType.externalLink,
+              actionType: 'action',
+              actions: [`go-to_${tile.texts.title}`],
+            });
+            tile.onClick?.(e);
+          }}
+        />
       ))}
     </OnboardingLayout>
   );

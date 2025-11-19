@@ -23,10 +23,10 @@ export const IpFilter = ({ className }: { className?: string }) => {
   const onSubmit = (event?: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
     trackClick({
-      actionType: 'action',
-      buttonType: ButtonType.button,
       location: PageLocation.page,
-      actions: ['IP-search'],
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['filter_ip'],
     });
     setApiFilter((prev) => ({
       ...prev,
@@ -35,6 +35,12 @@ export const IpFilter = ({ className }: { className?: string }) => {
   };
 
   const onClear = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['filter_ip'],
+    });
     setApiFilter((prev) => ({
       ...prev,
       ip: undefined,

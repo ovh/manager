@@ -28,10 +28,10 @@ export const useHeader = (title: string): Header => {
     label: guide.texts.title,
     onClick: () => {
       trackClick({
-        buttonType: ButtonType.link,
-        actionType: 'navigation',
-        location: PageLocation.page,
-        actions: [guide.texts.title],
+        buttonType: ButtonType.externalLink,
+        actionType: 'action',
+        location: PageLocation.tile,
+        actions: [`go-to_${guide.texts.title}`],
       });
     },
   }));

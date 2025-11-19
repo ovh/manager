@@ -7,7 +7,12 @@ import {
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getPrice, getPriceTextFormatted } from '@/components/price';
 import {
   DEFAULT_PRICING_MODE,
@@ -47,6 +52,7 @@ export const OfferSelectionSection: React.FC = () => {
   const { t, i18n } = useTranslation('order');
   const { ipv4LowestPrice } = useCatalogLowestPrice();
   const { environment } = React.useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const { region } = useServiceRegion({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -86,6 +92,12 @@ export const OfferSelectionSection: React.FC = () => {
             onClick={() => {
               setSelectedOffer(IpOffer.additionalIp);
               setSelectedPlanCode(additionalIpPlanCode);
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: ['select_additional-ip'],
+              });
             }}
           >
             <div className="flex flex-col justify-center min-h-14">
@@ -126,6 +138,12 @@ export const OfferSelectionSection: React.FC = () => {
                 setSelectedPlanCode(ipBlockPricingList[0].value);
                 setPricingMode(ipBlockPricingList[0].pricingMode);
               }
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: ['select_block-additional-ip'],
+              });
             }}
             isLoading={isLoading}
           >

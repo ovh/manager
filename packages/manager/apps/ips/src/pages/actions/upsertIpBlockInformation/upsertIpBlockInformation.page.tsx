@@ -15,6 +15,12 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useGetIpRipeInformation,
   useGetOrganisationsList,
   useGetIpOrganisation,
@@ -28,9 +34,11 @@ import {
 } from '@/data/api';
 
 export default function UpsertIpBlockInformation() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { id } = useParams();
+  const { trackClick, trackPage } = useOvhTracking();
   const { ipGroup: ip } = id
     ? ipFormatter(fromIdToIp(id))
     : { ipGroup: undefined };
@@ -51,9 +59,14 @@ export default function UpsertIpBlockInformation() {
     ipRipeInfo?.description || '',
   );
   const [organisation, setOrganisation] = React.useState(organisationId || '');
-  const queryClient = useQueryClient();
 
   const closeModal = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['edit_ip-block-information', 'cancel'],
+    });
     navigate(`..?${search.toString()}`);
   };
 
@@ -64,9 +77,17 @@ export default function UpsertIpBlockInformation() {
         queryKey: getIpRipeInformationQueryKey({ ip }),
       });
       addSuccess(t('ipBlockInformationUpdateSuccessMessage', { ip }));
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'edit_ip-block-information_success',
+      });
     },
     onError: (error: ApiError) => {
       addError(t('ipBlockInformationUpdateErrorMessage', { ip, error }));
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'edit_ip-block-information_error',
+      });
     },
   });
 
@@ -79,6 +100,10 @@ export default function UpsertIpBlockInformation() {
       addSuccess(
         t('ipBlockInformationOrgUpdateSuccessMessage', { ip, organisation }),
       );
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'edit_ip-block-information_organization_success',
+      });
     },
     onError: (error: ApiError) => {
       addError(
@@ -88,6 +113,10 @@ export default function UpsertIpBlockInformation() {
           error,
         }),
       );
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'edit_ip-block-information_organization_error',
+      });
     },
   });
 
@@ -103,6 +132,13 @@ export default function UpsertIpBlockInformation() {
 
     if (hasRipeChanges) upsertRipe();
     if (hasOrgChanges && !hasOnGoingChangeRipeOrgTask) changeOrganisation();
+
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['edit_ip-block-information', 'confirm'],
+    });
 
     closeModal();
   };

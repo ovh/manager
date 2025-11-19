@@ -32,7 +32,7 @@ export default function TerminateIp() {
   const onSuccess = () => {
     trackPage({
       pageType: PageType.bannerSuccess,
-      pageName: 'delete_ip_success',
+      pageName: 'terminate_additional-ip_success',
     });
     const messageKey =
       ovhSubsidiary === 'US'
@@ -44,7 +44,7 @@ export default function TerminateIp() {
   const onError = () => {
     trackPage({
       pageType: PageType.bannerError,
-      pageName: 'delete_ip_error',
+      pageName: 'terminate_additional-ip_error',
     });
   };
   const { terminateService, isPending, error, isError } = useDeleteService({
@@ -56,33 +56,31 @@ export default function TerminateIp() {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
-      actionType: 'exit',
-      actions: ['delete_ip', 'cancel'],
+      actionType: 'action',
+      actions: ['terminate_additional-ip', 'cancel'],
     });
     closeModal();
   };
 
   const confirmHandler = () => {
     const [ipAddress, block] = ip.split('/');
+    terminateService({ resourceName: `ip-${block === '32' ? ipAddress : ip}` });
+
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: ['delete_ip', 'confirm'],
+      actions: ['terminate_additional-ip', 'confirm'],
     });
-    terminateService({ resourceName: `ip-${block === '32' ? ipAddress : ip}` });
   };
 
   return (
     <DeleteModal
       isOpen
-      deleteInputLabel={t('listingTerminateIp_confirm_input')}
-      headline={t('listingTerminateIp_confirm_Headline')}
-      description={t('listingTerminateIp_confirm_description')}
       closeModal={closeHandler}
       isLoading={isPending}
       error={isError ? error?.message : null}
       onConfirmDelete={confirmHandler}
-    ></DeleteModal>
+    />
   );
 }

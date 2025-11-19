@@ -9,6 +9,12 @@ import {
   Modal,
   ModalProps,
 } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
@@ -32,6 +38,7 @@ export default function MoveIpModal() {
   const [destinationService, setDestinationService] = React.useState<string>();
   const [nextHop, setNextHop] = React.useState<string>();
   const [currentStep, setCurrentStep] = React.useState(1);
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.moveIp,
     TRANSLATION_NAMESPACES.common,
@@ -39,6 +46,12 @@ export default function MoveIpModal() {
   ]);
 
   const closeModal = React.useCallback(() => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['move_additional-ip', 'cancel'],
+    });
     navigate(`..?${search.toString()}`);
   }, []);
 
@@ -72,7 +85,11 @@ export default function MoveIpModal() {
       addSuccess(
         t('moveIpSuccessMessage', { ip: ipGroup, destinationService }),
       );
-      closeModal();
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'move_additional-ip_success',
+      });
+      navigate(`..?${search.toString()}`);
     },
   });
 
@@ -124,6 +141,12 @@ export default function MoveIpModal() {
     }),
     onPrimaryButtonClick: () => {
       if (currentStep === TOTAL_STEP_NUMBER) {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['move_additional-ip', 'confirm'],
+        });
         postMoveIp({ ip, to: destinationService, nexthop: nextHop });
       } else {
         setCurrentStep((prev) => prev + 1);

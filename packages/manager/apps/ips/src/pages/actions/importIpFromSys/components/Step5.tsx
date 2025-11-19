@@ -84,6 +84,7 @@ export default function Step5({
         {t('step5ConfirmTextPart2')}
       </OdsText>
       <ModalButtonGroup
+        currentStep={5}
         onCancel={onCancel}
         onPrevious={onPrevious}
         onConfirm={onConfirm}

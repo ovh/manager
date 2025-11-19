@@ -38,7 +38,7 @@ export const IpVersionSection: React.FC = () => {
                 actionType: 'action',
                 buttonType: ButtonType.button,
                 location: PageLocation.funnel,
-                actions: ['IPv4'],
+                actions: ['select_ipv4'],
               });
               setIpVersion(IpVersion.ipv4);
             }}
@@ -56,7 +56,7 @@ export const IpVersionSection: React.FC = () => {
                 actionType: 'action',
                 buttonType: ButtonType.button,
                 location: PageLocation.funnel,
-                actions: ['IPv6'],
+                actions: ['select_ipv6'],
               });
               setIpVersion(IpVersion.ipv6);
             }}

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import {
   ODS_TEXT_PRESET,
@@ -26,6 +31,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
+  PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
@@ -52,6 +58,7 @@ export default function OrganisationsModal() {
   const navigate = useNavigate();
   const location = useLocation();
   const { organisationId } = useParams();
+  const [search] = useSearchParams();
   const isEditMode =
     !!new URLSearchParams(location.search).get('mode') || false;
   const { addError, addSuccess, clearNotifications } = useNotifications();
@@ -59,7 +66,7 @@ export default function OrganisationsModal() {
     organisationId,
     enabled: isEditMode,
   });
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
 
   const {
     control,
@@ -83,17 +90,13 @@ export default function OrganisationsModal() {
   }, [isLoading]);
 
   const cancel = () => {
-    navigate('..');
     trackClick({
-      actionType: 'exit',
+      actionType: 'action',
       buttonType: ButtonType.button,
       location: PageLocation.popup,
-      actions: [
-        isEditMode
-          ? t('manageOrganisationsEditOrgTitle')
-          : t('manageOrganisationsAddOrgTitle'),
-      ],
+      actions: [`${isEditMode ? 'edit' : 'add'}_organization`, 'cancel'],
     });
+    navigate(`..?${search.toString()}`);
   };
 
   const { mutate: postManageOrganisation, isPending: isSending } = useMutation({
@@ -102,6 +105,10 @@ export default function OrganisationsModal() {
     onSuccess: () => {
       clearNotifications();
       addSuccess(t('manageOrganisationsSuccessMessage'), true);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: `${isEditMode ? 'edit' : 'add'}_organization_success`,
+      });
       queryClient.invalidateQueries({
         queryKey: getOrganisationListQueryKey(),
       });
@@ -112,7 +119,7 @@ export default function OrganisationsModal() {
           }),
         });
       }
-      navigate('..');
+      navigate(`..?${search.toString()}`);
     },
     onError: (error: ApiError) => {
       clearNotifications();
@@ -122,7 +129,11 @@ export default function OrganisationsModal() {
         }),
         true,
       );
-      navigate('..');
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: `${isEditMode ? 'edit' : 'add'}_organization_error`,
+      });
+      navigate(`..?${search.toString()}`);
     },
   });
 
@@ -145,11 +156,7 @@ export default function OrganisationsModal() {
             actionType: 'action',
             buttonType: ButtonType.button,
             location: PageLocation.popup,
-            actions: [
-              isEditMode
-                ? 'manage-organisation-edit-confirm'
-                : 'manage-organisation-add-confirm',
-            ],
+            actions: [`${isEditMode ? 'edit' : 'add'}_organization`, 'confirm'],
           });
           postManageOrganisation(data);
         })}

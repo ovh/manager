@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Links } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   OdsSelect,
   OdsSkeleton,
@@ -35,8 +39,8 @@ export const OrganisationSection: React.FC = () => {
     addDisabledService,
   } = React.useContext(OrderContext);
   const navigate = useNavigate();
-  const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('order');
+  const { trackClick } = useOvhTracking();
   const { organisations, isLoading } = useGetOrganisationsList();
   const { serviceStatus } = useCheckServiceAvailability({
     serviceName: selectedService,
@@ -66,6 +70,15 @@ export const OrganisationSection: React.FC = () => {
     const updatedOrganisation =
       event.detail.value !== NO_ORGANISATION ? event.detail.value : undefined;
     setSelectedOrganisation(updatedOrganisation);
+
+    if (updatedOrganisation) {
+      trackClick({
+        actionType: 'action',
+        buttonType: ButtonType.button,
+        location: PageLocation.funnel,
+        actions: [`select_${updatedOrganisation}`],
+      });
+    }
   };
 
   return (

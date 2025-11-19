@@ -12,6 +12,12 @@ import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   fromIdToIp,
   ipFormatter,
   TRANSLATION_NAMESPACES,
@@ -38,6 +44,7 @@ export default function SliceModal() {
   const { setOnGoingCreatedIps, setOnGoingSlicedIps } = useContext(
     ListingContext,
   );
+  const { trackClick, trackPage } = useOvhTracking();
 
   const closeModal = () => {
     navigate(`..?${search.toString()}`);
@@ -53,6 +60,10 @@ export default function SliceModal() {
   } = useByoipSlice({
     ip: ipGroup,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'edge_firewall_add_rule_error',
+      });
       addSuccess(t('sliceSuccessMessage'));
       closeModal();
       const childrenIps =
@@ -75,6 +86,12 @@ export default function SliceModal() {
   });
 
   const cancel = React.useCallback(() => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['slice', 'cancel'],
+    });
     closeModal();
   }, []);
 
@@ -95,7 +112,15 @@ export default function SliceModal() {
       isLoading={isLoading}
       onDismiss={cancel}
       onSecondaryButtonClick={cancel}
-      onPrimaryButtonClick={() => postSlice({ slicingSize })}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['slice', 'confirm'],
+        });
+        postSlice({ slicingSize });
+      }}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       primaryButtonTestId="confirm-button"
       isPrimaryButtonLoading={isSlicePending}
