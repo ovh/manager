@@ -26,7 +26,6 @@ import {
   OdsPassword,
   OdsSelect,
   OdsText,
-  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -38,6 +37,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { GeneratePasswordButton, Loading } from '@/components';
 import {
@@ -425,16 +425,16 @@ export const EmailAccountForm = () => {
                 <label htmlFor={name}>
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     {t('zimbra_account_add_checkbox_hide_in_gal')}
-                    <OdsIcon
-                      id="tooltip-hide-in-gal"
-                      className="ml-3 text-xs"
-                      name={ODS_ICON_NAME.circleQuestion}
-                    ></OdsIcon>
-                    <OdsTooltip role="tooltip" strategy="fixed" triggerId="tooltip-hide-in-gal">
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t('zimbra_account_add_checkbox_hide_in_gal_tooltip')}
-                      </OdsText>
-                    </OdsTooltip>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                          {t('zimbra_account_add_checkbox_hide_in_gal_tooltip')}
+                        </OdsText>
+                      </TooltipContent>
+                    </Tooltip>
                   </OdsText>
                 </label>
               </div>
@@ -498,16 +498,16 @@ export const EmailAccountForm = () => {
                 <label htmlFor={name}>
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     {t('zimbra_account_add_checkbox_force_change_password')}
-                    <OdsIcon
-                      id="tooltip-trigger"
-                      className="ml-3 text-xs"
-                      name={ODS_ICON_NAME.circleQuestion}
-                    ></OdsIcon>
-                    <OdsTooltip role="tooltip" strategy="fixed" triggerId="tooltip-trigger">
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t('zimbra_account_add_checkbox_force_change_password_tooltip')}
-                      </OdsText>
-                    </OdsTooltip>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                          {t('zimbra_account_add_checkbox_force_change_password_tooltip')}
+                        </OdsText>
+                      </TooltipContent>
+                    </Tooltip>
                   </OdsText>
                 </label>
               </div>

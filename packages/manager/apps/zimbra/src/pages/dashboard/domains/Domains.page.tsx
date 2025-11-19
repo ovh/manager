@@ -10,11 +10,12 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { BadgeStatus, LabelChip } from '@/components';
 import { AccountStatistics, DomainType, ResourceStatus } from '@/data/api';
@@ -126,27 +127,29 @@ export const Domains = () => {
         <Datagrid
           topbar={
             <div className="flex items-center justify-between">
-              <div id="tooltip-trigger-domain-btn">
-                <ManagerButton
-                  id="add-domain-btn"
-                  color={ODS_BUTTON_COLOR.primary}
-                  size={ODS_BUTTON_SIZE.sm}
-                  onClick={handleAddDomainClick}
-                  urn={platformUrn}
-                  iamActions={[IAM_ACTIONS.domain.create]}
-                  data-testid="add-domain-btn"
-                  isDisabled={organizations?.length === 0}
-                  icon={ODS_ICON_NAME.plus}
-                  label={t('common:add_domain')}
-                />
-              </div>
-              {(isLoading || organizations?.length === 0) && (
-                <OdsTooltip role="tooltip" triggerId={'tooltip-trigger-domain-btn'}>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t('zimbra_domains_tooltip_need_organization')}
-                  </OdsText>
-                </OdsTooltip>
-              )}
+              <Tooltip>
+                <TooltipTrigger>
+                  <ManagerButton
+                    id="add-domain-btn"
+                    color={ODS_BUTTON_COLOR.primary}
+                    size={ODS_BUTTON_SIZE.sm}
+                    onClick={handleAddDomainClick}
+                    urn={platformUrn}
+                    iamActions={[IAM_ACTIONS.domain.create]}
+                    data-testid="add-domain-btn"
+                    isDisabled={organizations?.length === 0}
+                    icon={ODS_ICON_NAME.plus}
+                    label={t('common:add_domain')}
+                  />
+                </TooltipTrigger>
+                {(isLoading || organizations?.length === 0) && (
+                  <TooltipContent>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      {t('zimbra_domains_tooltip_need_organization')}
+                    </OdsText>
+                  </TooltipContent>
+                )}
+              </Tooltip>
             </div>
           }
           search={{

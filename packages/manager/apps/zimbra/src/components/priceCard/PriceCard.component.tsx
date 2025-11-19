@@ -3,7 +3,6 @@ import React, { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_BADGE_COLOR, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsTooltip } from '@ovhcloud/ods-components/react';
 import {
   OdsBadge,
   OdsCard,
@@ -14,6 +13,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
+import { TOOLTIP_POSITION, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { businessFeatures, proFeatures, starterFeatures } from '@/constants';
 import { ZimbraOffer, order } from '@/data/api';
@@ -111,26 +111,22 @@ export const PriceCard: React.FC<PriceCardProps> = ({
             <OdsText className={cn(isDisabled ? '[&::part(text)]:text-gray-400' : '')}>
               <Trans t={t} i18nKey={feature.label} />
               {feature.tooltip && (
-                <OdsIcon
-                  id={feature.tooltip}
-                  className="ml-3 size-6"
-                  name={ODS_ICON_NAME.circleQuestion}
-                />
+                <Tooltip position={TOOLTIP_POSITION.bottom}>
+                  <TooltipTrigger>
+                    <OdsIcon
+                      id={feature.tooltip}
+                      className="ml-3 size-6"
+                      name={ODS_ICON_NAME.circleQuestion}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-96 text-center" withArrow>
+                    <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+                      {t(feature.tooltip)}
+                    </OdsText>
+                  </TooltipContent>
+                </Tooltip>
               )}
             </OdsText>
-            {feature.tooltip && (
-              <OdsTooltip
-                className="max-w-96 text-center"
-                role="tooltip"
-                withArrow
-                triggerId={feature.tooltip}
-                position="bottom"
-              >
-                <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-                  {t(feature.tooltip)}
-                </OdsText>
-              </OdsTooltip>
-            )}
           </div>
         ))}
       </div>

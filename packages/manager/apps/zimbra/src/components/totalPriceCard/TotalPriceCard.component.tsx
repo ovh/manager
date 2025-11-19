@@ -3,17 +3,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsCard,
-  OdsIcon,
-  OdsSkeleton,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsCard, OdsIcon, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { Price as PriceType } from '@ovh-ux/manager-module-order';
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
+import { TOOLTIP_POSITION, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { order } from '@/data/api';
 import { cn } from '@/utils';
@@ -68,18 +62,16 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
         <div className="flex flex-1 gap-6 justify-between items-start pt-6 px-6">
           <div className="flex items-center">
             <OdsText preset="heading-6">{t('common:paid_now')}</OdsText>
-            <OdsIcon id="paid-now-info" className="ml-3" name={ODS_ICON_NAME.circleInfo} />
-            <OdsTooltip
-              className="max-w-96 text-center"
-              role="tooltip"
-              withArrow
-              triggerId="paid-now-info"
-              position="bottom"
-            >
-              <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading6}>
-                {t('zimbra_account_update_offer_paid_now_tooltip')}
-              </OdsText>
-            </OdsTooltip>
+            <Tooltip position={TOOLTIP_POSITION.bottom}>
+              <TooltipTrigger>
+                <OdsIcon className="ml-3" name={ODS_ICON_NAME.circleInfo} />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-96 text-center" withArrow>
+                <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading6}>
+                  {t('zimbra_account_update_offer_paid_now_tooltip')}
+                </OdsText>
+              </TooltipContent>
+            </Tooltip>
           </div>
           <div className="flex flex-col items-end">
             {isLoading ? (

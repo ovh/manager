@@ -9,7 +9,9 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 export const getRandomIndex = (length: number) => {
   // Crypto API is available
@@ -136,26 +138,30 @@ export const GeneratePasswordButton = ({
         }
       }}
     >
-      <OdsButton
-        id={id}
-        data-testid={id}
-        label={label}
-        aria-label={label || 'Password Generator button'}
-        icon={generated ? ODS_ICON_NAME.check : icon}
-        size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={(e) => {
-          onClick?.(e);
-          const pwd = generatePassword(options);
-          onGenerate(pwd);
-          copyToClipboard(pwd);
-        }}
-      />
-      <OdsTooltip role="tooltip" withArrow triggerId={id}>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(generated ? 'generated_password_tooltip' : 'generate_password_tooltip')}
-        </OdsText>
-      </OdsTooltip>
+      <Tooltip>
+        <TooltipTrigger>
+          <OdsButton
+            id={id}
+            data-testid={id}
+            label={label}
+            aria-label={label || 'Password Generator button'}
+            icon={generated ? ODS_ICON_NAME.check : icon}
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            onClick={(e) => {
+              onClick?.(e);
+              const pwd = generatePassword(options);
+              onGenerate(pwd);
+              copyToClipboard(pwd);
+            }}
+          />
+        </TooltipTrigger>
+        <TooltipContent withArrow>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t(generated ? 'generated_password_tooltip' : 'generate_password_tooltip')}
+          </OdsText>
+        </TooltipContent>
+      </Tooltip>
     </div>
   );
 };

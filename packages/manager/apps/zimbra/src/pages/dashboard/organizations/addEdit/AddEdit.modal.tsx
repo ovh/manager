@@ -13,13 +13,7 @@ import {
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsIcon,
-  OdsInput,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsIcon, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -30,6 +24,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import {
   OrganizationBodyParamsType,
@@ -224,16 +219,16 @@ export const AddEditOrganizationModal = () => {
             >
               <label htmlFor={name} slot="label">
                 {t('zimbra_organization_add_form_input_label_title')} *
-                <OdsIcon
-                  id="tooltip-trigger"
-                  className="ml-3 text-xs"
-                  name={ODS_ICON_NAME.circleQuestion}
-                ></OdsIcon>
-                <OdsTooltip role="tooltip" strategy="fixed" triggerId="tooltip-trigger">
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t('zimbra_organization_add_form_input_label_tooltip')}
-                  </OdsText>
-                </OdsTooltip>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      {t('zimbra_organization_add_form_input_label_tooltip')}
+                    </OdsText>
+                  </TooltipContent>
+                </Tooltip>
               </label>
               <OdsInput
                 type={ODS_INPUT_TYPE.text}

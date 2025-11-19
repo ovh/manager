@@ -26,7 +26,6 @@ import {
   OdsSelect,
   OdsText,
   OdsToggle,
-  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -38,6 +37,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -439,17 +439,18 @@ export const MailingListForm = () => {
                     <div className="flex flex-col ml-4 w-full">
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                         {t('zimbra_mailinglist_add_subscriber_moderation')}
-                        <OdsIcon
-                          className="ml-3 text-xs"
-                          id="subs-tooltip-trigger"
-                          name={ODS_ICON_NAME.circleInfo}
-                        />
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleInfo} />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                              {t('zimbra_mailinglist_add_subscriber_moderation_tooltip')}
+                            </OdsText>
+                          </TooltipContent>
+                        </Tooltip>
                       </OdsText>
-                      <OdsTooltip triggerId="subs-tooltip-trigger">
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                          {t('zimbra_mailinglist_add_subscriber_moderation_tooltip')}
-                        </OdsText>
-                      </OdsTooltip>
+
                       <OdsText preset={ODS_TEXT_PRESET.caption}>
                         {t('zimbra_mailinglist_add_subscriber_moderation_info', {
                           max: 250,

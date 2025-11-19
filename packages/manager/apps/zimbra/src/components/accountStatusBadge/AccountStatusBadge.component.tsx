@@ -2,13 +2,10 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BADGE_COLOR,
-  ODS_BADGE_ICON_ALIGNMENT,
-  ODS_ICON_NAME,
-  ODS_TOOLTIP_POSITION,
-} from '@ovhcloud/ods-components';
-import { OdsBadge, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_BADGE_ICON_ALIGNMENT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+
+import { TOOLTIP_POSITION, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { CurrentAccountStatus, ResourceStatus } from '@/data/api';
 import { EmailAccountItem } from '@/pages/dashboard/emailAccounts/EmailAccounts.types';
@@ -41,26 +38,21 @@ export const AccountStatusBadge: React.FC<EmailAccountItem> = (props) => {
   if (props.status === ResourceStatus.READY && props.detailedStatus.length > 0) {
     const statusBadge = props.detailedStatus.flatMap(({ status }) => {
       return CurrentAccountStatusLabels[status] ? (
-        <React.Fragment key={`${props.id}_${status}`}>
-          <OdsBadge
-            data-testid={`${props.id}_${status}`}
-            id={`current-account-status-${props.id}_${status}`}
-            color={getStatusColor(status)}
-            className="capitalize m-1"
-            label={t(CurrentAccountStatusLabels[status])}
-            iconAlignment={ODS_BADGE_ICON_ALIGNMENT.right}
-            {...(CurrentAccountTooltipContent[status] ? { icon: ODS_ICON_NAME.circleInfo } : {})}
-          />
+        <Tooltip key={`${props.id}_${status}`} position={TOOLTIP_POSITION.bottom}>
+          <TooltipTrigger>
+            <OdsBadge
+              data-testid={`${props.id}_${status}`}
+              color={getStatusColor(status)}
+              className="capitalize m-1"
+              label={t(CurrentAccountStatusLabels[status])}
+              iconAlignment={ODS_BADGE_ICON_ALIGNMENT.right}
+              {...(CurrentAccountTooltipContent[status] ? { icon: ODS_ICON_NAME.circleInfo } : {})}
+            />
+          </TooltipTrigger>
           {CurrentAccountTooltipContent[status] && (
-            <OdsTooltip
-              withArrow
-              position={ODS_TOOLTIP_POSITION.bottom}
-              triggerId={`current-account-status-${props.id}_${status}`}
-            >
-              {t(CurrentAccountTooltipContent[status])}
-            </OdsTooltip>
+            <TooltipContent withArrow>{t(CurrentAccountTooltipContent[status])}</TooltipContent>
           )}
-        </React.Fragment>
+        </Tooltip>
       ) : (
         []
       );

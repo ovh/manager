@@ -12,10 +12,11 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { useDomains, usePlatform } from '@/data/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -82,31 +83,33 @@ export const DatagridTopbar = () => {
 
   return (
     <div className="flex gap-6">
-      <div id="add-account-tooltip-trigger">
-        <ManagerButton
-          id="add-account-btn"
-          color={ODS_BUTTON_COLOR.primary}
-          size={ODS_BUTTON_SIZE.sm}
-          urn={platformUrn}
-          iamActions={[IAM_ACTIONS.account.create]}
-          onClick={handleAddEmailAccountClick}
-          data-testid="add-account-btn"
-          icon={ODS_ICON_NAME.plus}
-          label={t('zimbra_account_account_add')}
-          isDisabled={!canCreateAccount}
-        />
-      </div>
-      {!canCreateAccount && (
-        <OdsTooltip triggerId="add-account-tooltip-trigger">
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t(
-              domains?.length
-                ? 'zimbra_account_tooltip_need_slot'
-                : 'zimbra_account_tooltip_need_domain',
-            )}
-          </OdsText>
-        </OdsTooltip>
-      )}
+      <Tooltip>
+        <TooltipTrigger>
+          <ManagerButton
+            id="add-account-btn"
+            color={ODS_BUTTON_COLOR.primary}
+            size={ODS_BUTTON_SIZE.sm}
+            urn={platformUrn}
+            iamActions={[IAM_ACTIONS.account.create]}
+            onClick={handleAddEmailAccountClick}
+            data-testid="add-account-btn"
+            icon={ODS_ICON_NAME.plus}
+            label={t('zimbra_account_account_add')}
+            isDisabled={!canCreateAccount}
+          />
+        </TooltipTrigger>
+        {!canCreateAccount && (
+          <TooltipContent>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              {t(
+                domains?.length
+                  ? 'zimbra_account_tooltip_need_slot'
+                  : 'zimbra_account_tooltip_need_domain',
+              )}
+            </OdsText>
+          </TooltipContent>
+        )}
+      </Tooltip>
       <ManagerButton
         id="order-account-btn"
         urn={platformUrn}
