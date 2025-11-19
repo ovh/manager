@@ -9,23 +9,25 @@ export default function SecretManagerRootPage() {
   const navigate = useNavigate();
   const hasNavigated = useRef(false);
 
-  const { data, isPending } = useOkmsList();
-  const okmsList = data || [];
+  const { data: okmsList, isPending } = useOkmsList();
 
-  const handleNavigate = (url: string) => {
-    navigate(url, { replace: true });
-    hasNavigated.current = true;
-  };
+
+
 
   // Manage redirect logic
   useEffect(() => {
+    const handleNavigate = (url: string) => {
+      navigate(url, { replace: true });
+      hasNavigated.current = true;
+    };
+
     // Prevent navigation if already navigated or if still pending
     if (hasNavigated.current || isPending) {
       return;
     }
 
     // If no OKMS are available, navigate to the onboarding page
-    if (okmsList.length === 0) {
+    if (okmsList?.length === 0) {
       handleNavigate(SECRET_MANAGER_ROUTES_URLS.onboarding);
       return;
     }

@@ -30,12 +30,10 @@ export default function OkmsListPage() {
   const { data, error, isPending, refetch } = useOkmsDatagridList({
     pageSize: 100,
   });
-  const flattenData = data?.pages.flatMap((page) => page.data);
+  const flattenData = data?.pages.flatMap((page) => page.data) || [];
 
   // Filter okms by regionId
-  const okmsList = flattenData
-    ? filterOkmsListByRegion(flattenData, region)
-    : [];
+  const okmsList = filterOkmsListByRegion(flattenData, region);
 
   // Redirections management
   useEffect(() => {
@@ -55,7 +53,7 @@ export default function OkmsListPage() {
         pathname: SECRET_MANAGER_ROUTES_URLS.secretList(okmsId),
       });
     }
-  }, [isPending, okmsList.length]);
+  }, [isPending, okmsList.length, navigate, okmsList]);
 
   if (error) {
     return (

@@ -62,6 +62,8 @@ export const OkmsManagement = ({
 
     if (!okmsFromSearchParam) {
       setSearchParams({});
+      // Code smell, but hard to fix right now
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedRegion(undefined);
       setSelectedOkmsId(undefined);
       return;
@@ -69,7 +71,7 @@ export const OkmsManagement = ({
 
     setSelectedRegion(okmsFromSearchParam.region);
     setSelectedOkmsId(okmsIdSearchParam);
-  }, [okmsList, searchParams, selectedRegion]);
+  }, [okmsList, searchParams, selectedRegion, setSearchParams, setSelectedRegion, setSelectedOkmsId]);
 
   const handleRegionSelection = (region: string) => {
     setSelectedRegion(region);

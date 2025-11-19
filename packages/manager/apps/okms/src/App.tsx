@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+  }, [shell.ux]);
 
   return (
     <Suspense fallback={<Loading />}>

@@ -23,6 +23,8 @@ const IdentitiesUserTile = ({
 
   useEffect(() => {
     if (selectedUserList.find((userInList) => userInList.urn === user.urn)) {
+      // TODO: This is freaking bad and should be fixed someday
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsChecked(true);
     }
   }, [selectedUserList, user]);
