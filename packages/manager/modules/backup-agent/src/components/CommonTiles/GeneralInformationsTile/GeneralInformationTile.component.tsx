@@ -5,7 +5,7 @@ import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
-import { ResourceStatusBadge } from '@/components/ResourceStatusBadge/ResourceStatusBadge.components';
+import { ResourceStatusBadge } from '@/components/ResourceStatusBadge/ResourceStatusBadge.component';
 import { useLocationDetails } from '@/data/hooks/location/getLocationDetails';
 import { Resource } from '@/types/Resource.type';
 import { WithRegion } from '@/types/Utils.type';
