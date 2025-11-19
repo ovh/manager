@@ -52,9 +52,9 @@ export default function IpListingPage() {
           onClick={() => {
             trackClick({
               location: PageLocation.page,
-              actionType: 'action',
               buttonType: ButtonType.button,
-              actions: ['IP-order'],
+              actionType: 'action',
+              actions: ['order_ip'],
             });
             navigate(urls.order);
           }}
@@ -67,9 +67,9 @@ export default function IpListingPage() {
           onClick={() => {
             trackClick({
               location: PageLocation.page,
-              actionType: 'action',
               buttonType: ButtonType.button,
-              actions: ['BYOIP-order'],
+              actionType: 'action',
+              actions: ['bring-your-own_ip'],
             });
             navigate(urls.byoip);
           }}
@@ -85,7 +85,15 @@ export default function IpListingPage() {
             variant={ODS_BUTTON_VARIANT.outline}
             icon={ODS_ICON_NAME.refresh}
             size={ODS_BUTTON_SIZE.sm}
-            onClick={() => queryClient.invalidateQueries()}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['refresh_ip'],
+              });
+              queryClient.invalidateQueries();
+            }}
             label=""
           />
         </div>
@@ -104,9 +112,9 @@ export default function IpListingPage() {
                   onClick: () => {
                     trackClick({
                       location: PageLocation.page,
-                      actionType: 'action',
                       buttonType: ButtonType.button,
-                      actions: ['Import-SYS-IPs'],
+                      actionType: 'action',
+                      actions: ['import_sys-ip'],
                     });
                     navigate(
                       `${urls.listingImportIpFromSys}?${search.toString()}`,
@@ -122,9 +130,9 @@ export default function IpListingPage() {
               onClick={() => {
                 trackClick({
                   location: PageLocation.page,
-                  actionType: 'action',
                   buttonType: ButtonType.button,
-                  actions: ['Export-to-CSV'],
+                  actionType: 'action',
+                  actions: ['download_export_ip'],
                 });
                 navigate(`${urls.listingExportIpToCsv}?${search.toString()}`);
               }}

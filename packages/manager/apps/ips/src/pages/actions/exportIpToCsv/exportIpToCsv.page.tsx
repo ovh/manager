@@ -5,6 +5,12 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import Loading from '@/components/Loading/Loading';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import { useExportIpToCsv } from '@/data/hooks';
@@ -20,6 +26,7 @@ export default function ExportIpToCsv() {
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
   const [search] = useSearchParams();
+  const { trackClick, trackPage } = useOvhTracking();
 
   /*
     We need this ref to prevent a double navigation
@@ -29,8 +36,16 @@ export default function ExportIpToCsv() {
   */
   const isOpen = useRef<boolean>(true);
 
-  const closeModal = () => {
+  const closeModal = ({ isSuccess }: { isSuccess?: boolean } = {}) => {
     if (isOpen.current) {
+      if (!isSuccess) {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['export-ip-to-csv', 'cancel'],
+        });
+      }
       isOpen.current = false;
       navigate(`..?${search.toString()}`);
     }
@@ -46,7 +61,11 @@ export default function ExportIpToCsv() {
       if (isOpen.current) {
         data.downloadFn();
         addSuccess(t('exportIpToCsvSuccess'));
-        closeModal();
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'export-ip-to-csv_success',
+        });
+        closeModal({ isSuccess: true });
       }
     },
   });
@@ -57,7 +76,15 @@ export default function ExportIpToCsv() {
       onDismiss={closeModal}
       heading={t('exportIpToCsvTitle')}
       primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={handleExportToCsv}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['export-ip-to-csv', 'confirm'],
+        });
+        handleExportToCsv();
+      }}
       isPrimaryButtonLoading={isCSVLoading}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={closeModal}

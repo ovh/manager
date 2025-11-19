@@ -49,7 +49,15 @@ export const TopBar: React.FC = () => {
           variant={ODS_BUTTON_VARIANT.outline}
           label={`${t('add', { ns: NAMESPACES.ACTIONS })} ${t('oneRule')}`}
           isDisabled={isLoading || isRulesLoading || maxRulesReached}
-          onClick={showNewRuleRow}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['add_rule'],
+            });
+            showNewRuleRow();
+          }}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
         />
@@ -92,12 +100,9 @@ export const TopBar: React.FC = () => {
             showStrategyConfirmationModal();
             trackClick({
               location: PageLocation.page,
-              actionType: 'action',
               buttonType: ButtonType.button,
-              actions: [
-                'Default deny policy',
-                !event?.currentTarget?.value ? 'enable' : 'disable',
-              ],
+              actionType: 'action',
+              actions: ['apply_default-refusal-strategy'],
             });
           }}
         />
