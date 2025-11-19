@@ -283,6 +283,49 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
       ],
     },
   ],
+  images: [
+    {
+      name: 'AlmaLinux 8',
+      category: 'linux',
+      subCategory: 'almalinux',
+      osType: 'linux',
+      regions: [
+        {
+          name: 'GRA4',
+          imageId: '49c9cae2-7eab-4a33-aa2f-92129f6f62b0',
+        },
+        {
+          name: 'GRA11',
+          imageId: 'fb5c8a0b-d6b1-44c0-b7e9-47c069da9398',
+        },
+      ],
+    },
+
+    {
+      name: 'AlmaLinux 9 - UEFI',
+      category: 'linux',
+      subCategory: 'almalinux',
+      osType: 'linux',
+      regions: [
+        {
+          name: 'GRA4',
+          imageId: '7b70a758-7920-441f-a5d2-7f9f5c791a16',
+        },
+      ],
+    },
+    {
+      name: 'Windows Server 2016 Standard (Desktop)',
+      category: 'windows',
+      subCategory: 'windows',
+      osType: 'windows',
+      regions: [
+        {
+          name: 'BHS3',
+          imageId: '5601113e-0d3e-4c1e-8b4d-5e2c735ac9c3',
+        },
+      ],
+    },
+  ],
 };
 
 export const mockedInstancesCatalogEntity: TInstancesCatalog = {
@@ -643,6 +686,106 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
         'd2-2_GRA-STAGING-A_linux',
         'd2-2_UK1_windows',
         'd2-2_GRA-STAGING-A_windows',
+      ],
+    },
+    imageTypes: {
+      byId: new Map([
+        ['linux', { name: 'linux', imageVariantIds: ['almalinux'] }],
+        ['windows', { name: 'windows', imageVariantIds: ['windows'] }],
+      ]),
+      allIds: ['linux', 'windows'],
+    },
+
+    imageVariants: {
+      byId: new Map([
+        [
+          'almalinux',
+          {
+            name: 'almalinux',
+            imageVersionIds: ['AlmaLinux 8', 'AlmaLinux 9 - UEFI'],
+          },
+        ],
+        [
+          'windows',
+          {
+            name: 'windows',
+            imageVersionIds: ['Windows Server 2016 Standard (Desktop)'],
+          },
+        ],
+      ]),
+      allIds: ['almalinux', 'windows'],
+    },
+    imageVersions: {
+      byId: new Map([
+        [
+          'AlmaLinux 8',
+          {
+            name: 'AlmaLinux 8',
+            regionalizedImageVersionIds: [
+              'AlmaLinux 8_GRA4',
+              'AlmaLinux 8_GRA11',
+            ],
+          },
+        ],
+        [
+          'AlmaLinux 9 - UEFI',
+          {
+            name: 'AlmaLinux 9 - UEFI',
+            regionalizedImageVersionIds: ['AlmaLinux 9 - UEFI_GRA4'],
+          },
+        ],
+        [
+          'Windows Server 2016 Standard (Desktop)',
+          {
+            name: 'Windows Server 2016 Standard (Desktop)',
+            regionalizedImageVersionIds: [
+              'Windows Server 2016 Standard (Desktop)_BHS3',
+            ],
+          },
+        ],
+      ]),
+      allIds: [
+        'AlmaLinux 8',
+        'AlmaLinux 9 - UEFI',
+        'Windows Server 2016 Standard (Desktop)',
+      ],
+    },
+    regionalizedImageVersions: {
+      byId: new Map([
+        [
+          'AlmaLinux 8_GRA4',
+          {
+            id: 'AlmaLinux 8_GRA4',
+            imageId: '49c9cae2-7eab-4a33-aa2f-92129f6f62b0',
+          },
+        ],
+        [
+          'AlmaLinux 8_GRA11',
+          {
+            id: 'AlmaLinux 8_GRA11',
+            imageId: 'fb5c8a0b-d6b1-44c0-b7e9-47c069da9398',
+          },
+        ],
+        [
+          'AlmaLinux 9 - UEFI_GRA4',
+          {
+            id: 'AlmaLinux 9 - UEFI_GRA4',
+            imageId: '7b70a758-7920-441f-a5d2-7f9f5c791a16',
+          },
+        ],
+        [
+          'Windows Server 2016 Standard (Desktop)_BHS3',
+          {
+            id: 'Windows Server 2016 Standard (Desktop)_BHS3',
+            imageId: '5601113e-0d3e-4c1e-8b4d-5e2c735ac9c3',
+          },
+        ],
+      ]),
+      allIds: [
+        'AlmaLinux 8_GRA4',
+        'AlmaLinux 8_GRA11',
+        'AlmaLinux 9 - UEFI_GRA4',
+        'Windows Server 2016 Standard (Desktop)_BHS3',
       ],
     },
   },

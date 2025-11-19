@@ -15,6 +15,10 @@ import {
   TFlavorPrices,
   TPrice,
   TRegionalizedFlavorOsType,
+  TImageType,
+  TImageVariant,
+  TImageVersion,
+  TRegionalizedImageVersion,
 } from '@/domain/entities/instancesCatalog';
 import {
   TContinentRegionsDTO,
@@ -23,6 +27,8 @@ import {
   TFlavorDTO,
   TFlavorRegionDTO,
   TFlavorSubCategoryDTO,
+  TImageDTO,
+  TImageRegionDTO,
   TInstancesCatalogDTO,
   TPriceDTO,
   TPricingDTO,
@@ -35,6 +41,7 @@ import {
   getRegionalizedFlavorId,
   getRegionalizedFlavorOsTypeId,
   getRegionalizedFlavorOsTypePriceId,
+  getRegionalizedImagePriceId,
 } from '@/utils';
 
 type TNormalizedEntity<ID, Entity> = {
@@ -428,6 +435,105 @@ const normalizeFlavor = ({
     },
   );
 
+type TImages = {
+  imageTypes: TNormalizedEntity<string, TImageType>;
+  imageVariants: TNormalizedEntity<string, TImageVariant>;
+  imageVersions: TNormalizedEntity<string, TImageVersion>;
+  regionalizedImageVersions: TNormalizedEntity<
+    string,
+    TRegionalizedImageVersion
+  >;
+};
+
+const updateRegionalizedImageVersions = (
+  imageVersionName: string,
+  regions: TImageRegionDTO[],
+  regionalizedImageVersionsAcc: TNormalizedEntity<
+    string,
+    TRegionalizedImageVersion
+  >,
+) =>
+  regions.map((region) => {
+    const regionalizedImageId = getRegionalizedImagePriceId(
+      imageVersionName,
+      region.name,
+    );
+    regionalizedImageVersionsAcc.allIds.push(regionalizedImageId);
+    regionalizedImageVersionsAcc.byId.set(regionalizedImageId, {
+      id: regionalizedImageId,
+      imageId: region.imageId,
+    });
+  });
+
+const mapImageTypeDTOToImageTypeEntity = (
+  imageDTO: TImageDTO,
+  acc: TImages,
+) => {
+  const foundImageType = acc.imageTypes.byId.get(imageDTO.category);
+  if (!foundImageType)
+    acc.imageTypes.byId.set(imageDTO.category, {
+      name: imageDTO.category,
+      imageVariantIds: [imageDTO.subCategory],
+    });
+
+  if (
+    foundImageType &&
+    !foundImageType.imageVariantIds.includes(imageDTO.subCategory)
+  ) {
+    foundImageType.imageVariantIds.push(imageDTO.subCategory);
+  }
+
+  const foundImageVariant = acc.imageVariants.byId.get(imageDTO.subCategory);
+  if (!foundImageVariant)
+    acc.imageVariants.byId.set(imageDTO.subCategory, {
+      name: imageDTO.subCategory,
+      imageVersionIds: [imageDTO.name],
+    });
+  if (
+    foundImageVariant &&
+    !foundImageVariant.imageVersionIds.includes(imageDTO.name)
+  ) {
+    foundImageVariant.imageVersionIds.push(imageDTO.name);
+  }
+
+  acc.imageVersions.byId.set(imageDTO.name, {
+    name: imageDTO.name,
+    regionalizedImageVersionIds: imageDTO.regions.map((region) =>
+      getRegionalizedImagePriceId(imageDTO.name, region.name),
+    ),
+  });
+
+  updateRegionalizedImageVersions(
+    imageDTO.name,
+    imageDTO.regions,
+    acc.regionalizedImageVersions,
+  );
+};
+
+const normalizeFlavorImage = (imagesDTO: TImageDTO[]) =>
+  imagesDTO.reduce<TImages>(
+    (acc, imageDTO) => {
+      if (!acc.imageTypes.allIds.includes(imageDTO.category))
+        acc.imageTypes.allIds.push(imageDTO.category);
+
+      if (!acc.imageVariants.allIds.includes(imageDTO.subCategory))
+        acc.imageVariants.allIds.push(imageDTO.subCategory);
+
+      if (!acc.imageVersions.allIds.includes(imageDTO.name))
+        acc.imageVersions.allIds.push(imageDTO.name);
+
+      mapImageTypeDTOToImageTypeEntity(imageDTO, acc);
+
+      return acc;
+    },
+    {
+      imageTypes: { byId: new Map(), allIds: [] },
+      imageVariants: { byId: new Map(), allIds: [] },
+      imageVersions: { byId: new Map(), allIds: [] },
+      regionalizedImageVersions: { byId: new Map(), allIds: [] },
+    },
+  );
+
 const mapContinentDTOToEntity = (
   continentRegion: TContinentRegionsDTO,
   regionsDTO: TRegionDTO[],
@@ -511,6 +617,7 @@ export const mapInstancesCatalogDtoToEntity = (
         regionalizedFlavorOsTypeMapper: mapFlavorDTOToRegionalizedFlavorOsTypeEntity,
         flavorPricesMapper: mapFlavorPricingDTOToFlavorPricesEntity,
       })(catalogDTO.flavors),
+      ...normalizeFlavorImage(catalogDTO.images),
     },
     relations: {
       continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(

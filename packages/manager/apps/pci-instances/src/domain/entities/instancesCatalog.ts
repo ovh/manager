@@ -26,6 +26,14 @@ export type TRegionalizedFlavorID = TFlavorID;
 export type TRegionalizedFlavorOsTypeID = TFlavorID;
 export type TFlavorPricesID = TRegionalizedFlavorID;
 
+type TImageTypeName = string;
+type TImageVariantName = string;
+type TImageVersionName = string;
+export type TRegionalizedImageVersionID = string;
+export type TImageTypeID = TImageTypeName;
+export type TImageVariantID = TImageVariantName;
+export type TImageVersionID = TImageVersionName;
+
 export type TFlavorType = {
   name: TFlavorTypeName;
   flavors: TFlavorID[];
@@ -129,6 +137,30 @@ export type TFlavor = {
   regionalizedFlavorIds: TRegionalizedFlavorID[];
 };
 
+export type TImageType = {
+  name: TImageTypeName;
+  imageVariantIds: TImageVariantID[];
+};
+
+export type TImageVariant = {
+  name: TImageVariantName;
+  imageVersionIds: TImageVersionID[];
+};
+
+export type TImageVersion = {
+  name: TImageVersionName;
+  regionalizedImageVersionIds: TRegionalizedImageVersionID[];
+};
+
+export type TRegionalizedImageVersion = {
+  /**
+   *  id: imageVersion_region
+   *  Ex: 'Ubuntu 23.04 - UEFI_BHS1'
+   */
+  id: TRegionalizedImageVersionID;
+  imageId: string;
+};
+
 export type TInstancesCatalog = {
   entities: {
     macroRegions: {
@@ -170,6 +202,19 @@ export type TInstancesCatalog = {
     flavorPrices: {
       byId: Map<TFlavorPricesID, TFlavorPrices>;
       allIds: TFlavorPricesID[];
+    };
+    imageTypes: { byId: Map<TImageTypeID, TImageType>; allIds: TImageTypeID[] };
+    imageVariants: {
+      byId: Map<TImageVariantID, TImageVariant>;
+      allIds: TImageVariantID[];
+    };
+    imageVersions: {
+      byId: Map<TImageVersionID, TImageVersion>;
+      allIds: TImageVersionID[];
+    };
+    regionalizedImageVersions: {
+      byId: Map<TRegionalizedImageVersionID, TRegionalizedImageVersion>;
+      allIds: TRegionalizedImageVersionID[];
     };
   };
   relations: {
