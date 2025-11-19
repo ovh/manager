@@ -78,7 +78,7 @@ describe('useBackToOkmsListUrl tests suite', () => {
       expect(result.current).toBeNull();
     });
 
-    it('should return the okms List url when there is more than one kms on a region ', async () => {
+    it('should return the okms List url when there is more than one kms on a region', async () => {
       // GIVEN
       const mockedUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(REGION_EU_WEST_RBX);
       mockGetOkmsList.mockResolvedValue([okmsRoubaix1Mock, okmsRoubaix2Mock]);
