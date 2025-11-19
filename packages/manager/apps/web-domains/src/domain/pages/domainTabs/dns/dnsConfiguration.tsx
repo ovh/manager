@@ -20,7 +20,7 @@ import {
 } from '@/domain/types/domainResource';
 import { useDomainDnsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDnsDatagridColumns';
 import { computeDnsDetails } from '@/domain/utils/utils';
-import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
+import { StatusEnum } from '@/domain/enum/Status.enum';
 import AnycastOrderButtonComponent from '@/domain/components/AnycastOrder/AnycastOrderButton';
 import { ongoingOperationLink } from '@/domain/constants/serviceDetail';
 
@@ -64,7 +64,7 @@ export default function DnsConfigurationTab({
           <MessageBody>{t(localSuccessMessage)}</MessageBody>
         </Message>
       )}
-      {dnsDetails.find((dns) => dns.status === NameServerStatusEnum.ERROR) && (
+      {dnsDetails.find((dns) => dns.status === StatusEnum.ERROR) && (
         <Message
           color={MESSAGE_COLOR.warning}
           className="w-full mt-4"
