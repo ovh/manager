@@ -84,7 +84,7 @@ export default function AddWDomainPage() {
       const payload = {
         targetSpec: {
           name: data.name,
-          fqdn: data.fqdn,
+          fqdn: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
           ...(data.module ? { module: { name: data.module as CmsType } } : {}),
           bypassDNSConfiguration: !data.autoConfigureDns,
           ...(data.advancedConfiguration
