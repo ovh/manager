@@ -100,9 +100,9 @@ export const EditServiceKeyNameModal = () => {
         {t('key_management_service_service-keys_dashboard_field_name')}
       </OdsText>
       {isPending ? (
-        <OdsSpinner className="block my-3" size={ODS_SPINNER_SIZE.md} />
+        <OdsSpinner className="my-3 block" size={ODS_SPINNER_SIZE.md} />
       ) : (
-        <OdsFormField className="block my-3" error={getErrorMessage(serviceKeyNameError)}>
+        <OdsFormField className="my-3 block" error={getErrorMessage(serviceKeyNameError)}>
           <OdsInput
             className="w-full"
             name="input-edit-service-key-name"

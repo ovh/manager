@@ -25,7 +25,7 @@ export const OkmsDomainDashboardTiles = ({ okms }: OkmsDomainDashboardTilesProps
       className="flex flex-col gap-8"
       data-testid={OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS.okmsDashboardTiles}
     >
-      <section className="grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4 gap-4 items-start">
+      <section className="grid grid-cols-1 items-start gap-4 md:grid-cols-2 xxl:grid-cols-4">
         <GeneralInformationsTile okms={okms} />
         <KmipTile okms={okms} />
         <RestApiTile okms={okms} />
@@ -33,7 +33,7 @@ export const OkmsDomainDashboardTiles = ({ okms }: OkmsDomainDashboardTilesProps
       </section>
       <section className="flex flex-col gap-4">
         <OdsText preset="heading-3">{t('okms_services')}</OdsText>
-        <div className="grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4 gap-4 items-start">
+        <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2 xxl:grid-cols-4">
           <BillingTile okms={okms} />
           <SecretsTile okms={okms} />
           <ServiceKeysTile okms={okms} />

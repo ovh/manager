@@ -61,21 +61,18 @@ export const VersionSelector = ({
 
   return (
     <div className="flex flex-col gap-3 pt-2">
-      <div className="flex gap-2 items-center h-8">
+      <div className="flex h-8 items-center gap-2">
         <OdsText preset="span" className="w-1/3">
           {t('version')}
         </OdsText>
         {/*   isFetching forces to display the spinner when the version has changed
         otherwise when the ods-select component is refreshed, react breaks */}
         {isPending || isFetching ? (
-          <OdsSkeleton
-            className="flex-grow"
-            data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID}
-          />
+          <OdsSkeleton className="grow" data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID} />
         ) : (
           <OdsSelect
             data-testid={VERSION_SELECTOR_TEST_ID}
-            className="flex-grow"
+            className="grow"
             name="version-selector"
             onOdsChange={(value) =>
               setSelectedVersion(versions.find((v) => v.id === Number(value.detail.value)))
@@ -95,15 +92,12 @@ export const VersionSelector = ({
           </OdsSelect>
         )}
       </div>
-      <div className="flex gap-2 items-center h-8">
+      <div className="flex h-8 items-center gap-2">
         <OdsText preset="span" className="w-1/3">
           {t('status', { ns: NAMESPACES.STATUS })}
         </OdsText>
         {isPending ? (
-          <OdsSkeleton
-            className="flex-grow"
-            data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID}
-          />
+          <OdsSkeleton className="grow" data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID} />
         ) : (
           selectedVersion && <VersionState state={selectedVersion.state} />
         )}
