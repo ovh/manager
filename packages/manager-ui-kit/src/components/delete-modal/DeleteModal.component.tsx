@@ -25,6 +25,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   onClose,
   error,
   children,
+  onOpenChange,
 }) => {
   const { t } = useTranslation('delete-modal');
 
@@ -39,6 +40,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       type={MODAL_COLOR.critical}
       open={open}
       loading={isLoading}
+      onOpenChange={onOpenChange}
       heading={t('deleteModalHeadline', {
         serviceType: serviceTypeName || t('deleteModalHeadlineService'),
       })}
