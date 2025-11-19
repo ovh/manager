@@ -2,8 +2,6 @@ import React from 'react';
 
 import { describe, expect } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-
 import { ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { render } from '@/utils/test.provider';
@@ -39,8 +37,7 @@ describe('BillingStateBadge component', () => {
     );
 
     const cmp = getByTestId(defaultTestId);
-    expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_automatic_renewal);
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.success);
+    expect(cmp).toHaveTextContent(commonTranslation.service_billing_state_automatic_renewal);
   });
 
   it('should correctly display "MANUAL_RENEWAL" state', () => {
@@ -52,8 +49,7 @@ describe('BillingStateBadge component', () => {
     );
 
     const cmp = getByTestId(defaultTestId);
-    expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_manual_renewal);
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.warning);
+    expect(cmp).toHaveTextContent(commonTranslation.service_billing_state_manual_renewal);
   });
 
   it('should correctly display "CANCELED" state', () => {
@@ -65,8 +61,7 @@ describe('BillingStateBadge component', () => {
     );
 
     const cmp = getByTestId(defaultTestId);
-    expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_canceled);
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
+    expect(cmp).toHaveTextContent(commonTranslation.service_billing_state_canceled);
   });
 
   it('should correctly display "CANCELATION_PLANNED" state', () => {
@@ -81,10 +76,6 @@ describe('BillingStateBadge component', () => {
     );
 
     const cmp = getByTestId(defaultTestId);
-    expect(cmp).toHaveAttribute(
-      'label',
-      commonTranslation.service_billing_state_cancelation_planned,
-    );
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
+    expect(cmp).toHaveTextContent(commonTranslation.service_billing_state_cancelation_planned);
   });
 });

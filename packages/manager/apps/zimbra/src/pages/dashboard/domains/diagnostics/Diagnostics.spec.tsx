@@ -2,12 +2,13 @@ import React from 'react';
 
 import { useLocation, useParams } from 'react-router-dom';
 
+import { screen, waitFor } from '@testing-library/dom';
 import { describe, expect, vi } from 'vitest';
 
 import { domainMock, platformMock } from '@/data/api';
 import { urls } from '@/routes/routes.constants';
 import { DnsRecordType } from '@/utils/dnsconfig.constants';
-import { render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 import { odsTabIsSelected, tabContent } from '@/utils/test.utils';
 
 import Diagnostics from './Diagnostics.page';
@@ -34,11 +35,12 @@ describe('Domain diagnostics page', () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    expect(queryByTestId('refresh')).toBeInTheDocument();
+    const refreshButton = queryByTestId('refresh');
+    expect(refreshButton).toBeInTheDocument();
 
-    const tabs = container.querySelectorAll('ods-tab');
+    const tabs = screen.queryAllByRole('tab');
 
-    expect(tabs.length).toBe(4);
+    expect(tabs).toHaveLength(4);
 
     expect(container.querySelector(odsTabIsSelected(true))).toHaveAttribute('id', DnsRecordType.MX);
 

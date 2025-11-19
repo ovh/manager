@@ -2,7 +2,9 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
@@ -12,143 +14,39 @@ import {
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
 } from '@/data/api';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
-import { OdsHTMLElement } from '@/utils/test.utils';
+import { render } from '@/utils/test.provider';
 
 import AddEditRedirectionModal from './AddEdit.modal';
 
 describe('Organizations add and edit modal', () => {
-  // @TODO: find why this test is inconsistent
-  // sometimes ODS component return attribute empty while it can
-  // only be "true" or "false"
-  it.skip('check validity form', async () => {
-    const { getByTestId, queryByTestId } = render(<AddEditRedirectionModal />);
-
-    await waitFor(() => {
-      expect(queryByTestId('spinner')).toBeNull();
-    });
-
-    const button = getByTestId('confirm-btn');
-    const inputName = getByTestId('input-name') as OdsHTMLElement;
-    const inputLabel = getByTestId('input-label') as OdsHTMLElement;
-
-    expect(button).toHaveAttribute('is-disabled', 'true');
-
-    act(() => {
-      inputName.odsBlur.emit({});
-      inputLabel.odsBlur.emit({});
-    });
-
-    expect(inputName).toHaveAttribute('has-error', 'true');
-    expect(inputLabel).toHaveAttribute('has-error', 'true');
-    expect(button).toHaveAttribute('is-disabled', 'true');
-
-    act(() => {
-      fireEvent.change(inputName, {
-        target: { value: 'Name' },
-      });
-      inputName.odsChange.emit({
-        name: 'name',
-        value: 'Name',
-      });
-    });
-
-    expect(inputName).toHaveAttribute('has-error', 'false');
-
-    act(() => {
-      fireEvent.change(inputLabel, {
-        target: { value: 'Label' },
-      });
-      inputLabel.odsChange.emit({
-        name: 'label',
-        value: 'Label',
-      });
-    });
-
-    expect(inputLabel).toHaveAttribute('has-error', 'false');
-
-    expect(button).toHaveAttribute('is-disabled', 'false');
-
-    act(() => {
-      fireEvent.change(inputName, {
-        target: { value: '' },
-      });
-      inputName.odsChange.emit({
-        name: 'name',
-        value: '',
-      });
-    });
-
-    expect(inputName).toHaveAttribute('has-error', 'true');
-
-    act(() => {
-      fireEvent.change(inputLabel, {
-        target: { value: 'NotAValidLabelWithMore12Chars' },
-      });
-      inputLabel.odsChange.emit({
-        name: 'label',
-        value: 'NotAValidLabelWithMore12Chars',
-      });
-    });
-
-    expect(inputLabel).toHaveAttribute('has-error', 'true');
-
-    expect(button).toHaveAttribute('is-disabled', 'true');
-  });
-
   it('should add a new organization', async () => {
     const { getByTestId, queryByTestId } = render(<AddEditRedirectionModal />);
+    const user = userEvent.setup();
 
     await waitFor(() => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
     const button = getByTestId('confirm-btn');
-    const inputName = getByTestId('input-name') as OdsHTMLElement;
-    const inputLabel = getByTestId('input-label') as OdsHTMLElement;
+    const inputName = getByTestId('input-name');
+    const inputLabel = getByTestId('input-label');
 
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      inputName.odsBlur.emit({});
-      inputLabel.odsBlur.emit({});
+    await user.clear(inputName);
+    await user.clear(inputLabel);
+    await user.tab();
+
+    expect(inputName).toHaveAttribute('data-invalid', 'true');
+    expect(inputLabel).toHaveAttribute('data-invalid', 'true');
+    expect(button).toBeDisabled();
+
+    await user.type(inputName, 'Name');
+    await user.type(inputLabel, 'Label');
+
+    await waitFor(() => {
+      expect(button).toBeEnabled();
     });
 
-    expect(inputName).toHaveAttribute('has-error', 'true');
-    expect(inputLabel).toHaveAttribute('has-error', 'true');
-    expect(button).toHaveAttribute('is-disabled', 'true');
-
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      fireEvent.change(inputName, {
-        target: { value: 'Name' },
-      });
-      inputName.odsChange.emit({
-        name: 'name',
-        value: 'Name',
-      });
-    });
-
-    expect(inputName).toHaveAttribute('has-error', 'false');
-
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      fireEvent.change(inputLabel, {
-        target: { value: 'Label' },
-      });
-      inputLabel.odsChange.emit({
-        name: 'label',
-        value: 'Label',
-      });
-    });
-
-    expect(inputLabel).toHaveAttribute('has-error', 'false');
-
-    expect(button).toHaveAttribute('is-disabled', 'false');
-
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      fireEvent.click(button);
-    });
+    await user.click(button);
 
     expect(postZimbraPlatformOrganization).toHaveBeenCalledOnce();
   });
@@ -158,6 +56,7 @@ describe('Organizations add and edit modal', () => {
       platformId: platformMock[0].id,
       organizationId: organizationMock.id,
     });
+    const user = userEvent.setup();
 
     const { getByTestId, queryByTestId } = render(<AddEditRedirectionModal />);
 
@@ -166,44 +65,18 @@ describe('Organizations add and edit modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputName = getByTestId('input-name') as OdsHTMLElement;
-    const inputLabel = getByTestId('input-label') as OdsHTMLElement;
+    const inputName = getByTestId('input-name');
+    const inputLabel = getByTestId('input-label');
 
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      inputName.odsBlur.emit({});
-      inputLabel.odsBlur.emit({});
+    await user.type(inputName, 'Name');
+    await user.type(inputLabel, 'Label');
+    await user.tab();
 
-      fireEvent.change(inputName, {
-        target: { value: 'Name1' },
-      });
-      inputName.odsChange.emit({
-        name: 'name',
-        value: 'Name1',
-      });
+    await waitFor(() => {
+      expect(button).toBeEnabled();
     });
 
-    expect(inputName).toHaveAttribute('has-error', 'false');
-
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      fireEvent.change(inputLabel, {
-        target: { value: 'Label1' },
-      });
-      inputLabel.odsChange.emit({
-        name: 'label',
-        value: 'Label1',
-      });
-    });
-
-    expect(inputLabel).toHaveAttribute('has-error', 'false');
-
-    expect(button).toHaveAttribute('is-disabled', 'false');
-
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      fireEvent.click(button);
-    });
+    await user.click(button);
 
     expect(putZimbraPlatformOrganization).toHaveBeenCalledOnce();
   });

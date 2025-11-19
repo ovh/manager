@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { waitFor } from '@testing-library/dom';
 import { describe, expect } from 'vitest';
 
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import Aliases from './Aliases.page';
 
@@ -17,6 +18,6 @@ describe('Aliases page', () => {
 
     const button = getByTestId('add-alias-btn');
 
-    expect(button).toHaveAttribute('label', commonTranslation.add_alias);
+    expect(button).toHaveTextContent(commonTranslation.add_alias);
   });
 });
