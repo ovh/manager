@@ -1,21 +1,24 @@
 # 🚀 Forge-CLI
 
 **Forge-CLI** is the scaffolding tool for OVHcloud Manager.  
-It creates fully structured *uApps* (Manager applications) and generates typed building blocks inside existing apps:
+It creates fully structured *uApps* (Manager applications), generates typed building blocks inside existing apps, **and now forges fully-configured Manager modules** with automatic workspace registration.
+
+Supported generators:
 
 - ⚙️ Interactive **application generator** (`yarn generate:uapp`)
-- 📦 **API client** generator
+- 📦 **Module generator** (`yarn generate:module`)
+- 🔌 **API client** generator
 - 🎨 **Component** generator
 - 🪝 **Hook** generator
 - 📄 **Page** generator
 
-All generators follow the OVHcloud Manager architecture, **folder layout**, and **linting / naming conventions** enforced by the Static Analysis Kit.
+All generators follow the OVHcloud Manager architecture, folder layout, and Static Analysis Kit rules.
 
 ---
 
 ## 📦 Installation & Context
 
-This package is meant to be used **inside the OVHcloud Manager monorepo** and is marked as `"private": true`.
+This package is intended for the **OVHcloud Manager monorepo** and marked `"private": true`.
 
 From the monorepo root:
 
@@ -23,7 +26,7 @@ From the monorepo root:
 yarn install
 ```
 
-Typical usage (wired at the monorepo level) is:
+Registered commands:
 
 ```bash
 yarn generate:uapp
@@ -31,9 +34,10 @@ yarn generate:uapp:api --app <appName> --api <ApiName>
 yarn generate:uapp:component --app <appName> --component <ComponentName>
 yarn generate:uapp:hook --app <appName> --hook <HookName>
 yarn generate:uapp:page --app <appName> --page <PageName>
+yarn generate:module
 ```
 
-Under the hood, these map to binaries exposed by this package:
+Underlying binaries:
 
 ```jsonc
 "bin": {
@@ -41,16 +45,9 @@ Under the hood, these map to binaries exposed by this package:
   "manager-forge-api": "bin/manager-forge-api.mjs",
   "manager-forge-component": "bin/manager-forge-component.mjs",
   "manager-forge-hook": "bin/manager-forge-hook.mjs",
-  "manager-forge-page": "bin/manager-forge-page.mjs"
+  "manager-forge-page": "bin/manager-forge-page.mjs",
+  "manager-forge-module": "bin/manager-forge-module.mjs"
 }
-```
-
-You can also invoke those binaries directly if needed:
-
-```bash
-yarn manager-forge-application
-yarn manager-forge-api --app <appName> --api <ApiName>
-…
 ```
 
 ---
@@ -63,69 +60,140 @@ yarn manager-forge-api --app <appName> --api <ApiName>
 yarn generate:uapp
 ```
 
-This launches an **interactive wizard** powered by `enquirer`.
+Interactive prompts include:
 
-It will ask for:
-
-- Application name (`appName`, typically kebab-case)
-- NPM package name
+- Application name
+- Package name
 - Description
-- Universe / sub-universe / tracking level2
-- Supported regions
-- Template-related options (as defined in `manager-forge-prompts-config.ts`)
+- Regions
+- Universes & tracking data
+- Template-specific options
 
 Forge-CLI then:
 
-- Creates a new application under the **apps root** (`MANAGER_APPLICATIONS_DIR` from `manager-forge-config.ts`)
-- Copies the base template from the template directory
-- Applies template replacements to: `package.json`, `src/Tracking.constants.ts` and `src/App.constants.ts`.
-- Registers the new app in the workspace (via `addAppToWorkspace`).
+- Creates the application under `packages/manager/apps/`
+- Copies templates
+- Applies constants and replacements
+- Registers the application in the workspace
 
 ---
 
-### 2️⃣ Generate an API client
+### 2️⃣ Generate a new module (React or Node)
+
+```bash
+yarn generate:module
+```
+
+This creates:
+
+```
+packages/manager/modules/<moduleName>/
+```
+
+The interactive wizard asks:
+
+- `moduleName` (kebab-case)
+- `modulePackageName` (auto-generated)
+- `moduleDescription`
+- `isPrivate` (**supports both public and private modules**)
+- `moduleType` (**React** or **Node**, fully handled automatically)
+
+#### 🧠 Automatic Module Type Handling
+
+The CLI **automatically configures**:
+
+### ✅ React Modules
+- React runtime dependencies
+- `tsconfig/react-strict`
+- `@tanstack/react-query` (+ devtools)
+- React Router, i18next, translations
+- MSW testing
+- Modern ESLint config
+- Vite configuration boilerplate
+
+### ✅ Node Modules
+- Minimal TypeScript environment
+- `tsconfig/node-strict`
+- Zero React deps
+- Clean TS/lint/test pipeline
+
+### Shared across both module types:
+- `tsc` + `tsc-alias`
+- `manager-lint` scripts
+- `manager-test` integration
+- `src/` and `__tests__/` structure
+- `dist/` + typed outputs in `dist/types`
+
+---
+
+## 🗂 Automatic Workspace Integration (PNPM + Yarn Hybrid)
+
+Forge-CLI **automatically registers every new module** into the workspace:
+
+- Adds the module via `pm:add:module`
+- Registers it into the **PNPM workspace** by default
+- Updates **pnpm-catalog.json**
+- Updates **pnpm-private-modules.json** when the module is private
+- Ensures dependency normalization
+- Ensures module discoverability in future builds
+
+This means no manual workspace editing is ever required.
+
+> ✔️ *React or Node*  
+> ✔️ *Public or Private*  
+> ✔️ *Workspace registration fully automated*
+
+---
+
+### 3️⃣ Generate an API client
 
 ```bash
 yarn generate:uapp:api --app <appName> --api <ApiName>
 ```
 
-Creates:
+Outputs:
 
 ```
 packages/manager/apps/<appName>/src/data/<ApiName>.api.ts
 ```
 
-### 3️⃣ Generate a component
+---
+
+### 4️⃣ Generate a component
 
 ```bash
 yarn generate:uapp:component --app <appName> --component <ComponentName>
 ```
 
-Creates:
+Outputs:
 
 ```
 packages/manager/apps/<appName>/src/components/<ComponentName>.component.tsx
 ```
 
-### 4️⃣ Generate a hook
+---
+
+### 5️⃣ Generate a hook
 
 ```bash
 yarn generate:uapp:hook --app <appName> --hook <HookName>
 ```
 
-Creates:
+Outputs:
 
 ```
 packages/manager/apps/<appName>/src/hooks/<HookName>.ts
 ```
 
-### 5️⃣ Generate a page
+---
+
+### 6️⃣ Generate a page
 
 ```bash
 yarn generate:uapp:page --app <appName> --page <PageName>
 ```
 
-Creates:
+Outputs:
 
 ```
 packages/manager/apps/<appName>/src/pages/<PageName>.page.tsx
@@ -135,24 +203,24 @@ packages/manager/apps/<appName>/src/pages/<PageName>.page.tsx
 
 ## 🆘 Help System
 
-Every command supports:
+All commands support:
 
 ```bash
---help
 -h
+--help
 ```
 
 ---
 
 ## 🎛 Unified CLI Runner
 
-Handles:
+Common behavior across all binaries:
 
-- Clearing screen
-- Banner
-- Spinner
-- Help messages
-- Error handling
+- Screen clearing
+- ASCII banner
+- Spinner display
+- Centralized help
+- Standardized error handling
 
 ---
 
@@ -165,6 +233,7 @@ src/
   manager-forge-component.ts
   manager-forge-hook.ts
   manager-forge-page.ts
+  manager-forge-module.ts
 
   configs/
   helpers/
