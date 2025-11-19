@@ -45,7 +45,7 @@ describe('Configure game firewall page', () => {
 
     const configureGameFirewallButton = await getButtonByLabel({
       container,
-      label: labels.listing.listingActionManageGameMitigation,
+      label: labels.listing.listingActionManageGameFirewall,
     });
 
     await waitFor(() => fireEvent.click(configureGameFirewallButton));
