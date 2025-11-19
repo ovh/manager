@@ -1,10 +1,12 @@
-import { screen } from '@testing-library/react';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
 import { SecretConfig } from '@secret-manager/types/secret.type';
+import { screen } from '@testing-library/react';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
+
 import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
 import { CasTileItem } from './CasTileItem.component';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const renderTileItem = async ({
   isPending = false,
@@ -13,9 +15,7 @@ const renderTileItem = async ({
   isPending?: boolean;
   secretConfig?: SecretConfig;
 }) => {
-  return renderWithI18n(
-    <CasTileItem secretConfig={secretConfig} isPending={isPending} />,
-  );
+  return renderWithI18n(<CasTileItem secretConfig={secretConfig} isPending={isPending} />);
 };
 
 describe('OKMS - secret config - cas item Tile Item test suite', () => {
@@ -34,24 +34,17 @@ describe('OKMS - secret config - cas item Tile Item test suite', () => {
     },
   ];
 
-  it.each(useCases)(
-    'should render the tile item correctly',
-    async ({ label, secretConfig }) => {
-      // GIVEN
+  it.each(useCases)('should render the tile item correctly', async ({ label, secretConfig }) => {
+    // GIVEN
 
-      // WHEN
-      await renderTileItem({ secretConfig, isPending: false });
+    // WHEN
+    await renderTileItem({ secretConfig, isPending: false });
 
-      // THEN
-      expect(
-        screen.getByText(labels.secretManager.cas_with_description),
-      ).toBeVisible();
-      expect(
-        screen.getByText(labels.secretManager.cas_with_description_tooltip),
-      ).toBeVisible();
-      expect(screen.getByText(label)).toBeVisible();
-    },
-  );
+    // THEN
+    expect(screen.getByText(labels.secretManager.cas_with_description)).toBeVisible();
+    expect(screen.getByText(labels.secretManager.cas_with_description_tooltip)).toBeVisible();
+    expect(screen.getByText(label)).toBeVisible();
+  });
 
   it('should render a skeleton while data is loading', async () => {
     // GIVEN
@@ -60,8 +53,6 @@ describe('OKMS - secret config - cas item Tile Item test suite', () => {
     await renderTileItem({ isPending: true });
 
     // THEN
-    expect(
-      screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.skeleton),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.skeleton)).toBeInTheDocument();
   });
 });

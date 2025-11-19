@@ -1,21 +1,20 @@
-import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
-import {
-  RedirectionGuard,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
+
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+
+import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
+import { RedirectionGuard, useFeatureAvailability } from '@ovh-ux/manager-react-components';
+
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 
 export default function KmsLogs() {
   const { okmsId } = useParams() as { okmsId: string };
   const { data: okms, isPending: isOkmsPending } = useOkmsById(okmsId);
 
-  const {
-    data: features,
-    isPending: isPendingFeatures,
-  } = useFeatureAvailability([KMS_FEATURES.LOGS]);
+  const { data: features, isPending: isPendingFeatures } = useFeatureAvailability([
+    KMS_FEATURES.LOGS,
+  ]);
 
   return (
     <RedirectionGuard

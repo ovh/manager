@@ -1,17 +1,18 @@
-import { OnboardingLayout } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useNavigate } from 'react-router-dom';
+
+import { GUIDES_QUICK_START } from '@key-management-service/components/guide/guide-quick-start/guideQuickStart.constants';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { GUIDES_QUICK_START } from '@key-management-service/components/guide/guide-quick-start/guideQuickStart.constants';
-import onboardingImgSrc from './onboarding-img.png';
+
+import { OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
+
+import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
   const { t } = useTranslation('key-management-service/onboarding');
@@ -27,11 +28,7 @@ export default function Onboarding() {
       description={
         <div className="flex flex-col gap-3">
           {descriptionsKeys.map((descKey) => (
-            <OdsText
-              key={descKey}
-              className="block text-center"
-              preset={ODS_TEXT_PRESET.paragraph}
-            >
+            <OdsText key={descKey} className="block text-center" preset={ODS_TEXT_PRESET.paragraph}>
               {t(descKey)}
             </OdsText>
           ))}

@@ -1,4 +1,22 @@
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import {
+  OkmsBreadcrumbItem,
+  RootBreadcrumbItem,
+  SecretBreadcrumbItem,
+} from '@secret-manager/components/breadcrumb';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
+import { useSecret } from '@secret-manager/data/hooks/useSecret';
+import {
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+} from '@secret-manager/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
   ErrorBanner,
@@ -6,28 +24,15 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
-import { useSecret } from '@secret-manager/data/hooks/useSecret';
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import {
-  OkmsBreadcrumbItem,
-  RootBreadcrumbItem,
-  SecretBreadcrumbItem,
-} from '@secret-manager/components/breadcrumb';
-import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
-import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
+
 import Loading from '@/common/components/loading/Loading';
-import { SecretPageOutletContext } from './Secret.type';
-import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
 import {
   TabNavigation,
   TabNavigationItem,
 } from '@/common/components/tab-navigation/TabNavigation.component';
+import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
+
+import { SecretPageOutletContext } from './Secret.type';
 
 export default function SecretPage() {
   const { okmsId, secretPath } = useParams<LocationPathParams>();
@@ -70,9 +75,7 @@ export default function SecretPage() {
     return (
       <ErrorBanner
         error={secretError?.response}
-        onRedirectHome={() =>
-          navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId))
-        }
+        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId))}
       />
     );
   }

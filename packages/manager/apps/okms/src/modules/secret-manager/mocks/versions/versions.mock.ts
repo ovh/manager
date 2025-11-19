@@ -1,5 +1,5 @@
-import { SecretVersion } from '@secret-manager/types/secret.type';
 import { CreateSecretVersionResponse } from '@secret-manager/data/api/secretVersions';
+import { SecretVersion } from '@secret-manager/types/secret.type';
 
 export const versionActiveMock: SecretVersion = {
   id: 1,

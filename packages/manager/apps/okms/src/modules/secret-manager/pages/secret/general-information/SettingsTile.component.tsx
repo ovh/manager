@@ -1,19 +1,23 @@
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { OdsText, OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { Secret } from '@secret-manager/types/secret.type';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useParams } from 'react-router-dom';
+
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
-import {
-  SecretSmartConfigOrigin,
-  NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
-} from '@secret-manager/utils/secretSmartConfig';
 import { SECRET_TEST_IDS } from '@secret-manager/pages/secret/general-information/GeneralInformation.constants';
 import {
   LocationPathParams,
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
-import { useParams } from 'react-router-dom';
+import { Secret } from '@secret-manager/types/secret.type';
+import {
+  NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
+  SecretSmartConfigOrigin,
+} from '@secret-manager/utils/secretSmartConfig';
+import { useTranslation } from 'react-i18next';
+
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { Link } from '@/common/components/link/Link.component';
 
 type SettingsTileProps = {
@@ -40,35 +44,26 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
       <ManagerTile.Title>{t('settings')}</ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>
-          {t('maximum_number_of_versions')}
-        </ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{t('maximum_number_of_versions')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           {isPending ? (
             <OdsSkeleton />
           ) : (
             <OdsText preset="span" data-testid={SECRET_TEST_IDS.MAX_VERSIONS}>
-              {secretConfig.maxVersions.value}{' '}
-              {labels[secretConfig.maxVersions.origin]}
+              {secretConfig.maxVersions.value} {labels[secretConfig.maxVersions.origin]}
             </OdsText>
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>
-          {t('deactivate_version_after')}
-        </ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{t('deactivate_version_after')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText
-              preset="span"
-              data-testid={SECRET_TEST_IDS.DEACTIVATE_VERSION_AFTER}
-            >
-              {secretConfig.deactivateVersionAfter.value ===
-              NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER
+            <OdsText preset="span" data-testid={SECRET_TEST_IDS.DEACTIVATE_VERSION_AFTER}>
+              {secretConfig.deactivateVersionAfter.value === NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER
                 ? t('never_expire')
                 : secretConfig.deactivateVersionAfter.value}{' '}
               {labels[secretConfig.deactivateVersionAfter.origin]}
@@ -98,10 +93,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Description>
           <Link
-            href={SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(
-              okmsId,
-              secret.path,
-            )}
+            href={SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(okmsId, secret.path)}
             label={t('edit_metadata')}
             isRouterLink
           />

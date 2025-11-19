@@ -1,16 +1,16 @@
+import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
+import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
+
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { act, screen } from '@testing-library/react';
-import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
-import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
-import {
-  ActivateRegion,
-  ActivateRegionParams,
-} from './ActivateRegion.component';
+
 import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
 import { renderWithClient } from '@/common/utils/tests/testUtils';
+
+import { ActivateRegion, ActivateRegionParams } from './ActivateRegion.component';
 
 const navigate = vi.fn();
 
@@ -22,9 +22,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const renderActivateRegion =  ({
-  selectedRegion,
-}: ActivateRegionParams) => {
+const renderActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
   return renderWithClient(<ActivateRegion selectedRegion={selectedRegion} />);
 };
 
@@ -45,9 +43,7 @@ describe('ActivateRegion test suite', () => {
       });
 
       // THEN
-      const activateButton = screen.queryByTestId(
-        SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON,
-      );
+      const activateButton = screen.queryByTestId(SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON);
       expect(activateButton).toBeVisible();
 
       await act(async () => {
@@ -62,20 +58,18 @@ describe('ActivateRegion test suite', () => {
   });
 
   describe('when okms list is updating', () => {
-    it('should render a loading state',  async () => {
+    it('should render a loading state', async () => {
       // GIVEN
       const selectedRegionMock = REGION_EU_WEST_RBX;
       registerPendingOrder(selectedRegionMock);
 
       // WHEN
-       renderActivateRegion({
+      renderActivateRegion({
         selectedRegion: selectedRegionMock,
       });
 
       // THEN
-      const Spinner = screen.queryByTestId(
-        SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER,
-      );
+      const Spinner = screen.queryByTestId(SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER);
       expect(Spinner).toBeVisible();
 
       await assertTextVisibility('okms_activation_in_progress');

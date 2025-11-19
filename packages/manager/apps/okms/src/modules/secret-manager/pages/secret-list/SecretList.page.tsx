@@ -1,4 +1,24 @@
 import { Suspense } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { OkmsBreadcrumbItem, RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
+import { RegionSelector } from '@secret-manager/components/region-selector/RegionSelector.component';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
+import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
+import { useBackToOkmsListUrl } from '@secret-manager/hooks/useBackToOkmsListUrl';
+import {
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+  SECRET_MANAGER_SEARCH_PARAMS,
+} from '@secret-manager/routes/routes.constants';
+import { Secret } from '@secret-manager/types/secret.type';
+import { useTranslation } from 'react-i18next';
+
+import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
   Datagrid,
@@ -7,33 +27,16 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-  SECRET_MANAGER_SEARCH_PARAMS,
-} from '@secret-manager/routes/routes.constants';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Secret } from '@secret-manager/types/secret.type';
-import {
-  OkmsBreadcrumbItem,
-  RootBreadcrumbItem,
-} from '@secret-manager/components/breadcrumb';
-import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
-import { RegionSelector } from '@secret-manager/components/region-selector/RegionSelector.component';
-import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
-import { useBackToOkmsListUrl } from '@secret-manager/hooks/useBackToOkmsListUrl';
-import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
+
+import { isErrorResponse } from '@/common/utils/api/api';
+import { PATH_LABEL } from '@/constants';
+
 import {
   DatagridAction,
   DatagridCellPath,
   DatagridCellVersion,
   DatagridCreationDate,
 } from './ListingCells.component';
-import { isErrorResponse } from '@/common/utils/api/api';
-import { PATH_LABEL } from '@/constants';
 
 export default function SecretListPage() {
   const navigate = useNavigate();
@@ -64,16 +67,8 @@ export default function SecretListPage() {
     },
   ];
 
-  const {
-    data,
-    error,
-    hasNextPage,
-    fetchNextPage,
-    sorting,
-    isPending,
-    setSorting,
-    refetch,
-  } = useSecretList({ okmsId });
+  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
+    useSecretList({ okmsId });
 
   const okmsListUrl = useBackToOkmsListUrl();
 
@@ -112,9 +107,7 @@ export default function SecretListPage() {
           <OdsButton
             label={t('okms_manage_label')}
             variant="outline"
-            onClick={() =>
-              navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId))
-            }
+            onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId))}
           />
         </div>
         <Datagrid

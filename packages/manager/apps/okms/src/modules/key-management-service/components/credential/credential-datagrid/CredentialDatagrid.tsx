@@ -1,11 +1,5 @@
-import {
-  Datagrid,
-  DatagridColumn,
-  ErrorBanner,
-} from '@ovh-ux/manager-react-components';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import {
   DatagridCredentialCellActions,
   DatagridCredentialCellCreationDate,
@@ -19,9 +13,14 @@ import {
   getOkmsCredentialsQueryKey,
   useOkmsCredentials,
 } from '@key-management-service/data/hooks/useOkmsCredential';
-import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
-import { OKMS } from '@key-management-service/types/okms.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
+import { useTranslation } from 'react-i18next';
+
+import { Datagrid, DatagridColumn, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+
 import Loading from '@/common/components/loading/Loading';
 
 type CredentialDatagridProps = {
@@ -43,9 +42,11 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
   });
 
   const handleReloadPage = () => {
-    queryClient.refetchQueries({
-      queryKey: getOkmsCredentialsQueryKey(okms.id),
-    }).catch(error => console.error(error));
+    queryClient
+      .refetchQueries({
+        queryKey: getOkmsCredentialsQueryKey(okms.id),
+      })
+      .catch((error) => console.error(error));
   };
 
   if (isLoadingCredentials) return <Loading />;
@@ -98,8 +99,7 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
     },
     {
       id: 'actions',
-      cell: (credential: OkmsCredential) =>
-        DatagridCredentialCellActions(credential, okms),
+      cell: (credential: OkmsCredential) => DatagridCredentialCellActions(credential, okms),
       label: '',
       isSortable: false,
     },

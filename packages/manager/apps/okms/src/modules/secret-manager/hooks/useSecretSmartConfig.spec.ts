@@ -1,20 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  mockSecret1,
-  mockSecret2,
-} from '@secret-manager/mocks/secrets/secrets.mock';
-import {
-  SecretSmartConfig,
-  buildSecretSmartConfig,
-} from '@secret-manager/utils/secretSmartConfig';
-import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+
 import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { mockSecret1, mockSecret2 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { SecretSmartConfig, buildSecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { createErrorResponseMock, renderHookWithClient } from '@/common/utils/tests/testUtils';
+
 import { useSecretSmartConfig } from './useSecretSmartConfig';
-import {
-  createErrorResponseMock,
-  renderHookWithClient,
-} from '@/common/utils/tests/testUtils';
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
@@ -42,8 +36,7 @@ vi.mock('@secret-manager/data/hooks/useSecretConfigOkms', () => ({
 // Mock the useSecretConfigReference hook
 const mockUseSecretConfigReference = vi.fn();
 vi.mock('@secret-manager/data/hooks/useSecretConfigReference', () => ({
-  useSecretConfigReference: (region: string): unknown =>
-    mockUseSecretConfigReference(region),
+  useSecretConfigReference: (region: string): unknown => mockUseSecretConfigReference(region),
 }));
 
 // Mock the useNotifications hook from external library
@@ -54,9 +47,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 // Mock the getSecretSmartConfig utility
 vi.mock('@secret-manager/utils/secretSmartConfig', async () => {
-  const actual = await vi.importActual(
-    '@secret-manager/utils/secretSmartConfig',
-  );
+  const actual = await vi.importActual('@secret-manager/utils/secretSmartConfig');
   return {
     ...actual,
     buildSecretSmartConfig: vi.fn(),
@@ -128,9 +119,7 @@ describe('useSecretSmartConfig', () => {
         error: null,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: true,
@@ -146,9 +135,7 @@ describe('useSecretSmartConfig', () => {
         error: null,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: true,
@@ -164,9 +151,7 @@ describe('useSecretSmartConfig', () => {
         error: null,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: true,
@@ -192,9 +177,7 @@ describe('useSecretSmartConfig', () => {
         error: null,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: true,
@@ -213,9 +196,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: false,
@@ -234,9 +215,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: false,
@@ -248,18 +227,14 @@ describe('useSecretSmartConfig', () => {
     });
 
     it('should return error state when secret config reference has error', () => {
-      const mockError = createErrorResponseMock(
-        'Secret config reference error',
-      );
+      const mockError = createErrorResponseMock('Secret config reference error');
       mockUseSecretConfigReference.mockReturnValue({
         data: null,
         isPending: false,
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: false,
@@ -267,9 +242,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
         secretConfig: undefined,
       });
-      expect(mockAddError).toHaveBeenCalledWith(
-        'Secret config reference error',
-      );
+      expect(mockAddError).toHaveBeenCalledWith('Secret config reference error');
     });
 
     it('should return error state when any data has error', () => {
@@ -285,9 +258,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: false,
@@ -301,9 +272,7 @@ describe('useSecretSmartConfig', () => {
 
   describe('when data is loaded successfully', () => {
     it('should return secret smart config when all data is available', () => {
-      const { result } = renderHookWithClient(() =>
-        useSecretSmartConfig(mockSecret1),
-      );
+      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
 
       expect(result.current).toEqual({
         isPending: false,

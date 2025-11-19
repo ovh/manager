@@ -1,11 +1,13 @@
-import { OKMS } from '@key-management-service/types/okms.type';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
-import { queryClient } from '@/common/utils/react-query/queryClient';
+import { OKMS } from '@key-management-service/types/okms.type';
+
 import {
-  usePendingOkmsOrderStore,
-  saveInitialOkmsIds,
   clearPendingOrder,
+  saveInitialOkmsIds,
+  usePendingOkmsOrderStore,
 } from '@/common/store/pendingOkmsOrder';
+import { queryClient } from '@/common/utils/react-query/queryClient';
+
 import { findNewOkmsId, isOrderExpired } from './utils';
 
 type PollOnNewOkmsParams = {
@@ -29,11 +31,7 @@ export const pollOnNewOkms = async ({
   onExpired,
   expirationInMinutes,
 }: PollOnNewOkmsParams) => {
-  const {
-    hasPendingOrder,
-    createdAt,
-    initialOkmsIds,
-  } = usePendingOkmsOrderStore.getState();
+  const { hasPendingOrder, createdAt, initialOkmsIds } = usePendingOkmsOrderStore.getState();
 
   // Do nothing if there is no pending order
   if (!hasPendingOrder) {

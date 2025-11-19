@@ -1,7 +1,9 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
+import { buildMswResponseMock } from '@/common/utils/tests/msw';
+
 import { createSecretResponseMock, secretListMock } from './secrets.mock';
 import { findSecretMockByPath } from './secretsMock.utils';
-import { buildMswResponseMock } from '@/common/utils/tests/msw';
 
 // LIST
 export const getSecretsErrorMessage = 'get-secrets-error-message';
@@ -34,14 +36,11 @@ export type GetSecretMockParams = {
   isSecretKO?: boolean;
 };
 
-export const getSecretMock = ({
-  isSecretKO,
-}: GetSecretMockParams): Handler[] => [
+export const getSecretMock = ({ isSecretKO }: GetSecretMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath',
     response: buildMswResponseMock({
-      data: (request, params) =>
-        findSecretMockByPath(secretListMock, request, params),
+      data: (request, params) => findSecretMockByPath(secretListMock, request, params),
       errorMessage: getSecretErrorMessage,
       isError: isSecretKO,
     }),
@@ -57,9 +56,7 @@ export type CreateSecretsMockParams = {
   isCreateSecretKO?: boolean;
 };
 
-export const createSecretsMock = ({
-  isCreateSecretKO,
-}: CreateSecretsMockParams): Handler[] => [
+export const createSecretsMock = ({ isCreateSecretKO }: CreateSecretsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret',
     response: buildMswResponseMock({
@@ -80,9 +77,7 @@ export type UpdateSecretMockParams = {
   isUpdateSecretKO?: boolean;
 };
 
-export const updateSecretMock = ({
-  isUpdateSecretKO,
-}: UpdateSecretMockParams): Handler[] => [
+export const updateSecretMock = ({ isUpdateSecretKO }: UpdateSecretMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath',
     response: buildMswResponseMock({
@@ -109,11 +104,7 @@ export type DeleteSecretMockParams = {
   isDeleteSecretKO?: boolean;
 };
 
-
-
-export const deleteSecretMock = ({
-  isDeleteSecretKO,
-}: DeleteSecretMockParams): Handler[] => [
+export const deleteSecretMock = ({ isDeleteSecretKO }: DeleteSecretMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:path',
     response: buildMswResponseMock({

@@ -1,4 +1,5 @@
 import { CurrencyCode, ServiceDetails } from '@ovh-ux/manager-react-components';
+
 import { okmsMock } from '../kms/okms.mock';
 
 export const kmsServicesMock: ServiceDetails = {
