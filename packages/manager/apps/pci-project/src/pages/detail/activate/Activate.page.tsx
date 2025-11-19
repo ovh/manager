@@ -110,10 +110,10 @@ export default function ActivatePage() {
   const handleSubmit = () => {
     if (needsSave && !isCreditPayment) {
       savePaymentMethod();
+    } else if (creditPaymentAmount) {
+      handleCreditPayment();
     } else if (hasNoUserActionNeeded || isCreditPayment) {
       handleActivateProject();
-    } else if (isCreditPayment && creditPaymentAmount) {
-      handleCreditPayment();
     }
   };
 
@@ -147,7 +147,7 @@ export default function ActivatePage() {
         </OdsBreadcrumb>
       }
     >
-      <div className="mb-6">
+      <div className="my-6">
         <Notifications />
       </div>
 
