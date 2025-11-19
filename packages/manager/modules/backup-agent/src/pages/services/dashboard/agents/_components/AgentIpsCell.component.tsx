@@ -1,4 +1,4 @@
-import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { Agent } from '@/types/Agent.type';
 

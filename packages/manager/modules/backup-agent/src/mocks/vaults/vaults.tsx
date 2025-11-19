@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Resource } from '@/types/Resource.type';
 import { Vault } from '@/types/Vault.type';
 

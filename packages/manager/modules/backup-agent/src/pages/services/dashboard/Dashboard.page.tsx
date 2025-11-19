@@ -1,6 +1,6 @@
-import React, { Suspense, startTransition, useContext, useMemo } from 'react';
+import React, { Suspense, startTransition, useContext } from 'react';
 
-import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,7 +12,6 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
-import { urls } from '@/routes/Routes.constants';
 
 import { useTenantDashboardTabs } from './_hooks/useTenantDashboardTabs';
 
@@ -23,7 +22,6 @@ export default function DashboardPage() {
   const { t } = useTranslation([NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
-  const location = useLocation();
   const { trackClick } = useOvhTracking();
 
   const tabs = useTenantDashboardTabs();

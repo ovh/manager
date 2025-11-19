@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { mockVaults } from '@/mocks/vaults/vaults';
 import { urlParams, urls } from '@/routes/Routes.constants';
 
-import { VaultIdCell } from '../VaultIdCell.components';
+import { VaultIdCell } from '../VaultIdCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (

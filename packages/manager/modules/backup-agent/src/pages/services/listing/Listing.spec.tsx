@@ -9,7 +9,7 @@ import { labels } from '@/test-utils/i18ntest.utils';
 describe('[INTEGRATION] - Listing page', () => {
   it('display datagrid', async () => {
     // when
-    const { container } = await renderTest({ initialRoute: urls.listingTenants });
+    await renderTest({ initialRoute: urls.listingTenants });
 
     // then
     const tenantId = TENANTS_MOCKS[0]?.id as string;
