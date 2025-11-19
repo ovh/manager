@@ -214,5 +214,6 @@
   "cdn_shared_modal_confirm_security": "Opções de segurança",
   "deploy_git": "Implantar GIT",
   "deploy_git_description": "Você está prestes a implantar ou atualizar manualmente o conteúdo do seu repositório remoto em sua hospedagem.",
-  "deploy_git_overwrite_local_changes": "Em caso de conflito de modificação, forçar as modificações remotas em seu repositório local."
+  "deploy_git_overwrite_local_changes": "Em caso de conflito de modificação, forçar as modificações remotas em seu repositório local.",
+  "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Criar um subdomínio"
 }
