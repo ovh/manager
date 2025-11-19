@@ -79,3 +79,8 @@ export const getRegionalizedFlavorOsTypePriceId = (
   regionName: string,
   osType: string,
 ) => `${getRegionalizedFlavorOsTypeId(flavorName, regionName, osType)}_price`;
+
+export const getRegionalizedImagePriceId = (
+  imageVersionName: string,
+  regionName: string,
+) => `${imageVersionName}_${regionName}`;

@@ -1,6 +1,9 @@
 export type TRegionDeploymentModeDTO = 'region' | 'localzone' | 'region-3-az';
 type TOsTypeDTO = 'baremetal-linux' | 'linux' | 'windows';
 
+type TImageCategoryDTO = 'apps' | 'linux' | 'snapshot' | 'unknown' | 'windows';
+type TImageOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
+
 export type TDeploymentModeDTO = {
   name: TRegionDeploymentModeDTO;
   tags: string[] | null;
@@ -95,8 +98,22 @@ export type TFlavorDTO = {
   pricings: TPricingDTO[];
 };
 
+export type TImageRegionDTO = {
+  name: string;
+  imageId: string;
+};
+
+export type TImageDTO = {
+  name: string;
+  category: TImageCategoryDTO;
+  subCategory: string;
+  osType: TImageOsType;
+  regions: TImageRegionDTO[];
+};
+
 export type TInstancesCatalogDTO = {
   filters: TFiltersDTO;
   regions: TRegionDTO[];
   flavors: TFlavorDTO[];
+  images: TImageDTO[];
 };
