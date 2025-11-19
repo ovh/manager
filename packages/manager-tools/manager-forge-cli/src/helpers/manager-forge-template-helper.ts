@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { TemplateObject, TemplateValue } from '@/types/TemplateType.js';
+import { TemplateObject, TemplateSelectorConfig, TemplateValue } from '@/types/TemplateType.js';
+import { logger } from '@/utils/log-manager.js';
 
 /**
  * Ensure a directory exists, creating it recursively if missing.
@@ -120,7 +121,7 @@ export function safeWriteFile(filePath: string, content: string): void {
     try {
       JSON.parse(content);
     } catch (err) {
-      console.error(`❌ Invalid JSON generated for ${filePath}:`, err);
+      logger.error(`❌ Invalid JSON generated for ${filePath}:`, err);
       throw err;
     }
   }
@@ -143,30 +144,45 @@ export function applyTemplateReplacements(
 }
 
 /**
- * Selects the correct package template (React or Node) and renames it to package.json.
- * Removes the unused template file.
- *
- * @param {string} targetDir - The module directory
- * @param {'react' | 'node'} moduleType
+ * Generic template selector:
+ * - Validates all variants exist
+ * - Renames the selected template
+ * - Removes unused template files
  */
-export function selectModulePackageJsonTemplate(
-  targetDir: string,
-  moduleType: 'react' | 'node',
+export function selectTemplateFile<Variant extends string>(
+  config: TemplateSelectorConfig<Variant>,
 ): void {
-  const reactPkg = path.join(targetDir, 'package-react.json');
-  const nodePkg = path.join(targetDir, 'package-node.json');
-  const finalPkg = path.join(targetDir, 'package.json');
+  const {
+    targetDir,
+    templatePattern,
+    variants,
+    selected: selectedVariant,
+    finalName: outputFilename,
+  } = config;
 
-  if (!fs.existsSync(reactPkg) || !fs.existsSync(nodePkg)) {
-    console.error('❌ Missing package-react.json or package-node.json in module template.');
-    process.exit(1);
+  const buildTemplatePath = (variant: Variant) =>
+    path.join(targetDir, templatePattern.replace('{variant}', variant));
+
+  // Ensure all expected template files exist
+  for (const variant of variants) {
+    const templatePath = buildTemplatePath(variant);
+    if (!fs.existsSync(templatePath)) {
+      logger.error(`❌ Missing template file: ${templatePath}`);
+      process.exit(1);
+    }
   }
 
-  if (moduleType === 'react') {
-    fs.renameSync(reactPkg, finalPkg);
-    fs.rmSync(nodePkg);
-  } else {
-    fs.renameSync(nodePkg, finalPkg);
-    fs.rmSync(reactPkg);
+  const selectedTemplatePath = buildTemplatePath(selectedVariant);
+  const outputFilePath = path.join(targetDir, outputFilename);
+
+  // Rename the selected variant template into the final output file
+  fs.renameSync(selectedTemplatePath, outputFilePath);
+
+  // Remove all non-selected template files
+  for (const variant of variants) {
+    if (variant === selectedVariant) continue;
+    fs.rmSync(buildTemplatePath(variant));
   }
+
+  logger.success(`✔ Created ${outputFilename} using "${selectedVariant}" template.`);
 }

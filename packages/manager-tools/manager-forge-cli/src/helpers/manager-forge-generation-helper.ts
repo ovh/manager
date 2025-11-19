@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { CaseStyle, GeneratorOptions } from '@/types/GenerationType.js';
+import { logger } from '@/utils/log-manager.js';
 
 const APPLICATIONS_FOLDER_PATH = 'packages/manager/apps';
 
@@ -31,7 +32,7 @@ export function parseArgs(argv: string[]): Record<string, string> {
       args[flagName] = flagValue;
       index++; // Skip the value
     } else {
-      console.warn(`⚠️ Missing value for flag --${flagName}, skipping.`);
+      logger.warn(`⚠️ Missing value for flag --${flagName}, skipping.`);
     }
   }
 
@@ -48,7 +49,7 @@ export function parseArgs(argv: string[]): Record<string, string> {
  */
 export function assertNonEmpty(value: string | undefined, flag: string): asserts value is string {
   if (!value || !value.trim()) {
-    console.error(chalk.red(`❌ Missing required flag ${flag}`));
+    logger.error(chalk.red(`❌ Missing required flag ${flag}`));
     process.exit(1);
   }
 }
@@ -62,7 +63,7 @@ export function assertNonEmpty(value: string | undefined, flag: string): asserts
  */
 export function ensureApplicationExists(appDirectory: string): void {
   if (!fs.existsSync(appDirectory)) {
-    console.error(chalk.red(`❌ App not found at: ${appDirectory}`));
+    logger.error(chalk.red(`❌ App not found at: ${appDirectory}`));
     process.exit(1);
   }
 }
@@ -173,14 +174,14 @@ export function generateFile({
   const targetFilePath = path.join(targetDirectory, `${formattedName}${options.extension}`);
 
   if (fs.existsSync(targetFilePath)) {
-    console.error(
+    logger.error(
       chalk.red(`❌ ${options.type} "${formattedName}" already exists at: ${targetFilePath}`),
     );
     process.exit(1);
   }
 
   fs.writeFileSync(targetFilePath, `// ${options.type}: ${formattedName}\n`, 'utf8');
-  console.log(chalk.green(`✅ Created ${path.relative(process.cwd(), targetFilePath)}`));
+  logger.log(chalk.green(`✅ Created ${path.relative(process.cwd(), targetFilePath)}`));
 }
 
 /**

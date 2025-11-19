@@ -12,6 +12,7 @@ import {
   ensureDirectory,
 } from '@/helpers/manager-forge-template-helper.js';
 import type { Answers } from '@/types/PromptType.js';
+import { logger } from '@/utils/log-manager.js';
 
 /**
  * Generates a new full forge application using templates,
@@ -26,26 +27,26 @@ function forgeApplication(answers: Answers): void {
   // 1. Prevent overwriting an existing application
   // ────────────────────────────────────────────────────────────
   if (fs.existsSync(applicationDirectory)) {
-    console.error(`❌ Application "${answers.appName}" already exists at: ${applicationDirectory}`);
+    logger.error(`❌ Application "${answers.appName}" already exists at: ${applicationDirectory}`);
     process.exit(1);
   }
 
   // ────────────────────────────────────────────────────────────
   // 2. Create application directory
   // ────────────────────────────────────────────────────────────
-  console.log(`🔨 Creating application at ${applicationDirectory}`);
+  logger.log(`🔨 Creating application at ${applicationDirectory}`);
   ensureDirectory(applicationDirectory);
 
   // ────────────────────────────────────────────────────────────
   // 3. Copy base template into the new application directory
   // ────────────────────────────────────────────────────────────
-  console.log('📦 Copying template files...');
+  logger.log('📦 Copying template files...');
   copyTemplate(APPLICATION_TEMPLATE_DIR, applicationDirectory);
 
   // ────────────────────────────────────────────────────────────
   // 4. Apply replacements to template files
   // ────────────────────────────────────────────────────────────
-  console.log('🧩 Applying replacements...');
+  logger.log('🧩 Applying replacements...');
 
   applyTemplateReplacements(
     [
@@ -70,7 +71,7 @@ function forgeApplication(answers: Answers): void {
   // ────────────────────────────────────────────────────────────
   // 5. Finalize + register the app inside the workspace
   // ────────────────────────────────────────────────────────────
-  console.log(`\n✅ Successfully forged application "${answers.appName}"\n`);
+  logger.log(`\n✅ Successfully forged application "${answers.appName}"\n`);
   addAppToWorkspace(answers.appName);
 }
 

@@ -24,17 +24,27 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   tailwindJsxConfig,
-
-  /* ------------------------------------------------------------------------ */
-  /*  Node JS Configuration Adjustment                                        */
-  /* ------------------------------------------------------------------------ */
   {
-    files: ['setupTests.ts', 'vitest.config.js'],
-    languageOptions: {
-      globals: {
-        global: 'readonly',
-      },
-      env: { node: true },
+    files: ['**/__tests__/**/*.{js,jsx,ts,tsx}'],
+    rules: {
+      ...Object.fromEntries(
+        Object.keys({ ...complexityJsxTsxConfig.rules, ...complexityTsJsConfig.rules }).map(
+          (rule) => [rule, 'off'],
+        ),
+      ),
+    },
+  },
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    rules: {
+      'no-console': 'error',
+      'no-nested-ternary': 'error',
+    },
+  },
+  {
+    files: ['./src/utils/log-manager.ts'],
+    rules: {
+      'no-console': 'off',
     },
   },
 ];

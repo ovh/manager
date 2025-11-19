@@ -5,6 +5,7 @@ import { HELP_MODULE } from '../dist/src/configs/manager-forge-help-config.js';
 import { runForgeCli } from '../dist/src/helpers/manager-forge-cli-helper.js';
 import { askModuleInfos } from '../dist/src/helpers/manager-forge-prompts-helper.js';
 import { forgeModuleCli } from '../dist/src/manager-forge-module.js';
+import { logger } from '../dist/src/utils/log-manager.js';
 
 async function main() {
   try {
@@ -21,7 +22,7 @@ async function main() {
       HELP_MODULE,
     );
   } catch (error) {
-    console.error(chalk.red(error instanceof Error ? error.message : String(error)));
+    logger.error(chalk.red(error instanceof Error ? error.message : String(error)));
     process.exit(1);
   }
 }

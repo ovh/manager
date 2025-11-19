@@ -88,10 +88,10 @@ const turboTask = fix ? 'lint:modern:fix' : 'lint:modern';
 tasks.push({
   name: `modern ${turboTask} (Turbo)`,
   cmd: isPackageName
-    ? ['turbo', 'run', turboTask, '--filter', packageName]
+    ? ['turbo', 'run', turboTask, '--filter', packageName, '--continue']
     : appName
-      ? ['turbo', 'run', turboTask, '--filter', appName]
-      : ['turbo', 'run', turboTask],
+      ? ['turbo', 'run', turboTask, '--filter', appName, '--continue']
+      : ['turbo', 'run', turboTask, '--continue'],
 });
 
 const errors = [];

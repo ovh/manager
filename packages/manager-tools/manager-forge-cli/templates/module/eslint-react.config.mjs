@@ -23,14 +23,6 @@ export default [
   vitestEslintConfig,
   prettierEslintConfig,
   {
-    ...complexityJsxTsxConfig,
-    ignores: [...(complexityJsxTsxConfig.ignores || []), '**/__tests__/**'],
-  },
-  {
-    ...complexityTsJsConfig,
-    ignores: [...(complexityTsJsConfig.ignores || []), '**/__tests__/**'],
-  },
-  {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parserOptions: {
@@ -40,6 +32,16 @@ export default [
     },
   },
   {
-    ignores: ['**/*.json'],
+    files: ['**/__tests__/**/*.{js,jsx,ts,tsx}'],
+    rules: {
+      ...Object.fromEntries(
+        Object.keys({ ...complexityJsxTsxConfig.rules, ...complexityTsJsConfig.rules }).map(
+          (rule) => [rule, 'off'],
+        ),
+      ),
+    },
+  },
+  {
+    ignores: ['**/*.md', '**/coverage/**', '**/dist/**', '**/*.d.ts'],
   },
 ];

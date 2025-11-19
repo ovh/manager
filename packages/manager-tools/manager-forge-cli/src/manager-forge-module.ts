@@ -7,9 +7,10 @@ import {
   applyTemplateReplacements,
   copyTemplate,
   ensureDirectory,
-  selectModulePackageJsonTemplate,
+  selectTemplateFile,
 } from '@/helpers/manager-forge-template-helper.js';
 import type { Answers } from '@/types/PromptType.js';
+import { logger } from '@/utils/log-manager.js';
 
 /**
  * Generates a new Manager Forge module using templates,
@@ -24,32 +25,45 @@ function forgeModule(answers: Answers): void {
   // 1. Prevent overwriting an existing module
   // ────────────────────────────────────────────────────────────
   if (fs.existsSync(moduleDir)) {
-    console.error(`❌ Module "${answers.moduleName}" already exists at: ${moduleDir}`);
+    logger.error(`❌ Module "${answers.moduleName}" already exists at: ${moduleDir}`);
     process.exit(1);
   }
 
   // ────────────────────────────────────────────────────────────
   // 2. Create module directory
   // ────────────────────────────────────────────────────────────
-  console.log(`🔨 Creating module at ${moduleDir}`);
+  logger.log(`🔨 Creating module at ${moduleDir}`);
   ensureDirectory(moduleDir);
 
   // ────────────────────────────────────────────────────────────
   // 3. Copy module template files
   // ────────────────────────────────────────────────────────────
-  console.log('📦 Copying module template...');
+  logger.log('📦 Copying module template...');
   copyTemplate(MODULE_TEMPLATE_DIR, moduleDir);
 
   // ────────────────────────────────────────────────────────────
-  // 4. Select correct package.json file based on module type
+  // 4. Select correct variants files based on module type
   // ────────────────────────────────────────────────────────────
-  console.log(`🧭 Selecting correct package.json for module type: ${answers.moduleType}`);
-  selectModulePackageJsonTemplate(moduleDir, answers.moduleType!);
+  logger.log(`🧭 Selecting correct variants for module type: ${answers.moduleType}`);
+  selectTemplateFile({
+    targetDir: moduleDir,
+    templatePattern: 'package-{variant}.json',
+    variants: ['react', 'node'],
+    selected: answers.moduleType!,
+    finalName: 'package.json',
+  });
+  selectTemplateFile({
+    targetDir: moduleDir,
+    templatePattern: 'eslint-{variant}.config.mjs',
+    variants: ['react', 'node'],
+    selected: answers.moduleType!,
+    finalName: 'eslint.config.mjs',
+  });
 
   // ────────────────────────────────────────────────────────────
   // 5. Apply replacements
   // ────────────────────────────────────────────────────────────
-  console.log('🧩 Applying module template replacements...');
+  logger.log('🧩 Applying module template replacements...');
 
   const templateFiles = [
     path.join(moduleDir, 'package.json'),
@@ -70,7 +84,7 @@ function forgeModule(answers: Answers): void {
   // ────────────────────────────────────────────────────────────
   // 6. Final output
   // ────────────────────────────────────────────────────────────
-  console.log(`\n✅ Successfully forged module "${answers.moduleName}"\n`);
+  logger.log(`\n✅ Successfully forged module "${answers.moduleName}"\n`);
   addModuleToWorkspace(answers.moduleName!, answers.isPrivate!);
 }
 
