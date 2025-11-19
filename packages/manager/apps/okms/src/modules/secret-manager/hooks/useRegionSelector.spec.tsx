@@ -154,14 +154,6 @@ describe('useRegionSelector tests suite', () => {
       expect(result.current.currentRegion).toEqual(sbgRegionOptionMock);
     });
 
-    it('should set current region based on useCurrentRegion result', async () => {
-      mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_SBG);
-
-      const { result } = await renderCustomHook('success');
-
-      expect(result.current.currentRegion).toEqual(sbgRegionOptionMock);
-    });
-
     it('should return first region as current when no current region is provided', async () => {
       mockUseCurrentRegion.mockReturnValue(undefined);
 

@@ -12,7 +12,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('get service key operations translation ', () => {
+describe('get service key operations translation', () => {
   const useCases: {
     operation: OkmsServiceKeyOperations;
     translationKey: string;
