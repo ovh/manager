@@ -5,7 +5,7 @@ import {
   transformTarget,
   computeActiveConfiguration,
 } from './dnsUtils';
-import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
+import { StatusEnum } from '@/domain/enum/Status.enum';
 import { PublicNameServerTypeEnum } from '@/domain/enum/publicNameServerType.enum';
 import {
   ActiveConfigurationTypeEnum,
@@ -36,7 +36,7 @@ describe('isIncluded', () => {
 
 describe('transformCurrent', () => {
   it('should transform a nameserver into TDatagridDnsDetails with correct status and type', () => {
-    const result = transformCurrent(ns1, NameServerStatusEnum.ENABLED);
+    const result = transformCurrent(ns1, StatusEnum.ENABLED);
     expect(result).toEqual({
       name: ns1.nameServer,
       ip: ns1.ipv4,
@@ -47,7 +47,7 @@ describe('transformCurrent', () => {
 
   it('should default to STANDARD if type is invalid', () => {
     const invalid = { ...ns1, nameServerType: 'UNKNOWN' as any };
-    const result = transformCurrent(invalid, NameServerStatusEnum.ENABLED);
+    const result = transformCurrent(invalid, StatusEnum.ENABLED);
     expect(result.type).toBe('STANDARD');
   });
 
@@ -57,16 +57,13 @@ describe('transformCurrent', () => {
       ipv6: '2001:db8::1',
       nameServerType: DnsConfigurationTypeEnum.EMPTY,
     };
-    const result = transformCurrent(
-      withIPv6Only,
-      NameServerStatusEnum.ACTIVATING,
-    );
+    const result = transformCurrent(withIPv6Only, StatusEnum.ACTIVATING);
     expect(result.ip).toBe('2001:db8::1');
   });
 
   it('should fallback to empty string if no IP is provided', () => {
     const noIp = { nameServer: 'ns.noip.com', nameServerType: 'EXTERNAL' };
-    const result = transformCurrent(noIp as any, NameServerStatusEnum.DELETING);
+    const result = transformCurrent(noIp as any, StatusEnum.DELETING);
     expect(result.ip).toBe('');
   });
 });
@@ -77,7 +74,7 @@ describe('transformTarget', () => {
       nameServer: 'dns103.ovh.net',
       ipv4: '192.0.2.2',
     };
-    const result = transformTarget(basic, NameServerStatusEnum.ENABLED);
+    const result = transformTarget(basic, StatusEnum.ENABLED);
     expect(result).toEqual({
       name: 'dns103.ovh.net',
       ip: '192.0.2.2',
@@ -88,19 +85,19 @@ describe('transformTarget', () => {
 
   it('should fallback to empty string IP if none provided', () => {
     const noIp = { nameServer: 'dns.any.net' };
-    const result = transformTarget(noIp, NameServerStatusEnum.ACTIVATING);
+    const result = transformTarget(noIp, StatusEnum.ACTIVATING);
     expect(result.ip).toBe('');
   });
 
   it('should detect ANYCAST type based on pattern', () => {
     const anycast = { nameServer: 'dns300.anycast.me' };
-    const result = transformTarget(anycast, NameServerStatusEnum.ACTIVATING);
+    const result = transformTarget(anycast, StatusEnum.ACTIVATING);
     expect(result.type).toBe(PublicNameServerTypeEnum.ANYCAST);
   });
 
   it('should detect DEDICATED type based on pattern', () => {
     const dedicated = { nameServer: 'sdns1.ovh.net' };
-    const result = transformTarget(dedicated, NameServerStatusEnum.ENABLED);
+    const result = transformTarget(dedicated, StatusEnum.ENABLED);
     expect(result.type).toBe(PublicNameServerTypeEnum.DEDICATED);
   });
 });
