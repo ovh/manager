@@ -43,9 +43,9 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
           id: 'name',
           label: t('key_management_service_service-keys_dashboard_field_name'),
           value: (
-            <div className="flex justify-between items-center gap-2">
+            <div className="flex items-center justify-between gap-2">
               <OdsText
-                className="max-w-1/2 text-ellipsis overflow-hidden"
+                className="max-w-1/2 overflow-hidden text-ellipsis"
                 preset={ODS_TEXT_PRESET.paragraph}
                 data-testid="truc"
               >

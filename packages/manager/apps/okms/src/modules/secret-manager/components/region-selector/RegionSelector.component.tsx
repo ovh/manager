@@ -40,7 +40,7 @@ export const RegionSelector = () => {
           ref={popoverRef}
           triggerId="trigger-region-selector-popover"
           position="bottom-start"
-          className="p-0 m-0"
+          className="m-0 p-0"
         >
           <div className="flex flex-col gap-2 p-4">
             {geographyGroups.map((geographyGroup, index) => (
@@ -70,7 +70,7 @@ export const RegionSelector = () => {
                     />
                   ))}
                 </div>
-                {index < geographyGroups.length - 1 && <OdsDivider className="-mx-4 mt-2 mb-1" />}
+                {index < geographyGroups.length - 1 && <OdsDivider className="-mx-4 mb-1 mt-2" />}
               </Fragment>
             ))}
           </div>

@@ -47,7 +47,7 @@ export const KeyValuesEditorItem = ({
   };
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex items-center gap-2">
       <OdsFormField className="w-full">
         <label slot="label">{t('key')}</label>
         <OdsInput

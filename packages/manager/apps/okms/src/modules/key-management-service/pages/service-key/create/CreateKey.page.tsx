@@ -177,7 +177,7 @@ export default function CreateKey() {
         }}
         message={<Notifications />}
       >
-        <div className="w-full block">
+        <div className="block w-full">
           <div className="max-w-lg gap-4 lg:gap-6">
             <div className="flex flex-col gap-4 md:gap-8">
               <ProtectionLevelSection />

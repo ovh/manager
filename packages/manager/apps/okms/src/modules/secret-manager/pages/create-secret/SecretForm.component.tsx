@@ -120,7 +120,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
         {/* <div className="flex flex-col gap-5">
         <OdsText preset="heading-2">{t('create_secret_form_payment_section_title')}</OdsText>
       </div> */}
-        <div className="flex justify-between items-center py-3">
+        <div className="flex items-center justify-between py-3">
           <SecretFormBackLink />
           <OdsButton
             type="submit"

@@ -25,7 +25,7 @@ export const CasTileItem = ({ secretConfig, isPending }: CasTileItemProps) => {
         {isPending ? (
           <OdsSkeleton
             data-testid={SECRET_CONFIG_TILE_TEST_IDS.skeleton}
-            className="block content-center h-5"
+            className="block h-5 content-center"
           />
         ) : (
           <OdsText preset="span">

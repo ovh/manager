@@ -33,8 +33,8 @@ export const ProtectionLevelSection: React.FC = () => {
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('key_management_service_service-keys_create_protection_level_subtitle')}
       </OdsText>
-      <OdsCard color={ODS_CARD_COLOR.primary} className="flex flex-col w-full h-fit px-3 pt-3">
-        <div className="flex flex-col gap-3 pb-4 justify-center align-middle text-center">
+      <OdsCard color={ODS_CARD_COLOR.primary} className="flex h-fit w-full flex-col px-3 pt-3">
+        <div className="flex flex-col justify-center gap-3 pb-4 text-center align-middle">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
             {t('key_management_service_service-keys_create_software_protection_title')}
           </OdsText>
