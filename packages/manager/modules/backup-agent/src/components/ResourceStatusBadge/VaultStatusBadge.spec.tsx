@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { ResourceStatusBadge } from './ResourceStatusBadge.components';
+import { ResourceStatusBadge } from './ResourceStatusBadge.component';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
