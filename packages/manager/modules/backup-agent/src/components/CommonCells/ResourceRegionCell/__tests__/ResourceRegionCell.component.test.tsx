@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { mockLocations } from '@/mocks/location/locations';
 import { mockVaults } from '@/mocks/vaults/vaults';
 
-import { ResourceLocationCell } from '../ResourceLocationCell.components';
+import { ResourceRegionCell } from '../ResourceRegionCell.component';
 
 const { mockLocationDetails } = vi.hoisted(() => {
   return {
@@ -24,19 +24,19 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ),
 }));
 
-describe('ResourceLocationCell', () => {
+describe('ResourceRegionCell', () => {
   it('renders resourceName from currentState', async () => {
     mockLocationDetails.mockReturnValue({
       data: mockLocations[0],
       isLoading: false,
       isError: false,
     });
-    const vault = { ...mockVaults[0]! };
+    const vault = mockVaults[0]!;
 
-    render(<ResourceLocationCell region={vault.currentState.region} />);
+    render(<ResourceRegionCell region={vault.currentState.region} />);
 
     await waitFor(() =>
-      expect(screen.getByTestId('cell')).toHaveTextContent(mockLocations[0]!.location),
+      expect(screen.getByTestId('cell')).toHaveTextContent(mockLocations[0]!.name),
     );
     expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
   });
@@ -45,7 +45,7 @@ describe('ResourceLocationCell', () => {
     mockLocationDetails.mockReturnValue({ data: null, isLoading: true, isError: false });
     const vault = mockVaults[0]!;
 
-    const { container } = render(<ResourceLocationCell region={vault.currentState.region} />);
+    const { container } = render(<ResourceRegionCell region={vault.currentState.region} />);
 
     await waitFor(() => expect(container.querySelector('ods-skeleton')).toBeVisible());
     expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
@@ -55,7 +55,7 @@ describe('ResourceLocationCell', () => {
     mockLocationDetails.mockReturnValue({ data: null, isLoading: false, isError: true });
     const vault = mockVaults[0]!;
 
-    render(<ResourceLocationCell region={vault.currentState.region} />);
+    render(<ResourceRegionCell region={vault.currentState.region} />);
 
     await waitFor(() =>
       expect(screen.getByTestId('cell')).toHaveTextContent(mockVaults[0]!.currentState.region),

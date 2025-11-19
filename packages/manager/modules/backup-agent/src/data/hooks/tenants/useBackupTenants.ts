@@ -1,4 +1,4 @@
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { Resource } from '@/types/Resource.type';

@@ -12,7 +12,6 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useBackupAgentList } from '@/data/hooks/agents/getAgents';
-import { useBackupTenantsMocks } from '@/data/hooks/tenants/useBackupTenants';
 import { urlParams, urls } from '@/routes/Routes.constants';
 
 import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.hooks';
