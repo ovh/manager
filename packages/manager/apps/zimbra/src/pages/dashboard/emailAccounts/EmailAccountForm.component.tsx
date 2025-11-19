@@ -13,7 +13,6 @@ import {
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
   OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
@@ -25,7 +24,6 @@ import {
   OdsMessage,
   OdsPassword,
   OdsSelect,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -37,7 +35,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { GeneratePasswordButton, Loading } from '@/components';
 import {
@@ -146,13 +144,13 @@ export const EmailAccountForm = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(
             accountId
               ? 'zimbra_account_edit_success_message'
               : 'zimbra_account_add_success_message',
           )}
-        </OdsText>,
+        </Text>,
         true,
       );
       onClose();
@@ -163,11 +161,11 @@ export const EmailAccountForm = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(accountId ? 'zimbra_account_edit_error_message' : 'zimbra_account_add_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -252,9 +250,9 @@ export const EmailAccountForm = () => {
 
   return (
     <form onSubmit={handleSubmit(handleSaveClick)} className="w-full md:w-3/4 space-y-4">
-      <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
+      <Text preset={TEXT_PRESET.caption} className="block">
         {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-      </OdsText>
+      </Text>
       <Controller
         control={control}
         name="account"
@@ -321,21 +319,21 @@ export const EmailAccountForm = () => {
           </OdsFormField>
         )}
       />
-      <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
+      <Text preset={TEXT_PRESET.caption} className="flex flex-col">
         <span className="block">{t('common:form_email_helper')}</span>
         {[1, 2, 3].map((elm) => (
           <span key={elm} className="block">
             - {t(`common:form_email_helper_rule_${elm}`)}
           </span>
         ))}
-      </OdsText>
+      </Text>
       {selectedDomainOrganization && (
         <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.information}>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset={TEXT_PRESET.paragraph}>
             {t('zimbra_account_add_message_organization', {
               organizationLabel: selectedDomainOrganization,
             })}
-          </OdsText>
+          </Text>
         </OdsMessage>
       )}
       <div className="flex">
@@ -423,19 +421,19 @@ export const EmailAccountForm = () => {
                   onClick={() => onChange(!value)}
                 ></OdsCheckbox>
                 <label htmlFor={name}>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                  <Text preset={TEXT_PRESET.paragraph}>
                     {t('zimbra_account_add_checkbox_hide_in_gal')}
                     <Tooltip>
-                      <TooltipTrigger>
+                      <TooltipTrigger asChild>
                         <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
                       </TooltipTrigger>
                       <TooltipContent>
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        <Text preset={TEXT_PRESET.paragraph}>
                           {t('zimbra_account_add_checkbox_hide_in_gal_tooltip')}
-                        </OdsText>
+                        </Text>
                       </TooltipContent>
                     </Tooltip>
-                  </OdsText>
+                  </Text>
                 </label>
               </div>
             </OdsFormField>
@@ -496,33 +494,33 @@ export const EmailAccountForm = () => {
                   onClick={() => onChange(!value)}
                 ></OdsCheckbox>
                 <label htmlFor={name}>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                  <Text preset={TEXT_PRESET.paragraph}>
                     {t('zimbra_account_add_checkbox_force_change_password')}
                     <Tooltip>
-                      <TooltipTrigger>
+                      <TooltipTrigger asChild>
                         <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
                       </TooltipTrigger>
                       <TooltipContent>
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        <Text preset={TEXT_PRESET.paragraph}>
                           {t('zimbra_account_add_checkbox_force_change_password_tooltip')}
-                        </OdsText>
+                        </Text>
                       </TooltipContent>
                     </Tooltip>
-                  </OdsText>
+                  </Text>
                 </label>
               </div>
             </OdsFormField>
           )}
         />
       </div>
-      <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
+      <Text preset={TEXT_PRESET.caption} className="flex flex-col">
         <span className="block">{t('zimbra_account_add_input_password_helper')}</span>
         {[1, 2, 3].map((elm) => (
           <span key={elm} className="block">
             - {t(`zimbra_account_add_input_password_helper_rule_${elm}`)}
           </span>
         ))}
-      </OdsText>
+      </Text>
       {!accountId && (
         <div className="flex w-full md:w-1/2">
           <Controller

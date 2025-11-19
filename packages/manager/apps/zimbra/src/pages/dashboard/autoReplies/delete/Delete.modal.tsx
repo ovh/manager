@@ -5,8 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -17,6 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import {
@@ -50,7 +50,7 @@ export const DeleteAutoReplyModal = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</Text>,
         true,
       );
     },
@@ -60,11 +60,11 @@ export const DeleteAutoReplyModal = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -111,9 +111,7 @@ export const DeleteAutoReplyModal = () => {
       onSecondaryButtonClick={handleCancelClick}
       secondaryButtonTestId="cancel-btn"
     >
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {t('zimbra_auto_replies_delete_modal_content')}
-      </OdsText>
+      <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_auto_replies_delete_modal_content')}</Text>
     </Modal>
   );
 };

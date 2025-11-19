@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { Modal, useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
@@ -16,6 +15,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import {
   SlotServiceTerminationPolicy,
@@ -51,9 +51,7 @@ export const CancelSlotModal = () => {
         pageName: CANCEL_SLOT,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:cancel_slot_success_message')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:cancel_slot_success_message')}</Text>,
         true,
       );
     },
@@ -63,11 +61,11 @@ export const CancelSlotModal = () => {
         pageName: CANCEL_SLOT,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:cancel_slot_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -117,8 +115,8 @@ export const CancelSlotModal = () => {
       onSecondaryButtonClick={handleCancelClick}
     >
       <>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
+        <Text
+          preset={TEXT_PRESET.paragraph}
           data-testid="text-slot-cancel-content"
           className="mb-4"
         >
@@ -131,9 +129,9 @@ export const CancelSlotModal = () => {
           ) : (
             t('zimbra_slot_cancel_modal_content')
           )}
-        </OdsText>
-        <OdsText
-          preset={ODS_TEXT_PRESET.span}
+        </Text>
+        <Text
+          preset={TEXT_PRESET.span}
           data-testid="text-slot-cancel-renew-date"
           className="mb-4 font-bold"
         >
@@ -143,14 +141,14 @@ export const CancelSlotModal = () => {
               format: 'P',
             }),
           })}
-        </OdsText>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
+        </Text>
+        <Text
+          preset={TEXT_PRESET.paragraph}
           data-testid="text-slot-cancel-confirm"
           className="mb-4"
         >
           {t('zimbra_slot_cancel_modal_confirm')}
-        </OdsText>
+        </Text>
       </>
     </Modal>
   );

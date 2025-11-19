@@ -5,8 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -17,6 +17,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { deleteZimbraPlatformDomain, getZimbraPlatformDomainsQueryKey } from '@/data/api';
 import { useAccounts, useDomain } from '@/data/hooks';
@@ -51,7 +52,7 @@ export const DeleteDomainModal = () => {
         pageName: DELETE_DOMAIN,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</Text>,
         true,
       );
     },
@@ -61,11 +62,11 @@ export const DeleteDomainModal = () => {
         pageName: DELETE_DOMAIN,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -114,7 +115,7 @@ export const DeleteDomainModal = () => {
       onSecondaryButtonClick={handleCancelClick}
     >
       <>
-        <OdsText preset={ODS_TEXT_PRESET.span} className="mb-4">
+        <Text preset={TEXT_PRESET.span} className="mb-4">
           <Trans
             t={t}
             i18nKey={'zimbra_domains_delete_modal_content'}
@@ -122,7 +123,7 @@ export const DeleteDomainModal = () => {
               domain: domain?.currentState.name,
             }}
           />
-        </OdsText>
+        </Text>
         {accounts?.length > 0 && (
           <OdsMessage
             className="mt-4"
@@ -131,12 +132,12 @@ export const DeleteDomainModal = () => {
             data-testid="banner-message"
           >
             <div className="flex flex-col text-left ml-4">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              <Text preset={TEXT_PRESET.paragraph}>
                 {t('zimbra_domains_delete_modal_message_disabled_part1')}
-              </OdsText>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              </Text>
+              <Text preset={TEXT_PRESET.paragraph}>
                 {t('zimbra_domains_delete_modal_message_disabled_part2')}
-              </OdsText>
+              </Text>
             </div>
           </OdsMessage>
         )}

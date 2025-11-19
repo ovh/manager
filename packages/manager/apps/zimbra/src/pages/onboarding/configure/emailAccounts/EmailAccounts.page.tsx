@@ -7,8 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { FormProvider, SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -18,6 +18,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { InlineEmailAccountFormItem, Loading } from '@/components';
 import {
@@ -108,7 +109,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
         pageName: ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('configure_success_message')}</OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('configure_success_message')}</Text>,
         true,
       );
     },
@@ -150,9 +151,9 @@ export const ConfigureEmailAccounts: React.FC = () => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(handleConfirmClick)} className="flex flex-col gap-4">
         <div className="flex flex-col gap-4">
-          <OdsText
-            preset={ODS_TEXT_PRESET.heading5}
-          >{`Zimbra Starter (${starterAccounts.length}/${availableStarterAccounts})`}</OdsText>
+          <Text
+            preset={TEXT_PRESET.heading5}
+          >{`Zimbra Starter (${starterAccounts.length}/${availableStarterAccounts})`}</Text>
           {fields.map((field, index) => (
             <InlineEmailAccountFormItem
               key={field.id}

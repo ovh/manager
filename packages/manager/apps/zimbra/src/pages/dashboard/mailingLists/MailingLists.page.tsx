@@ -4,17 +4,12 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { BadgeStatus, LabelChip } from '@/components';
 import { MailingListType } from '@/data/api';
@@ -30,7 +25,7 @@ import { MailingListItem } from './MailingLists.types';
 const columns: DatagridColumn<MailingListItem>[] = [
   {
     id: 'domains',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
+    cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.name}</Text>,
     label: 'common:mailing_list',
   },
   {
@@ -43,22 +38,22 @@ const columns: DatagridColumn<MailingListItem>[] = [
   },
   {
     id: 'owner',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.owner}</OdsText>,
+    cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.owner}</Text>,
     label: 'common:owner',
   },
   {
     id: 'alias',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.aliases}</OdsText>,
+    cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.aliases}</Text>,
     label: 'common:alias',
   },
   {
     id: 'moderators',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.moderators}</OdsText>,
+    cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.moderators}</Text>,
     label: 'zimbra_mailinglists_datagrid_moderators_label',
   },
   {
     id: 'subscribers',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.subscribers}</OdsText>,
+    cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.subscribers}</Text>,
     label: 'zimbra_mailinglists_datagrid_subscribers_label',
   },
   {
@@ -125,13 +120,13 @@ export const MailingLists = () => {
       {!isOverridedPage && (
         <>
           <div className="flex flex-col items-start mb-6">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
+            <Text preset={TEXT_PRESET.paragraph}>
+              <Text preset={TEXT_PRESET.heading6} className="mr-4">
                 {t('zimbra_mailinglists_quota_label')}
                 {' :'}
-              </OdsText>
+              </Text>
               {`${quota} / 1000`}
-            </OdsText>
+            </Text>
           </div>
           <Datagrid
             topbar={

@@ -2,18 +2,18 @@ import React, { useMemo } from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  OdsBadge,
-  OdsCard,
-  OdsIcon,
-  OdsRadio,
-  OdsSkeleton,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsCard, OdsIcon, OdsRadio, OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
-import { TOOLTIP_POSITION, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  TEXT_PRESET,
+  TOOLTIP_POSITION,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { businessFeatures, proFeatures, starterFeatures } from '@/constants';
 import { ZimbraOffer, order } from '@/data/api';
@@ -90,9 +90,9 @@ export const PriceCard: React.FC<PriceCardProps> = ({
       >
         <div className="flex gap-4 items-center">
           <OdsRadio name={planCode} isChecked={isSelected} onClick={() => false} />
-          <OdsText preset="heading-4" className={cn(isDisabled && '[&::part(text)]:text-gray-500')}>
+          <Text preset="heading-4" className={cn(isDisabled && '[&::part(text)]:text-gray-500')}>
             {capitalize(planCode)}
-          </OdsText>
+          </Text>
         </div>
         <div className="flex gap-4">
           {tags?.map((tag) => (
@@ -108,11 +108,11 @@ export const PriceCard: React.FC<PriceCardProps> = ({
         {features.map((feature, index) => (
           <div className="flex items-center gap-8" key={index}>
             <OdsIcon name="check" className={cn(isDisabled ? 'text-gray-400' : 'text-green-600')} />
-            <OdsText className={cn(isDisabled ? '[&::part(text)]:text-gray-400' : '')}>
+            <Text className={cn(isDisabled ? '[&::part(text)]:text-gray-400' : '')}>
               <Trans t={t} i18nKey={feature.label} />
               {feature.tooltip && (
                 <Tooltip position={TOOLTIP_POSITION.bottom}>
-                  <TooltipTrigger>
+                  <TooltipTrigger asChild>
                     <OdsIcon
                       id={feature.tooltip}
                       className="ml-3 size-6"
@@ -120,13 +120,13 @@ export const PriceCard: React.FC<PriceCardProps> = ({
                     />
                   </TooltipTrigger>
                   <TooltipContent className="max-w-96 text-center" withArrow>
-                    <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+                    <Text className="mb-4" preset={TEXT_PRESET.paragraph}>
                       {t(feature.tooltip)}
-                    </OdsText>
+                    </Text>
                   </TooltipContent>
                 </Tooltip>
               )}
-            </OdsText>
+            </Text>
           </div>
         ))}
       </div>
@@ -141,7 +141,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
           <OdsSkeleton data-testid="price-loading" className="[&::part(skeleton)]:w-16" />
         ) : (
           price && (
-            <OdsText
+            <Text
               preset="heading-5"
               className={cn(
                 isDisabled ? '[&::part(text)]:text-gray-500' : 'text-color-primary-500',
@@ -154,7 +154,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
                 ovhSubsidiary={subsidiary}
                 locale={locale}
               ></Price>
-            </OdsText>
+            </Text>
           )
         )}
       </div>

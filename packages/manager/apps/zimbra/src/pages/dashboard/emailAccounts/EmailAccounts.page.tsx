@@ -4,8 +4,8 @@ import { Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsSwitch, OdsSwitchItem, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
 
 import {
   IconLinkAlignmentType,
@@ -13,6 +13,7 @@ import {
   Links,
   ManagerText,
 } from '@ovh-ux/manager-react-components';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { AccountStatistics } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -58,10 +59,10 @@ export const EmailAccounts = () => {
         <>
           <div className="flex gap-8 mb-6">
             <div>
-              <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
+              <Text preset={TEXT_PRESET.heading6} className="mr-4">
                 {t('common:webmail')}
                 {' :'}
-              </OdsText>
+              </Text>
               <Links
                 iconAlignment={IconLinkAlignmentType.right}
                 color={ODS_LINK_COLOR.primary}
@@ -81,9 +82,9 @@ export const EmailAccounts = () => {
                 {accountsStatistics?.length > 0
                   ? accountsStatistics?.map((stats: AccountStatistics) => (
                       <span key={stats.offer}>
-                        <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
+                        <Text preset={TEXT_PRESET.heading6} className="mr-4">
                           {`Zimbra ${capitalize(stats.offer.toLowerCase())} :`}
-                        </OdsText>
+                        </Text>
                         <span>{`${stats.configuredAccountsCount} / ${
                           stats.configuredAccountsCount + stats.availableAccountsCount
                         }`}</span>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
@@ -14,6 +14,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Text } from '@ovh-ux/muk';
 
 import { usePlatform } from '@/data/hooks';
 import {
@@ -98,9 +99,9 @@ export const OnboardingWelcome = () => {
       img={{ src: onboardingImgSrc }}
       description={
         <>
-          <OdsText className="text-center" id="welcome-description">
+          <Text className="text-center" id="welcome-description">
             {t('welcome_description')}
-          </OdsText>
+          </Text>
           <div className="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center">
             <OdsButton
               className="[&::part(button)]:w-full sm:w-auto"

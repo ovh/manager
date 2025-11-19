@@ -3,15 +3,10 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
 
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 export const getRandomIndex = (length: number) => {
   // Crypto API is available
@@ -139,7 +134,7 @@ export const GeneratePasswordButton = ({
       }}
     >
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <OdsButton
             id={id}
             data-testid={id}
@@ -157,9 +152,9 @@ export const GeneratePasswordButton = ({
           />
         </TooltipTrigger>
         <TooltipContent withArrow>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset={TEXT_PRESET.paragraph}>
             {t(generated ? 'generated_password_tooltip' : 'generate_password_tooltip')}
-          </OdsText>
+          </Text>
         </TooltipContent>
       </Tooltip>
     </div>

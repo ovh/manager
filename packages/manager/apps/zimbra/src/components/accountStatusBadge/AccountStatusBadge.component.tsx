@@ -39,7 +39,7 @@ export const AccountStatusBadge: React.FC<EmailAccountItem> = (props) => {
     const statusBadge = props.detailedStatus.flatMap(({ status }) => {
       return CurrentAccountStatusLabels[status] ? (
         <Tooltip key={`${props.id}_${status}`} position={TOOLTIP_POSITION.bottom}>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <OdsBadge
               data-testid={`${props.id}_${status}`}
               color={getStatusColor(status)}

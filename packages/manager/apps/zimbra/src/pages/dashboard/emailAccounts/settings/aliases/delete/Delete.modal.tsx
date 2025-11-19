@@ -5,8 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -17,6 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { deleteZimbraPlatformAlias, getZimbraPlatformAliasQueryKey } from '@/data/api';
 import { useAlias } from '@/data/hooks';
@@ -43,9 +43,9 @@ export const DeleteAlias = () => {
         pageName: EMAIL_ACCOUNT_DELETE_ALIAS,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_delete_success_message')}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -55,11 +55,11 @@ export const DeleteAlias = () => {
         pageName: EMAIL_ACCOUNT_DELETE_ALIAS,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -105,7 +105,7 @@ export const DeleteAlias = () => {
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <Trans
           t={t}
           i18nKey={'zimbra_account_alias_delete_modal_description'}
@@ -113,7 +113,7 @@ export const DeleteAlias = () => {
             alias: alias?.currentState.alias.name,
           }}
         />
-      </OdsText>
+      </Text>
     </Modal>
   );
 };

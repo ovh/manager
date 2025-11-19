@@ -2,11 +2,12 @@ import { useMemo } from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { Clipboard } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { GuideLink } from '@/components';
 import {
@@ -57,10 +58,10 @@ const SRVTabContent = ({
 
   return (
     <div className="flex flex-col gap-4 md:w-1/2" data-testid={`tab-content-${recordType}`}>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <strong>{t('zimbra_domain_diagnostic_status')}</strong>
         <StatusBadge className="ml-4" status={diagnostic.status} />
-      </OdsText>
+      </Text>
       {!isOk && (
         <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
           {t(
@@ -68,7 +69,7 @@ const SRVTabContent = ({
           )}
         </OdsMessage>
       )}
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <Trans
           t={t}
           i18nKey={`zimbra_domain_diagnostic_information_message_${recordType.toLowerCase()}_${diagnostic?.status.toLowerCase()}`}
@@ -77,7 +78,7 @@ const SRVTabContent = ({
             errorCode: error?.code,
           }}
         />
-      </OdsText>
+      </Text>
       {!isOk && (
         <>
           {guide && <GuideLink label={t('zimbra_domain_diagnostic_access_guide')} guide={guide} />}
@@ -98,45 +99,45 @@ const SRVTabContent = ({
               <tbody>
                 <tr key="type">
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    <Text preset={TEXT_PRESET.paragraph}>
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_type')}</strong>
-                      <OdsText preset={ODS_TEXT_PRESET.span}>{recordType}</OdsText>
-                    </OdsText>
+                      <Text preset={TEXT_PRESET.span}>{recordType}</Text>
+                    </Text>
                   </td>
                 </tr>
                 <tr key="srv">
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                    <Text preset={TEXT_PRESET.paragraph} className="min-w-32">
                       <strong className="mr-4">
                         {t('zimbra_domain_diagnostic_field_subdomain')}
                       </strong>
-                    </OdsText>
+                    </Text>
                     <Clipboard value={subdomain} />
                   </td>
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                    <Text preset={TEXT_PRESET.paragraph} className="min-w-32">
                       <strong className="mr-4">
                         {t('zimbra_domain_diagnostic_field_priority')}
                       </strong>
-                    </OdsText>
+                    </Text>
                     <Clipboard value={String(priority)} />
                   </td>
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                    <Text preset={TEXT_PRESET.paragraph} className="min-w-32">
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_field_weight')}</strong>
-                    </OdsText>
+                    </Text>
                     <Clipboard value={String(weight)} />
                   </td>
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                    <Text preset={TEXT_PRESET.paragraph} className="min-w-32">
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_field_port')}</strong>
-                    </OdsText>
+                    </Text>
                     <Clipboard value={String(port)} />
                   </td>
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                    <Text preset={TEXT_PRESET.paragraph} className="min-w-32">
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_field_target')}</strong>
-                    </OdsText>
+                    </Text>
                     <Clipboard value={target} />
                   </td>
                 </tr>

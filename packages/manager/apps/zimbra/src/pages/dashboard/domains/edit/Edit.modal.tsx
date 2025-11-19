@@ -7,8 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput, OdsSelect } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -19,6 +19,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { getZimbraPlatformDomainQueryKey, putZimbraDomain } from '@/data/api';
 import { useDomain, useOrganizations } from '@/data/hooks';
@@ -61,7 +62,7 @@ export const EditDomainModal = () => {
         pageName: EDIT_DOMAIN,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:edit_success_message')}</OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:edit_success_message')}</Text>,
         true,
       );
     },
@@ -71,11 +72,11 @@ export const EditDomainModal = () => {
         pageName: EDIT_DOMAIN,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:edit_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },

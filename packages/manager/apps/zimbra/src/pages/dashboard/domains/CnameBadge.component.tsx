@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import { VERIFY_DOMAIN } from '@/tracking.constants';
@@ -41,7 +41,7 @@ export const CnameBadge: React.FC<CnameBadgeProps> = ({ item }) => {
       }}
     >
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <OdsBadge
             color={ODS_BADGE_COLOR.warning}
             label={t('zimbra_domains_datagrid_cname_label')}
@@ -49,16 +49,16 @@ export const CnameBadge: React.FC<CnameBadgeProps> = ({ item }) => {
           />
         </TooltipTrigger>
         <TooltipContent className="max-w-96 text-center" withArrow>
-          <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading6}>
+          <Text className="mb-4" preset={TEXT_PRESET.heading6}>
             {t('zimbra_domains_datagrid_cname_tooltip_title')}
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          </Text>
+          <Text preset={TEXT_PRESET.paragraph}>
             <Trans
               t={t}
               i18nKey="zimbra_domains_datagrid_cname_tooltip"
               values={{ cname: `${item.cnameToCheck}.${item.name}` }}
             />
-          </OdsText>
+          </Text>
         </TooltipContent>
       </Tooltip>
     </div>

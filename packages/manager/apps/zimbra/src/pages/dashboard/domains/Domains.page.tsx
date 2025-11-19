@@ -4,18 +4,12 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { BadgeStatus, LabelChip } from '@/components';
 import { AccountStatistics, DomainType, ResourceStatus } from '@/data/api';
@@ -32,7 +26,7 @@ import { DomainItem } from './Domains.types';
 const columns: DatagridColumn<DomainItem>[] = [
   {
     id: 'domains',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
+    cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.name}</Text>,
     label: 'common:domain',
     isSearchable: true,
   },
@@ -43,7 +37,7 @@ const columns: DatagridColumn<DomainItem>[] = [
   },
   {
     id: 'account',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>,
+    cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.account}</Text>,
     label: 'common:number_of_accounts',
   },
   {
@@ -128,7 +122,7 @@ export const Domains = () => {
           topbar={
             <div className="flex items-center justify-between">
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                   <ManagerButton
                     id="add-domain-btn"
                     color={ODS_BUTTON_COLOR.primary}
@@ -144,9 +138,9 @@ export const Domains = () => {
                 </TooltipTrigger>
                 {(isLoading || organizations?.length === 0) && (
                   <TooltipContent>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    <Text preset={TEXT_PRESET.paragraph}>
                       {t('zimbra_domains_tooltip_need_organization')}
-                    </OdsText>
+                    </Text>
                   </TooltipContent>
                 )}
               </Tooltip>

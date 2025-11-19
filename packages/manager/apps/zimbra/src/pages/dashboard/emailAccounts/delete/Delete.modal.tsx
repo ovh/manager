@@ -5,8 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -17,6 +17,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { deleteZimbraPlatformAccount, getZimbraPlatformListQueryKey } from '@/data/api';
 import { useAccount } from '@/data/hooks';
@@ -47,7 +48,7 @@ export const DeleteEmailAccountModal = () => {
         pageName: DELETE_EMAIL_ACCOUNT,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</Text>,
         true,
       );
     },
@@ -57,11 +58,11 @@ export const DeleteEmailAccountModal = () => {
         pageName: DELETE_EMAIL_ACCOUNT,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -111,7 +112,7 @@ export const DeleteEmailAccountModal = () => {
       <>
         {step === 1 && (
           <>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph} data-testid="text-step-1" className="mb-4">
+            <Text preset={TEXT_PRESET.paragraph} data-testid="text-step-1" className="mb-4">
               <Trans
                 t={t}
                 i18nKey={'zimbra_account_delete_modal_content_step1'}
@@ -119,13 +120,13 @@ export const DeleteEmailAccountModal = () => {
                   email: data?.currentState.email,
                 }}
               />
-            </OdsText>
+            </Text>
           </>
         )}
 
         {step === 2 && (
           <>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph} data-testid="text-step-2" className="mb-4">
+            <Text preset={TEXT_PRESET.paragraph} data-testid="text-step-2" className="mb-4">
               <Trans
                 t={t}
                 i18nKey={'zimbra_account_delete_modal_content_step2'}
@@ -133,11 +134,11 @@ export const DeleteEmailAccountModal = () => {
                   email: data?.currentState.email,
                 }}
               />
-            </OdsText>
+            </Text>
             <OdsMessage className="mt-4" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
+              <Text preset={TEXT_PRESET.paragraph} className="font-bold">
                 {t('zimbra_account_delete_modal_warn_message')}
-              </OdsText>
+              </Text>
             </OdsMessage>
           </>
         )}

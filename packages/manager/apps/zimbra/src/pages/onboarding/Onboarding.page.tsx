@@ -2,8 +2,6 @@ import React, { useContext, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
@@ -12,6 +10,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Text } from '@ovh-ux/muk';
 
 import {
   ZIMBRA_ADMINISTRATOR_GUIDE,
@@ -79,7 +78,7 @@ export const Onboarding = () => {
     <OnboardingLayout
       title={t('title')}
       img={{ src: onboardingImgSrc }}
-      description={<OdsText className="text-center">{t('description')}</OdsText>}
+      description={<Text className="text-center">{t('description')}</Text>}
       orderButtonLabel={t('orderButtonLabel')}
       onOrderButtonClick={onOrderButtonClick}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}

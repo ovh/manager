@@ -13,7 +13,6 @@ import {
   ODS_DATEPICKER_LOCALE,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
   OdsButton,
@@ -23,7 +22,6 @@ import {
   OdsInput,
   OdsRadio,
   OdsSelect,
-  OdsText,
   OdsTextarea,
 } from '@ovhcloud/ods-components/react';
 
@@ -43,6 +41,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { useAccount, useAccounts, useDomains } from '@/data/hooks';
@@ -126,9 +125,7 @@ export const AddAutoReply = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_auto_replies_add_success_message')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_auto_replies_add_success_message')}</Text>,
         true,
       );
     },
@@ -138,11 +135,11 @@ export const AddAutoReply = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_error_message', {
             error: error.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -245,15 +242,15 @@ export const AddAutoReply = () => {
       />
       <Subtitle>{t('common:add_auto_reply')}</Subtitle>
       {accountId && account && !isLoadingAccount && (
-        <OdsText data-testid="create-for-account" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text data-testid="create-for-account" preset={TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_header_create_for_account')}
           <b> {account.currentState?.email}</b>
-        </OdsText>
+        </Text>
       )}
-      <OdsText data-testid="page-header" preset={ODS_TEXT_PRESET.paragraph}>
+      <Text data-testid="page-header" preset={TEXT_PRESET.paragraph}>
         {t('zimbra_auto_replies_add_header')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
+      </Text>
+      <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
       {!accountId && (
         <Controller
           control={control}
@@ -338,7 +335,7 @@ export const AddAutoReply = () => {
                   data-testid={value}
                   className="cursor-pointer"
                 ></OdsRadio>
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(key)}</OdsText>
+                <Text preset={TEXT_PRESET.paragraph}>{t(key)}</Text>
               </div>
             ))}
           </OdsFormField>
@@ -412,9 +409,9 @@ export const AddAutoReply = () => {
                 onClick={() => onChange(!value)}
               ></OdsCheckbox>
               <label htmlFor={name}>
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                <Text preset={TEXT_PRESET.paragraph}>
                   {t('zimbra_auto_replies_add_send_copy_label')}
-                </OdsText>
+                </Text>
               </label>
             </div>
           </OdsFormField>
@@ -475,9 +472,7 @@ export const AddAutoReply = () => {
                 isResizable
               ></OdsTextarea>
             </OdsFormField>
-            <OdsText preset={ODS_TEXT_PRESET.caption}>
-              {t('zimbra_auto_replies_add_message_helper')}
-            </OdsText>
+            <Text preset={TEXT_PRESET.caption}>{t('zimbra_auto_replies_add_message_helper')}</Text>
           </div>
         )}
       />

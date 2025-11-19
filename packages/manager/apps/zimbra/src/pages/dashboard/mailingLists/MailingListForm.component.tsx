@@ -13,7 +13,6 @@ import {
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
   OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
@@ -24,7 +23,6 @@ import {
   OdsMessage,
   OdsRadio,
   OdsSelect,
-  OdsText,
   OdsToggle,
 } from '@ovhcloud/ods-components/react';
 
@@ -37,7 +35,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -144,13 +142,13 @@ export const MailingListForm = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(
             mailingListId
               ? 'zimbra_mailinglist_edit_success_message'
               : 'zimbra_mailinglist_add_success_message',
           )}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -160,7 +158,7 @@ export const MailingListForm = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(
             mailingListId
               ? 'zimbra_mailinglist_edit_error_message'
@@ -169,7 +167,7 @@ export const MailingListForm = () => {
               error: error.response?.data?.message,
             },
           )}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -242,10 +240,10 @@ export const MailingListForm = () => {
       onSubmit={handleSubmit(handleSavelick)}
       className="w-full md:w-3/4 flex flex-col space-y-5"
     >
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         {!mailingListId ? t('zimbra_mailinglist_add_header') : t('zimbra_mailinglist_edit_header')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
+      </Text>
+      <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
       <Controller
         control={control}
         name="account"
@@ -314,11 +312,11 @@ export const MailingListForm = () => {
       />
       {selectedDomainOrganization && !organizationId && (
         <OdsMessage color={ODS_MESSAGE_COLOR.information} isDismissible={false}>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset={TEXT_PRESET.paragraph}>
             {t('zimbra_mailinglist_add_message_organization', {
               organization: selectedDomainOrganization,
             })}
-          </OdsText>
+          </Text>
         </OdsMessage>
       )}
       <Controller
@@ -364,7 +362,7 @@ export const MailingListForm = () => {
                     data-testid={`radio-reply-to-${choice.value}`}
                   ></OdsRadio>
                   <label htmlFor={choice.value} className="flex flex-col cursor-pointer">
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
+                    <Text preset={TEXT_PRESET.paragraph}>{t(choice.key)}</Text>
                   </label>
                 </div>
               ))}
@@ -420,7 +418,7 @@ export const MailingListForm = () => {
                     data-testid={`radio-moderation-option-${choice.value}`}
                   ></OdsRadio>
                   <label htmlFor={choice.value} className="flex flex-col cursor-pointer">
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
+                    <Text preset={TEXT_PRESET.paragraph}>{t(choice.key)}</Text>
                   </label>
                 </div>
               ))}
@@ -437,25 +435,25 @@ export const MailingListForm = () => {
                       name={field.name}
                     ></OdsToggle>
                     <div className="flex flex-col ml-4 w-full">
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <Text preset={TEXT_PRESET.paragraph}>
                         {t('zimbra_mailinglist_add_subscriber_moderation')}
                         <Tooltip>
-                          <TooltipTrigger>
+                          <TooltipTrigger asChild>
                             <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleInfo} />
                           </TooltipTrigger>
                           <TooltipContent>
-                            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                            <Text preset={TEXT_PRESET.paragraph}>
                               {t('zimbra_mailinglist_add_subscriber_moderation_tooltip')}
-                            </OdsText>
+                            </Text>
                           </TooltipContent>
                         </Tooltip>
-                      </OdsText>
+                      </Text>
 
-                      <OdsText preset={ODS_TEXT_PRESET.caption}>
+                      <Text preset={TEXT_PRESET.caption}>
                         {t('zimbra_mailinglist_add_subscriber_moderation_info', {
                           max: 250,
                         })}
-                      </OdsText>
+                      </Text>
                     </div>
                   </div>
                 )}

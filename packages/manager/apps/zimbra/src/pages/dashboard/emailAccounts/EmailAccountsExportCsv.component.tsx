@@ -10,13 +10,13 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_LINK_ICON_ALIGNMENT,
-  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerButton, useBytes, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { AccountType } from '@/data/api';
 import { SlotWithService, useAccounts, usePlatform, useSlotsWithService } from '@/data/hooks';
@@ -292,11 +292,11 @@ export const EmailAccountsExportCsv = () => {
       setIsCSVLoading(false);
     } catch (err) {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:export_error', {
             error: err,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     }

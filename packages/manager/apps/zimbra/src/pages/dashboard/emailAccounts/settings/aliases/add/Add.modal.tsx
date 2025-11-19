@@ -8,13 +8,8 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import {
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput, OdsSelect } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -25,6 +20,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -82,9 +78,7 @@ export const AddAliasModal = () => {
         pageName: EMAIL_ACCOUNT_ADD_ALIAS,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_account_alias_add_success_message')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_account_alias_add_success_message')}</Text>,
         true,
       );
     },
@@ -94,11 +88,11 @@ export const AddAliasModal = () => {
         pageName: EMAIL_ACCOUNT_ADD_ALIAS,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_add_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -165,7 +159,7 @@ export const AddAliasModal = () => {
       onSecondaryButtonClick={handleCancelClick}
     >
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleConfirmClick)}>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           <Trans
             t={t}
             i18nKey={'zimbra_account_alias_add_description'}
@@ -173,7 +167,7 @@ export const AddAliasModal = () => {
               account: target?.currentState?.email,
             }}
           />
-        </OdsText>
+        </Text>
         <Controller
           control={control}
           name="account"
@@ -237,14 +231,14 @@ export const AddAliasModal = () => {
             </OdsFormField>
           )}
         />
-        <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
+        <Text preset={TEXT_PRESET.caption} className="flex flex-col">
           <span className="block">{t('common:form_email_helper')}</span>
           {[1, 2, 3].map((elm) => (
             <span key={elm} className="block">
               - {t(`common:form_email_helper_rule_${elm}`)}
             </span>
           ))}
-        </OdsText>
+        </Text>
       </form>
     </Modal>
   );

@@ -4,18 +4,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsCard } from '@ovhcloud/ods-components/react';
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsQuantity,
-  OdsRadio,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsCheckbox, OdsFormField, OdsQuantity, OdsRadio } from '@ovhcloud/ods-components/react';
 
 import { IntervalUnitType, Order, Price } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { ZimbraPlanCodes, generateOrderURL, order } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -120,9 +114,7 @@ const OrderCatalogForm = ({
             onCancel={goBack}
             isValid={isDirty && isValid}
           >
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('zimbra_account_order_subtitle')}
-            </OdsText>
+            <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_account_order_subtitle')}</Text>
             <div className="flex flex-col gap-6">
               {plans.map((plan) => (
                 <OdsCard
@@ -130,9 +122,9 @@ const OrderCatalogForm = ({
                   color="neutral"
                   className="flex justify-between items-center p-6 max-w-3xl"
                 >
-                  <OdsText className="font-bold" preset={ODS_TEXT_PRESET.heading6}>
+                  <Text className="font-bold" preset={TEXT_PRESET.heading6}>
                     {plan?.invoiceName}
-                  </OdsText>
+                  </Text>
                   <Controller
                     control={control}
                     name={
@@ -174,9 +166,9 @@ const OrderCatalogForm = ({
               render={({ field: { name, value, onChange } }) => (
                 <OdsFormField error={errors?.[name]?.message}>
                   <label htmlFor={name} slot="label">
-                    <OdsText preset={ODS_TEXT_PRESET.heading4}>
+                    <Text preset={TEXT_PRESET.heading4}>
                       {t('zimbra_account_order_subtitle_commitment')}
-                    </OdsText>
+                    </Text>
                   </label>
                   <div className="flex flex-col gap-4">
                     <div className="flex leading-none gap-4">
@@ -189,9 +181,9 @@ const OrderCatalogForm = ({
                         onClick={() => onChange('1')}
                       ></OdsRadio>
                       <label htmlFor="1-month" className="cursor-pointer">
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        <Text preset={TEXT_PRESET.paragraph}>
                           {`1 ${t('zimbra_account_order_commitment_month')}`}
-                        </OdsText>
+                        </Text>
                       </label>
                     </div>
                     <div className="flex leading-none gap-4">
@@ -205,12 +197,12 @@ const OrderCatalogForm = ({
                         onClick={() => onChange('12')}
                       ></OdsRadio>
                       <label htmlFor="12-month" className="flex flex-col cursor-pointer">
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        <Text preset={TEXT_PRESET.paragraph}>
                           {`12 ${t('zimbra_account_order_commitment_months')}`}
-                        </OdsText>
-                        <OdsText preset={ODS_TEXT_PRESET.caption}>
+                        </Text>
+                        <Text preset={TEXT_PRESET.caption}>
                           {t('zimbra_account_order_commitment_available_soon')}
-                        </OdsText>
+                        </Text>
                       </label>
                     </div>
                   </div>
@@ -233,9 +225,9 @@ const OrderCatalogForm = ({
                       onClick={() => onChange(!value)}
                     ></OdsCheckbox>
                     <label className="cursor-pointer" htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph} className="max-w-3xl">
+                      <Text preset={TEXT_PRESET.paragraph} className="max-w-3xl">
                         <Trans t={t} i18nKey={'zimbra_account_order_legal_checkbox'} />
-                      </OdsText>
+                      </Text>
                     </label>
                   </div>
                 </OdsFormField>

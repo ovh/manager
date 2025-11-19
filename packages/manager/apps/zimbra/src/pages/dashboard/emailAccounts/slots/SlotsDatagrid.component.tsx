@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import {
   Datagrid,
@@ -11,6 +10,7 @@ import {
   useBytes,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { BillingStateBadge } from '@/components';
 import { getOfferDefaultQuota } from '@/data/api';
@@ -45,16 +45,16 @@ export const SlotsDatagrid = () => {
     () => [
       {
         id: 'offer',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>,
+        cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.offer}</Text>,
         label: 'zimbra_account_datagrid_offer_label',
       },
       {
         id: 'quota',
         cell: (item) => {
           return (
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <Text preset={TEXT_PRESET.paragraph}>
               {formatBytes(getOfferDefaultQuota(item.offer), 0, 1024)}
-            </OdsText>
+            </Text>
           );
         },
         label: 'zimbra_account_datagrid_quota',

@@ -2,13 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_LINK_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
+
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { TaskStatus, TaskType } from '@/data/api';
@@ -38,7 +35,7 @@ export const OngoingTasks: React.FC = () => {
         <ul className="pl-9 flex flex-col gap-3">
           {tasks?.map((task) => (
             <li key={task.id}>
-              <OdsText preset={ODS_TEXT_PRESET.span}>{task.message}</OdsText>
+              <Text preset={TEXT_PRESET.span}>{task.message}</Text>
             </li>
           ))}
         </ul>
@@ -61,9 +58,9 @@ export const OngoingTasks: React.FC = () => {
         ></OdsLink>
       )}
       {(!tasks?.length || isError) && !isPending && (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_dashboard_tile_status_ongoingTask_none')}
-        </OdsText>
+        </Text>
       )}
       {isPending && <Loading size={ODS_SPINNER_SIZE.xs} />}
     </div>

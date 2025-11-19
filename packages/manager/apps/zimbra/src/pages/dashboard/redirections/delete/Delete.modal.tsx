@@ -5,8 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -17,6 +16,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import {
@@ -48,9 +48,9 @@ export const DeleteOrganizationModal = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_redirections_delete_success_message')}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -60,11 +60,11 @@ export const DeleteOrganizationModal = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_redirections_delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -112,23 +112,19 @@ export const DeleteOrganizationModal = () => {
       secondaryButtonTestId="cancel-btn"
     >
       <>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
-          className="mt-5 mb-5"
-          data-testid="modal-content"
-        >
+        <Text preset={TEXT_PRESET.paragraph} className="mt-5 mb-5" data-testid="modal-content">
           {t('zimbra_redirections_delete_modal_content')}
-        </OdsText>
+        </Text>
 
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
+        <Text preset={TEXT_PRESET.paragraph} className="font-bold">
           {t('zimbra_redirections_from')}
           {' :'}
-        </OdsText>
+        </Text>
 
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
+        <Text preset={TEXT_PRESET.paragraph} className="font-bold">
           {t('zimbra_redirections_to')}
           {' :'}
-        </OdsText>
+        </Text>
       </>
     </Modal>
   );

@@ -7,19 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsInput,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsCheckbox, OdsFormField, OdsInput, OdsSelect } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -30,6 +19,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { useAccount, useDomains } from '@/data/hooks';
@@ -114,9 +104,7 @@ export const AddEditOrganizationModal = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_redirections_add_success_message')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_redirections_add_success_message')}</Text>,
         true,
       );
     },
@@ -126,11 +114,11 @@ export const AddEditOrganizationModal = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_redirections_add_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -187,10 +175,8 @@ export const AddEditOrganizationModal = () => {
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(handleConfirmClick)}
       >
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('zimbra_redirections_add_header')}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-        </OdsText>
+        <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_redirections_add_header')}</Text>
+        <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
         <Controller
           control={control}
           name="account"
@@ -301,9 +287,9 @@ export const AddEditOrganizationModal = () => {
                   onClick={() => onChange(!value)}
                 ></OdsCheckbox>
                 <label htmlFor={name}>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                  <Text preset={TEXT_PRESET.paragraph}>
                     {t('zimbra_redirections_add_form_input_checkbox')}
-                  </OdsText>
+                  </Text>
                 </label>
               </div>
             </OdsFormField>

@@ -10,13 +10,20 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  Button,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { useDomains, usePlatform } from '@/data/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -84,29 +91,30 @@ export const DatagridTopbar = () => {
   return (
     <div className="flex gap-6">
       <Tooltip>
-        <TooltipTrigger>
-          <ManagerButton
+        <TooltipTrigger asChild>
+          <Button
             id="add-account-btn"
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+            color={BUTTON_COLOR.primary}
+            size={BUTTON_SIZE.sm}
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.account.create]}
             onClick={handleAddEmailAccountClick}
             data-testid="add-account-btn"
             icon={ODS_ICON_NAME.plus}
-            label={t('zimbra_account_account_add')}
             isDisabled={!canCreateAccount}
-          />
+          >
+            {t('zimbra_account_account_add')}
+          </Button>
         </TooltipTrigger>
-        {!canCreateAccount && (
-          <TooltipContent>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        {canCreateAccount && (
+          <TooltipContent withArrow>
+            <Text preset={TEXT_PRESET.paragraph}>
               {t(
                 domains?.length
                   ? 'zimbra_account_tooltip_need_slot'
                   : 'zimbra_account_tooltip_need_domain',
               )}
-            </OdsText>
+            </Text>
           </TooltipContent>
         )}
       </Tooltip>

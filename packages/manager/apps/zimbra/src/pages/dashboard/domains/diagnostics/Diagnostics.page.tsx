@@ -10,10 +10,11 @@ import {
   ODS_LINK_COLOR,
   ODS_MESSAGE_COLOR,
 } from '@ovhcloud/ods-components';
-import { OdsButton, OdsIcon, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsIcon, OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { IconLinkAlignmentType, LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import {
   Loading,
@@ -199,11 +200,11 @@ export const DomainDiagnostics = () => {
         }}
         label={t('zimbra_domain_diagnostic_cta_back')}
       />
-      <OdsText preset="heading-3">
+      <Text preset={TEXT_PRESET.heading3}>
         {t('zimbra_domain_diagnostic_subtitle', {
           domain: domain?.domainName,
         })}
-      </OdsText>
+      </Text>
       <div className="mt-6">
         <OdsButton
           data-testid="refresh"

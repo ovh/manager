@@ -4,17 +4,12 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { BadgeStatus, IdLink, LabelChip } from '@/components';
 import { useOrganizations, usePlatform } from '@/data/hooks';
@@ -41,9 +36,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
   },
   {
     id: 'account',
-    cell: (item: OrganizationItem) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>
-    ),
+    cell: (item: OrganizationItem) => <Text preset={TEXT_PRESET.paragraph}>{item.account}</Text>,
     label: 'zimbra_organization_account_number',
   },
   {

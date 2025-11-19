@@ -7,8 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OdsButton, OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -19,6 +19,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -71,11 +72,11 @@ export const ConfigureOrganization: React.FC = () => {
         pageName: ONBOARDING_CONFIGURE_ORGANIZATION,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('organizations/form:zimbra_organization_add_error_message', {
             error: error.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -106,13 +107,13 @@ export const ConfigureOrganization: React.FC = () => {
       className="flex flex-col gap-4 w-full md:w-1/2"
       onSubmit={handleSubmit(handleConfirmClick)}
     >
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('common:add_organization')}</OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.heading4}>{t('common:add_organization')}</Text>
+      <Text preset={TEXT_PRESET.paragraph}>
         {t('organizations/form:zimbra_organization_add_modal_content_part1')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      </Text>
+      <Text preset={TEXT_PRESET.paragraph}>
         {t('organizations/form:zimbra_organization_add_modal_content_part2')}
-      </OdsText>
+      </Text>
       <Controller
         control={control}
         name="name"

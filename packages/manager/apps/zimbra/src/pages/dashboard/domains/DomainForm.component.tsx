@@ -13,7 +13,6 @@ import {
   ODS_LINK_COLOR,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
   OdsRadioChangeEventDetail,
   OdsRadioCustomEvent,
 } from '@ovhcloud/ods-components';
@@ -25,13 +24,13 @@ import {
   OdsMessage,
   OdsRadio,
   OdsSelect,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { IconLinkAlignmentType, LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -287,9 +286,9 @@ export const DomainForm = ({
               onOdsChange={(value) => handleDomainTypeChange(value)}
             ></OdsRadio>
             <label htmlFor={DomainOwnership.OVH}>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              <Text preset={TEXT_PRESET.paragraph}>
                 {t('zimbra_domains_add_domain_select_title')}
-              </OdsText>
+              </Text>
             </label>
           </div>
           <div className="flex leading-none gap-4">
@@ -301,9 +300,9 @@ export const DomainForm = ({
               onOdsChange={(value) => handleDomainTypeChange(value)}
             ></OdsRadio>
             <label htmlFor={DomainOwnership.EXTERNAL}>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              <Text preset={TEXT_PRESET.paragraph}>
                 {t('zimbra_domains_add_domain_input_title')}
-              </OdsText>
+              </Text>
             </label>
           </div>
         </OdsFormField>
@@ -370,9 +369,9 @@ export const DomainForm = ({
             <label htmlFor="form-field-input" slot="label">
               {t('common:configuration')}
             </label>
-            <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+            <Text className="mb-4" preset={TEXT_PRESET.paragraph}>
               {t('zimbra_domains_add_domain_configuration_description')}
-            </OdsText>
+            </Text>
             {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
               <div key={type} className="flex leading-none gap-4">
                 <OdsRadio
@@ -385,25 +384,25 @@ export const DomainForm = ({
                   data-testid={`radio-config-${type}`}
                 ></OdsRadio>
                 <label htmlFor={type} className="flex flex-col w-full">
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                  <Text preset={TEXT_PRESET.paragraph}>
                     {t(`zimbra_domains_add_domain_configuration_choice_${type}`)}
-                  </OdsText>
-                  <OdsText preset={ODS_TEXT_PRESET.caption}>
+                  </Text>
+                  <Text preset={TEXT_PRESET.caption}>
                     {t(`zimbra_domains_add_domain_configuration_choice_${type}_info`)}
-                  </OdsText>
+                  </Text>
                 </label>
               </div>
             ))}
           </OdsFormField>
           {isExpertConf ? (
             <OdsFormField className="w-full space-y-4">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              <Text preset={TEXT_PRESET.paragraph}>
                 <Trans
                   t={t}
                   i18nKey="zimbra_domains_add_domain_configuration_expert_title"
                   values={{ domain: formValues.name }}
                 />
-              </OdsText>
+              </Text>
               <Controller
                 control={control}
                 name="autoConfigureAutodiscover"
@@ -417,9 +416,9 @@ export const DomainForm = ({
                       onOdsChange={() => onChange(!value)}
                     ></OdsCheckbox>
                     <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <Text preset={TEXT_PRESET.paragraph}>
                         {t('zimbra_domains_add_domain_configuration_expert_configure_srv')}
-                      </OdsText>
+                      </Text>
                     </label>
                   </div>
                 )}
@@ -437,9 +436,9 @@ export const DomainForm = ({
                       onOdsChange={() => onChange(!value)}
                     ></OdsCheckbox>
                     <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <Text preset={TEXT_PRESET.paragraph}>
                         {t('zimbra_domains_add_domain_configuration_expert_configure_mx')}
-                      </OdsText>
+                      </Text>
                     </label>
                   </div>
                 )}
@@ -457,9 +456,9 @@ export const DomainForm = ({
                       onOdsChange={() => onChange(!value)}
                     ></OdsCheckbox>
                     <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <Text preset={TEXT_PRESET.paragraph}>
                         {t('zimbra_domains_add_domain_configuration_expert_configure_spf')}
-                      </OdsText>
+                      </Text>
                     </label>
                   </div>
                 )}
@@ -477,9 +476,9 @@ export const DomainForm = ({
                       onOdsChange={() => onChange(!value)}
                     ></OdsCheckbox>
                     <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <Text preset={TEXT_PRESET.paragraph}>
                         {t('zimbra_domains_add_domain_configuration_expert_configure_dkim')}
-                      </OdsText>
+                      </Text>
                     </label>
                   </div>
                 )}

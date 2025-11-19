@@ -2,16 +2,18 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BADGE_COLOR,
-  ODS_BADGE_ICON_ALIGNMENT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsBadge, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_BADGE_ICON_ALIGNMENT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { useFormatDate } from '@ovh-ux/manager-react-components';
-import { TOOLTIP_POSITION, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  TEXT_PRESET,
+  TOOLTIP_POSITION,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { ServiceBillingState, SlotService } from '@/data/api';
 
@@ -78,7 +80,7 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
 
   return (
     <Tooltip position={TOOLTIP_POSITION.bottom}>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <OdsBadge
           data-testid={props['data-testid']}
           color={color}
@@ -90,13 +92,11 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
       {BILLING_STATE_TOOLTIP[service.state] && (
         <TooltipContent withArrow>
           <div className="flex flex-col text-center gap-4">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(BILLING_STATE_TOOLTIP[service.state])}
-            </OdsText>
+            <Text preset={TEXT_PRESET.paragraph}>{t(BILLING_STATE_TOOLTIP[service.state])}</Text>
 
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <Text preset={TEXT_PRESET.paragraph}>
               {format({ date: service?.nextBillingDate, format: 'P' })}
-            </OdsText>
+            </Text>
           </div>
         </TooltipContent>
       )}

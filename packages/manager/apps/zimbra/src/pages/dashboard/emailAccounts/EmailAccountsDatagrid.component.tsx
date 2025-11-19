@@ -2,11 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, DatagridColumn, useBytes } from '@ovh-ux/manager-react-components';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { AccountStatusBadge, BillingStateBadge, LabelChip } from '@/components';
 import { AccountType, ResourceStatus, getZimbraPlatformListQueryKey } from '@/data/api';
@@ -88,7 +86,7 @@ export const EmailAccountsDatagrid = () => {
     () => [
       {
         id: 'email_account',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>,
+        cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.email}</Text>,
         label: 'common:email_account',
         isSearchable: true,
       },
@@ -99,15 +97,13 @@ export const EmailAccountsDatagrid = () => {
       },
       {
         id: 'offer',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>,
+        cell: (item) => <Text preset={TEXT_PRESET.paragraph}>{item.offer}</Text>,
         label: 'zimbra_account_datagrid_offer_label',
       },
       {
         id: 'quota',
         cell: (item) => (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {formatBytes(item.available, 0, 1024)}
-          </OdsText>
+          <Text preset={TEXT_PRESET.paragraph}>{formatBytes(item.available, 0, 1024)}</Text>
         ),
         label: 'zimbra_account_datagrid_quota',
       },
