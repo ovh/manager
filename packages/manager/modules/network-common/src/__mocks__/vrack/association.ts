@@ -16,7 +16,9 @@ export const getAllowedServicesResponseMocks = (
   dedicatedServer: null,
   dedicatedConnect: null,
   ovhCloudConnect: null,
-  vrackServices: vrackServicesListMocks.map(({ id }) => id).slice(0, nbEligibleVrackServices),
+  vrackServices: vrackServicesListMocks
+    .map(({ id }) => id)
+    .slice(0, nbEligibleVrackServices),
 });
 
 export const getAssociationResponseMocks = async (

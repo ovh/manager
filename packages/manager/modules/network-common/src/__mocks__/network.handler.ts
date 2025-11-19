@@ -61,6 +61,3 @@ export const getNetworkConfig = ({
         },
       }),
     );
-
-export * from './vrack-services';
-export * from './vrack';

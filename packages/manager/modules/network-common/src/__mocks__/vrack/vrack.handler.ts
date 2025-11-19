@@ -79,6 +79,3 @@ export const getVrackMocks = ({
     status: getVrackKo ? 400 : 200,
   },
 ];
-
-export * from './association';
-export * from './vrack';
