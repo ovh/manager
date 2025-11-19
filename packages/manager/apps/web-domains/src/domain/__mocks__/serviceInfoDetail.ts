@@ -5,6 +5,7 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { AdditionalDomainStateEnum } from '../enum/domainState.enum';
+import { StatusEnum } from '@/domain/enum/Status.enum';
 
 export const domainResourceOK: TDomainResource = {
   checksum: 'example-checksum',
@@ -27,6 +28,19 @@ export const domainResourceOK: TDomainResource = {
         },
       ],
       dnssecSupported: true,
+    },
+    hostsConfiguration: {
+      ipv4Supported: true,
+      ipv6Supported: true,
+      multipleIPsSupported: true,
+      hostSupported: true,
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
+        },
+      ],
     },
     extension: '.com',
     mainState: DomainStateEnum.OK,
@@ -76,6 +90,19 @@ export const serviceInfoDetail: TDomainResource = {
       ],
       configurationType: DnsConfigurationTypeEnum.HOSTING,
     },
+    hostsConfiguration: {
+      ipv4Supported: true,
+      ipv6Supported: true,
+      multipleIPsSupported: true,
+      hostSupported: true,
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
+        },
+      ],
+    },
     contactsConfiguration: {
       contactOwner: { id: 'owner-id' },
       contactAdministrator: { id: 'admin-id' },
@@ -92,6 +119,15 @@ export const serviceInfoDetail: TDomainResource = {
         },
         {
           nameServer: 'dns103.ovh.net',
+        },
+      ],
+    },
+    hostsConfiguration: {
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
         },
       ],
     },

@@ -13,6 +13,7 @@ import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
 import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
+import { THost, THostsconfiguration } from './host';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -66,6 +67,7 @@ export interface TDomainResource {
     protectionState: ProtectionStateEnum;
     suspensionState: SuspensionStateEnum;
     contactsConfiguration: TContactsConfiguration;
+    hostsConfiguration: THostsconfiguration;
     createdAt: string;
   };
   currentTasks: Task[];
@@ -75,6 +77,9 @@ export interface TDomainResource {
   targetSpec?: {
     dnsConfiguration?: {
       nameServers: TNameServer[];
+    };
+    hostsConfiguration?: {
+      hosts: THost[];
     };
   };
 }
