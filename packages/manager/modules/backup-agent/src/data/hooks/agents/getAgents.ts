@@ -1,6 +1,5 @@
 import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
 import { mockAgents } from '@/mocks/agents/agents';
-import { mockVaults } from '@/mocks/vaults/vaults';
 
 // Remove during unmocking
 export const BACKUP_AGENTS_LIST_QUERY_KEY = (tenantId: string) => [

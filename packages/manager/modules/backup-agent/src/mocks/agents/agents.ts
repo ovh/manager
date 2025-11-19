@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Agent } from '@/types/Agent.type';
 import { Resource } from '@/types/Resource.type';
 

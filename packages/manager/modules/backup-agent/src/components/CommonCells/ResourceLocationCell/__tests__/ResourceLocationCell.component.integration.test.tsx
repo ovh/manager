@@ -5,7 +5,7 @@ import { mockVaults } from '@/mocks/vaults/vaults';
 import { setupMswMock } from '@/test-utils/setupMsw';
 import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 
-import { ResourceLocationCell } from '../ResourceLocationCell.components';
+import { ResourceLocationCell } from '../ResourceLocationCell.component';
 
 describe('ResourceLocationCell', () => {
   it('renders locations sended by the server', async () => {

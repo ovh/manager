@@ -6,13 +6,13 @@ import { describe, expect, it, vi } from 'vitest';
 import { mockVaults } from '@/mocks/vaults/vaults';
 import { ResourceStatus } from '@/types/Resource.type';
 
-import { ResourceStatusCell } from '../ResourceStatusCell.components';
+import { ResourceStatusCell } from '../ResourceStatusCell.component';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
 }));
 
-vi.mock('@/components/ResourceStatusBadge/ResourceStatusBadge.components', () => ({
+vi.mock('@/components/ResourceStatusBadge/ResourceStatusBadge.component', () => ({
   ResourceStatusBadge: ({ resourceStatus }: { resourceStatus: ResourceStatus }) => (
     <span data-testid="badge">{resourceStatus}</span>
   ),
