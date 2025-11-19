@@ -32,7 +32,7 @@ const CreateCredentialIdentityGroupList = () => {
       <OdsText preset={ODS_TEXT_PRESET.heading3}>
         {t('key_management_service_credentials_identity_modal_group_list_headline')}
       </OdsText>
-      <div className="mt-4 max-h-[400px] h-full overflow-y-auto">
+      <div className="mt-4 h-full max-h-[400px] overflow-y-auto">
         {isLoading ? (
           <div className="flex justify-center">
             <OdsSpinner size={ODS_SPINNER_SIZE.md} />

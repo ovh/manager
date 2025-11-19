@@ -152,7 +152,7 @@ const CredentialGeneralInformations = () => {
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 break-words">
+    <div className="grid grid-cols-1 gap-4 break-words md:grid-cols-2 md:gap-6 lg:grid-cols-3">
       <DashboardTile
         title={t('key_management_service_credential_dashboard_tile_general_informations')}
         items={items}

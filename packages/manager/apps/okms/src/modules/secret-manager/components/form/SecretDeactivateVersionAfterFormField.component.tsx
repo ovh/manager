@@ -20,7 +20,7 @@ export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>(
 
   return (
     <OdsFormField error={fieldState.error?.message}>
-      <label slot="label" className="flex items-center gap-2 relative mb-1">
+      <label slot="label" className="relative mb-1 flex items-center gap-2">
         {t('deactivate_version_after')}
         <HelpIconWithTooltip label={t('form_tooltip_deactivate_version_after')} />
       </label>

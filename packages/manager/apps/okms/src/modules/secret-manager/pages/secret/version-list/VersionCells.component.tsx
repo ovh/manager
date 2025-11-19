@@ -31,7 +31,7 @@ export const VersionIdCell = ({ version, secret }: { version: SecretVersion; sec
   const isCurrentVersion = version.id === secret?.metadata?.currentVersion;
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex items-center gap-2">
       <ManagerLink
         label={version.id.toString()}
         href={null}

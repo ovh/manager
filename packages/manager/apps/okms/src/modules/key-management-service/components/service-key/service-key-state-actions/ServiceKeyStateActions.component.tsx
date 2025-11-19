@@ -40,7 +40,7 @@ const ServiceKeyStateActions = ({ okms, okmsKey }: ServiceKeyStateActionsProps) 
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex flex-col max-w-fit justify-start gap-3 mt-2">
+    <div className="mt-2 flex max-w-fit flex-col justify-start gap-3">
       {okmsKey?.type !== OkmsKeyTypes.oct && (
         <OdsLink
           className="block pl-1"

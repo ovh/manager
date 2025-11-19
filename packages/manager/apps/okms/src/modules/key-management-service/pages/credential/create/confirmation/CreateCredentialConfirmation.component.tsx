@@ -23,7 +23,7 @@ const CreateCredentialConfirmation = ({ okmsCredential }: CreateCredentialConfir
   const navigate = useNavigate();
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:gap-6 max-w-screen-lg">
+    <div className="grid max-w-screen-lg grid-cols-1 gap-4 md:gap-6">
       <CreateCredentialConfirmationDetails okmsCredential={okmsCredential} />
       <CreateCredentialConfirmationPrivateKey
         privateKey={okmsCredential.privateKeyPEM}

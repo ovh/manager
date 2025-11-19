@@ -37,7 +37,7 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
     <ManagerTile.Item>
       <ManagerTile.Item.Label>{t('display_name')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
-        <div className="flex justify-between items-center gap-2">
+        <div className="flex items-center justify-between gap-2">
           <OdsText preset="span" className="break-all">
             {okms.iam.displayName}
           </OdsText>

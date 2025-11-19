@@ -43,7 +43,7 @@ const CreateGeneralInformationsCreationMethod = ({
   return (
     <>
       <OdsFormField>
-        <div slot="label" className="space-y-2 mb-2">
+        <div slot="label" className="mb-2 space-y-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
             {t('key_management_service_credential_create_general_creation_method_title')}
           </OdsText>
@@ -114,7 +114,7 @@ const CreateGeneralInformationsCreationMethod = ({
       </OdsFormField>
       {isCustomCsr ? (
         <OdsFormField error={getCreationMethodErrorMessage(credentialCreationMethodError)}>
-          <div slot="label" className="space-y-2 mb-2">
+          <div slot="label" className="mb-2 space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
               {t('key_management_service_credential_create_general_information_csr_title')}
             </OdsText>
@@ -146,7 +146,7 @@ const CreateGeneralInformationsCreationMethod = ({
               )}
             </OdsText>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <OdsRadio
               inputId="certificateTypeECDSA"
               id="certificateTypeECDSA"
@@ -166,7 +166,7 @@ const CreateGeneralInformationsCreationMethod = ({
               </OdsText>
             </label>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <OdsRadio
               inputId="certificateTypeRSA"
               id="certificateTypeRSA"
