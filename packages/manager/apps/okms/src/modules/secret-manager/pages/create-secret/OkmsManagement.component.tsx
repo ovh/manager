@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
+
 import { useSearchParams } from 'react-router-dom';
+
+import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
-import {
-  OdsMessage,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
-import { OkmsSelector } from './OkmsSelector.component';
+import { useTranslation } from 'react-i18next';
+
+import { OdsMessage, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
 import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
+
+import { OkmsSelector } from './OkmsSelector.component';
 
 type OkmsManagementProps = {
   selectedOkmsId: string;
   setSelectedOkmsId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const OkmsManagement = ({
-  selectedOkmsId,
-  setSelectedOkmsId,
-}: OkmsManagementProps) => {
+export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManagementProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR]);
 
   // Poll for new OKMS and handle the pending order
@@ -35,11 +34,7 @@ export const OkmsManagement = ({
 
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
 
-  const {
-    data: okmsList,
-    error: okmsError,
-    isLoading: isOkmsListLoading,
-  } = useOkmsList();
+  const { data: okmsList, error: okmsError, isLoading: isOkmsListLoading } = useOkmsList();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -50,15 +45,11 @@ export const OkmsManagement = ({
   // -> select the okms
   useEffect(() => {
     // okms from the secret list page
-    const okmsIdSearchParam = searchParams.get(
-      SECRET_MANAGER_SEARCH_PARAMS.okmsId,
-    );
+    const okmsIdSearchParam = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.okmsId);
 
     if (!okmsList || selectedRegion) return;
 
-    const okmsFromSearchParam = okmsList.find(
-      (okms) => okms.id === okmsIdSearchParam,
-    );
+    const okmsFromSearchParam = okmsList.find((okms) => okms.id === okmsIdSearchParam);
 
     if (!okmsFromSearchParam) {
       setSearchParams({});
@@ -71,7 +62,14 @@ export const OkmsManagement = ({
 
     setSelectedRegion(okmsFromSearchParam.region);
     setSelectedOkmsId(okmsIdSearchParam);
-  }, [okmsList, searchParams, selectedRegion, setSearchParams, setSelectedRegion, setSelectedOkmsId]);
+  }, [
+    okmsList,
+    searchParams,
+    selectedRegion,
+    setSearchParams,
+    setSelectedRegion,
+    setSelectedOkmsId,
+  ]);
 
   const handleRegionSelection = (region: string) => {
     setSelectedRegion(region);
@@ -104,13 +102,8 @@ export const OkmsManagement = ({
   return (
     <div className="space-y-10">
       <div className="space-y-5">
-        <OdsText preset="heading-2">
-          {t('create_secret_form_region_section_title')}
-        </OdsText>
-        <RegionPicker
-          selectedRegion={selectedRegion}
-          setSelectedRegion={handleRegionSelection}
-        />
+        <OdsText preset="heading-2">{t('create_secret_form_region_section_title')}</OdsText>
+        <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={handleRegionSelection} />
       </div>
       <OkmsSelector
         okmsList={filterOkmsListByRegion(okmsList, selectedRegion)}

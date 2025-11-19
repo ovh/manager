@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
 import {
   SECRET_MANAGER_ROUTES_URIS,
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
+
+import { OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
 import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
 export const RootBreadcrumbItem = () => {

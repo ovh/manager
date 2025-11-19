@@ -1,11 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsBreadcrumbItem, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import {
   LocationPathParams,
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
 import { isLocationParamsDefined } from '@secret-manager/utils/locationParams';
-import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
+
+import { OdsBreadcrumbItem, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
 const Item = ({ okmsId }: { okmsId: string }) => {

@@ -1,5 +1,5 @@
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
 export default function Loading() {
   return (

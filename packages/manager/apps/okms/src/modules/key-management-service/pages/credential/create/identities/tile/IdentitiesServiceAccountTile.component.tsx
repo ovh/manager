@@ -1,17 +1,18 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import IdentitiesBaseTile from './IdentitiesBaseTile.component';
 import IdentitiesTileText from './IdentitiesTileText.component';
 
 type IdentitiesServiceAccountTileProps = {
   serviceAccount: IdentityOauthClient;
   selectedServiceAccountList: IdentityOauthClient[];
-  setSelectedServiceAccountList: Dispatch<
-    SetStateAction<IdentityOauthClient[]>
-  >;
+  setSelectedServiceAccountList: Dispatch<SetStateAction<IdentityOauthClient[]>>;
 };
 const IdentitiesServiceAccountTile = ({
   serviceAccount,
@@ -24,8 +25,7 @@ const IdentitiesServiceAccountTile = ({
   useEffect(() => {
     if (
       selectedServiceAccountList.some(
-        (serviceAccountInList) =>
-          serviceAccountInList.identity === serviceAccount.identity,
+        (serviceAccountInList) => serviceAccountInList.identity === serviceAccount.identity,
       )
     ) {
       // TODO: This is freaking bad and should be fixed someday
@@ -43,8 +43,7 @@ const IdentitiesServiceAccountTile = ({
     } else {
       setSelectedServiceAccountList((prevServiceAccountList) =>
         prevServiceAccountList.filter(
-          (serviceAccountInList) =>
-            serviceAccountInList.identity !== serviceAccount.identity,
+          (serviceAccountInList) => serviceAccountInList.identity !== serviceAccount.identity,
         ),
       );
     }

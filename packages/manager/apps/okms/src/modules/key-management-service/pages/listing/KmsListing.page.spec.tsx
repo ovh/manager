@@ -1,14 +1,16 @@
-import { screen, waitFor } from '@testing-library/react';
-import {
-  assertTextVisibility,
-  getOdsButtonByLabel,
-  WAIT_FOR_DEFAULT_OPTIONS,
-} from '@ovh-ux/manager-core-test-utils';
-import userEvent from '@testing-library/user-event';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  assertTextVisibility,
+  getOdsButtonByLabel,
+} from '@ovh-ux/manager-core-test-utils';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 describe('KMS listing test suite', () => {
@@ -30,15 +32,11 @@ describe('KMS listing test suite', () => {
 
     await waitFor(
       () =>
-        expect(
-          screen.getByText(labels.listing.key_management_service_listing_title),
-        ).toBeVisible(),
+        expect(screen.getByText(labels.listing.key_management_service_listing_title)).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    expect(
-      screen.queryByText(labels.onboarding.description),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(labels.onboarding.description)).not.toBeInTheDocument();
   });
 
   it('should display the listing table with all columns', async () => {
@@ -46,9 +44,7 @@ describe('KMS listing test suite', () => {
 
     await waitFor(
       () =>
-        expect(
-          screen.getByText(labels.listing.key_management_service_listing_title),
-        ).toBeVisible(),
+        expect(screen.getByText(labels.listing.key_management_service_listing_title)).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
@@ -77,9 +73,7 @@ describe('KMS listing test suite', () => {
 
     await waitFor(() => userEvent.click(button));
 
-    await assertTextVisibility(
-      labels.create.key_management_service_create_title,
-    );
+    await assertTextVisibility(labels.create.key_management_service_create_title);
   });
 
   it('should navigate to a kms dashboard on click on kms name', async () => {
@@ -92,10 +86,7 @@ describe('KMS listing test suite', () => {
     });
 
     await waitFor(() => {
-      expect(dashboardLink).toHaveAttribute(
-        'href',
-        KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id),
-      );
+      expect(dashboardLink).toHaveAttribute('href', KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id));
     });
   });
 });

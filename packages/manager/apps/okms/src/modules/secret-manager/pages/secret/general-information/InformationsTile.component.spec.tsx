@@ -1,11 +1,13 @@
-import { describe, vi } from 'vitest';
-import { screen, render } from '@testing-library/react';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { render, screen } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { InformationsTile } from './InformationsTile.component';
-import { PATH_LABEL, URN_LABEL } from '@/constants';
+import { describe, vi } from 'vitest';
+
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { PATH_LABEL, URN_LABEL } from '@/constants';
+
+import { InformationsTile } from './InformationsTile.component';
 
 let i18nValue: i18n;
 const mockSecret = secretListMock[0];
@@ -52,9 +54,7 @@ describe('Secrets Informations Tile component tests suite', () => {
       expect(screen.getByText(label)).toBeVisible();
     });
 
-    expect(
-      container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`),
-    ).toBeVisible();
+    expect(container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`)).toBeVisible();
 
     expect(mockFormatDate).toHaveBeenCalledWith(mockSecret.metadata.createdAt);
     expect(mockFormatDate).toHaveBeenCalledWith(mockSecret.metadata.updatedAt);

@@ -1,13 +1,15 @@
-import { act, screen } from '@testing-library/react';
-import { vi } from 'vitest';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import userEvent from '@testing-library/user-event';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
+
 import { BillingTile } from './BillingTile.component';
 import { BILLING_TILE_TEST_IDS } from './BillingTile.constants';
-import { useProductType, ProductType } from '@/common/hooks/useProductType';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const okmsMocked = okmsMock[0];
 
@@ -24,9 +26,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
 
   return {
     ...mod,
@@ -37,7 +37,13 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 vi.mock('@ovh-ux/manager-billing-informations', async (original) => ({
   ...(await original()),
   BillingInformationsTileStandard: vi.fn(
-    ({ onResiliateLinkClick, resourceName }: { onResiliateLinkClick: () => void, resourceName: string }) => (
+    ({
+      onResiliateLinkClick,
+      resourceName,
+    }: {
+      onResiliateLinkClick: () => void;
+      resourceName: string;
+    }) => (
       <div
         data-testid={BILLING_TILE_TEST_IDS.billingInformationsTile}
         id={resourceName}
@@ -60,9 +66,7 @@ describe('OKMS Billing Tile test suite', () => {
     },
     {
       productType: 'secret-manager',
-      resiliateLink: SECRET_MANAGER_ROUTES_URLS.okmsTerminateModal(
-        okmsMocked.id,
-      ),
+      resiliateLink: SECRET_MANAGER_ROUTES_URLS.okmsTerminateModal(okmsMocked.id),
     },
   ];
 
@@ -77,9 +81,7 @@ describe('OKMS Billing Tile test suite', () => {
       await renderWithI18n(<BillingTile okms={okmsMocked} />);
 
       // THEN
-      const mockedBillingTile = screen.getByTestId(
-        BILLING_TILE_TEST_IDS.billingInformationsTile,
-      );
+      const mockedBillingTile = screen.getByTestId(BILLING_TILE_TEST_IDS.billingInformationsTile);
       expect(mockedBillingTile).toBeInTheDocument();
       expect(mockedBillingTile).toHaveAttribute('id', okmsMocked.id);
 

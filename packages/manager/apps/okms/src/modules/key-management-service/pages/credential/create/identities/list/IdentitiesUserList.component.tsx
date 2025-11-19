@@ -1,8 +1,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsInput } from '@ovhcloud/ods-components/react';
+
 import { IdentityUser } from '@key-management-service/types/identity.type';
 import identityListSortAndFilter from '@key-management-service/utils/credential/identityListSortAndFilter';
+import { useTranslation } from 'react-i18next';
+
+import { OdsInput } from '@ovhcloud/ods-components/react';
+
 import IdentitiesUserTile from '../tile/IdentitiesUserTile.component';
 
 type IdentitiesUserListProps = {
@@ -17,16 +20,13 @@ const IdentitiesUserList = ({
   setSelectedUserList,
 }: IdentitiesUserListProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const [sortedFilteredUsers, setSortedFilteredUsers] = useState<
-    IdentityUser[]
-  >(identityListSortAndFilter<IdentityUser>(userList, 'login'));
+  const [sortedFilteredUsers, setSortedFilteredUsers] = useState<IdentityUser[]>(
+    identityListSortAndFilter<IdentityUser>(userList, 'login'),
+  );
 
   const filterTerms = (searchTerm: string) => {
     setSortedFilteredUsers(
-      identityListSortAndFilter<IdentityUser>(userList, 'login', searchTerm, [
-        'login',
-        'email',
-      ]),
+      identityListSortAndFilter<IdentityUser>(userList, 'login', searchTerm, ['login', 'email']),
     );
   };
 

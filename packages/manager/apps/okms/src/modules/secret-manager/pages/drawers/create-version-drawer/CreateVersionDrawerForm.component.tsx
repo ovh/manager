@@ -1,20 +1,24 @@
-import z from 'zod';
-import { useTranslation } from 'react-i18next';
-import { useForm, FormProvider } from 'react-hook-form';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { useSecretDataSchema } from '@secret-manager/validation';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SecretVersionDataField, SecretWithData } from '@secret-manager/types/secret.type';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
 import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
-import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
+import { SecretVersionDataField, SecretWithData } from '@secret-manager/types/secret.type';
 import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { useSecretDataSchema } from '@secret-manager/validation';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import z from 'zod';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
+
 import { VersionStatusMessage } from './VersionStatusMessage.component';
 
 type CreateVersionDrawerFormProps = {
@@ -85,8 +89,7 @@ export const CreateVersionDrawerForm = ({
           >
             {createError && (
               <OdsMessage color="danger" className="mb-4">
-                {createError?.response?.data?.message ||
-                  t('add_new_version_error')}
+                {createError?.response?.data?.message || t('add_new_version_error')}
               </OdsMessage>
             )}
             <VersionStatusMessage state={secret.version.state} />

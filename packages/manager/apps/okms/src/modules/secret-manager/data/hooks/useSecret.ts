@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { Secret, SecretWithData } from '@secret-manager/types/secret.type';
+import { useQuery } from '@tanstack/react-query';
+
 import { ErrorResponse } from '@/common/types/api.type';
 import {
   getSecret,

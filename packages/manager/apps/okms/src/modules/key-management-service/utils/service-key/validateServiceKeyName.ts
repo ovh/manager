@@ -10,7 +10,7 @@ export const ServiceKeyNameErrors = {
   tooManyCharacters: 'TOO_MANY_CHARACTERS',
 } as const;
 
-export type ServiceKeyNameErrors = typeof ServiceKeyNameErrors[keyof typeof ServiceKeyNameErrors];
+export type ServiceKeyNameErrors = (typeof ServiceKeyNameErrors)[keyof typeof ServiceKeyNameErrors];
 
 export const serviceKeyMaxCharacters = 32;
 

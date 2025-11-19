@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
 
 export type BreadcrumbItem = {
   id: string;
@@ -12,9 +13,7 @@ type UseBreadcrumbParams = {
   items: BreadcrumbItem[];
 };
 
-export const useBreadcrumb = ({
-  items,
-}: UseBreadcrumbParams): BreadcrumbItem[] => {
+export const useBreadcrumb = ({ items }: UseBreadcrumbParams): BreadcrumbItem[] => {
   const { t } = useTranslation('key-management-service/listing');
 
   const location = useLocation();

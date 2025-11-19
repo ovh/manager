@@ -1,5 +1,7 @@
-import { ManagerTile, Clipboard } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
+
+import { Clipboard, ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { ID_LABEL } from '@/constants';
 
 type IdTileItemProps = {

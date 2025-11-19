@@ -1,6 +1,7 @@
 import React from 'react';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 type TileTextProps = {
   value: string;

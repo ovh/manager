@@ -1,42 +1,36 @@
+import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import {
-  getOdsButtonByLabel,
-  assertOdsModalVisibility,
   WAIT_FOR_DEFAULT_OPTIONS,
+  assertOdsModalVisibility,
+  getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 const mockCredentialItem = credentialMock[0];
-const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(
-  okmsMock[0].id,
-  mockCredentialItem.id,
-);
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(okmsMock[0].id, mockCredentialItem.id);
 
 describe('Credential general informations test suite', () => {
   test('should display the credentials details', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     const titleLabel =
-      labels.credentials
-        .key_management_service_credential_dashboard_tile_general_informations;
+      labels.credentials.key_management_service_credential_dashboard_tile_general_informations;
 
     await waitFor(() => {
       expect(screen.getByText(titleLabel)).toBeVisible();
       expect(screen.getAllByText(mockCredentialItem.name)[0]).toBeVisible();
       if (mockCredentialItem.description) {
-        expect(
-          screen.getAllByText(mockCredentialItem.description)[0],
-        ).toBeVisible();
+        expect(screen.getAllByText(mockCredentialItem.description)[0]).toBeVisible();
       }
 
-      const clipboardElement = container.querySelector(
-        `[value="${mockCredentialItem.id}"]`,
-      );
+      const clipboardElement = container.querySelector(`[value="${mockCredentialItem.id}"]`);
       expect(clipboardElement).toBeVisible();
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
@@ -45,8 +39,7 @@ describe('Credential general informations test suite', () => {
     const user = userEvent.setup();
     const { container } = await renderTestApp(mockPageUrl);
 
-    const deleteButtonLabel =
-      labels.credentials.key_management_service_credential_delete;
+    const deleteButtonLabel = labels.credentials.key_management_service_credential_delete;
 
     // Check modal is closed
     await waitFor(async () => {

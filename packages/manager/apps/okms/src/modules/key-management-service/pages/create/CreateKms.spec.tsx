@@ -1,16 +1,16 @@
-import { act, screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
-import userEvent, { UserEvent } from '@testing-library/user-event';
-import {
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
 import { getCatalogKmsErrorMessage } from '@key-management-service/mocks/catalog/catalog.handler';
+import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { labels } from '@/common/utils/tests/init.i18n';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
+import { vi } from 'vitest';
+
+import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
 
 // ----- MOCKS ----- //
@@ -30,9 +30,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 const regionListMock = catalogMock.plans[0].configurations[0].values;
-const firstRegionMock = locationsMock.find(
-  (location) => location.name === regionListMock[0],
-);
+const firstRegionMock = locationsMock.find((location) => location.name === regionListMock[0]);
 const firstRegionNameMock = firstRegionMock?.location || '';
 
 // ----- HELPERS ----- //
@@ -54,9 +52,7 @@ describe('KMS creation page test suite', () => {
   it('should display the KMS creation page', async () => {
     await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
-    await assertTextVisibility(
-      labels.create.key_management_service_create_title,
-    );
+    await assertTextVisibility(labels.create.key_management_service_create_title);
     await assertTextVisibility(labels.create.region_selection);
     await assertTextVisibility(labels.create.region_selection_description);
 

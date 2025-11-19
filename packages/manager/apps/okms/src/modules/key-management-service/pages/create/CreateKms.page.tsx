@@ -1,25 +1,20 @@
 import { useState } from 'react';
-import {
-  BaseLayout,
-  useNotifications,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
-import { OdsText, OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { Outlet, useNavigate } from 'react-router-dom';
-import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
-import {
-  KMS_ROUTES_URIS,
-  KMS_ROUTES_URLS,
-} from '@key-management-service/routes/routes.constants';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
 import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
+
 import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
 
 export default function CreateKmsPage() {
@@ -76,15 +71,10 @@ export default function CreateKmsPage() {
             <OdsText preset="heading-2" className="mb-2">
               {t('region_selection')}
             </OdsText>
-            <OdsText preset="paragraph">
-              {t('region_selection_description')}
-            </OdsText>
+            <OdsText preset="paragraph">{t('region_selection_description')}</OdsText>
           </div>
 
-          <RegionPicker
-            selectedRegion={selectedRegion}
-            setSelectedRegion={setSelectedRegion}
-          />
+          <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} />
         </div>
         <div className="flex justify-between">
           <OdsButton

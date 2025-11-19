@@ -1,8 +1,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { OdsInput } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { IdentityGroup } from '@key-management-service/types/identity.type';
 import identityListSortAndFilter from '@key-management-service/utils/credential/identityListSortAndFilter';
+import { useTranslation } from 'react-i18next';
+
+import { OdsInput } from '@ovhcloud/ods-components/react';
+
 import IdentitiesGroupTile from '../tile/IdentitiesGroupTile.component';
 
 type IdentitiesGroupListProps = {
@@ -17,15 +20,13 @@ const IdentitiesGroupList = ({
   setSelectedGroupList,
 }: IdentitiesGroupListProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const [sortedFilteredGroups, setSortedFilteredGroups] = useState<
-    IdentityGroup[]
-  >(identityListSortAndFilter<IdentityGroup>(groupList, 'name'));
+  const [sortedFilteredGroups, setSortedFilteredGroups] = useState<IdentityGroup[]>(
+    identityListSortAndFilter<IdentityGroup>(groupList, 'name'),
+  );
 
   const filterTerms = (searchTerm: string) => {
     setSortedFilteredGroups(
-      identityListSortAndFilter<IdentityGroup>(groupList, 'name', searchTerm, [
-        'name',
-      ]),
+      identityListSortAndFilter<IdentityGroup>(groupList, 'name', searchTerm, ['name']),
     );
   };
 

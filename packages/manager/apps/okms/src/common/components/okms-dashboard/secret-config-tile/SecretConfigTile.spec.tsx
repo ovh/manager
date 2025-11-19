@@ -1,54 +1,46 @@
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { getSecretConfigOkms } from '@secret-manager/data/api/secretConfigOkms';
 import { screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { getSecretConfigOkms } from '@secret-manager/data/api/secretConfigOkms';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { vi } from 'vitest';
+
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { renderWithClient } from '@/common/utils/tests/testUtils';
+
 import { SecretConfigTile } from './SecretConfigTile.component';
 import { SECRET_CONFIG_TILE_TEST_IDS } from './SecretConfigTile.constants';
-import { renderWithClient } from '@/common/utils/tests/testUtils';
-import { useProductType, ProductType } from '@/common/hooks/useProductType';
 
 let i18nValue: i18n;
 
 vi.mock('@/common/hooks/useProductType');
 
-vi.mock(
-  import('@secret-manager/data/api/secretConfigOkms'),
-  async (importOriginal) => {
-    const actual = await importOriginal();
-    return {
-      ...actual,
-      getSecretConfigOkms: vi.fn(),
-    };
-  },
-);
+vi.mock(import('@secret-manager/data/api/secretConfigOkms'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    getSecretConfigOkms: vi.fn(),
+  };
+});
 
 const mockedGetSecretConfig = vi.mocked(getSecretConfigOkms);
 
-vi.mock(
-  './items/DeactivateVersionAfterTileItem.component',
-  async (original) => ({
-    ...(await original()),
-    DeactivateVersionAfterTileItem: vi.fn(() => (
-      <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.deactivateVersionAfter} />
-    )),
-  }),
-);
+vi.mock('./items/DeactivateVersionAfterTileItem.component', async (original) => ({
+  ...(await original()),
+  DeactivateVersionAfterTileItem: vi.fn(() => (
+    <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.deactivateVersionAfter} />
+  )),
+}));
 
 vi.mock('./items/MaxVersionTileItem.component', async (original) => ({
   ...(await original()),
-  MaxVersionTileItem: vi.fn(() => (
-    <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.maxVersion} />
-  )),
+  MaxVersionTileItem: vi.fn(() => <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.maxVersion} />),
 }));
 
 vi.mock('./items/CasTileItem.component', async (original) => ({
   ...(await original()),
-  CasTileItem: vi.fn(() => (
-    <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.cas} />
-  )),
+  CasTileItem: vi.fn(() => <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.cas} />),
 }));
 
 vi.mock('./items/EditSecretConfigLinkTileItem.component', async (original) => ({
@@ -58,15 +50,10 @@ vi.mock('./items/EditSecretConfigLinkTileItem.component', async (original) => ({
   )),
 }));
 
-vi.mock(
-  '@/common/components/tile-error/TileError.component',
-  async (original) => ({
-    ...(await original()),
-    TileError: vi.fn(() => (
-      <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.tileError} />
-    )),
-  }),
-);
+vi.mock('@/common/components/tile-error/TileError.component', async (original) => ({
+  ...(await original()),
+  TileError: vi.fn(() => <div data-testid={SECRET_CONFIG_TILE_TEST_IDS.tileError} />),
+}));
 
 const renderTile = async () => {
   if (!i18nValue) {
@@ -95,9 +82,7 @@ describe('OKMS Rest Api Tile test suite', () => {
 
     // THEN
     await waitFor(() =>
-      expect(
-        screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.tileError),
-      ).toBeVisible(),
+      expect(screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.tileError)).toBeVisible(),
     );
   });
 
