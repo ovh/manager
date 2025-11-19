@@ -28,6 +28,8 @@ const IdentitiesServiceAccountTile = ({
           serviceAccountInList.identity === serviceAccount.identity,
       )
     ) {
+      // TODO: This is freaking bad and should be fixed someday
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsChecked(true);
     }
   }, [selectedServiceAccountList, serviceAccount]);

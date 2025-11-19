@@ -17,15 +17,15 @@ export default function Layout() {
   useEffect(() => {
     const match = matches.slice(-1);
     defineCurrentPage(`app.key-management-service-${match[0]?.id}`);
-  }, [location]);
+  }, [location, matches]);
 
   useEffect(() => {
     trackCurrentPage();
-  }, [location]);
+  }, [location, trackCurrentPage]);
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+  }, [shell.ux]);
 
   return <Outlet />;
 }

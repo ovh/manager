@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import {
   BaseLayout,
   ErrorBanner,
@@ -64,14 +64,14 @@ export default function CreateKey() {
     refetch: refetchServiceKeyReference,
   } = useOkmsServiceKeyReference(okms?.data?.region || '');
 
-  const [key, setKey] = useState<OkmsServiceKeyReference | undefined>();
-  const [keyType, setKeyType] = useState<OkmsKeyTypes | undefined>();
-  const [keySize, setKeySize] = useState<OkmsServiceKeySize | undefined>();
-  const [keyCurve, setKeyCurve] = useState<OkmsServiceKeyCurve | undefined>();
+  const [key, setKey] = React.useState<OkmsServiceKeyReference | undefined>();
+  const [keyType, setKeyType] = React.useState<OkmsKeyTypes | undefined>();
+  const [keySize, setKeySize] = React.useState<OkmsServiceKeySize | undefined>();
+  const [keyCurve, setKeyCurve] = React.useState<OkmsServiceKeyCurve | undefined>();
   const [keyOperations, setKeyOperations] = useState<
     OkmsServiceKeyOperations[][]
   >([[]]);
-  const [keyDisplayName, setKeyDisplayName] = useState<string | undefined>();
+  const [keyDisplayName, setKeyDisplayName] = React.useState<string | undefined>();
   const [serviceKeyNameError, setServiceKeyNameError] = useState<
     ServiceKeyNameErrors | undefined
   >();
@@ -96,7 +96,7 @@ export default function CreateKey() {
         }
       });
     }
-  }, [servicekeyReference, serviceKeyReferenceIsLoading]);
+  }, [servicekeyReference, serviceKeyReferenceIsLoading, key]);
 
   // Submit form
   const handleSubmit = async () => {
