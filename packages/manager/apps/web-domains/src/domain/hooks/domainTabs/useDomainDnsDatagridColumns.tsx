@@ -1,8 +1,7 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { TDatagridDnsDetails } from '@/domain/types/domainResource';
-import DatagridColumnDnsStatus from '@/domain/components/DatagridColumns/DatagridColumnDnsStatus';
+import DatagridColumnStatus from '@/domain/components/DatagridColumns/DatagridColumnStatus';
 import DatagridColumnDnsType from '@/domain/components/DatagridColumns/DatagridColumnDnsType';
 
 export const useDomainDnsDatagridColumns = () => {
@@ -25,7 +24,7 @@ export const useDomainDnsDatagridColumns = () => {
     {
       id: 'status',
       cell: (props: TDatagridDnsDetails) => (
-        <DatagridColumnDnsStatus status={props.status} />
+        <DatagridColumnStatus status={props.status} />
       ),
       label: t('domain_dns_table_header_status'),
     },

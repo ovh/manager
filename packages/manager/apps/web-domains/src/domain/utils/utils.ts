@@ -8,7 +8,7 @@ import {
   transformCurrent,
   transformTarget,
 } from '@/domain/utils/dnsUtils';
-import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
+import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
 import { FreeHostingOptions } from '../components/AssociatedServicesCards/Hosting';
 
@@ -27,25 +27,25 @@ export function computeDnsDetails(
   const updateIsInError = domainResource.currentTasks.find(
     (task) =>
       task.type === DNS_UPDATE_OPERATION &&
-      task.status.toLowerCase() === NameServerStatusEnum.ERROR.toLowerCase(),
+      task.status.toLowerCase() === StatusEnum.ERROR.toLowerCase(),
   );
 
   const activated = current
     .filter((dns) => isIncluded(target, dns))
-    .map((dns) => transformCurrent(dns, NameServerStatusEnum.ENABLED));
+    .map((dns) => transformCurrent(dns, StatusEnum.ENABLED));
 
   const activating = target
     .filter((dns) => !isIncluded(current, dns))
     .map((dns) => {
       if (updateIsInError) {
-        return transformTarget(dns, NameServerStatusEnum.ERROR);
+        return transformTarget(dns, StatusEnum.ERROR);
       }
-      return transformTarget(dns, NameServerStatusEnum.ACTIVATING);
+      return transformTarget(dns, StatusEnum.ACTIVATING);
     });
 
   const deleting = current
     .filter((dns) => !isIncluded(target, dns))
-    .map((dns) => transformCurrent(dns, NameServerStatusEnum.DELETING));
+    .map((dns) => transformCurrent(dns, StatusEnum.DELETING));
 
   return [...activated, ...activating, ...deleting];
 }
