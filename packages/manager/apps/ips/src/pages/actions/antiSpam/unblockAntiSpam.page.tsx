@@ -83,7 +83,7 @@ export default function AntiSpamModal() {
   const closeModal = () => navigate(`..?${search.toString()}`);
 
   const { isPending, mutate: unblockAntiSpamHandler } = useMutation({
-    mutationFn: () => unblockAntiSpamIp({ ip, ipBlocked }),
+    mutationFn: () => unblockAntiSpamIp({ ip: parentIp, ipBlocked }),
     onSuccess: async () => {
       clearNotifications();
       trackPage({
@@ -92,7 +92,7 @@ export default function AntiSpamModal() {
       });
       addSuccess(t('unblock_anti_spam_ip_success', { ipBlocked }));
       await queryClient.invalidateQueries({
-        queryKey: getIpSpamQueryKey({ ip }),
+        queryKey: getIpSpamQueryKey({ ip: parentIp }),
       });
       closeModal();
     },
