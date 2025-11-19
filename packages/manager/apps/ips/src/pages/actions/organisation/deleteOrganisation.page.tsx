@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
@@ -39,7 +39,7 @@ export default function DeleteOrganisation() {
 
     trackPage({
       pageType: PageType.bannerSuccess,
-      pageName: 'delete_organisation_success',
+      pageName: 'delete_organization_success',
     });
     clearNotifications();
     addSuccess(t('manageOrganisationsDelete_success', { organisationId }));
@@ -47,10 +47,6 @@ export default function DeleteOrganisation() {
   };
 
   const onError = (e: ApiError) => {
-    trackPage({
-      pageType: PageType.bannerError,
-      pageName: 'delete_organisation_error',
-    });
     clearNotifications();
     const responseErrorMessage = e.response?.data.message ?? e.message;
     const displayedErrorMessage = responseErrorMessage.includes(
@@ -61,6 +57,10 @@ export default function DeleteOrganisation() {
           error: responseErrorMessage,
         });
     addError(displayedErrorMessage);
+    trackPage({
+      pageType: PageType.bannerError,
+      pageName: 'delete_organization_error',
+    });
     closeModal();
   };
 
@@ -68,8 +68,8 @@ export default function DeleteOrganisation() {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
-      actionType: 'exit',
-      actions: ['delete_organisation', 'cancel'],
+      actionType: 'action',
+      actions: ['delete_organization', 'cancel'],
     });
     closeModal();
   };
@@ -86,7 +86,15 @@ export default function DeleteOrganisation() {
       onDismiss={closeHandler}
       heading={t('manageOrganisationsDelete_confirm_headline')}
       primaryLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={deleteManagerOrganisation}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete_organization', 'confirm'],
+        });
+        deleteManagerOrganisation();
+      }}
       isPrimaryButtonLoading={isPending}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       isSecondaryButtonDisabled={isPending}

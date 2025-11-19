@@ -80,12 +80,14 @@ export const FilterService = ({ className }: { className?: string }) => {
       onOdsChange={(e) => {
         const { value } = e.detail;
 
-        trackClick({
-          actionType: 'action',
-          buttonType: ButtonType.button,
-          location: PageLocation.page,
-          actions: ['Service-search'],
-        });
+        if (value) {
+          trackClick({
+            buttonType: ButtonType.select,
+            location: PageLocation.page,
+            actionType: 'action',
+            actions: [`filter_${value}`],
+          });
+        }
 
         setFilterValueLabel(value);
 

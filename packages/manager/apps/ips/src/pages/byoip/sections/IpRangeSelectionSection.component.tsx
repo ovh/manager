@@ -28,7 +28,7 @@ export const IpRangeSelectionSection: React.FC = () => {
           placeholder={ipRangePlaceholder}
           onOdsChange={(event) => setIpRange(event.detail.value as string)}
           hasError={!isValidIpRange(ipRange)}
-        ></OdsInput>
+        />
       </div>
     </OrderSection>
   );
