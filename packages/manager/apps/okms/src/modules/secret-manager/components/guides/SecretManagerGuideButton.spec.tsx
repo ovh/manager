@@ -1,6 +1,8 @@
-import { vi } from 'vitest';
 import { screen } from '@testing-library/react';
+import { vi } from 'vitest';
+
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
+
 import { SecretManagerGuidesButton } from './SecretManagerGuideButton';
 
 const GUIDES_TEST_IDS = {

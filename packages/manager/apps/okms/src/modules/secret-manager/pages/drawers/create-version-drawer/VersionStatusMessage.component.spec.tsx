@@ -1,9 +1,11 @@
-import { render, screen } from '@testing-library/react';
 import { SecretVersionState } from '@secret-manager/types/secret.type';
+import { render, screen } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { VersionStatusMessage } from './VersionStatusMessage.component';
+
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+
+import { VersionStatusMessage } from './VersionStatusMessage.component';
 
 let i18nValue: i18n;
 

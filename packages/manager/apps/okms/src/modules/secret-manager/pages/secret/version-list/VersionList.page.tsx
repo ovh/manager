@@ -1,53 +1,42 @@
 import { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Outlet,
-  useNavigate,
-  useOutletContext,
-  useParams,
-} from 'react-router-dom';
-import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { SecretVersion } from '@secret-manager/types/secret.type';
+
+import { Outlet, useNavigate, useOutletContext, useParams } from 'react-router-dom';
+
 import { useSecretVersionList } from '@secret-manager/data/hooks/useSecretVersionList';
 import { SecretPageOutletContext } from '@secret-manager/pages/secret/Secret.type';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import {
   LocationPathParams,
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
+import { SecretVersion } from '@secret-manager/types/secret.type';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
+
+import { isErrorResponse } from '@/common/utils/api/api';
+
+import { VersionCellAction } from './VersionCellAction.component';
 import {
   VersionCreatedAtCell,
   VersionDeactivatedAtCell,
   VersionIdCell,
   VersionStateCell,
 } from './VersionCells.component';
-import { isErrorResponse } from '@/common/utils/api/api';
-import { VersionCellAction } from './VersionCellAction.component';
 
 const VersionListPage = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation([
-    'secret-manager',
-    NAMESPACES.STATUS,
-    NAMESPACES.DASHBOARD,
-  ]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS, NAMESPACES.DASHBOARD]);
   const { okmsId, secretPath } = useParams<LocationPathParams>();
   const secretPathDecoded = decodeSecretPath(secretPath);
 
   const { secret } = useOutletContext<SecretPageOutletContext>();
 
-  const {
-    data,
-    error,
-    hasNextPage,
-    fetchNextPage,
-    sorting,
-    isPending,
-    setSorting,
-    refetch,
-  } = useSecretVersionList({ okmsId, path: secretPathDecoded });
+  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
+    useSecretVersionList({ okmsId, path: secretPathDecoded });
 
   const versions = data?.pages.flatMap((page) => page.data);
 

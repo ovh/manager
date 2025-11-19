@@ -1,10 +1,14 @@
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
-import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
+import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { usePendingOkmsOrderStore } from '@/common/store/pendingOkmsOrder';
 
 export type ActivateRegionParams = {
@@ -15,18 +19,13 @@ export const ActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
   const { translateRegionName } = useRegionName();
   const navigate = useNavigate();
-  const hasPendingOrder = usePendingOkmsOrderStore(
-    (state) => state.hasPendingOrder,
-  );
+  const hasPendingOrder = usePendingOkmsOrderStore((state) => state.hasPendingOrder);
   const region = usePendingOkmsOrderStore((state) => state.region);
 
   if (hasPendingOrder) {
     return (
       <div className="flex items-center gap-3">
-        <OdsSpinner
-          size="sm"
-          data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER}
-        />
+        <OdsSpinner size="sm" data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER} />
         <OdsText>
           {t('okms_activation_in_progress', {
             region: translateRegionName(region),
@@ -41,11 +40,7 @@ export const ActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
       <OdsButton
         data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON}
         label={t('activate', { ns: NAMESPACES.ACTIONS })}
-        onClick={() =>
-          navigate(
-            SECRET_MANAGER_ROUTES_URLS.createSecretOrderOkms(selectedRegion),
-          )
-        }
+        onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.createSecretOrderOkms(selectedRegion))}
       />
     </div>
   );

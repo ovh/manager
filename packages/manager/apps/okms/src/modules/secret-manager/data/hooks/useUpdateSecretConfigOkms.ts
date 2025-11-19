@@ -1,9 +1,11 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
   SecretConfigParams,
-  secretConfigOkmsQueryKey,
   SecretConfigResponse,
+  secretConfigOkmsQueryKey,
   updateSecretConfigOkms,
 } from '../api/secretConfigOkms';
 

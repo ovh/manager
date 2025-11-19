@@ -18,8 +18,6 @@ export default function identityListSortAndFilter<T>(
   if (!searchTerm || !keys) return sortedItems;
 
   return sortedItems.filter((item) =>
-    keys.some((key) =>
-      safeStringify(item[key]).toLowerCase().includes(searchTerm.toLowerCase()),
-    ),
+    keys.some((key) => safeStringify(item[key]).toLowerCase().includes(searchTerm.toLowerCase())),
   );
 }

@@ -1,5 +1,7 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { identityUsers } from './identityUsers.mock';
 
 const findIdentityUserById = (params: PathParams) =>

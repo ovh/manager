@@ -1,8 +1,11 @@
-import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { KMIP_LABEL } from '@/constants';
-import { KmipEndpointTileItem } from './items/KmipEndpointTileItem.component';
+
 import { KmipEndpointRsaTileItem } from './items/KmipEndpointRsaTileItem.component';
+import { KmipEndpointTileItem } from './items/KmipEndpointTileItem.component';
 
 type KmipTileProps = {
   okms: OKMS;

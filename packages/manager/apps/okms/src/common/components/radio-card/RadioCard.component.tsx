@@ -1,5 +1,7 @@
 import { ChangeEventHandler, ReactElement, ReactNode } from 'react';
+
 import clsx from 'clsx';
+
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 type RadioCardProps = {
@@ -35,9 +37,7 @@ export const RadioCard = ({
         'flex border-solid rounded-md border px-3 py-4',
         !isDisabled && 'cursor-pointer',
         !isChecked && 'border-[--ods-color-form-element-border-default]',
-        !isChecked &&
-          !isDisabled &&
-          'hover:border-[--ods-color-form-element-border-hover-default]',
+        !isChecked && !isDisabled && 'hover:border-[--ods-color-form-element-border-hover-default]',
         isChecked &&
           !isDisabled &&
           'border-[--ods-color-primary-500] bg-[--ods-color-primary-050] outline outline-1 outline-[--ods-color-primary-500]',

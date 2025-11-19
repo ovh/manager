@@ -1,9 +1,12 @@
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate, useParams } from 'react-router-dom';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+
 import { useUpdateSecretVersion } from '@secret-manager/data/hooks/useUpdateSecretVersion';
 import { LocationPathParams } from '@secret-manager/routes/routes.constants';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ConfirmationModal } from '@/common/components/confirmation-modal/ConfirmationModal';
 
 const DeleteSecretVersionModal = () => {
@@ -11,11 +14,7 @@ const DeleteSecretVersionModal = () => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
   const { okmsId, secretPath, versionId } = useParams<LocationPathParams>();
 
-  const {
-    mutateAsync: updateSecretVersion,
-    isPending,
-    error,
-  } = useUpdateSecretVersion();
+  const { mutateAsync: updateSecretVersion, isPending, error } = useUpdateSecretVersion();
 
   const handleDismiss = () => {
     navigate('..');

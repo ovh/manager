@@ -1,24 +1,18 @@
 import { Fragment, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
-import {
-  OdsButton,
-  OdsPopover,
-  OdsDivider,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsDivider, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { Link } from '@/common/components/link/Link.component';
 import { useRegionSelector } from '@/modules/secret-manager/hooks/useRegionSelector';
 
 export const RegionSelector = () => {
-  const {
-    geographyGroups,
-    currentRegion,
-    isLoading,
-    isError,
-  } = useRegionSelector();
+  const { geographyGroups, currentRegion, isLoading, isError } = useRegionSelector();
   const { t } = useTranslation(NAMESPACES.REGION);
   const { translateRegionName, translateGeographyName } = useRegionName();
   const popoverRef = useRef<HTMLOdsPopoverElement>(null);
@@ -76,9 +70,7 @@ export const RegionSelector = () => {
                     />
                   ))}
                 </div>
-                {index < geographyGroups.length - 1 && (
-                  <OdsDivider className="-mx-4 mt-2 mb-1" />
-                )}
+                {index < geographyGroups.length - 1 && <OdsDivider className="-mx-4 mt-2 mb-1" />}
               </Fragment>
             ))}
           </div>

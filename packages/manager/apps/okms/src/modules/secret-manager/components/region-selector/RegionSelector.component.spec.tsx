@@ -1,24 +1,24 @@
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import { BrowserRouter } from 'react-router-dom';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, waitFor } from '@testing-library/react';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import {
+  LOCATION_CA_EAST_BHS,
   LOCATION_EU_WEST_GRA,
   LOCATION_EU_WEST_LIM,
-  LOCATION_CA_EAST_BHS,
 } from '@/common/mocks/locations/locations.mock';
-import {
-  getOdsButtonByLabel,
-  getOdsButtonByIcon,
-} from '@/common/utils/tests/uiTestHelpers';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { getOdsButtonByIcon, getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
 import {
   GeographyGroup,
   useRegionSelector,
 } from '@/modules/secret-manager/hooks/useRegionSelector';
+
 import { RegionSelector } from './RegionSelector.component';
 
 let i18nValue: i18n;
@@ -209,18 +209,14 @@ describe('RegionSelector Component', () => {
         label: mockRegionLabels.GRA,
         isLink: true,
       });
-      expect(current).toHaveClass(
-        '[&::part(link)]:text-[var(--ods-color-heading)]',
-      );
+      expect(current).toHaveClass('[&::part(link)]:text-[var(--ods-color-heading)]');
 
       const notCurrent = await getOdsButtonByLabel({
         container,
         label: mockRegionLabels.DE,
         isLink: true,
       });
-      expect(notCurrent).toHaveClass(
-        '[&::part(link)]:text-[var(--ods-color-primary-500)]',
-      );
+      expect(notCurrent).toHaveClass('[&::part(link)]:text-[var(--ods-color-primary-500)]');
     });
 
     it('should display dividers between geography groups', async () => {

@@ -1,7 +1,10 @@
-import { GuideItem } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { GUIDES_MANAGER } from './guideManager.constants';
+
+import { GuideItem } from '@ovh-ux/manager-react-components';
+
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
+
+import { GUIDES_MANAGER } from './guideManager.constants';
 
 export const useGuideItemManager = (id: number): GuideItem => {
   const { t } = useTranslation('secret-manager');

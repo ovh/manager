@@ -1,8 +1,10 @@
-import { screen } from '@testing-library/react';
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { screen } from '@testing-library/react';
+
 import { labels } from '@/common/utils/tests/init.i18n';
-import { RegionTileItem } from './RegionTileItem.component';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
+
+import { RegionTileItem } from './RegionTileItem.component';
 
 const okmsMocked = okmsMock[0];
 

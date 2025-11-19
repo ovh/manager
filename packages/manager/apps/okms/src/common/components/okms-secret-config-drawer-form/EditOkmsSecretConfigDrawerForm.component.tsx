@@ -1,22 +1,22 @@
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+  SecretCasRequiredFormField,
   casRequiredToFormValue,
   formValueToCasRequired,
-  SecretCasRequiredFormField,
 } from '@secret-manager/components/form/SecretCasRequiredFormField.component';
-import {
-  SecretConfig,
-  SecretConfigReference,
-} from '@secret-manager/types/secret.type';
-import z from 'zod';
+import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
 import { useUpdateSecretConfigOkms } from '@secret-manager/data/hooks/useUpdateSecretConfigOkms';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { SecretConfig, SecretConfigReference } from '@secret-manager/types/secret.type';
 import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import z from 'zod';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import {
   DrawerContent,
   DrawerFooter,
@@ -35,10 +35,7 @@ export const EditOkmsSecretConfigDrawerForm = ({
   secretConfigReference,
   onDismiss,
 }: EditOkmsSecretConfigDrawerFormProps) => {
-  const { t } = useTranslation([
-    'key-management-service/dashboard',
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation(['key-management-service/dashboard', NAMESPACES.ACTIONS]);
 
   const {
     mutateAsync: updateSecretConfigOkms,
@@ -79,14 +76,10 @@ export const EditOkmsSecretConfigDrawerForm = ({
         <form className="flex flex-col gap-4 p-1">
           {updateError && (
             <OdsMessage color="danger" className="mb-4">
-              {updateError?.response?.data?.message ||
-                t('error_update_settings')}
+              {updateError?.response?.data?.message || t('error_update_settings')}
             </OdsMessage>
           )}
-          <SecretDeactivateVersionAfterFormField
-            name="deactivateVersionAfter"
-            control={control}
-          />
+          <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
           <SecretMaxVersionsFormField
             name="maxVersions"
             control={control}

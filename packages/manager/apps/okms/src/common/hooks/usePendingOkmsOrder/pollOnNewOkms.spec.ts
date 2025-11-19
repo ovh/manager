@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { OKMS } from '@key-management-service/types/okms.type';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
-import { queryClient } from '@/common/utils/react-query/queryClient';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import * as pendingOkmsOrderStore from '@/common/store/pendingOkmsOrder';
 import {
-  usePendingOkmsOrderStore,
   clearPendingOrder,
-  saveInitialOkmsIds,
   registerPendingOrder,
+  saveInitialOkmsIds,
+  usePendingOkmsOrderStore,
 } from '@/common/store/pendingOkmsOrder';
+import { queryClient } from '@/common/utils/react-query/queryClient';
+
 import { pollOnNewOkms } from './pollOnNewOkms';
 
 vi.mock('@/common/utils/react-query/queryClient', () => ({
@@ -35,7 +37,6 @@ describe('pollOnNewOkms', () => {
   const mockOnSuccess = vi.fn();
   const mockOnExpired = vi.fn();
   const expirationInMinutes = 1;
-
 
   beforeEach(() => {
     vi.clearAllMocks();

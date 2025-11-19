@@ -1,8 +1,11 @@
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { usePendingOkmsOrderStore } from '@/common/store/pendingOkmsOrder';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useInterval } from '@/common/hooks/useInterval';
+import { usePendingOkmsOrderStore } from '@/common/store/pendingOkmsOrder';
+
 import { pollOnNewOkms } from './pollOnNewOkms';
 
 const OKMS_LIST_REFETCH_INTERVAL_DISABLE = 0;
@@ -14,15 +17,11 @@ type UsePendingOkmsOrderParams = {
   onSuccess?: (okmsId: string) => void;
 };
 
-export const usePendingOkmsOrder = ({
-  onSuccess,
-}: UsePendingOkmsOrderParams = {}) => {
+export const usePendingOkmsOrder = ({ onSuccess }: UsePendingOkmsOrderParams = {}) => {
   const { t } = useTranslation('common');
   const { addSuccess, addWarning } = useNotifications();
   const { refetch } = useOkmsList();
-  const hasPendingOrder = usePendingOkmsOrderStore(
-    (state) => state.hasPendingOrder,
-  );
+  const hasPendingOrder = usePendingOkmsOrderStore((state) => state.hasPendingOrder);
 
   const refetchInterval = hasPendingOrder
     ? OKMS_LIST_REFETCH_INTERVAL_IN_MS
