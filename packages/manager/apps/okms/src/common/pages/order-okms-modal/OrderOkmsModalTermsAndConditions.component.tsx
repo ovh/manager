@@ -48,7 +48,7 @@ export const OrderOkmsModalTermsAndConditions = ({
             <Links key={name} href={url} target="_blank" type={LinkType.external} label={name} />
           ))}
         </div>
-        <div className="flex gap-3 items-center">
+        <div className="flex items-center gap-3">
           <OdsCheckbox
             data-testid={ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID}
             name="confirm-contract"

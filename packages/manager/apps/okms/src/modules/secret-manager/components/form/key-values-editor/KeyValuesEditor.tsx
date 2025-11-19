@@ -80,7 +80,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
 
   return (
     <div className="space-y-5">
-      <OdsFormField className="w-full block space-y-1" error={fieldState.error?.message}>
+      <OdsFormField className="block w-full space-y-1" error={fieldState.error?.message}>
         {keyValuePairs.map(({ key, value }, index) => (
           <KeyValuesEditorItem
             key={KEY_VALUES_EDITOR_TEST_IDS.pairItem(index)}

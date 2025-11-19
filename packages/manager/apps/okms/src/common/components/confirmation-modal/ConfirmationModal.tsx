@@ -70,7 +70,7 @@ export const ConfirmationModal = ({
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{message}</OdsText>
 
         {isLoading && (
-          <div data-testid="spinner" className="flex justify-center my-5">
+          <div data-testid="spinner" className="my-5 flex justify-center">
             <OdsSpinner size={ODS_SPINNER_SIZE.md} inline-block></OdsSpinner>
           </div>
         )}

@@ -29,7 +29,7 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
 
   return (
     <OdsFormField error={fieldState.error?.message}>
-      <label slot="label" className="flex items-center gap-2 relative mb-1">
+      <label slot="label" className="relative mb-1 flex items-center gap-2">
         <span>{t('cas_with_description')}</span>
         <HelpIconWithTooltip label={t('cas_with_description_tooltip')} />
       </label>

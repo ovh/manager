@@ -114,9 +114,9 @@ export const DisableServiceKeyModal = () => {
         {t('key_management_service_service-keys_modal_deactivation_heading')}
       </OdsText>
       {isPending ? (
-        <OdsSpinner className="block my-4" size={ODS_SPINNER_SIZE.md} />
+        <OdsSpinner className="my-4 block" size={ODS_SPINNER_SIZE.md} />
       ) : (
-        <OdsFormField className="block my-4">
+        <OdsFormField className="my-4 block">
           <OdsSelect
             name="deactivation-reason"
             value={deactivationReason}

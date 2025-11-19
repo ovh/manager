@@ -101,7 +101,7 @@ const CreateCredential = () => {
         message={<Notifications />}
       >
         <IdentityDataProvider>
-          <div className="w-full block">
+          <div className="block w-full">
             {step === 1 && (
               <CreateGeneralInformations
                 name={name}
