@@ -71,7 +71,7 @@ describe('OKMS Billing Tile test suite', () => {
   ];
 
   it.each(useCases)(
-    'should display tile content and have productType $productType resiliate link $resiliateLink ',
+    'should display tile content and have productType $productType resiliate link $resiliateLink',
     async ({ productType, resiliateLink }) => {
       vi.mocked(useProductType).mockReturnValue(productType);
       const user = userEvent.setup();

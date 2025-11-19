@@ -99,7 +99,7 @@ describe('Secrets creation form test suite', () => {
       shouldButtonBeDisabled: false,
     },
   ])(
-    'should check the form validity for data: $data, path: $path and a selectedOkms: $selectedOkmsId ',
+    'should check the form validity for data: $data, path: $path and a selectedOkms: $selectedOkmsId',
     async ({ data, path, selectedOkmsId, shouldButtonBeDisabled }) => {
       // GIVEN
       const user = userEvent.setup();
