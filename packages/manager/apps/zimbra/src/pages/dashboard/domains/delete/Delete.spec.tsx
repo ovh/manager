@@ -2,7 +2,9 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { fireEvent, waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
+import { act } from '@testing-library/react';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
@@ -16,7 +18,7 @@ import {
   platformMock,
 } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import DeleteDomainModal from './Delete.modal';
 
@@ -39,7 +41,7 @@ describe('Domain delete modal', () => {
     });
 
     expect(getByTestId('banner-message')).toBeVisible();
-    expect(getByTestId('delete-btn')).toHaveAttribute('is-disabled', 'true');
+    expect(getByTestId('delete-btn')).toHaveAttribute('disabled');
   });
 
   it('should not prevent deletion if there is no linked emails', async () => {
@@ -61,7 +63,7 @@ describe('Domain delete modal', () => {
     const btn = getByTestId('delete-btn');
 
     expect(queryByTestId('banner-message')).toBeNull();
-    expect(btn).toHaveAttribute('is-disabled', 'false');
+    expect(btn).not.toHaveAttribute('disabled');
 
     await act(async () => {
       fireEvent.click(btn);

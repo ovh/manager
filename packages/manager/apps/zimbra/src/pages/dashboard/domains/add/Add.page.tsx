@@ -4,12 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import { ADD_DOMAIN } from '@/tracking.constants';
@@ -29,10 +28,7 @@ export const AddDomain = () => {
       pageType: PageType.bannerSuccess,
       pageName: ADD_DOMAIN,
     });
-    addSuccess(
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:add_success_message')}</OdsText>,
-      true,
-    );
+    addSuccess(<Text preset={TEXT_PRESET.paragraph}>{t('common:add_success_message')}</Text>, true);
     navigate(goBackUrl);
   };
 
@@ -42,11 +38,11 @@ export const AddDomain = () => {
       pageName: ADD_DOMAIN,
     });
     addError(
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         {t('common:add_error_message', {
           error: error?.response?.data?.message,
         })}
-      </OdsText>,
+      </Text>,
       true,
     );
   };

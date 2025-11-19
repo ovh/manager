@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
 
-import { ServiceDetails } from '@ovh-ux/manager-react-components';
+import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 import { getServiceByResourceName, getServiceByResourceNameQueryKey } from '@/data/api';
 

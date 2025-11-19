@@ -12,11 +12,9 @@ describe('Email accounts DatagridTopbar component', () => {
     const { getByTestId } = render(<EmailAccounts />);
 
     const addButton = getByTestId('add-account-btn');
-
-    expect(addButton).toHaveAttribute('label', accountTranslation.zimbra_account_account_add);
+    expect(addButton).toHaveTextContent(accountTranslation.zimbra_account_account_add);
 
     const orderButton = getByTestId('order-account-btn');
-
-    expect(orderButton).toHaveAttribute('label', accountTranslation.zimbra_account_account_order);
+    expect(orderButton).toHaveTextContent(accountTranslation.zimbra_account_account_order);
   });
 });

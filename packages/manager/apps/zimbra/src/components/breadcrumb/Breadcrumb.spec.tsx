@@ -8,8 +8,8 @@ import Breadcrumb from './Breadcrumb.component';
 
 describe('Breadcrumb component', () => {
   it('should render', () => {
-    const { getByTestId } = render(<Breadcrumb />);
-    const cmp = getByTestId('breadcrumb');
+    const { container } = render(<Breadcrumb />);
+    const cmp = container.querySelector('[data-ods="breadcrumb"]');
     expect(cmp).toBeInTheDocument();
   });
 });

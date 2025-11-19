@@ -1,4 +1,4 @@
-import { CurrencyCode, IntervalUnitType, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { CurrencyCode, IntervalUnit, OvhSubsidiary } from '@ovh-ux/muk';
 
 import { order } from './type';
 
@@ -27,7 +27,7 @@ export const orderCatalogMock: order.publicOrder.Catalog = {
           commitment: 0,
           description: 'monthly pricing',
           interval: 1,
-          intervalUnit: IntervalUnitType.month,
+          intervalUnit: IntervalUnit.month,
           quantity: {
             min: 1,
             max: null,
@@ -91,7 +91,7 @@ export const orderCatalogMock: order.publicOrder.Catalog = {
           commitment: 0,
           description: 'monthly pricing',
           interval: 1,
-          intervalUnit: IntervalUnitType.month,
+          intervalUnit: IntervalUnit.month,
           quantity: {
             min: 1,
             max: null,
