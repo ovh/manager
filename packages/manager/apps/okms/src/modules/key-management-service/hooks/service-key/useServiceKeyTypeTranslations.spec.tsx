@@ -12,7 +12,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('get service key type translation ', () => {
+describe('get service key type translation', () => {
   const useCases: {
     type: OkmsKeyTypes;
     translationKey: string;
