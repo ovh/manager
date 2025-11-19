@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,12 @@ export function LocationStep({
   ] = useState<TDeployment | null>(null);
   const [selectedLocalisation, setSelectedLocalisation] = useState<
     TLocalisation
-  >(undefined);
+  >(null);
+
+  useEffect(() => {
+    if (!step.isLocked) setSelectedLocalisation(null);
+  }, [step.isLocked]);
+
   const selectedRegion = useMemo(
     () =>
       selectedLocalisation
@@ -98,7 +103,7 @@ export function LocationStep({
     (localisation) => ({
       buttonType: 'tile',
       actionName: 'select_location',
-      actionValues: [localisation.name],
+      actionValues: [localisation?.name],
     }),
     setSelectedLocalisation,
   );
