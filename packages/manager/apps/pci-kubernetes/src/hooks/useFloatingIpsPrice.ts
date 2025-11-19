@@ -6,11 +6,7 @@ import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-re
 import { getPlanCodeFloatingIps } from '@/helpers/node-pool';
 import { DeploymentMode } from '@/types';
 
-const useFloatingIpsPrice = (
-  enabled = false,
-  time: 'hour' | 'month',
-  deploymentMode: DeploymentMode | null,
-) => {
+const useFloatingIpsPrice = (enabled = false, deploymentMode: DeploymentMode | null) => {
   const { data: catalog, isPending: isPendingCatalog } = useCatalog();
   const { getFormattedHourlyCatalogPrice, getFormattedMonthlyCatalogPrice } = useCatalogPrice(5);
 
@@ -29,19 +25,23 @@ const useFloatingIpsPrice = (
     return { isPending: isPendingCatalog, price: null };
   }
 
-  const planCodeFloatingIp = getPlanCodeFloatingIps(time, deploymentMode);
-  const price = planCodeFloatingIp ? getPrice(planCodeFloatingIp) : null;
+  const [hour, month] = (['hour', 'month'] as const).map((time) => {
+    const planCodeFloatingIp = getPlanCodeFloatingIps(time, deploymentMode);
+    const price = planCodeFloatingIp ? getPrice(planCodeFloatingIp) : null;
+    return price;
+  }) as [number | null, number | null];
 
-  if (price === null) return { isPending: isPendingCatalog, price: null };
+  if (hour === null) return { isPending: isPendingCatalog, price: null };
 
-  const monthlyPrice = convertHourlyPriceToMonthly(price);
+  const monthlyPrice = month ?? convertHourlyPriceToMonthly(hour);
 
   return {
     isPending: isPendingCatalog,
     price: {
-      hour: price,
-      month: convertHourlyPriceToMonthly(price),
-      hourFormatted: getFormattedHourlyCatalogPrice(price),
+      hour,
+      // for now we do not take into account the catalog monthly price
+      month: convertHourlyPriceToMonthly(hour),
+      hourFormatted: getFormattedHourlyCatalogPrice(hour),
       monthFormatted: getFormattedMonthlyCatalogPrice(monthlyPrice),
     },
   };

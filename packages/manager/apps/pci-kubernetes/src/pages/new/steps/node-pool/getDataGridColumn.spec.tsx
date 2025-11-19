@@ -229,7 +229,7 @@ describe('getDatagridColumns', () => {
     [3, 'node-pool:kube_common_node_pool_desired_node'],
     [4, 'autoscaling:kubernetes_node_pool_autoscaling_autoscale'],
     [5, 'billing-anti-affinity:kubernetes_node_pool_anti_affinity'],
-    [6, 'Floating IP'],
+    [6, 'Floating IPs'],
     [7, 'node-pool:kube_node_pool_monthly_billing'],
     [8, ''],
   ])(

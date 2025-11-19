@@ -45,10 +45,11 @@ export const getPlanCodeFloatingIps = (
   time: 'hour' | 'month',
   deploymentMode: DeploymentMode | null,
 ): string | null => {
-  if ((deploymentMode === DeploymentMode.MULTI_ZONES && time === 'month') || !deploymentMode) {
+  if (!deploymentMode) {
     return null;
   }
+
   return `floatingip.floatingip.${time}.consumption${
-    deploymentMode === DeploymentMode.MULTI_ZONES ? '.3AZ' : ''
+    deploymentMode === DeploymentMode.MULTI_ZONES && time !== 'month' ? '.3AZ' : ''
   }`;
 };
