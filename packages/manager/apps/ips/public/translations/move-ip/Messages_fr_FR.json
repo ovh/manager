@@ -4,7 +4,6 @@
   "step1EmptyCurrentServiceValue": "Parking des IP",
   "step1DestinationServiceLabel": "Vers",
   "step1NextHopLabel": "Sur",
-  "step1VrackMessage": "Veuillez d'abord détacher votre bloc IP de vRack <Link>(ici)</Link> pour pouvoir le connecter ailleurs.",
   "step2DescriptionWithNextHop": "Voulez vous vraiment déplacer l'IP <b>{{ip}}</b> vers <b>{{destinationService}}</b> sur <b>{{nextHop}}</b> ?",
   "step2DescriptionWithoutNextHop": "Voulez vous vraiment déplacer l'IP <b>{{ip}}</b> vers <b>{{destinationService}}</b> ?",
   "moveIpOnGoingTaskMessage": "Cette IP est déjà en cours de déplacement.",

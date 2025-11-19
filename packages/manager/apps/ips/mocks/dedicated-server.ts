@@ -118,4 +118,9 @@ export const getDedicatedServerMocks = ({
     response: [],
     api: 'v6',
   },
+  {
+    url: '/dedicated/server.json',
+    response: {},
+    api: 'v6',
+  },
 ];

@@ -32,6 +32,17 @@ export const getVrackMocks = ({
   isVrackExpired,
 }: GetVrackMocksParams): Handler[] => [
   {
+    url: '/vrack/:serviceName/task/:taskId',
+    response: {},
+    api: 'v6',
+    status: 404,
+  },
+  {
+    url: '/vrack/:serviceName/task',
+    response: [],
+    api: 'v6',
+  },
+  {
     url: '/vrack/:serviceName/serviceInfos',
     response: isVrackExpired ? expiredService : availableService,
     api: 'v6',

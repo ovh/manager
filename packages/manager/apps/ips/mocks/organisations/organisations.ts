@@ -93,4 +93,11 @@ export const getOrganisationMocks = ({
     },
     api: 'v6',
   },
+  {
+    url: '/me.json',
+    response: {
+      ovhSubsidiary: 'FR',
+    },
+    api: 'v6',
+  },
 ];

@@ -21,9 +21,17 @@ const useMoveIpTasksMocks = vi.hoisted(() =>
   vi.fn(() => ({ hasOnGoingMoveIpTask: false, isTasksLoading: false })),
 );
 
+const useVrackMoveTasksMock = vi.hoisted(() =>
+  vi.fn(() => ({
+    isVrackTasksLoading: false,
+    hasOnGoingVrackMoveTasks: false,
+  })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useMoveIpTasks: useMoveIpTasksMocks,
+  useVrackMoveTasks: useVrackMoveTasksMock,
 }));
 
 vi.mock('../SkeletonCell/SkeletonCell', () => ({

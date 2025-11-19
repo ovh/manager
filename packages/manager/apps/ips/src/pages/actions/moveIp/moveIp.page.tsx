@@ -1,6 +1,6 @@
 import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
@@ -18,16 +18,10 @@ import {
 import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
-import {
-  useGetIpdetails,
-  useMoveIpService,
-  useGetProductServices,
-} from '@/data/hooks';
+import { useGetIpdetails, useMoveIpService } from '@/data/hooks';
 import { TOTAL_STEP_NUMBER } from './moveIp.constant';
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 import { ipParkingOptionValue } from '@/types';
-import { LinkToOtherApp } from '@/components/LinkToOtherApp/LinkToOtherApp';
-import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 
 export default function MoveIpModal() {
   const { id } = useParams<{ id: string }>();
@@ -65,12 +59,6 @@ export default function MoveIpModal() {
   });
 
   const {
-    serviceByCategory: { [IpTypeEnum.VRACK]: vrack },
-    isLoading: isServiceListLoading,
-    error: serviceListError,
-  } = useGetProductServices([PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VRACK]]);
-
-  const {
     isMoveIpServiceLoading,
     moveIpServiceError,
     hasOnGoingMoveIpTask,
@@ -81,6 +69,7 @@ export default function MoveIpModal() {
     isDedicatedCloudService,
   } = useMoveIpService({
     ip,
+    serviceName: ipDetails?.routedTo?.serviceName,
     onMoveIpSuccess: () => {
       addSuccess(
         t('moveIpSuccessMessage', { ip: ipGroup, destinationService }),
@@ -93,28 +82,20 @@ export default function MoveIpModal() {
     },
   });
 
-  const error = React.useMemo(
-    () => ipDetailsError || serviceListError || moveIpServiceError,
-    [ipDetailsError, serviceListError, moveIpServiceError],
-  );
+  const error = React.useMemo(() => ipDetailsError || moveIpServiceError, [
+    ipDetailsError,
+    moveIpServiceError,
+  ]);
 
   const isLoading = React.useMemo(
-    () => isIpDetailLoading || isServiceListLoading || isMoveIpServiceLoading,
-    [isIpDetailLoading, isServiceListLoading, isMoveIpServiceLoading],
+    () => isIpDetailLoading || isMoveIpServiceLoading,
+    [isIpDetailLoading, isMoveIpServiceLoading],
   );
 
   const nextHopList = React.useMemo(() => getNextHopList(destinationService), [
     getNextHopList,
     destinationService,
   ]);
-
-  const isAttachedToSomeVrack = React.useMemo(
-    () =>
-      vrack?.some(
-        ({ serviceName }) => serviceName === ipDetails?.routedTo?.serviceName,
-      ),
-    [vrack, ipDetails?.routedTo?.serviceName],
-  );
 
   const props: ModalProps = {
     isOpen: true,
@@ -130,13 +111,12 @@ export default function MoveIpModal() {
     isPrimaryButtonDisabled:
       !!error ||
       hasOnGoingMoveIpTask ||
-      isAttachedToSomeVrack ||
       !destinationService ||
       (isDedicatedCloudService(destinationService) && !nextHop),
     primaryLabel: t(currentStep === 1 ? 'next' : 'confirm', {
       ns: NAMESPACES.ACTIONS,
     }),
-    secondaryLabel: t(currentStep === 1 ? 'cancel' : 'previous', {
+    secondaryLabel: t(currentStep === 1 || error ? 'cancel' : 'previous', {
       ns: NAMESPACES.ACTIONS,
     }),
     onPrimaryButtonClick: () => {
@@ -147,13 +127,18 @@ export default function MoveIpModal() {
           actionType: 'action',
           actions: ['move_additional-ip', 'confirm'],
         });
-        postMoveIp({ ip, to: destinationService, nexthop: nextHop });
+        postMoveIp({
+          ip,
+          to: destinationService,
+          nexthop: nextHop,
+          serviceName: ipDetails?.routedTo?.serviceName,
+        });
       } else {
         setCurrentStep((prev) => prev + 1);
       }
     },
     onSecondaryButtonClick: () => {
-      if (currentStep === 1) {
+      if (currentStep === 1 || error) {
         closeModal();
       } else {
         setCurrentStep((prev) => prev - 1);
@@ -174,29 +159,6 @@ export default function MoveIpModal() {
       <Modal {...props}>
         <OdsMessage color={ODS_MESSAGE_COLOR.danger} isDismissible={false}>
           {t('moveIpOnGoingTaskMessage')}
-        </OdsMessage>
-      </Modal>
-    );
-  }
-
-  if (isAttachedToSomeVrack) {
-    return (
-      <Modal {...props}>
-        <OdsMessage color={ODS_MESSAGE_COLOR.information} isDismissible={false}>
-          <div className="block">
-            <Trans
-              t={t}
-              i18nKey="step1VrackMessage"
-              components={{
-                Link: (
-                  <LinkToOtherApp
-                    appName="dedicated"
-                    path={`/vrack/${ipDetails?.routedTo?.serviceName}`}
-                  />
-                ),
-              }}
-            />
-          </div>
         </OdsMessage>
       </Modal>
     );

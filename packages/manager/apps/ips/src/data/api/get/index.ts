@@ -17,3 +17,4 @@ export * from './productServices';
 export * from './ipRipeInformation';
 export * from './ipTask';
 export * from './moveIp';
+export * from './vrackTask';
