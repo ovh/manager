@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { Location, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, Location, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
@@ -78,15 +78,15 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
   }, [location.pathname, tabs]);
 
   return (
-    <OdsTabs>
-      {tabs.map(
-        (tab: TabItemProps) =>
-          !tab.hidden && (
-            <NavLink
+    <Tabs value={activePanel} onValueChange={(event) => setActivePanel(event.value)}>
+      <TabList>
+        {tabs
+          .filter((tab) => !tab.hidden)
+          .map((tab: TabItemProps) => (
+            <Link
               key={`osds-tab-bar-item-${tab.name}`}
               to={tab.to}
               className="no-underline"
-              tabIndex={-1}
               onClick={(e) => {
                 if (tab.isDisabled) {
                   e.preventDefault();
@@ -100,19 +100,19 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
                 });
               }}
             >
-              <OdsTab
+              <Tab
                 id={tab.name}
                 data-testid={tab.name}
                 role="tab"
-                isSelected={activePanel === tab.name}
-                isDisabled={tab.isDisabled}
+                value={tab.name}
+                disabled={tab.isDisabled}
               >
                 {tab.title}
-              </OdsTab>
-            </NavLink>
-          ),
-      )}
-    </OdsTabs>
+              </Tab>
+            </Link>
+          ))}
+      </TabList>
+    </Tabs>
   );
 };
 

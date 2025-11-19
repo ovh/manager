@@ -9,22 +9,29 @@ import { Trans, useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import {
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  MODAL_COLOR,
+  SPINNER_SIZE,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -50,8 +57,8 @@ export const AddAliasModal = () => {
   const onClose = () => navigate(goBackUrl);
 
   // @TODO refactor when ods modal overflow is fixed
-  const modalRef = useRef<HTMLOdsModalElement>(undefined);
-  useOdsModalOverflowHack(modalRef);
+  const modalRef = useRef<HTMLDivElement>(undefined);
+  useOdsModalOverflowHack(modalRef as any);
 
   const { data: target, isLoading } = useAccount();
 
@@ -82,9 +89,7 @@ export const AddAliasModal = () => {
         pageName: EMAIL_ACCOUNT_ADD_ALIAS,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_account_alias_add_success_message')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_account_alias_add_success_message')}</Text>,
         true,
       );
     },
@@ -94,11 +99,11 @@ export const AddAliasModal = () => {
         pageName: EMAIL_ACCOUNT_ADD_ALIAS,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_account_alias_add_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -151,21 +156,25 @@ export const AddAliasModal = () => {
   return (
     <Modal
       heading={t('common:add_alias')}
-      type={ODS_MODAL_COLOR.information}
-      isOpen
-      onDismiss={onClose}
-      isLoading={isLoading}
+      type={MODAL_COLOR.information as any}
+      open
+      onOpenChange={onClose}
+      loading={isLoading}
       ref={modalRef}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      primaryButtonTestId="confirm-btn"
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      isPrimaryButtonLoading={isLoading || isSending}
-      onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
+        loading: isLoading || isSending,
+        disabled: !isDirty || !isValid,
+        onClick: handleSubmit(handleConfirmClick),
+        testId: 'confirm-btn',
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+      }}
     >
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleConfirmClick)}>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           <Trans
             t={t}
             i18nKey={'zimbra_account_alias_add_description'}
@@ -173,34 +182,34 @@ export const AddAliasModal = () => {
               account: target?.currentState?.email,
             }}
           />
-        </OdsText>
+        </Text>
         <Controller
           control={control}
           name="account"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+            <FormField className="w-full" invalid={!!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('common:alias')} *
-              </label>
+              </FormFieldLabel>
               <div className="flex">
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                <Input
+                  type={INPUT_TYPE.text}
                   placeholder={t('common:alias')}
                   data-testid="input-account"
                   className="flex-1"
                   id={name}
                   name={name}
-                  hasError={!!errors[name]}
+                  invalid={!!errors[name]}
                   value={value}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
+                  onBlur={onBlur}
+                  onChange={onChange}
                 />
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                <Input
+                  type={INPUT_TYPE.text}
                   name="@"
                   value="@"
-                  isReadonly
-                  isDisabled
+                  readOnly
+                  disabled
                   className="input-at w-10"
                 />
                 <Controller
@@ -208,43 +217,44 @@ export const AddAliasModal = () => {
                   name="domain"
                   render={({ field }) => (
                     <div className="flex flex-1">
-                      <OdsSelect
+                      <Select
                         key={hackKeyDomains}
+                        items={hackDomains.map((domain) => ({
+                          label: domain?.currentState.name,
+                          value: domain?.currentState.name,
+                        }))}
                         id={field.name}
                         name={field.name}
-                        hasError={!!errors[field.name]}
-                        value={field.value}
-                        isDisabled={isLoadingDomains || !domains}
-                        placeholder={t('common:select_domain')}
-                        onOdsChange={field.onChange}
-                        onOdsBlur={field.onBlur}
+                        invalid={!!errors[field.name]}
+                        value={[field.value]}
+                        disabled={isLoadingDomains || !domains}
+                        onValueChange={field.onChange}
+                        onBlur={field.onBlur}
                         data-testid="select-domain"
                         className="w-full"
                       >
-                        {hackDomains?.map(({ currentState: domain }) => (
-                          <option key={domain.name} value={domain.name}>
-                            {domain.name}
-                          </option>
-                        ))}
-                      </OdsSelect>
+                        <SelectControl placeholder={t('common:select_domain')} />
+                        <SelectContent />
+                      </Select>
                       {(isLoadingDomains || !domains) && (
-                        <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
+                        <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                       )}
                     </div>
                   )}
                 />
               </div>
-            </OdsFormField>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
-        <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
+        <Text preset={TEXT_PRESET.caption} className="flex flex-col">
           <span className="block">{t('common:form_email_helper')}</span>
           {[1, 2, 3].map((elm) => (
             <span key={elm} className="block">
               - {t(`common:form_email_helper_rule_${elm}`)}
             </span>
           ))}
-        </OdsText>
+        </Text>
       </form>
     </Modal>
   );

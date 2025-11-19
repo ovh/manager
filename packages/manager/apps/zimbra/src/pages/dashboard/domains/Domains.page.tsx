@@ -5,16 +5,20 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button, Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { BadgeStatus, LabelChip } from '@/components';
 import { AccountStatistics, DomainType, ResourceStatus } from '@/data/api';
@@ -60,38 +64,42 @@ export const Domains = () => {
     () => [
       {
         id: 'domains',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
+        accessorKey: 'name',
         label: 'common:domain',
         isSearchable: true,
       },
       {
         id: 'organization',
-        cell: (item) => {
+        accessorKey: 'organizationLabel',
+        cell: ({ row }) => {
           const organizationName =
-            organizations?.find((org) => org?.id === item?.organizationId)?.currentState?.name ||
-            '';
-          return <LabelChip id={item.organizationId}>{organizationName}</LabelChip>;
+            organizations?.find((org) => org?.id === row.original?.organizationId)?.currentState
+              ?.name || '';
+          <LabelChip id={row.original.organizationId}>{organizationName}</LabelChip>;
         },
         label: 'common:organization',
       },
       {
         id: 'account',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>,
+        accessorKey: 'name',
         label: 'common:number_of_accounts',
       },
       {
         id: 'status',
-        cell: (item) =>
-          item.cnameToCheck && item.status === ResourceStatus.CREATING ? (
-            <CnameBadge item={item} />
+        accessorKey: 'name',
+        cell: ({ row }) =>
+          row.original.cnameToCheck && row.original.status === ResourceStatus.CREATING ? (
+            <CnameBadge item={row.original} />
           ) : (
-            <BadgeStatus status={item.status}></BadgeStatus>
+            <BadgeStatus status={row.original.status}></BadgeStatus>
           ),
         label: `${NAMESPACES.STATUS}:status`,
       },
       {
         id: 'tooltip',
-        cell: (item: DomainItem) => <ActionButtonDomain item={item} />,
+        maxSize: 50,
+        accessorKey: '',
+        cell: ({ row }) => <ActionButtonDomain item={row.original} />,
         label: '',
       },
     ],
@@ -134,27 +142,32 @@ export const Domains = () => {
         <Datagrid
           topbar={
             <div className="flex items-center justify-between">
-              <div id="tooltip-trigger-domain-btn">
-                <ManagerButton
-                  id="add-domain-btn"
-                  color={ODS_BUTTON_COLOR.primary}
-                  size={ODS_BUTTON_SIZE.sm}
-                  onClick={handleAddDomainClick}
-                  urn={platformUrn}
-                  iamActions={[IAM_ACTIONS.domain.create]}
-                  data-testid="add-domain-btn"
-                  isDisabled={organizations?.length === 0}
-                  icon={ODS_ICON_NAME.plus}
-                  label={t('common:add_domain')}
-                />
-              </div>
-              {(isLoading || organizations?.length === 0) && (
-                <OdsTooltip role="tooltip" triggerId={'tooltip-trigger-domain-btn'}>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t('zimbra_domains_tooltip_need_organization')}
-                  </OdsText>
-                </OdsTooltip>
-              )}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    id="add-domain-btn"
+                    color={BUTTON_COLOR.primary}
+                    size={BUTTON_SIZE.sm}
+                    onClick={handleAddDomainClick}
+                    urn={platformUrn}
+                    iamActions={[IAM_ACTIONS.domain.create]}
+                    data-testid="add-domain-btn"
+                    disabled={organizations?.length === 0}
+                  >
+                    <>
+                      <Icon name={ICON_NAME.plus} />
+                      {t('common:add_domain')}
+                    </>
+                  </Button>
+                </TooltipTrigger>
+                {(isLoading || organizations?.length === 0) && (
+                  <TooltipContent>
+                    <Text preset={TEXT_PRESET.paragraph}>
+                      {t('zimbra_domains_tooltip_need_organization')}
+                    </Text>
+                  </TooltipContent>
+                )}
+              </Tooltip>
             </div>
           }
           search={{
@@ -166,8 +179,8 @@ export const Domains = () => {
             ...column,
             label: t(column.label),
           }))}
-          items={items}
-          totalItems={items.length}
+          data={items}
+          totalCount={items.length}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}
           onFetchAllPages={fetchAllPages}

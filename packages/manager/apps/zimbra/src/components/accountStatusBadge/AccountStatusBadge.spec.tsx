@@ -2,7 +2,7 @@ import React from 'react';
 
 import { describe, expect } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
 import { CurrentAccountStatus, ResourceStatus } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
@@ -46,7 +46,7 @@ describe('Account status badge', () => {
 
     const badge = getByTestId(`1_${CurrentAccountStatus.BLOCKEDFORSPAM}`);
     expect(badge).toHaveAttribute('label', commonTranslation.account_state_blockedforspam);
-    expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
+    expect(badge).toHaveAttribute('color', BADGE_COLOR.critical);
   });
 
   it('should correctly display "READY" state', () => {
@@ -54,6 +54,6 @@ describe('Account status badge', () => {
 
     const badge = getByTestId(`1_${ResourceStatus.READY}`);
     expect(badge).toHaveAttribute('label', commonTranslation.service_state_ready);
-    expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.success);
+    expect(badge).toHaveAttribute('color', BADGE_COLOR.success);
   });
 });

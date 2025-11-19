@@ -4,14 +4,18 @@ import { useLocation } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn, useBytes } from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn, useBytes } from '@ovh-ux/muk';
 
 import { AccountStatusBadge, BillingStateBadge, LabelChip } from '@/components';
-import { AccountType, ResourceStatus, getZimbraPlatformListQueryKey } from '@/data/api';
+import {
+  AccountType,
+  ResourceStatus,
+  SlotService,
+  getZimbraPlatformListQueryKey,
+} from '@/data/api';
 import { useAccounts, useSlotServices } from '@/data/hooks';
 import { useDebouncedValue, useOverridePage } from '@/hooks';
 import queryClient from '@/queryClient';
@@ -106,42 +110,46 @@ export const EmailAccountsDatagrid = () => {
     () => [
       {
         id: 'email_account',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>,
+        accessorKey: 'email',
         label: 'common:email_account',
         isSearchable: true,
       },
       {
         id: 'organization',
-        cell: (item) => <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>,
+        accessorKey: 'organizationLabel',
+        cell: ({ getValue }) => <LabelChip id={getValue<string>()}>{getValue<string>()}</LabelChip>,
         label: 'common:organization',
       },
       {
         id: 'offer',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>,
+        accessorKey: 'offer',
         label: 'zimbra_account_datagrid_offer_label',
       },
       {
         id: 'quota',
-        cell: (item) => (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {formatBytes(item.available, 0, 1024)}
-          </OdsText>
+        accessorKey: 'available',
+        cell: ({ getValue }) => (
+          <Text preset={TEXT_PRESET.paragraph}>{formatBytes(getValue<number>(), 0, 1024)}</Text>
         ),
         label: 'zimbra_account_datagrid_quota',
       },
       {
         id: 'status',
-        cell: (item) => <AccountStatusBadge {...item} />,
+        accessorKey: 'email',
+        cell: ({ row }) => <AccountStatusBadge {...row.original} />,
         label: `${NAMESPACES.STATUS}:status`,
       },
       {
         id: 'renewal_type',
-        cell: (item) => <BillingStateBadge service={item.service} />,
+        accessorKey: 'service',
+        cell: ({ getValue }) => <BillingStateBadge service={getValue<SlotService>()} />,
         label: 'zimbra_account_datagrid_renewal_type',
       },
       {
         id: 'tooltip',
-        cell: (item: EmailAccountItem) => <ActionButtonEmailAccount item={item} />,
+        maxSize: 50,
+        accessorKey: '',
+        cell: ({ row }) => <ActionButtonEmailAccount item={row.original} />,
         label: '',
       },
     ],
@@ -166,8 +174,8 @@ export const EmailAccountsDatagrid = () => {
         ...column,
         label: t(column.label),
       }))}
-      items={items}
-      totalItems={items.length}
+      data={items}
+      totalCount={items.length}
       hasNextPage={hasNextPage}
       onFetchNextPage={fetchNextPage}
       onFetchAllPages={fetchAllPages}

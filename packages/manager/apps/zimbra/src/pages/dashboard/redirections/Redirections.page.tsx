@@ -4,21 +4,10 @@ import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME, Icon, TEXT_PRESET } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-  ManagerText,
-} from '@ovh-ux/manager-react-components';
+import { Button, Datagrid, DatagridColumn, Text } from '@ovh-ux/muk';
 
 import { BadgeStatus } from '@/components';
 import { MAX_REDIRECTIONS_QUOTA } from '@/constants';
@@ -34,29 +23,31 @@ import { RedirectionItem } from './Redirections.types';
 const columns: DatagridColumn<RedirectionItem>[] = [
   {
     id: 'from',
-    cell: (item) => <div>{item.from}</div>,
+    accessorKey: 'from',
     label: 'zimbra_redirections_from',
     isSearchable: true,
   },
   {
     id: 'to',
-    cell: (item) => <div>{item.to}</div>,
+    accessorKey: 'to',
     label: 'zimbra_redirections_to',
     isSearchable: true,
   },
   {
     id: 'organization',
-    cell: (item) => <div>{item.organization}</div>,
+    accessorKey: 'organization',
     label: 'common:organization',
   },
   {
     id: 'status',
-    cell: (item) => <BadgeStatus status={item.status} />,
+    accessorKey: 'status',
+    cell: ({ getValue }) => <BadgeStatus status={getValue<keyof typeof ResourceStatus>()} />,
     label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
-    cell: (item) => <ActionButton data-testid="add-redirection-btn" item={item} />,
+    maxSize: 50,
+    cell: ({ row }) => <ActionButton data-testid="add-redirection-btn" item={row.original} />,
     label: '',
   },
 ];
@@ -131,31 +122,37 @@ export const Redirections = () => {
   const topbar = useMemo(
     () => (
       <div className="flex gap-6">
-        <ManagerButton
-          color={ODS_BUTTON_COLOR.primary}
+        <Button
+          color={BUTTON_COLOR.primary}
           inline-block
-          size={ODS_BUTTON_SIZE.sm}
+          size={BUTTON_SIZE.sm}
           onClick={handleAddEmailRedirectionClick}
           urn={platformUrn}
           iamActions={[IAM_ACTIONS.redirection.create]}
           data-testid="add-redirection-btn"
           id="add-redirection-btn"
-          icon={ODS_ICON_NAME.plus}
-          label={t('common:add_redirection')}
-        />
+        >
+          <>
+            <Icon name={ICON_NAME.plus} />
+            {t('common:add_redirection')}
+          </>
+        </Button>
         {!!selectedRows?.length && (
-          <ManagerButton
-            color={ODS_BUTTON_COLOR.critical}
+          <Button
+            color={BUTTON_COLOR.critical}
             inline-block
-            size={ODS_BUTTON_SIZE.sm}
+            size={BUTTON_SIZE.sm}
             onClick={handleDeleteSelectedRedirectionClick}
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.redirection.delete]}
             data-testid="delete-all-redirection-btn"
             id="delete-all-redirection-btn"
-            icon={ODS_ICON_NAME.trash}
-            label={`${t('common:delete_redirections')} (${selectedRows.length})`}
-          />
+          >
+            <>
+              <Icon name={ICON_NAME.trash} />
+              {`${t('common:delete_redirections')} (${selectedRows.length})`}
+            </>
+          </Button>
         )}
       </div>
     ),
@@ -167,10 +164,10 @@ export const Redirections = () => {
       <Outlet />
       {accountId && (
         <div className="mb-6">
-          <OdsText preset="heading-3">{t('zimbra_redirections_account_title')}</OdsText>
+          <Text preset={TEXT_PRESET.heading3}>{t('zimbra_redirections_account_title')}</Text>
         </div>
       )}
-      <ManagerText
+      <Text
         className="mb-6 flex gap-8"
         data-testid="account-offers"
         urn={platformUrn}
@@ -178,13 +175,13 @@ export const Redirections = () => {
       >
         <div className="flex gap-8">
           <span>
-            <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
+            <Text preset={TEXT_PRESET.heading6} className="mr-4">
               {t('zimbra_redirections_account_quota')}
-            </OdsText>
+            </Text>
             <span>{`${redirections?.length} / ${MAX_REDIRECTIONS_QUOTA}`}</span>
           </span>
         </div>
-      </ManagerText>
+      </Text>
       <Datagrid
         search={{
           searchInput,
@@ -202,8 +199,8 @@ export const Redirections = () => {
           ...column,
           label: t(column.label),
         }))}
-        items={items}
-        totalItems={items?.length}
+        data={items}
+        totalCount={items?.length}
         isLoading={isLoading}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}

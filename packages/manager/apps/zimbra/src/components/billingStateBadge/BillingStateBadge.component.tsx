@@ -3,14 +3,20 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BADGE_COLOR,
-  ODS_BADGE_ICON_ALIGNMENT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsBadge, OdsSkeleton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+  BADGE_COLOR,
+  Badge,
+  ICON_NAME,
+  Icon,
+  Skeleton,
+  TEXT_PRESET,
+  TOOLTIP_POSITION,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
-import { useFormatDate } from '@ovh-ux/manager-react-components';
+import { useFormatDate } from '@ovh-ux/muk';
 
 import { ServiceBillingState, SlotService } from '@/data/api';
 
@@ -23,14 +29,14 @@ export type BillingStateBadgeProps = {
 const getColor = (status: keyof typeof ServiceBillingState) => {
   switch (status) {
     case ServiceBillingState.AUTOMATIC_RENEWAL:
-      return ODS_BADGE_COLOR.success;
+      return BADGE_COLOR.success;
     case ServiceBillingState.CANCELED:
     case ServiceBillingState.CANCELATION_PLANNED:
-      return ODS_BADGE_COLOR.critical;
+      return BADGE_COLOR.critical;
     case ServiceBillingState.MANUAL_RENEWAL:
-      return ODS_BADGE_COLOR.warning;
+      return BADGE_COLOR.warning;
     default:
-      return ODS_BADGE_COLOR.neutral;
+      return BADGE_COLOR.neutral;
   }
 };
 
@@ -68,34 +74,30 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
 
   if (!service || isLoading) {
     return (
-      <OdsSkeleton data-testid="billing-state-loading" className="[&::part(skeleton)]:max-w-40" />
+      <Skeleton data-testid="billing-state-loading" className="[&::part(skeleton)]:max-w-40" />
     );
   }
 
   return (
-    <>
-      <OdsBadge
-        data-testid={props['data-testid']}
-        id={`service-${service.id}`}
-        color={color}
-        label={label}
-        iconAlignment={ODS_BADGE_ICON_ALIGNMENT.right}
-        {...(BILLING_STATE_TOOLTIP[service.state] ? { icon: ODS_ICON_NAME.circleInfo } : {})}
-      />
+    <Tooltip position={TOOLTIP_POSITION.bottom}>
+      <TooltipTrigger asChild>
+        <Badge data-testid={props['data-testid']} color={color}>
+          {label}
+          {BILLING_STATE_TOOLTIP[service.state] && <Icon name={ICON_NAME.circleInfo} />}
+        </Badge>
+      </TooltipTrigger>
       {BILLING_STATE_TOOLTIP[service.state] && (
-        <OdsTooltip withArrow position="bottom" triggerId={`service-${service.id}`}>
+        <TooltipContent withArrow>
           <div className="flex flex-col gap-4 text-center">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(BILLING_STATE_TOOLTIP[service.state])}
-            </OdsText>
+            <Text preset={TEXT_PRESET.paragraph}>{t(BILLING_STATE_TOOLTIP[service.state])}</Text>
 
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <Text preset={TEXT_PRESET.paragraph}>
               {format({ date: service?.nextBillingDate, format: 'P' })}
-            </OdsText>
+            </Text>
           </div>
-        </OdsTooltip>
+        </TooltipContent>
       )}
-    </>
+    </Tooltip>
   );
 };
 

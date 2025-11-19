@@ -2,7 +2,7 @@ import React from 'react';
 
 import { describe, expect } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
 import { ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
@@ -40,7 +40,7 @@ describe('BillingStateBadge component', () => {
 
     const cmp = getByTestId(defaultTestId);
     expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_automatic_renewal);
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.success);
+    expect(cmp).toHaveAttribute('color', BADGE_COLOR.success);
   });
 
   it('should correctly display "MANUAL_RENEWAL" state', () => {
@@ -53,7 +53,7 @@ describe('BillingStateBadge component', () => {
 
     const cmp = getByTestId(defaultTestId);
     expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_manual_renewal);
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.warning);
+    expect(cmp).toHaveAttribute('color', BADGE_COLOR.warning);
   });
 
   it('should correctly display "CANCELED" state', () => {
@@ -66,7 +66,7 @@ describe('BillingStateBadge component', () => {
 
     const cmp = getByTestId(defaultTestId);
     expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_canceled);
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
+    expect(cmp).toHaveAttribute('color', BADGE_COLOR.critical);
   });
 
   it('should correctly display "CANCELATION_PLANNED" state', () => {
@@ -85,6 +85,6 @@ describe('BillingStateBadge component', () => {
       'label',
       commonTranslation.service_billing_state_cancelation_planned,
     );
-    expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
+    expect(cmp).toHaveAttribute('color', BADGE_COLOR.critical);
   });
 });
