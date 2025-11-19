@@ -1,11 +1,13 @@
-import { I18nextProvider } from 'react-i18next';
-import { i18n } from 'i18next';
-import { renderHook } from '@testing-library/react';
 import { MOCK_SECRET_CONFIG_VALID } from '@secret-manager/utils/tests/secret.constants';
+import { renderHook } from '@testing-library/react';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+
 import {
-  MAX_VERSIONS_MIN_VALUE,
   MAX_VERSIONS_MAX_VALUE,
+  MAX_VERSIONS_MIN_VALUE,
   useSecretConfigSchema,
 } from './secretConfigSchema';
 
@@ -13,9 +15,7 @@ let i18nValue: i18n;
 
 const getSchemaParsingResult = (input: unknown) => {
   const schema = renderHook(useSecretConfigSchema, {
-    wrapper: ({ children }) => (
-      <I18nextProvider i18n={i18nValue}>{children}</I18nextProvider>
-    ),
+    wrapper: ({ children }) => <I18nextProvider i18n={i18nValue}>{children}</I18nextProvider>,
   });
   return schema.result.current.safeParse(input);
 };
@@ -77,9 +77,7 @@ describe('useSecretConfigSchema test suite', () => {
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
       expect(result.error.issues[0].path).toEqual(['deactivateVersionAfter']);
-      expect(result.error.issues[0].message).toBe(
-        labels.secretManager.error_invalid_duration,
-      );
+      expect(result.error.issues[0].message).toBe(labels.secretManager.error_invalid_duration);
     });
 
     it('should return error for missing deactivateVersionAfter field', () => {
@@ -94,15 +92,7 @@ describe('useSecretConfigSchema test suite', () => {
     });
 
     it('should validate various valid duration formats', () => {
-      const validDurations = [
-        '30s',
-        '5m',
-        '2h',
-        '1h30m',
-        '45m30s',
-        '2h15m30s',
-        '30s15m2h',
-      ];
+      const validDurations = ['30s', '5m', '2h', '1h30m', '45m30s', '2h15m30s', '30s15m2h'];
 
       validDurations.forEach((duration) => {
         const validSecretConfig = {

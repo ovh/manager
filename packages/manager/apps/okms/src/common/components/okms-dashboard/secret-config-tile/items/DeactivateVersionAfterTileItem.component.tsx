@@ -1,7 +1,10 @@
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { SecretConfig } from '@secret-manager/types/secret.type';
+import { useTranslation } from 'react-i18next';
+
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
 
 type DeactivateVersionAfterTileItemProps = {
@@ -17,9 +20,7 @@ export const DeactivateVersionAfterTileItem = ({
 
   return (
     <ManagerTile.Item>
-      <ManagerTile.Item.Label>
-        {t('deactivate_version_after')}
-      </ManagerTile.Item.Label>
+      <ManagerTile.Item.Label>{t('deactivate_version_after')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
         {isPending ? (
           <OdsSkeleton

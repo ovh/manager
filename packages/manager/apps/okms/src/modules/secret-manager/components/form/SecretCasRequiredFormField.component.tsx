@@ -1,12 +1,12 @@
-import { useController, UseControllerProps } from 'react-hook-form';
-import {
-  OdsFormField,
-  OdsRadio,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import { OdsFormField, OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { HelpIconWithTooltip } from '@/common/components/help-icon-with-tooltip/HelpIconWithTooltip.component';
+
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type CasRequiredFormValue = 'active' | 'inactive';
@@ -15,9 +15,7 @@ type FormFieldInput = {
   casRequired: CasRequiredFormValue;
 };
 
-type SecretCasRequiredFormFieldProps<
-  T extends FormFieldInput
-> = UseControllerProps<T> & {
+type SecretCasRequiredFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
   isCasRequiredSetOnOkms?: boolean;
 };
 
@@ -59,9 +57,7 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
             data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE}
           />
           <label htmlFor={`${field.name}-inactive`}>
-            <OdsText preset="paragraph">
-              {t('disabled', { ns: NAMESPACES.STATUS })}
-            </OdsText>
+            <OdsText preset="paragraph">{t('disabled', { ns: NAMESPACES.STATUS })}</OdsText>
           </label>
         </div>
       </div>
@@ -74,14 +70,10 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
   );
 };
 
-export const casRequiredToFormValue = (
-  casRequired: boolean,
-): CasRequiredFormValue => {
+export const casRequiredToFormValue = (casRequired: boolean): CasRequiredFormValue => {
   return casRequired ? 'active' : 'inactive';
 };
 
-export const formValueToCasRequired = (
-  formValue: CasRequiredFormValue,
-): boolean => {
+export const formValueToCasRequired = (formValue: CasRequiredFormValue): boolean => {
   return formValue === 'active';
 };

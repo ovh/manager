@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
+
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
-import {
-  useOvhTracking,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
+
 import { useShellContext } from '@/common/hooks/useShellContext';
 
 export default function Layout() {

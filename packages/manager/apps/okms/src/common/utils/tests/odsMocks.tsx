@@ -1,14 +1,6 @@
-import {
-  ChangeEventHandler,
-  ComponentProps,
-  MouseEventHandler,
-} from 'react';
-import {
-  OdsInput,
-  OdsSwitch,
-  OdsSwitchItem,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
+import { ChangeEventHandler, ComponentProps, MouseEventHandler } from 'react';
+
+import { OdsInput, OdsSwitch, OdsSwitchItem, OdsTextarea } from '@ovhcloud/ods-components/react';
 
 type DataTestIdProps = {
   'data-testid'?: string;
@@ -20,9 +12,7 @@ type DataTestIdProps = {
 type OdsInputProps = ComponentProps<typeof OdsInput> & DataTestIdProps;
 
 export const odsInputMock = (props: OdsInputProps) => {
-  const handleChange = (props.onOdsChange as unknown) as ChangeEventHandler<
-    HTMLInputElement
-  >;
+  const handleChange = props.onOdsChange as unknown as ChangeEventHandler<HTMLInputElement>;
 
   return (
     <input
@@ -30,9 +20,7 @@ export const odsInputMock = (props: OdsInputProps) => {
       key={props.key}
       name={props.name}
       value={props.value}
-      data-testid={
-        props['data-testid']
-      }
+      data-testid={props['data-testid']}
       onChange={handleChange}
       onBlur={handleChange}
     />
@@ -45,9 +33,7 @@ export const odsInputMock = (props: OdsInputProps) => {
 type OdsTextareaProps = ComponentProps<typeof OdsTextarea> & DataTestIdProps;
 
 export const odsTextareaMock = (props: OdsTextareaProps) => {
-  const handleChange = (props.onOdsChange as unknown) as ChangeEventHandler<
-    HTMLTextAreaElement
-  >;
+  const handleChange = props.onOdsChange as unknown as ChangeEventHandler<HTMLTextAreaElement>;
 
   return (
     <textarea
@@ -55,9 +41,7 @@ export const odsTextareaMock = (props: OdsTextareaProps) => {
       key={props.key}
       name={props.name}
       value={props.value}
-      data-testid={
-        props['data-testid']
-      }
+      data-testid={props['data-testid']}
       onChange={handleChange}
       onBlur={handleChange}
     />
@@ -70,11 +54,7 @@ export const odsTextareaMock = (props: OdsTextareaProps) => {
 type OdsSwitchProps = ComponentProps<typeof OdsSwitch> & DataTestIdProps;
 
 export const odsSwitchMock = (props: OdsSwitchProps) => {
-  return (
-    <div data-testid={props['data-testid']}>
-      {props.children}
-    </div>
-  );
+  return <div data-testid={props['data-testid']}>{props.children}</div>;
 };
 
 /**
@@ -83,9 +63,7 @@ export const odsSwitchMock = (props: OdsSwitchProps) => {
 type OdsSwitchItemProps = ComponentProps<typeof OdsSwitchItem> & DataTestIdProps;
 
 export const odsSwitchItemMock = (props: OdsSwitchItemProps) => {
-  const handleClick = (props.onClick as unknown) as MouseEventHandler<
-    HTMLButtonElement
-  >;
+  const handleClick = props.onClick as unknown as MouseEventHandler<HTMLButtonElement>;
 
   return (
     <button

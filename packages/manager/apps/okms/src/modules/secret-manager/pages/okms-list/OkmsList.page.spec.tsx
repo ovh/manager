@@ -1,23 +1,20 @@
-import { act, screen, waitFor } from '@testing-library/react';
-import {
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import userEvent from '@testing-library/user-event';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import {
   regionWithMultipleOkms,
   regionWithoutOkms,
 } from '@key-management-service/mocks/kms/okms.mock';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+
+import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okms-datagrid/ListingCells.constants';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
-import { labels } from '@/common/utils/tests/init.i18n';
-import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okms-datagrid/ListingCells.constants';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(
-  regionWithMultipleOkms.region,
-);
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithMultipleOkms.region);
 
 const checkOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
@@ -92,17 +89,13 @@ describe('Okms List page test suite', () => {
       await user.click(button);
     });
 
-    await assertTextVisibility(
-      labels.secretManager.create_secret_form_region_section_title,
-    );
+    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
   });
 
   it('should navigate to the secrets listing page on click on okms name', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    const { user, okmsNameLink } = await checkOkmsListPageToBeDisplayed(
-      container,
-    );
+    const { user, okmsNameLink } = await checkOkmsListPageToBeDisplayed(container);
 
     await act(async () => {
       await user.click(okmsNameLink);

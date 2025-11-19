@@ -1,13 +1,13 @@
 import React from 'react';
+
 import { useLocation, useNavigate } from 'react-router-dom';
-import { OdsTabs, OdsTab, OdsBadge } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 export type KmsTabProps = {
   url: string;

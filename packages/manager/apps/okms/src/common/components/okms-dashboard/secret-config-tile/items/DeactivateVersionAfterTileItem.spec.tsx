@@ -1,20 +1,15 @@
-import { screen } from '@testing-library/react';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
+import { screen } from '@testing-library/react';
+
 import { labels } from '@/common/utils/tests/init.i18n';
-import { DeactivateVersionAfterTileItem } from './DeactivateVersionAfterTileItem.component';
-import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
-const renderTileItem = async ({
-  isPending = false,
-}: {
-  isPending?: boolean;
-}) => {
+import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
+import { DeactivateVersionAfterTileItem } from './DeactivateVersionAfterTileItem.component';
+
+const renderTileItem = async ({ isPending = false }: { isPending?: boolean }) => {
   return renderWithI18n(
-    <DeactivateVersionAfterTileItem
-      secretConfig={mockSecretConfigOkms}
-      isPending={isPending}
-    />,
+    <DeactivateVersionAfterTileItem secretConfig={mockSecretConfigOkms} isPending={isPending} />,
   );
 };
 
@@ -26,12 +21,8 @@ describe('OKMS - secret config - DeactivateVersionAfter Tile Item test suite', (
     await renderTileItem({});
 
     // THEN
-    expect(
-      screen.getByText(labels.secretManager.deactivate_version_after),
-    ).toBeVisible();
-    expect(
-      screen.getByText(mockSecretConfigOkms.deactivateVersionAfter),
-    ).toBeVisible();
+    expect(screen.getByText(labels.secretManager.deactivate_version_after)).toBeVisible();
+    expect(screen.getByText(mockSecretConfigOkms.deactivateVersionAfter)).toBeVisible();
   });
 
   it('should render a skeleton while data is loading', async () => {
@@ -41,8 +32,6 @@ describe('OKMS - secret config - DeactivateVersionAfter Tile Item test suite', (
     await renderTileItem({ isPending: true });
 
     // THEN
-    expect(
-      screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.skeleton),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.skeleton)).toBeInTheDocument();
   });
 });

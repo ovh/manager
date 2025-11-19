@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
+
 import CredentialCreationMethod from './credentialCreationMethod.component';
 
 describe('CredentialStatus component test suite', () => {
@@ -26,9 +27,7 @@ describe('CredentialStatus component test suite', () => {
       // given fromCSR
 
       // when
-      const { getByText, queryByText } = render(
-        <CredentialCreationMethod fromCSR={fromCSR} />,
-      );
+      const { getByText, queryByText } = render(<CredentialCreationMethod fromCSR={fromCSR} />);
 
       // then
       expect(getByText(expectedLabel)).toBeInTheDocument();

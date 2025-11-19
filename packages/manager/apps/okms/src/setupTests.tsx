@@ -1,11 +1,9 @@
-import { vi } from 'vitest';
-import { SetupServer, setupServer } from 'msw/node';
-import {
-  toMswHandlers,
-  getAuthenticationMocks,
-} from '@ovh-ux/manager-core-test-utils';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+import { SetupServer, setupServer } from 'msw/node';
+import { vi } from 'vitest';
+
+import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
 declare global {
   var server: SetupServer;
@@ -13,9 +11,7 @@ declare global {
 }
 
 const server = setupServer(
-  ...toMswHandlers([
-    ...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' }),
-  ]),
+  ...toMswHandlers([...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' })]),
 );
 
 beforeAll(() => {
@@ -49,17 +45,11 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   const original = await vi.importActual('@ovh-ux/manager-react-components');
   return {
     ...original,
-    Drawer: vi.fn(
-      ({
-        children,
-        className,
-        ...props
-      }: DrawerProps) => (
-        <div data-testid={props['data-testid']} className={className}>
-          <header>{props.heading}</header>
-          {!props.isLoading && children}
-        </div>
-      ),
-    ),
+    Drawer: vi.fn(({ children, className, ...props }: DrawerProps) => (
+      <div data-testid={props['data-testid']} className={className}>
+        <header>{props.heading}</header>
+        {!props.isLoading && children}
+      </div>
+    )),
   };
 });

@@ -1,20 +1,23 @@
-import { screen, act, waitFor } from '@testing-library/react';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
+import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import {
+  WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
   getOdsButtonByIcon,
   getOdsButtonByLabel,
-  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
-import userEvent from '@testing-library/user-event';
-import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { PATH_LABEL } from '@/constants';
+import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
+
 import { CREATE_VERSION_DRAWER_TEST_IDS } from '../drawers/create-version-drawer/CreateVersionDrawer.constants';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(okmsMock[0].id);
@@ -134,9 +137,7 @@ describe('Secret list page test suite', () => {
 
     // THEN
     await assertTextVisibility(labels.secretManager.create_a_secret);
-    await assertTextVisibility(
-      labels.secretManager.create_secret_form_region_section_title,
-    );
+    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
   });
 
   /* ITEM MENU ACTIONS */
@@ -163,8 +164,7 @@ describe('Secret list page test suite', () => {
     },
     {
       actionLabel: labels.secretManager.delete_secret,
-      assertion: () =>
-        assertTextVisibility(labels.secretManager.delete_secret_modal_title),
+      assertion: () => assertTextVisibility(labels.secretManager.delete_secret_modal_title),
     },
   ];
 

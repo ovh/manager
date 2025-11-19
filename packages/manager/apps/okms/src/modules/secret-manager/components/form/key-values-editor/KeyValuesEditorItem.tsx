@@ -1,15 +1,11 @@
-import {
-  OdsFormField,
-  OdsInput,
-  OdsButton,
-} from '@ovhcloud/ods-components/react';
-import {
-  OdsInputChangeEventDetail,
-  OdsInputCustomEvent,
-} from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { OdsInputChangeEventDetail, OdsInputCustomEvent } from '@ovhcloud/ods-components';
+import { OdsButton, OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
 export type KeyValuePair = {
@@ -26,9 +22,7 @@ type KeyValuesEditorItemProps = {
   isDeletable: boolean;
 };
 
-type OdsInputChangeEventHandler = (
-  event: OdsInputCustomEvent<OdsInputChangeEventDetail>,
-) => void;
+type OdsInputChangeEventHandler = (event: OdsInputCustomEvent<OdsInputChangeEventDetail>) => void;
 
 export const KeyValuesEditorItem = ({
   index,

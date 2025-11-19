@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
+
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import CreateCredentialConfirmationDetails from './CreateCredentialConfirmationDetails.component';
 import CreateCredentialConfirmationPrivateKey from './CreateCredentialConfirmationPrivateKey.component';
 
@@ -12,9 +16,7 @@ type CreateCredentialConfirmationProps = {
   okmsCredential: OkmsCredential;
 };
 
-const CreateCredentialConfirmation = ({
-  okmsCredential,
-}: CreateCredentialConfirmationProps) => {
+const CreateCredentialConfirmation = ({ okmsCredential }: CreateCredentialConfirmationProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const [isKeyDownloaded, setIsKeyDownloaded] = useState(false);
   const { okmsId } = useParams() as { okmsId: string };
@@ -33,9 +35,7 @@ const CreateCredentialConfirmation = ({
         color={ODS_BUTTON_COLOR.primary}
         isDisabled={!isKeyDownloaded}
         onClick={() => navigate(KMS_ROUTES_URLS.credentialListing(okmsId))}
-        label={t(
-          'key_management_service_credential_create_confirmation_button_done_label',
-        )}
+        label={t('key_management_service_credential_create_confirmation_button_done_label')}
       />
     </div>
   );

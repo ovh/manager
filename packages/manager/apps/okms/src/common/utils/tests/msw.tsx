@@ -1,5 +1,7 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { ErrorResponse } from '@/common/types/api.type';
 
 type BuildHandlerResponseParams<T = unknown> = {

@@ -1,28 +1,6 @@
 import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsSelect,
-  OdsSpinner,
-  OdsText,
-  OdsModal,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  ODS_BUTTON_COLOR,
-  ODS_MODAL_COLOR,
-} from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useUpdateOkmsServiceKey } from '@key-management-service/data/hooks/useUpdateOkmsServiceKey';
 import {
@@ -31,6 +9,31 @@ import {
   OkmsServiceKeyPutState,
   OkmsServiceKeyState,
 } from '@key-management-service/types/okmsServiceKey.type';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_VARIANT,
+  ODS_MODAL_COLOR,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsFormField,
+  OdsModal,
+  OdsSelect,
+  OdsSpinner,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 const stateByReason: {
   [deactivationReason: string]: OkmsServiceKeyPutState;
@@ -65,10 +68,7 @@ export const DisableServiceKeyModal = () => {
     keyId,
     onSuccess: () => {
       clearNotifications();
-      addSuccess(
-        t('key_management_service_service-keys_deactivation_success'),
-        true,
-      );
+      addSuccess(t('key_management_service_service-keys_deactivation_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'deactivate_encryption_key',
@@ -121,9 +121,7 @@ export const DisableServiceKeyModal = () => {
             name="deactivation-reason"
             value={deactivationReason}
             onOdsChange={(e) =>
-              setDeactivationReason(
-                e?.detail.value as OkmsServiceKeyDeactivationReason,
-              )
+              setDeactivationReason(e?.detail.value as OkmsServiceKeyDeactivationReason)
             }
             placeholder={t(
               'key_management_service_service-keys_modal_deactivation_reason_select_placeholder',
@@ -161,9 +159,7 @@ export const DisableServiceKeyModal = () => {
         color={ODS_BUTTON_COLOR.primary}
         onClick={handleSubmit}
         aria-label="edit-name-okms"
-        label={t(
-          'key_management_service_service-keys_deactivation_button_confirm',
-        )}
+        label={t('key_management_service_service-keys_deactivation_button_confirm')}
       />
     </OdsModal>
   );

@@ -64,9 +64,7 @@ export type OkmsServiceKeyTypeOctSize = 128 | 192 | 256;
 export type OkmsServiceKeyTypeRSASize = 2048 | 3072 | 4096;
 
 /* Size */
-export type OkmsServiceKeySize =
-  | OkmsServiceKeyTypeOctSize
-  | OkmsServiceKeyTypeRSASize;
+export type OkmsServiceKeySize = OkmsServiceKeyTypeOctSize | OkmsServiceKeyTypeRSASize;
 
 /* Elliptic Curve (EC) */
 export type OkmsServiceKeyCurve = 'P-256' | 'P-384' | 'P-521';
@@ -82,7 +80,8 @@ export const OkmsServiceKeyDeactivationReasonTypes = [
   'UNSPECIFIED',
 ] as const;
 
-export type OkmsServiceKeyDeactivationReason = typeof OkmsServiceKeyDeactivationReasonTypes[number];
+export type OkmsServiceKeyDeactivationReason =
+  (typeof OkmsServiceKeyDeactivationReasonTypes)[number];
 
 /*
 PUT SERVICE KEY

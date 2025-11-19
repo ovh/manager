@@ -1,9 +1,11 @@
-import { GuideButton } from '@ovh-ux/manager-react-components';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+import { GuideButton } from '@ovh-ux/manager-react-components';
+
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+
+import { useGuideItemKmip } from './guide-kmip/useGuideItemKmip';
 import { useGuideItemQuickStart } from './guide-quick-start/useGuideItemQuickStart';
 import { useGuideItemUsage } from './guide-usage/useGuideItemUsage';
-import { useGuideItemKmip } from './guide-kmip/useGuideItemKmip';
 
 export default function KmsGuidesHeader() {
   const { data: features, isPending } = useFeatureAvailability([

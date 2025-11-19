@@ -1,7 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
-import { renderHook } from '@testing-library/react';
 import { useLocation } from 'react-router-dom';
+
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { renderHook } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { BreadcrumbItem, useBreadcrumb } from './useBreadcrumb';
 
 const useNavigateMock = vi.fn();
@@ -47,9 +49,7 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[0].label).toEqual(
-      'key_management_service_listing_title',
-    );
+    expect(result.current[0].label).toEqual('key_management_service_listing_title');
   });
 
   it('should redirect to root path on root item onClick call', () => {

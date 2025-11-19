@@ -1,9 +1,11 @@
 import { vi } from 'vitest';
+
+import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderHookWithI18n } from '@/common/utils/tests/testUtils';
-import { useGuideItemUsage } from './useGuideItemUsage';
+
 import { GUIDES_USAGE } from './guideUsage.constants';
-import { useGuideLink } from '@/common/utils/guides/useGuideLink';
+import { useGuideItemUsage } from './useGuideItemUsage';
 
 const MOCKED_LINK = 'mocked-link';
 const MOCKED_ID = 0;
@@ -21,9 +23,7 @@ describe('useGuideItemUsage test suite', () => {
     // GIVEN MOCKED_SUBSIDIARY and MOCKED_ID
 
     // WHEN
-    const { result } = await renderHookWithI18n(() =>
-      useGuideItemUsage(MOCKED_ID),
-    );
+    const { result } = await renderHookWithI18n(() => useGuideItemUsage(MOCKED_ID));
 
     // THEN
     expect(useGuideLink).toHaveBeenCalledWith(GUIDES_USAGE);

@@ -1,6 +1,6 @@
 import * as breadcrumbItemComponents from '@secret-manager/components/breadcrumb';
-import { screen, waitFor } from '@testing-library/react';
 import { BREADCRUMB_ITEM_TEST_IDS } from '@secret-manager/components/breadcrumb/items/BreadcrumbItem.constants';
+import { screen, waitFor } from '@testing-library/react';
 
 type BreadcrumbItemName = keyof typeof breadcrumbItemComponents;
 
