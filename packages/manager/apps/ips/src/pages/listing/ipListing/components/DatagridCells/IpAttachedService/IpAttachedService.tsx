@@ -7,9 +7,14 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { useGetIpdetails, useMoveIpTasks } from '@/data/hooks/ip';
+import {
+  useGetIpdetails,
+  useMoveIpTasks,
+  useVrackMoveTasks,
+} from '@/data/hooks/ip';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-import { getLinkByServiceName } from '@/utils';
+import { getLinkByServiceName, getTypeByServiceName } from '@/utils';
+import { IpTypeEnum } from '@/data/constants';
 
 export type IpAttachedServiceProps = {
   ip: string;
@@ -28,9 +33,15 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
   const { trackClick } = useOvhTracking();
 
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { isVrackTasksLoading, hasOnGoingVrackMoveTasks } = useVrackMoveTasks({
+    ip,
+    serviceName: ipDetails?.routedTo?.serviceName,
+  });
   const { hasOnGoingMoveIpTask, isTasksLoading } = useMoveIpTasks({
     ip,
-    enabled: ipDetails?.routedTo?.serviceName !== undefined,
+    enabled:
+      !!ipDetails?.routedTo?.serviceName &&
+      getTypeByServiceName(ipDetails.routedTo.serviceName) !== IpTypeEnum.VRACK,
   });
 
   useEffect(() => {
@@ -42,12 +53,19 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
 
   return (
     <SkeletonCell
-      isLoading={isLoading || isTasksLoading || hasOnGoingMoveIpTask}
+      isLoading={
+        isLoading ||
+        isTasksLoading ||
+        isVrackTasksLoading ||
+        hasOnGoingMoveIpTask ||
+        hasOnGoingVrackMoveTasks
+      }
     >
       {ipDetails?.routedTo?.serviceName ? (
         <>
           {serviceUrl ? (
             <OdsLink
+              target="_blank"
               href={serviceUrl}
               color={ODS_LINK_COLOR.primary}
               label={ipDetails.routedTo.serviceName}
