@@ -599,7 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Hoppla! Beim Löschen der Notfall-Codes ist ein Fehler aufgetreten:",
   "user_account_security_ip_restrictions_alt": "Einschränkung des Zugangs nach IP",
   "user_account_title_infos": "Mein Account",
-  "user_account_description": "Verwalten Sie Ihr Kundenkonto. In dieser Rubrik verwalten Sie die Sicherheit Ihres Kontos, Ihre Supportstufe und Ihre Benutzerkonten. Sie können auch die im Zusammenhang mit Ihren Diensten erhaltenen E-Mails einsehen.",
+  "user_account_description": "Verwalten Sie Ihr Kundenkonto. In dieser Rubrik verwalten Sie die Sicherheit Ihres Kontos, Ihre Supportstufe und Ihre Benutzerkonten.",
   "user_account_title_subscriptions": "Meine Abos",
   "user_agreements_accepting": "Die Änderungen werden gespeichert",
   "user_account_emails_title": "Empfangene E-Mails",

@@ -143,6 +143,13 @@ export default function AccountSidebar() {
       });
     }
 
+    menu.push({
+      id: 'my-communication',
+      label: t('sidebar_communication'),
+      href: navigation.getURL('communication', '/'),
+      pathMatcher: new RegExp('^/communication')
+    });
+
     if (isEUOrCA) {
       menu.push({
         id: 'my-contacts',
