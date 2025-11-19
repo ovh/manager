@@ -31,4 +31,5 @@ export const getIpSpam = async (
   fetchIcebergV6<IpSpamType>({
     route: `/ip/${encodeURIComponent(params.ip)}/spam`,
     page: 1,
+    disableCache: true,
   });
