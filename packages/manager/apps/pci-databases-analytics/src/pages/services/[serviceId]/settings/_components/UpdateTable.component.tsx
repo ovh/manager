@@ -52,7 +52,7 @@ const UpdateTable = () => {
       cell: `${humanizeEngine(service.engine)} ${service.version}`,
       onClick: () => navigate('./update-version'),
       updateButtonDisplayed: availabilitiesVersionQuery.data?.length > 1,
-      disable:
+      disabled:
         service.capabilities.service.update ===
         database.service.capability.StateEnum.disabled,
     },
@@ -61,7 +61,7 @@ const UpdateTable = () => {
       cell: service.plan,
       onClick: () => navigate('./update-plan'),
       updateButtonDisplayed: availabilitiesPlanQuery.data?.length > 1,
-      disable:
+      disabled:
         service.capabilities.service.update ===
         database.service.capability.StateEnum.disabled,
     },
@@ -70,7 +70,7 @@ const UpdateTable = () => {
       cell: service.flavor,
       onClick: () => navigate('./update-flavor'),
       updateButtonDisplayed: availabilitiesFlavorQuery.data?.length > 1,
-      disable:
+      disabled:
         service.capabilities.serviceFlavor.update ===
         database.service.capability.StateEnum.disabled,
     },
@@ -78,7 +78,7 @@ const UpdateTable = () => {
       title: t('tableStorage'),
       cell: `${formatStorage(service.storage.size)} ${service.storage.type}`,
       onClick: () => navigate('./update-flavor'),
-      disable:
+      disabled:
         service.capabilities.serviceDisk.update ===
         database.service.capability.StateEnum.disabled,
       updateButtonDisplayed:
@@ -103,7 +103,7 @@ const UpdateTable = () => {
                   data-testid={`update-button-${row.title}`}
                   className="py-0 h-auto"
                   onClick={row.onClick}
-                  disabled={row.disable}
+                  disabled={row.disabled}
                 >
                   {t('tableUpdateButton')}
                 </Button>
