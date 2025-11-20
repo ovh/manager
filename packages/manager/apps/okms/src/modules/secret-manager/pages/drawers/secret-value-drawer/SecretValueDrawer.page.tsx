@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useSecret } from '@secret-manager/data/hooks/useSecret';
 import { SecretVersion } from '@secret-manager/types/secret.type';
@@ -17,15 +17,19 @@ import { SecretRawValue } from './SecretRawValue.component';
 import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import { VersionSelector } from './VersionSelector.component';
 
-const useIsCurrentVersion = (version: SecretVersion) => {
+const useIsCurrentVersion = (version: SecretVersion | undefined) => {
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
 
-  return secret?.metadata?.currentVersion === version?.id;
+  if (!version || !secret) {
+    return false;
+  }
+  return secret.metadata.currentVersion === version.id;
 };
 
 const SecretValueDrawerPage = () => {
-  const { okmsId, secretPath, versionId } = useRequiredParams('okmsId', 'secretPath', 'versionId');
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
+  const { versionId } = useParams();
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 

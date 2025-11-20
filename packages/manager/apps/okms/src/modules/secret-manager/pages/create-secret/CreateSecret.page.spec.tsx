@@ -19,7 +19,11 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
 
 /* TEST UTILS */
-const firstRegion = catalogMock.plans[0].configurations[0].values[0];
+const firstRegion = catalogMock?.plans[0]?.configurations[0]?.values?.[0];
+
+if (!firstRegion) {
+  throw new Error('No region found in catalog');
+}
 
 /**
  * Selects the first region

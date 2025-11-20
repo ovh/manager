@@ -26,7 +26,7 @@ function Breadcrumb({ items }: BreadcrumbProps) {
               navigate(navigateTo);
             }
           }}
-          href={undefined}
+          href={''}
         />
       ))}
     </OdsBreadcrumb>

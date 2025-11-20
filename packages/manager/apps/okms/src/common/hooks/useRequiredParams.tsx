@@ -1,12 +1,17 @@
 import { useParams } from 'react-router-dom';
 
+import { KMS_URL_PARAMS } from '@key-management-service/routes/routes.constants';
+import { SECRET_MANAGER_URL_PARAMS } from '@secret-manager/routes/routes.constants';
+
 import { invariant } from '@/common/utils/tools/invariant';
+
+type UrlParam = keyof typeof KMS_URL_PARAMS | keyof typeof SECRET_MANAGER_URL_PARAMS;
 
 /**
  * A hook that ensures specific params exist in the URL.
  * Usage: const { id } = useRequiredParams('id');
  */
-export function useRequiredParams<Key extends string>(...keys: Key[]): Record<Key, string> {
+export function useRequiredParams<Key extends UrlParam>(...keys: Key[]): Record<Key, string> {
   const params = useParams();
 
   // Loop over the keys you requested and check them

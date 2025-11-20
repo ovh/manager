@@ -1,5 +1,5 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { serviceKeyMock } from '@key-management-service/mocks/service-keys/serviceKeys.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { serviceKeyMock1 } from '@key-management-service/mocks/service-keys/serviceKeys.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -15,7 +15,7 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
 
-const mockPageUrl = KMS_ROUTES_URLS.serviceKeyDashboard(okmsMock[0].id, serviceKeyMock[0].id);
+const mockPageUrl = KMS_ROUTES_URLS.serviceKeyDashboard(okmsRoubaix1Mock.id, serviceKeyMock1.id);
 
 describe('Service Key dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
