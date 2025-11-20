@@ -16,4 +16,4 @@ export const PROJECT_TABS = [
   },
 ] as const;
 
-export type ProjectTab = typeof PROJECT_TABS[number];
+export type ProjectTab = (typeof PROJECT_TABS)[number];

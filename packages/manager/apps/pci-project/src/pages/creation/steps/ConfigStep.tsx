@@ -1,17 +1,18 @@
+import { Dispatch, SetStateAction } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsDivider, OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import {
-  OdsDivider,
-  OdsFormField,
-  OdsInput,
-} from '@ovhcloud/ods-components/react';
-import { Dispatch, SetStateAction } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import Contracts from '@/components/contracts/Contracts';
 import HdsOption from '@/components/hds-option/HdsOption';
 import ItalyAgreements from '@/components/italy-agreements/ItalyAgreements';
 import { useGetCartSummary } from '@/data/hooks/useCart';
-import { Cart, OrderedProduct } from '@/data/types/cart.type';
+import { Cart, OrderedProduct } from '@/data/models/Cart.type';
+
 import { ConfigFormState } from '../hooks/useConfigForm';
 import { useHdsManagement } from '../hooks/useHdsManagement';
 
@@ -34,16 +35,9 @@ export default function ConfigStep({
 
   const { cartId } = cart;
 
-  const {
-    data: cartSummary,
-    isFetching: isContractsFetching,
-  } = useGetCartSummary(cartId);
+  const { data: cartSummary, isFetching: isContractsFetching } = useGetCartSummary(cartId);
 
-  const {
-    shouldDisplayHdsSection,
-    isHdsPending,
-    handleHdsToggle,
-  } = useHdsManagement({
+  const { shouldDisplayHdsSection, isHdsPending, handleHdsToggle } = useHdsManagement({
     cartId,
     projectItemId: cartProjectItem.itemId,
     setForm,
@@ -56,9 +50,7 @@ export default function ConfigStep({
       <OdsFormField
         className="w-full"
         error={
-          form.description.trim()
-            ? undefined
-            : t('error_required_field', { ns: NAMESPACES.FORM })
+          form.description.trim() ? undefined : t('error_required_field', { ns: NAMESPACES.FORM })
         }
       >
         <label htmlFor="project-description" slot="label">
@@ -96,9 +88,7 @@ export default function ConfigStep({
         contracts={cartSummary?.contracts}
         isLoading={isPending}
         isChecked={form.isContractsChecked}
-        onCheckChanged={(checked) =>
-          setForm((prev) => ({ ...prev, isContractsChecked: checked }))
-        }
+        onCheckChanged={(checked) => setForm((prev) => ({ ...prev, isContractsChecked: checked }))}
       />
 
       {ovhSubsidiary === OvhSubsidiary.IT && (

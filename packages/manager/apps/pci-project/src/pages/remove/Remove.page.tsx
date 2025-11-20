@@ -1,28 +1,25 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
-import {
-  Modal,
-  useFeatureAvailability,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import {
-  PageType,
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useContext, useMemo } from 'react';
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { AxiosError } from 'axios';
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useContext, useMemo } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { PROJECTS_TRACKING } from '@/tracking.constant';
-import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
-import { useHasActiveOrPendingSavingsPlan } from '@/data/hooks/useSavingsPlans';
-import {
-  useIsDefaultProject,
-  useRemoveProjectMutation,
-} from '@/data/hooks/useProjects';
+
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { Modal, useFeatureAvailability, useNotifications } from '@ovh-ux/manager-react-components';
+import { PageType, ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
+import { useIsDefaultProject, useRemoveProjectMutation } from '@/data/hooks/useProjects';
+import { useHasActiveOrPendingSavingsPlan } from '@/data/hooks/useSavingsPlans';
+import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
+import { TProject } from '@/types/pci-common.types';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export default function RemovePage() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -40,24 +37,20 @@ export default function RemovePage() {
   const { ovhSubsidiary } = environment?.getUser();
   const region = environment?.getRegion();
 
-  const { data: project } = useProject(projectId);
+  const { data: project } = (
+    useProject as unknown as (id: string) => {
+      data: TProject | undefined;
+    }
+  )(projectId);
 
-  const { data: availability } = useFeatureAvailability([
-    FEATURE_AVAILABILITY.SAVINGS_PLAN,
-  ]);
+  const { data: availability } = useFeatureAvailability([FEATURE_AVAILABILITY.SAVINGS_PLAN]);
 
-  const isSavingPlansAvailable =
-    availability?.[FEATURE_AVAILABILITY.SAVINGS_PLAN] || false;
+  const isSavingPlansAvailable = availability?.[FEATURE_AVAILABILITY.SAVINGS_PLAN] || false;
 
-  const {
-    data: hasActiveOrPendingSavingPlan,
-    isLoading: isSavingsPlansLoading,
-  } = useHasActiveOrPendingSavingsPlan(serviceId, isSavingPlansAvailable);
+  const { data: hasActiveOrPendingSavingPlan, isLoading: isSavingsPlansLoading } =
+    useHasActiveOrPendingSavingsPlan(serviceId, isSavingPlansAvailable);
 
-  const {
-    data: isDefault,
-    isLoading: isDefaultProjectLoading,
-  } = useIsDefaultProject(projectId);
+  const { data: isDefault, isLoading: isDefaultProjectLoading } = useIsDefaultProject(projectId);
 
   const handleRemoveSuccess = () => {
     trackPage({
@@ -95,10 +88,7 @@ export default function RemovePage() {
     goBack();
   };
 
-  const {
-    mutate: removeProject,
-    isPending: isRemovePending,
-  } = useRemoveProjectMutation({
+  const { mutate: removeProject, isPending: isRemovePending } = useRemoveProjectMutation({
     onSuccess: handleRemoveSuccess,
     onError: handleRemoveError,
     isDefault: isDefault || false,
@@ -119,7 +109,7 @@ export default function RemovePage() {
     removeProject({
       projectId,
       serviceId,
-      isUs: region === 'US',
+      isUs: String(region) === 'US',
     });
   };
 
@@ -143,14 +133,13 @@ export default function RemovePage() {
     if (hasActiveOrPendingSavingPlan) {
       return t('pci_projects_project_discovery_edit_savings_plan');
     }
-    if (isDiscoveryProject(project)) {
+    if ((isDiscoveryProject as (p: TProject | undefined) => boolean)(project)) {
       return t('pci_projects_project_discovery_edit_remove_please_note');
     }
     return t('pci_projects_project_edit_remove_please_note');
   }, [project, hasActiveOrPendingSavingPlan, t]);
 
-  const isPending =
-    isSavingsPlansLoading || isDefaultProjectLoading || isRemovePending;
+  const isPending = isSavingsPlansLoading || isDefaultProjectLoading || isRemovePending;
 
   return (
     <Modal

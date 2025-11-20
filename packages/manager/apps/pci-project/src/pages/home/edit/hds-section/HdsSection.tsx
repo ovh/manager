@@ -1,20 +1,27 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { TProject } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import { useCallback, useEffect, useState } from 'react';
+
+import { AxiosError } from 'axios';
 import { Translation, useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { useGetCartSummary } from '@/data/hooks/useCart';
-import HdsOption from '@/components/hds-option/HdsOption';
+
 import Contracts from '@/components/contracts/Contracts';
+import HdsOption from '@/components/hds-option/HdsOption';
+import { useGetCartSummary } from '@/data/hooks/useCart';
+import { useCheckoutWithFidelityAccount } from '@/hooks/use-checkout/useCheckout';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
+import { TProject } from '@/types/pci-common.types';
+
 import {
   useGetHdsCartServiceOption,
   useIsAlreadyHdsCertifiedProject,
   usePrepareHdsCart,
 } from './useHds';
-import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout';
-import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export default function HdsSection({ project }: { project: TProject }) {
   const { t } = useTranslation('hds');
@@ -27,20 +34,22 @@ export default function HdsSection({ project }: { project: TProject }) {
   const [isContractsChecked, setIsContractsChecked] = useState(false);
   const [isHdsCertifiedProject, setIsHdsCertifiedProject] = useState(false);
 
-  const {
-    data: isAlreadyHdsCertifiedProject,
-  } = useIsAlreadyHdsCertifiedProject(project.project_id);
+  const { data: isAlreadyHdsCertifiedProject } = useIsAlreadyHdsCertifiedProject(
+    project.project_id,
+  );
 
   const isContractsDisplayed = isHDSChecked && !isHdsCertifiedProject;
 
   useEffect(() => {
-    setIsHdsCertifiedProject(isAlreadyHdsCertifiedProject || false);
-    setIsHDSChecked(isAlreadyHdsCertifiedProject || false);
+    setTimeout(() => {
+      setIsHdsCertifiedProject(isAlreadyHdsCertifiedProject || false);
+      if (isAlreadyHdsCertifiedProject) {
+        setIsHDSChecked(true);
+      }
+    }, 0);
   }, [isAlreadyHdsCertifiedProject]);
 
-  const { data: cartServiceHDSOption } = useGetHdsCartServiceOption(
-    project?.project_id,
-  );
+  const { data: cartServiceHDSOption } = useGetHdsCartServiceOption(project?.project_id);
   const isValidForCertification = !!cartServiceHDSOption;
 
   /**
@@ -48,69 +57,66 @@ export default function HdsSection({ project }: { project: TProject }) {
    * And not already HDS certified
    */
   const { data: cart } = usePrepareHdsCart({
-    projectId: project?.project_id as string,
+    projectId: project?.project_id,
     cartServiceHDSOption,
-    enabled:
-      !!project?.project_id &&
-      isValidForCertification &&
-      !isHdsCertifiedProject,
+    enabled: !!project?.project_id && isValidForCertification && !isHdsCertifiedProject,
   });
 
-  const {
-    data: cartSummary,
-    isLoading: isCartSummaryLoading,
-  } = useGetCartSummary(cart?.cartId);
+  const { data: cartSummary, isLoading: isCartSummaryLoading } = useGetCartSummary(cart?.cartId);
 
-  const handleHdsChecked = useCallback((isChecked: boolean) => {
-    trackClick({
-      actionType: 'action',
-      actions: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.CTA_UPDATE_HDS,
-    });
+  const handleHdsChecked = useCallback(
+    (isChecked: boolean) => {
+      trackClick({
+        actionType: 'action',
+        actions: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.CTA_UPDATE_HDS,
+      });
 
-    setIsHDSChecked(isChecked);
-    setIsContractsChecked(false);
-  }, []);
-
-  const {
-    mutate: checkoutCart,
-    isPending: isCheckoutCartPending,
-  } = useCheckoutWithFidelityAccount({
-    onSuccess: () => {
-      setIsHdsCertifiedProject(true);
+      setIsHDSChecked(isChecked);
       setIsContractsChecked(false);
-
-      trackPage({
-        pageType: PageType.bannerInfo,
-        pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_SUCCESS,
-      });
-
-      addSuccess(
-        <Translation ns="hds">
-          {(_t) =>
-            _t('pci_projects_project_edit_hds_btn_validate_status_success', {
-              projectName: project?.description,
-            })
-          }
-        </Translation>,
-      );
     },
-    onError: (error: ApiError) => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_ERROR,
-      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
-      addError(
-        <Translation ns="hds">
-          {(_t) =>
-            _t('pci_projects_project_edit_hds_btn_validate_status_error', {
-              message: error.message,
-            })
-          }
-        </Translation>,
-      );
+  const { mutate: checkoutCart, isPending: isCheckoutCartPending } = useCheckoutWithFidelityAccount(
+    {
+      onSuccess: () => {
+        setIsHdsCertifiedProject(true);
+        setIsContractsChecked(false);
+
+        trackPage({
+          pageType: PageType.bannerInfo,
+          pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_SUCCESS,
+        });
+
+        addSuccess(
+          <Translation ns="hds">
+            {(_t) =>
+              _t('pci_projects_project_edit_hds_btn_validate_status_success', {
+                projectName: project?.description,
+              })
+            }
+          </Translation>,
+        );
+      },
+      onError: (error: ApiError) => {
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_ERROR,
+        });
+
+        addError(
+          <Translation ns="hds">
+            {(_t) =>
+              _t('pci_projects_project_edit_hds_btn_validate_status_error', {
+                message: error.message,
+              })
+            }
+          </Translation>,
+        );
+      },
     },
-  });
+  );
 
   const handleSubmit = () => {
     if (cart) {
@@ -120,9 +126,7 @@ export default function HdsSection({ project }: { project: TProject }) {
 
   return (
     <section className="flex flex-col gap-5">
-      <OdsText preset="heading-2">
-        {t('pci_projects_project_edit_hds_title')}
-      </OdsText>
+      <OdsText preset="heading-2">{t('pci_projects_project_edit_hds_title')}</OdsText>
 
       <HdsOption
         isChecked={isHDSChecked}

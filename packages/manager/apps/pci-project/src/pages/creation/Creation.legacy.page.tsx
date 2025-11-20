@@ -1,25 +1,21 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Notifications } from '@ovh-ux/manager-react-components';
-import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { format } from 'date-fns';
 import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
+
+import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export default function ProjectCreation() {
   const { t } = useTranslation(['new/legacy', NAMESPACES.FORM]);
 
   const navigate = useNavigate();
 
-  const [description, setDescription] = useState(
-    `Project ${format(new Date(), 'yyyy-MM-dd')}`,
-  );
+  const [description, setDescription] = useState(`Project ${format(new Date(), 'yyyy-MM-dd')}`);
 
   const handleCancel = useCallback(() => navigate('..'), [navigate]);
 
@@ -29,21 +25,17 @@ export default function ProjectCreation() {
     )})))))`;
 
     window.open(orderLink, '_top', 'noopener,noreferrer');
-  }, [description, setDescription]);
+  }, [description]);
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[var(--ods-color-primary-050)]">
-      <div className="bg-white min-h-screen w-full max-w-2xl p-10 shadow-lg">
-        <OdsText preset={ODS_TEXT_PRESET.heading1}>
-          {t('pci_project_new_title')}
-        </OdsText>
+    <div className="flex min-h-screen w-full items-center justify-center bg-[var(--ods-color-primary-050)]">
+      <div className="min-h-screen w-full max-w-2xl bg-white p-10 shadow-lg">
+        <OdsText preset={ODS_TEXT_PRESET.heading1}>{t('pci_project_new_title')}</OdsText>
 
         <OdsFormField
           className="w-full"
           error={
-            !description.trim()
-              ? t('error_required_field', { ns: NAMESPACES.FORM })
-              : undefined
+            !description.trim() ? t('error_required_field', { ns: NAMESPACES.FORM }) : undefined
           }
         >
           <OdsText className="font-bold" preset="caption">
@@ -59,7 +51,7 @@ export default function ProjectCreation() {
           />
         </OdsFormField>
 
-        <div className="flex justify-between my-8">
+        <div className="my-8 flex justify-between">
           <OdsButton
             size="sm"
             variant="outline"

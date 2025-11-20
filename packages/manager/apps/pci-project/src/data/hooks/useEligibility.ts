@@ -1,18 +1,10 @@
-import {
-  queryOptions,
-  useMutation,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  checkVoucherEligibility,
-  getEligibility,
-} from '@/data/api/eligibility';
-import {
-  TEligibilityRequiredAction,
-  TEligibilityVoucher,
-} from '@/data/types/eligibility.type';
+import { UseQueryResult, queryOptions, useMutation, useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+
+import { checkVoucherEligibility, getEligibility } from '@/data/api/eligibility';
+import { TEligibilityRequiredAction, TEligibilityVoucher } from '@/data/models/Eligibility.type';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export const eligibilityQueryKey = () => ['cloud', 'eligibility'];
 
@@ -43,8 +35,7 @@ export const useIsAskIncreaseProjectsQuota = (): UseQueryResult<boolean> => {
   return useQuery({
     ...eligibilityQueryOptions(),
     select: (data) =>
-      data?.actionsRequired?.includes(
-        TEligibilityRequiredAction.ASK_INCREASE_PROJECTS_QUOTA,
-      ) ?? false,
+      data?.actionsRequired?.includes(TEligibilityRequiredAction.ASK_INCREASE_PROJECTS_QUOTA) ??
+      false,
   });
 };
