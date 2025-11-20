@@ -9,7 +9,7 @@ import {
 } from '@datatr-ux/uxlib';
 
 interface RouteModalProps {
-  backUrl?: string;
+  backUrl?: string | number;
   isLoading?: boolean;
   children: React.ReactNode | React.ReactNode[];
 }
@@ -20,7 +20,13 @@ const RouteModal = ({
 }: RouteModalProps) => {
   const navigate = useNavigate();
   const onOpenChange = (open: boolean) => {
-    if (!open) navigate(backUrl);
+    if (!open) {
+      if (typeof backUrl === 'number') {
+        navigate(backUrl);
+      } else {
+        navigate(backUrl);
+      }
+    }
   };
 
   return (

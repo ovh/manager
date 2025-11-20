@@ -21,11 +21,11 @@ const RestoreObjectModal = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
 
   const { onSubmit, isPending, currentExpireDate } = useRestoreS3Form({
-    onRestoreEnd: () => navigate('..'),
+    onRestoreEnd: () => navigate(-1),
   });
 
   return (
-    <RouteModal>
+    <RouteModal backUrl={-1}>
       <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle>{t('restoreModalTitle')}</DialogTitle>

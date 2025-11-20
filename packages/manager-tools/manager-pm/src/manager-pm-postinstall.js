@@ -35,7 +35,21 @@ async function main() {
   const start = Date.now();
   try {
     await yarnPostInstall();
-    await buildCI(['--filter=@ovh-ux/muk']);
+
+    // Skip muk build in CI to speed up installation
+    // The CI will build it separately if needed
+    const isCI =
+      process.env.CI === 'true' ||
+      process.env.CONTINUOUS_INTEGRATION === 'true' ||
+      process.env.CDS === 'true' ||
+      Boolean(process.env.CDS_VERSION);
+
+    if (!isCI) {
+      await buildCI(['--filter=@ovh-ux/muk']);
+    } else {
+      logger.info('ℹ️  Skipping @ovh-ux/muk build in CI (will be built separately)');
+    }
+
     const elapsed = ((Date.now() - start) / 1000).toFixed(2);
     logger.success(`✅ manager-pm postinstall completed successfully in ${elapsed}s`);
   } catch (err) {

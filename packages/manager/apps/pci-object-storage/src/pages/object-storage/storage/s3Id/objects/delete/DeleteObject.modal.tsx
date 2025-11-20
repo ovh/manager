@@ -1,5 +1,6 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 import {
   Button,
   useToast,
@@ -24,7 +25,13 @@ const DeleteSwiftObject = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const toast = useToast();
 
-  if (!objectKey) return navigate('../');
+  useEffect(() => {
+    if (!objectKey) {
+      navigate('../');
+    }
+  }, [objectKey, navigate]);
+
+  if (!objectKey) return null;
 
   const { deleteS3Object, isPending: deletePending } = useDeleteS3Object({
     onError: (err) => {
@@ -41,7 +48,7 @@ const DeleteSwiftObject = () => {
           name: objectKey,
         }),
       });
-      navigate('../');
+      navigate(-1);
     },
   });
 
@@ -55,7 +62,7 @@ const DeleteSwiftObject = () => {
   };
 
   return (
-    <RouteModal isLoading={!projectId && !objectKey}>
+    <RouteModal backUrl={-1} isLoading={!projectId && !objectKey}>
       <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle>{t('deleteObjectTitle')}</DialogTitle>

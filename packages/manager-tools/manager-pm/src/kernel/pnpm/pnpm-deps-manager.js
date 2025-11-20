@@ -233,6 +233,19 @@ export async function yarnPreInstall() {
  *  - Restore root workspaces to the merged (Yarn ∪ PNPM) view.
  */
 export async function yarnPostInstall() {
+  // Skip heavy operations in CI - they will be done separately during build
+  const isCI =
+    process.env.CI === 'true' ||
+    process.env.CONTINUOUS_INTEGRATION === 'true' ||
+    process.env.CDS === 'true' ||
+    Boolean(process.env.CDS_VERSION);
+
+  if (isCI) {
+    logger.info('ℹ️  CI detected: Skipping PNPM bootstrap and private builds (will be done in build step)');
+    await clearRootWorkspaces();
+    return;
+  }
+
   logger.info('🧩 Yarn postinstall: bootstrap PNPM, link privates, install PNPM apps');
 
   try {
