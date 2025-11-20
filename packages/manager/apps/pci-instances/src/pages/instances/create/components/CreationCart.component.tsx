@@ -15,9 +15,10 @@ import {
 } from '../view-models/cartViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const CreationCart = () => {
-  const { t } = useTranslation(['common', 'creation']);
+  const { t } = useTranslation(['common', 'creation', NAMESPACES.REGION]);
   const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
   const [
@@ -62,7 +63,7 @@ export const CreationCart = () => {
     const regionDetails = localizationDetails
       ? [
           {
-            name: t('localisation'),
+            name: t(`${NAMESPACES.REGION}:localisation`),
             description: (
               <Text preset="heading-6" className="text-[--ods-color-heading]">
                 {`${localizationDetails.city} (${localizationDetails.datacenterDetails})`}

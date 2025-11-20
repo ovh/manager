@@ -49,6 +49,11 @@ const DistributionVersionList: FC = () => {
     (version?: TSelectedVersion) => {
       setValue('distributionImageVersion', version?.value ?? null);
       setValue('distributionImageOsType', version?.osType ?? null);
+
+      if (version?.osType === 'windows') {
+        setValue('sshKeyId', null);
+        setValue('newSshPublicKey', null);
+      }
     },
     [setValue],
   );
