@@ -1,11 +1,6 @@
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 
-import { DASHBOARD_QUICK_ACCESS_ITEMS_BASE } from '@/constants';
-import { DashboardItem } from '@/data/types/dashboard.type';
-import { useProjectIdInLinks } from '@/hooks/home/useProjectIdInLinks';
-import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
-import QuickAccessCard from './QuickAccessCard.component';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 import IconBlockStorage from '@/assets/home/block_storage.svg?url';
 import IconInstances from '@/assets/home/instances.svg?url';
@@ -13,6 +8,12 @@ import IconKubernetes from '@/assets/home/managed_kubernetes_service.svg?url';
 import IconDatabase from '@/assets/home/managed_mongodb.svg?url';
 import IconObjectStorage from '@/assets/home/object_storage.svg?url';
 import IconNetwork from '@/assets/home/vrack_private_network.svg?url';
+import { DASHBOARD_QUICK_ACCESS_ITEMS_BASE } from '@/constants';
+import { DashboardItem } from '@/data/models/Dashboard.type';
+import { useProjectIdInLinks } from '@/hooks/home/useProjectIdInLinks';
+import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
+
+import QuickAccessCard from './QuickAccessCard.component';
 
 // Map label translation keys to their corresponding icons
 const iconMap: Record<string, string> = {
@@ -27,25 +28,19 @@ const iconMap: Record<string, string> = {
 function QuickAccess() {
   const { t } = useTranslation('home');
 
-  const filteredItems = useDashboardItemsFilteredByFA(
-    DASHBOARD_QUICK_ACCESS_ITEMS_BASE,
-  );
+  const filteredItems = useDashboardItemsFilteredByFA(DASHBOARD_QUICK_ACCESS_ITEMS_BASE);
 
   const itemsWithIcons: DashboardItem[] = filteredItems.map((item) => ({
     ...item,
-    iconImage: item.labelTranslationKey
-      ? iconMap[item.labelTranslationKey]
-      : undefined,
+    iconImage: item.labelTranslationKey ? iconMap[item.labelTranslationKey] : undefined,
   }));
 
   const itemsWithLinksAndIcons = useProjectIdInLinks(itemsWithIcons);
 
   return (
     <>
-      <OdsText preset="heading-2">
-        {t('pci_projects_home_quick_access')}
-      </OdsText>
-      <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 my-8">
+      <OdsText preset="heading-2">{t('pci_projects_home_quick_access')}</OdsText>
+      <div className="my-8 grid grid-cols-1 gap-5 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {itemsWithLinksAndIcons.map((item, idx) => (
           <QuickAccessCard key={idx} item={item} index={idx} />
         ))}
