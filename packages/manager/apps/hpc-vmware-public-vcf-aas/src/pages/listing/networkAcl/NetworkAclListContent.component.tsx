@@ -46,6 +46,9 @@ export default function NetworkAclListContent() {
   const { addInfo, clearMessage } = useMessageContext();
   const msgUidActiveTaskRef = useRef<number | null>(null);
 
+  const isDefaultAcl =
+    networks.length === 1 && networks[0].network === DEFAULT_ACL_NETWORK;
+
   const columns = [
     {
       id: 'ipName',
@@ -109,7 +112,7 @@ export default function NetworkAclListContent() {
                   label: t('managed_vcd_network_acl_ip_action_delete_ip'),
                   color: ODS_BUTTON_COLOR.critical,
                   'data-testid': `actions-delete-${row.name}`,
-                  isDisabled: hasActiveTasks,
+                  isDisabled: hasActiveTasks || isDefaultAcl,
                 },
               ]}
               isCompact
@@ -135,10 +138,6 @@ export default function NetworkAclListContent() {
       msgUidActiveTaskRef.current = null;
     }
   }, [hasActiveTasks]);
-
-  const isDefaultAcl = useMemo(() => {
-    return networks.length === 1 && networks[0].network === DEFAULT_ACL_NETWORK;
-  }, [networks]);
 
   const onCtaClicked = () => {
     if (isDefaultAcl) {
