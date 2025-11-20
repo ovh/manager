@@ -23,7 +23,7 @@ const expectOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   await assertTextVisibility(labels.secretManager.okms_list);
 
   // Check there is clipboard components displayed in the datagrid
-  const firstOkmsId = regionWithMultipleOkms.okmsMock[0].id;
+  const firstOkmsId = regionWithMultipleOkms?.okmsMock?.[0]?.id ?? '';
   const firstClipboardTestId = OKMS_LIST_CELL_TEST_IDS.id(firstOkmsId);
   await waitFor(() => {
     expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
@@ -32,7 +32,7 @@ const expectOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   // Check the first okms link on the datagrid
   const okmsNameLink = await getOdsButtonByLabel({
     container,
-    label: regionWithMultipleOkms.okmsMock[0].iam.displayName,
+    label: regionWithMultipleOkms?.okmsMock?.[0]?.iam?.displayName ?? '',
     isLink: true,
   });
   expect(okmsNameLink).toBeEnabled();

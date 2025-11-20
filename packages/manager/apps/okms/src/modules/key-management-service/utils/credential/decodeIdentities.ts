@@ -17,11 +17,11 @@ export const decodeIdentity = (identityUrn: string): IdentityObject | null => {
   }
 
   return {
-    version: parseInt(version, 10),
+    version: Number.parseInt(version ?? '0', 10),
     region: region as IdentityRegion,
     entity: entity as IdentityEntity,
     type: type as IdentityType,
-    account,
+    account: account ?? '',
     id,
     urn: identityUrn,
   };

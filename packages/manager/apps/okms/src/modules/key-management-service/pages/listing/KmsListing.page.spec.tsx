@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -12,6 +12,8 @@ import {
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { SERVICE_KEYS_LABEL } from '@/constants';
+
+const mockOkmsFirst = okmsRoubaix1Mock;
 
 describe('KMS listing test suite', () => {
   it('should redirect to the onboarding page when the kms list is empty', async () => {
@@ -81,12 +83,12 @@ describe('KMS listing test suite', () => {
 
     const dashboardLink = await getOdsButtonByLabel({
       container,
-      label: okmsMock[0].iam.displayName,
+      label: mockOkmsFirst.iam.displayName,
       isLink: true,
     });
 
     await waitFor(() => {
-      expect(dashboardLink).toHaveAttribute('href', KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id));
+      expect(dashboardLink).toHaveAttribute('href', KMS_ROUTES_URLS.kmsDashboard(mockOkmsFirst.id));
     });
   });
 });

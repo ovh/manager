@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
@@ -12,7 +12,7 @@ import { ENDPOINT_RSA_LABEL } from '@/constants';
 
 import { KmipEndpointRsaTileItem } from './KmipEndpointRsaTileItem.component';
 
-const okmsMocked = okmsMock[0];
+const okmsMocked = okmsRoubaix1Mock;
 
 vi.mock(
   '@/common/components/download-okms-public-ca-link/DownloadOkmsPublicCaLink',
@@ -36,7 +36,7 @@ describe('OKMS Kmip endpoint RSA Tile Item test suite', () => {
 
     expect(DownloadOkmsPublicCaLink).toHaveBeenCalledTimes(1);
     expect(
-      vi.mocked(DownloadOkmsPublicCaLink).mock.calls[0][0],
+      vi.mocked(DownloadOkmsPublicCaLink).mock.calls[0]?.[0],
     ).toEqual<DownloadOkmsPublicCaLinkProps>({
       okms: okmsMocked,
       type: 'publicCaRsaKmip',

@@ -43,6 +43,9 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
         queryKey: getOkmsServiceIdQueryKey(okms.id),
         queryFn: () => getOkmsServiceId(okms.id),
       });
+      if (!servicesId?.[0]) {
+        throw new Error('Service ID not found');
+      }
       return updateOkmsName({ serviceId: servicesId[0], displayName });
     },
     onSuccess: (_, { displayName }) => {
@@ -52,9 +55,9 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
       // 1. Optimistically update the OKMS domain cache so that the user sees the new name on the OKMS dashboard immediately.
       queryClient.setQueryData(okmsQueryKeys.detail(okms.id), {
         data: {
-          ...previousData.data,
+          ...previousData?.data,
           iam: {
-            ...previousData.data.iam,
+            ...previousData?.data?.iam,
             displayName,
           },
         },

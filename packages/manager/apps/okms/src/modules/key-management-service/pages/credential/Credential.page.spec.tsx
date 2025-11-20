@@ -1,5 +1,5 @@
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +14,9 @@ import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availa
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
-const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(okmsMock[0].id, credentialMock[0].id);
+const mockOkms = okmsRoubaix1Mock;
+const mockCredential = credentialMock1;
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(mockOkms.id, mockCredential.id);
 
 describe('Credential dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {

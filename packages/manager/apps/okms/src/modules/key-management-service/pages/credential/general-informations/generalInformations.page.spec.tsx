@@ -1,5 +1,5 @@
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -13,8 +13,9 @@ import {
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
-const mockCredentialItem = credentialMock[0];
-const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(okmsMock[0].id, mockCredentialItem.id);
+const mockOkms = okmsRoubaix1Mock;
+const mockCredentialItem = credentialMock1;
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(mockOkms.id, mockCredentialItem.id);
 
 describe('Credential general informations test suite', () => {
   test('should display the credentials details', async () => {

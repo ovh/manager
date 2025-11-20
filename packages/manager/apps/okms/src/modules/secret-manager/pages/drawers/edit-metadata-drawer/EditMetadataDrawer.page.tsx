@@ -54,7 +54,7 @@ export default function EditMetadataDrawerPage() {
             {error?.response?.data?.message}
           </OdsMessage>
         )}
-        {!error && secret && (
+        {!error && secret && secretConfig && (
           <EditMetadataDrawerForm
             secret={secret}
             okmsId={okmsId}

@@ -32,7 +32,7 @@ export default function SecretCreatePage() {
           <RootBreadcrumbItem />
         </OdsBreadcrumb>
       }
-      message={notifications.length > 0 ? <Notifications /> : null}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <div className="flex max-w-2xl flex-col gap-8">
         <OkmsManagement selectedOkmsId={selectedOkmsId} setSelectedOkmsId={setSelectedOkmsId} />
