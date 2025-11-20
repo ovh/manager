@@ -3,10 +3,18 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
 
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
-import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 export const getRandomIndex = (length: number) => {
   // Crypto API is available
@@ -99,15 +107,15 @@ export type GeneratedPasswordButtonProps = {
   id: string;
   onGenerate: (password: string) => void;
   label?: string;
-  icon?: ODS_ICON_NAME;
-  onClick?: (e: React.MouseEvent<HTMLOdsButtonElement>) => void;
+  icon?: ICON_NAME;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 } & GeneratePasswordOptions;
 
 export const GeneratePasswordButton = ({
   id,
   onGenerate,
   label = '',
-  icon = ODS_ICON_NAME.key,
+  icon = ICON_NAME.key,
   onClick,
   ...options
 }: GeneratedPasswordButtonProps) => {
@@ -135,21 +143,24 @@ export const GeneratePasswordButton = ({
     >
       <Tooltip>
         <TooltipTrigger asChild>
-          <OdsButton
+          <Button
             id={id}
             data-testid={id}
-            label={label}
             aria-label={label || 'Password Generator button'}
-            icon={generated ? ODS_ICON_NAME.check : icon}
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
+            size={BUTTON_SIZE.sm}
+            variant={BUTTON_VARIANT.ghost}
             onClick={(e) => {
               onClick?.(e);
               const pwd = generatePassword(options);
               onGenerate(pwd);
               copyToClipboard(pwd);
             }}
-          />
+          >
+            <>
+              {label}
+              <Icon name={generated ? ICON_NAME.check : icon} />
+            </>
+          </Button>
         </TooltipTrigger>
         <TooltipContent withArrow>
           <Text preset={TEXT_PRESET.paragraph}>

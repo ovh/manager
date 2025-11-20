@@ -8,14 +8,12 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
   OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
-  OdsButton,
   OdsFormField,
   OdsInput,
   OdsMessage,
@@ -34,6 +32,8 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import {
+  BUTTON_VARIANT,
+  Button,
   ICON_NAME,
   Icon,
   TEXT_PRESET,
@@ -468,15 +468,16 @@ export const MailingListForm = () => {
           </OdsFormField>
         )}
       />
-      <OdsButton
+      <Button
         slot="actions"
         type="submit"
-        variant={ODS_BUTTON_VARIANT.default}
-        isDisabled={!isDirty || !isValid}
-        isLoading={isSending}
+        variant={BUTTON_VARIANT.default}
+        disabled={!isDirty || !isValid}
+        loading={isSending}
         data-testid="confirm-btn"
-        label={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      />
+      >
+        {t(`${NAMESPACES.ACTIONS}:confirm`)}
+      </Button>
     </form>
   );
 };

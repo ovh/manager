@@ -7,8 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { OdsButton, OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -19,7 +19,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { BUTTON_COLOR, Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -139,15 +139,16 @@ export const ConfigureOrganization: React.FC = () => {
           </OdsFormField>
         )}
       />
-      <OdsButton
+      <Button
         className="self-start"
         data-testid="add-organization-submit-btn"
         type="submit"
-        color={ODS_BUTTON_COLOR.primary}
-        isDisabled={!isDirty || !isValid}
-        isLoading={isSending}
-        label={`${t(`${NAMESPACES.ACTIONS}:next`)} 1/3`}
-      ></OdsButton>
+        color={BUTTON_COLOR.primary}
+        disabled={!isDirty || !isValid}
+        loading={isSending}
+      >
+        {`${t(`${NAMESPACES.ACTIONS}:next`)} 1/3`}
+      </Button>
     </form>
   );
 };

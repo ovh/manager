@@ -8,7 +8,6 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
   ODS_INPUT_TYPE,
   ODS_LINK_COLOR,
   ODS_MESSAGE_COLOR,
@@ -17,7 +16,6 @@ import {
   OdsRadioCustomEvent,
 } from '@ovhcloud/ods-components';
 import {
-  OdsButton,
   OdsCheckbox,
   OdsFormField,
   OdsInput,
@@ -30,7 +28,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { IconLinkAlignmentType, LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { BUTTON_COLOR, Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -492,14 +490,15 @@ export const DomainForm = ({
         </>
       )}
       <OdsFormField>
-        <OdsButton
+        <Button
           data-testid="add-domain-submit-btn"
           type="submit"
-          color={ODS_BUTTON_COLOR.primary}
-          isDisabled={!isDirty || !isValid}
-          isLoading={isSending}
-          label={submitButtonLabel || t(`${NAMESPACES.ACTIONS}:confirm`)}
-        ></OdsButton>
+          color={BUTTON_COLOR.primary}
+          disabled={!isDirty || !isValid}
+          loading={isSending}
+        >
+          {submitButtonLabel || t(`${NAMESPACES.ACTIONS}:confirm`)}
+        </Button>
       </OdsFormField>
     </form>
   );

@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -14,7 +11,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Text } from '@ovh-ux/muk';
+import { BUTTON_SIZE, BUTTON_VARIANT, Button, Text } from '@ovh-ux/muk';
 
 import { usePlatform } from '@/data/hooks';
 import {
@@ -103,19 +100,21 @@ export const OnboardingWelcome = () => {
             {t('welcome_description')}
           </Text>
           <div className="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center">
-            <OdsButton
+            <Button
               className="[&::part(button)]:w-full sm:w-auto"
-              size={ODS_BUTTON_SIZE.md}
-              label={t('common:configure_now')}
+              size={BUTTON_SIZE.md}
               onClick={onPrimaryClick}
-            />
-            <OdsButton
+            >
+              {t('common:configure_now')}
+            </Button>
+            <Button
               className="[&::part(button)]:w-full sm:w-auto"
-              size={ODS_BUTTON_SIZE.md}
-              variant={ODS_BUTTON_VARIANT.outline}
-              label={t('common:configure_later')}
+              size={BUTTON_SIZE.md}
+              variant={BUTTON_VARIANT.outline}
               onClick={onSecondaryClick}
-            />
+            >
+              {t('common:configure_later')}
+            </Button>
           </div>
         </>
       }

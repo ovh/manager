@@ -7,15 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { ODS_DATEPICKER_LOCALE, ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_DATEPICKER_LOCALE,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
   OdsCheckbox,
   OdsDatepicker,
   OdsFormField,
@@ -41,7 +34,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { BUTTON_COLOR, BUTTON_VARIANT, Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { useAccount, useAccounts, useDomains } from '@/data/hooks';
@@ -477,16 +470,17 @@ export const AddAutoReply = () => {
         )}
       />
       <div className="flex space-x-5">
-        <OdsButton
+        <Button
           type="submit"
           slot="actions"
-          color={ODS_BUTTON_COLOR.primary}
-          variant={ODS_BUTTON_VARIANT.default}
-          isDisabled={!isDirty || !isValid}
-          isLoading={isSending}
+          color={BUTTON_COLOR.primary}
+          variant={BUTTON_VARIANT.default}
+          disabled={!isDirty || !isValid}
+          loading={isSending}
           data-testid="confirm-btn"
-          label={t(`${NAMESPACES.ACTIONS}:confirm`)}
-        ></OdsButton>
+        >
+          {t(`${NAMESPACES.ACTIONS}:confirm`)}
+        </Button>
       </div>
     </form>
   );

@@ -7,9 +7,6 @@ import { useMutation } from '@tanstack/react-query';
 import { FormProvider, SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -18,7 +15,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { BUTTON_VARIANT, Button, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { InlineEmailAccountFormItem, Loading } from '@/components';
 import {
@@ -161,7 +158,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
               onRemove={() => remove(index)}
             />
           ))}
-          <OdsButton
+          <Button
             id="add-starter-account"
             data-testid="add-starter-account"
             className="self-start"
@@ -186,33 +183,38 @@ export const ConfigureEmailAccounts: React.FC = () => {
                 });
               }
             }}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            icon={ODS_ICON_NAME.plus}
-            isDisabled={
+            variant={BUTTON_VARIANT.ghost}
+            disabled={
               (!methods.formState.isValid && starterAccounts.length !== 0) ||
               starterAccounts.length >= availableStarterAccounts ||
               isSending
             }
-            label={t('common:configure_another_account')}
-          />
+          >
+            <>
+              {t('common:configure_another_account')}
+              <Icon name={ICON_NAME.plus} />
+            </>
+          </Button>
         </div>
         <div className="flex gap-4">
-          <OdsButton
+          <Button
             id="confirm"
             data-testid="confirm"
             type="submit"
-            isLoading={isSending}
-            isDisabled={!methods.formState.isDirty || !methods.formState.isValid}
-            label={t(`${NAMESPACES.ACTIONS}:configure`)}
-          />
-          <OdsButton
+            loading={isSending}
+            disabled={!methods.formState.isDirty || !methods.formState.isValid}
+          >
+            {t(`${NAMESPACES.ACTIONS}:configure`)}
+          </Button>
+          <Button
             id="skip"
             data-testid="skip"
             onClick={handleSkipClick}
-            isDisabled={isSending}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            label={t('common:skip_step')}
-          />
+            disabled={isSending}
+            variant={BUTTON_VARIANT.ghost}
+          >
+            {t('common:skip_step')}
+          </Button>
         </div>
       </form>
     </FormProvider>

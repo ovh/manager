@@ -3,11 +3,11 @@ import { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { Clipboard } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { GuideLink } from '@/components';
 import {
@@ -83,8 +83,7 @@ const SRVTabContent = ({
         <>
           {guide && <GuideLink label={t('zimbra_domain_diagnostic_access_guide')} guide={guide} />}
           {isAutoConfigurable ? (
-            <OdsButton
-              label={t('zimbra_domain_diagnostic_cta_auto_configure')}
+            <Button
               onClick={() => {
                 trackClick({
                   location: PageLocation.page,
@@ -93,7 +92,9 @@ const SRVTabContent = ({
                   actions: [trackingName, AUTO_CONFIGURE_DOMAIN],
                 });
               }}
-            />
+            >
+              {t('zimbra_domain_diagnostic_cta_auto_configure')}
+            </Button>
           ) : (
             <table className="table-auto dns-fields">
               <tbody>

@@ -100,8 +100,10 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
           disabled={isCurrentOffer}
           onClick={onUpgrade}
         >
-          {t('common:continue_order_btn')}
-          <Icon className="ml-3" name={ICON_NAME.shoppingCart} />
+          <span>
+            {t('common:continue_order_btn')}
+            <Icon className="ml-3" name={ICON_NAME.shoppingCart} />
+          </span>
         </Button>
       </div>
     </OdsCard>

@@ -3,13 +3,10 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_INPUT_TYPE,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsFormField, OdsInput, OdsPassword } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput, OdsPassword } from '@ovhcloud/ods-components/react';
+
+import { BUTTON_COLOR, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovh-ux/muk';
 
 import { GeneratePasswordButton } from '@/components';
 import { AddEmailAccountsSchema } from '@/utils';
@@ -141,17 +138,17 @@ export const InlineEmailAccountFormItem = ({
           )}
         />
       </div>
-      <OdsButton
+      <Button
         id={`delete-account-${index}`}
         data-testid={`delete-account-${index}`}
         className="[&::part(button)]:translate-y-1/2"
         type="button"
         onClick={onRemove}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_BUTTON_COLOR.critical}
-        icon={ODS_ICON_NAME.trash}
-        label=""
-      />
+        variant={BUTTON_VARIANT.ghost}
+        color={BUTTON_COLOR.critical}
+      >
+        <Icon name={ICON_NAME.trash} />
+      </Button>
     </div>
   );
 };

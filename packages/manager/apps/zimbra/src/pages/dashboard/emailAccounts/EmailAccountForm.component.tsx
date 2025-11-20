@@ -15,7 +15,6 @@ import {
   OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
-  OdsButton,
   OdsCheckbox,
   OdsFormField,
   OdsInput,
@@ -34,6 +33,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import {
+  Button,
   ICON_NAME,
   Icon,
   TEXT_PRESET,
@@ -579,15 +579,16 @@ export const EmailAccountForm = () => {
           />
         </div>
       )}
-      <OdsButton
+      <Button
         slot="actions"
         type="submit"
         color={ODS_BUTTON_COLOR.primary}
-        isDisabled={!isDirty || !isValid}
-        isLoading={isSending}
+        disabled={!isDirty || !isValid}
+        loading={isSending}
         data-testid="confirm-btn"
-        label={accountId ? t(`${NAMESPACES.ACTIONS}:save`) : t(`${NAMESPACES.ACTIONS}:confirm`)}
-      />
+      >
+        {accountId ? t(`${NAMESPACES.ACTIONS}:save`) : t(`${NAMESPACES.ACTIONS}:confirm`)}
+      </Button>
     </form>
   );
 };

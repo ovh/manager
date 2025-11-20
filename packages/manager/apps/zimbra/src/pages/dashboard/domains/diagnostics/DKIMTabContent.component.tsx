@@ -6,12 +6,12 @@ import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { Clipboard, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { GuideLink } from '@/components';
 import {
@@ -142,23 +142,21 @@ const DKIMTabContent = ({
         />
       </Text>
       {isOk ? (
-        <OdsButton
+        <Button
           data-test-id="dkim_enable_disable"
           className="mt-4"
-          label={
-            isDkimDisabled
-              ? t('zimbra_domain_diagnostic_dkim_enable')
-              : t('zimbra_domain_diagnostic_dkim_disable')
-          }
           onClick={() => enableOrDisableDkim(isDkimDisabled)}
-          isLoading={isSending}
-        ></OdsButton>
+          loading={isSending}
+        >
+          {isDkimDisabled
+            ? t('zimbra_domain_diagnostic_dkim_enable')
+            : t('zimbra_domain_diagnostic_dkim_disable')}
+        </Button>
       ) : (
         <>
           {guide && <GuideLink label={t('zimbra_domain_diagnostic_access_guide')} guide={guide} />}
           {isAutoConfigurable ? (
-            <OdsButton
-              label={t('zimbra_domain_diagnostic_cta_auto_configure')}
+            <Button
               onClick={() => {
                 trackClick({
                   location: PageLocation.page,
@@ -167,7 +165,9 @@ const DKIMTabContent = ({
                   actions: [trackingName, AUTO_CONFIGURE_DOMAIN],
                 });
               }}
-            />
+            >
+              {t('zimbra_domain_diagnostic_cta_auto_configure')}
+            </Button>
           ) : (
             <table className="table-auto dns-fields">
               <tbody>
