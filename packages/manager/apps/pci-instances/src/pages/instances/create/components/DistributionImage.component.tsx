@@ -1,13 +1,58 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { Divider, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { ImageHelper } from './distributionImage/ImageHelper.component';
 import DistributionImageType from './distributionImage/DistributionImageType.component';
-import DistributionImageList from './distributionImage/DistributionImageList.component';
+import DistributionImageVariants from './distributionImage/DistributionImageVariants.component';
 import DistributionVersionList from './distributionImage/DistributionVersionList.component';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { deps } from '@/deps/deps';
+import { TInstanceCreationForm } from '../CreateInstance.page';
+import { selectImages } from '../view-models/imagesViewModel';
 
 const DistributionImage: FC = () => {
+  const projectId = useProjectId();
+  const { control } = useFormContext<TInstanceCreationForm>();
   const { t } = useTranslation('creation');
+  const [
+    distributionImageType,
+    distributionImageVariantId,
+    microRegion,
+    flavorId,
+  ] = useWatch({
+    control,
+    name: [
+      'distributionImageType',
+      'distributionImageVariantId',
+      'microRegion',
+      'flavorId',
+    ],
+  });
+
+  const { images: imageVariants, versions } = useMemo(
+    () =>
+      selectImages(deps)(
+        projectId,
+        distributionImageType,
+        microRegion,
+        flavorId,
+      ),
+    [distributionImageType, flavorId, microRegion, projectId],
+  );
+
+  const versionOptions = useMemo(
+    () =>
+      distributionImageVariantId
+        ? versions.get(distributionImageVariantId)
+        : [],
+    [distributionImageVariantId, versions],
+  );
+
+  const showVersions = useMemo(
+    () => !!versionOptions?.filter((version) => !version.disabled).length,
+    [versionOptions],
+  );
 
   return (
     <section>
@@ -19,8 +64,10 @@ const DistributionImage: FC = () => {
         <ImageHelper />
       </div>
       <DistributionImageType />
-      <DistributionImageList />
-      <DistributionVersionList />
+      <DistributionImageVariants variants={imageVariants} />
+      {versionOptions && showVersions && (
+        <DistributionVersionList versions={versionOptions} />
+      )}
     </section>
   );
 };

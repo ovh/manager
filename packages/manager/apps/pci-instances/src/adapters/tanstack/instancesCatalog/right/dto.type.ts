@@ -1,5 +1,5 @@
 export type TRegionDeploymentModeDTO = 'region' | 'localzone' | 'region-3-az';
-type TOsTypeDTO = 'baremetal-linux' | 'linux' | 'windows';
+type TOsTypeDTO = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
 
 type TImageCategoryDTO = 'apps' | 'linux' | 'snapshot' | 'unknown' | 'windows';
 type TImageOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
@@ -83,6 +83,8 @@ export type TPriceDTO = {
   type: 'hour' | 'month' | 'licence';
   price: TPriceDetailsDTO;
   includeVat: boolean;
+  hourlyVcoreEquivalent: TPriceDetailsDTO | null;
+  monthlyEquivalent: TPriceDetailsDTO | null;
 };
 
 export type TPricingDTO = {

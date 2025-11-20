@@ -2,5 +2,6 @@ import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 import { i18nInstance } from '@/main';
 
 export const i18nMessageProvider: MessageProviderPort = {
-  getMessage: (key: string) => i18nInstance.t(key),
+  getMessage: (key: string, params?: Record<string, unknown>) =>
+    i18nInstance.t(key, params),
 };

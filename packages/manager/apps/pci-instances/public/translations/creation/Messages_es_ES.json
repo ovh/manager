@@ -25,8 +25,8 @@
   "pci_instance_creation_table_header_storage_unit": "(GB)",
   "pci_instance_creation_table_header_mode": "Despliegue",
   "pci_instance_creation_table_header_price": "Precio",
-  "pci_instance_creation_table_header_price_hourly_unit": "+ IVA/hora",
-  "pci_instance_creation_table_header_price_monthly_unit": "/mes + IVA",
+  "pci_instance_creation_table_header_price_hourly_unit": "IVA/ora",
+  "pci_instance_creation_table_header_price_monthly_unit": "IVA/mese",
   "pci_instance_creation_flavor_unavailable": "Indisponible",
   "pci_instance_creation_flavor_unavailable_quota": "Cuota no disponible",
   "pci_instance_creation_flavor_unavailable_help": "Este modelo no está disponible en su región seleccionada. Sin embargo, puede seleccionarlo, pero deberá elegir otra región para este modelo.",
@@ -92,5 +92,6 @@
   "pci_instance_creation_select_sshKey_add_key_done": "Su clave SSH se creará al final del proceso de configuración.",
   "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Gracias por elegir un nombre diferente, este ya está en uso.",
   "pci_instance_creation_select_image_distribution_version_label": "Versión de la imagen",
-  "pci_instance_creation_select_image_distribution_version_unavailable": "Versión no disponible"
+  "pci_instance_creation_select_image_distribution_version_unavailable": "Versión no disponible",
+  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} /hora + IVA por vCore"
 }

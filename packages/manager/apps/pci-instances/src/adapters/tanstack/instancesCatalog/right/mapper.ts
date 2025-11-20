@@ -16,9 +16,8 @@ import {
   TPrice,
   TRegionalizedFlavorOsType,
   TImageType,
-  TImageVariant,
-  TImageVersion,
-  TRegionalizedImageVersion,
+  TImage,
+  TRegionalizedImage,
 } from '@/domain/entities/instancesCatalog';
 import {
   TContinentRegionsDTO,
@@ -28,7 +27,6 @@ import {
   TFlavorRegionDTO,
   TFlavorSubCategoryDTO,
   TImageDTO,
-  TImageRegionDTO,
   TInstancesCatalogDTO,
   TPriceDTO,
   TPricingDTO,
@@ -41,7 +39,7 @@ import {
   getRegionalizedFlavorId,
   getRegionalizedFlavorOsTypeId,
   getRegionalizedFlavorOsTypePriceId,
-  getRegionalizedImagePriceId,
+  getRegionalizedImageId,
 } from '@/utils';
 
 type TNormalizedEntity<ID, Entity> = {
@@ -291,11 +289,16 @@ const mapFlavorPricesDTOToFlavorPricesEntity = (
   priceDTO: TPriceDTO,
 ): TPrice => ({
   type: priceDTO.type,
-  currencyCode: priceDTO.price.currencyCode,
+  price: {
+    currencyCode: priceDTO.price.currencyCode,
+    value: priceDTO.price.value,
+    priceInUcents: priceDTO.price.priceInUcents,
+    text: priceDTO.price.text,
+  },
+  hourlyVcoreEquivalent: priceDTO.hourlyVcoreEquivalent,
+  monthlyEquivalent: priceDTO.monthlyEquivalent,
+
   includeVat: priceDTO.includeVat,
-  value: priceDTO.price.value,
-  priceInUcents: priceDTO.price.priceInUcents,
-  text: priceDTO.price.text,
 });
 
 const mapFlavorPricingDTOToFlavorPricesEntity = (
@@ -437,77 +440,41 @@ const normalizeFlavor = ({
 
 type TImages = {
   imageTypes: TNormalizedEntity<string, TImageType>;
-  imageVariants: TNormalizedEntity<string, TImageVariant>;
-  imageVersions: TNormalizedEntity<string, TImageVersion>;
-  regionalizedImageVersions: TNormalizedEntity<
-    string,
-    TRegionalizedImageVersion
-  >;
+  images: TNormalizedEntity<string, TImage>;
+  regionalizedImages: TNormalizedEntity<string, TRegionalizedImage>;
 };
 
-const updateRegionalizedImageVersions = (
-  imageVersionName: string,
-  regions: TImageRegionDTO[],
-  regionalizedImageVersionsAcc: TNormalizedEntity<
-    string,
-    TRegionalizedImageVersion
-  >,
-) =>
-  regions.map((region) => {
-    const regionalizedImageId = getRegionalizedImagePriceId(
-      imageVersionName,
+const mapImageTypeDTOToImageEntity = (imageDTO: TImageDTO, acc: TImages) => {
+  const foundImageType = acc.imageTypes.byId.get(imageDTO.category);
+  if (!foundImageType)
+    acc.imageTypes.byId.set(imageDTO.category, {
+      id: imageDTO.category,
+      imageIds: [imageDTO.name],
+    });
+
+  if (foundImageType && !foundImageType.imageIds.includes(imageDTO.name)) {
+    foundImageType.imageIds.push(imageDTO.name);
+  }
+
+  const foundImage = acc.images.byId.get(imageDTO.name);
+  if (!foundImage)
+    acc.images.byId.set(imageDTO.name, {
+      id: imageDTO.name,
+      osType: imageDTO.osType,
+      variant: imageDTO.subCategory,
+    });
+
+  imageDTO.regions.forEach((region) => {
+    const regionalizedImageId = getRegionalizedImageId(
+      imageDTO.name,
       region.name,
     );
-    regionalizedImageVersionsAcc.allIds.push(regionalizedImageId);
-    regionalizedImageVersionsAcc.byId.set(regionalizedImageId, {
+    acc.regionalizedImages.allIds.push(regionalizedImageId);
+    acc.regionalizedImages.byId.set(regionalizedImageId, {
       id: regionalizedImageId,
       imageId: region.imageId,
     });
   });
-
-const mapImageTypeDTOToImageTypeEntity = (
-  imageDTO: TImageDTO,
-  acc: TImages,
-) => {
-  const foundImageType = acc.imageTypes.byId.get(imageDTO.category);
-  if (!foundImageType)
-    acc.imageTypes.byId.set(imageDTO.category, {
-      name: imageDTO.category,
-      imageVariantIds: [imageDTO.subCategory],
-    });
-
-  if (
-    foundImageType &&
-    !foundImageType.imageVariantIds.includes(imageDTO.subCategory)
-  ) {
-    foundImageType.imageVariantIds.push(imageDTO.subCategory);
-  }
-
-  const foundImageVariant = acc.imageVariants.byId.get(imageDTO.subCategory);
-  if (!foundImageVariant)
-    acc.imageVariants.byId.set(imageDTO.subCategory, {
-      name: imageDTO.subCategory,
-      imageVersionIds: [imageDTO.name],
-    });
-  if (
-    foundImageVariant &&
-    !foundImageVariant.imageVersionIds.includes(imageDTO.name)
-  ) {
-    foundImageVariant.imageVersionIds.push(imageDTO.name);
-  }
-
-  acc.imageVersions.byId.set(imageDTO.name, {
-    name: imageDTO.name,
-    regionalizedImageVersionIds: imageDTO.regions.map((region) =>
-      getRegionalizedImagePriceId(imageDTO.name, region.name),
-    ),
-  });
-
-  updateRegionalizedImageVersions(
-    imageDTO.name,
-    imageDTO.regions,
-    acc.regionalizedImageVersions,
-  );
 };
 
 const normalizeFlavorImage = (imagesDTO: TImageDTO[]) =>
@@ -516,21 +483,17 @@ const normalizeFlavorImage = (imagesDTO: TImageDTO[]) =>
       if (!acc.imageTypes.allIds.includes(imageDTO.category))
         acc.imageTypes.allIds.push(imageDTO.category);
 
-      if (!acc.imageVariants.allIds.includes(imageDTO.subCategory))
-        acc.imageVariants.allIds.push(imageDTO.subCategory);
+      if (!acc.images.allIds.includes(imageDTO.name))
+        acc.images.allIds.push(imageDTO.name);
 
-      if (!acc.imageVersions.allIds.includes(imageDTO.name))
-        acc.imageVersions.allIds.push(imageDTO.name);
-
-      mapImageTypeDTOToImageTypeEntity(imageDTO, acc);
+      mapImageTypeDTOToImageEntity(imageDTO, acc);
 
       return acc;
     },
     {
       imageTypes: { byId: new Map(), allIds: [] },
-      imageVariants: { byId: new Map(), allIds: [] },
-      imageVersions: { byId: new Map(), allIds: [] },
-      regionalizedImageVersions: { byId: new Map(), allIds: [] },
+      images: { byId: new Map(), allIds: [] },
+      regionalizedImages: { byId: new Map(), allIds: [] },
     },
   );
 

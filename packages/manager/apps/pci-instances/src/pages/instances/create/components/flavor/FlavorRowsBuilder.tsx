@@ -3,6 +3,7 @@ import { TableRow } from '@/components/flavorsTable/FlavorsTable.component';
 import { DeploymentModeBadge } from '@/components/deploymentModeBadge/DeploymentModeBadge.component';
 import { TFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
 import { ReactNode } from 'react';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 type FlavorRenderers = {
   renderName: (flavor: TFlavorDataForTable) => ReactNode;
@@ -14,12 +15,24 @@ export function FlavorRowsBuilder(
   { renderName, renderRadio }: FlavorRenderers,
   withUnavailable: boolean,
 ): TableRow[] {
+  const { getTextPrice } = useCatalogPrice(4);
+
   return flavors
     .filter(
       ({ unavailable, unavailableQuota }) =>
         withUnavailable || !(unavailable || unavailableQuota),
     )
     .map((flavor) => {
+      const minimumHourlyPrice = flavor.realMinimumHourlyPrice
+        ? getTextPrice(flavor.realMinimumHourlyPrice)
+        : '-';
+
+      const minimumMonthlyPrice = flavor.realMinimumMonthlyPrice
+        ? getTextPrice(flavor.realMinimumMonthlyPrice)
+        : flavor.estimatedMinimumMonthlyPrice
+        ? `~ ${getTextPrice(flavor.estimatedMinimumMonthlyPrice)}`
+        : '-';
+
       return {
         id: flavor.id,
         disabled: flavor.unavailableQuota,
@@ -37,14 +50,12 @@ export function FlavorRowsBuilder(
         ),
         hourlyPrice: (
           <Text preset={TEXT_PRESET.span} className="font-semibold">
-            {flavor.hourlyPrice ? `${flavor.hourlyPrice.toFixed(4)} €` : '-'}
+            {minimumHourlyPrice}
           </Text>
         ),
         monthlyPrice: (
           <Text preset={TEXT_PRESET.span} className="font-semibold">
-            {flavor.monthlyPrice
-              ? `~  ${flavor.monthlyPrice.toFixed(2)} €`
-              : '-'}
+            {minimumMonthlyPrice}
           </Text>
         ),
       };

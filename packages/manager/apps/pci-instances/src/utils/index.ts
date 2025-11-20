@@ -63,10 +63,8 @@ export const getLocalZoneTranslationKey = (regionName: string) =>
 
 export const isEven = (nb: number) => nb % 2 === 0;
 
-export const getRegionalizedFlavorId = (
-  flavorName: string,
-  regionName: string,
-) => `${flavorName}_${regionName}`;
+export const getRegionalizedFlavorId = (itemName: string, regionName: string) =>
+  `${itemName}_${regionName}`;
 
 export const getRegionalizedFlavorOsTypeId = (
   flavorName: string,
@@ -80,7 +78,7 @@ export const getRegionalizedFlavorOsTypePriceId = (
   osType: string,
 ) => `${getRegionalizedFlavorOsTypeId(flavorName, regionName, osType)}_price`;
 
-export const getRegionalizedImagePriceId = (
+export const getRegionalizedImageId = (
   imageVersionName: string,
   regionName: string,
 ) => `${imageVersionName}_${regionName}`;

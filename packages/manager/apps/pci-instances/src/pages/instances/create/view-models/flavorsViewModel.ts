@@ -29,8 +29,9 @@ export type TFlavorData = {
   bandwidthPublic: string;
   bandwidthPrivate: string;
   mode: TDeploymentMode | null;
-  hourlyPrice: number | null;
-  monthlyPrice: number | null;
+  realMinimumHourlyPrice: number | null;
+  realMinimumMonthlyPrice: number | null;
+  estimatedMinimumMonthlyPrice: number | null;
 };
 
 export type TFlavorDataForTable = Omit<
@@ -70,8 +71,9 @@ export const mapFlavorToTable = (flavor: TFlavorData): TFlavorDataForTable => ({
   vCore: flavor.vCore,
   storage: flavor.storage,
   mode: flavor.mode,
-  hourlyPrice: flavor.hourlyPrice,
-  monthlyPrice: flavor.monthlyPrice,
+  realMinimumHourlyPrice: flavor.realMinimumHourlyPrice,
+  realMinimumMonthlyPrice: flavor.realMinimumMonthlyPrice,
+  estimatedMinimumMonthlyPrice: flavor.estimatedMinimumMonthlyPrice,
 });
 
 export const mapGpuFlavorToTable = (
@@ -100,30 +102,46 @@ type TSelectFlavorsArgs = {
 };
 
 type TMinimumPrices = {
-  minimumHourlyPrice: number | null;
-  minimumMonthlyPrice: number | null;
+  realMinimumHourlyPrice: number | null;
+  realMinimumMonthlyPrice: number | null;
+  estimatedMinimumMonthlyPrice: number | null;
 };
 
 const getMinimumPrices = (pricings: TFlavorPrices[]) =>
   pricings.reduce<TMinimumPrices>(
     (acc, pricing) => {
-      pricing.prices.forEach((price) => {
+      pricing.prices.forEach(({ price, type, monthlyEquivalent }) => {
         if (
-          price.type === 'hour' &&
-          (!acc.minimumHourlyPrice || acc.minimumHourlyPrice > price.value)
+          type === 'hour' &&
+          (!acc.realMinimumHourlyPrice ||
+            acc.realMinimumHourlyPrice > price.priceInUcents)
         ) {
-          acc.minimumHourlyPrice = price.value;
+          acc.realMinimumHourlyPrice = price.priceInUcents;
         }
+
         if (
-          price.type === 'month' &&
-          (!acc.minimumMonthlyPrice || acc.minimumMonthlyPrice > price.value)
+          type === 'month' &&
+          (!acc.realMinimumMonthlyPrice ||
+            acc.realMinimumMonthlyPrice > price.priceInUcents)
         ) {
-          acc.minimumMonthlyPrice = price.value;
+          acc.realMinimumMonthlyPrice = price.priceInUcents;
+        }
+
+        if (
+          monthlyEquivalent &&
+          (!acc.estimatedMinimumMonthlyPrice ||
+            acc.estimatedMinimumMonthlyPrice > monthlyEquivalent.priceInUcents)
+        ) {
+          acc.estimatedMinimumMonthlyPrice = monthlyEquivalent.priceInUcents;
         }
       });
       return acc;
     },
-    { minimumHourlyPrice: null, minimumMonthlyPrice: null },
+    {
+      realMinimumHourlyPrice: null,
+      realMinimumMonthlyPrice: null,
+      estimatedMinimumMonthlyPrice: null,
+    },
   );
 
 export type TSelectFlavors = (
@@ -155,9 +173,11 @@ const addMicroRegionAvailableFlavor = (
     return pricing ? [pricing] : [];
   });
 
-  const { minimumHourlyPrice, minimumMonthlyPrice } = getMinimumPrices(
-    pricings,
-  );
+  const {
+    realMinimumHourlyPrice,
+    realMinimumMonthlyPrice,
+    estimatedMinimumMonthlyPrice,
+  } = getMinimumPrices(pricings);
 
   acc.push({
     id: regionalizedFlavor.id,
@@ -168,8 +188,9 @@ const addMicroRegionAvailableFlavor = (
     vCore: flavor.specifications.cpu.value,
     storage: flavor.specifications.storage.value,
     mode: deploymentMode,
-    hourlyPrice: minimumHourlyPrice,
-    monthlyPrice: minimumMonthlyPrice,
+    realMinimumHourlyPrice,
+    realMinimumMonthlyPrice,
+    estimatedMinimumMonthlyPrice,
   });
 
   return acc;
@@ -192,8 +213,9 @@ const addUnavailableMicroRegionFlavor = (
     vCore: flavor.specifications.cpu.value,
     storage: flavor.specifications.storage.value,
     mode: null,
-    hourlyPrice: null,
-    monthlyPrice: null,
+    realMinimumHourlyPrice: null,
+    realMinimumMonthlyPrice: null,
+    estimatedMinimumMonthlyPrice: null,
   });
 
   return acc;
