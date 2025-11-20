@@ -1,20 +1,23 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
 
-import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
-import { useActivateTracking } from './useActivateTracking';
-import {
-  useActivateProject,
-  useSimulateProjectActivation,
-} from '@/data/hooks/useServices';
+import { useNavigate } from 'react-router-dom';
+
+import { AxiosError } from 'axios';
+import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
 import { useClaimVoucher } from '@/data/hooks/useProjects';
-import { TProjectPrice } from '@/data/types/project.type';
-import { TEligibilityVoucher } from '@/data/types/eligibility.type';
+import { useActivateProject, useSimulateProjectActivation } from '@/data/hooks/useServices';
+import { TEligibilityVoucher } from '@/data/models/Eligibility.type';
+import { TProjectPrice } from '@/data/models/Project.type';
+import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+
+import { useActivateTracking } from './useActivateTracking';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export type UseProjectActivationProps = {
   promotionVoucher: TEligibilityVoucher['credit'] | null;
@@ -33,29 +36,13 @@ export const useProjectActivation = ({
   const { addError } = useNotifications();
   const { trackActivateError, trackActivateSuccess } = useActivateTracking();
 
-  const [
-    creditPaymentAmount,
-    setCreditPaymentAmount,
-  ] = useState<TProjectPrice | null>(null);
+  const [creditPaymentAmount, setCreditPaymentAmount] = useState<TProjectPrice | null>(null);
 
-  const handleError = (error: ApiError) => {
-    trackActivateError();
-    addError(
-      t('pci_projects_project_activate_message_fail', {
-        message: error?.response?.data?.message || error.message,
-      }),
-    );
-  };
+  const { mutateAsync: claimDiscoveryVoucher, isPending: isClaimingDiscoveryVoucher } =
+    useClaimVoucher();
 
-  const {
-    mutateAsync: claimDiscoveryVoucher,
-    isPending: isClaimingDiscoveryVoucher,
-  } = useClaimVoucher();
-
-  const {
-    mutateAsync: activateDiscoveryProject,
-    isPending: isActivatingDiscoveryProject,
-  } = useActivateProject();
+  const { mutateAsync: activateDiscoveryProject, isPending: isActivatingDiscoveryProject } =
+    useActivateProject();
 
   const {
     mutateAsync: simulateDiscoveryProjectActivation,
@@ -72,57 +59,72 @@ export const useProjectActivation = ({
     [navigate, promotionVoucher],
   );
 
-  const handleActivateProject = async ({
-    simulate = true,
-    autoPay = true,
-  }: { simulate?: boolean; autoPay?: boolean } = {}) => {
-    try {
-      // Step 1: Claim voucher if we have a promotion amount
-      if (promotionVoucher) {
-        await claimDiscoveryVoucher({
-          projectId,
-          voucherCode: DISCOVERY_PROMOTION_VOUCHER,
-        });
-      }
+  const handleActivateProject = useCallback(
+    async ({ simulate = true, autoPay = true }: { simulate?: boolean; autoPay?: boolean } = {}) => {
+      try {
+        // Step 1: Claim voucher if we have a promotion amount
+        if (promotionVoucher) {
+          await claimDiscoveryVoucher({
+            projectId,
+            voucherCode: DISCOVERY_PROMOTION_VOUCHER,
+          });
+        }
 
-      // Step 2: Simulate activation to check if payment is required
-      if (simulate) {
-        const simulationResult = await simulateDiscoveryProjectActivation(
-          serviceId!,
-        );
+        // Step 2: Simulate activation to check if payment is required
+        if (simulate) {
+          const simulationResult = await simulateDiscoveryProjectActivation(serviceId!);
 
-        // Step 3: Check if credit payment is needed
-        if (simulationResult?.order?.prices?.withTax?.value !== 0) {
-          setCreditPaymentAmount(simulationResult.order.prices.withoutTax);
+          // Step 3: Check if credit payment is needed
+          if (simulationResult?.order?.prices?.withTax?.value !== 0) {
+            setCreditPaymentAmount(simulationResult.order.prices.withoutTax);
+            return;
+          }
+        }
+
+        // Step 4: Proceed with activation (no payment required)
+        const activationResult = await activateDiscoveryProject(serviceId!);
+
+        // Step 5: Track successful activation
+        trackActivateSuccess(DISCOVERY_PROMOTION_VOUCHER);
+
+        // Step 6: Handle post-activation navigation
+        if (!autoPay && activationResult.order.url && window.top) {
+          // Redirect to payment URL if order.url is provided
+          window.top.location.href = activationResult.order.url;
           return;
         }
+
+        // Step 7: Navigate to updating page
+        navigateToUpdating(activationResult.order.orderId);
+      } catch (error) {
+        trackActivateError();
+        addError(
+          t('pci_projects_project_activate_message_fail', {
+            message: (error as ApiError)?.response?.data?.message || (error as Error).message,
+          }),
+        );
       }
-
-      // Step 4: Proceed with activation (no payment required)
-      const activationResult = await activateDiscoveryProject(serviceId!);
-
-      // Step 5: Track successful activation
-      trackActivateSuccess(DISCOVERY_PROMOTION_VOUCHER);
-
-      // Step 6: Handle post-activation navigation
-      if (!autoPay && activationResult.order.url && window.top) {
-        // Redirect to payment URL if order.url is provided
-        window.top.location.href = activationResult.order.url;
-        return;
-      }
-
-      // Step 7: Navigate to updating page
-      navigateToUpdating(activationResult.order.orderId);
-    } catch (error) {
-      handleError(error as ApiError);
-    }
-  };
+    },
+    [
+      claimDiscoveryVoucher,
+      simulateDiscoveryProjectActivation,
+      activateDiscoveryProject,
+      trackActivateSuccess,
+      trackActivateError,
+      navigateToUpdating,
+      addError,
+      promotionVoucher,
+      serviceId,
+      projectId,
+      t,
+    ],
+  );
 
   /**
    * Handler for credit payment flow (when user needs to pay)
    */
   const handleCreditPayment = () => {
-    handleActivateProject({ autoPay: false, simulate: false });
+    void handleActivateProject({ autoPay: false, simulate: false });
   };
 
   const isSubmitting =

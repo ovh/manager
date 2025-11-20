@@ -1,27 +1,29 @@
-import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useContext, useEffect, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+
 import { useHref } from 'react-router-dom';
+
+import { AxiosError } from 'axios';
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { urls } from '@/routes/routes.constant';
-import { TProjectWithService } from '@/data/types/project.type';
+import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { removeProject } from '@/data/api/projects';
 import { useSetAsDefaultProject } from '@/data/hooks/useProjects';
+import { TProjectWithService } from '@/data/models/Project.type';
+import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+type ApiError = AxiosError<{ message: string }>;
 
 type ActionsProps = {
   projectWithService: TProjectWithService;
 };
 
-export default function Actions({
-  projectWithService,
-}: Readonly<ActionsProps>) {
+export default function Actions({ projectWithService }: Readonly<ActionsProps>) {
   const { t } = useTranslation(['listing', 'edit', NAMESPACES.ERROR]);
   const { trackClick } = useOvhTracking();
   const { addSuccess, addError, clearNotifications } = useNotifications();
@@ -54,12 +56,10 @@ export default function Actions({
 
   const handleDeleteProject = () => {
     trackDeleteProjectClick();
-    removeProject({ projectId: projectWithService.project_id }).then(() => {
+    void removeProject({ projectId: projectWithService.project_id }).then(() => {
       clearNotifications();
       addSuccess(
-        <Translation ns="listing">
-          {(_t) => _t('pci_projects_project_delete_success')}
-        </Translation>,
+        <Translation ns="listing">{(_t) => _t('pci_projects_project_delete_success')}</Translation>,
       );
     });
   };
@@ -91,7 +91,7 @@ export default function Actions({
   useEffect(() => {
     navigation
       .getURL('dedicated', '#/billing/history', {})
-      .then((url) => setBillingHref(`${url}`));
+      .then((url) => setBillingHref(String(url)));
   }, [navigation]);
 
   const getMenuItems = () => {
@@ -116,9 +116,7 @@ export default function Actions({
       items.push({
         id: 1,
         label: t(
-          projectStatus.hasPendingDebt
-            ? 'pci_projects_project_view'
-            : 'pci_projects_project_show',
+          projectStatus.hasPendingDebt ? 'pci_projects_project_view' : 'pci_projects_project_show',
         ),
         href: projectHref,
       });
@@ -136,10 +134,7 @@ export default function Actions({
     }
 
     // Delete option
-    if (
-      (projectStatus.isCreating || projectStatus.isActive) &&
-      !projectStatus.hasPendingDebt
-    ) {
+    if ((projectStatus.isCreating || projectStatus.isActive) && !projectStatus.hasPendingDebt) {
       items.push({
         id: 2,
         label: t('pci_projects_project_delete'),

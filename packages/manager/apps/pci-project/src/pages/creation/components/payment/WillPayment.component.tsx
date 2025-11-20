@@ -1,10 +1,11 @@
-import { Suspense, useContext, useEffect, useRef } from 'react';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { Suspense, useCallback, useContext, useEffect, useRef } from 'react';
+
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { GlobalStateStatus } from '@/types/WillPayment.type';
+
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { GlobalStateStatus } from '@/types/UWillPayment.type';
+
 import { useWillPaymentConfig } from '../../hooks/useWillPaymentConfig';
 import { setupWillPaymentEventListeners } from '../../utils/paymentEvents';
 import { WillPaymentModule } from './WillPaymentModule';
@@ -29,7 +30,7 @@ function WillPaymentComponent({
 
   const config = useWillPaymentConfig({ onPaymentStatusChange });
 
-  const onEditDefaultPaymentMethod = () => {
+  const onEditDefaultPaymentMethod = useCallback(() => {
     trackClick({
       actionType: 'action',
       actions: [
@@ -42,7 +43,8 @@ function WillPaymentComponent({
       ],
     });
     navigation.navigateTo('dedicated', '#/billing/payment/method', {});
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigation]);
 
   useEffect(() => {
     const cleanup = setupWillPaymentEventListeners(
@@ -51,7 +53,7 @@ function WillPaymentComponent({
       onEditDefaultPaymentMethod,
     );
     return cleanup || undefined;
-  }, [onNoUserActionNeeded, onRequiredChallengeEvent]);
+  }, [onNoUserActionNeeded, onRequiredChallengeEvent, onEditDefaultPaymentMethod]);
 
   return (
     <div id="will-payment-event-bus" ref={slotRef}>

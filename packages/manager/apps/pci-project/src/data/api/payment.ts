@@ -6,8 +6,5 @@ export const payWithRegisteredPaymentMean = async (
     paymentMean: string;
   },
 ): Promise<void> => {
-  await v6.post<void>(
-    `me/order/${orderId}/payWithRegisteredPaymentMean`,
-    payload,
-  );
+  await v6.post<void>(`me/order/${orderId}/payWithRegisteredPaymentMean`, payload);
 };

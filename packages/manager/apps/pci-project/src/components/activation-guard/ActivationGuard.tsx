@@ -1,10 +1,11 @@
-import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
-import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 import { lazy, useMemo } from 'react';
 
-const ActivatePage = lazy(() =>
-  import('@/pages/detail/activate/Activate.page'),
-);
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { RedirectionGuard } from '@ovh-ux/manager-react-components';
+
+import { TProject } from '@/types/pci-common.types';
+
+const ActivatePage = lazy(() => import('@/pages/detail/activate/Activate.page'));
 
 /**
  * ActivationGuard component that protects the activation page route.
@@ -13,21 +14,22 @@ const ActivatePage = lazy(() =>
  * @returns RedirectionGuard component with ActivatePage as child
  */
 export default function ActivationGuard() {
-  const { data: project, isLoading } = useProject();
+  const { data: project, isLoading } = (
+    useProject as unknown as () => {
+      data: TProject | undefined;
+      isLoading: boolean;
+    }
+  )();
 
   const isAlreadyActivated = useMemo(() => {
     if (!project) {
       return false;
     }
-    return !isDiscoveryProject(project);
+    return !(isDiscoveryProject as (project: TProject) => boolean)(project);
   }, [project]);
 
   return (
-    <RedirectionGuard
-      condition={isAlreadyActivated}
-      route=".."
-      isLoading={isLoading}
-    >
+    <RedirectionGuard condition={isAlreadyActivated} route=".." isLoading={isLoading}>
       <ActivatePage />
     </RedirectionGuard>
   );

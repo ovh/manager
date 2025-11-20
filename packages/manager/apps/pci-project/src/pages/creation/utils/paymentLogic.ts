@@ -1,8 +1,4 @@
-import {
-  ComponentStatus,
-  GlobalStateStatus,
-  PaymentMethodStatus,
-} from '@/types/WillPayment.type';
+import { ComponentStatus, GlobalStateStatus, PaymentMethodStatus } from '@/types/UWillPayment.type';
 
 /**
  * Pure business logic functions for payment state validation
@@ -15,22 +11,16 @@ import {
 export const isPaymentMethodSaveRequired = (
   globalStateStatus: GlobalStateStatus | null,
 ): boolean => {
-  return (
-    globalStateStatus?.componentStatus === ComponentStatus.READY_TO_GO_FORWARD
-  );
+  return globalStateStatus?.componentStatus === ComponentStatus.READY_TO_GO_FORWARD;
 };
 
 /**
  * Determines if payment method has been saved successfully
  */
-export const isPaymentMethodSaved = (
-  globalStateStatus: GlobalStateStatus | null,
-): boolean => {
+export const isPaymentMethodSaved = (globalStateStatus: GlobalStateStatus | null): boolean => {
   return (
-    globalStateStatus?.componentStatus ===
-      ComponentStatus.PAYMENT_METHOD_SAVED ||
-    globalStateStatus?.paymentMethodStatus ===
-      PaymentMethodStatus.PAYMENT_METHOD_SAVED
+    globalStateStatus?.componentStatus === ComponentStatus.PAYMENT_METHOD_SAVED ||
+    globalStateStatus?.paymentMethodStatus === PaymentMethodStatus.PAYMENT_METHOD_SAVED
   );
 };
 

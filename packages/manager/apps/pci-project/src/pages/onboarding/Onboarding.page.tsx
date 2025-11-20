@@ -1,12 +1,11 @@
 import { useContext, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
+
 import { clsx } from 'clsx';
 import { format } from 'date-fns';
-import {
-  useOvhTracking,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
+import { useTranslation } from 'react-i18next';
+
 import {
   OdsButton,
   OdsCheckbox,
@@ -16,19 +15,20 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import DiscoveryGuard from '@/pages/onboarding/DiscoveryGuard.component';
 
-import { useContractAgreements, useCreateCart } from '@/data/hooks/useCart';
-import { CartSummary, PlanCode } from '@/data/types/cart.type';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import ItalyAgreements from '@/components/italy-agreements/ItalyAgreements';
 import { INDIAN_KYC_SUPPORT_LINK } from '@/constants';
+import { useContractAgreements, useCreateCart } from '@/data/hooks/useCart';
+import { CartSummary, PlanCode } from '@/data/models/Cart.type';
+import { useCheckoutWithFidelityAccount } from '@/hooks/use-checkout/useCheckout';
+import DiscoveryGuard from '@/pages/onboarding/DiscoveryGuard.component';
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
-import onboardingImage from '../../../public/assets/onboarding.png';
 import onboardingUsImage from '../../../public/assets/onboarding-us.png';
-import ItalyAgreements from '@/components/italy-agreements/ItalyAgreements';
-import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout';
+import onboardingImage from '../../../public/assets/onboarding.png';
 
 export default function OnboardingPage() {
   const { t } = useTranslation('onboarding');
@@ -36,8 +36,8 @@ export default function OnboardingPage() {
   const navigate = useNavigate();
   const context = useContext(ShellContext);
   const user = context.environment.getUser();
-  const isUsRegion = context.environment.getRegion() === 'US';
-  const isItalySubsidiary = user.ovhSubsidiary === 'IT';
+  const isUsRegion = String(context.environment.getRegion()) === 'US';
+  const isItalySubsidiary = String(user.ovhSubsidiary) === 'IT';
   const [hasContractsAgreements, setHasContractsAgreements] = useState(false);
   const [hasItalyAgreements, setHasItalyAgreements] = useState(false);
   const needKycValidation = !user.kycValidated && user.ovhSubsidiary === 'IN';
@@ -50,35 +50,28 @@ export default function OnboardingPage() {
     PlanCode.PROJECT_DISCOVERY,
     defaultProjectName,
   );
-  const {
-    data: contracts,
-    isLoading: isContractsLoading,
-  } = useContractAgreements(cart?.cartId ?? null);
+  const { data: contracts, isLoading: isContractsLoading } = useContractAgreements(
+    cart?.cartId ?? null,
+  );
 
-  const {
-    mutate: finalizeCart,
-    isPending: isFinalizationPending,
-  } = useCheckoutWithFidelityAccount({
-    onSuccess(summary: CartSummary) {
-      const voucherCode =
-        summary.projectItem?.voucherConfiguration?.value ?? null;
-      if (voucherCode) {
-        const createWithVoucherUrl = urls.creatingWithVoucher
-          .replace(':orderId', `${summary.orderId}`)
-          .replace(':voucherCode', encodeURIComponent(voucherCode));
-        navigate(`../${createWithVoucherUrl}`);
-      } else {
-        const createWithoutVoucherUrl = urls.creating.replace(
-          ':orderId',
-          `${summary.orderId}`,
-        );
-        navigate(`../${createWithoutVoucherUrl}`);
-      }
+  const { mutate: finalizeCart, isPending: isFinalizationPending } = useCheckoutWithFidelityAccount(
+    {
+      onSuccess(summary: CartSummary) {
+        const voucherCode = summary.projectItem?.voucherConfiguration?.value ?? null;
+        if (voucherCode) {
+          const createWithVoucherUrl = urls.creatingWithVoucher
+            .replace(':orderId', `${summary.orderId}`)
+            .replace(':voucherCode', encodeURIComponent(voucherCode));
+          navigate(`../${createWithVoucherUrl}`);
+        } else {
+          const createWithoutVoucherUrl = urls.creating.replace(':orderId', `${summary.orderId}`);
+          navigate(`../${createWithoutVoucherUrl}`);
+        }
+      },
     },
-  });
+  );
 
-  const isContractAgreementDisabled =
-    needKycValidation || isCartLoading || isContractsLoading;
+  const isContractAgreementDisabled = needKycValidation || isCartLoading || isContractsLoading;
   const isProjectCreationDisabled =
     isFinalizationPending ||
     !hasContractsAgreements ||
@@ -104,29 +97,17 @@ export default function OnboardingPage() {
     return (
       <DiscoveryGuard>
         <div
-          className="pci_project_onboarding_us w-100 h-100 flex flex-row max-w-[100vw] overflow-x-hidden"
+          className="pci_project_onboarding_us w-100 h-100 flex max-w-[100vw] flex-row overflow-x-hidden"
           data-testid="discovery-page-us"
         >
-          <img
-            className="onboarding-us-img invisible md:visible"
-            src={onboardingUsImage}
-            alt=""
-          />
+          <img className="onboarding-us-img invisible md:visible" src={onboardingUsImage} alt="" />
 
-          <div className="flex flex-col gap-[1em] w-[100%] md:w-[50%] p-[1em] box-border">
+          <div className="box-border flex w-[100%] flex-col gap-[1em] p-[1em] md:w-[50%]">
             {/* Public cloud description */}
-            <OdsText preset="heading-1">
-              {t('pci_projects_onboarding_us_title')}
-            </OdsText>
-            <OdsText preset="paragraph">
-              {t('pci_projects_onboarding_us_description1')}
-            </OdsText>
-            <OdsText preset="paragraph">
-              {t('pci_projects_onboarding_us_description2')}
-            </OdsText>
-            <OdsText preset="paragraph">
-              {t('pci_projects_onboarding_us_description3')}
-            </OdsText>
+            <OdsText preset="heading-1">{t('pci_projects_onboarding_us_title')}</OdsText>
+            <OdsText preset="paragraph">{t('pci_projects_onboarding_us_description1')}</OdsText>
+            <OdsText preset="paragraph">{t('pci_projects_onboarding_us_description2')}</OdsText>
+            <OdsText preset="paragraph">{t('pci_projects_onboarding_us_description3')}</OdsText>
 
             {/* CTA: Create a project */}
             <OdsButton
@@ -146,14 +127,10 @@ export default function OnboardingPage() {
         className="pci_projects_onboarding w-100 h-100 overflow-auto"
         data-testid="discovery-page"
       >
-        <div className="flex flex-col gap-[1em] w-100 md:w-[50%] md:ml-[25%] px-[1em] text-center">
+        <div className="w-100 flex flex-col gap-[1em] px-[1em] text-center md:ml-[25%] md:w-[50%]">
           {/* KYC verification message (Indian accounts) */}
           {needKycValidation && (
-            <OdsMessage
-              className="w-[100%]"
-              color="information"
-              isDismissible={false}
-            >
+            <OdsMessage className="w-[100%]" color="information" isDismissible={false}>
               <div data-testid="kyc-message">
                 <OdsText preset="span" className="inline">
                   {t(
@@ -162,9 +139,7 @@ export default function OnboardingPage() {
                 </OdsText>
                 <OdsLink
                   className="inline"
-                  label={t(
-                    'pci_projects_onboarding_banner_kyc_validation_under_verification_link',
-                  )}
+                  label={t('pci_projects_onboarding_banner_kyc_validation_under_verification_link')}
                   href={INDIAN_KYC_SUPPORT_LINK}
                   rel="noopener"
                   target="_blank"
@@ -176,22 +151,13 @@ export default function OnboardingPage() {
           <img className="w-100" src={onboardingImage} alt="" />
 
           {/* Public cloud description */}
-          <OdsText preset="heading-1">
-            {t('pci_projects_onboarding_title')}
-          </OdsText>
-          <OdsText preset="paragraph">
-            {t('pci_projects_onboarding_description1')}
-          </OdsText>
-          <OdsText preset="paragraph">
-            {t('pci_projects_onboarding_description2')}
-          </OdsText>
+          <OdsText preset="heading-1">{t('pci_projects_onboarding_title')}</OdsText>
+          <OdsText preset="paragraph">{t('pci_projects_onboarding_description1')}</OdsText>
+          <OdsText preset="paragraph">{t('pci_projects_onboarding_description2')}</OdsText>
 
           {/* Contracts Agreement */}
-          <div
-            className="contracts-agreements-block"
-            data-testid="contracts-agreements"
-          >
-            <div className="flex items-center justify-start gap-4 mb-2">
+          <div className="contracts-agreements-block" data-testid="contracts-agreements">
+            <div className="mb-2 flex items-center justify-start gap-4">
               <OdsCheckbox
                 name={'project-contracts-agreements'}
                 inputId={'project-contracts-agreements'}
@@ -211,7 +177,7 @@ export default function OnboardingPage() {
                 </OdsText>
               </label>
             </div>
-            <div className="contracts-agreements flex flex-row justify-center flex-wrap m-w-100 text-sm">
+            <div className="contracts-agreements m-w-100 flex flex-row flex-wrap justify-center text-sm">
               {!(isCartLoading || isContractsLoading) &&
                 contracts &&
                 contracts.map((contract) => (
@@ -225,9 +191,7 @@ export default function OnboardingPage() {
                     icon="external-link"
                   />
                 ))}
-              {(isCartLoading || isContractsLoading) && (
-                <OdsSkeleton className="w-full mt-4 mb-4" />
-              )}
+              {(isCartLoading || isContractsLoading) && <OdsSkeleton className="my-4 w-full" />}
             </div>
           </div>
 

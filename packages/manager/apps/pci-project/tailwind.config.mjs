@@ -1,6 +1,7 @@
-import config from '@ovh-ux/manager-tailwind-config';
-import path from 'path';
 import { createRequire } from 'node:module';
+import path from 'path';
+
+import config from '@ovh-ux/manager-tailwind-config';
 
 const require = createRequire(import.meta.url);
 
@@ -13,10 +14,7 @@ export default {
       path.dirname(require.resolve('@ovh-ux/manager-react-components')),
       '**/*.{js,jsx,ts,tsx}',
     ),
-    path.join(
-      path.dirname(require.resolve('@ovh-ux/manager-pci-common')),
-      '**/*.{js,jsx,ts,tsx}',
-    ),
+    path.join(path.dirname(require.resolve('@ovh-ux/manager-pci-common')), '**/*.{js,jsx,ts,tsx}'),
   ],
   corePlugins: {
     preflight: false,
