@@ -44,7 +44,7 @@ const extractParamFromUrl = ({
     }
 
     return null;
-  } catch (error) {
+  } catch {
     // Invalid URL format
     return null;
   }

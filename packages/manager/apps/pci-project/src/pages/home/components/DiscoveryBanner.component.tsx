@@ -1,13 +1,12 @@
-import {
-  ODS_BUTTON_SIZE,
-  ODS_MESSAGE_COLOR,
-  ODS_MESSAGE_VARIANT,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
+import { ODS_BUTTON_SIZE, ODS_MESSAGE_COLOR, ODS_MESSAGE_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+
 import { useDiscoveryVoucher } from '@/hooks/home/useDiscoveryVoucher';
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
@@ -18,10 +17,7 @@ function DiscoveryBanner({ className }: { className?: string }) {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const {
-    data: voucherAmount,
-    isPending: isVoucherPending,
-  } = useDiscoveryVoucher();
+  const { data: voucherAmount, isPending: isVoucherPending } = useDiscoveryVoucher();
 
   const handleActivationClick = () => {
     trackClick({
@@ -44,8 +40,8 @@ function DiscoveryBanner({ className }: { className?: string }) {
         className={`my-4 ${className}`}
         isDismissible={false}
       >
-        <div className="flex items-center justify-between w-full">
-          <div className="flex flex-col flex-1">
+        <div className="flex w-full items-center justify-between">
+          <div className="flex flex-1 flex-col">
             <OdsText preset="heading-4">
               {voucherAmount
                 ? t('pci_projects_home_banner_discovery_title_with_promotion', {

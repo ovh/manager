@@ -1,5 +1,7 @@
-import { OdsText, OdsLink } from '@ovhcloud/ods-components/react';
-import { useTranslation, Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
 import { STARTUP_PROGRAM_GUIDE_URL } from '@/constants';
 
 type StartupProgramProps = {
@@ -17,7 +19,7 @@ export default function StartupProgram({ value }: StartupProgramProps) {
 
       <OdsText>{t('pci_project_new_payment_startup_program_info')}</OdsText>
 
-      <OdsText className="font-bold mb-4">
+      <OdsText className="mb-4 font-bold">
         {t('pci_project_new_payment_startup_program_amount_available', {
           amount: value,
         })}

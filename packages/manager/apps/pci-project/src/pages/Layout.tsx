@@ -1,12 +1,10 @@
-import { useEffect, useContext, Suspense, useState } from 'react';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { Suspense, useContext, useEffect } from 'react';
+
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
-import {
-  useOvhTracking,
-  useRouteSynchro,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 export default function Layout() {
   const location = useLocation();
@@ -20,19 +18,19 @@ export default function Layout() {
   useEffect(() => {
     const match = matches.slice(-1);
     defineCurrentPage(`app.pci-project-${match[0]?.id}`);
-  }, [location]);
+  }, [location, matches]);
 
   useEffect(() => {
     trackCurrentPage();
-  }, [location]);
+  }, [location, trackCurrentPage]);
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+  }, [shell.ux]);
 
   useEffect(() => {
     clearNotifications();
-  }, [location.pathname]);
+  }, [location.pathname, clearNotifications]);
 
   return (
     <Suspense>

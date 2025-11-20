@@ -1,10 +1,15 @@
-import { Modal } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useContext } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+
+import { Modal } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { SUPPORT_URL } from '@/constants';
 
 export default function IncreaseQuota() {
@@ -29,9 +34,7 @@ export default function IncreaseQuota() {
       onDismiss={handleClose}
       isOpen={true}
     >
-      <OdsText>
-        {t('pci_project_new_error_ask_increase_projects_quota')}
-      </OdsText>
+      <OdsText>{t('pci_project_new_error_ask_increase_projects_quota')}</OdsText>
     </Modal>
   );
 }

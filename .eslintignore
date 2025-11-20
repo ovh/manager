@@ -59,3 +59,4 @@ packages/manager-wiki
 lint-runner.js
 lint-html-runner.js
 lint-cli.js
+packages/manager/apps/pci-project

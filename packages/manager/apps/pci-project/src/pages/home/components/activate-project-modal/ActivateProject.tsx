@@ -1,11 +1,16 @@
-import { Modal } from '@ovh-ux/manager-react-components';
+import { useEffect, useState } from 'react';
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Modal } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
@@ -33,7 +38,7 @@ export default function ActivateProjectModal() {
 
   useEffect(() => {
     if (activateDiscovery) {
-      setIsOpen(true);
+      setTimeout(() => setIsOpen(true), 0);
     }
   }, [activateDiscovery]);
 

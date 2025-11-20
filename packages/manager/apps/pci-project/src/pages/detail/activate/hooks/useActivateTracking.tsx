@@ -1,9 +1,7 @@
 import { useContext } from 'react';
-import {
-  PageType,
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { PageType, ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 export const useActivateTracking = () => {

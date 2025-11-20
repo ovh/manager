@@ -1,39 +1,32 @@
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_ICON_NAME, ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import ImageSlider from '@/components/image-slider/ImageSlider';
 import LargeSpinner from '@/components/large-spinner/LargeSpinner';
 import { UPDATING_GUIDE_URLS } from '@/constants';
-import {
-  useDeliveredProjectId,
-  useOrderFollowUpPolling,
-} from '@/data/hooks/useOrder';
+import { useDeliveredProjectId, useOrderFollowUpPolling } from '@/data/hooks/useOrder';
+import { getProjectQueryKey } from '@/data/hooks/useProjects';
 import { useParam } from '@/hooks/useParam';
-import { PROJECTS_TRACKING } from '@/tracking.constant';
-import { useUpdatingTracking } from './hooks/useUpdatingTracking';
 import queryClient from '@/queryClient';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+import { useUpdatingTracking } from './hooks/useUpdatingTracking';
 
 export default function UpdatingPage() {
   const { t } = useTranslation('updating');
 
   const { trackClick } = useOvhTracking();
 
-  const {
-    trackProjectUpdated,
-    trackUpdateProjectSuccess,
-    trackUpdateProjectError,
-  } = useUpdatingTracking();
+  const { trackProjectUpdated, trackUpdateProjectSuccess, trackUpdateProjectError } =
+    useUpdatingTracking();
 
   const [isDelivered, setIsDelivered] = useState(false);
 
@@ -50,7 +43,7 @@ export default function UpdatingPage() {
     throw new Error(t('pci_projects_updating_delivery_error'));
   };
 
-  const guideUrl = UPDATING_GUIDE_URLS[user?.ovhSubsidiary];
+  const guideUrl = UPDATING_GUIDE_URLS[user?.ovhSubsidiary] || UPDATING_GUIDE_URLS.DEFAULT;
 
   useOrderFollowUpPolling({
     orderId: Number(orderId),
@@ -64,7 +57,7 @@ export default function UpdatingPage() {
     onProjectIdDelivered: (projectId: string) => {
       trackProjectUpdated();
       trackUpdateProjectSuccess({ voucherCode });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getProjectQueryKey(projectId),
       });
       navigate(`../${projectId}`);
@@ -72,9 +65,9 @@ export default function UpdatingPage() {
   });
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[var(--ods-color-primary-050)]">
-      <div className="bg-white min-h-screen w-full max-w-2xl p-10 shadow-lg flex flex-col">
-        <div className="flex flex-col justify-center items-center flex-1 gap-8">
+    <div className="flex min-h-screen w-full items-center justify-center bg-[var(--ods-color-primary-050)]">
+      <div className="flex min-h-screen w-full max-w-2xl flex-col bg-white p-10 shadow-lg">
+        <div className="flex flex-1 flex-col items-center justify-center gap-8">
           <OdsText preset={ODS_TEXT_PRESET.heading1} className="text-center">
             {t('pci_projects_updating_main_title')}
           </OdsText>
@@ -87,7 +80,7 @@ export default function UpdatingPage() {
             <ImageSlider />
           </LargeSpinner>
 
-          <div className="text-center space-y-4">
+          <div className="space-y-4 text-center">
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('pci_projects_updating_long_time')}
             </OdsText>
@@ -99,7 +92,7 @@ export default function UpdatingPage() {
 
           <div>
             <OdsLink
-              href={guideUrl}
+              href={guideUrl || ''}
               target="_blank"
               rel="noopener noreferrer"
               color={ODS_LINK_COLOR.primary}
