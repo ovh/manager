@@ -401,4 +401,17 @@ export default class {
   getQueryParams() {
     return this.queryParams || {};
   }
+
+  cancelTermination(serviceId) {
+    return this.OvhHttp.put(`/services/${serviceId}`, {
+      rootPath: 'apiv6',
+      data: { terminationPolicy: 'empty' },
+    }).catch((error) => {
+      return this.$q.reject({
+        data: {
+          message: error.message,
+        },
+      });
+    });
+  }
 }
