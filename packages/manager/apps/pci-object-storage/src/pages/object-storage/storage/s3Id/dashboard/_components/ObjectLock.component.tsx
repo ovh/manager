@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Badge, Button } from '@datatr-ux/uxlib';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { Settings } from 'lucide-react';
-import ObjectLockOptions from './ObjectLockOptions.component';
 import { useS3Data } from '../../S3.context';
 import storages from '@/types/Storages';
 
@@ -14,8 +12,6 @@ const ObjectLock = () => {
   const isObjectLockEnabled =
     s3.objectLock.status === storages.ObjectLockStatusEnum.enabled;
   const prefix = isObjectLockEnabled ? 'enable' : 'disable';
-
-  const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
   return (
     <>
@@ -36,21 +32,16 @@ const ObjectLock = () => {
               mode="outline"
               size="sm"
               className="h-6"
-              onClick={() => setIsOptionsOpen(true)}
+              onClick={() => navigate('./object-lock-options')}
             >
               <Settings className="size-4" />
-              <span className="font-semibold">{t('addButton')}</span>
+              <span className="font-semibold">
+                {t('objectLockOptionsButton')}
+              </span>
             </Button>
           )}
         </div>
       </div>
-
-      {isOptionsOpen && (
-        <ObjectLockOptions
-          open={isOptionsOpen}
-          onOpenChange={setIsOptionsOpen}
-        />
-      )}
     </>
   );
 };
