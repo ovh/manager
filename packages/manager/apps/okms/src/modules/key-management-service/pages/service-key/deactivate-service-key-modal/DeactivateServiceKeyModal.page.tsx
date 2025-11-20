@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useUpdateOkmsServiceKey } from '@key-management-service/data/hooks/useUpdateOkmsServiceKey';
 import {
@@ -35,6 +35,8 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 const stateByReason: {
   [deactivationReason: string]: OkmsServiceKeyPutState;
 } = {
@@ -48,10 +50,7 @@ const stateByReason: {
 };
 
 export const DisableServiceKeyModal = () => {
-  const { okmsId, keyId } = useParams() as {
-    okmsId: string;
-    keyId: string;
-  };
+  const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
   const [deactivationReason, setDeactivationReason] = useState<
     OkmsServiceKeyDeactivationReason | undefined
   >();

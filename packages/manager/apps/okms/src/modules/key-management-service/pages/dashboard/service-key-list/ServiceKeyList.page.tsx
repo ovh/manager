@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 
 import {
   DatagridCellType,
@@ -33,6 +33,7 @@ import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
@@ -44,7 +45,7 @@ export default function Keys() {
   const { trackClick } = useOvhTracking();
 
   const { sorting, setSorting } = useDatagridSearchParams();
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const {
     error,
     data: okmsServiceKey,

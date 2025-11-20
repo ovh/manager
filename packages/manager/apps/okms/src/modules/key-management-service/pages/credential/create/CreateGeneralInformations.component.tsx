@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { CertificateType } from '@key-management-service/types/okmsCredential.type';
@@ -15,6 +15,8 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import CreateGeneralInformationsCreationMethod from './general-informations/CreateGeneralInformationsCreationMethod.component';
 import CreateGeneralInformationsDescription from './general-informations/CreateGeneralInformationsDescription';
@@ -53,7 +55,7 @@ const CreateGeneralInformations = ({
   nextStep,
 }: CreateGeneralInformationsProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 

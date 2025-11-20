@@ -1,16 +1,17 @@
 import { Suspense } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useSecretWithData } from '@secret-manager/data/hooks/useSecret';
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { Drawer } from '@ovh-ux/manager-react-components';
+
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 import { CreateVersionDrawerForm } from './CreateVersionDrawerForm.component';
@@ -19,7 +20,7 @@ export default function CreateVersionDrawerPage() {
   const navigate = useNavigate();
   const { t } = useTranslation('secret-manager');
 
-  const { okmsId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
 
   const {
     data: secret,

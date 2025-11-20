@@ -1,22 +1,18 @@
-import { useParams } from 'react-router-dom';
-
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { Link } from '@/common/components/link/Link.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 type ActionsTileParams = {
   secret: Secret;
 };
 
 export const ActionsTile = ({ secret }: ActionsTileParams) => {
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
   const { t } = useTranslation('secret-manager');
 
   return (
