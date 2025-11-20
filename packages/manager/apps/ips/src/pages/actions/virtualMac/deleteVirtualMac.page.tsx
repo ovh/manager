@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ButtonType,
   PageLocation,
@@ -17,7 +17,7 @@ import {
   createDedicatedServerTasksQueryKeyPredicate,
   deleteVirtualMACs,
 } from '@/data/api';
-import { useIpHasVmac } from '@/data/hooks/ip';
+import { useIpHasVmac, useHasVmacTasks } from '@/data/hooks/ip';
 import {
   fromIdToIp,
   ipFormatter,
@@ -39,6 +39,11 @@ export default function DeleteVirtualMac() {
   const { ipvmac } = useIpHasVmac({
     serviceName: service,
     ip,
+    enabled: Boolean(service),
+  });
+
+  const { hasVmacTasks } = useHasVmacTasks({
+    serviceName: service,
     enabled: Boolean(service),
   });
 
@@ -118,11 +123,21 @@ export default function DeleteVirtualMac() {
         deleteVirtualMacHandler();
       }}
       isPrimaryButtonLoading={isPending}
+      isPrimaryButtonDisabled={isPending || hasVmacTasks}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       isSecondaryButtonDisabled={isPending}
       onSecondaryButtonClick={closeHandler}
     >
       <div>
+        {hasVmacTasks && !isPending && (
+          <OdsMessage
+            color={ODS_MESSAGE_COLOR.warning}
+            className="block mb-4"
+            isDismissible={false}
+          >
+            <OdsText>{t('deleteVirtualMacOngoingTaskWarning')}</OdsText>
+          </OdsMessage>
+        )}
         <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
           {t('deleteVirtualMacInfo')}
         </OdsText>

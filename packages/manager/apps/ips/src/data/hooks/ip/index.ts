@@ -4,6 +4,7 @@ export * from './useGetIpReverse';
 export * from './useGetIpVmac';
 export * from './useGetIpVmacDetails';
 export * from './useGetIpVmacWithIp';
+export * from './useHasVmacTasks';
 export * from './useGetIpMitigation';
 export * from './useGetIpGameFirewall';
 export * from './useGetIpOrganisation';

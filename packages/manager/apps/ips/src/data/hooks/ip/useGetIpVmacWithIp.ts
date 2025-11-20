@@ -3,11 +3,8 @@ import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   DedicatedServerVmacType,
   getDedicatedServerVmacVirtualAddress,
-  getdedicatedServerVmacQueryKey,
   getDedicatedServerVmacVirtualAddressQueryKey,
 } from '@/data/api';
-import { useGetDedicatedServerTasks } from './useGetDedicatedServerTasks';
-import { VMAC_UPDATE_TASKS_QUERY_KEY_PARAMS } from '@/utils';
 import { useGetIpVmac } from './useGetIpVmac';
 
 export type UseGetIpVmacWithIpParams = {
@@ -45,18 +42,8 @@ export const useGetIpVmacWithIp = ({
     ),
   });
 
-  const { hasOnGoingTask: hasVmacTasks } = useGetDedicatedServerTasks({
-    ...VMAC_UPDATE_TASKS_QUERY_KEY_PARAMS,
-    serviceName,
-    enabled,
-    queryKeyToInvalidate: getdedicatedServerVmacQueryKey({ serviceName }),
-  });
-
   return {
-    isLoading:
-      isLoading ||
-      !!results.find((result) => !!result.isLoading) ||
-      hasVmacTasks,
+    isLoading: isLoading || !!results.find((result) => !!result.isLoading),
     isError: isError || !!results.find((result) => !!result.isError),
     vmacsWithIp: results?.map(
       ({ data }, index): VmacWithIpType => ({

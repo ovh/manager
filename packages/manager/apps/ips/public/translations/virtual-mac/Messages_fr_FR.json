@@ -10,6 +10,7 @@
   "virtualMacMachinename": "Nom de la machine virtuelle",
   "viewVirtualMacTitle": "Détails de la MAC virtuelle",
   "viewVirtualMacQuestion": "Voici le détail de la MAC virtuelle:",
+  "viewVirtualMacOngoingTaskWarning": "Une opération sur cette MAC virtuelle est en cours. Les informations affichées peuvent être temporairement obsolètes.",
   "addVirtualMacAddNewSuccess": "Une nouvelle MAC virtuelle a été générée et sera disponible sur l'IP {{t0}} dans quelques minutes.",
   "addVirtualMacAddNewFailure": "Une erreur est survenue lors de la génération d'une nouvelle MAC virtuelle sur l'IP {{t0}}. {{error}} request_id: {{ovhQueryId}}",
   "addVirtualMacAddExistingSuccess": "L'IP {{t0}} sera associée à la MAC virtuelle existante d'ici quelques minutes.",
@@ -17,6 +18,7 @@
   "deleteVirtualMacTitle": "Supprimer la MAC virtuelle",
   "deleteVirtualMacInfo": "La suppression de cette MAC virtuelle annulera l'attribution de l'adresse IP associée à la machine virtuelle, ce qui pourrait perturber les services ou configurations qui en dépendent. Cette action est irréversible.",
   "deleteVirtualMacConfirmation": "Êtes-vous sûr de vouloir supprimer définitivement la MAC virtuelle ?",
+  "deleteVirtualMacOngoingTaskWarning": "Une opération sur cette MAC virtuelle est en cours. Veuillez attendre la fin de cette opération avant de supprimer cette MAC virtuelle.",
   "deleteVirtualMacSuccess": "La MAC virtuelle {{vmac}} sera supprimée de l'IP {{ip}} d'ici quelques minutes.",
   "deleteVirtualMacError": "Une erreur s'est produite lors de la suppression de la MAC virtuelle: {{error}}"
 }

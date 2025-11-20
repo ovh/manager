@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
 import {
@@ -10,7 +10,11 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useIpHasVmac, useGetIpVmacDetails } from '@/data/hooks/ip';
+import {
+  useIpHasVmac,
+  useGetIpVmacDetails,
+  useHasVmacTasks,
+} from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
 
 export default function ViewVirtualMacModal() {
@@ -38,6 +42,11 @@ export default function ViewVirtualMacModal() {
     ip,
     macAddress,
     enabled: macAddress !== '' && Boolean(service),
+  });
+
+  const { hasVmacTasks } = useHasVmacTasks({
+    serviceName: service,
+    enabled: Boolean(service),
   });
 
   useEffect(() => {
@@ -97,6 +106,15 @@ export default function ViewVirtualMacModal() {
       isLoading={isVmacLoading || isVmacWithIpLoading}
     >
       <div>
+        {hasVmacTasks && (
+          <OdsMessage
+            color={ODS_MESSAGE_COLOR.warning}
+            className="block mb-4"
+            isDismissible={false}
+          >
+            <OdsText>{t('viewVirtualMacOngoingTaskWarning')}</OdsText>
+          </OdsMessage>
+        )}
         <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
           {t('viewVirtualMacQuestion')}
         </OdsText>
