@@ -25,5 +25,8 @@
   "account_details_field_confirm_send": "Oświadczam o dokładności podanych informacji.",
   "account_details_button_validate": "Potwierdź",
   "account_details_error_message": "Proszę sprawdzić pola oznaczone na czerwono.",
-  "account_details_success_message": "Twoje informacje zostały pomyślnie zapisane."
+  "account_details_success_message": "Twoje informacje zostały pomyślnie zapisane.",
+  "account_details_field_area": "Region",
+  "account_details_field_state": "Status",
+  "account_details_field_province": "Region"
 }
