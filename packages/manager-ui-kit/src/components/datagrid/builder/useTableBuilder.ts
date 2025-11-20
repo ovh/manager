@@ -63,7 +63,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
     },
     setExpandedRowModel: () => {
       if (hasExpandableFeature || renderSubComponent) {
-        params.getRowCanExpand = () => true;
+        params.getRowCanExpand = expandable?.getRowCanExpand ?? ((_row: Row<T>) => true);
         params.getExpandedRowModel = getExpandedRowModel();
       }
       return builder;
