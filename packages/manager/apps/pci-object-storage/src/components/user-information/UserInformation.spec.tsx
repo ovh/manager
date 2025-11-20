@@ -9,7 +9,7 @@ import {
 import user from '@/types/User';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
-import UserInformation from './UserInformationBis.component';
+import UserInformation from './UserInformation.component';
 
 // MOCK AVANT LES IMPORTS DU COMPOSANT !
 const downloadMock = vi.fn();
