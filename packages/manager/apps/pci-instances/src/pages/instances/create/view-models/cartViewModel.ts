@@ -3,6 +3,7 @@ import { Reader } from '@/types/utils.type';
 import { getRegionNameKey } from './localizationsViewModel';
 import { getRegionalizedFlavorOsTypePriceId } from '@/utils';
 import { TFlavorPrices } from '@/domain/entities/instancesCatalog';
+import { TDistributionImageVersion } from '../CreateInstance.schema';
 
 type TSelectLocalizationDetails = {
   city: string;
@@ -44,8 +45,9 @@ export const selectLocalisationDetails: Reader<
 };
 
 type TFlavorCartPrice = {
-  hourPrice: string | null;
-  licencePrice: string | null;
+  hourlyPrice: number | null;
+  monthlyPrice: number | null;
+  licencePrice: number | null;
 };
 
 export type TSelectFlavorDetails = {
@@ -65,20 +67,35 @@ export type TSelectFlavorDetails = {
 type TSelectFlavorData = (
   projectId: string,
   regionalizedFlavorId: string | null,
-  osType: string | null,
+  distributionImageVersion: TDistributionImageVersion | null,
 ) => TSelectFlavorDetails | null;
 
-const getPrices = (flavorPrices?: TFlavorPrices) =>
-  Object.fromEntries(
-    ['hour', 'licence'].map((type) => [
-      `${type}Price`,
-      flavorPrices?.prices.find((p) => p.type === type)?.text ?? null,
-    ]),
-  ) as TFlavorCartPrice;
+const getPrices = (flavorPrices: TFlavorPrices) =>
+  flavorPrices.prices.reduce<TFlavorCartPrice>(
+    (acc, price) => {
+      if (!acc.licencePrice && price.type === 'licence')
+        acc.licencePrice = price.price.priceInUcents;
+      if (!acc.licencePrice && price.type === 'hour')
+        acc.hourlyPrice = price.price.priceInUcents;
+      if (!acc.licencePrice && price.type === 'month')
+        acc.monthlyPrice = price.price.priceInUcents;
+
+      return acc;
+    },
+    {
+      hourlyPrice: null,
+      monthlyPrice: null,
+      licencePrice: null,
+    },
+  );
 
 export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
-  return (projectId, regionalizedFlavorId, osType) => {
-    if (!regionalizedFlavorId) return null;
+  return (projectId, regionalizedFlavorId, distributionImageVersion) => {
+    if (
+      !regionalizedFlavorId ||
+      !distributionImageVersion?.distributionImageVersionName
+    )
+      return null;
 
     const { instancesCatalogPort } = deps;
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
@@ -93,17 +110,22 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
       foundRegionalizedFlavor.flavorId,
     );
 
-    if (!foundFlavor) return null;
+    const foundImage = data?.entities.images.byId.get(
+      distributionImageVersion.distributionImageVersionName,
+    );
+    if (!foundFlavor || !foundImage) return null;
 
     const flavorOsTypePriceId = getRegionalizedFlavorOsTypePriceId(
       foundFlavor.name,
       foundRegionalizedFlavor.regionId,
-      osType ?? '',
+      foundImage.osType,
     );
 
     const flavorPrices = data?.entities.flavorPrices.byId.get(
       flavorOsTypePriceId,
     );
+
+    if (!flavorPrices) return null;
 
     // TODO: adapt to GPU
     return {

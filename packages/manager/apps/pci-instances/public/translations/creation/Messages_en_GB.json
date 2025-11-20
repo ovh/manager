@@ -92,5 +92,6 @@
   "pci_instance_creation_select_sshKey_add_key_done": "Your SSH key will be created at the end of the setup process.",
   "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Thank you for choosing a different name, this one is already in use.",
   "pci_instance_creation_select_image_distribution_version_label": "Image version",
-  "pci_instance_creation_select_image_distribution_version_unavailable": "Version unavailable"
+  "pci_instance_creation_select_image_distribution_version_unavailable": "Version unavailable",
+  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} ex VAT/vCore/hour"
 }

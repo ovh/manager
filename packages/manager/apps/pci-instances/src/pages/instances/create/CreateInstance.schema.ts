@@ -32,9 +32,18 @@ export const quantitySchema = z
 
 export const distributionImageTypeSchema = z.string().nullable();
 
-export const distributionImageIdSchema = z.string().nullable();
+export const distributionImageVariantIdSchema = z.string().nullable();
 
-export const distributionImageVersionSchema = z.string().nullable();
+export const distributionImageVersionSchema = z.object({
+  distributionImageVersionId: z.string().nullable(),
+  distributionImageVersionName: z.string().nullable(),
+});
+
+export type TDistributionImageVersion = z.infer<
+  typeof distributionImageVersionSchema
+>;
+
+export const distributionImageVersionNameSchema = z.string().nullable();
 
 export const distributionImageOsTypeSchema = z.string().nullable();
 

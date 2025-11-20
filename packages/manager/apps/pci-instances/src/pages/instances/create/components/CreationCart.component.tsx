@@ -16,9 +16,11 @@ import {
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 export const CreationCart = () => {
   const { t } = useTranslation(['common', 'creation', NAMESPACES.REGION]);
+  const { getTextPrice } = useCatalogPrice(4);
   const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
   const [
@@ -28,8 +30,8 @@ export const CreationCart = () => {
     availabilityZone,
     quantity,
     flavorId,
+    distributionImageVariantId,
     distributionImageVersion,
-    distributionImageOsType,
     sshKeyId,
   ] = useWatch({
     control,
@@ -40,8 +42,8 @@ export const CreationCart = () => {
       'availabilityZone',
       'quantity',
       'flavorId',
+      'distributionImageVariantId',
       'distributionImageVersion',
-      'distributionImageOsType',
       'sshKeyId',
     ],
   });
@@ -56,7 +58,7 @@ export const CreationCart = () => {
   const selectedFlavorDetails = selectFlavorDetails(deps)(
     projectId,
     flavorId,
-    distributionImageOsType,
+    distributionImageVersion,
   );
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
@@ -85,12 +87,12 @@ export const CreationCart = () => {
                   quantity={quantity}
                   flavor={selectedFlavorDetails}
                 />
-                {selectedFlavorDetails.prices.hourPrice && (
+                {selectedFlavorDetails.prices.hourlyPrice && (
                   <Text
                     preset="heading-6"
                     className="text-[--ods-color-heading]"
                   >
-                    {selectedFlavorDetails.prices.hourPrice}
+                    {getTextPrice(selectedFlavorDetails.prices.hourlyPrice)}
                   </Text>
                 )}
               </>
@@ -99,30 +101,35 @@ export const CreationCart = () => {
         ]
       : [];
 
-    const distributionImageDetails = distributionImageVersion
-      ? [
-          {
-            name: t(
-              'creation:pci_instance_creation_cart_distribution_image_title',
-            ),
-            description: (
-              <>
-                <Text preset="heading-6" className="text-[--ods-color-heading]">
-                  {distributionImageVersion}
-                </Text>
-                {selectedFlavorDetails?.prices.licencePrice && (
+    const distributionImageDetails =
+      distributionImageVariantId &&
+      distributionImageVersion.distributionImageVersionName
+        ? [
+            {
+              name: t(
+                'creation:pci_instance_creation_cart_distribution_image_title',
+              ),
+              description: (
+                <>
                   <Text
                     preset="heading-6"
                     className="text-[--ods-color-heading]"
                   >
-                    {selectedFlavorDetails.prices.licencePrice}
+                    {distributionImageVersion.distributionImageVersionName}
                   </Text>
-                )}
-              </>
-            ),
-          },
-        ]
-      : [];
+                  {selectedFlavorDetails?.prices.licencePrice && (
+                    <Text
+                      preset="heading-6"
+                      className="text-[--ods-color-heading]"
+                    >
+                      {getTextPrice(selectedFlavorDetails.prices.licencePrice)}
+                    </Text>
+                  )}
+                </>
+              ),
+            },
+          ]
+        : [];
 
     return [...regionDetails, ...flavorDetails, ...distributionImageDetails];
   }, [
@@ -130,7 +137,9 @@ export const CreationCart = () => {
     t,
     selectedFlavorDetails,
     quantity,
-    distributionImageVersion,
+    getTextPrice,
+    distributionImageVariantId,
+    distributionImageVersion.distributionImageVersionName,
   ]);
 
   const sshKeyDetails = useMemo(

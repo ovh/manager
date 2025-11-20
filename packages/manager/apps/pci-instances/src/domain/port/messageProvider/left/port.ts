@@ -1,3 +1,3 @@
 export type MessageProviderPort = {
-    getMessage: (key: string) => string;
-}
+  getMessage: (key: string, params?: Record<string, unknown>) => string;
+};
