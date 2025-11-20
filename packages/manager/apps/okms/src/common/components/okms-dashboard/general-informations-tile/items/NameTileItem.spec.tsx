@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen } from '@testing-library/react';
@@ -12,7 +12,7 @@ import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
 
 import { NameTileItem } from './NameTileItem.component';
 
-const okmsMocked = okmsMock[0];
+const okmsMocked = okmsRoubaix1Mock;
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -85,6 +85,7 @@ describe('OKMS Name Tile Item test suite', () => {
       await act(async () => {
         await user.click(editNameButton);
       });
+
       expect(mockNavigate).toHaveBeenCalledWith(expectedLink);
     },
   );

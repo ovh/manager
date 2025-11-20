@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import {
   CredentialDescriptionErrorsType,
   CredentialDescriptionMaxCharacters,
@@ -11,7 +9,7 @@ import { OdsFormField, OdsText, OdsTextarea } from '@ovhcloud/ods-components/rea
 
 type CreateGeneralInformationsDescriptionProps = {
   description: string | null;
-  setDescription: Dispatch<SetStateAction<string | null>>;
+  setDescription: (description: string | null) => void;
   credentialDescriptionError: CredentialDescriptionErrorsType | undefined;
 };
 

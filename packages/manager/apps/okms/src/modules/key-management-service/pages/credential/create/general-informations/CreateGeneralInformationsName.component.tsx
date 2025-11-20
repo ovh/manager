@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import { CredentialNameErrorsType } from '@key-management-service/utils/credential/validateCredentialName';
 import { useTranslation } from 'react-i18next';
 
@@ -7,8 +5,8 @@ import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
 
 type CreateGeneralInformationsNameProps = {
-  name: string;
-  setName: Dispatch<SetStateAction<string>>;
+  name: string | null;
+  setName: (name: string | null) => void;
   credentialNameError: CredentialNameErrorsType | undefined;
 };
 

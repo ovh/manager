@@ -28,7 +28,7 @@ import {
 
 const mockOkmsId = '12345';
 const mockSecret = secretListMock[0];
-const mockSecretPath = mockSecret.path;
+const mockSecretPath = mockSecret?.path ?? '';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(mockOkmsId, mockSecretPath);
 
@@ -88,7 +88,10 @@ describe('ValueDrawer test suite', () => {
       await waitFor(() => {
         const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
         expect(versionSelect).toBeVisible();
-        expect(versionSelect).toHaveAttribute('default-value', versionListMock[0].id.toString());
+        expect(versionSelect).toHaveAttribute(
+          'default-value',
+          versionListMock[0]?.id?.toString() ?? '',
+        );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
     });
@@ -112,7 +115,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[lastVersionId - 1].id.toString(),
+          versionListMock[lastVersionId - 1]?.id?.toString() ?? '',
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -135,7 +138,7 @@ describe('ValueDrawer test suite', () => {
 
     it('should display a message when the selected version is the current version', async () => {
       // GIVEN
-      const currentVersionId = mockSecret.version.id;
+      const currentVersionId = mockSecret?.version?.id ?? 0;
 
       // WHEN
       await renderPage({

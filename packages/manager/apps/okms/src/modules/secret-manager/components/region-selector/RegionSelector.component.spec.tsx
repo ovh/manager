@@ -101,7 +101,7 @@ const mockGeographyGroups: GeographyGroup[] = [
   },
 ];
 
-const mockCurrentRegion = mockGeographyGroups[0].regions.find(
+const mockCurrentRegion = mockGeographyGroups[0]?.regions?.find(
   (region) => region.region === LOCATION_EU_WEST_GRA.name,
 );
 

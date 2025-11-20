@@ -61,7 +61,7 @@ export default function Listing() {
       <BaseLayout
         header={headerProps}
         message={
-          hasNotifications && (
+          hasNotifications ? (
             <div>
               {hasPendingOrder && (
                 <OdsMessage color="information" className="mb-4" isDismissible={false}>
@@ -70,7 +70,7 @@ export default function Listing() {
               )}
               <Notifications />
             </div>
-          )
+          ) : undefined
         }
       >
         <div className="flex flex-col gap-6">

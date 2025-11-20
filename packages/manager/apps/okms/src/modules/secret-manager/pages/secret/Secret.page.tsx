@@ -86,7 +86,7 @@ export default function SecretPage() {
     <BaseLayout
       header={headerProps}
       backLinkLabel={t('back_to_secret_list')}
-      message={notifications.length > 0 && <Notifications />}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
       breadcrumb={
         <OdsBreadcrumb>
           <RootBreadcrumbItem />

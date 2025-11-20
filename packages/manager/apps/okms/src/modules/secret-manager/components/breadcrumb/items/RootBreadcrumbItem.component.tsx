@@ -20,7 +20,7 @@ export const RootBreadcrumbItem = () => {
       key={SECRET_MANAGER_ROUTES_URIS.root}
       label={t('secret_manager')}
       onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.root)}
-      href={null}
+      href=""
     />
   );
 };

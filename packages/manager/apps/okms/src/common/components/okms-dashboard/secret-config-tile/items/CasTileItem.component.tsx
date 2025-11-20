@@ -1,4 +1,5 @@
 import { SecretConfig } from '@secret-manager/types/secret.type';
+import { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
@@ -6,15 +7,18 @@ import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
+import { ErrorResponse } from '@/common/types/api.type';
+
 import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
 
-type CasTileItemProps = {
-  secretConfig: SecretConfig;
-  isPending: boolean;
-};
+export type CasTileItemProps = UseQueryResult<SecretConfig, ErrorResponse>;
 
-export const CasTileItem = ({ secretConfig, isPending }: CasTileItemProps) => {
+export const CasTileItem = ({ data, isPending, isError }: CasTileItemProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
+
+  if (isError) {
+    return null;
+  }
 
   return (
     <ManagerTile.Item>
@@ -29,7 +33,7 @@ export const CasTileItem = ({ secretConfig, isPending }: CasTileItemProps) => {
           />
         ) : (
           <OdsText preset="span">
-            {secretConfig.casRequired ? t('activated') : t('disabled', { ns: NAMESPACES.STATUS })}
+            {data.casRequired ? t('activated') : t('disabled', { ns: NAMESPACES.STATUS })}
           </OdsText>
         )}
       </ManagerTile.Item.Description>

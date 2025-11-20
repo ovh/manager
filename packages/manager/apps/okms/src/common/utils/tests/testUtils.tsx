@@ -47,7 +47,7 @@ export function renderWithClient(ui: React.ReactElement): ReturnType<typeof rend
   );
   return {
     ...result,
-    rerender: (rerenderUi: React.ReactElement) =>
+    rerender: (rerenderUi: React.ReactNode) =>
       rerender(<QueryClientProvider client={queryClient}>{rerenderUi}</QueryClientProvider>),
   };
 }

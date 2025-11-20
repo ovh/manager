@@ -13,7 +13,7 @@ import { DATA_MIN_CHAR, useSecretDataSchema } from './dataSchema';
 
 let i18nValue: i18n;
 
-const getSchemaParsingResult = (input: string) => {
+const getSchemaParsingResult = (input: string | undefined) => {
   const schema = renderHook(useSecretDataSchema, {
     wrapper: ({ children }) => <I18nextProvider i18n={i18nValue}>{children}</I18nextProvider>,
   });
@@ -34,27 +34,27 @@ describe('PathSchema test suite', () => {
   it('should return the correct error message for an undefined message', () => {
     const result = getSchemaParsingResult(undefined);
     expect(result.success).toBe(false);
-    expect(result.error.issues[0].message).toBe(labels.common.form.required_field);
+    expect(result.error?.issues?.[0]?.message).toBe(labels.common.form.required_field);
   });
 
   it('should return the correct error message for a data that is too short', () => {
     const data = 'a'.repeat(DATA_MIN_CHAR - 1);
     const result = getSchemaParsingResult(data);
     expect(result.success).toBe(false);
-    expect(result.error.issues[0].message).toBe(labels.common.form.required_field);
+    expect(result.error?.issues?.[0]?.message).toBe(labels.common.form.required_field);
   });
 
   it('should return the correct error message for an valid array JSON', () => {
     const path = MOCK_DATA_VALID_ARRAY_JSON;
     const result = getSchemaParsingResult(path);
     expect(result.success).toBe(false);
-    expect(result.error.issues[0].message).toBe(labels.secretManager.error_invalid_json);
+    expect(result.error?.issues?.[0]?.message).toBe(labels.secretManager.error_invalid_json);
   });
 
   it('should return the correct error message for an invalid JSON', () => {
     const path = MOCK_DATA_INVALID_JSON;
     const result = getSchemaParsingResult(path);
     expect(result.success).toBe(false);
-    expect(result.error.issues[0].message).toBe(labels.secretManager.error_invalid_json);
+    expect(result.error?.issues?.[0]?.message).toBe(labels.secretManager.error_invalid_json);
   });
 });

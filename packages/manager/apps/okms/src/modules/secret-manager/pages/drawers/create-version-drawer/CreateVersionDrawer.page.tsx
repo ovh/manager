@@ -55,7 +55,7 @@ export default function CreateVersionDrawerPage() {
             {error?.response?.data?.message}
           </OdsMessage>
         )}
-        {!error && secret && (
+        {!error && secret && secretConfig && (
           <CreateVersionDrawerForm
             secret={secret}
             okmsId={okmsId}

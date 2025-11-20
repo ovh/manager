@@ -5,12 +5,19 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
-import { DeactivateVersionAfterTileItem } from './DeactivateVersionAfterTileItem.component';
+import {
+  DeactivateVersionAfterTileItem,
+  DeactivateVersionAfterTileItemProps,
+} from './DeactivateVersionAfterTileItem.component';
 
-const renderTileItem = async ({ isPending = false }: { isPending?: boolean }) => {
-  return renderWithI18n(
-    <DeactivateVersionAfterTileItem secretConfig={mockSecretConfigOkms} isPending={isPending} />,
-  );
+const buildProps = (
+  props: Partial<DeactivateVersionAfterTileItemProps> = {},
+): DeactivateVersionAfterTileItemProps => {
+  return props as DeactivateVersionAfterTileItemProps;
+};
+
+const renderTileItem = async (secretConfigOkmsQuery: DeactivateVersionAfterTileItemProps) => {
+  return renderWithI18n(<DeactivateVersionAfterTileItem {...secretConfigOkmsQuery} />);
 };
 
 describe('OKMS - secret config - DeactivateVersionAfter Tile Item test suite', () => {
@@ -18,7 +25,9 @@ describe('OKMS - secret config - DeactivateVersionAfter Tile Item test suite', (
     // GIVEN
 
     // WHEN
-    await renderTileItem({});
+    await renderTileItem(
+      buildProps({ data: mockSecretConfigOkms, isPending: false, isError: false }),
+    );
 
     // THEN
     expect(screen.getByText(labels.secretManager.deactivate_version_after)).toBeVisible();
@@ -29,7 +38,7 @@ describe('OKMS - secret config - DeactivateVersionAfter Tile Item test suite', (
     // GIVEN
 
     // WHEN
-    await renderTileItem({ isPending: true });
+    await renderTileItem(buildProps({ isPending: true }));
 
     // THEN
     expect(screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.skeleton)).toBeInTheDocument();

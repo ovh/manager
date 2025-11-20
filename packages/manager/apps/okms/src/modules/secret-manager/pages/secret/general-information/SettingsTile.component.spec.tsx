@@ -27,6 +27,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
     ...module,
     useNavigate: () => vi.fn(),
     useHref: vi.fn((link: string) => link),
+    useParams: () => ({ okmsId: 'mockedOkmsId' }),
   };
 });
 

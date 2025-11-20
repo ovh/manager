@@ -7,7 +7,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 type RadioCardProps = {
   id: string;
   name: string;
-  selected: string;
+  selected?: string;
   isDisabled?: boolean;
   title: string | ReactElement;
   subTitle?: string | ReactElement;

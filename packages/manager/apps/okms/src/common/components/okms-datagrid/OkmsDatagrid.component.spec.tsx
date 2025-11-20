@@ -1,12 +1,9 @@
 import React from 'react';
 
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
@@ -33,12 +30,9 @@ vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
   const module: typeof import('@ovh-ux/manager-module-common-api') = await importOriginal();
   return {
     ...module,
-    useServiceDetails: vi.fn(
-      () =>
-        ({
-          data: { data: { resource: { state: 'mockedState' } } },
-        }) as UseQueryResult<ApiResponse<ServiceDetails>, ApiError>,
-    ),
+    useServiceDetails: vi.fn(() => ({
+      data: { data: { resource: { state: 'mockedState' } } },
+    })),
   };
 });
 

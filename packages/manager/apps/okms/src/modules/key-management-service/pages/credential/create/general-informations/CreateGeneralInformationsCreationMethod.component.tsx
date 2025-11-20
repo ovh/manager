@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import { CertificateType } from '@key-management-service/types/okmsCredential.type';
 import { CredentialCreationMethodErrorsType } from '@key-management-service/utils/credential/validateCredentialCreationMethod';
 import { useTranslation } from 'react-i18next';
@@ -13,11 +11,11 @@ import { CSR_PLACEHOLDER } from '../CreateGeneralInformations.constants';
 
 type CreateGeneralInformationsCreationMethodProps = {
   csr: string | null;
-  setCsr: Dispatch<SetStateAction<string | null>>;
+  setCsr: (csr: string | null) => void;
   isCustomCsr: boolean;
-  setIsCustomCsr: Dispatch<SetStateAction<boolean>>;
+  setIsCustomCsr: (isCustomCsr: boolean) => void;
   certificateType: CertificateType | null;
-  setCertificateType: Dispatch<SetStateAction<CertificateType | null>>;
+  setCertificateType: (certificateType: CertificateType | null) => void;
   credentialCreationMethodError: CredentialCreationMethodErrorsType | undefined;
 };
 

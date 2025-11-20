@@ -70,12 +70,12 @@ export const DatagridCellRegion = (okms: OKMS) => {
 export const DatagridCellStatus = (okms: OKMS) => {
   const {
     data: OkmsServiceInfos,
-    isLoading,
+    isPending,
     isError,
   } = useServiceDetails({
     resourceName: okms.id,
   });
-  if (isLoading) {
+  if (isPending) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
   }
   if (isError) {

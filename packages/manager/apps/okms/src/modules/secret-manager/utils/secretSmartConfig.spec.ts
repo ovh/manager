@@ -21,8 +21,8 @@ describe('getSecretSmartConfig', () => {
 
   const createMockSecretConfig = (overrides: Partial<SecretConfig> = {}): SecretConfig => ({
     casRequired: false,
-    deactivateVersionAfter: undefined,
-    maxVersions: undefined,
+    deactivateVersionAfter: '0s',
+    maxVersions: 0,
     ...overrides,
   });
 

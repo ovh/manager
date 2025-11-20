@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen } from '@testing-library/react';
@@ -11,7 +11,7 @@ import { renderWithI18n } from '@/common/utils/tests/testUtils';
 import { BillingTile } from './BillingTile.component';
 import { BILLING_TILE_TEST_IDS } from './BillingTile.constants';
 
-const okmsMocked = okmsMock[0];
+const okmsMocked = okmsRoubaix1Mock;
 
 vi.mock('@/common/hooks/useProductType');
 

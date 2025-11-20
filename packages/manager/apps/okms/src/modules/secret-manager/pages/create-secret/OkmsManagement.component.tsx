@@ -17,8 +17,8 @@ import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendi
 import { OkmsSelector } from './OkmsSelector.component';
 
 type OkmsManagementProps = {
-  selectedOkmsId: string;
-  setSelectedOkmsId: React.Dispatch<React.SetStateAction<string>>;
+  selectedOkmsId: string | undefined;
+  setSelectedOkmsId: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManagementProps) => {
@@ -34,7 +34,7 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
 
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
 
-  const { data: okmsList, error: okmsError, isLoading: isOkmsListLoading } = useOkmsList();
+  const { data: okmsList, error: okmsError, isPending: isOkmsListLoading } = useOkmsList();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -45,7 +45,7 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
   // -> select the okms
   useEffect(() => {
     // okms from the secret list page
-    const okmsIdSearchParam = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.okmsId);
+    const okmsIdSearchParam = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.okmsId) ?? undefined;
 
     if (!okmsList || selectedRegion) return;
 
@@ -71,18 +71,18 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
     setSelectedOkmsId,
   ]);
 
-  const handleRegionSelection = (region: string) => {
+  const handleRegionSelection = (region: string | undefined) => {
     setSelectedRegion(region);
 
     if (!okmsList) return;
 
-    const regionOkmsList = filterOkmsListByRegion(okmsList, region);
+    const regionOkmsList = region ? filterOkmsListByRegion(okmsList, region) : [];
 
     if (regionOkmsList.length === 0) {
       setSelectedOkmsId(undefined);
       return;
     }
-    setSelectedOkmsId(regionOkmsList[0].id);
+    setSelectedOkmsId(regionOkmsList[0]?.id);
   };
 
   if (okmsError) {

@@ -1,6 +1,6 @@
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { identityUsers } from '@key-management-service/mocks/identity/identityUsers.mock';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { credentialMock2 } from '@key-management-service/mocks/credentials/credentials.mock';
+import { identityUserMock1 } from '@key-management-service/mocks/identity/identityUsers.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { kmsServicesMock } from '@key-management-service/mocks/services/services.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
@@ -15,14 +15,15 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 const WAIT_TIMEOUT = { timeout: 5000 };
 const mockOkmsItem: OKMS = {
-  ...okmsMock[0],
+  ...okmsRoubaix1Mock,
   iam: {
-    ...okmsMock[0].iam,
+    ...okmsRoubaix1Mock.iam,
     displayName: kmsServicesMock.resource.displayName,
   },
 };
-const mockCreatedCredentials = credentialMock[1];
+const mockCreatedCredentials = credentialMock2;
 const mockCredentialsCreatePageUrl = KMS_ROUTES_URLS.credentialCreate(mockOkmsItem.id);
+const mockIdentityUser = identityUserMock1;
 
 /* HELPERS */
 
@@ -138,7 +139,7 @@ const testContentStep2AddUsersModal = async (container: HTMLElement) => {
   }, WAIT_TIMEOUT);
 
   // Get user 1 card
-  const user1Card = screen.getByText(identityUsers[0].email);
+  const user1Card = screen.getByText(mockIdentityUser.email);
 
   // Get submit button
   const buttonAddUsers = await getOdsButtonByLabel({
@@ -291,7 +292,7 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   }, WAIT_TIMEOUT);
 
   // Check user1 is added to the list
-  expect(await screen.findByText(identityUsers[0].login, {}, WAIT_TIMEOUT)).toBeInTheDocument();
+  expect(await screen.findByText(mockIdentityUser.login, {}, WAIT_TIMEOUT)).toBeInTheDocument();
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -337,7 +338,9 @@ describe('Create Credentials Page test suite', () => {
     const { container } = await renderPage({ fromCSR: false });
 
     await testStep1(container, user);
+
     await testStep2(container, user);
+
     await testStep3(container, user);
 
     await assertCredentialListPageVisibility();

@@ -79,6 +79,19 @@ const CreateCredential = () => {
     },
   ];
 
+  const handleCreateCredential = () => {
+    if (!name) {
+      return;
+    }
+
+    createKmsCredential({
+      name,
+      identityURNs,
+      description,
+      validity,
+    });
+  };
+
   if (isLoading) return <Loading />;
 
   if (error)
@@ -125,16 +138,7 @@ const CreateCredential = () => {
                 identityURNs={identityURNs}
                 setIdentityURNs={setIdentityURNs}
                 prevStep={() => setStep(1)}
-                nextStep={() =>
-                  createKmsCredential({
-                    name,
-                    identityURNs,
-                    description,
-                    validity,
-                    ...(csr && { csr }),
-                    ...(certificateType && { certificateType }),
-                  })
-                }
+                nextStep={handleCreateCredential}
               />
             )}
             {step === 3 && okmsCredential && (

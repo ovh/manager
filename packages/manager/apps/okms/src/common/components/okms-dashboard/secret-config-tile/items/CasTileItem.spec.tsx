@@ -6,16 +6,14 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
-import { CasTileItem } from './CasTileItem.component';
+import { CasTileItem, CasTileItemProps } from './CasTileItem.component';
 
-const renderTileItem = async ({
-  isPending = false,
-  secretConfig,
-}: {
-  isPending?: boolean;
-  secretConfig?: SecretConfig;
-}) => {
-  return renderWithI18n(<CasTileItem secretConfig={secretConfig} isPending={isPending} />);
+const buildProps = (props: Partial<CasTileItemProps> = {}): CasTileItemProps => {
+  return props as CasTileItemProps;
+};
+
+const renderTileItem = async (secretConfigOkmsQuery: CasTileItemProps) => {
+  return renderWithI18n(<CasTileItem {...secretConfigOkmsQuery} />);
 };
 
 describe('OKMS - secret config - cas item Tile Item test suite', () => {
@@ -38,7 +36,7 @@ describe('OKMS - secret config - cas item Tile Item test suite', () => {
     // GIVEN
 
     // WHEN
-    await renderTileItem({ secretConfig, isPending: false });
+    await renderTileItem(buildProps({ data: secretConfig, isPending: false, isError: false }));
 
     // THEN
     expect(screen.getByText(labels.secretManager.cas_with_description)).toBeVisible();
@@ -50,7 +48,7 @@ describe('OKMS - secret config - cas item Tile Item test suite', () => {
     // GIVEN
 
     // WHEN
-    await renderTileItem({ isPending: true });
+    await renderTileItem(buildProps({ isPending: true, isError: false, data: undefined }));
 
     // THEN
     expect(screen.getByTestId(SECRET_CONFIG_TILE_TEST_IDS.skeleton)).toBeInTheDocument();

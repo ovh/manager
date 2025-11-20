@@ -14,7 +14,7 @@ export const useBackToOkmsListUrl = () => {
     OkmsList && currentRegionId ? filterOkmsListByRegion(OkmsList, currentRegionId) : [];
 
   // if there's more than one okms on a region, we set the url
-  if (regionOkmsList.length > 1) {
+  if (currentRegionId && regionOkmsList.length > 1) {
     okmsListUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(currentRegionId);
   }
 

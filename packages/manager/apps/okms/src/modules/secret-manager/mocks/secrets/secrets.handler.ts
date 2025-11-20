@@ -84,8 +84,8 @@ export const updateSecretMock = ({ isUpdateSecretKO }: UpdateSecretMockParams): 
       data: (request, params) => {
         const secret = findSecretMockByPath(secretListMock, request, params);
         return {
-          path: secret.path,
-          metadata: secret.metadata,
+          path: secret?.path,
+          metadata: secret?.metadata,
         };
       },
       errorMessage: updateSecretErrorMessage,

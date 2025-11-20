@@ -10,8 +10,5 @@ const GEOGRAPHY_CODE_TO_CONTINENT_CODE: Record<GeographyCode, ContinentCode> = {
 };
 
 export const getContinentCodeFromGeographyCode = (geographyCode: GeographyCode): ContinentCode => {
-  if (Object.keys(GEOGRAPHY_CODE_TO_CONTINENT_CODE).includes(geographyCode)) {
-    return GEOGRAPHY_CODE_TO_CONTINENT_CODE[geographyCode];
-  }
-  return 'OTHERS';
+  return GEOGRAPHY_CODE_TO_CONTINENT_CODE[geographyCode] ?? 'OTHERS';
 };
