@@ -27,10 +27,8 @@ export const CreationCart = () => {
     availabilityZone,
     quantity,
     flavorId,
-    distributionImageName,
-    flavorImagePrice,
     distributionImageVersion,
-    distributionLicencePrice,
+    distributionImageOsType,
     sshKeyId,
   ] = useWatch({
     control,
@@ -41,10 +39,8 @@ export const CreationCart = () => {
       'availabilityZone',
       'quantity',
       'flavorId',
-      'distributionImageName',
-      'flavorImagePrice',
       'distributionImageVersion',
-      'distributionLicencePrice',
+      'distributionImageOsType',
       'sshKeyId',
     ],
   });
@@ -56,7 +52,11 @@ export const CreationCart = () => {
     availabilityZone,
   );
 
-  const selectedFlavorDetails = selectFlavorDetails(deps)(projectId, flavorId);
+  const selectedFlavorDetails = selectFlavorDetails(deps)(
+    projectId,
+    flavorId,
+    distributionImageOsType,
+  );
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
     const regionDetails = localizationDetails
@@ -84,12 +84,12 @@ export const CreationCart = () => {
                   quantity={quantity}
                   flavor={selectedFlavorDetails}
                 />
-                {flavorImagePrice && (
+                {selectedFlavorDetails.prices.hourPrice && (
                   <Text
                     preset="heading-6"
                     className="text-[--ods-color-heading]"
                   >
-                    {flavorImagePrice}
+                    {selectedFlavorDetails.prices.hourPrice}
                   </Text>
                 )}
               </>
@@ -98,7 +98,7 @@ export const CreationCart = () => {
         ]
       : [];
 
-    const distributionImageDetails = distributionImageName
+    const distributionImageDetails = distributionImageVersion
       ? [
           {
             name: t(
@@ -107,16 +107,14 @@ export const CreationCart = () => {
             description: (
               <>
                 <Text preset="heading-6" className="text-[--ods-color-heading]">
-                  {[distributionImageName, distributionImageVersion]
-                    .filter((distribution) => distribution)
-                    .join(' - ')}
+                  {distributionImageVersion}
                 </Text>
-                {distributionLicencePrice && (
+                {selectedFlavorDetails?.prices.licencePrice && (
                   <Text
                     preset="heading-6"
                     className="text-[--ods-color-heading]"
                   >
-                    {distributionLicencePrice}
+                    {selectedFlavorDetails.prices.licencePrice}
                   </Text>
                 )}
               </>
@@ -131,10 +129,7 @@ export const CreationCart = () => {
     t,
     selectedFlavorDetails,
     quantity,
-    distributionImageName,
-    flavorImagePrice,
     distributionImageVersion,
-    distributionLicencePrice,
   ]);
 
   const sshKeyDetails = useMemo(

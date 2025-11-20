@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { mockedDistributionImageList } from '@/__mocks__/instance/constants';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 import {
@@ -6,6 +6,7 @@ import {
   RadioControl,
   RadioGroup,
   RadioLabel,
+  RadioValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
 import {
@@ -14,7 +15,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { DistributionImageLabel } from '@/components/distributionImageLabel/DistributionImageLabel.component';
-import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import {
+  Controller,
+  ControllerRenderProps,
+  useFormContext,
+  useWatch,
+} from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import clsx from 'clsx';
 import { isEven } from '@/utils';
@@ -30,9 +36,9 @@ const getLabelMaxWidthClassname = (nbItems: number) => {
 
 const DistributionImageList: FC = () => {
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [distributionImageType, selectedDistributionImageName] = useWatch({
+  const [distributionImageType, selectedImageId] = useWatch({
     control,
-    name: ['distributionImageType', 'distributionImageName'],
+    name: ['distributionImageType', 'distributionImageId'],
   });
   const { trackClick } = useOvhTracking();
 
@@ -40,82 +46,83 @@ const DistributionImageList: FC = () => {
   const distributions = useMemo(
     () =>
       mockedDistributionImageList.filter(
-        ({ type }) => distributionImageType === type,
+        ({ category }) => distributionImageType === category,
       ),
     [distributionImageType],
   );
 
-  const handleSelectImage = (distributionImage: string | null) => {
-    if (!distributionImage) return;
+  const handleSelectImage = (
+    field: ControllerRenderProps<TInstanceCreationForm, 'distributionImageId'>,
+  ) => ({ value }: RadioValueChangeDetail) => {
+    if (!value) return;
 
-    const distribution = distributions.find(
-      ({ id }) => id === distributionImage,
-    );
-    const distributionImageVersion = distribution?.versions?.[0]?.value ?? null;
-    const flavorImagePrice = distribution?.pricing?.hour ?? null;
-    const distributionLicencePrice =
-      distribution?.pricing?.licence?.total ?? null;
-
-    setValue('distributionImageName', distributionImage);
-    setValue('flavorImagePrice', flavorImagePrice);
-    setValue('distributionImageVersion', distributionImageVersion);
-    setValue('distributionLicencePrice', distributionLicencePrice);
+    field.onChange(value);
 
     trackClick({
       location: PageLocation.funnel,
       buttonType: ButtonType.tile,
       actionType: 'action',
-      actions: ['add_instance', 'select_image', distributionImage],
+      actions: ['add_instance', 'select_image', value],
     });
   };
 
-  if (!selectedDistributionImageName) return null;
+  useEffect(() => {
+    const distributionImage = distributions.find(
+      ({ category, unavailable }) =>
+        distributionImageType === category && !unavailable,
+    );
+
+    setValue('distributionImageId', distributionImage?.imageId ?? null);
+  }, [distributionImageType, distributions, setValue]);
 
   return (
     <Controller
       control={control}
-      name="distributionImageName"
-      render={() => (
+      name="distributionImageId"
+      render={({ field }) => (
         <RadioGroup
           className={clsx(
             'grid gap-6 mt-8',
             getGridColumnClassname(distributions.length),
           )}
-          value={selectedDistributionImageName}
-          onValueChange={({ value }) => handleSelectImage(value)}
+          {...(selectedImageId && { value: selectedImageId })}
+          onValueChange={handleSelectImage(field)}
         >
-          {distributions.map((distribution) => (
-            <PciCard
-              key={distribution.id}
-              selectable
-              className="justify-center p-5"
-              selected={selectedDistributionImageName === distribution.id}
-              onClick={() => handleSelectImage(distribution.id)}
-            >
-              <PciCard.Header>
-                <Radio value={distribution.id}>
-                  <RadioControl />
-                  <RadioLabel
-                    className={clsx(
-                      'font-bold text-lg text-[--ods-color-heading]',
-                      getLabelMaxWidthClassname(distributions.length),
-                    )}
-                  >
-                    <DistributionImageLabel name={distribution.name}>
-                      <span className="flex-1 max-w-full pr-8">
-                        {distribution.label}
-                        {distribution.pricing?.licence && (
-                          <Text className="text-sm font-medium text-[--ods-color-success-500]">
-                            {distribution.pricing.licence.vcore}
-                          </Text>
-                        )}
-                      </span>
-                    </DistributionImageLabel>
-                  </RadioLabel>
-                </Radio>
-              </PciCard.Header>
-            </PciCard>
-          ))}
+          {distributions.map(
+            ({ subCategory, label, pricing, unavailable, imageId }) => (
+              <PciCard
+                key={imageId}
+                selectable
+                disabled={!!unavailable}
+                className="justify-center p-5"
+                selected={selectedImageId === imageId}
+                onClick={() => handleSelectImage(field)({ value: imageId })}
+              >
+                <PciCard.Header>
+                  <Radio disabled={!!unavailable} value={imageId}>
+                    <RadioControl />
+                    <RadioLabel
+                      className={clsx(
+                        'font-bold text-lg text-[--ods-color-heading]',
+                        getLabelMaxWidthClassname(distributions.length),
+                      )}
+                    >
+                      <DistributionImageLabel name={subCategory}>
+                        <span className="flex-1 max-w-full pr-8">
+                          {label}
+                          {pricing && (
+                            <Text className="text-sm font-medium text-[--ods-color-success-500]">
+                              {pricing}
+                            </Text>
+                          )}
+                        </span>
+                      </DistributionImageLabel>
+                    </RadioLabel>
+                  </Radio>
+                </PciCard.Header>
+              </PciCard>
+            ),
+          )}
         </RadioGroup>
       )}
     />

@@ -1,6 +1,8 @@
 import { Deps } from '@/deps/deps';
 import { Reader } from '@/types/utils.type';
 import { getRegionNameKey } from './localizationsViewModel';
+import { getRegionalizedFlavorOsTypePriceId } from '@/utils';
+import { TFlavorPrices } from '@/domain/entities/instancesCatalog';
 
 type TSelectLocalizationDetails = {
   city: string;
@@ -41,6 +43,11 @@ export const selectLocalisationDetails: Reader<
   return { city, datacenterDetails };
 };
 
+type TFlavorCartPrice = {
+  hourPrice: string | null;
+  licencePrice: string | null;
+};
+
 export type TSelectFlavorDetails = {
   id: string;
   name: string;
@@ -49,6 +56,7 @@ export type TSelectFlavorDetails = {
   storage: number;
   bandwidthPublic: number;
   bandwidthPrivate: number;
+  prices: TFlavorCartPrice;
   gpu?: string;
   numberOfGpu?: number;
   vRamTotal?: number;
@@ -57,10 +65,19 @@ export type TSelectFlavorDetails = {
 type TSelectFlavorData = (
   projectId: string,
   regionalizedFlavorId: string | null,
+  osType: string | null,
 ) => TSelectFlavorDetails | null;
 
+const getPrices = (flavorPrices?: TFlavorPrices) =>
+  Object.fromEntries(
+    ['hour', 'licence'].map((type) => [
+      `${type}Price`,
+      flavorPrices?.prices.find((p) => p.type === type)?.text ?? null,
+    ]),
+  ) as TFlavorCartPrice;
+
 export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
-  return (projectId, regionalizedFlavorId) => {
+  return (projectId, regionalizedFlavorId, osType) => {
     if (!regionalizedFlavorId) return null;
 
     const { instancesCatalogPort } = deps;
@@ -78,6 +95,16 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
 
     if (!foundFlavor) return null;
 
+    const flavorOsTypePriceId = getRegionalizedFlavorOsTypePriceId(
+      foundFlavor.name,
+      foundRegionalizedFlavor.regionId,
+      osType ?? '',
+    );
+
+    const flavorPrices = data?.entities.flavorPrices.byId.get(
+      flavorOsTypePriceId,
+    );
+
     // TODO: adapt to GPU
     return {
       id: regionalizedFlavorId,
@@ -87,6 +114,7 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
       storage: foundFlavor.specifications.storage.value,
       bandwidthPublic: foundFlavor.specifications.bandwidth.public.value,
       bandwidthPrivate: foundFlavor.specifications.bandwidth.private.value,
+      prices: getPrices(flavorPrices),
     };
   };
 };

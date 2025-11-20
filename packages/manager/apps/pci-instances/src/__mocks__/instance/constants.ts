@@ -1215,7 +1215,7 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
 export const mockedDistributionImageType = [
   {
     label: 'Distributions Unix',
-    value: 'unix',
+    value: 'linux',
   },
   {
     label: 'Distributions Windows',
@@ -1233,305 +1233,363 @@ export const mockedDistributionImageType = [
 
 export const mockedDistributionImageList = [
   {
-    id: 'linux',
-    type: 'unix',
-    label: 'Linux',
-    name: 'linux',
-    pricing: {
-      hour: '0.05 €',
-    },
-    versions: [
-      {
-        label: 'Rocky Linux 10',
-        value: 'Rocky Linux 10',
-      },
-      {
-        label: 'Rocky Linux 9',
-        value: 'Rocky Linux 9',
-      },
-      {
-        label: 'Rocky Linux 8',
-        value: 'Rocky Linux 8',
-        disabled: true,
-        customRendererData: {
-          unavailable: true,
-        },
-      },
-      {
-        label: 'Rocky Linux 10 - UEFI',
-        value: 'Rocky Linux 10 - UEFI',
-      },
-    ],
-  },
-  {
-    id: 'centos',
-    type: 'unix',
-    label: 'CentOS',
-    name: 'centOS',
-    pricing: {
-      hour: '0.05 €',
-    },
-  },
-  {
-    id: 'almalinux',
-    type: 'unix',
-    label: 'Alma Linux',
-    name: 'almalinux',
-    pricing: {
-      hour: '0.05 €',
-    },
-    versions: [
-      {
-        label: 'AlmaLinux 10 - UEFI',
-        value: 'AlmaLinux 10 - UEFI',
-      },
-      {
-        label: 'AlmaLinux 9 - UEFI',
-        value: 'AlmaLinux 9 - UEFI',
-      },
-      {
-        label: 'AlmaLinux 8 - UEFI',
-        value: 'AlmaLinux 8 - UEFI',
-      },
-    ],
-  },
-  {
-    id: 'debian',
-    type: 'unix',
-    label: 'Debian',
-    name: 'debian',
-    pricing: {
-      hour: '0.05 €',
-    },
-    versions: [
-      {
-        label: 'Debian 13',
-        value: 'Debian 13',
-      },
-      {
-        label: 'Debian 12',
-        value: 'Debian 12',
-      },
-      {
-        label: 'Debian 11',
-        value: 'Debian 11',
-      },
-      {
-        label: 'Debian 13 - UEFI',
-        value: 'Debian 13 - UEFI',
-      },
-      {
-        label: 'Debian 12 - UEFI',
-        value: 'Debian 12 - UEFI',
-      },
-      {
-        label: 'Debian 11 - UEFI',
-        value: 'Debian 11 - UEFI',
-      },
-    ],
-  },
-  {
-    id: 'fedora',
-    type: 'unix',
-    label: 'Fedora',
-    name: 'fedora',
-    pricing: {
-      hour: '0.05 €',
-    },
-    versions: [
-      {
-        label: 'Fedora 43',
-        value: 'Fedora 43',
-      },
-      {
-        label: 'Fedora 42',
-        value: 'Fedora 42',
-      },
-      {
-        label: 'Fedora 40',
-        value: 'Fedora 40',
-        disabled: true,
-        customRendererData: {
-          unavailable: true,
-        },
-      },
-      {
-        label: 'Fedora 43 - UEFI',
-        value: 'Fedora 43 - UEFI',
-      },
-      {
-        label: 'Fedora 42 - UEFI',
-        value: 'Fedora 42 - UEFI',
-      },
-      {
-        label: 'Fedora 40 - UEFI',
-        value: 'Fedora 40 - UEFI',
-      },
-    ],
-  },
-  {
-    id: 'freebsd',
-    type: 'unix',
-    label: 'FreeBSD',
-    name: 'freeBSD',
-    pricing: {
-      hour: '0.05 €',
-    },
-  },
-  {
-    id: 'ubuntu',
-    type: 'unix',
+    category: 'linux',
+    subCategory: 'ubuntu',
     label: 'Ubuntu',
-    name: 'ubuntu',
-    pricing: {
-      hour: '0.05 €',
-    },
-    versions: [
-      {
-        label: 'Ubuntu 25.04',
-        value: 'Ubuntu 25.04',
-      },
-      {
-        label: 'Ubuntu 24.04',
-        value: 'Ubuntu 24.04',
-      },
-      {
-        label: 'Ubuntu 22.04',
-        value: 'Ubuntu 22.04',
-      },
-      {
-        label: 'Ubuntu 25.04 - UEFI',
-        value: 'Ubuntu 25.04 - UEFI',
-      },
-      {
-        label: 'Ubuntu 24.04 - UEFI',
-        value: 'Ubuntu 24.04 - UEFI',
-      },
-      {
-        label: 'Ubuntu 22.04 - UEFI',
-        value: 'Ubuntu 22.04 - UEFI',
-      },
-    ],
+    imageId: 'fake-ubuntuId',
   },
   {
-    id: 'win-2025',
-    type: 'windows',
-    label: 'Windows Server 2025 Standard (Desktop)',
-    name: 'windows',
-    pricing: {
-      licence: {
-        total: '0,555 €',
-        vcore: '+0,0347 € HT/vCore/heure',
-      },
-      hour: '0.05 €',
-    },
-    versions: [
-      {
-        label: 'Windows Server 2025 Standard',
-        value: 'Windows Server 2025 Standard',
-      },
-      {
-        label: 'Windows Server 2022 Standard',
-        value: 'Windows Server 2022 Standard',
-      },
-      {
-        label: 'Windows Server 2019 Standard',
-        value: 'Windows Server 2019 Standard',
-      },
-    ],
+    category: 'linux',
+    subCategory: 'fedora',
+    label: 'Fedora',
+    imageId: 'fake-fedoraId',
   },
   {
-    id: 'win-2022',
-    type: 'windows',
+    category: 'linux',
+    subCategory: 'freebsd',
+    label: 'FreeBSD',
+    imageId: 'fake-freebsdId',
+  },
+  {
+    category: 'linux',
+    subCategory: 'centos',
+    label: 'CentOS',
+    imageId: 'fake-centosId',
+  },
+  {
+    category: 'linux',
+    subCategory: 'almalinux',
+    label: 'Almalinux',
+    imageId: 'fake-almalinuxId',
+  },
+  {
+    category: 'linux',
+    subCategory: 'rockylinux',
+    label: 'Rocky Linux',
+    imageId: 'fake-rockylinuxId',
+  },
+  {
+    category: 'linux',
+    subCategory: 'cloudlinux',
+    label: 'CloudLinux',
+    imageId: 'fake-cloudlinuxId',
+  },
+  {
+    category: 'linux',
+    subCategory: 'debian',
+    label: 'Debian',
+    imageId: 'fake-debianId',
+  },
+  {
+    category: 'windows',
+    subCategory: 'windows',
     label: 'Windows Server 2022 Standard (Desktop)',
-    name: 'windows',
-    pricing: {
-      licence: {
-        total: '0,555 €',
-        vcore: '+0,0347 € HT/vCore/heure',
-      },
-      hour: '0.05 €',
-    },
+    pricing: '+0,0347 € HT/vCore/heure',
+    imageId: 'fake-windows2022Id',
   },
   {
-    id: 'win-2016',
-    type: 'windows',
-    label: 'Windows Server 2016 Standard (Desktop)',
-    name: 'windows',
-    pricing: {
-      licence: {
-        total: '0,555 €',
-        vcore: '+0,0347 € HT/vCore/heure',
-      },
-      hour: '0.05 €',
-    },
-  },
-  {
-    id: 'win-2023',
-    type: 'windows',
+    category: 'windows',
+    subCategory: 'windows',
     label: 'Windows Server 2023 Standard (Desktop)',
-    name: 'windows',
-    pricing: {
-      licence: {
-        total: '0,555 €',
-        vcore: '+0,0347 € HT/vCore/heure',
-      },
-      hour: '0.05 €',
-    },
+    pricing: '+0,0347 € HT/vCore/heure',
+    imageId: 'fake-windows2023Id',
   },
   {
-    id: 'backup-1',
-    type: 'backups',
-    label: 'autobackup-b2-30-bhs5',
+    category: 'windows',
+    subCategory: 'windows',
+    label: 'Windows Server 2019 Standard (Desktop) - UEFI',
+    pricing: '+0,0347 € HT/vCore/heure',
+    imageId: 'fake-windows2019Id',
   },
   {
-    id: 'backup-2',
-    type: 'backups',
-    label: 'test-node 02/03/2024 23:10',
+    category: 'windows',
+    subCategory: 'windows',
+    label: 'Windows Server 2025 Standard (Desktop)',
+    pricing: '+0,0347 € HT/vCore/heure',
+    imageId: 'fake-windows2025Id',
   },
   {
-    id: 'cpanel',
-    type: 'apps',
+    category: 'apps',
+    subCategory: 'cpanel',
     label: 'cPanel',
-    name: 'cPanel',
-    pricing: {
-      hour: '0.05 €',
-    },
+    unavailable: true,
+    imageId: 'fake-cpanelId',
   },
   {
-    id: 'docker',
-    type: 'apps',
-    label: 'Docker',
-    name: 'docker',
-    pricing: {
-      hour: '0.05 €',
-    },
-  },
-  {
-    id: 'plesk',
-    type: 'apps',
+    category: 'apps',
+    subCategory: 'plesk',
     label: 'Plesk',
-    name: 'plesk',
-    pricing: {
-      hour: '0.05 €',
-    },
+    imageId: 'fake-pleskId',
   },
   {
-    id: 'n8n',
-    type: 'apps',
-    label: 'n8n',
-    name: 'n8n',
-    pricing: {
-      hour: '0.05 €',
-    },
+    category: 'apps',
+    subCategory: 'docker',
+    label: 'Docker',
+    imageId: 'fake-dockerId',
   },
   {
-    id: 'nvidia',
-    type: 'apps',
+    category: 'apps',
+    subCategory: 'nvidia_ngc',
     label: 'NVIDIA GPU Cloud (NGC)',
-    name: 'nvidia',
-    pricing: {
-      hour: '0.05 €',
-    },
+    unavailable: true,
+    imageId: 'fake-nvidiaId',
+  },
+  {
+    category: 'apps',
+    subCategory: 'n8n',
+    label: 'n8n',
+    imageId: 'fake-n8nId',
+  },
+  {
+    category: 'backups',
+    subCategory: 'backups',
+    label: 'autobackup-b2-30-bhs5',
+    imageId: 'fake-autobackup-b2-30-bhs5Id',
+  },
+  {
+    category: 'backups',
+    subCategory: 'backups',
+    label: 'test-node 02/03/2024 23:10',
+    imageId: 'fake-test-nodeId',
+  },
+];
+
+export const mockedDistributionImageVersions = [
+  {
+    imageId: 'fake-ubuntuId',
+    versions: [
+      {
+        name: 'Baremetal - Ubuntu 22.04',
+        unavailable: true,
+        osType: 'baremetal-linux',
+      },
+      {
+        name: 'Baremetal - Ubuntu 24.04',
+        unavailable: true,
+        osType: 'baremetal-linux',
+      },
+      {
+        name: 'Ubuntu 25.04 - UEFI',
+        osType: 'linux',
+      },
+      {
+        name: 'Ubuntu 24.10',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-fedoraId',
+    versions: [
+      {
+        name: 'Fedora 42',
+        osType: 'linux',
+      },
+      {
+        name: 'Fedora 43 - UEFI',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-freebsdId',
+    versions: [
+      {
+        name: 'FreeBSD-14.3 - UEFI',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-centosId',
+    versions: [
+      {
+        name: 'Centos 7 - UEFI',
+        osType: 'linux',
+      },
+      {
+        name: 'Centos 7',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-almalinuxId',
+    versions: [
+      {
+        name: 'AlmaLinux 9 - UEFI',
+        osType: 'linux',
+      },
+      {
+        name: 'Rocky Linux 10 - UEFI',
+        osType: 'linux',
+      },
+      {
+        name: 'AlmaLinux 9',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-rockylinuxId',
+    versions: [
+      {
+        name: 'Rocky Linux 10',
+        osType: 'linux',
+      },
+      {
+        name: 'Rocky Linux 8',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-cloudlinuxId',
+    versions: [
+      {
+        name: 'CloudLinux 8',
+        osType: 'linux',
+      },
+      {
+        name: 'CloudLinux 9',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-debianId',
+    versions: [
+      {
+        name: 'Debian 11',
+        osType: 'linux',
+      },
+      {
+        name: 'Debian 10',
+        osType: 'linux',
+      },
+      {
+        name: 'Baremetal - Debian 11',
+        unavailable: true,
+        osType: 'baremetal-linux',
+      },
+      {
+        name: 'Baremetal - Debian 12',
+        unavailable: true,
+        osType: 'baremetal-linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-windows2022Id',
+    versions: [
+      {
+        name: 'Windows Server 2022 Standard (Desktop)',
+        osType: 'windows',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-windows2023Id',
+    versions: [
+      {
+        name: 'Windows Server 2023 Standard (Desktop)',
+        osType: 'windows',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-windows2019Id',
+    versions: [
+      {
+        name: 'Windows Server 2019 Standard (Desktop) - UEFI',
+        osType: 'windows',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-windows2025Id',
+    versions: [
+      {
+        name: 'Windows Server 2025 Standard (Desktop)',
+        osType: 'windows',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-cpanelId',
+    versions: [
+      {
+        name: 'AlmaLinux 9 - cPanel',
+        unavailable: true,
+        osType: 'linux',
+      },
+      {
+        name: 'AlmaLinux 8 - cPanel',
+        unavailable: true,
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-pleskId',
+    versions: [
+      {
+        name: 'Debian 12 - Plesk',
+        osType: 'linux',
+      },
+      {
+        name: 'Debian 10 - Plesk',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-dockerId',
+    versions: [
+      {
+        name: 'Debian 12 - Docker',
+        osType: 'linux',
+      },
+      {
+        name: 'Debian 10 - Docker',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-nvidiaId',
+    versions: [
+      {
+        name: 'NVIDIA GPU Cloud (NGC)',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-n8nId',
+    versions: [
+      {
+        name: 'Debian 12 - n8n',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-autobackup-b2-30-bhs5Id',
+    versions: [
+      {
+        name: 'backups - autobackup-b2-30-bhs5',
+        osType: 'linux',
+      },
+    ],
+  },
+  {
+    imageId: 'fake-test-nodeId',
+    versions: [
+      {
+        name: 'backups - test-node 02/03/2024 23:10',
+        osType: 'linux',
+      },
+    ],
   },
 ];

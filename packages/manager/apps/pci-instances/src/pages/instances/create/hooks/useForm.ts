@@ -11,13 +11,10 @@ import {
   selectCategories,
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
-import {
-  mockedDistributionImageType,
-  mockedDistributionImageList,
-} from '@/__mocks__/instance/constants';
+import { mockedDistributionImageType } from '@/__mocks__/instance/constants';
 import { selectFlavors } from '../view-models/flavorsViewModel';
 
-// eslint-disable-next-line max-lines-per-function, complexity
+// eslint-disable-next-line max-lines-per-function
 export const useForm = (projectId: string) => {
   const deploymentModesDefaultValue: TDeploymentMode[] = [
     'region',
@@ -63,19 +60,11 @@ export const useForm = (projectId: string) => {
   const distributionImageTypeDefaultValue =
     mockedDistributionImageType[0]?.value ?? null;
 
-  const distributionImage = mockedDistributionImageList.find(
-    ({ type }) => type === distributionImageTypeDefaultValue,
-  );
+  const distributionImageIdDefaultValue = null;
 
-  const distributionImageNameDefaultValue = distributionImage?.id ?? null;
+  const distributionImageVersionDefaultValue = null;
 
-  const flavorImagePriceDefaultValue = distributionImage?.pricing?.hour ?? null;
-
-  const distributionImageVersionDefaultValue =
-    distributionImage?.versions?.[0]?.value ?? null;
-
-  const distributionLicencePrice =
-    distributionImage?.pricing?.licence?.total ?? null;
+  const distributionImageOsTypeDefaultValue = null;
 
   const sshKeyIdDefaultValue = null;
 
@@ -95,10 +84,9 @@ export const useForm = (projectId: string) => {
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,
       distributionImageType: distributionImageTypeDefaultValue,
-      distributionImageName: distributionImageNameDefaultValue,
-      flavorImagePrice: flavorImagePriceDefaultValue,
+      distributionImageId: distributionImageIdDefaultValue,
       distributionImageVersion: distributionImageVersionDefaultValue,
-      distributionLicencePrice,
+      distributionImageOsType: distributionImageOsTypeDefaultValue,
       sshKeyId: sshKeyIdDefaultValue,
       newSshPublicKey: newSshPublicKeyDefaultValue,
     },
