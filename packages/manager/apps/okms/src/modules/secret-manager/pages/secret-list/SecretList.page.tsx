@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { OkmsBreadcrumbItem, RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
 import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
@@ -9,7 +9,6 @@ import { SecretManagerChangelogButton } from '@secret-manager/components/secret-
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { useBackToOkmsListUrl } from '@secret-manager/hooks/useBackToOkmsListUrl';
 import {
-  LocationPathParams,
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
@@ -28,6 +27,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 import { PATH_LABEL } from '@/constants';
 
@@ -42,7 +42,7 @@ export default function SecretListPage() {
   const navigate = useNavigate();
   const { notifications } = useNotifications();
   const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
 
   const columns: DatagridColumn<Secret>[] = [
     {

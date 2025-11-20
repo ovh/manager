@@ -1,13 +1,6 @@
 import { Suspense } from 'react';
 
-import {
-  NavLink,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useOutletContext,
-  useParams,
-} from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
@@ -30,6 +23,7 @@ import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 export type CredentialContextType = {
   okms: OKMS;
@@ -45,10 +39,7 @@ const CredentialDashboard = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
   const location = useLocation();
-  const { okmsId, credentialId } = useParams() as {
-    okmsId: string;
-    credentialId: string;
-  };
+  const { okmsId, credentialId } = useRequiredParams('okmsId', 'credentialId');
 
   const { data: okms, isPending: isLoadingKms, error: errorKms } = useOkmsById(okmsId);
 

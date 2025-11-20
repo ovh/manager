@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useSecret } from '@secret-manager/data/hooks/useSecret';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
@@ -12,19 +11,21 @@ import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { Drawer } from '@ovh-ux/manager-react-components';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 import { SecretRawValue } from './SecretRawValue.component';
 import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import { VersionSelector } from './VersionSelector.component';
 
 const useIsCurrentVersion = (version: SecretVersion) => {
-  const { okmsId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
 
   return secret?.metadata?.currentVersion === version?.id;
 };
 
 const SecretValueDrawerPage = () => {
-  const { okmsId, secretPath, versionId } = useParams<LocationPathParams>();
+  const { okmsId, secretPath, versionId } = useRequiredParams('okmsId', 'secretPath', 'versionId');
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 
