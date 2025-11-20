@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Download } from 'lucide-react';
 import user from '@/types/User';
 import Loading from '../loading/Loading.component';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 
 interface UserInformationProps {
   newUser: user.User;
@@ -20,7 +20,7 @@ const UserInformation = ({ newUser, access = "", secret = "" }: UserInformationP
     });
   if (newUser?.status !== user.UserStatusEnum.ok) {
     return (
-      <div>
+      <div data-testid="user-information-loading-container">
         <p>{t('newUserCreationInProgress')}</p>
         <Loading />
       </div>
@@ -40,7 +40,10 @@ const UserInformation = ({ newUser, access = "", secret = "" }: UserInformationP
     );
   };
   return (
-    <div className="flex flex-col gap-2">
+    <div
+      className="flex flex-col gap-2"
+      data-testid="user-information-container"
+    >
       <div className="flex flex-row justify-between">
         <h5>{t('newUserInformationTitle')}</h5>
         <Button
