@@ -1,6 +1,5 @@
 import kebabCase from 'lodash/kebabCase';
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
-import { SERVICE_TYPES_USING_V6_SERVICES } from '../autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.cancel-resiliationRedirection', {
@@ -39,14 +38,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return (engagement && hasEndRuleStrategies
           ? setReactivateEngagementStrategy()
           : $q.when(0)
-        ).then(() => {
-          if (SERVICE_TYPES_USING_V6_SERVICES.includes(service.serviceType)) {
-            return BillingAutoRenew.updateRenew(service);
-          }
-
-          service.cancelResiliation();
-          return BillingAutoRenew.updateService(service);
-        });
+        ).then(() => BillingAutoRenew.cancelTermination(service.id));
       },
       engagement: /* @ngInject */ ($http, service) =>
         (service.canHaveEngagement()
@@ -82,16 +74,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceType,
       service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
         BillingAutoRenew.findService({ resourceName: serviceId, serviceType }),
-      fetchRenewInfos: /* @ngInject */ ($http, service) => {
-        if (SERVICE_TYPES_USING_V6_SERVICES.includes(service.serviceType)) {
-          return Promise.resolve(service);
-        }
 
-        return $http
-          .get(`${service.route.url}/serviceInfos`)
-          .then(({ data }) => data)
-          .then(({ renew }) => Object.assign(service, { renew }));
-      },
       setReactivateEngagementStrategy: /* @ngInject */ (
         BillingService,
         endStrategies,
