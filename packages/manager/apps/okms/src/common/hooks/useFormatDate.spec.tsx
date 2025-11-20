@@ -31,7 +31,7 @@ describe('useFormatDate', () => {
       {
         // default format (long)
         input: '2025-06-15T12:45:30Z',
-        format: undefined as undefined,
+        format: undefined,
         expectedFormatCall: 'Pp',
       },
     ];

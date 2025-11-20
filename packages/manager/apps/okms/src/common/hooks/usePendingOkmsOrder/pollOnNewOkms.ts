@@ -11,7 +11,7 @@ import { queryClient } from '@/common/utils/react-query/queryClient';
 import { findNewOkmsId, isOrderExpired } from './utils';
 
 type PollOnNewOkmsParams = {
-  refetch: () => Promise<{ data: OKMS[] }>;
+  refetch: () => Promise<{ data: OKMS[] | undefined }>;
   onSuccess: (okmsId: string) => void;
   onExpired: () => void;
   expirationInMinutes: number;
@@ -39,7 +39,7 @@ export const pollOnNewOkms = async ({
   }
 
   // Check if the pending order has expired
-  if (isOrderExpired(createdAt, expirationInMinutes)) {
+  if (createdAt && isOrderExpired(createdAt, expirationInMinutes)) {
     onExpired();
     clearPendingOrder();
     return;
@@ -47,6 +47,10 @@ export const pollOnNewOkms = async ({
 
   // Fetch the okms list
   const { data: okmsList } = await refetch();
+
+  if (!okmsList) {
+    return;
+  }
 
   // Save the initial okms ids
   if (!initialOkmsIds) {

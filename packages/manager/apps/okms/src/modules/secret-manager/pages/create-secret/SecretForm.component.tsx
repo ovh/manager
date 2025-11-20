@@ -52,6 +52,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   /* Submit */
   const { mutate: createSecret, isPending } = useCreateSecret({
     onSuccess: async (data) => {
+      if (!okmsId) return;
       await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.list(okmsId),
       });
@@ -61,13 +62,14 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
     onError: (error) => {
       addError(
         t(`${NAMESPACES.ERROR}:error_message`, {
-          message: error.response.data.message,
+          message: error.response?.data.message,
         }),
       );
     },
   });
 
   const handleConfirmClick: SubmitHandler<SecretSchema> = (formData) => {
+    if (!okmsId) return;
     createSecret({
       okmsId,
       data: {

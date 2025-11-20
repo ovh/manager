@@ -28,7 +28,7 @@ const getOdsButton = async ({
   nth = 0,
   ...options
 }: GetOdsButtonParams) => {
-  let button: HTMLElement;
+  let button: HTMLOdsLinkElement | HTMLOdsButtonElement | undefined;
   await waitFor(
     () => {
       const htmlTag = isLink ? 'ods-link' : 'ods-button';
@@ -40,7 +40,7 @@ const getOdsButton = async ({
       } else {
         // filter by label or altLabel
         button = Array.from(buttonList).filter((btn) =>
-          [label, altLabel].includes(btn.getAttribute('label')),
+          [label, altLabel].includes(btn.getAttribute('label') ?? ''),
         )[nth];
       }
 
@@ -60,6 +60,9 @@ const getOdsButton = async ({
     },
     { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
   );
+  if (!button) {
+    throw new Error(`Button ${label ?? altLabel ?? iconName ?? ''} not found`);
+  }
   return button;
 };
 
@@ -115,7 +118,7 @@ type GetOdsLinkByTestIdParams = {
 };
 
 export const getOdsLinkByTestId = async ({ testId, disabled }: GetOdsLinkByTestIdParams) => {
-  let link: HTMLElement;
+  let link: HTMLElement | undefined;
   await waitFor(() => {
     link = screen.getByTestId(testId);
     expect(link).toBeInTheDocument();

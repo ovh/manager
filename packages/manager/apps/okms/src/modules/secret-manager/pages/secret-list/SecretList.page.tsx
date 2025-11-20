@@ -96,10 +96,14 @@ export default function SecretListPage() {
           <OkmsBreadcrumbItem />
         </OdsBreadcrumb>
       }
-      message={notifications.length > 0 && <Notifications />}
-      onClickReturn={() => navigate(okmsListUrl)}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
+      onClickReturn={() => {
+        if (okmsListUrl) {
+          navigate(okmsListUrl);
+        }
+      }}
       // if okmsListUrl is not defined, we do not display the back link label
-      backLinkLabel={okmsListUrl ? t('back_to_okms_list') : null}
+      backLinkLabel={okmsListUrl ? t('back_to_okms_list') : ''}
     >
       <div className="space-y-6">
         <div className="flex justify-between">
@@ -113,7 +117,7 @@ export default function SecretListPage() {
         <Datagrid
           columns={columns}
           items={secrets || []}
-          totalItems={secrets?.length}
+          totalItems={secrets?.length ?? 0}
           isLoading={isPending}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}

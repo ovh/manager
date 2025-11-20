@@ -135,14 +135,14 @@ describe('useRegionSelector tests suite', () => {
       expect(result.current.geographyGroups).toHaveLength(1);
 
       const europeGroup = result.current.geographyGroups[0];
-      expect(europeGroup.continentCode).toBe('EUROPE');
-      expect(europeGroup.regions).toHaveLength(2);
+      expect(europeGroup?.continentCode).toBe('EUROPE');
+      expect(europeGroup?.regions).toHaveLength(2);
 
       // Check if regions are properly formatted
-      const rbxRegion = europeGroup.regions.find((r) => r.region === REGION_EU_WEST_RBX);
+      const rbxRegion = europeGroup?.regions.find((r) => r.region === REGION_EU_WEST_RBX);
       expect(rbxRegion).toEqual(rbxRegionOptionMock);
 
-      const sbgRegion = europeGroup.regions.find((r) => r.region === REGION_EU_WEST_SBG);
+      const sbgRegion = europeGroup?.regions.find((r) => r.region === REGION_EU_WEST_SBG);
       expect(sbgRegion).toEqual(sbgRegionOptionMock);
     });
 
@@ -171,7 +171,7 @@ describe('useRegionSelector tests suite', () => {
       const europeGroup = result.current.geographyGroups.find(
         (group) => group.continentCode === 'EUROPE',
       );
-      expect(europeGroup.regions).toHaveLength(2); // Should still be 2, not 3
+      expect(europeGroup?.regions).toHaveLength(2); // Should still be 2, not 3
     });
   });
 
@@ -207,12 +207,12 @@ describe('useRegionSelector tests suite', () => {
       mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_RBX);
 
       const { result, rerender } = await renderCustomHook('success');
-      expect(result.current.currentRegion.region).toEqual(REGION_EU_WEST_RBX);
+      expect(result?.current?.currentRegion?.region).toEqual(REGION_EU_WEST_RBX);
 
       mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_SBG);
       rerender();
       await waitFor(() => {
-        expect(result.current.currentRegion.region).toEqual(REGION_EU_WEST_SBG);
+        expect(result?.current?.currentRegion?.region).toEqual(REGION_EU_WEST_SBG);
       });
     });
   });

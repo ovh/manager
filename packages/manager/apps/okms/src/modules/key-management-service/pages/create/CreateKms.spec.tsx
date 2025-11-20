@@ -29,9 +29,13 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const regionListMock = catalogMock.plans[0].configurations[0].values;
-const firstRegionMock = locationsMock.find((location) => location.name === regionListMock[0]);
+const regionListMock = catalogMock.plans[0]?.configurations[0]?.values;
+const firstRegionMock = locationsMock.find((location) => location.name === regionListMock?.[0]);
 const firstRegionNameMock = firstRegionMock?.location || '';
+
+if (!firstRegionMock || !firstRegionNameMock) {
+  throw new Error('First region not found');
+}
 
 // ----- HELPERS ----- //
 

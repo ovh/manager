@@ -22,9 +22,9 @@ import {
 type VersionSelectorParams = {
   okmsId: string;
   secretPath: string;
-  versionId: string;
-  selectedVersion: SecretVersion;
-  setSelectedVersion: React.Dispatch<React.SetStateAction<SecretVersion>>;
+  versionId: string | undefined;
+  selectedVersion: SecretVersion | undefined;
+  setSelectedVersion: React.Dispatch<React.SetStateAction<SecretVersion | undefined>>;
 };
 
 export const VersionSelector = ({
@@ -75,16 +75,16 @@ export const VersionSelector = ({
             className="grow"
             name="version-selector"
             onOdsChange={(value) =>
-              setSelectedVersion(versions.find((v) => v.id === Number(value.detail.value)))
+              setSelectedVersion(versions?.find((v) => v.id === Number(value.detail.value)))
             }
             defaultValue={
               versionId
-                ? versions.find((version) => version.id.toString() === versionId).id.toString()
-                : versions[0].id.toString()
+                ? versions?.find((version) => version?.id?.toString() === versionId)?.id?.toString()
+                : (versions?.[0]?.id?.toString() ?? '')
             }
-            isDisabled={versions.length === 1}
+            isDisabled={versions?.length === 1}
           >
-            {versions.map((version) => (
+            {versions?.map((version) => (
               <option value={version.id} key={version.id}>
                 {version.id}
               </option>
