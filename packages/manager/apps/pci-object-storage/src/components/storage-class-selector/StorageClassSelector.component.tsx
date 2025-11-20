@@ -36,17 +36,20 @@ const StorageClassSelector = ({
   );
 
   return (
-    <div className="my-4 space-y-2">
+    <div
+      className="my-4 space-y-2"
+      data-testid="storage-class-selector-container"
+    >
       <div className="flex flex-row items-center gap-2">
         <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           {t('storageClassLabel')}
         </label>
         <Popover>
-          <PopoverTrigger>
+          <PopoverTrigger data-testid="storage-popover-trigger">
             <HelpCircle className="size-4" />
           </PopoverTrigger>
           <PopoverContent>
-            <div className="text-sm">
+            <div className="text-sm" data-testid="popover-content-container">
               <p>{t('popOverDesc1')}</p>
               <div className="flex flex-col px-2">
                 <A
@@ -88,6 +91,7 @@ const StorageClassSelector = ({
         <RadioGroup
           className="px-2"
           aria-labelledby="storage-class-radio"
+          data-testid="storage-class-radio-group"
           value={storageClass}
           onValueChange={onStorageClassChange}
           disabled={disabled}
@@ -95,7 +99,11 @@ const StorageClassSelector = ({
           {availableStorageClasses.map(
             (storeClass: storages.StorageClassEnum) => (
               <div key={storeClass} className="flex items-center gap-3">
-                <RadioGroupItem value={storeClass} id={storeClass} />
+                <RadioGroupItem
+                  value={storeClass}
+                  id={storeClass}
+                  data-testid={`radio-item-${storeClass}`}
+                />
                 <Label htmlFor={storeClass}>
                   {tObj(`objectClass_${storeClass}`)}
                 </Label>

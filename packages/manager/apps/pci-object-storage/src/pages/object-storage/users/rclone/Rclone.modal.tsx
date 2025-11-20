@@ -33,9 +33,9 @@ import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { getUserRclone } from '@/data/api/user/user.api';
-import useDownload from '@/hooks/useDownload';
 import { FormField } from '@/components/form-field/FormField.component';
 import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
+import useDownload from '@/hooks/useDownload.hook';
 
 const Rclone = () => {
   const { t } = useTranslation('pci-object-storage/users/rclone');
