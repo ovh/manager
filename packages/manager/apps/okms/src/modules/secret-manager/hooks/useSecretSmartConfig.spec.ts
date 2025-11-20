@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { mockSecret1, mockSecret2 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SecretSmartConfig, buildSecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -18,19 +19,19 @@ vi.mock('react-router-dom', () => ({
 // Mock the useCurrentRegion hook
 const mockUseCurrentRegion = vi.fn();
 vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
-  useCurrentRegion: (domains: unknown[]): unknown => mockUseCurrentRegion(domains),
+  useCurrentRegion: (okmsList: OKMS[]): unknown => mockUseCurrentRegion(okmsList),
 }));
 
 // Mock the useOkmsById hook
 const mockUseOkmsById = vi.fn();
 vi.mock('@key-management-service/data/hooks/useOkms', () => ({
-  useOkmsById: (domainId: string): unknown => mockUseOkmsById(domainId),
+  useOkmsById: (okmsId: string): unknown => mockUseOkmsById(okmsId),
 }));
 
 // Mock the useOkmsSecretConfig hook
 const mockUseOkmsSecretConfig = vi.fn();
 vi.mock('@secret-manager/data/hooks/useSecretConfigOkms', () => ({
-  useSecretConfigOkms: (domainId: string): unknown => mockUseOkmsSecretConfig(domainId),
+  useSecretConfigOkms: (okmsId: string): unknown => mockUseOkmsSecretConfig(okmsId),
 }));
 
 // Mock the useSecretConfigReference hook
@@ -58,7 +59,7 @@ const mockUseParams = vi.mocked(useParams);
 const mockBuildSecretSmartConfig = vi.mocked(buildSecretSmartConfig);
 
 // Mock data
-const mockDomainId = 'test-domain-id';
+const mockOkmsId = 'test-okms-id';
 const mockSecretConfigOkms = {
   casRequired: true,
   deactivateVersionAfter: '2h',
@@ -90,7 +91,7 @@ describe('useSecretSmartConfig', () => {
     vi.clearAllMocks();
 
     // Default mock implementations
-    mockUseParams.mockReturnValue({ domainId: mockDomainId });
+    mockUseParams.mockReturnValue({ okmsId: mockOkmsId });
     mockUseOkmsById.mockReturnValue({
       data: { data: okmsRoubaix1Mock },
       isPending: false,

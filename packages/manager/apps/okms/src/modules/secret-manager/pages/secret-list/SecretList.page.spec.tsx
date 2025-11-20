@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
@@ -20,7 +20,8 @@ import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/te
 
 import { CREATE_VERSION_DRAWER_TEST_IDS } from '../drawers/create-version-drawer/CreateVersionDrawer.constants';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(okmsMock[0].id);
+const mockOkms = okmsRoubaix1Mock;
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(mockOkms.id);
 
 const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
@@ -88,7 +89,7 @@ describe('Secret list page test suite', () => {
 
     const secretPageLink = await getOdsButtonByLabel({
       container,
-      label: secretListMock[0].path,
+      label: secretListMock[0]?.path ?? '',
       isLink: true,
     });
 

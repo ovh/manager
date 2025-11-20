@@ -73,7 +73,7 @@ export default function OkmsDashboardPage() {
           <OkmsDashboardBreadcrumbItem />
         </OdsBreadcrumb>
       }
-      message={notifications.length > 0 && <Notifications />}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <OkmsDomainDashboardTiles okms={okms.data} />
       <Outlet context={contextValue} />

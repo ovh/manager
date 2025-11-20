@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import {
   OkmsKeyTypes,
   OkmsServiceKey,
@@ -10,6 +10,8 @@ import { describe, expect, it, vi } from 'vitest';
 import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 
 import useServiceKeyActionsList from './useServiceKeyActionsList';
+
+const okmsItemMock = okmsRoubaix1Mock;
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({ t: vi.fn((key: string) => key) })),
@@ -190,7 +192,7 @@ describe('useServiceKeyActionsList', () => {
 
   useCases.forEach(({ description, okmsKey, expectedActions }) => {
     it(description, () => {
-      const { result } = renderHook(() => useServiceKeyActionsList(okmsMock[0], okmsKey));
+      const { result } = renderHook(() => useServiceKeyActionsList(okmsItemMock, okmsKey));
       expect(result.current).toEqual(
         expect.arrayContaining(
           expectedActions.map((action) => expect.objectContaining(action) as unknown),

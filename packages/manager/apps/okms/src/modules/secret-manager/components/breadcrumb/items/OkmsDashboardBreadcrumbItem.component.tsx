@@ -4,7 +4,6 @@ import {
   SECRET_MANAGER_ROUTES_URIS,
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
-import { isLocationParamsDefined } from '@secret-manager/utils/locationParams';
 import { useTranslation } from 'react-i18next';
 
 import { OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
@@ -31,5 +30,5 @@ const Item = ({ okmsId }: { okmsId: string }) => {
 export const OkmsDashboardBreadcrumbItem = () => {
   const { okmsId } = useRequiredParams('okmsId');
 
-  return isLocationParamsDefined([okmsId]) ? <Item okmsId={okmsId} /> : null;
+  return <Item okmsId={okmsId} />;
 };

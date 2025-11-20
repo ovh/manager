@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
@@ -9,7 +9,7 @@ import { SWAGGER_UI_LABEL } from '@/constants';
 
 import { SwaggerTileItem } from './SwaggerTileItem.component';
 
-const okmsMocked = okmsMock[0];
+const okmsMocked = okmsRoubaix1Mock;
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();

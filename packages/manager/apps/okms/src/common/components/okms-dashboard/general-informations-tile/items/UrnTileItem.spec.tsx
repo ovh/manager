@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
@@ -7,7 +7,7 @@ import { URN_LABEL } from '@/constants';
 
 import { UrnTileItem } from './UrnTileItem.component';
 
-const okmsMocked = okmsMock[0];
+const okmsMocked = okmsRoubaix1Mock;
 
 describe('OKMS Urn Tile Item test suite', () => {
   it('should render the tile item correctly', async () => {

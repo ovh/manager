@@ -126,13 +126,13 @@ const clickOnConfirmButton = async (user: UserEvent) => {
   // Fails intermittently without this - button click does not always works
   await wait(300);
 
-  let confirmButton: HTMLElement;
+  let confirmButton: HTMLElement | undefined = undefined;
   await waitFor(() => {
     confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
     expect(confirmButton).toHaveAttribute('is-disabled', 'false');
   });
   await act(async () => {
-    await user.click(confirmButton);
+    await user.click(confirmButton!);
   });
 
   return confirmButton;
