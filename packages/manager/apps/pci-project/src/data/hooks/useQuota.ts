@@ -1,7 +1,8 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getQuotas } from '@/data/api/quota';
-import { Quota } from '@/data/types/quota.type';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import { QUOTA_THRESHOLD } from '@/constants';
+import { getQuotas } from '@/data/api/quota';
+import { Quota } from '@/data/models/Quota.type';
 
 const getUsagePercentage = (max: number, used: number): number => {
   if (max === 0) return 100;
@@ -18,14 +19,8 @@ export const useQuotas = (projectId: string): UseQueryResult<Quota[]> => {
           quota.instance?.maxInstances,
           quota.instance?.usedInstances,
         );
-        const cpuUsage = getUsagePercentage(
-          quota.instance?.maxCores,
-          quota.instance?.usedCores,
-        );
-        const ramUsage = getUsagePercentage(
-          quota.instance?.maxRam,
-          quota.instance?.usedRAM,
-        );
+        const cpuUsage = getUsagePercentage(quota.instance?.maxCores, quota.instance?.usedCores);
+        const ramUsage = getUsagePercentage(quota.instance?.maxRam, quota.instance?.usedRAM);
         const memoryUsage = getUsagePercentage(
           quota.volume?.maxGigabytes,
           quota.volume?.usedGigabytes,

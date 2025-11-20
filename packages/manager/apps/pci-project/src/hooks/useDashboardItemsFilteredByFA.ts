@@ -1,18 +1,15 @@
 import { useMemo } from 'react';
+
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import {
-  DashboardItem,
-  DashboardItemConfig,
-} from '@/data/types/dashboard.type';
+
+import { DashboardItem, DashboardItemConfig } from '@/data/models/Dashboard.type';
 
 /**
  * Hook to filter dashboard items based on feature flag availability
  * @param items - Array of dashboard items to filter
  * @returns Filtered array of dashboard items
  */
-export const useDashboardItemsFilteredByFA = <
-  T extends DashboardItem | DashboardItemConfig
->(
+export const useDashboardItemsFilteredByFA = <T extends DashboardItem | DashboardItemConfig>(
   items: T[],
 ): T[] => {
   // Extract all feature flags from items

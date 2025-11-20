@@ -1,23 +1,28 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { TProject } from '@ovh-ux/manager-pci-common';
+import { useEffect, useState } from 'react';
+
+import { AxiosError } from 'axios';
+import { Translation, useTranslation } from 'react-i18next';
+
 import {
   OdsButton,
   OdsCheckbox,
   OdsDivider,
   OdsFormField,
-  OdsIcon,
   OdsInput,
-  OdsPopover,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useIsDefaultProject } from '@/data/hooks/useProjects';
-import { useEditProject } from '../useEditProject';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+import { TProject } from '@/types/pci-common.types';
+
+import { useEditProject } from '../useEditProject';
+
+type ApiError = AxiosError<{ message: string }>;
 
 type GeneralInformationSectionProps = {
   isDiscovery: boolean;
@@ -36,31 +41,24 @@ export default function GeneralInformationSection({
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { trackClick, trackPage } = useOvhTracking();
 
-  const {
-    data: hasDefaultProperty,
-    isLoading: hasDefaultPropertyLoading,
-  } = useIsDefaultProject(project.project_id);
+  const { data: hasDefaultProperty, isLoading: hasDefaultPropertyLoading } = useIsDefaultProject(
+    project.project_id,
+  );
 
   useEffect(() => {
     if (!hasDefaultPropertyLoading) {
-      setIsDefault(hasDefaultProperty || false);
+      setTimeout(() => setIsDefault(hasDefaultProperty || false), 0);
     }
   }, [hasDefaultProperty, hasDefaultPropertyLoading]);
 
-  const descriptionError = !description
-    ? t('error_required_field', { ns: NAMESPACES.FORM })
-    : '';
+  const descriptionError = !description ? t('error_required_field', { ns: NAMESPACES.FORM }) : '';
 
   const isDescriptionChanged = description !== project.description;
   const isDefaultPropertyChanged = isDefault !== hasDefaultProperty;
 
-  const isFormValid =
-    !descriptionError && (isDescriptionChanged || isDefaultPropertyChanged);
+  const isFormValid = !descriptionError && (isDescriptionChanged || isDefaultPropertyChanged);
 
-  const {
-    mutate: editProject,
-    isPending: isEditProjectPending,
-  } = useEditProject(
+  const { mutate: editProject, isPending: isEditProjectPending } = useEditProject(
     project.project_id,
     () => {
       clearNotifications();
@@ -114,13 +112,9 @@ export default function GeneralInformationSection({
 
   return (
     <section className="flex flex-col gap-5">
-      <OdsText preset="heading-2">
-        {t('pci_projects_project_edit_project_name')}
-      </OdsText>
+      <OdsText preset="heading-2">{t('pci_projects_project_edit_project_name')}</OdsText>
       <OdsFormField className="w-full" error={descriptionError}>
-        <label slot="label">
-          {t('pci_projects_project_edit_project_name')}
-        </label>
+        <label slot="label">{t('pci_projects_project_edit_project_name')}</label>
         {isDiscovery && (
           <OdsText preset="caption" slot="helper">
             {t('pci_projects_project_edit_discovery_disable_tooltip')}
@@ -163,7 +157,6 @@ export default function GeneralInformationSection({
         className="w-fit"
         onClick={handleSubmit}
       />
-
       <OdsDivider spacing="48" />
     </section>
   );

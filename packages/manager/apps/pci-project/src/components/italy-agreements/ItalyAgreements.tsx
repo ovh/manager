@@ -1,9 +1,6 @@
 import { clsx } from 'clsx';
-import {
-  OdsAccordion,
-  OdsCheckbox,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+
+import { OdsAccordion, OdsCheckbox, OdsText } from '@ovhcloud/ods-components/react';
 
 import { ITALY_AGREEMENT_TEXT } from '@/constants';
 
@@ -18,7 +15,7 @@ export default function ItalyAgreements({
 }: TItalyAgreementsProps) {
   return (
     <div className="italy-agreements text-left" data-testid="italy-agreements">
-      <div className="flex items-center justify-start gap-4 mb-2">
+      <div className="mb-2 flex items-center justify-start gap-4">
         <OdsCheckbox
           name={'project-italy-agreements'}
           inputId={'project-italy-agreements'}
@@ -26,10 +23,7 @@ export default function ItalyAgreements({
           onOdsChange={(e) => onSetHasAgreements(e.detail.checked)}
         />
         <label htmlFor="project-italy-agreements">
-          <OdsText
-            preset="paragraph"
-            className={clsx(hasAgreements && 'font-bold')}
-          >
+          <OdsText preset="paragraph" className={clsx(hasAgreements && 'font-bold')}>
             {ITALY_AGREEMENT_TEXT.TITLE}
           </OdsText>
         </label>

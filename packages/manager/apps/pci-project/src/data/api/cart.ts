@@ -1,5 +1,6 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { AxiosError } from 'axios';
+
+import { v6 } from '@ovh-ux/manager-core-api';
 
 import {
   AddOptionToCartResponse,
@@ -10,12 +11,9 @@ import {
   CartSummary,
   OrderedProduct,
   PlanCode,
-} from '@/data/types/cart.type';
+} from '@/data/models/Cart.type';
 
-export const getPublicCloudOptions = async (
-  cartId: string,
-  planCode: PlanCode,
-) => {
+export const getPublicCloudOptions = async (cartId: string, planCode: PlanCode) => {
   const { data } = await v6.get<CartProductOption[]>(
     `order/cart/${cartId}/cloud/options?planCode=${planCode}`,
   );
@@ -27,7 +25,7 @@ export const attachConfigurationToCartItem = async (
   itemId: number,
   payload: { label: string; value: unknown },
 ): Promise<CartConfiguration> => {
-  const { data } = await v6.post(
+  const { data } = await v6.post<CartConfiguration>(
     `order/cart/${cartId}/item/${itemId}/configuration`,
     payload,
   );
@@ -68,9 +66,7 @@ export const deleteConfigurationItemFromCart = async (
   itemId: number,
   configurationId: number,
 ) => {
-  await v6.delete(
-    `order/cart/${cartId}/item/${itemId}/configuration/${configurationId}`,
-  );
+  await v6.delete(`order/cart/${cartId}/item/${itemId}/configuration/${configurationId}`);
 };
 
 export const orderCloudProject = async (
@@ -78,33 +74,26 @@ export const orderCloudProject = async (
   planCode: PlanCode,
 ): Promise<OrderedProduct> => {
   // Fetch list of product offers, throw if the cloud product offer is missing.
-  const { data: productOffers } = await v6.get<CartProduct[]>(
-    `order/cart/${cartId}/cloud`,
-  );
+  const { data: productOffers } = await v6.get<CartProduct[]>(`order/cart/${cartId}/cloud`);
   const cloudProjectOffer = productOffers.find((d) => d.planCode === planCode);
   if (!cloudProjectOffer) {
     throw new AxiosError(`planCode ${planCode} not found`);
   }
 
   // Find the correct offer & pricing (matching planCode & capacities = 'renew')
-  const renewPrice = cloudProjectOffer.prices.find((price) =>
-    price.capacities.includes('renew'),
-  );
+  const renewPrice = cloudProjectOffer.prices.find((price) => price.capacities.includes('renew'));
   if (!renewPrice) {
     throw new AxiosError(`could not find 'renew' price in product offer.`);
   }
   const { duration, pricingMode } = renewPrice;
 
   // Now that we have the right order information, order the product
-  const { data: orderedProduct } = await v6.post<OrderedProduct>(
-    `order/cart/${cartId}/cloud`,
-    {
-      duration,
-      planCode,
-      pricingMode,
-      quantity: 1,
-    },
-  );
+  const { data: orderedProduct } = await v6.post<OrderedProduct>(`order/cart/${cartId}/cloud`, {
+    duration,
+    planCode,
+    pricingMode,
+    quantity: 1,
+  });
 
   return orderedProduct;
 };
@@ -162,10 +151,9 @@ export const addItemToCart = async (
     quantity: number;
   },
 ): Promise<OrderedProduct> => {
-  const { data } = await v6.post<Promise<OrderedProduct>>(
-    `/order/cart/${cartId}/cloud/options`,
-    { ...item },
-  );
+  const { data } = await v6.post<Promise<OrderedProduct>>(`/order/cart/${cartId}/cloud/options`, {
+    ...item,
+  });
 
   return data;
 };
@@ -178,33 +166,22 @@ export const getCartItemDetail = async (
   cartId: string,
   itemId: number,
 ): Promise<OrderedProduct> => {
-  const { data } = await v6.get<OrderedProduct>(
-    `/order/cart/${cartId}/item/${itemId}`,
-  );
+  const { data } = await v6.get<OrderedProduct>(`/order/cart/${cartId}/item/${itemId}`);
   return data;
 };
 
-export const getCartItems = async (
-  cartId: string,
-): Promise<OrderedProduct[]> => {
-  const { data: itemIds } = await v6.get<number[]>(
-    `/order/cart/${cartId}/item`,
-  );
+export const getCartItems = async (cartId: string): Promise<OrderedProduct[]> => {
+  const { data: itemIds } = await v6.get<number[]>(`/order/cart/${cartId}/item`);
 
-  const items = await Promise.all(
-    itemIds.map((itemId) => getCartItemDetail(cartId, itemId)),
-  );
+  const items = await Promise.all(itemIds.map((itemId) => getCartItemDetail(cartId, itemId)));
 
   return items;
 };
 
 export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
-  const { data } = await v6.post<CartSummary>(
-    `/order/cart/${cartId}/checkout`,
-    {
-      cartId,
-    },
-  );
+  const { data } = await v6.post<CartSummary>(`/order/cart/${cartId}/checkout`, {
+    cartId,
+  });
 
   return data;
 };

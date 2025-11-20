@@ -6620,7 +6620,7 @@
     "@module-federation/error-codes" "0.8.12"
     "@module-federation/sdk" "0.8.12"
 
-"@module-federation/runtime@0.8.12", "@module-federation/runtime@^0.21.2", "@module-federation/runtime@^0.8.11":
+"@module-federation/runtime@0.8.12", "@module-federation/runtime@^0.8.11":
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/@module-federation/runtime/-/runtime-0.8.12.tgz#ce3b4f04b6e523c809244745381982e085b494aa"
   integrity sha512-eYohRfambj/qzxz6tEakDn459ROcixWO4zL5gmTEOmwG+jCDnxGR14j1guopyrrpjb6EKFNrPVWtYZTPPfGdQQ==
@@ -7143,11 +7143,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.23.2.tgz#71f4812de2400a5897159a18bb9d7f5f3a05fd30"
   integrity sha512-+kWwTgA51z8rDTXbMiZiCH85L2nSewD9H/HVrqFivo1/1uZLrNHkOLKouGVmP7isnqFRAMyOa0FTbDtk2Dm6LQ==
 
-"@ovh-ux/manager-common-translations@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.8.0.tgz#5040220f362df2e1f97f3db5f9cbd69fb4514bab"
-  integrity sha512-MOc802UJTHIA/pW3zT12JuHC/TEldwyjm1lQq658LKhyBmEtJgFtp91aY3qdxjh2VwfAlj2GvJ7ZSIy5VN0OhQ==
-
 "@ovh-ux/manager-common-translations@^0.9.1":
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.9.1.tgz#9e79e284f461fa5396d70cd7641f0e4c694bd115"
@@ -7418,7 +7413,7 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.6.4", "@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.3", "@ovhcloud/ods-components@^18.6.4":
+"@ovhcloud/ods-components@18.6.4", "@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.4":
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.4.tgz#7fc45c501f8ea6a7dda3be41ed1d7095b9c706c3"
   integrity sha512-vC2qkHEutihuuI0gYo4fRB2Gc7m1X/tfVFzvQb6c2+DcmuzDefkz48otCvqvKX0cz+a0X7Il4yRHhgrqmsH3Tw==
@@ -7478,7 +7473,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@18.6.4", "@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.6.3", "@ovhcloud/ods-themes@^18.6.4":
+"@ovhcloud/ods-themes@18.6.4", "@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.6.4":
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
@@ -10742,13 +10737,6 @@
     "@babel/runtime" "^7.12.5"
     react-error-boundary "^3.1.0"
 
-"@testing-library/react@*":
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.3.0.tgz#3a85bb9bdebf180cd76dba16454e242564d598a6"
-  integrity sha512-kFSyxiEDwv1WLl2fgsq6pPBbw5aWKrsY2/noi1Id0TK0UParSF62oFQFGHXIyaG4pp2tEub/Zlel+fjjZILDsw==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-
 "@testing-library/react@^14.1.2", "@testing-library/react@^14.2.1":
   version "14.2.2"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-14.2.2.tgz#74f855215c57d423282486a395a4348a837d3c5a"
@@ -11616,11 +11604,6 @@
   version "9.0.8"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.8.tgz#7545ba4fc3c003d6c756f651f3bf163d8f0f29ba"
   integrity sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==
-
-"@types/validator@^13.15.2":
-  version "13.15.10"
-  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.15.10.tgz#742b77ec34d58554b94a76a14cef30d59e3c16b9"
-  integrity sha512-T8L6i7wCuyoK8A/ZeLYt1+q0ty3Zb9+qbSSvrIVitzT3YjZqkTZ40IbRsPanlB4h1QB3JVL1SYCdR6ngtFYcuA==
 
 "@types/warning@^3.0.0":
   version "3.0.3"
@@ -33247,11 +33230,6 @@ validator-js@^0.2.1:
   integrity sha512-Ca4V9xWQbxg3gqSZaH24mNPOIks90J6UVeejvhDffQSvfRUuPZJFQmrzzU3mU9GwgbWLBnap0MBdEx94fg96DQ==
   dependencies:
     underscore "*"
-
-validator@^13.15.15:
-  version "13.15.23"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-13.15.23.tgz#59a874f84e4594588e3409ab1edbe64e96d0c62d"
-  integrity sha512-4yoz1kEWqUjzi5zsPbAS/903QXSYp0UOtHsPpp7p9rHAw/W+dkInskAE386Fat3oKRROwO98d9ZB0G4cObgUyw==
 
 validator@^13.7.0:
   version "13.11.0"

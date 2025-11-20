@@ -1,22 +1,18 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import {
-  TCartServiceOption,
-  TService,
-  TServiceOption,
-} from '@/data/types/service.type';
-import { ProjectActivationResponse } from '../types/project.type';
-import {
-  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
-  FULL_PROJECT_PLAN_CODE,
-} from '@/constants';
+
+import { DISCOVERY_PROJECT_ACTIVATION_PAYLOAD, FULL_PROJECT_PLAN_CODE } from '@/constants';
+import { TCartServiceOption, TService, TServiceOption } from '@/data/models/Service.type';
+
+import { ProjectActivationResponse } from '../models/Project.type';
+
+type FetchResultV6<T> = {
+  data: T[];
+};
 
 export const getServices = async (): Promise<FetchResultV6<TService>> => {
   const headers: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
-    'x-pagination-filter': `${encodeURIComponent(
-      'route.path',
-    )}:eq=${encodeURIComponent(
+    'x-pagination-filter': `${encodeURIComponent('route.path')}:eq=${encodeURIComponent(
       '/cloud/project/{serviceName}',
     )}&${encodeURIComponent(
       'billing.lifecycle.current.state',
@@ -25,10 +21,8 @@ export const getServices = async (): Promise<FetchResultV6<TService>> => {
   return v6.get(`/services`, { headers });
 };
 
-export const getProjectService = async (
-  projectId: string,
-): Promise<TService> => {
-  const { data } = await v6.get(`/cloud/project/${projectId}/serviceInfos`);
+export const getProjectService = async (projectId: string): Promise<TService> => {
+  const { data } = await v6.get<TService>(`/cloud/project/${projectId}/serviceInfos`);
   return data;
 };
 
@@ -37,10 +31,8 @@ export const getProjectService = async (
  * @param serviceId
  * @returns {Promise<TServiceOption>} a list of service options
  */
-export const getServiceOptions = async (
-  serviceId: number,
-): Promise<TServiceOption[]> => {
-  const { data } = await v6.get(`/services/${serviceId}/options`);
+export const getServiceOptions = async (serviceId: number): Promise<TServiceOption[]> => {
+  const { data } = await v6.get<TServiceOption[]>(`/services/${serviceId}/options`);
   return data;
 };
 
@@ -50,9 +42,7 @@ export const getServiceOptions = async (
  * @returns {Promise<number[]>}
  */
 export const getServiceId = async (projectId: string): Promise<number[]> => {
-  const { data } = await v6.get<Promise<number[]>>(
-    `/services?resourceName=${projectId}`,
-  );
+  const { data } = await v6.get<number[]>(`/services?resourceName=${projectId}`);
   return data;
 };
 
@@ -62,10 +52,10 @@ export const getServiceId = async (projectId: string): Promise<number[]> => {
  * @param {string} projectId
  * @returns {Promise<TCartServiceOption[]>}
  */
-export const getCartServiceOption = async (
-  projectId: string,
-): Promise<TCartServiceOption[]> => {
-  const { data } = await v6.get(`/order/cartServiceOption/cloud/${projectId}`);
+export const getCartServiceOption = async (projectId: string): Promise<TCartServiceOption[]> => {
+  const { data } = await v6.get<TCartServiceOption[]>(
+    `/order/cartServiceOption/cloud/${projectId}`,
+  );
   return data;
 };
 

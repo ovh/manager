@@ -1,13 +1,9 @@
-import {
-  OdsCard,
-  OdsText,
-  OdsIcon,
-  OdsLink,
-} from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsIcon, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { DashboardItem } from '@/data/models/Dashboard.type';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
-import { DashboardItem } from '@/data/types/dashboard.type';
 
 type QuickAccessCardProps = {
   item: DashboardItem;
@@ -38,25 +34,25 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
     >
       <OdsCard
         color="neutral"
-        className="flex flex-row items-center p-5 min-h-[100px] truncate hover:bg-[--ods-color-primary-100] transition-colors"
+        className="flex min-h-[100px] flex-row items-center truncate p-5 transition-colors hover:bg-[--ods-color-primary-100]"
         role="button"
         tabIndex={0}
       >
-        <div className="flex items-center justify-center w-23 h-23">
+        <div className="w-23 h-23 flex items-center justify-center">
           {item.iconImage && (
             <img
               src={item.iconImage}
               alt={t('pci_project_quick_access_icon_alt', {
                 service: t(item.labelTranslationKey),
               })}
-              className="w-20 h-20"
+              className="size-20"
             />
           )}
           {!item.iconImage && item.iconODS && (
-            <OdsIcon name={item.iconODS} className="w-20 h-20 text-white" />
+            <OdsIcon name={item.iconODS} className="size-20 text-white" />
           )}
         </div>
-        <div className="flex flex-col justify-center ml-5">
+        <div className="ml-5 flex flex-col justify-center">
           <OdsText preset="heading-4" className="mb-1 leading-tight">
             {t(item.labelTranslationKey)}
           </OdsText>
@@ -75,25 +71,25 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
     <OdsCard
       key={index}
       color="neutral"
-      className="flex flex-row items-center p-4 min-h-[100px] truncate hover:bg-[--ods-color-primary-100]"
+      className="flex min-h-[100px] flex-row items-center truncate p-4 hover:bg-[--ods-color-primary-100]"
       role="button"
       tabIndex={0}
     >
-      <div className="bg-[var(--ods-color-information-700)] rounded flex items-center justify-center w-23 h-23">
+      <div className="w-23 h-23 flex items-center justify-center rounded bg-[var(--ods-color-information-700)]">
         {item.iconImage && (
           <img
             src={item.iconImage}
             alt={t('pci_project_quick_access_icon_alt', {
               service: t(item.labelTranslationKey),
             })}
-            className="w-20 h-20"
+            className="size-20"
           />
         )}
         {!item.iconImage && item.iconODS && (
-          <OdsIcon name={item.iconODS} className="w-20 h-20 text-white" />
+          <OdsIcon name={item.iconODS} className="size-20 text-white" />
         )}
       </div>
-      <div className="flex flex-col justify-center ml-6">
+      <div className="ml-6 flex flex-col justify-center">
         <OdsText preset="heading-4" className="mb-1 leading-tight">
           {t(item.labelTranslationKey)}
         </OdsText>

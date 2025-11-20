@@ -1,9 +1,10 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import {
-  CreditDetailsResponse,
-  TStartupProgram,
-} from '@/data/types/credit.type';
+
+import { CreditDetailsResponse, TStartupProgram } from '@/data/models/Credit.type';
+
+type FetchResultV6<T> = {
+  data: T[];
+};
 
 export const getCreditDetails = async (
   projectId: string,
@@ -13,14 +14,14 @@ export const getCreditDetails = async (
       'x-pagination-mode': 'CachedObjectList-Pages',
     };
 
-    const response = await v6.get(`/cloud/project/${projectId}/credit`, {
+    const response = await v6.get<CreditDetailsResponse[]>(`/cloud/project/${projectId}/credit`, {
       headers,
     });
 
     return {
       data: response.data,
     };
-  } catch (error) {
+  } catch {
     return {
       data: [],
     };
@@ -28,11 +29,11 @@ export const getCreditDetails = async (
 };
 
 export const getCreditBalance = async (): Promise<string[]> => {
-  const { data } = await v6.get('/me/credit/balance');
+  const { data } = await v6.get<string[]>('/me/credit/balance');
   return data;
 };
 
 export const getStartupProgram = async (): Promise<TStartupProgram> => {
-  const { data } = await v6.get('/me/credit/balance/STARTUP_PROGRAM');
+  const { data } = await v6.get<TStartupProgram>('/me/credit/balance/STARTUP_PROGRAM');
   return data;
 };

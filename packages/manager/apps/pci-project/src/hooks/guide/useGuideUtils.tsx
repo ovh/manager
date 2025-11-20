@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -71,7 +72,10 @@ function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
   const list: { [guideName: string]: string } = {};
   const keys = Object.entries(GUIDE_LIST);
   keys.forEach((key) => {
-    list[key[0]] = docUrl + GUIDE_LIST[key[0]][subsidiary as CountryCode];
+    const guideLink = GUIDE_LIST[key[0]]?.[subsidiary as CountryCode];
+    if (guideLink) {
+      list[key[0]] = docUrl + guideLink;
+    }
   });
   return list;
 }
@@ -92,8 +96,8 @@ function useGuideUtils() {
       const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
       setList(guideList);
     };
-    getSubSidiary();
-  }, []);
+    void getSubSidiary();
+  }, [environment]);
   return list as GuideLinkProps;
 }
 

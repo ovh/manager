@@ -1,15 +1,11 @@
-import {
-  useIsStartupProgramAvailable,
-  useStartupProgramAmountText,
-} from '@/data/hooks/useCredit';
-import {
-  Cart,
-  CartConfiguration,
-  OrderedProduct,
-} from '@/data/types/cart.type';
-import { GlobalStateStatus } from '@/types/WillPayment.type';
 import { useState } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
+
+import { useIsStartupProgramAvailable, useStartupProgramAmountText } from '@/data/hooks/useCredit';
+import { Cart, CartConfiguration, OrderedProduct } from '@/data/models/Cart.type';
+import { GlobalStateStatus } from '@/types/UWillPayment.type';
+
 import WillPaymentComponent from '../components/payment/WillPayment.component';
 import StartupProgram from '../components/startup-program/StartupProgram';
 import Voucher from '../components/voucher/Voucher';
@@ -32,15 +28,13 @@ export default function PaymentStep({
   onVoucherChange,
 }: Readonly<PaymentStepProps>) {
   const [searchParams] = useSearchParams();
-  const [voucherConfiguration, setVoucherConfiguration] = useState<
-    CartConfiguration | undefined
-  >(undefined);
+  const [voucherConfiguration, setVoucherConfiguration] = useState<CartConfiguration | undefined>(
+    undefined,
+  );
 
   const initialVoucher = searchParams.get('voucher') ?? null;
 
-  const handleVoucherConfigurationChange = (
-    voucherConfig: CartConfiguration | undefined,
-  ) => {
+  const handleVoucherConfigurationChange = (voucherConfig: CartConfiguration | undefined) => {
     setVoucherConfiguration(voucherConfig);
     if (voucherConfiguration) {
       if (voucherConfiguration?.value !== '') {

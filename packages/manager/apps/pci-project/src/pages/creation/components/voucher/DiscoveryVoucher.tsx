@@ -1,17 +1,10 @@
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TEligibilityVoucher } from '@/data/types/eligibility.type';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
 import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
+import { TEligibilityVoucher } from '@/data/models/Eligibility.type';
 
 type DiscoveryVoucherProps = {
   voucher: TEligibilityVoucher['credit'];
@@ -26,7 +19,7 @@ export default function DiscoveryVoucher({ voucher }: DiscoveryVoucherProps) {
         {t('pci_projects_new_voucher_title')}
       </OdsText>
 
-      <div className="flex items-center w-full gap-4">
+      <div className="flex w-full items-center gap-4">
         <OdsFormField className="flex-1">
           <OdsInput
             type={ODS_INPUT_TYPE.text}
@@ -47,10 +40,7 @@ export default function DiscoveryVoucher({ voucher }: DiscoveryVoucherProps) {
         />
       </div>
 
-      <div
-        className="flex items-center gap-4 my-4"
-        data-testid="voucher-section_display"
-      >
+      <div className="my-4 flex items-center gap-4" data-testid="voucher-section_display">
         <OdsText>
           {t('pci_projects_new_voucher_form_field_add_success', {
             credit: voucher.text,

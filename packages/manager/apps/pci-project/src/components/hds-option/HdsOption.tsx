@@ -1,13 +1,12 @@
+import { useContext } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsCheckbox, OdsFormField, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsLink,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { getHdsInfoUrl } from '@/constants';
 
 type HdsOptionProps = {
@@ -33,8 +32,7 @@ export default function HdsOption({
 
   const hdsInfoLink = getHdsInfoUrl(ovhSubsidiary as OvhSubsidiary);
 
-  const isHdsDisabled =
-    isAlreadyCertifiedProject || !isValidForCertification || isDisabled;
+  const isHdsDisabled = isAlreadyCertifiedProject || !isValidForCertification || isDisabled;
 
   const renderHdsLink = () => (
     <OdsLink
@@ -50,9 +48,7 @@ export default function HdsOption({
     <div className="flex flex-col gap-5">
       {!isLightVersion && (
         <>
-          <OdsText preset="paragraph">
-            {t('pci_projects_project_edit_hds_description')}
-          </OdsText>
+          <OdsText preset="paragraph">{t('pci_projects_project_edit_hds_description')}</OdsText>
 
           {renderHdsLink()}
         </>
@@ -68,9 +64,7 @@ export default function HdsOption({
           data-testid="hds-checkbox"
         />
         <label className="ml-4 cursor-pointer" htmlFor="is-hds">
-          <OdsText preset="paragraph">
-            {t('pci_projects_hds_description')}
-          </OdsText>
+          <OdsText preset="paragraph">{t('pci_projects_hds_description')}</OdsText>
         </label>
       </OdsFormField>
 

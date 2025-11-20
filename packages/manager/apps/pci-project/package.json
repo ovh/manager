@@ -14,16 +14,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "manager-test run --coverage",
-    "format": "run-p format:*",
-    "format:css": "yarn run lint:css --fix",
-    "format:html": "yarn run lint:html && prettier --parser=html --write \"**/*.html\"",
-    "format:js": "yarn run lint:js --fix",
-    "format:md": "yarn run lint:md --fix",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "lint:css": "stylelint \"**/*.{css,less,scss}\"",
-    "lint:html": "htmlhint --ignore \"**/dist/**,**/www/**,**/coverage/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",
-    "lint:js": "eslint --cache --quiet --format=pretty .",
-    "lint:md": "remark -qf . && eslint --quiet --format=pretty --ext .md .",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "manager-test run"
   },
@@ -38,7 +30,6 @@
     "@ovh-ux/manager-react-components": "^2.39.0",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "^0.9.1",
-    "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-components": "^18.6.3",
     "@ovhcloud/ods-themes": "^18.6.3",
@@ -57,9 +48,13 @@
     "validator": "^13.15.15"
   },
   "devDependencies": {
-    "@testing-library/react": "*",
+    "@ovh-ux/manager-static-analysis-kit": "0.13.0",
+    "@ovh-ux/manager-tailwind-config": "*",
+    "@ovh-ux/manager-tests-setup": "0.4.7",
+    "@ovh-ux/manager-vite-config": "^0.15.0",
+    "@tanstack/react-query-devtools": "5.51.21",
     "@types/validator": "^13.15.2",
-    "@vitest/coverage-v8": "^2.1.9",
+    "typescript": "5.9.3",
     "vite": "^5.3.3",
     "vitest": "^2.1.9"
   },

@@ -1,11 +1,14 @@
 import { lazy } from 'react';
+
 import { Route } from 'react-router-dom';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
+import ActivationGuard from '@/components/activation-guard/ActivationGuard';
+import CreationGuard from '@/components/creation-guard/CreationGuard';
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
-import CreationGuard from '@/components/creation-guard/CreationGuard';
-import ActivationGuard from '@/components/activation-guard/ActivationGuard';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
@@ -16,9 +19,7 @@ const HomePage = lazy(() => import('@/pages/home/Home.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const CreatingPage = lazy(() => import('@/pages/creating/Creating.page'));
 const UpdatingPage = lazy(() => import('@/pages/updating/Updating.page'));
-const IncreaseQuotaPage = lazy(() =>
-  import('@/pages/increase-quota/IncreaseQuota'),
-);
+const IncreaseQuotaPage = lazy(() => import('@/pages/increase-quota/IncreaseQuota'));
 const EditPage = lazy(() => import('@/pages/home/edit/Edit.page'));
 
 export default (
@@ -26,11 +27,7 @@ export default (
     path={urls.root}
     Component={LayoutPage}
     errorElement={
-      <ErrorBoundary
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-        redirectionApp="pci-project"
-      />
+      <ErrorBoundary isPreloaderHide={true} isRouteShellSync={true} redirectionApp="pci-project" />
     }
   >
     <Route
