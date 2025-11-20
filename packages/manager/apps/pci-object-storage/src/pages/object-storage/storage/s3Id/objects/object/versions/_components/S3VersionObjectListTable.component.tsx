@@ -9,7 +9,7 @@ import { getColumns } from './S3ObjectVersionListColumns.component';
 import DataTable from '@/components/data-table';
 import { getFilters } from './S3VersionObjectFilters.component';
 import storages from '@/types/Storages';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { useS3Data } from '../../../../S3.context';

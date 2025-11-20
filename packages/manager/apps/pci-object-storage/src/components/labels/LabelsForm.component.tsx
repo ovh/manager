@@ -48,11 +48,11 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
             <SheetDescription />
           </SheetHeader>
           <form onSubmit={onSubmit}>
-            <div className="space-y-4">
+            <div className="space-y-4" data-testid="tags-form-container">
               <FormField form={form} name="key">
                 {(field) => (
                   <>
-                    <FieldLabel data-testid="name-field-label">
+                    <FieldLabel data-testid="key-field-label">
                       {t('keyFieldLabel')}
                     </FieldLabel>
                     <Input data-testid="key-input-field" {...field} ref={ref} />
@@ -79,7 +79,9 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
                     {t('cancelButton')}
                   </Button>
                 </SheetClose>
-                <Button type="submit">{t('confirmButton')}</Button>
+                <Button type="submit" data-testid="tags-submit-button">
+                  {t('confirmButton')}
+                </Button>
               </SheetFooter>
             </div>
           </form>

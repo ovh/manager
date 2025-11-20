@@ -30,7 +30,7 @@ const RoadmapChangelog = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button mode="ghost" className="h-9">
+        <Button mode="ghost" className="h-9" data-testid="roadmap-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0,0,256,256"

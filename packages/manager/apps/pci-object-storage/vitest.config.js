@@ -13,6 +13,7 @@ export default defineConfig({
       include: ['src'],
       exclude: [
         'src/__tests__',
+        'src/components/guides/guides.config.ts',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/i18n.ts',

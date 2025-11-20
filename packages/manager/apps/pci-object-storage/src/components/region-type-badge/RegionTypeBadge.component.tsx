@@ -99,7 +99,7 @@ export const RegionTypeBadgeWithPopover = ({
       <span>{config.label}</span>
       {description && (
         <Popover>
-          <PopoverTrigger asChild>
+          <PopoverTrigger asChild data-testid="region-type-badge-popover">
             <HelpCircle className="size-4 ml-2" />
           </PopoverTrigger>
           <PopoverContent className="text-sm">
