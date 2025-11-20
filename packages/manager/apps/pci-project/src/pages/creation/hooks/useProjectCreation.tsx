@@ -1,14 +1,14 @@
+import { useCallback, useContext, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useMutation } from '@tanstack/react-query';
+import { Translation } from 'react-i18next';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useMutation } from '@tanstack/react-query';
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Translation } from 'react-i18next';
-import {
-  AntiFraudError,
-  CREDIT_ORDER_CART,
-  PCI_PROJECT_ORDER_CART,
-} from '@/constants';
+
+import { AntiFraudError, CREDIT_ORDER_CART, PCI_PROJECT_ORDER_CART } from '@/constants';
 import {
   addItemToCart,
   checkoutCart,
@@ -17,12 +17,8 @@ import {
 } from '@/data/api/cart';
 import { payWithRegisteredPaymentMean } from '@/data/api/payment';
 import { useGetCreditAddonOption } from '@/data/hooks/useCart';
-import {
-  Cart,
-  CartSummary,
-  OrderedProduct,
-  PaymentMean,
-} from '@/data/types/cart.type';
+import { Cart, CartSummary, OrderedProduct, PaymentMean } from '@/data/models/Cart.type';
+
 import useAntiFraud from './useAntiFraud';
 
 export type UseProjectCreationProps = {
@@ -56,9 +52,7 @@ export const useProjectCreation = ({
     if (antiFraudError === AntiFraudError.CASE_FRAUD_REFUSED) {
       addError(
         <Translation ns="payment">
-          {(_t) =>
-            _t('pci_project_new_payment_check_anti_fraud_case_fraud_refused')
-          }
+          {(_t) => _t('pci_project_new_payment_check_anti_fraud_case_fraud_refused')}
         </Translation>,
       );
     } else if (antiFraudError === AntiFraudError.NEED_CUSTOMER_INFO_CHECK) {
@@ -90,14 +84,10 @@ export const useProjectCreation = ({
       /**
        * TODO: should be trigger while some conditions are met
        */
-      return postAttachConfigurationToCartItem(
-        cart!.cartId,
-        projectItem!.itemId,
-        {
-          label: 'infrastructure',
-          value: PCI_PROJECT_ORDER_CART.infraConfigValue,
-        },
-      );
+      return postAttachConfigurationToCartItem(cart!.cartId, projectItem!.itemId, {
+        label: 'infrastructure',
+        value: PCI_PROJECT_ORDER_CART.infraConfigValue,
+      });
     },
     onError: handleError,
   });
@@ -109,13 +99,15 @@ export const useProjectCreation = ({
         return null;
       }
 
+      const price = creditAddonOption.prices[0];
+      if (!price) {
+        return null;
+      }
       return addItemToCart(cart!.cartId, {
         planCode: CREDIT_ORDER_CART.planCode,
-        quantity: Math.floor(
-          creditAmount / creditAddonOption.prices[0].price.value,
-        ),
-        duration: creditAddonOption.prices[0].duration,
-        pricingMode: creditAddonOption.prices[0].pricingMode,
+        quantity: Math.floor(creditAmount / price.price.value),
+        duration: price.duration,
+        pricingMode: price.pricingMode,
         itemId: projectItem!.itemId,
       });
     },
@@ -178,34 +170,47 @@ export const useProjectCreation = ({
     onError: handleError,
   });
 
-  const handleProjectCreation = async ({
-    isCreditPayment = false,
-    creditAmount = 0,
-  }: {
-    isCreditPayment?: boolean;
-    creditAmount?: number;
-  }) => {
-    // Step 1: Setup infrastructure config
-    await infraConfigMutation.mutateAsync();
+  const infraConfigMutationFn = infraConfigMutation.mutateAsync;
+  const creditConfigMutationFn = creditConfigMutation.mutateAsync;
+  const checkPaymentRequiredMutationFn = checkPaymentRequiredMutation.mutateAsync;
+  const checkoutMutationFn = checkoutMutation.mutateAsync;
+  const antiFraudCheckMutationFn = antiFraudCheckMutation.mutateAsync;
 
-    // Step 2: Setup credit config if needed
-    if (isCreditPayment) {
-      await creditConfigMutation.mutateAsync({ creditAmount });
-    }
+  const handleProjectCreation = useCallback(
+    async ({
+      isCreditPayment = false,
+      creditAmount = 0,
+    }: {
+      isCreditPayment?: boolean;
+      creditAmount?: number;
+    }) => {
+      // Step 1: Setup infrastructure config
+      await infraConfigMutationFn();
 
-    // Step 3: Check if payment required
-    const {
-      paymentRequired,
-    } = await checkPaymentRequiredMutation.mutateAsync();
+      // Step 2: Setup credit config if needed
+      if (isCreditPayment) {
+        await creditConfigMutationFn({ creditAmount });
+      }
 
-    if (!paymentRequired) {
-      // Step 4: If no payment required, proceed with checkout
-      const cartSummary = await checkoutMutation.mutateAsync();
+      // Step 3: Check if payment required
+      const { paymentRequired } = await checkPaymentRequiredMutationFn();
 
-      // Step 5: Run anti-fraud check
-      await antiFraudCheckMutation.mutateAsync(cartSummary);
-    }
-  };
+      if (!paymentRequired) {
+        // Step 4: If no payment required, proceed with checkout
+        const cartSummary = await checkoutMutationFn();
+
+        // Step 5: Run anti-fraud check
+        await antiFraudCheckMutationFn(cartSummary);
+      }
+    },
+    [
+      infraConfigMutationFn,
+      creditConfigMutationFn,
+      checkPaymentRequiredMutationFn,
+      checkoutMutationFn,
+      antiFraudCheckMutationFn,
+    ],
+  );
 
   const handleCreditAndPay = async () => {
     const cartSummary = await checkoutMutation.mutateAsync();

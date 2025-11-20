@@ -1,5 +1,6 @@
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ComponentProps, HTMLAttributes, memo } from 'react';
+
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
 interface FullPageSpinnerProps extends HTMLAttributes<HTMLDivElement> {
   'data-testid'?: string;
@@ -15,7 +16,7 @@ export default memo(function FullPageSpinner({
   return (
     <div
       {...containerProps}
-      className={`flex items-center justify-center w-full h-full min-h-screen ${className}`}
+      className={`flex size-full min-h-screen items-center justify-center ${className}`}
       data-testid={dataTestId}
       role="alert"
       aria-live="polite"

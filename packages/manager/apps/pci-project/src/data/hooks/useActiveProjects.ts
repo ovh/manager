@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
+
 import {
   getProjectsWithServices,
   projectsWithServiceQueryKey,
 } from '@/data/api/projects-with-services';
-import { TProjectWithService } from '@/data/types/project.type';
+import { TProjectWithService } from '@/data/models/Project.type';
 
 type TActiveProjectsReturn = {
   activeProjects: TProjectWithService[];
@@ -25,10 +27,7 @@ export default (): TActiveProjectsReturn => {
   });
 
   const activeProjects = useMemo(
-    () =>
-      (data?.data || []).filter(
-        (project: TProjectWithService) => project.status === 'ok',
-      ),
+    () => (data?.data || []).filter((project: TProjectWithService) => project.status === 'ok'),
     [data],
   );
 

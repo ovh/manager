@@ -1,10 +1,10 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import i18n from 'i18next';
 import { useContext, useMemo } from 'react';
-import {
-  GlobalStateStatus,
-  TWillPaymentConfig,
-} from '@/types/WillPayment.type';
+
+import { useTranslation } from 'react-i18next';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { GlobalStateStatus, TWillPaymentConfig } from '@/types/UWillPayment.type';
 
 export type WillPaymentConfigOptions = {
   onPaymentStatusChange?: (status: GlobalStateStatus) => void;
@@ -18,6 +18,7 @@ export const useWillPaymentConfig = ({
   onPaymentStatusChange,
 }: WillPaymentConfigOptions = {}): TWillPaymentConfig => {
   const { environment } = useContext(ShellContext);
+  const { i18n } = useTranslation();
   const user = environment.getUser();
 
   const eventBus = document.getElementById('will-payment-event-bus');
