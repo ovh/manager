@@ -11,8 +11,8 @@ import { RadioCard } from '../radio-card/RadioCard.component';
 import { REGION_PICKER_TEST_IDS } from './regionPicker.constants';
 
 type RegionPickerProps = {
-  selectedRegion: string;
-  setSelectedRegion: (region: string) => void;
+  selectedRegion: string | undefined;
+  setSelectedRegion: (region: string | undefined) => void;
 };
 
 export const RegionPicker = ({ selectedRegion, setSelectedRegion }: RegionPickerProps) => {

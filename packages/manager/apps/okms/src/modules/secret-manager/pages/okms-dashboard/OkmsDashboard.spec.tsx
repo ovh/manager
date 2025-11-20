@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { screen, waitFor } from '@testing-library/react';
@@ -13,7 +13,8 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsMock[0].id);
+const mockOkms = okmsRoubaix1Mock;
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsDashboard(mockOkms.id);
 
 // We mock @ovh-ux/manager-billing-informations module because it takes 3 secondes to load
 // And make the test suite slow

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ValidityPeriodErrorsType } from '@key-management-service/utils/credential/validateValidityDate';
 import {
@@ -15,7 +15,7 @@ import { VALIDITY_PERIOD_PRESET } from '../CreateGeneralInformations.constants';
 
 type CreateGeneralInformationsValidityProps = {
   validity: number;
-  setValidity: Dispatch<SetStateAction<number>>;
+  setValidity: (validity: number) => void;
   credentialValidityError: ValidityPeriodErrorsType | undefined;
 };
 

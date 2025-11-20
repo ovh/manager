@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
@@ -7,6 +7,8 @@ import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 import { GeneralInformationsTile } from './GeneralInformationsTile.component';
 import { GENERAL_INFORMATIONS_TILE_TEST_IDS } from './GeneralInformationsTile.constants';
+
+const mockOkms = okmsRoubaix1Mock;
 
 vi.mock('./items/NameTileItem.component', async (original) => ({
   ...(await original()),
@@ -39,7 +41,7 @@ describe('OKMS General Informations Tile test suite', () => {
     ];
 
     // WHEN
-    await renderWithI18n(<GeneralInformationsTile okms={okmsMock[0]} />);
+    await renderWithI18n(<GeneralInformationsTile okms={mockOkms} />);
 
     // THEN
     expect(screen.getByText(labels.common.dashboard.general_information)).toBeVisible();

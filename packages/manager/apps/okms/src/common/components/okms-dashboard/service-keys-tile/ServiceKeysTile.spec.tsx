@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen, waitFor } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
@@ -11,6 +11,8 @@ import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { ServiceKeysTile } from './ServiceKeysTile.component';
 import { SERVICE_KEYS_TILE_TEST_IDS } from './ServiceKeysTile.constants';
+
+const mockOkms = okmsRoubaix1Mock;
 
 let i18nValue: i18n;
 
@@ -46,7 +48,7 @@ const renderTile = async () => {
 
   return renderWithClient(
     <I18nextProvider i18n={i18nValue}>
-      <ServiceKeysTile okms={okmsMock[0]} />
+      <ServiceKeysTile okms={mockOkms} />
     </I18nextProvider>,
   );
 };

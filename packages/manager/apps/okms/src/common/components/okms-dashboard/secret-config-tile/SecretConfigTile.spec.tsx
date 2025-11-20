@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { getSecretConfigOkms } from '@secret-manager/data/api/secretConfigOkms';
 import { screen, waitFor } from '@testing-library/react';
 import { i18n } from 'i18next';
@@ -11,6 +11,8 @@ import { renderWithClient } from '@/common/utils/tests/testUtils';
 
 import { SecretConfigTile } from './SecretConfigTile.component';
 import { SECRET_CONFIG_TILE_TEST_IDS } from './SecretConfigTile.constants';
+
+const mockOkms = okmsRoubaix1Mock;
 
 let i18nValue: i18n;
 
@@ -62,7 +64,7 @@ const renderTile = async () => {
 
   return renderWithClient(
     <I18nextProvider i18n={i18nValue}>
-      <SecretConfigTile okms={okmsMock[0]} />
+      <SecretConfigTile okms={mockOkms} />
     </I18nextProvider>,
   );
 };

@@ -43,15 +43,18 @@ const buildRegionOptions = (locations: Location[], okmsList: OKMS[]): RegionOpti
       const location = findLocationByRegion(locations, region);
       if (!location) return null;
 
+      // get the first okms in the region
       const regionOkmsList = okmsList.filter((okms) => okms.region === region);
+      const firstOkms = regionOkmsList[0]!; // we know that there is a okms in the region
 
       return {
         region: location.name,
         continentCode: getContinentCodeFromGeographyCode(location.geographyCode),
         href:
-          // If only one okms is available, redirect to the secrets listing page
+          // If only one okms is available, redirect to its secrets listing page
+          // Otherwise, redirect to the region page that displays the okms list
           regionOkmsList.length === 1
-            ? SECRET_MANAGER_ROUTES_URLS.secretList(regionOkmsList[0].id)
+            ? SECRET_MANAGER_ROUTES_URLS.secretList(firstOkms.id)
             : SECRET_MANAGER_ROUTES_URLS.okmsList(region),
       };
     })

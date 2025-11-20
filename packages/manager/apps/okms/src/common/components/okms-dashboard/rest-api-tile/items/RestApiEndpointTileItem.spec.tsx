@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
@@ -12,7 +12,7 @@ import { ENPOINT_LABEL } from '@/constants';
 
 import { RestApiEndpointTileItem } from './RestApiEndpointTileItem.component';
 
-const okmsMocked = okmsMock[0];
+const okmsMocked = okmsRoubaix1Mock;
 
 vi.mock(
   '@/common/components/download-okms-public-ca-link/DownloadOkmsPublicCaLink',
@@ -35,7 +35,7 @@ describe('OKMS Rest API endpoint Tile Item test suite', () => {
 
     expect(DownloadOkmsPublicCaLink).toHaveBeenCalledTimes(1);
     expect(
-      vi.mocked(DownloadOkmsPublicCaLink).mock.calls[0][0],
+      vi.mocked(DownloadOkmsPublicCaLink).mock.calls[0]?.[0],
     ).toEqual<DownloadOkmsPublicCaLinkProps>({
       okms: okmsMocked,
       type: 'publicCaRest',

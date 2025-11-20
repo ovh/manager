@@ -12,7 +12,7 @@ export default function SecretManagerRootPage() {
   const navigate = useNavigate();
   const hasNavigated = useRef(false);
 
-  const { data: okmsList, isPending } = useOkmsList();
+  const { data: okmsList, isPending, isError } = useOkmsList();
 
   // Manage redirect logic
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function SecretManagerRootPage() {
     };
 
     // Prevent navigation if already navigated or if still pending
-    if (hasNavigated.current || isPending) {
+    if (hasNavigated.current || isPending || isError) {
       return;
     }
 
@@ -34,18 +34,18 @@ export default function SecretManagerRootPage() {
 
     const groupedOkms = Object.values(groupOkmsListByRegion(okmsList));
     const firstRegionOkmsList = groupedOkms[0];
-    const firstRegionOkms = firstRegionOkmsList[0];
+    const firstRegionOkms = firstRegionOkmsList?.[0];
 
-    if (firstRegionOkmsList.length > 0) {
-      if (firstRegionOkmsList.length === 1) {
+    if (firstRegionOkmsList && firstRegionOkmsList?.length > 0) {
+      if (firstRegionOkmsList?.length === 1) {
         // If there is only one OKMS in the first region, navigate to the secret list page
-        handleNavigate(SECRET_MANAGER_ROUTES_URLS.secretList(firstRegionOkms.id));
+        handleNavigate(SECRET_MANAGER_ROUTES_URLS.secretList(firstRegionOkms?.id ?? ''));
       } else {
         // If there are multiple OKMS in the first region, navigate to the okms list page
-        handleNavigate(SECRET_MANAGER_ROUTES_URLS.okmsList(firstRegionOkms.region));
+        handleNavigate(SECRET_MANAGER_ROUTES_URLS.okmsList(firstRegionOkms?.region ?? ''));
       }
     }
-  }, [okmsList, isPending, navigate]);
+  }, [okmsList, isPending, isError, navigate]);
 
   return <Loading />;
 }

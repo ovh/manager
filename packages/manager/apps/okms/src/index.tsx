@@ -36,7 +36,7 @@ const init = async (appName: string) => {
     // nothing to do
   }
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
         <App />

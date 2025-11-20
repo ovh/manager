@@ -124,6 +124,7 @@ describe('KeyValuesEditor', () => {
         container,
         label: labels.add_row,
       });
+
       await act(async () => user.click(addButton));
 
       // Then
@@ -251,6 +252,7 @@ describe('KeyValuesEditor', () => {
         container,
         label: labels.add_row,
       });
+
       await act(async () => user.click(addButton));
 
       // Then - both delete buttons should be enabled
