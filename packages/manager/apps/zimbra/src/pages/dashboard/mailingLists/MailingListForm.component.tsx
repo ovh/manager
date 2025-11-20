@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 import {
   ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
@@ -18,7 +17,6 @@ import {
 import {
   OdsButton,
   OdsFormField,
-  OdsIcon,
   OdsInput,
   OdsMessage,
   OdsRadio,
@@ -35,7 +33,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -439,7 +445,7 @@ export const MailingListForm = () => {
                         {t('zimbra_mailinglist_add_subscriber_moderation')}
                         <Tooltip>
                           <TooltipTrigger asChild>
-                            <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleInfo} />
+                            <Icon className="ml-3 text-xs" name={ICON_NAME.circleInfo} />
                           </TooltipTrigger>
                           <TooltipContent>
                             <Text preset={TEXT_PRESET.paragraph}>

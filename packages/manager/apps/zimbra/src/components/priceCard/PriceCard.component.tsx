@@ -2,13 +2,14 @@ import React, { useMemo } from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsCard, OdsIcon, OdsRadio, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsRadio, OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 import {
   BADGE_COLOR,
   Badge,
+  ICON_NAME,
+  Icon,
   TEXT_PRESET,
   TOOLTIP_POSITION,
   Text,
@@ -107,16 +108,19 @@ export const PriceCard: React.FC<PriceCardProps> = ({
       <div className="flex flex-col p-6 flex-1 gap-4">
         {features.map((feature, index) => (
           <div className="flex items-center gap-8" key={index}>
-            <OdsIcon name="check" className={cn(isDisabled ? 'text-gray-400' : 'text-green-600')} />
+            <Icon
+              name={ICON_NAME.check}
+              className={cn(isDisabled ? 'text-gray-400' : 'text-green-600')}
+            />
             <Text className={cn(isDisabled ? '[&::part(text)]:text-gray-400' : '')}>
               <Trans t={t} i18nKey={feature.label} />
               {feature.tooltip && (
                 <Tooltip position={TOOLTIP_POSITION.bottom}>
                   <TooltipTrigger asChild>
-                    <OdsIcon
+                    <Icon
                       id={feature.tooltip}
                       className="ml-3 size-6"
-                      name={ODS_ICON_NAME.circleQuestion}
+                      name={ICON_NAME.circleQuestion}
                     />
                   </TooltipTrigger>
                   <TooltipContent className="max-w-96 text-center" withArrow>

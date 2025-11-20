@@ -2,12 +2,14 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton, OdsCard, OdsIcon, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { Price as PriceType } from '@ovh-ux/manager-module-order';
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 import {
+  Button,
+  ICON_NAME,
+  Icon,
   TEXT_PRESET,
   TOOLTIP_POSITION,
   Text,
@@ -71,7 +73,7 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
             <Text preset="heading-6">{t('common:paid_now')}</Text>
             <Tooltip position={TOOLTIP_POSITION.bottom}>
               <TooltipTrigger asChild>
-                <OdsIcon className="ml-3" name={ODS_ICON_NAME.circleInfo} />
+                <Icon className="ml-3" name={ICON_NAME.circleInfo} />
               </TooltipTrigger>
               <TooltipContent className="max-w-96 text-center" withArrow>
                 <Text className="mb-4" preset={TEXT_PRESET.heading6}>
@@ -92,15 +94,15 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
         </div>
       )}
       <div className="w-[calc(100%-2rem)] p-6 justify-center">
-        <OdsButton
-          label={t('common:continue_order_btn')}
+        <Button
           className="w-full [&::part(button)]:w-full"
-          icon={ODS_ICON_NAME.shoppingCart}
-          iconAlignment="right"
-          isLoading={isSending}
-          isDisabled={isCurrentOffer}
+          loading={isSending}
+          disabled={isCurrentOffer}
           onClick={onUpgrade}
-        />
+        >
+          {t('common:continue_order_btn')}
+          <Icon className="ml-3" name={ICON_NAME.shoppingCart} />
+        </Button>
       </div>
     </OdsCard>
   );

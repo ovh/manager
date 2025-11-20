@@ -177,7 +177,7 @@ export default function Settings() {
                   className="text-critical leading-[0.8]"
                   preset="caption"
                 >
-                  {t(errors[name].message, { ns: NAMESPACES.FORM })}
+                  {t(errors.?[name]?.message, { ns: NAMESPACES.FORM })}
                 </OdsText>
               )}
             </OdsFormField>

@@ -4,17 +4,12 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
-  ODS_MESSAGE_COLOR,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsIcon, OdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_LINK_COLOR, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { IconLinkAlignmentType, LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { BUTTON_VARIANT, Button, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import {
   Loading,
@@ -51,9 +46,7 @@ const TabTitle = ({ title, hasError }: { title: string; hasError?: boolean }) =>
   return (
     <>
       {title}
-      {hasError && (
-        <OdsIcon className="diag-dns-icon ml-4" name={ODS_ICON_NAME.hexagonExclamation} />
-      )}
+      {hasError && <Icon className="diag-dns-icon ml-4" name={ICON_NAME.hexagonExclamation} />}
     </>
   );
 };
@@ -206,14 +199,15 @@ export const DomainDiagnostics = () => {
         })}
       </Text>
       <div className="mt-6">
-        <OdsButton
+        <Button
           data-testid="refresh"
-          label={t('zimbra_domain_diagnostic_cta_refresh')}
-          icon={ODS_ICON_NAME.refresh}
-          variant={ODS_BUTTON_VARIANT.outline}
+          variant={BUTTON_VARIANT.outline}
           isLoading={isFetching}
           onClick={handleRefreshClick}
-        ></OdsButton>
+        >
+          <Icon name={ICON_NAME.refresh} />
+          {t('zimbra_domain_diagnostic_cta_refresh')}
+        </Button>
       </div>
       <div className="mt-5 mb-8">
         <TabsPanel tabs={tabsList} />

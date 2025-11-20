@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 import {
   ODS_BUTTON_COLOR,
-  ODS_ICON_NAME,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_COLOR,
   ODS_SPINNER_SIZE,
@@ -19,7 +18,6 @@ import {
   OdsButton,
   OdsCheckbox,
   OdsFormField,
-  OdsIcon,
   OdsInput,
   OdsMessage,
   OdsPassword,
@@ -35,7 +33,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import { GeneratePasswordButton, Loading } from '@/components';
 import {
@@ -425,7 +431,7 @@ export const EmailAccountForm = () => {
                     {t('zimbra_account_add_checkbox_hide_in_gal')}
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
+                        <Icon className="ml-3 text-xs" name={ICON_NAME.circleQuestion} />
                       </TooltipTrigger>
                       <TooltipContent>
                         <Text preset={TEXT_PRESET.paragraph}>
@@ -498,7 +504,7 @@ export const EmailAccountForm = () => {
                     {t('zimbra_account_add_checkbox_force_change_password')}
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
+                        <Icon className="ml-3 text-xs" name={ICON_NAME.circleQuestion} />
                       </TooltipTrigger>
                       <TooltipContent>
                         <Text preset={TEXT_PRESET.paragraph}>

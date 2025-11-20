@@ -102,10 +102,12 @@ export const DatagridTopbar = () => {
             iamActions={[IAM_ACTIONS.account.create]}
             onClick={handleAddEmailAccountClick}
             data-testid="add-account-btn"
-            isDisabled={!canCreateAccount}
+            disabled={!canCreateAccount}
           >
-            <Icon name={ICON_NAME.plus} />
-            {t('zimbra_account_account_add')}
+            <>
+              <Icon name={ICON_NAME.plus} />
+              {t('zimbra_account_account_ad>d')}
+            </>
           </Button>
         </TooltipTrigger>
         {canCreateAccount && (

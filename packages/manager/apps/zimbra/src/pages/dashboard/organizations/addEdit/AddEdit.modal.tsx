@@ -7,8 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME, ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsIcon, OdsInput } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -19,7 +19,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 import {
   OrganizationBodyParamsType,
@@ -214,7 +222,7 @@ export const AddEditOrganizationModal = () => {
                 {t('zimbra_organization_add_form_input_label_title')} *
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <OdsIcon className="ml-3 text-xs" name={ODS_ICON_NAME.circleQuestion} />
+                    <Icon className="ml-3 text-xs" name={ICON_NAME.circleQuestion} />
                   </TooltipTrigger>
                   <TooltipContent>
                     <Text preset={TEXT_PRESET.paragraph}>
