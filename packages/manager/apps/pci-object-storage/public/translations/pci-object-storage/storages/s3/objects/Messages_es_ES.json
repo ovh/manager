@@ -58,5 +58,6 @@
   "inProgressRestore": "Restauración en curso...",
   "available": "Válido hasta el",
   "restoreAvailableUntil": "El objeto estará disponible hasta el",
-  "seeVersionsSwitchLabel": "Ver las versiones"
+  "seeVersionsSwitchLabel": "Ver las versiones",
+  "searchPlaceholder": "Buscar..."
 }

@@ -79,11 +79,6 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
       filtersDefinition={storagesFilters}
     >
       <DataTable.Header>
-        <DataTable.Action>
-          <Link to={'../'} className="flex items-center w-full">
-            <ArrowLeft className="w-4 h-4 mr-2" /> {t('objectsBackLink')}
-          </Link>
-        </DataTable.Action>
         <DataTable.SearchBar />
         <DataTable.FiltersButton />
       </DataTable.Header>

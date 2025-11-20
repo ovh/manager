@@ -5,7 +5,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useRestoreS3Object } from '@/data/hooks/s3-storage/useRestoreS3Object.hook';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
-import { useS3Data } from '../../S3.context';
+import { useS3Data } from '../../../S3.context';
 
 export const useRestoreS3Form = ({
   onRestoreEnd,

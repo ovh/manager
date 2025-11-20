@@ -58,5 +58,6 @@
   "inProgressRestore": "Restoration in progress...",
   "available": "Available until",
   "restoreAvailableUntil": "The item will be available until",
-  "seeVersionsSwitchLabel": "See versions"
+  "seeVersionsSwitchLabel": "See versions",
+  "searchPlaceholder": "Search..."
 }

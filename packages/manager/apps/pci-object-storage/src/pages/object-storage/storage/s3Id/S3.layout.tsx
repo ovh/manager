@@ -40,11 +40,14 @@ export function breadcrumb() {
   return <S3Name />;
 }
 
+const HIDE_HEADER_ROUTE_PATTERNS = ['s3.object.'];
 const HIDE_TABS_ROUTE_PATTERNS = ['s3.object.'];
 
-const shouldHideS3Tabs = (matches: ReturnType<typeof useMatches>): boolean => {
+const shouldHideS3Header = (
+  matches: ReturnType<typeof useMatches>,
+): boolean => {
   return matches.some((match) =>
-    HIDE_TABS_ROUTE_PATTERNS.some((pattern) => match.id?.startsWith(pattern)),
+    HIDE_HEADER_ROUTE_PATTERNS.some((pattern) => match.id?.startsWith(pattern)),
   );
 };
 
@@ -62,7 +65,9 @@ export default function S3Layout() {
     },
   });
 
-  const shouldHideTabs = shouldHideS3Tabs(matches);
+  const isOnObjectView = shouldHideS3Header(matches);
+  const shouldHideHeader = isOnObjectView;
+  const shouldHideTabs = isOnObjectView;
 
   const s3 = s3Query.data;
   if (!s3) {
@@ -81,7 +86,7 @@ export default function S3Layout() {
 
   return (
     <>
-      <S3Header s3={s3} />
+      {!shouldHideHeader && <S3Header s3={s3} />}
       {!shouldHideTabs && <S3Tabs s3={s3} />}
       <div className="space-y-2">
         <Outlet context={s3LayoutContext} />
