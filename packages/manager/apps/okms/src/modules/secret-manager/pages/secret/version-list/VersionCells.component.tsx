@@ -1,10 +1,7 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { VersionState } from '@secret-manager/components/version-state/VersionState.component';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret, SecretVersion, SecretVersionState } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +10,7 @@ import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { DataGridTextCell, ManagerLink } from '@ovh-ux/manager-react-components';
 
 import { useFormatDate } from '@/common/hooks/useFormatDate';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { VERSION_LIST_CELL_TEST_IDS } from './VersionCells.constants';
@@ -26,7 +24,7 @@ const isVersionIdCellDisabled: Record<SecretVersionState, boolean> = {
 export const VersionIdCell = ({ version, secret }: { version: SecretVersion; secret: Secret }) => {
   const navigate = useNavigate();
   const { t } = useTranslation('secret-manager');
-  const { okmsId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
 
   const isCurrentVersion = version.id === secret?.metadata?.currentVersion;
 
@@ -34,7 +32,7 @@ export const VersionIdCell = ({ version, secret }: { version: SecretVersion; sec
     <div className="flex items-center gap-2">
       <ManagerLink
         label={version.id.toString()}
-        href={null}
+        href=""
         isDisabled={isVersionIdCellDisabled[version.state]}
         onClick={() => {
           navigate(

@@ -1,7 +1,6 @@
-import { useParams } from 'react-router-dom';
-
 import { OKMS } from '@key-management-service/types/okms.type';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
+
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 /**
  * Custom hook to determine the current region based on the URL parameters.
@@ -10,7 +9,7 @@ import { LocationPathParams } from '@secret-manager/routes/routes.constants';
  * If neither is found, it returns undefined.
  */
 export const useCurrentRegion = (okmsList: OKMS[]) => {
-  const { okmsId, region } = useParams<LocationPathParams>();
+  const { okmsId, region } = useRequiredParams('okmsId', 'region');
 
   if (!region && okmsList.length === 0) {
     return undefined;

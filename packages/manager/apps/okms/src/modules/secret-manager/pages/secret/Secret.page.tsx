@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import {
   OkmsBreadcrumbItem,
@@ -8,10 +8,7 @@ import {
 import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
 import { useSecret } from '@secret-manager/data/hooks/useSecret';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
 import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
@@ -30,12 +27,13 @@ import {
   TabNavigation,
   TabNavigationItem,
 } from '@/common/components/tab-navigation/TabNavigation.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
 
 import { SecretPageOutletContext } from './Secret.type';
 
 export default function SecretPage() {
-  const { okmsId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const secretPathDecoded = decodeSecretPath(secretPath);
   const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const navigate = useNavigate();

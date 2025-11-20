@@ -1,15 +1,14 @@
-import { useParams } from 'react-router-dom';
-
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 
 import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
 import { RedirectionGuard, useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 
 export default function KmsLogs() {
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const { data: okms, isPending: isOkmsPending } = useOkmsById(okmsId);
 
   const { data: features, isPending: isPendingFeatures } = useFeatureAvailability([

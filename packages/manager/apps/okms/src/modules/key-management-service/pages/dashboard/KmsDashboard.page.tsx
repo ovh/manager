@@ -1,6 +1,6 @@
 import { Suspense, useMemo } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
@@ -26,6 +26,7 @@ import {
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
@@ -39,9 +40,8 @@ export default function DashboardPage() {
     'key-management-service/credential',
   ]);
   const navigate = useNavigate();
-  const { okmsId } = useParams() as {
-    okmsId: string;
-  };
+  const { okmsId } = useRequiredParams('okmsId');
+
   const { data: okms, isPending: isOkmsLoading, error: okmsError } = useOkmsById(okmsId);
 
   const { data: features, isLoading: isFeatureAvailabilityLoading } = useFeatureAvailability([

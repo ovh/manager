@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
 import { useUpdateOkmsServiceKey } from '@key-management-service/data/hooks/useUpdateOkmsServiceKey';
@@ -30,14 +30,12 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants';
 
 export const EditServiceKeyNameModal = () => {
-  const { okmsId, keyId } = useParams() as {
-    okmsId: string;
-    keyId: string;
-  };
+  const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
   const { data, isLoading, error } = useOkmsServiceKeyById({ okmsId, keyId });
   const [serviceKeyName, setServiceKeyName] = useState(data?.data?.name || '');
   const serviceKeyNameError = validateServiceKeyName(serviceKeyName);
