@@ -66,6 +66,7 @@ export type DatagridProps<T extends ExpandableRow<T>> = {
   expandable?: ExpandedProps;
   filters?: FilterProps;
   hasNextPage?: boolean;
+  hideHeader?: boolean;
   isLoading?: boolean;
   maxRowHeight?: number;
   resourceType?: string;
@@ -101,6 +102,12 @@ export enum ContainerHeight {
   sm = 375,
   md = 550,
   lg = 725,
+}
+
+export enum ContainerWihtoutHeaderHeight {
+  sm = 340,
+  md = 500,
+  lg = 660,
 }
 
 export type DatagridColumn<T> = ColumnDef<T> & {

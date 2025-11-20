@@ -13,6 +13,7 @@ export const TableBody = <T,>({
   autoScroll = true,
   columns,
   isLoading,
+  hideHeader = false,
   maxRowHeight,
   expanded,
   pageSize = 10,
@@ -75,17 +76,23 @@ export const TableBody = <T,>({
         const row = rows[virtualRow?.index];
         if (!row) return null;
         const offset = renderSubComponent ? getOffset(virtualRow?.index) : 0;
+        const translateY = hideHeader
+          ? virtualRow.start + offset - virtualRow?.index + 1
+          : virtualRow.start + offset - virtualRow?.index - 1;
+        const width = !hideHeader ? '100%' : 'calc(100% - 1px)';
+        const leftPosition = !hideHeader ? -1 : 0;
         return (
           <Fragment key={`table-body-tr-${row.id}`}>
             <tr
               key={row.id}
               data-index={virtualRow.index}
               ref={rowVirtualizer.measureElement}
-              className={`table overflow-hidden absolute top-0 w-full table table-fixed`}
+              className={`table overflow-hidden absolute top-0 table table-fixed`}
               style={{
-                left: -1,
+                left: leftPosition,
                 height: `${maxRowHeight}px`,
-                transform: `translateY(${virtualRow.start + offset}px)`,
+                transform: `translateY(${translateY}px)`,
+                width,
               }}
             >
               {row.getVisibleCells().map((cell) => (
@@ -96,7 +103,6 @@ export const TableBody = <T,>({
                     width: cell.column.getSize(),
                     minWidth: cell.column.columnDef.minSize ?? 0,
                     maxWidth: cell.column.columnDef.maxSize ?? 'auto',
-                    borderTop: 'none',
                   }}
                 >
                   <div
