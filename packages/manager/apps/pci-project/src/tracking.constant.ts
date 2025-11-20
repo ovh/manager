@@ -58,11 +58,7 @@ export const PROJECTS_TRACKING = {
   },
   PROJECT_HOME: {
     PAGE_NAME: 'project-detail',
-    CTA_ANNOUNCEMENT_BANNER: [
-      'page',
-      'button',
-      'announcement_banner_activation',
-    ],
+    CTA_ANNOUNCEMENT_BANNER: ['page', 'button', 'announcement_banner_activation'],
     CTA_DISCOVERY_BANNER: ['page', 'button', 'discovery_banner_activation'],
   },
   CREATION: {
@@ -72,29 +68,10 @@ export const PROJECTS_TRACKING = {
       CTA_BACK: ['funnel', 'button', 'create_project', 'name', 'back'],
     },
     PAYMENT_STEP: {
-      CTA_NEXT: [
-        'funnel',
-        'button',
-        'create_project',
-        'select_payment',
-        'next',
-      ],
-      CTA_BACK: [
-        'funnel',
-        'button',
-        'create_project',
-        'select_payment',
-        'back',
-      ],
+      CTA_NEXT: ['funnel', 'button', 'create_project', 'select_payment', 'next'],
+      CTA_BACK: ['funnel', 'button', 'create_project', 'select_payment', 'back'],
 
-      ADD_VOUCHER: [
-        'funnel',
-        'button',
-        'create_project',
-        'select_payment',
-        'voucher',
-        'add',
-      ],
+      ADD_VOUCHER: ['funnel', 'button', 'create_project', 'select_payment', 'voucher', 'add'],
       ADD_VOUCHER_ERROR: 'add_voucher_error',
       ADD_VOUCHER_SUCCESS: 'add_voucher_success',
     },
@@ -102,13 +79,7 @@ export const PROJECTS_TRACKING = {
   CREATING: {
     PAGE_NAME: 'creating',
     CTA_GUIDE: ['funnel', 'link', 'create_project', 'creating', 'pci-guides'],
-    CTA_OTHER_PROJECTS: [
-      'funnel',
-      'link',
-      'create_project',
-      'creating',
-      'other-projects',
-    ],
+    CTA_OTHER_PROJECTS: ['funnel', 'link', 'create_project', 'creating', 'other-projects'],
     PROJECT_DELIVERED: 'project_created',
     PROJECT_DELIVERY_FAILED: 'project_creation_error',
   },

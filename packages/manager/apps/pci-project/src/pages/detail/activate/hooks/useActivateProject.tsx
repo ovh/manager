@@ -1,20 +1,23 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
 
-import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
-import { useActivateTracking } from './useActivateTracking';
-import {
-  useActivateProject,
-  useSimulateProjectActivation,
-} from '@/data/hooks/useServices';
+import { useNavigate } from 'react-router-dom';
+
+import { AxiosError } from 'axios';
+import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
 import { useClaimVoucher } from '@/data/hooks/useProjects';
-import { TProjectPrice } from '@/data/types/project.type';
-import { TEligibilityVoucher } from '@/data/types/eligibility.type';
+import { useActivateProject, useSimulateProjectActivation } from '@/data/hooks/useServices';
+import { TEligibilityVoucher } from '@/data/types/Eligibility.type';
+import { TProjectPrice } from '@/data/types/Project.type';
+import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+
+import { useActivateTracking } from './useActivateTracking';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export type UseProjectActivationProps = {
   promotionVoucher: TEligibilityVoucher['credit'] | null;
@@ -33,10 +36,7 @@ export const useProjectActivation = ({
   const { addError } = useNotifications();
   const { trackActivateError, trackActivateSuccess } = useActivateTracking();
 
-  const [
-    creditPaymentAmount,
-    setCreditPaymentAmount,
-  ] = useState<TProjectPrice | null>(null);
+  const [creditPaymentAmount, setCreditPaymentAmount] = useState<TProjectPrice | null>(null);
 
   const handleError = (error: ApiError) => {
     trackActivateError();
@@ -47,15 +47,11 @@ export const useProjectActivation = ({
     );
   };
 
-  const {
-    mutateAsync: claimDiscoveryVoucher,
-    isPending: isClaimingDiscoveryVoucher,
-  } = useClaimVoucher();
+  const { mutateAsync: claimDiscoveryVoucher, isPending: isClaimingDiscoveryVoucher } =
+    useClaimVoucher();
 
-  const {
-    mutateAsync: activateDiscoveryProject,
-    isPending: isActivatingDiscoveryProject,
-  } = useActivateProject();
+  const { mutateAsync: activateDiscoveryProject, isPending: isActivatingDiscoveryProject } =
+    useActivateProject();
 
   const {
     mutateAsync: simulateDiscoveryProjectActivation,
@@ -65,8 +61,8 @@ export const useProjectActivation = ({
   const navigateToUpdating = useCallback(
     (orderId: number) => {
       const path = promotionVoucher
-        ? `../../updating/${orderId}/${DISCOVERY_PROMOTION_VOUCHER}`
-        : `../../updating/${orderId}`;
+        ? `../updating/${orderId}/${DISCOVERY_PROMOTION_VOUCHER}`
+        : `../updating/${orderId}`;
       navigate(path);
     },
     [navigate, promotionVoucher],
@@ -87,9 +83,7 @@ export const useProjectActivation = ({
 
       // Step 2: Simulate activation to check if payment is required
       if (simulate) {
-        const simulationResult = await simulateDiscoveryProjectActivation(
-          serviceId!,
-        );
+        const simulationResult = await simulateDiscoveryProjectActivation(serviceId!);
 
         // Step 3: Check if credit payment is needed
         if (simulationResult?.order?.prices?.withTax?.value !== 0) {
@@ -122,7 +116,7 @@ export const useProjectActivation = ({
    * Handler for credit payment flow (when user needs to pay)
    */
   const handleCreditPayment = () => {
-    handleActivateProject({ autoPay: false, simulate: false });
+    void handleActivateProject({ autoPay: false, simulate: false });
   };
 
   const isSubmitting =

@@ -1,7 +1,9 @@
 import React from 'react';
+
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
+import { vi } from 'vitest';
+
 import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 global.fetch = fetch;
@@ -30,7 +32,10 @@ vi.mock('react-i18next', () => ({
       changeLanguage: () => new Promise(() => {}),
     },
   }),
-  Translation: vi.fn(({ children }) => children((key: string) => key)),
+  Translation: vi.fn(
+    ({ children }: { children: (t: (key: string) => string) => React.ReactNode }) =>
+      children((key: string) => key),
+  ),
   Trans: ({ i18nKey }: { i18nKey: string }) => <span>{i18nKey}</span>,
 }));
 
@@ -54,7 +59,9 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-  const actual: typeof import('@ovh-ux/manager-pci-common') = await importOriginal();
+  const actual = (await importOriginal<
+    typeof import('@ovh-ux/manager-pci-common')
+  >()) as unknown as Record<string, unknown>;
   return {
     ...actual,
     isDiscoveryProject: vi.fn(),
@@ -136,28 +143,193 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
+  const mockOdsInput = React.forwardRef<
+    HTMLInputElement,
+    {
+      value?: string;
+      name?: string;
+      onOdsChange?: (event: { detail: { value: string } }) => void;
+      isDisabled?: boolean;
+      isReadonly?: boolean;
+      hasError?: boolean;
+      maxlength?: string;
+      [key: string]: unknown;
+    }
+  >(({ value, onOdsChange, name, isDisabled, isReadonly, hasError, maxlength, ...props }, ref) => {
+    const [internalValue, setInternalValue] = React.useState(value || '');
+    const elementRef = React.useRef<HTMLElement | null>(null);
+
+    React.useEffect(() => {
+      setInternalValue(value || '');
+    }, [value]);
+
+    React.useEffect(() => {
+      const element = elementRef.current;
+      if (!element) return undefined;
+
+      // Mock the internals property for form control integration
+      (
+        element as HTMLElement & {
+          internals?: Record<string, unknown>;
+        }
+      ).internals = {
+        setFormValue: vi.fn(),
+        setValidity: vi.fn(),
+        checkValidity: vi.fn(() => true),
+        reportValidity: vi.fn(() => true),
+      };
+
+      const handleOdsChange = (event: CustomEvent) => {
+        const newValue = (event.detail as { value: string }).value;
+        setInternalValue(newValue);
+        if (onOdsChange) {
+          onOdsChange({ detail: { value: newValue } });
+        }
+      };
+
+      element.addEventListener('odsChange', handleOdsChange as EventListener);
+      return () => {
+        element.removeEventListener('odsChange', handleOdsChange as EventListener);
+      };
+    }, [onOdsChange]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setInternalValue(newValue);
+      if (onOdsChange) {
+        onOdsChange({ detail: { value: newValue } });
+      }
+    };
+
+    // Create a component that can be found by querySelector('ods-input')
+    const Component = 'ods-input' as React.ElementType;
+    return (
+      <Component
+        ref={(el: HTMLElement) => {
+          elementRef.current = el;
+          if (ref) {
+            if (typeof ref === 'function') {
+              ref(el as HTMLInputElement);
+            } else {
+              ref.current = el as HTMLInputElement;
+            }
+          }
+        }}
+        data-testid="ods-input"
+        name={name}
+        value={internalValue}
+        is-disabled={isDisabled?.toString()}
+        is-readonly={isReadonly?.toString()}
+        has-error={hasError?.toString()}
+        maxlength={maxlength}
+        onInput={handleChange}
+        onChange={handleChange}
+        {...props}
+      />
+    );
+  });
+  mockOdsInput.displayName = 'OdsInput';
+
+  const mockOdsCheckbox = React.forwardRef<
+    HTMLInputElement,
+    {
+      inputId: string;
+      name?: string;
+      isChecked?: boolean;
+      isDisabled?: boolean;
+      className?: string;
+      children?: React.ReactNode;
+      onClick?: () => void;
+      onOdsChange?: (event: { detail: { checked: boolean } }) => void;
+      class?: string;
+      isRequired?: boolean;
+      'is-required'?: boolean;
+      [key: string]: unknown;
+    }
+  >(
+    (
+      { inputId, name, isChecked, isDisabled, className, children, onClick, onOdsChange, ...props },
+      ref,
+    ) => {
+      const [internalChecked, setInternalChecked] = React.useState(isChecked || false);
+      const elementRef = React.useRef<HTMLElement | null>(null);
+
+      React.useEffect(() => {
+        setInternalChecked(isChecked || false);
+      }, [isChecked]);
+
+      React.useEffect(() => {
+        const element = elementRef.current;
+        if (!element) return undefined;
+
+        const handleOdsChange = (event: CustomEvent) => {
+          const newChecked = (event.detail as { checked: boolean }).checked;
+          setInternalChecked(newChecked);
+          if (onOdsChange) {
+            onOdsChange({ detail: { checked: newChecked } });
+          }
+        };
+
+        element.addEventListener('odsChange', handleOdsChange as EventListener);
+        return () => {
+          element.removeEventListener('odsChange', handleOdsChange as EventListener);
+        };
+      }, [onOdsChange]);
+
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newChecked = e.target.checked;
+        setInternalChecked(newChecked);
+        if (onOdsChange) {
+          onOdsChange({ detail: { checked: newChecked } });
+        }
+        if (onClick) {
+          onClick();
+        }
+      };
+
+      const Component = 'ods-checkbox' as React.ElementType;
+      const { class: classProp, ...restProps } = props;
+      return (
+        <Component
+          ref={(el: HTMLElement) => {
+            elementRef.current = el;
+            if (ref) {
+              if (typeof ref === 'function') {
+                ref(el as HTMLInputElement);
+              } else {
+                ref.current = el as HTMLInputElement;
+              }
+            }
+          }}
+          data-testid="ods-checkbox"
+          input-id={inputId}
+          name={name}
+          is-checked={internalChecked?.toString()}
+          is-disabled={isDisabled?.toString()}
+          is-required={(props['is-required'] || props.isRequired)?.toString()}
+          class={
+            `${typeof className === 'string' ? className : ''} ${typeof classProp === 'string' ? classProp : ''}`.trim() ||
+            undefined
+          }
+          onClick={onClick}
+          onChange={handleChange}
+          {...restProps}
+        >
+          {children}
+        </Component>
+      );
+    },
+  );
+  mockOdsCheckbox.displayName = 'OdsCheckbox';
+
   return {
     ...actual,
-    OdsBadge: ({
-      color,
-      label,
-      ...props
-    }: {
-      color: string;
-      label: string;
-    }) => (
+    OdsBadge: ({ color, label, ...props }: { color: string; label: string }) => (
       <div data-testid="status_badge" data-color={color} {...props}>
         {label}
       </div>
     ),
-    OdsLink: ({
-      label,
-      iconAlignment, // eslint-disable-line @typescript-eslint/no-unused-vars
-      ...props
-    }: {
-      label: string;
-      iconAlignment?: string;
-    }) => (
+    OdsLink: ({ label, ...props }: { label: string; iconAlignment?: string }) => (
       <a data-testid="ods-link" {...props}>
         {label}
       </a>
@@ -200,12 +372,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       color?: string;
       className?: string;
     }) => (
-      <div
-        data-testid="ods-card"
-        className={className}
-        data-color={color}
-        {...props}
-      >
+      <div data-testid="ods-card" className={className} data-color={color} {...props}>
         {children}
       </div>
     ),
@@ -254,111 +421,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         {...props}
       />
     ),
-    OdsInput: React.forwardRef<
-      HTMLInputElement,
-      {
-        value?: string;
-        name?: string;
-        onOdsChange?: (event: { detail: { value: string } }) => void;
-        isDisabled?: boolean;
-        isReadonly?: boolean;
-        hasError?: boolean;
-        maxlength?: string;
-        [key: string]: unknown;
-      }
-    >(
-      (
-        {
-          value,
-          onOdsChange,
-          name,
-          isDisabled,
-          isReadonly,
-          hasError,
-          maxlength,
-          ...props
-        },
-        ref,
-      ) => {
-        const [internalValue, setInternalValue] = React.useState(value || '');
-        const elementRef = React.useRef<HTMLElement | null>(null);
-
-        React.useEffect(() => {
-          setInternalValue(value || '');
-        }, [value]);
-
-        React.useEffect(() => {
-          const element = elementRef.current;
-          if (!element) return undefined;
-
-          // Mock the internals property for form control integration
-          (element as HTMLElement & {
-            internals?: Record<string, unknown>;
-          }).internals = {
-            setFormValue: vi.fn(),
-            setValidity: vi.fn(),
-            checkValidity: vi.fn(() => true),
-            reportValidity: vi.fn(() => true),
-          };
-
-          const handleOdsChange = (event: CustomEvent) => {
-            const newValue = event.detail.value;
-            setInternalValue(newValue);
-            if (onOdsChange) {
-              onOdsChange({ detail: { value: newValue } });
-            }
-          };
-
-          element.addEventListener(
-            'odsChange',
-            handleOdsChange as EventListener,
-          );
-          return () => {
-            element.removeEventListener(
-              'odsChange',
-              handleOdsChange as EventListener,
-            );
-          };
-        }, [onOdsChange]);
-
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          const newValue = e.target.value;
-          setInternalValue(newValue);
-          if (onOdsChange) {
-            onOdsChange({ detail: { value: newValue } });
-          }
-        };
-
-        // Create a component that can be found by querySelector('ods-input')
-        const Component = 'ods-input' as React.ElementType;
-        return (
-          <Component
-            ref={(el: HTMLElement) => {
-              // eslint-disable-next-line no-param-reassign
-              elementRef.current = el;
-              if (ref) {
-                if (typeof ref === 'function') {
-                  ref(el as HTMLInputElement);
-                } else {
-                  // eslint-disable-next-line no-param-reassign
-                  ref.current = el as HTMLInputElement;
-                }
-              }
-            }}
-            data-testid="ods-input"
-            name={name}
-            value={internalValue}
-            is-disabled={isDisabled?.toString()}
-            is-readonly={isReadonly?.toString()}
-            has-error={hasError?.toString()}
-            maxlength={maxlength}
-            onInput={handleChange}
-            onChange={handleChange}
-            {...props}
-          />
-        );
-      },
-    ),
+    OdsInput: mockOdsInput,
     OdsButton: ({
       label,
       onClick,
@@ -394,118 +457,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         </Component>
       );
     },
-    OdsCheckbox: React.forwardRef<
-      HTMLInputElement,
-      {
-        inputId: string;
-        name?: string;
-        isChecked?: boolean;
-        isDisabled?: boolean;
-        className?: string;
-        children?: React.ReactNode;
-        onClick?: () => void;
-        onOdsChange?: (event: { detail: { checked: boolean } }) => void;
-        [key: string]: unknown;
-      }
-    >(
-      (
-        {
-          inputId,
-          name,
-          isChecked,
-          isDisabled,
-          className,
-          children,
-          onClick,
-          onOdsChange,
-          ...props
-        },
-        ref,
-      ) => {
-        const [internalChecked, setInternalChecked] = React.useState(
-          isChecked || false,
-        );
-        const elementRef = React.useRef<HTMLElement | null>(null);
-
-        React.useEffect(() => {
-          setInternalChecked(isChecked || false);
-        }, [isChecked]);
-
-        React.useEffect(() => {
-          const element = elementRef.current;
-          if (!element) return undefined;
-
-          const handleOdsChange = (event: CustomEvent) => {
-            const newChecked = event.detail.checked;
-            setInternalChecked(newChecked);
-            if (onOdsChange) {
-              onOdsChange({ detail: { checked: newChecked } });
-            }
-          };
-
-          element.addEventListener(
-            'odsChange',
-            handleOdsChange as EventListener,
-          );
-          return () => {
-            element.removeEventListener(
-              'odsChange',
-              handleOdsChange as EventListener,
-            );
-          };
-        }, [onOdsChange]);
-
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          const newChecked = e.target.checked;
-          setInternalChecked(newChecked);
-          if (onOdsChange) {
-            onOdsChange({ detail: { checked: newChecked } });
-          }
-          if (onClick) {
-            onClick();
-          }
-        };
-
-        const Component = 'ods-checkbox' as React.ElementType;
-        const {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          className: unusedClassName,
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          class: unusedClass,
-          ...restProps
-        } = props;
-        return (
-          <Component
-            ref={(el: HTMLElement) => {
-              // eslint-disable-next-line no-param-reassign
-              elementRef.current = el;
-              if (ref) {
-                if (typeof ref === 'function') {
-                  ref(el as HTMLInputElement);
-                } else {
-                  // eslint-disable-next-line no-param-reassign
-                  ref.current = el as HTMLInputElement;
-                }
-              }
-            }}
-            data-testid="ods-checkbox"
-            input-id={inputId}
-            name={name}
-            is-checked={internalChecked?.toString()}
-            is-disabled={isDisabled?.toString()}
-            is-required={(props['is-required'] || props.isRequired)?.toString()}
-            class={
-              `${className || ''} ${props.class || ''}`.trim() || undefined
-            }
-            onClick={onClick}
-            onChange={handleChange}
-            {...restProps}
-          >
-            {children}
-          </Component>
-        );
-      },
-    ),
+    OdsCheckbox: mockOdsCheckbox,
     OdsFormField: ({
       children,
       error,
@@ -518,33 +470,14 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
     }) => {
       const Component = 'ods-form-field' as React.ElementType;
       return (
-        <Component
-          data-testid="ods-form-field"
-          className={className}
-          error={error}
-          {...props}
-        >
+        <Component data-testid="ods-form-field" className={className} error={error} {...props}>
           {children}
         </Component>
       );
     },
-    OdsDivider: ({
-      color,
-      spacing,
-      ...props
-    }: {
-      color?: string;
-      spacing?: string;
-    }) => {
+    OdsDivider: ({ color, spacing, ...props }: { color?: string; spacing?: string }) => {
       const Component = 'ods-divider' as React.ElementType;
-      return (
-        <Component
-          data-testid="ods-divider"
-          color={color}
-          spacing={spacing}
-          {...props}
-        />
-      );
+      return <Component data-testid="ods-divider" color={color} spacing={spacing} {...props} />;
     },
     OdsAccordion: ({
       children,

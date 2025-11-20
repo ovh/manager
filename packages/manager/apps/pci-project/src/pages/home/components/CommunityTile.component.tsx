@@ -1,12 +1,12 @@
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { OdsLink } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
-import useTranslation from '@/hooks/usePermissiveTranslation.hook';
+
+import { OdsLink } from '@ovhcloud/ods-components/react';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { COMMUNITY_LINKS } from '@/constants';
+import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
 export default function CommunityTile() {
   const { t } = useTranslation('home');
@@ -15,7 +15,7 @@ export default function CommunityTile() {
 
   const { environment } = useContext(ShellContext);
   const region = environment.getRegion();
-  const isUsRegion = region === 'US';
+  const isUsRegion = String(region) === 'US';
 
   if (isUsRegion) {
     return null;
