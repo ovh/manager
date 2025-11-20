@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 
 /**
@@ -7,10 +8,8 @@ import { usePciUrl } from '@ovh-ux/manager-pci-common';
  * @param items - Array of items with optional link property
  * @returns Array of items with links containing actual project ID
  */
-export const useProjectIdInLinks = <T extends { link?: string }>(
-  items: T[],
-): T[] => {
-  const basePciUrl = usePciUrl(); // Returns '#/pci/projects/{actualId}'
+export const useProjectIdInLinks = <T extends { link?: string }>(items: T[]): T[] => {
+  const basePciUrl = (usePciUrl as unknown as () => string)(); // Returns '#/pci/projects/{actualId}'
 
   return useMemo(
     () =>

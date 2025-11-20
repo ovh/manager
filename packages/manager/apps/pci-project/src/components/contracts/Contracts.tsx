@@ -1,11 +1,9 @@
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsLink,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { CartContract } from '@/data/types/cart.type';
+
+import { OdsCheckbox, OdsFormField, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
+import { CartContract } from '@/data/models/Cart.type';
+
 import ContractsSkeleton from './ContractsSkeleton';
 
 type ContractsProps = {
@@ -38,7 +36,7 @@ export default function Contracts({
         {isLoading ? (
           <ContractsSkeleton />
         ) : (
-          <ul className="flex flex-col list-none gap-[8px]">
+          <ul className="flex list-none flex-col gap-[8px]">
             {contracts.map((contract) => (
               <li key={contract.url}>
                 <OdsLink

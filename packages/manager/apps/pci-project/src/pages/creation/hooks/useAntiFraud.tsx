@@ -1,12 +1,13 @@
 import { useCallback } from 'react';
+
 import { ANTI_FRAUD, AntiFraudError } from '@/constants';
 import { getOrderFollowUp } from '@/data/api/order';
-import { CartSummary } from '@/data/types/cart.type';
+import { CartSummary } from '@/data/models/Cart.type';
 import {
   TOrderFollowUpLabel,
   TOrderFollowUpStatus,
   TOrderFollowUpStep,
-} from '@/data/types/order.type';
+} from '@/data/models/Order.type';
 
 export type MaybeApiError = {
   data:
@@ -31,18 +32,15 @@ const useAntiFraud = () => {
       try {
         getOrderFollowUp(order.orderId)
           .then((followUp) => {
-            const validatingStep = followUp.find(
-              (s) => s.step === TOrderFollowUpStep.VALIDATING,
-            );
+            const validatingStep = followUp.find((s) => s.step === TOrderFollowUpStep.VALIDATING);
 
             if (validatingStep) {
               if (validatingStep.status === TOrderFollowUpStatus.DOING) {
-                const isCustomerInfoCheckNeeded = !!validatingStep.history.find(
-                  (h) =>
-                    [
-                      TOrderFollowUpLabel.FRAUD_DOCS_REQUESTED,
-                      TOrderFollowUpLabel.FRAUD_MANUAL_REVIEW,
-                    ].includes(h.label),
+                const isCustomerInfoCheckNeeded = !!validatingStep.history.find((h) =>
+                  [
+                    TOrderFollowUpLabel.FRAUD_DOCS_REQUESTED,
+                    TOrderFollowUpLabel.FRAUD_MANUAL_REVIEW,
+                  ].includes(h.label),
                 );
 
                 if (isCustomerInfoCheckNeeded) {
@@ -61,22 +59,14 @@ const useAntiFraud = () => {
             }
           })
           .catch((err) => {
-            if (
-              (err as MaybeApiError)?.data?.message?.includes(
-                ANTI_FRAUD.CASE_FRAUD_REFUSED,
-              )
-            ) {
+            if ((err as MaybeApiError)?.data?.message?.includes(ANTI_FRAUD.CASE_FRAUD_REFUSED)) {
               reject(new Error(AntiFraudError.CASE_FRAUD_REFUSED));
             } else {
               reject(new Error(AntiFraudError.UNKNOWN));
             }
           });
       } catch (err) {
-        if (
-          (err as MaybeApiError)?.data?.message?.includes(
-            ANTI_FRAUD.CASE_FRAUD_REFUSED,
-          )
-        ) {
+        if ((err as MaybeApiError)?.data?.message?.includes(ANTI_FRAUD.CASE_FRAUD_REFUSED)) {
           reject(new Error(AntiFraudError.CASE_FRAUD_REFUSED));
         } else {
           reject(new Error(AntiFraudError.UNKNOWN));

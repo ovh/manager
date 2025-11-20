@@ -1,15 +1,20 @@
-import { useState, useEffect, useMemo, useContext, ReactNode } from 'react';
+import { ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+
 import { useNavigate, useResolvedPath } from 'react-router-dom';
+
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
-import useActiveProjects from '@/data/hooks/useActiveProjects';
-import { PlanCode } from '@/data/types/cart.type';
-import { TProjectWithService } from '@/data/types/project.type';
-import { urls } from '@/routes/routes.constant';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { BASE_PROJECT_PATH } from '@/constants';
+import useActiveProjects from '@/data/hooks/useActiveProjects';
 import { useEligibility } from '@/data/hooks/useEligibility';
-import { TEligibilityPaymentMethod } from '@/data/types/eligibility.type';
+import { PlanCode } from '@/data/models/Cart.type';
+import { TEligibilityPaymentMethod } from '@/data/models/Eligibility.type';
+import { TProjectWithService } from '@/data/models/Project.type';
+import { urls } from '@/routes/routes.constant';
+import { TProject } from '@/types/pci-common.types';
 
 export default function DiscoveryGuard({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
@@ -17,15 +22,16 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     shell: { navigation },
   } = useContext(ShellContext);
   const [redirectionGuardChecked, setRedirectionGuardChecked] = useState(false);
-  const { pathname: projectCreationUrl } = useResolvedPath(
-    `../${urls.creation}`,
-  );
+  const { pathname: projectCreationUrl } = useResolvedPath(`../${urls.creation}`);
   const { pathname: projectListingUrl } = useResolvedPath(`../${urls.listing}`);
-  const goToProject = (project: TProjectWithService) => {
-    navigation.navigateTo('public-cloud', BASE_PROJECT_PATH, {
-      projectId: project.project_id,
-    });
-  };
+  const goToProject = useCallback(
+    (project: TProjectWithService) => {
+      navigation.navigateTo('public-cloud', BASE_PROJECT_PATH, {
+        projectId: project.project_id,
+      });
+    },
+    [navigation],
+  );
 
   // (The following comment was copied from original `projects.routing.js`.)
   // 2024-02-12 : At the time we introduce the discovery mode,
@@ -48,10 +54,7 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     return hasCreditAvailable;
   }, [eligibility, isEligibilityError]);
 
-  const {
-    activeProjects,
-    isReady: isActiveProjectsReady,
-  } = useActiveProjects();
+  const { activeProjects, isReady: isActiveProjectsReady } = useActiveProjects();
   useEffect(() => {
     // NOTE: to keep the existing behavior, the 'eligibility' check must be done before the projects check.
     if (isEligibilityLoading || !isActiveProjectsReady) {
@@ -67,7 +70,7 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
 
     // If user already have projects, show discovery or default as priority.
     const discoveryProject =
-      activeProjects.find((d) => isDiscoveryProject(d)) || null;
+      activeProjects.find((d) => (isDiscoveryProject as (p: TProject) => boolean)(d)) || null;
     const defaultProject = activeProjects.find((d) => d.isDefault) || null;
     if (discoveryProject || defaultProject) {
       goToProject((discoveryProject || defaultProject) as TProjectWithService);
@@ -76,7 +79,7 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
 
     // If user have projects (but no default or discovery), show listing.
     const otherActiveProjects = activeProjects.filter(
-      (d) => d.planCode === PlanCode.PROJECT_2018,
+      (d) => d.planCode === (PlanCode.PROJECT_2018 as string),
     );
     if (otherActiveProjects.length > 0) {
       navigate(projectListingUrl);
@@ -94,7 +97,7 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     // but that created a brief flash of rendering the guarded content in case of redirection.
     // (isLoading was false but redirection still had a frame to take effect).
     if (!isEligibilityLoading && isActiveProjectsReady) {
-      setRedirectionGuardChecked(true);
+      setTimeout(() => setRedirectionGuardChecked(true), 0);
     }
   }, [
     redirectToProjectCreation,
@@ -103,9 +106,10 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     isActiveProjectsReady,
     projectListingUrl,
     projectCreationUrl,
+    goToProject,
+    navigate,
   ]);
 
-  const isLoading =
-    isEligibilityLoading || !isActiveProjectsReady || !redirectionGuardChecked;
+  const isLoading = isEligibilityLoading || !isActiveProjectsReady || !redirectionGuardChecked;
   return isLoading ? <OdsSpinner /> : <>{children}</>;
 }

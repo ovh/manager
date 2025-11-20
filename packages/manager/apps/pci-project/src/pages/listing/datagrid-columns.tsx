@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import {
-  DataGridTextCell,
-  DatagridColumn,
-} from '@ovh-ux/manager-react-components';
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
+
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { TProjectWithService } from '@/data/types/project.type';
-import StatusComponent from './Status.component';
-import Actions from './Actions.component';
+import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
+
+import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { TProjectWithService } from '@/data/models/Project.type';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+import Actions from './Actions.component';
+import StatusComponent from './Status.component';
 
 const useProjectUrl = (
   getProjectUrl: (projectId: string) => Promise<string>,
@@ -19,7 +20,7 @@ const useProjectUrl = (
   const [url, setUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    getProjectUrl(projectId).then(setUrl);
+    void getProjectUrl(projectId).then(setUrl);
   }, [getProjectUrl, projectId]);
 
   return url;
@@ -47,18 +48,13 @@ const ProjectLink: React.FC<{
       <OdsLink
         href="#"
         label={label}
-        className="opacity-50 cursor-not-allowed pointer-events-none"
+        className="pointer-events-none cursor-not-allowed opacity-50"
       />
     );
   }
 
   return isRedirectExternal ? (
-    <OdsLink
-      href={url || '#'}
-      onClick={handleTracking}
-      label={label}
-      target="_top"
-    />
+    <OdsLink href={url || '#'} onClick={handleTracking} label={label} target="_top" />
   ) : (
     <OdsLink href={url || '#'} onClick={handleTracking} label={label} />
   );
@@ -111,9 +107,7 @@ export const getDatagridColumns = (
   },
   {
     id: 'actions',
-    cell: (props: TProjectWithService) => (
-      <Actions projectWithService={props} />
-    ),
+    cell: (props: TProjectWithService) => <Actions projectWithService={props} />,
     label: '',
     isSortable: false,
     isSearchable: false,

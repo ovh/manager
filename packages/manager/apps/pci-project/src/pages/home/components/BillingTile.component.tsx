@@ -1,9 +1,11 @@
-import { ManagerTile, useFormatDate } from '@ovh-ux/manager-react-components';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
+import { usePciUrl } from '@ovh-ux/manager-pci-common';
+import { ManagerTile, useFormatDate } from '@ovh-ux/manager-react-components';
+
 import { useCreditDetails } from '@/data/hooks/useCredit';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
-import { usePciUrl } from '@ovh-ux/manager-pci-common';
 
 export default function BillingTile() {
   const { t } = useTranslation('home');
@@ -33,13 +35,9 @@ export default function BillingTile() {
             })}
           </ManagerTile.Item.Label>
           <ManagerTile.Item.Description>
-            {item.description && (
-              <OdsText className="block">{item.description}</OdsText>
-            )}
+            {item.description && <OdsText className="block">{item.description}</OdsText>}
             {item.balance && (
-              <OdsText className="block my-5 font-32 font-bold">
-                {item.balance}
-              </OdsText>
+              <OdsText className="font-32 my-5 block font-bold">{item.balance}</OdsText>
             )}
             {item.expirationDate && (
               <OdsText className="block">

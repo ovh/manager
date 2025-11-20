@@ -1,4 +1,4 @@
-import { useImageSlider } from '@/hooks/useImageSlider/useImageSlider';
+import { useImageSlider } from '@/hooks/use-image-slider/useImageSlider';
 
 export default function ImageSlider() {
   const { currentImage } = useImageSlider();
@@ -7,7 +7,7 @@ export default function ImageSlider() {
     <img
       src={currentImage}
       alt="Public Cloud service"
-      className="max-w-full max-h-full object-contain rounded-lg"
+      className="max-h-full max-w-full rounded-lg object-contain"
       style={{
         transition: 'opacity 1s ease-in-out',
         maxWidth: '300px',

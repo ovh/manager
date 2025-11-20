@@ -1,10 +1,7 @@
-import {
-  useQuery,
-  UseQueryResult,
-  UseQueryOptions,
-} from '@tanstack/react-query';
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import { getSavingsPlans } from '@/data/api/savingsPlans';
-import { SavingsPlan } from '@/data/types/savingPlan.type';
+import { SavingsPlan } from '@/data/models/SavingPlan.type';
 
 /**
  * Generates a unique query key for fetching savings plans of a service.
@@ -41,9 +38,7 @@ export const useSavingsPlans = (
   serviceId: string,
   isSavingsPlansAvailable: boolean,
 ): UseQueryResult<SavingsPlan[]> =>
-  useQuery<SavingsPlan[]>(
-    getSavingsPlansQueryOptions(serviceId, isSavingsPlansAvailable),
-  );
+  useQuery<SavingsPlan[]>(getSavingsPlansQueryOptions(serviceId, isSavingsPlansAvailable));
 
 /**
  * Custom hook to check if there is any active or pending savings plan for a given service.
@@ -59,7 +54,6 @@ export const useHasActiveOrPendingSavingsPlan = (
     ...getSavingsPlansQueryOptions(serviceId, isSavingsPlansAvailable),
     select: (savingsPlans) =>
       savingsPlans?.some(
-        (plan: { status?: string }) =>
-          plan.status === 'ACTIVE' || plan.status === 'PENDING',
+        (plan: { status?: string }) => plan.status === 'ACTIVE' || plan.status === 'PENDING',
       ),
   });

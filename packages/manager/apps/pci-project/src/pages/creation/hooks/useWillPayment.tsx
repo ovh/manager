@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react';
-import { GlobalStateStatus, TCreditData } from '@/types/WillPayment.type';
-import {
-  triggerSavePaymentMethodEvent,
-  triggerSubmitChallengeEvent,
-} from '../utils/paymentEvents';
+
+import { GlobalStateStatus } from '@/types/UWillPayment.type';
+
+import { triggerSavePaymentMethodEvent, triggerSubmitChallengeEvent } from '../utils/paymentEvents';
 import {
   isPaymentMethodSaveRequired as checkIsPaymentMethodSaveRequired,
   isPaymentMethodSaved as checkIsPaymentMethodSaved,
@@ -15,10 +14,7 @@ import {
  * Manages communication with the WillPayment federated module
  */
 export const useWillPayment = () => {
-  const [
-    globalStateStatus,
-    setGlobalStateStatus,
-  ] = useState<GlobalStateStatus | null>(null);
+  const [globalStateStatus, setGlobalStateStatus] = useState<GlobalStateStatus | null>(null);
 
   const [hasNoUserActionNeeded, setHasNoUserActionNeeded] = useState(false);
   const [isChallengeRequired, setIsChallengeRequired] = useState(false);
@@ -31,19 +27,16 @@ export const useWillPayment = () => {
 
   const handleChallengeRequired = (event: CustomEvent) => {
     if (event && event.detail) {
-      setIsChallengeRequired(event.detail.required);
+      setIsChallengeRequired((event.detail as { required: boolean }).required);
     }
   };
 
   /**
    * Handles payment status changes from the WillPayment module
    */
-  const handlePaymentStatusChange = useCallback(
-    (willPaymentStatus: GlobalStateStatus) => {
-      setGlobalStateStatus(willPaymentStatus);
-    },
-    [],
-  );
+  const handlePaymentStatusChange = useCallback((willPaymentStatus: GlobalStateStatus) => {
+    setGlobalStateStatus(willPaymentStatus);
+  }, []);
 
   /**
    * Triggers payment method saving via DOM event
@@ -56,14 +49,10 @@ export const useWillPayment = () => {
     }
   }, [isChallengeRequired]);
 
-  const creditData = globalStateStatus?.data as TCreditData | undefined;
+  const creditData = globalStateStatus?.data;
   const needsSave = checkIsPaymentMethodSaveRequired(globalStateStatus);
   const isSaved = checkIsPaymentMethodSaved(globalStateStatus);
-  const canSubmit = checkIsSubmittingEnabled(
-    hasNoUserActionNeeded,
-    isChallengeRequired,
-    needsSave,
-  );
+  const canSubmit = checkIsSubmittingEnabled(hasNoUserActionNeeded, isChallengeRequired, needsSave);
 
   return {
     isCreditPayment: creditData?.isCredit,

@@ -1,10 +1,14 @@
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { urls } from '@/routes/routes.constant';
+
 import { useServiceIds } from '@/data/hooks/useServices';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type RemoveSectionProps = {
@@ -18,15 +22,11 @@ export default function RemoveSection({ isDiscovery }: RemoveSectionProps) {
   const projectId = useProjectIdFromParams();
   const navigate = useNavigate();
 
-  const { data: serviceIds, isPending: isServiceIdsPending } = useServiceIds(
-    projectId,
-  );
+  const { data: serviceIds, isPending: isServiceIdsPending } = useServiceIds(projectId);
 
   return (
     <section className="flex flex-col gap-5">
-      <OdsText preset="heading-2">
-        {t('pci_projects_project_edit_remove')}
-      </OdsText>
+      <OdsText preset="heading-2">{t('pci_projects_project_edit_remove')}</OdsText>
 
       {!isDiscovery && (
         <OdsText preset="paragraph">

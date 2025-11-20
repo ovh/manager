@@ -1,4 +1,5 @@
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type TrackProjectUpdatedSuccessParams = {
@@ -15,9 +16,7 @@ export const useUpdatingTracking = () => {
     });
   };
 
-  const trackUpdateProjectSuccess = ({
-    voucherCode,
-  }: TrackProjectUpdatedSuccessParams) => {
+  const trackUpdateProjectSuccess = ({ voucherCode }: TrackProjectUpdatedSuccessParams) => {
     trackPage({
       pageType: PageType.bannerInfo,
       pageName: PROJECTS_TRACKING.UPDATING.UPDATE_PROJECT_SUCCESS,

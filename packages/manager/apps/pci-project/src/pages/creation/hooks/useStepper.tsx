@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export enum Step {
   Config = 1,
@@ -27,9 +27,11 @@ export const useStepper = () => {
 
   const stepStates = getStepStates(currentStep);
 
-  const goToConfig = () => setCurrentStep(Step.Config);
-  const goToPayment = () => setCurrentStep(Step.Payment);
-  const goToCreditConfirmation = () => setCurrentStep(Step.CreditConfirmation);
+  const goToConfig = useCallback(() => {
+    setCurrentStep(Step.Config);
+  }, []);
+  const goToPayment = useCallback(() => setCurrentStep(Step.Payment), []);
+  const goToCreditConfirmation = useCallback(() => setCurrentStep(Step.CreditConfirmation), []);
 
   return {
     ...stepStates,

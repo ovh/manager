@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+
 import {
   activateDiscoveryProject,
   getCartServiceOption,
@@ -8,21 +9,15 @@ import {
   simulateActivateDiscoveryProject,
 } from '@/data/api/services';
 
-const getServiceIdsQueryKey = (projectId: string) => [
-  `/services?resourceName=${projectId}`,
-];
+const getProjectServiceQueryKey = (projectId: string) => ['/project', projectId, 'serviceInfos'];
 
 export const useServiceIds = (projectId?: string) => {
   return useQuery({
-    queryKey: getServiceIdsQueryKey(projectId as string),
+    queryKey: ['/services', projectId],
     queryFn: () => getServiceId(projectId as string),
     enabled: !!projectId,
   });
 };
-
-const getProjectServiceQueryKey = (projectId: string) => [
-  `/project/${projectId}/serviceInfos`,
-];
 
 export const useProjectService = (projectId: string) => {
   return useQuery({
@@ -31,24 +26,16 @@ export const useProjectService = (projectId: string) => {
   });
 };
 
-const getServiceOptionsQueryKey = (serviceId: number) => [
-  `/services/${serviceId}/options`,
-];
-
 export const useServiceOptions = (serviceId?: number) =>
   useQuery({
-    queryKey: getServiceOptionsQueryKey(serviceId as number),
+    queryKey: ['/services', serviceId, 'options'],
     queryFn: () => getServiceOptions(serviceId as number),
     enabled: !!serviceId,
   });
 
-export const getCartServiceOptionQueryKey = (projectId: string) => [
-  `/order/cartServiceOption/cloud/${projectId}`,
-];
-
 export const useCartServiceOption = (projectId?: string) =>
   useQuery({
-    queryKey: getCartServiceOptionQueryKey(projectId as string),
+    queryKey: ['/order/cartServiceOption/cloud', projectId],
     queryFn: () => getCartServiceOption(projectId as string),
     enabled: !!projectId,
   });
@@ -59,8 +46,7 @@ export const useCartServiceOption = (projectId?: string) =>
  */
 export const useSimulateProjectActivation = () =>
   useMutation({
-    mutationFn: (serviceId: number) =>
-      simulateActivateDiscoveryProject(serviceId),
+    mutationFn: (serviceId: number) => simulateActivateDiscoveryProject(serviceId),
   });
 
 /**

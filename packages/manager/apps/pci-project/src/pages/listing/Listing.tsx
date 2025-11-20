@@ -1,36 +1,38 @@
-import { useEffect, Suspense } from 'react';
-import { useHref, Outlet, useNavigate } from 'react-router-dom';
+import { Suspense, useEffect } from 'react';
+
+import { Outlet, useHref, useNavigate } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
 
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { PciTrustedZoneBanner, useTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import {
+  BaseLayout,
   Datagrid,
   ErrorBanner,
-  BaseLayout,
-  useResourcesV6,
   Notifications,
   useNotifications,
+  useResourcesV6,
 } from '@ovh-ux/manager-react-components';
-import {
-  PciTrustedZoneBanner,
-  useTrustedZoneBanner,
-} from '@ovh-ux/manager-pci-common';
-import { getDatagridColumns } from './datagrid-columns';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import ManagerBannerText from '@/components/manager-banner-text/ManagerBannerText';
 import {
   getProjectsWithServices,
   projectsWithServiceQueryKey,
 } from '@/data/api/projects-with-services';
-import ManagerBannerText from '@/components/manager-banner-text/ManagerBannerText';
 import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+import { getDatagridColumns } from './datagrid-columns';
 
 type ErrorResponse = {
   response?: {
@@ -45,11 +47,8 @@ export default function Listing() {
   const projectPath = useHref(`${urls.root}/${urls.project}`);
   const navigate = useNavigate();
 
-  const {
-    redirectUrl,
-    isRedirectRequired,
-    isRedirectExternal,
-  } = useRedirectAfterProjectSelection();
+  const { redirectUrl, isRedirectRequired, isRedirectExternal } =
+    useRedirectAfterProjectSelection();
   const { addInfo } = useNotifications();
 
   const getProjectUrl = async (projectId: string): Promise<string> => {
@@ -85,10 +84,15 @@ export default function Listing() {
     },
   });
 
-  const {
-    isBannerVisible: isTrustedZone,
-    isLoading: isTrustedZoneLoading,
-  } = useTrustedZoneBanner();
+  const trustedZoneResult = (
+    useTrustedZoneBanner as unknown as () => {
+      isBannerVisible?: boolean;
+      isLoading?: boolean;
+    }
+  )();
+  const isTrustedZone =
+    (trustedZoneResult as { isBannerVisible?: boolean })?.isBannerVisible ?? false;
+  const isTrustedZoneLoading = (trustedZoneResult as { isLoading?: boolean })?.isLoading ?? false;
 
   useEffect(() => {
     if (isRedirectRequired) {
@@ -122,22 +126,6 @@ export default function Listing() {
     navigate(urls.creation);
   };
 
-  const TopBarCTA = (
-    <div>
-      {!isTrustedZoneLoading && !isTrustedZone && (
-        <OdsButton
-          data-testid="listing_create-project_button"
-          variant={ODS_BUTTON_VARIANT.default}
-          color={ODS_BUTTON_COLOR.primary}
-          icon={ODS_ICON_NAME.plus}
-          size={ODS_BUTTON_SIZE.md}
-          label={t('pci_projects_create_project')}
-          onClick={handleCreateProjectClick}
-        />
-      )}
-    </div>
-  );
-
   return (
     <BaseLayout header={header}>
       <div className="mb-6 flex flex-col items-stretch gap-4">
@@ -158,7 +146,21 @@ export default function Listing() {
           isLoading={isLoading}
           filters={filters}
           search={search}
-          topbar={TopBarCTA}
+          topbar={
+            <div>
+              {!isTrustedZoneLoading && !isTrustedZone && (
+                <OdsButton
+                  data-testid="listing_create-project_button"
+                  variant={ODS_BUTTON_VARIANT.default}
+                  color={ODS_BUTTON_COLOR.primary}
+                  icon={ODS_ICON_NAME.plus}
+                  size={ODS_BUTTON_SIZE.md}
+                  label={t('pci_projects_create_project')}
+                  onClick={handleCreateProjectClick}
+                />
+              )}
+            </div>
+          }
         />
       )}
 

@@ -1,6 +1,9 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
+import { CREDIT_ORDER_CART, PCI_HDS_ADDON } from '@/constants';
 import {
   addItemToCart,
   assignCart,
@@ -15,16 +18,16 @@ import {
   orderCloudProject,
   removeItemFromCart,
 } from '@/data/api/cart';
-
-import { CREDIT_ORDER_CART, PCI_HDS_ADDON } from '@/constants';
 import {
   Cart,
   CartConfiguration,
   CartContract,
   OrderedProduct,
   PlanCode,
-} from '@/data/types/cart.type';
+} from '@/data/models/Cart.type';
 import queryClient from '@/queryClient';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export const useCreateCart = (
   ovhSubsidiary: string,
@@ -32,7 +35,7 @@ export const useCreateCart = (
   projectDescription: string,
 ) => {
   return useQuery<Cart>({
-    queryKey: ['new-cart', planCode],
+    queryKey: ['new-cart', planCode, ovhSubsidiary, projectDescription],
     queryFn: async () => {
       const cart = await createCart(ovhSubsidiary);
       const { cartId } = cart;
@@ -79,9 +82,7 @@ export const useContractAgreements = (cartId: string | null) => {
   });
 };
 
-export const getCartSummaryQueryKey = (cartId?: string) => [
-  `/order/cart/${cartId}/summary`,
-];
+export const getCartSummaryQueryKey = (cartId?: string) => [`/order/cart/${cartId}/summary`];
 
 export const useGetCartSummary = (cartId?: string) =>
   useQuery({
@@ -116,10 +117,9 @@ export const useAddItemToCart = ({
   onError?: (error: ApiError) => void;
 } = {}) => {
   return useMutation<OrderedProduct, ApiError, AddItemToCartParams>({
-    mutationFn: (params: AddItemToCartParams) =>
-      addItemToCart(params.cartId, params.item),
+    mutationFn: (params: AddItemToCartParams) => addItemToCart(params.cartId, params.item),
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getCartSummaryQueryKey(variables.cartId),
       });
       if (onSuccess) {
@@ -142,7 +142,7 @@ export const useRemoveItemFromCart = ({
       removeItemFromCart(params.cartId, params.itemId),
     onSuccess: (_data, variables) => {
       // Invalidate the cart summary cache for this cart
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getCartSummaryQueryKey(variables.cartId),
       });
       if (onSuccess) {
@@ -251,17 +251,13 @@ export const useCreateAndAssignCart = ({
  */
 export const useGetHdsAddonOption = (cartId?: string) =>
   useQuery({
-    queryKey: [
-      `order/cart/${cartId}/cloud/options?planCode=${PlanCode.PROJECT_2018}`,
-    ],
-    queryFn: async () =>
-      getPublicCloudOptions(cartId as string, PlanCode.PROJECT_2018),
+    queryKey: [`order/cart/${cartId}/cloud/options?planCode=${PlanCode.PROJECT_2018}`],
+    queryFn: async () => getPublicCloudOptions(cartId as string, PlanCode.PROJECT_2018),
     select: (cloudOptions) => {
       // Find HDS addon option based on planCode and family
       const hdsOption = cloudOptions?.find(
         (option) =>
-          option.planCode === PCI_HDS_ADDON.planCode &&
-          option.family === PCI_HDS_ADDON.family,
+          option.planCode === PCI_HDS_ADDON.planCode && option.family === PCI_HDS_ADDON.family,
       );
       return hdsOption;
     },
@@ -277,10 +273,7 @@ export const useGetHdsAddonOption = (cartId?: string) =>
 export const useOrderProjectItem = () =>
   useMutation({
     mutationFn: async ({ cartId }: { cartId: string }) => {
-      const projectItem = await orderCloudProject(
-        cartId,
-        PlanCode.PROJECT_2018,
-      );
+      const projectItem = await orderCloudProject(cartId, PlanCode.PROJECT_2018);
       return projectItem;
     },
   });
@@ -296,21 +289,16 @@ export const useGetProjectItem = (cartId?: string) =>
   useQuery({
     ...getCartItemsQueryOptions(cartId),
     select: (items) =>
-      items.find((item) => item.settings.planCode === PlanCode.PROJECT_2018),
+      items.find((item) => item.settings.planCode === (PlanCode.PROJECT_2018 as string)),
   });
 
 export const useIsHdsChecked = (cartId?: string) =>
   useQuery({
     ...getCartItemsQueryOptions(cartId),
-    select: (items) =>
-      items.find((item) => item.settings.planCode === PCI_HDS_ADDON.planCode),
+    select: (items) => items.find((item) => item.settings.planCode === PCI_HDS_ADDON.planCode),
   });
 
-export const useGetCartConfiguration = (
-  label: string,
-  cartId?: string,
-  itemId?: number,
-) =>
+export const useGetCartConfiguration = (label: string, cartId?: string, itemId?: number) =>
   useQuery({
     queryKey: ['order', 'cart', cartId, 'item', itemId, 'configuration', label],
     queryFn: () => getCartConfiguration(cartId as string, itemId as number),
@@ -322,11 +310,8 @@ export const useGetCartConfiguration = (
 
 export const useGetCreditAddonOption = (cartId?: string) =>
   useQuery({
-    queryKey: [
-      `order/cart/${cartId}/cloud/options?planCode=${PlanCode.PROJECT_2018}`,
-    ],
-    queryFn: async () =>
-      getPublicCloudOptions(cartId as string, PlanCode.PROJECT_2018),
+    queryKey: [`order/cart/${cartId}/cloud/options?planCode=${PlanCode.PROJECT_2018}`],
+    queryFn: async () => getPublicCloudOptions(cartId as string, PlanCode.PROJECT_2018),
     select: (cloudOptions) => {
       // Find credit addon option based on planCode and family
       const creditOption = cloudOptions?.find(

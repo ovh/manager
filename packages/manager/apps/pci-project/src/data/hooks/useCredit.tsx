@@ -1,8 +1,7 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { format, formatDate } from 'date-fns';
-import { getCreditDetails } from '@/data/api/credit';
-import { CreditDetailsResponse } from '@/data/types/credit.type';
-import { getCreditBalance, getStartupProgram } from '../api/credit';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import { getCreditBalance, getCreditDetails, getStartupProgram } from '@/data/api/credit';
+import { CreditDetailsResponse } from '@/data/models/Credit.type';
 
 export interface VoucherCreditDetail {
   voucher: string;
@@ -38,9 +37,7 @@ export const useIsStartupProgramAvailable = (): UseQueryResult<boolean> => {
   });
 };
 
-export const useStartupProgramAmountText = (
-  isAvailable: boolean,
-): UseQueryResult<string> => {
+export const useStartupProgramAmountText = (isAvailable: boolean): UseQueryResult<string> => {
   return useQuery({
     queryKey: ['/me/credit/balance/STARTUP_PROGRAM'],
     queryFn: getStartupProgram,

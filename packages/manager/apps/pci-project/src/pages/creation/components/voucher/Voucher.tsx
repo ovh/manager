@@ -1,28 +1,25 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { CartConfiguration } from '@/data/types/cart.type';
-import { useVoucher } from '../../hooks/useVoucher';
+
+import { CartConfiguration } from '@/data/models/Cart.type';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+import { useVoucher } from '../../hooks/useVoucher';
 
 type VoucherProps = {
   cartId: string;
   itemId: number;
   voucherConfiguration: CartConfiguration | undefined;
-  setVoucherConfiguration: (
-    voucherConfiguration: CartConfiguration | undefined,
-  ) => void;
+  setVoucherConfiguration: (voucherConfiguration: CartConfiguration | undefined) => void;
   initialVoucher?: string | null;
 };
 
@@ -37,15 +34,8 @@ export default function Voucher({
 
   const { trackClick } = useOvhTracking();
 
-  const {
-    voucher,
-    setVoucher,
-    error,
-    voucherData,
-    isPending,
-    checkEligibility,
-    handleRemove,
-  } = useVoucher({ cartId, itemId, setVoucherConfiguration, initialVoucher });
+  const { voucher, setVoucher, error, voucherData, isPending, checkEligibility, handleRemove } =
+    useVoucher({ cartId, itemId, setVoucherConfiguration, initialVoucher });
 
   return (
     <div className="pci-project-new-voucher">
@@ -53,7 +43,7 @@ export default function Voucher({
         {t('pci_projects_new_voucher_title')}
       </OdsText>
 
-      <div className="flex items-center w-full gap-4">
+      <div className="flex w-full items-center gap-4">
         <OdsFormField className="flex-1">
           <OdsInput
             type={ODS_INPUT_TYPE.text}
@@ -90,10 +80,7 @@ export default function Voucher({
       )}
 
       {voucherConfiguration && voucherData && (
-        <div
-          className="flex items-center gap-4 my-4"
-          data-testid="voucher-section_display"
-        >
+        <div className="my-4 flex items-center gap-4" data-testid="voucher-section_display">
           <OdsButton
             data-testid="voucher-section_remove_button"
             variant={ODS_BUTTON_VARIANT.ghost}

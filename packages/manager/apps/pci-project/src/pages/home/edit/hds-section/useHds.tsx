@@ -1,20 +1,13 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useQuery } from '@tanstack/react-query';
 import { useContext } from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { PCI_HDS_ADDON } from '@/constants';
 import { addOptionToCart, assignCart, createCart } from '@/data/api/cart';
-import {
-  getCartServiceOption,
-  getServiceId,
-  getServiceOptions,
-} from '@/data/api/services';
-import { getCartServiceOptionQueryKey } from '@/data/hooks/useServices';
-import { TCartServiceOption, TServiceOption } from '@/data/types/service.type';
-
-export const getIsAlreadyHdsCertifiedProjectQueryKey = (projectId: string) => [
-  'isHdsCertified',
-  projectId,
-];
+import { getCartServiceOption, getServiceId, getServiceOptions } from '@/data/api/services';
+import { TCartServiceOption, TServiceOption } from '@/data/models/Service.type';
 
 /**
  * Check if project is already HDS certified
@@ -24,19 +17,18 @@ export const getIsAlreadyHdsCertifiedProjectQueryKey = (projectId: string) => [
  */
 export const useIsAlreadyHdsCertifiedProject = (projectId?: string) =>
   useQuery({
-    queryKey: getIsAlreadyHdsCertifiedProjectQueryKey(projectId as string),
+    queryKey: ['isHdsCertified', projectId],
+    enabled: !!projectId,
     queryFn: async () => {
       const serviceIds = await getServiceId(projectId as string);
-      if (serviceIds?.length > 0) {
+      if (serviceIds?.length > 0 && serviceIds[0]) {
         return getServiceOptions(serviceIds[0]);
       }
       return [];
     },
     select: (serviceOptions: TServiceOption[]) => {
       const hasCertification = (option: TServiceOption): boolean => {
-        const hasPlanCode = option.billing?.plan?.code.startsWith(
-          PCI_HDS_ADDON.planCodeScope,
-        );
+        const hasPlanCode = option.billing?.plan?.code.startsWith(PCI_HDS_ADDON.planCodeScope);
         const isProjectCertified =
           option.resource?.product?.name === PCI_HDS_ADDON.certifiedProject;
 
@@ -45,18 +37,15 @@ export const useIsAlreadyHdsCertifiedProject = (projectId?: string) =>
 
       return serviceOptions?.some(hasCertification) ?? false;
     },
-    enabled: !!projectId,
   });
 
 export const useGetHdsCartServiceOption = (projectId?: string) =>
   useQuery({
-    queryKey: getCartServiceOptionQueryKey(projectId as string),
+    queryKey: ['/order/cartServiceOption/cloud', projectId],
     queryFn: () => getCartServiceOption(projectId as string),
     enabled: !!projectId,
     select: (cartServiceOption) =>
-      cartServiceOption?.find(({ planCode }) =>
-        planCode.startsWith(PCI_HDS_ADDON.planCodeScope),
-      ),
+      cartServiceOption?.find(({ planCode }) => planCode.startsWith(PCI_HDS_ADDON.planCodeScope)),
   });
 
 export const getPrepareHdsCartQueryKey = ({
@@ -82,8 +71,8 @@ export const usePrepareHdsCart = ({
 
   return useQuery({
     queryKey: getPrepareHdsCartQueryKey({
-      ovhSubsidiary,
       projectId,
+      ovhSubsidiary,
       planCode: cartServiceHDSOption?.planCode,
     }),
     queryFn: async () => {

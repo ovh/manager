@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { useSearchParams } from 'react-router-dom';
+
+import { AxiosError } from 'axios';
+
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import {
   useAttachConfigurationToCartItem,
   useDeleteConfigurationItemFromCart,
 } from '@/data/hooks/useCart';
-import { CartConfiguration } from '@/data/types/cart.type';
 import { useCheckVoucherEligibility } from '@/data/hooks/useEligibility';
+import { CartConfiguration } from '@/data/models/Cart.type';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export function useVoucher({
   cartId,
@@ -18,14 +24,12 @@ export function useVoucher({
 }: {
   cartId: string;
   itemId: number;
-  setVoucherConfiguration: (
-    voucherConfiguration: CartConfiguration | undefined,
-  ) => void;
+  setVoucherConfiguration: (voucherConfiguration: CartConfiguration | undefined) => void;
   initialVoucher?: string | null;
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [voucher, setVoucher] = useState('');
+  const [voucher, setVoucher] = useState(initialVoucher || '');
   const [error, setError] = useState<string | undefined>(undefined);
 
   const { trackClick, trackPage } = useOvhTracking();
@@ -74,12 +78,8 @@ export function useVoucher({
       });
 
       const errorCodeMatch = err.message?.match(/(VOUCHER_\w+)/i);
-      const errorCode = errorCodeMatch
-        ? errorCodeMatch[1].toLowerCase()
-        : 'invalid';
-      setError(
-        `pci_projects_new_voucher_form_field_error_voucher_${errorCode}`,
-      );
+      const errorCode = errorCodeMatch?.[1] ? errorCodeMatch[1].toLowerCase() : 'invalid';
+      setError(`pci_projects_new_voucher_form_field_error_voucher_${errorCode}`);
     },
   });
 
@@ -94,10 +94,11 @@ export function useVoucher({
         actionType: 'action',
         actions: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER,
       });
-      setVoucher(initialVoucher);
+      setTimeout(() => setVoucher(initialVoucher), 0);
       checkEligibility(initialVoucher);
     }
-  }, [initialVoucher]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialVoucher, checkEligibility]);
 
   return {
     voucher,

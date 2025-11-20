@@ -1,9 +1,13 @@
-import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import { TProject } from '@ovh-ux/manager-pci-common';
+import { TProjectWithService } from '@/data/models/Project.type';
+import { TService } from '@/data/models/Service.type';
+import { TProject } from '@/types/pci-common.types';
+
 import { getDefaultProject, getProjects } from './projects';
 import { getServices } from './services';
-import { TProjectWithService } from '@/data/types/project.type';
-import { TService } from '@/data/types/service.type';
+
+type FetchResultV6<T> = {
+  data: T[];
+};
 
 /**
  * Sorts projects by default status first, then by description alphabetically.
@@ -18,9 +22,7 @@ export const sortProjectsByDefaultAndDescription = (
   secondProject: TProjectWithService,
 ): number => {
   if (firstProject.isDefault === secondProject.isDefault) {
-    return (firstProject.description || '').localeCompare(
-      secondProject.description || '',
-    );
+    return (firstProject.description || '').localeCompare(secondProject.description || '');
   }
   return firstProject.isDefault ? -1 : 1;
 };
@@ -36,41 +38,31 @@ export const sortProjectsByDefaultAndDescription = (
  * @returns A promise that resolves to a `FetchResultV6` containing an array of `TProjectWithService` objects,
  *          each representing a project with its associated service and aggregated status.
  */
-export const getProjectsWithServices = async (): Promise<FetchResultV6<
-  TProjectWithService
->> => {
+export const getProjectsWithServices = async (): Promise<FetchResultV6<TProjectWithService>> => {
   return Promise.all([getProjects(), getServices(), getDefaultProject()]).then(
     ([projects, services, defaultProject]) => {
       return {
         data: projects.data
-          .reduce(
-            (
-              projectsWithServices: TProjectWithService[],
-              project: TProject,
-            ) => {
-              const service = services.data.find(
-                (s: TService) => s.resource.name === project.project_id,
-              );
-              if (service) {
-                return [
-                  ...projectsWithServices,
-                  {
-                    ...project,
-                    service,
-                    isDefault: defaultProject?.projectId === project.project_id,
-                    isUnpaid:
-                      service.billing.lifecycle.current.state === 'unpaid',
-                    aggregatedStatus: (service.billing.lifecycle.current
-                      .state === 'unpaid'
-                      ? 'unpaid'
-                      : project.status) as TProjectWithService['aggregatedStatus'],
-                  },
-                ];
-              }
-              return projectsWithServices;
-            },
-            [] as TProjectWithService[],
-          )
+          .reduce((projectsWithServices: TProjectWithService[], project: TProject) => {
+            const service = services.data.find(
+              (s: TService) => s.resource.name === project.project_id,
+            );
+            if (service) {
+              return [
+                ...projectsWithServices,
+                {
+                  ...project,
+                  service,
+                  isDefault: defaultProject?.projectId === project.project_id,
+                  isUnpaid: service.billing.lifecycle.current.state === 'unpaid',
+                  aggregatedStatus: (service.billing.lifecycle.current.state === 'unpaid'
+                    ? 'unpaid'
+                    : project.status) as TProjectWithService['aggregatedStatus'],
+                },
+              ];
+            }
+            return projectsWithServices;
+          }, [] as TProjectWithService[])
           .sort(sortProjectsByDefaultAndDescription),
       };
     },
