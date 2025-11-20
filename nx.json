@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist/**", "{projectRoot}/types/**"],
+      "cache": true
+    },
+    "test": {
+      "dependsOn": ["^test", "@ovh-ux/manager-static-analysis-kit#build"],
+      "cache": true
+    },
+    "dev": {
+      "dependsOn": ["^dev"],
+      "outputs": ["{projectRoot}/dist/**", "{projectRoot}/types/**"],
+      "cache": true
+    },
+    "dev:watch": {
+      "dependsOn": ["^dev:watch"],
+      "outputs": ["{projectRoot}/dist/**", "{projectRoot}/types/**"],
+      "cache": true
+    },
+    "start": {
+      "dependsOn": ["^dev"],
+      "cache": false
+    },
+    "lint:modern": {
+      "dependsOn": ["^lint:modern", "^build"],
+      "cache": true
+    },
+    "lint:modern:fix": {
+      "dependsOn": ["^lint:modern", "^build"],
+      "cache": true
+    }
+  },
+  "cacheDirectory": ".nx/cache",
+  "defaultBase": "develop"
+}
