@@ -1,6 +1,7 @@
 {
   "objectTitle": "Objets",
   "addNewObject": "Ajouter des objets",
+  "searchPlaceholder": "Rechercher...",
   "tableHeaderName": "Nom",
   "tableSuppressionBadgeLabel": "Marqueur de suppression",
   "tableHeaderUpdateDate": "Dernière modification",

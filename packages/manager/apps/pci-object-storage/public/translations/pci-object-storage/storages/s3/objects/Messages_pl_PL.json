@@ -58,5 +58,6 @@
   "inProgressRestore": "Przywracanie w toku...",
   "available": "Dostępne do",
   "restoreAvailableUntil": "Przedmiot będzie dostępny do",
-  "seeVersionsSwitchLabel": "Zobacz wersje"
+  "seeVersionsSwitchLabel": "Zobacz wersje",
+  "searchPlaceholder": "Szukaj..."
 }

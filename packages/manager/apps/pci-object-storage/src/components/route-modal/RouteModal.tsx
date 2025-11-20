@@ -20,7 +20,9 @@ const RouteModal = ({
 }: RouteModalProps) => {
   const navigate = useNavigate();
   const onOpenChange = (open: boolean) => {
-    if (!open) navigate(backUrl);
+    if (!open) {
+      navigate(backUrl);
+    }
   };
 
   return (
