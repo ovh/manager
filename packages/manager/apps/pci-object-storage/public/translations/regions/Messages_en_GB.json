@@ -88,5 +88,11 @@
   "region_TOR": "Toronto",
   "region_TOR_micro": "Toronto ({{ micro }})",
   "region_continent_TOR": "North America",
-  "region-description-localzone": "A Local Zone corresponds to a deployment mode of OVHcloud Public Cloud products in data centres located as close as possible to end users."
+  "region-description-localzone": "A Local Zone corresponds to a deployment mode of OVHcloud Public Cloud products in data centres located as close as possible to end users.",
+  "region_EU-SOUTH-MIL": "Milan",
+  "region_EU-SOUTH-MIL_micro": "Milan ({{ micro }})",
+  "region_MIL": "Milan",
+  "region_MIL_micro": "Milan ({{ micro }})",
+  "region_continent_MIL": "Southern Europe",
+  "region_location_MIL": "Southern Europe (Italy)"
 }

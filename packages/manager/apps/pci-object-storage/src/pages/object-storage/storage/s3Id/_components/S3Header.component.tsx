@@ -7,6 +7,7 @@ import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import { octetConverter } from '@/lib/bytesHelper';
 import { RegionTypeBadge } from '@/components/region-type-badge/RegionTypeBadge.component';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 
 export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
   const { translateMacroRegion } = useTranslatedMicroRegions();
@@ -16,36 +17,39 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
   return (
     <div
       data-testid="notebook-header-container"
-      className="flex gap-2 items-center mt-4 mb-6"
+      className="flex gap-2 items-center mt-4 mb-6 justify-between"
     >
-      <div className="rounded-full bg-gradient-to-tr from-primary to-slate-50 text-white p-2">
-        <Archive width={40} height={40} />
-      </div>
-      <div className="w-full">
-        <div className="flex flex-row items-center gap-3">
-          <h2>{s3.name ?? 'Dashboard'}</h2>
+      <div className="flex gap-2 items-center">
+        <div className="rounded-full bg-gradient-to-tr from-primary to-slate-50 text-white p-2">
+          <Archive width={40} height={40} />
         </div>
-        <div className="flex gap-2 flex-wrap mt-2">
-          <Badge variant="outline">S3</Badge>
-          {region ? (
-            <>
-              <Badge variant="outline" className="capitalize">
-                <div className="flex items-center gap-1">
-                  <Flag flagName={region.countryCode} className="w-3 h-2" />
-                  {translateMacroRegion(s3.region)}
-                </div>
-              </Badge>
-              <RegionTypeBadge type={region.type} />
-            </>
-          ) : (
-            <Skeleton className="h-4 w-10" />
-          )}
+        <div className="w-full">
+          <div className="flex flex-row items-center gap-3">
+            <h2>{s3.name ?? 'Dashboard'}</h2>
+          </div>
+          <div className="flex gap-2 flex-wrap mt-2">
+            <Badge variant="outline">S3</Badge>
+            {region ? (
+              <>
+                <Badge variant="outline" className="capitalize">
+                  <div className="flex items-center gap-1">
+                    <Flag flagName={region.countryCode} className="w-3 h-2" />
+                    {translateMacroRegion(s3.region)}
+                  </div>
+                </Badge>
+                <RegionTypeBadge type={region.type} />
+              </>
+            ) : (
+              <Skeleton className="h-4 w-10" />
+            )}
 
-          {!isLocaleZone && (
-            <Badge variant="outline">{octetConverter(s3.objectsSize)}</Badge>
-          )}
+            {!isLocaleZone && (
+              <Badge variant="outline">{octetConverter(s3.objectsSize)}</Badge>
+            )}
+          </div>
         </div>
       </div>
+      <RoadmapChangelog />
     </div>
   );
 };
