@@ -12,6 +12,8 @@ import {
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
 import { selectFlavors } from '../view-models/flavorsViewModel';
+import { selectImages } from '../view-models/imagesViewModel';
+import { useMemo } from 'react';
 
 // eslint-disable-next-line max-lines-per-function
 export const useForm = (projectId: string) => {
@@ -58,9 +60,16 @@ export const useForm = (projectId: string) => {
 
   const distributionImageTypeDefaultValue = 'linux';
 
-  const distributionImageIdDefaultValue = null;
-
-  const distributionImageVersionDefaultValue = null;
+  const { preselected } = useMemo(
+    () =>
+      selectImages(deps)(
+        projectId,
+        distributionImageTypeDefaultValue,
+        microRegionDefaultValue,
+        preselecteFlavordId,
+      ),
+    [microRegionDefaultValue, preselecteFlavordId, projectId],
+  );
 
   const distributionImageOsTypeDefaultValue = null;
 
@@ -82,8 +91,14 @@ export const useForm = (projectId: string) => {
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,
       distributionImageType: distributionImageTypeDefaultValue,
-      distributionImageId: distributionImageIdDefaultValue,
-      distributionImageVersion: distributionImageVersionDefaultValue,
+      distributionImageVariantId:
+        preselected.preselectedFirstAvailableVariantId,
+      distributionImageVersion: {
+        distributionImageVersionId:
+          preselected.preselectedFirstAvailableVersion?.value ?? null,
+        distributionImageVersionName:
+          preselected.preselectedFirstAvailableVersion?.label ?? null,
+      },
       distributionImageOsType: distributionImageOsTypeDefaultValue,
       sshKeyId: sshKeyIdDefaultValue,
       newSshPublicKey: newSshPublicKeyDefaultValue,
