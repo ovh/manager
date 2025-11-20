@@ -112,7 +112,7 @@ export default function AntiHackModal() {
       addSuccess(t('unblock_anti_hack_ip_success', { ipBlocked }));
 
       await queryClient.invalidateQueries({
-        queryKey: getIpAntihackQueryKey({ ip }),
+        queryKey: getIpAntihackQueryKey({ ip: parentIp }),
       });
       closeModal();
     },
