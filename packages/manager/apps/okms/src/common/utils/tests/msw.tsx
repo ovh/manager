@@ -7,7 +7,7 @@ import { ErrorResponse } from '@/common/types/api.type';
 type BuildHandlerResponseParams<T = unknown> = {
   data: T | ((request: Request, params: PathParams) => T);
   errorMessage: string;
-  isError: boolean;
+  isError: boolean | undefined;
 };
 
 type BuildHandlerResponse<T = unknown> =

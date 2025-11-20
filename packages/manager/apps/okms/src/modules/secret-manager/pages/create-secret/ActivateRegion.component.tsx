@@ -28,7 +28,7 @@ export const ActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
         <OdsSpinner size="sm" data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER} />
         <OdsText>
           {t('okms_activation_in_progress', {
-            region: translateRegionName(region),
+            region: region ? translateRegionName(region) : '',
           })}
         </OdsText>
       </div>

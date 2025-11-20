@@ -47,7 +47,7 @@ export default function CreateKmsPage() {
         title: t('key_management_service_create_title'),
         changelogButton: <KmsGuidesHeader />,
       }}
-      message={notifications.length > 0 && <Notifications />}
+      message={notifications?.length ? <Notifications /> : undefined}
       breadcrumb={
         <Breadcrumb
           items={[

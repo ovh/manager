@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -15,7 +15,7 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
-const mockedOkms = okmsMock[0];
+const mockedOkms = okmsRoubaix1Mock;
 const mockPageUrl = KMS_ROUTES_URLS.kmsDashboard(mockedOkms.id);
 
 const generalInformationTabTestId = KMS_ROUTES_URLS.kmsDashboard(mockedOkms.id);

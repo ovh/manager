@@ -15,13 +15,13 @@ import { ActivateRegion } from './ActivateRegion.component';
 const OkmsStatus = ({ id }: { id: string }) => {
   const {
     data: OkmsServiceInfos,
-    isLoading,
+    isPending,
     isError,
   } = useServiceDetails({
     resourceName: id,
   });
 
-  if (isLoading) return <OdsSkeleton />;
+  if (isPending) return <OdsSkeleton />;
 
   if (isError) return null;
 
@@ -30,8 +30,8 @@ const OkmsStatus = ({ id }: { id: string }) => {
 
 type OkmsSelectorProps = {
   okmsList: OKMS[];
-  selectedOkms: string;
-  selectedRegion: string;
+  selectedOkms: string | undefined;
+  selectedRegion: string | undefined;
   onOkmsSelection: (okmsId: string) => void;
 };
 

@@ -1,5 +1,5 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { serviceKeyMock } from '@key-management-service/mocks/service-keys/serviceKeys.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { serviceKeyMock1 } from '@key-management-service/mocks/service-keys/serviceKeys.mock';
 import { CREATE_KEY_TEST_IDS } from '@key-management-service/pages/service-key/create/CreateKey.constants';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import '@testing-library/jest-dom';
@@ -13,7 +13,7 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
 
-const mockPageUrl = KMS_ROUTES_URLS.serviceKeyListing(okmsMock[0].id);
+const mockPageUrl = KMS_ROUTES_URLS.serviceKeyListing(okmsRoubaix1Mock.id);
 
 describe('Service Key list test suite', () => {
   it('should display an error if the API is KO', async () => {
@@ -124,7 +124,7 @@ describe('Service Key list test suite', () => {
     );
 
     await waitFor(
-      () => userEvent.click(screen.getByTestId(`service-key-link-${serviceKeyMock[0].id}`)),
+      () => userEvent.click(screen.getByTestId(`service-key-link-${serviceKeyMock1.id}`)),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 

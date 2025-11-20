@@ -67,7 +67,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
         <ManagerTile.Item.Label>{t('last_update')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span" data-testid={SECRET_TEST_IDS.UPDATED_AT}>
-            {formatDate(secret.metadata.updatedAt)}
+            {formatDate(secret?.metadata?.updatedAt ?? '')}
           </OdsText>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>

@@ -6,5 +6,5 @@ export const useGuideLink = (guideLinks: GuideLinks) => {
   const { environment } = useShellContext();
   const { ovhSubsidiary } = environment.getUser();
 
-  return guideLinks[ovhSubsidiary] ?? guideLinks.GB;
+  return guideLinks[ovhSubsidiary] ?? guideLinks.GB ?? '';
 };

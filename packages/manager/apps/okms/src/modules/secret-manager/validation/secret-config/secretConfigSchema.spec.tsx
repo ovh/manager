@@ -41,7 +41,7 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['casRequired']);
+      expect(result.error?.issues?.[0]?.path).toEqual(['casRequired']);
     });
 
     it('should return error for missing casRequired field', () => {
@@ -49,7 +49,7 @@ describe('useSecretConfigSchema test suite', () => {
       const { casRequired, ...invalidSecretConfig } = MOCK_SECRET_CONFIG_VALID;
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['casRequired']);
+      expect(result.error?.issues?.[0]?.path).toEqual(['casRequired']);
     });
 
     it('should return error for null casRequired', () => {
@@ -59,7 +59,7 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['casRequired']);
+      expect(result.error?.issues?.[0]?.path).toEqual(['casRequired']);
     });
   });
 
@@ -76,8 +76,8 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['deactivateVersionAfter']);
-      expect(result.error.issues[0].message).toBe(labels.secretManager.error_invalid_duration);
+      expect(result.error?.issues?.[0]?.path).toEqual(['deactivateVersionAfter']);
+      expect(result.error?.issues?.[0]?.message).toBe(labels.secretManager.error_invalid_duration);
     });
 
     it('should return error for missing deactivateVersionAfter field', () => {
@@ -88,7 +88,7 @@ describe('useSecretConfigSchema test suite', () => {
       } = MOCK_SECRET_CONFIG_VALID;
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['deactivateVersionAfter']);
+      expect(result.error?.issues?.[0]?.path).toEqual(['deactivateVersionAfter']);
     });
 
     it('should validate various valid duration formats', () => {
@@ -128,7 +128,7 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['maxVersions']);
+      expect(result.error?.issues?.[0]?.path).toEqual(['maxVersions']);
     });
 
     it('should return error for missing maxVersions field', () => {
@@ -136,7 +136,7 @@ describe('useSecretConfigSchema test suite', () => {
       const { maxVersions, ...invalidSecretConfig } = MOCK_SECRET_CONFIG_VALID;
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['maxVersions']);
+      expect(result.error?.issues?.[0]?.path).toEqual(['maxVersions']);
     });
 
     it('should return error for null maxVersions', () => {
@@ -146,7 +146,7 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['maxVersions']);
+      expect(result.error?.issues?.[0]?.path).toEqual(['maxVersions']);
     });
 
     it('should return error for negative maxVersions', () => {
@@ -156,8 +156,8 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(validSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['maxVersions']);
-      expect(result.error.issues[0].message).toBe(
+      expect(result.error?.issues?.[0]?.path).toEqual(['maxVersions']);
+      expect(result.error?.issues?.[0]?.message).toBe(
         labels.common.form.error_min_exclusive.replace(
           '{{ value }}',
           MAX_VERSIONS_MIN_VALUE.toString(),
@@ -172,8 +172,8 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['maxVersions']);
-      expect(result.error.issues[0].message).toBe(
+      expect(result.error?.issues?.[0]?.path).toEqual(['maxVersions']);
+      expect(result.error?.issues?.[0]?.message).toBe(
         labels.common.form.error_max_inclusive.replace(
           '{{ value }}',
           MAX_VERSIONS_MAX_VALUE.toString(),
@@ -192,19 +192,19 @@ describe('useSecretConfigSchema test suite', () => {
       };
       const result = getSchemaParsingResult(invalidSecretConfig);
       expect(result.success).toBe(false);
-      expect(result.error.issues).toHaveLength(3);
-      expect(result.error.issues[0].path).toEqual(['casRequired']);
-      expect(result.error.issues[1].path).toEqual(['deactivateVersionAfter']);
-      expect(result.error.issues[2].path).toEqual(['maxVersions']);
+      expect(result.error?.issues).toHaveLength(3);
+      expect(result.error?.issues?.[0]?.path).toEqual(['casRequired']);
+      expect(result.error?.issues?.[1]?.path).toEqual(['deactivateVersionAfter']);
+      expect(result.error?.issues?.[2]?.path).toEqual(['maxVersions']);
     });
 
     it('should return multiple errors for completely empty object', () => {
       const result = getSchemaParsingResult({});
       expect(result.success).toBe(false);
-      expect(result.error.issues).toHaveLength(3);
-      expect(result.error.issues[0].path).toEqual(['casRequired']);
-      expect(result.error.issues[1].path).toEqual(['deactivateVersionAfter']);
-      expect(result.error.issues[2].path).toEqual(['maxVersions']);
+      expect(result.error?.issues).toHaveLength(3);
+      expect(result.error?.issues?.[0]?.path).toEqual(['casRequired']);
+      expect(result.error?.issues?.[1]?.path).toEqual(['deactivateVersionAfter']);
+      expect(result.error?.issues?.[2]?.path).toEqual(['maxVersions']);
     });
   });
 

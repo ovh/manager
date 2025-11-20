@@ -49,7 +49,7 @@ export default function OkmsListPage() {
       navigate({
         pathname: SECRET_MANAGER_ROUTES_URLS.root,
       });
-    } else if (okmsList.length === 1) {
+    } else if (okmsList.length === 1 && okmsList[0]) {
       // If only one okms is found, redirect to its secrets listing page
       const okmsId = okmsList[0].id;
       navigate({
@@ -80,7 +80,7 @@ export default function OkmsListPage() {
           <RootBreadcrumbItem />
         </OdsBreadcrumb>
       }
-      message={notifications.length > 0 && <Notifications />}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <div className="space-y-6">
         <RegionSelector />
