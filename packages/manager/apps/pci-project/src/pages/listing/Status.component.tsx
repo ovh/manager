@@ -1,20 +1,20 @@
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { OdsBadgeColor } from '@ovhcloud/ods-components';
 import { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { TProjectWithService } from '@/data/types/project.type';
+
+import { OdsBadgeColor } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+
+import { TProjectWithService } from '@/data/models/Project.type';
 
 type StatusComponentProps = {
   project: TProjectWithService;
 };
 
-export default function StatusComponent({
-  project,
-}: Readonly<StatusComponentProps>) {
+export default function StatusComponent({ project }: Readonly<StatusComponentProps>) {
   const { t } = useTranslation('listing');
 
-  const isUnpaidAndNotSuspended =
-    project.isUnpaid && project.status !== 'suspended';
+  const isUnpaidAndNotSuspended = project.isUnpaid && project.status !== 'suspended';
 
   const badgeColor = useMemo<OdsBadgeColor>(() => {
     if (isUnpaidAndNotSuspended) {

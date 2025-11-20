@@ -1,5 +1,7 @@
-import { useQueries, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+
+import { useQueries, useQuery } from '@tanstack/react-query';
+
 import {
   ORDER_FOLLOW_UP_POLLING_INTERVAL,
   ORDER_FOLLOW_UP_STATUS_ENUM,
@@ -7,12 +9,8 @@ import {
   PCI_HDS_ADDON,
   PCI_HDS_DISCOVERY_ADDON,
 } from '@/constants';
-import {
-  getOrderDetails,
-  getOrderDetailWithExtension,
-  getOrderFollowUp,
-} from '@/data/api/order';
-import { TOrderFollowUp } from '@/data/types/order.type';
+import { getOrderDetailWithExtension, getOrderDetails, getOrderFollowUp } from '@/data/api/order';
+import { TOrderFollowUp } from '@/data/models/Order.type';
 
 const useOrderDetailWithExtensions = ({
   orderId,
@@ -23,9 +21,7 @@ const useOrderDetailWithExtensions = ({
 }) => {
   return useQueries({
     queries: orderDetailIds.map((orderDetailId: number) => ({
-      queryKey: [
-        `/me/order/${orderId}/details/${orderDetailId}/with-extension`,
-      ],
+      queryKey: [`/me/order/${orderId}/details/${orderDetailId}/with-extension`],
       queryFn: () => getOrderDetailWithExtension(orderId, orderDetailId),
       enabled: orderDetailIds.length > 0,
     })),
@@ -36,13 +32,7 @@ const useOrderDetailWithExtensions = ({
   });
 };
 
-const useOrderDetailIds = ({
-  orderId,
-  enabled = true,
-}: {
-  orderId: number;
-  enabled?: boolean;
-}) => {
+const useOrderDetailIds = ({ orderId, enabled = true }: { orderId: number; enabled?: boolean }) => {
   return useQuery({
     queryKey: [`/me/order/${orderId}/details`],
     queryFn: () => getOrderDetails(orderId),
@@ -65,10 +55,7 @@ export const useDeliveredProjectId = ({
     enabled,
   });
 
-  const {
-    data: orderDetailsWithExtensions = [],
-    isLoading,
-  } = useOrderDetailWithExtensions({
+  const { data: orderDetailsWithExtensions = [], isLoading } = useOrderDetailWithExtensions({
     orderId,
     orderDetailIds,
   });
@@ -78,8 +65,7 @@ export const useDeliveredProjectId = ({
       const orderDetailWithExtension = orderDetailsWithExtensions.find(
         (item) =>
           item?.extension?.order.plan.code === PCI_HDS_ADDON.parentPlanCode ||
-          item?.extension?.order.plan.code ===
-            PCI_HDS_DISCOVERY_ADDON.parentPlanCode,
+          item?.extension?.order.plan.code === PCI_HDS_DISCOVERY_ADDON.parentPlanCode,
       );
 
       if (orderDetailWithExtension) {
@@ -95,9 +81,7 @@ export const useDeliveredProjectId = ({
   };
 };
 
-const getOrderFollowUpQueryKey = (orderId: number) => [
-  `/me/order/${orderId}/followUp/polling`,
-];
+const getOrderFollowUpQueryKey = (orderId: number) => [`/me/order/${orderId}/followUp/polling`];
 
 /**
  * Determines whether project creation polling should continue based on order follow-up data.
@@ -120,11 +104,11 @@ export const shouldRefetchProjectCreation = (
 
   const deliveringStep = followUpData.find(
     (followUpItem: TOrderFollowUp) =>
-      followUpItem.step === ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING,
+      String(followUpItem.step) === String(ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING),
   );
 
   // Stop polling if delivery is complete
-  if (deliveringStep?.status === ORDER_FOLLOW_UP_STATUS_ENUM.DONE) {
+  if (String(deliveringStep?.status) === String(ORDER_FOLLOW_UP_STATUS_ENUM.DONE)) {
     onProjectDelivered();
     return false;
   }
@@ -132,7 +116,7 @@ export const shouldRefetchProjectCreation = (
   // Stop polling if any step has an error
   const hasStepInError = followUpData.some(
     (followUpItem: TOrderFollowUp) =>
-      followUpItem.status === ORDER_FOLLOW_UP_STATUS_ENUM.ERROR,
+      String(followUpItem.status) === String(ORDER_FOLLOW_UP_STATUS_ENUM.ERROR),
   );
 
   if (hasStepInError) {
@@ -158,11 +142,7 @@ export const useOrderFollowUpPolling = ({
     queryFn: () => getOrderFollowUp(orderId),
     enabled: !!orderId,
     refetchInterval: ({ state }) =>
-      shouldRefetchProjectCreation(
-        onProjectDelivered,
-        onProjectDeliveryFail,
-        state.data,
-      ),
+      shouldRefetchProjectCreation(onProjectDelivered, onProjectDeliveryFail, state.data),
     refetchIntervalInBackground: true,
   });
 };

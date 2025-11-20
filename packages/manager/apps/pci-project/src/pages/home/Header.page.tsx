@@ -1,26 +1,27 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 
+import { Outlet } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsBreadcrumb, OdsBreadcrumbItem, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  isDiscoveryProject,
   PciAnnouncementBanner,
   TabsPanel,
+  isDiscoveryProject,
   usePciUrl,
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
-import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-  OdsSkeleton,
-} from '@ovhcloud/ods-components/react';
 
 import { ProjectValidationGuard } from '@/components/project-validation-guard/ProjectValidationGuard';
 import { CHANGELOG_LINKS } from '@/constants';
 import { useProjectTabs } from '@/hooks/useProjectTabs';
+import { TProject } from '@/types/pci-common.types';
+
 import QuotaAlert from './components/QuotaAlert.component';
 
 export default function ProjectHeader() {
@@ -33,24 +34,26 @@ export default function ProjectHeader() {
     NAMESPACES.FORM,
   ]);
 
-  const hrefProject = usePciUrl();
-  const { data: project, isLoading } = useProject();
+  const hrefProject = (usePciUrl as unknown as () => string)();
+  const { data: project, isLoading } = (
+    useProject as unknown as () => {
+      data: TProject | undefined;
+      isLoading: boolean;
+    }
+  )();
   const tabs = useProjectTabs();
 
-  const isDiscovery = isDiscoveryProject(project);
+  const isDiscovery = (isDiscoveryProject as (p: TProject | undefined) => boolean)(project);
 
   return (
     <ProjectValidationGuard>
       <BaseLayout
         breadcrumb={
           isLoading ? (
-            <OdsSkeleton className="w-48 h-6" />
+            <OdsSkeleton className="h-6 w-48" />
           ) : (
             <OdsBreadcrumb>
-              <OdsBreadcrumbItem
-                href={hrefProject}
-                label={project?.description}
-              />
+              <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
             </OdsBreadcrumb>
           )
         }

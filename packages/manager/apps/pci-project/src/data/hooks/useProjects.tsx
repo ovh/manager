@@ -1,7 +1,7 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { FetchResultV6 } from '@ovh-ux/manager-react-components';
 import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
-import { TProject } from '@ovh-ux/manager-pci-common';
+import { AxiosError } from 'axios';
+
+import { DISCOVERY_PROJECT_PLANCODE } from '@/constants';
 import {
   claimVoucher,
   getDefaultProject,
@@ -14,9 +14,14 @@ import {
   projectsWithServiceQueryKey,
   sortProjectsByDefaultAndDescription,
 } from '@/data/api/projects-with-services';
-import { TProjectWithService } from '@/data/types/project.type';
+import { TProjectWithService } from '@/data/models/Project.type';
 import queryClient from '@/queryClient';
-import { DISCOVERY_PROJECT_PLANCODE } from '@/constants';
+
+type FetchResultV6<T> = {
+  data: T[];
+};
+
+type ApiError = AxiosError<{ message: string }>;
 
 type DeleteProjectParams = {
   projectId: string;
@@ -24,9 +29,9 @@ type DeleteProjectParams = {
   isUs: boolean;
 };
 
-export const getDefaultProjectQueryKey = [
-  'me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT',
-];
+export const getDefaultProjectQueryKey = ['me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT'];
+
+export const getProjectQueryKey = (projectId: string) => ['/cloud/project', projectId];
 
 /**
  * Query options for fetching the user's default public cloud project preference.
@@ -44,7 +49,7 @@ export function useSetAsDefaultProject(options: {
   return useMutation({
     mutationFn: async (projectId: string) => setAsDefaultProject(projectId),
     onSuccess: (_, projectId) => {
-      queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
+      void queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
 
       queryClient.setQueryData(
         [projectsWithServiceQueryKey()],
@@ -72,7 +77,7 @@ export function useUnFavProject(options: {
   return useMutation({
     mutationFn: async () => unFavProject(),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
+      void queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
       options.onSuccess();
     },
     onError: options.onError,
@@ -95,7 +100,7 @@ export function useRemoveProjectMutation(options: {
     onSuccess: () => {
       if (options.isDefault) {
         // Invalidate the default project query cache when unFavProject is called
-        queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
+        void queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
       }
       options.onSuccess();
     },
@@ -131,8 +136,7 @@ export const useIsDefaultProject = (projectId?: string) =>
  */
 export const useClaimVoucher = () =>
   useMutation<void, ApiError, { projectId: string; voucherCode: string }>({
-    mutationFn: ({ projectId, voucherCode }) =>
-      claimVoucher(projectId, voucherCode),
+    mutationFn: ({ projectId, voucherCode }) => claimVoucher(projectId, voucherCode),
   });
 
 /**
@@ -149,8 +153,6 @@ export const useDiscoveryProject = () =>
     queryKey: ['/cloud/project'],
     queryFn: () => getProjects(),
     select: ({ data }) => {
-      return data.find(
-        (project) => project.planCode === DISCOVERY_PROJECT_PLANCODE,
-      );
+      return data.find((project) => project.planCode === DISCOVERY_PROJECT_PLANCODE);
     },
   });

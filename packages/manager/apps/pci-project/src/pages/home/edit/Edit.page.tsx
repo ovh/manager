@@ -1,21 +1,26 @@
-import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
-import { Notifications } from '@ovh-ux/manager-react-components';
-import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 
+import { Outlet } from 'react-router-dom';
+
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import GeneralInformationSection from './general-information-section/GeneralInformationSection';
-import HdsSection from './hds-section/HdsSection';
-import RemoveSection from './remove-section/RemoveSection';
+
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { Notifications } from '@ovh-ux/manager-react-components';
+
 import {
   useIsAValidHdsSupportLevel,
   useIsHdsFeatureAvailabilityEnabled,
-} from '@/hooks/useHds/useHds';
+} from '@/hooks/use-hds/useHds';
+import { TProject } from '@/types/pci-common.types';
+
+import GeneralInformationSection from './general-information-section/GeneralInformationSection';
+import HdsSection from './hds-section/HdsSection';
+import RemoveSection from './remove-section/RemoveSection';
 
 export default function EditPage() {
-  const { data: project } = useProject();
+  const { data: project } = (useProject as unknown as () => { data: TProject | undefined })();
 
-  const isDiscovery = isDiscoveryProject(project);
+  const isDiscovery = (isDiscoveryProject as (p: TProject | undefined) => boolean)(project);
   const isHdsFeatureAvailabilityEnabled = useIsHdsFeatureAvailabilityEnabled();
   const isAValidHdsSupportLevel = useIsAValidHdsSupportLevel();
 
