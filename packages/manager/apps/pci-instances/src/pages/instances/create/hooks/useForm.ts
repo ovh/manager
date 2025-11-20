@@ -11,7 +11,6 @@ import {
   selectCategories,
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
-import { mockedDistributionImageType } from '@/__mocks__/instance/constants';
 import { selectFlavors } from '../view-models/flavorsViewModel';
 
 // eslint-disable-next-line max-lines-per-function
@@ -57,8 +56,7 @@ export const useForm = (projectId: string) => {
 
   const availabilityZoneDefaultValue = null;
 
-  const distributionImageTypeDefaultValue =
-    mockedDistributionImageType[0]?.value ?? null;
+  const distributionImageTypeDefaultValue = 'linux';
 
   const distributionImageIdDefaultValue = null;
 

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import {
   Controller,
   ControllerRenderProps,
@@ -20,10 +19,14 @@ import {
   SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
-import { mockedDistributionImageType } from '@/__mocks__/instance/constants';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
+import { deps } from '@/deps/deps';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { useMemo } from 'react';
+import { selectImagesTypes } from '../../view-models/imagesViewModel';
 
-const DistributionImageType: FC = () => {
+const DistributionImageType = () => {
+  const projectId = useProjectId();
   const { t } = useTranslation('creation');
   const { trackClick } = useOvhTracking();
   const { control } = useFormContext<TInstanceCreationForm>();
@@ -31,6 +34,10 @@ const DistributionImageType: FC = () => {
     control,
     name: 'distributionImageType',
   });
+
+  const imageTypes = useMemo(() => selectImagesTypes(deps)(projectId), [
+    projectId,
+  ]);
 
   const handleImageTypeChange = (
     field: ControllerRenderProps<
@@ -65,7 +72,7 @@ const DistributionImageType: FC = () => {
               )}
             </FormFieldLabel>
             <Select
-              items={mockedDistributionImageType}
+              items={imageTypes}
               value={selectedImageType ? [selectedImageType] : []}
               onValueChange={handleImageTypeChange(field)}
             >

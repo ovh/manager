@@ -28,5 +28,9 @@
   "pci_instances_common_more_info": "Więcej informacji",
   "pci_instances_common_instance_continent_asia_oceania": "Azja-Pacyfik",
   "pci_instances_common_instance_continent_all": "Wszystkie",
-  "pci_instances_common_ssh_key_label": "klucz SSH"
+  "pci_instances_common_ssh_key_label": "klucz SSH",
+  "pci_instances_common_backups_image_type": "Backup",
+  "pci_instances_common_linux_image_type": "Dystrybucje Unix",
+  "pci_instances_common_apps_image_type": "Dystrybucje + aplikacje",
+  "pci_instances_common_windows_image_type": "Dystrybucje Windows"
 }
