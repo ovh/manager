@@ -1,14 +1,12 @@
-import { useParams } from 'react-router-dom';
-
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
 import { useSecretConfigReference } from '@secret-manager/data/hooks/useSecretConfigReference';
 import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig, buildSecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { ErrorResponse } from '@/common/types/api.type';
 
 export type UseSecretSmartConfigResult =
@@ -32,7 +30,7 @@ export type UseSecretSmartConfigResult =
     };
 
 export const useSecretSmartConfig = (secret: Secret | undefined): UseSecretSmartConfigResult => {
-  const { okmsId } = useParams() as LocationPathParams;
+  const { okmsId } = useRequiredParams('okmsId');
 
   const { data: okms, isPending: isOkmsPending, error: okmsError } = useOkmsById(okmsId);
   const region = useCurrentRegion(okms?.data ? [okms.data] : []);
