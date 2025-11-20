@@ -15,7 +15,7 @@ import {
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetUserSecret } from '@/data/hooks/user/useGetUserSecret.hook';
 import * as Tuser from '@/types/User';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
+import { UserWithS3Credentials } from '@/types/User';
 
 interface SecretKeyProps {
   user: UserWithS3Credentials;
