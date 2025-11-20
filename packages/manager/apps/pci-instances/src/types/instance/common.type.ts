@@ -118,12 +118,12 @@ export type TFlavorTag = 'new' | 'savings_plan' | 'coming_soon';
 
 export const DISTRIBUTION_IMAGE_NAME = [
   'almalinux',
-  'centOS',
-  'cPanel',
+  'centos',
+  'cpanel',
   'debian',
   'docker',
   'fedora',
-  'freeBSD',
+  'freebsd',
   'linux',
   'n8n',
   'nvidia',

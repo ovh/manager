@@ -32,13 +32,11 @@ export const quantitySchema = z
 
 export const distributionImageTypeSchema = z.string().nullable();
 
-export const distributionImageNameSchema = z.string().nullable();
-
-export const flavorImagePriceSchema = z.string().nullable();
+export const distributionImageIdSchema = z.string().nullable();
 
 export const distributionImageVersionSchema = z.string().nullable();
 
-export const distributionLicencePriceSchema = z.string().nullable();
+export const distributionImageOsTypeSchema = z.string().nullable();
 
 export const sshKeyIdSchema = z
   .string()

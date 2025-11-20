@@ -1,5 +1,10 @@
 import { FC } from 'react';
-import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import {
+  Controller,
+  ControllerRenderProps,
+  useFormContext,
+  useWatch,
+} from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import {
   ButtonType,
@@ -15,42 +20,29 @@ import {
   SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
-import {
-  mockedDistributionImageList,
-  mockedDistributionImageType,
-} from '@/__mocks__/instance/constants';
+import { mockedDistributionImageType } from '@/__mocks__/instance/constants';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 
 const DistributionImageType: FC = () => {
   const { t } = useTranslation('creation');
   const { trackClick } = useOvhTracking();
-  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const { control } = useFormContext<TInstanceCreationForm>();
   const selectedImageType = useWatch({
     control,
     name: 'distributionImageType',
   });
 
-  const handleImageTypeChange = ({ value }: SelectValueChangeDetail) => {
+  const handleImageTypeChange = (
+    field: ControllerRenderProps<
+      TInstanceCreationForm,
+      'distributionImageType'
+    >,
+  ) => ({ value }: SelectValueChangeDetail) => {
     const imageType = value[0];
 
     if (!imageType) return;
 
-    const distribution = mockedDistributionImageList.find(
-      ({ type }) => type === imageType,
-    );
-
-    const distributionImageName = distribution?.id ?? null;
-
-    const distributionVersion = distribution?.versions?.[0]?.value ?? null;
-    const flavorImagePrice = distribution?.pricing?.hour ?? null;
-    const distributionLicencePrice =
-      distribution?.pricing?.licence?.total ?? null;
-
-    setValue('distributionImageType', imageType);
-    setValue('distributionImageName', distributionImageName);
-    setValue('flavorImagePrice', flavorImagePrice);
-    setValue('distributionImageVersion', distributionVersion);
-    setValue('distributionLicencePrice', distributionLicencePrice);
+    field.onChange(imageType);
 
     trackClick({
       location: PageLocation.funnel,
@@ -65,7 +57,7 @@ const DistributionImageType: FC = () => {
       <Controller
         name="distributionImageType"
         control={control}
-        render={() => (
+        render={({ field }) => (
           <FormField className="max-w-[32%]">
             <FormFieldLabel>
               {t(
@@ -75,7 +67,7 @@ const DistributionImageType: FC = () => {
             <Select
               items={mockedDistributionImageType}
               value={selectedImageType ? [selectedImageType] : []}
-              onValueChange={handleImageTypeChange}
+              onValueChange={handleImageTypeChange(field)}
             >
               <SelectControl />
               <SelectContent />
@@ -83,7 +75,6 @@ const DistributionImageType: FC = () => {
           </FormField>
         )}
       />
-
       <Text className="mt-4" preset="paragraph">
         {t(
           'creation:pci_instance_creation_select_image_distribution_type_license_information',

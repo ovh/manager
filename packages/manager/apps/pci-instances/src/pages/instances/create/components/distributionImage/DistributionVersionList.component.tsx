@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useCallback, useEffect, useMemo } from 'react';
 import {
   Badge,
   FormField,
@@ -6,37 +6,71 @@ import {
   Select,
   SelectContent,
   SelectControl,
+  SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { mockedDistributionImageList } from '@/__mocks__/instance/constants';
+import { mockedDistributionImageVersions } from '@/__mocks__/instance/constants';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
+
+type TSelectedVersion = {
+  label: string;
+  value: string;
+  osType: string;
+};
 
 const DistributionVersionList: FC = () => {
   const { t } = useTranslation('creation');
-  const { control } = useFormContext<TInstanceCreationForm>();
-  const [selectedDistributionImage, selectedVersion] = useWatch({
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const [selectedImageId, selectedVersion] = useWatch({
     control,
-    name: ['distributionImageName', 'distributionImageVersion'],
+    name: ['distributionImageId', 'distributionImageVersion'],
   });
 
   // TODO: will be handle by a view-models
   const versions = useMemo(
     () =>
-      mockedDistributionImageList.find(
-        ({ id }) => id === selectedDistributionImage,
-      )?.versions,
-    [selectedDistributionImage],
+      mockedDistributionImageVersions
+        .find(({ imageId }) => imageId === selectedImageId)
+        ?.versions.map(({ name, osType, unavailable }) => ({
+          label: name,
+          value: name,
+          disabled: !!unavailable,
+          osType,
+          customRendererData: {
+            unavailable,
+          },
+        })),
+    [selectedImageId],
   );
 
-  if (!versions) return null;
+  const updateImageVersionFields = useCallback(
+    (version?: TSelectedVersion) => {
+      setValue('distributionImageVersion', version?.value ?? null);
+      setValue('distributionImageOsType', version?.osType ?? null);
+    },
+    [setValue],
+  );
+
+  const handleSelectVersion = ({ items }: SelectValueChangeDetail) => {
+    const version = (items as TSelectedVersion[])[0];
+    updateImageVersionFields(version);
+  };
+
+  useEffect(() => {
+    const version = versions?.find(({ disabled }) => !disabled);
+
+    updateImageVersionFields(version);
+  }, [updateImageVersionFields, versions]);
+
+  if (!versions || versions.length <= 1) return null;
 
   return (
     <Controller
       name="distributionImageVersion"
       control={control}
-      render={({ field }) => (
+      render={() => (
         <FormField className="mt-8 max-w-[32%]">
           <FormFieldLabel>
             {t(
@@ -46,7 +80,7 @@ const DistributionVersionList: FC = () => {
           <Select
             items={versions}
             value={selectedVersion ? [selectedVersion] : []}
-            onValueChange={({ value }) => field.onChange(value[0])}
+            onValueChange={handleSelectVersion}
           >
             <SelectControl />
             <SelectContent

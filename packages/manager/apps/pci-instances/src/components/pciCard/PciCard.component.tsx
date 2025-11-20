@@ -5,7 +5,8 @@ import { PciCardHeader } from '@/components/pciCard/PciCardHeader.component';
 import { PciCardContent } from '@/components/pciCard/PciCardContent.component';
 import { PciCardFooter } from '@/components/pciCard/PciCardFooter.component';
 
-export type TPciCardProps = CardProp & React.HTMLAttributes<HTMLDivElement> &
+export type TPciCardProps = CardProp &
+  React.HTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     selectable?: boolean;
     selected?: boolean;
@@ -31,15 +32,19 @@ export const PciCard = ({
     {
       'cursor-not-allowed bg-[--ods-color-neutral-100] [&_*]:text-neutral-500 [&_[class^=_badge]]:bg-[--ods-color-neutral-500]': disabled,
       'hover:cursor-pointer border-[--ods-color-primary-600] bg-[--ods-color-information-025]': selected,
-      'hover:cursor-pointer hover:border-[--ods-color-primary-600]': selectable,
+      'hover:cursor-pointer hover:border-[--ods-color-primary-600]':
+        selectable && !disabled,
+      'hover:cursor-not-allowed hover:border-[--ods-color-primary-600]': disabled,
     },
     className,
   );
 
   return (
-    <Card color={color} className={baseClasses}
-          {...(!disabled && { onClick })}
-          {...rest}
+    <Card
+      color={color}
+      className={baseClasses}
+      {...(!disabled && { onClick })}
+      {...rest}
     >
       {children}
     </Card>
