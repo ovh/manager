@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
@@ -25,16 +25,14 @@ import {
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { CryptoPropertiesTile } from './CryptoPropertiesTile.component';
 import { GeneralInformationTile } from './GeneralInformationTile.component';
 
 export default function ServiceKeyDashboard() {
-  const { okmsId, keyId } = useParams() as {
-    okmsId: string;
-    keyId: string;
-  };
+  const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useDeleteOkmsCredential } from '@key-management-service/data/hooks/useDeleteOkmsCredential';
 import { useTranslation } from 'react-i18next';
@@ -6,13 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 const DeleteCredentialPage = () => {
   const navigate = useNavigate();
   const { trackPage } = useOvhTracking();
-  const { okmsId, credentialId } = useParams() as {
-    okmsId: string;
-    credentialId: string;
-  };
+  const { okmsId, credentialId } = useRequiredParams('okmsId', 'credentialId');
   const { t } = useTranslation('key-management-service/credential');
 
   const { mutate, isPending } = useDeleteOkmsCredential({

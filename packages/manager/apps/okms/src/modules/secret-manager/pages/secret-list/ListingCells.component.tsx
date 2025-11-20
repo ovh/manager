@@ -1,9 +1,6 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
@@ -13,12 +10,13 @@ import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-re
 
 import { Link } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { SECRET_LIST_CELL_TEST_IDS } from './ListingCells.constant';
 
 export const DatagridCellPath = (secret: Secret) => {
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
   const url = SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secret.path);
 
   return (
@@ -49,7 +47,7 @@ export const DatagridCreationDate = (secret: Secret) => {
 };
 
 export const DatagridAction = (secret: Secret) => {
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 

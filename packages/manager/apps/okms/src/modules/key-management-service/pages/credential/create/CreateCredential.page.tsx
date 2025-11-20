@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
@@ -20,11 +20,12 @@ import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-co
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
   const { trackPage } = useOvhTracking();
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const { data: okms, isLoading, error } = useOkmsById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
   const [step, setStep] = useState<number>(1);

@@ -1,13 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { isLocationParamsDefined } from '@secret-manager/utils/locationParams';
 
 import { OdsBreadcrumbItem, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
@@ -29,13 +28,13 @@ const Item = ({ okmsId }: { okmsId: string }) => {
       key={okmsId}
       label={error ? okmsId : okms?.data?.iam?.displayName || okmsId}
       onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId))}
-      href={null}
+      href=""
     />
   );
 };
 
 export const OkmsBreadcrumbItem = () => {
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
 
   return isLocationParamsDefined([okmsId]) ? <Item okmsId={okmsId} /> : null;
 };

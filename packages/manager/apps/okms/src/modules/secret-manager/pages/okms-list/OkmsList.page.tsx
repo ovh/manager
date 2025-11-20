@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms';
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
 import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
 import { RegionSelector } from '@secret-manager/components/region-selector/RegionSelector.component';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { useTranslation } from 'react-i18next';
 
@@ -24,13 +21,14 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 
 export default function OkmsListPage() {
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
   const { notifications } = useNotifications();
-  const { region } = useParams<LocationPathParams>();
+  const { region } = useRequiredParams('region');
 
   const { data, error, isPending, refetch } = useOkmsDatagridList({
     pageSize: 100,
