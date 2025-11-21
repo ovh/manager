@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 
 import useClickAway from 'react-use/lib/useClickAway';
 
 import { OsdsIcon, OsdsSkeleton } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE, ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_ICON_SIZE, ODS_SKELETON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import UserAccountMenuButton from './Button';
 import UserAccountMenuContent from './Content';
@@ -44,6 +44,19 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
     }
   };
 
+  const onUserAccountMenuButtonClick = useCallback((nextShow: boolean) => {
+    if (nextShow) {
+      openAccountSidebar();
+      setIsNotificationsSidebarVisible(false);
+      trackingPlugin.trackClick({
+        type: 'action',
+        name: tracking.open,
+      });
+    } else {
+      closeAccountSidebar();
+    }
+  }, [trackingPlugin]);
+
   useEffect(() => {
     onToggle(isAccountSidebarOpened);
   }, [isAccountSidebarOpened]);
@@ -54,21 +67,8 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
     <div className={`oui-navbar-dropdown ${style.selectable}`} ref={ref}>
       <UserAccountMenuButton
         show={isAccountSidebarOpened}
-        onClick={(nextShow) => {
-          if (!isReady) {
-            return;
-          }
-          if (nextShow) {
-            openAccountSidebar();
-            setIsNotificationsSidebarVisible(false);
-            trackingPlugin.trackClick({
-              type: 'action',
-              name: tracking.open,
-            });
-          } else {
-            closeAccountSidebar();
-          }
-        }}
+        onClick={onUserAccountMenuButtonClick}
+        disabled={!isReady}
       >
         <span slot="start" className={style.userIcon}>
           <OsdsIcon
@@ -79,9 +79,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
           ></OsdsIcon>
         </span>
         {isReady ? (
-          <span className={style.userInfos}>
-            <UserName />
-          </span>
+          <UserName size={ODS_TEXT_SIZE._400}/>
         ) : (
           <OsdsSkeleton inline={true} size={ODS_SKELETON_SIZE.xs} />
         )}
