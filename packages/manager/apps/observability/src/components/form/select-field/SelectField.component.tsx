@@ -1,16 +1,8 @@
 import React, { useMemo } from 'react';
 
-import {
-  FormField,
-  FormFieldHelper,
-  FormFieldLabel,
-  Select,
-  SelectContent,
-  SelectControl,
-  Skeleton,
-  TEXT_PRESET,
-  Text,
-} from '@ovh-ux/muk';
+import { FormField, FormFieldHelper, FormFieldLabel, Skeleton } from '@ovhcloud/ods-react';
+
+import { Select, SelectContent, SelectControl, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectFieldProps } from '@/components/form/select-field/SelectField.props';
 

@@ -6,8 +6,8 @@ import { vi } from 'vitest';
 import { SelectField } from '@/components/form/select-field/SelectField.component';
 import { SelectFieldProps, SelectOption } from '@/components/form/select-field/SelectField.props';
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
@@ -37,6 +37,15 @@ vi.mock('@ovh-ux/muk', () => ({
       })}
     </div>
   ),
+  Skeleton: ({ className }: { className?: string }) => (
+    <div data-testid="skeleton" className={className}>
+      Loading...
+    </div>
+  ),
+}));
+
+// Mock MUK components (Select and Text)
+vi.mock('@ovh-ux/muk', () => ({
   SelectControl: ({
     children,
     className,
@@ -102,11 +111,6 @@ vi.mock('@ovh-ux/muk', () => ({
       </>
     );
   },
-  Skeleton: ({ className }: { className?: string }) => (
-    <div data-testid="skeleton" className={className}>
-      Loading...
-    </div>
-  ),
   Text: ({
     children,
     preset,
