@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha-app",
-  "version": "4.0.118",
+  "version": "4.0.119",
   "private": true,
   "description": "NAS-HA standalone application.",
   "repository": {
@@ -15,13 +15,13 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-billing-components": "^4.28.0",
+    "@ovh-ux/manager-billing-components": "^4.28.1",
     "@ovh-ux/manager-catalog-price": "^1.8.0",
     "@ovh-ux/manager-components": "^1.26.2",
     "@ovh-ux/manager-config": "^8.7.1",
-    "@ovh-ux/manager-core": "^13.2.19",
+    "@ovh-ux/manager-core": "^13.2.20",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
-    "@ovh-ux/manager-models": "^2.6.1",
+    "@ovh-ux/manager-models": "^2.6.2",
     "@ovh-ux/manager-nasha": "^2.20.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
     "@ovh-ux/ng-at-internet": "^6.0.34",

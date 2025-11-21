@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.1...@ovh-ux/manager-models@2.6.2) (2025-11-21)
+
+
+### Bug Fixes
+
+* **models.service:** roll-back option commitment price calc ([b5caf59](https://github.com/ovh/manager/commit/b5caf59ba71309ae7e9e20acd06ded41b2aeb648)), closes [#MANAGER-20353](https://github.com/ovh/manager/issues/MANAGER-20353)
+
+
+
+
+
 ## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.0...@ovh-ux/manager-models@2.6.1) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-models
