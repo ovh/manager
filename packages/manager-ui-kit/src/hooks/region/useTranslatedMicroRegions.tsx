@@ -9,23 +9,23 @@ export const useTranslatedMicroRegions = () => {
 
   return {
     translateMicroRegion: (region: string) => {
-      const macro = getMacroRegion(region);
-      if (i18n.exists(`region:region_${macro}_micro`)) {
-        return t(`region_${macro}_micro`, { micro: region });
+      const macro = getMacroRegion(region)?.toUpperCase();
+      if (i18n.exists(`${NAMESPACES.REGION}:region_${macro}_micro`)) {
+        return t(`${NAMESPACES.REGION}:region_${macro}_micro`, { micro: region });
       }
       return '';
     },
     translateMacroRegion: (region: string) => {
-      const macro = getMacroRegion(region);
-      if (i18n.exists(`region:region_${macro}`)) {
-        return t(`region_${macro}`);
+      const macro = getMacroRegion(region)?.toUpperCase();
+      if (i18n.exists(`${NAMESPACES.REGION}:region_${macro}`)) {
+        return t(`${NAMESPACES.REGION}:region_${macro}`);
       }
       return '';
     },
     translateContinentRegion: (region: string) => {
-      const macro = getMacroRegion(region);
-      if (i18n.exists(`region:region_continent_${macro}`)) {
-        return t(`region_continent_${macro}`);
+      const macro = getMacroRegion(region)?.toUpperCase();
+      if (i18n.exists(`${NAMESPACES.REGION}:region_continent_${macro}`)) {
+        return t(`${NAMESPACES.REGION}:region_continent_${macro}`);
       }
       return '';
     },
