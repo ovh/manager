@@ -94,9 +94,14 @@ const { useBaremetalsListMock } = vi.hoisted(() => ({
     .mockReturnValue({ flattenData: undefined, isLoading: true, isError: false }),
 }));
 
-vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => ({
-  useBaremetalsList: useBaremetalsListMock,
-}));
+vi.mock('@ovh-ux/backup-agent', async () => {
+  const actual = await vi.importActual('@ovh-ux/backup-agent');
+
+  return {
+    ...actual,
+    useBaremetalsList: useBaremetalsListMock,
+  };
+});
 
 vi.mock('@/hooks/onboarding/useOnboardingData', () => ({
   useOnboardingContent: () => ({
@@ -168,9 +173,7 @@ describe('FirstOrderFormComponent', () => {
     );
 
     await waitFor(() =>
-      expect(
-        screen.getByText(`translated_${NAMESPACES.FORM}:error_required_field`),
-      ).toBeInTheDocument(),
+      expect(screen.getByText(`translated_${NAMESPACES.FORM}:required_field`)).toBeInTheDocument(),
     );
 
     await waitFor(() => expect(getSelectBaremetal()).toHaveAttribute('data-disabled', 'false'), {
