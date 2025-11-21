@@ -14,13 +14,13 @@ import { PropsWithChildren } from 'react';
 type HelperDrawerProps = PropsWithChildren<DrawerProp> &
   React.HTMLAttributes<HTMLDivElement>;
 
-export const HelpDrawer = ({ children }: HelperDrawerProps) => {
+export const HelpDrawer = ({ children, onOpenChange }: HelperDrawerProps) => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'common']);
 
   return (
     <>
       <div className="w-px bg-[var(--ods-color-information-800)] h-[25px]" />
-      <Drawer closeOnEscape closeOnInteractOutside>
+      <Drawer closeOnEscape closeOnInteractOutside onOpenChange={onOpenChange}>
         <DrawerTrigger asChild>
           <Button variant="ghost" size="sm">
             {t('common:pci_instances_common_help')}

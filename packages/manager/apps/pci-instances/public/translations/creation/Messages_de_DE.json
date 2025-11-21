@@ -92,5 +92,9 @@
   "pci_instance_creation_select_sshKey_add_key_done": "Ihr SSH-Schlüssel wird am Ende des Konfigurationsprozesses erstellt.",
   "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Bitte wählen Sie einen anderen Namen, dieser ist bereits vergeben.",
   "pci_instance_creation_select_image_distribution_version_label": "Bildversion",
-  "pci_instance_creation_select_image_distribution_version_unavailable": "Version nicht verfügbar"
+  "pci_instance_creation_select_image_distribution_version_unavailable": "Version nicht verfügbar",
+  "pci_instance_creation_network_setting_title": "Netzwerkparameter",
+  "pci_instance_creation_network_private_network_setting_title": "Privates Netzwerk",
+  "pci_instance_creation_network_private_network_setting_description": "Die Instanzen sind in einem privaten Netzwerk. Ein Internet- oder SSH-Zugriff erfordert eine Floating IP, ein Gateway oder einen SSH-Proxy.",
+  "pci_instance_creation_network_setting_help_title": "Verständnis der Netzwerkparameter"
 }

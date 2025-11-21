@@ -16,7 +16,8 @@ export type TGuideKey =
   | 'AVAILABILITY_ZONES'
   | 'DISTRIBUTION_IMAGE'
   | 'DISTRIBUTION_IMAGE_LIFE_CYCLE'
-  | 'SSH_KEY';
+  | 'SSH_KEY'
+  | 'NETWORK';
 
 export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   LOCATION: {
@@ -42,5 +43,9 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   SSH_KEY: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-compute-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0064541`,
     FR: `${HELP_URL}/fr-public-cloud-compute-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0064541`,
+  },
+  NETWORK: {
+    DEFAULT: `${HELP_URL}/fr-public-cloud-network-vrack?id=kb_article_view&sysparm_article=KB0050279`,
+    FR: `${HELP_URL}/fr-public-cloud-network-vrack?id=kb_article_view&sysparm_article=KB0050279`,
   },
 };

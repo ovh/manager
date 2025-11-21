@@ -19,6 +19,7 @@ import { AvailabilityZoneSelection } from '../availabilityZoneSelection/Availabi
 import { LocalizationSelection } from '../localisationSelection/LocalizationSelection.component';
 import DistributionImage from '../DistributionImage.component';
 import SshKey from '../SshKey.component';
+import Network from '../Network.component';
 
 const quantityHintParams = {
   quota: 1,
@@ -78,6 +79,8 @@ export const CreateInstanceForm = () => {
           {microRegion && osType !== 'windows' && (
             <SshKey microRegion={microRegion} />
           )}
+          <Divider spacing="64" />
+          <Network />
           <AdvancedParameters />
           <PciCardShowcaseComponent />
         </section>
