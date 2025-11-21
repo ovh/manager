@@ -15,5 +15,9 @@
   "billing_resiliate_terminateAtExpirationDate_error": "Si è verificato un errore durante la richiesta di disattivazione del servizio alla data di scadenza:",
   "billing_resiliate_error": "Si è verificato un errore durante la richiesta di disattivazione:",
   "billing_resiliate_terminateAtEngagementDate_us": "Disattivare il servizio alla data di scadenza dell'impegno contrattuale",
-  "billing_resiliate_terminateAtEngagementDate_error_us": "Si è verificato un errore durante la richiesta di disattivazione alla data di scadenza dell'impegno contrattuale di questo servizio:"
+  "billing_resiliate_terminateAtEngagementDate_error_us": "Si è verificato un errore durante la richiesta di disattivazione alla data di scadenza dell'impegno contrattuale di questo servizio:",
+  "billing_resiliate_mode_label_us": "Selezionare l'azione che vuoi effettuare",
+  "billing_resiliate_terminate_us": "Disattivare subito il tuo servizio",
+  "billing_resiliate_terminateAtExpirationDate_us": "Disattivare il tuo servizio al termine dell'impegno contrattuale",
+  "billing_resiliate_confirmation_mail_to_be_sent": "Riceverai un’email con la conferma della disattivazione del servizio"
 }

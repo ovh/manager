@@ -3,5 +3,6 @@
   "manager_components_delete_modal_delete_button": "Sì, disattiva",
   "manager_components_delete_modal_description": "La disattivazione del servizio comporta la cancellazione definitiva di tutti i dati associati. Vuoi procedere alla disattivazione del servizio?",
   "manager_components_delete_modal_headline": "Disattivare {{serviceType}}?",
-  "manager_components_delete_modal_headline_service": "Servizio"
+  "manager_components_delete_modal_headline_service": "Servizio",
+  "manager_components_delete_modal_description_us": "La disattivazione del tuo servizio comporta la cancellazione definitiva di tutti i dati ad esso associati. La disattivazione del tuo servizio non dà diritto ad alcun rimborso. Per qualsiasi domanda relativa al rimborso, contatta il nostro supporto."
 }
