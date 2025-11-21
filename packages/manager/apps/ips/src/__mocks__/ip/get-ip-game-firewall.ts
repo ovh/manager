@@ -1,7 +1,4 @@
-import {
-  IpGameFirewallStateEnum,
-  IpGameFirewallType,
-} from '../../src/data/api';
+import { IpGameFirewallStateEnum, IpGameFirewallType } from '@/data/api';
 
 export const getIpGameFirewallResponse = ({
   state = IpGameFirewallStateEnum.OK,
