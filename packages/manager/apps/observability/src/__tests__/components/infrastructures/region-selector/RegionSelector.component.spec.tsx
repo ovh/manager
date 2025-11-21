@@ -24,8 +24,8 @@ vi.mock('@/utils/form.utils', () => ({
   toParenthesesLabel: vi.fn((label: string) => `(${label})`),
 }));
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
@@ -39,47 +39,103 @@ vi.mock('@ovh-ux/muk', () => ({
       Loading...
     </div>
   ),
+  Tabs: ({
+    children,
+    value,
+    onValueChange,
+  }: {
+    children: React.ReactNode;
+    value?: string;
+    onValueChange?: (event: { value: string }) => void;
+  }) => {
+    const [selectedTab, setSelectedTab] = React.useState(value || '');
+
+    React.useEffect(() => {
+      if (value !== undefined) {
+        setSelectedTab(value);
+      }
+    }, [value]);
+
+    const handleChange = (newValue: string) => {
+      setSelectedTab(newValue);
+      onValueChange?.({ value: newValue });
+    };
+
+    return (
+      <div data-testid="tabs-component" data-context-value={selectedTab}>
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(
+              child as React.ReactElement<{
+                selectedTab?: string;
+                onTabChange?: (value: string) => void;
+              }>,
+              { selectedTab, onTabChange: handleChange },
+            );
+          }
+          return child;
+        })}
+      </div>
+    );
+  },
+  TabList: ({
+    children,
+    selectedTab,
+    onTabChange,
+  }: {
+    children: React.ReactNode;
+    selectedTab?: string;
+    onTabChange?: (value: string) => void;
+  }) => (
+    <div data-testid="tab-list">
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(
+            child as React.ReactElement<{
+              selectedTab?: string;
+              onTabChange?: (value: string) => void;
+            }>,
+            { selectedTab, onTabChange },
+          );
+        }
+        return child;
+      })}
+    </div>
+  ),
+  Tab: ({
+    children,
+    value,
+    selectedTab,
+    onTabChange,
+  }: {
+    children: React.ReactNode;
+    value: string;
+    selectedTab?: string;
+    onTabChange?: (value: string) => void;
+  }) => (
+    <button
+      type="button"
+      data-testid={`tab-${value}`}
+      data-selected={selectedTab === value ? 'true' : 'false'}
+      onClick={() => onTabChange?.(value)}
+      style={{ cursor: 'pointer' }}
+    >
+      {children}
+    </button>
+  ),
+  SPINNER_SIZE: {
+    sm: 'sm',
+    md: 'md',
+  },
+}));
+
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
   Text: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
     <span data-testid="text" data-preset={preset}>
       {children}
     </span>
   ),
-  TabsComponent: ({
-    items,
-    titleElement,
-    contentElement,
-  }: {
-    items: string[];
-    titleElement: ({ item }: { item: string }) => React.ReactElement;
-    contentElement: ({ item }: { item: string }) => React.ReactElement;
-  }) => {
-    const [selectedTab, setSelectedTab] = React.useState(items[0]);
-
-    return (
-      <div data-testid="tabs-component">
-        {items.map((item) => (
-          <div key={item}>
-            <button
-              type="button"
-              data-testid={`tab-${item}`}
-              data-selected={selectedTab === item ? 'true' : 'false'}
-              onClick={() => setSelectedTab(item)}
-              style={{ cursor: 'pointer' }}
-            >
-              {titleElement({ item })}
-            </button>
-            {selectedTab === item && (
-              <div data-testid={`tab-content-${item}`}>{contentElement({ item })}</div>
-            )}
-          </div>
-        ))}
-      </div>
-    );
-  },
-  SPINNER_SIZE: {
-    sm: 'sm',
-    md: 'md',
-  },
   TEXT_PRESET: {
     heading4: 'heading-4',
     caption: 'caption',

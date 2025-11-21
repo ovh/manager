@@ -1,4 +1,6 @@
-import { Link, Skeleton, TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Skeleton } from '@ovhcloud/ods-react';
+
+import { Link, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { useLocation } from '@/data/hooks/infrastructures/useLocations.hook';
 
