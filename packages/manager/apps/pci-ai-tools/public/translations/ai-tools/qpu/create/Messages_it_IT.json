@@ -55,5 +55,9 @@
   "totalPrice": "Totale",
   "notePriceDesc": "Il tempo QPU viene fatturato al secondo. Il tempo QPU sarà fatturato solo per la durata di utilizzo della QPU.",
   "pricingLabel": "Prezzo",
-  "notebookPrice": "Risorse Notebook"
+  "notebookPrice": "Risorse Notebook",
+  "defultAutoRestartInfo": "Il notebook si spegnerà automaticamente dopo 7 giorni? La configurazione e i dati verranno salvati.",
+  "fieldTimeOutLabel": "Scadenza",
+  "fieldAutoRestartLabel": "Riavvio automatico",
+  "fieldAutoRestartDescription": "Se attivato, il notebook verrà riavviato automaticamente ogni 7 giorni. Se disattivato, il notebook verrà automaticamente spento dopo 7 giorni. In entrambi i casi, la configurazione e i dati verranno salvati."
 }

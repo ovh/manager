@@ -6,6 +6,7 @@ import {
   ChevronDown,
   ChevronUp,
   ChevronsUpDown,
+  HelpCircle,
   Plus,
   TerminalSquare,
 } from 'lucide-react';
@@ -36,6 +37,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Separator,
+  Switch,
   useToast,
 } from '@datatr-ux/uxlib';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -558,6 +560,49 @@ const OrderFunnel = ({
                     </FormItem>
                   )}
                 />
+              </CardContent>
+            </Card>
+            {/* Auto Restart */}
+            <Card
+              id="autorestart"
+              data-testid="autorestart-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldTimeOutLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  <AlertCircle className="inline size-4 shrink-0 mr-1 mb-1 text-amber-500" />
+                  {t('defultAutoRestartInfo')}
+                </CardDescription>
+                <div></div>
+                <div className="flex items-center gap-4 ">
+                  <Switch
+                    name="timeoutAutoRestart"
+                    value={
+                      model.form.watch('timeoutAutoRestart') ? 'true' : 'false'
+                    }
+                    checked={model.form.watch('timeoutAutoRestart')}
+                    onCheckedChange={(newtimeoutAutoRestartValue: boolean) =>
+                      model.form.setValue(
+                        'timeoutAutoRestart',
+                        newtimeoutAutoRestartValue,
+                      )
+                    }
+                  />
+                  <div className="inline space-x-2">
+                    <FormLabel>{t('fieldAutoRestartLabel')}</FormLabel>
+                    <Popover>
+                      <PopoverTrigger>
+                        <HelpCircle className="size-4" />
+                      </PopoverTrigger>
+                      <PopoverContent className="text-sm">
+                        <p>{t('fieldAutoRestartDescription')}</p>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 

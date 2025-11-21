@@ -22,5 +22,7 @@
   "addLabelTitle": "Aggiungere un label",
   "keyFieldLabel": "Chiave",
   "valueFieldLabel": "Valore",
-  "deleteNotebookTooltip": "Il notebook deve essere in stato “Arrestato”"
+  "deleteNotebookTooltip": "Il notebook deve essere in stato “Arrestato”",
+  "activateAutoRestartButton": "Attivare il riavvio automatico",
+  "deactivateAutoRestartButton": "Disattivare il riavvio automatico"
 }

@@ -46,5 +46,9 @@
   "successCreatingJobDescription": "Ihr Job wurde erfolgreich erstellt.",
   "fieldDockerCommandLabel": "Docker-Befehle:",
   "summaryFieldVolumesLabel": "Volumes:",
-  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
+  "defultAutoRestartInfo": "Der Job wird automatisch nach 7 Tagen gestoppt. Ihre Konfiguration und Ihre Daten werden gespeichert. ",
+  "fieldTimeOutLabel": "Ablauf",
+  "fieldAutoRestartLabel": "Automatischer Neustart",
+  "fieldAutoRestartDescription": "Wenn aktiviert, wird der Job automatisch alle 7 Tage neu gestartet. Wenn deaktiviert, wird der Job automatisch nach 7 Tagen gestoppt. In beiden Fällen werden Ihre Konfiguration und Ihre Daten gespeichert."
 }

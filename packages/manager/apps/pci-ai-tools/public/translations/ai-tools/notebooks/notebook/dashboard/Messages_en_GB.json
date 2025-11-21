@@ -22,5 +22,7 @@
   "addLabelTitle": "Add a label",
   "keyFieldLabel": "Key",
   "valueFieldLabel": "Value",
-  "deleteNotebookTooltip": "Make sure the notebook is in ‘Stopped’ status"
+  "deleteNotebookTooltip": "Make sure the notebook is in ‘Stopped’ status",
+  "activateAutoRestartButton": "Enable automatic restart",
+  "deactivateAutoRestartButton": "Disable automatic restart"
 }

@@ -55,5 +55,9 @@
   "totalPrice": "Razem",
   "notePriceDesc": "Czas pracy QPU jest fakturowany za sekundę. Płacisz wyłącznie za rzeczywisty czas pracy QPU",
   "pricingLabel": "Cena",
-  "notebookPrice": "Zasoby Notebooka"
+  "notebookPrice": "Zasoby Notebooka",
+  "defultAutoRestartInfo": "Notebook zostanie automatycznie wyłączony po 7 dniach? Twoja konfiguracja i dane zostaną zapisane.",
+  "fieldTimeOutLabel": "Data ważności",
+  "fieldAutoRestartLabel": "Automatyczne ponowne uruchomienie",
+  "fieldAutoRestartDescription": "Jeśli opcja jest włączona, notebook będzie automatycznie restartowany co 7 dni. Jeśli opcja jest wyłączona, notebook zostanie automatycznie wyłączony po 7 dniach. W obu przypadkach Twoja konfiguracja i dane zostaną zapisane."
 }

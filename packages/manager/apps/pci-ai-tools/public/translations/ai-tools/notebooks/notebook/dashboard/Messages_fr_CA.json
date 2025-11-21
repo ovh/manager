@@ -16,6 +16,8 @@
   "notebookIdCopyToast": "L'identifiant du notebook a été copié",
   "deleteNotebookButton": "Supprimer le notebook",
   "deleteNotebookTooltip": "Le notebook doit être en statut arrêté",
+  "activateAutoRestartButton": "Activer le redémarrage automatique",
+  "deactivateAutoRestartButton": "Désactiver le redémarrage automatique",
   "liveCodeEditorTitle": "Live code editor",
   "openEditor": "Ouvrir {{editor}}",
   "grafanaTitle": "Suivi de la consommation",

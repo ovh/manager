@@ -22,5 +22,7 @@
   "addLabelTitle": "Ein Label hinzufügen",
   "keyFieldLabel": "Schlüssel",
   "valueFieldLabel": "Wert",
-  "deleteNotebookTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden"
+  "deleteNotebookTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden",
+  "activateAutoRestartButton": "Automatisches Neustarten aktivieren",
+  "deactivateAutoRestartButton": "Automatisches Neustarten deaktivieren"
 }
