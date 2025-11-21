@@ -83,7 +83,9 @@ function MyComponent() {
 |-----------|-------------|---------|---------------|
 | **OsdsModal** | Centered dialog window | `import { OsdsModal } from '@ovhcloud/ods-components/react';` | `<OsdsModal headline="Confirm">Content</OsdsModal>` |
 | **OsdsAccordion** | Expandable/collapsible container | `import { OsdsAccordion } from '@ovhcloud/ods-components/react';` | `<OsdsAccordion opened={true}>Content</OsdsAccordion>` |
-| **OsdsTabs** | Tab container | `import { OsdsTabs } from '@ovhcloud/ods-components/react';` | `<OsdsTabs>...</OsdsTabs>` |
+| **Tabs** | Tab container (✅ Use from `@ovhcloud/ods-react`) | `import { Tabs } from '@ovhcloud/ods-react';` | `<Tabs value={value} onValueChange={handleChange}><TabList>...</TabList></Tabs>` |
+| **TabList** | Tab list container | `import { TabList } from '@ovhcloud/ods-react';` | `<TabList><Tab>...</Tab></TabList>` |
+| **Tab** | Individual tab item | `import { Tab } from '@ovhcloud/ods-react';` | `<Tab value="tab1">Label</Tab>` |
 | **OsdsTile** | Visual container for grouped content | `import { OsdsTile } from '@ovhcloud/ods-components/react';` | `<OsdsTile>Content</OsdsTile>` |
 | **OsdsDivider** | Visual separator line | `import { OsdsDivider } from '@ovhcloud/ods-components/react';` | `<OsdsDivider />` |
 
@@ -191,7 +193,71 @@ interface OsdsMessageProps {
 }
 ```
 
+#### Tabs (from @ovhcloud/ods-react)
+```typescript
+interface TabsProps {
+  value?: string;
+  onValueChange?: (event: TabsValueChangeEvent) => void;
+  children?: React.ReactNode;
+}
+
+interface TabListProps {
+  children?: React.ReactNode;
+}
+
+interface TabProps {
+  value: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
+}
+
+interface TabsValueChangeEvent {
+  value: string;
+}
+```
+
+**Important:** `Tabs`, `TabList`, `Tab`, and `TabsValueChangeEvent` are exported from `@ovhcloud/ods-react`, NOT from `@ovhcloud/ods-components/react` or MUK.
+
 ### Common Usage Patterns
+
+#### Tabs Navigation
+```typescript
+import { Tabs, TabList, Tab, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+function DashboardTabs() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const tabs = [
+    { name: 'general', title: 'General Information', to: '.' },
+    { name: 'partitions', title: 'Partitions', to: 'partitions' },
+  ];
+  
+  const activeTab = tabs.find(tab => location.pathname.includes(tab.to))?.name || tabs[0].name;
+  
+  const handleTabChange = (event: TabsValueChangeEvent) => {
+    const tab = tabs.find(t => t.name === event.value);
+    if (tab) {
+      navigate(tab.to);
+    }
+  };
+  
+  return (
+    <Tabs value={activeTab} onValueChange={handleTabChange}>
+      <TabList>
+        {tabs.map((tab) => (
+          <Tab key={tab.name} value={tab.name}>
+            {tab.title}
+          </Tab>
+        ))}
+      </TabList>
+    </Tabs>
+  );
+}
+```
+
+**Note:** `Tabs`, `TabList`, `Tab`, and `TabsValueChangeEvent` are available from `@ovhcloud/ods-react`, NOT from MUK. Always import them from ODS when needed.
 
 #### Form with Validation
 ```typescript
