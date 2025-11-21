@@ -7,6 +7,8 @@ import {
   Hash,
   LockKeyhole,
   MemoryStick,
+  OctagonX,
+  RefreshCcw,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { bytesConverter } from '@/lib/bytesHelper';
@@ -24,6 +26,7 @@ interface OrderSummaryProps {
     editor: ai.capabilities.notebook.Editor;
     notebookName: string;
     unsecureHttp: boolean;
+    timeoutAutoRestart: boolean;
     labels: { [key: string]: string };
     sshKey: string[];
     volumes: OrderVolumes[];
@@ -321,6 +324,36 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
+
+const AutoRestartDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('ai-tools/notebooks/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <Button
+          data-testid="restart-section-button"
+          type="button"
+          onClick={() => onSectionClicked('autorestart')}
+          className={buttonClassName}
+        >
+          {t('fieldAutoRestartLabel')}:
+        </Button>
+        {order.timeoutAutoRestart ? (
+          <div className="flex flex-row flex-wrap gap-2 items-center">
+            <span>{t('filedEnable')}</span>
+            <RefreshCcw size={16} />
+          </div>
+        ) : (
+          <div className="flex flex-row flex-wrap gap-2 items-center">
+            <span>{t('filedDisable')}</span>
+            <OctagonX size={16} />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="grid grid-cols-1">
@@ -330,6 +363,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <FrameworkDetails order={order} onSectionClicked={onSectionClicked} />
       <EditorDetails order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
+      <AutoRestartDetails order={order} onSectionClicked={onSectionClicked} />
       {order.volumes.length > 0 && (
         <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
       )}

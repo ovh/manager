@@ -62,7 +62,7 @@ const RestartJob = ({ job, onError, onSuccess, onClose }: RestartJobProps) => {
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle data-testid="restart-job-modal">
-            {t('restartJobTitle')}
+            {t('cloneJobTitle')}
           </DialogTitle>
         </DialogHeader>
         <p>

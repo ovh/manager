@@ -25,6 +25,7 @@ import {
 import ai from '@/types/AI';
 
 import Link from '@/components/links/Link.component';
+import { AutoRestartColumn } from '@/components/auto-restart/AutoRestartColumn';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import NotebookStatusBadge from './NotebookStatusBadge.component';
 
@@ -37,15 +38,18 @@ import {
 } from '@/lib/statusHelper';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
+  onRestartClicked: (notebook: ai.notebook.Notebook) => void;
   onStopClicked: (notebook: ai.notebook.Notebook) => void;
   onDeleteClicked: (notebook: ai.notebook.Notebook) => void;
 }
 
 export const getColumns = ({
   onStartClicked,
+  onRestartClicked,
   onStopClicked,
   onDeleteClicked,
 }: NotebooksListColumnsProps) => {
@@ -53,6 +57,7 @@ export const getColumns = ({
   const track = useTrackAction();
   const { t } = useTranslation('ai-tools/notebooks');
   const { t: tRegions } = useTranslation('regions');
+  const dateLocale = useDateFnsLocale();
   const columns: ColumnDef<ai.notebook.Notebook>[] = [
     {
       id: 'name/id',
@@ -223,6 +228,24 @@ export const getColumns = ({
       },
     },
     {
+      id: 'autorestart',
+      accessorFn: (row) => row.spec.timeoutAutoRestart,
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('timeOutLabel')}
+        </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <AutoRestartColumn
+          timeoutAutoRestart={row.original.spec.timeoutAutoRestart}
+          timeoutAt={row.original.status.lastJobStatus.timeoutAt}
+          dateLocale={dateLocale}
+          translationNamespace="ai-tools/notebooks"
+        />
+      ),
+    },
+
+    {
       id: 'Status',
       accessorFn: (row) => row.status.state,
       header: ({ column }) => (
@@ -291,6 +314,19 @@ export const getColumns = ({
                 }}
               >
                 {t('tableActionStart')}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                data-testid="notebook-action-restart-button"
+                disabled={
+                  !isRunningNotebook(notebook.status.state) ||
+                  isDeletingNotebook(notebook.status.state)
+                }
+                variant="primary"
+                onClick={() => {
+                  onRestartClicked(row.original);
+                }}
+              >
+                {t('tableActionRestart')}
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="notebook-action-stop-button"

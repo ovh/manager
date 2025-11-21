@@ -2,6 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Cpu, MoreHorizontal, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 import {
   Button,
   DropdownMenu,
@@ -15,11 +16,13 @@ import ai from '@/types/AI';
 import Link from '@/components/links/Link.component';
 import DataTable from '@/components/data-table';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import { AutoRestartColumn } from '@/components/auto-restart/AutoRestartColumn';
 import JobStatusBadge from './JobStatusBadge.component';
 import { isRunningJob, isStoppedJob } from '@/lib/statusHelper';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { useTrackAction } from '@/hooks/useTracking';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 interface JobsListColumnsProps {
   onRestartClicked: (job: ai.job.Job) => void;
@@ -36,6 +39,7 @@ export const getColumns = ({
   const track = useTrackAction();
   const { t } = useTranslation('ai-tools/jobs');
   const { t: tRegions } = useTranslation('regions');
+  const dateLocale = useDateFnsLocale();
   const columns: ColumnDef<ai.job.Job>[] = [
     {
       id: 'name/id',
@@ -151,6 +155,23 @@ export const getColumns = ({
         return <JobStatusBadge status={row.original.status.state} />;
       },
     },
+    {
+      id: 'autorestart',
+      accessorFn: (row) => row.spec.timeoutAutoRestart,
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('timeOutLabel')}
+        </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <AutoRestartColumn
+          timeoutAutoRestart={row.original.spec.timeoutAutoRestart}
+          timeoutAt={row.original.status.timeoutAt}
+          dateLocale={dateLocale}
+          translationNamespace="ai-tools/jobs"
+        />
+      ),
+    },
 
     {
       id: 'actions',
@@ -198,7 +219,7 @@ export const getColumns = ({
                   onRestartClicked(row.original);
                 }}
               >
-                {t('tableActionRestart')}
+                {t('tableActionClone')}
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="job-action-stop-button"

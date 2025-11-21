@@ -2,19 +2,26 @@ import { useTranslation } from 'react-i18next';
 import {
   Atom,
   Link,
+  Pen,
   RefreshCcwDot,
   Settings2,
   Tag,
   TerminalSquare,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
   Code,
   Skeleton,
+  Switch,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
   bash,
   githubDark,
   useToast,
@@ -38,10 +45,12 @@ import {
   NotebookRoadmapLinks,
 } from '@/configuration/roadmap-changelog.constants';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { isRunningNotebook, isStoppedNotebook } from '@/lib/statusHelper';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
   const isQuantum = useQuantum();
+  const navigate = useNavigate();
 
   const { t } = useTranslation('ai-tools/notebooks/notebook/dashboard');
   const { toast } = useToast();
@@ -120,6 +129,35 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
+            <div className="flex items-center justify-between mb-4">
+              <h5 className="mb-0 mr-5">{t('autoRestartLabel')}</h5>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="inline-block" tabIndex={0}>
+                      <Button
+                        data-testid="popover-trigger-button"
+                        size="sm"
+                        mode="outline"
+                        className="text-text"
+                        onClick={() => navigate('./update-auto-restart')}
+                        disabled={!isRunningNotebook(notebook.status.state)}
+                      >
+                        {notebook.spec.timeoutAutoRestart
+                          ? t('autoRestartDisabled')
+                          : t('autoRestartEnabled')}
+                        <Pen className="ml-2 size-4" />
+                      </Button>
+                    </span>
+                  </TooltipTrigger>
+                  {!isRunningNotebook(notebook.status.state) && (
+                    <TooltipContent>
+                      {t('disabledRestartButtonTooltip')}
+                    </TooltipContent>
+                  )}
+                </Tooltip>
+              </TooltipProvider>
+            </div>
             <LifeCycle />
           </CardContent>
         </Card>

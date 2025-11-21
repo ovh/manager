@@ -21,5 +21,8 @@
   "cliTitle": "Równoważne polecenie CLI",
   "cliToastMessage": "Polecenie zostało skopiowane",
   "restartJobButtonConfirm": "Uruchom ponownie",
-  "restartJobToastSuccessDescription": "Zadanie {{name}} zostało uruchomione"
+  "restartJobToastSuccessDescription": "Zadanie {{name}} zostało uruchomione",
+  "cloneJobTitle": "Skopiuj nowe zadanie",
+  "shutdownLabel": "Zatrzymaj ",
+  "restartLabel": "Restartuj "
 }

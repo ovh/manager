@@ -132,6 +132,7 @@ export interface NotebookOrderResult {
   editor: ai.capabilities.notebook.Editor;
   notebookName: string;
   unsecureHttp: boolean;
+  timeoutAutoRestart: boolean;
   labels: {
     [key: string]: string;
   };
@@ -147,6 +148,7 @@ export interface JobOrderResult {
   image: string;
   jobName: string;
   unsecureHttp: boolean;
+  timeoutAutoRestart: boolean;
   sshKey: string[];
   volumes: OrderVolumes[];
   dockerCommand: string[];

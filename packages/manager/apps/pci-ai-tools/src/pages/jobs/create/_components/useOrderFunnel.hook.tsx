@@ -42,6 +42,7 @@ export function useOrderFunnel(
       .trim()
       .min(1),
     privacy: z.nativeEnum(PrivacyEnum),
+    timeoutAutoRestart: z.boolean(),
     dockerCommand: z.array(z.string()).optional(),
     sshKey: z.array(
       z.object({
@@ -81,6 +82,7 @@ export function useOrderFunnel(
       ).unsecureHttp
         ? PrivacyEnum.private
         : PrivacyEnum.public,
+      timeoutAutoRestart: false,
       dockerCommand: [],
       sshKey: [],
       volumes: [],
@@ -92,6 +94,7 @@ export function useOrderFunnel(
   const image = form.watch('image');
   const jobName = form.watch('jobName');
   const unsecureHttp = form.watch('privacy');
+  const timeoutAutoRestart = form.watch('timeoutAutoRestart');
   const sshKey = form.watch('sshKey');
   const volumes = form.watch('volumes');
   const dockerCommand = form.watch('dockerCommand');
@@ -169,6 +172,7 @@ export function useOrderFunnel(
       image,
       jobName,
       unsecureHttp: unsecureHttpObject,
+      timeoutAutoRestart,
       sshKey: publicSshKeyList,
       volumes,
       dockerCommand,

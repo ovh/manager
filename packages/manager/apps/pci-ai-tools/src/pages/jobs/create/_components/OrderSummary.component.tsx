@@ -5,6 +5,8 @@ import {
   HardDrive,
   LockKeyhole,
   MemoryStick,
+  RefreshCcw,
+  OctagonX,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button, Skeleton } from '@datatr-ux/uxlib';
@@ -20,6 +22,7 @@ interface OrderSummaryProps {
     image: string;
     jobName: string;
     unsecureHttp: boolean;
+    timeoutAutoRestart: boolean;
     sshKey: string[];
     volumes: OrderVolumes[];
     dockerCommand: string[];
@@ -280,6 +283,36 @@ const SshKeysDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
     </div>
   );
 };
+
+const AutoRestartDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('ai-tools/jobs/create');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <Button
+          data-testid="restart-section-button"
+          type="button"
+          onClick={() => onSectionClicked('autorestart')}
+          className={buttonClassName}
+        >
+          {t('fieldAutoRestartLabel')}:
+        </Button>
+        {order.timeoutAutoRestart ? (
+          <div className="flex flex-row flex-wrap gap-2 items-center">
+            <span>{t('filedEnable')}</span>
+            <RefreshCcw size={16} />
+          </div>
+        ) : (
+          <div className="flex flex-row flex-wrap gap-2 items-center">
+            <span>{t('filedDisable')}</span>
+            <OctagonX size={16} />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   return (
     <div className="grid grid-cols-1">
@@ -288,6 +321,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
       <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
       <ImageDetails order={order} onSectionClicked={onSectionClicked} />
       <PrivacyDetails order={order} onSectionClicked={onSectionClicked} />
+      <AutoRestartDetails order={order} onSectionClicked={onSectionClicked} />
       {order.volumes.length > 0 && (
         <VolumesDetails order={order} onSectionClicked={onSectionClicked} />
       )}
