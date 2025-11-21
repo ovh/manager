@@ -22,17 +22,6 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
-import clsx from 'clsx';
-import { isEven } from '@/utils';
-
-const getGridColumnClassname = (nbItems: number) =>
-  nbItems > 1 ? `grid-cols-${isEven(nbItems) ? 2 : 3}` : null;
-
-const getLabelMaxWidthClassname = (nbItems: number) => {
-  if (nbItems === 1) return null;
-
-  return isEven(nbItems) ? 'max-w-[300px]' : 'max-w-[200px]';
-};
 
 const DistributionImageList: FC = () => {
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
@@ -75,16 +64,21 @@ const DistributionImageList: FC = () => {
     setValue('distributionImageId', distributionImage?.imageId ?? null);
   }, [distributionImageType, distributions, setValue]);
 
+  const cardsContainerClassname = `grid gap-6 mt-8 grid-cols-${
+    distributionImageType === 'windows' ? 2 : 3
+  }`;
+
+  const imageLabelClassname = `font-bold text-lg text-[--ods-color-heading] ${
+    distributionImageType === 'windows' ? 'max-w-[300px]' : 'max-w-[200px]'
+  }`;
+
   return (
     <Controller
       control={control}
       name="distributionImageId"
       render={({ field }) => (
         <RadioGroup
-          className={clsx(
-            'grid gap-6 mt-8',
-            getGridColumnClassname(distributions.length),
-          )}
+          className={cardsContainerClassname}
           {...(selectedImageId && { value: selectedImageId })}
           onValueChange={handleSelectImage(field)}
         >
@@ -101,12 +95,7 @@ const DistributionImageList: FC = () => {
                 <PciCard.Header>
                   <Radio disabled={!!unavailable} value={imageId}>
                     <RadioControl />
-                    <RadioLabel
-                      className={clsx(
-                        'font-bold text-lg text-[--ods-color-heading]',
-                        getLabelMaxWidthClassname(distributions.length),
-                      )}
-                    >
+                    <RadioLabel className={imageLabelClassname}>
                       <DistributionImageLabel name={subCategory}>
                         <span className="flex-1 max-w-full pr-8">
                           {label}
