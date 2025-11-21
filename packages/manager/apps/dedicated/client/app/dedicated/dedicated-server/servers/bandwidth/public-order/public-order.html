@@ -31,9 +31,9 @@
                             <oui-radio
                                 data-name="bandwidth-plan"
                                 data-model="$ctrl.model.plan"
-                                data-value="plan.planCode"
+                                data-value="plan"
                             >
-                                <span data-ng-bind="plan.planCode"></span>
+                                <span data-ng-bind="plan.invoiceName"></span>
                             </oui-radio>
                         </div>
                         <div class="col-md-3 pl-0">
@@ -79,10 +79,12 @@
                     <div class="col-md-8 pr-0">
                         <oui-radio
                             data-name="bandwidth-plan"
-                            data-model="$ctrl.model.plan"
+                            data-model="$ctrl.model.plan.planCode"
                             data-value="$ctrl.provisionalPlan.planCode"
                         >
-                            <span data-ng-bind="$ctrl.model.plan"></span>
+                            <span
+                                data-ng-bind="$ctrl.model.plan.invoiceName"
+                            ></span>
                         </oui-radio>
                     </div>
                     <div class="col-md-4 pl-0">
