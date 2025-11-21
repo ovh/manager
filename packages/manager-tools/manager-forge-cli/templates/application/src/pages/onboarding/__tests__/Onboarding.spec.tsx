@@ -7,7 +7,7 @@ import { LinkCardProps, OnboardingLayoutProps, TextProps } from '@ovh-ux/muk';
 
 import type { OnboardingContentType, OnboardingLinksType } from '@/types/Onboarding.type';
 
-import OnboardingPage from './Onboarding.page';
+import OnboardingPage from '../Onboarding.page';
 
 type MockUseOnboardingDataModule = {
   useOnboardingContent: () => OnboardingContentType;
@@ -127,7 +127,7 @@ describe('OnboardingPage', () => {
     );
 
     // 👇 re-import component after mocks are applied
-    const { default: OnboardingPageDynamic } = await import('./Onboarding.page');
+    const { default: OnboardingPageDynamic } = await import('../Onboarding.page');
     render(<OnboardingPageDynamic />);
 
     const layout = screen.getByTestId('layout');

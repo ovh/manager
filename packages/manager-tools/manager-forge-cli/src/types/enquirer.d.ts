@@ -25,6 +25,8 @@ declare module 'enquirer' {
     initial?: (value: unknown, state: Partial<TAnswers>) => unknown;
     /** Whether to skip this prompt dynamically */
     skip?: (state: Partial<TAnswers>) => boolean | Promise<boolean>;
+    /** Normalizes / post-processes the output of the prompt */
+    result?: (value: unknown, state: Partial<TAnswers>) => unknown;
   }
 
   export interface InputPromptOptions<

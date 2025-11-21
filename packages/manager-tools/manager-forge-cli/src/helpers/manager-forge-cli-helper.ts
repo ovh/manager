@@ -7,6 +7,7 @@ import ora, { Ora } from 'ora';
 import { ForgeCliOptions } from '@/types/GenerationType.js';
 import { Answers } from '@/types/PromptType.js';
 import { Theme } from '@/types/ThemeType.js';
+import { logger } from '@/utils/log-manager.js';
 
 /**
  * Retrieves the official OVH FORGE CLI theme colors.
@@ -82,7 +83,7 @@ export function renderBanner(
     align: 'center',
   };
 
-  console.log(boxen(`${title}\n${subtitleGradient}`, boxOptions));
+  logger.log(boxen(`${title}\n${subtitleGradient}`, boxOptions));
 }
 
 /**
@@ -111,20 +112,20 @@ export async function showInitializationSpinner(): Promise<void> {
 export function displayAppGenerationSummary(answers: Answers): void {
   const theme = getThemeColors();
 
-  console.clear();
+  logger.clear();
   renderBanner();
 
-  console.log(chalk.green.bold('✅ Generation configuration summary:\n'));
-  console.log(`${chalk.hex(theme.primary)('Application Name:')} ${answers.appName}`);
-  console.log(`${chalk.hex(theme.primary)('Package Name:')} ${answers.packageName}`);
-  console.log(`${chalk.hex(theme.primary)('Description:')} ${answers.description}`);
-  console.log(`${chalk.hex(theme.primary)('Regions:')} ${answers.regions.join(', ')}`);
-  console.log(`${chalk.hex(theme.primary)('Universes:')} ${answers.universes.join(', ')}`);
-  console.log(`${chalk.hex(theme.primary)('Level2 code:')} ${answers.level2}`);
-  console.log(`${chalk.hex(theme.primary)('Tracking Universe:')} ${answers.universe}`);
-  console.log(`${chalk.hex(theme.primary)('Tracking SubUniverse:')} ${answers.subUniverse}`);
+  logger.log(chalk.green.bold('✅ Generation configuration summary:\n'));
+  logger.log(`${chalk.hex(theme.primary)('Application Name:')} ${answers.appName}`);
+  logger.log(`${chalk.hex(theme.primary)('Package Name:')} ${answers.packageName}`);
+  logger.log(`${chalk.hex(theme.primary)('Description:')} ${answers.description}`);
+  logger.log(`${chalk.hex(theme.primary)('Regions:')} ${answers.regions.join(', ')}`);
+  logger.log(`${chalk.hex(theme.primary)('Universes:')} ${answers.universes.join(', ')}`);
+  logger.log(`${chalk.hex(theme.primary)('Level2 code:')} ${answers.level2}`);
+  logger.log(`${chalk.hex(theme.primary)('Tracking Universe:')} ${answers.universe}`);
+  logger.log(`${chalk.hex(theme.primary)('Tracking SubUniverse:')} ${answers.subUniverse}`);
 
-  console.log('\n' + chalk.hex(theme.accent).bold('✨ All inputs collected. Proceeding...\n'));
+  logger.log('\n' + chalk.hex(theme.accent).bold('✨ All inputs collected. Proceeding...\n'));
 }
 
 /**
@@ -147,9 +148,9 @@ export async function runForgeCli(
   const args = process.argv.slice(2);
   if (args.includes('--help') || args.includes('-h')) {
     if (helpText) {
-      console.log(helpText);
+      logger.log(helpText);
     } else {
-      console.log('No help available for this command.');
+      logger.log('No help available for this command.');
     }
     return; // exit without running command
   }
@@ -157,16 +158,16 @@ export async function runForgeCli(
   // ────────────────────────────────────────────────────────────
   // NORMAL MODE (banner, spinner, etc.)
   // ────────────────────────────────────────────────────────────
-  if (clearScreen) console.clear();
+  if (clearScreen) logger.clear();
   if (showBanner) renderBanner();
   if (showSpinner) await showInitializationSpinner();
 
   try {
-    console.log('\n');
+    logger.log('\n');
     await runCommand();
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.error(chalk.red(message));
+    logger.error(chalk.red(message));
     process.exit(1);
   }
 }

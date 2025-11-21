@@ -2,9 +2,49 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import {
+  APPLICATIONS_FOLDER_PATH,
+  IGNORE_TARGETS,
+  MODULES_FOLDER_PATH,
+} from '@/configs/manager-forge-path-config.js';
 import { CaseStyle, GeneratorOptions } from '@/types/GenerationType.js';
+import { logger } from '@/utils/log-manager.js';
 
-const APPLICATIONS_FOLDER_PATH = 'packages/manager/apps';
+/**
+ * Ensures that a given relative path (app/module) is added
+ * to all ignore files (.eslintignore, .prettierignore, .stylelintignore)
+ * without duplicating entries.
+ *
+ * @param {'app' | 'module'} type
+ * @param {string} name - appName or moduleName
+ */
+export function updateIgnoreFiles(type: 'app' | 'module', name: string): void {
+  const entry =
+    type === 'app' ? `${APPLICATIONS_FOLDER_PATH}/${name}` : `${MODULES_FOLDER_PATH}/${name}`;
+
+  IGNORE_TARGETS.forEach(({ file, label }) => {
+    const filePath = path.join(process.cwd(), file);
+
+    // If ignore file doesn't exist, skip silently
+    if (!fs.existsSync(filePath)) {
+      logger.warn(`⚠️ ${label} ignore file "${file}" not found. Skipping.`);
+      return;
+    }
+
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    if (content.includes(entry)) {
+      logger.log(`ℹ️ ${label}: entry already exists in ${file}`);
+      return;
+    }
+
+    // Append with proper newline handling
+    const updated = content.endsWith('\n') ? content + `${entry}\n` : content + `\n${entry}\n`;
+
+    fs.writeFileSync(filePath, updated, 'utf8');
+    logger.log(`✅ Added "${entry}" to ${file} (${label})`);
+  });
+}
 
 /**
  * Parses CLI arguments of the form `--flag value` into an object map.
@@ -31,7 +71,7 @@ export function parseArgs(argv: string[]): Record<string, string> {
       args[flagName] = flagValue;
       index++; // Skip the value
     } else {
-      console.warn(`⚠️ Missing value for flag --${flagName}, skipping.`);
+      logger.warn(`⚠️ Missing value for flag --${flagName}, skipping.`);
     }
   }
 
@@ -48,7 +88,7 @@ export function parseArgs(argv: string[]): Record<string, string> {
  */
 export function assertNonEmpty(value: string | undefined, flag: string): asserts value is string {
   if (!value || !value.trim()) {
-    console.error(chalk.red(`❌ Missing required flag ${flag}`));
+    logger.error(chalk.red(`❌ Missing required flag ${flag}`));
     process.exit(1);
   }
 }
@@ -62,7 +102,7 @@ export function assertNonEmpty(value: string | undefined, flag: string): asserts
  */
 export function ensureApplicationExists(appDirectory: string): void {
   if (!fs.existsSync(appDirectory)) {
-    console.error(chalk.red(`❌ App not found at: ${appDirectory}`));
+    logger.error(chalk.red(`❌ App not found at: ${appDirectory}`));
     process.exit(1);
   }
 }
@@ -173,14 +213,14 @@ export function generateFile({
   const targetFilePath = path.join(targetDirectory, `${formattedName}${options.extension}`);
 
   if (fs.existsSync(targetFilePath)) {
-    console.error(
+    logger.error(
       chalk.red(`❌ ${options.type} "${formattedName}" already exists at: ${targetFilePath}`),
     );
     process.exit(1);
   }
 
   fs.writeFileSync(targetFilePath, `// ${options.type}: ${formattedName}\n`, 'utf8');
-  console.log(chalk.green(`✅ Created ${path.relative(process.cwd(), targetFilePath)}`));
+  logger.log(chalk.green(`✅ Created ${path.relative(process.cwd(), targetFilePath)}`));
 }
 
 /**

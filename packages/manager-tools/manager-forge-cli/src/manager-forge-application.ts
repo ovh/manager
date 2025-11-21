@@ -1,7 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { APPS_DIR, TEMPLATE_DIR } from '@/configs/manager-forge-config.js';
+import {
+  APPLICATION_TEMPLATE_DIR,
+  MANAGER_APPLICATIONS_DIR,
+} from '@/configs/manager-forge-path-config.js';
+import { updateIgnoreFiles } from '@/helpers/manager-forge-generation-helper.js';
 import { addAppToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
 import {
   applyTemplateReplacements,
@@ -9,6 +13,7 @@ import {
   ensureDirectory,
 } from '@/helpers/manager-forge-template-helper.js';
 import type { Answers } from '@/types/PromptType.js';
+import { logger } from '@/utils/log-manager.js';
 
 /**
  * Generates a new full forge application using templates,
@@ -17,44 +22,45 @@ import type { Answers } from '@/types/PromptType.js';
  * @param {Answers} answers - The user-provided application metadata.
  */
 function forgeApplication(answers: Answers): void {
-  const applicationDirectory = path.join(APPS_DIR, answers.appName);
+  const applicationDirectory = path.join(MANAGER_APPLICATIONS_DIR, answers.appName);
 
   // ────────────────────────────────────────────────────────────
   // 1. Prevent overwriting an existing application
   // ────────────────────────────────────────────────────────────
   if (fs.existsSync(applicationDirectory)) {
-    console.error(`❌ Application "${answers.appName}" already exists at: ${applicationDirectory}`);
+    logger.error(`❌ Application "${answers.appName}" already exists at: ${applicationDirectory}`);
     process.exit(1);
   }
 
   // ────────────────────────────────────────────────────────────
   // 2. Create application directory
   // ────────────────────────────────────────────────────────────
-  console.log(`🔨 Creating application at ${applicationDirectory}`);
+  logger.log(`🔨 Creating application at ${applicationDirectory}`);
   ensureDirectory(applicationDirectory);
 
   // ────────────────────────────────────────────────────────────
   // 3. Copy base template into the new application directory
   // ────────────────────────────────────────────────────────────
-  console.log('📦 Copying template files...');
-  copyTemplate(TEMPLATE_DIR, applicationDirectory);
+  logger.log('📦 Copying template files...');
+  copyTemplate(APPLICATION_TEMPLATE_DIR, applicationDirectory);
 
   // ────────────────────────────────────────────────────────────
   // 4. Apply replacements to template files
   // ────────────────────────────────────────────────────────────
-  console.log('🧩 Applying replacements...');
+  logger.log('🧩 Applying replacements...');
 
   applyTemplateReplacements(
     [
       path.join(applicationDirectory, 'package.json'),
+      path.join(applicationDirectory, 'README.md'),
       path.join(applicationDirectory, 'src/Tracking.constants.ts'),
       path.join(applicationDirectory, 'src/App.constants.ts'),
     ],
     {
       appNameKebab: answers.appName,
-      packageName: answers.packageName,
-      description: answers.description,
-      repositoryUrl: `packages/manager/apps/${answers.appName}`,
+      appPackageName: answers.packageName,
+      appDescription: answers.description,
+      appRepositoryUrl: `packages/manager/apps/${answers.appName}`,
       regions: answers.regions,
       universes: answers.universes,
       trackingLevel2: answers.level2,
@@ -64,9 +70,15 @@ function forgeApplication(answers: Answers): void {
   );
 
   // ────────────────────────────────────────────────────────────
-  // 5. Finalize + register the app inside the workspace
+  // 5. Update ignore files (ESLint / Prettier / Stylelint)
   // ────────────────────────────────────────────────────────────
-  console.log(`\n✅ Successfully forged application "${answers.appName}"\n`);
+  logger.log('📝 Updating workspace ignore files...');
+  updateIgnoreFiles('app', answers.appName);
+
+  // ────────────────────────────────────────────────────────────
+  // 6. Finalize + register the app inside the workspace
+  // ────────────────────────────────────────────────────────────
+  logger.log(`\n✅ Successfully forged application "${answers.appName}"\n`);
   addAppToWorkspace(answers.appName);
 }
 

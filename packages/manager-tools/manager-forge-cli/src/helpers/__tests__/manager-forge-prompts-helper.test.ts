@@ -1,154 +1,242 @@
-import type { PromptOptions } from 'enquirer';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import Enquirer from 'enquirer';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  LEVEL2_CODES,
+  LEVEL2_LABELS,
   REGIONS,
   SUB_UNIVERSES,
   UNIVERSES,
-  level2Choices,
 } from '@/configs/manager-forge-prompts-config.js';
 import type { Answers } from '@/types/PromptType.js';
 
-type PromptsModule = typeof import('../manager-forge-prompts-helper.js');
-
-const enquirerPromptMock = vi.fn();
+import {
+  askApplicationInfos,
+  askModuleInfos,
+  buildDescriptionQuestion,
+  buildLevel2Question,
+  buildNameQuestion,
+  buildPackageNameQuestion,
+  buildRegionQuestion,
+  buildSubUniverseQuestion,
+  buildUniverseQuestion,
+  buildUniversesQuestion,
+  getPreviousAnswer,
+} from '../manager-forge-prompts-helper.js';
 
 vi.mock('enquirer', () => ({
   default: {
-    prompt: enquirerPromptMock,
+    prompt: vi.fn(),
   },
 }));
 
-let promptsModule: PromptsModule;
+const enquirerPromptMock = Enquirer.prompt as unknown as Mock;
 
-beforeEach(async () => {
-  vi.clearAllMocks();
-  vi.resetModules();
+const emptyPromptState: Partial<Answers> = {};
 
-  // Re-import the module so it sees our mocked 'enquirer'
-  promptsModule = await import('../manager-forge-prompts-helper.js');
+describe('getPreviousAnswer', () => {
+  it('returns the value from the explicit state argument', () => {
+    const storedState = { appName: 'my-app' } satisfies Partial<Answers>;
+    const extracted = getPreviousAnswer('appName', {}, storedState);
+    expect(extracted).toBe('my-app');
+  });
+
+  it('returns the value stored inside Enquirer prompt internal state', () => {
+    const enquirerInternalValue = {
+      state: { answers: { description: 'hello' } },
+    };
+    const extracted = getPreviousAnswer('description', enquirerInternalValue);
+    expect(extracted).toBe('hello');
+  });
+
+  it('returns undefined if nothing is stored anywhere', () => {
+    const extracted = getPreviousAnswer('regions', {});
+    expect(extracted).toBeUndefined();
+  });
+});
+
+describe('buildNameQuestion', () => {
+  const nameQuestion = buildNameQuestion({ key: 'appName', label: 'app' });
+
+  it('creates a question with the correct structure', () => {
+    expect(nameQuestion.type).toBe('input');
+    expect(nameQuestion.name).toBe('appName');
+  });
+
+  it('validates minimum length correctly', () => {
+    expect(nameQuestion.validate?.('', emptyPromptState)).toBe('app name is required');
+    expect(nameQuestion.validate?.('a', emptyPromptState)).toBe('app name is required');
+    expect(nameQuestion.validate?.('ab', emptyPromptState)).toBe(true);
+  });
+});
+
+describe('buildDescriptionQuestion', () => {
+  const descriptionQuestion = buildDescriptionQuestion({
+    key: 'description',
+    label: 'module',
+  });
+
+  it('validates minimum description length', () => {
+    expect(descriptionQuestion.validate?.('', emptyPromptState)).toBe(
+      'Description for module is required',
+    );
+    expect(descriptionQuestion.validate?.('a', emptyPromptState)).toBe(
+      'Description for module is required',
+    );
+    expect(descriptionQuestion.validate?.('valid description', emptyPromptState)).toBe(true);
+  });
+});
+
+describe('buildPackageNameQuestion', () => {
+  const packageNameQuestion = buildPackageNameQuestion({
+    key: 'packageName',
+    nameKey: 'appName',
+    label: 'app',
+    prefix: 'manager',
+    suffix: 'app',
+  });
+
+  const resolveInitialPackageName = packageNameQuestion.initial as (
+    value: unknown,
+    state?: Partial<Answers>,
+  ) => string;
+
+  it('generates a package name from the previously entered app name', () => {
+    const generated = resolveInitialPackageName(undefined, { appName: 'foo' });
+    expect(generated).toBe('@ovh-ux/manager-foo-app');
+  });
+
+  it('does not duplicate the suffix if already present in the name', () => {
+    const generated = resolveInitialPackageName(undefined, { appName: 'foo-app' });
+    expect(generated).toBe('@ovh-ux/manager-foo-app');
+  });
+
+  it('generates a prefix only when no name was provided', () => {
+    const generated = resolveInitialPackageName(undefined, {});
+    expect(generated).toBe('@ovh-ux/manager-');
+  });
+});
+
+describe('buildRegionQuestion', () => {
+  const regionQuestion = buildRegionQuestion();
+
+  it('requires at least one region to be selected', () => {
+    expect(regionQuestion.validate?.([], emptyPromptState)).toBe('Pick at least one region');
+    expect(regionQuestion.validate?.([REGIONS[0]], emptyPromptState)).toBe(true);
+  });
+
+  it('exposes all region choices', () => {
+    if (regionQuestion.type === 'multiselect') {
+      expect(regionQuestion.choices).toHaveLength(REGIONS.length);
+    } else {
+      throw new Error('Expected multiselect type');
+    }
+  });
+});
+
+describe('buildUniversesQuestion', () => {
+  const universesQuestion = buildUniversesQuestion();
+
+  it('requires at least one universe', () => {
+    expect(universesQuestion.validate?.([], emptyPromptState)).toBe('Pick at least one universe');
+    expect(universesQuestion.validate?.(['Manager'], emptyPromptState)).toBe(true);
+  });
+});
+
+describe('buildUniverseQuestion', () => {
+  const universeQuestion = buildUniverseQuestion();
+
+  it('lists all available universes', () => {
+    if (universeQuestion.type === 'select') {
+      expect(universeQuestion.choices).toHaveLength(UNIVERSES.length);
+    } else {
+      throw new Error('Expected select type');
+    }
+  });
+});
+
+describe('buildSubUniverseQuestion', () => {
+  const subUniverseQuestion = buildSubUniverseQuestion();
+
+  it('lists all sub-universes', () => {
+    if (subUniverseQuestion.type === 'select') {
+      expect(subUniverseQuestion.choices).toHaveLength(SUB_UNIVERSES.length);
+    } else {
+      throw new Error('Expected select type');
+    }
+  });
+});
+
+describe('buildLevel2Question', () => {
+  const level2Question = buildLevel2Question();
+
+  it('includes every Level2 code with the correct label', () => {
+    if (level2Question.type !== 'select') {
+      throw new Error('Expected select type');
+    }
+
+    const choiceList =
+      typeof level2Question.choices === 'function'
+        ? level2Question.choices(emptyPromptState)
+        : level2Question.choices;
+
+    expect(choiceList).toHaveLength(LEVEL2_CODES.length);
+
+    for (const code of LEVEL2_CODES) {
+      const matchingChoice = choiceList.find((choice) => choice.value === code);
+      expect(matchingChoice?.name).toContain(LEVEL2_LABELS[code]);
+    }
+  });
 });
 
 describe('askApplicationInfos', () => {
-  it('builds the expected questions and returns Enquirer answers', async () => {
-    const fakeAnswers: Answers = {
-      appName: 'my-app',
-      packageName: '@ovh-ux/manager-my-app-app',
-      description: 'My new Manager app',
-      regions: ['EU', 'US'],
-      universes: ['Dedicated', 'Manager'],
+  beforeEach(() => {
+    enquirerPromptMock.mockReset();
+  });
+
+  it('returns a fully typed Answers object', async () => {
+    const mockedAnswers: Answers = {
+      appName: 'myapp',
+      packageName: '@ovh-ux/manager-myapp-app',
+      description: 'desc',
+      regions: ['EU'],
+      universes: ['Manager'],
       level2: '56',
-      universe: 'WebCloud',
-      subUniverse: 'Sunrise',
+      universe: 'Manager',
+      subUniverse: 'Manager',
     };
 
-    enquirerPromptMock.mockResolvedValueOnce(fakeAnswers);
+    enquirerPromptMock.mockResolvedValue(mockedAnswers);
 
-    const result = await promptsModule.askApplicationInfos();
+    const collectedAnswers = await askApplicationInfos();
+    expect(collectedAnswers).toEqual(mockedAnswers);
 
-    expect(enquirerPromptMock).toHaveBeenCalledTimes(1);
+    // Type guarantee
+    const typedResult: Answers = collectedAnswers;
+    expect(typedResult.appName).toBe('myapp');
+  });
+});
 
-    const firstCall = enquirerPromptMock.mock.calls[0];
-    expect(firstCall).toBeDefined();
+describe('askModuleInfos', () => {
+  beforeEach(() => {
+    enquirerPromptMock.mockReset();
+  });
 
-    const [questionsArg] = firstCall as [unknown];
-    expect(Array.isArray(questionsArg)).toBe(true);
-
-    const questions = questionsArg as PromptOptions[];
-
-    const byName = (name: keyof Answers) => questions.find((q) => q.name === name) as PromptOptions;
-
-    const appNameQ = byName('appName');
-    expect(appNameQ.type).toBe('input');
-    expect(appNameQ.message).toContain('name of the new app');
-
-    const appNameValidate = appNameQ.validate as (input: unknown) => boolean | string;
-
-    expect(appNameValidate('')).toBe('App name is required');
-    expect(appNameValidate('a')).toBe('App name is required');
-    expect(appNameValidate('my-app')).toBe(true);
-
-    const packageNameQ = byName('packageName');
-    expect(packageNameQ.type).toBe('input');
-
-    const packageInitial = packageNameQ.initial as (
-      value: unknown,
-      state?: Partial<Answers>,
-    ) => string;
-
-    const initialWithState = packageInitial(undefined, { appName: 'billing' });
-    expect(initialWithState).toBe('@ovh-ux/manager-billing-app');
-
-    const promptValue = {
-      state: {
-        answers: {
-          appName: 'dedicated',
-        },
-      },
+  it('returns module-specific fields with correct types', async () => {
+    const mockedModuleAnswers = {
+      moduleName: 'alpha',
+      modulePackageName: '@ovh-ux/manager-alpha',
+      moduleDescription: 'module desc',
+      isPrivate: true,
+      moduleType: 'react',
     };
 
-    const initialFromPrompt = packageInitial(promptValue, undefined);
-    expect(initialFromPrompt).toBe('@ovh-ux/manager-dedicated-app');
+    enquirerPromptMock.mockResolvedValue(mockedModuleAnswers);
 
-    const descriptionQ = byName('description');
-    expect(descriptionQ.type).toBe('input');
+    const collected = await askModuleInfos();
 
-    const descriptionValidate = descriptionQ.validate as (input: unknown) => boolean | string;
-
-    expect(descriptionValidate('')).toBe('Description is required');
-    expect(descriptionValidate('a')).toBe('Description is required');
-    expect(descriptionValidate('A useful new app')).toBe(true);
-
-    const regionsQ = byName('regions');
-    expect(regionsQ.type).toBe('multiselect');
-
-    type Choice = { name: string; value: string };
-    const regionsChoices = (regionsQ as PromptOptions & { choices: Choice[] }).choices;
-
-    expect(Array.isArray(regionsChoices)).toBe(true);
-    expect(regionsChoices).toEqual(REGIONS.map((r) => ({ name: r, value: r })));
-
-    const regionsValidate = regionsQ.validate as (value: unknown) => boolean | string;
-
-    expect(regionsValidate([])).toBe('Pick at least one region');
-    expect(regionsValidate(['EU'])).toBe(true);
-    expect(regionsValidate('not-array')).toBe('Pick at least one region');
-
-    const universesQ = byName('universes');
-    expect(universesQ.type).toBe('multiselect');
-
-    const universesChoices = (universesQ as PromptOptions & { choices: Choice[] }).choices;
-
-    expect(universesChoices).toEqual(UNIVERSES.map((u) => ({ name: u, value: u })));
-
-    const universesValidate = universesQ.validate as (value: unknown) => boolean | string;
-
-    expect(universesValidate([])).toBe('Pick at least one universe');
-    expect(universesValidate(['WebCloud'])).toBe(true);
-    expect(universesValidate('nope')).toBe('Pick at least one universe');
-
-    const level2Q = byName('level2');
-    expect(level2Q.type).toBe('select');
-
-    const level2ChoicesFromPrompt = (level2Q as PromptOptions & { choices: unknown[] }).choices;
-
-    expect(Array.isArray(level2ChoicesFromPrompt)).toBe(true);
-    expect(level2ChoicesFromPrompt).toEqual(level2Choices);
-
-    const universeQ = byName('universe');
-    expect(universeQ.type).toBe('select');
-
-    const universeChoices = (universeQ as PromptOptions & { choices: Choice[] }).choices;
-
-    expect(universeChoices).toEqual(UNIVERSES.map((u) => ({ name: u, value: u })));
-
-    const subUniverseQ = byName('subUniverse');
-    expect(subUniverseQ.type).toBe('select');
-
-    const subUniverseChoices = (subUniverseQ as PromptOptions & { choices: Choice[] }).choices;
-
-    expect(subUniverseChoices).toEqual(SUB_UNIVERSES.map((s) => ({ name: s, value: s })));
-
-    expect(result).toBe(fakeAnswers);
+    expect(collected.moduleName).toBe('alpha');
+    expect(collected.moduleType).toBe('react');
+    expect(typeof collected.isPrivate).toBe('boolean');
   });
 });

@@ -281,6 +281,30 @@ function collectToolsArgs(opts, includeApp = false) {
 }
 
 /**
+ * Resolves arguments forwarded to CI commands (build, test, etc.).
+ *
+ * @param {string[]} passthrough - Passthrough args from the user.
+ * @param {string | undefined} filter - Optional Turbo filter.
+ * @param {object} opts - Additional CLI options.
+ * @returns {string[]} - Final merged list of arguments.
+ */
+function resolveCIArgs(passthrough, filter, opts) {
+  let base;
+
+  if (passthrough.length > 0) {
+    base = passthrough;
+  } else if (filter) {
+    base = ['--filter', filter];
+  } else {
+    base = [];
+  }
+
+  const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+
+  return [...base, ...forwarded];
+}
+
+/**
  * Map of supported CLI actions to their async handlers.
  * Each handler receives the parsed CLI context.
  *
@@ -370,14 +394,12 @@ const actions = {
     return runLifecycleTask('postinstall');
   },
   async buildCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return buildCI([...base, ...forwarded]);
+    const args = resolveCIArgs(passthrough, filter, opts);
+    return buildCI(args);
   },
   async testCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return testCI([...base, ...forwarded]);
+    const args = resolveCIArgs(passthrough, filter, opts);
+    return testCI(args);
   },
   async perfBudgets({ passthrough, opts }) {
     const forwarded = collectToolsArgs(opts, true).filter((arg) => arg !== '--silent');
