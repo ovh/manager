@@ -1,6 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
 const FEATURE_ID = 'billing:commitment';
 

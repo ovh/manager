@@ -1,10 +1,16 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { prepareZfsOptions, exportZfsOptions, ZFS_OPTIONS_TEMPLATES, type ZfsOptions } from '@/utils/zfs.utils';
+import {
+  ZFS_OPTIONS_TEMPLATES,
+  type ZfsOptions,
+  exportZfsOptions,
+  prepareZfsOptions,
+} from '@/utils/Zfs.utils';
 
 type ZfsOptionsApiResponse = {
   atime?: 'on' | 'off';
@@ -72,13 +78,13 @@ export function useUpdateZfsOptions() {
     },
     onSuccess: (data) => {
       // Invalidate queries
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: zfsOptionsKeys.all(data.serviceName, data.partitionName),
       });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ['nasha-partitions', data.serviceName],
       });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ['nasha-partition', data.serviceName, data.partitionName],
       });
     },
@@ -90,7 +96,3 @@ export function useUpdateZfsOptions() {
     },
   });
 }
-
-
-
-

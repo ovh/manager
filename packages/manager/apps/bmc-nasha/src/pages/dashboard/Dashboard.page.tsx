@@ -4,7 +4,7 @@ import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+import { Tab, TabList, Tabs, TabsValueChangeEvent } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -41,9 +41,7 @@ export default function DashboardPage() {
   const { data: serviceInfo } = useServiceInfo(serviceName ?? '');
   const { canCreatePartitions } = useCanCreatePartitions(serviceName ?? '');
   const isCommitmentAvailable = useIsCommitmentAvailable();
-  const isNashaEolServiceBannerAvailable = useIsNashaEolServiceBannerAvailable(
-    serviceName ?? '',
-  ) as boolean;
+  const isNashaEolServiceBannerAvailable = useIsNashaEolServiceBannerAvailable(serviceName ?? '');
 
   // Computed values
   const displayName = useMemo(
@@ -80,6 +78,20 @@ export default function DashboardPage() {
     const activeTab = tabs.find((tab) => tab.isActive);
     return activeTab?.name || tabs[0]?.name || '';
   }, [tabs]);
+
+  // Handle tab change
+  const handleTabChange = (event: TabsValueChangeEvent) => {
+    const tab = tabs.find((t) => t.name === event.value);
+    if (tab) {
+      trackClick({
+        location: PageLocation.page,
+        buttonType: ButtonType.tab,
+        actionType: 'navigation',
+        actions: [APP_NAME, 'dashboard', tab.name],
+      });
+      navigate(tab.to);
+    }
+  };
 
   // Calculate usage metrics
   const { spaceLeftDisplay, usagePercentage } = useUsageMetrics(nasha?.use);
@@ -158,15 +170,7 @@ export default function DashboardPage() {
         ),
       }}
       tabs={
-        <Tabs
-          value={activeTabValue}
-          onValueChange={(event) => {
-            const tab = tabs.find((t) => t.name === event.value);
-            if (tab) {
-              navigate(tab.to);
-            }
-          }}
-        >
+        <Tabs value={activeTabValue} onValueChange={handleTabChange}>
           <TabList>
             {tabs.map((tab) => (
               <Tab key={tab.name} value={tab.name}>

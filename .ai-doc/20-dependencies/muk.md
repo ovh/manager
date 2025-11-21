@@ -86,6 +86,7 @@ MUK components are wrappers around ODS React components with Manager-specific en
 - `Subtitle` - Use HTML heading elements
 - `Title` - Use HTML heading elements
 - `TilesInput` - Use `TilesInputGroup` instead (TilesInput is not a separate component)
+- `Tabs`, `TabList`, `Tab` - Use ODS components from `@ovhcloud/ods-react` instead
 
 **⚠️ Naming Convention Alert:**
 The Storybook displays some component names with spaces (e.g., "Progress Bar", "Action Banner"), but the actual import names use PascalCase (e.g., `ProgressBar`, `ActionBanner`). Always use PascalCase in code.
@@ -257,7 +258,7 @@ interface DatagridColumn<T> extends ColumnDef<T> {
 | **Skeleton** | `variant?`, `width?`, `height?`, `count?` | Loading skeleton |
 | **Spinner** | `size?`, `variant?` | Loading spinner |
 | **Table** | `columns`, `data`, `sortable?`, `selectable?` | Data table |
-| **Tabs** | `value`, `onValueChange`, `items: Array<{value, label, content}>` | Tab navigation (✅ Available) |
+| **Tabs** | ❌ **NOT AVAILABLE** - Use ODS `Tabs`, `TabList`, `Tab` from `@ovhcloud/ods-react` | Tab navigation |
 | **Tag** | `label`, `color?`, `size?`, `onRemove?` | Single tag |
 | **Tile** | `title`, `description?`, `image?`, `href?` + IAM | Content tiles |
 | **Tooltip** | `content`, `position?`, `delay?` | Hover tooltips |
@@ -651,6 +652,7 @@ trackClick('action-name')                 // ❌ Wrong
 6. **Use useDataApi for data**: Primary hook for data fetching
 7. **Handle loading states**: Always check `isLoading`
 8. **Use PascalCase for component names**: `ProgressBar` not `Progress Bar` (⚠️ Storybook uses spaces, but code uses PascalCase)
+9. **Tabs are NOT in MUK**: Use `Tabs`, `TabList`, `Tab` from `@ovhcloud/ods-react` instead
 
 ### Quick Reference Checklist
 
@@ -661,6 +663,7 @@ trackClick('action-name')                 // ❌ Wrong
 - [ ] Datagrid uses `totalCount` (not `totalItems`)
 - [ ] Tree-shaking (specific imports)
 - [ ] Component names follow PascalCase convention
+- [ ] Tabs imported from `@ovhcloud/ods-react` (not MUK)
 
 ### Component Naming Convention
 

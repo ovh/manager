@@ -31,13 +31,11 @@ export type ZfsOptionsApi = {
 };
 
 // Prepare ZFS options from API response
-export function prepareZfsOptions(
-  data?: {
-    atime?: 'on' | 'off';
-    recordsize?: string;
-    sync?: string;
-  },
-): ZfsOptions {
+export function prepareZfsOptions(data?: {
+  atime?: 'on' | 'off';
+  recordsize?: string;
+  sync?: string;
+}): ZfsOptions {
   const options = data || NASHA_DEFAULT_ZFS_OPTIONS;
   return {
     atime: options.atime === 'on',
@@ -47,10 +45,7 @@ export function prepareZfsOptions(
 }
 
 // Export ZFS options for API request
-export function exportZfsOptions(
-  model: ZfsOptions,
-  customTemplate: string,
-): ZfsOptionsApi {
+export function exportZfsOptions(model: ZfsOptions, customTemplate: string): ZfsOptionsApi {
   if (!model.template || model.template.name === customTemplate) {
     return {
       atime: model.atime ? 'on' : 'off',
@@ -79,12 +74,8 @@ export function formatRecordsizeEnum(
 export function formatSyncEnum(): Array<{ default: boolean; label: string; value: string }> {
   const syncs = ['standard', 'always', 'disabled'];
   return syncs.map((sync) => ({
-    default: sync === NASHA_DEFAULT_ZFS_OPTIONS.sync,
-    label: `${sync[0].toUpperCase()}${sync.slice(1)}`,
+    default: sync === NASHA_DEFAULT_ZFS_OPTIONS?.sync,
+    label: sync ? `${sync.charAt(0).toUpperCase()}${sync.slice(1)}` : '',
     value: sync,
   }));
 }
-
-
-
-

@@ -6,17 +6,19 @@ import { AppConfig, appName } from '@/App.constants';
 import { useBreadcrumb } from '@/hooks/layout/useBreadcrumb';
 import type { BreadcrumbProps } from '@/types/Breadcrumb.type';
 
-function Breadcrumb({ customRootLabel, items }: BreadcrumbProps): JSX.Element {
+function Breadcrumb({ customRootLabel, items }: BreadcrumbProps): React.ReactElement {
   const rootLabel = customRootLabel || AppConfig.rootLabel;
   const breadcrumbItems = useBreadcrumb({ rootLabel, appName, items });
 
   return (
     <OdsBreadcrumb>
-      {breadcrumbItems.map((item, index) => (
-        <BreadcrumbItem key={`${item.label}-${index}`}>
-          <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
-        </BreadcrumbItem>
-      ))}
+      {breadcrumbItems
+        .filter((item) => item.label)
+        .map((item) => (
+          <BreadcrumbItem key={item.href}>
+            <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+          </BreadcrumbItem>
+        ))}
     </OdsBreadcrumb>
   );
 }

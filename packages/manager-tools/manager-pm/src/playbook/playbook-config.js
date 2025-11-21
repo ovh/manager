@@ -72,9 +72,7 @@ export const normalizedVersionsPath = path.join(
  * @type {string}
  */
 export const criticalDependenciesPath = path.join(
-export const criticalDependenciesPath = path.join(
   managerPMPath,
-  'src/playbook/catalog/pnpm-critical-deps.json',
   'src/playbook/catalog/pnpm-critical-deps.json',
 );
 

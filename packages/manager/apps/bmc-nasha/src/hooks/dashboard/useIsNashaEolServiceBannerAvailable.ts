@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
 import { useIsNashaLegacyService } from './useIsNashaLegacyService';
 
@@ -19,6 +19,3 @@ export function useIsNashaEolServiceBannerAvailable(serviceName: string) {
     return isNashaLegacyServicesPeriod && isNashaLegacyService;
   }, [features, isNashaLegacyService]);
 }
-
-
-

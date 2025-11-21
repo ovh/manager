@@ -1,22 +1,18 @@
-import { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, FormField, Input, Button } from '@ovh-ux/muk';
-import { OdsSelect, OdsSelectOption } from '@ovhcloud/ods-components/react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useTranslation } from 'react-i18next';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Button, FormField, Input, Select } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { useCreateAccess } from '@/hooks/partitions/useCreateAccess';
+import { APP_NAME } from '@/Tracking.constants';
 import { useAuthorizableAccesses } from '@/hooks/partitions/useAuthorizableAccesses';
+import { useCreateAccess } from '@/hooks/partitions/useCreateAccess';
 import { usePartitionAccesses } from '@/hooks/partitions/usePartitionAccesses';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
-import { APP_NAME } from '@/Tracking.constants';
 
 const ACL_TYPE_OPTIONS = [
   { value: 'readwrite', label: 'Read write' },
@@ -37,8 +33,10 @@ export default function CreateAccessPage() {
 
   // Fetch data
   const { data: partition } = usePartitionDetail(serviceName ?? '', partitionName ?? '');
-  const { data: authorizableAccesses, isLoading: isLoadingAuthorizable } =
-    useAuthorizableAccesses(serviceName ?? '', partitionName ?? '');
+  const { data: authorizableAccesses, isLoading: isLoadingAuthorizable } = useAuthorizableAccesses(
+    serviceName ?? '',
+    partitionName ?? '',
+  );
   const { data: existingAccesses } = usePartitionAccesses(serviceName ?? '', partitionName ?? '');
 
   const [ip, setIp] = useState('');
@@ -89,7 +87,7 @@ export default function CreateAccessPage() {
       actions: [APP_NAME, 'partition', 'accesses', 'create', 'cancel'],
     });
     // Navigate back to accesses list using relative path
-    navigate('..', { replace: true });
+    void navigate('..', { replace: true });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -121,7 +119,7 @@ export default function CreateAccessPage() {
       // Navigate to task tracker if task was returned
       const taskId = result?.taskId || result?.id;
       if (taskId) {
-        navigate(`../task-tracker`, {
+        void navigate(`../task-tracker`, {
           state: {
             taskId,
             operation: 'clusterLeclercPartitionAccessAdd',
@@ -131,7 +129,7 @@ export default function CreateAccessPage() {
         });
       } else {
         // If no task, just go back to accesses list
-        navigate('..');
+        void navigate('..');
       }
     } catch (err) {
       setErrors({
@@ -145,8 +143,11 @@ export default function CreateAccessPage() {
     <BaseLayout
       header={{
         title: t('partition:accesses.create.title', 'Add a new access'),
-        description: t('partition:accesses.create.description', 'Add an IP address or range authorized to access this partition'),
       }}
+      description={t(
+        'partition:accesses.create.description',
+        'Add an IP address or range authorized to access this partition',
+      )}
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <FormField
@@ -154,19 +155,21 @@ export default function CreateAccessPage() {
           error={errors.ip}
           required
         >
-          <OdsSelect
+          <Select
             value={ip}
-            onOdsValueChange={(e) => setIp(e.target.value as string)}
+            onChange={(e) => setIp(e.target.value)}
+            disabled={isLoadingAuthorizable || isSubmitting}
             placeholder={t('partition:accesses.create.ip_placeholder', 'Select an IP or IP block')}
-            isDisabled={isLoadingAuthorizable || isSubmitting}
-            hasError={!!errors.ip}
           >
+            <option value="">
+              {t('partition:accesses.create.ip_placeholder', 'Select an IP or IP block')}
+            </option>
             {availableAccesses.map((access) => (
-              <OdsSelectOption key={access.ip} value={access.ip}>
+              <option key={access.ip} value={access.ip}>
                 {access.ip} ({access.type})
-              </OdsSelectOption>
+              </option>
             ))}
-          </OdsSelect>
+          </Select>
         </FormField>
 
         <FormField
@@ -174,18 +177,13 @@ export default function CreateAccessPage() {
           error={errors.type}
           required
         >
-          <OdsSelect
-            value={type}
-            onOdsValueChange={(e) => setType(e.target.value as string)}
-            isDisabled={isSubmitting}
-            hasError={!!errors.type}
-          >
+          <Select value={type} onChange={(e) => setType(e.target.value)} disabled={isSubmitting}>
             {aclTypeOptions.map((option) => (
-              <OdsSelectOption key={option.value} value={option.value}>
+              <option key={option.value} value={option.value}>
                 {option.label}
-              </OdsSelectOption>
+              </option>
             ))}
-          </OdsSelect>
+          </Select>
         </FormField>
 
         <FormField
@@ -201,17 +199,10 @@ export default function CreateAccessPage() {
           />
         </FormField>
 
-        {errors.submit && (
-          <div className="text-critical">{errors.submit}</div>
-        )}
+        {errors.submit && <div className="text-critical">{errors.submit}</div>}
 
         <div className="flex justify-end gap-4 mt-4">
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={handleCancel}
-            disabled={isSubmitting}
-          >
+          <Button type="button" variant="ghost" onClick={handleCancel} disabled={isSubmitting}>
             {t('partition:accesses.create.cancel', 'Cancel')}
           </Button>
           <Button
@@ -227,4 +218,3 @@ export default function CreateAccessPage() {
     </BaseLayout>
   );
 }
-
