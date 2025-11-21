@@ -404,3 +404,12 @@ export const mapRetypingVolumeCatalog = (
         mapPreselection(type),
       ),
     );
+
+export const putPreselectedModelFirst = <T = TVolumeModel | TVolumeRetypeModel>(
+  volumeModels: T[],
+): T[] =>
+  [...volumeModels].sort((a, b) => {
+    if (a['isPreselected' as keyof TVolumeRetypeModel] === true) return -1;
+    if (b['isPreselected' as keyof TVolumeRetypeModel] === true) return 1;
+    return 0;
+  });

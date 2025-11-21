@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
+import { putPreselectedModelFirst } from '@/api/select/catalog';
 
 type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   volumeModels: T[];
@@ -71,12 +72,12 @@ export const VolumeModelTilesInput = ({
 
   const volumeTypes = useMemo(
     () =>
-      volumeModels.map((m) => ({
-        ...m,
-        label: m.displayName,
-        description: getDescription(m),
+      putPreselectedModelFirst(volumeModels).map((model) => ({
+        ...model,
+        label: model.displayName,
+        description: getDescription(model),
         badges: [
-          m.encrypted
+          model.encrypted
             ? {
                 label: t(
                   'common:pci_projects_project_storages_blocks_encryption_available',
@@ -94,8 +95,8 @@ export const VolumeModelTilesInput = ({
                 icon: 'lock' as const,
               },
         ],
-        features: getFeatures(m),
-        price: m.hourlyPrice,
+        features: getFeatures(model),
+        price: model.hourlyPrice,
       })),
     [volumeModels, t, getDescription, getFeatures],
   );
