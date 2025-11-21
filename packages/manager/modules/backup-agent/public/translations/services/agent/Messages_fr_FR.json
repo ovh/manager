@@ -1,0 +1,10 @@
+{
+  "add_configuration": "Ajouter une configuration",
+  "link_agent_to_a_server": "Lier un agent à un serveur existant",
+  "add_server": "Ajouter un serveur",
+  "select_server": "Sélectionner le serveur",
+  "product_name": "Nom du produit",
+  "select_os": "Sélectionner un système d'exploitation",
+  "os": "Système d'exploitation",
+  "download_agent": "Télécharger l'agent"
+}
