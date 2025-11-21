@@ -31,8 +31,8 @@ export default function UpdatingPage() {
 
   const {
     trackProjectUpdated,
-    trackActivateProjectSuccess,
-    trackActivateProjectError,
+    trackUpdateProjectSuccess,
+    trackUpdateProjectError,
   } = useUpdatingTracking();
 
   const [isDelivered, setIsDelivered] = useState(false);
@@ -46,7 +46,7 @@ export default function UpdatingPage() {
   const user = environment.getUser();
 
   const handleProjectDeliveryFail = () => {
-    trackActivateProjectError();
+    trackUpdateProjectError();
     throw new Error(t('pci_projects_updating_delivery_error'));
   };
 
@@ -63,7 +63,7 @@ export default function UpdatingPage() {
     enabled: isDelivered,
     onProjectIdDelivered: (projectId: string) => {
       trackProjectUpdated();
-      trackActivateProjectSuccess({ voucherCode });
+      trackUpdateProjectSuccess({ voucherCode });
       queryClient.invalidateQueries({
         queryKey: getProjectQueryKey(projectId),
       });

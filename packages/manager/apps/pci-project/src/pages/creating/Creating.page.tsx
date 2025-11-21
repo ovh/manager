@@ -1,6 +1,7 @@
 import {
   ShellContext,
   useOvhTracking,
+  PageType,
 } from '@ovh-ux/manager-react-shell-client';
 import {
   ODS_ICON_NAME,
@@ -40,6 +41,7 @@ export default function CreatingPage() {
 
   const handleProjectDeliveryFail = () => {
     trackPage({
+      pageType: PageType.bannerError,
       pageName: PROJECTS_TRACKING.CREATING.PROJECT_DELIVERY_FAILED,
     });
 
@@ -60,6 +62,7 @@ export default function CreatingPage() {
     enabled: isDelivered,
     onProjectIdDelivered: (projectId: string) => {
       trackPage({
+        pageType: PageType.bannerInfo,
         pageName: PROJECTS_TRACKING.CREATING.PROJECT_DELIVERED,
       });
 

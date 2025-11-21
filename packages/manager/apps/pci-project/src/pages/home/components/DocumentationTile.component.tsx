@@ -47,7 +47,7 @@ export default function DocumentationTile() {
               onClick={() => {
                 trackClick({
                   actionType: 'action',
-                  actions: [item.trackingName],
+                  actions: ['page', 'tile-tutorial', item.trackingName || ''],
                 });
               }}
             />
