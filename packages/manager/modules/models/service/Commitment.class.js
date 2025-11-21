@@ -16,7 +16,9 @@ export default class Commitment {
   }
 
   addOptionCommitment(optionEngagement) {
-    this.price += optionEngagement.price;
+    this.price += this.isUpfront()
+      ? optionEngagement.pricing.monthlyPriceValue
+      : optionEngagement.price;
     this.pricing = new Pricing(
       {
         ...this.pricing,
