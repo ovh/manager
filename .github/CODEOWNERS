@@ -112,6 +112,7 @@
 /packages/manager/modules/metrics @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/modules/nasha @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/modules/netapp @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/network-common @ovh/dev-manager-infrastructure-network
 /packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/nutanix @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/overthebox @ovh/dev-manager-infrastructure-network
