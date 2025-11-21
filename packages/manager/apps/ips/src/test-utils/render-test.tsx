@@ -44,7 +44,7 @@ import {
   GetIpLoadBalancingMocksParams,
   getXdslMocks,
   getOverTheBoxMocks,
-} from '../../mocks';
+} from '@/__mocks__';
 
 export type GetUserMocksParams = {
   ovhSubsidiary?: Subsidiary;

@@ -3,8 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ListingContextProvider } from '@/pages/listing/listingContext';
-import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpCountry, IpCountryProps } from './IpCountry';
 
 const queryClient = new QueryClient();

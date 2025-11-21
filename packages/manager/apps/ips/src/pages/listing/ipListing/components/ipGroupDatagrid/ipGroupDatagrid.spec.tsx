@@ -4,8 +4,8 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Row } from '@tanstack/react-table';
-import ipReverseList from '../../../../../../mocks/ip/get-ip-reverse-for-block.json';
-import ipDetailsList from '../../../../../../mocks/ip/get-ip-details.json';
+import ipReverseList from '@/__mocks__/ip/get-ip-reverse-for-block.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpGroupDatagrid } from './ipGroupDatagrid';
 import { VmacWithIpType } from '@/data/hooks/ip';
 import {

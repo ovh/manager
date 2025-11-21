@@ -1,7 +1,7 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { availableService, expiredService } from './serviceInfo';
-import { DedicatedCloudLocation } from '../src/data/api';
+import { DedicatedCloudLocation } from '@/data/api';
 
 const location: DedicatedCloudLocation = {
   region: 'eu-west-rbx',

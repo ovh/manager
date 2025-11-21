@@ -1,4 +1,4 @@
-import { VrackServiceInfos } from '../src/data/api';
+import { VrackServiceInfos } from '@/data/api';
 
 export const expiredService: VrackServiceInfos = {
   serviceId: 1,
