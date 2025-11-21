@@ -1,9 +1,11 @@
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { useServiceIds } from '@/data/hooks/useServices';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type RemoveSectionProps = {
   isDiscovery: boolean;
@@ -11,6 +13,7 @@ type RemoveSectionProps = {
 
 export default function RemoveSection({ isDiscovery }: RemoveSectionProps) {
   const { t } = useTranslation('edit');
+  const { trackClick } = useOvhTracking();
 
   const projectId = useProjectIdFromParams();
   const navigate = useNavigate();
@@ -39,6 +42,10 @@ export default function RemoveSection({ isDiscovery }: RemoveSectionProps) {
         isDisabled={isServiceIdsPending || serviceIds?.length === 0}
         data-testid="remove-section_remove-button"
         onClick={() => {
+          trackClick({
+            actionType: 'action',
+            actions: PROJECTS_TRACKING.SETTINGS.CTA_DELETE_PROJECT,
+          });
           navigate(`./${urls.remove}?serviceId=${serviceIds?.[0]}`);
         }}
       />
