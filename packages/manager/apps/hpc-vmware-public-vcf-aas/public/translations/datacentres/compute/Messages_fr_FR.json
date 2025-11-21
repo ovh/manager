@@ -2,5 +2,9 @@
   "managed_vcd_vdc_compute_billing": "Facturation",
   "managed_vcd_vdc_compute_billing_MONTHLY": "Au mois",
   "managed_vcd_vdc_compute_order_cta": "Commander un Virtual Host",
-  "managed_vcd_vdc_compute_special_offer": "Abonnement mensuel applicable jusqu'au 31 décembre 2025 pour toute souscription à des ressources additionnelles du service {{productName}} effectuée d'ici le 30 novembre 2025 au plus tard. Offre non cumulable avec d'autres offres ou réductions. Souscription soumise à l'acceptation préalable des conditions contractuelles d'OVHcloud."
+  "managed_vcd_vdc_compute_special_offer": "Abonnement mensuel applicable jusqu'au 31 décembre 2025 pour toute souscription à des ressources additionnelles du service {{productName}} effectuée d'ici le 30 novembre 2025 au plus tard. Offre non cumulable avec d'autres offres ou réductions. Souscription soumise à l'acceptation préalable des conditions contractuelles d'OVHcloud.",
+  "managed_vcd_vdc_compute_delete": "Supprimer un Virtual Host",
+  "managed_vcd_vdc_compute_delete_modal_description": "Êtes-vous sûr de vouloir supprimer le pack compute {{computeId}} ? Cette action entraînera la suppression des ressources associées.",
+  "managed_vcd_vdc_compute_delete_tooltip_min_quantity": "Vous ne pouvez pas supprimer le dernier pack compute de ce vDC. Un vDC doit contenir au moins un pack compute pour rester opérationnel.",
+  "managed_vcd_vdc_compute_delete_tooltip_free_compute": "Vous devez supprimer vos Freespare en premier."
 }
