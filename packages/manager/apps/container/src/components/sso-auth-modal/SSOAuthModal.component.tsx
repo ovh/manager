@@ -49,15 +49,18 @@ const SSOAuthModal = (): JSX.Element => {
   const authPlugin = shell.getPlugin('auth');
   const uxPlugin = shell.getPlugin('ux');
   const { environment } = useApplication();
-  const { user } = environment;
+  const { user } = environment ?? {};
   const [connectedUser, setConnectedUser] = useState<User>({} as User);
   const userId = uxPlugin.getUserIdCookie();
 
   useEffect(() => {
-    document.addEventListener('visibilitychange', () => {
-      setMode(uxPlugin.getSSOAuthModalMode(userId));
-    });
-  }, []);
+    const updateMode = () => {
+      setMode(uxPlugin?.getSSOAuthModalMode(userId));
+    };
+    document.addEventListener('visibilitychange', updateMode);
+
+    return () => document.removeEventListener('visibilitychange', updateMode);
+  }, [uxPlugin]);
 
   useEffect(() => {
     if (mode === disconnectedToConnected || mode === connectedToOther) {

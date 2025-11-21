@@ -24,14 +24,15 @@ const ModalContainer = lazy(() => import('@/components/modal-container/ModalCont
 function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
-  const { betaVersion } = useContainer();
+  const { betaVersion, isReady } = useContainer();
 
   const { shell } = useApplication();
   const { isStarted: isProgressAnimating } = useProgress();
   const preloaderVisible = usePreloader(shell, iframe);
+  // TODO: handle environment unavailability in MANAGER-19971
   const applications = shell
     .getPlugin('environment')
-    .getEnvironment()
+    ?.getEnvironment()
     .getApplications();
 
   const {
@@ -46,8 +47,8 @@ function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Ele
   }, [iframeRef]);
 
   useEffect(() => {
-    const tracking = shell.getPlugin('tracking');
-    if (betaVersion) {
+  const tracking = shell.getPlugin('tracking');
+    if (betaVersion && isReady) {
       tracking.waitForConfig().then(() => {
         tracking.trackMVTest({
           test: '[product-navigation-reshuffle]',
@@ -56,7 +57,7 @@ function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Ele
         });
       });
     }
-  }, []);
+  }, [isReady]);
 
   return (
     <LegacyContainerProvider>
@@ -68,39 +69,41 @@ function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Ele
           <Suspense fallback="">
             <NavReshuffleBetaAccessModal />
           </Suspense>
-          <div>
-            <LegacyHeader />
-          </div>
-          <div className={style.managerShell_main}>
-            <Suspense fallback="">
-              <ServerSidebar />
-            </Suspense>
-            <div className={style.managerShell_content}>
-              <SidebarOverlay />
-              <Preloader visible={preloaderVisible}>
-                <>
-                  <IFrameAppRouter
-                    iframeRef={iframeRef}
-                    configuration={applications}
-                  />
-                  {isMfaEnrollmentVisible && (
-                    <Suspense fallback="">
-                      <MfaEnrollment
-                        forced={isMfaEnrollmentForced}
-                        onHide={hideMfaEnrollment}
-                      />
-                    </Suspense>
-                  )}
-                  <iframe
-                    title="app"
-                    role="document"
-                    src="about:blank"
-                    ref={iframeRef}
-                  ></iframe>
-                </>
-              </Preloader>
+            <div>
+              <LegacyHeader />
             </div>
-          </div>
+            <div className={style.managerShell_main}>
+              <Suspense fallback="">
+                <ServerSidebar />
+              </Suspense>
+              <div className={style.managerShell_content}>
+                <SidebarOverlay />
+                <Preloader visible={preloaderVisible}>
+                  <>
+                    {applications && (
+                      <IFrameAppRouter
+                        iframeRef={iframeRef}
+                        configuration={applications}
+                      />
+                    )}
+                    {isMfaEnrollmentVisible && (
+                      <Suspense fallback="">
+                        <MfaEnrollment
+                          forced={isMfaEnrollmentForced}
+                          onHide={hideMfaEnrollment}
+                        />
+                      </Suspense>
+                    )}
+                    <iframe
+                      title="app"
+                      role="document"
+                      src="about:blank"
+                      ref={iframeRef}
+                    ></iframe>
+                  </>
+                </Preloader>
+              </div>
+            </div>
         </div>
       </>
     </LegacyContainerProvider>
