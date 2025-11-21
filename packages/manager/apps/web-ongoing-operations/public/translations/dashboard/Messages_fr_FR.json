@@ -103,6 +103,7 @@
   "domain_operations_update_nicowner_click_identityEvidence": "Fournir une copie de la carte d'identité, du permis de conduire ou du passeport de la personne inscrite.",
   "domain_operations_update_dns_click": "Cliquez ici pour corriger la configuration de vos serveurs DNS",
   "domain_operations_update_contact_administrator": "Contactez votre administrateur pour corriger ce problème.",
+  "domain_operations_update_key_legitimacyAfnic": "Justifier de l'usage du nom de domaine",
   "tracking_transfert_domain_title": "Suivi du transfert pour le nom de domaine \"{{t0}}\"",
   "tracking_transfert_last_update": "Dernière mise à jour : {{t0}}",
   "tracking_transfert_finalized": "Votre transfert est finalisé !",
