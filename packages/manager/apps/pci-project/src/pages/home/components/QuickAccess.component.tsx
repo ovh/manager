@@ -1,18 +1,18 @@
-import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
 
-import QuickAccessCard from './QuickAccessCard.component';
 import { DASHBOARD_QUICK_ACCESS_ITEMS_BASE } from '@/constants';
 import { DashboardItem } from '@/data/types/dashboard.type';
 import { useProjectIdInLinks } from '@/hooks/home/useProjectIdInLinks';
 import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
+import QuickAccessCard from './QuickAccessCard.component';
 
+import IconBlockStorage from '@/assets/home/block_storage.svg?url';
 import IconInstances from '@/assets/home/instances.svg?url';
 import IconKubernetes from '@/assets/home/managed_kubernetes_service.svg?url';
+import IconDatabase from '@/assets/home/managed_mongodb.svg?url';
 import IconObjectStorage from '@/assets/home/object_storage.svg?url';
 import IconNetwork from '@/assets/home/vrack_private_network.svg?url';
-import IconDatabase from '@/assets/home/managed_mongodb.svg?url';
-import IconBlockStorage from '@/assets/home/block_storage.svg?url';
 
 // Map label translation keys to their corresponding icons
 const iconMap: Record<string, string> = {

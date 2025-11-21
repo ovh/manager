@@ -425,13 +425,13 @@ export const COMMUNITY_LINKS = [
     term: 'pci_projects_home_community_roadmap_term',
     description: 'pci_projects_home_community_roadmap_description',
     href: 'https://github.com/ovh/public-cloud-roadmap/projects',
-    trackingName: 'PublicCloud::pci::projects::project::community-roadmap',
+    trackingName: 'go-to-community-roadmap',
   },
   {
     term: 'pci_projects_home_community_discord_term',
     description: 'pci_projects_home_community_discord_description',
     href: 'https://discord.gg/ovhcloud',
-    trackingName: 'PublicCloud::pci::projects::project::community-discord',
+    trackingName: 'go-to-community-discord',
   },
 ];
 
@@ -442,14 +442,14 @@ export const DASHBOARD_DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
     feature: FEATURE_AVAILABILITY.CLOUD_ESSENTIAL_INFORMATION,
-    trackingName: 'PublicCloud::pci::projects::project::docs-pci-basics',
+    trackingName: 'go-to-pci-basics',
   },
   {
     term: 'pci_projects_home_documentation_interface_term',
     description: 'pci_projects_home_documentation_interface_description',
     href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
     feature: FEATURE_AVAILABILITY.PUBLIC_CLOUD_INTERFACE,
-    trackingName: 'PublicCloud::pci::projects::project::docs-pci-interface',
+    trackingName: 'go-to-pci-interface',
   },
   {
     term: 'pci_projects_home_documentation_instances_term',
@@ -457,8 +457,7 @@ export const DASHBOARD_DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
     feature: FEATURE_AVAILABILITY.START_PCI_INSTANCE,
-    trackingName:
-      'PublicCloud::pci::projects::project::docs-get-started-with-instances',
+    trackingName: 'go-to-get-started-with-instances',
   },
   {
     term: 'pci_projects_home_documentation_billing_term',
@@ -466,14 +465,14 @@ export const DASHBOARD_DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
     feature: FEATURE_AVAILABILITY.CLOUD_BILLING_OPTIONS,
-    trackingName: 'PublicCloud::pci::projects::project::docs-billing',
+    trackingName: 'go-to-billing',
   },
   {
     term: 'pci_projects_home_documentation_guides_term',
     description: 'pci_projects_home_documentation_guides_description',
     href: 'https://docs.ovh.com/gb/en/',
     feature: FEATURE_AVAILABILITY.ALL_GUIDES,
-    trackingName: 'PublicCloud::pci::projects::project::docs-all-guides',
+    trackingName: 'go-to-all-guides',
   },
   {
     term: 'pci_projects_home_documentation_block_storage_term',
@@ -481,8 +480,7 @@ export const DASHBOARD_DOCUMENTATION_LINKS = [
     href:
       'https://support.us.ovhcloud.com/hc/en-us/articles/20566582694291-Creating-and-configuring-an-additional-disk-on-an-instance',
     feature: FEATURE_AVAILABILITY.START_WITH_BLOCK_STORAGE,
-    trackingName:
-      'PublicCloud::pci::projects::project::docs_start_with_block_storage',
+    trackingName: 'go-to-start_with_block_storage',
   },
 ];
 
@@ -493,36 +491,42 @@ export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
     descriptionTranslationKey: 'pci_projects_home_create_instance',
     link: PCI_FEATURES_STATES.INSTANCES.ADD.url,
     featureFlag: FEATURE_AVAILABILITY.INSTANCE,
+    trackingName: 'create_instance',
   },
   {
     labelTranslationKey: 'pci_projects_home_kubernetes',
     descriptionTranslationKey: 'pci_projects_home_create_cluster',
     link: PCI_FEATURES_STATES.KUBERNETES.LIST.url,
     featureFlag: FEATURE_AVAILABILITY.KUBERNETES,
+    trackingName: 'create_kubernetes',
   },
   {
     labelTranslationKey: 'pci_projects_home_object_storage',
     descriptionTranslationKey: 'pci_projects_home_create_container',
     link: PCI_FEATURES_STATES.OBJECTS.ADD.url,
     featureFlag: FEATURE_AVAILABILITY.OBJECT_STORAGE,
+    trackingName: 'add_objects_storage_container',
   },
   {
     labelTranslationKey: 'pci_projects_home_block_storage',
     descriptionTranslationKey: 'pci_projects_home_create_volume',
     link: PCI_FEATURES_STATES.BLOCKS.LIST.url,
     featureFlag: FEATURE_AVAILABILITY.BLOCK_STORAGE,
+    trackingName: 'create_volume_block_storage',
   },
   {
     labelTranslationKey: 'pci_projects_home_network',
     descriptionTranslationKey: 'pci_projects_home_manage_vrack',
     link: PCI_FEATURES_STATES.PRIVATE_NETWORK.LIST.url,
     featureFlag: FEATURE_AVAILABILITY.PRIVATE_NETWORK,
+    trackingName: 'manage_privateNetwork',
   },
   {
     labelTranslationKey: 'pci_projects_home_database',
     descriptionTranslationKey: 'pci_projects_home_create_database',
     link: PCI_FEATURES_STATES.DATABASES.ADD.url,
-    featureFlag: FEATURE_AVAILABILITY.DATABASES,
+    featureFlag: FEATURE_AVAILABILITY.DATABASES_ANALYTICS,
+    trackingName: 'create_service_database',
   },
 ];
 
@@ -532,6 +536,7 @@ export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
     labelTranslationKey: 'pci_projects_home_create_ai_notebook',
     link: PCI_FEATURES_STATES.NOTEBOOKS.LIST.url,
     featureFlag: FEATURE_AVAILABILITY.NOTEBOOKS,
+    trackingName: 'create_ai-notebook',
   },
   {
     iconODS: ODS_ICON_NAME.network,

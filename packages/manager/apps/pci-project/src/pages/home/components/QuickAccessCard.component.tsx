@@ -8,7 +8,6 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { DashboardItem } from '@/data/types/dashboard.type';
-import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type QuickAccessCardProps = {
   item: DashboardItem;
@@ -20,13 +19,9 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
   const { trackClick } = useOvhTracking();
 
   const handleQuickAccessClick = () => {
-    // Track the click action
     trackClick({
       actionType: 'action',
-      actions: [
-        ...PROJECTS_TRACKING.PROJECT_HOME.CTA_QUICK_ACCESS,
-        item.labelTranslationKey || '',
-      ],
+      actions: ['page', 'button', item.trackingName || ''],
     });
   };
 

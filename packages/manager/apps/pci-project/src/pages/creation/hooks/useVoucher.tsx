@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useSearchParams } from 'react-router-dom';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   useAttachConfigurationToCartItem,
   useDeleteConfigurationItemFromCart,
 } from '@/data/hooks/useCart';
 import { CartConfiguration } from '@/data/types/cart.type';
 import { useCheckVoucherEligibility } from '@/data/hooks/useEligibility';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 export function useVoucher({
   cartId,
@@ -26,8 +28,14 @@ export function useVoucher({
   const [voucher, setVoucher] = useState('');
   const [error, setError] = useState<string | undefined>(undefined);
 
+  const { trackClick, trackPage } = useOvhTracking();
+
   const { mutate: attachConfig } = useAttachConfigurationToCartItem({
     onSuccess: (data: CartConfiguration) => {
+      trackPage({
+        pageType: PageType.bannerInfo,
+        pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_SUCCESS,
+      });
       setError(undefined);
       setVoucherConfiguration(data);
       /**
@@ -36,6 +44,12 @@ export function useVoucher({
       setSearchParams({
         ...Object.fromEntries(searchParams.entries()),
         voucher,
+      });
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_ERROR,
       });
     },
   });
@@ -77,6 +91,10 @@ export function useVoucher({
 
   useEffect(() => {
     if (initialVoucher) {
+      trackClick({
+        actionType: 'action',
+        actions: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER,
+      });
       setVoucher(initialVoucher);
       checkEligibility(initialVoucher);
     }
