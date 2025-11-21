@@ -11,6 +11,7 @@ import UserAccountMenu from './user-account-menu/Content';
 import { UserLink } from './user-account-menu/UserLink';
 import { fetchProcedureStatus } from '@/data/api/procedure/procedure';
 import { ProcedureStatus } from '@/types/procedure';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 /**
  * Mocked Data
@@ -70,6 +71,7 @@ vi.mock('@/core/container', () => ({
   default: vi.fn().mockReturnValue({
     betaVersion: true,
     useBeta: true,
+    isReady: true,
     updateBetaChoice: vi.fn(),
     setChatbotReduced: vi.fn(),
   }),
@@ -194,13 +196,11 @@ describe('Header.component', () => {
         });
 
         await act(async () => {
+          const queryClient = new QueryClient();
           render(
-            <UserAccountMenu
-              defaultPaymentMethod={{
-                getStatusCategory: () => 'success',
-              }}
-              isLoading={false}
-            />,
+            <QueryClientProvider client={queryClient}>
+              <UserAccountMenu />
+            </QueryClientProvider>,
           );
         });
 
@@ -256,13 +256,11 @@ describe('Header.component', () => {
         });
 
         await act(async () => {
+          const queryClient = new QueryClient();
           render(
-            <UserAccountMenu
-              defaultPaymentMethod={{
-                getStatusCategory: () => 'success',
-              }}
-              isLoading={false}
-            />,
+            <QueryClientProvider client={queryClient}>
+              <UserAccountMenu />
+            </QueryClientProvider>,
           );
         });
 
@@ -283,13 +281,11 @@ describe('Header.component', () => {
       mockedRegion = 'US';
 
       await act(async () => {
+        const queryClient = new QueryClient();
         render(
-          <UserAccountMenu
-            defaultPaymentMethod={{
-              getStatusCategory: () => 'success',
-            }}
-            isLoading={false}
-          />,
+          <QueryClientProvider client={queryClient}>
+            <UserAccountMenu />
+          </QueryClientProvider>,
         );
       });
       expect(
@@ -306,13 +302,11 @@ describe('Header.component', () => {
         mockedUser.auth.method = isSubUser ? 'provider' : 'not-provider';
 
         await act(async () => {
+          const queryClient = new QueryClient();
           render(
-            <UserAccountMenu
-              defaultPaymentMethod={{
-                getStatusCategory: () => 'success',
-              }}
-              isLoading={false}
-            />,
+            <QueryClientProvider client={queryClient}>
+              <UserAccountMenu />
+            </QueryClientProvider>,
           );
         });
         expect(screen.getByText(mockedUser.email)).toBeInTheDocument();
@@ -327,14 +321,11 @@ describe('Header.component', () => {
       async (_, userType, isEnterprise) => {
         mockedUser.enterprise = isEnterprise;
         await act(async () => {
+          const queryClient = new QueryClient();
           render(
-            <UserAccountMenu
-              defaultPaymentMethod={{
-                getStatusCategory: () => 'success',
-                status: 'VALID',
-              }}
-              isLoading={false}
-            />,
+            <QueryClientProvider client={queryClient}>
+              <UserAccountMenu />
+            </QueryClientProvider>,
           );
           waitFor(() => {
             const paymentMethodBadge = screen.queryByText(

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import {  DefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 import { Environment } from "@ovh-ux/manager-config";
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import { useApplication } from "@/context";
@@ -42,4 +42,14 @@ export const useExpiredDefaultCreditCardAlert = (enabled: boolean) => {
     },
     enabled,
   });
+};
+
+export const useDefaultPaymentMethod = (options?: Partial<DefinedInitialDataOptions<IPaymentMethod>>) => {
+  const ovhPaymentMethod = useOvhPaymentMethod();
+
+  return useQuery({
+    ...options,
+    queryKey: ['payment-method', 'default'],
+    queryFn: () => ovhPaymentMethod.getDefaultPaymentMethod(),
+  })
 };
