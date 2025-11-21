@@ -31,5 +31,6 @@
   "autoRestartToastSuccessTitle": "Riavvio automatico aggiornato",
   "autoRestartToastSuccessDescription": "Il parametro di riavvio automatico è stato aggiornato per {{name}}",
   "disabledRestartButtonTooltip": "Il riavvio automatico non può essere modificato quando il notebook è arrestato.",
-  "modifyLabel": "Modificare"
+  "modifyLabel": "Modificare",
+  "qpuAutoRestartNote": "I notebook QPU non possono essere spenti senza riavvio automatico. Questa funzionalità è attivata per impostazione predefinita per garantire la continuità dei tuoi calcoli QPU."
 }
