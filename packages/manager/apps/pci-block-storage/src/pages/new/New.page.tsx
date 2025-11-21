@@ -13,10 +13,11 @@ import {
   isApiCustomError,
   isMaxQuotaReachedError,
 } from '@ovh-ux/manager-core-api';
-import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { useHref, useNavigate } from 'react-router-dom';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
+  useParam,
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import {
@@ -46,12 +47,12 @@ export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
   const { t: tAdd } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const { data: project } = useProject();
   const navigate = useNavigate();
   const projectUrl = useProjectUrl('public-cloud');
   const backHref = useHref('..');
-  const isDiscovery = isDiscoveryProject(project);
+  const isDiscovery = !!project && isDiscoveryProject(project);
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const stepper = useVolumeStepper(projectId);
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -151,9 +152,11 @@ export default function NewPage(): JSX.Element {
       <Headers title={tAdd('pci_projects_project_storages_blocks_add_title')} />
       <Notifications />
 
-      <div className="mb-5">
-        <PciDiscoveryBanner project={project} />
-      </div>
+      {project && (
+        <div className="mb-5">
+          <PciDiscoveryBanner project={project} />
+        </div>
+      )}
 
       <div className="mb-5">
         <ExtenBannerBeta />
@@ -223,12 +226,14 @@ export default function NewPage(): JSX.Element {
             </span>
           }
         >
-          <VolumeTypeStep
-            projectId={projectId}
-            region={stepper.form.region}
-            step={stepper.volumeType.step}
-            onSubmit={stepper.volumeType.submit}
-          />
+          {stepper.form.region && (
+            <VolumeTypeStep
+              projectId={projectId}
+              region={stepper.form.region}
+              step={stepper.volumeType.step}
+              onSubmit={stepper.volumeType.submit}
+            />
+          )}
         </StepComponent>
         {stepper.availabilityZone.step.isShown && (
           <StepComponent
@@ -254,12 +259,14 @@ export default function NewPage(): JSX.Element {
               </OsdsText>
             }
           >
-            {!!stepper.form.region?.name && (
+            {!!stepper.form.region?.name ? (
               <AvailabilityZoneStep
                 step={stepper.availabilityZone.step}
                 region={stepper.form.region}
                 onSubmit={stepper.availabilityZone.submit}
               />
+            ) : (
+              undefined
             )}
           </StepComponent>
         )}
@@ -279,14 +286,20 @@ export default function NewPage(): JSX.Element {
             isDisabled: stepper.validation.step.isLocked,
           }}
         >
-          <CapacityStep
-            projectId={projectId}
-            region={stepper.form.region}
-            volumeType={stepper.form.volumeType}
-            encryptionType={stepper.form.encryptionType}
-            step={stepper.capacity.step}
-            onSubmit={stepper.capacity.submit}
-          />
+          {stepper.form.region &&
+          stepper.form.volumeType &&
+          stepper.form.encryptionType ? (
+            <CapacityStep
+              projectId={projectId}
+              region={stepper.form.region}
+              volumeType={stepper.form.volumeType}
+              encryptionType={stepper.form.encryptionType}
+              step={stepper.capacity.step}
+              onSubmit={stepper.capacity.submit}
+            />
+          ) : (
+            undefined
+          )}
         </StepComponent>
         <StepComponent
           order={stepper.getOrder(stepper.volumeName.step)}
@@ -301,44 +314,64 @@ export default function NewPage(): JSX.Element {
             isDisabled: stepper.validation.step.isLocked,
           }}
         >
-          {!!stepper.form.region &&
-            !!stepper.form.region &&
-            !!stepper.form.volumeCapacity && (
-              <VolumeNameStep
-                projectId={projectId}
-                step={stepper.volumeName.step}
-                onSubmit={stepper.volumeName.submit}
-                volumeType={stepper.form.volumeType}
-                encryptionType={stepper.form.encryptionType}
-                region={stepper.form.region.name}
-                volumeCapacity={stepper.form.volumeCapacity}
-              />
-            )}
+          {stepper.form.region &&
+          stepper.form.volumeType &&
+          stepper.form.encryptionType &&
+          stepper.form.volumeCapacity ? (
+            <VolumeNameStep
+              projectId={projectId}
+              step={stepper.volumeName.step}
+              onSubmit={stepper.volumeName.submit}
+              volumeType={stepper.form.volumeType}
+              encryptionType={stepper.form.encryptionType}
+              region={stepper.form.region.name}
+              volumeCapacity={stepper.form.volumeCapacity}
+            />
+          ) : (
+            undefined
+          )}
         </StepComponent>
         <StepComponent
           order={stepper.getOrder(stepper.validation.step)}
           {...stepper.validation.step}
           title={tAdd('pci_projects_project_storages_blocks_add_submit_title')}
         >
-          <ValidationStep
-            volumeCapacity={stepper.form.volumeCapacity}
-            projectId={projectId}
-            region={stepper.form.region}
-            volumeType={stepper.form.volumeType}
-            encryptionType={stepper.form.encryptionType}
-            onSubmit={() => {
-              clearNotifications();
-              stepper.validation.submit();
-              addVolume({
-                region: stepper.form.region.name,
-                type: stepper.form.volumeType,
-                encryptionType: stepper.form.encryptionType,
-                name: stepper.form.volumeName,
-                size: stepper.form.volumeCapacity,
-                availabilityZone: stepper.form.availabilityZone,
-              });
-            }}
-          />
+          {stepper.form.region &&
+          stepper.form.volumeType &&
+          stepper.form.encryptionType &&
+          stepper.form.volumeCapacity ? (
+            <ValidationStep
+              volumeCapacity={stepper.form.volumeCapacity}
+              projectId={projectId}
+              region={stepper.form.region}
+              volumeType={stepper.form.volumeType}
+              encryptionType={stepper.form.encryptionType}
+              onSubmit={() => {
+                if (
+                  !stepper.form.region ||
+                  !stepper.form.volumeType ||
+                  !stepper.form.encryptionType ||
+                  !stepper.form.volumeCapacity ||
+                  !stepper.form.volumeName ||
+                  !stepper.form.availabilityZone
+                )
+                  return;
+
+                clearNotifications();
+                stepper.validation.submit();
+                addVolume({
+                  region: stepper.form.region.name,
+                  type: stepper.form.volumeType,
+                  encryptionType: stepper.form.encryptionType,
+                  name: stepper.form.volumeName,
+                  size: stepper.form.volumeCapacity,
+                  availabilityZone: stepper.form.availabilityZone,
+                });
+              }}
+            />
+          ) : (
+            undefined
+          )}
         </StepComponent>
       </div>
     </>

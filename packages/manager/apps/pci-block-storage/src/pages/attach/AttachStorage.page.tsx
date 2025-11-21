@@ -18,10 +18,11 @@ import { TAttachableInstance } from '@/api/select/instances';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
+import { useParam } from '@ovh-ux/manager-pci-common';
 
 export default function AttachStorage() {
   const navigate = useNavigate();
-  const { projectId, volumeId } = useParams();
+  const { projectId, volumeId } = useParam('projectId', 'volumeId');
   const { t } = useTranslation('attach');
   const { addError, addSuccess } = useNotifications();
   const { data: volume, isPending: isVolumePending } = useVolume(
@@ -33,12 +34,13 @@ export default function AttachStorage() {
     isPending: isInstancesPending,
   } = useAttachableInstances(projectId, volumeId);
 
-  const [selectedInstance, setSelectedInstance] = useState<TAttachableInstance>(
-    null,
-  );
+  const [
+    selectedInstance,
+    setSelectedInstance,
+  ] = useState<TAttachableInstance | null>(null);
   const onClose = () => navigate('..');
 
-  const selectRef = useRef(null);
+  const selectRef = useRef<HTMLOsdsSelectElement>(null);
 
   /**
    * Workaround to solve ods select width on mobile
@@ -47,42 +49,38 @@ export default function AttachStorage() {
   useEffect(() => {
     if (
       selectRef.current &&
-      !selectRef.current.shadowRoot.querySelector('style')
+      !selectRef.current.shadowRoot?.querySelector('style')
     ) {
       const style = document.createElement('style');
       style.innerHTML = '.ocdk-surface--open {max-width: 100%;}';
-      selectRef.current.shadowRoot.appendChild(style);
+      selectRef.current.shadowRoot?.appendChild(style);
     }
   }, [selectRef.current]);
 
   // select first instance available after loading
   useEffect(() => {
-    if (!!instances && instances.length)
-      setSelectedInstance((instance) => instance ?? instances[0]);
+    const firstInstance = instances?.[0];
+    if (!firstInstance) return;
+
+    setSelectedInstance((instance) => instance ?? firstInstance);
   }, [instances]);
 
   const actionValues = [volume?.region];
 
-  const onTrackingBannerError = useTrackBanner(
-    { type: 'error' },
-    (err: Error) => {
-      addError(
-        <Translation ns="attach">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_blocks_block_attach_error_attach',
-              {
-                volume: volume?.name,
-                message: err?.message,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
-  );
+  const onTrackingBannerError = useTrackBanner({ type: 'error' }, (err) => {
+    addError(
+      <Translation ns="attach">
+        {(_t) =>
+          _t('pci_projects_project_storages_blocks_block_attach_error_attach', {
+            volume: volume?.name,
+            message: err instanceof Error ? err.message : undefined,
+          })
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
 
   const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
     addSuccess(
@@ -92,8 +90,8 @@ export default function AttachStorage() {
             'pci_projects_project_storages_blocks_block_attach_success_message',
             {
               volume: volume?.name,
-              volumeId: volume.id,
-              type: volume.type,
+              volumeId: volume?.id,
+              type: volume?.type,
               instance: selectedInstance?.name,
               instanceId: selectedInstance?.id,
             },
@@ -108,7 +106,7 @@ export default function AttachStorage() {
   const { attachVolume, isPending: isAttachPending } = useAttachVolume({
     projectId,
     volumeId,
-    instanceId: selectedInstance?.id,
+    instanceId: selectedInstance?.id ?? '',
     onError: onTrackingBannerError,
     onSuccess: onTrackingBannerSuccess,
   });
@@ -130,7 +128,7 @@ export default function AttachStorage() {
             data-testid="attach-storage-spinner"
           />
         )}
-        {volume?.maxAttachedInstances > 1 && (
+        {volume && volume?.maxAttachedInstances > 1 && (
           <OsdsText
             className="mt-5 whitespace-pre-wrap"
             size={ODS_TEXT_SIZE._400}
@@ -142,7 +140,7 @@ export default function AttachStorage() {
             )}
           </OsdsText>
         )}
-        {!isPending && instances?.length > 0 && (
+        {!isPending && instances && instances?.length > 0 && (
           <div>
             <OsdsSelect
               value={selectedInstance?.id}
@@ -150,11 +148,11 @@ export default function AttachStorage() {
               inline
               className="mt-5 w-[100%]"
               onOdsValueChange={(event) => {
-                setSelectedInstance(
-                  instances.find(
-                    (instance) => instance.id === event.detail.value,
-                  ),
+                const instance = instances.find(
+                  (instance) => instance.id === event.detail.value,
                 );
+                if (!instance) return;
+                setSelectedInstance(instance);
               }}
             >
               {instances.map(({ id, name }) => (

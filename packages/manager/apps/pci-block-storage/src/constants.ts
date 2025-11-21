@@ -1,9 +1,7 @@
-import {
-  ChangelogLinks,
-  OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
+import { Subsidiary } from '@ovh-ux/manager-config';
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
-export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
+export type UrlRecord = { [Key in Subsidiary]?: string } & {
   DEFAULT: string;
 };
 

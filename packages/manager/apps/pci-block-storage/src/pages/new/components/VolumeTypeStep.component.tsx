@@ -94,9 +94,9 @@ export function VolumeTypeStep({
       })) || [],
     [data, region, getFormattedCatalogPrice],
   );
-  const [volumeType, setVolumeType] = useState<typeof volumeTypes[number]>(
-    undefined,
-  );
+  const [volumeType, setVolumeType] = useState<
+    typeof volumeTypes[number] | null
+  >(null);
   const [encryptionType, setEncryptionType] = useState<EncryptionType | null>(
     null,
   );

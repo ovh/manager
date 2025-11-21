@@ -14,6 +14,7 @@ import {
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { TAttachedInstance } from '@/api/select/instances';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+import { useParams } from 'react-router-dom';
 
 vi.mock('@/api/hooks/useVolume', () => ({
   useVolume: vi
@@ -25,6 +26,10 @@ vi.mock('@/api/hooks/useVolume', () => ({
 }));
 
 vi.mock('react-router-dom');
+vi.mocked(useParams).mockReturnValue({
+  volumeId: 'testVolume',
+  projectId: 'testProject',
+});
 
 vi.mock('@/hooks/useSearchFormParams');
 
@@ -39,9 +44,9 @@ describe('DetachStorage', () => {
     vi.mocked(useAttachedInstances).mockReturnValue({
       isPending: true,
     } as UseQueryResult<TAttachedInstance[]>);
-    vi.mocked(useVolume).mockReturnValue({
+    vi.mocked(useVolume).mockReturnValue(({
       isPending: true,
-    } as UseQueryResult<UseVolumeResult>);
+    } as unknown) as ReturnType<typeof useVolume>);
 
     const { getByTestId } = renderWithMockedWrappers(<DetachStorage />);
     expect(getByTestId('detachStorage-spinner')).toBeInTheDocument();
@@ -52,10 +57,10 @@ describe('DetachStorage', () => {
       isPending: false,
       data: [{ id: 'Instance 1', name: 'Instance 1' }],
     } as UseQueryResult<TAttachedInstance[]>);
-    vi.mocked(useVolume).mockReturnValue({
+    vi.mocked(useVolume).mockReturnValue(({
       data: { name: 'Volume 1', attachedTo: ['Instance 1'] },
       isPending: false,
-    } as UseQueryResult<UseVolumeResult>);
+    } as unknown) as ReturnType<typeof useVolume>);
 
     const { getByText } = renderWithMockedWrappers(<DetachStorage />);
     await waitFor(() => {

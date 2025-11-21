@@ -1,4 +1,16 @@
-export const GUIDES = {
+import { Subsidiary } from '@ovh-ux/manager-config';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
+type TGuide = Record<TGuideKey, TGuideEntry>;
+type TGuideEntry = Partial<Record<Subsidiary, string>> & {
+  default: string;
+};
+type TGuideKey =
+  | 'create-attach-volume'
+  | 'configure-volume'
+  | 'increase-volume-size';
+
+export const GUIDES: TGuide = {
   'create-attach-volume': {
     default:
       'https://docs.ovh.com/gb/en/public-cloud/create-an-additional-volume-and-attach-it-to-an-instance/',

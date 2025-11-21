@@ -1,4 +1,5 @@
-import { render, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import { Queries as TestingQueries } from '@testing-library/dom/types';
 import { PropsWithChildren, ReactElement } from 'react';
 import {
   ShellContext,
@@ -9,7 +10,8 @@ import { MemoryRouter } from 'react-router-dom';
 const shellContextValue: RecursivePartial<ShellContextType> = {
   shell: {
     navigation: {
-      getURL: (_, path) => Promise.resolve(`https://ovh.test/#${path}`),
+      getURL: (_: string, path: string) =>
+        Promise.resolve(`https://ovh.test/#${path}`),
     },
     ux: {
       hidePreloader: () => Promise.resolve(),
@@ -33,4 +35,4 @@ const AllTheProviders = ({ children }: PropsWithChildren) => (
 export const renderWithMockedWrappers = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>,
-) => render(ui, { wrapper: AllTheProviders, ...options });
+): RenderResult => render(ui, { wrapper: AllTheProviders, ...options });

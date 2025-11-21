@@ -21,10 +21,10 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
 
 describe('OnBoardingPage', () => {
   it('should render children when volumes are empty', () => {
-    vi.mocked(useAllVolumes).mockReturnValue({
+    vi.mocked(useAllVolumes).mockReturnValue(({
       data: [],
       isPending: false,
-    } as UseQueryResult<TVolume[]>);
+    } as unknown) as UseQueryResult<TVolume[]>);
 
     const { getByText } = renderWithMockedWrappers(<OnBoardingPage />);
     expect(
@@ -33,10 +33,10 @@ describe('OnBoardingPage', () => {
   });
 
   it('should render spinner when isLoading is true', () => {
-    vi.mocked(useAllVolumes).mockReturnValue({
+    vi.mocked(useAllVolumes).mockReturnValue(({
       data: null,
       isPending: true,
-    } as UseQueryResult<TVolume[]>);
+    } as unknown) as UseQueryResult<TVolume[]>);
     renderWithMockedWrappers(<OnBoardingPage />);
 
     expect(screen.getByTestId('redirectionGuard_spinner')).toBeInTheDocument();

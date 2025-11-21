@@ -42,7 +42,7 @@ export function LocationStep({
     setSelectedRegionGroup,
   ] = useState<TDeployment | null>(null);
   const [selectedLocalisation, setSelectedLocalisation] = useState<
-    TLocalisation
+    TLocalisation | undefined
   >(undefined);
   const selectedRegion = useMemo(
     () =>
@@ -61,7 +61,7 @@ export function LocationStep({
     () =>
       selectedRegionGroup
         ? regions?.filter((r) =>
-            r.filters.deployment.includes(selectedRegionGroup.name),
+            r.filters.deployment?.includes(selectedRegionGroup.name),
           )
         : regions,
     [regions, selectedRegionGroup],
@@ -77,10 +77,12 @@ export function LocationStep({
   );
 
   const onSubmit = useCallback(() => {
+    if (!selectedRegion) return;
+
     setSelectedRegionGroup(
       deploymentsWithPrice.find(
-        (g) => g.name === selectedRegion.filters.deployment[0],
-      ),
+        (g) => g.name === selectedRegion.filters.deployment?.[0],
+      ) ?? null,
     );
     parentSubmit(selectedRegion);
   }, [deploymentsWithPrice, selectedRegion, parentSubmit]);
@@ -98,7 +100,7 @@ export function LocationStep({
     (localisation) => ({
       buttonType: 'tile',
       actionName: 'select_location',
-      actionValues: [localisation.name],
+      actionValues: localisation ? [localisation.name] : undefined,
     }),
     setSelectedLocalisation,
   );
@@ -128,7 +130,9 @@ export function LocationStep({
           </Subtitle>
         </div>
         {step.isLocked ? (
-          <RegionSummary region={selectedLocalisation} />
+          selectedLocalisation ? (
+            <RegionSummary region={selectedLocalisation} />
+          ) : null
         ) : (
           <div>
             <RegionSelector

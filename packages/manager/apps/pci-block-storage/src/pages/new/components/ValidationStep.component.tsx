@@ -49,7 +49,7 @@ export function ValidationStep({
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {t('pci_projects_project_storages_blocks_add_submit_price_text', {
-          price: data.monthlyPrice.value,
+          price: data?.monthlyPrice.value,
         })}
       </OsdsText>
       <div className="my-5">

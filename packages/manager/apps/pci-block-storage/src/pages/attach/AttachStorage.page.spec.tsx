@@ -29,7 +29,7 @@ vi.mock('@/api/hooks/useInstance');
 
 describe('AttachStorage', () => {
   it('renders spinner when data is loading', () => {
-    vi.mocked(useParams).mockReturnValue({ projectId: '1' });
+    vi.mocked(useParams).mockReturnValue({ projectId: '1', volumeId: '1' });
     vi.mocked(useAttachableInstances).mockReturnValue({
       isPending: true,
     } as UseQueryResult<TAttachableInstance[]>);
@@ -37,10 +37,10 @@ describe('AttachStorage', () => {
     expect(getByTestId('attach-storage-spinner')).toBeInTheDocument();
   });
   it('renders NoInstanceWarningMessage when no instances are available', async () => {
-    vi.mocked(useAttachableInstances).mockReturnValue({
+    vi.mocked(useAttachableInstances).mockReturnValue(({
       data: [],
       isPending: false,
-    } as UseQueryResult<TAttachableInstance[]>);
+    } as unknown) as UseQueryResult<TAttachableInstance[]>);
 
     const { getByTestId } = renderWithMockedWrappers(<AttachStorage />);
     await waitFor(() =>

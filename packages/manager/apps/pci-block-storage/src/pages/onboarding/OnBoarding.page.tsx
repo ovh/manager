@@ -15,17 +15,17 @@ import {
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useHref, useParams } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { Outlet, useHref } from 'react-router-dom';
+import { useParam, useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import { useAllVolumes } from '@/api/hooks/useVolume';
-import { useTrackAction } from '@/hooks/useTrackAction';
+import { TrackActionParams, useTrackAction } from '@/hooks/useTrackAction';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
   const { t: tOnBoarding } = useTranslation('onboarding');
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();
@@ -109,19 +109,19 @@ export default function OnBoardingPage() {
     location: 'page',
   });
 
-  const onTrackingCardClick = useTrackAction<(tileId: string) => void>(
-    (tileId: string) => ({
-      buttonType: 'tile-tutorial',
-      actionName: 'go-to',
-      actionValues: [tileId],
-    }),
-  );
+  const onTrackingCardClick = useTrackAction<
+    (tileId: string) => TrackActionParams
+  >((tileId: string) => ({
+    buttonType: 'tile-tutorial',
+    actionName: 'go-to',
+    actionValues: [tileId],
+  }));
 
   return (
     <RedirectionGuard
       isLoading={isPending}
       route={`/pci/projects/${projectId}/storages/blocks`}
-      condition={volumes?.length > 0}
+      condition={!!volumes && volumes.length > 0}
     >
       <>
         <HidePreloader />

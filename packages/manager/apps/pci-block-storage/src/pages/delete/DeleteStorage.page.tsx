@@ -14,9 +14,10 @@ import DeleteConstraintWarningMessage from './DeleteConstraintWarningMessage';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
+import { useParam } from '@ovh-ux/manager-pci-common';
 
 export default function DeleteStorage() {
-  const { projectId, volumeId } = useParams();
+  const { projectId, volumeId } = useParam('projectId', 'volumeId');
   const { t } = useTranslation('delete');
   const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ export default function DeleteStorage() {
 
   const onTrackingBannerError = useTrackBanner(
     { type: 'error' },
-    (err: Error) => {
+    (err: unknown) => {
       addError(
         <Translation ns="delete">
           {(_t) =>
@@ -40,7 +41,7 @@ export default function DeleteStorage() {
               'pci_projects_project_storages_blocks_block_delete_error_delete',
               {
                 volume: volume?.name,
-                message: err?.message,
+                message: err instanceof Error ? err.message : undefined,
               },
             )
           }
@@ -77,8 +78,8 @@ export default function DeleteStorage() {
 
   const isPending = isVolumePending || isSnapshotPending || isDeletePending;
   const hasSnapshot =
-    !isPending && snapshots?.some((s) => s.volumeId === volumeId);
-  const isAttached = !isPending && volume?.attachedTo.length > 0;
+    !isPending && !!snapshots && snapshots.some((s) => s.volumeId === volumeId);
+  const isAttached = !isPending && !!volume && volume.attachedTo.length > 0;
   const canDelete = !isPending && !isAttached && !hasSnapshot;
 
   const actionValues = [volume?.region];
