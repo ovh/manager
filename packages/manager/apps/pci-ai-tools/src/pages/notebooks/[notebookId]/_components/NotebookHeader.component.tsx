@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next';
+import { format } from 'date-fns';
 import {
   ArrowUpRightFromSquare,
   Globe,
   LockKeyhole,
   NotebookText,
+  OctagonX,
   PlayIcon,
+  RefreshCcw,
   Square,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -15,6 +18,8 @@ import A from '@/components/links/A.component';
 import StartNotebook from './StartNotebook.component';
 import StopNotebook from './StopNotebook.component';
 import { isDeletingNotebook, isRunningNotebook } from '@/lib/statusHelper';
+import ReStartNotebook from './ReStartNotebook.component';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 export const NotebookHeader = ({
   notebook,
@@ -24,7 +29,10 @@ export const NotebookHeader = ({
   const { t } = useTranslation('ai-tools/notebooks/notebook');
   const { t: tRegions } = useTranslation('regions');
   const [isStartOpen, setIsStartOpen] = useState(false);
+  const [isReStartOpen, setIsReStartOpen] = useState(false);
   const [isStopOpen, setIsStopOpen] = useState(false);
+  const isAutoRestart = notebook.spec.timeoutAutoRestart;
+  const dateLocale = useDateFnsLocale();
   return (
     <>
       <div
@@ -40,15 +48,29 @@ export const NotebookHeader = ({
             <div>
               {isRunningNotebook(notebook.status.state) ||
               isDeletingNotebook(notebook.status.state) ? (
-                <Button
-                  data-testid="open-stop-modal-button"
-                  type="button"
-                  variant="destructive"
-                  className="h-8 w-8 rounded-full p-1"
-                  onClick={() => setIsStopOpen(true)}
-                >
-                  <Square className="size-3 fill-white" />
-                </Button>
+                <>
+                  <div className="flex flex-row gap-2 items-center">
+                    <Button
+                      data-testid="open-stop-modal-button"
+                      type="button"
+                      variant="destructive"
+                      className="h-8 w-8 rounded-full p-1"
+                      onClick={() => setIsStopOpen(true)}
+                    >
+                      <Square className="size-3 fill-white" />
+                    </Button>
+                    <Button
+                      data-testid="open-restart-modal-button"
+                      type="button"
+                      title="Restart"
+                      variant="primary"
+                      className="h-8 w-8 rounded-full p-1"
+                      onClick={() => setIsReStartOpen(true)}
+                    >
+                      <RefreshCcw size={18} />
+                    </Button>
+                  </div>
+                </>
               ) : (
                 <Button
                   data-testid="open-start-modal-button"
@@ -83,6 +105,37 @@ export const NotebookHeader = ({
                 </div>
               </A>
             </Button>
+            {notebook.status.lastJobStatus.timeoutAt && (
+              <Badge variant="outline">
+                <div className=" bottom-0 right-0 flex items-center gap-2 ">
+                  {isAutoRestart ? (
+                    <>
+                      <RefreshCcw size={14} />
+                      <span>
+                        {t('restartLabel')}
+                        {format(
+                          notebook.status.lastJobStatus.timeoutAt,
+                          'PPpp',
+                          { locale: dateLocale },
+                        )}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <OctagonX size={16} />
+                      <span>
+                        {t('shutdownLabel')}
+                        {format(
+                          notebook.status.lastJobStatus.timeoutAt,
+                          'PPpp',
+                          { locale: dateLocale },
+                        )}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </Badge>
+            )}
             <Badge variant="outline">{notebook.spec.env.frameworkId}</Badge>
             <Badge variant="outline">
               {notebook.spec.env.frameworkVersion}
@@ -111,6 +164,13 @@ export const NotebookHeader = ({
           notebook={notebook}
           onSuccess={() => setIsStartOpen(false)}
           onClose={() => setIsStartOpen(false)}
+        />
+      )}
+      {isReStartOpen && (
+        <ReStartNotebook
+          notebook={notebook}
+          onSuccess={() => setIsReStartOpen(false)}
+          onClose={() => setIsReStartOpen(false)}
         />
       )}
       {isStopOpen && (

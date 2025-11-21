@@ -1,7 +1,8 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { Cpu, MoreHorizontal, Zap } from 'lucide-react';
+import { Cpu, MoreHorizontal, OctagonX, RefreshCcw, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 import {
   Button,
   DropdownMenu,
@@ -20,6 +21,7 @@ import { isRunningJob, isStoppedJob } from '@/lib/statusHelper';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { useTrackAction } from '@/hooks/useTracking';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 interface JobsListColumnsProps {
   onRestartClicked: (job: ai.job.Job) => void;
@@ -36,6 +38,7 @@ export const getColumns = ({
   const track = useTrackAction();
   const { t } = useTranslation('ai-tools/jobs');
   const { t: tRegions } = useTranslation('regions');
+  const dateLocale = useDateFnsLocale();
   const columns: ColumnDef<ai.job.Job>[] = [
     {
       id: 'name/id',
@@ -151,6 +154,48 @@ export const getColumns = ({
         return <JobStatusBadge status={row.original.status.state} />;
       },
     },
+    {
+      id: 'autorestart',
+      accessorFn: (row) => row.spec.timeoutAutoRestart,
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('timeOutLabel')}
+        </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => {
+        const isAutoRestart = row.original.spec.timeoutAutoRestart;
+        let content;
+        if (!row.original.status.timeoutAt) {
+          content = <>--</>;
+        } else if (isAutoRestart) {
+          content = (
+            <>
+              <RefreshCcw size={16} />
+              <span>
+                {t('restartLabel')}
+                {format(row.original.status.timeoutAt, 'PPpp', {
+                  locale: dateLocale,
+                })}
+              </span>
+            </>
+          );
+        } else {
+          content = (
+            <>
+              <OctagonX size={16} />
+              <span>
+                {t('shutdownLabel')}
+                {format(row.original.status.timeoutAt, 'PPpp', {
+                  locale: dateLocale,
+                })}
+              </span>
+            </>
+          );
+        }
+
+        return <span className="flex items-center gap-2">{content}</span>;
+      },
+    },
 
     {
       id: 'actions',
@@ -198,7 +243,7 @@ export const getColumns = ({
                   onRestartClicked(row.original);
                 }}
               >
-                {t('tableActionRestart')}
+                {t('tableActionClone')}
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="job-action-stop-button"

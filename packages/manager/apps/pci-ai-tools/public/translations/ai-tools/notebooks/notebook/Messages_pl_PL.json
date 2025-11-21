@@ -30,5 +30,20 @@
   "stopNotebookDescription3": "Przywrócimy Twoją przestrzeń roboczą i ponownie alokujemy zasoby obliczeniowe.",
   "stopNotebookConfirmation": "Czy na pewno chcesz zatrzymać notebook {{name}}?",
   "stopNotebookButtonConfirm": "Zatrzymaj",
-  "stopNotebookToastSuccessDescription": "Notebook {{name}} został zatrzymany"
+  "stopNotebookToastSuccessDescription": "Notebook {{name}} został zatrzymany",
+  "reStartNotebookTitle": "Uruchom ponownie notebook",
+  "reStartNotebookDescription": "Czy na pewno chcesz ponownie uruchomić notebook? {{name}} ? Po ponownym uruchomieniu pozostanie aktywny przez kolejne 7 dni od dnia ponownego uruchomienia.",
+  "reStartNotebookButtonConfirm": "Uruchom ponownie",
+  "reStartNotebookToastSuccessDescription": "Notebook {{name}} został ponownie uruchomiony",
+  "reStartNotebookToastSuccess": "Notebook {{name}} został ponownie uruchomiony",
+  "enableAutoRestartTitle": "Włącz automatyczne ponowne uruchamianie",
+  "enableAutoRestartDescription": "Czy na pewno chcesz włączyć automatyczne uruchamianie ponownie dla notebooka {{name}} ? Po włączeniu tej opcji notebook będzie automatycznie uruchamiał się ponownie co 7 dni.",
+  "enableAutoRestartButtonConfirm": "Włącz",
+  "enableAutoRestartToastSuccessDescription": "Automatyczne ponowne uruchamianie zostało włączone dla notebooka {{name}}",
+  "disableAutoRestartTitle": "Wyłącz automatyczne ponowne uruchamianie",
+  "disableAutoRestartDescription": "Czy na pewno chcesz wyłączyć automatyczne uruchamianie ponownie dla notebooka {{name}} ? Po wyłączeniu tej opcji laptop nie będzie już automatycznie uruchamiał się ponownie co 7 dni. ",
+  "disableAutoRestartButtonConfirm": "Wyłącz",
+  "disableAutoRestartToastSuccessDescription": "Automatyczne uruchamianie ponownie zostało wyłączone dla laptopa {{name}}",
+  "shutdownLabel": "Zatrzymaj ",
+  "restartLabel": "Uruchom ponownie "
 }

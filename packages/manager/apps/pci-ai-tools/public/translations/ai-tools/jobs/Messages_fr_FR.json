@@ -6,10 +6,14 @@
   "tableHeaderImage": "Image Docker",
   "tableHeaderResources": "Ressources",
   "tableHeaderDuration": "Durée",
+  "shutdownLabel": "Arrêt le ",
+  "restartLabel": "Redémarrage le ",
   "tableHeaderCreationDate": "Date de création",
+  "timeOutLabel": "Expiration",
   "tableHeaderStatus": "Statut",
   "tableActionManage": "Gérer",
   "tableActionRestart": "Redémarrer",
+  "tableActionClone": "Cloner",
   "tableActionStop": "Arrêter",
   "tableActionDelete": "Supprimer"
 }

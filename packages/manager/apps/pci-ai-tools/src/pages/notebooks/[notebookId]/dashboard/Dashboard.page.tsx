@@ -8,8 +8,9 @@ import {
   TerminalSquare,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -38,10 +39,12 @@ import {
   NotebookRoadmapLinks,
 } from '@/configuration/roadmap-changelog.constants';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { isRunningNotebook } from '@/lib/statusHelper';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
   const isQuantum = useQuantum();
+  const navigate = useNavigate();
 
   const { t } = useTranslation('ai-tools/notebooks/notebook/dashboard');
   const { toast } = useToast();
@@ -114,10 +117,25 @@ const Dashboard = () => {
         </Card>
         <Card>
           <CardHeader>
-            <h4>
-              <RefreshCcwDot className="size-4 inline mr-2" />
-              <span>{t('lifeCycleTitle')}</span>
-            </h4>
+            <div className="flex items-center justify-between w-full">
+              <h4>
+                <RefreshCcwDot className="size-4 inline mr-2" />
+                <span>{t('lifeCycleTitle')}</span>
+              </h4>
+              {isRunningNotebook(notebook.status.state) && (
+                <Button
+                  data-testid="popover-trigger-button"
+                  size="sm"
+                  mode="outline"
+                  className="text-text"
+                  onClick={() => navigate('./update-auto-restart')}
+                >
+                  {notebook.spec.timeoutAutoRestart
+                    ? t('deactivateAutoRestartButton')
+                    : t('activateAutoRestartButton')}
+                </Button>
+              )}
+            </div>
           </CardHeader>
           <CardContent>
             <LifeCycle />

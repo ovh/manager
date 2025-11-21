@@ -30,5 +30,20 @@
   "stopNotebookDescription3": "Wir stellen Ihren Arbeitsplatz wieder her und weisen ihm neue Rechenressourcen zu.",
   "stopNotebookConfirmation": "Sind Sie sicher, dass Sie das Notebook {{name}} anhalten möchten?",
   "stopNotebookButtonConfirm": "Anhalten",
-  "stopNotebookToastSuccessDescription": "Das Notebook {{name}} wurde angehalten"
+  "stopNotebookToastSuccessDescription": "Das Notebook {{name}} wurde angehalten",
+  "reStartNotebookTitle": "Notebook neu starten",
+  "reStartNotebookDescription": "Sind Sie sicher, dass Sie den Laptop neu starten möchten {{name}} ? Nach dem Neustart bleibt es für weitere 7 Tage ab dem Neustart aktiv.",
+  "reStartNotebookButtonConfirm": "Neu starten",
+  "reStartNotebookToastSuccessDescription": "Das Notebook {{name}} wurde neu gestartet",
+  "reStartNotebookToastSuccess": "Das Notebook {{name}} wurde neu gestartet",
+  "enableAutoRestartTitle": "Automatischen Neustart aktivieren",
+  "enableAutoRestartDescription": "Sind Sie sicher, dass Sie den automatischen Neustart für das Notebook aktivieren möchten {{name}} ? Sobald diese Option aktiviert ist, wird das Notebook alle 7 Tage automatisch neu gestartet.",
+  "enableAutoRestartButtonConfirm": "Aktivieren",
+  "enableAutoRestartToastSuccessDescription": "Der automatische Neustart wurde für das Notebook aktiviert {{name}}",
+  "disableAutoRestartTitle": "Automatischen Neustart deaktivieren",
+  "disableAutoRestartDescription": "Sind Sie sicher, dass Sie den automatischen Neustart für das Notebook deaktivieren möchten {{name}} ? Sobald diese Option deaktiviert ist, wird das Notebook nicht mehr automatisch alle 7 Tage neu starten. ",
+  "disableAutoRestartButtonConfirm": "Deaktivieren",
+  "disableAutoRestartToastSuccessDescription": "Das automatische Neustarten wurde für das Notebook deaktiviert {{name}}",
+  "shutdownLabel": "Neustart stoppen ",
+  "restartLabel": "Neustart starten "
 }

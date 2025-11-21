@@ -5,10 +5,13 @@ import {
   Globe,
   LockKeyhole,
   MoreHorizontal,
+  OctagonX,
+  RefreshCcw,
   Zap,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 import {
   Button,
   DropdownMenu,
@@ -37,15 +40,18 @@ import {
 } from '@/lib/statusHelper';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
+  onReStartClicked: (notebook: ai.notebook.Notebook) => void;
   onStopClicked: (notebook: ai.notebook.Notebook) => void;
   onDeleteClicked: (notebook: ai.notebook.Notebook) => void;
 }
 
 export const getColumns = ({
   onStartClicked,
+  onReStartClicked,
   onStopClicked,
   onDeleteClicked,
 }: NotebooksListColumnsProps) => {
@@ -53,6 +59,7 @@ export const getColumns = ({
   const track = useTrackAction();
   const { t } = useTranslation('ai-tools/notebooks');
   const { t: tRegions } = useTranslation('regions');
+  const dateLocale = useDateFnsLocale();
   const columns: ColumnDef<ai.notebook.Notebook>[] = [
     {
       id: 'name/id',
@@ -223,6 +230,50 @@ export const getColumns = ({
       },
     },
     {
+      id: 'autorestart',
+      accessorFn: (row) => row.spec.timeoutAutoRestart,
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('timeOutLabel')}
+        </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => {
+        const isAutoRestart = row.original.spec.timeoutAutoRestart;
+        let content;
+
+        if (!row.original.status.lastJobStatus.timeoutAt) {
+          content = <>--</>;
+        } else if (isAutoRestart) {
+          content = (
+            <>
+              <RefreshCcw size={16} />
+              <span>
+                {t('restartLabel')}
+                {format(row.original.status.lastJobStatus.timeoutAt, 'PPpp', {
+                  locale: dateLocale,
+                })}
+              </span>
+            </>
+          );
+        } else {
+          content = (
+            <>
+              <OctagonX size={16} />
+              <span>
+                {t('shutdownLabel')}
+                {format(row.original.status.lastJobStatus.timeoutAt, 'PPpp', {
+                  locale: dateLocale,
+                })}
+              </span>
+            </>
+          );
+        }
+
+        return <span className="flex items-center gap-2">{content}</span>;
+      },
+    },
+
+    {
       id: 'Status',
       accessorFn: (row) => row.status.state,
       header: ({ column }) => (
@@ -291,6 +342,19 @@ export const getColumns = ({
                 }}
               >
                 {t('tableActionStart')}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                data-testid="notebook-action-restart-button"
+                disabled={
+                  !isRunningNotebook(notebook.status.state) ||
+                  isDeletingNotebook(notebook.status.state)
+                }
+                variant="primary"
+                onClick={() => {
+                  onReStartClicked(row.original);
+                }}
+              >
+                {t('tableActionReStart')}
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="notebook-action-stop-button"

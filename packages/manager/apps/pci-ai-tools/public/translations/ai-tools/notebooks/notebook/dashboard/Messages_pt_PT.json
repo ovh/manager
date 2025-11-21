@@ -22,5 +22,7 @@
   "addLabelTitle": "Adicionar um label",
   "keyFieldLabel": "Chave",
   "valueFieldLabel": "Valor",
-  "deleteNotebookTooltip": "O notebook deve encontrar-se no estado «parado»"
+  "deleteNotebookTooltip": "O notebook deve encontrar-se no estado «parado»",
+  "activateAutoRestartButton": "Ativar reinício automático",
+  "deactivateAutoRestartButton": "Desativar o reinício automático"
 }
