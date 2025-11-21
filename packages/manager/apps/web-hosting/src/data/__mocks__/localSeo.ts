@@ -7,7 +7,7 @@ export const localSeoMocks: LocalSeoType[] = [
     address: '2 rue Kellermann 59100 Roubaix',
     country: SeoCountry.FR,
     creationDate: '2025-08-25T13:17:39.620Z',
-    id: 0,
+    id: '0',
     lastUpdate: '2025-08-25T13:17:39.620Z',
     name: 'Mon entreprise de test',
     offer: SeoOffer.NORMAL,
