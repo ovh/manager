@@ -1,5 +1,7 @@
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import {
+  ButtonType,
+  PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
@@ -38,7 +40,11 @@ export default function CommunityTile() {
               onClick={() => {
                 trackClick({
                   actionType: 'action',
-                  actions: ['page', 'tile-tutorial', item.trackingName || ''],
+                  actions: [
+                    PageLocation.page,
+                    ButtonType.tutorial,
+                    item.trackingName || '',
+                  ],
                 });
               }}
             />
