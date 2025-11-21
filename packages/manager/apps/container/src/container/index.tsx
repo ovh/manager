@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, lazy } from 'react';
+import { Suspense, useEffect, useState, useMemo } from 'react';
 
 import LegacyContainer from '@/container/legacy';
 import NavReshuffleContainer from '@/container/nav-reshuffle';
@@ -11,7 +11,7 @@ import SSOAuthModal from '@/components/sso-auth-modal/SSOAuthModal.component';
 import LiveChat from '@/container/livechat/LiveChat.component';
 
 export default function Container(): JSX.Element {
-  const { isLoading, betaVersion, useBeta } = useContainer();
+  const { isLoading, isReady, betaVersion, useBeta } = useContainer();
   const shell = useShell();
   const [isCookiePolicyApplied, setIsCookiePolicyApplied] = useState(false);
 
@@ -21,11 +21,10 @@ export default function Container(): JSX.Element {
     setIsCookiePolicyApplied(isApplied);
 
   useEffect(() => {
-    if (!isLoading) {
-      const tracking = shell.getPlugin('tracking');
-      tracking.waitForConfig().then(() => {
+    if (!isLoading && isReady) {
+      shell.getPlugin('tracking').waitForConfig().then(() => {
         if (isNavReshuffle) {
-          tracking.trackMVTest({
+          shell.getPlugin('tracking').trackMVTest({
             test: '[product-navigation-reshuffle]',
             waveId: 2,
             creation: '[full-services_v3]',
@@ -36,7 +35,7 @@ export default function Container(): JSX.Element {
         shell.getPlugin('ux').showMenuSidebar();
       }
     }
-  }, [isLoading]);
+  }, [isLoading, isReady]);
 
   return isLoading ? (
     <></>
