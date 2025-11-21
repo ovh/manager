@@ -145,5 +145,6 @@
   "contactInformation_street": "Straße",
   "contactInformation_postcode": "Postleitzahl",
   "contactInformation_city": "Stadt",
-  "contactInformation_country": "Land"
+  "contactInformation_country": "Land",
+  "delete_email_accounts": "Accounts löschen"
 }
