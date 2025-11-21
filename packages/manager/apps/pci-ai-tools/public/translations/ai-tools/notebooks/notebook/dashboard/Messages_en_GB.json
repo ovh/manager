@@ -31,5 +31,6 @@
   "autoRestartToastSuccessTitle": "Automatic restart updated",
   "autoRestartToastSuccessDescription": "The automatic restart setting has been updated for {{name}}",
   "disabledRestartButtonTooltip": "The automatic restart feature cannot be changed when the notebook is stopped.",
-  "modifyLabel": "Edit"
+  "modifyLabel": "Edit",
+  "qpuAutoRestartNote": "QPU notebooks cannot be stopped without automatic restart. This feature is enabled by default to ensure the continuity of your QPU calculations."
 }

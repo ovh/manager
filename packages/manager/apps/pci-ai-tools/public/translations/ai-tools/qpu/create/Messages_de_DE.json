@@ -56,8 +56,8 @@
   "notePriceDesc": "Die QPU-Zeit wird sekundengenau abgerechnet. Die QPU-Zeit wird Ihnen nur für Ihre Nutzungsdauer der QPU berechnet.",
   "pricingLabel": "Preis",
   "notebookPrice": "Notebook-Ressourcen",
-  "defaultAutoRestartInfo": "Das Notebook wird nach 7 Tagen automatisch beendet. Ihre Konfiguration und Daten werden gespeichert.",
-  "fieldTimeOutLabel": "Ablaufdatum",
+  "defaultAutoRestartInfo": "Die QPU-Notebooks können nicht ohne automatischen Neustart heruntergefahren werden. Diese Funktion ist standardmäßig aktiviert, um die Kontinuität Ihrer QPU-Berechnungen zu gewährleisten.",
+  "fieldTimeOutLabel": "Ablauf",
   "fieldAutoRestartLabel": "Automatischer Neustart",
   "fieldAutoRestartDescription": "Bei Aktivierung wird das Notebook alle 7 Tage automatisch neu gestartet. Bei Deaktivierung wird das Notebook nach 7 Tagen automatisch beendet. In jedem Fall werden Ihre Konfiguration und Daten gespeichert."
 }
