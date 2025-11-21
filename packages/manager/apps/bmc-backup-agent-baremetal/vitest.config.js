@@ -30,7 +30,7 @@ export default mergeConfig(
         ],
       },
     },
-    resolve: { dedupe: [...defaultDedupedDependencies],
+    resolve: { dedupe: [...defaultDedupedDependencies, 'react-hook-form'],
       alias: {
         // eslint-disable-next-line no-undef
         '@': path.resolve(__dirname, 'src'),

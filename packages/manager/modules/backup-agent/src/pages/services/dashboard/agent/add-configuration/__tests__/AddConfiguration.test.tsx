@@ -1,20 +1,23 @@
 import React from 'react';
-import { ReactNode } from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { DrawerProps } from '@ovh-ux/manager-react-components';
 
-import { FirstOrderFormComponent } from '../first-order-form/FirstOrderForm.component';
+import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
+import { mockTenantBackupPolicies } from '@/mocks/tenant/backupPolicies.mock';
+
+import AddConfigurationPage from '../AddConfiguration.page';
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
 
   return {
     ...actual,
+    useNavigate: () => ({ navigate: vi.fn() }),
     Link: ({ to, children, ...props }: { to: string; children: React.ReactNode }) => (
       <a href={to} {...props}>
         {children}
@@ -87,51 +90,58 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
     )),
 }));
 
-const { useBaremetalsListMock } = vi.hoisted(() => ({
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  Drawer: vi
+    .fn()
+    .mockImplementation(
+      ({
+        children,
+        heading,
+        primaryButtonLabel,
+        onPrimaryButtonClick,
+        isPrimaryButtonDisabled,
+        isSecondaryButtonDisabled,
+        secondaryButtonLabel,
+        onSecondaryButtonClick,
+        ...props
+      }: DrawerProps) => (
+        <section data-testid={'drawer'} {...props}>
+          <h2>{heading}</h2>
+          {children}
+          <button onClick={onPrimaryButtonClick} data-disabled={isPrimaryButtonDisabled}>
+            {primaryButtonLabel}
+          </button>
+          <button onClick={onSecondaryButtonClick} data-disabled={isSecondaryButtonDisabled}>
+            {secondaryButtonLabel}
+          </button>
+        </section>
+      ),
+    ),
+}));
+
+const { useBaremetalsListMock, useBackupTenantPoliciesMock } = vi.hoisted(() => ({
   useBaremetalsListMock: vi
     .fn()
     .mockReturnValue({ flattenData: undefined, isLoading: true, isError: false }),
+  useBackupTenantPoliciesMock: vi
+    .fn()
+    .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
 }));
 
-vi.mock('@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList', () => {
+vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => {
   return {
     useBaremetalsList: useBaremetalsListMock,
   };
 });
 
-vi.mock('@/hooks/onboarding/useOnboardingData', () => ({
-  useOnboardingContent: () => ({
-    productName: 'TestProduct',
-    productCategory: 'Category',
-    brand: 'BrandX',
-    title: 'Welcome!',
-    heroImage: { src: '/hero.png', alt: 'Hero alt' },
-    tiles: [
-      { id: '1', key: 'discover', linkKey: 'discover' },
-      { id: '2', key: 'faq', linkKey: 'faq' },
-    ],
-  }),
-}));
+vi.mock('@/data/hooks/tenants/useVspcTenantBackupPolicies', () => {
+  return {
+    useBackupTenantPolicies: useBackupTenantPoliciesMock,
+  };
+});
 
-// --- Mock manager-react-components ---
-interface OnboardingLayoutProps {
-  title: string;
-  img?: { src: string; alt: string };
-  description: ReactNode;
-  orderButtonLabel: string;
-}
-
-vi.mock('@/components/onboarding/onboardingLayout/OnboardingLayout.component', () => ({
-  OnboardingLayout: ({ title, img, description }: OnboardingLayoutProps) => (
-    <div>
-      <h1 data-testid="title">{title}</h1>
-      {img && <img data-testid="hero" src={img.src} alt={img.alt} />}
-      <div data-testid="description">{description}</div>
-    </div>
-  ),
-}));
-
-const getSelectBaremetal = () => screen.getByTestId('select-baremetal');
+const getSelectServer = () => screen.getByTestId('select-server');
+const getSelectOs = () => screen.getByTestId('select-os');
 
 describe('FirstOrderFormComponent', () => {
   it.each([[true], [false]])(
@@ -142,11 +152,19 @@ describe('FirstOrderFormComponent', () => {
         isLoading: isLoadingMock,
         isError: false,
       });
+      useBackupTenantPoliciesMock.mockReturnValue({
+        data: mockTenantBackupPolicies,
+        isLoading: isLoadingMock,
+      });
 
-      render(<FirstOrderFormComponent />);
+      render(<AddConfigurationPage />);
 
       await waitFor(
-        () => expect(getSelectBaremetal()).toHaveAttribute('data-disabled', `${isLoadingMock}`),
+        () => expect(getSelectServer()).toHaveAttribute('data-disabled', `${isLoadingMock}`),
+        { timeout: 1000 },
+      );
+      await waitFor(
+        () => expect(getSelectOs()).toHaveAttribute('data-disabled', `${isLoadingMock}`),
         { timeout: 1000 },
       );
     },
@@ -160,22 +178,24 @@ describe('FirstOrderFormComponent', () => {
     });
     const user = userEvent.setup();
 
-    render(<FirstOrderFormComponent />);
+    render(<AddConfigurationPage />);
 
-    await waitFor(() => expect(screen.getAllByRole('option').length).toBe(BAREMETAL_MOCK.length));
-
-    await user.click(
-      screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:start` }),
+    await waitFor(() => expect(getSelectServer().children.length).toBe(BAREMETAL_MOCK.length));
+    await waitFor(() =>
+      expect(getSelectOs().children.length).toBe(mockTenantBackupPolicies.length),
     );
+
+    await user.click(screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:add` }));
 
     await waitFor(() =>
-      expect(screen.getByText(`translated_${NAMESPACES.FORM}:required_field`)).toBeInTheDocument(),
+      expect(screen.getAllByText(`translated_${NAMESPACES.FORM}:required_field`).length).toBe(2),
     );
 
-    await waitFor(() => expect(getSelectBaremetal()).toHaveAttribute('data-disabled', 'false'), {
+    await waitFor(() => expect(getSelectServer()).toHaveAttribute('data-disabled', 'false'), {
       timeout: 1000,
     });
-    await user.selectOptions(getSelectBaremetal(), ['baremetal-server-1']);
+    await user.selectOptions(getSelectServer(), ['baremetal-server-1']);
+    await user.selectOptions(getSelectOs(), ['windows']);
 
     await waitFor(
       () =>
