@@ -48,7 +48,7 @@ export default (
         Component={RemovePage}
         handle={{
           tracking: {
-            pageName: 'remove',
+            pageName: PROJECTS_TRACKING.DELETE.PAGE_NAME,
             pageType: PageType.popup,
           },
         }}
@@ -60,7 +60,7 @@ export default (
       handle={{
         tracking: {
           pageName: PROJECTS_TRACKING.CREATING.PAGE_NAME,
-          pageType: PageType.dashboard,
+          pageType: PageType.funnel,
         },
       }}
     />
@@ -70,7 +70,7 @@ export default (
       handle={{
         tracking: {
           pageName: PROJECTS_TRACKING.CREATING.PAGE_NAME,
-          pageType: PageType.dashboard,
+          pageType: PageType.funnel,
         },
       }}
     />
@@ -80,7 +80,7 @@ export default (
       handle={{
         tracking: {
           pageName: PROJECTS_TRACKING.UPDATING.PAGE_NAME,
-          pageType: PageType.dashboard,
+          pageType: PageType.funnel,
         },
       }}
     />
@@ -90,7 +90,7 @@ export default (
       handle={{
         tracking: {
           pageName: PROJECTS_TRACKING.UPDATING.PAGE_NAME,
-          pageType: PageType.dashboard,
+          pageType: PageType.funnel,
         },
       }}
     />
@@ -111,7 +111,7 @@ export default (
           Component={EditPage}
           handle={{
             tracking: {
-              pageName: 'edit',
+              pageName: PROJECTS_TRACKING.SETTINGS.PAGE_NAME,
               pageType: PageType.dashboard,
             },
           }}
@@ -154,7 +154,7 @@ export default (
       Component={CreationGuard}
       handle={{
         tracking: {
-          pageName: 'new',
+          pageName: PROJECTS_TRACKING.CREATION.PAGE_NAME,
           pageType: PageType.dashboard,
         },
       }}

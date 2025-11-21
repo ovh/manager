@@ -61,9 +61,10 @@ export default function RemovePage() {
 
   const handleRemoveSuccess = () => {
     trackPage({
-      pageType: PageType.bannerSuccess,
+      pageType: PageType.bannerInfo,
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_SUCCESS,
     });
+
     clearNotifications();
     addSuccess(
       <Translation ns="remove">
@@ -79,6 +80,7 @@ export default function RemovePage() {
       pageType: PageType.bannerError,
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_FAIL,
     });
+
     clearNotifications();
     addError(
       <Translation ns="remove">
@@ -103,15 +105,16 @@ export default function RemovePage() {
   });
 
   const handleConfirm = () => {
-    trackClick({
-      actionType: 'action',
-      actions: PROJECTS_TRACKING.DELETE.CTA_CONFIRM,
-    });
     if (hasActiveOrPendingSavingPlan) {
       window.open(`${SUPPORT_URL}${ovhSubsidiary}`, '_blank', 'noopener');
       goBack();
       return;
     }
+
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.DELETE.CTA_CONFIRM,
+    });
 
     removeProject({
       projectId,
