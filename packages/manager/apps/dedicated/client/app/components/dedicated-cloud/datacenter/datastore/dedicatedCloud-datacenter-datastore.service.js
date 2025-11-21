@@ -28,7 +28,9 @@ export default class {
   getDatastoreLocation(serviceName, datacenterId, filerId) {
     if (!datacenterId) {
       return this.$http
-        .get(`/dedicatedCloud/${serviceName}/filer/${filerId}/location`)
+        .get(`/dedicatedCloud/${serviceName}/filer/${filerId}/location`, {
+          cache: true,
+        })
         .then(({ data }) => data);
     }
     return this.$http
