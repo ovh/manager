@@ -23,13 +23,28 @@ This document provides **ready-to-use code templates** based on the actual imple
 ## 📘 Template: App.constants.ts
 
 ```typescript
+// @ai-template: app-constants
+// @ai-source: Based on bmc-nasha/src/App.constants.ts
+// @ai-inputs: {
+//   moduleName: string,        // e.g., "nasha"
+//   productName: string,       // e.g., "NAS-HA"
+//   productCategory: string    // e.g., "Storage"
+// }
+// @ai-transforms:
+//   - moduleName -> kebab-case for appName (bmc-{module-name})
+//   - moduleName -> kebab-case for endpoints (/dedicated/{module-name})
+//   - productName -> TitleCase for display
+// @ai-reference: @.ai-doc/50-migration-angular/code-templates.md#app-constants
+
 import type { OnboardingConfigType } from '@/types/Onboarding.type';
 
+// @ai-replace: Extract from AngularJS module name
 export const appName = 'bmc-{module-name}';
 
 export const AppConfig = {
   listing: {
     datagrid: {
+      // @ai-replace: Use same module name as serviceKey
       serviceKey: '{module-key}',
     },
   },
@@ -38,6 +53,7 @@ export const AppConfig = {
 
 const docUrl = 'https://docs.ovh.com';
 
+// @ai-replace: Copy product info from AngularJS constants or ask user
 export const ONBOARDING_CONFIG: OnboardingConfigType = {
   productName: '{Product Name}',
   productCategory: '{Category}',
@@ -48,6 +64,7 @@ export const ONBOARDING_CONFIG: OnboardingConfigType = {
     { id: 3, key: 'guide-3', linkKey: 'guide3' },
   ],
   links: {
+    // @ai-replace: Update product URL slug
     gettingStarted: 'https://docs.ovh.com/gb/en/{product}/getting-started/',
     guide2: 'https://docs.ovh.com/gb/en/{product}/guide-2/',
     guide3: 'https://docs.ovh.com/gb/en/{product}/guide-3/',
@@ -634,22 +651,45 @@ export default function DashboardPage() {
 ## 📘 Template: useServiceDetail.ts (AAPI Hook)
 
 ```typescript
+// @ai-template: aapi-hook
+// @ai-source: Based on bmc-nasha/src/data/api/hooks/useNashaDetail.ts
+// @ai-inputs: {
+//   moduleName: string,    // e.g., "nasha"
+//   endpoint: string       // e.g., "/dedicated/nasha"
+// }
+// @ai-pattern: AngularJS AAPI call → React useQuery hook
+// @ai-angularjs-equivalent:
+//   resolve: {
+//     nasha: /* @ngInject */ (OvhApiDedicatedNasha, serviceName, prepareNasha) => {
+//       const aapi = OvhApiDedicatedNasha.Aapi();
+//       aapi.resetCache();
+//       return aapi.get({ serviceName }).$promise.then(prepareNasha);
+//     }
+//   }
+// @ai-reference: @.ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#aapi-mappings
+
 import { useQuery } from '@tanstack/react-query';
 import { aapi } from '@ovh-ux/manager-core-api';
+// @ai-replace: Create corresponding prepare hook
 import { usePrepareService } from '@/utils/{module}.utils';
 import { BASE_API_URL } from '@/constants/{Module}.constants';
 import type { ServicePrepared, ServiceApiData } from '@/types/Dashboard.type';
 
+// @ai-replace: Rename to use{ModuleName}Detail (PascalCase)
 export function useServiceDetail(serviceName: string) {
+  // @ai-preserve: Keep data preparation pattern from AngularJS
   const prepareService = usePrepareService();
 
   return useQuery({
+    // @ai-replace: Use kebab-case module name in queryKey
     queryKey: ['{module}-detail', serviceName],
     queryFn: async () => {
-      // Use AAPI endpoint like AngularJS does
+      // @ai-note: Use AAPI endpoint (same as AngularJS OvhApi*.Aapi())
+      // @ai-no-reset-cache: React Query handles caching automatically
       const { data } = await aapi.get<ServiceApiData>(
         `${BASE_API_URL}/${serviceName}`
       );
+      // @ai-preserve: Apply same data transformation as AngularJS
       return prepareService(data) as ServicePrepared;
     },
     staleTime: 2 * 60 * 1000,
