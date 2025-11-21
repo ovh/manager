@@ -55,5 +55,9 @@
   "totalPrice": "Gesamt",
   "notePriceDesc": "Die QPU-Zeit wird sekundengenau abgerechnet. Die QPU-Zeit wird Ihnen nur für Ihre Nutzungsdauer der QPU berechnet.",
   "pricingLabel": "Preis",
-  "notebookPrice": "Notebook-Ressourcen"
+  "notebookPrice": "Notebook-Ressourcen",
+  "defaultAutoRestartInfo": "Das Notebook wird nach 7 Tagen automatisch heruntergefahren. Ihre Einstellungen und Daten werden gespeichert.",
+  "fieldTimeOutLabel": "Ablauf",
+  "fieldAutoRestartLabel": "Automatischer Neustart",
+  "fieldAutoRestartDescription": "Wenn aktiviert, wird das Notebook alle 7 Tage automatisch neu gestartet. Wenn deaktiviert, wird das Notebook nach 7 Tagen automatisch heruntergefahren. In beiden Fällen werden Ihre Einstellungen und Daten gespeichert."
 }
