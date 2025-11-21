@@ -4,7 +4,7 @@ import NotificationPriorityChip from './notificationPriorityChip/NotificationPri
 import NotificationContactStatus from './notificationContactStatus/NotificationContactStatus.component';
 import Steps from './Steps/Steps.component';
 import EmailDisplay from './emailDisplay/EmailDisplay.component';
-import ContactHistory from './contactHistory/ContactHistory.component';
+import ContactHistory from './contact/contactHistory/ContactHistory.component';
 
 export {
   Steps,

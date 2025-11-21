@@ -22,7 +22,7 @@ export const APP_NAME = 'communication';
 export enum TrackingSubApps {
   Communications = 'communications',
   Contacts = 'contacts',
-  Settings = 'preference-center',
+  Settings = 'rules-parameter',
 }
 
 export const TRACKING_CONTEXT = {

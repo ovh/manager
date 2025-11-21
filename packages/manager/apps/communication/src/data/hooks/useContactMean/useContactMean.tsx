@@ -17,6 +17,7 @@ import {
 } from '@/data/api/contacts';
 import {
   ContactMean,
+  ContactMeanStatus,
   ValidateContactMean,
 } from '@/data/types/contact-mean.type';
 
@@ -109,7 +110,10 @@ export const useChangeContactMeanStatus = ({
       });
       return updateContactMean({
         contactMeanId,
-        data: { description: contactMean.description, status },
+        data: {
+          description: contactMean.description,
+          status: status as ContactMeanStatus,
+        },
       });
     },
     onSuccess: async (contactMean: ContactMean) => {
@@ -192,7 +196,7 @@ export const useDeleteContactMean = ({
         queryClient.invalidateQueries({
           queryKey: getContactMeanListQueryKey(),
         }),
-        queryClient.invalidateQueries({
+        queryClient.removeQueries({
           queryKey: getContactMeanQueryKey(contactMean.id),
         }),
       ]);
