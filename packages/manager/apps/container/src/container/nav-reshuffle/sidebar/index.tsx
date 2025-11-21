@@ -39,6 +39,7 @@ import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { ExcludedNodeIdsList } from './navigation-tree/excluded';
 import { ShortAssistanceLinkItem } from './Assistance/ShortAssistanceLinkItem';
+import useContainer from '@/core/container';
 
 interface ServicesCountError {
   url: string;
@@ -68,6 +69,7 @@ const Sidebar = (): JSX.Element => {
     isNavigationSidebarOpened,
     popoverPosition,
   } = useProductNavReshuffle();
+  const { isReady } = useContainer();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [showSubTree, setShowSubTree] = useState<boolean>(false);
@@ -76,7 +78,7 @@ const Sidebar = (): JSX.Element => {
     isMobile ? isNavigationSidebarOpened : true,
   );
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
-  const logoLink = navigationPlugin.getURL('hub', '#/');
+  const logoLink = useMemo(() => navigationPlugin?.getURL('hub', '#/'), [navigationPlugin]);
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
   const [savedNodeID, setSavedNodeID] = useState<string>(
     window.localStorage.getItem(savedLocationKey),
@@ -134,7 +136,7 @@ const Sidebar = (): JSX.Element => {
   /** Initialize navigation tree */
   useEffect(() => {
     const initializeNavigationTree = async () => {
-      if (currentNavigationNode) return;
+      if (!isReady || currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
 
       const results = await fetchFeatureAvailabilityData(features);
@@ -150,7 +152,7 @@ const Sidebar = (): JSX.Element => {
       setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
     };
     initializeNavigationTree();
-  }, []);
+  }, [isReady]);
 
   useEffect(() => {
     aapi
@@ -374,7 +376,7 @@ const Sidebar = (): JSX.Element => {
                     type: 'action',
                   });
                 }}
-                href={navigationPlugin.getURL('catalog', '/')}
+                href={navigationPlugin?.getURL('catalog', '/')}
                 role="link"
                 title={t('sidebar_service_add')}
               >
