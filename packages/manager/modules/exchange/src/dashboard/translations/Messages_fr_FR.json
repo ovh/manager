@@ -491,7 +491,6 @@
   "exchange_account_add_personal_account_info_title": "Informations du compte",
   "exchange_account_add_company_account_info_title": "Informations de la société",
   "exchange_account_add_contact_account_info_title": "Informations de contact",
-  "exchange_account_add_sections_title": "Paramètres avancés",
   "exchange_account_add_accountType_label": "Type de compte (obligatoire)",
   "exchange_account_add_accountType_tooltip": "E-mail pro : profitez de 10 Go de stockage, des protocoles POP, IMAP et SMTP.\nExchange : profitez de 50 Go de stockage, des protocoles MAPI et ActiveSync.\n",
   "exchange_account_add_emailAddress_label": "Adresse e-mail (obligatoire)",
