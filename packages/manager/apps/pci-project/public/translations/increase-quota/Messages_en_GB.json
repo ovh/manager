@@ -1,0 +1,6 @@
+{
+  "pci_project_new_error_contact_support": "Contact support",
+  "pci_project_new_error_ask_increase_projects_quota": "You can no longer create projects. Please contact the support team to increase your quota, and create a new project.",
+  "pci_project_new_error_verify_paypal": "You cannot create a Public Cloud project with your PayPal account, because it is not verified. Please go to the PayPal website and verify your account, then try again. You can also modify <a href=\"{{ href }}\">your default payment method</a>.",
+  "pci_project_new_error_cancel": "Cancel"
+}
