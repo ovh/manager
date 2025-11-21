@@ -20,7 +20,7 @@ const TenantGeneralInformationPage = React.lazy(
   () => import('../pages/services/dashboard/general-information/GeneralInformation.page'),
 );
 const AgentListingPage = React.lazy(
-  () => import('../pages/services/dashboard/agents/AgentsListing.page'),
+  () => import('../pages/services/dashboard/agent/AgentsListing.page'),
 );
 const DeleteTenantPage = React.lazy(
   () => import('../pages/services/listing/delete/DeleteTenant.page'),

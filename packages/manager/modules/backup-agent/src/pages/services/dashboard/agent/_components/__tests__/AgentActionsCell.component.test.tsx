@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { mockAgents } from '@/mocks/agents/agents';
-import { AgentActionsCell } from '@/pages/services/dashboard/agents/_components';
+import { AgentActionsCell } from '@/pages/services/dashboard/agent/_components';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
