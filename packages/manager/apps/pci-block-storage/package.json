@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.json && vite build",
-    "build:strict": "tsc --project tsconfig.strict.json && vite build",
     "coverage": "manager-test run --coverage",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",

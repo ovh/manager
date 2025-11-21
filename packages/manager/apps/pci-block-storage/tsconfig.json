@@ -1,5 +1,5 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict", // tmp use of strict
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
     "resolveJsonModule": true,
     "baseUrl": ".",
