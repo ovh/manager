@@ -3,18 +3,12 @@ import { useMemo } from 'react';
 import { queryOptions, usePrefetchQuery, useQueries, useQuery } from '@tanstack/react-query';
 
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
-import { getProductAvailabilityQuery } from '@ovh-ux/manager-pci-common';
-import { getProjectRegions } from '@ovh-ux/manager-pci-common';
+import { getProductAvailabilityQuery, getProjectRegions } from '@ovh-ux/manager-pci-common';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 
 import { getFlavor } from '@/api/data/flavor';
 import { getInstances } from '@/api/data/instance';
-import {
-  TInstance,
-  instancesSelector,
-  isSameInstanceId,
-  sortResults,
-} from '@/api/hooks/instance/selector/instances.selector';
+import { instancesSelector, sortResults } from '@/api/hooks/instance/selector/instances.selector';
 import { useRegionTranslation } from '@/api/hooks/region';
 import { useMe } from '@/api/hooks/user';
 import { paginateResults } from '@/helpers';
@@ -121,18 +115,6 @@ export const usePaginatedInstances = (
       () =>
         paginateResults(sortResults(applyFilters(instances || [], filters), sorting), pagination),
       [instances, pagination, sorting, filters],
-    ),
-  };
-};
-
-export const useInstance = (projectId: string, instanceId: TInstance['id'] | null) => {
-  const { instances } = useAllInstances(projectId);
-
-  return {
-    instance: useMemo(
-      () =>
-        instanceId ? (instances.find((i) => isSameInstanceId(i.id, instanceId)) ?? null) : null,
-      [instances, instanceId],
     ),
   };
 };

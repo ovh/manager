@@ -12,7 +12,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { DeletionModal, useInstance } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
-import { useDeleteWorkflow, useWorkflows } from '@/api/hooks/workflows';
+import { useDeleteWorkflow, useInstanceBackupWorkflows } from '@/api/hooks/workflows';
 
 export default function DeleteWorkflowPage() {
   const { t: tDelete } = useTranslation('delete');
@@ -21,7 +21,7 @@ export default function DeleteWorkflowPage() {
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { addError, addSuccess } = useNotifications();
-  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(projectId);
+  const { data: workflows, isPending: isPendingWorkflows } = useInstanceBackupWorkflows(projectId);
 
   const workflow = workflows.find((w) => w.id === workflowId);
   const { data: instance } = useInstance(projectId, workflow?.instanceId);

@@ -6,10 +6,10 @@ import { wrapper } from '@/wrapperRenders';
 
 import { useWorkflowExecutions } from './useExecutions';
 import * as useWorkflowHook from './workflows';
-import { TWorkflow } from './workflows';
+import { TInstanceBackupWorkflow } from './workflows';
 
 describe('useExecutions tests', () => {
-  vi.spyOn(useWorkflowHook, 'useWorkflows').mockReturnValue({
+  vi.spyOn(useWorkflowHook, 'useInstanceBackupWorkflows').mockReturnValue({
     isPending: false,
     data: [
       {
@@ -32,7 +32,7 @@ describe('useExecutions tests', () => {
             executedAt: '2024-07-17T01:05:24Z',
           },
         ],
-      } as TWorkflow,
+      } as TInstanceBackupWorkflow,
     ],
   });
 
