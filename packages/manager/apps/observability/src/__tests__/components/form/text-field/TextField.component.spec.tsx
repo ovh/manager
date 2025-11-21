@@ -6,8 +6,8 @@ import { vi } from 'vitest';
 import { TextField } from '@/components/form/text-field/TextField.component';
 import { TextFieldProps } from '@/components/form/text-field/TextField.props';
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
@@ -115,6 +115,10 @@ vi.mock('@ovh-ux/muk', () => ({
       />
     );
   }),
+}));
+
+// Mock MUK components (only Text)
+vi.mock('@ovh-ux/muk', () => ({
   Text: ({
     children,
     preset,

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -8,18 +8,22 @@ import {
   FormFieldHelper,
   SPINNER_SIZE,
   Spinner,
-  TEXT_PRESET,
-  TabsComponent,
-  Text,
-} from '@ovh-ux/muk';
+  Tab,
+  TabList,
+  Tabs,
+  TabsValueChangeEvent,
+} from '@ovhcloud/ods-react';
+
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { RadioCard } from '@/components/form/radio-card/RadioCard.component';
 import { RegionBadgeType } from '@/components/infrastructures/region-badge-type/RegionBadgeType.component';
-import '@/components/infrastructures/region-selector/RegionSelector.css';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useInfrastructures } from '@/data/hooks/infrastructures/useInfrastructures.hook';
+import { GroupedInfrastructures } from '@/types/infrastructures.type';
 import { TenantFormData } from '@/types/tenants.type';
 import { toParenthesesLabel } from '@/utils/form.utils';
+import { ALL_ZONE } from '@/utils/infrastructures.constants';
 import { getZones, groupByGeographicZone } from '@/utils/infrastructures.utils';
 
 export default function RegionSelector() {
@@ -44,6 +48,8 @@ export default function RegionSelector() {
     return getZones(groupedInfrastructures);
   }, [groupedInfrastructures]);
 
+  const [selectedZone, setSelectedZone] = useState<keyof GroupedInfrastructures>(ALL_ZONE);
+
   if (isLoading) {
     return <Spinner size={SPINNER_SIZE.sm} />;
   }
@@ -57,29 +63,33 @@ export default function RegionSelector() {
           control={control}
           render={({ field }) => (
             <>
-              <div className="region-selector-tabs">
-                <TabsComponent
-                  items={zones}
-                  titleElement={({ item }: { item: string }) => (
-                    <>{t(`infrastructure.region.${item}`)}</>
-                  )}
-                  contentElement={({ item }: { item: string }) => (
-                    <div className="space-y-4 mt-4">
-                      {groupedInfrastructures[item]?.map((infrastructure) => (
-                        <RadioCard
-                          id={infrastructure.id}
-                          onChange={(event) => field.onChange(event.target.value)}
-                          selected={field.value}
-                          key={infrastructure.id}
-                          name="infrastructureId"
-                          title={infrastructure.locationDetails.location}
-                          subTitle={toParenthesesLabel(infrastructure.locationDetails.name)}
-                          badges={<RegionBadgeType type={infrastructure.locationDetails.type} />}
-                        />
-                      ))}
-                    </div>
-                  )}
-                />
+              <Tabs
+                value={selectedZone}
+                onValueChange={(value: TabsValueChangeEvent) => {
+                  setSelectedZone(value?.value);
+                }}
+              >
+                <TabList>
+                  {zones.map((zone) => (
+                    <Tab key={zone} value={zone}>
+                      {t(`infrastructure.region.${zone}`)}
+                    </Tab>
+                  ))}
+                </TabList>
+              </Tabs>
+              <div className="space-y-4 mt-4">
+                {groupedInfrastructures[selectedZone]?.map((infrastructure) => (
+                  <RadioCard
+                    id={infrastructure.id}
+                    onChange={(event) => field.onChange(event.target.value)}
+                    selected={field.value}
+                    key={infrastructure.id}
+                    name="infrastructureId"
+                    title={infrastructure.locationDetails.location}
+                    subTitle={toParenthesesLabel(infrastructure.locationDetails.name)}
+                    badges={<RegionBadgeType type={infrastructure.locationDetails.type} />}
+                  />
+                ))}
               </div>
               {errors?.infrastructureId && (
                 <FormFieldHelper>

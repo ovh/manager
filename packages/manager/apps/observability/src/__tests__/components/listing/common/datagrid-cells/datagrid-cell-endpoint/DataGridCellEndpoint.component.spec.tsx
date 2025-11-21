@@ -17,13 +17,17 @@ vi.mock('@/data/hooks/infrastructures/useLocations.hook', () => ({
 // Get the mocked function
 const mockUseLocation = vi.mocked(useLocation);
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   Skeleton: ({ className }: { className?: string }) => (
     <div data-testid="skeleton" className={className}>
       Loading...
     </div>
   ),
+}));
+
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
   Text: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
     <span data-testid="text" data-preset={preset}>
       {children}

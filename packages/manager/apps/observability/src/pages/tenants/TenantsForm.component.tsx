@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { Divider } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button, Divider, Text } from '@ovh-ux/muk';
+import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button, Text } from '@ovh-ux/muk';
 
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
 import RegionSelector from '@/components/infrastructures/region-selector/RegionSelector.component';
