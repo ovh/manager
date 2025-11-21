@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_SKELETON_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components/';
@@ -14,19 +15,20 @@ import style from './navbar.module.scss';
 
 import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
-import { LEGAL_FORMS } from '@/container/common/constants';
-import useUser from '@/hooks/user/useUser';
+import { UserName } from '@/components/user-name/UserName.component';
+import useContainer from '@/core/container';
 
 function NavbarAccount(): JSX.Element {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
-  const user = useUser();
 
   const {
     setIsAccountSidebarVisible,
     setIsNotificationsSidebarVisible,
   } = useHeader();
+
+  const { isReady } = useContainer();
 
   const toggleSidebar = () => {
     uxPlugin.toggleAccountSidebarVisibility();
@@ -45,6 +47,7 @@ function NavbarAccount(): JSX.Element {
       className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
       aria-label={t('navbar_account')}
       onClick={() => toggleSidebar()}
+      disabled={!isReady}
     >
       <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">
         <OsdsIcon
@@ -59,9 +62,7 @@ function NavbarAccount(): JSX.Element {
           level={ODS_TEXT_LEVEL.button}
           size={ODS_TEXT_SIZE._200}
         >
-          {user.legalform === LEGAL_FORMS.CORPORATION
-            ? user.organisation
-            : `${user.firstname} ${user.name}`}
+          {isReady ? <UserName /> : <OsdsSkeleton inline={true} size={ODS_SKELETON_SIZE.xs} />}
         </OsdsText>
       </span>
     </button>
