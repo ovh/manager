@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import { ModalOpenChangeDetail } from '@ovhcloud/ods-react';
-
 import { Button, Input, Modal } from '@ovh-ux/muk';
 
 import { FormField } from '@/components/form-field/FormField.component';
@@ -12,7 +10,6 @@ const DESCRIPTION_MAX = 50;
 
 type EditDescriptionModalProps = {
   isOpen: boolean;
-  onOpenChange: (detail?: ModalOpenChangeDetail) => void;
   partitionName?: string;
   currentDescription: string;
   serviceName?: string;
@@ -23,7 +20,6 @@ type EditDescriptionModalProps = {
 
 export function EditDescriptionModal({
   isOpen,
-  onOpenChange,
   partitionName,
   currentDescription,
   serviceName,
@@ -50,7 +46,8 @@ export function EditDescriptionModal({
   return (
     <Modal
       open={isOpen}
-      onOpenChange={onOpenChange}
+      onOpenChange={onCancel}
+      dismissible={true}
       heading={t('partition:edit_description.title', `Edit description for ${partitionName || ''}`)}
     >
       <form id="editDescriptionForm" onSubmit={onSubmit} className="space-y-4">

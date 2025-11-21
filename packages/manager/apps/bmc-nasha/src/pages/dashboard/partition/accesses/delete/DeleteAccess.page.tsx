@@ -82,11 +82,8 @@ export default function DeleteAccessPage() {
     <BaseLayout>
       <Modal
         open={isOpen}
-        onOpenChange={(open) => {
-          if (!open) {
-            handleClose();
-          }
-        }}
+        onOpenChange={handleClose}
+        dismissible={true}
         type={MODAL_COLOR.critical}
         heading={t('partition:accesses.delete.title', 'Delete an access control (ACL)')}
         primaryButton={{

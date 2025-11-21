@@ -85,11 +85,8 @@ export default function DeleteSnapshotPage() {
     <BaseLayout>
       <Modal
         open={isOpen}
-        onOpenChange={(open) => {
-          if (!open) {
-            handleClose();
-          }
-        }}
+        onOpenChange={handleClose}
+        dismissible={true}
         type={MODAL_COLOR.critical}
         heading={t('partition:snapshots.delete.title', 'Delete a snapshot')}
         primaryButton={{

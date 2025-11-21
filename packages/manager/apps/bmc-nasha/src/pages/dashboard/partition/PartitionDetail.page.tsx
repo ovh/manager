@@ -152,14 +152,6 @@ export default function PartitionDetailPage() {
       {/* Edit Description Modal */}
       <EditDescriptionModal
         isOpen={isEditDescriptionModalOpen}
-        onOpenChange={(detail) => {
-          // detail is undefined when modal is closed
-          if (!detail) {
-            handleCloseEditDescriptionModal();
-          } else {
-            setIsEditDescriptionModalOpen(true);
-          }
-        }}
         partitionName={partitionName}
         currentDescription={partition?.partitionDescription || ''}
         serviceName={serviceName}

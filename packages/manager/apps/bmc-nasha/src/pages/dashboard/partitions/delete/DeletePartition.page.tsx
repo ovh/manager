@@ -77,11 +77,8 @@ export default function DeletePartitionPage() {
     <BaseLayout>
       <Modal
         open={isOpen}
-        onOpenChange={(open?: { open: boolean }) => {
-          if (!open || !open.open) {
-            handleClose();
-          }
-        }}
+        onOpenChange={handleClose}
+        dismissible={true}
         type={MODAL_COLOR.critical}
         heading={t('partitions:delete.title', 'Delete a partition')}
         primaryButton={{
