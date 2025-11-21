@@ -3,15 +3,9 @@ import React from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  FormField,
-  FormFieldHelper,
-  Quantity,
-  QuantityControl,
-  QuantityInput,
-  TEXT_PRESET,
-  Text,
-} from '@ovh-ux/muk';
+import { FormField, FormFieldHelper } from '@ovhcloud/ods-react';
+
+import { Quantity, QuantityControl, QuantityInput, TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectField } from '@/components/form/select-field/SelectField.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
@@ -92,7 +86,7 @@ export const TenantConfigurationForm = () => {
                 invalid={!!errors.maxSeries}
               >
                 <QuantityControl>
-                  <QuantityInput />
+                  <QuantityInput className="w-[6.25rem]" />
                 </QuantityControl>
               </Quantity>
               <FormFieldHelper>
