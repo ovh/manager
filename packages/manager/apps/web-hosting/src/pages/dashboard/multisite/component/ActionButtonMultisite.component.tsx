@@ -5,9 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
 
 import { useWebHostingWebsite } from '@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite';
 import {
@@ -54,9 +52,9 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   };
   const actionCondition = (
     condition: boolean,
-    action: Omit<ActionMenuItem, 'id'> & { id: number },
-  ): ActionMenuItem | null => (condition ? action : null);
-  const allActions: ActionMenuItem[] = useMemo(() => {
+    action: Omit<ActionMenuItemProps, 'id'> & { id: number },
+  ): ActionMenuItemProps | null => (condition ? action : null);
+  const allActions: ActionMenuItemProps[] = useMemo(() => {
     if (context === 'site') {
       const website = websites.find((w) => w.id === siteId);
       const vcsStatus = website?.currentState?.git?.status;
@@ -86,7 +84,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
         GitStatus.DEPLOYING,
       ].includes(vcsStatus);
 
-      const siteActions: ActionMenuItem[] = [
+      const siteActions: ActionMenuItemProps[] = [
         {
           id: 1,
           onClick: () =>
@@ -116,11 +114,11 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
           onClick: () => {},
           label: t('access_interface'),
         }), */
-        {
+        /* {
           id: 5,
           onClick: () => {},
           label: t('access_website'),
-        },
+        }, */
         actionCondition(canAssociateGit, {
           id: 6,
           onClick: () => window.location.replace(associateGitLink),
@@ -172,7 +170,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
       const canAccesscdn = currentDomain?.currentState?.cdn.status !== ServiceStatus.NONE;
       const canActivateCdn = currentDomain?.currentState?.cdn.status === ServiceStatus.NONE;
 
-      const domainActions: ActionMenuItem[] = [
+      const domainActions: ActionMenuItemProps[] = [
         {
           id: 11,
           onClick: () =>
@@ -262,7 +260,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
       id={`actions-${context}-${siteId ?? domainId}`}
       items={allActions}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
     />
   );
 };

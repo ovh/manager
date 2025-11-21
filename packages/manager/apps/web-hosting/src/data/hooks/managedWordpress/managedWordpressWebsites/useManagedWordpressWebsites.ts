@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
@@ -33,9 +33,7 @@ export const useManagedWordpressWebsites = (props: UseManagedWordpressWebsitesPa
   const { defaultFQDN, shouldFetchAll, disableRefetchInterval, ...options } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const { serviceName } = useParams();
-  const searchParams = buildURLSearchParams({
-    defaultFQDN,
-  });
+  const searchParams = useMemo(() => buildURLSearchParams({ defaultFQDN }), [defaultFQDN]);
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
@@ -61,7 +59,8 @@ export const useManagedWordpressWebsites = (props: UseManagedWordpressWebsitesPa
     if (!allPages) {
       setAllPages(true);
     }
-  }, [allPages]);
+  }, [allPages, setAllPages]);
+
   const { hasNextPage, isFetchingNextPage, fetchNextPage } = query;
 
   useEffect(() => {

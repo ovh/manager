@@ -6,12 +6,9 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, TEXT_PRESET, Text, useNotifications } from '@ovh-ux/muk';
 
 import { putAttachedDomain } from '@/data/api/webHosting';
 import {
@@ -47,6 +44,7 @@ export default function ModifyModalDomain() {
   const { state } = useLocation() as Location<ModifyDomainState>;
   const { data: hosting } = useGetHostingService(state.serviceName);
   const { data: zones = [] } = useGetDomainZone();
+  console.log('hosting', hosting);
   const isGitDisabled = state.gitStatus === GitStatus.DISABLED;
   const isCdnAvailable = state.cdnStatus !== ServiceStatus.NONE;
   const { control, watch, handleSubmit } = useForm<FormValues>({
@@ -78,19 +76,19 @@ export default function ModifyModalDomain() {
     },
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('multisite:multisite_modal_domain_configuration_modify_success')}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(`multisite:multisite_modal_domain_configuration_modify_failure`, {
             message: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -127,23 +125,23 @@ export default function ModifyModalDomain() {
   return (
     <Modal
       heading={t('modify_domain')}
-      onDismiss={onClose}
-      isOpen
-      primaryLabel={
-        step === 1 ? t(`${NAMESPACES.ACTIONS}:next`) : t(`${NAMESPACES.ACTIONS}:validate`)
-      }
-      secondaryLabel={
-        step === 1 ? t(`${NAMESPACES.ACTIONS}:cancel`) : t(`${NAMESPACES.ACTIONS}:previous`)
-      }
-      onPrimaryButtonClick={onPrimaryButtonClick}
-      onSecondaryButtonClick={() => {
-        if (step === 2) {
-          setStep(1);
-        } else {
-          onClose();
-        }
+      onOpenChange={onClose}
+      open={true}
+      primaryButton={{
+        label: step === 1 ? t(`${NAMESPACES.ACTIONS}:next`) : t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: onPrimaryButtonClick,
+        disabled: !isGitDisabled,
       }}
-      isPrimaryButtonDisabled={!isGitDisabled}
+      secondaryButton={{
+        label: step === 1 ? t(`${NAMESPACES.ACTIONS}:cancel`) : t(`${NAMESPACES.ACTIONS}:previous`),
+        onClick: () => {
+          if (step === 2) {
+            setStep(1);
+          } else {
+            onClose();
+          }
+        },
+      }}
     >
       {step === 1 && (
         <Step1
