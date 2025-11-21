@@ -31,5 +31,6 @@
   "autoRestartToastSuccessTitle": "Zaktualizowane automatyczne ponowne uruchamianie",
   "autoRestartToastSuccessDescription": "Ustawienie automatycznego ponownego uruchamiania zostało zaktualizowane dla {{name}}",
   "disabledRestartButtonTooltip": "Automatyczne ponowne uruchamianie nie może być zmieniane, gdy notebook jest wyłączony.",
-  "modifyLabel": "Zmień"
+  "modifyLabel": "Zmień",
+  "qpuAutoRestartNote": "Notebooki QPU nie mogą być wyłączane bez automatycznego ponownego uruchamiania. Ta funkcjonalność jest domyślnie włączona, aby zapewnić ciągłość obliczeń QPU."
 }

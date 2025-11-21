@@ -23,6 +23,7 @@
   "autoRestartDisabled": "Désactivé",
   "modifyLabel": "Modifier",
   "disabledRestartButtonTooltip": "Le redémarrage automatique ne peut pas être modifié lorsque le notebook est arrêté.",
+  "qpuAutoRestartNote": "Les notebooks QPU ne peuvent pas être arrêtés sans redémarrage automatique. Cette fonctionnalité est activée par défaut pour assurer la continuité de vos calculs QPU.",
   "autoRestartToastSuccessTitle": "Redémarrage automatique mis à jour",
   "autoRestartToastSuccessDescription": "Le paramètre de redémarrage automatique a été mis à jour pour {{name}}",
   "liveCodeEditorTitle": "Live code editor",

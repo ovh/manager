@@ -31,12 +31,11 @@ describe('useGetCommand', () => {
 
     await waitFor(() => {
       expect(notebookApi.getCommand).toHaveBeenCalledWith(addNotebookProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedCommand,
-        addNotebookProps,
-        undefined,
-        expect.anything(),
-      );
+      expect(onSuccess).toHaveBeenCalled();
+      const [data, variables, context] = onSuccess.mock.calls[0];
+      expect(data).toEqual(mockedCommand);
+      expect(variables).toEqual(addNotebookProps);
+      expect(context).toBeUndefined();
     });
   });
 });

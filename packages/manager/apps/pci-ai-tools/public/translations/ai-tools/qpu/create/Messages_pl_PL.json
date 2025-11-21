@@ -56,7 +56,7 @@
   "notePriceDesc": "Czas pracy QPU jest fakturowany za sekundę. Płacisz wyłącznie za rzeczywisty czas pracy QPU",
   "pricingLabel": "Cena",
   "notebookPrice": "Zasoby Notebooka",
-  "defaultAutoRestartInfo": "Notebook zostanie automatycznie wyłączony po 7 dniach. Twoja konfiguracja i dane zostaną zapisane.",
+  "defaultAutoRestartInfo": "Notatniki QPU nie mogą być zatrzymywane bez automatycznego ponownego uruchomienia. Ta funkcjonalność jest domyślnie włączona, aby zapewnić ciągłość obliczeń QPU.",
   "fieldTimeOutLabel": "Data ważności",
   "fieldAutoRestartLabel": "Automatyczne ponowne uruchomienie",
   "fieldAutoRestartDescription": "Jeśli włączone, notebook będzie automatycznie ponownie uruchamiany co 7 dni. Jeśli wyłączone, notebook zostanie automatycznie wyłączony po 7 dniach. W obu przypadkach twoja konfiguracja i dane zostaną zapisane."

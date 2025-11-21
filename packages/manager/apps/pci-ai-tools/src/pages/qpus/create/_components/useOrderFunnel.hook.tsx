@@ -96,7 +96,7 @@ export function useOrderFunnel(
       )?.unsecureHttp
         ? PrivacyEnum.public
         : PrivacyEnum.private,
-      timeoutAutoRestart: false,
+      timeoutAutoRestart: true,
       labels: [],
       sshKey: [],
       volumes: [],

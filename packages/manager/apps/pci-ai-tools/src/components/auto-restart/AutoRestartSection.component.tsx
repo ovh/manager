@@ -1,9 +1,4 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
   FormControl,
   FormField,
   FormItem,
@@ -14,7 +9,7 @@ import {
   PopoverTrigger,
   Switch,
 } from '@datatr-ux/uxlib';
-import { AlertCircle, HelpCircle } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { UseFormReturn } from 'react-hook-form';
 
@@ -25,9 +20,10 @@ interface AutoRestartSectionProps {
 
 export const AutoRestartSection = ({ form, app }: AutoRestartSectionProps) => {
   const { t } =
-    app == 'job'
+    app === 'job'
       ? useTranslation('ai-tools/jobs/create')
       : useTranslation('ai-tools/notebooks/create');
+  const isDisabled = app === 'qpus';
 
   return (
     <FormField
@@ -37,7 +33,11 @@ export const AutoRestartSection = ({ form, app }: AutoRestartSectionProps) => {
         <FormItem>
           <div className="flex items-center space-x-2">
             <FormControl>
-              <Switch checked={field.value} onCheckedChange={field.onChange} />
+              <Switch
+                checked={field.value}
+                onCheckedChange={field.onChange}
+                disabled={isDisabled}
+              />
             </FormControl>
             <FormLabel>{t('fieldAutoRestartLabel')}</FormLabel>
             <Popover>

@@ -33,12 +33,11 @@ describe('useDataSync', () => {
 
     await waitFor(() => {
       expect(dataSyncApi.dataSync).toHaveBeenCalledWith(dataSyncProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedDataSync,
-        dataSyncProps,
-        undefined,
-        expect.anything(),
-      );
+      expect(onSuccess).toHaveBeenCalled();
+      const [data, variables, context] = onSuccess.mock.calls[0];
+      expect(data).toEqual(mockedDataSync);
+      expect(variables).toEqual(dataSyncProps);
+      expect(context).toBeUndefined();
     });
   });
 });
