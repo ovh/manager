@@ -22,4 +22,12 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'react/jsx-key': 'off'
   },
+  overrides: [
+    {
+      files: ['*.config.*js', '*.config.ts'],
+      parserOptions: {
+        project: null,
+      },
+    },
+  ],
 };
