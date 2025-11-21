@@ -21,7 +21,7 @@ export type BadgeStatusProps = {
   label?: string;
 };
 
-const getStatusColor = (status: Status) => {
+export const getStatusColor = (status: Status) => {
   switch (status) {
     case GitStatus.CREATED:
     case ResourceStatus.READY:
@@ -31,16 +31,16 @@ const getStatusColor = (status: Status) => {
     case GitStatus.CREATING:
     case GitStatus.DELETING:
     case GitStatus.DEPLOYING:
-    case GitStatus.INITIALERROR:
     case DnsStatus.EXTERNAL:
       return ODS_BADGE_COLOR.warning;
-    case GitStatus.DISABLED:
+    case GitStatus.INITIALERROR:
     case GitStatus.ERROR:
     case ResourceStatus.ERROR:
     case ResourceStatus.SUSPENDED:
-    case ServiceStatus.NONE:
       return ODS_BADGE_COLOR.critical;
     case DnsStatus.NOT_CONFIGURED:
+    case GitStatus.DISABLED:
+    case ServiceStatus.NONE:
       return ODS_BADGE_COLOR.neutral;
     default:
       return ODS_BADGE_COLOR.information;

@@ -36,8 +36,8 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { getAllWebHostingAttachedDomain } from '@/data/api/AttachedDomain';
-import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { getAllWebHostingAttachedDomain } from '@/data/api/webHosting';
+import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { WebsiteType } from '@/data/types/product/website';
 import { ServiceStatus } from '@/data/types/status';
 import { useDebouncedValue } from '@/hooks/debouncedValue/useDebouncedValue';
@@ -100,7 +100,13 @@ export default function Websites() {
     {
       id: 'diagnostic',
       label: t('web_hosting_status_header_diagnostic'),
-      cell: (webSiteItem: WebsiteType) => <DiagnosticCell webSiteItem={webSiteItem} />,
+      cell: (webSiteItem: WebsiteType) => (
+        <DiagnosticCell
+          isWebsiteView
+          serviceName={webSiteItem.currentState.hosting.serviceName}
+          fqdn={webSiteItem.currentState.fqdn}
+        />
+      ),
       enableHiding: true,
     },
     {

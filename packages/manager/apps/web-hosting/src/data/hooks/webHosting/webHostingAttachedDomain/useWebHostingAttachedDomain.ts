@@ -4,12 +4,16 @@ import {
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
   useInfiniteQuery,
+  useMutation,
 } from '@tanstack/react-query';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
+  deleteAttachedDomains,
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
-} from '@/data/api/AttachedDomain';
+} from '@/data/api/webHosting';
 import { WebsiteType } from '@/data/types/product/website';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
@@ -74,4 +78,27 @@ export const useWebHostingAttachedDomain = (props: UseWebsitesListParams = {}) =
   return Object.assign(query, {
     fetchAllPages,
   });
+};
+
+export const useDeleteAttachedDomains = (
+  serviceName: string,
+  onSuccess: () => void,
+  onError: (error: ApiError) => void,
+) => {
+  const mutation = useMutation({
+    mutationFn: ({
+      domains,
+      bypassDNSConfiguration,
+    }: {
+      domains: string[];
+      bypassDNSConfiguration: boolean;
+    }) => deleteAttachedDomains(serviceName, domains, bypassDNSConfiguration),
+    onSuccess,
+    onError,
+  });
+
+  return {
+    deleteAttachedDomains: mutation.mutate,
+    ...mutation,
+  };
 };
