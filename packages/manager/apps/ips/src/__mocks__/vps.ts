@@ -1,6 +1,6 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { availableService, expiredService } from './serviceInfo';
-import { VPS, VpsDatacenter } from '../src/data/api';
+import { VPS, VpsDatacenter } from '@/data/api';
 
 export const vpsMockList: VPS[] = [
   {

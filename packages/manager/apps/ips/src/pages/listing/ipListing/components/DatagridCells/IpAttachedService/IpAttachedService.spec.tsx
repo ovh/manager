@@ -7,7 +7,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpAttachedService, IpAttachedServiceProps } from './IpAttachedService';
 import { getLinkByHref } from '@/test-utils';
 
