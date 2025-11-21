@@ -14,6 +14,15 @@ export default defineConfig({
         join(process.cwd(), 'src/modules/key-management-service'),
       ),
     },
+    dedupe: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@tanstack/react-virtual',
+      '@tanstack/react-query',
+      '@ovh-ux/manager-core-api',
+      '@ovh-ux/manager-react-shell-client',
+    ],
   },
   root: resolve(process.cwd()),
 });

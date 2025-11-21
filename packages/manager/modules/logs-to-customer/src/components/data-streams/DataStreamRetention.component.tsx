@@ -1,11 +1,11 @@
-import * as dateFnsLocales from 'date-fns/locale';
+import { fr, de, enGB, es, frCA, it, pl, pt } from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import React, { useRef } from 'react';
-import { useLogRetention } from '../../data/hooks/useLogRetention';
-import { Service, Stream } from '../../data/types/dbaas/logs';
-import { parseAndFormatDuration } from '../../helpers/duration';
+import { useLogRetention } from '@/data/hooks/useLogRetention';
+import { Service, Stream } from '@/data/types/dbaas/logs';
+import { parseAndFormatDuration } from '@/helpers/duration';
 
 export const DATA_STREAM_RETENTION_LOADING_TEST_ID =
   'data-stream-retention-loading-test-id';
@@ -24,7 +24,7 @@ const DataStreamRetention = ({
   const { t } = useTranslation('error');
 
   const { i18n } = useTranslation();
-  const locales = useRef({ ...dateFnsLocales }).current;
+  const locales = useRef({ fr, de, enGB, es, frCA, it, pl, pt }).current;
   const userLocale = getDateFnsLocale(i18n.language);
   const { data: retention, isPending, error } = useLogRetention(
     serviceName,
@@ -43,9 +43,9 @@ const DataStreamRetention = ({
     <>
       {duration
         ? parseAndFormatDuration(duration, {
-            locale: locales[userLocale as keyof typeof locales],
-            delimiter: ', ',
-          })
+          locale: locales[userLocale as keyof typeof locales],
+          delimiter: ', ',
+        })
         : '-'}
     </>
   );

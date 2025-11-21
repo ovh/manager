@@ -4,11 +4,10 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
-import { LogsContext } from '../../LogsToCustomer.context';
-import { getLogTailUrlQueryKey, useLogTailUrl } from '../../data/hooks/useLogTailUrl';
-import ApiError from '../apiError/ApiError.component';
-import { LogMessages } from './logMessages/LogMessages.component';
-import './logTail.css';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { getLogTailUrlQueryKey, useLogTailUrl } from '@/data/hooks/useLogTailUrl';
+import ApiError from '@/components/apiError/ApiError.component';
+import { LogMessages } from '@/components/logTail/logMessages/LogMessages.component';
 
 export default function LogTail() {
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);

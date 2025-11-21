@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { searchContext } from '../../LogMessages.component';
+import { searchContext } from '@/components/logTail/logMessages/LogMessages.component';
 
 export const HighlightSearch = ({ text }: { text: string }) => {
   const { query } = useContext(searchContext);
