@@ -324,7 +324,8 @@ describe('RegionBadgeType', () => {
       const content = tooltipContent.textContent;
 
       expect(content).toBeTruthy();
-      expect(content.length).toBeGreaterThan(10);
+      expect(content).not.toBeNull();
+      expect(content?.length).toBeGreaterThan(10);
     });
   });
 });
