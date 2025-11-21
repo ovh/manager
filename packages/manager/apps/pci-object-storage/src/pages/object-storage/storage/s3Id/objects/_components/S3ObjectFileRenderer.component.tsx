@@ -1,4 +1,4 @@
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import {
   Badge,
   Button,
@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
+import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';

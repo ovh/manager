@@ -1,4 +1,4 @@
-import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud';
 import { apiClient } from '../api.client';
 import storages from '@/types/Storages';
 
