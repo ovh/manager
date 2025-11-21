@@ -6,7 +6,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useShell } from '@/context';
 import style from './style.module.scss';
 import SidebarLinkTag from './SidebarLinkTag';
-import { Node } from './navigation-tree/node';
+import { Node } from '../data/config/navigation/types/node';
 
 export interface StaticLinkProps {
   hasService?: boolean;

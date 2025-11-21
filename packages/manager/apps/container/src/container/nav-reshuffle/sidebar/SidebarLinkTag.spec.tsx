@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import SidebarLinkTag from './SidebarLinkTag';
-import { Node, NodeTag } from './navigation-tree/node';
+import { Node, NodeTag } from '../data/config/navigation/types/node';
 import { mockShell } from './mocks/sidebarMocks';
 
 const node: Node = {

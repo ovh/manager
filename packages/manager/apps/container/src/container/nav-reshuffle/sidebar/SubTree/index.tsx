@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import style from './style.module.scss';
-import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
+import { Node } from '@/container/nav-reshuffle/data/config/navigation/types/node';
 import {
   findNodeById,
   shouldHideElement,
@@ -29,7 +29,8 @@ const SubTree = ({
   open,
 }: SubTreeProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
-  const { isMobile, isAnimated } = useProductNavReshuffle();
+  const { isMobile } = useProductNavReshuffle();
+  // const isAnimated = false;
   const [isOpen, setIsOpen] = useState(false);
 
   const [focusOnLast, setFocusOnLast] = useState<boolean>(false);
@@ -46,7 +47,7 @@ const SubTree = ({
     <div
       className={`${style.subtree_content} ${
         isOpen ? style.subtree_content_open : style.subtree_content_close
-      } ${isAnimated && style.subtree_content_animated}`}
+      }`}
       onBlur={(e: FocusEvent<HTMLDivElement>) => {
         const id = e.relatedTarget?.id.replace('-link', '');
         if (id === lastElement.id) {

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Node } from './navigation-tree/node';
+import { Node } from '../data/config/navigation/types/node';
 import style from './style.module.scss';
 
 export default function SidebarLinkTag({ node }: { node: Node }): JSX.Element {

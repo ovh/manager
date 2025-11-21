@@ -1,14 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
-import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
+import { Node } from '@/container/nav-reshuffle/data/config/navigation/types/node';
 import SidebarLink from '@/container/nav-reshuffle/sidebar/SidebarLink';
 
 import {
   findPathToNode,
   shouldHideElement,
 } from '@/container/nav-reshuffle/sidebar/utils';
-import navigationRoot from '@/container/nav-reshuffle/sidebar/navigation-tree/root';
+import navigationRoot from '@/container/nav-reshuffle/data/config/navigation/root';
 import { useShell } from '@/context';
 
 export interface SubTreeSectionProps {

@@ -20,7 +20,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useShell } from '@/context';
 import Assistance from './Assistance';
-import navigationTree from './navigation-tree/root';
+import navigationTree from '../data/config/navigation/root';
 import SidebarLink from './SidebarLink';
 import SubTree from '@/container/nav-reshuffle/sidebar/SubTree';
 import style from './style.module.scss';
@@ -35,9 +35,9 @@ import {
   ServicesTypes,
   hasService,
 } from './utils';
-import { Node } from './navigation-tree/node';
+import { Node } from '../data/config/navigation/types/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { ExcludedNodeIdsList } from './navigation-tree/excluded';
+import { ExcludedNodeIdsList } from '../data/config/navigation/excluded';
 import { ShortAssistanceLinkItem } from './Assistance/ShortAssistanceLinkItem';
 
 interface ServicesCountError {
@@ -63,8 +63,8 @@ const Sidebar = (): JSX.Element => {
     setCurrentNavigationNode,
     closeNavigationSidebar,
     isMobile,
-    isAnimated,
-    setIsAnimated,
+    // isAnimated,
+    // setIsAnimated,
     isNavigationSidebarOpened,
     popoverPosition,
   } = useProductNavReshuffle();
@@ -224,7 +224,7 @@ const Sidebar = (): JSX.Element => {
   // Callbacks
 
   const toggleSidebar = () => {
-    setIsAnimated(true);
+    // setIsAnimated(true);
     setOpen((prevOpen) => {
       const nextOpen = !prevOpen;
       const trackingName = nextOpen
@@ -239,7 +239,7 @@ const Sidebar = (): JSX.Element => {
   };
 
   const closeSubMenu = () => {
-    setIsAnimated(true);
+    // setIsAnimated(true);
     setShowSubTree(false);
 
     const close = () => {
@@ -257,7 +257,7 @@ const Sidebar = (): JSX.Element => {
   };
 
   const menuClickHandler = (node: Node) => {
-    setIsAnimated(true);
+    // setIsAnimated(true);
     setSelectedSubMenu(null);
     selectLvl1Node(node);
     setIsManuallyClosed(false);
@@ -305,7 +305,7 @@ const Sidebar = (): JSX.Element => {
     >
       <div
         className={`${style.sidebar_wrapper} ${!open &&
-          style.sidebar_short} ${isAnimated && style.sidebar_animated}`}
+          style.sidebar_short}`}
       >
         <div className={style.sidebar_lvl1}>
           {!isMobile && (
@@ -368,7 +368,7 @@ const Sidebar = (): JSX.Element => {
                 size={ODS_BUTTON_SIZE.sm}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 onClick={() => {
-                  setIsAnimated(true);
+                  // setIsAnimated(true);
                   return trackingPlugin.trackClick({
                     name: 'navbar_v3_entry_home::cta_add_a_service',
                     type: 'action',
@@ -447,7 +447,7 @@ const Sidebar = (): JSX.Element => {
               variant={ODS_BUTTON_VARIANT.ghost}
               size={ODS_BUTTON_SIZE.md}
               title={t('sidebar_assistance_title')}
-              onClick={() => setIsAnimated(true)}
+              onClick={() => {}}
               contrasted
             >
               <OsdsIcon

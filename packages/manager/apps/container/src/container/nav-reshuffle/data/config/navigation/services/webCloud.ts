@@ -1,6 +1,5 @@
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/web-cloud.png';
-import { Node } from '../node';
+import { Node } from '../types/node';
 
 const webCloudUniverse: Node = {
   id: 'web-cloud',
@@ -8,11 +7,7 @@ const webCloudUniverse: Node = {
   translation: 'sidebar_web_cloud',
   shortTranslation: 'sidebar_web_cloud_short',
   illustration,
-  svgIcon: OvhProductName.MONITOR,
-  routing: {
-    application: 'web',
-    hash: '#/',
-  },
+  svgIcon: 'monitor',
   features: ['web'],
 };
 

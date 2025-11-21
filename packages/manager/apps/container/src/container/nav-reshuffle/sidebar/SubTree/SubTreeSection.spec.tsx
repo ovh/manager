@@ -1,7 +1,7 @@
 import { vi, it, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import SubTreeSection, { SubTreeSectionProps } from './SubTreeSection';
-import { Node } from '../navigation-tree/node';
+import { Node } from '../../data/config/navigation/types/node';
 import { mockShell } from '../mocks/sidebarMocks';
 
 

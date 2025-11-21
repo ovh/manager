@@ -2,7 +2,7 @@ import { vi, it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';
 import { mockShell } from '../mocks/sidebarMocks';
-import { assistanceTree } from '../navigation-tree/assistance';
+import { assistanceTree } from '../../data/config/navigation/assistance';
 
 vi.mock('@/context', () => ({
   useShell: () => {
