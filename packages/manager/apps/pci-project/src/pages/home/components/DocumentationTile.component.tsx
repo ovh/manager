@@ -2,7 +2,11 @@ import {
   ManagerTile,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OdsLink } from '@ovhcloud/ods-components/react';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { DASHBOARD_DOCUMENTATION_LINKS } from '@/constants';
@@ -47,7 +51,11 @@ export default function DocumentationTile() {
               onClick={() => {
                 trackClick({
                   actionType: 'action',
-                  actions: ['page', 'tile-tutorial', item.trackingName || ''],
+                  actions: [
+                    PageLocation.page,
+                    ButtonType.tutorial,
+                    item.trackingName || '',
+                  ],
                 });
               }}
             />

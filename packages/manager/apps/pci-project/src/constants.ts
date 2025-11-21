@@ -543,18 +543,21 @@ export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
     labelTranslationKey: 'pci_projects_home_create_load_balancer',
     link: PCI_FEATURES_STATES.LOADBALANCER.LIST.url,
     featureFlag: FEATURE_AVAILABILITY.LOAD_BALANCER,
+    trackingName: 'create_load_balancer',
   },
   {
     iconODS: ODS_ICON_NAME.bill,
     labelTranslationKey: 'pci_projects_home_billing',
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.BILLING_CONTROL.url,
     featureFlag: FEATURE_AVAILABILITY.BILLING,
+    trackingName: 'detail_billing',
   },
   {
     iconODS: ODS_ICON_NAME.cog,
     labelTranslationKey: 'pci_projects_home_quotas',
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.QUOTA_AND_REGIONS.url,
     featureFlag: FEATURE_AVAILABILITY.QUOTA,
+    trackingName: 'detail_quotas',
   },
 ];
 
