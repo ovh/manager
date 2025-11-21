@@ -599,7 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Ops! Si è verificato un errore durante l'eliminazione dei codici di sicurezza:",
   "user_account_security_ip_restrictions_alt": "Restrizione degli accessi per IP",
   "user_account_title_infos": "Il mio account",
-  "user_account_description": "Gestisci il tuo account cliente. In questa sezione puoi gestire la sicurezza dell’account, il livello di supporto e gli utenti. È inoltre possibile consultare le email ricevute relative ai propri servizi.",
+  "user_account_description": "Gestisci il tuo account cliente. In questa sezione puoi gestire la sicurezza dell’account, il livello di supporto e gli utenti.",
   "user_account_title_subscriptions": "I miei abbonamenti",
   "user_agreements_accepting": "Registrazione in corso...",
   "user_account_emails_title": "Email ricevute",

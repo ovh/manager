@@ -599,7 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Ups! Ocorreu um erro aquando da eliminação dos códigos de segurança:",
   "user_account_security_ip_restrictions_alt": "Restrição de acesso por IP",
   "user_account_title_infos": "A minha conta",
-  "user_account_description": "Administre a sua conta de cliente. Nesta secção, poderá gerir a segurança da sua conta, o seu nível de suporte e os seus utilizadores. Também pode consultar os e-mails recebidos associados aos seus serviços.",
+  "user_account_description": "Administre a sua conta de cliente. Nesta secção, poderá gerir a segurança da sua conta, o seu nível de suporte e os seus utilizadores.",
   "user_account_title_subscriptions": "Subscrições",
   "user_agreements_accepting": "Registo em curso",
   "user_account_emails_title": "E-mails recebidos",
