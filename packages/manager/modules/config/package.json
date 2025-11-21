@@ -29,7 +29,8 @@
     "prepare": "tsc"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.10.1"
+    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-core-sso": "^0.4.8"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.13.0",

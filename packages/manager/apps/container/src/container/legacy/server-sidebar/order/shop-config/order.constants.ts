@@ -4,7 +4,7 @@ export const ORDER_URLS: Record<
 > = {
   EU: {
     DEDICATED: {
-      FR: 'https://www.ovh.com/manager/dedicated/',
+      FR: 'https://manager.eu.ovhcloud.com/#/dedicated/',
     },
     dedicated_cloud: {
       DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/vmware/prices/',
@@ -179,10 +179,10 @@ export const ORDER_URLS: Record<
       TN: 'https://www.ovh.com/tn/vps/',
     },
     cloudProjectOrder: {
-      FR: 'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
+      FR: 'https://manager.eu.ovhcloud.com/#/public-cloud/pci/projects/new',
     },
     publicCloudProjectOrder: {
-      FR: 'https://www.ovh.com/manager/public-cloud/#/pci/projects',
+      FR: 'https://manager.eu.ovhcloud.com/#/public-cloud/pci/projects',
     },
     publicCloudKubernetes: null,
     orderDomain: {
@@ -275,7 +275,7 @@ export const ORDER_URLS: Record<
       GB: 'https://www.ovhcloud.com/en/network-security/ovhcloud-connect/',
     },
     dbaas_logs: {
-      EU: 'https://www.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
+      EU: 'https://manager.eu.ovhcloud.com/#/dedicated/dbaas/logs',
     },
     faxOrder: {
       FR: 'https://www.ovhtelecom.fr/fax/',
@@ -382,14 +382,14 @@ export const ORDER_URLS: Record<
   },
   CA: {
     DEDICATED: {
-      ASIA: 'https://ca.ovh.com/manager/dedicated/',
-      AU: 'https://ca.ovh.com/manager/dedicated/',
-      CA: 'https://ca.ovh.com/manager/dedicated/',
-      QC: 'https://ca.ovh.com/manager/dedicated/',
-      SG: 'https://ca.ovh.com/manager/dedicated/',
-      WE: 'https://ca.ovh.com/manager/dedicated/',
-      WS: 'https://ca.ovh.com/manager/dedicated/',
-      IN: 'https://ca.ovh.com/manager/dedicated/',
+      ASIA: 'https://manager.ca.ovhcloud.com/#/dedicated/',
+      AU: 'https://manager.ca.ovhcloud.com/#/dedicated/',
+      CA: 'https://manager.ca.ovhcloud.com/#/dedicated/',
+      QC: 'https://manager.ca.ovhcloud.com/#/dedicated/',
+      SG: 'https://manager.ca.ovhcloud.com/#/dedicated/',
+      WE: 'https://manager.ca.ovhcloud.com/#/dedicated/',
+      WS: 'https://manager.ca.ovhcloud.com/#/dedicated/',
+      IN: 'https://manager.ca.ovhcloud.com/#/dedicated/',
     },
     orderDomain: {
       ASIA: 'https://ca.ovh.com/asia/order/webcloud',
@@ -443,7 +443,7 @@ export const ORDER_URLS: Record<
     },
     cloud_disk_array: {},
     dbaas_logs: {
-      CA: 'https://ca.ovh.com/manager/dedicated/#/dbaas/logs/welcome',
+      CA: 'https://manager.ca.ovhcloud.com/#/dedicated/dbaas/logs',
     },
     veeam: {},
     veeam_enterprise: {
@@ -500,28 +500,28 @@ export const ORDER_URLS: Record<
       WS: 'https://eco.ovhcloud.com/en/',
     },
     cloudProjectOrder: {
-      ASIA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
-      IN: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
-      AU: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
-      CA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
-      QC: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
-      SG: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
-      WE: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
-      WS: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+      ASIA: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
+      IN: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
+      AU: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
+      CA: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
+      QC: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
+      SG: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
+      WE: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
+      WS: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/new',
     },
     publicCloudProjectOrder: {
-      ASIA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
-      AU: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
-      CA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
-      QC: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
-      SG: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
-      WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
-      WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
-      IN: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects',
+      ASIA: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
+      AU: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
+      CA: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
+      QC: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
+      SG: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
+      WE: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
+      WS: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
+      IN: 'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects',
     },
     publicCloudKubernetes: {
       CA:
-        'https://ca.ovh.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
+        'https://manager.ca.ovhcloud.com/#/public-cloud/pci/projects/default/kubernetes/new',
     },
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
@@ -597,14 +597,14 @@ export const ORDER_URLS: Record<
       US: 'https://eco.us.ovhcloud.com/',
     },
     cloudProjectOrder: {
-      US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
+      US: 'https://manager.us.ovhcloud.com/#/public-cloud/pci/projects/new',
     },
     publicCloudProjectOrder: {
-      US: 'https://us.ovhcloud.com/manager/public-cloud/#/pci/projects',
+      US: 'https://manager.us.ovhcloud.com/#/public-cloud/pci/projects/new',
     },
     publicCloudKubernetes: {
       US:
-        'https://us.ovhcloud.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
+        'https://manager.us.ovhcloud.com/#/public-cloud/pci/projects/default/kubernetes/new',
     },
     express_review_base: {
       US: 'https://us.ovhcloud.com/order/express/#/express/review',
