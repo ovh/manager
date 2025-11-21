@@ -71,10 +71,10 @@ describe('DomainTabDnsWithError', () => {
 
     const nameCells = getAllByTestId('status');
     const expectedOrder = [
-      'domain_dns_table_state_enabled',
-      'domain_dns_table_state_error',
-      'domain_dns_table_state_activating',
-      'domain_dns_table_state_activating',
+      'domain_table_state_enabled',
+      'domain_table_state_error',
+      'domain_table_state_activating',
+      'domain_table_state_activating',
     ];
 
     const actualOrder = nameCells.map((cell) => cell.textContent);
@@ -104,10 +104,10 @@ describe('DomainTabDns', () => {
 
     const nameCells = getAllByTestId('status');
     const expectedOrder = [
-      'domain_dns_table_state_enabled',
-      'domain_dns_table_state_activating',
-      'domain_dns_table_state_activating',
-      'domain_dns_table_state_deleting',
+      'domain_table_state_enabled',
+      'domain_table_state_activating',
+      'domain_table_state_activating',
+      'domain_table_state_deleting',
     ];
 
     const actualOrder = nameCells.map((cell) => cell.textContent);
