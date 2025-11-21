@@ -16,7 +16,7 @@ import { urls } from '@/routes/routes.constant';
 import {
   catalogDedicatedServerList,
   ipMigrationPostResponse,
-} from '../../../../../mocks/catalog/dedicated-server-catalog';
+} from '@/__mocks__/catalog/dedicated-server-catalog';
 import {
   VALID_INPUT_VALUES,
   fillStep1,
