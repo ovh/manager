@@ -1,5 +1,20 @@
-import { v6, ApiResponse } from '@ovh-ux/manager-core-api';
+import {
+  v6,
+  fetchIcebergV6,
+  ApiResponse,
+  IcebergFetchResultV6,
+} from '@ovh-ux/manager-core-api';
 import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
+
+export const getIcebergIpTaskList = (
+  ip: string,
+): Promise<IcebergFetchResultV6<IpTask>> =>
+  fetchIcebergV6({
+    route: `/ip/${encodeURIComponent(ip)}/task`,
+    pageSize: 10000,
+    page: 1,
+    disableCache: true,
+  });
 
 export type GetIpTaskParams = {
   ip: string;
