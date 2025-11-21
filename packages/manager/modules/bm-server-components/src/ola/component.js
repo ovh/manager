@@ -6,5 +6,6 @@ export default {
     server: '<',
     guideUrl: '@',
     ola: '<',
+    isLacpBannerAvailable: '<',
   },
 };

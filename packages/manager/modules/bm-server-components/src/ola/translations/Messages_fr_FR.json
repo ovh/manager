@@ -1,6 +1,7 @@
 {
   "server_ola_step_checker_title": "OLA: OVHcloud Link Aggregation",
   "server_ola_alert_configuration_needed_small": "Une configuration manuelle via le KVM IPMI sera nécessaire.",
+  "server_ola_alert_new_lacp_rule": "Dans le cadre du programme d'amélioration continue d'OVHcloud, le modèle d'agrégation réseau (LACP) pour les serveurs Bare Metal évolue pour augmenter la résilience. \nÀ partir du 25 novembre 2025, l’agrégation LACP sera distribuée sur deux NIC distincts, protégeant contre la perte de connectivité en cas de défaillance d’un NIC. Si vous basculez en mode OLA et inversement, ou reconfigurez l'agrégation, la nouvelle règle s'appliquera automatiquement. \n Une fois appliquée, il n'est pas possible de revenir à la disposition d'agrégation précédente. \n Assurez-vous que votre configuration LACP au niveau du système d'exploitation et vos adresses MAC sont mises à jour en conséquence. \n Pour plus de détails, consultez la documentation mise à jour d'OVHcloud.",
   "server_ola_alert_configuration_needed_link": "En savoir plus",
   "server_ola_new_tab": "(S'ouvre dans un nouvel onglet)",
   "server_ola": "OVHcloud Link Aggregation",

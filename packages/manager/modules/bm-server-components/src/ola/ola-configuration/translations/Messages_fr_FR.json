@@ -7,6 +7,7 @@
   "dedicated_server_interfaces_ola_alert_not_allowed": "Les interfaces suivantes ne sont pas sélectionnables pour votre configuration. Pour pouvoir les configurer, retirez d'abord les vRacks et les IPFOs de celles-ci.",
   "dedicated_server_interfaces_ola_alert_obsolete_option": "Dans le cadre d'une configuration Agrégation privée, votre option de bande passante sortante publique ne sera pas utilisée.",
 
+  "dedicated_server_interfaces_ola_new_rule": "Dans le cadre du programme d'amélioration continue d'OVHcloud, le modèle d'agrégation réseau (LACP) pour les serveurs Bare Metal évolue pour augmenter la résilience. \nÀ partir du 25 novembre 2025, l’agrégation LACP sera distribuée sur deux NIC distincts, protégeant contre la perte de connectivité en cas de défaillance d’un NIC. Si vous basculez en mode OLA et inversement, ou reconfigurez l'agrégation, la nouvelle règle s'appliquera automatiquement. \n Une fois appliquée, il n'est pas possible de revenir à la disposition d'agrégation précédente. \n Assurez-vous que votre configuration LACP au niveau du système d'exploitation et vos adresses MAC sont mises à jour en conséquence. \n Pour plus de détails, consultez la documentation mise à jour d'OVHcloud.",
   "dedicated_server_interfaces_ola_column_mode": "Mode",
   "dedicated_server_interfaces_ola_column_name": "Interface",
   "dedicated_server_interfaces_ola_column_current_type": "Type",

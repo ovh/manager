@@ -28,6 +28,16 @@
         </p>
     </oui-message>
 
+    <oui-message
+        class="mb-3"
+        data-type="warning"
+        data-ng-if="$ctrl.isLacpBannerAvailable"
+    >
+        <p class="mb-0">
+            <span data-translate="server_ola_alert_new_lacp_rule"></span>
+        </p>
+    </oui-message>
+
     <!-- OLA -->
     <oui-tile-definition data-term="{{:: 'server_ola' | translate}}">
         <oui-tile-description>

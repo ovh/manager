@@ -39,6 +39,17 @@
     ></p>
 </oui-message>
 
+<oui-message
+    data-ng-if="$ctrl.lacpBannerIsAvailable"
+    class="mb-3"
+    data-type="warning"
+>
+    <p
+        class="mb-0"
+        data-translate="dedicated_server_interfaces_ola_new_rule"
+    ></p>
+</oui-message>
+
 <form
     novalidate
     name="olaConfigurationForm"

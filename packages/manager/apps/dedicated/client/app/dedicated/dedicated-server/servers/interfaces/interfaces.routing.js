@@ -1,4 +1,5 @@
 import { redirectTo } from './ola/ola-pending-task.routing';
+import { NEW_LACP_MODE_BANNER_FEATURE_ID } from './interfaces.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.interfaces', {
@@ -27,6 +28,14 @@ export default /* @ngInject */ ($stateProvider) => {
                 }),
           );
         }),
+      isLacpBannerAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(NEW_LACP_MODE_BANNER_FEATURE_ID)
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              NEW_LACP_MODE_BANNER_FEATURE_ID,
+            ),
+          ),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
       failoverIps: /* @ngInject */ (OvhApiIp, serverName) =>
