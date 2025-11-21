@@ -1,4 +1,4 @@
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type TrackProjectUpdatedSuccessParams = {
@@ -10,28 +10,31 @@ export const useUpdatingTracking = () => {
 
   const trackProjectUpdated = () => {
     trackPage({
+      pageType: PageType.bannerInfo,
       pageName: PROJECTS_TRACKING.UPDATING.PROJECT_UPDATED,
     });
   };
 
-  const trackActivateProjectSuccess = ({
+  const trackUpdateProjectSuccess = ({
     voucherCode,
   }: TrackProjectUpdatedSuccessParams) => {
     trackPage({
-      pageName: PROJECTS_TRACKING.UPDATING.ACTIVATE_PROJECT_SUCCESS,
+      pageType: PageType.bannerInfo,
+      pageName: PROJECTS_TRACKING.UPDATING.UPDATE_PROJECT_SUCCESS,
       ...(voucherCode ? { voucherCode } : {}),
     });
   };
 
-  const trackActivateProjectError = () => {
+  const trackUpdateProjectError = () => {
     trackPage({
-      pageName: PROJECTS_TRACKING.UPDATING.ACTIVATE_PROJECT_ERROR,
+      pageType: PageType.bannerError,
+      pageName: PROJECTS_TRACKING.UPDATING.UPDATE_PROJECT_ERROR,
     });
   };
 
   return {
     trackProjectUpdated,
-    trackActivateProjectSuccess,
-    trackActivateProjectError,
+    trackUpdateProjectSuccess,
+    trackUpdateProjectError,
   };
 };
