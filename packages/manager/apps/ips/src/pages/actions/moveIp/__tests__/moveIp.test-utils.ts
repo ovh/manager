@@ -6,7 +6,7 @@ import {
 import { getComboboxByName, renderTest, MockParams } from '@/test-utils';
 import { urls } from '@/routes/routes.constant';
 import { fromIpToId } from '@/utils';
-import ipList from '../../../../../mocks/ip/get-ips.json';
+import ipList from '@/__mocks__/ip/get-ips.json';
 
 export async function openMoveIpModal(options: MockParams = {}) {
   const result = await renderTest({

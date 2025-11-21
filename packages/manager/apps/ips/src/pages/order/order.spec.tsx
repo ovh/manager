@@ -21,7 +21,7 @@ import {
   organisationMockList,
   dedicatedServerMockList,
   vpsMockList,
-} from '../../../mocks';
+} from '@/__mocks__';
 import { IpOffer } from './order.constant';
 import { IpVersion, ipParkingOptionValue } from '@/types';
 

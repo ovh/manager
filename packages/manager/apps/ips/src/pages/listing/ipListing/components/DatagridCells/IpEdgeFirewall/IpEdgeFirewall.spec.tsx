@@ -9,7 +9,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { ListingContext } from '@/pages/listing/listingContext';
-import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpEdgeFirewall, IpEdgeFirewallProps } from './IpEdgeFirewall';
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
 import { getOdsBadgeByLabel } from '@/test-utils';

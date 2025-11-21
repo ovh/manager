@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ListingContext } from '@/pages/listing/listingContext';
-import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpVmac, IpVmacProps } from './IpVmac';
 import { DedicatedServerVmacWithIpType } from '@/data/api';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';

@@ -13,8 +13,8 @@ import {
   renderTest,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constant';
-import ipList from '../../../../../mocks/ip/get-ips.json';
-import moveIpResponse from '../../../../../mocks/ip/get-ip-move.json';
+import ipList from '@/__mocks__/ip/get-ips.json';
+import moveIpResponse from '@/__mocks__/ip/get-ip-move.json';
 import { fillStep1, openMoveIpModal } from './moveIp.test-utils';
 
 describe('Move IP modal', () => {

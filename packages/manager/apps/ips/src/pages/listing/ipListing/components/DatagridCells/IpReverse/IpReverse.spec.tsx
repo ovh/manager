@@ -8,7 +8,7 @@ import {
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { ListingContext } from '@/pages/listing/listingContext';
-import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpReverse, IpReverseProps } from './IpReverse';
 import { IpReverseType } from '@/data/api';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
