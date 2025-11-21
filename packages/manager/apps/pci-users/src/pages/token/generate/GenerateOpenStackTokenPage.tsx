@@ -21,7 +21,7 @@ export default function GenerateOpenStackTokenPage() {
           addError(
             <Translation ns="common">
               {(t) =>
-                t('pci_projects_project_users_delete_error_delete', {
+                t('pci_projects_project_users_openstack-token_error_save', {
                   message: error?.message,
                   user: user?.username,
                 })
