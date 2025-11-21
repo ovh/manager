@@ -138,26 +138,30 @@ export const sortWorkflows = (
   searchQueries: string[],
 ): TInstanceBackupWorkflow[] => {
   const data = [...workflows];
+  type WorkflowKeys = keyof Omit<TInstanceBackupWorkflow, 'executions'>;
 
   if (sorting) {
     const { id: sortKey, desc } = sorting;
 
-    data.sort(defaultCompareFunction(sortKey as keyof Omit<TInstanceBackupWorkflow, 'executions'>));
+    data.sort(defaultCompareFunction(sortKey as WorkflowKeys));
     if (desc) {
       data.reverse();
     }
   }
 
+  const isAWorkflowValueContainingSearchQuery =
+    (workflow: TInstanceBackupWorkflow) => (key: WorkflowKeys) => {
+      if (!workflow[key]) return false;
+      const workflowValue = workflow[key]?.toLowerCase();
+
+      return searchQueries.some(
+        (query) => workflowValue && workflowValue.includes(query.toLowerCase()),
+      );
+    };
+
   if (searchQueries.length) {
-    type WorkflowKeys = keyof Omit<TInstanceBackupWorkflow, 'executions'>;
     const keys: WorkflowKeys[] = ['name', 'instanceName', 'cron'];
-    return data.filter((workflow) =>
-      keys.some((key) =>
-        searchQueries.some(
-          (query) => workflow[key] && workflow[key].toLowerCase().includes(query.toLowerCase()),
-        ),
-      ),
-    );
+    return data.filter((workflow) => keys.some(isAWorkflowValueContainingSearchQuery(workflow)));
   }
 
   return data;
