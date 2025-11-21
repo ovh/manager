@@ -27,13 +27,13 @@ import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import ConditionalLink from '@/components/links/ConditionalLink.component';
-import useDownload from '@/hooks/useDownload';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useS3Data } from '../../S3.context';
 import storages from '@/types/Storages';
 import { cn } from '@/lib/utils';
 import { isDeepArchive, isDeepArchiveRestored } from '@/lib/s3ObjectHelper';
+import useDownload from '@/hooks/useDownload.hook';
 
 interface S3ObjectFileRendererProps {
   object: StorageObject;
