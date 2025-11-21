@@ -1,0 +1,9 @@
+{
+  "pci_project_guides_header": "Guides",
+  "pci_project_guides_header_all_guides": "Tous les guides",
+  "pci_project_guides_header_first_steps_with_instances": "Premiers pas avec les instances",
+  "pci_project_guides_header_faq_managed_private_registry": "FAQ Managed Private Registry (Harbor)",
+  "pci_project_guides_header_create_a_managed_private_register": "Créer un Registre privé géré (EN)",
+  "pci_project_guides_header_create_and_use_a_private_image": "Créer et utiliser une image privée (EN)",
+  "pci_project_guides_header_authentification_iam": "Activer IAM authentification sur Registry (EN)"
+}
