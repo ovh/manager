@@ -2,6 +2,7 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 // Dashboard Tile Types and Constants
 export type DashboardItem = {
+  trackingName?: string;
   label?: string;
   labelTranslationKey?: string;
   description?: string;
