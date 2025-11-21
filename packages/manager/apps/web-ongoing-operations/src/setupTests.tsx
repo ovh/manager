@@ -78,6 +78,13 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
+  useOvhTracking: vi.fn(() => {
+    return {
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+      trackCurrentPage: vi.fn(),
+    };
+  }),
 }));
 
 vi.mock('@ovhcloud/ods-components/react', async () => {

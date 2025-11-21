@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button, Icon, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { urls } from '@/routes/routes.constant';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 export default function TrackingFinalized() {
+  const { trackPageNavivationButton } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
   return (
@@ -21,7 +23,13 @@ export default function TrackingFinalized() {
       <Text className="mb-8" preset={TEXT_PRESET.paragraph}>
         {t('tracking_transfert_sub_finalized')}
       </Text>
-      <Button onClick={() => navigate(urls.root)}>
+      <Button
+        onClick={() => {
+          const url = urls.root;
+          trackPageNavivationButton(url);
+          navigate(url);
+        }}
+      >
         {t('tracking_transfert_back_to_domain')}
       </Button>
     </div>
