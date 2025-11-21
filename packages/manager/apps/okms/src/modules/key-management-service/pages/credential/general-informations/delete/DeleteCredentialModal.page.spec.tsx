@@ -1,7 +1,7 @@
 import * as router from 'react-router-dom';
 
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -16,12 +16,10 @@ import {
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
-const mockCredentialItem = credentialMock[0];
-const mockPageUrl = KMS_ROUTES_URLS.credentialDashboardDelete(
-  okmsMock[0].id,
-  mockCredentialItem.id,
-);
-const mockCredentialListPageUrl = KMS_ROUTES_URLS.credentialListing(okmsMock[0].id);
+const mockOkms = okmsRoubaix1Mock;
+const mockCredentialItem = credentialMock1;
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboardDelete(mockOkms.id, mockCredentialItem.id);
+const mockCredentialListPageUrl = KMS_ROUTES_URLS.credentialListing(mockOkms.id);
 
 describe('Credential delete modal test suite', () => {
   const mockNavigate = vi.fn();

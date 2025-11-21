@@ -37,13 +37,17 @@ export const KeyValuesEditorItem = ({
   const valueInputName = KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(index);
 
   const handleKeyChange: OdsInputChangeEventHandler = (event) => {
-    const newKey = event.target.value.toString();
-    onChange({ key: newKey, value: item.value });
+    const newKey = event.target.value?.toString();
+    if (newKey) {
+      onChange({ key: newKey, value: item.value });
+    }
   };
 
   const handleValueChange: OdsInputChangeEventHandler = (event) => {
-    const newValue = event.target.value.toString();
-    onChange({ key: item.key, value: newValue });
+    const newValue = event.target.value?.toString();
+    if (newValue) {
+      onChange({ key: item.key, value: newValue });
+    }
   };
 
   return (

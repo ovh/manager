@@ -46,9 +46,11 @@ describe('ActivateRegion test suite', () => {
       const activateButton = screen.queryByTestId(SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON);
       expect(activateButton).toBeVisible();
 
-      await act(async () => {
-        await user.click(activateButton);
-      });
+      if (activateButton) {
+        await act(async () => {
+          await user.click(activateButton);
+        });
+      }
 
       expect(navigate).toHaveBeenCalledTimes(1);
       expect(navigate).toHaveBeenCalledWith(

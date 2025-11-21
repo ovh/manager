@@ -22,7 +22,7 @@ export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
   const productType = useProductType();
 
-  const { data: secretConfig, isPending, error } = useSecretConfigOkms(okms.id);
+  const secretConfigOkmsQuery = useSecretConfigOkms(okms.id);
 
   const handleRetry = () => {
     void queryClient.refetchQueries({
@@ -33,19 +33,19 @@ export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
   return (
     <ManagerTile>
       <ManagerTile.Title>{t('okms_secret_config')}</ManagerTile.Title>
-      {error ? (
+      {secretConfigOkmsQuery.error ? (
         <>
           <ManagerTile.Divider />
-          <TileError error={error} onRetry={handleRetry} />
+          <TileError error={secretConfigOkmsQuery.error} onRetry={handleRetry} />
         </>
       ) : (
         <>
           <ManagerTile.Divider />
-          <MaxVersionTileItem secretConfig={secretConfig} isPending={isPending} />
+          <MaxVersionTileItem {...secretConfigOkmsQuery} />
           <ManagerTile.Divider />
-          <DeactivateVersionAfterTileItem secretConfig={secretConfig} isPending={isPending} />
+          <DeactivateVersionAfterTileItem {...secretConfigOkmsQuery} />
           <ManagerTile.Divider />
-          <CasTileItem secretConfig={secretConfig} isPending={isPending} />
+          <CasTileItem {...secretConfigOkmsQuery} />
           {productType === 'secret-manager' && (
             <>
               <ManagerTile.Divider />

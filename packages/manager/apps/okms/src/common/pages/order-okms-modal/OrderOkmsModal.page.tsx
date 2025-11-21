@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useCreateCart } from '@key-management-service/data/hooks/useCreateCart';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
@@ -11,6 +11,7 @@ import { OdsButton, OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-compo
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useProductType } from '@/common/hooks/useProductType';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { useShellContext } from '@/common/hooks/useShellContext';
 import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
 
@@ -24,7 +25,7 @@ import { OrderOkmsModalTermsAndConditions } from './OrderOkmsModalTermsAndCondit
 const OrderOkmsModal = () => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR, NAMESPACES.ACTIONS]);
   const { environment } = useShellContext();
-  const { region } = useParams();
+  const { region } = useRequiredParams('region');
   const productType = useProductType();
   const { ovhSubsidiary } = environment.getUser();
   const navigate = useNavigate();

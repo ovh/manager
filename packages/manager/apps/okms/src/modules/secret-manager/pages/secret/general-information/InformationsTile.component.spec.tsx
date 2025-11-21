@@ -12,6 +12,10 @@ import { InformationsTile } from './InformationsTile.component';
 let i18nValue: i18n;
 const mockSecret = secretListMock[0];
 
+if (!mockSecret) {
+  throw new Error('Mock secret not found');
+}
+
 const mockFormatDate = vi.fn((date: string) => date);
 vi.mock('@/common/hooks/useFormatDate', () => ({
   useFormatDate: () => ({
@@ -45,7 +49,7 @@ describe('Secrets Informations Tile component tests suite', () => {
       labels.common.dashboard.creation_date,
       mockSecret.metadata.createdAt,
       labels.secretManager.last_update,
-      mockSecret.metadata.updatedAt,
+      mockSecret?.metadata?.updatedAt ?? '',
       labels.secretManager.current_version,
       mockSecret.metadata.currentVersion,
     ];

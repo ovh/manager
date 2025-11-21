@@ -54,7 +54,7 @@ const OkmsEditSecretConfigDrawer = () => {
             {error?.response?.data?.message}
           </OdsMessage>
         )}
-        {!error && okmsSecretConfig && (
+        {!error && !isPending && (
           <EditOkmsSecretConfigDrawerForm
             okmsId={okms.id}
             secretConfig={okmsSecretConfig}

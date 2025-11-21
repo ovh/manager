@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
@@ -32,6 +32,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { CREATE_KEY_TEST_IDS } from './CreateKey.constants';
@@ -41,7 +42,7 @@ import { KeyUsageSection } from './KeyUsageSection.component';
 import { ProtectionLevelSection } from './ProtectionLevelSection.component';
 
 export default function CreateKey() {
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/serviceKeys');
 

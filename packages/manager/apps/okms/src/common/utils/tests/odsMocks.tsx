@@ -19,7 +19,7 @@ export const odsInputMock = (props: OdsInputProps) => {
       id={props.id}
       key={props.key}
       name={props.name}
-      value={props.value}
+      value={props.value ?? undefined}
       data-testid={props['data-testid']}
       onChange={handleChange}
       onBlur={handleChange}
@@ -40,7 +40,7 @@ export const odsTextareaMock = (props: OdsTextareaProps) => {
       id={props.id}
       key={props.key}
       name={props.name}
-      value={props.value}
+      value={props.value ?? undefined}
       data-testid={props['data-testid']}
       onChange={handleChange}
       onBlur={handleChange}

@@ -8,6 +8,7 @@ import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNo
 import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
 import {
   okmsMock,
+  okmsRoubaix1Mock,
   regionWithMultipleOkms,
   regionWithOneOkms,
   regionWithoutOkms,
@@ -68,8 +69,15 @@ vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
   };
 });
 
+const mockServiceDetails = {
+  data: {
+    resource: {
+      state: 'active',
+    },
+  },
+};
 vi.mocked(useServiceDetails).mockReturnValue({
-  data: { data: { resource: { state: 'mockedState' } } },
+  data: mockServiceDetails,
 } as UseQueryResult<ApiResponse<ServiceDetails>, ApiError>);
 
 const mockedSetSearchParams = vi.fn();
@@ -124,7 +132,12 @@ const renderOkmsManagement = async () => {
 
 /* TEST UTILS */
 const assertInitialRegionList = async () => {
-  const availableRegions = catalogMock.plans[0].configurations[0].values;
+  const availableRegions = catalogMock.plans[0]?.configurations[0]?.values;
+
+  if (!availableRegions) {
+    throw new Error('Available regions not found');
+  }
+
   await waitFor(
     () => {
       // assert that we display the correct region list
@@ -273,7 +286,7 @@ describe('OKMS management test suite', () => {
       await assertOkmsListIsNotInTheDocument(okmsMock);
       await assertActivateButtonIsNotInTheDocument();
       // assert we select the region's
-      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(regionWithOneOkms.okmsMock[0].id);
+      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(regionWithOneOkms.okmsMock?.[0]?.id);
     });
 
     it('should display a filtered okms list when there is more than one okms', async () => {
@@ -290,16 +303,22 @@ describe('OKMS management test suite', () => {
       await selectRegion(user, regionWithMultipleOkms.region);
 
       // THEN
-      await assertOkmsListIsNotInTheDocument(regionWithOneOkms.okmsMock);
-      await assertOkmsListIsInTheDocument(regionWithMultipleOkms.okmsMock);
+      await assertOkmsListIsNotInTheDocument(regionWithOneOkms.okmsMock ?? []);
+      await assertOkmsListIsInTheDocument(regionWithMultipleOkms.okmsMock ?? []);
       await assertActivateButtonIsNotInTheDocument();
+
+      const firstOkmsId = regionWithMultipleOkms.okmsMock?.[0]?.id;
+      if (!firstOkmsId) {
+        throw new Error('First okms id not found');
+      }
+
       // assert that the first okms is selected
       await waitFor(() => {
-        const okmsRadioCard = screen.getByTestId(regionWithMultipleOkms.okmsMock[0].id);
+        const okmsRadioCard = screen.getByTestId(firstOkmsId);
         expect(okmsRadioCard).toBeChecked();
       });
       // assert we set the selected okms id
-      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(regionWithMultipleOkms.okmsMock[0].id);
+      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(firstOkmsId);
     });
   });
 
@@ -309,7 +328,7 @@ describe('OKMS management test suite', () => {
     });
     it('should pre-select the right region and okms', async () => {
       // GIVEN
-      const mockOkmsId = okmsMock[0].id;
+      const mockOkmsId = okmsRoubaix1Mock.id;
       const urlParams = new URLSearchParams();
       urlParams.set(SECRET_MANAGER_SEARCH_PARAMS.okmsId, mockOkmsId);
       vi.mocked(useSearchParams).mockReturnValueOnce([urlParams, mockedSetSearchParams]);
@@ -320,6 +339,9 @@ describe('OKMS management test suite', () => {
 
       // THEN
       const currentOkms = okmsMock.find((okms) => okms.id === mockOkmsId);
+      if (!currentOkms) {
+        throw new Error('Current okms not found');
+      }
       const currentRegion = currentOkms.region;
 
       await assertTextVisibility(currentOkms.iam.displayName);

@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
@@ -7,6 +7,8 @@ import { KMIP_LABEL } from '@/constants';
 
 import { KmipTile } from './KmipTile.component';
 import { KMIP_TILE_TEST_IDS } from './KmipTile.constants';
+
+const okmsMocked = okmsRoubaix1Mock;
 
 vi.mock('./items/KmipEndpointTileItem.component', async (original) => ({
   ...(await original()),
@@ -24,7 +26,7 @@ describe('OKMS Kmip Tile test suite', () => {
     const tileItems = [KMIP_TILE_TEST_IDS.kmipEndpoint, KMIP_TILE_TEST_IDS.kmipEndpointRSA];
 
     // WHEN
-    await renderWithI18n(<KmipTile okms={okmsMock[0]} />);
+    await renderWithI18n(<KmipTile okms={okmsMocked} />);
 
     // THEN
     expect(screen.getByText(KMIP_LABEL)).toBeVisible();

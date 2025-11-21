@@ -2,6 +2,7 @@ import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { GuideButton } from '@ovh-ux/manager-react-components';
 
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+import { filterFalsy } from '@/common/utils/tools/filterFalsy';
 
 import { useGuideItemKmip } from './guide-kmip/useGuideItemKmip';
 import { useGuideItemQuickStart } from './guide-quick-start/useGuideItemQuickStart';
@@ -13,18 +14,18 @@ export default function KmsGuidesHeader() {
     KMS_FEATURES.KMIP_CONNECTION_GUIDE,
   ]);
 
-  const guideQuickSart = useGuideItemQuickStart(0);
+  const guideQuickStart = useGuideItemQuickStart(0);
   const guideUsage = useGuideItemUsage(1);
   const guideKmip = useGuideItemKmip(2);
 
   return (
     <GuideButton
       isLoading={isPending}
-      items={[
-        guideQuickSart,
+      items={filterFalsy([
+        guideQuickStart,
         features?.[KMS_FEATURES.KMS_USAGE_GUIDE] && guideUsage,
         features?.[KMS_FEATURES.KMIP_CONNECTION_GUIDE] && guideKmip,
-      ].filter(Boolean)}
+      ])}
     />
   );
 }

@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
@@ -7,6 +7,8 @@ import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 import { KmipObjectsTile } from './KmipObjectsTile.component';
 import { KMIP_OBJECTS_TILE_TEST_IDS } from './KmipObjectsTile.constants';
+
+const okmsMocked = okmsRoubaix1Mock;
 
 vi.mock('./items/KmipObjectCountTileItem.component', async (original) => ({
   ...(await original()),
@@ -21,7 +23,7 @@ describe('OKMS Kmip Objects Tile test suite', () => {
     const tileItems = [KMIP_OBJECTS_TILE_TEST_IDS.kmipObjectCount];
 
     // WHEN
-    await renderWithI18n(<KmipObjectsTile okms={okmsMock[0]} />);
+    await renderWithI18n(<KmipObjectsTile okms={okmsMocked} />);
 
     // THEN
     expect(screen.getByText(labels.dashboard.kmip_objects)).toBeVisible();

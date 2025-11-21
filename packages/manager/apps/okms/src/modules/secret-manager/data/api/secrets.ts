@@ -72,7 +72,7 @@ export type UpdateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
 export type UpdateSecretParams = {
   okmsId: string;
   path: string;
-  cas: number;
+  cas?: number;
   data: UpdateSecretBody;
 };
 

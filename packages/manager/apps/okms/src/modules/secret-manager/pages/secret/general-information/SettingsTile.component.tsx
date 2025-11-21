@@ -1,11 +1,6 @@
-import { useParams } from 'react-router-dom';
-
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
 import { SECRET_TEST_IDS } from '@secret-manager/pages/secret/general-information/GeneralInformation.constants';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 import {
   NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
@@ -19,6 +14,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { Link } from '@/common/components/link/Link.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 type SettingsTileProps = {
   secret: Secret;
@@ -27,7 +23,7 @@ type SettingsTileProps = {
 export const SettingsTile = ({ secret }: SettingsTileProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
   const { secretConfig, isPending, isError } = useSecretSmartConfig(secret);
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
 
   const labels: Record<SecretSmartConfigOrigin, string | null> = {
     SECRET: null,

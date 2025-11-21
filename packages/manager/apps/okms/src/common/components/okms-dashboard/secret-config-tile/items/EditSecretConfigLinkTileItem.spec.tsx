@@ -1,4 +1,4 @@
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -11,7 +11,7 @@ import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 import { EditSecretConfigLinkTileItem } from './EditSecretConfigLinkTileItem.component';
 
-const okmsMocked = okmsMock[0];
+const okmsMocked = okmsRoubaix1Mock;
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async (importOriginal) => {

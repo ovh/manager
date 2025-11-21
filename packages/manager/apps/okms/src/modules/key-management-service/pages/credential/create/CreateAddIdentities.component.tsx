@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useIdentityData } from '@key-management-service/hooks/credential/useIdentityData';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
@@ -18,6 +18,7 @@ import { OdsButton, OdsDivider, OdsIcon, OdsText } from '@ovhcloud/ods-component
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { useShellContext } from '@/common/hooks/useShellContext';
 
 import IdentitiesRootAccount from './identities/IdentitiesRootAccount.component';
@@ -40,7 +41,7 @@ const CreateAddIdentities = ({
 }: CreateAddIdentitiesProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const [isRootAccount, setIsRootAccount] = useState<boolean>(false);
   const { userList, groupList, serviceAccountList } = useIdentityData();
   const { environment } = useShellContext();

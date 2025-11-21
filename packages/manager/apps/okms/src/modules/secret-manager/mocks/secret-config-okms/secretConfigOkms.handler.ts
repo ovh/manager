@@ -19,7 +19,7 @@ export const getSecretConfigOkmsMock = ({
     response: buildMswResponseMock({
       data: mockSecretConfigOkms,
       errorMessage: getSecretConfigErrorMessage,
-      isError: isSecretConfigKO,
+      isError: isSecretConfigKO ?? false,
     }),
     status: isSecretConfigKO ? 500 : 200,
     api: 'v2',
