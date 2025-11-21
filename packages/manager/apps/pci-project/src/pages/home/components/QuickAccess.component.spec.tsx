@@ -26,7 +26,7 @@ describe('QuickAccess', () => {
         'object-storage': true,
         'block-storage': true,
         'private-network': true,
-        databases: true,
+        'pci-databases-analytics': true,
       },
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
@@ -61,7 +61,7 @@ describe('QuickAccess', () => {
         'object-storage': true,
         'block-storage': false, // Disabled
         'private-network': true,
-        databases: false, // Disabled
+        'pci-databases-analytics': false, // Disabled
       },
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
@@ -100,7 +100,7 @@ describe('QuickAccess', () => {
         'object-storage': false,
         'block-storage': false,
         'private-network': false,
-        databases: false,
+        'pci-databases-analytics': false,
       },
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
@@ -181,7 +181,7 @@ describe('QuickAccess', () => {
         'object-storage',
         'block-storage',
         'private-network',
-        'databases',
+        'pci-databases-analytics',
       ],
       { enabled: true },
     );
