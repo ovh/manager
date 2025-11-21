@@ -35,6 +35,15 @@ export const startNotebook = async ({
     .then((res) => res.data as ai.notebook.Notebook);
 };
 
+export const restartNotebook = async ({
+  projectId,
+  notebookId,
+}: NotebookData) => {
+  return apiClient.v6
+    .put(`/cloud/project/${projectId}/ai/notebook/${notebookId}/restart`)
+    .then((res) => res.data as ai.notebook.Notebook);
+};
+
 export const stopNotebook = async ({ projectId, notebookId }: NotebookData) => {
   return apiClient.v6
     .put(`/cloud/project/${projectId}/ai/notebook/${notebookId}/stop`)

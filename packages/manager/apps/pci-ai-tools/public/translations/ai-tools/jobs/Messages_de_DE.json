@@ -11,5 +11,9 @@
   "tableActionManage": "Verwaltung der ",
   "tableActionRestart": "Neu starten",
   "tableActionStop": "Anhalten",
-  "tableActionDelete": "Löschen"
+  "tableActionDelete": "Löschen",
+  "shutdownLabel": "Stopp um {{timeout}}",
+  "restartLabel": "Neustart um {{timeout}}",
+  "timeOutLabel": "Ablauf",
+  "tableActionClone": "Job klonen"
 }
