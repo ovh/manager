@@ -13,7 +13,6 @@ import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   getMoveIpAvailableDestinations,
   getMoveIpAvailableDestinationsQueryKey,
-  getIpTaskList,
   postMoveIp as apiPostMoveIp,
   getIpDetailsQueryKey,
   getIpTaskDetailsQueryKey,
@@ -23,6 +22,7 @@ import {
   getVrackTaskQueryKey,
   getVrackTaskDetailsQueryKey,
   getVrackTaskDetails,
+  getIcebergIpTaskList,
 } from '@/data/api';
 import {
   IpTaskStatus,
@@ -63,6 +63,7 @@ export function useVrackMoveTasks({
   const { data, isLoading } = useQuery({
     queryKey: getVrackTaskQueryKey({ serviceName }),
     queryFn: () => getVrackTaskList({ serviceName }),
+    retry: false,
     enabled:
       !!serviceName &&
       getTypeByServiceName(serviceName) === IpTypeEnum.VRACK &&
@@ -167,17 +168,18 @@ export function useMoveIpTasks({
     queryKey: getMoveIpOngoingTasksQueryKey(ip),
     queryFn: async () => {
       try {
-        const queries = await Promise.all(
-          [IpTaskStatus.init, IpTaskStatus.todo, IpTaskStatus.doing].map(
-            (status) =>
-              getIpTaskList({
-                ip,
-                status,
-                fn: IpTaskFunction.genericMoveFloatingIp,
-              }),
-          ),
-        );
-        return queries.flatMap((query) => query.data);
+        const tasks = await getIcebergIpTaskList(ip);
+        return tasks.data
+          .filter(
+            (task) =>
+              task.function === IpTaskFunction.genericMoveFloatingIp &&
+              [
+                IpTaskStatus.init,
+                IpTaskStatus.todo,
+                IpTaskStatus.doing,
+              ].includes(task.status),
+          )
+          .map((task) => task.taskId);
       } catch (error) {
         return [];
       }
@@ -189,6 +191,7 @@ export function useMoveIpTasks({
     queries: (taskQuery?.data ?? []).map((taskId) => ({
       queryKey: getIpTaskDetailsQueryKey({ ip, taskId }),
       queryFn: () => getIpTaskDetails({ ip, taskId }),
+      retry: false,
       refetchInterval: (query: Query<ApiResponse<IpTask>, ApiError>) => {
         if (
           !query.state.error &&
@@ -253,7 +256,7 @@ export function useMoveIpTasks({
 
   return {
     isTasksLoading: taskQuery.isLoading,
-    taskError: taskQuery.error as ApiError,
+    taskError: taskQuery.error,
     hasOnGoingMoveIpTask: taskQuery?.data?.length > 0,
   };
 }

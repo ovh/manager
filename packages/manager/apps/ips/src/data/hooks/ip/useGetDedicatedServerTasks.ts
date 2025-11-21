@@ -1,16 +1,16 @@
 import {
+  Query,
   useQueries,
+  useQuery,
   useQueryClient,
-  UseQueryOptions,
 } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useMemo } from 'react';
 import {
   DedicatedServerTaskResponse,
   getDedicatedServerTask,
   getDedicatedServerTaskQueryKey,
-  getDedicatedServerTasks,
-  getDedicatedServerTasksQueryKey,
+  getIcebergDedicatedServerTask,
+  getIcebergDedicatedServerTasksQueryKey,
 } from '@/data/api';
 import {
   getTypeByServiceName,
@@ -41,67 +41,65 @@ export const useGetDedicatedServerTasks = ({
 }: UseGetDedicatedServerTasksParams) => {
   const queryClient = useQueryClient();
 
-  const parameterSets = useMemo(
-    () =>
-      serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED
-        ? functionList.flatMap((taskFunction) =>
-            statusList.map((status) => ({ taskFunction, status, serviceName })),
-          )
-        : [],
-    [],
-  );
-
-  const tasksQueriesResult = useQueries({
-    queries: parameterSets.map(
-      (queryParams): UseQueryOptions<ApiResponse<number[]>, ApiError> => ({
-        queryKey: getDedicatedServerTasksQueryKey(queryParams),
-        queryFn: () => getDedicatedServerTasks(queryParams),
-        retry: false,
-        enabled,
-      }),
-    ),
-    combine: (results) => ({
-      isPending: results.some((result) => result.isPending),
-      isLoading: results.some((result) => result.isLoading),
-      error: results.find((result) => result.error),
-      data: results.reduce(
-        (acc: number[], result) => acc.concat(result.data?.data ?? []),
-        [],
-      ),
-    }),
+  const taskQuery = useQuery<number[], ApiError>({
+    queryKey: getIcebergDedicatedServerTasksQueryKey(serviceName),
+    queryFn: async () => {
+      try {
+        const tasks = await getIcebergDedicatedServerTask(serviceName);
+        return (
+          tasks.data
+            ?.filter(
+              (task) =>
+                functionList.includes(task.function) &&
+                statusList.includes(task.status),
+            )
+            .map((task) => task.taskId) ?? []
+        );
+      } catch (error) {
+        return [];
+      }
+    },
+    retry: false,
+    enabled:
+      !!serviceName &&
+      getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED &&
+      enabled,
   });
 
-  const hasOnGoingTaskResult = useQueries({
-    queries: tasksQueriesResult.data.map(
-      (
-        taskId: number,
-      ): UseQueryOptions<
-        ApiResponse<DedicatedServerTaskResponse>,
-        ApiError
-      > => ({
-        queryKey: getDedicatedServerTaskQueryKey(serviceName, taskId),
-        queryFn: () => getDedicatedServerTask(serviceName, taskId),
-        retry: false,
-        refetchInterval: (query) => {
-          if (isUpdateTaskStatus(query.state.data?.data.status)) {
-            return INVALIDATED_REFRESH_PERIOD;
-          }
+  useQueries({
+    queries: (taskQuery?.data ?? []).map((taskId: number) => ({
+      queryKey: getDedicatedServerTaskQueryKey(serviceName, taskId),
+      queryFn: () => getDedicatedServerTask(serviceName, taskId),
+      retry: false,
+      refetchInterval: (
+        query: Query<ApiResponse<DedicatedServerTaskResponse>, ApiError>,
+      ) => {
+        if (
+          !query.state.error &&
+          isUpdateTaskStatus(query.state.data?.data?.status)
+        ) {
+          return INVALIDATED_REFRESH_PERIOD;
+        }
+
+        if (query.state.data?.data?.status === 'done') {
+          queryClient.setQueryData(
+            getIcebergDedicatedServerTasksQueryKey(serviceName),
+            (oldData: number[]) =>
+              !oldData
+                ? oldData
+                : oldData.filter((id) => id !== query.state.data?.data?.taskId),
+          );
           queryClient.invalidateQueries({ queryKey: queryKeyToInvalidate });
-          return undefined;
-        },
-      }),
-    ),
-    combine: (results) => ({
-      isPending: results.some((result) => result.isPending),
-      isLoading: results.some((result) => result.isLoading),
-      error: results.find((result) => result.error)?.error,
-      data: results.some((result) =>
-        isUpdateTaskStatus(result.data?.data.status),
-      ),
-    }),
+        }
+
+        return undefined;
+      },
+    })),
   });
 
   return {
-    hasOnGoingTask: !!hasOnGoingTaskResult.data,
+    isTasksLoading: taskQuery.isLoading,
+    taskError: taskQuery.error,
+    hasOnGoingTask: taskQuery?.data?.length > 0,
   };
 };

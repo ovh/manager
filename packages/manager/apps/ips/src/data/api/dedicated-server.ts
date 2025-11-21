@@ -1,4 +1,9 @@
-import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import {
+  ApiResponse,
+  IcebergFetchResultV6,
+  apiClient,
+  fetchIcebergV6,
+} from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
 import { Query } from '@tanstack/react-query';
 import { ServiceStatus } from '@/types';
@@ -102,7 +107,25 @@ export type GetDedicatedServerTasksParams = {
 };
 
 export type DedicatedServerTaskResponse = {
-  status: string;
+  comment: string | null;
+  doneDate: string | null;
+  function: string;
+  lastUpdate: string;
+  needSchedule: boolean;
+  note: string | null;
+  plannedInterventionId: number | null;
+  startDate: string;
+  status:
+    | 'cancelled'
+    | 'doing'
+    | 'done'
+    | 'ovhError'
+    | 'customerError'
+    | 'init'
+    | 'todo';
+  tags: { key: string; value: string }[];
+  taskId: number;
+  ticketReference: string | null;
 };
 
 const getDedicatedServerTasksBaseQueryKey = (serviceName: string): string =>
@@ -149,3 +172,18 @@ export const getDedicatedServerTask = async (
   apiClient.v6.get<DedicatedServerTaskResponse>(
     `/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`,
   );
+
+export const getIcebergDedicatedServerTasksQueryKey = (serviceName: string) => [
+  getDedicatedServerTasksBaseQueryKey(serviceName),
+  'iceberg',
+];
+
+export const getIcebergDedicatedServerTask = async (
+  serviceName: string,
+): Promise<IcebergFetchResultV6<DedicatedServerTaskResponse>> =>
+  fetchIcebergV6({
+    route: `/dedicated/server/${encodeURIComponent(serviceName)}/task`,
+    pageSize: 10000,
+    page: 1,
+    disableCache: true,
+  });
