@@ -6,7 +6,7 @@ import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
 
 import CloudShellLink from '@/container/common/cloud-shell';
-import LanguageMenu from '@/container/common/language';
+import { LanguageMenuContainer } from '@/container/common/language/container.component';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import NotificationsSidebar from '@/container/common/notifications-sidebar';
@@ -36,9 +36,6 @@ function Header({
 }: Props): JSX.Element {
   const shell = useShell();
   const { isReady } = useContainer();
-  const [userLocale, setUserLocale] = useState<string>(
-    shell.getPlugin('i18n').getLocale(),
-  );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isNotificationsSidebarVisible, setIsNotificationsSidebarVisible } = useHeader();
   const isSmallDevice = useMediaQuery({
@@ -88,20 +85,18 @@ function Header({
                 </div>
               )}
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-                <LanguageMenu
-                  setUserLocale={setUserLocale}
-                  userLocale={userLocale}
+                <LanguageMenuContainer
                   onChange={(show: boolean) => {
                     setIsDropdownOpen(show);
                     setIsNotificationsSidebarVisible(false);
                   }}
-                ></LanguageMenu>
+                ></LanguageMenuContainer>
               </div>
-          {isReady && cloudShellAvailability?.['cloud-shell'] && (
-              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-            <CloudShellLink />
-          </div>
-          )}
+              {isReady && cloudShellAvailability?.['cloud-shell'] && (
+                <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
+                  <CloudShellLink />
+                </div>
+              )}
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <Notifications />
               </div>

@@ -8,12 +8,14 @@ type Props = {
   children?: JSX.Element | JSX.Element[];
   onClick(show: boolean): void;
   show?: boolean;
+  disabled: boolean;
 };
 
 const UserAccountMenuButton = ({
   children = null,
   onClick,
   show = false,
+  disabled,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
   return (
@@ -27,6 +29,7 @@ const UserAccountMenuButton = ({
       size={ODS_BUTTON_SIZE.sm}
       variant={ODS_BUTTON_VARIANT.stroked}
       color={ODS_THEME_COLOR_INTENT.primary}
+      {...(disabled ? { disabled: true } : {})}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);

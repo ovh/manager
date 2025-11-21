@@ -54,8 +54,10 @@ const SSOAuthModal = (): JSX.Element => {
   const userId = uxPlugin.getUserIdCookie();
 
   useEffect(() => {
+    if (!uxPlugin) return;
+
     const updateMode = () => {
-      setMode(uxPlugin?.getSSOAuthModalMode(userId));
+      setMode(uxPlugin.getSSOAuthModalMode(userId));
     };
     document.addEventListener('visibilitychange', updateMode);
 

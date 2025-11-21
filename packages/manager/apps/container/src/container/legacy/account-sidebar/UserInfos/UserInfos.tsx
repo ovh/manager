@@ -17,15 +17,15 @@ const UserInfos = (): JSX.Element => {
   const shell = useShell();
   const environment: Environment = shell
     .getPlugin('environment')
-    ?.getEnvironment();
-  const user = environment?.getUser();
-  const region = environment?.getRegion();
+    .getEnvironment();
+  const user = environment.getUser();
+  const region = environment.getRegion();
 
   const cssBaseClassName = 'manager-account-sidebar-user-infos';
   const translationBase = 'user_account_menu';
   const userAccountURL = shell
     .getPlugin('navigation')
-    ?.getURL('dedicated', '#/useraccount/dashboard');
+    .getURL('dedicated', '#/useraccount/dashboard');
 
   const userAccountClickHander = () =>
     shell.getPlugin('tracking').trackClick({

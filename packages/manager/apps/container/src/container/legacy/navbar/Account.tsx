@@ -57,13 +57,7 @@ function NavbarAccount(): JSX.Element {
           size={ODS_ICON_SIZE.xxs}
           color={ODS_THEME_COLOR_INTENT.primary}
         ></OsdsIcon>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.primary}
-          level={ODS_TEXT_LEVEL.button}
-          size={ODS_TEXT_SIZE._200}
-        >
-          {isReady ? <UserName /> : <OsdsSkeleton inline={true} size={ODS_SKELETON_SIZE.xs} />}
-        </OsdsText>
+        {isReady ? <UserName size={ODS_TEXT_SIZE._200} /> : <OsdsSkeleton inline={true} size={ODS_SKELETON_SIZE.xs} />}
       </span>
     </button>
   );
