@@ -348,7 +348,7 @@ describe('Header.component', () => {
       ['hidden', false],
     ])('should have the correct aria labels when %s', (_, show) => {
       const { getByRole } = render(
-        <UserAccountMenuButton onClick={vi.fn()} show={show} />,
+        <UserAccountMenuButton onClick={vi.fn()} show={show} disabled={false}/>,
       );
       // ODS buttons don't have the role button... maybe whe should add that
       expect(getByRole('button')).toBeInTheDocument();
