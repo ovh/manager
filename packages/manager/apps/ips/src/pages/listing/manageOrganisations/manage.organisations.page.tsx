@@ -28,6 +28,12 @@ export default function ManageOrganisationsPage() {
         <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
           {t('manageOrganisationsTabDescription')}
         </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+          {t('manageOrganisationsPageDescription')}
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+          {t('manageOrganisationsPageHowto')}
+        </OdsText>
       </div>
       <div className="flex flex-row mb-2">
         <OdsButton
