@@ -43,8 +43,8 @@ vi.mock('@/utils/form.utils', () => ({
   toRequiredLabel: vi.fn((label: string) => `${label}*`),
 }));
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="form-field" className={className}>
       {children}
@@ -53,6 +53,10 @@ vi.mock('@ovh-ux/muk', () => ({
   FormFieldHelper: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="form-field-helper">{children}</div>
   ),
+}));
+
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
   Quantity: ({
     children,
     name,
