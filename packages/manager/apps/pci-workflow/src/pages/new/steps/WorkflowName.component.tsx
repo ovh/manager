@@ -20,8 +20,7 @@ import {
 
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
-import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
-import { getResourcePricing } from '@/api/hooks/resource';
+import { useResourcePricing } from '@/api/hooks/resource';
 import { TWorkflowSelectedResource } from '@/api/hooks/workflows';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { TWorkflowCreationForm } from '@/pages/new/hooks/useWorkflowStepper';
@@ -54,10 +53,11 @@ export function WorkflowName({
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const { pricing, isPending } = getResourcePricing(selectedWorkflowType)(projectId, {
-    id: selectedResource.id,
-    region: selectedResource.region,
-  } as TInstance['id']);
+  const { pricing, isPending } = useResourcePricing(
+    selectedWorkflowType,
+    projectId,
+    selectedResource,
+  );
 
   if (isPending) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="loading-spinner" />;

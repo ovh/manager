@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@ovhcloud/ods-react';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
-import { useGetInstanceSnapshotPricingHook } from '@/api/hooks/order/order';
+import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 import { TWorkflowSelectedResource, WorkflowType } from '@/api/hooks/workflows';
 import { ButtonLink } from '@/components/button-link/ButtonLink.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
@@ -68,12 +68,14 @@ export function WorkflowScheduling({
   const { t } = useTranslation(['workflow-add', 'pci-common', 'global']);
   const projectId = useSafeParam('projectId');
 
-  const { distantContinents } = useGetInstanceSnapshotPricingHook(
+  const { distantContinents } = useInstanceSnapshotPricing(
     selectedWorkflowType === WorkflowType.INSTANCE_BACKUP,
-  )(projectId, {
-    id: resource.id,
-    region: resource.region,
-  } as TInstance['id']);
+    projectId,
+    {
+      id: resource.id,
+      region: resource.region,
+    } as TInstance['id'],
+  );
 
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
   const [distantRegion, setDistantRegion] = useState<string | null>(null);

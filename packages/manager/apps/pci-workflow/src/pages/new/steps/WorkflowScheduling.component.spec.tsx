@@ -4,18 +4,15 @@ import { describe, it, vi } from 'vitest';
 
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 import { buildInstanceSelectedResource } from '@/api/hooks/instance/selector/instances.selector';
-import { ContinentRegion, useGetInstanceSnapshotPricingHook } from '@/api/hooks/order/order';
+import { ContinentRegion, useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 import { WorkflowType } from '@/api/hooks/workflows';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 import { WorkflowScheduling } from './WorkflowScheduling.component';
 
-const mockGetPricing = vi.fn();
-
 vi.mock('@/api/hooks/order/order', () => ({
-  useGetInstanceSnapshotPricingHook: vi.fn(),
+  useInstanceSnapshotPricing: vi.fn(),
 }));
-vi.mocked(useGetInstanceSnapshotPricingHook).mockReturnValue(mockGetPricing);
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   convertHourlyPriceToMonthly: vi.fn(),
@@ -33,7 +30,7 @@ describe('WorkflowScheduling Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.mocked(mockGetPricing).mockReturnValue({
+    vi.mocked(useInstanceSnapshotPricing).mockReturnValue({
       distantContinents: new Map<string, ContinentRegion[]>(),
       isPending: false,
       pricing: null,
@@ -113,7 +110,7 @@ describe('WorkflowScheduling Component', () => {
   });
 
   it('can select distant region when distantContinents is provided', async () => {
-    vi.mocked(mockGetPricing).mockReturnValue({
+    vi.mocked(useInstanceSnapshotPricing).mockReturnValue({
       distantContinents: new Map<string, ContinentRegion[]>([
         [
           'Europe',
