@@ -1,6 +1,12 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 
-import { TClusterPlan, TKube, TNetworkConfiguration, TOidcProvider } from '@/types';
+import {
+  TAttachFloatingIPs,
+  TClusterPlan,
+  TKube,
+  TNetworkConfiguration,
+  TOidcProvider,
+} from '@/types';
 
 export const getKubernetesCluster = async (projectId: string, kubeId: string): Promise<TKube> => {
   const { data } = await v6.get<TKube>(`/cloud/project/${projectId}/kube/${kubeId}`);
@@ -20,6 +26,7 @@ export type NodePool = {
   antiAffinity: boolean;
   autoscale: boolean;
   availabilityZones?: string[];
+  attachFloatingIPs?: TAttachFloatingIPs;
   desiredNodes: number;
   minNodes?: number;
   localisation: string | null;

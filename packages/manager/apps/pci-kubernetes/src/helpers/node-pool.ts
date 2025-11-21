@@ -40,3 +40,16 @@ export const hasInvalidScalingOrAntiAffinityConfig = (
   !isScalingValid(nodePoolState) ||
   !hasMax5NodesAntiAffinity(nodePoolState) ||
   !isZoneAzChecked(type, nodePoolState);
+
+export const getPlanCodeFloatingIps = (
+  time: 'hour' | 'month',
+  deploymentMode: DeploymentMode | null,
+): string | null => {
+  if (!deploymentMode) {
+    return null;
+  }
+
+  return `floatingip.floatingip.${time}.consumption${
+    deploymentMode === DeploymentMode.MULTI_ZONES && time !== 'month' ? '.3AZ' : ''
+  }`;
+};

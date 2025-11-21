@@ -12,7 +12,6 @@ import { OsdsBreadcrumb, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/rea
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
-  TProject,
   isDiscoveryProject,
   useProject,
   useParam as useSafeParams,
@@ -192,17 +191,9 @@ export default function NewPage() {
       <div className="mt-8">
         {allSteps
           .filter((step) => step.condition ?? true)
-          .map(
-            (
-              {
-                key,
-
-                component: StepComponent,
-                titleKey,
-                extraProps = {},
-              },
-              index,
-            ) => (
+          .map(({ key, component, titleKey, extraProps = {} }, index) => {
+            const Step = component;
+            return (
               <StepComponentLayout
                 key={key}
                 order={index + 1}
@@ -214,14 +205,10 @@ export default function NewPage() {
                   isDisabled: isCreationPending || (key === 'location' && isDiscovery),
                 }}
               >
-                <StepComponent
-                  step={stepper[key].step}
-                  onSubmit={stepper[key].submit}
-                  {...extraProps}
-                />
+                <Step step={stepper[key].step} onSubmit={stepper[key].submit} {...extraProps} />
               </StepComponentLayout>
-            ),
-          )}
+            );
+          })}
       </div>
     </>
   );

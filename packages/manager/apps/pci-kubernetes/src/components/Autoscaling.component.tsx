@@ -71,6 +71,7 @@ export function Autoscaling({
 
       <div className="mt-8">
         <Toggle
+          withLabels
           disabled={isAntiAffinity}
           checked={isAutoscale}
           onChange={() => {
@@ -80,10 +81,8 @@ export function Autoscaling({
           }}
         >
           <ToggleControl />
-          <ToggleLabel>
-            <Text className="ml-4 font-bold" color="text">
-              {t(`kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`)}
-            </Text>
+          <ToggleLabel className="font-semibold text-[--ods-color-text]">
+            {t(`kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`)}
           </ToggleLabel>
         </Toggle>
       </div>
