@@ -1,6 +1,6 @@
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { HelpCircle, Network as NetworkIcon } from 'lucide-react';
+import { HelpCircle, Network as NetworkIcon, RefreshCw } from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import {
@@ -19,6 +19,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Button,
 } from '@datatr-ux/uxlib';
 import { Network, NetworkTypeEnum, Subnet } from '@/types/cloud/network';
 import { NetworkOptionValue } from '@/types/orderFunnel';
@@ -174,7 +175,20 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
         return (
           <>
             <div>
-              <Label>{t('networkInputLabel')}</Label>
+              <div className="flex items-center gap-2 mb-1">
+                <Label>{t('networkInputLabel')}</Label>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => {
+                    networkQuery.refetch();
+                    subnetQuery.refetch();
+                  }}
+                  className="h-6 w-6 p-0"
+                >
+                  <RefreshCw className="h-4 w-4" />
+                </Button>
+              </div>
               {renderNetworkSelect()}
             </div>
             {networkQuery.isFetching ||
