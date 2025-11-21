@@ -85,9 +85,7 @@ describe('DeleteStorage', () => {
   });
 
   it('calls deleteVolume when delete button is clicked and canDelete is true', () => {
-    vi.mocked(useVolume).mockReturnValue(
-      mockedVolume as ReturnType<typeof useVolume>,
-    );
+    vi.mocked(useVolume).mockReturnValue(mockedVolume);
     vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshotsEmpty);
 
     const { getByText } = renderWithMockedWrappers(<DeleteStorage />);

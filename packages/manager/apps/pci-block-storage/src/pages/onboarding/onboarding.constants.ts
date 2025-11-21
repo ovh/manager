@@ -1,5 +1,4 @@
 import { Subsidiary } from '@ovh-ux/manager-config';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
 type TGuide = Record<TGuideKey, TGuideEntry>;
 type TGuideEntry = Partial<Record<Subsidiary, string>> & {

@@ -1,5 +1,4 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
-import { Queries as TestingQueries } from '@testing-library/dom/types';
 import { PropsWithChildren, ReactElement } from 'react';
 import {
   ShellContext,

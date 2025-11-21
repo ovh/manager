@@ -19,7 +19,7 @@ const init = async (
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
@@ -43,4 +43,4 @@ const init = async (
   );
 };
 
-init('pci-block-storage');
+void init('pci-block-storage');

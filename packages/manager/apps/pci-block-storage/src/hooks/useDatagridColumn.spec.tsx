@@ -5,6 +5,17 @@ import {
   useDatagridColumn,
 } from '@/hooks/useDatagridColumn';
 import { TVolume } from '@/api/hooks/useVolume';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ReactElement } from 'react';
+import StatusComponent from '@/components/list/Status.component';
+import ActionsComponent from '@/components/list/Actions.component';
+import CapacityComponent from '@/components/list/Capacity.component';
+
+type ElementWithProps<T> = T extends (p: infer P) => JSX.Element
+  ? ReactElement<P>
+  : never;
+
+type TextCellElement = ElementWithProps<typeof DataGridTextCell>;
 
 const volumeTestData: TVolume[] = [
   {
@@ -56,15 +67,27 @@ describe('useDatagridColumn', () => {
 
     const columns = result.current;
 
-    const nameCell = columns[0]?.cell(volumeTestData[0]!);
-    const idCell = columns[1]?.cell(volumeTestData[0]!);
-    const regionNameCell = columns[2]?.cell(volumeTestData[0]!);
-    const typeCell = columns[3]?.cell(volumeTestData[0]!);
-    const sizeCell = columns[4]?.cell(volumeTestData[0]!);
-    const attachedToCell = columns[5]?.cell(volumeTestData[0]!);
-    const encryptionStatusCell = columns[6]?.cell(volumeTestData[0]!);
-    const statusCell = columns[7]?.cell(volumeTestData[0]!);
-    const actionsCell = columns[8]?.cell(volumeTestData[0]!);
+    const nameCell = columns[0]?.cell(volumeTestData[0]!) as TextCellElement;
+    const idCell = columns[1]?.cell(volumeTestData[0]!) as TextCellElement;
+    const regionNameCell = columns[2]?.cell(
+      volumeTestData[0]!,
+    ) as TextCellElement;
+    const typeCell = columns[3]?.cell(volumeTestData[0]!) as TextCellElement;
+    const sizeCell = columns[4]?.cell(volumeTestData[0]!) as ElementWithProps<
+      typeof CapacityComponent
+    >;
+    const attachedToCell = columns[5]?.cell(
+      volumeTestData[0]!,
+    ) as TextCellElement;
+    const encryptionStatusCell = columns[6]?.cell(
+      volumeTestData[0]!,
+    ) as TextCellElement;
+    const statusCell = columns[7]?.cell(volumeTestData[0]!) as ElementWithProps<
+      typeof StatusComponent
+    >;
+    const actionsCell = columns[8]?.cell(
+      volumeTestData[0]!,
+    ) as ElementWithProps<typeof ActionsComponent>;
 
     expect(nameCell?.props.children).toBe(volumeTestData[0]?.name);
     expect(idCell?.props.children).toBe(volumeTestData[0]?.id);

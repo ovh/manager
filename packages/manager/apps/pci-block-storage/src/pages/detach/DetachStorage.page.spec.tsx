@@ -6,11 +6,7 @@ import {
   OsdsSelect,
 } from '@ovhcloud/ods-components';
 import DetachStorage from '@/pages/detach/DetachStorage.page';
-import {
-  useDetachVolume,
-  useVolume,
-  UseVolumeResult,
-} from '@/api/hooks/useVolume';
+import { useDetachVolume, useVolume } from '@/api/hooks/useVolume';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { TAttachedInstance } from '@/api/select/instances';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';

@@ -12,7 +12,7 @@ export type TAPIVolume = {
   bootable: boolean;
   planCode: string;
   type: string;
-  availabilityZone: 'any' | string;
+  availabilityZone: string;
 };
 
 export type TVolumeSnapshot = {
