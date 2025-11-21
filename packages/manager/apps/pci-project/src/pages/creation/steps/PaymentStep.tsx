@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import {
   useIsStartupProgramAvailable,
   useStartupProgramAmountText,
@@ -10,6 +8,8 @@ import {
   OrderedProduct,
 } from '@/data/types/cart.type';
 import { GlobalStateStatus } from '@/types/WillPayment.type';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import WillPaymentComponent from '../components/payment/WillPayment.component';
 import StartupProgram from '../components/startup-program/StartupProgram';
 import Voucher from '../components/voucher/Voucher';

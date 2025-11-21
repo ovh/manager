@@ -32,10 +32,6 @@ export function useVoucher({
 
   const { mutate: attachConfig } = useAttachConfigurationToCartItem({
     onSuccess: (data: CartConfiguration) => {
-      trackPage({
-        pageType: PageType.bannerInfo,
-        pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_SUCCESS,
-      });
       setError(undefined);
       setVoucherConfiguration(data);
       /**
@@ -44,12 +40,6 @@ export function useVoucher({
       setSearchParams({
         ...Object.fromEntries(searchParams.entries()),
         voucher,
-      });
-    },
-    onError: () => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_ERROR,
       });
     },
   });
@@ -67,6 +57,10 @@ export function useVoucher({
     isPending,
   } = useCheckVoucherEligibility({
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerInfo,
+        pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_SUCCESS,
+      });
       attachConfig({
         cartId,
         itemId,
@@ -74,6 +68,11 @@ export function useVoucher({
       });
     },
     onError: (err: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_ERROR,
+      });
+
       const errorCodeMatch = err.message?.match(/(VOUCHER_\w+)/i);
       const errorCode = errorCodeMatch
         ? errorCodeMatch[1].toLowerCase()
