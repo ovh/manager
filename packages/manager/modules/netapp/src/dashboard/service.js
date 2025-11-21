@@ -4,16 +4,25 @@ import {
   POLLING_TYPE,
   VRACK_ORDER_URLS,
   SNAPSHOT_TYPE,
+  CONFIGURATION_GUIDE_LINKS,
 } from './constants';
 
 export default class NetAppDashboardService {
   /* @ngInject */
-  constructor($http, $q, Apiv2Service, Poller, iceberg) {
+  constructor($http, $q, Apiv2Service, Poller, iceberg, coreConfig) {
     this.Apiv2Service = Apiv2Service;
     this.$http = $http;
     this.$q = $q;
     this.Poller = Poller;
     this.iceberg = iceberg;
+    this.GUIDES_LINKS = [
+      {
+        text: 'netapp_dashboard_guide_network_configuration',
+        href:
+          CONFIGURATION_GUIDE_LINKS[coreConfig.getUser().ovhSubsidiary] ||
+          CONFIGURATION_GUIDE_LINKS.DEFAULT,
+      },
+    ];
   }
 
   /**
