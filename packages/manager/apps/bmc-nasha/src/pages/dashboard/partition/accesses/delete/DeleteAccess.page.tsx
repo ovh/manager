@@ -1,14 +1,11 @@
 import { useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, Modal, MODAL_COLOR } from '@ovh-ux/muk';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useTranslation } from 'react-i18next';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, MODAL_COLOR, Modal } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
 import { APP_NAME } from '@/Tracking.constants';
@@ -35,7 +32,7 @@ export default function DeleteAccessPage() {
       actions: [APP_NAME, 'partition', 'accesses', 'delete', 'cancel'],
     });
     // Navigate back to accesses list using relative path
-    navigate('..', { replace: true });
+    void navigate('..', { replace: true });
   };
 
   const handleConfirm = async () => {
@@ -60,7 +57,7 @@ export default function DeleteAccessPage() {
       // Navigate to task tracker if task was returned
       const taskId = result?.taskId || result?.id;
       if (taskId) {
-        navigate(`../task-tracker`, {
+        void navigate(`../task-tracker`, {
           state: {
             taskId,
             operation: 'clusterLeclercPartitionAccessDelete',
@@ -70,9 +67,9 @@ export default function DeleteAccessPage() {
         });
       } else {
         // If no task, just go back to accesses list
-        navigate('..');
+        void navigate('..');
       }
-    } catch (error) {
+    } catch {
       // Error is handled by the mutation hook
       // Keep modal open on error
     }
@@ -88,7 +85,9 @@ export default function DeleteAccessPage() {
         heading={t('partition:accesses.delete.title', 'Delete an access control (ACL)')}
         primaryButton={{
           label: t('partition:accesses.delete.submit', 'Delete access'),
-          onClick: handleConfirm,
+          onClick: () => {
+            void handleConfirm();
+          },
           loading: deleteAccessMutation.isPending,
           testId: 'delete-access-confirm',
         }}
@@ -108,4 +107,3 @@ export default function DeleteAccessPage() {
     </BaseLayout>
   );
 }
-

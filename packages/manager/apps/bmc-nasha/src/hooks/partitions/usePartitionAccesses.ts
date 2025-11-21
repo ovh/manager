@@ -34,6 +34,3 @@ export function usePartitionAccesses(serviceName: string, partitionName: string)
     retry: false,
   });
 }
-
-
-

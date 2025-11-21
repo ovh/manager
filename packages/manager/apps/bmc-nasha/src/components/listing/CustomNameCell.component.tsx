@@ -5,4 +5,3 @@ type CustomNameCellProps = {
 export default function CustomNameCell({ customName }: CustomNameCellProps) {
   return <>{customName || '-'}</>;
 }
-

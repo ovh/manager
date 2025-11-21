@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Tile } from '@ovh-ux/muk';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { Tile } from '@ovh-ux/muk';
 
-import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
+import SpaceMeter from '@/components/space-meter/SpaceMeter.component';
+import { type PreparedNasha, useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { useServiceInfo } from '@/hooks/dashboard/useServiceInfo';
-import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
 
 type MetricsProps = {
   serviceName: string;
@@ -39,14 +39,18 @@ export default function Metrics({
     },
   ]);
 
-  const creationDate = useMemo(() => {
+  const creationDate = useMemo((): string => {
     if (!serviceInfo?.creation) return '-';
-    return new Date(serviceInfo.creation).toLocaleDateString();
+    const date =
+      typeof serviceInfo.creation === 'string' ? new Date(serviceInfo.creation) : new Date();
+    return date.toLocaleDateString();
   }, [serviceInfo]);
 
-  const expirationDate = useMemo(() => {
+  const expirationDate = useMemo((): string => {
     if (!serviceInfo?.expiration) return '-';
-    return new Date(serviceInfo.expiration).toLocaleDateString();
+    const date =
+      typeof serviceInfo.expiration === 'string' ? new Date(serviceInfo.expiration) : new Date();
+    return date.toLocaleDateString();
   }, [serviceInfo]);
 
   if (!nasha) {
@@ -60,7 +64,9 @@ export default function Metrics({
           <div>
             <Tile.Item.Root>
               <Tile.Item.Term label={t('nasha:metrics.ip', 'IP')} />
-              <Tile.Item.Description>{nasha.ip || '-'}</Tile.Item.Description>
+              <Tile.Item.Description>
+                {String((nasha as PreparedNasha & { ip?: string }).ip || '-')}
+              </Tile.Item.Description>
             </Tile.Item.Root>
             <Tile.Item.Root>
               <Tile.Item.Term label={t('nasha:metrics.datacenter', 'Datacenter')} />
@@ -71,7 +77,9 @@ export default function Metrics({
               <Tile.Item.Description>
                 <SpaceMeter usage={nasha.use} large legend />
                 <p className="text-sm text-gray-600 mt-2">
-                  <em>{t('nasha:metrics.capacity_delay_text', 'Data may be delayed by a few minutes')}</em>
+                  <em>
+                    {t('nasha:metrics.capacity_delay_text', 'Data may be delayed by a few minutes')}
+                  </em>
                 </p>
               </Tile.Item.Description>
             </Tile.Item.Root>
@@ -84,17 +92,19 @@ export default function Metrics({
             <Tile.Item.Root>
               <Tile.Item.Term label={t('nasha:metrics.expiration_date', 'Expiration date')} />
               <Tile.Item.Description>
-                {expirationDate}
-                {renewUrl && (
-                  <a
-                    href={renewUrl as string}
-                    onClick={onRenewClick}
-                    target="_top"
-                    className="ml-2 text-primary hover:underline"
-                  >
-                    {t('nasha:metrics.renew', 'Renew')} →
-                  </a>
-                )}
+                <div className="flex items-center gap-2">
+                  <span>{expirationDate || '-'}</span>
+                  {renewUrl && typeof renewUrl === 'string' ? (
+                    <a
+                      href={renewUrl}
+                      onClick={onRenewClick}
+                      target="_top"
+                      className="text-primary hover:underline"
+                    >
+                      {String(t('nasha:metrics.renew', 'Renew'))} →
+                    </a>
+                  ) : null}
+                </div>
               </Tile.Item.Description>
             </Tile.Item.Root>
             <Tile.Item.Root>
@@ -103,13 +113,13 @@ export default function Metrics({
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={nasha.monitored ?? false}
+                    checked={(nasha as PreparedNasha & { monitored?: boolean }).monitored ?? false}
                     disabled={isMonitoredUpdating}
                     onChange={(e) => onMonitoredChanged?.(e.target.checked)}
                     className="w-4 h-4 cursor-pointer"
                   />
                   <span className="text-sm">
-                    {nasha.monitored
+                    {(nasha as PreparedNasha & { monitored?: boolean }).monitored
                       ? t('nasha:metrics.monitored_on', 'Usage notification is enabled')
                       : t('nasha:metrics.monitored_off', 'Usage notification is disabled')}
                   </span>
@@ -122,6 +132,3 @@ export default function Metrics({
     </div>
   );
 }
-
-
-

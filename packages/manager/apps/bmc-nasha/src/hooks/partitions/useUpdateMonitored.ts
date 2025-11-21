@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { useNotifications } from '@ovh-ux/muk';
 
 type UpdateMonitoredParams = {
   serviceName: string;
@@ -21,10 +22,10 @@ export function useUpdateMonitored() {
     },
     onSuccess: (_, variables) => {
       // Invalidate queries to refresh data
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ['nasha-detail', variables.serviceName],
       });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ['nasha-partitions', variables.serviceName],
       });
       addSuccess(
@@ -37,4 +38,3 @@ export function useUpdateMonitored() {
     },
   });
 }
-

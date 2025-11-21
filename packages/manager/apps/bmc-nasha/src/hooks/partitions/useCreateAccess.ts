@@ -25,7 +25,7 @@ type CreateAccessResponse = {
  */
 export function useCreateAccess() {
   const { t } = useTranslation(['partition']);
-  const { addNotification } = useNotifications();
+  const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
 
   return useMutation<CreateAccessResponse, Error, CreateAccessParams>({
@@ -42,30 +42,27 @@ export function useCreateAccess() {
     },
     onSuccess: (data, variables) => {
       // Invalidate accesses list to refresh data
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ['nasha-partition-accesses', variables.serviceName, variables.partitionName],
       });
 
-      addNotification({
-        id: `create-access-${variables.ip}`,
-        color: 'success',
-        message: t('partition:accesses.create.success', {
+      addSuccess(
+        t('partition:accesses.create.success', {
           ip: variables.ip,
         }),
-      });
+        true,
+      );
 
       return data;
     },
     onError: (error, variables) => {
-      addNotification({
-        id: `create-access-error-${variables.ip}`,
-        color: 'critical',
-        message: t('partition:accesses.create.error', {
+      addError(
+        t('partition:accesses.create.error', {
           ip: variables.ip,
           error: error.message,
         }),
-      });
+        true,
+      );
     },
   });
 }
-

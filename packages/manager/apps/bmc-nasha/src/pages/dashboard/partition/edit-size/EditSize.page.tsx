@@ -1,26 +1,24 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, FormField, Input, Button } from '@ovh-ux/muk';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useTranslation } from 'react-i18next';
 
-import { APP_FEATURES } from '@/App.constants';
-import { SIZE_MIN } from '@/constants/nasha.constants';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Button, FormField, FormFieldHelper, FormFieldLabel, Input } from '@ovh-ux/muk';
+
+import { APP_NAME } from '@/Tracking.constants';
+import { SIZE_MIN } from '@/constants/Nasha.constants';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitionAllocatedSize } from '@/hooks/dashboard/usePartitionAllocatedSize';
+import { useEditSizeForm } from '@/hooks/partitions/useEditSizeForm';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
-import { APP_NAME } from '@/Tracking.constants';
-
-import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
 
 export default function EditSizePage() {
-  const { serviceName, partitionName } = useParams<{ serviceName: string; partitionName: string }>();
+  const { serviceName, partitionName } = useParams<{
+    serviceName: string;
+    partitionName: string;
+  }>();
   const { t } = useTranslation(['common', 'partition']);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
@@ -31,10 +29,6 @@ export default function EditSizePage() {
   );
   const { data: nasha } = useNashaDetail(serviceName ?? '');
   const { data: partitionAllocatedSize } = usePartitionAllocatedSize(serviceName ?? '');
-
-  const [size, setSize] = useState(0);
-  const [isUpdating, setIsUpdating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   // Calculate boundaries
   const boundaries = useMemo(() => {
@@ -51,13 +45,23 @@ export default function EditSizePage() {
     return { min: minSize, max: maxSize };
   }, [nasha, partitionAllocatedSize, partition]);
 
-  useEffect(() => {
-    if (partition) {
-      // Convert bytes to GB
-      const sizeInGB = Math.floor(partition.size / (1024 * 1024 * 1024));
-      setSize(sizeInGB);
-    }
+  const initialSize = useMemo(() => {
+    if (!partition) return 0;
+    return Math.floor(partition.size / (1024 * 1024 * 1024)); // Convert bytes to GB
   }, [partition]);
+
+  const { form, handleSubmit, isSubmitting, isDirty } = useEditSizeForm({
+    serviceName,
+    partitionName,
+    initialSize,
+    boundaries,
+    onSuccess: () => {
+      void navigate('..', {
+        replace: true,
+        state: { success: t('partition:edit_size.success', 'Size updated successfully') },
+      });
+    },
+  });
 
   const handleCancel = () => {
     trackClick({
@@ -67,26 +71,10 @@ export default function EditSizePage() {
       actions: [APP_NAME, 'partition', 'edit-size', 'cancel'],
     });
     // Navigate back to partition detail using relative path
-    navigate('..', { replace: true });
+    void navigate('..', { replace: true });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!serviceName || !partitionName) return;
-
-    const sizeInBytes = size * 1024 * 1024 * 1024; // Convert GB to bytes
-
-    if (size < boundaries.min || size > boundaries.max) {
-      setError(
-        t('partition:edit_size.boundaries_error', {
-          min: boundaries.min,
-          max: boundaries.max,
-        }),
-      );
-      return;
-    }
-
+  const onSubmit = async () => {
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
@@ -94,25 +82,10 @@ export default function EditSizePage() {
       actions: [APP_NAME, 'partition', 'edit-size', 'confirm'],
     });
 
-    setIsUpdating(true);
-    setError(null);
-
     try {
-      await httpV6.put(
-        `${APP_FEATURES.listingEndpoint}/${serviceName}/partition/${partitionName}`,
-        {
-          size: sizeInBytes,
-        },
-      );
-
-      // Navigate back to partition detail with success using relative path
-      navigate('..', {
-        replace: true,
-        state: { success: t('partition:edit_size.success', 'Size updated successfully') },
-      });
-    } catch (err) {
-      setError((err as Error).message || t('partition:edit_size.error', 'An error occurred'));
-      setIsUpdating(false);
+      await handleSubmit();
+    } catch {
+      // Error handled by form
     }
   };
 
@@ -120,51 +93,60 @@ export default function EditSizePage() {
     return <div>Loading...</div>;
   }
 
-  const hasError = size < boundaries.min || size > boundaries.max;
-
   return (
     <BaseLayout
       header={{
         title: t('partition:edit_size.title', 'Edit size'),
-        description: partitionName,
       }}
     >
-      <form onSubmit={handleSubmit} className="max-w-2xl">
-        <FormField error={error || (hasError ? t('partition:edit_size.boundaries_error', { min: boundaries.min, max: boundaries.max }) : undefined)}>
-          <FormField.Label>
-            {t('partition:edit_size.label', { name: partitionName }, `Size for ${partitionName}`)}
-          </FormField.Label>
+      <div className="mb-4 text-sm text-gray-600">{partitionName}</div>
+      <form onSubmit={void handleSubmit} className="max-w-2xl">
+        <FormField>
+          <FormFieldLabel>
+            {t('partition:edit_size.label', `Size for ${partitionName}`, {
+              name: partitionName,
+            })}
+          </FormFieldLabel>
           <div className="flex items-center gap-4">
             <Input
               type="number"
-              value={size}
+              {...form.register('size', { valueAsNumber: true })}
               min={boundaries.min}
               max={boundaries.max}
               step={1}
-              onChange={(e) => setSize(Number(e.target.value))}
-              disabled={isUpdating}
+              disabled={isSubmitting}
               className="w-32"
             />
             <span className="text-gray-600">GB</span>
           </div>
-          <FormField.Helper>
-            {t('partition:edit_size.helper', {
-              min: boundaries.min,
-              max: boundaries.max,
-            }, `Size must be between ${boundaries.min} GB and ${boundaries.max} GB`)}
-          </FormField.Helper>
+          <FormFieldHelper>
+            {t(
+              'partition:edit_size.helper',
+              `Size must be between ${boundaries.min} GB and ${boundaries.max} GB`,
+              {
+                min: boundaries.min,
+                max: boundaries.max,
+              },
+            )}
+          </FormFieldHelper>
+          {form.formState.errors.size && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.size.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
         <div className="flex gap-4 mt-6">
           <Button
             type="submit"
             variant="default"
-            disabled={isUpdating || hasError || size === Math.floor(partition.size / (1024 * 1024 * 1024))}
-            isLoading={isUpdating}
+            disabled={isSubmitting || !isDirty || !form.formState.isValid}
+            loading={isSubmitting}
+            onClick={void onSubmit}
           >
             {t('partition:edit_size.confirm', 'Confirm')}
           </Button>
-          <Button type="button" variant="ghost" onClick={handleCancel} disabled={isUpdating}>
+          <Button type="button" variant="ghost" onClick={handleCancel} disabled={isSubmitting}>
             {t('partition:edit_size.cancel', 'Cancel')}
           </Button>
         </div>
@@ -172,4 +154,3 @@ export default function EditSizePage() {
     </BaseLayout>
   );
 }
-

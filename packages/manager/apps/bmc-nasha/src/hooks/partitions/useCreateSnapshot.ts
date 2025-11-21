@@ -23,7 +23,7 @@ type CreateSnapshotResponse = {
  */
 export function useCreateSnapshot() {
   const { t } = useTranslation(['partition']);
-  const { addNotification } = useNotifications();
+  const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
 
   return useMutation<CreateSnapshotResponse, Error, CreateSnapshotParams>({
@@ -36,30 +36,31 @@ export function useCreateSnapshot() {
     },
     onSuccess: (data, variables) => {
       // Invalidate snapshots list to refresh data
-      queryClient.invalidateQueries({
-        queryKey: ['nasha-partition-custom-snapshots', variables.serviceName, variables.partitionName],
+      void queryClient.invalidateQueries({
+        queryKey: [
+          'nasha-partition-custom-snapshots',
+          variables.serviceName,
+          variables.partitionName,
+        ],
       });
 
-      addNotification({
-        id: `create-snapshot-${variables.name}`,
-        color: 'success',
-        message: t('partition:snapshots.create.success', {
+      addSuccess(
+        t('partition:snapshots.create.success', {
           name: variables.name,
         }),
-      });
+        true,
+      );
 
       return data;
     },
     onError: (error, variables) => {
-      addNotification({
-        id: `create-snapshot-error-${variables.name}`,
-        color: 'critical',
-        message: t('partition:snapshots.create.error', {
+      addError(
+        t('partition:snapshots.create.error', {
           name: variables.name,
           error: error.message,
         }),
-      });
+        true,
+      );
     },
   });
 }
-

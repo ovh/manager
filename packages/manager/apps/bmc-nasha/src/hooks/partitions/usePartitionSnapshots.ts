@@ -47,6 +47,3 @@ export function usePartitionSnapshotTypes(serviceName: string, partitionName: st
     retry: false,
   });
 }
-
-
-

@@ -4,7 +4,6 @@ import { Button, Input, Modal } from '@ovh-ux/muk';
 
 import { FormField } from '@/components/form-field/FormField.component';
 import { useEditDescriptionForm } from '@/hooks/partitions/useEditDescriptionForm';
-import { withPreventDefault } from '@/lib/formHelper';
 
 const DESCRIPTION_MAX = 50;
 
@@ -37,10 +36,6 @@ export function EditDescriptionModal({
     onSuccess,
   });
 
-  const onSubmit = withPreventDefault(() => {
-    void handleSubmit();
-  });
-
   const isDirty = form.watch('description') !== currentDescription;
 
   return (
@@ -50,7 +45,7 @@ export function EditDescriptionModal({
       dismissible={true}
       heading={t('partition:edit_description.title', `Edit description for ${partitionName || ''}`)}
     >
-      <form id="editDescriptionForm" onSubmit={onSubmit} className="space-y-4">
+      <form id="editDescriptionForm" onSubmit={(e) => void handleSubmit(e)} className="space-y-4">
         <FormField
           form={form}
           name="description"

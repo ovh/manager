@@ -11,4 +11,3 @@ export function useIsCommitmentAvailable() {
 
   return features?.[FEATURE_ID] ?? false;
 }
-

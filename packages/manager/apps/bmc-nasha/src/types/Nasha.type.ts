@@ -1,4 +1,5 @@
 export type NashaService = {
+  id?: string;
   serviceName: string;
   canCreatePartition: boolean;
   customName?: string;
@@ -7,7 +8,5 @@ export type NashaService = {
   monitored: boolean;
   zpoolCapacity?: number;
   zpoolSize?: number;
+  subRows?: NashaService[];
 };
-
-
-

@@ -1,36 +1,32 @@
-import { Suspense, useMemo, useCallback } from 'react';
+import { Suspense, useCallback, useMemo } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate, Outlet } from 'react-router-dom';
 
-import { BaseLayout, Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Button, Datagrid } from '@ovh-ux/muk';
 
-import { usePartitionAccesses } from '@/hooks/partitions/usePartitionAccesses';
 import { APP_NAME } from '@/Tracking.constants';
-
-import AccessActionsCell from '@/components/partition/accesses/AccessActionsCell.component';
-
-type PartitionAccess = {
-  ip: string;
-  type: string;
-  aclDescription?: string;
-};
+import { useAccessesColumns } from '@/hooks/partitions/useAccessesColumns';
+import { usePartitionAccesses } from '@/hooks/partitions/usePartitionAccesses';
 
 export default function AccessesPage() {
-  const { serviceName, partitionName } = useParams<{ serviceName: string; partitionName: string }>();
+  const { serviceName, partitionName } = useParams<{
+    serviceName: string;
+    partitionName: string;
+  }>();
   const { t } = useTranslation(['common', 'partition']);
   const { trackClick } = useOvhTracking();
 
   // Fetch data
-  const { data: accesses, isLoading } = usePartitionAccesses(serviceName ?? '', partitionName ?? '');
-
+  const { data: accesses, isLoading } = usePartitionAccesses(
+    serviceName ?? '',
+    partitionName ?? '',
+  );
 
   const navigate = useNavigate();
+  const columns = useAccessesColumns();
 
   // Handle create access
   const handleCreateAccess = useCallback(() => {
@@ -40,48 +36,8 @@ export default function AccessesPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'accesses', 'create'],
     });
-    navigate('create');
+    void navigate('create');
   }, [trackClick, navigate]);
-
-  // Define columns using accessorKey and header as required by MUK Datagrid
-  const columns = useMemo<DatagridColumn<PartitionAccess>[]>(
-    () => [
-      {
-        accessorKey: 'ip',
-        header: 'IP',
-        cell: ({ row }) => row.original.ip,
-        isSortable: true,
-        isSearchable: true,
-        isFilterable: true,
-        enableHiding: true,
-      },
-      {
-        accessorKey: 'type',
-        header: t('partition:accesses.columns.type'),
-        cell: ({ row }) => row.original.type,
-        isSortable: true,
-        isFilterable: true,
-        enableHiding: true,
-      },
-      {
-        accessorKey: 'aclDescription',
-        header: t('partition:accesses.columns.description'),
-        cell: ({ row }) => row.original.aclDescription || '-',
-        isSortable: true,
-        isSearchable: true,
-        isFilterable: true,
-        enableHiding: true,
-      },
-      {
-        accessorKey: 'actions',
-        header: '',
-        cell: ({ row }) => <AccessActionsCell ip={row.original.ip} />,
-        isSortable: false,
-        enableHiding: false,
-      },
-    ],
-    [t],
-  );
 
   // Topbar CTA button
   const topbarCTA = useMemo(
@@ -98,20 +54,22 @@ export default function AccessesPage() {
       <BaseLayout
         header={{
           title: t('partition:accesses.title', 'Access control (ACL)'),
-          description: t('partition:accesses.description', 'Manage IP access to this partition'),
         }}
       >
+        <div className="mb-4 text-sm text-gray-600">
+          {t('partition:accesses.description', 'Manage IP access to this partition')}
+        </div>
         <Suspense fallback={<div>Loading...</div>}>
+          {}
+          {/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment */}
           <Datagrid
-            columns={columns}
-            data={Array.isArray(accesses) ? accesses : []}
+            columns={columns as any}
+            data={(Array.isArray(accesses) ? accesses : []) as any}
             totalCount={Array.isArray(accesses) ? accesses.length : 0}
             isLoading={isLoading}
             topbar={topbarCTA}
-            enableSearch
-            enableFilter
-            enableColumnVisibility
           />
+          {/* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment */}
         </Suspense>
       </BaseLayout>
       {/* Outlet for child routes (create, delete access modals) */}
@@ -119,4 +77,3 @@ export default function AccessesPage() {
     </>
   );
 }
-

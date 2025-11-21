@@ -1,26 +1,21 @@
 import { Suspense, useCallback, useMemo } from 'react';
 
-import { useParams, useNavigate, Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, Datagrid, type DatagridColumn, Button } from '@ovh-ux/muk';
+import { BaseLayout, Button, Datagrid } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/Tracking.constants';
-import SnapshotActionsCell from '@/components/partition/snapshots/SnapshotActionsCell.component';
 import {
   usePartitionCustomSnapshots,
   usePartitionSnapshotTypes,
 } from '@/hooks/partitions/usePartitionSnapshots';
+import { useSnapshotsColumns } from '@/hooks/partitions/useSnapshotsColumns';
+import { useSnapshotsRows } from '@/hooks/partitions/useSnapshotsRows';
 
 const MAX_CUSTOM_SNAPSHOT = 10;
-
-type SnapshotRow = {
-  type: string;
-  name: string;
-  isCustom: boolean;
-};
 
 export default function SnapshotsPage() {
   const { serviceName, partitionName } = useParams<{
@@ -40,33 +35,8 @@ export default function SnapshotsPage() {
   );
 
   const isLoading = isCustomSnapshotsLoading || isSnapshotTypesLoading;
-
-  // Combine snapshot types and custom snapshots into rows
-  const snapshotRows = useMemo<SnapshotRow[]>(() => {
-    const rows: SnapshotRow[] = [];
-
-    // Add snapshot types row
-    if (snapshotTypes && snapshotTypes.length > 0) {
-      rows.push({
-        type: t('partition:snapshots.types', 'Snapshot types'),
-        name: snapshotTypes.join(', ') || t('partition:snapshots.no_types', 'None'),
-        isCustom: false,
-      });
-    }
-
-    // Add custom snapshots rows
-    if (customSnapshots) {
-      customSnapshots.forEach((snapshot) => {
-        rows.push({
-          type: t('partition:snapshots.custom', 'Custom snapshot'),
-          name: snapshot,
-          isCustom: true,
-        });
-      });
-    }
-
-    return rows;
-  }, [snapshotTypes, customSnapshots, t]);
+  const snapshotRows = useSnapshotsRows({ snapshotTypes, customSnapshots });
+  const columns = useSnapshotsColumns();
 
   // Handle create snapshot
   const handleCreateSnapshot = useCallback(() => {
@@ -76,41 +46,8 @@ export default function SnapshotsPage() {
       actionType: 'action',
       actions: [APP_NAME, 'partition', 'snapshots', 'create'],
     });
-    navigate('create');
+    void navigate('create');
   }, [trackClick, navigate]);
-
-  // Define columns using accessorKey and header as required by MUK Datagrid
-  const columns = useMemo<DatagridColumn<SnapshotRow>[]>(
-    () => [
-      {
-        accessorKey: 'type',
-        header: t('partition:snapshots.columns.type'),
-        cell: ({ row }) => row.original.type,
-        isSortable: true,
-        isFilterable: true,
-        enableHiding: true,
-      },
-      {
-        accessorKey: 'name',
-        header: t('partition:snapshots.columns.name'),
-        cell: ({ row }) => row.original.name,
-        isSortable: true,
-        isSearchable: true,
-        isFilterable: true,
-        enableHiding: true,
-      },
-      {
-        accessorKey: 'actions',
-        header: '',
-        cell: ({ row }) => (
-          <SnapshotActionsCell snapshotName={row.original.name} isCustom={row.original.isCustom} />
-        ),
-        isSortable: false,
-        enableHiding: false,
-      },
-    ],
-    [t],
-  );
 
   const snapshotsCount = `${customSnapshots?.length || 0}/${MAX_CUSTOM_SNAPSHOT}`;
   const canCreateSnapshot = (customSnapshots?.length || 0) < MAX_CUSTOM_SNAPSHOT;
@@ -130,13 +67,12 @@ export default function SnapshotsPage() {
       <BaseLayout
         header={{
           title: t('partition:snapshots.title', 'Snapshot policies'),
-          description: t(
-            'partition:snapshots.description',
-            'Manage snapshot policies for this partition',
-          ),
         }}
       >
         <div className="mb-4">
+          <div className="text-sm text-gray-600 mb-4">
+            {t('partition:snapshots.description', 'Manage snapshot policies for this partition')}
+          </div>
           <p className="font-semibold mb-2">
             {t('partition:snapshots.count_title', 'Custom snapshots count')}
           </p>
@@ -146,16 +82,16 @@ export default function SnapshotsPage() {
         </div>
 
         <Suspense fallback={<div>Loading...</div>}>
+          {}
+          {/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment */}
           <Datagrid
-            columns={columns}
-            data={Array.isArray(snapshotRows) ? snapshotRows : []}
+            columns={columns as any}
+            data={(Array.isArray(snapshotRows) ? snapshotRows : []) as any}
             totalCount={Array.isArray(snapshotRows) ? snapshotRows.length : 0}
             isLoading={isLoading}
             topbar={topbarCTA}
-            enableSearch
-            enableFilter
-            enableColumnVisibility
           />
+          {/* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment */}
         </Suspense>
       </BaseLayout>
       {/* Outlet for child routes (create, delete snapshot modals) */}

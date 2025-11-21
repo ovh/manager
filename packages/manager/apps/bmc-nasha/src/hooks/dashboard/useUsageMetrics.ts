@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { NASHA_USE_SIZE_NAME } from '@/constants/nasha.constants';
+import { NASHA_USE_SIZE_NAME } from '@/constants/Nasha.constants';
 
 type Usage = {
   [key: string]: {
@@ -48,4 +48,3 @@ export function useUsageMetrics(usage?: Usage) {
 
   return { spaceLeftDisplay, usagePercentage };
 }
-

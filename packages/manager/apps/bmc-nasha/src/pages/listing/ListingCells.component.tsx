@@ -1,13 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { APP_NAME } from '@/Tracking.constants';
-import type { NashaService } from '@/types/Nasha.type';
 
 export const ServiceNameCell = ({ serviceName }: { serviceName: string }) => {
   const navigate = useNavigate();
@@ -22,17 +17,12 @@ export const ServiceNameCell = ({ serviceName }: { serviceName: string }) => {
     });
     // Navigate to dashboard using relative path from listing
     // Since listing and dashboard are sibling routes, we use relative path
-    navigate(`../dashboard/${serviceName}`);
+    void navigate(`../dashboard/${serviceName}`);
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleNavigate}
-      className="text-primary hover:underline"
-    >
+    <button type="button" onClick={handleNavigate} className="text-primary hover:underline">
       {serviceName}
     </button>
   );
 };
-

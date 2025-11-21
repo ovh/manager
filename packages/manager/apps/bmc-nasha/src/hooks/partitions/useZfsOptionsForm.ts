@@ -6,7 +6,7 @@ import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-
 
 import { APP_FEATURES } from '@/App.constants';
 import { APP_NAME } from '@/Tracking.constants';
-import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/nasha.constants';
+import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/Nasha.constants';
 import { useUpdateZfsOptions } from '@/hooks/partitions/useZfsOptions';
 import { ZFS_OPTIONS_TEMPLATES, type ZfsOptions } from '@/utils/Zfs.utils';
 

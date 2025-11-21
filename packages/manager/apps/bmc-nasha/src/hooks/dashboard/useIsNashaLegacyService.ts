@@ -18,6 +18,3 @@ export function useIsNashaLegacyService(serviceName: string) {
     return ['rbx', 'sbg', 'bhs'].includes(datacenter) && diskType === 'hdd';
   }, [nasha]);
 }
-
-
-

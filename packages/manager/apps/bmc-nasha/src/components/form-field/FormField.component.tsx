@@ -1,13 +1,14 @@
-import {
-  Controller,
-  ControllerRenderProps,
-  FieldValues,
-  Path,
-  UseFormReturn,
-} from 'react-hook-form';
 import { ReactNode } from 'react';
 
-import { FormField as MUKFormField, FormFieldError, FormFieldHelper, FormFieldLabel } from '@ovh-ux/muk';
+import { Controller } from 'react-hook-form';
+import type { ControllerRenderProps, FieldValues, Path, UseFormReturn } from 'react-hook-form';
+
+import {
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  FormField as MUKFormField,
+} from '@ovh-ux/muk';
 
 interface FormFieldProps<T extends FieldValues, K extends Path<T>> {
   form: UseFormReturn<T>;
@@ -39,5 +40,3 @@ export function FormField<T extends FieldValues, K extends Path<T>>({
     />
   );
 }
-
-

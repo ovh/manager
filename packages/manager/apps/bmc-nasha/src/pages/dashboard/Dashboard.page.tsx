@@ -15,11 +15,11 @@ import {
 import { BaseLayout, ChangelogMenu, GuideMenu, Message } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/Tracking.constants';
-import BillingTile from '@/components/BillingTile/BillingTile.component';
+import BillingTile from '@/components/billing-tile/BillingTile.component';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import ConfigurationTile from '@/components/dashboard/ConfigurationTile.component';
 import InformationTile from '@/components/dashboard/InformationTile.component';
-import { GUIDES_URL } from '@/constants/nasha.constants';
+import { GUIDES_URL } from '@/constants/Nasha.constants';
 import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions';
 import { useIsCommitmentAvailable } from '@/hooks/dashboard/useIsCommitmentAvailable';
 import { useIsNashaEolServiceBannerAvailable } from '@/hooks/dashboard/useIsNashaEolServiceBannerAvailable';
@@ -89,7 +89,7 @@ export default function DashboardPage() {
         actionType: 'navigation',
         actions: [APP_NAME, 'dashboard', tab.name],
       });
-      navigate(tab.to);
+      void navigate(tab.to);
     }
   };
 
@@ -105,7 +105,7 @@ export default function DashboardPage() {
       actions: [APP_NAME, 'dashboard', 'edit-name'],
     });
     // Navigate to edit-name route (route-based modal) - use relative path
-    navigate('edit-name');
+    void navigate('edit-name');
   };
 
   const handleCreatePartition = () => {
@@ -116,7 +116,7 @@ export default function DashboardPage() {
       actions: [APP_NAME, 'dashboard', 'create-partition'],
     });
     // Navigate to create partition route using relative path
-    navigate('partitions/create');
+    void navigate('partitions/create');
   };
 
   const handleGuideClick = () => {

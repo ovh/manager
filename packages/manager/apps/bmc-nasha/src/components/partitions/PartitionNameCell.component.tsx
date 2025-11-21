@@ -1,10 +1,11 @@
 import { memo } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { APP_NAME } from '@/Tracking.constants';
-import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/nasha.constants';
+import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/Nasha.constants';
 
 type PartitionNameCellProps = {
   partitionName: string;
@@ -21,7 +22,7 @@ function PartitionNameCell({ partitionName }: PartitionNameCellProps) {
       actionType: 'action',
       actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'show'],
     });
-    navigate(`../partition/${partitionName}`);
+    void navigate(`../partition/${partitionName}`);
   };
 
   return (

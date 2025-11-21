@@ -23,7 +23,7 @@ type DeleteSnapshotResponse = {
  */
 export function useDeleteSnapshot() {
   const { t } = useTranslation(['partition']);
-  const { addNotification } = useNotifications();
+  const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
 
   return useMutation<DeleteSnapshotResponse, Error, DeleteSnapshotParams>({
@@ -35,30 +35,31 @@ export function useDeleteSnapshot() {
     },
     onSuccess: (data, variables) => {
       // Invalidate snapshots list to refresh data
-      queryClient.invalidateQueries({
-        queryKey: ['nasha-partition-custom-snapshots', variables.serviceName, variables.partitionName],
+      void queryClient.invalidateQueries({
+        queryKey: [
+          'nasha-partition-custom-snapshots',
+          variables.serviceName,
+          variables.partitionName,
+        ],
       });
 
-      addNotification({
-        id: `delete-snapshot-${variables.customSnapshotName}`,
-        color: 'success',
-        message: t('partition:snapshots.delete.success', {
+      addSuccess(
+        t('partition:snapshots.delete.success', {
           name: variables.customSnapshotName,
         }),
-      });
+        true,
+      );
 
       return data;
     },
     onError: (error, variables) => {
-      addNotification({
-        id: `delete-snapshot-error-${variables.customSnapshotName}`,
-        color: 'critical',
-        message: t('partition:snapshots.delete.error', {
+      addError(
+        t('partition:snapshots.delete.error', {
           name: variables.customSnapshotName,
           error: error.message,
         }),
-      });
+        true,
+      );
     },
   });
 }
-

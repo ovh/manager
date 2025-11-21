@@ -10,7 +10,6 @@ import {
   FormFieldLabel,
   Radio,
   RadioGroup,
-  Select,
 } from '@ovh-ux/muk';
 
 import { type ZfsOptions, formatRecordsizeEnum, formatSyncEnum } from '@/utils/Zfs.utils';
@@ -70,16 +69,22 @@ export function ZfsOptionsForm({
   };
 
   return (
-    <form onSubmit={onSubmit} className="max-w-2xl">
+    <form
+      onSubmit={(e) => {
+        void onSubmit(e);
+      }}
+      className="max-w-2xl"
+    >
       {/* Template selection */}
       <FormField>
         <FormFieldLabel>
           {t('partition:zfs_options.template_selection_title', 'Template Selection')}
         </FormFieldLabel>
-        <Select
+        <select
           value={model.template?.name || ''}
           onChange={(e) => onTemplateChange(e.target.value)}
           disabled={isPending}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
         >
           <option value="">
             {t('partition:zfs_options.template_placeholder', 'Select a template')}
@@ -90,7 +95,7 @@ export function ZfsOptionsForm({
               {template.description ? ` - ${template.description}` : ''}
             </option>
           ))}
-        </Select>
+        </select>
       </FormField>
 
       {/* Custom options (only shown when Custom template is selected) */}
@@ -103,7 +108,7 @@ export function ZfsOptionsForm({
             </FormFieldLabel>
             <Checkbox
               checked={model.atime}
-              onChange={(e) => onAtimeChange(e.target.checked)}
+              onChange={(e) => onAtimeChange((e.target as HTMLInputElement).checked)}
               disabled={isPending}
             >
               {t('partition:zfs_options.atime_deactivate', 'Deactivate access time')}
@@ -119,17 +124,18 @@ export function ZfsOptionsForm({
           {/* Recordsize */}
           <FormField>
             <FormFieldLabel>{t('partition:zfs_options.recordsize', 'Record Size')}</FormFieldLabel>
-            <Select
+            <select
               value={model.recordsize}
               onChange={(e) => onRecordsizeChange(e.target.value)}
               disabled={isPending}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
             >
               {recordsizeEnum.map((recordsize) => (
                 <option key={recordsize.value} value={recordsize.value}>
                   {getRecordsizeLabel(recordsize)}
                 </option>
               ))}
-            </Select>
+            </select>
           </FormField>
 
           {/* Sync */}
@@ -137,30 +143,38 @@ export function ZfsOptionsForm({
             <FormFieldLabel>{t('partition:zfs_options.sync', 'Synchronization')}</FormFieldLabel>
             <RadioGroup
               value={model.sync}
-              onChange={(value) => onSyncChange(value)}
+              onChange={(e: FormEvent<HTMLDivElement>) => {
+                const target = e.currentTarget as HTMLDivElement;
+                const radio = target.querySelector(
+                  'input[type="radio"]:checked',
+                ) as HTMLInputElement;
+                if (radio?.value) onSyncChange(radio.value);
+              }}
               disabled={isPending}
             >
               {syncEnum.map((sync) => (
                 <Radio key={sync.value} value={sync.value}>
-                  <Radio.Label>
-                    {sync.label}
-                    {sync.default && (
-                      <span className="ml-2 text-sm text-gray-500">
-                        {t('partition:zfs_options.default', '(default)')}
-                      </span>
-                    )}
-                  </Radio.Label>
-                  <Radio.Description>
-                    {t(`partition:zfs_options.sync_${sync.value}_description`, sync.value)}
-                    {sync.value === 'disabled' && (
-                      <strong className="block mt-1 text-red-600">
-                        {t(
-                          'partition:zfs_options.sync_disabled_warning',
-                          'Warning: Disabling sync can lead to data loss',
-                        )}
-                      </strong>
-                    )}
-                  </Radio.Description>
+                  <div className="ml-2">
+                    <div className="font-medium">
+                      {sync.label}
+                      {sync.default && (
+                        <span className="ml-2 text-sm text-gray-500">
+                          {t('partition:zfs_options.default', '(default)')}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {t(`partition:zfs_options.sync_${sync.value}_description`, sync.value)}
+                      {sync.value === 'disabled' && (
+                        <strong className="block mt-1 text-red-600">
+                          {t(
+                            'partition:zfs_options.sync_disabled_warning',
+                            'Warning: Disabling sync can lead to data loss',
+                          )}
+                        </strong>
+                      )}
+                    </div>
+                  </div>
                 </Radio>
               ))}
             </RadioGroup>
@@ -185,4 +199,3 @@ export function ZfsOptionsForm({
     </form>
   );
 }
-

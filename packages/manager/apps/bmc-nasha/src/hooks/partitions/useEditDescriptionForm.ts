@@ -1,8 +1,9 @@
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
 
@@ -74,7 +75,8 @@ export function useEditDescriptionForm({
       onSuccess();
     } catch (err) {
       form.setError('description', {
-        message: (err as Error).message || t('partition:edit_description.error', 'An error occurred'),
+        message:
+          (err as Error).message || t('partition:edit_description.error', 'An error occurred'),
       });
     }
   });
@@ -85,5 +87,3 @@ export function useEditDescriptionForm({
     isSubmitting: form.formState.isSubmitting,
   };
 }
-
-

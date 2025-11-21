@@ -5,4 +5,3 @@ type DiskTypeCellProps = {
 export default function DiskTypeCell({ diskType }: DiskTypeCellProps) {
   return <>{diskType}</>;
 }
-

@@ -1,6 +1,15 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button, Icon, Meter, Text, Tile, Tooltip, TooltipContent, TooltipTrigger } from '@ovh-ux/muk';
+import {
+  Button,
+  Icon,
+  Meter,
+  Text,
+  Tile,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovh-ux/muk';
 
 type Usage = {
   [key: string]: {
@@ -68,14 +77,7 @@ export default function ConfigurationTile({
             {/* Meter */}
             {usage && (
               <div className="w-full">
-                <Meter
-                  value={usagePercentage}
-                  min={0}
-                  max={100}
-                  low={40}
-                  high={80}
-                  optimum={30}
-                />
+                <Meter value={usagePercentage} min={0} max={100} low={40} high={80} optimum={30} />
               </div>
             )}
 
@@ -98,4 +100,3 @@ export default function ConfigurationTile({
     </Tile.Root>
   );
 }
-

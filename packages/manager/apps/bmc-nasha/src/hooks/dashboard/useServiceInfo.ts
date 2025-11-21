@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
 
 import { APP_FEATURES } from '@/App.constants';
-import { SERVICE_TYPE } from '@/constants/nasha.constants';
+import { SERVICE_TYPE } from '@/constants/Nasha.constants';
 
 type ServiceInfo = {
   serviceId: number;
@@ -33,4 +33,3 @@ export function useServiceInfo(serviceName: string) {
     retry: false,
   });
 }
-

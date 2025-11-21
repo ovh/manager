@@ -47,4 +47,3 @@ export function useAuthorizableAccesses(serviceName: string, partitionName: stri
     retry: false,
   });
 }
-

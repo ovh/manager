@@ -22,7 +22,7 @@ type DeletePartitionResponse = {
  */
 export function useDeletePartition() {
   const { t } = useTranslation(['partitions']);
-  const { addNotification } = useNotifications();
+  const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
 
   return useMutation<DeletePartitionResponse, Error, DeletePartitionParams>({
@@ -34,30 +34,27 @@ export function useDeletePartition() {
     },
     onSuccess: (data, variables) => {
       // Invalidate partitions list to refresh data
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ['nasha-partitions', variables.serviceName],
       });
 
-      addNotification({
-        id: `delete-partition-${variables.partitionName}`,
-        color: 'success',
-        message: t('partitions:delete.success', {
+      addSuccess(
+        t('partitions:delete.success', {
           partitionName: variables.partitionName,
         }),
-      });
+        true,
+      );
 
       return data;
     },
     onError: (error, variables) => {
-      addNotification({
-        id: `delete-partition-error-${variables.partitionName}`,
-        color: 'critical',
-        message: t('partitions:delete.error', {
+      addError(
+        t('partitions:delete.error', {
           partitionName: variables.partitionName,
           error: error.message,
         }),
-      });
+        true,
+      );
     },
   });
 }
-

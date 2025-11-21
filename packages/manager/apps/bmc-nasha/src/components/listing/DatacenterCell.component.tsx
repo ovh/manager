@@ -5,4 +5,3 @@ type DatacenterCellProps = {
 export default function DatacenterCell({ datacenter }: DatacenterCellProps) {
   return <>{datacenter}</>;
 }
-

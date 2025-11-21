@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { Message } from '@ovh-ux/muk';
-import { useTask } from '@ovh-ux/manager-core-api';
+import { useTranslation } from 'react-i18next';
 
-import { APP_FEATURES } from '@/App.constants';
+import { useTask } from '@ovh-ux/manager-module-common-api';
+import { Message } from '@ovh-ux/muk';
 
 type TaskTrackerProps = {
   taskApiUrl: string;
@@ -49,7 +48,7 @@ export default function TaskTracker({
       if (goBack) {
         goBack({ success: successMessage, reload: true });
       } else {
-        navigate(-1);
+        void navigate(-1);
       }
     },
     onError: () => {
@@ -109,4 +108,3 @@ export default function TaskTracker({
     </div>
   );
 }
-

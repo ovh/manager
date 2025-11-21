@@ -8,11 +8,11 @@ import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-
 import { Button, Datagrid, type DatagridColumn } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/Tracking.constants';
-import Metrics from '@/components/Metrics/Metrics.component';
-import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
+import Metrics from '@/components/metrics/Metrics.component';
 import PartitionActionsCell from '@/components/partitions/PartitionActionsCell.component';
 import PartitionNameCell from '@/components/partitions/PartitionNameCell.component';
-import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/nasha.constants';
+import SpaceMeter from '@/components/space-meter/SpaceMeter.component';
+import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/Nasha.constants';
 import { useCanCreatePartitions } from '@/hooks/dashboard/useCanCreatePartitions';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitions } from '@/hooks/partitions/usePartitions';
@@ -97,7 +97,7 @@ export default function PartitionsListPage() {
       actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'create-partition'],
     });
     // Navigate to create partition route using relative path
-    navigate('create');
+    void navigate('create');
   }, [navigate, trackClick]);
 
   // Define columns using accessorKey and header as required by MUK Datagrid

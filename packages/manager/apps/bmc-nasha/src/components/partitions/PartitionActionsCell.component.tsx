@@ -1,4 +1,5 @@
 import { memo } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
@@ -7,7 +8,7 @@ import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-
 import { ActionMenu } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/Tracking.constants';
-import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/nasha.constants';
+import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/Nasha.constants';
 
 type PartitionActionsCellProps = {
   partitionName: string;
@@ -23,19 +24,19 @@ function PartitionActionsCell({ partitionName }: PartitionActionsCellProps) {
       // Handle other actions normally
       switch (action) {
         case 'show':
-          navigate(`../partition/${partitionName}`);
+          void navigate(`../partition/${partitionName}`);
           break;
         case 'snapshots':
-          navigate(`../partition/${partitionName}/snapshots`);
+          void navigate(`../partition/${partitionName}/snapshots`);
           break;
         case 'accesses':
-          navigate(`../partition/${partitionName}/accesses`);
+          void navigate(`../partition/${partitionName}/accesses`);
           break;
         case 'edit-size':
-          navigate(`../partition/${partitionName}/edit-size`);
+          void navigate(`../partition/${partitionName}/edit-size`);
           break;
         case 'zfs-options':
-          navigate(`${partitionName}/zfs-options`);
+          void navigate(`${partitionName}/zfs-options`);
           break;
         default:
           break;
@@ -50,7 +51,7 @@ function PartitionActionsCell({ partitionName }: PartitionActionsCellProps) {
       actionType: 'action',
       actions: [APP_NAME, PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'delete'],
     });
-    navigate(`${partitionName}/delete`);
+    void navigate(`${partitionName}/delete`);
   };
 
   return (

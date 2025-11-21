@@ -20,15 +20,15 @@ export default function RootPage() {
 
     if (isError) {
       // On error, redirect to listing as fallback
-      navigate(urls.listing, { replace: true });
+      void navigate(urls.listing, { replace: true });
       return;
     }
 
     if (data) {
       if (data.hasServices) {
-        navigate(urls.listing, { replace: true });
+        void navigate(urls.listing, { replace: true });
       } else {
-        navigate('onboarding', { replace: true });
+        void navigate('onboarding', { replace: true });
       }
     }
   }, [data, isLoading, isError, navigate]);
@@ -36,6 +36,3 @@ export default function RootPage() {
   // Show nothing while checking (or a loading spinner if desired)
   return null;
 }
-
-
-

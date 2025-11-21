@@ -1,16 +1,16 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, Button, FormField, Input, Select } from '@ovh-ux/muk';
+import { BaseLayout, Button, FormField, FormFieldHelper, FormFieldLabel, Input } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
 import { APP_NAME } from '@/Tracking.constants';
 import { useAuthorizableAccesses } from '@/hooks/partitions/useAuthorizableAccesses';
-import { useCreateAccess } from '@/hooks/partitions/useCreateAccess';
+import { useCreateAccessForm } from '@/hooks/partitions/useCreateAccessForm';
 import { usePartitionAccesses } from '@/hooks/partitions/usePartitionAccesses';
 import { usePartitionDetail } from '@/hooks/partitions/usePartitionDetail';
 
@@ -29,7 +29,6 @@ export default function CreateAccessPage() {
   const { t } = useTranslation(['partition']);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-  const createAccessMutation = useCreateAccess();
 
   // Fetch data
   const { data: partition } = usePartitionDetail(serviceName ?? '', partitionName ?? '');
@@ -39,11 +38,24 @@ export default function CreateAccessPage() {
   );
   const { data: existingAccesses } = usePartitionAccesses(serviceName ?? '', partitionName ?? '');
 
-  const [ip, setIp] = useState('');
-  const [type, setType] = useState<string>('readwrite');
-  const [description, setDescription] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const { form, handleSubmit, isSubmitting } = useCreateAccessForm({
+    serviceName,
+    partitionName,
+    onSuccess: (taskId) => {
+      if (taskId) {
+        void navigate(`../task-tracker`, {
+          state: {
+            taskId,
+            operation: 'clusterLeclercPartitionAccessAdd',
+            params: { partitionName, ip: form.getValues('ip').trim() },
+            taskApiUrl: `${APP_FEATURES.listingEndpoint}/${serviceName}/task`,
+          },
+        });
+      } else {
+        void navigate('..');
+      }
+    },
+  });
 
   // Filter out already used IPs
   const availableAccesses = useMemo(() => {
@@ -64,21 +76,6 @@ export default function CreateAccessPage() {
     return ACL_TYPE_OPTIONS.filter((opt) => opt.value === 'readwrite');
   }, [partition]);
 
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!ip.trim()) {
-      newErrors.ip = t('partition:accesses.create.errors.ip_required');
-    }
-
-    if (!type) {
-      newErrors.type = t('partition:accesses.create.errors.type_required');
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleCancel = () => {
     trackClick({
       location: PageLocation.page,
@@ -90,13 +87,7 @@ export default function CreateAccessPage() {
     void navigate('..', { replace: true });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validate() || !serviceName || !partitionName) {
-      return;
-    }
-
+  const onSubmit = async () => {
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
@@ -104,38 +95,10 @@ export default function CreateAccessPage() {
       actions: [APP_NAME, 'partition', 'accesses', 'create', 'confirm'],
     });
 
-    setIsSubmitting(true);
-    setErrors({});
-
     try {
-      const result = await createAccessMutation.mutateAsync({
-        serviceName,
-        partitionName,
-        ip: ip.trim(),
-        type,
-        aclDescription: description.trim() || undefined,
-      });
-
-      // Navigate to task tracker if task was returned
-      const taskId = result?.taskId || result?.id;
-      if (taskId) {
-        void navigate(`../task-tracker`, {
-          state: {
-            taskId,
-            operation: 'clusterLeclercPartitionAccessAdd',
-            params: { partitionName, ip: ip.trim() },
-            taskApiUrl: `${APP_FEATURES.listingEndpoint}/${serviceName}/task`,
-          },
-        });
-      } else {
-        // If no task, just go back to accesses list
-        void navigate('..');
-      }
-    } catch (err) {
-      setErrors({
-        submit: (err as Error).message || t('partition:accesses.create.errors.submit_failed'),
-      });
-      setIsSubmitting(false);
+      await handleSubmit();
+    } catch {
+      // Error handled by form
     }
   };
 
@@ -149,17 +112,15 @@ export default function CreateAccessPage() {
         'Add an IP address or range authorized to access this partition',
       )}
     >
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <FormField
-          label={t('partition:accesses.create.ip_label', 'IP or IP block')}
-          error={errors.ip}
-          required
-        >
-          <Select
-            value={ip}
-            onChange={(e) => setIp(e.target.value)}
+      <form onSubmit={void handleSubmit} className="flex flex-col gap-4">
+        <FormField>
+          <FormFieldLabel>
+            {t('partition:accesses.create.ip_label', 'IP or IP block')} *
+          </FormFieldLabel>
+          <select
+            {...form.register('ip')}
             disabled={isLoadingAuthorizable || isSubmitting}
-            placeholder={t('partition:accesses.create.ip_placeholder', 'Select an IP or IP block')}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
           >
             <option value="">
               {t('partition:accesses.create.ip_placeholder', 'Select an IP or IP block')}
@@ -169,37 +130,54 @@ export default function CreateAccessPage() {
                 {access.ip} ({access.type})
               </option>
             ))}
-          </Select>
+          </select>
+          {form.formState.errors.ip && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.ip.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
-        <FormField
-          label={t('partition:accesses.create.type_label', 'Type')}
-          error={errors.type}
-          required
-        >
-          <Select value={type} onChange={(e) => setType(e.target.value)} disabled={isSubmitting}>
+        <FormField>
+          <FormFieldLabel>{t('partition:accesses.create.type_label', 'Type')} *</FormFieldLabel>
+          <select
+            {...form.register('type')}
+            disabled={isSubmitting}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          >
             {aclTypeOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
-          </Select>
+          </select>
+          {form.formState.errors.type && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.type.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
-        <FormField
-          label={t('partition:accesses.create.description_label', 'Description (optional)')}
-          error={errors.description}
-        >
+        <FormField>
+          <FormFieldLabel>
+            {t('partition:accesses.create.description_label', 'Description (optional)')}
+          </FormFieldLabel>
           <Input
             type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            {...form.register('description')}
             disabled={isSubmitting}
             maxLength={50}
           />
+          {form.formState.errors.description && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.description.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
-        {errors.submit && <div className="text-critical">{errors.submit}</div>}
+        {form.formState.errors.root && (
+          <div className="text-critical">{form.formState.errors.root.message}</div>
+        )}
 
         <div className="flex justify-end gap-4 mt-4">
           <Button type="button" variant="ghost" onClick={handleCancel} disabled={isSubmitting}>
@@ -208,8 +186,9 @@ export default function CreateAccessPage() {
           <Button
             type="submit"
             variant="default"
-            disabled={isSubmitting || !ip || !type}
+            disabled={isSubmitting || !form.formState.isValid}
             loading={isSubmitting}
+            onClick={void onSubmit}
           >
             {t('partition:accesses.create.submit', 'Add access')}
           </Button>

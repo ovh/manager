@@ -43,6 +43,3 @@ export const GUIDES_URL = {
   TN: 'https://help.ovhcloud.com/csm/fr-public-cloud-storage-nas-get-started?id=kb_article_view&sysparm_article=KB0046704',
   SN: 'https://help.ovhcloud.com/csm/fr-public-cloud-storage-nas-get-started?id=kb_article_view&sysparm_article=KB0046704',
 } as const;
-
-
-

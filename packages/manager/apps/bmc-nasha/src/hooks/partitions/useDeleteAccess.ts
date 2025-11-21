@@ -23,7 +23,7 @@ type DeleteAccessResponse = {
  */
 export function useDeleteAccess() {
   const { t } = useTranslation(['partition']);
-  const { addNotification } = useNotifications();
+  const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
 
   return useMutation<DeleteAccessResponse, Error, DeleteAccessParams>({
@@ -35,30 +35,27 @@ export function useDeleteAccess() {
     },
     onSuccess: (data, variables) => {
       // Invalidate accesses list to refresh data
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ['nasha-partition-accesses', variables.serviceName, variables.partitionName],
       });
 
-      addNotification({
-        id: `delete-access-${variables.ip}`,
-        color: 'success',
-        message: t('partition:accesses.delete.success', {
+      addSuccess(
+        t('partition:accesses.delete.success', {
           ip: variables.ip,
         }),
-      });
+        true,
+      );
 
       return data;
     },
     onError: (error, variables) => {
-      addNotification({
-        id: `delete-access-error-${variables.ip}`,
-        color: 'critical',
-        message: t('partition:accesses.delete.error', {
+      addError(
+        t('partition:accesses.delete.error', {
           ip: variables.ip,
           error: error.message,
         }),
-      });
+        true,
+      );
     },
   });
 }
-

@@ -1,25 +1,33 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, FormField, Input, Button, Message, RadioGroup, Radio } from '@ovh-ux/muk';
+import { useTranslation } from 'react-i18next';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
+  BaseLayout,
+  Button,
+  FormField,
+  FormFieldHelper,
+  FormFieldLabel,
+  Input,
+  Message,
+  Radio,
+  RadioGroup,
+} from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { SIZE_MIN } from '@/constants/nasha.constants';
+import { APP_NAME } from '@/Tracking.constants';
+import { SIZE_MIN } from '@/constants/Nasha.constants';
 import { useNashaDetail } from '@/hooks/dashboard/useNashaDetail';
 import { usePartitionAllocatedSize } from '@/hooks/dashboard/usePartitionAllocatedSize';
+import {
+  DESCRIPTION_MAX,
+  NAME_PATTERN,
+  useCreatePartitionForm,
+} from '@/hooks/partitions/useCreatePartitionForm';
 import { usePartitions } from '@/hooks/partitions/usePartitions';
-import { APP_NAME } from '@/Tracking.constants';
-
-const NAME_PATTERN = /^[a-z0-9_-]+$/i;
-const DESCRIPTION_MAX = 50;
 
 type ProtocolOption = {
   value: string;
@@ -50,13 +58,6 @@ export default function CreatePartitionPage() {
   const { data: partitionAllocatedSize } = usePartitionAllocatedSize(serviceName ?? '');
   const { data: partitions } = usePartitions(serviceName ?? '');
 
-  const [partitionName, setPartitionName] = useState('');
-  const [size, setSize] = useState(SIZE_MIN);
-  const [description, setDescription] = useState('');
-  const [protocol, setProtocol] = useState<string>('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
   // Calculate boundaries
   const boundaries = useMemo(() => {
     if (!nasha || partitionAllocatedSize === undefined) {
@@ -75,38 +76,21 @@ export default function CreatePartitionPage() {
     [partitions],
   );
 
-  // Validate form
-  const validate = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!partitionName) {
-      newErrors.partitionName = t('partitions:create.errors.name_required');
-    } else if (!NAME_PATTERN.test(partitionName)) {
-      newErrors.partitionName = t('partitions:create.errors.name_invalid');
-    } else if (existingPartitionNames.includes(partitionName)) {
-      newErrors.partitionName = t('partitions:create.errors.name_exists');
-    }
-
-    if (!size || size < boundaries.min || size > boundaries.max) {
-      newErrors.size = t('partitions:create.errors.size_invalid', {
-        min: boundaries.min,
-        max: boundaries.max,
+  const { form, handleSubmit, isSubmitting } = useCreatePartitionForm({
+    serviceName,
+    boundaries,
+    existingPartitionNames,
+    onSuccess: (taskId) => {
+      void navigate('../task-tracker', {
+        state: {
+          taskId,
+          operation: 'create',
+          params: { partitionName: form.getValues('partitionName') },
+          taskApiUrl: `${APP_FEATURES.listingEndpoint}/${serviceName}/task`,
+        },
       });
-    }
-
-    if (description.length > DESCRIPTION_MAX) {
-      newErrors.description = t('partitions:create.errors.description_max', {
-        max: DESCRIPTION_MAX,
-      });
-    }
-
-    if (!protocol) {
-      newErrors.protocol = t('partitions:create.errors.protocol_required');
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    },
+  });
 
   const handleCancel = () => {
     trackClick({
@@ -116,16 +100,11 @@ export default function CreatePartitionPage() {
       actions: [APP_NAME, 'partitions', 'create', 'cancel'],
     });
     // Navigate back to partitions list using relative path
-    navigate('..', { replace: true });
+    void navigate('..', { replace: true });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validate() || !serviceName || !nasha) {
-      return;
-    }
-
+  const onSubmit = async () => {
+    const protocol = form.getValues('protocol');
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
@@ -133,36 +112,10 @@ export default function CreatePartitionPage() {
       actions: [APP_NAME, 'partitions', 'create', `confirm_${protocol}`],
     });
 
-    setIsSubmitting(true);
-    setErrors({});
-
     try {
-      const sizeInBytes = size * 1024 * 1024 * 1024; // Convert GB to bytes
-
-      const response = await httpV6.post<{ taskId: number }>(
-        `${APP_FEATURES.listingEndpoint}/${serviceName}/partition`,
-        {
-          partitionName: partitionName.trim(),
-          size: sizeInBytes,
-          partitionDescription: description.trim() || undefined,
-          protocol,
-        },
-      );
-
-      // Navigate to task tracker using relative path
-      navigate('../task-tracker', {
-        state: {
-          taskId: response.data.taskId,
-          operation: 'create',
-          params: { partitionName },
-          taskApiUrl: `${APP_FEATURES.listingEndpoint}/${serviceName}/task`,
-        },
-      });
-    } catch (err) {
-      setErrors({
-        submit: (err as Error).message || t('partitions:create.errors.submit_failed'),
-      });
-      setIsSubmitting(false);
+      await handleSubmit();
+    } catch {
+      // Error handled by form
     }
   };
 
@@ -177,7 +130,6 @@ export default function CreatePartitionPage() {
       <BaseLayout
         header={{
           title: t('partitions:create.title'),
-          description: serviceName,
         }}
       >
         <Message color="critical" title={t('partitions:create.errors.max_reached')}>
@@ -196,92 +148,101 @@ export default function CreatePartitionPage() {
     <BaseLayout
       header={{
         title: t('partitions:create.title'),
-        description: serviceName,
       }}
     >
-      <form onSubmit={handleSubmit} className="max-w-2xl">
-        <FormField error={errors.partitionName}>
-          <FormField.Label required>
-            {t('partitions:create.name')}
-          </FormField.Label>
+      <div className="mb-4 text-sm text-gray-600">{serviceName}</div>
+      <form onSubmit={void handleSubmit} className="max-w-2xl">
+        <FormField>
+          <FormFieldLabel>{t('partitions:create.name')}</FormFieldLabel>
           <Input
             type="text"
-            value={partitionName}
-            onChange={(e) => setPartitionName(e.target.value)}
+            {...form.register('partitionName')}
             disabled={isSubmitting}
             required
             pattern={NAME_PATTERN.source}
           />
-          <FormField.Helper>
-            {t('partitions:create.name_rules')}
-          </FormField.Helper>
+          <FormFieldHelper>{t('partitions:create.name_rules')}</FormFieldHelper>
+          {form.formState.errors.partitionName && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.partitionName.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
-        <FormField error={errors.size} className="mt-4">
-          <FormField.Label required>
-            {t('partitions:create.size')}
-          </FormField.Label>
+        <FormField className="mt-4">
+          <FormFieldLabel>{t('partitions:create.size')}</FormFieldLabel>
           <div className="flex items-center gap-4">
             <Input
               type="number"
-              value={size}
+              {...form.register('size', { valueAsNumber: true })}
               min={boundaries.min}
               max={boundaries.max}
               step={1}
-              onChange={(e) => setSize(Number(e.target.value))}
               disabled={isSubmitting}
               className="w-32"
               required
             />
             <span className="text-gray-600">GB</span>
           </div>
-          <FormField.Helper>
+          <FormFieldHelper>
             {t('partitions:create.size_rules', {
               min: boundaries.min,
               max: boundaries.max,
             })}
-          </FormField.Helper>
+          </FormFieldHelper>
+          {form.formState.errors.size && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.size.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
-        <FormField error={errors.description} className="mt-4">
-          <FormField.Label>
-            {t('partitions:create.description')}
-          </FormField.Label>
+        <FormField className="mt-4">
+          <FormFieldLabel>{t('partitions:create.description')}</FormFieldLabel>
           <Input
             type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            {...form.register('description')}
             maxLength={DESCRIPTION_MAX}
             disabled={isSubmitting}
           />
-          <FormField.Helper>
+          <FormFieldHelper>
             {t('partitions:create.description_rules', { max: DESCRIPTION_MAX })}
-          </FormField.Helper>
+          </FormFieldHelper>
+          {form.formState.errors.description && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.description.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
-        <FormField error={errors.protocol} className="mt-4">
-          <FormField.Label required>
-            {t('partitions:create.protocol')}
-          </FormField.Label>
+        <FormField className="mt-4">
+          <FormFieldLabel>{t('partitions:create.protocol')}</FormFieldLabel>
           <RadioGroup
-            value={protocol}
-            onValueChange={setProtocol}
+            {...form.register('protocol')}
+            value={form.watch('protocol')}
+            onValueChange={(detail: { value?: string | null } | string) => {
+              const value = typeof detail === 'string' ? detail : detail.value || '';
+              form.setValue('protocol', value, { shouldValidate: true });
+            }}
             disabled={isSubmitting}
           >
             {PROTOCOL_OPTIONS.map((opt) => (
               <div key={opt.value} className="mb-2">
-                <Radio value={opt.value} name="protocol">
-                  {opt.label}
-                </Radio>
+                <Radio value={opt.value}>{opt.label}</Radio>
                 <p className="text-sm text-gray-600 ml-6">{opt.description}</p>
               </div>
             ))}
           </RadioGroup>
+          {form.formState.errors.protocol && (
+            <FormFieldHelper className="text-red-600">
+              {form.formState.errors.protocol.message}
+            </FormFieldHelper>
+          )}
         </FormField>
 
-        {errors.submit && (
+        {form.formState.errors.root && (
           <Message color="critical" className="mt-4">
-            {errors.submit}
+            {form.formState.errors.root.message}
           </Message>
         )}
 
@@ -289,8 +250,9 @@ export default function CreatePartitionPage() {
           <Button
             type="submit"
             variant="default"
-            disabled={isSubmitting || !partitionName || !protocol || size < boundaries.min || size > boundaries.max}
-            isLoading={isSubmitting}
+            disabled={isSubmitting || !form.formState.isValid}
+            loading={isSubmitting}
+            onClick={void onSubmit}
           >
             {t('partitions:create.submit')}
           </Button>
@@ -302,4 +264,3 @@ export default function CreatePartitionPage() {
     </BaseLayout>
   );
 }
-

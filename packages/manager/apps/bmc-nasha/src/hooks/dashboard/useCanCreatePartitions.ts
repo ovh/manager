@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
-import { SIZE_MIN } from '@/constants/nasha.constants';
+import { SIZE_MIN } from '@/constants/Nasha.constants';
+
 import { useNashaDetail } from './useNashaDetail';
 import { usePartitionAllocatedSize } from './usePartitionAllocatedSize';
 
@@ -27,6 +28,3 @@ export function useCanCreatePartitions(serviceName: string) {
     isLoading: !nasha || partitionAllocatedSize === undefined,
   };
 }
-
-
-

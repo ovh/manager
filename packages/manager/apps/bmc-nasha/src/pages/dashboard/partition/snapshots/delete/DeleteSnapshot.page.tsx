@@ -1,18 +1,15 @@
 import { useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { BaseLayout, Modal, MODAL_COLOR } from '@ovh-ux/muk';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useTranslation } from 'react-i18next';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, MODAL_COLOR, Modal } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { useDeleteSnapshot } from '@/hooks/partitions/useDeleteSnapshot';
 import { APP_NAME } from '@/Tracking.constants';
+import { useDeleteSnapshot } from '@/hooks/partitions/useDeleteSnapshot';
 
 export default function DeleteSnapshotPage() {
   const { serviceName, partitionName, customSnapshotName } = useParams<{
@@ -35,7 +32,7 @@ export default function DeleteSnapshotPage() {
       actions: [APP_NAME, 'partition', 'snapshots', 'delete', 'cancel'],
     });
     // Navigate back to snapshots list using relative path
-    navigate('..', { replace: true });
+    void navigate('..', { replace: true });
   };
 
   const handleConfirm = async () => {
@@ -60,7 +57,7 @@ export default function DeleteSnapshotPage() {
       // Navigate to task tracker if task was returned
       const taskId = result?.taskId || result?.id;
       if (taskId) {
-        navigate(`../task-tracker`, {
+        void navigate(`../task-tracker`, {
           state: {
             taskId,
             operation: 'clusterLeclercCustomSnapDelete',
@@ -73,7 +70,7 @@ export default function DeleteSnapshotPage() {
         });
       } else {
         // If no task, just go back to snapshots list
-        navigate('..');
+        void navigate('..');
       }
     } catch (error) {
       // Error is handled by the mutation hook
@@ -91,7 +88,9 @@ export default function DeleteSnapshotPage() {
         heading={t('partition:snapshots.delete.title', 'Delete a snapshot')}
         primaryButton={{
           label: t('partition:snapshots.delete.submit', 'Delete snapshot'),
-          onClick: handleConfirm,
+          onClick: () => {
+            void handleConfirm();
+          },
           loading: deleteSnapshotMutation.isPending,
           testId: 'delete-snapshot-confirm',
         }}
@@ -111,4 +110,3 @@ export default function DeleteSnapshotPage() {
     </BaseLayout>
   );
 }
-

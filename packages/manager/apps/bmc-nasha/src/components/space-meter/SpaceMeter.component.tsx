@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ProgressBar, Text } from '@ovh-ux/muk';
+import { Text } from '@ovh-ux/muk';
 
 type Usage = {
   [key: string]: {
@@ -80,10 +80,7 @@ function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterProps) {
       {/* Space Left Display */}
       {spaceLeft && (
         <div className="mb-4">
-          <Text
-            preset="body"
-            className={`text-sm ${large ? 'font-semibold' : ''}`}
-          >
+          <Text preset="paragraph" className={`text-sm ${large ? 'font-semibold' : ''}`}>
             {spaceLeft.used.value} {spaceLeft.used.unit} / {spaceLeft.total.value}{' '}
             {spaceLeft.total.unit} ({spaceLeft.ratio}%)
           </Text>
@@ -95,7 +92,7 @@ function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterProps) {
         {/* Legend */}
         {legend && usageItems.length > 0 && (
           <div>
-            <Text preset="body" className="text-sm font-semibold mb-2">
+            <Text preset="paragraph" className="text-sm font-semibold mb-2">
               {t('dashboard:configuration.usage', 'Usage')}
             </Text>
             <ul className="space-y-1">

@@ -16,11 +16,7 @@ type InformationTileProps = {
   onEditName: () => void;
 };
 
-export default function InformationTile({
-  nasha,
-  displayName,
-  onEditName,
-}: InformationTileProps) {
+export default function InformationTile({ nasha, displayName, onEditName }: InformationTileProps) {
   const { t } = useTranslation(['dashboard']);
 
   if (!nasha || !displayName) {
@@ -65,4 +61,3 @@ export default function InformationTile({
     </Tile.Root>
   );
 }
-

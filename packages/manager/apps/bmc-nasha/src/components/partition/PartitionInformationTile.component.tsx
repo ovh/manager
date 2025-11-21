@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Icon, Tile } from '@ovh-ux/muk';
 
-import SpaceMeter from '@/components/SpaceMeter/SpaceMeter.component';
+import SpaceMeter from '@/components/space-meter/SpaceMeter.component';
 
 type PartitionUse = {
   [key: string]: {

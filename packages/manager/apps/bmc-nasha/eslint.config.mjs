@@ -5,6 +5,7 @@ export default [
   {
     rules: {
       'check-file/no-index': 'off',
+      'max-lines-per-function': ['error', { max: 100 }],
     },
   },
 ];

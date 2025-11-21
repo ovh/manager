@@ -1,12 +1,16 @@
+/* eslint-disable import/no-nodejs-modules */
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import {
-  createConfig, 
-	defaultDedupedDependencies,
+  createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
 } from '@ovh-ux/manager-tests-setup';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default mergeConfig(
   sharedConfig,
@@ -28,9 +32,9 @@ export default mergeConfig(
         ],
       },
     },
-    resolve: { dedupe: [...defaultDedupedDependencies], 
+    resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
-        // eslint-disable-next-line no-undef
         '@': path.resolve(__dirname, 'src'),
       },
     },

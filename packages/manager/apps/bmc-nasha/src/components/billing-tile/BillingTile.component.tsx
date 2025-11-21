@@ -1,10 +1,9 @@
-import { useMemo } from 'react';
+import { type ReactElement, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Icon, Link, Skeleton, Tile } from '@ovh-ux/muk';
-import { useFormatDate } from '@ovh-ux/muk';
 import { useNavigationGetUrl, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Icon, Link, Skeleton, Tile, useFormatDate } from '@ovh-ux/muk';
 
 type ServiceInfo = {
   creation?: string;
@@ -32,7 +31,7 @@ type BillingTileProps = {
 export default function BillingTile({
   serviceInfo,
   isLoading,
-  serviceName,
+  // serviceName, // Unused parameter
   withEngagement = false,
   trackingPrefix,
   trackingPage,
@@ -43,11 +42,7 @@ export default function BillingTile({
   const { trackClick } = useOvhTracking();
 
   // Get billing URLs
-  const { data: billingUrl } = useNavigationGetUrl([
-    'dedicated',
-    '#/billing/history',
-    {},
-  ]);
+  const { data: billingUrl } = useNavigationGetUrl(['dedicated', '#/billing/history', {}]);
 
   const { data: commitmentUrl } = useNavigationGetUrl([
     'dedicated',
@@ -65,54 +60,50 @@ export default function BillingTile({
   const formattedCreationDate = useMemo(() => {
     if (!serviceInfo?.creation) return '-';
     return formatDate({ date: serviceInfo.creation, format: 'PP' });
-  }, [serviceInfo?.creation, formatDate]);
+  }, [serviceInfo, formatDate]);
 
   // Format expiration date
   const formattedExpirationDate = useMemo(() => {
     if (!serviceInfo?.expiration) return '-';
     return formatDate({ date: serviceInfo.expiration, format: 'PP' });
-  }, [serviceInfo?.expiration, formatDate]);
+  }, [serviceInfo, formatDate]);
 
   // Get renewal status
-  const renewalStatus = useMemo(() => {
+  const renewalStatus = useMemo((): string | null => {
     if (!serviceInfo) return null;
 
     const isAutomatic = serviceInfo.renew?.automatic;
     const period = serviceInfo.renew?.period;
 
     if (isAutomatic && period) {
-      return t('dashboard:billing.renewal.automatic', {
-        period,
-        defaultValue: `Automatic renewal every ${period} month${period > 1 ? 's' : ''}`,
-      });
+      return String(
+        t('dashboard:billing.renewal.automatic', {
+          period,
+          defaultValue: `Automatic renewal every ${period} month${period > 1 ? 's' : ''}`,
+        }),
+      );
     }
 
     if (isAutomatic) {
-      return t('dashboard:billing.renewal.automatic_generic', {
-        defaultValue: 'Automatic renewal',
-      });
+      return String(
+        t('dashboard:billing.renewal.automatic_generic', {
+          defaultValue: 'Automatic renewal',
+        }),
+      );
     }
 
-    return t('dashboard:billing.renewal.manual', {
-      defaultValue: 'Manual renewal',
-    });
+    return String(
+      t('dashboard:billing.renewal.manual', {
+        defaultValue: 'Manual renewal',
+      }),
+    );
   }, [serviceInfo, t]);
 
   // Get service status
-  const serviceStatus = useMemo(() => {
+  const serviceStatus = useMemo((): string => {
     if (!serviceInfo?.status) return '-';
-    return serviceInfo.status;
-  }, [serviceInfo?.status]);
-
-  // Check if should re-engage (engagement expires in less than 3 months)
-  const shouldReengage = useMemo(() => {
-    if (!serviceInfo?.engagedUpTo) return false;
-    const engagedUpTo = new Date(serviceInfo.engagedUpTo);
-    const now = new Date();
-    const monthsDiff =
-      (engagedUpTo.getTime() - now.getTime()) / (1000 * 60 * 60 * 24 * 30);
-    return monthsDiff < 3;
-  }, [serviceInfo?.engagedUpTo]);
+    return String(serviceInfo.status);
+  }, [serviceInfo]);
 
   // Track action
   const trackAction = (action: string, hasActionInEvent = true) => {
@@ -134,13 +125,13 @@ export default function BillingTile({
         <Tile.Item.Root>
           <Tile.Item.Term label={t('dashboard:billing.creation', 'Creation date')} />
           <Tile.Item.Description>
-            <Skeleton size="s" />
+            <Skeleton />
           </Tile.Item.Description>
         </Tile.Item.Root>
         <Tile.Item.Root>
           <Tile.Item.Term label={t('dashboard:billing.status', 'Status')} />
           <Tile.Item.Description>
-            <Skeleton size="s" />
+            <Skeleton />
           </Tile.Item.Description>
         </Tile.Item.Root>
       </Tile.Root>
@@ -148,7 +139,8 @@ export default function BillingTile({
   }
 
   return (
-    <Tile.Root title={t('dashboard:billing.title', 'Billing')}>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <Tile.Root title={t('dashboard:billing.title', 'Billing') as any}>
       {/* Creation Date */}
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard:billing.creation', 'Creation date')} />
@@ -156,59 +148,71 @@ export default function BillingTile({
       </Tile.Item.Root>
 
       {/* Status */}
-      <Tile.Item.Root>
-        <Tile.Item.Term label={t('dashboard:billing.status', 'Status')} />
-        <Tile.Item.Description>
-          <div className="flex flex-col gap-1">
-            <span>{serviceStatus}</span>
-            {renewalStatus && (
-              <span className="text-sm text-gray-600">{renewalStatus}</span>
-            )}
-          </div>
-        </Tile.Item.Description>
-      </Tile.Item.Root>
-
-      {/* Engagement */}
-      {withEngagement && (
+      {serviceStatus || renewalStatus ? (
         <Tile.Item.Root>
-          <Tile.Item.Term
-            label={t('billing:engagement.title', 'Engagement', { ns: 'billing' })}
-          />
+          <Tile.Item.Term label={String(t('dashboard:billing.status', 'Status'))} />
           <Tile.Item.Description>
-            {!serviceInfo?.engagedUpTo ? (
-              <span className="text-sm">
-                {t('billing:engagement.none', 'No engagement', { ns: 'billing' })}
-              </span>
-            ) : (
-              <div className="flex flex-col gap-2">
-                <span className="text-sm">
-                  {t('billing:engagement.active', 'Active until {{date}}', {
-                    date: formatDate({
-                      date: serviceInfo.engagedUpTo,
-                      format: 'PP',
-                    }),
-                    ns: 'billing',
-                  })}
-                </span>
-                {commitmentUrl && (
-                  <Link
-                    href={commitmentUrl as string}
-                    target="_top"
-                    className="text-primary hover:underline flex items-center gap-1 text-sm"
-                    onClick={() => trackAction('go-to-manage-commitment', false)}
-                  >
-                    {t('billing:engagement.manage', 'Manage engagement', { ns: 'billing' })}
-                    <Icon name="arrow-right" />
-                  </Link>
-                )}
-              </div>
-            )}
+            <div className="flex flex-col gap-1">
+              <span>{String(serviceStatus)}</span>
+              {renewalStatus ? (
+                <span className="text-sm text-gray-600">{String(renewalStatus)}</span>
+              ) : null}
+            </div>
           </Tile.Item.Description>
         </Tile.Item.Root>
-      )}
+      ) : null}
+
+      {/* Engagement */}
+      {}
+      {
+        (withEngagement && serviceInfo ? (
+          <Tile.Item.Root>
+            <Tile.Item.Term
+              label={String(t('billing:engagement.title', 'Engagement', { ns: 'billing' }))}
+            />
+            <Tile.Item.Description>
+              {!serviceInfo.engagedUpTo ? (
+                <span className="text-sm">
+                  {String(t('billing:engagement.none', 'No engagement', { ns: 'billing' }))}
+                </span>
+              ) : (
+                <div className="flex flex-col gap-2">
+                  <span className="text-sm">
+                    {String(
+                      t('billing:engagement.active', 'Active until {{date}}', {
+                        date: formatDate({
+                          date: serviceInfo.engagedUpTo,
+                          format: 'PP',
+                        }),
+                        ns: 'billing',
+                      }),
+                    )}
+                  </span>
+                  {commitmentUrl && typeof commitmentUrl === 'string' ? (
+                    <Link
+                      href={commitmentUrl}
+                      target="_top"
+                      className="text-primary hover:underline flex items-center gap-1 text-sm"
+                      onClick={() => trackAction('go-to-manage-commitment', false)}
+                    >
+                      <span className="flex items-center gap-1">
+                        {String(
+                          t('billing:engagement.manage', 'Manage engagement', { ns: 'billing' }),
+                        )}
+                        <Icon name="arrow-right" />
+                      </span>
+                    </Link>
+                  ) : null}
+                </div>
+              )}
+            </Tile.Item.Description>
+          </Tile.Item.Root>
+        ) : null) as any
+      }
 
       {/* Autorenew Configuration */}
       {autorenewUrl &&
+        typeof autorenewUrl === 'string' &&
         serviceInfo?.renew &&
         !serviceInfo.renew.automatic &&
         serviceInfo.status !== 'expired' && (
@@ -220,11 +224,13 @@ export default function BillingTile({
               <Link
                 href={`${autorenewUrl}/update?serviceId=${serviceInfo.serviceId}`}
                 target="_top"
-                className="text-primary hover:underline flex items-center gap-1 text-sm"
+                className="text-primary hover:underline"
                 onClick={() => trackAction('renew', true)}
               >
-                {t('billing:autorenew.configure', 'Configure renewal', { ns: 'billing' })}
-                <Icon name="arrow-right" />
+                <span className="flex items-center gap-1">
+                  {String(t('billing:autorenew.configure', 'Configure renewal', { ns: 'billing' }))}
+                  <Icon name="arrow-right" />
+                </span>
               </Link>
             </Tile.Item.Description>
           </Tile.Item.Root>
@@ -250,7 +256,7 @@ export default function BillingTile({
               target="_top"
               className="text-primary hover:underline"
             >
-              {t('dashboard:billing.view_billing', 'View billing')} →
+              <span>{String(t('dashboard:billing.view_billing', 'View billing'))} →</span>
             </Link>
           </Tile.Item.Description>
         </Tile.Item.Root>
@@ -258,4 +264,3 @@ export default function BillingTile({
     </Tile.Root>
   );
 }
-
