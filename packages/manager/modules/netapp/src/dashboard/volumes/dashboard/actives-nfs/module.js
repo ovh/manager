@@ -9,9 +9,7 @@ import 'angular-translate';
 import component from './component';
 import routing from './routing';
 
-import './index.scss';
-
-const moduleName = 'ovhManagerNetAppVolumesDashboardAcl';
+const moduleName = 'ovhManagerNetAppVolumesDashboardActivesNFS';
 
 angular
   .module(moduleName, [

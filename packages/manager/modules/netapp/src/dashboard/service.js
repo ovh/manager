@@ -15,12 +15,14 @@ import {
 
 export default class NetAppDashboardService {
   /* @ngInject */
-  constructor($http, $q, Apiv2Service, Poller, iceberg) {
+  constructor($http, $q, Apiv2Service, Poller, iceberg, coreConfig) {
     this.Apiv2Service = Apiv2Service;
     this.$http = $http;
     this.$q = $q;
     this.Poller = Poller;
     this.iceberg = iceberg;
+    this.coreConfig = coreConfig;
+    this.activesNFS = [];
   }
 
   /**
@@ -283,32 +285,41 @@ export default class NetAppDashboardService {
               return val ? parseInt(val, 10).toLocaleString() : '0';
             };
 
-            const isActiveNFSLimitTouched =
-              activesNFS.length > ACTIVES_NFS_LIMITE;
+            this.activesNFS = activesNFS.map(
+              ({
+                metric: { client_ip: clientIp, protocol },
+                value: minutes,
+              }) => {
+                const language = this.coreConfig
+                  .getUserLocale()
+                  .replace('_', '-');
+                const lastConnection = new Intl.DateTimeFormat(language, {
+                  dateStyle: 'short',
+                  timeStyle: 'short',
+                })
+                  .format(new Date() - minutes[1] * 1000)
+                  .replace(' ', ' - ');
 
-            const activesNFSToDisplay = isActiveNFSLimitTouched
-              ? activesNFS.slice(0, ACTIVES_NFS_LIMITE)
-              : activesNFS;
+                return {
+                  clientIp,
+                  protocol,
+                  lastConnection,
+                };
+              },
+            );
+
             return {
               maxFiles: parseValue(maxFiles),
               usedFiles: parseValue(usedFiles),
-              isActiveNFSLimitTouched,
-              activesNFS:
-                activesNFSToDisplay.length &&
-                activesNFSToDisplay.map(
-                  ({ metric: { client_ip: clientIp, protocol }, value }) => ({
-                    clientIp,
-                    protocol,
-                    lastConnection: value[1],
-                  }),
-                ),
+              activesNFSLimite: ACTIVES_NFS_LIMITE,
+              activesNFS: this.activesNFS,
             };
           })
           .catch(() => ({
             maxFiles: '0',
             usedFiles: '0',
-            isActiveNFSLimitTouched: false,
-            activesNFS: null,
+            activesNFSLimite: ACTIVES_NFS_LIMITE,
+            activesNFS: [],
           }));
       });
   }
