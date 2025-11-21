@@ -2,8 +2,10 @@ import { TilesInput, useBytes } from '@ovh-ux/manager-pci-common';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
+import { putPreselectedModelFirst } from '@/api/select/catalog';
 
 type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   volumeModels: T[];
@@ -12,6 +14,7 @@ type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   label: string;
   locked?: boolean;
   horizontal?: boolean;
+  hideBadges?: boolean;
 };
 
 export const VolumeModelTilesInput = ({
@@ -21,6 +24,7 @@ export const VolumeModelTilesInput = ({
   label = '',
   locked = false,
   horizontal = false,
+  hideBadges = false,
 }: Props) => {
   const { t } = useTranslation(['add', 'common']);
   const { formatBytes } = useBytes();
@@ -71,31 +75,26 @@ export const VolumeModelTilesInput = ({
 
   const volumeTypes = useMemo(
     () =>
-      volumeModels.map((m) => ({
-        ...m,
-        label: m.displayName,
-        description: getDescription(m),
-        badges: [
-          m.encrypted
-            ? {
+      putPreselectedModelFirst(volumeModels).map((model) => ({
+        ...model,
+        label: model.displayName,
+        description: getDescription(model),
+        badges: hideBadges
+          ? []
+          : [
+              {
                 label: t(
-                  'common:pci_projects_project_storages_blocks_encryption_available',
+                  `common:pci_projects_project_storages_blocks_encryption_${
+                    model.encrypted ? 'available' : 'unavailable'
+                  }`,
                 ),
-                backgroundColor: '#D2F2C2',
-                textColor: '#113300',
-                icon: 'lock' as const,
-              }
-            : {
-                label: t(
-                  'common:pci_projects_project_storages_blocks_encryption_unavailable',
-                ),
-                backgroundColor: '#FFCCD9',
-                textColor: '#4D000D',
+                backgroundColor: model.encrypted ? '#D2F2C2' : '#FFCCD9',
+                textColor: model.encrypted ? '#113300' : '#4D000D',
                 icon: 'lock' as const,
               },
-        ],
-        features: getFeatures(m),
-        price: m.hourlyPrice,
+            ],
+        features: getFeatures(model),
+        price: model.hourlyPrice,
       })),
     [volumeModels, t, getDescription, getFeatures],
   );
@@ -111,9 +110,10 @@ export const VolumeModelTilesInput = ({
         horizontal && '[&_.config-card\\_\\_badges]:w-full whitespace-pre-line',
       )}
     >
+      <Text preset={TEXT_PRESET.heading5}>{label}</Text>
       <TilesInput
         name="volume-type"
-        label={label}
+        label=""
         value={volumeTypeValue}
         elements={volumeTypes}
         onChange={(e) => onChange(e)}

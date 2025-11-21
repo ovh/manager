@@ -1,31 +1,10 @@
-import { render, within } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { describe, vi } from 'vitest';
 import { userEvent } from '@testing-library/user-event';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { Retype } from '@/pages/retype/Retype.component';
-import { EncryptionType } from '@/api/select/volume';
-
-vi.mock('@/api/hooks/useCatalog', () => ({
-  useVolumeEncryptions: () => ({
-    data: [
-      {
-        type: null,
-        label: 'common:pci_projects_project_storages_blocks_status_NONE',
-      },
-      {
-        type: EncryptionType.OMK,
-        label: 'OVHcloud Managed Key',
-      },
-      {
-        type: EncryptionType.CMK,
-        label: 'Customer Managed Key',
-        comingSoon: true,
-      },
-    ],
-  }),
-}));
 
 const getSelectedCatalogOption = (encrypted = false) =>
   ({
