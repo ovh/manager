@@ -92,5 +92,9 @@
   "pci_instance_creation_select_sshKey_add_key_done": "La tua chiave SSH verrà creata al termine del processo di configurazione.",
   "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Grazie per aver scelto un nome diverso, questo è già in uso.",
   "pci_instance_creation_select_image_distribution_version_label": "Versione dell'immagine",
-  "pci_instance_creation_select_image_distribution_version_unavailable": "Versione non disponibile"
+  "pci_instance_creation_select_image_distribution_version_unavailable": "Versione non disponibile",
+  "pci_instance_creation_network_setting_title": "Impostazioni di rete",
+  "pci_instance_creation_network_private_network_setting_title": "Rete privata",
+  "pci_instance_creation_network_private_network_setting_description": "Le istanze sono collegate in rete privata. Per l'accesso a Internet o SSH è necessario un Floating IP, un Gateway o un SSH-Proxy.",
+  "pci_instance_creation_network_setting_help_title": "Comprendere i parametri di rete"
 }
