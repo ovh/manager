@@ -22,13 +22,7 @@ export default class TerminateServiceCtrl {
     this.loading = true;
     return this.confirmTermination(this.service)
       .then(() => this.BillingTerminate.answerForm(this.service, this.model))
-      .then(() =>
-        this.goBack
-          ? this.goBack(true)
-          : this.Alerter.success(
-              this.$translate.instant('billing_confirm_termination_success'),
-            ),
-      )
+      .then(() => this.goBack(true))
       .catch((error) =>
         this.Alerter.error(
           this.$translate.instant('billing_confirm_termination_error', {

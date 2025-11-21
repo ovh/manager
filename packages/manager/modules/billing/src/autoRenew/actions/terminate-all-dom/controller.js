@@ -102,7 +102,7 @@ export default class {
           });
         });
     } else {
-      this.goBack();
+      this.goToAutorenew();
     }
   }
 
@@ -130,7 +130,11 @@ export default class {
   }
 
   onSuccess() {
-    this.goBack(this.$translate.instant('autorenew_all_dom_terminate_success'));
+    this.goToAutorenew(
+      this.$translate.instant('autorenew_all_dom_terminate_success'),
+      'success',
+      true,
+    );
   }
 
   onPartialSuccess(errors) {
@@ -140,11 +144,11 @@ export default class {
         (message) => `<strong>${message.id}</strong>: ${message.message}`,
       ),
     ];
-    this.goBack(messages.join('</br>'), 'danger');
+    this.goToAutorenew(messages.join('</br>'), 'danger');
   }
 
   onError(error) {
-    this.goBack(
+    this.goToAutorenew(
       this.$translate.instant('autorenew_all_dom_terminate_error', {
         message: error.data?.message || error.message,
       }),

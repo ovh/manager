@@ -3,7 +3,7 @@ import template from './terminate-webcoach.html';
 
 export default {
   bindings: {
-    goBack: '<',
+    goToAutorenew: '<',
     terminateWebCoach: '<',
   },
   controller,

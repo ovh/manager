@@ -43,6 +43,20 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           });
       },
       resolve: {
+        goBack: /* @ngInject */ ($state, $translate, Alerter) => (
+          isSuccess = false,
+        ) =>
+          $state
+            .go('billing.autorenew.services', {
+              refresh: isSuccess,
+            })
+            .then(() => {
+              if (isSuccess) {
+                Alerter.success(
+                  $translate.instant('billing_confirm_termination_success'),
+                );
+              }
+            }),
         confirmTermination: /* @ngInject */ (
           BillingTerminate,
           service,
@@ -68,6 +82,20 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       url: '/confirmTerminate?id&token',
       component: 'billingConfirmTermination',
       resolve: {
+        goBack: /* @ngInject */ ($state, $translate, Alerter) => (
+          isSuccess = false,
+        ) =>
+          $state
+            .go('billing.autorenew.services', {
+              refresh: isSuccess,
+            })
+            .then(() => {
+              if (isSuccess) {
+                Alerter.success(
+                  $translate.instant('billing_confirm_termination_success'),
+                );
+              }
+            }),
         confirmTermination: /* @ngInject */ (
           BillingTerminate,
           service,

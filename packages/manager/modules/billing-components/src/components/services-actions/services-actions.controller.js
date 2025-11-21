@@ -276,6 +276,7 @@ export default class ServicesActionsCtrl {
       this.BillingService.getPendingEngagement(this.service.id)
         .then(() => {
           this.service.hasPendingEngagement = true;
+          this.canDisplayCancelCommitmentMenuEntry = this.service.hasPendingEngagement;
         })
         .catch(() => {
           this.service.hasPendingEngagement = false;

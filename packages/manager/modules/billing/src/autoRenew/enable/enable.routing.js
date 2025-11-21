@@ -13,7 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'billingAutorenewEnable',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       servicesId: /* @ngInject */ ($transition$) =>
         $transition$.params().services.split(','),
       servicesList: /* @ngInject */ (
