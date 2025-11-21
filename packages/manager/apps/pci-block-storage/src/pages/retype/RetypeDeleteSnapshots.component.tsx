@@ -3,7 +3,6 @@ import { FC, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Link } from '@ovhcloud/ods-react';
-import { useForm } from 'react-hook-form';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { TVolumeSnapshot } from '@/api/data/snapshot';
@@ -48,8 +47,11 @@ export const RetypeDeleteSnapshots: FC<RetypeDeleteSnapshotsProps> = ({
 
   return (
     <RetypeConfirmActionForm
+      label={t(
+        'pci_projects_project_storages_blocks_retype_delete_snapshots_label',
+      )}
       warningMessage={t(
-        'retype:pci_projects_project_storages_blocks_retype_delete_snapshots',
+        'retype:pci_projects_project_storages_blocks_retype_delete_snapshots_warning',
       )}
       confirmWord="DELETE"
       errorElement={

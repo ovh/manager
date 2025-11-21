@@ -10,12 +10,14 @@ import {
   MessageIcon,
   Skeleton,
   Text,
+  TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 import { BaseRetypeForm } from './BaseRetypeForm.component';
 
 type RetypeConfirmActionFormProps = {
+  label: string;
   warningMessage: string;
   confirmWord: string;
   errorElement: React.ReactElement;
@@ -26,6 +28,7 @@ type RetypeConfirmActionFormProps = {
 };
 
 export const RetypeConfirmActionForm: FC<RetypeConfirmActionFormProps> = ({
+  label,
   warningMessage,
   confirmWord,
   errorElement,
@@ -77,6 +80,7 @@ export const RetypeConfirmActionForm: FC<RetypeConfirmActionFormProps> = ({
         )}
         {!isPending && !isError && (
           <>
+            <Text preset={TEXT_PRESET.heading5}>{label}</Text>
             <Message
               color={MESSAGE_COLOR.warning}
               dismissible={false}
@@ -86,12 +90,12 @@ export const RetypeConfirmActionForm: FC<RetypeConfirmActionFormProps> = ({
               <MessageBody>{warningMessage}</MessageBody>
             </Message>
             <label className="flex flex-col gap-4">
-              <span>
+              <Text preset={TEXT_PRESET.label}>
                 {t(
                   'retype:pci_projects_project_storages_blocks_retype_confirm_action_label',
                   { confirmWord },
                 )}
-              </span>
+              </Text>
               <Input
                 {...register('confirmation', {
                   required: true,
