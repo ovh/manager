@@ -31,7 +31,7 @@ const HamburgerMenu = React.lazy(() => import('./HamburgerMenu'));
 
 function Navbar(): JSX.Element {
   const shell = useShell();
-  const { universe, setUniverse } = useContainer();
+  const { isReady, universe, setUniverse } = useContainer();
   const { getUniverses, getHubUniverse } = useUniverses();
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
@@ -122,7 +122,7 @@ function Navbar(): JSX.Element {
               }}
             ></LanguageMenu>
           </div>
-          {cloudShellAvailability?.['cloud-shell'] && (
+          {isReady && cloudShellAvailability?.['cloud-shell'] && (
           <div className="oui-navbar-list__item">
             <CloudShellLink />
           </div>
