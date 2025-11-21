@@ -1,5 +1,7 @@
 {
   "manageOrganisationsTabDescription": "Mes organisations",
+  "manageOrganisationsPageDescription": "Cette page permet de configurer les informations organisationnelles qui seront associées à vos adresses de blocs IP supplémentaires pour la personnalisation des enregistrements WHOIS.",
+  "manageOrganisationsPageHowto": "Une organisation IP ARIN ou RIPE particulière peut ensuite être configurée en sélectionnant \"Configurer les informations du bloc IP\" dans le menu de n'importe quel bloc IP sur la liste principale des IP.",
   "manageOrganisationsOrderButtonLabel": "Ajouter une organisation",
   "manageOrganisationsTabOrganisaton": "Organisation",
   "manageOrganisationsTabType": "Type",
