@@ -24,7 +24,7 @@ import {
 } from '@datatr-ux/uxlib';
 import { StorageLockConfigurationRule } from '@datatr-ux/ovhcloud-types/cloud/index';
 import { AlertCircle } from 'lucide-react';
-import RouteSheet from './RouteSheet';
+import RouteSheet from '@/components/route-sheet/RouteSheet.component';
 import storages from '@/types/Storages';
 import { useGetS3 } from '@/data/hooks/s3-storage/useGetS3.hook';
 import { useUpdateS3 } from '@/data/hooks/s3-storage/useUpdateS3.hook';
@@ -311,7 +311,7 @@ const ObjectLockOptions = () => {
                 onValueChange={handleDurationUnitChange}
                 disabled={!objectLockData.rule}
               >
-                <SelectTrigger className="grow">
+                <SelectTrigger className="flex-1">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
