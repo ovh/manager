@@ -1,6 +1,7 @@
 ---
 title: Manager React Shell Client
-last_update: 2025-01-27
+version: 0.9.3
+last_update: 2025-11-21
 tags: [shell, client, react, tracking, navigation, ovhcloud, manager]
 ai: true
 ---

@@ -1,6 +1,7 @@
 ---
 title: Tailwind CSS
-last_update: 2025-01-27
+version: 3.4.4
+last_update: 2025-11-21
 tags: [tailwind, css, styling, ovhcloud, manager, muk, responsive, utilities]
 ai: true
 ---
@@ -8,6 +9,7 @@ ai: true
 # Tailwind CSS
 
 > **📦 Version:** `tailwindcss@^3.4.4` + `@ovh-ux/manager-tailwind-config@^0.5.5`
+> **📚 Official Documentation:** https://v3.tailwindcss.com/docs (v3) | https://tailwindcss.com/docs (v4)
 
 ## 🧭 Purpose
 

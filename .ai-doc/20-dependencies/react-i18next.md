@@ -1,13 +1,15 @@
 ---
 title: React i18next
-last_update: 2025-01-27
+version: 16.2.4
+last_update: 2025-11-21
 tags: [i18n, internationalization, react-i18next, i18next, ovhcloud, manager, translations]
 ai: true
 ---
 
 # React i18next
 
-> **📦 Version:** `react-i18next@^14.0.5` + `i18next@^23.8.2`
+> **📦 Version:** `react-i18next@^16.2.4` + `i18next@^23.8.2`
+> **📚 Official Documentation:** https://react.i18next.com
 
 ## 🧭 Purpose
 
@@ -37,6 +39,17 @@ This package is essential for:
 - [Manager React Core Application](./manager-react-core-application.md)
 - [Common Translations](../10-architecture/common-translations.md)
 - [React i18next Documentation](https://react.i18next.com/)
+- [i18next Core Documentation](https://www.i18next.com/)
+
+## ⚡ React i18next v16 Changes
+
+**Major Update:** react-i18next v16 requires **React 18+** for TypeScript users. For JavaScript users, v16 is functionally equivalent to v15.1.4.
+
+**Key v16 Features:**
+- Enhanced React Compiler and React.memo compatibility with i18n wrapper
+- Improved Trans component stability and rendering
+- Better TypeScript type definitions
+- Fixed issues with special characters in Trans component
 
 ## 📘 Guidelines / Implementation
 
@@ -45,7 +58,7 @@ This package is essential for:
 ```json
 {
   "dependencies": {
-    "react-i18next": "^14.0.5",
+    "react-i18next": "^16.2.4",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.3"
   }
@@ -258,18 +271,6 @@ function UserComponent({ user }: { user: User }) {
 }
 ```
 
-#### Translation with Interpolation
-
-```json
-// public/translations/fr_FR/common.json
-{
-  "welcome_user": "Bienvenue {{name}}",
-  "user_info": "Email: {{email}}, Rôle: {{role}}",
-  "item_count": "{{count}} élément(s)",
-  "item_count_plural": "{{count}} éléments"
-}
-```
-
 #### Pluralization
 
 ```typescript
@@ -286,18 +287,6 @@ function ItemList({ items }: { items: Item[] }) {
       ))}
     </div>
   );
-}
-```
-
-#### Pluralization with Translation
-
-```json
-// public/translations/fr_FR/common.json
-{
-  "item_count": "{{count}} élément",
-  "item_count_plural": "{{count}} éléments",
-  "service_status": "{{count}} service actif",
-  "service_status_plural": "{{count}} services actifs"
 }
 ```
 
@@ -365,16 +354,6 @@ function HTMLComponent() {
       }} />
     </div>
   );
-}
-```
-
-#### Translation with HTML
-
-```json
-// public/translations/fr_FR/common.json
-{
-  "html_title": "Titre avec <strong>HTML</strong>",
-  "html_content": "Contenu avec <em>formatage</em> et <a href=\"#\">liens</a>"
 }
 ```
 
@@ -699,86 +678,29 @@ return <h1>{t('welcome_user', { name: user.name })}</h1>;
 return <h1>{t('welcome')} {user.name}</h1>;
 ```
 
-### Common Pitfalls
+### Common Pitfalls & Best Practices
 
-#### ❌ Wrong: Missing Namespace
+**❌ Avoid:**
+- Missing namespace specification → Use `useTranslation('namespace')`
+- Hardcoded strings → Always use `t('key')`
+- String concatenation → Use interpolation `t('key', { param })`
+- Forgetting pluralization → Use proper plural forms
 
-```typescript
-// Don't forget to specify namespace
-function DashboardComponent() {
-  const { t } = useTranslation(); // Missing namespace
-  return <h1>{t('title')}</h1>; // Will look in default namespace
-}
-```
-
-#### ✅ Correct: Specify Namespace
-
-```typescript
-function DashboardComponent() {
-  const { t } = useTranslation('dashboard');
-  return <h1>{t('title')}</h1>; // Will look in dashboard namespace
-}
-```
-
-#### ❌ Wrong: Hardcoded Strings
-
-```typescript
-// Don't use hardcoded strings
-function Component() {
-  return <h1>Welcome</h1>; // Not translatable
-}
-```
-
-#### ✅ Correct: Use Translations
-
-```typescript
-function Component() {
-  const { t } = useTranslation();
-  return <h1>{t('welcome')}</h1>; // Translatable
-}
-```
+**✅ Always:**
+- Specify namespaces for non-default translations
+- Use hierarchical key structure (`actions.save` not `action_save`)
+- Implement shell integration for locale management
+- Handle missing translations gracefully
 
 ---
 
 ## 🤖 AI Development Guidelines
 
-### Essential Rules for AI Code Generation
+**Essential Rules:** Always use useTranslation hook • Specify namespaces • Use interpolation for dynamic content • Implement fallbacks • Follow hierarchical key structure • Test translations
 
-1. **Always use useTranslation**: Use the useTranslation hook for all text content
-2. **Specify namespaces**: Always specify the appropriate namespace for translations
-3. **Use interpolation**: Use interpolation for dynamic content instead of string concatenation
-4. **Handle missing translations**: Implement fallbacks for missing translation keys
-5. **Use proper key structure**: Follow hierarchical key structure for organization
-6. **Implement locale switching**: Provide locale switching functionality
-7. **Test translations**: Include translation testing in component tests
-8. **Follow naming conventions**: Use consistent naming for translation keys
+**Setup:** [ ] i18n config [ ] Namespaces defined [ ] Translation files [ ] Shell integration [ ] Locale switching [ ] Error handling
 
-### Translation Setup Checklist
-
-- [ ] i18n configuration completed
-- [ ] Namespaces defined and organized
-- [ ] Translation files created for all locales
-- [ ] Shell integration implemented
-- [ ] Locale switching configured
-- [ ] Error handling implemented
-- [ ] Testing setup completed
-
-### Translation Usage Checklist
-
-- [ ] useTranslation hook used consistently
-- [ ] Namespaces specified correctly
-- [ ] Interpolation used for dynamic content
-- [ ] Pluralization handled properly
-- [ ] HTML content escaped correctly
-- [ ] Missing translations handled gracefully
-
-### Performance Optimization Checklist
-
-- [ ] Lazy loading implemented for namespaces
-- [ ] Preloading configured for critical namespaces
-- [ ] Caching enabled for translation files
-- [ ] Bundle size optimized
-- [ ] Memory usage monitored
+**Usage:** [ ] useTranslation used [ ] Namespaces specified [ ] Interpolation/pluralization [ ] HTML escaping
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: OVHcloud Design System (ODS) React Components
+version: 17.2.2
 last_update: 2025-10-16
 tags: [ods, design-system, ui, ovhcloud, react, components, documentation]
 ai: true

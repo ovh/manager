@@ -1,6 +1,7 @@
 ---
 title: Manager UI Kit (MUK)
-last_update: 2025-01-27
+version: 0.5.0
+last_update: 2025-11-21
 tags: [muk, manager, ui-kit, components, ovhcloud, react, ods]
 ai: true
 ---
@@ -604,7 +605,14 @@ import {
 ### Datagrid TypeScript Interface
 
 ```typescript
-interface DatagridProps<T> {
+// Your data type must include these optional properties for Datagrid compatibility
+type MyDataType = {
+  id?: string;          // Required for ExpandableRow compatibility
+  subRows?: MyDataType[];  // Required for expandable rows feature
+  // ... your other properties
+};
+
+interface DatagridProps<T extends ExpandableRow<T>> {
   columns: DatagridColumn<T>[];
   data: T[];
   totalCount: number;  // NOT totalItems
@@ -617,6 +625,32 @@ interface DatagridProps<T> {
   variant?: string;    // 🔄 Coming soon
   size?: string;       // 🔄 Coming soon
 }
+```
+
+**⚠️ Important:** 
+- Your data type must include `id?: string` and `subRows?: T[]` properties to be compatible with `ExpandableRow<T>`
+- Do NOT explicitly specify the type parameter on the component (e.g., `<Datagrid<T>>`) - let TypeScript infer it automatically
+- The type inference works best when you provide properly typed `columns` and `data` props
+
+**✅ Good:**
+```typescript
+type Service = {
+  id?: string;
+  serviceName: string;
+  status: string;
+  subRows?: Service[];
+};
+
+const columns: DatagridColumn<Service>[] = [/* ... */];
+const data: Service[] = [/* ... */];
+
+<Datagrid columns={columns} data={data} />  // Type inferred automatically
+```
+
+**❌ Bad:**
+```typescript
+<Datagrid<Service> columns={columns} data={data} />  // Don't specify type explicitly
+<Datagrid columns={columns as any} data={data as any} />  // Don't use 'as any'
 ```
 
 ### Button Variants

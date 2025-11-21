@@ -1,6 +1,7 @@
 ---
 title: Manager React Core Application
-last_update: 2025-01-27
+version: 0.12.8
+last_update: 2025-11-21
 tags: [core, application, react, ovhcloud, manager, hooks, routing, tracking]
 ai: true
 ---
