@@ -32,5 +32,8 @@
   "server_display_without-engagement": "ohne Vertragsbindung",
   "server_display_renew-automatic": "automatisch",
   "server_display_renew-manual": "manuell",
-  "server_display_vrack": "vRack"
+  "server_display_vrack": "vRack",
+  "guide_first_step_label": "Erste Schritte mit einem Dedicated Server",
+  "guide_secure_label": "Einen Dedicated Server absichern",
+  "guide_ssh_connections_label": "Erste Schritte mit SSH-Verbindungen"
 }

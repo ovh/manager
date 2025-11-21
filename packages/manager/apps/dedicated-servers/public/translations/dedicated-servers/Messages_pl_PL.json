@@ -32,5 +32,8 @@
   "server_display_without-engagement": "bez umowy terminowej",
   "server_display_renew-automatic": "automatycznie",
   "server_display_renew-manual": "ręcznie",
-  "server_display_vrack": "vRack"
+  "server_display_vrack": "vRack",
+  "guide_first_step_label": "Pierwsze kroki z serwerem dedykowanym",
+  "guide_secure_label": "Bezpieczeństwo serwera dedykowanego",
+  "guide_ssh_connections_label": "Jak rozpocząć korzystanie z połączeń SSH"
 }
