@@ -103,6 +103,11 @@ export default function Actions({
         id: 0,
         label: t('pci_projects_project_pay_bill'),
         href: billingHref,
+        onClick: () =>
+          trackClick({
+            actionType: 'action',
+            actions: PROJECTS_TRACKING.LISTING.PAY_BILL,
+          }),
       });
     }
 

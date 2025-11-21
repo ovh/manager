@@ -11,8 +11,10 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { CartConfiguration } from '@/data/types/cart.type';
 import { useVoucher } from '../../hooks/useVoucher';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type VoucherProps = {
   cartId: string;
@@ -32,6 +34,8 @@ export default function Voucher({
   initialVoucher,
 }: VoucherProps) {
   const { t } = useTranslation('new/voucher');
+
+  const { trackClick } = useOvhTracking();
 
   const {
     voucher,
@@ -62,7 +66,13 @@ export default function Voucher({
           />
         </OdsFormField>
         <OdsButton
-          onClick={() => checkEligibility(voucher)}
+          onClick={() => {
+            trackClick({
+              actionType: 'action',
+              actions: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER,
+            });
+            checkEligibility(voucher);
+          }}
           type="submit"
           color={ODS_BUTTON_COLOR.primary}
           variant={ODS_BUTTON_VARIANT.default}

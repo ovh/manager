@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { PROJECT_TABS } from '@/constants/tabs.constant';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 export type ProjectTabWithFullPath = {
   name: string;

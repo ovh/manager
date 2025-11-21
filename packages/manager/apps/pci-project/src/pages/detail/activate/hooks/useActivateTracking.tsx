@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import {
+  PageType,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
@@ -11,6 +12,7 @@ export const useActivateTracking = () => {
 
   const trackActivateError = () => {
     trackPage({
+      pageType: PageType.bannerError,
       pageName: PROJECTS_TRACKING.ACTIVATE.ERROR_PAGE,
     });
   };

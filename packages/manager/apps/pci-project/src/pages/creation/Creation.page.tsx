@@ -4,7 +4,10 @@ import {
   OvhSubsidiary,
   StepComponent,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useCallback, useContext, useEffect, useState } from 'react';
@@ -25,6 +28,7 @@ import { Step, useStepper } from './hooks/useStepper';
 import { useWillPayment } from './hooks/useWillPayment';
 import ConfigStep from './steps/ConfigStep';
 import PaymentStep from './steps/PaymentStep';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
@@ -40,6 +44,8 @@ export default function ProjectCreation() {
   const user = environment.getUser();
   const ovhSubsidiary = user.ovhSubsidiary as OvhSubsidiary;
   const [hasInitialCart] = useState<boolean>(!!searchParams.get('cartId'));
+
+  const { trackClick } = useOvhTracking();
 
   const {
     mutate: createAndAssignCart,
@@ -161,8 +167,6 @@ export default function ProjectCreation() {
     );
   };
 
-  const handleCancel = useCallback(() => navigate('..'), [navigate]);
-
   const handlePaymentSubmit = useCallback(() => {
     if (needsSave && !isCreditPayment) {
       // Need to save the payment method first
@@ -240,12 +244,24 @@ export default function ProjectCreation() {
               : undefined
           }
           next={{
-            action: handleConfigNext,
+            action: () => {
+              trackClick({
+                actionType: 'action',
+                actions: PROJECTS_TRACKING.CREATION.CONFIG_STEP.CTA_NEXT,
+              });
+              handleConfigNext();
+            },
             label: t('next', { ns: NAMESPACES.ACTIONS }),
             isDisabled: !isConfigFormValid(),
           }}
           skip={{
-            action: handleCancel,
+            action: () => {
+              trackClick({
+                actionType: 'action',
+                actions: PROJECTS_TRACKING.CREATION.CONFIG_STEP.CTA_BACK,
+              });
+              navigate('..');
+            },
             label: t('cancel', { ns: NAMESPACES.ACTIONS }),
           }}
         >
@@ -276,13 +292,25 @@ export default function ProjectCreation() {
               : undefined
           }
           next={{
-            action: handlePaymentSubmit,
+            action: () => {
+              trackClick({
+                actionType: 'action',
+                actions: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.CTA_NEXT,
+              });
+              handlePaymentSubmit();
+            },
             label: paymentStepNextButton,
             isDisabled: !canSubmit,
             isLoading: isSubmitting,
           }}
           skip={{
-            action: handleCancel,
+            action: () => {
+              trackClick({
+                actionType: 'action',
+                actions: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.CTA_BACK,
+              });
+              navigate('..');
+            },
             label: t('cancel', { ns: NAMESPACES.ACTIONS }),
           }}
         >
@@ -306,7 +334,13 @@ export default function ProjectCreation() {
               ns: 'payment/credit',
             })}
             next={{
-              action: handleCreditAndPay,
+              action: () => {
+                trackClick({
+                  actionType: 'action',
+                  actions: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.CTA_NEXT,
+                });
+                handleCreditAndPay();
+              },
               label: t('pci_project_new_payment_credit_credit_and_pay', {
                 ns: 'payment/credit',
               }),
@@ -314,7 +348,13 @@ export default function ProjectCreation() {
               isLoading: isSubmitting,
             }}
             skip={{
-              action: handleCancel,
+              action: () => {
+                trackClick({
+                  actionType: 'action',
+                  actions: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.CTA_BACK,
+                });
+                navigate('..');
+              },
               label: t('cancel', { ns: NAMESPACES.ACTIONS }),
             }}
           >

@@ -4,6 +4,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import { useCallback, useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useGetCartSummary } from '@/data/hooks/useCart';
 import HdsOption from '@/components/hds-option/HdsOption';
 import Contracts from '@/components/contracts/Contracts';
@@ -13,11 +14,14 @@ import {
   usePrepareHdsCart,
 } from './useHds';
 import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 export default function HdsSection({ project }: { project: TProject }) {
   const { t } = useTranslation('hds');
 
   const { addSuccess, addError } = useNotifications();
+
+  const { trackClick, trackPage } = useOvhTracking();
 
   const [isHDSChecked, setIsHDSChecked] = useState(false);
   const [isContractsChecked, setIsContractsChecked] = useState(false);
@@ -58,6 +62,11 @@ export default function HdsSection({ project }: { project: TProject }) {
   } = useGetCartSummary(cart?.cartId);
 
   const handleHdsChecked = useCallback((isChecked: boolean) => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.CTA_UPDATE_HDS,
+    });
+
     setIsHDSChecked(isChecked);
     setIsContractsChecked(false);
   }, []);
@@ -69,6 +78,12 @@ export default function HdsSection({ project }: { project: TProject }) {
     onSuccess: () => {
       setIsHdsCertifiedProject(true);
       setIsContractsChecked(false);
+
+      trackPage({
+        pageType: PageType.bannerInfo,
+        pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_SUCCESS,
+      });
+
       addSuccess(
         <Translation ns="hds">
           {(_t) =>
@@ -80,6 +95,11 @@ export default function HdsSection({ project }: { project: TProject }) {
       );
     },
     onError: (error: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_ERROR,
+      });
+
       addError(
         <Translation ns="hds">
           {(_t) =>
