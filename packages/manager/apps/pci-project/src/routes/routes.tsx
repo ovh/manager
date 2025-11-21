@@ -103,6 +103,8 @@ export default (
             tracking: {
               pageName: PROJECTS_TRACKING.PROJECT_HOME.PAGE_NAME,
               pageType: PageType.onboarding,
+              chapter3: 'project-detail',
+              appName: 'project-detail',
             },
           }}
         />
@@ -112,7 +114,9 @@ export default (
           handle={{
             tracking: {
               pageName: PROJECTS_TRACKING.SETTINGS.PAGE_NAME,
-              pageType: PageType.dashboard,
+              pageType: PageType.funnel,
+              chapter3: 'project-detail',
+              appName: 'project-detail',
             },
           }}
         >
@@ -155,7 +159,9 @@ export default (
       handle={{
         tracking: {
           pageName: PROJECTS_TRACKING.CREATION.PAGE_NAME,
-          pageType: PageType.dashboard,
+          pageType: PageType.funnel,
+          chapter3: 'project-creation',
+          appName: 'project-creation',
         },
       }}
     />

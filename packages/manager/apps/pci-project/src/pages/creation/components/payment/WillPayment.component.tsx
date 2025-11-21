@@ -1,5 +1,8 @@
 import { Suspense, useContext, useEffect, useRef } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { GlobalStateStatus } from '@/types/WillPayment.type';
 import { useWillPaymentConfig } from '../../hooks/useWillPaymentConfig';
@@ -22,9 +25,22 @@ function WillPaymentComponent({
     shell: { navigation },
   } = useContext(ShellContext);
 
+  const { trackClick } = useOvhTracking();
+
   const config = useWillPaymentConfig({ onPaymentStatusChange });
 
   const onEditDefaultPaymentMethod = () => {
+    trackClick({
+      actionType: 'action',
+      actions: [
+        'project-creation',
+        'funnel',
+        'external-link',
+        'create_project',
+        'select_payment',
+        'change-default',
+      ],
+    });
     navigation.navigateTo('dedicated', '#/billing/payment/method', {});
   };
 
