@@ -1,7 +1,7 @@
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import { getButtonByLabel, labels } from '@/test-utils';
-import { catalogDedicatedServerList } from '../../../../../mocks/catalog/dedicated-server-catalog';
+import { catalogDedicatedServerList } from '@/__mocks__/catalog/dedicated-server-catalog';
 
 export const VALID_INPUT_VALUES = {
   ip: '23::',

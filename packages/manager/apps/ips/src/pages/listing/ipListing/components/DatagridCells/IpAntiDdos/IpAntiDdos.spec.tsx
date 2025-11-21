@@ -4,7 +4,7 @@ import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { ListingContext } from '@/pages/listing/listingContext';
-import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpAntiDdos, IpAntiDdosProps } from './IpAntiDdos';
 import { IpMitigationStateEnum, IpMitigationType } from '@/data/api';
 import { getOdsBadgeByLabel } from '@/test-utils';
