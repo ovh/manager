@@ -169,8 +169,8 @@ export default class ResourceSelectController {
    * @param {Object} value
    */
   onResourcesChanged(value) {
+    this.onModelChanged();
     if (this.onChange) {
-      this.onModelChanged();
       this.onChange({ change: { type: 'resources', value } });
     }
   }
@@ -205,8 +205,10 @@ export default class ResourceSelectController {
    * @param {string|Array|undefined} value
    */
   onResourceTypesChanged(value) {
-    if (value && this.onChange) {
+    if (value) {
       this.onModelChanged();
+    }
+    if (value && this.onChange) {
       this.onChange({ change: { type: 'resourceTypes', value } });
     }
     this.computeURLResource();
