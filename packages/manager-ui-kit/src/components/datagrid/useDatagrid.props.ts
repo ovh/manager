@@ -15,7 +15,7 @@ export type UseDatagridTableProps<T extends ExpandableRow<T>> = {
   columns: readonly DatagridColumn<T>[];
   columnVisibility?: VisibilityState;
   data: T[];
-  expandable?: ExpandedProps;
+  expandable?: ExpandedProps<T>;
   manualSorting?: boolean;
   onSortChange?: (sorting: ColumnSort[]) => void;
   renderSubComponent?: (

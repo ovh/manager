@@ -1,0 +1,7 @@
+{
+  "title": "Wybierz parametry konta",
+  "description": "Masz już konto? <Link label=\"Connectez-vous\"></Link>",
+  "country_setting": "Kraj rezydencji podatkowej",
+  "currency_setting": "Waluta",
+  "site_setting": "Strona WWW (język)"
+}

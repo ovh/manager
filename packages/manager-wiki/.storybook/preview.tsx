@@ -3,6 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { Preview } from '@storybook/react';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import './storybook.css';
 import '@ovh-ux/muk/dist/style.css';
 
@@ -163,8 +164,32 @@ const withI18next = (story, context) => {
   );
 };
 
+const withShellContext = (Story) => {
+  const mockShellContext: ShellContextType = {
+    shell: {
+      tracking: {
+        trackPage: () => {},
+        trackClick: () => {},
+      },
+    } as any,
+    environment: {
+      getRegion: () => 'EU',
+    } as any,
+    tracking: {
+      appName: 'test-app',
+      chapter1: 'test-chapter',
+    },
+  };
+
+  return (
+    <ShellContext.Provider value={mockShellContext}>
+      <Story />
+    </ShellContext.Provider>
+  );
+};
+
 // export decorators for storybook to wrap your stories in
-export const decorators = [withI18next];
+export const decorators = [withI18next, withShellContext];
 
 export const globalTypes = {
   locale: {

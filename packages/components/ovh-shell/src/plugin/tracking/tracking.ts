@@ -62,7 +62,7 @@ export class TrackingPlugin extends OvhAtInternet {
     };
   }
 
-  configureTracking(region: Region, user: User): void {
+  configureTracking(region: Region, user: User, locale?: string): void {
     this.currentUser = user;
     const referrerSite = getCookie('OrderCloud');
     const data = {
@@ -71,6 +71,8 @@ export class TrackingPlugin extends OvhAtInternet {
       ...(referrerSite ? { referrerSite } : {}),
     };
 
+    const interfaceLanguage = locale || this.defaults.interfaceLanguage;
+
     const defaultConfig = {
       ...data,
       countryCode: user?.country,
@@ -78,6 +80,8 @@ export class TrackingPlugin extends OvhAtInternet {
       visitorId: user?.customerCode,
       legalform: user?.legalform,
       subsidiary: user?.ovhSubsidiary,
+      language: user?.language,
+      ...{ interfaceLanguage },
     };
 
     this.setDefaults(defaultConfig);

@@ -1,14 +1,14 @@
 {
-  "title": "Wybierz typ konta",
-  "description": "Potrzebujesz pomocy? <Tooltip>Dowiedz się więcej o typach kont</Tooltip>",
+  "title": "Wybierz rodzaj konta",
+  "description": "Potrzebujesz pomocy? <Tooltip>Więcej informacji dotyczących rodzajów kont</Tooltip>",
   "legal_form_association": "Stowarzyszenie",
   "legal_form_administration": "Administracja publiczna",
-  "legal_form_corporation": "Nazwa Firmy",
+  "legal_form_corporation": "Firma",
   "legal_form_individual": "Osoba fizyczna",
-  "legal_form_personalcorporation": "Działalność gospodarcza",
-  "legal_form_tooltip_corporation_description": "Utwórz konto dla swojej firmy, jeśli masz zarejestrowaną działalność, w tym jednoosobowe firmy.",
-  "legal_form_tooltip_individual_description": "Utwórz konto jako osoba fizyczna, jeśli nie masz zarejestrowanej firmy lub jeśli jesteś w trakcie zakupu firmy.",
-  "legal_form_tooltip_administration_description": "Utwórz konto dla swojej organizacji publicznej, jeśli reprezentujesz państwo, jednostkę samorządową, organizację lub instytucję międzynarodową.",
-  "legal_form_tooltip_association_description": "Utwórz konto dla swojego stowarzyszenia, jeśli jesteś zarejestrowany w krajowym rejestrze przedsiębiorstw i instytucji. Jeśli nie jesteś zarejestrowany, utwórz konto jako osoba fizyczna.",
-  "legal_form_tooltip_personalcorporation_description": "Opis Działalności Gospodarczej."
+  "legal_form_personalcorporation": "Spółka jednoosobowa",
+  "legal_form_tooltip_corporation_description": "Załóż konto dla swojej firmy, jeśli masz zarejestrowaną działalność, w tym przedsiębiorstwo jednoosobowe.",
+  "legal_form_tooltip_individual_description": "Załóż konto jako osoba prywatna, jeśli nie posiadasz zarejestrowanej działalności lub jesteś w trakcie zakładania firmy.",
+  "legal_form_tooltip_administration_description": "Załóż konto dla organizmu publicznego, jeśli reprezentujesz państwo, jednostkę samorządu terytorialnego, międzynarodową organizację lub instytucję.",
+  "legal_form_tooltip_association_description": "Załóż konto dla Twojego stowarzyszenia, jeśli jesteś zapisana/-y w krajowym rejestrze przedsiębiorstw i organizacji (KRS w Polsce). Jeżeli nie widniejesz w tym rejestrze, załóż konto jako osoba prywatna.",
+  "legal_form_tooltip_personalcorporation_description": "Opis Ditta Individuale."
 }

@@ -1,10 +1,12 @@
 import { Canvas, Meta } from '@storybook/blocks';
-import SpecificationsTabs from '@ovhcloud/ods-react';
+import * as SpecificationsTabs from '@ovhcloud/ods-react';
 import { Banner } from '../../../base-documents/components/banner/Banner';
 import { Canvas as OdsCanvas } from '../../../base-documents/components/canvas/Canvas';
 import { Heading } from '../../../base-documents/components/heading/Heading';
 import { TechnicalSpecification } from '../../../base-documents/components/technicalSpecification/TechnicalSpecification';
 import * as TabsStories from './tabs.stories';
+
+<Meta of={ TabsStories } name="Technical information" />
 
 <Banner of={ TabsStories } />
 

@@ -146,6 +146,15 @@ describe('Datagrid Snapshot Tests', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('should match snapshot with hideHeader enabled', () => {
+    const { container } = renderDataGrid({
+      columns: mockBasicColumns,
+      data: mockData,
+      hideHeader: true,
+    });
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   it('should match snapshot with expandable rows', () => {
     const { container } = renderDataGrid({
       columns: mockBasicColumns,

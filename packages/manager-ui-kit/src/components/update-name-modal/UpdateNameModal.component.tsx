@@ -29,6 +29,7 @@ export function UpdateNameModal({
   isLoading = false,
   onClose,
   updateDisplayName,
+  onOpenChange,
   error,
   cancelButtonLabel,
   confirmButtonLabel,
@@ -81,6 +82,7 @@ export function UpdateNameModal({
         label: cancelButtonLabel ?? t('updateModalCancelButton'),
         onClick: handleClose,
       }}
+      onOpenChange={onOpenChange}
     >
       <div>
         {error && (

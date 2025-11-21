@@ -14,7 +14,7 @@ export type TableBuilderProps<T extends ExpandableRow<T>> = {
   columns: readonly ColumnDef<T>[];
   columnVisibility: VisibilityState;
   data: T[];
-  expandable: ExpandedProps;
+  expandable: ExpandedProps<T>;
   hasExpandableFeature: boolean;
   hasSortingFeature: boolean;
   manualSorting: boolean;

@@ -46,9 +46,10 @@ export interface SearchProps {
 
 export type ColumnSort = TanstackColumnSort;
 
-export interface ExpandedProps {
+export interface ExpandedProps<T> {
   expanded: ExpandedState;
   setExpanded: Dispatch<SetStateAction<ExpandedState>>;
+  getRowCanExpand?: (row: Row<T>) => boolean;
 }
 
 export interface ExpandableRow<T> {
@@ -63,9 +64,10 @@ export type DatagridProps<T extends ExpandableRow<T>> = {
   containerHeight?: number;
   contentAlignLeft?: boolean;
   data: T[];
-  expandable?: ExpandedProps;
+  expandable?: ExpandedProps<T>;
   filters?: FilterProps;
   hasNextPage?: boolean;
+  hideHeader?: boolean;
   isLoading?: boolean;
   maxRowHeight?: number;
   resourceType?: string;
@@ -101,6 +103,12 @@ export enum ContainerHeight {
   sm = 375,
   md = 550,
   lg = 725,
+}
+
+export enum ContainerWihtoutHeaderHeight {
+  sm = 340,
+  md = 500,
+  lg = 660,
 }
 
 export type DatagridColumn<T> = ColumnDef<T> & {

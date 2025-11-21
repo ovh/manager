@@ -10,6 +10,7 @@ export type UpdateNameModalProps = Readonly<{
   isOpen?: boolean;
   cancelButtonLabel?: string;
   confirmButtonLabel?: string;
+  onOpenChange?: () => void;
   onClose?: () => void;
   updateDisplayName: (newDisplayName: string) => void;
 }>;
