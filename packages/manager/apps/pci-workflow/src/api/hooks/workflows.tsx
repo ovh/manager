@@ -132,39 +132,43 @@ export const defaultCompareFunction =
     return aValue.localeCompare(bValue);
   };
 
-export const sortWorkflows = (
+type SortableWorkflowKeys = keyof Omit<TInstanceBackupWorkflow, 'executions'>;
+
+const isAWorkflowValueContainingSearchQuery =
+  (workflow: TInstanceBackupWorkflow, searchQueries: string[]) => (key: SortableWorkflowKeys) => {
+    if (!workflow[key]) return false;
+    const workflowValue = workflow[key]?.toLowerCase();
+
+    return searchQueries.some(
+      (query) => workflowValue && workflowValue.includes(query.toLowerCase()),
+    );
+  };
+
+const sortWorkflows = (workflows: TInstanceBackupWorkflow[]) => (sorting: ColumnSort | null) => {
+  if (!sorting) {
+    return workflows;
+  }
+  const { id: sortKey, desc } = sorting;
+  const sortedData = [...workflows].sort(defaultCompareFunction(sortKey as SortableWorkflowKeys));
+
+  return desc ? sortedData.reverse() : sortedData;
+};
+
+export const sortAndFilterWorkflows = (
   workflows: TInstanceBackupWorkflow[],
   sorting: ColumnSort,
   searchQueries: string[],
 ): TInstanceBackupWorkflow[] => {
-  const data = [...workflows];
-  type WorkflowKeys = keyof Omit<TInstanceBackupWorkflow, 'executions'>;
-
-  if (sorting) {
-    const { id: sortKey, desc } = sorting;
-
-    data.sort(defaultCompareFunction(sortKey as WorkflowKeys));
-    if (desc) {
-      data.reverse();
-    }
-  }
-
-  const isAWorkflowValueContainingSearchQuery =
-    (workflow: TInstanceBackupWorkflow) => (key: WorkflowKeys) => {
-      if (!workflow[key]) return false;
-      const workflowValue = workflow[key]?.toLowerCase();
-
-      return searchQueries.some(
-        (query) => workflowValue && workflowValue.includes(query.toLowerCase()),
-      );
-    };
+  const sortedData = sortWorkflows(workflows)(sorting);
 
   if (searchQueries.length) {
-    const keys: WorkflowKeys[] = ['name', 'instanceName', 'cron'];
-    return data.filter((workflow) => keys.some(isAWorkflowValueContainingSearchQuery(workflow)));
+    const keys: SortableWorkflowKeys[] = ['name', 'instanceName', 'cron'];
+    return sortedData.filter((workflow) =>
+      keys.some(isAWorkflowValueContainingSearchQuery(workflow, searchQueries)),
+    );
   }
 
-  return data;
+  return sortedData;
 };
 
 export const enum TWorkflowBackup {
@@ -220,7 +224,7 @@ export const usePaginatedInstanceBackupWorkflows = (
       return {
         data: paginateResults<TInstanceBackupWorkflow>(
           applyFilters(
-            sortWorkflows(workflowsWithInstanceIds, sorting, searchQueries) || [],
+            sortAndFilterWorkflows(workflowsWithInstanceIds, sorting, searchQueries) || [],
             filters,
           ),
           pagination,
