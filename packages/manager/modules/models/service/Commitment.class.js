@@ -16,7 +16,7 @@ export default class Commitment {
   }
 
   addOptionCommitment(optionEngagement) {
-    this.price += optionEngagement.pricing.monthlyPriceValue;
+    this.price += optionEngagement.price;
     this.pricing = new Pricing(
       {
         ...this.pricing,
