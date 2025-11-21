@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { startTransition, useContext } from 'react';
 import {
   OdsCombobox,
   OdsComboboxGroup,
@@ -55,17 +55,19 @@ export const FilterService = ({ className }: { className?: string }) => {
   );
 
   React.useEffect(() => {
-    setFilterValueLabel(() => {
-      if (apiFilter?.['routedTo.serviceName'] === null && !apiFilter?.type) {
+    startTransition(() => {
+      setFilterValueLabel(() => {
+        if (apiFilter?.['routedTo.serviceName'] === null && !apiFilter?.type) {
+          return '';
+        }
+        if (apiFilter?.['routedTo.serviceName']) {
+          return apiFilter['routedTo.serviceName'];
+        }
+        if (apiFilter?.type) {
+          return t(getAllItemLabelKeyFromType(apiFilter.type));
+        }
         return '';
-      }
-      if (apiFilter?.['routedTo.serviceName']) {
-        return apiFilter['routedTo.serviceName'];
-      }
-      if (apiFilter?.type) {
-        return t(getAllItemLabelKeyFromType(apiFilter.type));
-      }
-      return '';
+      });
     });
   }, [apiFilter]);
 
