@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { Row } from '@tanstack/react-table';
 import { ListingContext } from '@/pages/listing/listingContext';
-import ipList from '../../../../../../mocks/ip/get-ips.json';
+import ipList from '@/__mocks__/ip/get-ips.json';
 import { IpDatagrid } from './IpDatagrid';
 import { getButtonByIcon } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
