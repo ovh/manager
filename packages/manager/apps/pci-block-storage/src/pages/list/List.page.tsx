@@ -1,5 +1,5 @@
 import { Suspense, useRef, useState } from 'react';
-import { Navigate, Outlet, useParams } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ChangelogButton,
@@ -110,7 +110,7 @@ export const ListingPage = () => {
                 size="sm"
                 color="primary"
                 variant="outline"
-                onClick={() => refetch()}
+                onClick={() => void refetch()}
                 icon="refresh"
                 aria-label={t('refresh', { ns: NAMESPACES.ACTIONS })}
               />
@@ -184,7 +184,7 @@ export const ListingPage = () => {
                     ...addedFilter,
                     label: column.label,
                   });
-                  filterPopoverRef.current?.closeSurface();
+                  void filterPopoverRef.current?.closeSurface();
                 }}
               />
             </OsdsPopoverContent>

@@ -49,7 +49,7 @@ export const sortResults = (
       case BlockStorageListColumn.TYPE:
       case BlockStorageListColumn.ENCRYPTION:
         return volumeComparator((t: TVolume) =>
-          (t[sortingColumn] as string).toLocaleLowerCase(),
+          t[sortingColumn].toLocaleLowerCase(),
         );
       case BlockStorageListColumn.SIZE:
         return volumeComparator((t: TVolume) => t[sortingColumn]);

@@ -2,7 +2,9 @@ import { RouteObject } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { StorageActionRedirect } from '@/components/StorageActionRedirect';
 
-const lazyRouteConfig = (importFn: CallableFunction) => ({
+const lazyRouteConfig = <T extends Record<string, any>>(
+  importFn: () => Promise<T>,
+) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
 

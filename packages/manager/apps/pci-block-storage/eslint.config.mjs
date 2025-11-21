@@ -45,7 +45,7 @@ export default [
 ];*/
 
 // Progressive and disable some rules
-/* import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
   {
@@ -55,18 +55,7 @@ export default [
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/await-thenable': 'off'
+      '@typescript-eslint/await-thenable': 'off',
     },
-  },
-];
-*/
-
-// Progressive and disable full rules
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-
-export default [
-  {
-    ...typescriptEslintConfig,
-    rules: {},
   },
 ];

@@ -40,7 +40,7 @@ describe('AttachedInstanceComponent', () => {
     expect(await screen.findByText('Instance1')).toBeInTheDocument();
   });
 
-  it('renders correct instance link when data is loaded', async () => {
+  it('renders correct instance link when data is loaded', () => {
     vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
       data: { name: 'Instance1' },
       isPending: false,

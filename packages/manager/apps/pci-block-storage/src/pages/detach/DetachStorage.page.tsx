@@ -13,7 +13,7 @@ import {
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PropsWithChildren, useEffect, useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   Controller,
@@ -129,7 +129,7 @@ const Form = <Schema extends z.ZodObject<ZodRawShape>>({
       handleSubmit={handleSubmit}
       {...restForm}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+      <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>{children}</form>
     </FormProvider>
   );
 };

@@ -103,7 +103,7 @@ describe('Edit volume page', () => {
     expect(screen.getByTestId('editPage-input_volumeSize')).toHaveValue(10);
   });
 
-  it('handles name change correctly', async () => {
+  it('handles name change correctly', () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolumeData);
     renderWithMockedWrappers(<EditPage />);
 
@@ -115,7 +115,7 @@ describe('Edit volume page', () => {
     );
   });
 
-  it('displays loading spinner when data is being fetched', async () => {
+  it('displays loading spinner when data is being fetched', () => {
     vi.mocked(useVolume).mockReturnValue(({
       data: null,
       isLoading: true,

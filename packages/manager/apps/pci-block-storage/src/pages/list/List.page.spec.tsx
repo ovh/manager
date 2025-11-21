@@ -2,7 +2,6 @@ import { waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import ListingPage from './List.page';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
-import { useIsFileStorageAlphaBannerAvailable } from '@/api/feature';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const actual: any = await importOriginal();

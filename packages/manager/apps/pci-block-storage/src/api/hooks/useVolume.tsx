@@ -356,7 +356,7 @@ export const useAddVolume = ({
     (volumeToAdd) =>
       catalog
         ? addVolume(mapVolumeToAdd(projectId, catalog)(volumeToAdd))
-        : Promise.reject(),
+        : Promise.reject(new Error('Catalog not found')),
     [catalog, projectId],
   );
 

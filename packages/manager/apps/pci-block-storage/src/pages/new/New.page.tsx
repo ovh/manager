@@ -286,14 +286,12 @@ export default function NewPage(): JSX.Element {
             isDisabled: stepper.validation.step.isLocked,
           }}
         >
-          {stepper.form.region &&
-          stepper.form.volumeType &&
-          stepper.form.encryptionType ? (
+          {stepper.form.region && stepper.form.volumeType ? (
             <CapacityStep
               projectId={projectId}
               region={stepper.form.region}
               volumeType={stepper.form.volumeType}
-              encryptionType={stepper.form.encryptionType}
+              encryptionType={stepper.form.encryptionType ?? null}
               step={stepper.capacity.step}
               onSubmit={stepper.capacity.submit}
             />
@@ -316,14 +314,13 @@ export default function NewPage(): JSX.Element {
         >
           {stepper.form.region &&
           stepper.form.volumeType &&
-          stepper.form.encryptionType &&
           stepper.form.volumeCapacity ? (
             <VolumeNameStep
               projectId={projectId}
               step={stepper.volumeName.step}
               onSubmit={stepper.volumeName.submit}
               volumeType={stepper.form.volumeType}
-              encryptionType={stepper.form.encryptionType}
+              encryptionType={stepper.form.encryptionType ?? null}
               region={stepper.form.region.name}
               volumeCapacity={stepper.form.volumeCapacity}
             />
@@ -338,22 +335,19 @@ export default function NewPage(): JSX.Element {
         >
           {stepper.form.region &&
           stepper.form.volumeType &&
-          stepper.form.encryptionType &&
           stepper.form.volumeCapacity ? (
             <ValidationStep
               volumeCapacity={stepper.form.volumeCapacity}
               projectId={projectId}
               region={stepper.form.region}
               volumeType={stepper.form.volumeType}
-              encryptionType={stepper.form.encryptionType}
+              encryptionType={stepper.form.encryptionType ?? null}
               onSubmit={() => {
                 if (
                   !stepper.form.region ||
                   !stepper.form.volumeType ||
-                  !stepper.form.encryptionType ||
                   !stepper.form.volumeCapacity ||
-                  !stepper.form.volumeName ||
-                  !stepper.form.availabilityZone
+                  !stepper.form.volumeName
                 )
                   return;
 
@@ -362,10 +356,10 @@ export default function NewPage(): JSX.Element {
                 addVolume({
                   region: stepper.form.region.name,
                   type: stepper.form.volumeType,
-                  encryptionType: stepper.form.encryptionType,
+                  encryptionType: stepper.form.encryptionType ?? null,
                   name: stepper.form.volumeName,
                   size: stepper.form.volumeCapacity,
-                  availabilityZone: stepper.form.availabilityZone,
+                  availabilityZone: stepper.form.availabilityZone ?? null,
                 });
               }}
             />
