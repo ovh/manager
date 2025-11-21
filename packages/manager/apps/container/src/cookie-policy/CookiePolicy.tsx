@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Shell } from '@ovh-ux/shell';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,10 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
   const [show, setShow] = useState(false);
-  const { ovhSubsidiary } = shell.getPlugin('environment').getEnvironment().user as User;
+  const ovhSubsidiary = useMemo(() => 
+    environment?.user.ovhSubsidiary,
+    [environment],
+  );
   const trackingPlugin = shell.getPlugin('tracking');
 
   const linksArray: LinksProps[] = [
@@ -67,6 +70,9 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   };
 
   useEffect(() => {
+    if (!environment) {
+      return;
+    }
     const isRegionUS = environment.getRegion() === 'US';
     trackingPlugin.setRegion(environment.getRegion());
     // activate tracking if region is US or if tracking consent cookie is valid
@@ -79,7 +85,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
       trackingPlugin.setEnabled(false);
     }
     onValidate(isRegionUS || cookies.MANAGER_TRACKING);
-  }, [show]);
+  }, [show, environment]);
 
   return (
     <>

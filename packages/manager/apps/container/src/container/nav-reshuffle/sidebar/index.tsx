@@ -39,6 +39,7 @@ import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { ExcludedNodeIdsList } from './navigation-tree/excluded';
 import { ShortAssistanceLinkItem } from './Assistance/ShortAssistanceLinkItem';
+import useContainer from '@/core/container';
 
 interface ServicesCountError {
   url: string;
@@ -68,6 +69,7 @@ const Sidebar = (): JSX.Element => {
     isNavigationSidebarOpened,
     popoverPosition,
   } = useProductNavReshuffle();
+  const { isReady } = useContainer();
   const [servicesCount, setServicesCount] = useState<ServicesCount>(null);
   const [selectedNode, setSelectedNode] = useState<Node>(null);
   const [showSubTree, setShowSubTree] = useState<boolean>(false);
@@ -76,7 +78,7 @@ const Sidebar = (): JSX.Element => {
     isMobile ? isNavigationSidebarOpened : true,
   );
   const [assistanceTree, setAssistanceTree] = useState<Node>(null);
-  const logoLink = navigationPlugin.getURL('hub', '#/');
+  const logoLink = useMemo(() => navigationPlugin?.getURL('hub', '#/'), [navigationPlugin]);
   const savedLocationKey = 'NAVRESHUFFLE_SAVED_LOCATION';
   const [savedNodeID, setSavedNodeID] = useState<string>(
     window.localStorage.getItem(savedLocationKey),
@@ -134,7 +136,7 @@ const Sidebar = (): JSX.Element => {
   /** Initialize navigation tree */
   useEffect(() => {
     const initializeNavigationTree = async () => {
-      if (currentNavigationNode) return;
+      if (!isReady || currentNavigationNode) return;
       const features = initFeatureNames(navigationTree);
 
       const results = await fetchFeatureAvailabilityData(features);
@@ -150,7 +152,7 @@ const Sidebar = (): JSX.Element => {
       setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
     };
     initializeNavigationTree();
-  }, []);
+  }, [isReady]);
 
   useEffect(() => {
     aapi
@@ -223,20 +225,32 @@ const Sidebar = (): JSX.Element => {
 
   // Callbacks
 
-  const toggleSidebar = () => {
+  const toggleSidebar = useCallback(() => {
     setIsAnimated(true);
     setOpen((prevOpen) => {
       const nextOpen = !prevOpen;
       const trackingName = nextOpen
         ? 'navbar_v3::open_navbar'
         : 'navbar_v3::reduce_navbar';
-      trackingPlugin.trackClick({
-        name: trackingName,
-        type: 'action',
-      });
+      if (trackingPlugin) {
+        trackingPlugin.trackClick({
+          name: trackingName,
+          type: 'action',
+        });
+      }
       return nextOpen;
     });
-  };
+  }, [setIsAnimated, setOpen, trackingPlugin]);
+
+  const onAddServiceButtonClick = useCallback(() => {
+    setIsAnimated(true);
+    if (trackingPlugin) {
+        trackingPlugin.trackClick({
+        name: 'navbar_v3_entry_home::cta_add_a_service',
+        type: 'action',
+      });
+    }
+  }, [setIsAnimated, trackingPlugin]);
 
   const closeSubMenu = () => {
     setIsAnimated(true);
@@ -367,16 +381,11 @@ const Sidebar = (): JSX.Element => {
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={ODS_BUTTON_SIZE.sm}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                onClick={() => {
-                  setIsAnimated(true);
-                  return trackingPlugin.trackClick({
-                    name: 'navbar_v3_entry_home::cta_add_a_service',
-                    type: 'action',
-                  });
-                }}
-                href={navigationPlugin.getURL('catalog', '/')}
+                onClick={onAddServiceButtonClick}
+                href={navigationPlugin?.getURL('catalog', '/')}
                 role="link"
                 title={t('sidebar_service_add')}
+                {...(navigationPlugin ? {} : { disabled: true })}
               >
                 <div className="flex justify-center align-middle p-0 m-0">
                   <SvgIconWrapper

@@ -5,15 +5,21 @@ import AccountSidebar from '@/container/legacy/account-sidebar';
 import ApplicationContext from '@/context';
 
 import Navbar from './navbar/Navbar';
+import { useHeader } from '@/context/header';
 
 function ShellHeader(): JSX.Element {
+  const {
+    isNotificationsSidebarVisible,
+    isAccountSidebarVisible,
+  } = useHeader();
+
   return (
     <ApplicationContext.Consumer>
       {() => (
         <Suspense fallback="">
           <Navbar />
-          <AccountSidebar />
-          <NotificationsSidebar />
+          { isAccountSidebarVisible && <AccountSidebar /> }
+          { isNotificationsSidebarVisible && <NotificationsSidebar /> }
         </Suspense>
       )}
     </ApplicationContext.Consumer>

@@ -31,7 +31,7 @@ const HamburgerMenu = React.lazy(() => import('./HamburgerMenu'));
 
 function Navbar(): JSX.Element {
   const shell = useShell();
-  const { universe, setUniverse } = useContainer();
+  const { isReady, universe, setUniverse } = useContainer();
   const { getUniverses, getHubUniverse } = useUniverses();
   const [userLocale, setUserLocale] = useState(
     shell.getPlugin('i18n').getLocale(),
@@ -55,7 +55,7 @@ function Navbar(): JSX.Element {
 
   const brandClickHandler = useCallback(
     () =>
-      shell.getPlugin('tracking').trackClick({
+      shell.getPlugin('tracking')?.trackClick({
         name: `navbar::entry::logo`,
         type: 'action',
       }),
@@ -64,13 +64,15 @@ function Navbar(): JSX.Element {
 
   const universeClickHandler = useCallback(
     ({ universe }: Partial<Environment>) => {
-      shell.getPlugin('tracking').trackClick({
-        name: `navbar::entry::${universe}`,
-        type: 'action',
-      });
-      setUniverse(universe);
+      if (isReady) {
+        shell.getPlugin('tracking').trackClick({
+          name: `navbar::entry::${universe}`,
+          type: 'action',
+        });
+        setUniverse(universe);
+      }
     },
-    [shell],
+    [shell, isReady],
   );
 
   return (
@@ -122,7 +124,7 @@ function Navbar(): JSX.Element {
               }}
             ></LanguageMenu>
           </div>
-          {cloudShellAvailability?.['cloud-shell'] && (
+          {isReady && cloudShellAvailability?.['cloud-shell'] && (
           <div className="oui-navbar-list__item">
             <CloudShellLink />
           </div>

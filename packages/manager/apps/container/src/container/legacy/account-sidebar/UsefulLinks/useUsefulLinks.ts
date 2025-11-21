@@ -17,11 +17,12 @@ interface UseUsefulLinks {
 const useUsefulLinks = (): UseUsefulLinks => {
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');
+  // TODO: handle environment unavailability in MANAGER-19971
   const environment: Environment = shell
     .getPlugin('environment')
-    .getEnvironment();
-  const region = environment.getRegion();
-  const user = environment.getUser();
+    ?.getEnvironment();
+  const region = environment?.getRegion();
+  const user = environment?.getUser();
   const { isLivechatEnabled, setChatbotReduced } = useContainer();
 
   const isEUOrCA = ['EU', 'CA'].includes(region);

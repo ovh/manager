@@ -7,7 +7,7 @@ import { initShell, Shell, completeShellWithEnvironment, updateShellPlugins } fr
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
-import { Environment, fetchConfiguration } from '@ovh-ux/manager-config';
+import { detectUserLocale, Environment, fetchConfiguration, findAvailableLocale, HOSTNAME_REGIONS } from '@ovh-ux/manager-config';
 
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 
@@ -73,6 +73,10 @@ const App = () => {
     refetchOnWindowFocus: false,
   });
 
+  useEffect(() => {
+    setupI18n(findAvailableLocale(detectUserLocale(), HOSTNAME_REGIONS[window.location.hostname] || undefined));
+  }, []);
+
   useLayoutEffect(() => {
     const finalizeInitialization = async () => {
       if ((data || responseError)) {
@@ -81,7 +85,6 @@ const App = () => {
         if (!currentEnvironmentPlugin) {
           completeShellWithEnvironment(shell, data || responseError.environment);
           const environmentObj = shell.getPlugin('environment').getEnvironment();
-          setupI18n(environmentObj.getUserLocale());
           const config = () => import(`./config-${environmentObj.getRegion()}.js`);
           try {
             await config();
