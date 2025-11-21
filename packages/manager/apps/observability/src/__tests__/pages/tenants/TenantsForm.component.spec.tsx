@@ -48,11 +48,15 @@ vi.mock('@/components/metrics/tenant-configuration-form/TenantConfigurationForm.
   )),
 }));
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   Divider: ({ spacing }: { spacing?: string }) => (
     <div data-testid="divider" data-spacing={spacing} />
   ),
+}));
+
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
   Text: ({
     children,
     preset,
