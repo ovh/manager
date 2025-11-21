@@ -129,7 +129,7 @@ export const IpActionsCell = ({
 
   const { hasAlerts } = useIpHasAlerts({
     ip: parentIpGroup || ip,
-    subIp: ip,
+    subIp: parentIpGroup ? ip : undefined,
     enabled: !isIpExpired && !isByoipSlice,
   });
 

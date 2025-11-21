@@ -9,7 +9,7 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import { ListingContext } from '@/pages/listing/listingContext';
-import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
+import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpGameFirewall, IpGameFirewallProps } from './IpGameFirewall';
 import { IpGameFirewallStateEnum, IpGameFirewallType } from '@/data/api';
 import { getOdsBadgeByLabel } from '@/test-utils';
