@@ -36,14 +36,14 @@ export default function ActionsComponent({
       dataTestid: 'actionComponent-edit-button',
       onClick: () => onTrackingClick('edit_volume_block_storage'),
     },
-    volume.canAttachInstance && {
+    !!volume.canAttachInstance && {
       id: 1,
       href: hrefAttach,
       label: t(`pci_projects_project_storages_blocks_instance_attach_label`),
       dataTestid: 'actionComponent-attach-button',
       onClick: () => onTrackingClick('attach_instance'),
     },
-    volume.canDetachInstance && {
+    !!volume.canDetachInstance && {
       id: 2,
       href: hrefDetach,
       label: t(`pci_projects_project_storages_blocks_instance_detach_label`),
@@ -64,7 +64,7 @@ export default function ActionsComponent({
       dataTestid: 'actionComponent-remove-button',
       onClick: () => onTrackingClick('delete_volume_block_storage'),
     },
-  ].filter(Boolean);
+  ].filter((item) => !!item);
 
   return <ActionMenu items={items} isCompact />;
 }

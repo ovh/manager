@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { ApiResponse, isApiCustomError, v6 } from '@ovh-ux/manager-core-api';
 
 export type TAPIVolume = {
   id: string;
@@ -65,7 +65,13 @@ export const deleteVolume = async (
     );
     return data;
   } catch (e) {
-    throw new Error(e.response?.data?.message || e.message);
+    if (isApiCustomError(e)) {
+      throw new Error(e.response?.data?.message || e.message);
+    }
+    if (e instanceof Error) {
+      throw new Error(e.message);
+    }
+    throw new Error();
   }
 };
 
@@ -78,25 +84,32 @@ export const updateVolume = async ({
   projectId,
   volumeToUpdate: { name, size, bootable },
   originalVolume,
-}: TUpdateVolumeProps) => {
+}: TUpdateVolumeProps): Promise<Array<ApiResponse<TAPIVolume>>> => {
   let promise1;
   let promise2;
   try {
     if (originalVolume.name !== name || originalVolume.bootable !== bootable) {
-      promise1 = v6.put(
+      promise1 = v6.put<TAPIVolume>(
         `/cloud/project/${projectId}/volume/${originalVolume.id}`,
         { name, bootable },
       );
     }
     if (size !== originalVolume.size) {
-      promise2 = v6.post(
+      promise2 = v6.post<TAPIVolume>(
         `/cloud/project/${projectId}/volume/${originalVolume.id}/upsize`,
         { size },
       );
     }
-    return await Promise.all([promise1, promise2]);
+    const promises = [promise1, promise2].filter((promise) => !!promise);
+    return await Promise.all(promises);
   } catch (e) {
-    throw new Error(e.response?.data?.message || e.message);
+    if (isApiCustomError(e)) {
+      throw new Error(e.response?.data?.message || e.message);
+    }
+    if (e instanceof Error) {
+      throw new Error(e.message);
+    }
+    throw new Error();
   }
 };
 
@@ -104,9 +117,9 @@ export const attachVolume = async (
   projectId: string,
   volumeId: string,
   instanceId: string,
-): Promise<TAPIVolume> => {
+) => {
   try {
-    const { data } = await v6.post(
+    const { data } = await v6.post<TAPIVolume>(
       `/cloud/project/${projectId}/volume/${volumeId}/attach`,
       {
         instanceId,
@@ -114,7 +127,13 @@ export const attachVolume = async (
     );
     return data;
   } catch (e) {
-    throw new Error(e.response?.data?.message || e.message);
+    if (isApiCustomError(e)) {
+      throw new Error(e.response?.data?.message || e.message);
+    } else if (e instanceof Error) {
+      throw new Error(e.message);
+    } else {
+      throw new Error();
+    }
   }
 };
 
@@ -132,7 +151,13 @@ export const detachVolume = async (
     );
     return data;
   } catch (e) {
-    throw new Error(e.response?.data?.message || e.message);
+    if (isApiCustomError(e)) {
+      throw new Error(e.response?.data?.message || e.message);
+    }
+    if (e instanceof Error) {
+      throw new Error(e.message);
+    }
+    throw new Error();
   }
 };
 

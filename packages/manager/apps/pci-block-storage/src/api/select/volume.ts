@@ -260,11 +260,15 @@ export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   encryptionType,
 }: TVolumeToAdd): AddVolumeProps => {
   const pricing = catalog.models
-    .find((m) => m.name === type)
-    .pricings.find(
+    ?.find((m) => m.name === type)
+    ?.pricings.find(
       (p) =>
         p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
     );
+
+  if (!pricing) {
+    throw new Error('Unable to find relevant pricing');
+  }
 
   return {
     projectId,

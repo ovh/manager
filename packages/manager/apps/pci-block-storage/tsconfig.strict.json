@@ -1,4 +1,5 @@
 {
+  // Todo : remove file
   "extends": [
     // Use strict config
     "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",

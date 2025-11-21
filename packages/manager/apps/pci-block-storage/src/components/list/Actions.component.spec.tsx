@@ -11,7 +11,7 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('react-router-dom');
-const mockVolume = {
+const mockVolume = ({
   id: '1',
   attachedTo: [],
   creationDate: '2022-01-01',
@@ -29,7 +29,7 @@ const mockVolume = {
   canAttachInstance: true,
   canDetachInstance: false,
   maxAttachedInstances: 1,
-} as TVolume;
+} as unknown) as TVolume;
 const mockVolumeDetach = {
   id: '1',
   attachedTo: ['attach-1'],

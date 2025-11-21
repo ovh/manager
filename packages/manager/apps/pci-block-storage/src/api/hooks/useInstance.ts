@@ -26,7 +26,7 @@ export const useAttachableInstances = (projectId: string, volumeId: string) => {
 
   return useQuery({
     queryKey: getInstancesQueryKey(projectId, volume?.region),
-    queryFn: () => getInstancesByRegion(projectId, volume.region),
+    queryFn: () => getInstancesByRegion(projectId, volume?.region ?? ''),
     enabled: !!volume,
     select,
   });
@@ -42,7 +42,7 @@ export const useAttachedInstances = (projectId: string, volumeId: string) => {
 
   return useQuery({
     queryKey: getInstancesQueryKey(projectId, volume?.region),
-    queryFn: () => getInstancesByRegion(projectId, volume.region),
+    queryFn: () => getInstancesByRegion(projectId, volume?.region ?? ''),
     enabled: !!volume,
     select,
   });

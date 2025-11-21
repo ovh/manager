@@ -12,16 +12,19 @@ import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 const deleteVolume = vi.fn();
 
 vi.mock('react-router-dom');
-vi.mocked(useParams).mockReturnValue({ volumeId: 'testVolume' });
+vi.mocked(useParams).mockReturnValue({
+  volumeId: 'testVolume',
+  projectId: 'testProject',
+});
 
 vi.mock('@/api/hooks/useVolume');
 
-const mockedVolume = {
+const mockedVolume = ({
   data: {
     attachedTo: [],
   },
   isPending: false,
-} as ReturnType<typeof useVolume>;
+} as unknown) as ReturnType<typeof useVolume>;
 
 const mockedVolumePending = {
   data: {},
@@ -39,10 +42,10 @@ const mockedSnapshots = {
   isPending: false,
 } as ReturnType<typeof useVolumeSnapshot>;
 
-const mockedSnapshotsEmpty = {
+const mockedSnapshotsEmpty = ({
   data: [],
   isPending: false,
-} as ReturnType<typeof useVolumeSnapshot>;
+} as unknown) as ReturnType<typeof useVolumeSnapshot>;
 
 describe('DeleteStorage', () => {
   it('renders without crashing', () => {

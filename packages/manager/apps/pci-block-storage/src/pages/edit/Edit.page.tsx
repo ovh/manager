@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { useHref, useNavigate } from 'react-router-dom';
 import { Trans, Translation, useTranslation } from 'react-i18next';
 
 import {
@@ -51,6 +51,7 @@ import ExternalLink from '@/components/ExternalLink';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
+import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 type TFormState = {
   name: string;
@@ -75,7 +76,8 @@ export default function EditPage() {
   const onClose = () => navigate('..');
   const backHref = useHref('..');
 
-  const { projectId, volumeId } = useParams();
+  const projectId = useMandatoryParam('projectId');
+  const volumeId = useMandatoryParam('volumeId');
 
   const projectUrl = useProjectUrl('public-cloud');
   const quotaUrl = `${projectUrl}/quota`;
@@ -102,7 +104,7 @@ export default function EditPage() {
   const { volumeMaxSize } = useVolumeMaxSize(volume?.region);
 
   const [formState, setFormState] = useState<TFormState>({
-    name: volume?.name,
+    name: volume?.name ?? '',
     size: {
       min: VOLUME_MIN_SIZE,
       max: volumeMaxSize,
@@ -113,13 +115,13 @@ export default function EditPage() {
 
   const onTrackingBannerError = useTrackBanner(
     { type: 'error' },
-    (err: Error) => {
+    (err: unknown) => {
       addError(
         <Translation ns="edit">
           {(_t) =>
             _t('pci_projects_project_storages_blocks_block_edit_error_put', {
               volume: volume?.name,
-              message: err?.message,
+              message: err instanceof Error ? err.message : undefined,
             })
           }
         </Translation>,
@@ -151,14 +153,14 @@ export default function EditPage() {
       size,
       bootable: formState.bootable,
     },
-    originalVolume: volume,
+    originalVolume: volume!,
     onError: onTrackingBannerError,
     onSuccess: onTrackingBannerSuccess,
   });
 
   const { data: regionQuota, isPending: isPendingQuota } = useRegionsQuota(
     projectId,
-    volume?.region,
+    volume?.region ?? '',
   );
 
   const getMaxSize = (_volume: TVolume) => {
@@ -272,7 +274,7 @@ export default function EditPage() {
               color={ODS_THEME_COLOR_INTENT.text}
               className="mr-4"
             >
-              {translateMicroRegion(volume?.region)}
+              {volume ? translateMicroRegion(volume.region) : ''}
             </OsdsText>
             {!!region && <ChipRegion region={region} />}
           </div>
@@ -320,7 +322,7 @@ export default function EditPage() {
                   : ODS_THEME_COLOR_INTENT.error
               }
               onOdsValueChange={(event) =>
-                setFormState({ ...formState, name: event.detail.value })
+                setFormState({ ...formState, name: event.detail.value ?? '' })
               }
               data-testid="editPage-input_volumeName"
             />
@@ -418,7 +420,7 @@ export default function EditPage() {
 
           {!hasError && (
             <div className="mb-6">
-              {!!volume.monthlyPrice && (
+              {!!volume?.monthlyPrice && (
                 <OsdsText
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                   size={ODS_THEME_TYPOGRAPHY_SIZE._400}

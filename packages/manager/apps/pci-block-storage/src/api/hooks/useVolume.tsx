@@ -58,7 +58,7 @@ export const getVolumesQueryKey = (projectId: string | null) => [
   'volumes',
 ];
 
-export const useAllVolumes = (projectId: string | null) => {
+export const useAllVolumes = (projectId: string) => {
   const { t } = useTranslation(['region', 'common']);
 
   const [{ data, ...restQuery }, { data: catalogData }] = useQueries({
@@ -95,7 +95,7 @@ export type VolumeOptions = {
 };
 
 export const useVolumes = (
-  projectId: string | null,
+  projectId: string,
   { pagination, sorting }: VolumeOptions,
   filters: Filter[] = [],
 ) => {
@@ -290,7 +290,7 @@ export const useDetachVolume = (options?: {
         getVolumeQueryKey(projectId, volumeId),
         () => newVolume,
       );
-      onSuccess();
+      onSuccess?.();
     },
   });
   return {

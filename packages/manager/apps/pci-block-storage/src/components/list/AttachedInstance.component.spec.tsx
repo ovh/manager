@@ -7,11 +7,11 @@ import AttachedInstanceComponent from '@/components/list/AttachedInstance.compon
 
 describe('AttachedInstanceComponent', () => {
   it('renders OsdsSkeleton when data is loading', () => {
-    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
+    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue(({
       data: {},
       isPending: true,
       isLoading: true,
-    } as UseQueryResult<TInstance>);
+    } as unknown) as UseQueryResult<TInstance>);
     const { getByTestId } = render(
       <AttachedInstanceComponent
         projectId="project1"

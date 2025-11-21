@@ -81,7 +81,7 @@ describe('useTranslatedBytes', () => {
   });
   it('returns value with precision of 0', () => {
     const { result } = renderHook(() =>
-      useTranslatedBytes(1024, undefined, false, '', false),
+      useTranslatedBytes(1024, NaN, false, '', false),
     );
     expect(result.current).toBe('1 KB');
   });

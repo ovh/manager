@@ -32,17 +32,18 @@ import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { Button } from '@/components/button/Button';
 import { StorageGuidesHeader } from '@/pages/list/StorageGuidesHeader.component';
 import { FileStorageAlphaBanner } from '@/components/banner/FileStorageAlphaBanner.component';
+import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 export const ListingPage = () => {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const projectUrl = useProjectUrl('public-cloud');
 
-  const { projectId } = useParams();
+  const projectId = useMandatoryParam('projectId');
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 

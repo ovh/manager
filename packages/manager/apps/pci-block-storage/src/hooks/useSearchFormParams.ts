@@ -30,12 +30,9 @@ export function useSearchFormParams<
     try {
       const searchData = partialSchema.parse(Object.fromEntries(searchParams));
       Object.entries(searchData).forEach(
-        ([name, value]: [
-          Path<FormReturn>,
-          PathValue<FormReturn, Path<FormReturn>>,
-        ]) => {
+        ([name, value]: [string, PathValue<FormReturn, Path<FormReturn>>]) => {
           if (value !== undefined && value !== null && form[name] !== value) {
-            setValue(name, value);
+            setValue(name as Path<FormReturn>, value);
           }
         },
       );

@@ -36,6 +36,7 @@ import { useSearchFormParams } from '@/hooks/useSearchFormParams';
 import { TAttachedInstance } from '@/api/select/instances';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
+import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 const SelectInstance = ({ instances }: { instances: TAttachedInstance[] }) => {
   const { control } = useFormContext();
@@ -96,7 +97,7 @@ const InstanceDescription = ({
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {t('pci_projects_project_storages_blocks_block_detach_detachvolume', {
-          volume: volume.name,
+          volume: volume?.name ?? '',
           instance: selectedInstance.name,
         })}
       </OsdsText>
@@ -111,10 +112,12 @@ const Form = <Schema extends z.ZodObject<ZodRawShape>>({
   children,
 }: PropsWithChildren<{
   schema: Schema;
-  onSubmit: SubmitHandler<Required<z.infer<Schema>>>;
+  onSubmit: SubmitHandler<Partial<z.infer<Schema>>>;
   values?: Partial<z.infer<Schema>>;
 }>) => {
-  const { handleSubmit, formState, ...restForm } = useForm({
+  const { handleSubmit, formState, ...restForm } = useForm<
+    Partial<z.infer<Schema>>
+  >({
     resolver: zodResolver(schema),
     values,
   });
@@ -158,7 +161,8 @@ const DETACH_SCHEMA = z.object({
 
 export default function DetachStorage() {
   const navigate = useNavigate();
-  const { projectId, volumeId } = useParams();
+  const volumeId = useMandatoryParam('volumeId');
+  const projectId = useMandatoryParam('projectId');
   const { t } = useTranslation('detach');
   const { addError, addSuccess } = useNotifications();
   const { data: volume } = useVolume(projectId, volumeId);
@@ -170,26 +174,20 @@ export default function DetachStorage() {
   } = useAttachedInstances(projectId, volumeId);
   const actionValues = useMemo(() => [volume?.region], [volume]);
 
-  const onTrackingBannerError = useTrackBanner(
-    { type: 'error' },
-    (err: Error) => {
-      addError(
-        <Translation ns="detach">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_blocks_block_detach_error_detach',
-              {
-                volume: volume?.name,
-                message: err.message,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
-  );
+  const onTrackingBannerError = useTrackBanner({ type: 'error' }, (err) => {
+    addError(
+      <Translation ns="detach">
+        {(_t) =>
+          _t('pci_projects_project_storages_blocks_block_detach_error_detach', {
+            volume: volume?.name,
+            message: err instanceof Error ? err.message : undefined,
+          })
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
   const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
     addSuccess(
       <Translation ns="detach">
@@ -225,9 +223,10 @@ export default function DetachStorage() {
   return (
     <Form
       schema={DETACH_SCHEMA}
-      onSubmit={(formData) =>
+      onSubmit={({ instanceId, ...formData }) =>
         detachVolume({
           ...formData,
+          instanceId: instanceId ?? '',
           projectId,
           volumeId,
         })
@@ -236,7 +235,7 @@ export default function DetachStorage() {
         instanceId:
           !!volume && volume.attachedTo.length === 1
             ? volume.attachedTo[0]
-            : null,
+            : undefined,
       }}
     >
       <OsdsModal
@@ -252,7 +251,7 @@ export default function DetachStorage() {
               data-testid="detachStorage-spinner"
             />
           )}
-          {instances?.length > 1 && (
+          {instances && instances?.length > 1 && (
             <div>
               <SelectInstance instances={instances} />
             </div>

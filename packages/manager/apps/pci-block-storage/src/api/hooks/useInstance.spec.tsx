@@ -10,7 +10,7 @@ vi.mock('@/api/hooks/useVolume');
 
 const queryClient = new QueryClient();
 
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: { children?: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
@@ -55,13 +55,13 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances data when volumeId is provided', async () => {
-    vi.mocked(useVolume).mockReturnValue({
+    vi.mocked(useVolume).mockReturnValue(({
       data: {
         region: 'region1',
         attachedTo: [],
         type: 'model1',
       },
-    } as ReturnType<typeof useVolume>);
+    } as unknown) as ReturnType<typeof useVolume>);
 
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
@@ -81,7 +81,7 @@ describe('useAttachableInstances', () => {
       typeof useVolume
     >);
 
-    const { result } = renderHook(() => useAttachableInstances('123', null), {
+    const { result } = renderHook(() => useAttachableInstances('123', ''), {
       wrapper,
     });
 
@@ -90,13 +90,13 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns active instances', async () => {
-    vi.mocked(useVolume).mockReturnValue({
+    vi.mocked(useVolume).mockReturnValue(({
       data: {
         region: 'region1',
         attachedTo: [],
         type: 'model1',
       },
-    } as ReturnType<typeof useVolume>);
+    } as unknown) as ReturnType<typeof useVolume>);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -114,14 +114,14 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances when availability zone is any', async () => {
-    vi.mocked(useVolume).mockReturnValue({
+    vi.mocked(useVolume).mockReturnValue(({
       data: {
         region: 'region2',
         availabilityZone: 'any',
         attachedTo: [],
         type: 'model1',
       },
-    } as ReturnType<typeof useVolume>);
+    } as unknown) as ReturnType<typeof useVolume>);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {
@@ -139,14 +139,14 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances with same availability zone', async () => {
-    vi.mocked(useVolume).mockReturnValue({
+    vi.mocked(useVolume).mockReturnValue(({
       data: {
         region: 'region2',
         availabilityZone: 'region2-a',
         attachedTo: [],
         type: 'model1',
       },
-    } as ReturnType<typeof useVolume>);
+    } as unknown) as ReturnType<typeof useVolume>);
     const { result } = renderHook(
       () => useAttachableInstances('123', 'volume1'),
       {

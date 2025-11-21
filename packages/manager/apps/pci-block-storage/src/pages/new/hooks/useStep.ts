@@ -23,7 +23,7 @@ export function useStep(initialState?: Readonly<Partial<StepState>>): Step {
   const [isChecked, setIsChecked] = useState(!!initialState?.isChecked);
   const [isLocked, setIsLocked] = useState(!!initialState?.isLocked);
   const [isShown, setIsShown] = useState(
-    initialState && 'isShown' in initialState ? initialState.isShown : true,
+    initialState && 'isShown' in initialState ? !!initialState.isShown : true,
   );
 
   return {

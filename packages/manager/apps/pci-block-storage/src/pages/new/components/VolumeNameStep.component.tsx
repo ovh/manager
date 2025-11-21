@@ -47,7 +47,7 @@ export function VolumeNameStep({
   );
 
   const defaultVolumeName = useMemo(
-    () => `${data.technicalName}-${region}-${volumeCapacity}GB`,
+    () => `${data?.technicalName ?? ''}-${region}-${volumeCapacity}GB`,
     [data, region, volumeCapacity],
   );
 

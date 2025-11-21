@@ -53,7 +53,7 @@ export function useTrackBanner<
     () =>
       withTrackBanner(
         trackPage,
-        pageTracking?.pageName,
+        pageTracking?.pageName ?? '',
         trackingParams,
         callback,
       ),

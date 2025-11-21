@@ -60,7 +60,7 @@ export function useVolumeStepper(projectId: string) {
         volumeTypeStep.open();
         if (has3AZ) {
           if (
-            volumeCatalog.models.some((m) =>
+            volumeCatalog?.models.some((m) =>
               m.pricings.some(
                 (p) =>
                   p.regions.includes(region.name) && p.showAvailabilityZones,

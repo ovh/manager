@@ -25,7 +25,7 @@ export default function AttachedInstanceComponent({
       href={`${projectUrl}/instances/${instanceId}`}
       data-testid="AttachedInstanceComponent_link"
     >
-      {instance.name}
+      {instance?.name}
     </OsdsLink>
   );
 }

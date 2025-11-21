@@ -6,16 +6,16 @@ import {
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { FA_EXTEN_BANNER } from '@/api/data/quota';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 const extenProducts = ['high-speed-BETA', 'classic-BETA'];
 
 function Banner() {
   const { t } = useTranslation('exten-banner-beta');
-  const { projectId } = useParams();
+  const projectId = useMandatoryParam('projectId');
   const { data: volumeCatalog } = useVolumeCatalog(projectId);
 
   const regionsString = useMemo(

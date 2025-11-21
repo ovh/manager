@@ -44,7 +44,7 @@ const shellContextValue: RecursivePartial<ShellContextType> = {
   },
 };
 
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: { children?: React.ReactNode }) => (
   <ShellContext.Provider value={shellContextValue as ShellContextType}>
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   </ShellContext.Provider>
@@ -91,7 +91,7 @@ describe('useVolume', () => {
   });
 
   it('does not fetch data when volumeId is not provided', () => {
-    const { result } = renderHook(() => useVolume('123', null), { wrapper });
+    const { result } = renderHook(() => useVolume('123', ''), { wrapper });
 
     expect(getVolume).not.toHaveBeenCalled();
     expect(result.current.isPending).toBe(true);
@@ -194,7 +194,7 @@ describe('useVolumes', () => {
   it('does not fetch data when projectId is not provided', () => {
     const { result } = renderHook(
       () =>
-        useVolumes(null, {
+        useVolumes('', {
           pagination: { pageIndex: 0, pageSize: 10 },
           sorting: { id: 'name', desc: false },
         }),
@@ -236,7 +236,7 @@ describe('useDeleteVolume', () => {
       () =>
         useDeleteVolume({
           projectId: '123',
-          volumeId: null,
+          volumeId: '',
           onSuccess,
           onError,
         }),

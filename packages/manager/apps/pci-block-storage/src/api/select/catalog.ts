@@ -22,7 +22,7 @@ export const mapVolumeModelName = <T extends TVolumeAddon>(
   region: string,
 ) => {
   const is3azRegion =
-    catalogRegions.find((r) => r.name === region).type === 'region-3-az';
+    catalogRegions.find((r) => r.name === region)?.type === 'region-3-az';
 
   return (model: T): TVolumeModelWithName<T> => ({
     ...model,
@@ -46,12 +46,12 @@ export const getAvailabilityZonesFromModelPricings = (
 
   let availabilityZonesCount: TModelAvailabilityZones['availabilityZonesCount'] = null;
   if (is3azRegion) {
-    availabilityZonesCount = pricing.showAvailabilityZones ? 1 : 3;
+    availabilityZonesCount = pricing?.showAvailabilityZones ? 1 : 3;
   }
 
   return {
     availabilityZonesCount,
-    showAvailabilityZones: pricing.showAvailabilityZones,
+    showAvailabilityZones: pricing?.showAvailabilityZones ?? false,
   };
 };
 
@@ -87,6 +87,10 @@ export const getPricingSpecsFromModelPricings = (
   capacity?: number,
 ): TModelPrice => {
   const pricing = pricings[0];
+
+  if (!pricing) {
+    throw new Error('pricings is empty');
+  }
 
   let iops = `${Math.min(
     (capacity ?? 1) * pricing.specs.volume.iops.level,
@@ -157,7 +161,7 @@ export const getPricingSpecsFromModelPricings = (
     iops,
     areIOPSDynamic: pricing.areIOPSDynamic,
     bandwidth,
-    isBandwidthDynamic: pricing.isBandwidthDynamic,
+    isBandwidthDynamic: !!pricing.isBandwidthDynamic,
     encrypted: pricings.some((p) => p.specs.encrypted),
     capacity: {
       max: pricing.specs.volume.capacity.max * 10 ** 9,
@@ -178,7 +182,7 @@ export const mapVolumeModelPriceSpecs = <T extends TVolumeAddon>(
   capacity?: number,
 ) => {
   const is3azRegion =
-    catalogRegions.find((r) => r.name === region).type === 'region-3-az';
+    catalogRegions.find((r) => r.name === region)?.type === 'region-3-az';
 
   return (model: T): TVolumeModelWithPriceSpecs<T> => ({
     ...model,
@@ -314,7 +318,10 @@ export const mapFilterLeastPrice = <T extends TCatalogGroup>(
   return {
     ...group,
     monthlyPrice: {
-      value: formatCatalogPrice(convertHourlyPriceToMonthly(hourlyPrice.value)),
+      value:
+        hourlyPrice.value !== null
+          ? formatCatalogPrice(convertHourlyPriceToMonthly(hourlyPrice.value))
+          : '',
       isLeastPrice: hourlyPrice.isLeastPrice,
       unit: [
         t('order-price:order_catalog_price_tax_excl_label', {
