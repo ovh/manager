@@ -122,6 +122,7 @@ export const serviceInfoDetail: TDomainResource = {
         },
       ],
     },
+    protectionState: ProtectionStateEnum.PROTECTED,
     hostsConfiguration: {
       hosts: [
         {

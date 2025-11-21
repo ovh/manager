@@ -48,7 +48,11 @@ export default function NewDnsConfigModal({
     );
 
     updateDomain(
-      { checksum, nameServers: cleanedNameServers },
+      {
+        checksum,
+        nameServers: cleanedNameServers,
+        protectionState: domainResource?.targetSpec.protectionState,
+      },
       {
         onSuccess: () => {
           onClose();

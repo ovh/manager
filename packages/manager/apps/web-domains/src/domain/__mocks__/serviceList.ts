@@ -70,6 +70,7 @@ export const serviceList: TDomainResource[] = [
           },
         ],
       },
+      protectionState: ProtectionStateEnum.PROTECTED,
     },
     currentTasks: [],
     iam: {

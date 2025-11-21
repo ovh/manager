@@ -9,6 +9,7 @@ import {
 import { baseDomainResource, ns1, ns2 } from '@/domain/__mocks__/dnsDetails';
 import { TaskStatusEnum } from '../enum/taskStatus.enum';
 import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
+import { ProtectionStateEnum } from '../enum/protectionState.enum';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFormatDate: () => () => '03/01/2025 10:15',
@@ -65,6 +66,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -92,6 +94,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -127,6 +130,7 @@ describe('computeDnsDetails', () => {
       ],
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -154,6 +158,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -181,6 +186,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1, ns2] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -218,6 +224,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [nsNoIP] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
