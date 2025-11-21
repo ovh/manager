@@ -221,7 +221,7 @@
             <oui-action-menu-item
                 data-ng-if="$row.spamDetected"
                 data-external
-                data-href="{{:: $ctrl.linkToSpamTicket }}"
+                data-href="{{ :: $ctrl.constructor.spamTicketUrl($row) }}"
             >
                 <span
                     data-translate="exchange_tab_ACCOUNTS_menu_contactSupportForSpam"
