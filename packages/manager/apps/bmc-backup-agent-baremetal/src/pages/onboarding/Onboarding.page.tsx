@@ -2,14 +2,15 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Card } from '@ovh-ux/manager-react-components';
 
 import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
 import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/OnboardingLayout.component';
-import { useBaremetalsList } from '@/data/hooks/baremetal/useBaremetalsList';
 import { useGuideLinks, useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
 import { useOnboardingHeroImage } from '@/hooks/onboarding/useOnboardingHeroImage';
+import { urls } from '@/routes/Routes.constants';
 import { OnboardingLinksType } from '@/types/Onboarding.type';
 
 export default function OnboardingPage() {
@@ -37,7 +38,7 @@ export default function OnboardingPage() {
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
       onMoreInfoButtonClick={() => {}}
       isOrderLoading={isLoading}
-      orderHref=""
+      orderHref={urls.firstOrder}
       moreInfoHref="/#/"
       isOrderDisabled={!flattenData?.length}
       tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
