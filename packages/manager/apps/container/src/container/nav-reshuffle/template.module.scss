@@ -36,6 +36,13 @@ $z-index-sidebar: 700;
   flex-grow: 1;
 }
 
+.bodyContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  overflow: hidden;
+}
+
 .iframeContainer {
   flex-grow: 1;
   position: relative;
