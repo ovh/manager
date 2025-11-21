@@ -82,23 +82,16 @@ export const VolumeModelTilesInput = ({
         badges: hideBadges
           ? []
           : [
-              model.encrypted
-                ? {
-                    label: t(
-                      'common:pci_projects_project_storages_blocks_encryption_available',
-                    ),
-                    backgroundColor: '#D2F2C2',
-                    textColor: '#113300',
-                    icon: 'lock' as const,
-                  }
-                : {
-                    label: t(
-                      'common:pci_projects_project_storages_blocks_encryption_unavailable',
-                    ),
-                    backgroundColor: '#FFCCD9',
-                    textColor: '#4D000D',
-                    icon: 'lock' as const,
-                  },
+              {
+                label: t(
+                  `common:pci_projects_project_storages_blocks_encryption_${
+                    model.encrypted ? 'available' : 'unavailable'
+                  }`,
+                ),
+                backgroundColor: model.encrypted ? '#D2F2C2' : '#FFCCD9',
+                textColor: model.encrypted ? '#113300' : '#4D000D',
+                icon: 'lock' as const,
+              },
             ],
         features: getFeatures(model),
         price: model.hourlyPrice,
