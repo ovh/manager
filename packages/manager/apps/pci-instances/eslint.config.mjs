@@ -42,7 +42,7 @@ export default [
       'react-hooks/set-state-in-effect': 'off',
       'react-hooks/use-memo': 'off',
       'react-hooks/preserve-manual-memoization': 'off',
-    }
+    },
   },
   a11yEslintConfig,
   htmlEslintConfig,

@@ -57,3 +57,30 @@ export const groupBy = <T, K>(array: T[], getValue: (item: T) => K) => {
     return acc;
   }, new Map<K, T[]>());
 };
+
+export const getLocalZoneTranslationKey = (regionName: string) =>
+  regionName.split('-').slice(-1)[0];
+
+export const isEven = (nb: number) => nb % 2 === 0;
+
+export const getRegionalizedFlavorId = (
+  flavorName: string,
+  regionName: string,
+) => `${flavorName}_${regionName}`;
+
+export const getRegionalizedFlavorOsTypeId = (
+  flavorName: string,
+  regionName: string,
+  osType: string,
+) => `${getRegionalizedFlavorId(flavorName, regionName)}_${osType}`;
+
+export const getRegionalizedFlavorOsTypePriceId = (
+  flavorName: string,
+  regionName: string,
+  osType: string,
+) => `${getRegionalizedFlavorOsTypeId(flavorName, regionName, osType)}_price`;
+
+export const getRegionalizedImagePriceId = (
+  imageVersionName: string,
+  regionName: string,
+) => `${imageVersionName}_${regionName}`;
