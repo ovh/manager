@@ -33,6 +33,12 @@ vi.spyOn(useApplicationsApi, 'useApplications').mockReturnValue({
 const mockedUsedNavigate = vi.fn();
 vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
+  useSearchParams: () => [
+    new URLSearchParams({
+      test: 'test',
+    }),
+    vi.fn(),
+  ], 
 }));
 
 vi.mock('@/context/tracking/useTracking', () => ({
@@ -60,7 +66,7 @@ describe('User Provider', () => {
     renderComponent();
 
     await vi.waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(urls.settings);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(`${urls.settings}?test=test`);
     });
   });
 
@@ -74,7 +80,7 @@ describe('User Provider', () => {
     renderComponent();
 
     await vi.waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(urls.accountType);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(`${urls.accountType}?test=test`);
     });
   });
 
