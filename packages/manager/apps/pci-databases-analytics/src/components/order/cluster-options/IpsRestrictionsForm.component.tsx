@@ -112,8 +112,9 @@ const IpsRestrictionsForm = React.forwardRef<
             {!value.find((v) => v.ip === formatIpMask(dataplatformIp)) && (
               <Button
                 className="px-2"
-                mode={'outline'}
-                size={'sm'}
+                mode="outline"
+                size="sm"
+                disabled={disabled}
                 onClick={() =>
                   addIp({
                     ip: dataplatformIp,
@@ -129,8 +130,9 @@ const IpsRestrictionsForm = React.forwardRef<
             {!value.find((v) => v.ip === formatIpMask(ipQuery.data?.ip)) && (
               <Button
                 className="px-2"
-                mode={'outline'}
-                size={'sm'}
+                mode="outline"
+                size="sm"
+                disabled={disabled}
                 onClick={() =>
                   addIp({ ip: ipQuery.data?.ip, description: 'current ip' })
                 }
@@ -198,7 +200,7 @@ const IpsRestrictionsForm = React.forwardRef<
             <Button
               data-testid="ip-add-button"
               className="md:mt-8"
-              mode={'outline'}
+              mode="outline"
               disabled={disabled}
               onClick={onSubmit}
             >
@@ -230,8 +232,8 @@ const IpsRestrictionsForm = React.forwardRef<
                   <Button
                     data-testid={`ip-remove-button-${idx}`}
                     className="text-red-500 rounded-full p-2 hover:text-red-500 size-8"
-                    mode={'ghost'}
-                    variant={'destructive'}
+                    mode="ghost"
+                    variant="destructive"
                     type="button"
                     onClick={() => removeIp(idx)}
                     disabled={disabled}
