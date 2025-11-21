@@ -15,7 +15,7 @@ const externalLinks = {
     input:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-form-elements-input--documentation',
     link:
-      'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-link--documentation',
+      'https://ovh.github.io/design-system/latest/?path=/docs/react-components-link--documentation',
     message:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-message--documentation',
     modal:
@@ -25,7 +25,7 @@ const externalLinks = {
     select:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-form-elements-select--documentation',
     tag:
-      'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-tag--documentation',
+      'https://ovh.github.io/design-system/latest/?path=/docs/react-components-tag--documentation',
     text:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-text--documentation',
     tooltip:
