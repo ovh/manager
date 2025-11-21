@@ -6,8 +6,59 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "sideEffects": false,
-  "main": "dist/src/lib.js",
-  "types": "dist/types/src/lib.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/src/lib",
+      "require": "./dist/src/lib.js",
+      "types": "./dist/types/src/lib.d.ts"
+    },
+    "./package.json": {
+      "import": "./package.json",
+      "require": "./package.json"
+    },
+    "./data/hooks/baremetal/useBaremetalsList": {
+      "import": "./dist/src/data/hooks/baremetal/useBaremetalsList",
+      "require": "./dist/src/data/hooks/baremetal/useBaremetalsList.js",
+      "types": "./dist/types/src/data/hooks/baremetal/useBaremetalsList.d.ts"
+    },
+    "./mocks/baremetals/baremetals.mocks": {
+      "import": "./dist/src/mocks/baremetals/baremetals.mocks",
+      "require": "./dist/src/mocks/baremetals/baremetals.mocks.js",
+      "types": "./dist/types/src/mocks/baremetals/baremetals.mocks.d.ts"
+    },
+    "./mocks/baremetals/baremetals.handler": {
+      "import": "./dist/src/mocks/baremetals/baremetals.handler",
+      "require": "./dist/src/mocks/baremetals/baremetals.handler.js",
+      "types": "./dist/types/src/mocks/baremetals/baremetals.handler.d.ts"
+    },
+    "./components/Fields/RhfField/RhfField.component": {
+      "import": "./dist/src/components/Fields/RhfField.component",
+      "require": "./dist/src/components/Fields/RhfField.component.js",
+      "types": "./dist/types/src/components/Fields/RhfField.component.d.ts"
+    },
+    "./components/Fields/RhfInput": {
+      "import": "./dist/src/components/Fields/RhfInput",
+      "require": "./dist/src/components/Fields/RhfInput.js",
+      "types": "./dist/types/src/components/Fields/RhfInput.d.ts"
+    },
+    "./components/Fields/RhfQuantity": {
+      "import": "./dist/src/components/Fields/RhfQuantity",
+      "require": "./dist/src/components/Fields/RhfQuantity.js",
+      "types": "./dist/types/src/components/Fields/RhfQuantity.d.ts"
+    },
+    "./components/Fields/RhfCombobox": {
+      "import": "./dist/src/components/Fields/RhfCombobox",
+      "require": "./dist/src/components/Fields/RhfCombobox.js",
+      "types": "./dist/types/src/components/Fields/RhfCombobox.d.ts"
+    },
+    "./components/CommonFields/BaremetalOption/BaremetalOption.component": {
+      "import": "./dist/src/components/CommonFields/BaremetalOption/BaremetalOption.component",
+      "require": "./dist/src/components/CommonFields/BaremetalOption/BaremetalOption.component.js",
+      "types": "./dist/types/src/components/CommonFields/BaremetalOption/BaremetalOption.component.d.ts"
+    }
+  },
+  "main": "./dist/src/lib.js",
+  "types": "./dist/types/src/lib.d.ts",
   "scripts": {
     "build": "tsc && tsc-alias",
     "dev": "tsc && tsc-alias",
@@ -17,10 +68,6 @@
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
-  },
-  "dependencies": {
-    "@tanstack/react-virtual": "^3.10.9",
-    "date-fns": "^3.6.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-billing-informations": "*",
@@ -33,16 +80,15 @@
     "@ovh-ux/manager-vite-config": "0.15.0",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
-    "@tanstack/react-query": "5.61.5",
-    "@tanstack/react-virtual": "^3.10.9",
     "msw": "2.1.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.3.0",
-    "tailwindcss": "^3.4.4"
+    "react-hook-form": "^7.66.1",
+    "tailwindcss": "^3.4.4",
+    "tsc-alias": "^1.8.16",
+    "typescript": "5.4.5",
+    "zod": "3.22.4"
   },
   "peerDependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@ovh-ux/manager-billing-informations": "*",
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-config": "^8.0.2",
@@ -61,6 +107,7 @@
     "i18next": "^23.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.66.1",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0"
   }

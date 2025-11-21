@@ -3,17 +3,21 @@ import { ReactNode } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
+import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
 
 import OnboardingPage from './Onboarding.page';
 
-vi.mock('react-router-dom', () => ({
-  Link: ({ to, children, ...props }: { to: string; children: React.ReactNode }) => (
-    <a href={to} {...props}>
-      {children}
-    </a>
-  ),
-}));
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom')
+  return {
+    ...actual,
+    Link: ({to, children, ...props}: { to: string; children: React.ReactNode }) => (
+      <a href={to} {...props}>
+        {children}
+      </a>
+    ),
+  }
+});
 
 // --- Mock translation ---
 vi.mock('react-i18next', () => ({
@@ -30,9 +34,11 @@ const { useBaremetalsListMock } = vi.hoisted(() => ({
     .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
 }));
 
-vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => ({
-  useBaremetalsList: useBaremetalsListMock,
-}));
+vi.mock('@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList', () => {
+  return {
+    useBaremetalsList: useBaremetalsListMock,
+  };
+});
 
 // --- Mock manager-react-components ---
 interface OnboardingLayoutProps {

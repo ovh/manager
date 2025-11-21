@@ -1,8 +1,10 @@
 import { SetupServer } from 'msw/node';
 
+import {
+  TBaremetalsMockParams,
+  getBaremetalsMocks,
+} from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.handler';
 import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
-
-import { TBaremetalsMockParams, getBaremetalsMocks } from '@/mocks/baremetals/baremetals.handler';
 
 export type MockParams = TBaremetalsMockParams;
 
