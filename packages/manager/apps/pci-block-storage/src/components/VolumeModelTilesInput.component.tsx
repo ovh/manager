@@ -13,6 +13,7 @@ type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   label: string;
   locked?: boolean;
   horizontal?: boolean;
+  hideBadges?: boolean;
 };
 
 export const VolumeModelTilesInput = ({
@@ -22,6 +23,7 @@ export const VolumeModelTilesInput = ({
   label = '',
   locked = false,
   horizontal = false,
+  hideBadges = false,
 }: Props) => {
   const { t } = useTranslation(['add', 'common']);
   const { formatBytes } = useBytes();
@@ -76,25 +78,27 @@ export const VolumeModelTilesInput = ({
         ...model,
         label: model.displayName,
         description: getDescription(model),
-        badges: [
-          model.encrypted
-            ? {
-                label: t(
-                  'common:pci_projects_project_storages_blocks_encryption_available',
-                ),
-                backgroundColor: '#D2F2C2',
-                textColor: '#113300',
-                icon: 'lock' as const,
-              }
-            : {
-                label: t(
-                  'common:pci_projects_project_storages_blocks_encryption_unavailable',
-                ),
-                backgroundColor: '#FFCCD9',
-                textColor: '#4D000D',
-                icon: 'lock' as const,
-              },
-        ],
+        badges: hideBadges
+          ? []
+          : [
+              model.encrypted
+                ? {
+                    label: t(
+                      'common:pci_projects_project_storages_blocks_encryption_available',
+                    ),
+                    backgroundColor: '#D2F2C2',
+                    textColor: '#113300',
+                    icon: 'lock' as const,
+                  }
+                : {
+                    label: t(
+                      'common:pci_projects_project_storages_blocks_encryption_unavailable',
+                    ),
+                    backgroundColor: '#FFCCD9',
+                    textColor: '#4D000D',
+                    icon: 'lock' as const,
+                  },
+            ],
         features: getFeatures(model),
         price: model.hourlyPrice,
       })),
