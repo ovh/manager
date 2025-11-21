@@ -39,7 +39,7 @@ const VersionningStep = React.forwardRef<
         />
         <Label
           htmlFor="versioning-disabled-option"
-          className="flex gap-2 justify-center"
+          className="flex gap-2 justify-center items-center"
         >
           <span
             className={cn(
