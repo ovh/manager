@@ -18,6 +18,7 @@ import A from '@/components/links/A.component';
 
 export const AppHeader = ({ app }: { app: ai.app.App }) => {
   const { t } = useTranslation('ai-tools/apps/app');
+  const { t: tstatus } = useTranslation('ai-tools/apps');
   const { t: tRegions } = useTranslation('regions');
   const [isStartOpen, setIsStartOpen] = useState(false);
   const [isStopOpen, setIsStopOpen] = useState(false);
@@ -42,6 +43,7 @@ export const AppHeader = ({ app }: { app: ai.app.App }) => {
                   data-testid="open-stop-modal-button"
                   type="button"
                   variant="destructive"
+                  title={tstatus('tableActionStop')}
                   className="h-8 w-8 rounded-full p-1"
                   onClick={() => setIsStopOpen(true)}
                 >
@@ -51,6 +53,7 @@ export const AppHeader = ({ app }: { app: ai.app.App }) => {
                 <Button
                   data-testid="open-start-modal-button"
                   className="h-8 w-8 rounded-full p-1"
+                  title={tstatus('tableActionStart')}
                   type="button"
                   onClick={() => setIsStartOpen(true)}
                 >

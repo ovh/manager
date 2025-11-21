@@ -21,6 +21,7 @@ export default function QpusList({ qpus }: QpusListProps) {
 
   const columns: ColumnDef<NotebookWithQpu>[] = getColumns({
     onStartClicked: (notebook) => navigate(`./start/${notebook.id}`),
+    onRestartClicked: (notebook) => navigate(`./restart/${notebook.id}`),
     onStopClicked: (notebook) => navigate(`./stop/${notebook.id}`),
     onDeleteClicked: (notebook) => navigate(`./delete/${notebook.id}`),
   });
