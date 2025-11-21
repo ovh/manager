@@ -11,7 +11,11 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
+import {
+  COMPUTE_LABEL,
+  EDGE_GATEWAY_LABEL,
+  STORAGE_LABEL,
+} from './datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
@@ -21,16 +25,21 @@ import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard
 import { VRACK_LABEL } from '../dashboard.constants';
 import { FEATURE_FLAGS } from '@/app.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
+// import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility'; // TODO: [EDGE] implement when unmocking (testing only)
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'datacentres/edge-gateway']);
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: featuresAvailable } = useFeatureAvailability([
     FEATURE_FLAGS.VRACK,
+    FEATURE_FLAGS.EDGE_GATEWAY,
   ]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
+  const isEdgeFeatureAvailable =
+    featuresAvailable?.[FEATURE_FLAGS.EDGE_GATEWAY];
+
   const navigate = useNavigate();
 
   useAutoRefetch({
@@ -65,6 +74,14 @@ function DatacentreDashboardPage() {
       trackingActions: TRACKING_TABS_ACTIONS.vrack,
       disabled:
         !isVrackFeatureAvailable || !vcdDatacentre?.data?.currentState?.vrack,
+    },
+    {
+      name: 'edge-gateway',
+      title: EDGE_GATEWAY_LABEL,
+      to: useResolvedPath(subRoutes.edgeGateway).pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.edgeGateway,
+      disabled: !isEdgeFeatureAvailable, // TODO: [EDGE] replace by !isEdgeCompatible when unmocking (testing only)
+      // disabled: !isEdgeCompatibleVDC(vcdDatacentre?.data) // TODO: [EDGE] implement when unmocking (testing only)
     },
   ].filter(({ disabled }) => !disabled);
 
@@ -124,12 +141,6 @@ function DatacentreDashboardPage() {
       ),
     },
     {
-      id: subRoutes.edit,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
-      ),
-    },
-    {
       id: subRoutes.deleteSegment,
       label: t(
         'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
@@ -146,6 +157,18 @@ function DatacentreDashboardPage() {
       label: t(
         'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
       ),
+    },
+    {
+      id: subRoutes.edgeGateway,
+      label: EDGE_GATEWAY_LABEL,
+    },
+    {
+      id: subRoutes.addEdgeGateway,
+      label: t('datacentres/edge-gateway:edge_add_title'),
+    },
+    {
+      id: subRoutes.deleteEdgeGateway,
+      label: t('datacentres/edge-gateway:edge_delete_title'),
     },
   ];
 

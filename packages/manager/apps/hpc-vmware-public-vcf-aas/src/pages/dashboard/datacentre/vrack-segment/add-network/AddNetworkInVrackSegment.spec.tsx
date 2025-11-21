@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { renderTest } from '../../../../../test-utils';
+import { labels, renderTest } from '../../../../../test-utils';
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 
 const checkTitleIsVisible = () =>
@@ -23,7 +23,10 @@ const checkFormInputAndCta = (container: HTMLElement) => {
       `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
     ),
   ).toBeVisible();
-  expect(container.querySelector('[label="cancel"]')).toBeVisible();
+
+  const cancelButton = screen.getByTestId('secondary-button');
+  expect(cancelButton).toBeVisible();
+  expect(cancelButton).toHaveAttribute('label', labels.actions.cancel);
 
   const input = container.querySelector('input[name="network"]');
 
