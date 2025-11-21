@@ -46,12 +46,7 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   }
   return (
     <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
-      <Link
-        id={tooltipId}
-        to={!isOrderDisabled && !isOrderLoading ? orderHref : ''}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Link id={tooltipId} to={!isOrderDisabled && !isOrderLoading ? orderHref : ''}>
         <OdsButton
           size={ODS_BUTTON_SIZE.md}
           onClick={onOrderButtonClick}
