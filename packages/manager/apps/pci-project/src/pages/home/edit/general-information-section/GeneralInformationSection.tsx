@@ -14,8 +14,10 @@ import {
 import { useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useIsDefaultProject } from '@/data/hooks/useProjects';
 import { useEditProject } from '../useEditProject';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type GeneralInformationSectionProps = {
   isDiscovery: boolean;
@@ -32,6 +34,7 @@ export default function GeneralInformationSection({
   const [isDefault, setIsDefault] = useState<boolean>(false);
 
   const { addSuccess, addError, clearNotifications } = useNotifications();
+  const { trackClick, trackPage } = useOvhTracking();
 
   const {
     data: hasDefaultProperty,
@@ -61,6 +64,12 @@ export default function GeneralInformationSection({
     project.project_id,
     () => {
       clearNotifications();
+
+      trackPage({
+        pageType: PageType.bannerInfo,
+        pageName: PROJECTS_TRACKING.SETTINGS.REQUEST_SUCCESS,
+      });
+
       addSuccess(
         <Translation ns="edit">
           {(_t) => _t('pci_projects_project_edit_update_success')}
@@ -70,6 +79,12 @@ export default function GeneralInformationSection({
     },
     (error: ApiError) => {
       clearNotifications();
+
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PROJECTS_TRACKING.SETTINGS.REQUEST_ERROR,
+      });
+
       addError(
         <Translation ns="edit">
           {(_t) =>
@@ -83,13 +98,19 @@ export default function GeneralInformationSection({
     },
   );
 
-  const handleSubmit = () =>
+  const handleSubmit = () => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.SETTINGS.UPDATE_PROJECT_NAME,
+    });
+
     editProject({
       description,
       isDefault,
       isDescriptionChanged,
       isDefaultPropertyChanged,
     });
+  };
 
   return (
     <section className="flex flex-col gap-5">

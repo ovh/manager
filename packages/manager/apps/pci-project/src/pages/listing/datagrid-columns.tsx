@@ -34,6 +34,7 @@ const ProjectLink: React.FC<{
 }> = ({ projectId, label, getProjectUrl, isRedirectExternal, isSuspended }) => {
   const url = useProjectUrl(getProjectUrl, projectId);
   const { trackClick } = useOvhTracking();
+
   const handleTracking = () => {
     trackClick({
       actionType: 'action',

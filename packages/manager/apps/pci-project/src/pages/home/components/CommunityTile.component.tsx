@@ -38,7 +38,7 @@ export default function CommunityTile() {
               onClick={() => {
                 trackClick({
                   actionType: 'action',
-                  actions: [item.trackingName],
+                  actions: ['page', 'tile-tutorial', item.trackingName || ''],
                 });
               }}
             />
