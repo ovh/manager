@@ -118,7 +118,7 @@ const RetypePage = () => {
           className="w-fit flex flex-col h-[unset] gap-4"
         >
           <legend>
-            <Text preset={TEXT_PRESET.heading2}>
+            <Text preset={TEXT_PRESET.heading3}>
               {t('retype:pci_projects_project_storages_blocks_retype_title')}
             </Text>
           </legend>

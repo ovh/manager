@@ -2,6 +2,7 @@ import { TilesInput, useBytes } from '@ovh-ux/manager-pci-common';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { putPreselectedModelFirst } from '@/api/select/catalog';
@@ -116,9 +117,10 @@ export const VolumeModelTilesInput = ({
         horizontal && '[&_.config-card\\_\\_badges]:w-full whitespace-pre-line',
       )}
     >
+      <Text preset={TEXT_PRESET.heading5}>{label}</Text>
       <TilesInput
         name="volume-type"
-        label={label}
+        label=""
         value={volumeTypeValue}
         elements={volumeTypes}
         onChange={(e) => onChange(e)}
