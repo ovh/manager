@@ -24,6 +24,19 @@ export default defineConfig({
       ],
     }),
   ],
+  dedupe: [
+    '@ovh-ux/request-tagger',
+    '@ovh-ux/manager-react-components',
+    '@tanstack/react-query',
+    'i18next',
+    'i18next-http-backend',
+    'react',
+    'react-cookie',
+    'react-i18next',
+    '@ovhcloud/ods-components',
+    '@ovhcloud/ods-components/react',
+    '@ovhcloud/ods-themes',
+  ],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -39,6 +52,7 @@ export default defineConfig({
       external: [
         '@ovh-ux/request-tagger',
         '@ovh-ux/manager-react-components',
+        '@tanstack/react-query',
         'i18next',
         'i18next-http-backend',
         'react',

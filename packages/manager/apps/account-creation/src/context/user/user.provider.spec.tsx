@@ -13,6 +13,10 @@ import * as useApplicationsApi from '@/data/hooks/useApplications';
 import { urls } from '@/routes/routes.constant';
 import UserProvider from '@/context/user/user.provider';
 
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useFeatureAvailability: vi.fn(),
+}));
+
 const url = 'https://fake-manager.com/signup';
 vi.spyOn(useApplicationsApi, 'useApplications').mockReturnValue({
   isFetched: true,
@@ -51,7 +55,20 @@ const renderComponent = () =>
     </QueryClientProvider>,
   );
 
+
 describe('User Provider', () => {
+  beforeEach(() => {
+    vi.mocked(MRC.useFeatureAvailability).mockReturnValue(({
+      data: { 'account-creation': false },
+      isFetched: true,
+      isLoading: false,
+      isError: false,
+      error: null,
+      status: 'success',
+      refetch: vi.fn(),
+    } as unknown) as MRC.UseFeatureAvailabilityResult<Record<string, boolean>>);
+  });
+
   it('should redirect to the settings page if there is no active session', async () => {
     vi.spyOn(useMeApi, 'useMe').mockReturnValue({
       isFetched: true,
