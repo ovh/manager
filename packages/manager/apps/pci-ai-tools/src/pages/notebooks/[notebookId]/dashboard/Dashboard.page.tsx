@@ -1,20 +1,30 @@
 import { useTranslation } from 'react-i18next';
 import {
+  AlertCircle,
   Atom,
   Link,
+  Pen,
   RefreshCcwDot,
   Settings2,
   Tag,
   TerminalSquare,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
+  Badge,
+  BadgeProps,
+  Button,
   Card,
   CardContent,
   CardHeader,
   Code,
   Skeleton,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  badgeVariants,
   bash,
   githubDark,
   useToast,
@@ -38,14 +48,19 @@ import {
   NotebookRoadmapLinks,
 } from '@/configuration/roadmap-changelog.constants';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { isRunningNotebook } from '@/lib/statusHelper';
 
 const Dashboard = () => {
   const { notebook, projectId } = useNotebookData();
-  const isQuantum = useQuantum();
+  const { isQuantum, isQpu } = useQuantum();
+  const navigate = useNavigate();
 
   const { t } = useTranslation('ai-tools/notebooks/notebook/dashboard');
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>();
+  const variant: BadgeProps['variant'] = notebook.spec.timeoutAutoRestart
+    ? badgeVariants({ variant: 'success' })
+    : badgeVariants({ variant: 'destructive' });
 
   const { getCommand } = useGetCommand({
     onError: (err) => {
@@ -120,6 +135,50 @@ const Dashboard = () => {
             </h4>
           </CardHeader>
           <CardContent>
+            <div className="mb-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h5>{t('autoRestartLabel')}</h5>
+                  <Badge className={variant}>
+                    {notebook.spec.timeoutAutoRestart
+                      ? t('autoRestartEnabled')
+                      : t('autoRestartDisabled')}
+                  </Badge>
+                </div>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="inline-block" tabIndex={0}>
+                        <Button
+                          data-testid="popover-trigger-button"
+                          size="sm"
+                          mode="outline"
+                          className="text-text ml-2"
+                          onClick={() => navigate('./update-auto-restart')}
+                          disabled={
+                            isQpu || !isRunningNotebook(notebook.status.state)
+                          }
+                        >
+                          <span>{t('modifyLabel')}</span>
+                          <Pen className="ml-2 size-4" />
+                        </Button>
+                      </span>
+                    </TooltipTrigger>
+                    {!isQpu && !isRunningNotebook(notebook.status.state) && (
+                      <TooltipContent>
+                        {t('disabledRestartButtonTooltip')}
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              {isQpu && (
+                <p className="text-sm text-muted-foreground mt-2">
+                  <AlertCircle className="inline size-4 shrink-0 mr-1 mb-1 text-amber-500" />
+                  {t('qpuAutoRestartNote')}
+                </p>
+              )}
+            </div>
             <LifeCycle />
           </CardContent>
         </Card>

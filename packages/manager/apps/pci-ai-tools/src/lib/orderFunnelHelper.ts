@@ -55,6 +55,7 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
     name: formResult.notebookName,
     region: formResult.region.id,
     unsecureHttp: formResult.unsecureHttp,
+    timeoutAutoRestart: formResult.timeoutAutoRestart,
     sshPublicKeys: formResult.sshKey,
     labels: formResult.labels,
     quantumResources: {
@@ -104,6 +105,7 @@ export function getJobSpec(formResult: JobOrderResult) {
     image: formResult.image,
     region: formResult.region.id,
     unsecureHttp: formResult.unsecureHttp,
+    timeoutAutoRestart: formResult.timeoutAutoRestart,
     sshPublicKeys: formResult.sshKey,
     command: formResult.dockerCommand,
   };

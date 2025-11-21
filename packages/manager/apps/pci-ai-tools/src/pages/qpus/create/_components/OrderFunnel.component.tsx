@@ -56,6 +56,7 @@ import { NotebookSuggestions, PrivacyEnum } from '@/types/orderFunnel';
 import VolumeForm from '@/components/order/volumes/VolumesForm.component';
 
 import LabelsForm from '@/components/labels/LabelsForm.component';
+import { AutoRestartSection } from '@/components/auto-restart/AutoRestartSection.component';
 import SshKeyForm from '@/components/order/configuration/SshKeyForm.component';
 import OrderSummary from './OrderSummary.component';
 import CliEquivalent from './CliEquivalent.component';
@@ -558,6 +559,24 @@ const OrderFunnel = ({
                     </FormItem>
                   )}
                 />
+              </CardContent>
+            </Card>
+
+            {/* Auto Restart */}
+            <Card
+              id="autorestart"
+              data-testid="autorestart-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldTimeOutLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  <AlertCircle className="inline size-4 shrink-0 mr-1 mb-1 text-amber-500" />
+                  {t('defaultAutoRestartInfo')}
+                </CardDescription>
+                <AutoRestartSection form={model.form} app="qpus" />
               </CardContent>
             </Card>
 

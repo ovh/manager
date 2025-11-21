@@ -22,5 +22,14 @@
   "addLabelTitle": "Adicionar um label",
   "keyFieldLabel": "Chave",
   "valueFieldLabel": "Valor",
-  "deleteNotebookTooltip": "O notebook deve encontrar-se no estado «parado»"
+  "deleteNotebookTooltip": "O notebook deve encontrar-se no estado «parado»",
+  "activateAutoRestartButton": "Ativar o reinício automático",
+  "deactivateAutoRestartButton": "Desativar o reinício automático",
+  "autoRestartLabel": "Reinício automático",
+  "autoRestartEnabled": "Ativado",
+  "autoRestartDisabled": "Desativado",
+  "autoRestartToastSuccessTitle": "Reinício automático atualizado",
+  "autoRestartToastSuccessDescription": "A configuração de reinício automático foi atualizada para {{name}}",
+  "disabledRestartButtonTooltip": "O reinício automático não pode ser alterado quando o notebook está desligado.",
+  "modifyLabel": "Modificar"
 }
