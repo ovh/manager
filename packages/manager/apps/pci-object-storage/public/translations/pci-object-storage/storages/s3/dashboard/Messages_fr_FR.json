@@ -47,8 +47,17 @@
   "editObjectLockTitle": "Object Lock",
   "editObjectLockDescription": "L'Object Lock est une fonctionnalité qui vous permet de stocker des objets en utilisant le modèle Write Once, Read Many (WORM) et peut être utilisée dans des scénarios où il est impératif que les données ne soient ni modifiées ni supprimées après avoir été écrites.",
   "objectLockRetentionGroupLabel": "Rétention des objets",
-  "objectLockRetentionLabelEnabled": "Activée",
-  "objectLockRetentionLabelDisabled": "Désactivée",
+  "objectLockRetentionLabelenabled": "Activée",
+  "objectLockRetentionLabeldisabled": "Désactivée",
   "objectLockOptionsButtonCancel": "Annuler",
-  "objectLockOptionsButtonConfirm": "Sauvegarder"
+  "objectLockOptionsButtonConfirm": "Sauvegarder",
+  "objectLockRetentionModeGroupLabel": "Mode de rétention",
+  "objectLockRetentionModeLabel_governance": "Gouvernance",
+  "objectLockRetentionModeLabel_compliance": "Compliance",
+  "objectLockDurationLabel": "Durée de rétention",
+  "objectLockDurationUnitDays": "Jours",
+  "objectLockDurationUnitYears": "Années",
+  "objectLockComplianceModeWarning": "En mode confirmité, un objet est immuable jusqu'à l'expiration de sa date de conservation. Pour supprimer les objets configurés de cette manière, vous devez fermer le compte auquel ils sont associés.",
+  "objectLockRetentionModeDescription_governance": "Les utilisateurs disposant d'autorisations IAM spécifiques peuvent écraser ou supprimer un objet protégé pendant la période de conservation.",
+  "objectLockRetentionModeDescription_compliance": "Aucun utilisateur ne peut écraser ou supprimer les versions d'objets protégés pendant le mode de rétention."
 }
