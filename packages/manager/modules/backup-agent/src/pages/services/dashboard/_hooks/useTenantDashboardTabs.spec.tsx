@@ -51,7 +51,7 @@ describe('useTenantDashboardTabs', () => {
       ],
     },
     {
-      description: 'maps tabs with agents active via pathname match',
+      description: 'maps tabs with agent active via pathname match',
       tenantId: '456',
       pathname: '/services/dashboard/456/agents',
       expectedTabs: [
@@ -71,7 +71,7 @@ describe('useTenantDashboardTabs', () => {
       ],
     },
     {
-      description: 'maps tabs with agents active via pathMatcher',
+      description: 'maps tabs with agent active via pathMatcher',
       tenantId: '789',
       pathname: '/services/dashboard/789/agents/agent-123',
       expectedTabs: [
