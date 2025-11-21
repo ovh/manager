@@ -31,5 +31,6 @@
   "autoRestartToastSuccessTitle": "Reinicio automático actualizado",
   "autoRestartToastSuccessDescription": "Se ha actualizado la configuración de reinicio automático para {{name}}",
   "disabledRestartButtonTooltip": "El reinicio automático no se puede modificar cuando el notebook está detenido.",
-  "modifyLabel": "Modificar"
+  "modifyLabel": "Modificar",
+  "qpuAutoRestartNote": "Los portátiles QPU no se pueden apagar sin reinicio automático. Esta función está activada por defecto para asegurar la continuidad de tus cálculos QPU."
 }
