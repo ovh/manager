@@ -1,6 +1,7 @@
 ---
 title: Shell
-last_update: 2025-01-27
+version: 4.7.11
+last_update: 2025-11-21
 tags: [shell, ovhcloud, manager, architecture, communication, plugins, tracking, navigation]
 ai: true
 ---
@@ -8,6 +9,7 @@ ai: true
 # Shell
 
 > **📦 Version:** `@ovh-ux/shell@^4.7.11`
+> **📦 Package:** Internal OVHcloud Manager package
 
 ## 🧭 Purpose
 

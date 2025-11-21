@@ -1,6 +1,7 @@
 ---
 title: Request Tagger
-last_update: 2025-01-27
+version: 0.5.5
+last_update: 2025-11-21
 tags: [request, tagging, tracing, ovhcloud, manager, http, headers, navigation]
 ai: true
 ---
@@ -8,6 +9,7 @@ ai: true
 # Request Tagger
 
 > **📦 Version:** `@ovh-ux/request-tagger@^0.5.5`
+> **📦 Package:** Internal OVHcloud Manager package
 
 ## 🧭 Purpose
 

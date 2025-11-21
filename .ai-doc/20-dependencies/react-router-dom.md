@@ -1,13 +1,15 @@
 ---
 title: React Router DOM
-last_update: 2025-01-27
+version: 7.9.5
+last_update: 2025-11-21
 tags: [react-router, routing, navigation, ovhcloud, manager, lazy-loading, tracking]
 ai: true
 ---
 
 # React Router DOM
 
-> **📦 Version:** `react-router-dom@^6.3.0`
+> **📦 Version:** `react-router-dom@^7.9.5`
+> **📚 Official Documentation:** https://reactrouter.com/
 
 ## 🧭 Purpose
 
@@ -28,7 +30,18 @@ React Router DOM is designed for:
 - [React Tracking](../10-architecture/react-tracking.md)
 - [µApp Containerization](../10-architecture/uapp-containerization.md)
 - [Manager React Shell Client](./manager-react-shell-client.md)
-- [React Router Documentation](https://reactrouter.com/)
+- [React Router v7 Documentation](https://reactrouter.com/)
+- [React Router v7 Migration Guide](https://reactrouter.com/upgrading/v6)
+
+## ⚡ Important: React Router v7 Changes
+
+**React Router v7 consolidates packages:** In v7, `react-router-dom` functionality is now part of the main `react-router` package. However, the Manager ecosystem continues to use `react-router-dom@^7.9.5` for compatibility.
+
+**Key v7 Features:**
+- Non-breaking upgrade from v6 with future flags
+- Requires React 18+ and Node 20+
+- Improved TypeScript support
+- Better performance with `startTransition` integration
 
 ## 📘 Quick Start
 
@@ -37,7 +50,7 @@ React Router DOM is designed for:
 ```json
 {
   "dependencies": {
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^7.9.5"
   }
 }
 ```

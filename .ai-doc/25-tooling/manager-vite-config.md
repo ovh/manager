@@ -1,6 +1,7 @@
 ---
 title: Manager Vite Config
-last_update: 2025-01-27
+version: 0.13.4
+last_update: 2025-11-21
 tags: [vite, build, config, ovhcloud, manager, development, plugins]
 ai: true
 ---

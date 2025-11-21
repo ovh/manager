@@ -1,6 +1,7 @@
 ---
 title: Manager Core API
-last_update: 2025-01-27
+version: 0.18.7
+last_update: 2025-11-21
 tags: [api, core, ovhcloud, manager, axios, iceberg, v6, v2]
 ai: true
 ---

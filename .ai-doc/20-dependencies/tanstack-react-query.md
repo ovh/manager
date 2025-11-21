@@ -1,6 +1,7 @@
 ---
 title: TanStack React Query
-last_update: 2025-01-27
+version: 5.51.21
+last_update: 2025-11-21
 tags: [react-query, tanstack, data-fetching, state-management, ovhcloud, manager]
 ai: true
 ---
@@ -8,6 +9,7 @@ ai: true
 # TanStack React Query
 
 > **📦 Version:** `@tanstack/react-query@^5.51.21`
+> **📚 Official Documentation:** https://tanstack.com/query/v5/docs/framework/react/overview
 
 ## 🧭 Purpose
 

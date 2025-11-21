@@ -1,6 +1,7 @@
 ---
 title: Manager Config
-last_update: 2025-01-27
+version: 8.6.6
+last_update: 2025-11-21
 tags: [config, environment, ovhcloud, manager, application, user, region, locale]
 ai: true
 ---

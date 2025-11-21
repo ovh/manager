@@ -1,6 +1,7 @@
 ---
 title: Manager Static Analysis Kit
-last_update: 2025-01-27
+version: 0.11.1
+last_update: 2025-11-21
 tags: [eslint, static-analysis, linting, typescript, react, ovhcloud, manager, quality]
 ai: true
 ---

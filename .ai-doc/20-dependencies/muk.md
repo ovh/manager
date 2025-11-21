@@ -1,6 +1,7 @@
 ---
 title: Manager UI Kit (MUK)
-last_update: 2025-01-27
+version: 0.5.0
+last_update: 2025-11-21
 tags: [muk, manager, ui-kit, components, ovhcloud, react, ods]
 ai: true
 ---

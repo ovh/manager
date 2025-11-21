@@ -1,6 +1,7 @@
 ---
 title: Manager Core Utils
-last_update: 2025-01-27
+version: 0.4.5
+last_update: 2025-11-21
 tags: [utils, core, ovhcloud, manager, datefns, react, formatter]
 ai: true
 ---
