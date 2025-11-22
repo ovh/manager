@@ -3,15 +3,16 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { urlToStringRegex } from '@/utils/urlToStringRegex';
 
-export const subRoutes = {
-  services: 'services' as const,
-  vaults: 'vaults' as const,
-  billing: 'billing' as const,
-  dashboard: 'dashboard' as const,
-  delete: 'delete' as const,
-  agents: 'agents' as const,
-  buckets: 'buckets' as const,
-} as const;
+export const subRoutes = Object.freeze({
+  services: 'services',
+  vaults: 'vaults',
+  billing: 'billing',
+  dashboard: 'dashboard',
+  delete: 'delete',
+  agents: 'agents',
+  buckets: 'buckets',
+  add: 'add',
+});
 
 export const urlParams = {
   vaultId: ':vaultId' as const,
@@ -27,6 +28,7 @@ export const urls = {
   listingTenants: `/${subRoutes.services}`,
   dashboardTenants: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}`,
   dashboardTenantAgents: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}`,
+  addAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.add}`,
   listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
   dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,
   listingBilling: `/${subRoutes.billing}`,

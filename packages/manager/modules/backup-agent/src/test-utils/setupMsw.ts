@@ -5,6 +5,10 @@ import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module
 
 import { TAgentMockParams, getAgentMocks } from '@/mocks/agents/agents.handler';
 import { TLocationMockParams, getLocationMocks } from '@/mocks/location/locations.handler';
+import {
+  TTenantBackupPolicieMockParams,
+  getTenantBackupPolicieMocks,
+} from '@/mocks/tenant/backupPolicies.handler';
 import { TTenantMockParams, getTenantMocks } from '@/mocks/tenant/tenants.handler';
 import { TVSPCTenantMockParams, getVSPCTenantMocks } from '@/mocks/tenant/vspcTenants.handler';
 import { TVaultMockParams, getVaultMocks } from '@/mocks/vaults/vaults.handler';
@@ -14,7 +18,8 @@ export type MockParams = TVaultMockParams &
   TTenantMockParams &
   TAgentMockParams &
   TVSPCTenantMockParams &
-  GetServicesMocksParams;
+  GetServicesMocksParams &
+  TTenantBackupPolicieMockParams;
 
 export const setupMswMock = (mockParams: MockParams = {}) => {
   (global as unknown as { server: SetupServer }).server?.resetHandlers(
@@ -26,6 +31,7 @@ export const setupMswMock = (mockParams: MockParams = {}) => {
       ...getTenantMocks(mockParams),
       ...getAgentMocks(mockParams),
       ...getVSPCTenantMocks(mockParams),
+      ...getTenantBackupPolicieMocks(mockParams),
     ]),
   );
 };

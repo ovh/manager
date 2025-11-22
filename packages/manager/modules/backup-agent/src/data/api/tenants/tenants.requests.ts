@@ -13,9 +13,11 @@ import { VSPCTenant } from '@/types/VspcTenant.type';
 export const GET_BACKUP_TENANTS_ROUTE = '/backup/tenants';
 export const GET_VSPC_TENANTS_ROUTE = `${GET_BACKUP_TENANTS_ROUTE}/vspc`;
 
-const getDetailsTenantRoute = (tenantId: string) => `${GET_BACKUP_TENANTS_ROUTE}/${tenantId}`;
+export const getDetailsTenantRoute = (tenantId: string) =>
+  `${GET_BACKUP_TENANTS_ROUTE}/${tenantId}`;
 
-const getDetailsVspcTenantRoute = (tenantId: string) => `${GET_VSPC_TENANTS_ROUTE}/${tenantId}`;
+export const getDetailsVspcTenantRoute = (tenantId: string) =>
+  `${GET_VSPC_TENANTS_ROUTE}/${tenantId}`;
 
 export const getBackupTenants = async (
   params?: Omit<IcebergFetchParamsV2, 'route'>,
