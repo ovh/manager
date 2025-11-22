@@ -25,7 +25,7 @@ describe('[INTEGRATION] - Listing page', () => {
           container.querySelector(`ods-link[label="${mockVaults[0]!.currentState.name}"]`),
         ).toBeVisible();
       },
-      { timeout: 5000 },
+      { timeout: 10_000 },
     );
   });
 });

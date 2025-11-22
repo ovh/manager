@@ -8,15 +8,15 @@ import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
 import OnboardingPage from './Onboarding.page';
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom')
+  const actual = await vi.importActual('react-router-dom');
   return {
     ...actual,
-    Link: ({to, children, ...props}: { to: string; children: React.ReactNode }) => (
+    Link: ({ to, children, ...props }: { to: string; children: React.ReactNode }) => (
       <a href={to} {...props}>
         {children}
       </a>
     ),
-  }
+  };
 });
 
 // --- Mock translation ---
