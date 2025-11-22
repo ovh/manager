@@ -11,6 +11,9 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import servicesAgent from '../../public/translations/services/agent/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import vaultDashboard from '../../public/translations/vaults/dashboard/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -26,6 +29,7 @@ function addTranslations() {
     .addResources(defaultLocale, BACKUP_AGENT_NAMESPACES.VAULT_LISTING, vaultListing)
     .addResources(defaultLocale, BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD, vaultDashboard)
     .addResources(defaultLocale, BACKUP_AGENT_NAMESPACES.VAULT_DELETE, vaultDelete)
+    .addResources(defaultLocale, BACKUP_AGENT_NAMESPACES.AGENT, servicesAgent)
     .addResources(defaultLocale, NAMESPACES.ACTIONS, actions)
     .addResources(defaultLocale, NAMESPACES.STATUS, status)
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
@@ -70,4 +74,5 @@ export const labels = {
   commonDashboard,
   billing,
   region,
+  servicesAgent,
 };
