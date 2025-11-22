@@ -10,6 +10,7 @@ export const subRoutes = Object.freeze({
 export const urls = Object.freeze({
   root: ROOT_URL,
   onboarding: `${ROOT_URL}${subRoutes.onboarding}`,
+  firstOrder: `${ROOT_URL}${subRoutes.firstOrder}`,
 });
 
 export const redirectionApp = appName;

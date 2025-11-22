@@ -6,7 +6,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.component';
-import { AgentCreatedAtDateCell } from '@/pages/services/dashboard/agents/_components/AgentCreatedAtDateCell.component';
+import { AgentCreatedAtDateCell } from '@/pages/services/dashboard/agent/_components/AgentCreatedAtDateCell.component';
 import { Agent } from '@/types/Agent.type';
 import { Resource } from '@/types/Resource.type';
 
