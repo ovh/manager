@@ -7,6 +7,8 @@ import {
 } from '../utils/tasks-utils.js';
 import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/workspace-utils.js';
 
+const DEFAULT_RUNNER = 'turbo';
+
 /**
  * Execute a task within a safe workspace context.
  *
@@ -29,70 +31,108 @@ async function withWorkspaces(fn) {
 }
 
 /**
- * Run a Turbo task (`build` or `test`) in CI mode with optional CLI arguments.
+ * Build arguments for CI tasks (global build/test) depending on the chosen runner.
  *
- * Automatically prepares and cleans up workspaces around execution.
+ * - For turbo (and unknown runners): `runner run <task> ...options`
+ * - For nx: `nx run-many --target=<task> [options] [--all]`
  *
- * @async
- * @param {"build"|"test"} task - The Turbo task name.
- * @param {string[]} [options=[]] - Extra CLI args passed to `turbo run <task>`.
- * @returns {Promise<void>} Resolves when the Turbo task completes.
- * @example
- * await runCITask('build', ['--filter=@scope/app']);
+ * @param {string} runner
+ * @param {"build"|"test"} task
+ * @param {string[]} options
+ * @returns {string[]}
  */
-export async function runCITask(task, options = []) {
+function getCiRunnerArgs(runner, task, options = []) {
+  if (runner === 'nx') {
+    // Nx: use run-many; we default to --all if user didn't provide --all or --projects
+    const hasAll = options.includes('--all');
+    const hasProjectsFlag =
+      options.includes('--projects') || options.some((opt) => opt.startsWith('--projects='));
+
+    const args = ['run-many', `--target=${task}`, ...options];
+
+    if (!hasAll && !hasProjectsFlag) {
+      args.push('--all');
+    }
+
+    return args;
+  }
+
+  // Default (turbo and others): runner run <task> ...
+  return ['run', task, ...options];
+}
+
+/**
+ * Build arguments for single-target tasks (module/app) depending on the runner.
+ *
+ * - For turbo (and unknown): `runner run <task> --concurrency=N --continue=always --filter <filter>`
+ * - For nx: `nx run <project>:<task> --parallel=N`
+ *
+ * @param {string} runner
+ * @param {"build"|"test"|"lint"|string} task
+ * @param {string} projectOrFilter
+ * @param {number} concurrency
+ * @returns {string[]}
+ */
+function getSingleRunnerArgs(runner, task, projectOrFilter, concurrency = 1) {
+  if (runner === 'nx') {
+    // Assumption: projectOrFilter is the Nx project name
+    return ['run', `${projectOrFilter}:${task}`, `--parallel=${concurrency}`];
+  }
+
+  // Default (turbo and others): use turbo-style filter
+  return [
+    'run',
+    task,
+    `--concurrency=${concurrency}`,
+    '--continue=always',
+    '--filter',
+    projectOrFilter,
+  ];
+}
+
+/**
+ * Build arguments for "all" tasks (build all / test all) depending on the runner.
+ *
+ * - For turbo (and unknown): `runner run <task> --concurrency=N --continue=always`
+ * - For nx: `nx run-many --target=<task> --all --parallel=N`
+ *
+ * @param {string} runner
+ * @param {"build"|"test"|"lint"|string} task
+ * @param {number} concurrency
+ * @returns {string[]}
+ */
+function getAllRunnerArgs(runner, task, concurrency = 1) {
+  if (runner === 'nx') {
+    return ['run-many', `--target=${task}`, '--all', `--parallel=${concurrency}`];
+  }
+
+  // Default (turbo and others)
+  return ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
+}
+
+/**
+ * Run a turbo/nx/.. task (`build` or `test`) in CI mode with optional CLI arguments.
+ *
+ * @param {"build"|"test"} task
+ * @param {string[]} [options=[]] - Extra CLI args passed to the runner.
+ * @param {string} [runner="turbo"] - "turbo", "nx", ...
+ */
+export async function runCITask(task, options = [], runner = DEFAULT_RUNNER) {
   return withWorkspaces(async () => {
-    const args = ['run', task, ...options];
-    await runTaskFromRoot(`${task} (CI)`, 'turbo', args);
+    const args = getCiRunnerArgs(runner, task, options);
+    await runTaskFromRoot(`${task} (CI:${runner})`, runner, args);
   });
 }
 
 /**
- * Build all targets in CI mode.
+ * Run a turbo/nx/.. task (e.g., `build` or `test`) for a **specific module only**.
  *
- * @async
- * @param {string[]} [options=[]] - Turbo CLI options.
- * @returns {Promise<void>}
- * @example
- * await buildCI(['--filter=@ovh-ux/manager-web']);
+ * @param {"build"|"test"|"lint"|string} task
+ * @param {string} targetReference
+ * @param {number} [concurrency=1]
+ * @param {string} [runner="turbo"] - Task runner binary ("turbo", "nx", ...)
  */
-export async function buildCI(options = []) {
-  return runCITask('build', options);
-}
-
-/**
- * Run Turbo tests in CI mode.
- *
- * @async
- * @param {string[]} [options=[]] - Turbo CLI options.
- * @returns {Promise<void>}
- * @example
- * await testCI(['--filter=tag:unit']);
- */
-export async function testCI(options = []) {
-  return runCITask('test', options);
-}
-
-/**
- * Run a Turbo task (e.g., `build` or `test`) for a **specific module only**.
- *
- * This function enforces that a valid module reference is provided — it can
- * no longer be used for global module runs (use `runAllTask()` instead).
- *
- * Example:
- * ```bash
- * yarn manager-pm --action build --module @ovh-ux/manager-core-api
- * yarn manager-pm --action test --module packages/manager/core/api
- * ```
- *
- * @async
- * @param {"build"|"test"|"lint"|string} task - The Turbo task to run for the module.
- * @param {string} targetReference - Module reference or package name.
- * @param {number} [concurrency=1] - Maximum concurrency level for Turbo pipelines.
- * @throws {Error} If no module reference is provided or resolution fails.
- * @returns {Promise<void>} Resolves when the Turbo task completes successfully.
- */
-async function runModuleTask(task, targetReference, concurrency = 1) {
+async function runModuleTask(task, targetReference, concurrency = 1, runner = DEFAULT_RUNNER) {
   if (!targetReference) {
     throw new Error(
       `runModuleTask: missing target reference. This function requires an explicit module reference.`,
@@ -100,41 +140,160 @@ async function runModuleTask(task, targetReference, concurrency = 1) {
   }
 
   return withWorkspaces(async () => {
-    const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
-    const filter = resolveModuleBuildFilter(targetReference);
+    const projectOrFilter = resolveModuleBuildFilter(targetReference);
 
-    if (!filter) {
+    if (!projectOrFilter) {
       throw new Error(`Unable to resolve build filter for module "${targetReference}"`);
     }
 
-    args.push('--filter', filter);
-
-    await runTaskFromRoot(`${task} (${targetReference})`, 'turbo', args);
+    const args = getSingleRunnerArgs(runner, task, projectOrFilter, concurrency);
+    await runTaskFromRoot(`${task} (${targetReference})`, runner, args);
   });
+}
+
+/**
+ * Run a turbo/nx/.. task (e.g., `build` or `test`) for a **specific application only**.
+ *
+ * @param {"build"|"test"|"lint"|string} task
+ * @param {string} targetReference
+ * @param {number} [concurrency=1]
+ * @param {string} [runner="turbo"]
+ */
+async function runApplicationTask(task, targetReference, concurrency = 1, runner = DEFAULT_RUNNER) {
+  if (!targetReference) {
+    throw new Error(
+      `runApplicationTask: missing target reference. This function requires an explicit app reference.`,
+    );
+  }
+
+  return withWorkspaces(async () => {
+    const projectOrFilter = resolveApplicationBuildFilter(targetReference);
+
+    if (!projectOrFilter) {
+      throw new Error(`Unable to resolve build filter for application "${targetReference}"`);
+    }
+
+    const args = getSingleRunnerArgs(runner, task, projectOrFilter, concurrency);
+    await runTaskFromRoot(`${task} (${targetReference})`, runner, args);
+  });
+}
+
+/**
+ * Run a turbo/nx/.. task across **all applications and modules**.
+ *
+ * @param {"build"|"test"|"lint"|string} task
+ * @param {number} [concurrency=1]
+ * @param {string} [runner="turbo"]
+ */
+async function runAllTask(task, concurrency = 1, runner = DEFAULT_RUNNER) {
+  return withWorkspaces(async () => {
+    const args = getAllRunnerArgs(runner, task, concurrency);
+    await runTaskFromRoot(`${task} (all: apps + modules)`, runner, args);
+  });
+}
+
+/**
+ * Build all targets in CI mode with a given runner (default: turbo).
+ *
+ * @async
+ * @param {string[]} [options=[]] - turbo/nx/.. CLI options.
+ * @param {"turbo"|"nx"|string} [runner="turbo"] - Task runner binary to invoke.
+ * @returns {Promise<void>}
+ * @example
+ * await buildCI(['--filter=@ovh-ux/manager-web'], 'nx');
+ */
+export async function buildCI(options = [], runner = DEFAULT_RUNNER) {
+  return runCITask('build', options, runner);
+}
+
+/**
+ * Run tests in CI mode with a given runner (default: turbo).
+ *
+ * @async
+ * @param {string[]} [options=[]] - turbo/nx/.. CLI options.
+ * @param {"turbo"|"nx"|string} [runner="turbo"] - Task runner binary to invoke.
+ * @returns {Promise<void>}
+ * @example
+ * await testCI(['--filter=tag:unit'], 'nx');
+ */
+export async function testCI(options = [], runner = DEFAULT_RUNNER) {
+  return runCITask('test', options, runner);
 }
 
 /**
  * Build a single module.
  *
  * @param {string} moduleRef - Module reference or package name.
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
  * @returns {Promise<void>}
  * @example
  * await buildModule('@ovh-ux/manager-core-api');
  */
-export async function buildModule(moduleRef) {
-  return runModuleTask('build', moduleRef, 1);
+export async function buildModule(moduleRef, runner = DEFAULT_RUNNER) {
+  return runModuleTask('build', moduleRef, 1, runner);
 }
 
 /**
  * Test a single module.
  *
  * @param {string} moduleRef - Module reference or package name.
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
  * @returns {Promise<void>}
  * @example
  * await testModule('packages/manager/core/api');
  */
-export async function testModule(moduleRef) {
-  return runModuleTask('test', moduleRef, 1);
+export async function testModule(moduleRef, runner = DEFAULT_RUNNER) {
+  return runModuleTask('test', moduleRef, 1, runner);
+}
+
+/**
+ * Build a single application.
+ *
+ * @param {string} appRef - Application reference or package name.
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
+ * @returns {Promise<void>}
+ * @example
+ * await buildApplication('web');
+ */
+export async function buildApplication(appRef, runner = DEFAULT_RUNNER) {
+  return runApplicationTask('build', appRef, 1, runner);
+}
+
+/**
+ * Run tests for a single application.
+ *
+ * @param {string} appRef - Application reference or package name.
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
+ * @returns {Promise<void>}
+ * @example
+ * await testApplication('@ovh-ux/manager-web');
+ */
+export async function testApplication(appRef, runner = DEFAULT_RUNNER) {
+  return runApplicationTask('test', appRef, 1, runner);
+}
+
+/**
+ * Build all (apps + modules).
+ *
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
+ * @returns {Promise<void>}
+ * @example
+ * await buildAll();
+ */
+export async function buildAll(runner = DEFAULT_RUNNER) {
+  return runAllTask('build', 1, runner);
+}
+
+/**
+ * Test all (apps + modules).
+ *
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
+ * @returns {Promise<void>}
+ * @example
+ * await testAll();
+ */
+export async function testAll(runner = DEFAULT_RUNNER) {
+  return runAllTask('test', 1, runner);
 }
 
 /**
@@ -142,12 +301,9 @@ export async function testModule(moduleRef) {
  *
  * @param {string} moduleRef - Module reference or package name.
  * @param {string[]} [options=[]] - Additional CLI flags (e.g., `--fix`).
- * @throws {Error} If no module reference or package name cannot be resolved.
- * @returns {Promise<void>}
- * @example
- * await lintModule('@ovh-ux/manager-core-api', ['--fix']);
+ * @param {string} [runner=DEFAULT_RUNNER] - Task runner to use ("turbo" | "nx" | ...).
  */
-export async function lintModule(moduleRef, options = []) {
+export async function lintModule(moduleRef, options = [], runner = DEFAULT_RUNNER) {
   if (!moduleRef) throw new Error('lintModule: moduleRef is required');
 
   return withWorkspaces(async () => {
@@ -159,73 +315,11 @@ export async function lintModule(moduleRef, options = []) {
       'pm:lint:base',
       '--module',
       pkgName,
+      '--runner',
+      runner,
       ...options,
     ]);
   });
-}
-
-/**
- * Run a Turbo task (e.g., `build` or `test`) for a **specific application only**.
- *
- * This function no longer supports global builds — use `runAllTask()` instead.
- * It validates the `targetReference` and fails fast if not provided.
- *
- * Example:
- * ```bash
- * yarn manager-pm --action build --app web
- * yarn manager-pm --action test --app @ovh-ux/manager-web
- * ```
- *
- * @async
- * @param {"build"|"test"|"lint"|string} task - The Turbo task to run.
- * @param {string} targetReference - Application reference or package name.
- * @param {number} [concurrency=1] - Turbo concurrency level.
- * @throws {Error} If no target reference is provided or resolution fails.
- * @returns {Promise<void>} Resolves when the Turbo task completes successfully.
- */
-async function runApplicationTask(task, targetReference, concurrency = 1) {
-  if (!targetReference) {
-    throw new Error(
-      `runApplicationTask: missing target reference. This function requires an explicit app reference.`,
-    );
-  }
-
-  return withWorkspaces(async () => {
-    const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
-    const filter = resolveApplicationBuildFilter(targetReference);
-
-    if (!filter) {
-      throw new Error(`Unable to resolve build filter for application "${targetReference}"`);
-    }
-
-    args.push('--filter', filter);
-
-    await runTaskFromRoot(`${task} (${targetReference})`, 'turbo', args);
-  });
-}
-
-/**
- * Build a single application.
- *
- * @param {string} appRef - Application reference or package name.
- * @returns {Promise<void>}
- * @example
- * await buildApplication('web');
- */
-export async function buildApplication(appRef) {
-  return runApplicationTask('build', appRef, 1);
-}
-
-/**
- * Run tests for a single application.
- *
- * @param {string} appRef - Application reference or package name.
- * @returns {Promise<void>}
- * @example
- * await testApplication('@ovh-ux/manager-web');
- */
-export async function testApplication(appRef) {
-  return runApplicationTask('test', appRef, 1);
 }
 
 /**
@@ -233,12 +327,9 @@ export async function testApplication(appRef) {
  *
  * @param {string} appRef - Application reference or package name.
  * @param {string[]} [options=[]] - Extra CLI args (e.g., `--fix`).
- * @throws {Error} If the app reference is invalid or unresolved.
- * @returns {Promise<void>}
- * @example
- * await lintApplication('web', ['--fix']);
+ * @param {string} [runner=DEFAULT_RUNNER] - Task runner to use ("turbo" | "nx" | ...).
  */
-export async function lintApplication(appRef, options = []) {
+export async function lintApplication(appRef, options = [], runner = DEFAULT_RUNNER) {
   if (!appRef) throw new Error('lintApplication: appRef is required');
 
   return withWorkspaces(async () => {
@@ -249,70 +340,27 @@ export async function lintApplication(appRef, options = []) {
       'pm:lint:base',
       '--app',
       pkgName,
+      '--runner',
+      runner,
       ...options,
     ]);
   });
 }
 
 /**
- * Run a Turbo task (e.g., `build`, `test`, `lint`) across **all applications and modules**.
- *
- * Automatically prepares and cleans up workspaces before and after execution.
- * This runs the Turbo task globally without any `--filter`, targeting every
- * project in the monorepo.
- *
- * Example:
- * ```bash
- * yarn manager-pm --action full-build
- * yarn manager-pm --action full-test
- * ```
- *
- * @async
- * @param {"build"|"test"|"lint"|string} task - The Turbo task name to execute across all workspaces.
- * @param {number} [concurrency=1] - The maximum number of concurrent Turbo pipelines.
- * @returns {Promise<void>} Resolves when the task completes successfully.
- * @throws {Error} If the underlying Turbo command fails.
- */
-async function runAllTask(task, concurrency = 1) {
-  return withWorkspaces(async () => {
-    const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
-    await runTaskFromRoot(`${task} (all: apps + modules)`, 'turbo', args);
-  });
-}
-
-/**
- * Build all (apps + modules).
- *
- * @returns {Promise<void>}
- * @example
- * await buildAll();
- */
-export async function buildAll() {
-  return runAllTask('build', 1);
-}
-
-/**
- * Test all (apps + modules).
- *
- * @returns {Promise<void>}
- * @example
- * await testAll();
- */
-export async function testAll() {
-  return runAllTask('test', 1);
-}
-
-/**
  * Lint all (apps + modules) in the monorepo.
  *
- * @param {string[]} [options=[]] - Extra CLI args (e.g., `--fix`).
- * @returns {Promise<void>}
- * @example
- * await lintAll(['--quiet']);
+ * @param {string[]} [options=[]]
+ * @param {string} [runner=DEFAULT_RUNNER] - Task runner to use ("turbo" | "nx" | ...).
  */
-export async function lintAll(options = []) {
+export async function lintAll(options = [], runner = DEFAULT_RUNNER) {
   return withWorkspaces(() =>
-    runTaskFromRoot('lint (all: apps + modules)', 'yarn', ['pm:lint:base', ...options]),
+    runTaskFromRoot('lint (all: apps + modules)', 'yarn', [
+      'pm:lint:base',
+      '--runner',
+      runner,
+      ...options,
+    ]),
   );
 }
 
@@ -412,7 +460,7 @@ export async function runLifecycleTask(lifecycle) {
  */
 export async function runStaticDynamicReports() {
   return withWorkspaces(() =>
-    runTaskFromRoot('static-dynamic-reports', 'manager-static-dynamic-quality-checks'),
+    runTaskFromRoot('static-dynamic-reports', 'manager-static-dynamic-quality-checks', []),
   );
 }
 
