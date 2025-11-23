@@ -138,7 +138,7 @@ export type ServiceDetails = {
         nextDate: string | null;
         period: string;
       };
-    };
+    } | null;
   };
   customer: {
     contacts: CustomerContact[];
