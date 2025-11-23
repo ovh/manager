@@ -39,14 +39,18 @@
         </oui-action-menu-item>
         <oui-action-menu-item
             ng-if="::$ctrl.canDisplayAnticipateRenewMenuEntry"
-            href="{{:: $ctrl.service.canEarlyRenew ? $ctrl.getRenewUrl() : $ctrl.debtWarningModalLink }}"
-            external="$ctrl.service.canEarlyRenew"
-            on-click="$ctrl.trackAction('go-to-anticipate-payment')"
+            on-click="$ctrl.onAdvancePaymentClick()"
             data-navi-id="go-to-anticipate-payment"
         >
             <span
                 data-translate="billing_services_actions_menu_anticipate_renew"
             ></span>
+            <span
+                data-ng-if="$ctrl.service.possibleActions.includes('earlyRenewal')"
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            >
+            </span>
         </oui-action-menu-item>
         <!-- /Service in autorenew -->
 
