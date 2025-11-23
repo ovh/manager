@@ -1,0 +1,32 @@
+<div data-ng-if="!!$ctrl.service">
+    <div class="modal d-block">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="oui-modal-backdrop" />
+            </div>
+            <oui-modal
+                data-on-dismiss="$ctrl.service = null"
+                data-heading="{{:: 'billing_autorenew_service_modal_debt_warning_title' | translate }}"
+                type="warning"
+                data-is-open-modal="true"
+                data-ng-init="reasons = $ctrl.getReason($ctrl.service)"
+            >
+                <p
+                    data-ng-if="!reasons.length"
+                    data-translate="billing_autorenew_service_modal_debt_warning_subTitle-no-reason"
+                ></p>
+
+                <div data-ng-if="reasons.length">
+                    <p
+                        data-translate="billing_autorenew_service_modal_debt_warning_subTitle-with-reason"
+                    ></p>
+                    <ul>
+                        <li ng-repeat="reason in reasons">
+                            <p ng-bind-html="reason"></p>
+                        </li>
+                    </ul>
+                </div>
+            </oui-modal>
+        </div>
+    </div>
+</div>
