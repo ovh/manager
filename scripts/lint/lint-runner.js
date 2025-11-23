@@ -18,6 +18,9 @@ const isPackageName = appValue?.startsWith('@');
 const appName = isPackageName ? null : appValue;
 const packageName = isPackageName ? appValue : null;
 
+const runnerIndex = process.argv.indexOf('--runner');
+const runner = runnerIndex !== -1 ? process.argv[runnerIndex + 1] : 'turbo';
+
 const appsRoot = path.join(__dirname, '../../packages/manager/apps');
 const allApps = fs
   .readdirSync(appsRoot)
@@ -83,15 +86,36 @@ if (!isPackageName) {
   });
 }
 
-const turboTask = fix ? 'lint:modern:fix' : 'lint:modern';
+const modernTask = fix ? 'lint:modern:fix' : 'lint:modern';
+
+let modernCmd;
+
+// Runner = nx → use Nx semantics
+if (runner === 'nx') {
+  if (isPackageName) {
+    // Treat package name as Nx project name
+    modernCmd = ['nx', 'run', `${packageName}:${modernTask}`];
+  } else if (appName) {
+    // Treat bare app name as Nx project name
+    modernCmd = ['nx', 'run', `${appName}:${modernTask}`];
+  } else {
+    // All projects
+    modernCmd = ['nx', 'run-many', `--target=${modernTask}`, '--all'];
+  }
+} else {
+  // Default: turbo (existing behavior)
+  if (isPackageName) {
+    modernCmd = ['turbo', 'run', modernTask, '--filter', packageName];
+  } else if (appName) {
+    modernCmd = ['turbo', 'run', modernTask, '--filter', appName];
+  } else {
+    modernCmd = ['turbo', 'run', modernTask];
+  }
+}
 
 tasks.push({
-  name: `modern ${turboTask} (Turbo)`,
-  cmd: isPackageName
-    ? ['turbo', 'run', turboTask, '--filter', packageName]
-    : appName
-      ? ['turbo', 'run', turboTask, '--filter', appName]
-      : ['turbo', 'run', turboTask],
+  name: `modern ${modernTask} (${runner})`,
+  cmd: modernCmd,
 });
 
 const errors = [];
