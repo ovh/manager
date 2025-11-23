@@ -6,7 +6,7 @@
  * Provides a simple argument parser and dispatcher for actions like
  * build, test, lint, CI tasks, docs, manager-migration-cli passthrough,
  * workspace management, publishing, release, and lifecycle hooks.
- * Supports forwarding arbitrary Turbo CLI flags.
+ * Supports forwarding arbitrary Task Manager CLI flags.
  */
 import process from 'node:process';
 
@@ -44,6 +44,7 @@ import {
 } from '../src/kernel/utils/workspace-utils.js';
 
 const VERSION = '0.2.0';
+const DEFAULT_RUNNER = 'turbo';
 
 /**
  * Parse CLI arguments into options, rest args, and passthrough.
@@ -128,9 +129,9 @@ ACTIONS
     add:module     --module <package|path> [--private]     Add a module (optionally private) to PNPM
     remove:module  --module <package|path> [--private]     Remove a module (optionally private) from PNPM
 
-  Turbo passthrough (flags forwarded to Turbo):
-    buildCI [--filter <expr>] [other turbo flags]
-    testCI  [--filter <expr>] [other turbo flags]
+  Task manager passthrough (flags forwarded to Turbo/NX/...):
+    buildCI [--filter <expr>] [other flags]
+    testCI  [--filter <expr>] [other flags]
 
   Lerna passthrough (flags forwarded to Lerna):
     lerna <subcommand> [options]         Run any Lerna command with workspaces restored/cleaned
@@ -162,7 +163,8 @@ COMMON OPTIONS
   --action <name>                        Action to execute
   --app <name>                           App/package name (build/test/lint single-app)
   --module <name|path>                   Module name or path (add:module/remove:module)
-  --filter <expr>                        Turbo filter for buildCI/testCI
+  --filter <expr>                        Task manager (Turbo/NX/...) filter for buildCI/testCI
+  --runner <turbo|nx|binary>             Task runner binary (default: turbo)
   --container                            Hint that we run inside a container
   --region <code>                        Region flag (printed for logs only)
   --silent                               Suppress ALL logs (stderr + stdout), only raw tool output remains
@@ -182,7 +184,7 @@ RELEASE / PUBLISH FLAGS (forwarded to underlying tools)
   --seed <value>                         Seed used to compute release name
   --conventional-prerelease              Forwarded to lerna (release)
   --preid <id>                           e.g. rc, alpha (with --conventional-prerelease)
-  (Any other unknown flags are forwarded to Turbo / lerna / npm/yarn as appropriate)
+  (Any other unknown flags are forwarded to Turbo / lerna / npm / yarn as appropriate)
 
 EXAMPLES
   # Single app
@@ -202,7 +204,7 @@ EXAMPLES
   manager-pm --type pnpm --action full-lint --fix
   manager-pm --type pnpm --action full-lint --quiet --max-warnings 0
 
-  # Turbo passthrough
+  # Task manager (Turbo/NX/...) passthrough
   manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
   manager-pm --type pnpm --action testCI  --filter=tag:unit --parallel
 
@@ -216,7 +218,7 @@ EXAMPLES
   manager-pm --action workspace --mode remove
 
   # manager-migration-cli passthrough
-  manager-pm --type pnpm --action cli -- migrations-status --type all
+  manager-pm --type pnpm --action cli migrations-status --type all
 
   # Reports
   yarn manager-pm --type pnpm --action staticDynamicReports
@@ -272,7 +274,7 @@ function exitError(msg) {
  * @returns {string[]} Array of CLI flags.
  */
 function collectToolsArgs(opts, includeApp = false) {
-  const alwaysExcluded = ['action', 'type', 'filter', 'region', 'mode', 'container'];
+  const alwaysExcluded = ['action', 'type', 'filter', 'region', 'mode', 'container', 'runner'];
   const excluded = includeApp ? alwaysExcluded : [...alwaysExcluded, 'app', 'packages'];
 
   return Object.entries(opts)
@@ -281,88 +283,106 @@ function collectToolsArgs(opts, includeApp = false) {
 }
 
 /**
- * Resolves arguments forwarded to CI commands (build, test, etc.).
+ * Wrapper around collectToolsArgs that also optionally strips --silent.
  *
- * @param {string[]} passthrough - Passthrough args from the user.
- * @param {string | undefined} filter - Optional Turbo filter.
- * @param {object} opts - Additional CLI options.
- * @returns {string[]} - Final merged list of arguments.
+ * @param {Record<string, string|boolean>} opts
+ * @param {{ includeApp?: boolean, stripSilent?: boolean }} [options]
+ * @returns {string[]}
  */
-function resolveCIArgs(passthrough, filter, opts) {
-  let base;
+function collectForwardedArgs(opts, { includeApp = false, stripSilent = true } = {}) {
+  const base = collectToolsArgs(opts, includeApp);
+  if (!stripSilent) return base;
+  return base.filter((arg) => arg !== '--silent');
+}
 
-  if (passthrough.length > 0) {
-    base = passthrough;
-  } else if (filter) {
-    base = ['--filter', filter];
-  } else {
-    base = [];
+/**
+ * Resolve the task runner (turbo/nx/...) from CLI options.
+ *
+ * @param {Record<string, string|boolean>} opts
+ * @returns {string} runner binary name
+ */
+function resolveRunner(opts) {
+  const runnerValue = opts.runner;
+  if (typeof runnerValue === 'string' && runnerValue.trim()) {
+    return runnerValue.trim();
   }
-
-  const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-
-  return [...base, ...forwarded];
+  return DEFAULT_RUNNER;
 }
 
 /**
  * Map of supported CLI actions to their async handlers.
  * Each handler receives the parsed CLI context.
  *
- * @type {Record<string, (ctx: {app?: string, passthrough: string[], filter?: string|null, mode?: string, opts: Record<string, string|boolean>}) => Promise<void>>}
+ * @type {Record<string, (ctx: {app?: string, module?: string, passthrough: string[], filter?: string|null, mode?: string, opts: Record<string, string|boolean>}) => Promise<void>>}
  */
 const actions = {
-  async build({ app, module }) {
+  async build({ app, module, opts }) {
     if (!app && !module) {
       exitError(`Action "build" requires either --app or --module`);
     }
+
+    const runner = resolveRunner(opts);
+
     if (app) {
-      logger.info(`🏗️  Building application: ${app}`);
-      return buildApplication(app);
+      logger.info(`🏗️  Building application: ${app} (runner: ${runner})`);
+      return buildApplication(app, runner);
     }
     if (module) {
-      logger.info(`📦 Building module: ${module}`);
-      return buildModule(module);
+      logger.info(`📦 Building module: ${module} (runner: ${runner})`);
+      return buildModule(module, runner);
     }
   },
-  async test({ app, module }) {
+  async test({ app, module, opts }) {
     if (!app && !module) {
       exitError(`Action "test" requires either --app or --module`);
     }
+
+    const runner = resolveRunner(opts);
+
     if (app) {
-      logger.info(`🧪 Testing application: ${app}`);
-      return testApplication(app);
+      logger.info(`🧪 Testing application: ${app} (runner: ${runner})`);
+      return testApplication(app, runner);
     }
     if (module) {
-      logger.info(`🧩 Testing module: ${module}`);
-      return testModule(module);
+      logger.info(`🧩 Testing module: ${module} (runner: ${runner})`);
+      return testModule(module, runner);
     }
   },
   async lint({ app, module, passthrough, opts }) {
     if (!app && !module) {
       exitError(`Action "lint" requires either --app or --module`);
     }
+
+    const runner = resolveRunner(opts);
     const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+
     if (app) {
-      logger.info(`🧹 Linting application: ${app}`);
-      return lintApplication(app, [...forwarded, ...passthrough]);
+      logger.info(`🧹 Linting application: ${app} (runner: ${runner})`);
+      return lintApplication(app, [...forwarded, ...passthrough], runner);
     }
     if (module) {
-      logger.info(`🔍 Linting module: ${module}`);
-      return lintModule(module, [...forwarded, ...passthrough]);
+      logger.info(`🔍 Linting module: ${module} (runner: ${runner})`);
+      return lintModule(module, [...forwarded, ...passthrough], runner);
     }
   },
   async start() {
     return startApp();
   },
-  async 'full-build'() {
-    return buildAll();
+  async 'full-build'({ opts }) {
+    const runner = resolveRunner(opts);
+    logger.info(`🏗️  Building ALL apps + modules (runner: ${runner})`);
+    return buildAll(runner);
   },
-  async 'full-test'() {
-    return testAll();
+  async 'full-test'({ opts }) {
+    const runner = resolveRunner(opts);
+    logger.info(`🧪 Testing ALL apps + modules (runner: ${runner})`);
+    return testAll(runner);
   },
   async 'full-lint'({ passthrough, opts }) {
+    const runner = resolveRunner(opts);
     const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return lintAll([...forwarded, ...passthrough]);
+    logger.info(`🧹 Linting ALL apps + modules (runner: ${runner})`);
+    return lintAll([...forwarded, ...passthrough], runner);
   },
   async docs() {
     return buildDocs();
@@ -394,34 +414,36 @@ const actions = {
     return runLifecycleTask('postinstall');
   },
   async buildCI({ passthrough, filter, opts }) {
-    const args = resolveCIArgs(passthrough, filter, opts);
-    return buildCI(args);
+    const runner = resolveRunner(opts);
+
+    // For Turbo: filter becomes --filter / raw passthrough.
+    // For Nx: these flags are just forwarded; interpretation is done in tasks-helper.
+    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
+    const forwarded = collectForwardedArgs(opts);
+    return buildCI([...base, ...forwarded], runner);
   },
   async testCI({ passthrough, filter, opts }) {
-    const args = resolveCIArgs(passthrough, filter, opts);
-    return testCI(args);
+    const runner = resolveRunner(opts);
+    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
+    const forwarded = collectForwardedArgs(opts);
+    return testCI([...base, ...forwarded], runner);
   },
   async perfBudgets({ passthrough, opts }) {
-    const forwarded = collectToolsArgs(opts, true).filter((arg) => arg !== '--silent');
+    const forwarded = collectForwardedArgs(opts, { includeApp: true });
     return runPerfBudgets([...forwarded, ...passthrough]);
   },
   async publish({ opts }) {
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+    const forwarded = collectForwardedArgs(opts);
     return publishPackage(forwarded);
   },
   async release({ opts }) {
-    // Keep the standard argument collector
-    const forwarded = collectToolsArgs(opts);
-
-    // Normalize special short flags used by the release script
-    // Converts "--d" → "-d" and "--s" → "-s" (only those cases)
-    const normalized = forwarded
-      .filter((arg) => arg !== '--silent')
-      .map((arg) => {
-        if (arg === '--d') return '-d';
-        if (arg === '--s') return '-s';
-        return arg;
-      });
+    // Collect everything except internal flags, then normalize special short flags
+    const forwarded = collectForwardedArgs(opts);
+    const normalized = forwarded.map((arg) => {
+      if (arg === '--d') return '-d';
+      if (arg === '--s') return '-s';
+      return arg;
+    });
 
     return createRelease(normalized);
   },
@@ -501,10 +523,12 @@ function logExecutionContext({
   region,
   container,
   mode,
+  runner,
 }) {
   logger.info(`manager-pm v${VERSION}
 type: ${type}
 action: ${action}
+runner: ${runner}
 app: ${appReference || '(none)'}
 module: ${moduleReference || '(none)'}
 filter: ${filter || '(none)'}
@@ -553,6 +577,7 @@ async function main() {
   } = opts;
 
   const container = Boolean(opts.container);
+  const runner = resolveRunner(opts);
 
   // Handle help, version, and CLI passthroughs
   await handleGlobalFlags(opts, passthrough);
@@ -567,6 +592,7 @@ async function main() {
     region,
     container,
     mode,
+    runner,
   });
 
   // Execute the corresponding action handler
