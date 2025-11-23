@@ -21,7 +21,7 @@ const SIZE_TO_BUTTON_SIZE: Record<TABLE_SIZE, BUTTON_SIZE> = {
   [TABLE_SIZE.lg]: BUTTON_SIZE.md,
 };
 
-export const getExpandable = <T,>(expandable: ExpandedProps, size: TABLE_SIZE) => ({
+export const getExpandable = <T,>(expandable: ExpandedProps<T>, size: TABLE_SIZE) => ({
   cell: ({ row }: { row: Row<T> }) => {
     const ButtonSize = SIZE_TO_BUTTON_SIZE[size] ?? BUTTON_SIZE.md;
     return row.getCanExpand() ? (

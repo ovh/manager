@@ -37,5 +37,5 @@ export const loading = {
 };
 
 export const other = {
-  open: true,
+  open: false,
 };

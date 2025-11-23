@@ -128,6 +128,7 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
     variant,
     totalCount,
     topbar,
+    hideHeader,
   } = args;
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -229,6 +230,7 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
                 },
               ]),
           })}
+        {...('hideHeader' in args && { hideHeader })}
         {...('renderSubComponent' in args && { renderSubComponent })}
         {...('subComponentHeight' in args && { subComponentHeight })}
         {...('maxRowHeight' in args && { maxRowHeight })}
@@ -435,6 +437,14 @@ RowSelection.args = {
   },
 };
 
+export const HideHeader = DatagridStory.bind({});
+
+HideHeader.args = {
+  columns,
+  data: [...data],
+  hideHeader: true,
+};
+
 export const Topbar = DatagridStory.bind({});
 
 Topbar.args = {
@@ -489,7 +499,7 @@ FullFooter.args = {
 };
 
 const meta = {
-  title: 'Manager UI Kit/Components/Datagrid New',
+  title: 'Manager UI Kit/Components/Datagrid',
   component: Datagrid,
   tags: ['autodocs'],
   decorators: [withRouter],

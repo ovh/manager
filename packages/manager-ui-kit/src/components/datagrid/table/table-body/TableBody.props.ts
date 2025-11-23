@@ -5,6 +5,7 @@ import type { Column, ExpandedState, Row, RowModel } from '@tanstack/react-table
 export type TableBodyProps<T> = {
   autoScroll?: boolean;
   isLoading: boolean;
+  hideHeader?: boolean;
   maxRowHeight: number;
   pageSize?: number;
   renderSubComponent?: (
