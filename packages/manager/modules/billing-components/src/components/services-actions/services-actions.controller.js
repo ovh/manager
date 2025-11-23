@@ -9,39 +9,33 @@ export default class ServicesActionsCtrl {
   constructor(
     $injector,
     $q,
+    $window,
     atInternet,
     coreConfig,
     coreURLBuilder,
     BillingLinksService,
     $element,
     BillingService,
-    $state,
   ) {
     this.SERVICE_ACTIVE_STATUS = SERVICE_ACTIVE_STATUS;
     this.$injector = $injector;
     this.$q = $q;
+    this.$window = $window;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.coreConfig = coreConfig;
     this.billingLink = this.coreURLBuilder.buildURL('billing', '#/history');
-
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isLoading = true;
     this.BillingLinksService = BillingLinksService;
     this.$element = $element;
     this.BillingService = BillingService;
-    this.$state = $state;
   }
 
   $onInit() {
     this.initActionMenuClick();
     this.user = this.coreConfig.getUser();
     this.isUSRegion = this.coreConfig.isRegion('US');
-    this.debtWarningModalLink = this.$state.href(
-      'billing.autorenew.debt-warning-modal',
-      {},
-      { inherit: false },
-    );
 
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
@@ -292,6 +286,19 @@ export default class ServicesActionsCtrl {
         .finally(() => {
           this.loadedPendingEngagement = true;
         });
+    }
+  }
+
+  onAdvancePaymentClick() {
+    // To check with PO about tracking
+    this.trackAction('go-to-anticipate-payment');
+
+    if (!this.service.possibleActions.includes('earlyRenewal')) {
+      if (typeof this.advancePaymentCallBack === 'function') {
+        this.advancePaymentCallBack({ service: this.service });
+      }
+    } else {
+      this.$window.open(this.getRenewUrl());
     }
   }
 }
