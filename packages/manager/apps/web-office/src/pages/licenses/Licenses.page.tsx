@@ -1,30 +1,25 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
+import type { SortingState, VisibilityState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, Button, Link } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  BaseLayout,
-  Datagrid,
-  Links,
-  OvhSubsidiary,
-  useDatagridSearchParams,
-} from '@ovh-ux/manager-react-components';
-import type { DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Datagrid, OvhSubsidiary } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
 
 import { ORDER_URL } from '@/Guides.constants';
 import { DETAILS_SERVICE, GO_TO_ORDER } from '@/Tracking.constants';
 import { OfficeServiceState } from '@/components/office-service-state/OfficeServiceState.component';
 import { OfficeServiceListType } from '@/data/api/license/type';
+import { StateEnum } from '@/data/api/service-infos/type';
 import { useLicenses } from '@/data/hooks/licenses/useLicenses';
 import { useGenerateUrl } from '@/hooks/generate-url/useGenerateUrl';
 import { urls } from '@/routes/Routes.constants';
@@ -37,6 +32,7 @@ function GenerateUrl(serviceName: string) {
 }
 
 export default function Licenses() {
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const { t } = useTranslation([
     'licenses',
     'common',
@@ -45,9 +41,9 @@ export default function Licenses() {
     NAMESPACES.ACTIONS,
   ]);
   const { trackClick } = useOvhTracking();
-  const { data, isLoading } = useLicenses();
+  const { data: licensesData, isLoading } = useLicenses();
 
-  const { sorting, setSorting } = useDatagridSearchParams();
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -63,95 +59,82 @@ export default function Licenses() {
     window.open(url, '_blank');
   };
 
-  const header = {
-    title: t('common:common_office_title'),
-  };
-
-  const sortedData = useMemo(() => {
-    if (!data || data.length === 0 || !sorting) return data;
-
-    const sorted = [...data];
-    const { id, desc } = sorting;
-
-    sorted.sort((a, b) => {
-      if (a[id] < b[id]) return desc ? 1 : -1;
-      if (a[id] > b[id]) return desc ? -1 : 1;
-      return 0;
-    });
-
-    return sorted;
-  }, [data, sorting]);
-
   const columns: DatagridColumn<OfficeServiceListType>[] = useMemo(
     () => [
       {
         id: 'serviceName',
-        cell: (item) => {
-          return (
-            <Links
-              href={GenerateUrl(item.serviceName)}
-              label={item.tenantServiceName}
-              onClickReturn={() =>
-                trackClick({
-                  location: PageLocation.datagrid,
-                  buttonType: ButtonType.link,
-                  actionType: 'action',
-                  actions: DETAILS_SERVICE,
-                })
-              }
-            ></Links>
-          );
-        },
-        label: t(`${NAMESPACES.DASHBOARD}:service_name`),
-        isSortable: true,
+        accessorKey: 'tenantServiceName',
+        cell: ({
+          row: {
+            original: { serviceName, tenantServiceName },
+          },
+        }) => (
+          <Link
+            href={GenerateUrl(serviceName)}
+            onClick={() =>
+              trackClick({
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.link,
+                actionType: 'action',
+                actions: DETAILS_SERVICE,
+              })
+            }
+          >
+            {tenantServiceName}
+          </Link>
+        ),
+        header: t(`${NAMESPACES.DASHBOARD}:service_name`),
         enableHiding: true,
+        isSortable: true,
       },
       {
         id: 'displayName',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.displayName}</OdsText>,
-        label: t(`${NAMESPACES.DASHBOARD}:display_name`),
-        isSortable: true,
+        header: t(`${NAMESPACES.DASHBOARD}:display_name`),
+        accessorKey: 'displayName',
         enableHiding: true,
+        isSortable: true,
       },
       {
         id: 'serviceType',
-        cell: (item) => (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(`common:${item.serviceType}`)}</OdsText>
-        ),
-        label: t(`${NAMESPACES.DASHBOARD}:service_type`),
-        isSortable: true,
+        header: t(`${NAMESPACES.DASHBOARD}:service_type`),
+        accessorKey: 'serviceType',
         enableHiding: true,
+        isSortable: true,
       },
       {
         id: 'status',
-        cell: (item) => <OfficeServiceState state={item.status} />,
-        label: t(`${NAMESPACES.STATUS}:status`),
-        isSortable: true,
+        header: t(`${NAMESPACES.STATUS}:status`),
+        accessorKey: 'status',
+        cell: ({ getValue }) => <OfficeServiceState state={getValue<StateEnum>()} />,
         enableHiding: true,
+        isSortable: true,
       },
     ],
     [t, trackClick],
   );
 
   return (
-    <BaseLayout header={header}>
+    <BaseLayout
+      header={{
+        title: t('common:common_office_title'),
+      }}
+    >
       <Datagrid
-        columns={columns.map((column) => ({
-          ...column,
-          label: t(column.label),
-        }))}
-        items={sortedData || []}
-        totalItems={sortedData?.length || 0}
-        sorting={sorting}
-        onSortChange={setSorting}
+        columns={columns}
+        data={licensesData ?? []}
+        sorting={{ sorting, setSorting }}
+        columnVisibility={{
+          columnVisibility,
+          setColumnVisibility,
+        }}
         topbar={
-          <OdsButton
-            color={ODS_BUTTON_COLOR.primary}
-            variant={ODS_BUTTON_VARIANT.outline}
+          <Button
+            color={BUTTON_COLOR.primary}
             onClick={goToOrder}
-            label={t(`${NAMESPACES.ACTIONS}:order`)}
             data-testid="licenses-order-button"
-          ></OdsButton>
+          >
+            {t(`${NAMESPACES.ACTIONS}:order`)}
+          </Button>
         }
         isLoading={isLoading}
       />

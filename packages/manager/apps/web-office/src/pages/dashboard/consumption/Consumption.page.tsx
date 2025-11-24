@@ -17,9 +17,19 @@ import {
 } from 'recharts';
 import type { LegendType } from 'recharts';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import type { OdsCheckboxChangeEvent } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsCheckbox, OdsFormField, OdsSelect } from '@ovhcloud/ods-components/react';
+import {
+  BADGE_COLOR,
+  Badge,
+  Checkbox,
+  CheckboxCheckedChangeDetail,
+  CheckboxControl,
+  CheckboxLabel,
+  FormField,
+  FormFieldLabel,
+  Select,
+  SelectContent,
+  SelectControl,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -127,11 +137,11 @@ export default function Consumption() {
 
   const handleCheckboxChange = (
     entry: { color: string; dataKey: string; inactive: boolean; type: LegendType; value: string },
-    e: OdsCheckboxChangeEvent,
+    e: CheckboxCheckedChangeDetail,
   ) => {
     setLineChartShow((old) => ({
       ...old,
-      [entry.dataKey]: e.detail.checked,
+      [entry.dataKey]: e.checked,
     }));
   };
 
@@ -147,25 +157,28 @@ export default function Consumption() {
     }[];
   }) => {
     return (
-      <div className="flex justify-center flex-wrap mt-12">
+      <div className="mt-12 flex flex-wrap justify-center">
         {payload.map((entry) => (
-          <div key={entry.value} className="flex items-center mx-4">
-            <OdsCheckbox
+          <div key={entry.value} className="mx-4 flex items-center">
+            <Checkbox
               name={entry.value}
-              inputId={entry.value}
-              isChecked={lineChartShow[entry.dataKey as keyof typeof lineChartShow]}
-              onOdsChange={(e) => handleCheckboxChange(entry, e)}
-            />
-            <label htmlFor={entry.value} className="ml-2 flex items-center">
-              <OdsBadge
-                label={entry.value}
-                color={
-                  entry.value === t('officeBusiness_serie_name')
-                    ? ODS_BADGE_COLOR.success
-                    : ODS_BADGE_COLOR.information
-                }
-              />
-            </label>
+              checked={lineChartShow[entry.dataKey as keyof typeof lineChartShow]}
+              defaultChecked={lineChartShow[entry.dataKey as keyof typeof lineChartShow]}
+              onCheckedChange={(e) => handleCheckboxChange(entry, e)}
+            >
+              <CheckboxControl />
+              <CheckboxLabel>
+                <Badge
+                  color={
+                    entry.value === t('officeBusiness_serie_name')
+                      ? BADGE_COLOR.success
+                      : BADGE_COLOR.information
+                  }
+                >
+                  {entry.value}
+                </Badge>
+              </CheckboxLabel>
+            </Checkbox>
           </div>
         ))}
       </div>
@@ -173,18 +186,14 @@ export default function Consumption() {
   };
   return (
     <>
-      <OdsFormField className="w-full md:w-1/4">
-        <label slot="label" htmlFor="period-select">
-          {t(`${NAMESPACES.DASHBOARD}:period`)}
-        </label>
-        <OdsSelect
-          id="period-select"
-          name="period"
-          value={selectedPeriod}
-          onOdsChange={(e) => setSelectedPeriod(e.detail.value)}
+      <FormField className="w-full md:w-1/4">
+        <FormFieldLabel>{t(`${NAMESPACES.DASHBOARD}:period`)}</FormFieldLabel>
+        <Select
           data-testid="period-select"
-        >
-          {periodOptions.map((period) => {
+          name="period"
+          defaultValue={selectedPeriod}
+          onValueChange={(e) => setSelectedPeriod(e.value[0])}
+          items={periodOptions.map((period) => {
             const labelKey = `${NAMESPACES.DASHBOARD}:period_${period}`;
             let label: string;
 
@@ -199,15 +208,13 @@ export default function Consumption() {
             } else {
               label = t(labelKey);
             }
-
-            return (
-              <option key={period} value={period}>
-                {label}
-              </option>
-            );
+            return { label, value: period };
           })}
-        </OdsSelect>
-      </OdsFormField>
+        >
+          <SelectControl />
+          <SelectContent />
+        </Select>
+      </FormField>
       <div className="mt-12">
         <ResponsiveContainer width="100%" height={400}>
           <AreaChart data={chartData} accessibilityLayer>
