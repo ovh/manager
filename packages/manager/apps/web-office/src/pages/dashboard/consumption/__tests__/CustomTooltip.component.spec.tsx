@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
 import { fr } from 'date-fns/locale';
 import { describe, expect, it } from 'vitest';
+
+import consumptionTranslation from '@/public/translations/dashboard/consumption/Messages_fr_FR.json';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import CustomTooltip from '../CustomTooltip.component';
 
@@ -17,24 +19,24 @@ const testPayload = [
 
 describe('CustomTooltip', () => {
   it('load data on tooltip', () => {
-    const { getByTestId } = render(<CustomTooltip locale={fr} payload={testPayload} />);
+    const { getByTestId } = renderWithRouter(<CustomTooltip locale={fr} payload={testPayload} />);
 
     const relativeDate = getByTestId('relative-date');
     const officeBusiness = getByTestId('officeBusiness');
     const officeProPlus = getByTestId('officeProPlus');
     expect(relativeDate).toHaveTextContent('il y a 1 jour');
-    expect(officeBusiness).toHaveTextContent('officeBusiness_serie_name');
-    expect(officeProPlus).toHaveTextContent('officeProPlus_serie_name');
+    expect(officeBusiness).toHaveTextContent(consumptionTranslation.officeBusiness_serie_name);
+    expect(officeProPlus).toHaveTextContent(consumptionTranslation.officeProPlus_serie_name);
   });
   it('return null when payload is undifined', () => {
-    const { container } = render(<CustomTooltip locale={fr} payload={[]} />);
+    const { container } = renderWithRouter(<CustomTooltip locale={fr} payload={[]} />);
     expect(container.firstChild).toBeNull();
   });
 });
 
 describe('Consumption W3C Validation', () => {
   it('should have a valid html', async () => {
-    const { container } = render(<CustomTooltip locale={fr} payload={testPayload} />);
+    const { container } = renderWithRouter(<CustomTooltip locale={fr} payload={testPayload} />);
     const html = container.innerHTML;
 
     await expect(html).toBeValidHtml();
