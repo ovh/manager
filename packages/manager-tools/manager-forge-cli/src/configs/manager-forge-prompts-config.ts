@@ -65,6 +65,7 @@ export const LEVEL2_CODES = [
   '95',
   '98',
   '120',
+  '152',
 ] as const;
 
 /** Narrow union of {@link LEVEL2_CODES}. */
@@ -88,6 +89,7 @@ export const LEVEL2_LABELS: Record<Level2Code, string> = {
   '95': 'Manager-account-creation',
   '98': 'ManagerHostedPrivateCloud',
   '120': 'Manager-Enterprise_solutions',
+  '152': 'Manager-Network',
 } as const;
 
 /**
