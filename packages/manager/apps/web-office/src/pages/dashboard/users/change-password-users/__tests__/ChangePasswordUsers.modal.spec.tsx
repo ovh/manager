@@ -41,7 +41,7 @@ describe('ModalChangePasswordUsers Component', () => {
     const saveButton = getByTestId('primary-button') as OdsHTMLElement;
     await act(() => {
       fireEvent.click(manualRadio);
-      manualRadio.odsChange.emit({
+      manualRadio.onChange.emit({
         value: 'passwordManual',
       });
     });
@@ -88,7 +88,7 @@ describe('ModalChangePasswordUsers Component', () => {
 
     await act(() => {
       fireEvent.input(emailInput, { target: { value: 'test@ovhcloud.com' } });
-      emailInput.odsChange.emit({ name: 'email', value: 'test@ovhcloud.com' });
+      emailInput.onChange.emit({ name: 'email', value: 'test@ovhcloud.com' });
     });
 
     expect(saveButton).toHaveAttribute('is-disabled', 'false');

@@ -4,8 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import { BreadcrumbItem, BreadcrumbLink, Breadcrumb as OdsBreadcrumb } from '@ovhcloud/ods-react';
 
 import { useParentTenant } from '@/data/hooks/parent-tenant/useParentTenant';
 
@@ -54,13 +53,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
   return (
     <OdsBreadcrumb data-testid="breadcrumb" className="mb-4">
       {breadcrumbItems.map((item) => (
-        <OdsBreadcrumbItem
-          key={item.label || item.href}
-          href={item.href}
-          color={ODS_LINK_COLOR.primary}
-          label={item.label}
-          target="_self"
-        />
+        <BreadcrumbItem key={item.label || item.href}>
+          <BreadcrumbLink aria-label={item.label} href={item.href} target="_self">
+            {item.label}
+          </BreadcrumbLink>
+        </BreadcrumbItem>
       ))}
     </OdsBreadcrumb>
   );

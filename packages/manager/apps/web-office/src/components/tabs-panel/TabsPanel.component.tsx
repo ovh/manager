@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 
 export type TabItemProps = {
   name: string;
@@ -22,7 +22,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
 
   useEffect(() => {
     if (!location.pathname) {
-      setActivePanel(tabs[0].name);
+      setActivePanel(tabs[0].to);
       navigate(tabs[0].to);
     } else {
       const activeTab = tabs
@@ -33,21 +33,21 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
         )
         .pop();
       if (activeTab) {
-        setActivePanel(activeTab.name);
+        setActivePanel(activeTab.to);
       }
     }
   }, [location.pathname, tabs, navigate]);
 
   return (
-    <OdsTabs>
-      {tabs.map((tab: TabItemProps) => (
-        <NavLink key={`osds-tab-bar-item-${tab.name}`} to={tab.to} className="no-underline">
-          <OdsTab id={tab.name} isSelected={activePanel === tab.name}>
+    <Tabs value={activePanel} onValueChange={(event) => navigate(event.value)}>
+      <TabList>
+        {tabs.map((tab: TabItemProps) => (
+          <Tab key={tab.name} id={tab.name} value={tab.to}>
             {tab.title}
-          </OdsTab>
-        </NavLink>
-      ))}
-    </OdsTabs>
+          </Tab>
+        ))}
+      </TabList>
+    </Tabs>
   );
 };
 

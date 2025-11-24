@@ -4,12 +4,17 @@ import { useTranslation } from 'react-i18next';
 import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
 
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 export const getRandomIndex = (length: number) => {
   // Crypto API is available
@@ -102,16 +107,16 @@ export type GeneratedPasswordButtonProps = {
   id: string;
   onGenerate: (password: string) => void;
   label?: string;
-  icon?: ODS_ICON_NAME;
-  // eslint-disable-next-line no-undef
-  onClick?: (e: React.MouseEvent<HTMLOdsButtonElement>) => void;
+  icon?: ICON_NAME;
+
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 } & GeneratePasswordOptions;
 
 export const GeneratePasswordButton = ({
   id,
   onGenerate,
   label = '',
-  icon = ODS_ICON_NAME.key,
+  icon = ICON_NAME.key,
   onClick,
   ...options
 }: GeneratedPasswordButtonProps) => {
@@ -137,30 +142,35 @@ export const GeneratePasswordButton = ({
         }
       }}
     >
-      <OdsButton
-        id={id}
-        data-testid={id}
-        label={label}
-        aria-label={label || 'Password Generator button'}
-        icon={generated ? ODS_ICON_NAME.check : icon}
-        size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={(e) => {
-          onClick?.(e);
-          const pwd = generatePassword(options);
-          onGenerate(pwd);
-          copyToClipboard(pwd);
-        }}
-      />
-      <OdsTooltip strategy="fixed" role="tooltip" withArrow triggerId={id}>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(
-            generated
-              ? 'dashboard_users_change_password_generated_password_tooltip'
-              : 'dashboard_users_change_password_generate_password_tooltip',
-          )}
-        </OdsText>
-      </OdsTooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            id={id}
+            data-testid={id}
+            aria-label={label || 'Password Generator button'}
+            size={BUTTON_SIZE.sm}
+            variant={BUTTON_VARIANT.ghost}
+            onClick={(e) => {
+              onClick?.(e);
+              const pwd = generatePassword(options);
+              onGenerate(pwd);
+              copyToClipboard(pwd);
+            }}
+          >
+            <Icon name={generated ? ICON_NAME.check : icon} /> {label}
+          </Button>
+        </TooltipTrigger>
+
+        <TooltipContent>
+          <Text preset={TEXT_PRESET.paragraph}>
+            {t(
+              generated
+                ? 'dashboard_users_change_password_generated_password_tooltip'
+                : 'dashboard_users_change_password_generate_password_tooltip',
+            )}
+          </Text>
+        </TooltipContent>
+      </Tooltip>
     </div>
   );
 };
