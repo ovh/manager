@@ -88,4 +88,5 @@ jobs:
       # Lint
       # ------------------------------------------
       - name: Lint Code Base
-        run: yarn lint
+        run: |
+          yarn lint --runner nx
