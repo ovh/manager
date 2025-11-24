@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Checkbox, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import { Checkbox, CheckboxControl, CheckboxLabel, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -126,15 +126,19 @@ export default function DeleteGitModal() {
                 field.onChange(detail.checked);
                 setIsConfirmingDeleteFiles(false);
               }}
-            />
+            >
+              <CheckboxControl />
+              <CheckboxLabel>
+                <Text>
+                  <Trans
+                    i18nKey="multisite:multisite_git_modal_delete_association_description3"
+                    values={{ path: state?.path ?? '' }}
+                  />
+                </Text>
+              </CheckboxLabel>
+            </Checkbox>
           )}
         />
-        <Text className="ml-4">
-          <Trans
-            i18nKey="multisite:multisite_git_modal_delete_association_description3"
-            values={{ path: state?.path ?? '' }}
-          />
-        </Text>
       </div>
     </Modal>
   );

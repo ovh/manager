@@ -32,6 +32,8 @@ export default function LocalSeo() {
     version: 'v6',
     route: `/hosting/web/${serviceName}/localSeo/location`,
     cacheKey: ['hosting', 'web', serviceName, 'localSeo', 'location'],
+    enabled: !!serviceName,
+    iceberg: true,
   });
 
   return (
@@ -64,7 +66,9 @@ export default function LocalSeo() {
         columns={flattenData?.length ? columns : []}
         data={flattenData || []}
         hasNextPage={hasNextPage && !isLoading}
-        onFetchNextPage={void fetchNextPage}
+        onFetchNextPage={(): void => {
+          void fetchNextPage();
+        }}
         isLoading={isLoading}
       />
     </React.Suspense>
