@@ -1,9 +1,19 @@
 import userEvent from '@testing-library/user-event';
-import { expect } from 'vitest';
+import { vi, expect } from 'vitest';
 import { act, screen, waitFor } from '@testing-library/react';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { labels, renderTest } from '../../../../../test-utils';
 import { urls, subRoutes } from '../../../../../routes/routes.constant';
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => ({
+      data: `${basePath}${pathWithId}`,
+    })),
+  };
+});
 
 const initialRoute = urls.resetPassword.replace(
   subRoutes.dashboard,
@@ -22,8 +32,8 @@ const checkModalContent = () => {
   expect(screen.getByText(content)).toBeVisible();
 };
 
-describe('Delete Vrack Network Page', () => {
-  it('should delete the network and display a success banner', async () => {
+describe('Edit Password Page', () => {
+  it('should reset the password and display a success banner', async () => {
     await renderTest({ initialRoute });
 
     // check modal content
@@ -44,7 +54,7 @@ describe('Delete Vrack Network Page', () => {
     expect(screen.getByText(success)).toBeVisible();
   });
 
-  it('should display an error if updateService is KO', async () => {
+  it('should display an error if resetPassword is KO', async () => {
     await renderTest({
       initialRoute,
       isOrganizationResetPasswordKo: true,
