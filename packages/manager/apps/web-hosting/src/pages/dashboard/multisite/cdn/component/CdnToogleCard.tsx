@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -23,9 +23,6 @@ interface ToggleCardProps {
   children?: React.ReactNode;
 }
 
-// Toggle web component seems to have an issue where the new value is not always detected
-// As a temporary solution, the value is kept in sync with an internal state, like in sap-features-hub.
-// TODO: ODS migration
 export const ToggleCard: React.FC<ToggleCardProps> = ({
   name,
   title,
@@ -36,11 +33,6 @@ export const ToggleCard: React.FC<ToggleCardProps> = ({
   children,
 }) => {
   const { t } = useTranslation([NAMESPACES.SERVICE]);
-  const [internalChecked, setInternalChecked] = useState(!!toggleValue);
-
-  useEffect(() => {
-    setInternalChecked(!!toggleValue);
-  }, [toggleValue]);
 
   return (
     <div className=" flex flex-col space-y-5">
@@ -51,16 +43,16 @@ export const ToggleCard: React.FC<ToggleCardProps> = ({
         <Toggle
           name={name}
           disabled={disabled}
-          checked={internalChecked}
+          checked={toggleValue}
           id={name}
-          key={`${name}-${internalChecked}`}
+          key={`${name}-${toggleValue}`}
           onCheckedChange={onToggle}
         >
           <ToggleControl />
           <ToggleLabel>
             <Text>
               {t(
-                internalChecked
+                toggleValue
                   ? `${NAMESPACES.SERVICE}:service_state_enabled`
                   : `${NAMESPACES.SERVICE}:service_state_disabled`,
               )}

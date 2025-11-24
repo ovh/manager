@@ -31,13 +31,14 @@ export const getStatusColor = (status: Status) => {
     case GitStatus.DEPLOYING:
     case DnsStatus.EXTERNAL:
       return BADGE_COLOR.warning;
-    case GitStatus.DISABLED:
+    case GitStatus.INITIALERROR:
     case GitStatus.ERROR:
     case ResourceStatus.ERROR:
     case ResourceStatus.SUSPENDED:
-    case ServiceStatus.NONE:
       return BADGE_COLOR.critical;
     case DnsStatus.NOT_CONFIGURED:
+    case GitStatus.DISABLED:
+    case ServiceStatus.NONE:
       return BADGE_COLOR.neutral;
     default:
       return BADGE_COLOR.information;

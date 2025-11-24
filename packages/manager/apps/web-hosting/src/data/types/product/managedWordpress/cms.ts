@@ -3,6 +3,7 @@ export enum CmsType {
   JOOMLA = 'JOOMLA',
   PRESTASHOP = 'PRESTASHOP',
   DRUPAL = 'DRUPAL',
+  NONE = 'NONE',
 }
 
 export type CmsLanguage = {
