@@ -32,6 +32,7 @@
     "@types/lodash.capitalize": "^4.2.1",
     "lodash.capitalize": "^4.2.1",
     "msw": "2.1.7",
+    "react-hook-form": "^7.66.1",
     "tailwindcss": "^3.4.4",
     "tsc-alias": "^1.8.16",
     "typescript": "5.4.5",
@@ -58,7 +59,7 @@
     "lodash.capitalize": "^4.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "7.66.1",
+    "react-hook-form": "^7.66.1",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0"
   }
