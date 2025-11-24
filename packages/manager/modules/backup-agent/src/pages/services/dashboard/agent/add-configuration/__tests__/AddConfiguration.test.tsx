@@ -9,7 +9,8 @@ import { DrawerProps } from '@ovh-ux/manager-react-components';
 
 import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
 import { mockTenantBackupPolicies } from '@/mocks/tenant/backupPolicies.mock';
-import AddConfigurationPage from '@/pages/services/dashboard/agent/add-configuration/AddConfiguration.page';
+
+import AddConfigurationPage from '../AddConfiguration.page';
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
@@ -127,9 +128,14 @@ const { useBaremetalsListMock, useBackupTenantPoliciesMock } = vi.hoisted(() => 
     .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
 }));
 
-vi.mock('@/data', () => {
+vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => {
   return {
     useBaremetalsList: useBaremetalsListMock,
+  };
+});
+
+vi.mock('@/data/hooks/tenants/useVspcTenantBackupPolicies', () => {
+  return {
     useBackupTenantPolicies: useBackupTenantPoliciesMock,
   };
 });

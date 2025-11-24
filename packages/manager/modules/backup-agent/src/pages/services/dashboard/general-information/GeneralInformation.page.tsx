@@ -4,7 +4,7 @@ import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informa
 
 import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
 
-import GeneralInformationTenantTile from './_components/general-information-tenant-tile/GeneralInformationTenantTile.component';
+import { GeneralInformationTenantTile } from './_components/general-information-tenant-tile/GeneralInformationTenantTile.component';
 import SubscriptionTile from './_components/subscription-tile/SubscriptionTile.component';
 
 export default function GeneralInformationPage() {

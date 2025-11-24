@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { useBaremetalsList } from '@ovh-ux/backup-agent';
+import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Card } from '@ovh-ux/manager-react-components';
 

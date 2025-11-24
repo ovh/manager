@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
-import { BaremetalOption, RhfField, useBaremetalsList } from '@ovh-ux/backup-agent';
+import { BaremetalOption } from '@ovh-ux/backup-agent/components/CommonFields/BaremetalOption/BaremetalOption.component';
+import { RhfField } from '@ovh-ux/backup-agent/components/Fields/RhfField/RhfField.component';
+import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 type Inputs = {
@@ -28,7 +30,7 @@ export const FirstOrderFormComponent = () => {
       noValidate
       onSubmit={handleSubmit(onSubmit)}
     >
-      <RhfField<any, any>
+      <RhfField
         control={control}
         controllerParams={register('baremetal', { required: true })}
         helperMessage={t(`${NAMESPACES.FORM}:required_field`)}
