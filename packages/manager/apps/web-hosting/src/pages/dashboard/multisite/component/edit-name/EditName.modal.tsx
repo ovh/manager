@@ -3,12 +3,11 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { UpdateNameModal, useNotifications } from '@ovh-ux/manager-react-components';
+import { UpdateNameModal, useNotifications } from '@ovh-ux/muk';
 
 import { putWebHostingWebsite } from '@/data/api/webHosting';
 import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
@@ -38,18 +37,16 @@ export default function EditNameModal() {
       }),
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('hosting_dashboard_modal_update_success')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('hosting_dashboard_modal_update_success')}</Text>,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(`${NAMESPACES.STATUS}:errorMessage`, {
             error: error.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -68,7 +65,7 @@ export default function EditNameModal() {
       headline={t('hosting_dashboard_modal_update_headline')}
       description={t('hosting_dashboard_modal_update_description')}
       inputLabel={t('hosting_dashboard_modal_update_input_label')}
-      closeModal={onClose}
+      onClose={onClose}
       defaultValue={siteName}
       confirmButtonLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
       cancelButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}

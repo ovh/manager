@@ -1,31 +1,47 @@
-import { useMemo } from 'react';
-import React from 'react';
+import { Suspense, useMemo, useState } from 'react';
 
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
+import { ExpandedState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BADGE_ICON_ALIGNMENT,
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-  ODS_TOOLTIP_POSITION,
-} from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Badge,
+  Button,
+  ICON_NAME,
+  Icon,
+  TOOLTIP_POSITION,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
-import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { getStatusColor } from '@/components/badgeStatus/BadgeStatus.component';
+import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { useWebHostingWebsite } from '@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite';
-import { WebHostingWebsiteType } from '@/data/types/product/webHosting';
-import { GIT_STATUS_WITH_TOOLTIP } from '@/data/types/status';
+import { useWebHostingWebsiteDomains } from '@/data/hooks/webHosting/webHostingWebsiteDomain/webHostingWebsiteDomain';
+import {
+  WebHostingWebsiteDomainType,
+  WebHostingWebsiteType,
+} from '@/data/types/product/webHosting';
+import { GIT_STATUS_WITH_TOOLTIP, GitStatus, ServiceStatus } from '@/data/types/status';
 import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
+import { DiagnosticCell } from '@/pages/websites/Cells.component';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 import ActionButtonMultisite from './component/ActionButtonMultisite.component';
-import { DatagridSubComponent } from './component/DatagridSubComponent.component';
+
+type CombinedRowType = (WebHostingWebsiteType | WebHostingWebsiteDomainType) & {
+  subRows?: WebHostingWebsiteDomainType[];
+};
+
+const isDomain = (row: CombinedRowType): row is WebHostingWebsiteDomainType => {
+  return 'currentState' in row && 'fqdn' in (row.currentState || {});
+};
 
 export default function MultisitePage() {
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -33,149 +49,273 @@ export default function MultisitePage() {
   const isOverridedPage = useOverridePage();
   const navigate = useNavigate();
 
-  const { data: websites = [], isLoading } = useWebHostingWebsite(serviceName) as {
-    data?: WebHostingWebsiteType[];
-    isLoading: boolean;
-  };
+  const { data: websites, isLoading: isLoadingWebsites } = useWebHostingWebsite(serviceName);
 
-  const columns: DatagridColumn<WebHostingWebsiteType>[] = useMemo(
+  const [expanded, setExpanded] = useState<ExpandedState>({});
+
+  const domainQueries = useWebHostingWebsiteDomains(serviceName, websites);
+  const { data: domainsAttached = [] } = useWebHostingAttachedDomain({ domain: serviceName });
+  const isLoadingDomains = domainQueries.some((query) => query.isLoading);
+  const isLoading = isLoadingWebsites || isLoadingDomains;
+
+  const domainsData = domainQueries.map((query) => query.data ?? []);
+
+  const combinedData: CombinedRowType[] = useMemo(() => {
+    if (!websites) return [];
+
+    return websites.map((website, index) => {
+      const domains = domainsData[index] ?? [];
+      const hasLinkedDomains = (website.currentState?.linkedDomains ?? 0) > 0;
+
+      return {
+        ...website,
+
+        subRows: hasLinkedDomains ? (domains.length > 0 ? domains : []) : undefined,
+      } as CombinedRowType;
+    });
+  }, [websites, domainsData]);
+
+  const columns: DatagridColumn<CombinedRowType>[] = useMemo(
     () => [
       {
         id: 'site',
-        label: 'Site',
-        isSortable: true,
-        cell: (item) => (
-          <>
-            <div>
-              {item.currentState?.name}
-              <ManagerButton
-                className="ml-2"
-                id={'edit-name'}
-                label={''}
-                variant={ODS_BUTTON_VARIANT.ghost}
-                color={ODS_BUTTON_COLOR.primary}
-                onClick={() =>
-                  navigate('./edit-name', {
-                    state: { siteName: item.currentState?.name, siteId: item.id },
-                  })
-                }
-                icon={ODS_ICON_NAME.pen}
-              />
-            </div>
-          </>
-        ),
+        header: 'Site',
+        accessorFn: (row) => {
+          if (isDomain(row)) {
+            return row.currentState?.name ?? '';
+          }
+          return (row as WebHostingWebsiteType).currentState?.name ?? '';
+        },
+        cell: ({ row, getValue }) => {
+          if (isDomain(row.original)) {
+            return <div>{getValue<string>()}</div>;
+          }
+
+          return (
+            <>
+              <div>
+                {getValue<string>()}
+                <Button
+                  className="ml-2"
+                  id={'edit-name'}
+                  variant={BUTTON_VARIANT.ghost}
+                  color={BUTTON_COLOR.primary}
+                  onClick={() =>
+                    navigate('./edit-name', {
+                      state: {
+                        siteName: getValue<string>(),
+                        siteId: row.original.id,
+                      },
+                    })
+                  }
+                >
+                  <Icon name={ICON_NAME.pen} />
+                </Button>
+              </div>
+            </>
+          );
+        },
       },
       {
         id: 'linkedDomains',
-        label: t('web_hosting_status_header_linked_domains'),
+        accessorFn: (row) => {
+          if (isDomain(row)) {
+            return row.currentState?.fqdn ?? '';
+          }
+          return (row as WebHostingWebsiteType).currentState?.linkedDomains ?? '';
+        },
+        header: t('web_hosting_status_header_linked_domains'),
         isSortable: false,
-        cell: (item) => (
-          <span>
-            {t(
-              `multisite:multisite_linked_${
-                item.currentState?.linkedDomains > 1 ? 'domains' : 'domain'
-              }`,
-              { linkedDomains: item.currentState?.linkedDomains },
-            )}
-          </span>
-        ),
+        cell: ({ getValue, row }) => {
+          if (isDomain(row.original)) {
+            return <div>{getValue<string>()}</div>;
+          }
+
+          return (
+            <span>
+              {t(`multisite:multisite_linked_${getValue<number>() > 1 ? 'domains' : 'domain'}`, {
+                linkedDomains: getValue<number>(),
+              })}
+            </span>
+          );
+        },
       },
       {
         id: 'path',
-        label: t('web_hosting_status_header_path'),
-        isSortable: true,
-        cell: (item) => <div>{item.currentState?.path}</div>,
+        accessorFn: (row) => row.currentState?.path ?? '',
+        header: t('web_hosting_status_header_path'),
+        cell: ({ getValue }) => <div>{getValue<string>()}</div>,
       },
       {
         id: 'git',
-        label: t('web_hosting_status_header_git'),
-        isSortable: true,
-        cell: (item) => {
-          const status = item.currentState?.git.status;
+        accessorFn: (row) => {
+          if (isDomain(row)) {
+            return '';
+          }
+          return (row as WebHostingWebsiteType).currentState?.git?.status ?? '';
+        },
+        header: t('web_hosting_status_header_git'),
+        cell: ({ getValue, row }) => {
+          if (isDomain(row.original)) {
+            return <div></div>;
+          }
+
+          const status = getValue<GitStatus>();
+          if (!status) return <div></div>;
+
           const tooltipKey =
             GIT_STATUS_WITH_TOOLTIP[status as keyof typeof GIT_STATUS_WITH_TOOLTIP] || 'lastdeploy';
 
           return (
             <>
-              <OdsBadge
-                id={`git-status-${item.id}`}
-                iconAlignment={ODS_BADGE_ICON_ALIGNMENT.right}
-                color={getStatusColor(status)}
-                label={t(`web_hosting_status_${status?.toLowerCase()}`)}
-              />
-              <OdsTooltip triggerId={`git-status-${item.id}`} position={ODS_TOOLTIP_POSITION.right}>
-                <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              <Tooltip position={TOOLTIP_POSITION.right}>
+                <TooltipTrigger asChild>
+                  <Badge id={`git-status-${row.original.id}`} color={getStatusColor(status)}>
+                    {t(`web_hosting_status_${status?.toLowerCase()}`)}
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent>
                   {t(`multisite:multisite_git_state_tooltip_${tooltipKey}`)}
-                </OdsText>
-              </OdsTooltip>
+                </TooltipContent>
+              </Tooltip>
             </>
           );
         },
       },
       {
         id: 'firewall',
-        label: t('web_hosting_status_header_firewall'),
-        cell: () => <div></div>,
+        accessorFn: (row) => {
+          if (isDomain(row)) {
+            return row.currentState?.firewall?.status ?? '';
+          }
+          return '';
+        },
+        header: t('web_hosting_status_header_firewall'),
+        cell: ({ getValue, row }) => {
+          if (isDomain(row.original)) {
+            const status = getValue<ServiceStatus>();
+            if (!status) return <div></div>;
+            return (
+              <Badge data-testid={`badge-status-${status}`} color={getStatusColor(status)}>
+                {t(`web_hosting_status_${status.toLowerCase()}`)}
+              </Badge>
+            );
+          }
+          return <div></div>;
+        },
       },
       {
         id: 'CDN',
-        label: t('web_hosting_status_header_cdn'),
-        cell: () => <div></div>,
+        accessorFn: (row) => {
+          if (isDomain(row)) {
+            return row.currentState?.cdn?.status ?? '';
+          }
+          return '';
+        },
+        header: t('web_hosting_status_header_cdn'),
+        cell: ({ getValue, row }) => {
+          if (isDomain(row.original)) {
+            const status = getValue<ServiceStatus>();
+            if (!status) return <div></div>;
+            return (
+              <Badge data-testid={`badge-status-${status}`} color={getStatusColor(status)}>
+                {t(`web_hosting_status_${status.toLowerCase()}`)}
+              </Badge>
+            );
+          }
+          return <div></div>;
+        },
       },
       {
         id: 'diagnostic',
-        label: t('web_hosting_status_header_diagnostic'),
-        cell: () => <div></div>,
+        accessorFn: (row) => {
+          if (isDomain(row)) {
+            return row.currentState?.fqdn ?? '';
+          }
+          return '';
+        },
+        header: t('web_hosting_status_header_diagnostic'),
+        cell: ({ getValue, row }) => {
+          if (isDomain(row.original)) {
+            const fqdn = getValue<string>();
+            if (!fqdn || !serviceName) return <div></div>;
+            return <DiagnosticCell serviceName={serviceName} fqdn={fqdn} />;
+          }
+          return <div></div>;
+        },
       },
       {
         id: 'actions',
-        label: '',
-        cell: (item) => (
-          <ActionButtonMultisite
-            context="site"
-            siteId={item.id}
-            site={item.currentState?.name}
-            path={item.currentState?.path}
-          />
-        ),
+        accessorFn: () => '',
+        header: '',
+        cell: ({ row }) => {
+          if (isDomain(row.original)) {
+            const domain = row.original;
+            const allDomains =
+              domainsData.find((domains) => domains.some((d) => d.id === domain.id)) ?? [];
+
+            return (
+              <ActionButtonMultisite
+                context="domain"
+                domainId={domain.id}
+                domain={domain.currentState?.fqdn}
+                site={domain.currentState?.name ?? ''}
+                path={domain.currentState?.path ?? ''}
+                domains={allDomains}
+                isDisabled={domainsAttached.some((d) => {
+                  return (
+                    console.log(d.currentState?.fqdn, domain.currentState.fqdn),
+                    d.currentState?.fqdn === domain.currentState.fqdn &&
+                      d.currentState?.isDefault === true
+                  );
+                })}
+              />
+            );
+          }
+
+          const website = row.original as WebHostingWebsiteType;
+          return (
+            <ActionButtonMultisite
+              context="site"
+              siteId={website.id}
+              site={website.currentState?.name}
+              path={website.currentState?.path}
+            />
+          );
+        },
       },
     ],
 
-    [navigate, t],
+    [t, navigate, serviceName, domainsData, domainsAttached],
   );
 
   return (
     <>
       {!isOverridedPage && (
         <Datagrid
-          columns={columns}
-          items={websites}
-          totalItems={websites.length}
+          columns={combinedData ? columns : []}
+          data={combinedData || []}
           isLoading={isLoading}
+          autoScroll={false}
           topbar={
-            <ManagerButton
+            <Button
               id="add-website"
               data-testid="add-website-button"
-              label={t('add_website')}
               onClick={() => navigate(urls.addWebSite.replace(subRoutes.serviceName, serviceName))}
-            />
+            >
+              {t('add_website')}
+            </Button>
           }
-          getRowCanExpand={(row) => !!row.original.currentState?.linkedDomains}
-          renderSubComponent={(row, refs) => {
-            const siteId = row.original.id;
-            if (siteId === undefined) return null;
-            return (
-              <DatagridSubComponent
-                key={siteId}
-                serviceName={serviceName}
-                siteId={siteId}
-                headerRefs={refs}
-              />
-            );
+          expandable={{
+            expanded,
+            setExpanded,
+            //   getRowCanExpand: () => {},
           }}
         />
       )}
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

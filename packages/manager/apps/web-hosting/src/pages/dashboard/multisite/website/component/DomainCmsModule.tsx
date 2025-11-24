@@ -2,8 +2,15 @@ import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCard, OdsMedium, OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  CARD_COLOR,
+  Card,
+  Medium,
+  Radio,
+  RadioGroup,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
@@ -23,143 +30,130 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
 
   return (
     <div className="flex flex-col space-y-5">
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Text preset={TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_module_cms_title')}
-      </OdsText>
-      <OdsText>{t('multisite:multisite_add_website_module_cms_text')}</OdsText>
+      </Text>
+      <Text>{t('multisite:multisite_add_website_module_cms_text')}</Text>
       <Controller
         name="module"
         control={control}
         render={({ field }) => (
           <>
             <div className="flex flex-row space-x-4">
-              <OdsCard
+              <Card
                 className="w-1/3 p-4"
-                color={!controlValues.module ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
+                color={!controlValues.module ? CARD_COLOR.primary : CARD_COLOR.neutral}
               >
                 <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    name="NONE"
-                    value={null}
-                    isChecked={!field.value}
-                    onOdsChange={() => field.onChange(null)}
-                  />
+                  <RadioGroup>
+                    <Radio value={null} onChange={() => field.onChange(null)} />
+                  </RadioGroup>
                   <label>
-                    <OdsText preset={ODS_TEXT_PRESET.heading6}>
+                    <Text preset={TEXT_PRESET.heading6}>
                       {t('multisite:multisite_add_website_module_cms_none')}
-                    </OdsText>
+                    </Text>
                   </label>
                 </div>
-                <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_none_text')}
-                </OdsText>
-              </OdsCard>
-              <OdsCard
+                </Text>
+              </Card>
+              <Card
                 className="w-1/3 p-4"
                 color={
                   controlValues.module === CmsType.WORDPRESS
-                    ? ODS_CARD_COLOR.primary
-                    : ODS_CARD_COLOR.neutral
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    name={CmsType.WORDPRESS}
-                    value={CmsType.WORDPRESS}
-                    isChecked={field.value === CmsType.WORDPRESS}
-                    onOdsChange={() => field.onChange(CmsType.WORDPRESS)}
-                  />
+                  <RadioGroup>
+                    <Radio
+                      value={CmsType.WORDPRESS}
+                      onChange={() => field.onChange(CmsType.WORDPRESS)}
+                    />
+                  </RadioGroup>
                   <label className="flex items-center space-x-5 cursor-pointer">
-                    <OdsMedium src="cms/wordpress.svg" />
-                    <OdsText preset={ODS_TEXT_PRESET.heading6}>
+                    <Medium src="cms/wordpress.svg" />
+                    <Text preset={TEXT_PRESET.heading6}>
                       {t('multisite:multisite_add_website_module_cms_choice_wordpress')}
-                    </OdsText>
+                    </Text>
                   </label>
                 </div>
-                <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_wordpress_text')}
-                </OdsText>
-              </OdsCard>
-              <OdsCard
+                </Text>
+              </Card>
+              <Card
                 className="w-1/3 p-4"
                 color={
-                  controlValues.module === CmsType.DRUPAL
-                    ? ODS_CARD_COLOR.primary
-                    : ODS_CARD_COLOR.neutral
+                  controlValues.module === CmsType.DRUPAL ? CARD_COLOR.primary : CARD_COLOR.neutral
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    name={CmsType.DRUPAL}
-                    value={CmsType.DRUPAL}
-                    isChecked={field.value === CmsType.DRUPAL}
-                    onOdsChange={() => field.onChange(CmsType.DRUPAL)}
-                  />
+                  <RadioGroup>
+                    <Radio value={CmsType.DRUPAL} onChange={() => field.onChange(CmsType.DRUPAL)} />
+                  </RadioGroup>
                   <label className="flex items-center space-x-5 cursor-pointer">
-                    <OdsMedium src="cms/drupal.svg" />
-                    <OdsText preset={ODS_TEXT_PRESET.heading6}>
+                    <Medium src="cms/drupal.svg" />
+                    <Text preset={TEXT_PRESET.heading6}>
                       {t('multisite:multisite_add_website_module_cms_choice_drupal')}
-                    </OdsText>
+                    </Text>
                   </label>
                 </div>
-                <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_drupal_text')}
-                </OdsText>
-              </OdsCard>
+                </Text>
+              </Card>
             </div>
             <div className="flex flex-row space-x-4">
-              <OdsCard
+              <Card
                 className="w-1/3 p-4"
                 color={
                   controlValues.module === CmsType.PRESTASHOP
-                    ? ODS_CARD_COLOR.primary
-                    : ODS_CARD_COLOR.neutral
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    name={CmsType.PRESTASHOP}
-                    value={CmsType.PRESTASHOP}
-                    isChecked={field.value === CmsType.PRESTASHOP}
-                    onOdsChange={() => field.onChange(CmsType.PRESTASHOP)}
-                  />
+                  <RadioGroup>
+                    <Radio
+                      value={CmsType.PRESTASHOP}
+                      onChange={() => field.onChange(CmsType.PRESTASHOP)}
+                    />
+                  </RadioGroup>
                   <label className="flex items-center space-x-5 cursor-pointer">
-                    <OdsMedium src="cms/prestashop.svg" />
-                    <OdsText preset={ODS_TEXT_PRESET.heading6}>
+                    <Medium src="cms/prestashop.svg" />
+                    <Text preset={TEXT_PRESET.heading6}>
                       {t('multisite:multisite_add_website_module_cms_choice_prestashop')}
-                    </OdsText>
+                    </Text>
                   </label>
                 </div>
-                <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_prestashop_text')}
-                </OdsText>
-              </OdsCard>
-              <OdsCard
+                </Text>
+              </Card>
+              <Card
                 className="w-1/3 p-4"
                 color={
-                  controlValues.module === CmsType.JOOMLA
-                    ? ODS_CARD_COLOR.primary
-                    : ODS_CARD_COLOR.neutral
+                  controlValues.module === CmsType.JOOMLA ? CARD_COLOR.primary : CARD_COLOR.neutral
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    name={CmsType.JOOMLA}
-                    value={CmsType.JOOMLA}
-                    isChecked={field.value === CmsType.JOOMLA}
-                    onOdsChange={() => field.onChange(CmsType.JOOMLA)}
-                  />
+                  <RadioGroup>
+                    <Radio value={CmsType.JOOMLA} onChange={() => field.onChange(CmsType.JOOMLA)} />
+                  </RadioGroup>
                   <label className="flex items-center space-x-5 cursor-pointer">
-                    <OdsMedium src="cms/joomla.svg" />
-                    <OdsText preset={ODS_TEXT_PRESET.heading6}>
+                    <Medium src="cms/joomla.svg" />
+                    <Text preset={TEXT_PRESET.heading6}>
                       {t('multisite:multisite_add_website_module_cms_choice_joomla')}
-                    </OdsText>
+                    </Text>
                   </label>
                 </div>
-                <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_joomla_text')}
-                </OdsText>
-              </OdsCard>
+                </Text>
+              </Card>
             </div>
           </>
         )}

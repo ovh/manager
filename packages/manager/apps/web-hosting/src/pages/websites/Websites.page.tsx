@@ -1,45 +1,47 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useMemo, useRef, useState } from 'react';
 
+import { VisibilityState } from '@tanstack/react-table';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
 import punycode from 'punycode/punycode';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_ICON_ALIGNMENT,
-  ODS_POPOVER_POSITION,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsIcon,
-  OdsLink,
-  OdsPopover,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  POPOVER_POSITION,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
-import {
-  BaseLayout,
-  Datagrid,
-  DatagridColumn,
-  GuideButton,
-  GuideItem,
-  Notifications,
-  OvhSubsidiary,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import {
+  BaseLayout,
+  Datagrid,
+  DatagridColumn,
+  GuideMenu,
+  GuideMenuItem,
+  Link,
+  Notifications,
+  OvhSubsidiary,
+  useNotifications,
+} from '@ovh-ux/muk';
 
 import { getAllWebHostingAttachedDomain } from '@/data/api/webHosting';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { WebsiteType } from '@/data/types/product/website';
-import { ServiceStatus } from '@/data/types/status';
+import { GitStatus, ServiceStatus } from '@/data/types/status';
 import { useDebouncedValue } from '@/hooks/debouncedValue/useDebouncedValue';
 import { EXPORT_CSV, ORDER_CTA, WEBSITE } from '@/utils/tracking.constants';
 import { buildURLSearchParams } from '@/utils/url';
@@ -52,191 +54,207 @@ export default function Websites() {
   const { t } = useTranslation('common');
   const [isExportPopoverOpen, setIsExportPopoverOpen] = useState(false);
   const [isCSVLoading, setIsCSVLoading] = useState(false);
-  const csvPopoverRef = useRef<HTMLOdsPopoverElement>(null);
+  const csvPopoverRef = useRef<{ hide?: () => void | Promise<void> } | null>(null);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const { notifications, addSuccess } = useNotifications();
   const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
     useDebouncedValue('');
 
-  const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
+  const { data, isLoading, hasNextPage, fetchAllPages, fetchNextPage, isFetchingNextPage } =
     useWebHostingAttachedDomain({
       domain: punycode.toASCII(debouncedSearchInput),
     });
   const { trackClick } = useOvhTracking();
 
-  const items = data ? data.map((website: WebsiteType) => website) : [];
+  const items = useMemo(() => {
+    if (!data) return [];
+    return data.map((website: WebsiteType) => website);
+  }, [data]);
 
-  const displayColumns: DatagridColumn<WebsiteType>[] = [
-    {
-      id: 'fqdn',
-      label: t('web_hosting_status_header_fqdn'),
-      cell: (webSiteItem: WebsiteType) => {
-        const fqdn = webSiteItem?.currentState.fqdn || '';
-        const containsPunycode = fqdn.split('.').some((part) => part.startsWith('xn--'));
+  const displayColumns: DatagridColumn<WebsiteType>[] = useMemo(
+    () => [
+      {
+        id: 'fqdn',
+        accessorFn: (row) => row.currentState?.fqdn ?? '',
+        header: t('web_hosting_status_header_fqdn'),
+        cell: ({ getValue, row }) => {
+          const fqdn = getValue<string>();
+          const containsPunycode = fqdn.split('.').some((part) => part.startsWith('xn--'));
+          const decodedFqdn = punycode.toUnicode(fqdn);
 
-        return (
-          <div className="flex items-center">
-            <LinkCell
-              webSiteItem={webSiteItem}
-              label={punycode.toUnicode(fqdn)}
-              tracking="fqdn"
-              withMultisite
-            />
-            {containsPunycode && (
-              <>
-                <OdsIcon
-                  id={`tooltip-trigger-${fqdn}`}
-                  className="color-disabled cursor-pointer ml-4"
-                  name="circle-question"
-                />
-                <OdsTooltip triggerId={`tooltip-trigger-${fqdn}`}>{fqdn}</OdsTooltip>
-              </>
-            )}
-          </div>
-        );
+          return (
+            <div className="flex items-center gap-2">
+              <LinkCell
+                webSiteItem={row.original}
+                label={decodedFqdn}
+                tracking="fqdn"
+                withMultisite
+              />
+              {containsPunycode && (
+                <>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Icon
+                        name={ICON_NAME.circleQuestion}
+                        color="muted"
+                        className="cursor-pointer"
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>{fqdn}</TooltipContent>
+                  </Tooltip>
+                </>
+              )}
+            </div>
+          );
+        },
+        enableHiding: false,
+        isSearchable: true,
       },
-      enableHiding: false,
-      isSearchable: true,
-    },
-    {
-      id: 'diagnostic',
-      label: t('web_hosting_status_header_diagnostic'),
-      cell: (webSiteItem: WebsiteType) => (
-        <DiagnosticCell
-          isWebsiteView
-          serviceName={webSiteItem.currentState.hosting.serviceName}
-          fqdn={webSiteItem.currentState.fqdn}
-        />
-      ),
-      enableHiding: true,
-    },
-    {
-      id: 'path',
-      label: t('web_hosting_status_header_path'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.path}
-          tracking="path"
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'serviceName',
-      label: t('web_hosting_status_header_serviceName'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.hosting.serviceName}
-          tracking="serviceName"
-        />
-      ),
-    },
-    {
-      id: 'displayName',
-      label: t('web_hosting_status_header_displayName'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={webSiteItem?.currentState.hosting.displayName}
-          tracking="displayName"
-        />
-      ),
-    },
-    {
-      id: 'offer',
-      label: t('web_hosting_status_header_offer'),
-      cell: (webSiteItem: WebsiteType) => (
-        <LinkCell
-          webSiteItem={webSiteItem}
-          label={t([
-            `web_hosting_dashboard_offer_${webSiteItem?.currentState.hosting.offer}`,
-            webSiteItem?.currentState.hosting.offer,
-          ])}
-          tracking="offer"
-        />
-      ),
-    },
-    {
-      id: 'git',
-      label: t('web_hosting_status_header_git'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.git?.status}
-          tracking="git"
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'ownLog',
-      label: t('web_hosting_status_header_ownlog'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE}
-          tracking="ownLog"
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'CDN',
-      label: t('web_hosting_status_header_cdn'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.cdn.status}
-          tracking="cdn"
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'ssl',
-      label: t('web_hosting_status_header_ssl'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.ssl.status}
-          tracking="ssl"
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'firewall',
-      label: t('web_hosting_status_header_firewall'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={webSiteItem?.currentState.firewall.status}
-          tracking="firewall"
-          withMultisite
-        />
-      ),
-    },
-    {
-      id: 'boostOffer',
-      label: t('web_hosting_status_header_boostOffer'),
-      cell: (webSiteItem: WebsiteType) => (
-        <BadgeStatusCell
-          webSiteItem={webSiteItem}
-          status={
-            webSiteItem?.currentState.hosting.boostOffer ? ServiceStatus.ACTIVE : ServiceStatus.NONE
-          }
-          tracking="boostOffer"
-          withBoost
-        />
-      ),
-    },
-    {
-      id: 'actions',
-      label: '',
-      cell: (webSiteItem: WebsiteType) => <ActionButtonStatistics webSiteItem={webSiteItem} />,
-    },
-  ];
+      {
+        id: 'diagnostic',
+        header: t('web_hosting_status_header_diagnostic'),
+        cell: ({ row }) => (
+          <DiagnosticCell
+            serviceName={row.original.currentState?.hosting?.serviceName}
+            fqdn={row.original.currentState?.fqdn}
+            isWebsiteView={false}
+          />
+        ),
+        enableHiding: true,
+      },
+      {
+        id: 'path',
+        accessorFn: (row) => row.currentState?.path ?? '',
+        header: t('web_hosting_status_header_path'),
+        cell: ({ getValue, row }) => (
+          <LinkCell
+            webSiteItem={row.original}
+            label={getValue<string>()}
+            tracking="path"
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'serviceName',
+        accessorFn: (row) => row.currentState?.hosting?.serviceName ?? '',
+        header: t('web_hosting_status_header_serviceName'),
+        cell: ({ getValue, row }) => (
+          <LinkCell webSiteItem={row.original} label={getValue<string>()} tracking="serviceName" />
+        ),
+      },
+      {
+        id: 'displayName',
+        accessorFn: (row) => row.currentState?.hosting?.displayName ?? '',
+        header: t('web_hosting_status_header_displayName'),
+        cell: ({ getValue, row }) => (
+          <LinkCell webSiteItem={row.original} label={getValue<string>()} tracking="displayName" />
+        ),
+      },
+      {
+        id: 'offer',
+        accessorFn: (row) => row.currentState?.hosting?.offer ?? '',
+        header: t('web_hosting_status_header_offer'),
+        cell: ({ getValue, row }) => {
+          const offer = getValue<string>();
+          return (
+            <LinkCell
+              webSiteItem={row.original}
+              label={t([`web_hosting_dashboard_offer_${offer}`, offer])}
+              tracking="offer"
+            />
+          );
+        },
+      },
+      {
+        id: 'git',
+        accessorFn: (row) => row.currentState?.git?.status,
+        header: t('web_hosting_status_header_git'),
+        cell: ({ getValue, row }) => (
+          <BadgeStatusCell
+            webSiteItem={row.original}
+            status={getValue<GitStatus>()}
+            tracking="git"
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'ownLog',
+        accessorFn: (row) => (row.currentState?.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE),
+        header: t('web_hosting_status_header_ownlog'),
+        cell: ({ getValue, row }) => (
+          <BadgeStatusCell
+            webSiteItem={row.original}
+            status={getValue<ServiceStatus>()}
+            tracking="ownLog"
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'CDN',
+        accessorFn: (row) => row.currentState?.cdn?.status,
+        header: t('web_hosting_status_header_cdn'),
+        cell: ({ getValue, row }) => (
+          <BadgeStatusCell
+            webSiteItem={row.original}
+            status={getValue<ServiceStatus>()}
+            tracking="cdn"
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'ssl',
+        accessorFn: (row) => row.currentState?.ssl?.status,
+        header: t('web_hosting_status_header_ssl'),
+        cell: ({ getValue, row }) => (
+          <BadgeStatusCell
+            webSiteItem={row.original}
+            status={getValue<ServiceStatus>()}
+            tracking="ssl"
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'firewall',
+        accessorFn: (row) => row.currentState?.firewall?.status,
+        header: t('web_hosting_status_header_firewall'),
+        cell: ({ getValue, row }) => (
+          <BadgeStatusCell
+            webSiteItem={row.original}
+            status={getValue<ServiceStatus>()}
+            tracking="firewall"
+            withMultisite
+          />
+        ),
+      },
+      {
+        id: 'boostOffer',
+        accessorFn: (row) =>
+          row.currentState?.hosting?.boostOffer ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
+        header: t('web_hosting_status_header_boostOffer'),
+        cell: ({ getValue, row }) => (
+          <BadgeStatusCell
+            webSiteItem={row.original}
+            status={getValue<ServiceStatus>()}
+            tracking="boostOffer"
+            withBoost
+          />
+        ),
+      },
+      {
+        id: 'actions',
+        header: '',
+        cell: ({ row }) => <ActionButtonStatistics webSiteItem={row.original} />,
+        enableHiding: false,
+      },
+    ],
+    [t],
+  );
+
   interface ExportColumn {
     id: string;
     label: string;
@@ -352,14 +370,10 @@ export default function Websites() {
     const successMessage = (
       <div>
         {t('web_hosting_export_success')}
-        <OdsLink
-          href={url}
-          download={csvConfig.filename}
-          label={t('web_hosting_export_download_manually')}
-          className="ml-4"
-          icon={ODS_ICON_NAME.download}
-          iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-        />
+        <Link href={url} download={csvConfig.filename} className="ml-4">
+          {t('web_hosting_export_download_manually')}
+        </Link>
+        <Icon name={ICON_NAME.download}></Icon>
       </div>
     );
     addSuccess(successMessage);
@@ -391,12 +405,12 @@ export default function Websites() {
     window.open(url, '_blank');
   };
 
-  const guideItems: GuideItem[] = [
+  const guideItems: GuideMenuItem[] = [
     {
       id: 1,
       href: GUIDE_URL[ovhSubsidiary as OvhSubsidiary] || GUIDE_URL.DEFAULT,
       target: '_blank',
-      label: t('web_hosting_header_guide_general_informations'),
+      children: t('web_hosting_header_guide_general_informations'),
     },
   ];
 
@@ -412,65 +426,78 @@ export default function Websites() {
       label: t('web_hosting_export_label_all'),
     },
   ];
-
   return (
     <BaseLayout
       header={{
         title: t('websites'),
-        headerButton: <GuideButton items={guideItems} />,
+        guideMenu: <GuideMenu items={guideItems} />,
       }}
       message={notifications.length ? <Notifications /> : null}
     >
       <Datagrid
         data-testid="websites-page-datagrid"
-        columns={displayColumns}
-        items={items}
-        totalItems={items.length}
+        columns={items ? displayColumns : []}
+        data={items}
+        isLoading={isLoading || isFetchingNextPage}
         hasNextPage={!isFetchingNextPage && hasNextPage}
-        onFetchNextPage={fetchNextPage}
-        isLoading={isFetchingNextPage || isLoading}
+        onFetchNextPage={(): void => {
+          void fetchNextPage();
+        }}
+        onFetchAllPages={fetchAllPages}
+        columnVisibility={{ columnVisibility, setColumnVisibility }}
         topbar={
           <div className="flex items-center gap-4">
-            <OdsButton
-              label={t('web_hosting_header_order')}
-              variant={ODS_BUTTON_VARIANT.default}
-              color={ODS_BUTTON_COLOR.primary}
+            <Button
+              variant={BUTTON_VARIANT.default}
+              color={BUTTON_COLOR.primary}
               onClick={goToOrder}
-              icon={ODS_ICON_NAME.externalLink}
-              iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
               data-testid="websites-page-order-button"
-            />
-            <OdsButton
-              id="export-popover-trigger"
-              label={t('web_hosting_export_label')}
-              variant={ODS_BUTTON_VARIANT.outline}
-              data-testid="websites-page-export-button"
-              isLoading={isCSVLoading}
-              icon={isExportPopoverOpen ? ODS_ICON_NAME.chevronUp : ODS_ICON_NAME.chevronDown}
-            />
-
-            <OdsPopover
-              className="py-[8px] px-0 w-max"
-              triggerId="export-popover-trigger"
-              ref={csvPopoverRef}
-              onOdsHide={() => setIsExportPopoverOpen(false)}
-              onOdsShow={() => setIsExportPopoverOpen(true)}
-              position={ODS_POPOVER_POSITION.bottomStart}
-              with-arrow
             >
-              <div className="flex flex-col">
-                {actionItems.map((action) => (
-                  <OdsButton
-                    key={action.id}
-                    label={action.label}
-                    onClick={action.onClick}
-                    variant={ODS_BUTTON_VARIANT.ghost}
-                    data-testid={`websites-page-export-button-${action.id}`}
-                    className="menu-item-button w-full"
-                  />
-                ))}
-              </div>
-            </OdsPopover>
+              <>
+                {t('web_hosting_header_order')}
+                <Icon className="ml-2" name={ICON_NAME.externalLink}></Icon>
+              </>
+            </Button>
+            <div className="py-[8px] px-0 w-max">
+              <Popover
+                aria-label="Export menu"
+                position={POPOVER_POSITION.bottomStart}
+                open={isExportPopoverOpen}
+                onOpenChange={({ open }) => setIsExportPopoverOpen(open)}
+              >
+                <PopoverTrigger aria-haspopup="menu" asChild>
+                  <Button
+                    id="export-popover-trigger"
+                    variant={BUTTON_VARIANT.outline}
+                    data-testid="websites-page-export-button"
+                    loading={isCSVLoading}
+                  >
+                    <>
+                      <Icon
+                        className="mr-2"
+                        name={isExportPopoverOpen ? ICON_NAME.chevronUp : ICON_NAME.chevronDown}
+                      />
+                      {t('web_hosting_export_label')}
+                    </>
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent aria-label="Export menu" withArrow>
+                  <div className="flex flex-col w-full p-2">
+                    {actionItems.map((action) => (
+                      <Button
+                        key={action.id}
+                        onClick={action.onClick}
+                        variant={BUTTON_VARIANT.ghost}
+                        role="menuitem"
+                        className="w-full justify-start"
+                      >
+                        {action.label}
+                      </Button>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </div>
         }
         search={{

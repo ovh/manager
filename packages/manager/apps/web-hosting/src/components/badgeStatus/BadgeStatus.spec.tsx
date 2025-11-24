@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR } from '@ovh-ux/muk';
 
 import { DnsStatus, GitStatus, ServiceStatus } from '@/data/types/status';
 import { render, screen } from '@/utils/test.provider';
@@ -19,14 +19,14 @@ describe('BadgeStatus component', () => {
 
   it('should render with all possible colors', () => {
     const testCases = [
-      { status: DnsStatus.CONFIGURED, color: ODS_BADGE_COLOR.success },
-      { status: DnsStatus.EXTERNAL, color: ODS_BADGE_COLOR.warning },
-      { status: DnsStatus.NOT_CONFIGURED, color: ODS_BADGE_COLOR.neutral },
-      { status: GitStatus.CREATED, color: ODS_BADGE_COLOR.success },
-      { status: GitStatus.DELETING, color: ODS_BADGE_COLOR.warning },
-      { status: GitStatus.ERROR, color: ODS_BADGE_COLOR.critical },
-      { status: ServiceStatus.ACTIVE, color: ODS_BADGE_COLOR.success },
-      { status: ServiceStatus.NONE, color: ODS_BADGE_COLOR.neutral },
+      { status: DnsStatus.CONFIGURED, color: BADGE_COLOR.success },
+      { status: DnsStatus.EXTERNAL, color: BADGE_COLOR.warning },
+      { status: DnsStatus.NOT_CONFIGURED, color: BADGE_COLOR.neutral },
+      { status: GitStatus.CREATED, color: BADGE_COLOR.success },
+      { status: GitStatus.DELETING, color: BADGE_COLOR.warning },
+      { status: GitStatus.ERROR, color: BADGE_COLOR.critical },
+      { status: ServiceStatus.ACTIVE, color: BADGE_COLOR.success },
+      { status: ServiceStatus.NONE, color: BADGE_COLOR.critical },
     ];
 
     testCases.forEach(({ status, color }) => {

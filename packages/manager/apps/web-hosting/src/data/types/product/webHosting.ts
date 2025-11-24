@@ -1,4 +1,6 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
+import { UUID } from 'node:crypto';
+
+import { CurrencyCode } from '@ovh-ux/muk';
 
 import { GitStatus, OngoingTaskStatus, ResourceStatus, ServiceStatus, TaskStatus } from '../status';
 import { CmsType } from './managedWordpress/cms';
@@ -148,7 +150,7 @@ export type WebHostingType = {
 export type TaskDetailsType = {
   doneDate: string;
   function: string;
-  id: string;
+  id: UUID;
   lastUpdate: string;
   objectId: string;
   objectType: string;
