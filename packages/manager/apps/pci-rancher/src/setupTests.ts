@@ -2,6 +2,10 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 
+vi.mock('@/components/guides-header', () => ({
+  PciGuidesHeader: vi.fn(),
+}));
+
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useNavigation: vi.fn(() => ({
     getURL: vi.fn(() => Promise.resolve('123')),
