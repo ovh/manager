@@ -1,10 +1,10 @@
 import { managerRootPath } from '../../playbook/playbook-config.js';
 import {
+  buildNxCiArgs,
   resolveApplicationBuildFilter,
   resolveModuleBuildFilter,
-  runCommand,
-  runTaskFromRoot,
-} from '../utils/tasks-utils.js';
+} from '../utils/runner-utils.js';
+import { runCommand, runTaskFromRoot } from '../utils/tasks-utils.js';
 import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/workspace-utils.js';
 
 const DEFAULT_RUNNER = 'turbo';
@@ -34,7 +34,10 @@ async function withWorkspaces(fn) {
  * Build arguments for CI tasks (global build/test) depending on the chosen runner.
  *
  * - For turbo (and unknown runners): `runner run <task> ...options`
- * - For nx: `nx run-many --target=<task> [options] [--all]`
+ * - For nx:
+ *    - directory/name filters: use `nx run-many --target=<task> --projects=...`
+ *      and map `--concurrency` → `--parallel`
+ *    - git filters like [HEAD^1] / [base...head]: use `nx affected --target=<task>`
  *
  * @param {string} runner
  * @param {"build"|"test"} task
@@ -42,23 +45,12 @@ async function withWorkspaces(fn) {
  * @returns {string[]}
  */
 function getCiRunnerArgs(runner, task, options = []) {
-  if (runner === 'nx') {
-    // Nx: use run-many; we default to --all if user didn't provide --all or --projects
-    const hasAll = options.includes('--all');
-    const hasProjectsFlag =
-      options.includes('--projects') || options.some((opt) => opt.startsWith('--projects='));
-
-    const args = ['run-many', `--target=${task}`, ...options];
-
-    if (!hasAll && !hasProjectsFlag) {
-      args.push('--all');
-    }
-
-    return args;
+  // Turbo and other runners: keep arguments as-is
+  if (runner !== 'nx') {
+    return ['run', task, ...options];
   }
 
-  // Default (turbo and others): runner run <task> ...
-  return ['run', task, ...options];
+  return buildNxCiArgs(task, options);
 }
 
 /**
