@@ -54,7 +54,7 @@ describe('ModalOrderUsers Component', () => {
       fireEvent.input(firstNameInput, {
         target: { value: 'John' },
       });
-      firstNameInput.odsChange.emit({
+      firstNameInput.onChange.emit({
         name: 'firstName',
         value: 'John',
       });
@@ -62,19 +62,19 @@ describe('ModalOrderUsers Component', () => {
 
     await act(() => {
       fireEvent.input(lastNameInput, { target: { value: 'Doe' } });
-      lastNameInput.odsChange.emit({ name: 'lastName', value: 'Doe' });
+      lastNameInput.onChange.emit({ name: 'lastName', value: 'Doe' });
     });
 
     await act(() => {
       fireEvent.input(loginInput, { target: { value: 'johndoe' } });
-      loginInput.odsChange.emit({ name: 'login', value: 'johndoe' });
+      loginInput.onChange.emit({ name: 'login', value: 'johndoe' });
     });
 
     await act(() => {
       fireEvent.change(licenceInput, {
         target: { value: 'officeBusiness' },
       });
-      licenceInput.odsChange.emit({
+      licenceInput.onChange.emit({
         name: 'licence',
         value: 'officeBusiness',
       });
