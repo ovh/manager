@@ -6,6 +6,14 @@ export const REGION_EU_WEST_RBX = 'eu-west-rbx';
 export const REGION_EU_WEST_SBG = 'eu-west-sbg';
 export const REGION_CA_EAST_BHS = 'ca-east-bhs';
 
+export const SERVICE_KEY_PRICE = 6_000_000;
+export const KMIP_OBJECT_PRICE = 6_000_000;
+export const SECRET_PRICE = 3_000_000;
+
+export const SERVICE_KEY_TAX = 1_200_000;
+export const KMIP_OBJECT_TAX = 1_200_000;
+export const SECRET_TAX = 600_000;
+
 export const catalogMock: OkmsCatalog = {
   plans: [
     {
@@ -40,8 +48,8 @@ export const catalogMock: OkmsCatalog = {
           phase: 0,
           interval: 0,
           intervalUnit: IntervalUnitType.none,
-          price: 6000000,
-          tax: 1200000,
+          price: SERVICE_KEY_PRICE,
+          tax: SERVICE_KEY_TAX,
         },
       ],
     },
@@ -55,8 +63,8 @@ export const catalogMock: OkmsCatalog = {
           phase: 0,
           interval: 0,
           intervalUnit: IntervalUnitType.none,
-          price: 6000000,
-          tax: 1200000,
+          price: KMIP_OBJECT_PRICE,
+          tax: KMIP_OBJECT_TAX,
         },
       ],
     },
@@ -70,8 +78,8 @@ export const catalogMock: OkmsCatalog = {
           phase: 0,
           interval: 0,
           intervalUnit: IntervalUnitType.none,
-          price: 3000000,
-          tax: 600000,
+          price: SECRET_PRICE,
+          tax: SECRET_TAX,
         },
       ],
     },
