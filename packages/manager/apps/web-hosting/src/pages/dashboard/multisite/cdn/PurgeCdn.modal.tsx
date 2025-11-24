@@ -6,12 +6,11 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import { Radio, RadioGroup, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { flushCDNDomainCache, flushCdn } from '@/data/api/cdn';
 import { useGetCDNProperties } from '@/data/hooks/cdn/useCdn';
@@ -119,19 +118,19 @@ export default function PurgeCdnModal() {
     },
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('multisite:multisite_cdn_modal_purge_success')}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(`multisite:multisite_cdn_modal_purge_success`, {
             message: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -164,45 +163,49 @@ export default function PurgeCdnModal() {
   return (
     <Modal
       heading={t('multisite:multisite_cdn_modal_purge_title')}
-      onDismiss={onClose}
-      isOpen
-      onPrimaryButtonClick={onPrimaryButtonClick}
-      onSecondaryButtonClick={onClose}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      isPrimaryButtonDisabled={isFlushing}
+      onOpenChange={() => onClose()}
+      open={true}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: onPrimaryButtonClick,
+        disabled: isFlushing,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: onClose,
+      }}
     >
-      <OdsText>{t('multisite:multisite_cdn_modal_purge_description')}</OdsText>
-      <OdsText className="mt-4">
+      <Text>{t('multisite:multisite_cdn_modal_purge_description')}</Text>
+      <Text className="mt-4">
         <Trans i18nKey="multisite:multisite_cdn_modal_purge_subdescription" />
-      </OdsText>
+      </Text>
       <div className="modal-body p-0 pb-3">
-        <OdsText className="m-0 mb-4" data-ng-bind={state.domain}>
+        <Text className="m-0 mb-4" data-ng-bind={state.domain}>
           {state.domain}
-        </OdsText>
+        </Text>
         <div className="mb-4">
           {options.map((option) => (
             <Controller
               name="selectedOption"
               control={control}
               key={option.patternType}
-              render={({ field }) => (
+              render={() => (
                 <div className="flex leading-none gap-4 mt-4">
-                  <OdsRadio
-                    id={`option-${option.patternType}`}
-                    name={`option-${option.patternType}`}
-                    value={option.patternType}
-                    isChecked={field.value.patternType === option.patternType}
-                    onChange={() => handleOptionChange(option)}
-                    isDisabled={option.disabled}
-                    className="mb-2"
-                    input-id={`option-${option.patternType}`}
-                  />
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t(
-                      `multisite:multisite_cdn_modal_purge_option_${option.patternType.toLowerCase()}`,
-                    )}
-                  </OdsText>
+                  <RadioGroup>
+                    <Radio
+                      id={`option-${option.patternType}`}
+                      value={option.patternType}
+                      onChange={() => handleOptionChange(option)}
+                      disabled={option.disabled}
+                      className="mb-2"
+                      input-id={`option-${option.patternType}`}
+                    />
+                    <Text preset={TEXT_PRESET.paragraph}>
+                      {t(
+                        `multisite:multisite_cdn_modal_purge_option_${option.patternType.toLowerCase()}`,
+                      )}
+                    </Text>
+                  </RadioGroup>
                 </div>
               )}
             />

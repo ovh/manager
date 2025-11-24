@@ -29,7 +29,7 @@ vi.mock('react-i18next', async (importActual) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   useFormatDate: () => (date: string) => {
     if (date === '2026-02-18') return '18 févr. 2026';
     return `formatted-${date}`;
