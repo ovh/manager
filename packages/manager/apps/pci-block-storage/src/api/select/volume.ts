@@ -260,7 +260,7 @@ export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   encryptionType,
 }: TVolumeToAdd): AddVolumeProps => {
   const pricing = catalog.models
-    ?.find((m) => m.name === type)
+    .find((m) => m.name === type)
     ?.pricings.find(
       (p) =>
         p.regions.includes(region) && p.specs.encrypted === !!encryptionType,

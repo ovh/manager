@@ -16,17 +16,16 @@ import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { useParam, useProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
 import { GUIDES } from './onboarding.constants';
 import { useAllVolumes } from '@/api/hooks/useVolume';
 import { TrackActionParams, useTrackAction } from '@/hooks/useTrackAction';
-import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
   const { t: tOnBoarding } = useTranslation('onboarding');
-  const projectId = useMandatoryParam('projectId');
+  const { projectId } = useParam('projectId');
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();

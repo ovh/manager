@@ -18,12 +18,11 @@ import { TAttachableInstance } from '@/api/select/instances';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
-import { useMandatoryParam } from '@/hooks/useMandatoryParam';
+import { useParam } from '@ovh-ux/manager-pci-common';
 
 export default function AttachStorage() {
   const navigate = useNavigate();
-  const projectId = useMandatoryParam('projectId');
-  const volumeId = useMandatoryParam('volumeId');
+  const { projectId, volumeId } = useParam('projectId', 'volumeId');
   const { t } = useTranslation('attach');
   const { addError, addSuccess } = useNotifications();
   const { data: volume, isPending: isVolumePending } = useVolume(

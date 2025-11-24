@@ -36,6 +36,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   PCICommonContext,
+  useParam,
   usePCICommonContextFactory,
   useProject,
 } from '@ovh-ux/manager-pci-common';
@@ -51,7 +52,6 @@ import ExternalLink from '@/components/ExternalLink';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
-import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 type TFormState = {
   name: string;
@@ -76,8 +76,7 @@ export default function EditPage() {
   const onClose = () => navigate('..');
   const backHref = useHref('..');
 
-  const projectId = useMandatoryParam('projectId');
-  const volumeId = useMandatoryParam('volumeId');
+  const { projectId, volumeId } = useParam('projectId', 'volumeId');
 
   const projectUrl = useProjectUrl('public-cloud');
   const quotaUrl = `${projectUrl}/quota`;

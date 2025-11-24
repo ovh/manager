@@ -36,7 +36,7 @@ import { useSearchFormParams } from '@/hooks/useSearchFormParams';
 import { TAttachedInstance } from '@/api/select/instances';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
-import { useMandatoryParam } from '@/hooks/useMandatoryParam';
+import { useParam } from '@ovh-ux/manager-pci-common';
 
 const SelectInstance = ({ instances }: { instances: TAttachedInstance[] }) => {
   const { control } = useFormContext();
@@ -161,8 +161,7 @@ const DETACH_SCHEMA = z.object({
 
 export default function DetachStorage() {
   const navigate = useNavigate();
-  const volumeId = useMandatoryParam('volumeId');
-  const projectId = useMandatoryParam('projectId');
+  const { projectId, volumeId } = useParam('projectId', 'volumeId');
   const { t } = useTranslation('detach');
   const { addError, addSuccess } = useNotifications();
   const { data: volume } = useVolume(projectId, volumeId);

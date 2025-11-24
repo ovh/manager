@@ -17,6 +17,7 @@ import { useHref, useNavigate } from 'react-router-dom';
 import {
   isDiscoveryProject,
   PciDiscoveryBanner,
+  useParam,
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import {
@@ -41,13 +42,12 @@ import { DEPLOYMENT_MODES_HELP_URL } from '@/constants';
 import ExternalLink from '@/components/ExternalLink';
 import { useTrackAction } from '@/hooks/useTrackAction';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
-import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
   const { t: tAdd } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
-  const projectId = useMandatoryParam('projectId');
+  const { projectId } = useParam('projectId');
   const { data: project } = useProject();
   const navigate = useNavigate();
   const projectUrl = useProjectUrl('public-cloud');

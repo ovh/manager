@@ -22,7 +22,11 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  PciAnnouncementBanner,
+  useParam,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
@@ -32,13 +36,12 @@ import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { Button } from '@/components/button/Button';
 import { StorageGuidesHeader } from '@/pages/list/StorageGuidesHeader.component';
 import { FileStorageAlphaBanner } from '@/components/banner/FileStorageAlphaBanner.component';
-import { useMandatoryParam } from '@/hooks/useMandatoryParam';
 
 export const ListingPage = () => {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const projectUrl = useProjectUrl('public-cloud');
 
-  const projectId = useMandatoryParam('projectId');
+  const { projectId } = useParam('projectId');
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();

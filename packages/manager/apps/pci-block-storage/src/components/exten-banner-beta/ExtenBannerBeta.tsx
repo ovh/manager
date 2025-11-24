@@ -9,13 +9,13 @@ import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { FA_EXTEN_BANNER } from '@/api/data/quota';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
-import { useMandatoryParam } from '@/hooks/useMandatoryParam';
+import { useParam } from '@ovh-ux/manager-pci-common';
 
 const extenProducts = ['high-speed-BETA', 'classic-BETA'];
 
 function Banner() {
   const { t } = useTranslation('exten-banner-beta');
-  const projectId = useMandatoryParam('projectId');
+  const { projectId } = useParam('projectId');
   const { data: volumeCatalog } = useVolumeCatalog(projectId);
 
   const regionsString = useMemo(
