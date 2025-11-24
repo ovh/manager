@@ -36,5 +36,37 @@
       "title": "Limite d'ingestion (métriques actives)",
       "description": "Définissez la limite maximale du nombre de métriques actives pour ce tenant."
     }
+  },
+  "dashboard": {
+    "general_information_tab": "Informations générales",
+    "subscription_tab": "Souscription",
+    "tags_tab": "Tags",
+    "explore_in_grafana_button": "Explorer dans Grafana®",
+    "general_information_tile": {
+      "title": "Informations générales",      
+      "name": "Nom du tenant",
+      "description": "Description",
+      "id": "ID",
+      "urn": "URN",
+      "endpoint": "Endpoint",
+      "created_at": "Date de création",
+      "updated_at": "Date de la dernière modification",      
+      "edit_information": "Modifier les informations"
+    },
+    "configuration_tile": {
+      "title": "Configuration",
+      "retention": "Rétention",
+      "active_metrics": "Métriques actifs",
+      "ingestion_limit": "Limite d'ingestion"
+    },
+    "tags_tile": {
+      "title": "Tags",
+      "manage_tags": "Gérer les tags"
+    },
+    "subscription_tile": {
+      "title": "Objet lié",
+      "subscriptions": "Souscriptions",
+      "access_subscription_page": "Accéder à la page de Souscription"
+    }    
   }
 }
