@@ -3,8 +3,15 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { VisibilityState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
+import { TABLE_SIZE } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { FilterCategories, FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
+import {
+  FilterCategories,
+  FilterComparator,
+  FilterTypeCategories,
+  applyFilters,
+} from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   DatagridColumn,
@@ -13,13 +20,9 @@ import {
   useNotifications,
 } from '@ovh-ux/muk';
 
+import TagsList from '@/components/dashboard/TagsList.component';
 import DatagridCellEnpoint from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component';
 import DatagridCellLink from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component';
-import DatagridTenantCellTags from '@/components/listing/common/datagrid-cells/datagrid-cell-tags/DataGridCellTags.component';
-import {
-  DATAGRID_HEADER_HEIGHT,
-  DATAGRID_ROW_HEIGHT,
-} from '@/components/listing/tenants/TenantsListDatagrid.constants';
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
 import TenantsListActions from '@/components/listing/tenants/actions/TenantsListActions.component';
 import TenantsListTopbar from '@/components/listing/tenants/top-bar/TenantsListTopbar.component';
@@ -54,9 +57,10 @@ export default function TenantsListDatagrid({
         accessorFn: (row: TenantListing) => row,
         cell: ({ getValue }) => {
           const { id, name } = getValue() as TenantListing;
-          return <DatagridCellLink id={id} label={name} path={id} />;
+          return <DatagridCellLink id={id} label={name} />;
         },
         comparator: FilterCategories.String,
+        type: FilterTypeCategories.String,
         isSearchable: true,
         isFilterable: true,
       },
@@ -70,6 +74,7 @@ export default function TenantsListDatagrid({
           return <DatagridCellEnpoint infrastructure={infrastructure} />;
         },
         comparator: FilterCategories.String,
+        type: FilterTypeCategories.String,
         isSearchable: true,
         isFilterable: true,
       },
@@ -79,6 +84,7 @@ export default function TenantsListDatagrid({
         label: t('tenants:listing.retention_cell'),
         accessorKey: 'retention',
         comparator: FilterCategories.String,
+        type: FilterTypeCategories.String,
         isSearchable: true,
         isFilterable: true,
       },
@@ -87,7 +93,8 @@ export default function TenantsListDatagrid({
         header: t('tenants:listing.active_metrics_cell'),
         label: t('tenants:listing.active_metrics_cell'),
         accessorKey: 'numberOfSeries',
-        comparator: FilterCategories.String,
+        comparator: FilterCategories.Numeric,
+        type: FilterTypeCategories.Numeric,
         isSearchable: true,
         isFilterable: true,
       },
@@ -95,11 +102,12 @@ export default function TenantsListDatagrid({
         id: 'tags',
         header: t('tenants:listing.tags_cell'),
         label: t('tenants:listing.tags_cell'),
-        accessorFn: (row: TenantListing) => row.tagsArray,
+        accessorFn: (row: TenantListing) => row.tags,
         cell: ({ getValue }) => {
-          return <DatagridTenantCellTags tags={getValue<string[]>()} />;
+          return <TagsList tags={getValue<{ [key: string]: string }>()} />;
         },
         comparator: FilterCategories.Tags,
+        type: FilterTypeCategories.Tags,
         isSearchable: true,
         isFilterable: true,
       },
@@ -108,7 +116,6 @@ export default function TenantsListDatagrid({
         header: '',
         accessorFn: (row: TenantListing) => row.id,
         cell: ({ getValue }) => <TenantsListActions tenantId={getValue<string>()} />,
-        comparator: FilterCategories.String,
         isSearchable: false,
         isFilterable: false,
       },
@@ -138,11 +145,6 @@ export default function TenantsListDatagrid({
   }, [listingTenants, filters]);
 
   const topbar = useMemo(() => <TenantsListTopbar />, []);
-
-  const containerHeight = useMemo(
-    () => DATAGRID_HEADER_HEIGHT + DATAGRID_ROW_HEIGHT * filteredTenants.length,
-    [filteredTenants],
-  );
 
   const columnVisibilityProps = useMemo(
     () => ({ columnVisibility, setColumnVisibility }),
@@ -182,7 +184,6 @@ export default function TenantsListDatagrid({
   return (
     <React.Suspense>
       <Datagrid
-        containerHeight={containerHeight}
         topbar={topbar}
         columns={columns}
         columnVisibility={columnVisibilityProps}
@@ -190,6 +191,9 @@ export default function TenantsListDatagrid({
         totalCount={filteredTenants.length}
         filters={filtersProps}
         search={searchProps}
+        containerHeight={725} //TOFIX: waiting muk fixes
+        size={TABLE_SIZE.lg}
+        contentAlignLeft={true}
         isLoading={isLoading}
       />
     </React.Suspense>
