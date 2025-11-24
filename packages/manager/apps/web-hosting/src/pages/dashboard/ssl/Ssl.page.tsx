@@ -25,6 +25,8 @@ export default function Ssl() {
     version: 'v2',
     route: `/webhosting/resource/${serviceName}/certificate`,
     cacheKey: ['webhosting', 'resource', serviceName, 'certificate'],
+    enabled: !!serviceName,
+    iceberg: true,
   });
 
   interface ExportColumn {
@@ -146,7 +148,9 @@ export default function Ssl() {
         data={flattenData || []}
         isLoading={isLoading}
         hasNextPage={hasNextPage && !isLoading}
-        onFetchNextPage={void fetchNextPage}
+        onFetchNextPage={(): void => {
+          void fetchNextPage();
+        }}
       />
     </React.Suspense>
   );
