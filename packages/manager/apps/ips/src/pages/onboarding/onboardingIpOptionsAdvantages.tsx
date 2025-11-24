@@ -51,7 +51,10 @@ export function OnboardingIpOptionsAdvantages() {
                 {advantage.href && advantage.linkLabel && (
                   <>
                     {' '}
-                    <Links href={advantage.href} label={advantage.linkLabel} />
+                    <Links
+                      href={advantage.href.link}
+                      label={advantage.linkLabel}
+                    />
                   </>
                 )}
               </OdsText>

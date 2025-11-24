@@ -40,6 +40,7 @@ export default function EdgeNetworkFirewallPage() {
     setNewSequence,
     setNewMode,
     showNewRuleRow,
+    maxRulesReached,
   } = React.useContext(EdgeNetworkFirewallContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.edgeNetworkFirewall,
@@ -89,15 +90,17 @@ export default function EdgeNetworkFirewallPage() {
               items={[
                 {
                   id: 0,
-                  href: links.configureEdgeNetworkFirewall,
+                  href: links.configureEdgeNetworkFirewall.link,
                   target: '_blank',
                   label: t('title'),
                   onClick: () => {
                     trackClick({
-                      actionType: 'navigation',
+                      actionType: 'action',
                       buttonType: ButtonType.link,
                       location: PageLocation.page,
-                      actions: [t('title')],
+                      actions: [
+                        `go-to_${links.configureEdgeNetworkFirewall.trackingLabel}`,
+                      ],
                     });
                   },
                 },
@@ -125,6 +128,7 @@ export default function EdgeNetworkFirewallPage() {
                     <OdsLink
                       href="!#"
                       label={t('only_permit_rule_link_label')}
+                      isDisabled={maxRulesReached}
                       onClick={(e) => {
                         e.preventDefault();
                         setNewProtocol(IpEdgeFirewallProtocol.IPv4);

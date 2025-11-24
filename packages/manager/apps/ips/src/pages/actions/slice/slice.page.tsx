@@ -133,10 +133,18 @@ export default function SliceModal() {
           <div className="inline">
             {t('noAggregateSliceAvailable')}
             <OdsLink
-              href={links.aggreateSliceLink}
+              href={links.aggreateSliceLink.link}
               target="_blank"
               rel="noopener"
               label={t('noAggregateLinkLabel')}
+              onClick={() => {
+                trackClick({
+                  location: PageLocation.popup,
+                  buttonType: ButtonType.link,
+                  actionType: 'action',
+                  actions: [`go-to_${links.aggreateSliceLink.trackingLabel}`],
+                });
+              }}
             />
           </div>
         </OdsMessage>
