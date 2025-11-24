@@ -4,11 +4,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  Input,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 
 import { useGetCdnOption } from '@/data/hooks/cdn/useCdn';
 import { CdnOptionType } from '@/data/types/product/cdn';
@@ -31,53 +40,60 @@ export default function CdnCorsResourceSharingModal() {
   return (
     <Modal
       heading={'Cross-Origin Resource Sharing'}
-      onDismiss={onClose}
-      isOpen
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={onClose}
-      onPrimaryButtonClick={() => {}}
+      onOpenChange={() => onClose()}
+      open={true}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: () => {},
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: () => onClose(),
+      }}
     >
       <div className="flex flex-col space-y-3">
-        <OdsText>{t('cdn_shared_cors_description')}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>{t('cdn_shared_cors_add_domain')}</OdsText>
-        <OdsInput
+        <Text>{t('cdn_shared_cors_description')}</Text>
+        <Text preset={TEXT_PRESET.caption}>{t('cdn_shared_cors_add_domain')}</Text>
+        <Input
           name="ruleName"
           type="text"
           value={addedDomain}
-          onOdsChange={(e) => setAddedDomain(e.target.value as string)}
+          onChange={(e) => setAddedDomain(e.target.value)}
         />
-        <OdsButton
-          label={t(`${NAMESPACES.ACTIONS}:add`)}
-          variant={ODS_BUTTON_VARIANT.default}
-          color={ODS_BUTTON_COLOR.primary}
-          isDisabled={!addedDomain}
+        <Button
+          variant={BUTTON_VARIANT.default}
+          color={BUTTON_COLOR.primary}
+          disabled={!addedDomain}
           onClick={() => {
             setDomainLists([...domainLists, addedDomain]);
           }}
-        />
-        <OdsText preset={ODS_TEXT_PRESET.caption}>{t('cdn_shared_cors_domain_list')}</OdsText>
-        <select
-          className="mt-3 w-full"
-          value={selectedDomain}
-          size={6}
-          onChange={(e) => setSelectedDomain(e.target.value)}
         >
-          {domainLists?.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-        <OdsButton
-          label={t(`${NAMESPACES.ACTIONS}:remove`)}
-          variant={ODS_BUTTON_VARIANT.default}
-          color={ODS_BUTTON_COLOR.primary}
-          isDisabled={!selectedDomain}
+          {t(`${NAMESPACES.ACTIONS}:add`)}
+        </Button>
+        <Text preset={TEXT_PRESET.caption}>{t('cdn_shared_cors_domain_list')}</Text>
+        <Select
+          name="domainList"
+          data-testid="domainList"
+          className="mt-3 w-full"
+          items={domainLists.map((item) => ({
+            label: item,
+            value: item,
+          }))}
+          onValueChange={(detail) => setSelectedDomain(detail.value[0])}
+        >
+          <SelectControl />
+          <SelectContent />
+        </Select>
+        <Button
+          variant={BUTTON_VARIANT.default}
+          color={BUTTON_COLOR.primary}
+          disabled={!selectedDomain}
           onClick={() => {
             setDomainLists(domainLists?.filter((item) => item !== selectedDomain));
           }}
-        />
+        >
+          {t(`${NAMESPACES.ACTIONS}:remove`)}
+        </Button>
       </div>
     </Modal>
   );

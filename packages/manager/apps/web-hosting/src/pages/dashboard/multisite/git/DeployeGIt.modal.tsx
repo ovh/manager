@@ -4,11 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCheckbox, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { Checkbox, SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 
 import {
   useGetHostingWebsiteIds,
@@ -53,40 +52,40 @@ export default function DeployeGitModal() {
   return (
     <Modal
       heading={t('deploy_git')}
-      isOpen
-      onDismiss={onClose}
-      onPrimaryButtonClick={onConfirm}
-      onSecondaryButtonClick={onClose}
-      isPrimaryButtonDisabled={isFetching || isPending || websiteId === undefined}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      open={true}
+      onOpenChange={onClose}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: onConfirm,
+        disabled: isFetching || isPending || websiteId === undefined,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: onClose,
+      }}
     >
       {isFetching ? (
         <div className="flex justify-center items-center h-48">
-          <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
+          <Spinner size={SPINNER_SIZE.lg} />
         </div>
       ) : isError || deployError ? (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {String(error?.message ?? deployError?.message ?? t('common:unknown'))}
-        </OdsText>
+        </Text>
       ) : (
         <>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+          <Text preset={TEXT_PRESET.paragraph} className="mb-4">
             {t('deploy_git_description')}
-          </OdsText>
+          </Text>
 
           <div className="flex gap-3 items-start">
-            <OdsCheckbox
+            <Checkbox
               name="deploy-git-reset"
-              isChecked={reset}
-              onOdsChange={(event: CustomEvent<{ checked: boolean }>) =>
-                setReset(Boolean(event.detail?.checked))
-              }
+              checked={reset}
+              onCheckedChange={(detail) => setReset(Boolean(detail?.checked))}
             />
 
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('deploy_git_overwrite_local_changes')}
-            </OdsText>
+            <Text preset={TEXT_PRESET.paragraph}>{t('deploy_git_overwrite_local_changes')}</Text>
           </div>
         </>
       )}

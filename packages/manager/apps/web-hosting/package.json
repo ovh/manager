@@ -33,6 +33,8 @@
     "@ovh-ux/shell": "^4.9.3",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
+    "@ovh-ux/muk": "^0.9.0",
+    "@ovhcloud/ods-react": "^19.2.1",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
     "clsx": "2.1.1",
