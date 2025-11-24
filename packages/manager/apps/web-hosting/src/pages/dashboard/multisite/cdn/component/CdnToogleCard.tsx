@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_TEXT_PRESET,
-  OdsToggleChangeEventDetail,
-  OdsToggleCustomEvent,
-} from '@ovhcloud/ods-components';
-import { OdsText, OdsToggle } from '@ovhcloud/ods-components/react';
+  TEXT_PRESET,
+  Text,
+  Toggle,
+  ToggleCheckedChangeDetail,
+  ToggleControl,
+  ToggleLabel,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -16,12 +18,12 @@ interface ToggleCardProps {
   info: string;
   name?: string;
   toggleValue?: boolean;
-  isDisabled?: boolean;
-  onToggle?: (event: unknown) => void;
+  disabled?: boolean;
+  onToggle?: (event: ToggleCheckedChangeDetail) => void;
   children?: React.ReactNode;
 }
 
-// OdsToggle web component seems to have an issue where the new value is not always detected
+// Toggle web component seems to have an issue where the new value is not always detected
 // As a temporary solution, the value is kept in sync with an internal state, like in sap-features-hub.
 // TODO: ODS migration
 export const ToggleCard: React.FC<ToggleCardProps> = ({
@@ -29,14 +31,12 @@ export const ToggleCard: React.FC<ToggleCardProps> = ({
   title,
   info,
   toggleValue,
-  isDisabled = false,
+  disabled = false,
   onToggle,
   children,
 }) => {
   const { t } = useTranslation([NAMESPACES.SERVICE]);
   const [internalChecked, setInternalChecked] = useState(!!toggleValue);
-
-  const toggleId = `${name}-toggle`;
 
   useEffect(() => {
     setInternalChecked(!!toggleValue);
@@ -44,28 +44,29 @@ export const ToggleCard: React.FC<ToggleCardProps> = ({
 
   return (
     <div className=" flex flex-col space-y-5">
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{title}</OdsText>
-      <OdsText>{info}</OdsText>
+      <Text preset={TEXT_PRESET.heading4}>{title}</Text>
+      <Text>{info}</Text>
       {children && <div>{children}</div>}
       <div className="flex items-center space-x-4">
-        <OdsToggle
-          key={`${toggleId}-${internalChecked}`}
-          name={title}
-          isDisabled={isDisabled}
-          value={toggleValue}
-          onOdsChange={(e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>) => {
-            const newValue = !!e.detail.value;
-            setInternalChecked(newValue);
-            onToggle(newValue);
-          }}
-        />
-        <OdsText>
-          {t(
-            toggleValue
-              ? t(`${NAMESPACES.SERVICE}:service_state_enabled`)
-              : t(`${NAMESPACES.SERVICE}:service_state_disabled`),
-          )}
-        </OdsText>
+        <Toggle
+          name={name}
+          disabled={disabled}
+          checked={internalChecked}
+          id={name}
+          key={`${name}-${internalChecked}`}
+          onCheckedChange={onToggle}
+        >
+          <ToggleControl />
+          <ToggleLabel>
+            <Text>
+              {t(
+                internalChecked
+                  ? `${NAMESPACES.SERVICE}:service_state_enabled`
+                  : `${NAMESPACES.SERVICE}:service_state_disabled`,
+              )}
+            </Text>
+          </ToggleLabel>
+        </Toggle>
       </div>
     </div>
   );

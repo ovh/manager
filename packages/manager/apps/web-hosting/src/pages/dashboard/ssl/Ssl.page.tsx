@@ -6,20 +6,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_ICON_ALIGNMENT,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, BUTTON_VARIANT, Button, ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';
 
-import {
-  Datagrid,
-  Notifications,
-  useNotifications,
-  useResourcesIcebergV2,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, Notifications, useDataApi, useNotifications } from '@ovh-ux/muk';
 
 import Loading from '@/components/loading/Loading.component';
 import Topbar from '@/components/topBar/TopBar.component';
@@ -32,9 +21,10 @@ export default function Ssl() {
   const queryClient = useQueryClient();
   const { addSuccess } = useNotifications();
 
-  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useResourcesIcebergV2({
+  const { flattenData, isLoading, fetchNextPage, hasNextPage } = useDataApi({
+    version: 'v2',
     route: `/webhosting/resource/${serviceName}/certificate`,
-    queryKey: ['webhosting', 'resource', serviceName, 'certificate'],
+    cacheKey: ['webhosting', 'resource', serviceName, 'certificate'],
   });
 
   interface ExportColumn {
@@ -102,21 +92,24 @@ export default function Ssl() {
     const successMessage = (
       <div>
         {t('web_hosting_export_success')}
-        <OdsLink
-          href={url}
-          download={csvConfig.filename}
-          label={t('web_hosting_export_download_manually')}
-          className="ml-4"
-          icon={ODS_ICON_NAME.download}
-          iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-        />
+        <Link href={url} download={csvConfig.filename} className="ml-4">
+          <>
+            {t('web_hosting_export_download_manually')}
+            <Icon name={ICON_NAME.download} />
+          </>
+        </Link>
       </div>
     );
     addSuccess(successMessage);
     download(csvConfig)(csv);
   };
 
-  const columns = useDatagridColumn();
+  const rawColumns = useDatagridColumn() as Array<{ id: string } & Record<string, unknown>>;
+
+  const columns = rawColumns.map((col) => ({
+    ...col,
+    accessorFn: (row: Record<string, unknown>) => row[col.id],
+  }));
 
   return (
     <React.Suspense fallback={<Loading />}>
@@ -124,39 +117,37 @@ export default function Ssl() {
       <Topbar />
       <div className="flex mb-7">
         <div className="w-2/3">
-          <OdsButton
-            label={t('web_hosting_export_label')}
-            variant={ODS_BUTTON_VARIANT.outline}
-            color={ODS_BUTTON_COLOR.primary}
-            icon={ODS_ICON_NAME.download}
-            iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
+          <Button
+            variant={BUTTON_VARIANT.outline}
+            color={BUTTON_COLOR.primary}
             onClick={handleExportWithExportToCsv}
             data-testid="ssl-page-export-button"
-          />
+          >
+            <>
+              {t('web_hosting_export_label')}
+              <Icon name={ICON_NAME.download} />
+            </>
+          </Button>
         </div>
         <div className="flex flex-wrap justify-end w-1/3">
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.outline}
-            color={ODS_BUTTON_COLOR.primary}
-            label=""
-            icon={ODS_ICON_NAME.refresh}
+          <Button
+            variant={BUTTON_VARIANT.outline}
+            color={BUTTON_COLOR.primary}
             onClick={() => {
               queryClient.invalidateQueries().catch(console.error);
             }}
-          />
+          >
+            <Icon name={ICON_NAME.refresh} />
+          </Button>
         </div>
       </div>
-
-      {columns && (
-        <Datagrid
-          columns={columns}
-          items={flattenData || []}
-          totalItems={flattenData?.length || 0}
-          hasNextPage={hasNextPage && !isLoading}
-          onFetchNextPage={fetchNextPage}
-          isLoading={isLoading}
-        />
-      )}
+      <Datagrid
+        columns={flattenData ? columns : []}
+        data={flattenData || []}
+        isLoading={isLoading}
+        hasNextPage={hasNextPage && !isLoading}
+        onFetchNextPage={void fetchNextPage}
+      />
     </React.Suspense>
   );
 }
