@@ -42,8 +42,18 @@ describe('useTenants', () => {
     // Arrange
     const resourceName = 'test-service-123';
     const mockTenants: Tenant[] = [
-      { id: '1', currentState: { title: 'Tenant 1' } },
-      { id: '2', currentState: { title: 'Tenant 2' } },
+      {
+        id: '1',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { title: 'Tenant 1' },
+      },
+      {
+        id: '2',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { title: 'Tenant 2' },
+      },
     ];
     mockGetTenants.mockResolvedValue(mockTenants);
 
@@ -86,8 +96,18 @@ describe('useTenants', () => {
     // Arrange
     const resourceName = 'success-service';
     const mockTenants: Tenant[] = [
-      { id: 'tenant-1', currentState: { title: 'Test Tenant 1' } },
-      { id: 'tenant-2', currentState: { title: 'Test Tenant 2' } },
+      {
+        id: 'tenant-1',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { title: 'Test Tenant 1' },
+      },
+      {
+        id: 'tenant-2',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { title: 'Test Tenant 2' },
+      },
     ];
     mockGetTenants.mockResolvedValue(mockTenants);
 
