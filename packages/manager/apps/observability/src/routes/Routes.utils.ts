@@ -1,12 +1,19 @@
-import { APP_FEATURES } from '@/App.constants';
-
 import { urls } from './Routes.constants';
 
-const { basePrefix } = APP_FEATURES;
-export function getRoot(): string {
-  return basePrefix ? `/${String(basePrefix)}` : '';
-}
+export { getRoot } from './Routes.base';
 
 export function getDeleteTenantUrl(tenantId: string) {
   return urls.deleteTenant.replace(':tenantId', tenantId);
+}
+
+export function getTenantDashboardUrl(tenantId: string) {
+  return urls.tenantDashboard.replace(':tenantId', tenantId);
+}
+
+export function getTenantSubscriptionUrl(tenantId: string) {
+  return urls.tenantSubscription.replace(':tenantId', tenantId);
+}
+
+export function getTenantTagsUrl(tenantId: string) {
+  return urls.tenantTags.replace(':tenantId', tenantId);
 }

@@ -6,6 +6,8 @@ export type TIdentifier = {
 
 export type TObservabilityResource = {
   iam?: IamObject;
+  createdAt: string;
+  updatedAt: string | null;
 } & TIdentifier;
 
 export type ObservabilityService = {

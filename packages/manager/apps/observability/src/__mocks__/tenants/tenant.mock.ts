@@ -5,6 +5,24 @@ import { Tenant } from '@/types/tenants.type';
 const tenantsDataset: Tenant[] = [
   {
     id: '1',
+    createdAt: '2025-11-21T14:26:14.041Z',
+    updatedAt: '2025-11-21T14:26:14.041Z',
+    iam: {
+      id: '92c16299-3f5b-4ea9-a806-e0464e7bfa31',
+      tags: {
+        'ovh:ldp:cluster:name': 'sbg159',
+        Application: 'Website',
+        Compliance: 'PCI-DSS',
+        Departement: 'ITOperations',
+        Environment: 'Prod',
+        Location: 'Europe',
+        Owner: 'JohnDoe',
+        Project: 'CustomerPortal',
+        Region: 'EUR-East',
+        Risk: 'Low',
+      },
+      urn: 'urn:v1:eu:resource:ldp:ldp-sbg-55078',
+    },
     currentState: {
       title: 'Tenant 1',
       description: 'Tenant 1 description',
@@ -28,11 +46,19 @@ const tenantsDataset: Tenant[] = [
           usage: 'METRICS',
         },
       },
-      tags: ['tag name1', 'tag name2', 'tag name3'],
     },
   },
   {
     id: '2',
+    createdAt: '2025-11-20T14:26:14.041Z',
+    updatedAt: '2025-11-20T14:26:14.041Z',
+    iam: {
+      id: '92c16299-3f5b-4ea9-a806-e0464e7bfa32',
+      tags: {
+        'ovh:ldp:cluster:name': 'gra159',
+      },
+      urn: 'urn:v1:eu:resource:ldp:ldp-gr-55078',
+    },
     currentState: {
       title: 'Tenant 2',
       description: 'Tenant 2 description',
@@ -56,7 +82,6 @@ const tenantsDataset: Tenant[] = [
           usage: 'METRICS',
         },
       },
-      tags: ['tag name3'],
     },
   },
 ];
