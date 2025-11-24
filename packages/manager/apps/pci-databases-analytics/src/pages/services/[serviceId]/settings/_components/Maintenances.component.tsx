@@ -7,7 +7,12 @@ import {
   AlertDescription,
   Button,
   useToast,
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+  Separator,
 } from '@datatr-ux/uxlib';
+import { ChevronsUpDownIcon } from 'lucide-react';
 import { useServiceData } from '../../Service.context';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import * as database from '@/types/cloud/project/database';
@@ -53,7 +58,7 @@ const Maintenances = () => {
   }
   if (maintenanceQuery.data.length === 0) {
     return (
-      <Alert variant="information">
+      <Alert variant="information" className="rounded-md">
         <AlertDescription>
           {t('maintenancesNoPlannedMaintenance')}
         </AlertDescription>
@@ -82,75 +87,92 @@ const Maintenances = () => {
       case database.service.maintenance.StatusEnum.PENDING:
       case database.service.maintenance.StatusEnum.SCHEDULED:
       default:
-        return 'primary';
+        return 'information';
     }
   };
+
   return (
     <div className="grid gap-2">
+      <Separator className="my-2" />
       {maintenanceQuery.data.map((maintenance) => (
-        <Alert variant="information" key={maintenance.id}>
-          <AlertDescription>
-            <div className="flex flex-col items-stretch md:flex-row md:items-center justify-between gap-4">
-              <div className="flex flex-col items-start w-full">
-                <div className="flex flex-wrap gap-2">
-                  <b>{t('maintenancesStatus')}</b>
-                  <Badge
-                    className="text-xs"
-                    variant={getMaintenanceVariant(maintenance.status)}
-                  >
-                    {maintenance.status}
-                  </Badge>
-                  {maintenance.scheduledAt && (
-                    <>
-                      <b>{t('maintenancesScheduledDate')}</b>
-                      <FormattedDate
-                        date={new Date(maintenance.scheduledAt)}
-                        options={{
-                          dateStyle: 'medium',
-                          timeStyle: 'medium',
-                        }}
-                      />
-                    </>
-                  )}
-                  {maintenance.appliedAt && (
-                    <>
-                      <b>{t('maintenancesAppliedAtDate')}</b>
-                      <FormattedDate
-                        date={new Date(maintenance.appliedAt)}
-                        options={{
-                          dateStyle: 'medium',
-                          timeStyle: 'medium',
-                        }}
-                      />
-                    </>
-                  )}
-                </div>
-                <span>{maintenance.description}</span>
-              </div>
-              {canApply(maintenance) && (
-                <Button
-                  data-testid="apply-maintenance-button"
-                  disabled={
-                    isPending ||
-                    service.capabilities.maintenanceApply.create ===
-                      database.service.capability.StateEnum.disabled
-                  }
-                  size="sm"
-                  onClick={() =>
-                    applyMaintenance({
-                      engine: service.engine,
-                      projectId,
-                      serviceId: service.id,
-                      maintenanceId: maintenance.id,
-                    })
-                  }
+        <>
+          <Collapsible
+            key={maintenance.id}
+            defaultOpen={
+              maintenance.status !==
+                database.service.maintenance.StatusEnum.APPLIED &&
+              maintenance.status !==
+                database.service.maintenance.StatusEnum.ERROR
+            }
+          >
+            <CollapsibleTrigger className="flex items-center gap-4 w-full px-4 py-2 rounded cursor-pointer ">
+              <div className="flex flex-wrap gap-2">
+                <b>{t('maintenancesStatus')}</b>
+                <Badge
+                  className="text-xs"
+                  variant={getMaintenanceVariant(maintenance.status)}
                 >
-                  <b>{t('maintenancesApply')}</b>
-                </Button>
-              )}
-            </div>
-          </AlertDescription>
-        </Alert>
+                  {maintenance.status}
+                </Badge>
+                {maintenance.scheduledAt && (
+                  <>
+                    <b>{t('maintenancesScheduledDate')}</b>
+                    <FormattedDate
+                      date={new Date(maintenance.scheduledAt)}
+                      options={{
+                        dateStyle: 'medium',
+                        timeStyle: 'medium',
+                      }}
+                    />
+                  </>
+                )}
+                {maintenance.appliedAt && (
+                  <>
+                    <b>{t('maintenancesAppliedAtDate')}</b>
+                    <FormattedDate
+                      date={new Date(maintenance.appliedAt)}
+                      options={{
+                        dateStyle: 'medium',
+                        timeStyle: 'medium',
+                      }}
+                    />
+                  </>
+                )}
+              </div>
+              <div className="ml-auto flex items-center">
+                <ChevronsUpDownIcon className="w-4 h-4" />
+              </div>
+            </CollapsibleTrigger>
+            <CollapsibleContent className="px-4 py-2">
+              <div className="flex flex-col gap-2">
+                <span className="text-justify">{maintenance.description}</span>
+                {canApply(maintenance) && (
+                  <Button
+                    data-testid="apply-maintenance-button"
+                    disabled={
+                      isPending ||
+                      service.capabilities.maintenanceApply.create ===
+                        database.service.capability.StateEnum.disabled
+                    }
+                    size="sm"
+                    className="max-w-[150px]"
+                    onClick={() =>
+                      applyMaintenance({
+                        engine: service.engine,
+                        projectId,
+                        serviceId: service.id,
+                        maintenanceId: maintenance.id,
+                      })
+                    }
+                  >
+                    <b>{t('maintenancesApply')}</b>
+                  </Button>
+                )}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+          <Separator className="my-2" />
+        </>
       ))}
     </div>
   );

@@ -199,7 +199,6 @@ const IpsRestrictionsForm = React.forwardRef<
               data-testid="ip-add-button"
               className="w-full md:w-auto md:ml-2"
               mode="outline"
-              size="sm"
               disabled={disabled}
               onClick={onSubmit}
             >

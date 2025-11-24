@@ -130,25 +130,27 @@ const DeleteService = ({
         <DialogBody>
           {integratedServices?.length > 0 && (
             <Alert variant="information">
-              <AlertDescription className="mt-2 text-base">
-                <div className="flex flex-row gap-5 items-center text-foreground">
-                  <AlertTriangle className="h-6 w-6" />
-                  <div>
-                    {integratedServices.length === 1 ? (
-                      <p>{t('deleteServiceIntegrationDescription')}</p>
-                    ) : (
-                      <p>{t('deleteServiceIntegrationsDescription')}</p>
-                    )}
-                    <ul className="list-disc pl-5 text-sm">
-                      {integratedServices.map((integratedService) => (
-                        <li className="ml-3" key={integratedService.id}>
-                          {integratedService.description}
-                        </li>
-                      ))}
-                    </ul>
+              <div>
+                <AlertDescription className="text-base">
+                  <div className="flex flex-row items-center gap-4">
+                    <AlertTriangle className="h-4 w-4" />
+                    <p>
+                      {t(
+                        integratedServices.length === 1
+                          ? 'deleteServiceIntegrationDescription'
+                          : 'deleteServiceIntegrationsDescription',
+                      )}
+                    </p>
                   </div>
-                </div>
-              </AlertDescription>
+                  <ul className="list-disc pl-5 text-sm">
+                    {integratedServices.map((integratedService) => (
+                      <li className="ml-3" key={integratedService.id}>
+                        {integratedService.description}
+                      </li>
+                    ))}
+                  </ul>
+                </AlertDescription>
+              </div>
             </Alert>
           )}
           <p className="mt-2">

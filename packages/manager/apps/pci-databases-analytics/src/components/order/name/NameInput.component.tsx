@@ -23,7 +23,6 @@ const NameInput = React.forwardRef<HTMLInputElement, NameInputProps>(
         <Button
           onClick={() => onChange?.(generateName())}
           tabIndex={-1}
-          size="sm"
           className="rounded-l-none text-sm focus-visible:ring-0"
         >
           <RefreshCcw className="size-4" />

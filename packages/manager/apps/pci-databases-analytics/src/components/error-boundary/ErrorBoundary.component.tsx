@@ -43,10 +43,9 @@ const ErrorBoundary = () => {
             </AlertDescription>
           </Alert>
 
-          <div className="flex flex-col items-stretch md:items-center md:flex-row justify-end gap-2">
+          <div className="flex flex-col items-stretch md:items-center md:flex-row justify-end gap-2 mt-2">
             <Button
               mode="ghost"
-              size="sm"
               className="inline"
               onClick={() => navigateToHomepage()}
               data-testid="errorBoundaryGoToHomepage"
@@ -55,7 +54,6 @@ const ErrorBoundary = () => {
             </Button>
             <Button
               mode="outline"
-              size="sm"
               className="inline"
               onClick={() => reloadPage()}
               data-testid="errorBoundaryReload"
