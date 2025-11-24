@@ -28,6 +28,31 @@
         </p>
     </oui-message>
 
+    <oui-message
+        class="mb-3"
+        data-type="info"
+        data-ng-if="$ctrl.isLacpBannerAvailable"
+    >
+        <span class="mb-0">
+            <span data-translate="server_ola_alert_new_lacp_rule"></span>
+        </span>
+        <a
+            class="oui-link_icon"
+            data-ng-href="{{::$ctrl.resilienceGuideUrl}}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="server_ola_alert_configuration_needed_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+            <span class="sr-only" data-translate="server_ola_new_tab"></span>
+        </a>
+    </oui-message>
+
     <!-- OLA -->
     <oui-tile-definition data-term="{{:: 'server_ola' | translate}}">
         <oui-tile-description>
