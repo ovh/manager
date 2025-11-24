@@ -54,13 +54,33 @@ export default function Onboarding() {
               <OdsText className="mt-4 text-left">
                 {t('moreInfoText')}{' '}
                 <Links
-                  href={links?.presentationLink}
+                  href={links?.presentationLink.link}
                   label={t('moreInfoProductPage')}
+                  onClickReturn={() => {
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.link,
+                      actionType: 'action',
+                      actions: [
+                        `go-to_${links?.presentationLink.trackingLabel}`,
+                      ],
+                    });
+                  }}
                 />{' '}
                 {t('moreInfoOr')}{' '}
                 <Links
-                  href={links?.documentationLink}
+                  href={links?.documentationLink.link}
                   label={t('moreInfoDocPages')}
+                  onClickReturn={() => {
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.link,
+                      actionType: 'action',
+                      actions: [
+                        `go-to_${links?.documentationLink.trackingLabel}`,
+                      ],
+                    });
+                  }}
                 />
                 .
               </OdsText>
@@ -99,7 +119,7 @@ export default function Onboarding() {
               location: PageLocation.tile,
               buttonType: ButtonType.externalLink,
               actionType: 'action',
-              actions: [`go-to_${tile.texts.title}`],
+              actions: [`go-to_${tile.trackingLabel}`],
             });
             tile.onClick?.(e);
           }}
