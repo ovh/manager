@@ -29,6 +29,11 @@ import storages from '@/types/Storages';
 import { useGetS3 } from '@/data/hooks/s3-storage/useGetS3.hook';
 import { useUpdateS3 } from '@/data/hooks/s3-storage/useUpdateS3.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
+import {
+  fromISO8601,
+  toISO8601,
+  DurationUnit,
+} from '@/lib/iso8601DurationHelper';
 
 export interface Label {
   key?: string;
@@ -62,17 +67,6 @@ const ObjectLockOptions = () => {
     },
   });
 
-  // Helper functions to convert ISO 8601 duration
-  const fromISO8601 = (period?: string) => {
-    if (!period) return { value: 1, unit: 'Y' };
-    const match = period.match(/^P(\d+)([DMY])$/);
-    return match
-      ? { value: parseInt(match[1], 10), unit: match[2] }
-      : { value: 1, unit: 'Y' };
-  };
-
-  const toISO8601 = (value: number, unit: string) => `P${value}${unit}`;
-
   // Duration limits by unit
   const durationLimits = {
     D: 36500,
@@ -80,7 +74,7 @@ const ObjectLockOptions = () => {
   };
 
   // Get max value for current unit
-  const getMaxValue = (unit: string) => {
+  const getMaxDurationValue = (unit: string) => {
     return durationLimits[unit as keyof typeof durationLimits] || 100;
   };
 
@@ -136,7 +130,7 @@ const ObjectLockOptions = () => {
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const value = parseInt(e.target.value, 10);
-    const maxValue = getMaxValue(duration.unit);
+    const maxValue = getMaxDurationValue(duration.unit);
 
     if (!Number.isNaN(value) && value > 0 && value <= maxValue) {
       setDuration({ ...duration, value });
@@ -154,19 +148,20 @@ const ObjectLockOptions = () => {
 
   // Handle duration unit change
   const handleDurationUnitChange = (unit: string) => {
-    const maxValue = getMaxValue(unit);
+    const typedUnit = unit as DurationUnit;
+    const maxValue = getMaxDurationValue(typedUnit);
     let newValue = duration.value;
 
     // If current value exceeds max for new unit, cap it
     if (duration.value > maxValue) newValue = maxValue;
 
-    setDuration({ value: newValue, unit });
+    setDuration({ value: newValue, unit: typedUnit });
     if (objectLockData.rule) {
       setObjectLockData({
         ...objectLockData,
         rule: {
           ...objectLockData.rule,
-          period: toISO8601(newValue, unit),
+          period: toISO8601(newValue, typedUnit),
         },
       });
     }
@@ -300,7 +295,7 @@ const ObjectLockOptions = () => {
                 id="duration-input"
                 type="number"
                 min="1"
-                max={getMaxValue(duration.unit)}
+                max={getMaxDurationValue(duration.unit)}
                 value={duration.value}
                 onChange={handleDurationValueChange}
                 className="w-24 text-center"
