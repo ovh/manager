@@ -310,6 +310,33 @@ function resolveRunner(opts) {
 }
 
 /**
+ * Resolve base CLI arguments for CI commands.
+ *
+ * Priority:
+ *  1. If `passthrough` is non-empty, use it as-is.
+ *  2. Otherwise, if `filter` is provided, use a Turbo-style filter pair: ['--filter', filter].
+ *  3. Otherwise, return an empty array.
+ *
+ * This lets callers override the default filter behavior by passing explicit passthrough args.
+ *
+ * @param {Object} params
+ * @param {string[]} [params.passthrough=[]] - Raw arguments to forward directly to the runner.
+ * @param {string} [params.filter] - Turbo/Nx-compatible filter expression (e.g. package name, path, or range).
+ * @returns {string[]} Resolved base arguments to prepend before forwarded options.
+ */
+function resolveBaseArgs({ passthrough = [], filter }) {
+  if (passthrough.length > 0) {
+    return passthrough;
+  }
+
+  if (filter) {
+    return ['--filter', filter];
+  }
+
+  return [];
+}
+
+/**
  * Map of supported CLI actions to their async handlers.
  * Each handler receives the parsed CLI context.
  *
@@ -415,17 +442,16 @@ const actions = {
   },
   async buildCI({ passthrough, filter, opts }) {
     const runner = resolveRunner(opts);
-
-    // For Turbo: filter becomes --filter / raw passthrough.
-    // For Nx: these flags are just forwarded; interpretation is done in tasks-helper.
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
+    const base = resolveBaseArgs({ passthrough, filter });
     const forwarded = collectForwardedArgs(opts);
+
     return buildCI([...base, ...forwarded], runner);
   },
   async testCI({ passthrough, filter, opts }) {
     const runner = resolveRunner(opts);
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
+    const base = resolveBaseArgs({ passthrough, filter });
     const forwarded = collectForwardedArgs(opts);
+
     return testCI([...base, ...forwarded], runner);
   },
   async perfBudgets({ passthrough, opts }) {
