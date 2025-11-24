@@ -74,7 +74,7 @@ export const websiteFormSchema = z.object({
   ip: z.boolean().optional(),
   selectedIp: z.string().optional(),
   module: z
-    .enum([CmsType.PRESTASHOP, CmsType.WORDPRESS, CmsType.DRUPAL, CmsType.JOOMLA])
+    .enum([CmsType.PRESTASHOP, CmsType.WORDPRESS, CmsType.DRUPAL, CmsType.JOOMLA, CmsType.NONE])
     .optional(),
   advancedConfiguration: z.boolean().optional(),
   wwwNeeded: z.boolean().optional(),
