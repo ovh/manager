@@ -52,8 +52,18 @@ describe('useObservabilityServices', () => {
   it('should call getObservabilityServices with signal', async () => {
     // Arrange
     const mockServices: ObservabilityService[] = [
-      { id: '1', currentState: { displayName: 'Service 1' } },
-      { id: '2', currentState: { displayName: 'Service 2' } },
+      {
+        id: '1',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { displayName: 'Service 1' },
+      },
+      {
+        id: '2',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { displayName: 'Service 2' },
+      },
     ];
     mockGetObservabilityServices.mockResolvedValue(mockServices);
 
@@ -93,8 +103,18 @@ describe('useObservabilityServices', () => {
   it('should return success state when getObservabilityServices resolves', async () => {
     // Arrange
     const mockServices: ObservabilityService[] = [
-      { id: 'service-1', currentState: { displayName: 'Test Service 1' } },
-      { id: 'service-2', currentState: { displayName: 'Test Service 2' } },
+      {
+        id: 'service-1',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { displayName: 'Test Service 1' },
+      },
+      {
+        id: 'service-2',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { displayName: 'Test Service 2' },
+      },
     ];
     mockGetObservabilityServices.mockResolvedValue(mockServices);
 
