@@ -39,11 +39,14 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
   const searchParams = buildURLSearchParams({
     name: punycode.toASCII(debouncedSearchInput),
   });
-  const { flattenData, hasNextPage, fetchNextPage, isLoading, filters } = useDataApi<CdnOption>({
-    route: `/hosting/web/${serviceName}/cdn/domain/${domain}/option${searchParams}`,
-    cacheKey: ['hosting', 'web', serviceName, 'cdn', 'domain', domain, 'option'],
-    version: 'v6',
-  });
+  const { flattenData, hasNextPage, fetchNextPage, isLoading, filters, sorting } =
+    useDataApi<CdnOption>({
+      route: `/hosting/web/${serviceName}/cdn/domain/${domain}/option${searchParams}`,
+      cacheKey: ['hosting', 'web', serviceName, 'cdn', 'domain', domain, 'option'],
+      version: 'v6',
+      enabled: !!serviceName && !!domain,
+      iceberg: true,
+    });
 
   const { updateCdnOption } = useUpdateCdnOption(serviceName, domain);
   const { deleteCdnOption } = useDeleteCdnOption(serviceName, domain);
@@ -191,7 +194,6 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
       id: 'action',
       accessorFn: () => '',
       header: '',
-      isSortable: true,
       cell: ({ row }) => <DatagridActionCell {...row.original} />,
     },
   ];
@@ -209,6 +211,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
       <Datagrid
         columns={rulesData ? columns : []}
         data={rulesData || []}
+        sorting={sorting}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {
           void fetchNextPage();

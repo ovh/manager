@@ -9,8 +9,11 @@ import {
   Input,
   Quantity,
   QuantityControl,
+  QuantityInput,
   Radio,
+  RadioControl,
   RadioGroup,
+  RadioLabel,
   Select,
   SelectContent,
   SelectControl,
@@ -63,7 +66,7 @@ export default function CdnCacheRuleModal() {
       ruleName: modifiedOption?.name || '',
       patternType: modifiedOption?.config?.patternType || 'extension',
       pattern: modifiedOption?.pattern || '',
-      ttl: unitTime?.timeValue || null,
+      ttl: unitTime?.timeValue || 0,
       ttlUnit: unitTime?.timeUnit || null,
       priority: modifiedOption?.config?.priority || null,
     },
@@ -166,58 +169,46 @@ export default function CdnCacheRuleModal() {
           control={control}
           render={({ field }) => (
             <>
-              <RadioGroup>
+              <RadioGroup value={field.value} onChange={field.onChange}>
                 <div className="flex gap-4 items-center">
-                  <Radio
-                    {...field}
-                    value="extension"
-                    disabled={Boolean(modifiedOption)}
-                    onChange={() => field.onChange('extension')}
-                  />
-                  <label>
-                    <Text preset={TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_extension')}
-                    </Text>
-                  </label>
+                  <Radio {...field} value="extension" disabled={Boolean(modifiedOption)}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_extension')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <Radio
-                    {...field}
-                    value="folder"
-                    disabled={enableOnlyExtension}
-                    onChange={() => field.onChange('folder')}
-                  />
-                  <label>
-                    <Text preset={TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_folder')}
-                    </Text>
-                  </label>
+                  <Radio {...field} value="folder" disabled={enableOnlyExtension}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_folder')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <Radio
-                    {...field}
-                    value="regex"
-                    disabled={enableOnlyExtension}
-                    onChange={() => field.onChange('regex')}
-                  />
-                  <label>
-                    <Text preset={TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_regex')}
-                    </Text>
-                  </label>
+                  <Radio {...field} value="regex" disabled={enableOnlyExtension}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_regex')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <Radio
-                    {...field}
-                    value="uri"
-                    disabled={enableOnlyExtension}
-                    onChange={() => field.onChange('uri')}
-                  />
-                  <label>
-                    <Text preset={TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_uri')}
-                    </Text>
-                  </label>
+                  <Radio {...field} value="uri" disabled={enableOnlyExtension}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_uri')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
               </RadioGroup>
             </>
@@ -303,7 +294,9 @@ export default function CdnCacheRuleModal() {
               className="mt-2 block"
               onValueChange={(detail) => field.onChange(detail.value[0])}
             >
-              <QuantityControl />
+              <QuantityControl>
+                <QuantityInput />
+              </QuantityControl>
             </Quantity>
           )}
         />
