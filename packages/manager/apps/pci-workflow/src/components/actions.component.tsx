@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 
-import { TWorkflow } from '@/api/hooks/workflows';
+import { TInstanceBackupWorkflow } from '@/api/hooks/workflows';
 
 type ActionsProps = {
-  workflow: TWorkflow;
+  workflow: TInstanceBackupWorkflow;
 };
 export default function Actions({ workflow }: Readonly<ActionsProps>) {
   const { t } = useTranslation('listing');

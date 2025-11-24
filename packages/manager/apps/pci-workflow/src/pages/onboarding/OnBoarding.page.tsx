@@ -15,7 +15,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 
-import { useWorkflows } from '@/api/hooks/workflows';
+import { useInstanceBackupWorkflows } from '@/api/hooks/workflows';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation('listing');
@@ -28,7 +28,7 @@ export default function OnBoardingPage() {
 
   const { data: instances, isPending: isPendingInstances } = useInstances(projectId);
 
-  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(projectId);
+  const { data: workflows, isPending: isPendingWorkflows } = useInstanceBackupWorkflows(projectId);
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {

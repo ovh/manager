@@ -1,15 +1,19 @@
-import { act, fireEvent } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
 
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
-import { buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { buildInstanceSelectedResource } from '@/api/hooks/instance/selector/instances.selector';
 import { ContinentRegion, useInstanceSnapshotPricing } from '@/api/hooks/order/order';
+import { WorkflowType } from '@/api/hooks/workflows';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 import { WorkflowScheduling } from './WorkflowScheduling.component';
 
-vi.mock('@/api/hooks/order/order');
+vi.mock('@/api/hooks/order/order', () => ({
+  useInstanceSnapshotPricing: vi.fn(),
+}));
+
 vi.mock('@ovh-ux/manager-react-components', () => ({
   convertHourlyPriceToMonthly: vi.fn(),
   useCatalogPrice: vi.fn().mockReturnValue({
@@ -19,9 +23,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 describe('WorkflowScheduling Component', () => {
   const mockOnSubmit = vi.fn();
-  const mockInstanceId = buildInstanceId('instance1', 'region1');
+  const mockInstanceId = buildInstanceSelectedResource('instance1', 'region1');
   const stepUnlocked = { isLocked: false };
   const stepLocked = { isLocked: true };
+  const user = userEvent.setup();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -36,10 +41,12 @@ describe('WorkflowScheduling Component', () => {
     const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling
         step={stepUnlocked as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
+        resource={mockInstanceId}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
       />,
     );
+
     expect(getByText('pci_workflow_create_schedule_rotate7_title')).toBeInTheDocument();
     expect(getByText('pci_workflow_create_schedule_rotate14_title')).toBeInTheDocument();
     expect(getByText('pci_workflow_create_schedule_custom_title')).toBeInTheDocument();
@@ -49,35 +56,43 @@ describe('WorkflowScheduling Component', () => {
     const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling
         step={stepLocked as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
+        resource={mockInstanceId}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
       />,
     );
+
     // Assuming ROTATE_7 is the default selected schedule
     expect(getByText(/pci_workflow_create_schedule_rotate7_title/i)).toBeInTheDocument();
   });
 
-  it('submits selected schedule when next button is clicked', () => {
+  it('submits selected schedule when next button is clicked', async () => {
     const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling
         step={stepUnlocked as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
+        resource={mockInstanceId}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
       />,
     );
-    fireEvent.click(getByText('pci_workflow_create'));
+
+    await user.click(getByText('pci_workflow_create'));
+
     expect(mockOnSubmit).toHaveBeenCalled();
   });
 
-  it('allows changing to custom schedule when custom option is clicked', () => {
+  it('allows changing to custom schedule when custom option is clicked', async () => {
     const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling
         step={stepUnlocked as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
+        resource={mockInstanceId}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
       />,
     );
-    fireEvent.click(getByText('pci_workflow_create_schedule_custom_title'));
+
+    await user.click(getByText('pci_workflow_create_schedule_custom_title'));
+
     expect(getByText('pci_workflow_create_cron_title')).toBeInTheDocument();
   });
 
@@ -85,8 +100,9 @@ describe('WorkflowScheduling Component', () => {
     const { queryByLabelText } = renderWithMockedWrappers(
       <WorkflowScheduling
         step={stepUnlocked as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
+        resource={mockInstanceId}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
       />,
     );
 
@@ -112,12 +128,12 @@ describe('WorkflowScheduling Component', () => {
       isPending: false,
     });
 
-    const user = userEvent.setup();
     const { getByLabelText, getByRole, findByText } = renderWithMockedWrappers(
       <WorkflowScheduling
         step={stepUnlocked as StepState}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
+        resource={mockInstanceId}
         onSubmit={mockOnSubmit}
-        instanceId={mockInstanceId}
       />,
     );
 

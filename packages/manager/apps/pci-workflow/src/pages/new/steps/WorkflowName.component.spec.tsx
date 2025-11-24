@@ -3,8 +3,9 @@ import { vi } from 'vitest';
 
 import { useCatalogPrice, useMe } from '@ovh-ux/manager-react-components';
 
-import { buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { buildInstanceSelectedResource } from '@/api/hooks/instance/selector/instances.selector';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
+import { WorkflowType } from '@/api/hooks/workflows';
 
 import { WorkflowName } from './WorkflowName.component';
 
@@ -31,9 +32,10 @@ describe('WorkflowName', () => {
   it('should display spinner while loading', () => {
     const { getByTestId } = render(
       <WorkflowName
-        name="foo"
-        instanceId={buildInstanceId('instance1', 'region1')}
         step={{ isOpen: true, isChecked: false, isLocked: false }}
+        selectedWorkflowType={WorkflowType.INSTANCE_BACKUP}
+        selectedResource={buildInstanceSelectedResource('instance1', 'region1')}
+        name="foo"
         onNameChange={null}
         onSubmit={null}
       />,

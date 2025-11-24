@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { useMemo } from 'react';
 
 import { queryOptions, useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
@@ -19,34 +20,35 @@ import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { getInstance } from '@/api/data/instance';
 import {
   TExecutionState,
-  TRemoteWorkflow,
-  addWorkflow,
-  getRegionsWorkflows,
+  TRemoteInstanceBackupWorkflow,
+  addInstanceBackupWorkflow,
+  getInstanceBackupWorkflows,
 } from '@/api/data/region-workflow';
 import { deleteWorkflow } from '@/api/data/workflow';
-import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { paginateResults } from '@/helpers';
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
 import { enableRegion } from '../data/region';
 import { useMe } from './user';
 
-export const WORKFLOW_TYPE = 'instance_backup';
+export enum WorkflowType {
+  INSTANCE_BACKUP = 'instance_backup',
+}
 
-export type TWorkflow = TRemoteWorkflow & {
+export type TInstanceBackupWorkflow = TRemoteInstanceBackupWorkflow & {
   instanceName: string;
   region: string;
   lastExecution: string;
   lastExecutionStatus: TExecutionState;
 };
 
-const getWorkflowQueryOptions = (projectId: string, regionName: string) =>
+const getInstanceBackupWorkflowQueryOptions = (projectId: string, regionName: string) =>
   queryOptions({
-    queryKey: [projectId, 'regions', regionName, 'workflows'],
-    queryFn: async () => getRegionsWorkflows(projectId, regionName),
+    queryKey: [projectId, 'regions', regionName, 'instance_backup_workflows'],
+    queryFn: async () => getInstanceBackupWorkflows(projectId, regionName),
   });
 
-export const useWorkflows = (projectId: string) => {
+export const useInstanceBackupWorkflows = (projectId: string) => {
   const { i18n } = useTranslation('pci-common');
   const userLocale = getDateFnsLocale(i18n.language);
 
@@ -64,7 +66,7 @@ export const useWorkflows = (projectId: string) => {
 
   return useQueries({
     queries: filteredRegionNames.map((regionName) =>
-      getWorkflowQueryOptions(projectId, regionName),
+      getInstanceBackupWorkflowQueryOptions(projectId, regionName),
     ),
     combine: (results) => ({
       data: (() =>
@@ -122,42 +124,51 @@ export const useWorkflows = (projectId: string) => {
 };
 
 export const defaultCompareFunction =
-  (key: keyof Omit<TWorkflow, 'executions'>) => (a: TWorkflow, b: TWorkflow) => {
+  (key: keyof Omit<TInstanceBackupWorkflow, 'executions'>) =>
+  (a: TInstanceBackupWorkflow, b: TInstanceBackupWorkflow) => {
     const aValue = a[key] || '';
     const bValue = b[key] || '';
 
     return aValue.localeCompare(bValue);
   };
 
-export const sortWorkflows = (
-  workflows: TWorkflow[],
+type SortableWorkflowKeys = keyof Omit<TInstanceBackupWorkflow, 'executions'>;
+
+const isAWorkflowValueContainingSearchQuery =
+  (workflow: TInstanceBackupWorkflow, searchQueries: string[]) => (key: SortableWorkflowKeys) => {
+    if (!workflow[key]) return false;
+    const workflowValue = workflow[key]?.toLowerCase();
+
+    return searchQueries.some(
+      (query) => workflowValue && workflowValue.includes(query.toLowerCase()),
+    );
+  };
+
+const sortWorkflows = (workflows: TInstanceBackupWorkflow[]) => (sorting: ColumnSort | null) => {
+  if (!sorting) {
+    return workflows;
+  }
+  const { id: sortKey, desc } = sorting;
+  const sortedData = [...workflows].sort(defaultCompareFunction(sortKey as SortableWorkflowKeys));
+
+  return desc ? sortedData.reverse() : sortedData;
+};
+
+export const sortAndFilterWorkflows = (
+  workflows: TInstanceBackupWorkflow[],
   sorting: ColumnSort,
   searchQueries: string[],
-): TWorkflow[] => {
-  const data = [...workflows];
-
-  if (sorting) {
-    const { id: sortKey, desc } = sorting;
-
-    data.sort(defaultCompareFunction(sortKey as keyof Omit<TWorkflow, 'executions'>));
-    if (desc) {
-      data.reverse();
-    }
-  }
+): TInstanceBackupWorkflow[] => {
+  const sortedData = sortWorkflows(workflows)(sorting);
 
   if (searchQueries.length) {
-    type WorkflowKeys = keyof Omit<TWorkflow, 'executions'>;
-    const keys: WorkflowKeys[] = ['name', 'instanceName', 'cron'];
-    return data.filter((workflow) =>
-      keys.some((key) =>
-        searchQueries.some(
-          (query) => workflow[key] && workflow[key].toLowerCase().includes(query.toLowerCase()),
-        ),
-      ),
+    const keys: SortableWorkflowKeys[] = ['name', 'instanceName', 'cron'];
+    return sortedData.filter((workflow) =>
+      keys.some(isAWorkflowValueContainingSearchQuery(workflow, searchQueries)),
     );
   }
 
-  return data;
+  return sortedData;
 };
 
 export const enum TWorkflowBackup {
@@ -165,14 +176,14 @@ export const enum TWorkflowBackup {
   LOCAL_AND_DISTANT = 'local_and_distant',
 }
 
-export type TPaginatedWorkflow = TWorkflow & {
+export type TPaginatedWorkflow = TInstanceBackupWorkflow & {
   type: string;
   typeLabel: string;
   backup: TWorkflowBackup;
   regions: TRegion['name'][];
 };
 
-export const usePaginatedWorkflows = (
+export const usePaginatedInstanceBackupWorkflows = (
   projectId: string,
   {
     pagination,
@@ -187,7 +198,7 @@ export const usePaginatedWorkflows = (
   },
 ) => {
   const { t } = useTranslation('listing');
-  const { data: workflows, isPending: isWorkflowsPending } = useWorkflows(projectId);
+  const { data: workflows, isPending: isWorkflowsPending } = useInstanceBackupWorkflows(projectId);
 
   return useQueries({
     queries: workflows.map((workflow) => ({
@@ -199,8 +210,8 @@ export const usePaginatedWorkflows = (
     combine: (results) => {
       const workflowsWithInstanceIds = workflows.map((workflow, i) => ({
         ...workflow,
-        type: WORKFLOW_TYPE,
-        typeLabel: t(`pci_workflow_type_${WORKFLOW_TYPE}_title`),
+        type: WorkflowType.INSTANCE_BACKUP,
+        typeLabel: t(`pci_workflow_type_${WorkflowType.INSTANCE_BACKUP}_title`),
         instanceName: results[i].data?.name,
         backup: !!workflow.distantRegion
           ? TWorkflowBackup.LOCAL_AND_DISTANT
@@ -211,9 +222,9 @@ export const usePaginatedWorkflows = (
       }));
 
       return {
-        data: paginateResults<TWorkflow>(
+        data: paginateResults<TInstanceBackupWorkflow>(
           applyFilters(
-            sortWorkflows(workflowsWithInstanceIds, sorting, searchQueries) || [],
+            sortAndFilterWorkflows(workflowsWithInstanceIds, sorting, searchQueries) || [],
             filters,
           ),
           pagination,
@@ -243,7 +254,7 @@ export const useDeleteWorkflow = ({
     mutationFn: async () => deleteWorkflow(projectId, region, workflowId),
     onError,
     onSuccess: async () => {
-      const workflowOptions = getWorkflowQueryOptions(projectId, region);
+      const workflowOptions = getInstanceBackupWorkflowQueryOptions(projectId, region);
       await queryClient.invalidateQueries(workflowOptions);
       queryClient.setQueryData(workflowOptions.queryKey, (data) => {
         if (data) return data.filter((v) => v.id !== workflowId);
@@ -257,16 +268,52 @@ export const useDeleteWorkflow = ({
   };
 };
 
+export type TWorkflowResourceId = { id: string; region: string };
+export type TWorkflowSelectedResource = TWorkflowResourceId & { label: string };
+
 interface UseAddWorkflowProps {
-  cron: string;
-  instanceId: TInstance['id'];
+  type: WorkflowType;
+  resourceId: TWorkflowResourceId;
   name: string;
+  cron: string;
   rotation: number;
   maxExecutionCount: number;
-  distantRegion: string | null;
 }
 
+type UseAddInstanceBackupWorkflowProps = UseAddWorkflowProps & {
+  type: WorkflowType.INSTANCE_BACKUP;
+  distantRegion: string | null;
+};
+
 export const useAddWorkflow = ({
+  projectId,
+  onError,
+  onSuccess,
+}: {
+  projectId: string;
+  onSuccess: () => void;
+  onError: (error: Error) => void;
+}) => {
+  const { addInstanceBackupWorkflow, isPending: isAddingInstanceBackupWorkflow } =
+    useAddInstanceBackupWorkflow({
+      projectId,
+      onError,
+      onSuccess,
+    });
+
+  const addWorkflow = (props: UseAddInstanceBackupWorkflowProps) => {
+    if (props.type === WorkflowType.INSTANCE_BACKUP) {
+      addInstanceBackupWorkflow(props);
+    }
+  };
+
+  return {
+    addWorkflow,
+    isPending: isAddingInstanceBackupWorkflow,
+  };
+};
+
+export const useAddInstanceBackupWorkflow = ({
   projectId,
   onError,
   onSuccess,
@@ -283,7 +330,11 @@ export const useAddWorkflow = ({
   });
 
   const mutation = useMutation({
-    mutationFn: async ({ instanceId, distantRegion, ...type }: UseAddWorkflowProps) => {
+    mutationFn: async ({
+      resourceId,
+      distantRegion,
+      ...rest
+    }: UseAddInstanceBackupWorkflowProps) => {
       if (
         distantRegion &&
         productAvailability?.plans.find(
@@ -295,20 +346,20 @@ export const useAddWorkflow = ({
         await enableRegion({ projectId, region: distantRegion });
       }
 
-      return addWorkflow(projectId, instanceId.region, instanceId.id, {
-        name: type.name,
-        cron: type.cron,
-        rotation: type.rotation,
+      return addInstanceBackupWorkflow(projectId, resourceId.region, resourceId.id, {
+        name: rest.name,
+        cron: rest.cron,
+        rotation: rest.rotation,
         imageName: '',
         distRegionName: distantRegion,
         distImageName: null,
       });
     },
     onError,
-    onSuccess: async (_res, { instanceId }) => {
+    onSuccess: async (_res, { resourceId }) => {
       await Promise.all(
         [
-          getWorkflowQueryOptions(projectId, instanceId.region),
+          getInstanceBackupWorkflowQueryOptions(projectId, resourceId.region),
           getCatalogQuery(me.ovhSubsidiary),
           getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
             addonFamily: 'snapshot',
@@ -320,7 +371,7 @@ export const useAddWorkflow = ({
   });
 
   return {
-    addWorkflow: mutation.mutate,
+    addInstanceBackupWorkflow: mutation.mutate,
     ...mutation,
   };
 };
