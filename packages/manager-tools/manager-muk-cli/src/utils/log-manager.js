@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 /**
  * ANSI color escape codes for styled console output.
  */

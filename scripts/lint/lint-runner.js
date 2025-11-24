@@ -105,11 +105,11 @@ if (runner === 'nx') {
 } else {
   // Default: turbo (existing behavior)
   if (isPackageName) {
-    modernCmd = ['turbo', 'run', modernTask, '--filter', packageName];
+    modernCmd = ['turbo', 'run', modernTask, '--filter', packageName, '--continue'];
   } else if (appName) {
-    modernCmd = ['turbo', 'run', modernTask, '--filter', appName];
+    modernCmd = ['turbo', 'run', modernTask, '--filter', appName, '--continue'];
   } else {
-    modernCmd = ['turbo', 'run', modernTask];
+    modernCmd = ['turbo', 'run', modernTask, '--continue'];
   }
 }
 

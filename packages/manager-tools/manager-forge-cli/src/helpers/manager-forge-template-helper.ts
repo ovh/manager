@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { TemplateObject, TemplateValue } from '@/types/TemplateType.js';
+import { TemplateObject, TemplateSelectorConfig, TemplateValue } from '@/types/TemplateType.js';
+import { logger } from '@/utils/log-manager.js';
 
 /**
  * Ensure a directory exists, creating it recursively if missing.
@@ -120,7 +121,7 @@ export function safeWriteFile(filePath: string, content: string): void {
     try {
       JSON.parse(content);
     } catch (err) {
-      console.error(`❌ Invalid JSON generated for ${filePath}:`, err);
+      logger.error(`❌ Invalid JSON generated for ${filePath}:`, err);
       throw err;
     }
   }
@@ -140,4 +141,48 @@ export function applyTemplateReplacements(
     const replaced = replaceTemplateStrings(original, data, filePath);
     safeWriteFile(filePath, replaced);
   }
+}
+
+/**
+ * Generic template selector:
+ * - Validates all variants exist
+ * - Renames the selected template
+ * - Removes unused template files
+ */
+export function selectTemplateFile<Variant extends string>(
+  config: TemplateSelectorConfig<Variant>,
+): void {
+  const {
+    targetDir,
+    templatePattern,
+    variants,
+    selected: selectedVariant,
+    finalName: outputFilename,
+  } = config;
+
+  const buildTemplatePath = (variant: Variant) =>
+    path.join(targetDir, templatePattern.replace('{variant}', variant));
+
+  // Ensure all expected template files exist
+  for (const variant of variants) {
+    const templatePath = buildTemplatePath(variant);
+    if (!fs.existsSync(templatePath)) {
+      logger.error(`❌ Missing template file: ${templatePath}`);
+      process.exit(1);
+    }
+  }
+
+  const selectedTemplatePath = buildTemplatePath(selectedVariant);
+  const outputFilePath = path.join(targetDir, outputFilename);
+
+  // Rename the selected variant template into the final output file
+  fs.renameSync(selectedTemplatePath, outputFilePath);
+
+  // Remove all non-selected template files
+  for (const variant of variants) {
+    if (variant === selectedVariant) continue;
+    fs.rmSync(buildTemplatePath(variant));
+  }
+
+  logger.success(`✔ Created ${outputFilename} using "${selectedVariant}" template.`);
 }
