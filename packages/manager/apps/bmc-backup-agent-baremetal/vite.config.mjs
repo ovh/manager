@@ -9,8 +9,15 @@ const baseConfig = getBaseConfig()
 const BACKUP_AGENT_PACKAGE = '@ovh-ux/backup-agent';
 
 export default defineConfig({
-  ...getBaseConfig(),
+  ...baseConfig,
   root: resolve(process.cwd()),
+  resolve: {
+    ...baseConfig.resolve,
+    dedupe: [
+      ...baseConfig.resolve.dedupe,
+      'react-hook-form'
+    ],
+  },
   plugins: [
     ...baseConfig.plugins,
     viteStaticCopy({
