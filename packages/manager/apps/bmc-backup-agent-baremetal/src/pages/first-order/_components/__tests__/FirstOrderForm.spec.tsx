@@ -7,7 +7,7 @@ import { vi } from 'vitest';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
+import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent';
 
 import { FirstOrderFormComponent } from '../first-order-form/FirstOrderForm.component';
 
