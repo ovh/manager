@@ -1,11 +1,11 @@
 import { OdsText } from '@ovhcloud/ods-components/react';
 
-import { RhfField } from '@/components/Fields';
-import { Baremetal } from '@/types';
+import { RhfField } from '@/components/Fields/RhfField.component';
+import { Baremetal } from '@/types/Baremetal.type';
 
 type BaremetalOptionProps = Pick<Baremetal, 'name' | 'ip'> & Pick<Baremetal['iam'], 'displayName'>;
 
-const BaremetalOption = (baremetalService: BaremetalOptionProps) => {
+export const BaremetalOption = (baremetalService: BaremetalOptionProps) => {
   return (
     <RhfField.ComboboxItem
       key={baremetalService.name}

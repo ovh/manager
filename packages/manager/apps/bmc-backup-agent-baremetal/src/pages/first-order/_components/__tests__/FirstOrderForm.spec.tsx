@@ -5,9 +5,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
+import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-
-import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent';
 
 import { FirstOrderFormComponent } from '../first-order-form/FirstOrderForm.component';
 
@@ -94,11 +93,8 @@ const { useBaremetalsListMock } = vi.hoisted(() => ({
     .mockReturnValue({ flattenData: undefined, isLoading: true, isError: false }),
 }));
 
-vi.mock('@ovh-ux/backup-agent', async () => {
-  const actual = await vi.importActual('@ovh-ux/backup-agent');
-
+vi.mock('@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList', () => {
   return {
-    ...actual,
     useBaremetalsList: useBaremetalsListMock,
   };
 });

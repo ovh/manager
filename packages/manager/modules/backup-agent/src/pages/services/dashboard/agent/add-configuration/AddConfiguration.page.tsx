@@ -14,8 +14,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { BaremetalOption, RhfField } from '@/components';
-import { useBackupTenantPolicies, useBaremetalsList } from '@/data';
+import { BaremetalOption } from '@/components/CommonFields/BaremetalOption/BaremetalOption.component';
+import { RhfField } from '@/components/Fields/RhfField.component';
+import { useBaremetalsList } from '@/data/hooks/baremetal/useBaremetalsList';
+import { useBackupTenantPolicies } from '@/data/hooks/tenants/useVspcTenantBackupPolicies';
 
 const FORM_ID = 'form-link-agent-title' as const;
 

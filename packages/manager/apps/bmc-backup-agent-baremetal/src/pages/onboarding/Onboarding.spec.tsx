@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent';
+import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
 
 import OnboardingPage from './Onboarding.page';
 
@@ -34,12 +34,10 @@ const { useBaremetalsListMock } = vi.hoisted(() => ({
     .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
 }));
 
-vi.mock('@ovh-ux/backup-agent', async () => {
-  const actual = await vi.importActual('@ovh-ux/backup-agent');
+vi.mock('@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList', () => {
   return {
-    ...actual,
     useBaremetalsList: useBaremetalsListMock,
-  }
+  };
 });
 
 // --- Mock manager-react-components ---

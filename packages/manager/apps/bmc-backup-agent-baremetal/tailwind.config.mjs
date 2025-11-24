@@ -13,7 +13,7 @@ const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
   './src/**/*.{js,jsx,ts,tsx}',
   toGlob(reactComponentsDir),
-  toGlob(backupAgentModuleDir)
+  `${toGlob(backupAgentModuleDir)}src/`
 ];
 
 /** @type {import('tailwindcss').Config} */

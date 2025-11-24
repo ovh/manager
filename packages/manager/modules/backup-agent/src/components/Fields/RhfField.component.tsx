@@ -92,11 +92,11 @@ export const RhfHelperAuto = ({
 >) => {
   const { helperMessage, controller } = useRhfFieldContext();
 
-  if (!controller?.fieldState.error) {
-    return <RhfHelper {...rest}>{customHelperMessage ?? helperMessage}</RhfHelper>;
+  if (controller?.fieldState.error) {
+    return null;
   }
 
-  return <></>;
+  return <RhfHelper {...rest}>{customHelperMessage ?? helperMessage}</RhfHelper>;
 };
 
 export const RhfVisualHintCounter = ({

@@ -1,6 +1,6 @@
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
 
-import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data';
+import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
 import { mockTenantBackupPolicies } from '@/mocks/tenant/backupPolicies.mock';
 
 export const BACKUP_TENANT_POLICIES_QUERY_KEY = (tenantId: string) => [
