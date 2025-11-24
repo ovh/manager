@@ -354,7 +354,12 @@ describe('TenantConfigurationForm', () => {
 
     // Default mocks
     mockUseObservabilityServiceContext.mockReturnValue({
-      selectedService: { id: 'test-service-id', currentState: { displayName: 'Test Service' } },
+      selectedService: {
+        id: 'test-service-id',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
+        currentState: { displayName: 'Test Service' },
+      },
       setSelectedService: vi.fn(),
       services: [],
       isLoading: false,
@@ -620,7 +625,12 @@ describe('TenantConfigurationForm', () => {
   describe('Context Integration', () => {
     it('should use selected service from context', () => {
       mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: { id: 'custom-service-id', currentState: { displayName: 'Custom' } },
+        selectedService: {
+          id: 'custom-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Custom' },
+        },
         setSelectedService: vi.fn(),
         services: [],
         isLoading: false,
