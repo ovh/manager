@@ -94,11 +94,15 @@ describe('useTenantsRedirect', () => {
 
   const mockService: ObservabilityService = {
     id: 'service-1',
+    createdAt: '2025-11-01T08:00:00.001Z',
+    updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Test Service' },
   };
 
   const mockTenant: Tenant = {
     id: 'tenant-1',
+    createdAt: '2025-11-01T08:00:00.001Z',
+    updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { title: 'Test Tenant' },
   };
 
