@@ -49,4 +49,4 @@ jobs:
       # Lint the code base
       - name: Lint Code Base
         run: |
-          yarn lint
+          yarn lint --runner nx
