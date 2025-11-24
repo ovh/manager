@@ -11,6 +11,8 @@ import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
 import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 
+import { PriceTile } from '@/common/components/price-tile/PriceTile';
+
 import { OkmsManagement } from './OkmsManagement.component';
 import { SecretForm } from './SecretForm.component';
 
@@ -35,6 +37,11 @@ export default function SecretCreatePage() {
       message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <div className="flex max-w-2xl flex-col gap-8">
+        <PriceTile
+          title={t('secrets_pricing_title')}
+          subtitle={t('secrets_pricing_subtitle')}
+          productCode="secret"
+        />
         <OkmsManagement selectedOkmsId={selectedOkmsId} setSelectedOkmsId={setSelectedOkmsId} />
         <SecretForm okmsId={selectedOkmsId} />
       </div>
