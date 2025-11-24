@@ -79,15 +79,17 @@ export default function GameFirewallPage() {
               items={[
                 {
                   id: 0,
-                  href: links.configureGameFirewall,
+                  href: links.configureGameFirewall.link,
                   target: '_blank',
                   label: t('title'),
                   onClick: () => {
                     trackClick({
-                      actionType: 'navigation',
+                      actionType: 'action',
                       buttonType: ButtonType.link,
                       location: PageLocation.page,
-                      actions: [t('title')],
+                      actions: [
+                        `go-to_${links.configureGameFirewall.trackingLabel}`,
+                      ],
                     });
                   },
                 },
