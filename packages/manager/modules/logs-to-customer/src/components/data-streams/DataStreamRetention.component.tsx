@@ -6,6 +6,7 @@ import React, { useRef } from 'react';
 import { useLogRetention } from '@/data/hooks/useLogRetention';
 import { Service, Stream } from '@/data/types/dbaas/logs';
 import { parseAndFormatDuration } from '@/helpers/duration';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export const DATA_STREAM_RETENTION_LOADING_TEST_ID =
   'data-stream-retention-loading-test-id';
@@ -21,7 +22,7 @@ const DataStreamRetention = ({
   clusterId,
   retentionId,
 }: DataStreamRetentionProps) => {
-  const { t } = useTranslation('error');
+  const { t } = useTranslation(NAMESPACES.ERROR);
 
   const { i18n } = useTranslation();
   const locales = useRef({ fr, de, enGB, es, frCA, it, pl, pt }).current;

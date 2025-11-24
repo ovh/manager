@@ -13,6 +13,7 @@ import {
 import { LogApiVersion } from '@/data/types/apiVersion';
 import { LogKind, LogSubscription } from '@/data/types/dbaas/logs';
 import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 /**
  * LIST log subscriptions
@@ -50,7 +51,7 @@ export const usePostLogSubscription = (
   logKind?: LogKind,
   streamId?: string,
 ) => {
-  const { t } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const queryClient = useQueryClient();
   const { addError, addSuccess } = useNotifications();
 
@@ -102,7 +103,7 @@ export const useDeleteLogSubscription = (
   logKind?: LogKind,
   onSettled?: () => void,
 ) => {
-  const { t } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const queryClient = useQueryClient();
   const { addError, addSuccess } = useNotifications();
 

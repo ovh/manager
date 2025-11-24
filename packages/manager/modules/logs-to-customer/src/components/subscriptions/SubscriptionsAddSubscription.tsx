@@ -13,14 +13,15 @@ import { LogsActionEnum } from '@/types/logsTracking';
 import {
   getLogServicesQueryKey,
   useLogServices,
-} from '../../data/hooks/useLogService';
+} from '@/data/hooks/useLogService';
 import ApiError from '@/components/apiError/ApiError.component';
 import OrderServiceButton from '@/components/services/OrderServiceButton.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const SubscriptionAddSubcription = () => {
   const queryClient = useQueryClient();
-  const { t } = useTranslation('logSubscription');
-  const { t: tService } = useTranslation('logService');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
+  const { t: tService } = useTranslation(NAMESPACES.LOG_SERVICE);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const subscribeLogsAccess = useLogTrackingActions(

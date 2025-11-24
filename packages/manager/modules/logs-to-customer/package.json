@@ -5,14 +5,25 @@
   "description": "OVHcloud - observability - logs to customer module",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "sideEffects": [
-    "**/*.css",
-    "dist/style.css",
-    "dist/src/public/translations/**/*.js"
-  ],
+  "sideEffects": false,
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/src/lib.js",
+      "types": "./dist/types/src/lib.d.ts",
+      "default": "./dist/src/lib.js"
+    },
+    "./vite-config": {
+      "import": "./vite-config-consumer.mjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "main": "dist/src/lib.js",
   "types": "dist/types/src/lib.d.ts",
+  "files": [
+    "dist",
+    "vite-config-consumer.mjs"
+  ],
   "scripts": {
     "analysis:duplication": "manager-code-duplication",
     "analysis:perf": "manager-perf-budgets",

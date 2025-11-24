@@ -19,9 +19,10 @@ import getServiceLabel from '@/helpers/getServiceLabel';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
 import DataStreamsDatagrid from '@/pages/data-streams/DataStreamsDatagrid.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const BackButton = () => {
-  const { t } = useTranslation('logStreams');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAMS);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const subscribeLogsAccessAction = useLogTrackingActions(LogsActionEnum.subscribe_logs_access);
@@ -48,8 +49,8 @@ const BackButton = () => {
 
 export default function DataStreams() {
   const queryClient = useQueryClient();
-  const { t } = useTranslation('logStreams');
-  const { t: tService } = useTranslation('logService');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAMS);
+  const { t: tService } = useTranslation(NAMESPACES.LOG_SERVICE);
   const [currentService, setCurrentService] = useState<Service>();
 
   const { data: logServices, isPending, error } = useLogServices();

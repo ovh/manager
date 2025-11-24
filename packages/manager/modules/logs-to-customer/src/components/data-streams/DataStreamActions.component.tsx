@@ -10,6 +10,7 @@ import { Stream } from '@/data/types/dbaas/logs';
 import getStreamSubscription from '@/helpers/getStreamSubscription';
 import SubscribeButton from '@/components/data-streams/DataStreamSubscribeButton.component';
 import UnsubscribeButton from '@/components/data-streams/DataStreamUnsubscribeButton.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export const DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID = 'data-stream-subscription-loading-test-id';
 
@@ -18,7 +19,7 @@ interface TDataStreamActions {
 }
 
 const DataStreamActions = ({ stream }: TDataStreamActions) => {
-  const { t } = useTranslation('error');
+  const { t } = useTranslation(NAMESPACES.ERROR);
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
 
   const {

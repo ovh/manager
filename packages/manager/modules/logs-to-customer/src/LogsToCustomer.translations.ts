@@ -1,11 +1,13 @@
 import { MODULE_NAME } from '@/LogsToCustomer.constants';
 
+export const NAMESPACE_PREFIX = `@ovh-ux/${MODULE_NAME}`;
+
 export const NAMESPACES = {
-  ERROR: `${MODULE_NAME}/error`,
-  LOG_KIND: `${MODULE_NAME}/logKind`,
-  LOG_SERVICE: `${MODULE_NAME}/logService`,
-  LOG_STREAM: `${MODULE_NAME}/logStream`,
-  LOG_STREAMS: `${MODULE_NAME}/logStreams`,
-  LOG_SUBSCRIPTION: `${MODULE_NAME}/logSubscription`,
-  LOG_TAIL: `${MODULE_NAME}/logTail`,
+  ERROR: `${NAMESPACE_PREFIX}/error`,
+  LOG_KIND: `${NAMESPACE_PREFIX}/logKind`,
+  LOG_SERVICE: `${NAMESPACE_PREFIX}/logService`,
+  LOG_STREAM: `${NAMESPACE_PREFIX}/logStream`,
+  LOG_STREAMS: `${NAMESPACE_PREFIX}/logStreams`,
+  LOG_SUBSCRIPTION: `${NAMESPACE_PREFIX}/logSubscription`,
+  LOG_TAIL: `${NAMESPACE_PREFIX}/logTail`,
 };

@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite';
 import { getBaseConfig } from '@ovh-ux/manager-vite-config';
+import { getLogsToCustomerConfig } from '@ovh-ux/logs-to-customer/vite-config';
 import { resolve, join } from 'path';
 
+const logsToCustomerConfig = getLogsToCustomerConfig();
+const baseConfig = getBaseConfig(logsToCustomerConfig);
+
 export default defineConfig({
-  ...getBaseConfig(),
+  ...baseConfig,
   resolve: {
+    ...baseConfig.resolve,
     alias: {
       '@': resolve(join(process.cwd(), 'src')),
       '@secret-manager': resolve(
@@ -14,15 +19,6 @@ export default defineConfig({
         join(process.cwd(), 'src/modules/key-management-service'),
       ),
     },
-    dedupe: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      '@tanstack/react-virtual',
-      '@tanstack/react-query',
-      '@ovh-ux/manager-core-api',
-      '@ovh-ux/manager-react-shell-client',
-    ],
   },
   root: resolve(process.cwd()),
 });

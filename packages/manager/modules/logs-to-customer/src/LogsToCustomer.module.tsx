@@ -21,7 +21,7 @@ import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { ZoomedInOutProvider } from '@/hooks/useZoomedInOut';
 import { LogsActionEnum } from '@/types/logsTracking';
 import { LogsToCustomerRoutes } from '@/routes/routes';
-import '@/public/translations';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export interface ILogsToCustomerModule {
   logApiUrls: ApiUrls;
@@ -42,7 +42,7 @@ export function LogsToCustomerModule({
 }: ILogsToCustomerModule) {
   const queryClient = useQueryClient();
   const [currentLogKind, setCurrentLogKind] = useState<LogKind>();
-  const { t } = useTranslation('logKind');
+  const { t } = useTranslation(NAMESPACES.LOG_KIND);
   const { trackClick } = useOvhTracking();
   const selectKindLogsAccess = useLogTrackingActions(
     LogsActionEnum.select_kind_logs_access,

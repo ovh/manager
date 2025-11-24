@@ -10,9 +10,10 @@ import { usePostLogSubscription } from '@/data/hooks/useLogSubscriptions';
 import { Stream } from '@/data/types/dbaas/logs';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const SubscribeButton = ({ stream }: { stream?: Stream }) => {
-  const { t } = useTranslation('logStreams');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAMS);
   const subscribeLogsAccess = useLogTrackingActions(LogsActionEnum.subscribe_logs_access);
   const { trackClick } = useOvhTracking();
   const { currentLogKind, logApiUrls, logApiVersion, logIamActions, resourceURN } =

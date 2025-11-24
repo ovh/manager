@@ -6,14 +6,15 @@ import { LogsContext } from '@/LogsToCustomer.context';
 import {
   getLogSubscriptionsQueryKey,
   useLogSubscriptions,
-} from '../../data/hooks/useLogSubscriptions';
+} from '@/data/hooks/useLogSubscriptions';
 import SubscriptionTile from '@/components/subscriptions/SubscriptionTile.component';
 import SubscriptionEmpty from '@/components/subscriptions/SubscriptionEmpty.component';
 import ApiError from '@/components/apiError/ApiError.component';
 import { useZoomedInOut } from '@/hooks/useZoomedInOut';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export default function LogsSubscriptions() {
-  const { t } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const queryClient = useQueryClient();
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
   const { data, isLoading, isPending, error } = useLogSubscriptions(
