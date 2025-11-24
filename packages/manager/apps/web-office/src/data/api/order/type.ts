@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 // TODO: Dupilicate of packages/manager/apps/pci-databases-analytics/src/types/catalog.ts
 // share it across projects and remove this
-import { CurrencyCode, IntervalUnitType, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { CurrencyCode, IntervalUnit, OvhSubsidiary } from '@ovh-ux/muk';
 
 export enum OfficePrepaidPlanCodes {
   OFFICE_365_BUSINESS = 'microsoft-365-apps-for-business-pp-nce',
@@ -583,7 +583,7 @@ export namespace order {
       /** Length of the interval */
       interval: number;
       /** Unit of the interval */
-      intervalUnit: IntervalUnitType;
+      intervalUnit: IntervalUnit;
       /** Pricing mode */
       mode: string;
       /** Pricing must be completed */
