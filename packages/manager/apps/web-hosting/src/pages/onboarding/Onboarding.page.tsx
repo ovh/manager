@@ -1,16 +1,16 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import useGuides from '@/hooks/useGuides';
 import { GO_TO, ORDER_CTA } from '@/utils/tracking.constants';
@@ -67,7 +67,7 @@ export default function Onboarding() {
     <OnboardingLayout
       title={t('title')}
       img={{ src: onboardingImgSrc, alt: '' }}
-      description={<OdsText className="text-center">{t('description')}</OdsText>}
+      description={<Text className="text-center">{t('description')}</Text>}
       orderButtonLabel={t('order_btn')}
       onOrderButtonClick={() => {
         trackClick({
@@ -81,7 +81,7 @@ export default function Onboarding() {
       }}
     >
       {tiles.map((tile) => (
-        <Card
+        <LinkCard
           key={tile.id}
           href={tile.href}
           texts={tile.texts}

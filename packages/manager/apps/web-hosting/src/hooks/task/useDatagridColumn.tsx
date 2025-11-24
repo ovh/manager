@@ -1,70 +1,63 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR, Badge } from '@ovhcloud/ods-react';
 
-import { Badge, DataGridTextCell, useFormatDate } from '@ovh-ux/manager-react-components';
+import { DatagridColumn, useFormatDate } from '@ovh-ux/muk';
 
 import { TaskDetailsType } from '@/data/types/product/webHosting';
 
 export default function useDatagridColumn() {
   const { t } = useTranslation('task');
   const formatDate = useFormatDate();
-
   const StatusColor = {
-    cancelled: ODS_BADGE_COLOR.information,
-    doing: ODS_BADGE_COLOR.information,
-    done: ODS_BADGE_COLOR.success,
-    init: ODS_BADGE_COLOR.information,
-    todo: ODS_BADGE_COLOR.information,
-    error: ODS_BADGE_COLOR.information,
-    ovhError: ODS_BADGE_COLOR.information,
+    cancelled: BADGE_COLOR.information,
+    doing: BADGE_COLOR.information,
+    done: BADGE_COLOR.success,
+    init: BADGE_COLOR.information,
+    todo: BADGE_COLOR.information,
+    error: BADGE_COLOR.information,
+    ovhError: BADGE_COLOR.information,
   };
 
-  const columns = [
+  const columns: DatagridColumn<TaskDetailsType>[] = [
     {
       id: 'task',
-      cell: (props: TaskDetailsType) => (
-        <DataGridTextCell>
-          {t(`hosting_tab_TASKS_function_${props?.function?.replace('/', '_')}`, {
-            defaultValue: props?.function,
+      accessorFn: (row) => row.function,
+      cell: (props: { row: { original: TaskDetailsType } }) => (
+        <>
+          {t(`hosting_tab_TASKS_function_${props.row.original.function?.replace('/', '_')}`, {
+            defaultValue: props.row.original.function,
           })}
-        </DataGridTextCell>
+        </>
       ),
-      label: t('hosting_tab_TASKS_table_function'),
+      header: t('hosting_tab_TASKS_table_function'),
     },
     {
       id: 'status',
-      cell: (props: TaskDetailsType) => (
-        <DataGridTextCell>
-          <Badge
-            label={t(`hosting_tab_TASKS_status_${props?.status?.toLowerCase()}`)}
-            className="my-3"
-            color={StatusColor[props?.status]}
-          />
-        </DataGridTextCell>
+      accessorFn: (row) => row.status,
+      cell: (props: { row: { original: TaskDetailsType } }) => (
+        <Badge className="my-3" color={StatusColor[props.row.original.status]}>
+          {t(`hosting_tab_TASKS_status_${props.row.original.status?.toLowerCase()}`)}
+        </Badge>
       ),
-      label: t('hosting_tab_TASKS_table_state'),
+      header: t('hosting_tab_TASKS_table_state'),
     },
     {
       id: 'startDate',
-      cell: (props: TaskDetailsType) => {
-        return (
-          <DataGridTextCell>
-            {formatDate({ date: props?.startDate, format: 'Pp' })}
-          </DataGridTextCell>
-        );
-      },
-      label: t('hosting_tab_TASKS_table_start_date'),
+      accessorFn: (row) => row.startDate,
+      cell: (props: { row: { original: TaskDetailsType } }) => (
+        <>{formatDate({ date: props.row.original.startDate, format: 'Pp' })}</>
+      ),
+      header: t('hosting_tab_TASKS_table_start_date'),
     },
     {
       id: 'finishDate',
-      cell: (props: TaskDetailsType) =>
-        props.doneDate && (
-          <DataGridTextCell>{formatDate({ date: props?.doneDate, format: 'Pp' })}</DataGridTextCell>
-        ),
-      label: t('hosting_tab_TASKS_table_finish_date'),
+      accessorFn: (row) => row.doneDate,
+      cell: (props: { row: { original: TaskDetailsType } }) =>
+        props.row.original.doneDate ? (
+          <>{formatDate({ date: props.row.original.doneDate, format: 'Pp' })}</>
+        ) : null,
+      header: t('hosting_tab_TASKS_table_finish_date'),
     },
   ];
 

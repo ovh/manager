@@ -1,10 +1,18 @@
 import { TFunction } from 'i18next';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
-import { ODS_BUTTON_COLOR, ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsPassword, OdsText } from '@ovhcloud/ods-components/react';
-
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import {
+  BUTTON_COLOR,
+  Button,
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  Password,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 export type Step1FormValues = {
   adminLogin?: string;
@@ -32,82 +40,83 @@ export default function Step1({
   onSubmit,
 }: Step1Props) {
   return (
-    <form onSubmit={onSubmit}>
-      <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+    <form onSubmit={onSubmit} className="w-full">
+      <Text preset={TEXT_PRESET.heading3} className="mb-4">
         {t('common:web_hosting_common_url_connexion')}
-      </OdsText>
+      </Text>
       <Controller
         name="adminURL"
         control={control}
-        render={({ field: { name, value, onBlur, onChange } }) => (
-          <OdsFormField className="w-full mb-4" error={errors?.adminURL?.message}>
-            <label slot="label">{t('common:web_hosting_common_admin_url')}*</label>
-            <OdsInput
-              type={ODS_INPUT_TYPE.text}
+        render={({ field: { name, value, onBlur, onChange }, fieldState: { error, invalid } }) => (
+          <FormField className="w-full mb-4" invalid={!!error && invalid}>
+            <FormFieldLabel>{t('common:web_hosting_common_admin_url')}*</FormFieldLabel>
+            <Input
+              type={INPUT_TYPE.text}
               name={name}
               value={value}
               data-testid="input-admin-url"
-              hasError={!!errors.adminURL}
-              onOdsBlur={onBlur}
-              onOdsChange={onChange}
-              isClearable
+              invalid={!!errors.adminURL}
+              onBlur={onBlur}
+              onChange={onChange}
+              clearable
             />
-          </OdsFormField>
+            <FormFieldError>{errors?.adminURL?.message}</FormFieldError>
+          </FormField>
         )}
       />
-      <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+      <Text preset={TEXT_PRESET.heading3} className="mb-4">
         {t('common:web_hosting_common_wordpress_login')}
-      </OdsText>
+      </Text>
       <Controller
         name="adminLogin"
         control={control}
         render={({ field: { name, value, onBlur, onChange } }) => (
-          <OdsFormField className="w-full mb-4" error={errors?.adminLogin?.message}>
-            <label slot="label">{t('common:web_hosting_common_admin_login')}*</label>
-            <OdsInput
-              type={ODS_INPUT_TYPE.text}
+          <FormField className="w-full mb-4" aria-errormessage={errors?.adminLogin?.message}>
+            <FormFieldLabel>{t('common:web_hosting_common_admin_login')}*</FormFieldLabel>
+            <Input
+              type={INPUT_TYPE.text}
               name={name}
               value={value}
               data-testid="input-admin-login"
-              hasError={!!errors.adminLogin}
-              onOdsBlur={onBlur}
-              onOdsChange={onChange}
-              isClearable
+              invalid={!!errors.adminLogin}
+              onBlur={onBlur}
+              onChange={onChange}
+              clearable
             />
-          </OdsFormField>
+          </FormField>
         )}
       />
       <Controller
         name="adminPassword"
         control={control}
         render={({ field: { name, value, onBlur, onChange } }) => (
-          <OdsFormField className="w-full mb-4" error={errors?.adminPassword?.message}>
-            <label slot="label">{t('common:web_hosting_common_admin_password')}*</label>
-            <OdsPassword
+          <FormField className="w-full mb-4" aria-errormessage={errors?.adminPassword?.message}>
+            <FormFieldLabel>{t('common:web_hosting_common_admin_password')}*</FormFieldLabel>
+            <Password
               name={name}
               value={value}
               data-testid="input-admin-password"
-              hasError={!!errors?.adminPassword}
-              onOdsBlur={onBlur}
-              onOdsChange={onChange}
-              className="w-full"
-              isClearable
-              isMasked
+              invalid={!!errors?.adminPassword}
+              onBlur={onBlur}
+              onChange={onChange}
+              clearable
             />
-          </OdsFormField>
+          </FormField>
         )}
       />
-      <OdsFormField>
-        <ManagerButton
+      <FormField>
+        <Button
+          className="w-1/6"
           type="submit"
-          label={t('common:web_hosting_common_action_continue')}
-          isDisabled={!isDirty || !isValid || isSubmitting}
-          isLoading={isSubmitting}
-          color={ODS_BUTTON_COLOR.primary}
+          disabled={!isDirty || !isValid || isSubmitting}
+          loading={isSubmitting}
+          color={BUTTON_COLOR.primary}
           id="import-step1"
           data-testid="import-step1"
-        />
-      </OdsFormField>
+        >
+          {t('common:web_hosting_common_action_continue')}
+        </Button>
+      </FormField>
     </form>
   );
 }

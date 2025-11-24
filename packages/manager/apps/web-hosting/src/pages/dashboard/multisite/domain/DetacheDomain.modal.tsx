@@ -4,11 +4,19 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCheckbox, OdsInput, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  Input,
+  MESSAGE_COLOR,
+  Message,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import {
   useDeleteAttachedDomains,
@@ -65,72 +73,80 @@ export default function DetacheDomainModal() {
 
   return (
     <Modal
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      isPrimaryButtonDisabled={
-        !canDetachDomainWithGit ||
-        (domainData?.currentState?.hosting?.offer as HostingdOffer) === HostingdOffer.STARTER_OVH
-      }
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: onConfirm,
+        disabled:
+          !canDetachDomainWithGit ||
+          (domainData?.currentState?.hosting?.offer as HostingdOffer) === HostingdOffer.STARTER_OVH,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: onClose,
+      }}
       heading={t('detache_domain')}
-      onDismiss={onClose}
-      onPrimaryButtonClick={onConfirm}
-      onSecondaryButtonClick={onClose}
-      isOpen
+      onOpenChange={onClose}
+      open={true}
     >
       <div className="flex flex-col mb-10 mt-5">
-        <OdsText>{t('hosting_tab_DOMAINS_configuration_remove_title')}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.heading6} className="mt-6">
+        <Text>{t('hosting_tab_DOMAINS_configuration_remove_title')}</Text>
+        <Text preset={TEXT_PRESET.heading6} className="mt-6">
           {t('hosting_tab_DOMAINS_configuration_domain_name')}
-        </OdsText>
-        <OdsInput type="text" name="domain" value={domain} isDisabled className="w-11/12" />
-        <OdsText preset={ODS_TEXT_PRESET.heading6} className="mt-6">
+        </Text>
+        <Input type="text" name="domain" value={domain} disabled className="w-11/12" />
+        <Text preset={TEXT_PRESET.heading6} className="mt-6">
           {t('hosting_tab_DOMAINS_configuration_home')}
-        </OdsText>
+        </Text>
         <div className="space-x-2">
-          <OdsInput type="text" name="domain" value="./" isDisabled className="w-1/12" />
-          <OdsInput
+          <Input type="text" name="domain" value={domain} disabled className="w-11/12" />
+          <Input type="text" name="domain" value="./" disabled className="w-1/12" />
+          <Input
             type="text"
             name="domain"
             value={domainData?.currentState?.path || ''}
-            isDisabled
+            disabled
             className="w-10/12"
           />
         </div>
         {wwwDomainExists && (
           <div className="flex flex-row mt-6">
-            <OdsCheckbox
-              isChecked={wwwRemoved}
-              onOdsChange={() => setWwwRemoved(!wwwRemoved)}
+            <Checkbox
+              checked={wwwRemoved}
+              onCheckedChange={() => setWwwRemoved(!wwwRemoved)}
               name="wwwRemoved"
-            />
-            <label className="ml-4 cursor-pointer">
-              <OdsText preset={ODS_TEXT_PRESET.span}>
-                {t('hosting_tab_DOMAINS_configuration_remove_step1_www', {
-                  domain: `www.${domain}`,
-                })}
-              </OdsText>
-            </label>
+            >
+              <CheckboxControl />
+              <CheckboxLabel>
+                <Text preset={TEXT_PRESET.heading6}>
+                  {t('hosting_tab_DOMAINS_configuration_remove_step1_www', {
+                    domain: `www.${domain}`,
+                  })}
+                </Text>
+              </CheckboxLabel>
+            </Checkbox>
           </div>
         )}
         <div className="flex flex-row mt-6 mb-6">
-          <OdsCheckbox
-            isChecked={isAutoconfigure}
-            onOdsChange={() => setIsAutoconfigure(!isAutoconfigure)}
+          <Checkbox
+            checked={isAutoconfigure}
+            onCheckedChange={() => setIsAutoconfigure(!isAutoconfigure)}
             name="autoconfigure"
-          />
-          <label className="ml-4 cursor-pointer">
-            <OdsText preset={ODS_TEXT_PRESET.heading6}>
-              {t('hosting_tab_DOMAINS_configuration_autoconfigure')}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.caption}>
-              {t('hosting_tab_DOMAINS_configuration_autoconfigure_remove_text')}
-            </OdsText>
-          </label>
+          >
+            <CheckboxControl />
+            <CheckboxLabel>
+              <Text preset={TEXT_PRESET.heading6}>
+                {t('hosting_tab_DOMAINS_configuration_autoconfigure')}
+              </Text>
+              <Text preset={TEXT_PRESET.caption}>
+                {t('hosting_tab_DOMAINS_configuration_autoconfigure_remove_text')}
+              </Text>
+            </CheckboxLabel>
+          </Checkbox>
         </div>
         {!canDetachDomainWithGit && (
-          <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
+          <Message color={MESSAGE_COLOR.warning} dismissible={false}>
             {t('hosting_tab_DOMAINS_configuration_remove_step1_git_warning')}
-          </OdsMessage>
+          </Message>
         )}
       </div>
     </Modal>
