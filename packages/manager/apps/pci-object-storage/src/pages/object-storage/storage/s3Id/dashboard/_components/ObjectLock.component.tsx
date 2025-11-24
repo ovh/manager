@@ -14,35 +14,33 @@ const ObjectLock = () => {
   const prefix = isObjectLockEnabled ? 'enable' : 'disable';
 
   return (
-    <>
-      <div className="space-y-2">
-        <div className="flex flex-row justify-between">
-          <Badge
-            variant={
-              s3.objectLock.status === storages.ObjectLockStatusEnum.enabled
-                ? 'success'
-                : 'warning'
-            }
+    <div className="space-y-2">
+      <div className="flex flex-row justify-between">
+        <Badge
+          variant={
+            s3.objectLock.status === storages.ObjectLockStatusEnum.enabled
+              ? 'success'
+              : 'warning'
+          }
+        >
+          {t(`${prefix}Label`)}
+        </Badge>
+        {isObjectLockEnabled && (
+          <Button
+            data-testid="label-object-lock-options-button"
+            mode="outline"
+            size="sm"
+            className="h-6"
+            onClick={() => navigate('./object-lock-options')}
           >
-            {t(`${prefix}Label`)}
-          </Badge>
-          {isObjectLockEnabled && (
-            <Button
-              data-testid="label-object-lock-options-button"
-              mode="outline"
-              size="sm"
-              className="h-6"
-              onClick={() => navigate('./object-lock-options')}
-            >
-              <Settings className="size-4" />
-              <span className="font-semibold">
-                {t('objectLockOptionsButton')}
-              </span>
-            </Button>
-          )}
-        </div>
+            <Settings className="size-4" />
+            <span className="font-semibold">
+              {t('objectLockOptionsButton')}
+            </span>
+          </Button>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
