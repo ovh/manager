@@ -1,2 +1,0 @@
-export const DATAGRID_ROW_HEIGHT = 57;
-export const DATAGRID_HEADER_HEIGHT = 60;

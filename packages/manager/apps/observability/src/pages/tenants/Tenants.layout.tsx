@@ -1,4 +1,4 @@
-import { BaseLayout, Breadcrumb } from '@ovh-ux/muk';
+import { BaseLayout, Breadcrumb, Notifications } from '@ovh-ux/muk';
 
 import { AppConfig, appName } from '@/App.constants';
 import { ObservabilityServiceProvider } from '@/contexts/ObservabilityService.context';
@@ -10,6 +10,7 @@ export default function TenantsLayout() {
     <BaseLayout
       breadcrumb={<Breadcrumb appName={appName} rootLabel={AppConfig.rootLabel} />}
       header={{ title: LABELS.TENANTS }}
+      message={<Notifications />}
     >
       <ObservabilityServiceProvider>
         <TenantsOutlet />
