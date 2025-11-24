@@ -7,13 +7,12 @@ import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { Message, SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { useNotifications } from '@ovh-ux/muk';
 
 import {
   postManagedCmsResourceWebsite,
@@ -80,7 +79,7 @@ export default function ImportForm() {
         } else if (attempts >= maxAttempts) {
           clearInterval(interval);
           addError(
-            <OdsText>{t('managedWordpress:web_hosting_managed_wordpress_import_timeout')}</OdsText>,
+            <Text>{t('managedWordpress:web_hosting_managed_wordpress_import_timeout')}</Text>,
             true,
           );
           onClose();
@@ -120,11 +119,11 @@ export default function ImportForm() {
 
     onError: (error: ApiError) => {
       addError(
-        <OdsText>
+        <Text>
           {t(`${NAMESPACES.ERROR}:error_message`, {
             message: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -241,9 +240,9 @@ export default function ImportForm() {
           <span className="block font-bold">
             {t('managedWordpress:web_hosting_managed_wordpress_import_success_message_part_1')}
           </span>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block">
+          <Text preset={TEXT_PRESET.paragraph} className="block">
             {t('managedWordpress:web_hosting_managed_wordpress_import_success_message_part_2')}
-          </OdsText>
+          </Text>
         </div>,
         true,
       );
@@ -255,11 +254,11 @@ export default function ImportForm() {
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(`${NAMESPACES.ERROR}:error_message`, {
             message: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -289,10 +288,10 @@ export default function ImportForm() {
 
       {websiteId && step === 1 && (
         <>
-          <OdsMessage isDismissible={false} className="w-full">
+          <Message dismissible={false} className="w-full">
             {t('managedWordpress:web_hosting_managed_wordpress_import_before_select_element')}
-            <OdsSpinner size={ODS_SPINNER_SIZE.sm} className="ml-auto inline-block" />
-          </OdsMessage>
+            <Spinner size={SPINNER_SIZE.sm} className="ml-auto inline-block" />
+          </Message>
         </>
       )}
       {step === 2 && websiteId && (

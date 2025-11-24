@@ -3,20 +3,26 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import {
-  ODS_BUTTON_SIZE,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsCheckbox,
-  OdsInput,
-  OdsMessage,
-  OdsSelect,
-  OdsText,
-  OdsToggle,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  INPUT_TYPE,
+  Input,
+  MESSAGE_COLOR,
+  Message,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+  Toggle,
+  ToggleControl,
+  ToggleLabel,
+} from '@ovhcloud/ods-react';
 
 import { useGetDomainZone } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { AssociationType } from '@/data/types/product/website';
@@ -47,9 +53,9 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
 
   return (
     <div className="flex flex-col space-y-5">
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Text preset={TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_configure_domain_title')}
-      </OdsText>
+      </Text>
       {controlValues?.associationType === AssociationType.EXISTING ? (
         <>
           <Controller
@@ -57,18 +63,18 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             control={control}
             render={({ field }) => (
               <div className="flex flex-col">
-                <OdsText>{t('multisite_add_website_configure_domain_display_name')}</OdsText>
-                <OdsInput
+                <Text>{t('multisite_add_website_configure_domain_display_name')}</Text>
+                <Input
                   className="w-1/3"
-                  type={ODS_INPUT_TYPE.text}
+                  type={INPUT_TYPE.text}
                   name="website-name"
-                  isDisabled={isAddingDomain}
+                  disabled={isAddingDomain}
                   value={field.value}
-                  onOdsChange={(e) => field.onChange(e.target.value)}
+                  onChange={(e) => field.onChange(e.target.value)}
                 />
-                <OdsText preset={ODS_TEXT_PRESET.caption}>
+                <Text preset={TEXT_PRESET.caption}>
                   {t('multisite_add_website_configure_domain_display_text')}
-                </OdsText>
+                </Text>
               </div>
             )}
           />
@@ -77,19 +83,26 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             control={control}
             render={({ field }) => (
               <div className="flex flex-col">
-                <OdsText>{t('multisite_add_website_configure_domain_fqdn')}</OdsText>
-                <OdsSelect
-                  name="fqdn"
+                <Text>{t('multisite_add_website_configure_domain_fqdn')}</Text>
+                <Select
+                  name={field.name}
+                  id="fqdn"
+                  data-testid="fqdn"
                   className="w-1/3"
-                  value={field.value}
-                  onOdsChange={(e) => field.onChange(e.target.value)}
+                  items={data?.map((item) => ({
+                    value: item,
+                    label: item,
+                  }))}
+                  value={
+                    Array.isArray(field.value) ? field.value : field.value ? [field.value] : []
+                  }
+                  onValueChange={(detail: { value?: string[] }) =>
+                    field.onChange(Array.isArray(detail.value) ? (detail.value[0] ?? '') : '')
+                  }
                 >
-                  {data?.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </OdsSelect>
+                  <SelectControl />
+                  <SelectContent />
+                </Select>
               </div>
             )}
           />
@@ -98,17 +111,24 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
               name="hasSubdomain"
               control={control}
               render={({ field }) => (
-                <OdsCheckbox
-                  isChecked={field.value}
+                <Checkbox
+                  checked={field.value}
                   name="hasSubdomain"
-                  onOdsChange={() => field.onChange(!field.value)}
-                />
+                  onCheckedChange={() => field.onChange(!field.value)}
+                >
+                  <CheckboxControl />
+                  <CheckboxLabel>
+                    <Text>
+                      {t('dashboard:hosting_add_step2_mode_OVH_domain_name_subdomain_question')}
+                    </Text>
+                  </CheckboxLabel>
+                </Checkbox>
               )}
             />
             <label className="ml-4 cursor-pointer">
-              <OdsText preset={ODS_TEXT_PRESET.span}>
+              <Text preset={TEXT_PRESET.span}>
                 {t('dashboard:hosting_add_step2_mode_OVH_domain_name_subdomain_question')}
-              </OdsText>
+              </Text>
             </label>
           </div>
           {controlValues?.hasSubdomain && (
@@ -117,17 +137,24 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                 name="subdomain"
                 control={control}
                 render={({ field }) => (
-                  <OdsInput
-                    type={ODS_INPUT_TYPE.text}
+                  <Input
+                    type={INPUT_TYPE.text}
                     name="subdomain"
                     className="w-1/3"
                     placeholder={t('dashboard:hosting_add_step2_mode_OVH_domain_name_placeholder')}
                     value={field.value}
-                    onOdsChange={(e) => field.onChange(e.target.value)}
+                    onChange={(e) => field.onChange(e.target.value)}
                   />
                 )}
               />
-              <OdsButton label={`.${controlValues?.fqdn}`} isDisabled size={ODS_BUTTON_SIZE.sm} />
+              <Button
+                variant={BUTTON_VARIANT.outline}
+                color={BUTTON_COLOR.primary}
+                disabled={!controlValues?.fqdn}
+                size={BUTTON_SIZE.sm}
+              >
+                {`.${controlValues?.fqdn}`}
+              </Button>
             </div>
           )}
           <Controller
@@ -135,18 +162,18 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             control={control}
             render={({ field }) => (
               <div className="flex items-center gap-3">
-                <OdsToggle
+                <Toggle
                   name="advanced-configuration"
+                  key="advanced-configuration"
                   id="advanced-configuration"
-                  value={field.value}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    field.onChange(!field.value);
-                  }}
-                />
-                <label htmlFor="rootAccount" slot="label">
-                  <OdsText>{t('multisite_add_website_configure_domain_advanced')}</OdsText>
-                </label>
+                  checked={Boolean(field.value)}
+                  onCheckedChange={(detail) => field.onChange(detail.checked)}
+                >
+                  <ToggleControl />
+                  <ToggleLabel>
+                    <Text>{t('multisite_add_website_configure_domain_advanced')}</Text>
+                  </ToggleLabel>
+                </Toggle>
               </div>
             )}
           />
@@ -157,9 +184,9 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
               isAddingDomain={isAddingDomain}
             />
           ) : (
-            <OdsMessage color={ODS_MESSAGE_COLOR.information} isDismissible={false}>
+            <Message color={MESSAGE_COLOR.information} dismissible={false}>
               {t('multisite_add_website_configure_domain_advanced_message')}
-            </OdsMessage>
+            </Message>
           )}
         </>
       ) : (
@@ -169,18 +196,18 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             control={control}
             render={({ field }) => (
               <div className="flex flex-col">
-                <OdsText>{t('multisite_add_website_configure_domain_display_name')}</OdsText>
-                <OdsInput
+                <Text>{t('multisite_add_website_configure_domain_display_name')}</Text>
+                <Input
                   className="w-1/3"
-                  type={ODS_INPUT_TYPE.text}
+                  type={INPUT_TYPE.text}
                   name="website-name"
-                  isDisabled={isAddingDomain}
-                  value={field.value}
-                  onOdsChange={(e) => field.onChange(e.target.value)}
+                  disabled={isAddingDomain}
+                  value={String(field.value ?? '')}
+                  onChange={(e) => field.onChange(e.target.value)}
                 />
-                <OdsText preset={ODS_TEXT_PRESET.caption}>
-                  {t('multisite_add_website_configure_domain_display_text')}
-                </OdsText>
+                <Text preset={TEXT_PRESET.caption}>
+                  {t?.('multisite_add_website_configure_domain_display_text')}
+                </Text>
               </div>
             )}
           />
@@ -189,13 +216,13 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             control={control}
             render={({ field }) => (
               <div className="flex flex-col">
-                <OdsText>{t('multisite_add_website_configure_domain_fqdn')}</OdsText>
-                <OdsInput
+                <Text>{t('multisite_add_website_configure_domain_fqdn')}</Text>
+                <Input
                   className="w-1/3"
-                  type={ODS_INPUT_TYPE.text}
+                  type={INPUT_TYPE.text}
                   name="fqdn"
-                  value={field.value}
-                  onOdsChange={(e) => field.onChange(e.target.value)}
+                  value={typeof field.value === 'string' ? field.value : ''}
+                  onChange={(e) => field.onChange(e.target.value)}
                 />
               </div>
             )}
@@ -203,8 +230,8 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
         </>
       )}
       {isNextButtonVisible && (
-        <OdsButton
-          isDisabled={
+        <Button
+          disabled={
             !controlValues.name ||
             !controlValues.fqdn ||
             (controlValues.associationType === AssociationType.EXTERNAL &&
@@ -214,11 +241,12 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
               (!controlValues.subdomain ||
                 !isValidDomain(`${controlValues.subdomain}.${controlValues.fqdn}`)))
           }
-          label={t('common:web_hosting_common_action_continue')}
           onClick={() =>
             setStep(controlValues?.associationType === AssociationType.EXISTING ? 4 : 3)
           }
-        ></OdsButton>
+        >
+          {t('common:web_hosting_common_action_continue')}
+        </Button>
       )}
     </div>
   );
