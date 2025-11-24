@@ -102,14 +102,20 @@ const createWrapper = () => {
 const mockServices: ObservabilityService[] = [
   {
     id: 'service-1',
+    createdAt: '2025-11-01T08:00:00.001Z',
+    updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Service One' },
   },
   {
     id: 'service-2',
+    createdAt: '2025-11-01T08:00:00.001Z',
+    updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Service Two' },
   },
   {
     id: 'service-3',
+    createdAt: '2025-11-01T08:00:00.001Z',
+    updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: null }, // Test null displayName for fallback
   },
 ];
@@ -432,6 +438,8 @@ describe('ServicesDropDown', () => {
       const servicesWithSpecialChars: ObservabilityService[] = [
         {
           id: 'service-special',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service & Co. <Test>' },
         },
       ];
@@ -457,6 +465,8 @@ describe('ServicesDropDown', () => {
       const servicesWithNullDisplayName: ObservabilityService[] = [
         {
           id: 'service-null',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: null },
         },
       ];
@@ -481,6 +491,8 @@ describe('ServicesDropDown', () => {
       // Arrange
       const manyServices: ObservabilityService[] = Array.from({ length: 100 }, (_, i) => ({
         id: `service-${i}`,
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { displayName: `Service ${i}` },
       }));
 
