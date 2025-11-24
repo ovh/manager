@@ -14,7 +14,6 @@ export type TenantState = {
   description?: string;
   limits?: TMetricLimits;
   infrastructure?: Infrastructure;
-  tags?: string[];
 };
 
 export type Tenant = {
@@ -36,7 +35,6 @@ export type TenantListing = {
   infrastructure: Infrastructure | undefined;
   retention: string | undefined;
   numberOfSeries: number | undefined;
-  tags: string;
-  tagsArray: string[];
+  tags: Record<string, string>;
   search: string;
 } & TIdentifier;
