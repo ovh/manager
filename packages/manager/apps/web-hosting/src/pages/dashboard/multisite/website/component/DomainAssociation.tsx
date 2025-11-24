@@ -81,8 +81,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                 <div className="flex gap-4 items-center">
                   <Radio
                     value={AssociationType.EXISTING}
-                    onChange={() => {
-                      field.onChange(AssociationType.EXISTING);
+                    onClick={() => {
                       reset?.({
                         associationType: AssociationType.EXISTING,
                         autoConfigureDns: true,
@@ -101,9 +100,11 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
-                  {t('multisite:multisite_add_website_existing_domain_card_text')}
-                </Text>
+                <div className="ml-8 mt-4">
+                  <Text preset={TEXT_PRESET.caption}>
+                    {t('multisite:multisite_add_website_existing_domain_card_text')}
+                  </Text>
+                </div>
               </Card>
               <Card
                 className="w-1/3 p-4"
@@ -116,8 +117,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                 <div className="flex gap-4 items-center">
                   <Radio
                     value={AssociationType.EXTERNAL}
-                    onChange={() => {
-                      field.onChange(AssociationType.EXTERNAL);
+                    onClick={() => {
                       reset?.({
                         associationType: AssociationType.EXTERNAL,
                         fqdn: '',
@@ -134,9 +134,11 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
-                  {t('multisite:multisite_add_website_external_domain_card_text')}
-                </Text>
+                <div className="ml-8 mt-4">
+                  <Text preset={TEXT_PRESET.caption}>
+                    {t('multisite:multisite_add_website_external_domain_card_text')}
+                  </Text>
+                </div>
               </Card>
               <Card
                 className="w-1/3 p-4"
@@ -149,7 +151,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                 <div className="flex gap-4 items-center">
                   <Radio
                     value={AssociationType.ORDER}
-                    onChange={() => {
+                    onClick={() => {
                       field.onChange(AssociationType.ORDER);
                       setStep(1);
                     }}
@@ -162,18 +164,22 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
-                  {t('multisite:multisite_add_website_order_domain_card_text')}
-                </Text>
+                <div className="ml-8 mt-4">
+                  <Text preset={TEXT_PRESET.caption}>
+                    {t('multisite:multisite_add_website_order_domain_card_text')}
+                  </Text>
+                </div>
               </Card>
             </div>
           </RadioGroup>
         )}
       />
       {isNextButtonVisible && (
-        <Button disabled={!controlValues.associationType} onClick={onContinue}>
-          {t('common:web_hosting_common_action_continue')}
-        </Button>
+        <div>
+          <Button disabled={!controlValues.associationType} onClick={onContinue}>
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
+        </div>
       )}
     </div>
   );

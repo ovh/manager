@@ -4,7 +4,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Checkbox, SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import {
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  SPINNER_SIZE,
+  Spinner,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/muk';
@@ -83,9 +91,14 @@ export default function DeployeGitModal() {
               name="deploy-git-reset"
               checked={reset}
               onCheckedChange={(detail) => setReset(Boolean(detail?.checked))}
-            />
-
-            <Text preset={TEXT_PRESET.paragraph}>{t('deploy_git_overwrite_local_changes')}</Text>
+            >
+              <CheckboxControl />
+              <CheckboxLabel>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t('deploy_git_overwrite_local_changes')}
+                </Text>
+              </CheckboxLabel>
+            </Checkbox>
           </div>
         </>
       )}

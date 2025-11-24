@@ -79,9 +79,10 @@ export default function OrderDomainModal() {
               aria-checked={ACTIONS.ATTACH === selectedOption}
               onChange={() => setSelectedOption(ACTIONS.ATTACH)}
             />
-            <label>
+            <RadioControl />
+            <RadioLabel>
               <Text preset="span">{t('hosting_dashboard_add_or_order_step1_attach')}</Text>
-            </label>
+            </RadioLabel>
           </RadioGroup>
         </div>
       </div>

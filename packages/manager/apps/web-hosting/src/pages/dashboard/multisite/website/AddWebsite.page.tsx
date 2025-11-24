@@ -80,7 +80,9 @@ export default function AddWebsitePage() {
         targetSpec: {
           name: data.name,
           fqdn: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
-          ...(data.module ? { module: { name: data.module as CmsType } } : {}),
+          ...(data.module && data.module !== CmsType.NONE
+            ? { module: { name: data.module as CmsType } }
+            : {}),
           bypassDNSConfiguration: !data.autoConfigureDns,
           ...(data.advancedConfiguration
             ? {
@@ -143,21 +145,29 @@ export default function AddWebsitePage() {
         </>
       )}
       {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
-        <>
+        <div>
           <DomainManagement controlValues={controlValues} />
-          <Button onClick={() => void handleSubmit(onSubmit)()} disabled={!controlValues.fqdn}>
+          <Button
+            onClick={() => void handleSubmit(onSubmit)()}
+            disabled={!controlValues.fqdn}
+            className="mt-4"
+          >
             {t('common:web_hosting_common_action_continue')}
           </Button>
-        </>
+        </div>
       )}
       {step === 4 && (
-        <>
+        <div>
           <Divider />
           <DomainCmsModule control={control} controlValues={controlValues} />
-          <Button onClick={() => void handleSubmit(onSubmit)()} disabled={!controlValues.fqdn}>
+          <Button
+            onClick={() => void handleSubmit(onSubmit)()}
+            disabled={!controlValues.fqdn}
+            className="mt-4"
+          >
             {t('common:web_hosting_common_action_continue')}
           </Button>
-        </>
+        </div>
       )}
     </form>
   );
