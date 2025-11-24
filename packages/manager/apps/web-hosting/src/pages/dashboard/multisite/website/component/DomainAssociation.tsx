@@ -6,8 +6,17 @@ import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsCard, OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  Button,
+  CARD_COLOR,
+  Card,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -59,110 +68,112 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
         name="associationType"
         control={control}
         render={({ field }) => (
-          <div className="flex flex-row space-x-4">
-            <OdsCard
-              className="w-1/3 p-4"
-              color={
-                controlValues.associationType === AssociationType.EXISTING
-                  ? ODS_CARD_COLOR.primary
-                  : ODS_CARD_COLOR.neutral
-              }
-            >
-              <div className="flex gap-4 items-center">
-                <OdsRadio
-                  name={AssociationType.EXISTING}
-                  value={AssociationType.EXISTING}
-                  isChecked={field.value === AssociationType.EXISTING}
-                  onOdsChange={() => {
-                    reset({
-                      associationType: AssociationType.EXISTING,
-                      autoConfigureDns: true,
-                      path: controlValues.path,
-                      fqdn: '',
-                      name: isAddingDomain ? controlValues.name : '',
-                    });
-                    setStep(1);
-                  }}
-                />
-                <label>
-                  <OdsText preset={ODS_TEXT_PRESET.heading6}>
-                    {t('multisite:multisite_add_website_existing_domain_card_title')}
-                  </OdsText>
-                </label>
-              </div>
-              <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
-                {t('multisite:multisite_add_website_existing_domain_card_text')}
-              </OdsText>
-            </OdsCard>
-            <OdsCard
-              className="w-1/3 p-4"
-              color={
-                controlValues.associationType === AssociationType.EXTERNAL
-                  ? ODS_CARD_COLOR.primary
-                  : ODS_CARD_COLOR.neutral
-              }
-            >
-              <div className="flex gap-4 items-center">
-                <OdsRadio
-                  name={AssociationType.EXTERNAL}
-                  value={AssociationType.EXTERNAL}
-                  isChecked={field.value === AssociationType.EXTERNAL}
-                  onOdsChange={() => {
-                    reset({
-                      associationType: AssociationType.EXTERNAL,
-                      fqdn: '',
-                      name: isAddingDomain ? controlValues.name : '',
-                    });
-                    setStep(1);
-                  }}
-                />
-                <label>
-                  <OdsText preset={ODS_TEXT_PRESET.heading6}>
-                    {t('multisite:multisite_add_website_external_domain_card_title')}
-                  </OdsText>
-                </label>
-              </div>
-              <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
-                {t('multisite:multisite_add_website_external_domain_card_text')}
-              </OdsText>
-            </OdsCard>
-            <OdsCard
-              className="w-1/3 p-4"
-              color={
-                controlValues.associationType === AssociationType.ORDER
-                  ? ODS_CARD_COLOR.primary
-                  : ODS_CARD_COLOR.neutral
-              }
-            >
-              <div className="flex gap-4 items-center">
-                <OdsRadio
-                  name={AssociationType.ORDER}
-                  value={AssociationType.ORDER}
-                  isChecked={field.value === AssociationType.ORDER}
-                  onOdsChange={() => {
-                    field.onChange(AssociationType.ORDER);
-                    setStep(1);
-                  }}
-                />
-                <label>
-                  <OdsText preset={ODS_TEXT_PRESET.heading6}>
-                    {t('dashboard:hosting_dashboard_add_or_order_step1_order')}
-                  </OdsText>
-                </label>
-              </div>
-              <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
-                {t('multisite:multisite_add_website_order_domain_card_text')}
-              </OdsText>
-            </OdsCard>
-          </div>
+          <RadioGroup value={field.value} onChange={field.onChange}>
+            <div className="flex flex-row space-x-4">
+              <Card
+                className="w-1/3 p-4"
+                color={
+                  controlValues.associationType === AssociationType.EXISTING
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
+                }
+              >
+                <div className="flex gap-4 items-center">
+                  <Radio
+                    value={AssociationType.EXISTING}
+                    onChange={() => {
+                      field.onChange(AssociationType.EXISTING);
+                      reset?.({
+                        associationType: AssociationType.EXISTING,
+                        autoConfigureDns: true,
+                        path: controlValues.path,
+                        fqdn: '',
+                        name: isAddingDomain ? controlValues.name : '',
+                      });
+                      setStep(1);
+                    }}
+                  >
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_existing_domain_card_title')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                  {t('multisite:multisite_add_website_existing_domain_card_text')}
+                </Text>
+              </Card>
+              <Card
+                className="w-1/3 p-4"
+                color={
+                  controlValues.associationType === AssociationType.EXTERNAL
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
+                }
+              >
+                <div className="flex gap-4 items-center">
+                  <Radio
+                    value={AssociationType.EXTERNAL}
+                    onChange={() => {
+                      field.onChange(AssociationType.EXTERNAL);
+                      reset?.({
+                        associationType: AssociationType.EXTERNAL,
+                        fqdn: '',
+                        name: isAddingDomain ? controlValues.name : '',
+                      });
+                      setStep(1);
+                    }}
+                  >
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_external_domain_card_title')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                  {t('multisite:multisite_add_website_external_domain_card_text')}
+                </Text>
+              </Card>
+              <Card
+                className="w-1/3 p-4"
+                color={
+                  controlValues.associationType === AssociationType.ORDER
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
+                }
+              >
+                <div className="flex gap-4 items-center">
+                  <Radio
+                    value={AssociationType.ORDER}
+                    onChange={() => {
+                      field.onChange(AssociationType.ORDER);
+                      setStep(1);
+                    }}
+                  >
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('dashboard:hosting_dashboard_add_or_order_step1_order')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                  {t('multisite:multisite_add_website_order_domain_card_text')}
+                </Text>
+              </Card>
+            </div>
+          </RadioGroup>
         )}
       />
       {isNextButtonVisible && (
-        <OdsButton
-          isDisabled={!controlValues.associationType}
-          label={t('common:web_hosting_common_action_continue')}
-          onClick={onContinue}
-        ></OdsButton>
+        <Button disabled={!controlValues.associationType} onClick={onContinue}>
+          {t('common:web_hosting_common_action_continue')}
+        </Button>
       )}
     </div>
   );

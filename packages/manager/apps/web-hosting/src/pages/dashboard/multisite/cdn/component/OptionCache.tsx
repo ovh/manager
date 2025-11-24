@@ -5,15 +5,21 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsButton,
-  OdsFormField,
-  OdsProgressBar,
-  OdsSelect,
-  OdsText,
-  OdsToggle,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  FormField,
+  ProgressBar,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+  Toggle,
+  ToggleControl,
+  ToggleLabel,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -47,47 +53,51 @@ export const OptionCache: React.FC<OptionCacheProps> = ({
 
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>{t('cdn_shared_option_category_cache')}</OdsText>
+      <Text preset={TEXT_PRESET.heading3}>{t('cdn_shared_option_category_cache')}</Text>
       {hasOption(optionsData, CdnOptionType.DEVMODE) && (
         <Controller
           name="devmode"
           control={control}
           render={({ field }) => (
             <ToggleCard
+              name={field.name}
               title={t('cdn_shared_option_dev_mode_title')}
               info={t('cdn_shared_option_dev_mode_info')}
               toggleValue={!!field.value}
-              onToggle={field.onChange}
+              onToggle={(detail) => field.onChange(detail.checked)}
             />
           )}
         />
       )}
       <div className=" flex flex-col space-y-5">
-        <OdsText preset={ODS_TEXT_PRESET.heading4}>
-          {t('cdn_shared_option_advanced_flush_title')}
-        </OdsText>
-        <OdsText>
+        <Text preset={TEXT_PRESET.heading4}>{t('cdn_shared_option_advanced_flush_title')}</Text>
+        <Text>
           {t(
             `cdn_shared_option_advanced_flush_info${
               advancedPurge ? '' : '_for_basic_and_security'
             }`,
           )}
-        </OdsText>
-        <OdsFormField className="flex space-x-4">
-          <OdsToggle
-            key="advanced-flush-toggle"
-            defaultChecked={false}
+        </Text>
+        <FormField className="flex space-x-4">
+          <Toggle
+            id="advanced-flush-toggle"
+            key="advanced-flush-toggle-false"
+            checked={false}
             name="advanced-flush"
-            onClick={() => {
+            onCheckedChange={() => {
               navigate(
                 urls.advancedFlushCdn
                   .replace(subRoutes.serviceName, serviceName)
                   .replace(subRoutes.domain, domain),
               );
             }}
-          />
-          <OdsText>{t(`${NAMESPACES.SERVICE}:service_state_disabled`)}</OdsText>
-        </OdsFormField>
+          >
+            <ToggleControl />
+            <ToggleLabel>
+              <Text>{t(`${NAMESPACES.SERVICE}:service_state_disabled`)}</Text>
+            </ToggleLabel>
+          </Toggle>
+        </FormField>
       </div>
       {hasOption(optionsData, CdnOptionType.QUERYSTRING) && (
         <Controller
@@ -95,15 +105,16 @@ export const OptionCache: React.FC<OptionCacheProps> = ({
           control={control}
           render={({ field }) => (
             <ToggleCard
+              name={field.name}
               title={t('cdn_shared_option_query_string_title')}
               info={t('cdn_shared_option_query_string_info')}
               toggleValue={!!field.value}
-              onToggle={field.onChange}
+              onToggle={(detail) => field.onChange(detail.checked)}
             >
               <div className="flex flex-col ml-6">
-                <OdsText>{t('cdn_shared_option_query_string_sort_ignored')}</OdsText>
-                <OdsText>{t('cdn_shared_option_query_string_sort_true')}</OdsText>
-                <OdsText>{t('cdn_shared_option_query_string_sort_false')}</OdsText>
+                <Text>{t('cdn_shared_option_query_string_sort_ignored')}</Text>
+                <Text>{t('cdn_shared_option_query_string_sort_true')}</Text>
+                <Text>{t('cdn_shared_option_query_string_sort_false')}</Text>
               </div>
             </ToggleCard>
           )}
@@ -114,47 +125,36 @@ export const OptionCache: React.FC<OptionCacheProps> = ({
           name="mobileRedirectType"
           control={control}
           render={({ field }) => (
-            <OdsSelect
+            <Select
               className="w-2/6"
               name="mobileRedirectType"
-              value={field.value}
-              onOdsChange={(e) => field.onChange(e.target.value)}
+              value={field.value ? [field.value] : []}
+              onValueChange={(detail) => field.onChange(detail.value)}
+              items={[
+                {
+                  label: t('cdn_shared_option_query_string_list_sorted'),
+                  value: CdnQueryParameters.SORTED,
+                },
+                {
+                  label: t('cdn_shared_option_query_string_list_ignored'),
+                  value: CdnQueryParameters.IGNORED,
+                },
+              ]}
             >
-              <option key="list_sorted" value={CdnQueryParameters.SORTED}>
-                {t('cdn_shared_option_query_string_list_sorted')}
-              </option>
-              <option key="list_ignored" value={CdnQueryParameters.IGNORED}>
-                {t('cdn_shared_option_query_string_list_ignored')}
-              </option>
-            </OdsSelect>
-          )}
-        />
-      )}
-      {hasOption(optionsData, CdnOptionType.PREWARM) && (
-        <Controller
-          name="prewarm"
-          control={control}
-          render={({ field }) => (
-            <ToggleCard
-              title={t('cdn_shared_option_prewarm_title')}
-              info={t('cdn_shared_option_prewarm_info')}
-              toggleValue={!!field.value}
-              onToggle={field.onChange}
-            />
+              <SelectControl />
+              <SelectContent />
+            </Select>
           )}
         />
       )}
       {controlValues?.prewarm && (
         <>
-          <OdsText preset={ODS_TEXT_PRESET.heading6}>
-            {t('cdn_shared_option_prewarm_quota')}
-          </OdsText>
-          <OdsText>{getQuotaUsage(optionsData)}</OdsText>
-          <OdsProgressBar className="w-80" value={getPrewarmQuotaPercentage(optionsData)} />
-          <OdsButton
-            label={t('cdn_shared_option_prewarm_btn_edit_urls')}
-            variant={ODS_BUTTON_VARIANT.default}
-            color={ODS_BUTTON_COLOR.primary}
+          <Text preset={TEXT_PRESET.heading6}>{t('cdn_shared_option_prewarm_quota')}</Text>
+          <Text>{getQuotaUsage(optionsData)}</Text>
+          <ProgressBar className="w-80" value={getPrewarmQuotaPercentage(optionsData)} />
+          <Button
+            variant={BUTTON_VARIANT.default}
+            color={BUTTON_COLOR.primary}
             onClick={() =>
               navigate(
                 urls.cdnEditUrls
@@ -162,7 +162,9 @@ export const OptionCache: React.FC<OptionCacheProps> = ({
                   .replace(subRoutes.domain, domain),
               )
             }
-          />
+          >
+            {t('cdn_shared_option_prewarm_btn_edit_urls')}
+          </Button>
         </>
       )}
     </>

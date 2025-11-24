@@ -2,12 +2,7 @@ import { Outlet, useParams, useResolvedPath } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  BaseLayout,
-  ChangelogButton,
-  GuideButton,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
+import { BaseLayout, ChangelogMenu, Notifications } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import TabsPanel, {
@@ -19,15 +14,12 @@ import { urls } from '@/routes/routes.constants';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { GENERAL_INFORMATION, TASKS } from '@/utils/tracking.constants';
 
-import { useGuideItems } from './ManagedWordPressResource.constants';
-
 export default function ManagedWordpressResourcePage() {
   const { t } = useTranslation(['common', 'dashboard']);
   const { serviceName } = useParams<{ serviceName: string }>();
   const resolvedPath = useResolvedPath('');
   const basePath = resolvedPath?.pathname ?? '/';
   const isOverridedPage = useOverridePage();
-  const guideItems = useGuideItems(t);
 
   const tabsList: TabItemProps[] = [
     {
@@ -52,8 +44,7 @@ export default function ManagedWordpressResourcePage() {
       header={
         !isOverridedPage && {
           title: serviceName,
-          headerButton: <GuideButton items={guideItems} />,
-          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+          changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
         }
       }
       message={<Notifications />}

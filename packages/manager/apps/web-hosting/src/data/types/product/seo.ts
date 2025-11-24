@@ -13,7 +13,7 @@ export type LocalSeoType = {
   address: string;
   country: SeoCountry;
   creationDate: string;
-  id: number;
+  id: string;
   lastUpdate: string;
   name: string;
   offer: SeoOffer;
@@ -24,7 +24,7 @@ export type LocalSeoType = {
 export type LocalSeoAccount = {
   creationDate: string;
   email: string;
-  id: number;
+  id: string;
   lastUpdate: string;
   status: SeoStatus;
   taskId: number;

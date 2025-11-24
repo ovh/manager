@@ -2,11 +2,10 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 
 import { SHARED_CDN_OPTIONS } from '@/constants';
 import { useUpdateCdnOptions } from '@/data/hooks/cdn/useCdn';
@@ -103,130 +102,134 @@ export default function CdnConfirmationModal() {
   return (
     <Modal
       heading={t('cdn_shared_modal_confirm_title')}
-      onDismiss={onClose}
-      isOpen
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={onClose}
-      onPrimaryButtonClick={onConfirm}
+      onOpenChange={onClose}
+      open
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: onConfirm,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: onClose,
+      }}
     >
       <div className="flex flex-col space-y-2">
-        <OdsText>{t('cdn_shared_modal_confirm_info')}</OdsText>
+        <Text>{t('cdn_shared_modal_confirm_info')}</Text>
 
-        <OdsText className="pt-5">{t('cdn_shared_modal_confirm_perf')}</OdsText>
+        <Text className="pt-5">{t('cdn_shared_modal_confirm_perf')}</Text>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_always_online_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_http_https_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_brotli_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.brotli && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_http_geolocation_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.geoHeaders && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_prefetch_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.prefetch && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_mobile_redirect_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.mobileRedirect && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
 
-        <OdsText className="pt-5">{t('cdn_shared_modal_confirm_cache')}</OdsText>
+        <Text className="pt-5">{t('cdn_shared_modal_confirm_cache')}</Text>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_dev_mode_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.devmode && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_query_string_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.querystring && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             {t('cdn_shared_option_prewarm_title')}
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.prewarm && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
 
-        <OdsText className="pt-5">{t('cdn_shared_modal_confirm_security')}</OdsText>
+        <Text className="pt-5">{t('cdn_shared_modal_confirm_security')}</Text>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             Cross-Origin Resource Sharing (CORS)
-          </OdsText>
-          <OdsText className="w-1/3 text-right">{modifiedOption?.cors}</OdsText>
+          </Text>
+          <Text className="w-1/3 text-right">{modifiedOption?.cors}</Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             HTTPS-Redirect
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.httpsRedirect && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             HTTP Strict Transport Security (HSTS)
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.hsts && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             Mixed-Content
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.mixedContent && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
         <div>
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-2/3">
+          <Text preset={TEXT_PRESET.heading6} className="w-2/3">
             Web Application Firewall (WAF)
-          </OdsText>
-          <OdsText className="w-1/3 text-right">
+          </Text>
+          <Text className="w-1/3 text-right">
             {modifiedOption?.waf && t(`${NAMESPACES.SERVICE}:service_state_enabled`)}
-          </OdsText>
+          </Text>
         </div>
       </div>
     </Modal>
