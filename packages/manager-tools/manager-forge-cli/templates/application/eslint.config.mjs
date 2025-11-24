@@ -25,9 +25,17 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
-    files: ['**/**.spec.**'],
+    files: ['**/__tests__/**/*.{js,jsx,ts,tsx}'],
     rules: {
+      ...Object.fromEntries(
+        Object.keys({ ...complexityJsxTsxConfig.rules, ...complexityTsJsConfig.rules }).map(
+          (rule) => [rule, 'off'],
+        ),
+      ),
       'react/no-multi-comp': 'off',
     },
+  },
+  {
+    ignores: ['**/*.md', '**/coverage/**', '**/dist/**', '**/*.d.ts'],
   },
 ];

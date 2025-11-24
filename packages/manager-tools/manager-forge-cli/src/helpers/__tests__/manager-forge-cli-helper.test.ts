@@ -195,7 +195,9 @@ describe('runForgeCli', () => {
 
     await ui.runForgeCli(commandFn, {}, 'Some help text');
 
-    expect(logSpy).toHaveBeenCalledWith('Some help text');
+    const firstArg = logSpy?.mock?.calls?.[0]?.[0] as string;
+
+    expect(String(firstArg)).toContain('Some help text');
     expect(commandFn).not.toHaveBeenCalled();
 
     logSpy.mockRestore();

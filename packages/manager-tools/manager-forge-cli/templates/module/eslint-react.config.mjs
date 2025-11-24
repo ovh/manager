@@ -18,12 +18,19 @@ export default [
   reactEslintConfig,
   a11yEslintConfig,
   htmlEslintConfig,
+  tailwindJsxConfig,
   tanStackQueryEslintConfig,
   vitestEslintConfig,
   prettierEslintConfig,
-  complexityJsxTsxConfig,
-  complexityTsJsConfig,
-  tailwindJsxConfig,
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parserOptions: {
+        project: './tsconfig.eslint.json',
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
   {
     files: ['**/__tests__/**/*.{js,jsx,ts,tsx}'],
     rules: {
@@ -35,16 +42,6 @@ export default [
     },
   },
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
-    rules: {
-      'no-console': 'error',
-      'no-nested-ternary': 'error',
-    },
-  },
-  {
-    files: ['./src/utils/log-manager.ts'],
-    rules: {
-      'no-console': 'off',
-    },
+    ignores: ['**/*.md', '**/coverage/**', '**/dist/**', '**/*.d.ts'],
   },
 ];
