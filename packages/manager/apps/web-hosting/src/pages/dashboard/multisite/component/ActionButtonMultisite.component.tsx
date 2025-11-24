@@ -10,6 +10,7 @@ import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 
 import { useWebHostingWebsite } from '@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite';
+import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import {
   WebHostingWebsiteDomainType,
   WebHostingWebsiteType,
@@ -54,6 +55,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     data?: WebHostingWebsiteType[];
     isLoading: boolean;
   };
+  const { data: service } = useGetHostingService(serviceName);
   const actionCondition = (
     condition: boolean,
     action: Omit<ActionMenuItemProps, 'id'> & { id: number },
@@ -172,7 +174,8 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     } else {
       const currentDomain = domains?.find((d) => d.id === domainId);
       const canAccesscdn = currentDomain?.currentState?.cdn.status !== ServiceStatus.NONE;
-      const canActivateCdn = currentDomain?.currentState?.cdn.status === ServiceStatus.NONE;
+      const canActivateCdn =
+        currentDomain?.currentState?.cdn.status === ServiceStatus.NONE && service?.hasCdn == true;
 
       const domainActions: ActionMenuItemProps[] = [
         {
@@ -257,6 +260,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     domain,
     associateGitLink,
     configureGitLink,
+    service,
   ]);
 
   return (

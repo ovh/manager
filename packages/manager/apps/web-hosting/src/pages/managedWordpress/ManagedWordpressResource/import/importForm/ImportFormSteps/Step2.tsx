@@ -12,12 +12,14 @@ import {
   MESSAGE_COLOR,
   Message,
   Radio,
+  RadioControl,
   RadioGroup,
+  RadioLabel,
   TEXT_PRESET,
   Text,
 } from '@ovhcloud/ods-react';
 
-import { CheckboxProps, Tile } from '@ovh-ux/muk';
+import { Tile } from '@ovh-ux/muk';
 
 import { Step2FormValues } from './types';
 
@@ -51,7 +53,7 @@ type Step2Props = {
 };
 
 export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSubmit }: Step2Props) {
-  const { control, watch } = step2Form;
+  const { control, watch, setValue, trigger } = step2Form;
   const wholeDatabase = watch('wholeDatabase');
   const themes = watch('themes');
   const hasActiveTheme = themes?.length > 0 ? themes.some((t) => t.active) : true;
@@ -85,20 +87,27 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
               <div className="flex flex-row mt-2">
                 <Checkbox
                   checked={watch('plugins').every((p) => p.enabled)}
-                  onCheckedChange={(detail: CheckboxProps) =>
-                    step2Form.setValue(
+                  onCheckedChange={() => {
+                    const allEnabled = watch('plugins').every((p) => p.enabled);
+                    setValue(
                       'plugins',
                       watch('plugins').map((p) => ({
                         ...p,
-                        enabled: Boolean(detail.checked),
+                        enabled: !allEnabled,
                       })),
-                    )
-                  }
+                      { shouldValidate: true },
+                    );
+                    void trigger('plugins');
+                  }}
                   data-testid="all_plugins"
                 >
                   <CheckboxControl />
                   <CheckboxLabel>
-                    {t('managedWordpress:web_hosting_managed_wordpress_import_select_plugins_all')}
+                    <Text>
+                      {t(
+                        'managedWordpress:web_hosting_managed_wordpress_import_select_plugins_all',
+                      )}
+                    </Text>
                   </CheckboxLabel>
                 </Checkbox>
               </div>
@@ -128,11 +137,13 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                             id={plugin.name}
                             checked={value}
                             onBlur={onBlur}
-                            onChange={onChange}
-                          />
-                          <label htmlFor={plugin.name} className="ml-4 cursor-pointer">
-                            <Text>{plugin.name}</Text>
-                          </label>
+                            onCheckedChange={(detail) => onChange(detail.checked)}
+                          >
+                            <CheckboxControl />
+                            <CheckboxLabel>
+                              <Text>{plugin.name}</Text>
+                            </CheckboxLabel>
+                          </Checkbox>
                         </div>
                       )}
                     />
@@ -160,19 +171,24 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
               <div className="flex flex-row mt-2">
                 <Checkbox
                   checked={watch('themes').every((p) => p.active)}
-                  onCheckedChange={(detail: CheckboxProps) =>
-                    step2Form.setValue(
+                  onCheckedChange={() => {
+                    const allActive = watch('themes').every((p) => p.active);
+                    setValue(
                       'themes',
                       watch('themes').map((p) => ({
                         ...p,
-                        active: Boolean(detail.checked),
+                        active: !allActive,
                       })),
-                    )
-                  }
+                      { shouldValidate: true },
+                    );
+                    void trigger('themes');
+                  }}
                 >
                   <CheckboxControl />
                   <CheckboxLabel>
-                    {t('managedWordpress:web_hosting_managed_wordpress_import_select_themes_all')}
+                    <Text preset={TEXT_PRESET.span}>
+                      {t('managedWordpress:web_hosting_managed_wordpress_import_select_themes_all')}
+                    </Text>
                   </CheckboxLabel>
                 </Checkbox>
               </div>
@@ -209,11 +225,13 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                             id={theme.name}
                             checked={value}
                             onBlur={onBlur}
-                            onChange={onChange}
-                          />
-                          <label htmlFor={theme.name} className="ml-4 cursor-pointer">
-                            <Text>{theme.name}</Text>
-                          </label>
+                            onCheckedChange={(detail) => onChange(detail.checked)}
+                          >
+                            <CheckboxControl />
+                            <CheckboxLabel>
+                              <Text>{theme.name}</Text>
+                            </CheckboxLabel>
+                          </Checkbox>
                         </div>
                       )}
                     />
@@ -242,12 +260,14 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       data-testid="import-media"
                       checked={value}
                       onBlur={onBlur}
-                      onChange={onChange}
+                      onCheckedChange={(detail) => onChange(detail.checked)}
                       name={name}
-                    />
-                    <label htmlFor="import-media" className="ml-4 cursor-pointer">
-                      <Text>{t('common:web_hosting_common_media_all')}</Text>
-                    </label>
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text>{t('common:web_hosting_common_media_all')}</Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -271,73 +291,65 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                 )}
               </Text>
             </div>
+            <Controller
+              name="wholeDatabase"
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <RadioGroup
+                  value={value ? 'true' : 'false'}
+                  onValueChange={(detail) => {
+                    onChange(detail.value === 'true');
+                    onBlur();
+                  }}
+                >
+                  <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+                    <Tile.Root
+                      title={t(
+                        'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_select',
+                      )}
+                      color={CARD_COLOR.neutral}
+                    >
+                      <Tile.Item.Root>
+                        <Tile.Item.Description>
+                          <Radio id="import-all-database" value="true">
+                            <RadioControl />
+                            <RadioLabel>
+                              <Text preset={TEXT_PRESET.span}>
+                                {t(
+                                  'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_description',
+                                )}
+                              </Text>
+                            </RadioLabel>
+                          </Radio>
+                        </Tile.Item.Description>
+                      </Tile.Item.Root>
+                    </Tile.Root>
 
-            <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
-              <Tile.Root
-                title={t(
-                  'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_select',
-                )}
-                color={CARD_COLOR.neutral}
-              >
-                <Tile.Item.Root>
-                  <Tile.Item.Description>
-                    <Controller
-                      name="wholeDatabase"
-                      control={control}
-                      render={({ field: { onChange, onBlur, value } }) => (
-                        <RadioGroup>
-                          <Radio
-                            id="import-all-database"
-                            aria-checked={value}
-                            onBlur={onBlur}
-                            onChange={() => onChange(true)}
-                            value="true"
-                          />
-                        </RadioGroup>
+                    <Tile.Root
+                      title={t(
+                        'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_select',
                       )}
-                    />
-                    <Text preset={TEXT_PRESET.span}>
-                      {t(
-                        'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_description',
-                      )}
-                    </Text>
-                  </Tile.Item.Description>
-                </Tile.Item.Root>
-              </Tile.Root>
-
-              <Tile.Root
-                title={t(
-                  'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_select',
-                )}
-                color={CARD_COLOR.neutral}
-              >
-                <Tile.Item.Root>
-                  <Tile.Item.Description>
-                    <Controller
-                      name="wholeDatabase"
-                      control={control}
-                      render={({ field: { onChange, onBlur, value } }) => (
-                        <RadioGroup>
-                          <Radio
-                            id="import-database"
-                            value=""
-                            aria-checked={!value}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                          />
-                        </RadioGroup>
-                      )}
-                    />
-                    <Text preset={TEXT_PRESET.span}>
-                      {t(
-                        'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_description',
-                      )}
-                    </Text>
-                  </Tile.Item.Description>
-                </Tile.Item.Root>
-              </Tile.Root>
-            </div>
-
+                      color={CARD_COLOR.neutral}
+                    >
+                      <Tile.Item.Root>
+                        <Tile.Item.Description>
+                          <Radio id="import-database" value="false">
+                            <RadioControl />
+                            <RadioLabel>
+                              <Text preset={TEXT_PRESET.span}>
+                                {t(
+                                  'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_description',
+                                )}
+                              </Text>
+                            </RadioLabel>
+                          </Radio>
+                        </Tile.Item.Description>
+                      </Tile.Item.Root>
+                    </Tile.Root>
+                  </div>
+                </RadioGroup>
+              )}
+            />
             <Text preset={TEXT_PRESET.span}>
               {t(
                 'managedWordpress:web_hosting_managed_wordpress_import_select_category_description',
@@ -356,11 +368,13 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       checked={value}
                       disabled={wholeDatabase}
                       onBlur={onBlur}
-                      onChange={onChange}
-                    />
-                    <label htmlFor="import-posts" className="ml-4 cursor-pointer">
-                      <Text>{t('common:web_hosting_common_posts')}</Text>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text>{t('common:web_hosting_common_posts')}</Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -377,11 +391,13 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       checked={value}
                       disabled={wholeDatabase}
                       onBlur={onBlur}
-                      onChange={onChange}
-                    />
-                    <label htmlFor="import-pages" className="ml-4 cursor-pointer">
-                      <Text>{t('common:web_hosting_common_pages')}</Text>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text>{t('common:web_hosting_common_pages')}</Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -398,11 +414,13 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       checked={value}
                       disabled={wholeDatabase}
                       onBlur={onBlur}
-                      onChange={onChange}
-                    />
-                    <label htmlFor="import-comments" className="ml-4 cursor-pointer">
-                      <Text>{t('common:web_hosting_common_comments')}</Text>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text>{t('common:web_hosting_common_comments')}</Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -419,11 +437,13 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       checked={value}
                       disabled={wholeDatabase}
                       onBlur={onBlur}
-                      onChange={onChange}
-                    />
-                    <label htmlFor="import-tags" className="ml-4 cursor-pointer">
-                      <Text>{t('common:web_hosting_common_tags')}</Text>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text>{t('common:web_hosting_common_tags')}</Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -440,11 +460,13 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       checked={value}
                       disabled={wholeDatabase}
                       onBlur={onBlur}
-                      onChange={onChange}
-                    />
-                    <label htmlFor="import-users" className="ml-4 cursor-pointer">
-                      <Text>{t('common:web_hosting_common_users')}</Text>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text>{t('common:web_hosting_common_users')}</Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
