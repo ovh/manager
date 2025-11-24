@@ -48,9 +48,7 @@ export const ConfirmationModal = ({
         )}
 
         <Text preset={TEXT_PRESET.heading4}>{title}</Text>
-        <p>
-          <Text preset={TEXT_PRESET.paragraph}>{message}</Text>
-        </p>
+        <Text preset={TEXT_PRESET.paragraph}>{message}</Text>
 
         {isLoading && (
           <div data-testid="spinner" className="flex justify-center my-5">
