@@ -1,10 +1,10 @@
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
-import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
+import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { clearPendingOrder, registerPendingOrder } from '@/common/store/pendingOkmsOrder';
 
 import { pollOnNewOkms } from './pollOnNewOkms';

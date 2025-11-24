@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useOrderCatalogOkms } from '@key-management-service/data/hooks/useOrderCatalogOkms';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -8,6 +7,7 @@ import { OdsCard, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { IntervalUnitType, OvhSubsidiary, Price, Subtitle } from '@ovh-ux/manager-react-components';
 
+import { useOrderCatalogOkms } from '@/common/data/hooks/useOrderCatalogOkms';
 import { useShellContext } from '@/common/hooks/useShellContext';
 
 export const ProtectionLevelSection: React.FC = () => {
