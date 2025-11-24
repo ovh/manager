@@ -2,12 +2,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Message, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { LinkType, Links, Notifications } from '@ovh-ux/manager-react-components';
+import { Link, LinkType, Notifications } from '@ovh-ux/muk';
 
 import { useManagedCmsLatestPhpVersion } from '@/data/hooks/managedWordpress/managedWordpressReferenceSupportedPHPVersions/managedWordpressReferenceSupportedPHPVersions';
 
@@ -21,23 +19,20 @@ export default function ImportPage() {
   const goBackUrl = () => navigate(-1);
   return (
     <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
-      <OdsText preset={ODS_TEXT_PRESET.heading1} className="mb-4">
+      <Text preset={TEXT_PRESET.heading1} className="mb-4">
         {t('import_website')}
-      </OdsText>
-      <Links
-        type={LinkType.back}
-        onClickReturn={goBackUrl}
-        label={t('web_hosting_common_sites_backpage')}
-        className="mb-4"
-      />
+      </Text>
+      <Link type={LinkType.back} onClick={goBackUrl} className="mb-4">
+        {t('web_hosting_common_sites_backpage')}
+      </Link>
       <Notifications />
-      <OdsMessage isDismissible={false} className="w-full">
+      <Message dismissible={false} className="w-full">
         {t('managedWordpress:web_hosting_managed_wordpress_import_last_php_version', {
           version: lastVersionPhp,
         })}
-      </OdsMessage>
+      </Message>
 
-      <OdsText preset={ODS_TEXT_PRESET.span}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
+      <Text preset={TEXT_PRESET.span}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
       <ImportForm />
     </div>
   );

@@ -1,5 +1,5 @@
-import { TaskStatus } from '../../status';
-import { ResourceStatus, Status } from '../ssl';
+import { ResourceStatus, TaskStatus } from '../../status';
+import { Status } from '../ssl';
 import { CmsType } from './cms';
 
 export type ManagedWordpressWebsiteDetails = {

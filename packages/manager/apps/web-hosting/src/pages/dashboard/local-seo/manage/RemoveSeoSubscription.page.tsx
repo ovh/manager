@@ -4,11 +4,10 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { useHostingDeleteLocation } from '@/data/hooks/webHostingLocalSeo/useWebHostingLocalSeo';
 import { subRoutes, urls } from '@/routes/routes.constants';
@@ -51,35 +50,39 @@ export default function RemoveSeoSubscriptionModal() {
 
   return (
     <Modal
-      onDismiss={closeModal}
-      isOpen
+      onOpenChange={closeModal}
+      open
       heading={t('hosting_tab_LOCAL_SEO_delete')}
-      primaryLabel={t('hosting_tab_LOCAL_SEO_delete')}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onPrimaryButtonClick={onConfirm}
-      onSecondaryButtonClick={closeModal}
+      primaryButton={{
+        label: t(t('hosting_tab_LOCAL_SEO_delete')),
+        onClick: onConfirm,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: closeModal,
+      }}
     >
       <div className="flex flex-col space-y-8 mb-10 mt-5">
-        <OdsText>{t('hosting_tab_LOCAL_SEO_delete_confirm')}</OdsText>
+        <Text>{t('hosting_tab_LOCAL_SEO_delete_confirm')}</Text>
         <div className="flex">
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
+          <Text preset={TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
             {t('hosting_tab_LOCAL_SEO_table_header_name')}
-          </OdsText>
-          <OdsText className="w-1/2">{companyName}</OdsText>
+          </Text>
+          <Text className="w-1/2">{companyName}</Text>
         </div>
         <div className="flex">
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
+          <Text preset={TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
             {t('hosting_tab_LOCAL_SEO_table_header_address')}
-          </OdsText>
-          <OdsText className="w-1/2">
+          </Text>
+          <Text className="w-1/2">
             {address || t('hosting_tab_LOCAL_SEO_table_value_undefined')}
-          </OdsText>
+          </Text>
         </div>
         <div className="flex">
-          <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
+          <Text preset={TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
             {t('hosting_tab_LOCAL_SEO_table_header_email')}
-          </OdsText>
-          <OdsText className="w-1/2">{email}</OdsText>
+          </Text>
+          <Text className="w-1/2">{email}</Text>
         </div>
       </div>
     </Modal>

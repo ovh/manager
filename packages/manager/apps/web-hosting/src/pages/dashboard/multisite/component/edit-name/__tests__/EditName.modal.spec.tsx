@@ -1,5 +1,3 @@
-import React from 'react';
-
 import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
 import { render } from '@/utils/test.provider';
 

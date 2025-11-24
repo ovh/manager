@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { Datagrid, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { Datagrid, useDataApi } from '@ovh-ux/muk';
 
 import Loading from '@/components/loading/Loading.component';
+import { TaskDetailsType } from '@/data/types/product/webHosting';
 import useDatagridColumn from '@/hooks/task/useDatagridColumn';
 
 export default function Multisite() {
@@ -18,18 +18,17 @@ export default function Multisite() {
 
   const columns = useDatagridColumn();
 
-  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useResourcesIcebergV6({
+  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useDataApi({
+    version: 'v6',
     route: `/hosting/web/${serviceName}/tasks`,
-    queryKey: ['hosting', 'web', serviceName, 'tasks'],
+    cacheKey: ['hosting', 'web', serviceName, 'tasks'],
   });
   return (
     <React.Suspense fallback={<Loading />}>
       <div className="flex flex-wrap justify-end mb-6">
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          color={ODS_BUTTON_COLOR.primary}
-          label=""
-          icon={ODS_ICON_NAME.refresh}
+        <Button
+          variant={BUTTON_VARIANT.outline}
+          color={BUTTON_COLOR.primary}
           onClick={() => {
             queryClient
               .invalidateQueries({
@@ -37,18 +36,17 @@ export default function Multisite() {
               })
               .catch(console.error);
           }}
-        />
+        >
+          <Icon name={ICON_NAME.refresh}></Icon>
+        </Button>
       </div>
-      {columns && (
-        <Datagrid
-          columns={columns}
-          items={flattenData || []}
-          totalItems={flattenData?.length || 0}
-          hasNextPage={hasNextPage && !isLoading}
-          onFetchNextPage={fetchNextPage}
-          isLoading={isLoading}
-        />
-      )}
+      <Datagrid
+        columns={flattenData ? columns : []}
+        data={flattenData?.map((item) => item as TaskDetailsType) || []}
+        hasNextPage={hasNextPage && !isLoading}
+        onFetchNextPage={void fetchNextPage}
+        isLoading={isLoading}
+      />
     </React.Suspense>
   );
 }

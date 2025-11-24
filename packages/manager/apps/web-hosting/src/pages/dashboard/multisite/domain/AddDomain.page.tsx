@@ -7,17 +7,19 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsButton,
-  OdsDivider,
-  OdsIcon,
-  OdsLink,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  Divider,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
-import { LinkType, Links, useNotifications } from '@ovh-ux/manager-react-components';
+import { Link, LinkType, useNotifications } from '@ovh-ux/muk';
 
 import { usePostWebHostingWebsites } from '@/data/hooks/webHosting/webHostingWebsiteDomain/webHostingWebsiteDomain';
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
@@ -60,11 +62,10 @@ export default function AddWDomainPage() {
     () => {
       addSuccess(
         <>
-          <OdsText className="mr-3">{t('multisite:multisite_add_website_success')}</OdsText>
-          <OdsLink
-            href={`#/${serviceName}/task`}
-            label={t('multisite:multisite_add_website_in_progress')}
-          />
+          <Text className="mr-3">{t('multisite:multisite_add_website_success')}</Text>
+          <Link href={`#/${serviceName}/task`}>
+            {t('multisite:multisite_add_website_in_progress')}
+          </Link>
         </>,
         true,
       );
@@ -116,22 +117,20 @@ export default function AddWDomainPage() {
 
   return (
     <form className="flex flex-col space-y-6">
-      <Links
-        type={LinkType.back}
-        onClickReturn={() => navigate(-1)}
-        label={t('common:web_hosting_common_sites_backlink')}
-        className="mb-4"
-      />
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
-        {t('multisite:multisite_add_domain_title')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Link type={LinkType.back} onClick={() => navigate(-1)} className="mb-4">
+        {t('common:web_hosting_common_sites_backlink')}
+      </Link>
+      <Text preset={TEXT_PRESET.heading3}>{t('multisite:multisite_add_domain_title')}</Text>
+      <Text preset={TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_domain_configuration')}
-        <OdsIcon id="cdn-tooltip" name={ODS_ICON_NAME.circleInfo} className="cursor-pointer ml-4" />
-        <OdsTooltip triggerId="cdn-tooltip">
-          <OdsText>{t('multisite:multisite_add_website_domain_info')}</OdsText>
-        </OdsTooltip>
-      </OdsText>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Icon id="cdn-tooltip" name={ICON_NAME.circleInfo} className="cursor-pointer ml-4" />
+          </TooltipTrigger>
+          <TooltipContent>{t('multisite:multisite_add_website_domain_info')}</TooltipContent>
+        </Tooltip>
+      </Text>
       <DomainAssociation
         control={control}
         controlValues={controlValues}
@@ -142,7 +141,7 @@ export default function AddWDomainPage() {
       />
       {step >= 2 && (
         <>
-          <OdsDivider />
+          <Divider />
           <DomainConfiguration
             control={control}
             controlValues={controlValues}
@@ -155,19 +154,15 @@ export default function AddWDomainPage() {
       {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
         <>
           <DomainManagement controlValues={controlValues} />
-          <OdsButton
-            label={t('common:web_hosting_common_action_continue')}
-            onClick={() => void handleSubmit(onSubmit)()}
-            isDisabled={!controlValues.fqdn}
-          />
+          <Button onClick={() => void handleSubmit(onSubmit)()} disabled={!controlValues.fqdn}>
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
         </>
       )}
       {controlValues.associationType === AssociationType.EXISTING && step >= 3 && (
-        <OdsButton
-          label={t('common:web_hosting_common_action_continue')}
-          onClick={() => void handleSubmit(onSubmit)()}
-          isDisabled={!controlValues.fqdn}
-        />
+        <Button onClick={() => void handleSubmit(onSubmit)()} disabled={!controlValues.fqdn}>
+          {t('common:web_hosting_common_action_continue')}
+        </Button>
       )}
     </form>
   );
