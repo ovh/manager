@@ -5,24 +5,30 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_CARD_COLOR,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsBadge,
-  OdsButton,
-  OdsCard,
-  OdsCheckbox,
-  OdsDivider,
-  OdsInput,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_VARIANT,
+  Button,
+  CARD_COLOR,
+  Card,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  Divider,
+  INPUT_TYPE,
+  Input,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  RadioValueChangeDetail,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Badge } from '@ovh-ux/muk';
 
 import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
@@ -52,194 +58,201 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
         control={control}
         render={({ field }) => (
           <div className="flex flex-col">
-            <OdsText>{t('dashboard:hosting_multisite_domain_configuration_home')}</OdsText>
+            <Text>{t('dashboard:hosting_multisite_domain_configuration_home')}</Text>
             <div className="flex items-center space-x-2 w-1/3">
-              <OdsButton
-                size="sm"
-                variant={ODS_BUTTON_VARIANT.outline}
-                label="./"
-                isDisabled={true}
-              />
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              <Button size="sm" variant={BUTTON_VARIANT.outline} disabled={true}>
+                ./
+              </Button>
+              <Input
+                type={INPUT_TYPE.text}
                 className="w-full"
                 name="website-path"
-                isDisabled={isAddingDomain}
+                disabled={isAddingDomain}
                 value={field.value}
-                onOdsChange={(e) => field.onChange(e.target.value)}
+                onChange={(e) => field.onChange(e.target.value)}
               />
             </div>
 
-            <OdsText preset={ODS_TEXT_PRESET.caption}>
+            <Text preset={TEXT_PRESET.caption}>
               {t('multisite:multisite_add_website_configure_domain_advanced_path_message')}
-            </OdsText>
+            </Text>
           </div>
         )}
       />
-      <OdsDivider />
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Divider />
+      <Text preset={TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_advanced_options_title')}
-      </OdsText>
+      </Text>
       <div className="flex flex-row space-x-4">
-        <OdsCard
+        <Card
           className="w-1/3 p-4"
-          color={controlValues.ip ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
+          color={controlValues.ip ? CARD_COLOR.primary : CARD_COLOR.neutral}
         >
           <div className="flex flex-row">
             <Controller
               name="ip"
               control={control}
               render={({ field }) => (
-                <OdsCheckbox
+                <Checkbox
                   name="country-ip"
-                  isChecked={field.value}
-                  onOdsChange={() => field.onChange(!field.value)}
-                />
+                  checked={field.value}
+                  onCheckedChange={() => field.onChange(!field.value)}
+                >
+                  <CheckboxControl />
+                  <CheckboxLabel>
+                    <Text preset={TEXT_PRESET.heading6}>
+                      {t('dashboard:hosting_multisite_domain_configuration_countriesIp')}
+                    </Text>
+                  </CheckboxLabel>
+                </Checkbox>
               )}
             />
-            <label className="ml-4 cursor-pointer">
-              <OdsText preset={ODS_TEXT_PRESET.heading6}>
-                {t('dashboard:hosting_multisite_domain_configuration_countriesIp')}
-              </OdsText>
-            </label>
           </div>
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 mt-4 mb-5">
+          <Text preset={TEXT_PRESET.caption} className="ml-8 mt-4 mb-5">
             {t('multisite:multisite_add_website_advanced_options_ip')}
-          </OdsText>
+          </Text>
           <Controller
             name="selectedIp"
             control={control}
             render={({ field }) => (
-              <OdsSelect
+              <Select
                 name="ip"
-                value={field.value}
-                onOdsChange={(e) => field.onChange(e.target.value)}
+                id="ip"
+                data-testid="ip"
+                value={field.value ? [field.value] : []}
+                items={hostingService?.data?.countriesIp?.map((item) => ({
+                  label: item.country,
+                  options: [
+                    {
+                      value: item.country,
+                      label: item.ip,
+                    },
+                  ],
+                }))}
+                onValueChange={(detail: { value?: string[] }) =>
+                  field.onChange(Array.isArray(detail.value) ? (detail.value[0] ?? '') : '')
+                }
               >
-                {hostingService?.data?.countriesIp?.map((item) => (
-                  <optgroup
-                    key={item.country}
-                    label={t(`${NAMESPACES.COUNTRIES}:country_${item.country}`)}
-                  >
-                    <option value={item.country}>{item.ip}</option>
-                  </optgroup>
-                ))}
-              </OdsSelect>
+                <SelectControl />
+                <SelectContent />
+              </Select>
             )}
           />
-        </OdsCard>
-        <OdsCard
+        </Card>
+        <Card
           className="w-1/3 p-4"
-          color={controlValues.firewall ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
+          color={controlValues.firewall ? CARD_COLOR.primary : CARD_COLOR.neutral}
         >
           <div className="flex flew-row">
             <Controller
               name="firewall"
               control={control}
               render={({ field }) => (
-                <OdsCheckbox
+                <Checkbox
                   name="firewall"
-                  isChecked={field.value}
-                  onOdsChange={() => field.onChange(!field.value)}
-                />
+                  checked={field.value}
+                  onCheckedChange={() => field.onChange(!field.value)}
+                >
+                  <CheckboxControl />
+                  <CheckboxLabel>
+                    <Text preset={TEXT_PRESET.heading6}>
+                      {t('dashboard:hosting_add_step3_firewall')}
+                    </Text>
+                  </CheckboxLabel>
+                </Checkbox>
               )}
             />
-            <label className="ml-4 cursor-pointer">
-              <OdsText preset={ODS_TEXT_PRESET.heading6}>
-                {t('dashboard:hosting_add_step3_firewall')}
-              </OdsText>
-            </label>
           </div>
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 mt-4">
+          <Text preset={TEXT_PRESET.caption} className="ml-8 mt-4">
             {t('multisite:multisite_add_website_advanced_options_firewall')}
-          </OdsText>
-        </OdsCard>
+          </Text>
+        </Card>
 
-        <OdsCard
+        <Card
           className="w-1/3 p-4"
-          color={controlValues.cdn ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
+          color={controlValues.cdn ? CARD_COLOR.primary : CARD_COLOR.neutral}
         >
           <div className="flex flew-row">
             <Controller
               name="cdn"
               control={control}
               render={({ field }) => (
-                <OdsCheckbox
+                <Checkbox
                   name="cdn"
-                  isChecked={field.value}
-                  onOdsChange={() => field.onChange(!field.value)}
-                />
+                  checked={field.value}
+                  onCheckedChange={() => field.onChange(!field.value)}
+                >
+                  <CheckboxControl />
+                  <CheckboxLabel>
+                    <Text preset={TEXT_PRESET.heading6}>
+                      {t('dashboard:hosting_multisite_domain_configuration_cdn')}
+                    </Text>
+                  </CheckboxLabel>
+                </Checkbox>
               )}
             />
-            <label className="ml-4 cursor-pointer">
-              <OdsText preset={ODS_TEXT_PRESET.heading6}>
-                {t('dashboard:hosting_multisite_domain_configuration_cdn')}
-              </OdsText>
-            </label>
           </div>
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 mt-4">
+          <Text preset={TEXT_PRESET.caption} className="ml-8 mt-4">
             {t('multisite:multisite_add_website_advanced_options_cdn')}
-          </OdsText>
-        </OdsCard>
+          </Text>
+        </Card>
       </div>
-      <OdsDivider />
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Divider />
+      <Text preset={TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_advanced_options_dns_title')}
-      </OdsText>
+      </Text>
       <Controller
         name="autoConfigureDns"
         control={control}
         render={({ field }) => (
-          <div className="flex flex-row space-x-4">
-            <OdsCard
-              className="w-1/2 p-4"
-              color={
-                controlValues.autoConfigureDns ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral
-              }
-            >
-              <div className="flex gap-4 items-center">
-                <OdsRadio
-                  name="auto-configuration"
-                  isChecked={field.value}
-                  onOdsChange={() => field.onChange(true)}
-                />
-                <label>
-                  <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-5">
-                    {t('multisite:multisite_add_website_advanced_options_dns_auto')}
-                  </OdsText>
-                  <OdsBadge
-                    label={t(
-                      'multisite:multisite_add_website_advanced_options_dns_auto_recommanded',
-                    )}
-                  />
-                </label>
-              </div>
-              <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
-                {t('multisite:multisite_add_website_advanced_options_dns_auto_text')}
-              </OdsText>
-            </OdsCard>
-            <OdsCard
-              className="w-1/2 p-4"
-              color={
-                !controlValues.autoConfigureDns ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral
-              }
-            >
-              <div className="flex gap-4 items-center">
-                <OdsRadio
-                  name="manual-configuration"
-                  isChecked={!field.value}
-                  onOdsChange={() => field.onChange(false)}
-                />
-                <label>
-                  <OdsText preset={ODS_TEXT_PRESET.heading6}>
-                    {t('multisite:multisite_add_website_advanced_options_dns_manual')}
-                  </OdsText>
-                </label>
-              </div>
-              <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
-                {t('multisite:multisite_add_website_advanced_options_dns_manual_text')}
-              </OdsText>
-            </OdsCard>
-          </div>
+          <RadioGroup
+            value={field.value ? 'auto' : 'manual'}
+            onValueChange={(detail: RadioValueChangeDetail) =>
+              field.onChange(detail.value === 'auto')
+            }
+          >
+            <div className="flex flex-row space-x-4">
+              <Card
+                className="w-1/2 p-4"
+                color={controlValues.autoConfigureDns ? CARD_COLOR.primary : CARD_COLOR.neutral}
+              >
+                <div className="flex gap-4 items-center">
+                  <Radio value="auto">
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.heading6} className="mr-5">
+                        {t('multisite:multisite_add_website_advanced_options_dns_auto')}
+                      </Text>
+                      <Badge>
+                        {t('multisite:multisite_add_website_advanced_options_dns_auto_recommanded')}
+                      </Badge>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                  {t('multisite:multisite_add_website_advanced_options_dns_auto_text')}
+                </Text>
+              </Card>
+              <Card
+                className="w-1/2 p-4"
+                color={!controlValues.autoConfigureDns ? CARD_COLOR.primary : CARD_COLOR.neutral}
+              >
+                <div className="flex gap-4 items-center">
+                  <Radio value="manual">
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_advanced_options_dns_manual')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                  {t('multisite:multisite_add_website_advanced_options_dns_manual_text')}
+                </Text>
+              </Card>
+            </div>
+          </RadioGroup>
         )}
       />
     </>

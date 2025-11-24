@@ -6,23 +6,21 @@ import punycode from 'punycode/punycode';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText, OdsToggle } from '@ovhcloud/ods-components/react';
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Toggle,
+  ToggleControl,
+  ToggleLabel,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
-import {
-  ActionMenu,
-  ActionMenuItem,
-  DataGridTextCell,
-  Datagrid,
-  DatagridColumn,
-  useResourcesIcebergV6,
-} from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps, Datagrid, DatagridColumn, useDataApi } from '@ovh-ux/muk';
 
 import Loading from '@/components/loading/Loading.component';
 import { useDeleteCdnOption, useUpdateCdnOption } from '@/data/hooks/cdn/useCdn';
@@ -41,11 +39,11 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
   const searchParams = buildURLSearchParams({
     name: punycode.toASCII(debouncedSearchInput),
   });
-  const { flattenData, hasNextPage, fetchNextPage, isLoading, filters } =
-    useResourcesIcebergV6<CdnOption>({
-      route: `/hosting/web/${serviceName}/cdn/domain/${domain}/option${searchParams}`,
-      queryKey: ['hosting', 'web', serviceName, 'cdn', 'domain', domain, 'option'],
-    });
+  const { flattenData, hasNextPage, fetchNextPage, isLoading, filters } = useDataApi<CdnOption>({
+    route: `/hosting/web/${serviceName}/cdn/domain/${domain}/option${searchParams}`,
+    cacheKey: ['hosting', 'web', serviceName, 'cdn', 'domain', domain, 'option'],
+    version: 'v6',
+  });
 
   const { updateCdnOption } = useUpdateCdnOption(serviceName, domain);
   const { deleteCdnOption } = useDeleteCdnOption(serviceName, domain);
@@ -55,7 +53,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     .sort((a, b) => a.config.priority - b.config.priority);
 
   const DatagridActionCell = (props: CdnOption) => {
-    const items: ActionMenuItem[] = [
+    const items: ActionMenuItemProps[] = [
       {
         id: 1,
         label: t('cdn_shared_option_cache_rule_table_items_option_set_rule'),
@@ -76,153 +74,171 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     ];
 
     return (
-      <DataGridTextCell>
-        <ActionMenu
-          id={props?.name}
-          items={items}
-          isCompact
-          variant={ODS_BUTTON_VARIANT.ghost}
-          icon={ODS_ICON_NAME.ellipsisVertical}
-        />
-      </DataGridTextCell>
+      <ActionMenu
+        id={props?.name}
+        items={items}
+        isCompact
+        variant={BUTTON_VARIANT.ghost}
+        icon={ICON_NAME.ellipsisVertical}
+      />
     );
   };
 
   const columns: DatagridColumn<CdnOption>[] = [
     {
       id: 'priority',
+      accessorFn: (row) => row?.config?.priority,
+      header: t('cdn_shared_option_cache_rule_table_header_order_by'),
       label: t('cdn_shared_option_cache_rule_table_header_order_by'),
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.Numeric,
-      cell: (row) => <DataGridTextCell>{row?.config?.priority}</DataGridTextCell>,
+      cell: ({ row }) => <div>{row?.original?.config?.priority}</div>,
     },
     {
       id: 'rule',
+      accessorFn: (row) => row?.name,
+      header: t('cdn_shared_option_cache_rule_table_header_rule_name'),
       label: t('cdn_shared_option_cache_rule_table_header_rule_name'),
       isSortable: true,
       isSearchable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
-      cell: (row) => <DataGridTextCell>{row.name}</DataGridTextCell>,
+      cell: ({ row }) => <div>{row?.original.name}</div>,
     },
     {
       id: 'type',
+      accessorFn: (row) => row?.config?.patternType,
+      header: t(`${NAMESPACES.DASHBOARD}:type`),
       label: t(`${NAMESPACES.DASHBOARD}:type`),
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
-      cell: (row) => (
-        <DataGridTextCell>
-          {t(`cdn_shared_option_cache_rule_table_items_type_${row.config?.patternType}`)}
-        </DataGridTextCell>
+      cell: ({ row }) => (
+        <div>
+          {t(`cdn_shared_option_cache_rule_table_items_type_${row?.original?.config?.patternType}`)}
+        </div>
       ),
     },
     {
       id: 'resource',
+      accessorFn: (row) => row?.pattern,
+      header: t('cdn_shared_option_cache_rule_table_header_resource'),
       label: t('cdn_shared_option_cache_rule_table_header_resource'),
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
-      cell: (row) => <DataGridTextCell>{row.pattern}</DataGridTextCell>,
+      cell: ({ row }) => <div>{row?.original?.pattern}</div>,
     },
     {
       id: 'time',
+      accessorFn: (row) => row?.config?.ttl,
+      header: t('cdn_shared_option_cache_rule_table_time_to_live'),
       label: t('cdn_shared_option_cache_rule_table_time_to_live'),
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.Numeric,
-      cell: (row) => {
-        const unitTime = convertToUnitTime(row?.config?.ttl, t);
-        return (
-          <DataGridTextCell>{`${unitTime?.timeValue} ${unitTime?.timeUnit}`}</DataGridTextCell>
-        );
+      cell: ({ row }) => {
+        const unitTime = convertToUnitTime(row?.original?.config?.ttl, t);
+        return <div>{`${unitTime?.timeValue} ${unitTime?.timeUnit}`}</div>;
       },
     },
     {
       id: 'status',
+      accessorFn: (row) => row?.enabled,
+      header: t(`${NAMESPACES.STATUS}:status`),
       label: t(`${NAMESPACES.STATUS}:status`),
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.Options,
-      cell: (row) => {
-        const { name, enabled, ...payload } = row;
+      cell: ({ row }) => {
+        const { name, enabled, ...payload } = row?.original;
         return (
-          <DataGridTextCell>
+          <div>
             <div className="flex items-center space-x-4">
-              <OdsToggle
+              <Toggle
+                id={name}
+                key={`${name}-${enabled}`}
                 name={name}
-                value={enabled}
-                onClick={() => {
+                checked={enabled}
+                onCheckedChange={(detail) => {
                   updateCdnOption({
                     option: name,
                     cdnOption: {
-                      enabled: !enabled,
+                      enabled: detail.checked,
                       ...payload,
                     },
                   });
                 }}
-              />
-              <OdsText>
-                {t(
-                  row.enabled
-                    ? t(`${NAMESPACES.SERVICE}:service_state_enabled`)
-                    : t(`${NAMESPACES.SERVICE}:service_state_disabled`),
-                )}
-              </OdsText>
+              >
+                <ToggleControl />
+                <ToggleLabel>
+                  <Text>
+                    {t(
+                      row?.original?.enabled
+                        ? t(`${NAMESPACES.SERVICE}:service_state_enabled`)
+                        : t(`${NAMESPACES.SERVICE}:service_state_disabled`),
+                    )}
+                  </Text>
+                </ToggleLabel>
+              </Toggle>
             </div>
-          </DataGridTextCell>
+          </div>
         );
       },
     },
     {
       id: 'action',
-      label: '',
+      accessorFn: () => '',
+      header: '',
       isSortable: true,
-      cell: DatagridActionCell,
+      cell: ({ row }) => <DatagridActionCell {...row.original} />,
     },
   ];
 
   return (
     <React.Suspense fallback={<Loading />}>
-      <OdsText preset={ODS_TEXT_PRESET.heading5}>{t('cdn_shared_option_cache_rule_title')}</OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption}>
+      <Text preset={TEXT_PRESET.heading5}>{t('cdn_shared_option_cache_rule_title')}</Text>
+      <Text preset={TEXT_PRESET.caption}>
         {t('cdn_shared_option_cache_rule_add_rule_max_rules', {
           range,
           maxItems: 5,
         })}
-      </OdsText>
-      {columns && (
-        <Datagrid
-          columns={columns}
-          items={rulesData || []}
-          totalItems={rulesData?.length || 0}
-          hasNextPage={hasNextPage && !isLoading}
-          onFetchNextPage={fetchNextPage}
-          isLoading={isLoading}
-          filters={filters}
-          search={{
-            searchInput,
-            setSearchInput,
-            onSearch: (search) => setDebouncedSearchInput(search),
-          }}
-          topbar={
-            <OdsButton
-              icon={ODS_ICON_NAME.plus}
-              size={ODS_BUTTON_SIZE.sm}
-              variant={ODS_BUTTON_VARIANT.outline}
-              label={t('cdn_shared_option_cache_rule_btn_add_rule')}
-              onClick={() =>
-                navigate(
-                  urls.cdnCacheRule
-                    .replace(subRoutes.serviceName, serviceName)
-                    .replace(subRoutes.domain, domain),
-                )
-              }
-            />
-          }
-        />
-      )}
+      </Text>
+
+      <Datagrid
+        columns={rulesData ? columns : []}
+        data={rulesData || []}
+        hasNextPage={hasNextPage && !isLoading}
+        onFetchNextPage={(): void => {
+          void fetchNextPage();
+        }}
+        isLoading={isLoading}
+        filters={filters}
+        search={{
+          searchInput,
+          setSearchInput,
+          onSearch: (search) => setDebouncedSearchInput(search),
+        }}
+        topbar={
+          <Button
+            size={BUTTON_SIZE.sm}
+            variant={BUTTON_VARIANT.outline}
+            onClick={() =>
+              navigate(
+                urls.cdnCacheRule
+                  .replace(subRoutes.serviceName, serviceName)
+                  .replace(subRoutes.domain, domain),
+              )
+            }
+          >
+            <>
+              <Icon name={ICON_NAME.plus} />
+              {t('cdn_shared_option_cache_rule_btn_add_rule')}
+            </>
+          </Button>
+        }
+      />
     </React.Suspense>
   );
 }

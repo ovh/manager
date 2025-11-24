@@ -48,7 +48,7 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
 
     cmsSpecific: z.object({
       wordpress: z.object({
-        language: z.string(),
+        language: z.string().optional(),
       }),
     }),
     phpVersion: z.string().min(1, t(`${NAMESPACES.FORM}:required_field`)),
