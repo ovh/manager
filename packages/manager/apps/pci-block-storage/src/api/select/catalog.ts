@@ -12,7 +12,10 @@ import { TRegion } from '@/api/data/regions';
 import { EncryptionType } from '@/api/select/volume';
 import { TAPIVolume } from '@/api/data/volume';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
-import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
+import {
+  isRetypeModel,
+  TVolumeRetypeModel,
+} from '@/api/hooks/useCatalogWithPreselection';
 
 export type TModelName = Readonly<{
   name: Opaque<string, TModelName>;
@@ -405,11 +408,13 @@ export const mapRetypingVolumeCatalog = (
       ),
     );
 
-export const sortByPreselectedModel = <T = TVolumeModel | TVolumeRetypeModel>(
+export const sortByPreselectedModel = <
+  T extends TVolumeModel | TVolumeRetypeModel
+>(
   volumeModels: T[],
 ): T[] =>
-  [...volumeModels].sort((a, b) => {
-    if (a['isPreselected' as keyof TVolumeRetypeModel] === true) return -1;
-    if (b['isPreselected' as keyof TVolumeRetypeModel] === true) return 1;
+  [...volumeModels].sort((a: T, b) => {
+    if (isRetypeModel(a) && a.isPreselected === true) return -1;
+    if (isRetypeModel(b) && b.isPreselected === true) return 1;
     return 0;
   });
