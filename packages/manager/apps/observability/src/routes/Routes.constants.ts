@@ -1,6 +1,6 @@
 import { appName } from '@/App.constants';
 
-import { getRoot } from './Routes.utils';
+import { getRoot } from './Routes.base';
 
 export const URL_PARAMS = {
   tenantId: ':tenantId',
@@ -13,6 +13,9 @@ export const subroutes = {
   dashboards: 'dashboards' as const,
   delete: `delete/${URL_PARAMS.tenantId}` as const,
   creation: 'creation' as const,
+  dashboard: `${URL_PARAMS.tenantId}` as const,
+  subscription: 'subscription' as const,
+  tags: 'tags' as const,
 } as const;
 
 export const urls = {
@@ -25,6 +28,9 @@ export const urls = {
   }`,
   deleteTenant: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.delete}`,
   tenantsCreation: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.creation}`,
+  tenantDashboard: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}`,
+  tenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}/${subroutes.subscription}`,
+  tenantTags: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}/${subroutes.tags}`,
   onboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.onboarding}`,
 } as const;
 
