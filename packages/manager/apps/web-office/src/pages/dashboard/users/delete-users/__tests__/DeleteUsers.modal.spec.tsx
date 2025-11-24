@@ -1,10 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
 
+import { act, fireEvent } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { postOfficePrepaidLicenseUnconfigure } from '@/data/api/license/api';
 import { deleteOfficeUser } from '@/data/api/users/api';
-import { act, fireEvent, render } from '@/utils/Test.provider';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import ModalDeleteUsers from '../DeleteUsers.modal';
 
@@ -18,7 +19,7 @@ describe('ModalDeleteUsers Component', () => {
       vi.fn(),
     ]);
 
-    const { getByTestId } = render(<ModalDeleteUsers />);
+    const { getByTestId } = renderWithRouter(<ModalDeleteUsers />);
 
     const deleteButton = getByTestId('primary-button');
 
@@ -35,7 +36,7 @@ describe('ModalDeleteUsers Component', () => {
       vi.fn(),
     ]);
 
-    const { getByTestId } = render(<ModalDeleteUsers />);
+    const { getByTestId } = renderWithRouter(<ModalDeleteUsers />);
 
     const deleteButton = getByTestId('primary-button');
 
@@ -49,7 +50,7 @@ describe('ModalDeleteUsers Component', () => {
 
 describe('ModalDeleteUsers W3C Validation', () => {
   it('should have a valid html', async () => {
-    const { container } = render(<ModalDeleteUsers />);
+    const { container } = renderWithRouter(<ModalDeleteUsers />);
     const html = container.innerHTML;
 
     await expect(html).toBeValidHtml();
