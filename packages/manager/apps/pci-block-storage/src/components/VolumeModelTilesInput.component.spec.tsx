@@ -4,6 +4,7 @@ import { userEvent } from '@testing-library/user-event';
 import { describe, vi } from 'vitest';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { VolumeModelTilesInput } from '@/components/VolumeModelTilesInput.component';
+import { capitalizeFirstLetter } from '@/utils';
 
 const baseVolume = {
   hourlyPrice: {
@@ -38,7 +39,9 @@ describe('VolumeModelTilesInput', () => {
         />,
       );
 
-      expect(getByText(baseVolume.displayName)).toBeVisible();
+      expect(
+        getByText(capitalizeFirstLetter(baseVolume.displayName)),
+      ).toBeVisible();
       expect(getByText(baseVolume.iops)).toBeVisible();
       expect(getByText(baseVolume.hourlyPrice.value)).toBeVisible();
     });
@@ -160,9 +163,15 @@ describe('VolumeModelTilesInput', () => {
       />,
     );
 
-    expect(getByRole('radio', { name: baseVolume.displayName })).toBeChecked();
     expect(
-      getByRole('radio', { name: otherVolume.displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(baseVolume.displayName),
+      }),
+    ).toBeChecked();
+    expect(
+      getByRole('radio', {
+        name: capitalizeFirstLetter(otherVolume.displayName),
+      }),
     ).not.toBeChecked();
   });
 
@@ -177,7 +186,9 @@ describe('VolumeModelTilesInput', () => {
     );
 
     await userEvent.click(
-      getByRole('radio', { name: otherVolume.displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(otherVolume.displayName),
+      }),
     );
 
     expect(spyOnChange).toHaveBeenCalledWith(

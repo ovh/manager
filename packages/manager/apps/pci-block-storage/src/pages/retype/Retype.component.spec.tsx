@@ -5,6 +5,7 @@ import { userEvent } from '@testing-library/user-event';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { Retype } from '@/pages/retype/Retype.component';
+import { capitalizeFirstLetter } from '@/utils';
 
 const getSelectedCatalogOption = (encrypted = false) =>
   ({
@@ -35,16 +36,24 @@ describe('Retype', () => {
     );
 
     expect(
-      getByRole('radio', { name: getSelectedCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+      }),
     ).toBeVisible();
     expect(
-      getByRole('radio', { name: getSelectedCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+      }),
     ).toBeChecked();
     expect(
-      getByRole('radio', { name: getOtherCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+      }),
     ).toBeVisible();
     expect(
-      getByRole('radio', { name: getOtherCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+      }),
     ).not.toBeChecked();
   });
 
@@ -73,7 +82,9 @@ describe('Retype', () => {
       );
 
       await userEvent.click(
-        getByRole('radio', { name: getOtherCatalogOption().displayName }),
+        getByRole('radio', {
+          name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+        }),
       );
 
       expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).not.toBeDisabled();
@@ -90,10 +101,14 @@ describe('Retype', () => {
       );
 
       await userEvent.click(
-        getByRole('radio', { name: getOtherCatalogOption().displayName }),
+        getByRole('radio', {
+          name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+        }),
       );
       await userEvent.click(
-        getByRole('radio', { name: getSelectedCatalogOption().displayName }),
+        getByRole('radio', {
+          name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+        }),
       );
 
       expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();

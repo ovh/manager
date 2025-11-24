@@ -6,6 +6,7 @@ import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { sortByPreselectedModel } from '@/api/select/catalog';
+import { capitalizeFirstLetter } from '@/utils';
 
 type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   volumeModels: T[];
@@ -77,7 +78,7 @@ export const VolumeModelTilesInput = ({
     () =>
       sortByPreselectedModel(volumeModels).map((model) => ({
         ...model,
-        label: model.displayName,
+        label: capitalizeFirstLetter(model.displayName),
         description: getDescription(model),
         badges: hideBadges
           ? []
@@ -110,7 +111,9 @@ export const VolumeModelTilesInput = ({
         horizontal && '[&_.config-card\\_\\_badges]:w-full whitespace-pre-line',
       )}
     >
-      <Text preset={TEXT_PRESET.heading5}>{label}</Text>
+      <Text preset={TEXT_PRESET.heading5} className="mt-4">
+        {label}
+      </Text>
       <TilesInput
         name="volume-type"
         label={undefined}
