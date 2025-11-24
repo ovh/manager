@@ -73,7 +73,9 @@ vi.mock('react-i18next', () => {
     return res;
   };
 
-  const Trans = ({ children }: { children: ReactNode }) => <>{children}</>;
+  const Trans = ({ children, i18nKey }: { children: ReactNode; i18nKey: string }) => (
+    <>{children ?? i18nKey}</>
+  );
 
   return {
     useTranslation,

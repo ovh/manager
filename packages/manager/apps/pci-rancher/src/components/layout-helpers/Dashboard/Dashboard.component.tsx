@@ -25,6 +25,7 @@ import {
   CHANGELOG_LINKS,
   CHANGELOG_CHAPTERS,
 } from '@/utils/changelog.constants';
+import { PciGuidesHeader } from '@/components/guides-header';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -123,6 +124,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
               links={CHANGELOG_LINKS}
               chapters={CHANGELOG_CHAPTERS}
             />
+            <PciGuidesHeader />
           </div>
         </div>
       </div>
