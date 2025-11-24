@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 
-import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { mockSecret1, mockSecret2 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SecretSmartConfig, buildSecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { createErrorResponseMock, renderHookWithClient } from '@/common/utils/tests/testUtils';
 
 import { useSecretSmartConfig } from './useSecretSmartConfig';
@@ -42,9 +42,13 @@ vi.mock('@secret-manager/data/hooks/useSecretConfigReference', () => ({
 
 // Mock the useNotifications hook from external library
 const mockAddError = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useNotifications: () => ({ addError: mockAddError }),
-}));
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...actual,
+    useNotifications: () => ({ addError: mockAddError }),
+  };
+});
 
 // Mock the getSecretSmartConfig utility
 vi.mock('@secret-manager/utils/secretSmartConfig', async () => {
