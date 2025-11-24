@@ -125,11 +125,11 @@ describe('SSOAuthModal', () => {
 
     const originalLocation = window.location;
     delete window.location;
-    window.location = { ...originalLocation, reload: vi.fn() };
+    window.location = { ...originalLocation, reload: vi.fn() } as unknown as (Location & string);
 
     fireEvent.click(reloadButton);
 
     expect(window.location.reload).toHaveBeenCalledTimes(1);
-    window.location = originalLocation;
+    window.location = originalLocation as  unknown as (Location & string);
   });
 });
