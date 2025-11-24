@@ -31,7 +31,7 @@ export const useHeader = (title: string): Header => {
         buttonType: ButtonType.externalLink,
         actionType: 'action',
         location: PageLocation.tile,
-        actions: [`go-to_${guide.texts.title}`],
+        actions: [`go-to_${guide.trackingLabel}`],
       });
     },
   }));
@@ -39,7 +39,7 @@ export const useHeader = (title: string): Header => {
   return {
     title,
     changelogButton: (
-      <ChangelogButton chapters={['network::ip']} links={CHANGELOG_LINKS} />
+      <ChangelogButton chapters={['network::ip::ip']} links={CHANGELOG_LINKS} />
     ),
     headerButton: <GuideButton items={guideItems} />,
   };
