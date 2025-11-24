@@ -1,8 +1,4 @@
 import {
-  GetCatalogKmsMocksParams,
-  getCatalogKmsMocks,
-} from '@key-management-service/mocks/catalog/catalog.handler';
-import {
   CreateCredentialsMockParams,
   DeleteCredentialsMockParams,
   GetCredentialsMockParams,
@@ -78,6 +74,10 @@ import {
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 
+import {
+  GetCatalogKmsMocksParams,
+  getCatalogKmsMocks,
+} from '@/common/mocks/catalog/catalog.handler';
 import { getLocationsMock } from '@/common/mocks/locations/locations.handler';
 
 import { TestApp } from './TestApp';

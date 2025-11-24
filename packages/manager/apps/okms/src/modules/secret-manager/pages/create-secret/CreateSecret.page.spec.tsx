@@ -1,4 +1,3 @@
-import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { createSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
@@ -14,6 +13,7 @@ import userEvent, { UserEvent } from '@testing-library/user-event';
 
 import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
+import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
