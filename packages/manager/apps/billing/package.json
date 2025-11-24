@@ -23,8 +23,6 @@
     "@ovh-ux/manager-config": "^8.7.1",
     "@ovh-ux/manager-core": "^13.2.20",
     "@ovh-ux/manager-error-page": "^2.4.6",
-    "@ovh-ux/manager-exchange": "^4.15.11",
-    "@ovh-ux/manager-log-to-customer": "^2.8.1",
     "@ovh-ux/manager-models": "^2.6.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
     "@ovh-ux/ng-at-internet": "^6.0.34",

@@ -13,6 +13,7 @@ import Service from './service/Service.class';
 import SupportLevel from './support/level/SupportLevel.class';
 import Ticket from './support/ticket/ticket.class';
 import User from './user/User.class';
+import Exchange from './service/exchange.class';
 
 export {
   Bill,
@@ -30,6 +31,7 @@ export {
   SupportLevel,
   Ticket,
   User,
+  Exchange,
 };
 
 export * from './dedicated-server';
