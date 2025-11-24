@@ -1,4 +1,3 @@
-import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen } from '@testing-library/react';
@@ -7,6 +6,7 @@ import { vi } from 'vitest';
 
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
+import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
 import { renderWithClient } from '@/common/utils/tests/testUtils';
 

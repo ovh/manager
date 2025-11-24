@@ -1,10 +1,9 @@
-import { OKMSCatalog } from '@key-management-service/types/orderCatalogOKMS.type';
 import { useQuery } from '@tanstack/react-query';
 
+import { getOrderCatalogOkms } from '@/common/data/api/orderCatalogOkms';
 import { useShellContext } from '@/common/hooks/useShellContext';
 import { ErrorResponse } from '@/common/types/api.type';
-
-import { getOrderCatalogOKMS } from '../api/orderCatalogOKMS';
+import { OkmsCatalog } from '@/common/types/orderCatalogOkms.type';
 
 export type OrderCatalogProps = {
   ovhSubsidiary: string;
@@ -13,9 +12,9 @@ export type OrderCatalogProps = {
 export const useOrderCatalogOkms = () => {
   const { environment } = useShellContext();
   const { ovhSubsidiary } = environment.getUser();
-  return useQuery<OKMSCatalog, ErrorResponse>({
+  return useQuery<OkmsCatalog, ErrorResponse>({
     queryKey: ['order/catalog/public/okms', ovhSubsidiary],
-    queryFn: () => getOrderCatalogOKMS(ovhSubsidiary),
+    queryFn: () => getOrderCatalogOkms(ovhSubsidiary),
     retry: false,
     ...{
       keepPreviousData: true,

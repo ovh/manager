@@ -1,5 +1,4 @@
 import { getOkmsList } from '@key-management-service/data/api/okms';
-import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import {
   okmsRoubaix1Mock,
   okmsRoubaix2Mock,
@@ -10,6 +9,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { waitFor } from '@testing-library/react';
 import { beforeEach, describe, it, vi } from 'vitest';
 
+import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { ErrorResponse } from '@/common/types/api.type';
 import { promiseWithDelayMock, renderHookWithClient } from '@/common/utils/tests/testUtils';
 
