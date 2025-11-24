@@ -1,0 +1,23 @@
+{
+  "exchange_update_billing_button_title": "Configurazione del rinnovo",
+  "exchange_update_billing_action_title": "Periodo di rinnovo",
+  "exchange_update_billing_validation_title": "Convalida",
+  "exchange_update_billing_periode_intro": "Scegli la periodicità per il rinnovo automatico di ogni account. <br /> Sarà applicata a partire dal prossimo rinnovo.",
+  "exchange_update_billing_actions_label": "Azioni",
+  "exchange_update_billing_email_label": "Account e-mail",
+  "exchange_update_billing_expiration_date_label": "Scadenza",
+  "exchange_update_billing_current_periode_label": "Valore corrente",
+  "exchange_update_billing_periode_label": "Rinnovo",
+  "exchange_update_billing_header_new_periode": "Nuovo periodo",
+  "exchange_update_billing_periode_action_MONTHLY": "Modifica in \"Mensile\"",
+  "exchange_update_billing_periode_action_YEARLY": "Modifica in \"Annuale\"",
+  "exchange_update_billing_periode_action_DELETE_AT_EXPIRATION": "Modifica in \"Scade al termine del periodo\"",
+  "exchange_update_billing_periode_value_MONTHLY": "Mensile",
+  "exchange_update_billing_periode_value_YEARLY": "Annuale",
+  "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Scade al termine",
+  "exchange_update_billing_periode_delete_warning": "Attenzione! Questa opzione comporta la scadenza del servizio al termine e la perdita dei dati. Sarà impossibile recuperare i dati dell'account.",
+  "exchange_update_billing_periode_resume": "Stai per modificare il periodo di rinnovo automatico dei tuoi account:",
+  "exchange_update_billing_periode_success": "Il periodo di rinnovo degli account selezionati è stato aggiornato.",
+  "exchange_update_billing_periode_partial": "Alcuni periodi di rinnovo non sono stati aggiornati.",
+  "exchange_update_billing_periode_failure": "Si è verificato un errore durante l'aggiornamento del rinnovo degli account"
+}
