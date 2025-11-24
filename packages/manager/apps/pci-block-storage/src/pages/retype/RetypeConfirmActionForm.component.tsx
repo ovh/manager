@@ -61,7 +61,7 @@ export const RetypeConfirmActionForm: FC<RetypeConfirmActionFormProps> = ({
         `retype:pci_projects_project_storages_blocks_retype_confirm_action_confirm_button`,
       )}
     >
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6">
         {isPending && (
           <>
             <Skeleton className="h-10" data-testid="skeleton" />
@@ -80,12 +80,10 @@ export const RetypeConfirmActionForm: FC<RetypeConfirmActionFormProps> = ({
         )}
         {!isPending && !isError && (
           <>
-            <Text preset={TEXT_PRESET.heading5}>{label}</Text>
-            <Message
-              color={MESSAGE_COLOR.warning}
-              dismissible={false}
-              className="max-w-80"
-            >
+            <Text preset={TEXT_PRESET.heading5} className="mt-4">
+              {label}
+            </Text>
+            <Message color={MESSAGE_COLOR.warning} dismissible={false}>
               <MessageIcon name={ICON_NAME.triangleExclamation} />
               <MessageBody>{warningMessage}</MessageBody>
             </Message>

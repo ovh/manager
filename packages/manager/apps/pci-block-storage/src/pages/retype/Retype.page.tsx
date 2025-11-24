@@ -115,7 +115,7 @@ const RetypePage = () => {
       <Drawer open>
         <DrawerContent
           position={DRAWER_POSITION.right}
-          className="w-fit flex flex-col h-[unset] gap-4"
+          className="w-[420px] flex flex-col h-[unset] gap-4"
         >
           <legend>
             <Text preset={TEXT_PRESET.heading3}>
