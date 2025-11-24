@@ -164,6 +164,8 @@ const createWrapper = () => {
 describe('TenantsForm', () => {
   const mockService: ObservabilityService = {
     id: 'service-123',
+    createdAt: '2025-11-01T08:00:00.001Z',
+    updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Test Service' },
     iam: { id: 'iam-123', urn: 'urn:service:123' },
   };
@@ -340,6 +342,8 @@ describe('TenantsForm', () => {
     it('should navigate back to tenants list after successful creation', async () => {
       const mockTenant: Tenant = {
         id: 'tenant-123',
+        createdAt: '2025-11-01T08:00:00.001Z',
+        updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: {
           title: 'Test Tenant',
           description: 'Test Description',
