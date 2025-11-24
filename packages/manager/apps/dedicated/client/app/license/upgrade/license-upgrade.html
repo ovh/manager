@@ -154,12 +154,10 @@
                                 data-ng-change="selectDuration()"
                                 data-ng-disabled="loaders.prices || durations.available.length == 1"
                             />
-                            {{ durations.available | wucDuration:'longDate' }}
                             <span
-                                data-ng-bind-html="duration | wucDuration:'longDate'"
-                            ></span
-                            >&nbsp;:&nbsp;<span
-                                data-ng-bind-html="durations.details[durations.available].price.text"
+                                data-translate="license_upgrade_step2_duration"
+                                data-translate-value-duration="{{ durations.available | wucDuration:'longDate' }}"
+                                data-translate-value-price="{{ durations.details[durations.available].price.text }}"
                             ></span>
                             <oui-spinner
                                 data-ng-hide="durations.details[durations.available]"
@@ -183,6 +181,12 @@
             <h2 data-translate="license_upgrade_step3_title"></h2>
             <div data-ng-if="loaders.loadedContract">
                 <div data-ng-hide="order.url && loaders.loadedContract">
+                    <h3
+                        data-translate="license_order_step4_pay_engagement_label"
+                    ></h3>
+                    <p
+                        data-translate="license_order_step4_pay_engagement_content"
+                    ></p>
                     <p
                         class="text-primary font-weight-bold"
                         data-translate="license_order_step4_pay_upgrade_amount"
