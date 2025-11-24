@@ -20,6 +20,17 @@ const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnb
 const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantsCreation.page'));
 const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
 
+const TenantDashboardPage = React.lazy(
+  () => import('@/pages/tenants/dashboard/TenantDashboard.page'),
+);
+const TenantGeneralInformationPage = React.lazy(
+  () => import('@/pages/tenants/dashboard/general-information/TenantInformation.page'),
+);
+const TenantSubscriptionPage = React.lazy(
+  () => import('@/pages/tenants/dashboard/subscription/TenantSubscription.page'),
+);
+const TenantTagsPage = React.lazy(() => import('@/pages/tenants/dashboard/tags/TenantTags.page'));
+
 export default (
   <>
     <Route path="/" element={<Navigate to={urls.root} replace />} />
@@ -105,6 +116,43 @@ export default (
               },
             }}
           />
+          <Route
+            path={subroutes.dashboard}
+            Component={TenantDashboardPage}
+            handle={{
+              tracking: {
+                pageName: 'tenant-dashboard',
+              },
+            }}
+          >
+            <Route
+              path=""
+              Component={TenantGeneralInformationPage}
+              handle={{
+                tracking: {
+                  pageName: 'tenant-general-information-tab',
+                },
+              }}
+            />
+            <Route
+              path={subroutes.subscription}
+              Component={TenantSubscriptionPage}
+              handle={{
+                tracking: {
+                  pageName: 'tenant-subscription-tab',
+                },
+              }}
+            />
+            <Route
+              path={subroutes.tags}
+              Component={TenantTagsPage}
+              handle={{
+                tracking: {
+                  pageName: 'tenant-tags-tab',
+                },
+              }}
+            />
+          </Route>
         </Route>
       </Route>
 
