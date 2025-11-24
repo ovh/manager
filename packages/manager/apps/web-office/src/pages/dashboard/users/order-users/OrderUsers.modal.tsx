@@ -8,30 +8,33 @@ import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsInput,
-  OdsMessage,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  ICON_NAME,
+  INPUT_TYPE,
+  Input,
+  MODAL_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import type { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  IntervalUnitType,
-  Modal,
-  OvhSubsidiary,
-  Price,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { IntervalUnit, Modal, OvhSubsidiary, Price, useNotifications } from '@ovh-ux/muk';
 
 import { CANCEL, CONFIRM, ORDER_ACCOUNT } from '@/Tracking.constants';
 import { UserOrderParamsType } from '@/data/api/ApiType';
@@ -114,15 +117,15 @@ export default function ModalOrderUsers() {
   const { mutate: orderUsers } = useMutation({
     mutationFn: (params: UserOrderParamsType) => postOrderUsers(serviceName, params),
     onSuccess: () => {
-      addSuccess(<OdsText>{t('dashboard_users_order_users_message_success')}</OdsText>, true);
+      addSuccess(<Text>{t('dashboard_users_order_users_message_success')}</Text>, true);
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText>
+        <Text>
           {t('dashboard_users_order_users_message_error', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -159,71 +162,74 @@ export default function ModalOrderUsers() {
   return (
     <Modal
       heading={t(`${NAMESPACES.ACTIONS}:order_users`)}
-      type={ODS_MODAL_COLOR.information}
-      isOpen={true}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      onDismiss={handleCancelClick}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      onPrimaryButtonClick={() => void handleSubmit(handleSaveClick)()}
+      type={MODAL_COLOR.information}
+      open={true}
+      onOpenChange={handleCancelClick}
+      secondaryButton={{ label: t(`${NAMESPACES.ACTIONS}:cancel`), onClick: handleCancelClick }}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        disabled: !isDirty || !isValid,
+        onClick: () => void handleSubmit(handleSaveClick)(),
+      }}
     >
       <form
-        className="flex flex-col text-left gap-y-5"
+        className="flex flex-col gap-y-5 text-left"
         onSubmit={(e) => void handleSubmit(handleSaveClick)(e)}
       >
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(`${NAMESPACES.FORM}:label_mandatory`)}
-        </OdsText>
-        <div className="flex flex-wrap sm:flex-nowrap gap-5">
+        <Text preset={TEXT_PRESET.paragraph}>{t(`${NAMESPACES.FORM}:label_mandatory`)}</Text>
+        <div className="flex flex-wrap gap-5 sm:flex-nowrap">
           <Controller
             name="firstName"
             control={control}
             rules={{ required: true }}
-            render={({ field }) => (
-              <OdsFormField error={errors?.firstName?.message} className="w-full">
-                <label slot="label">{t(`${NAMESPACES.FORM}:firstname`)}*</label>
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
-                  name="firstName"
+            render={({ field: { onChange, onBlur, name } }) => (
+              <FormField invalid={!!errors?.firstName?.message} className="w-full">
+                <FormFieldLabel>{t(`${NAMESPACES.FORM}:firstname`)}*</FormFieldLabel>
+                <Input
+                  type={INPUT_TYPE.text}
+                  name={name}
                   data-testid="input-firstName"
-                  onOdsChange={(event) => field.onChange(event.target.value)}
+                  onBlur={onBlur}
+                  onChange={(event) => onChange(event.target.value)}
                 />
-              </OdsFormField>
+                <FormFieldError>{errors?.firstName?.message}</FormFieldError>
+              </FormField>
             )}
           />
           <Controller
             name="lastName"
             control={control}
             rules={{ required: true }}
-            render={({ field }) => (
-              <OdsFormField error={errors?.lastName?.message} className="w-full">
-                <label slot="label">{t(`${NAMESPACES.FORM}:lastname`)}*</label>
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
-                  name="lastName"
+            render={({ field: { onChange, onBlur, name } }) => (
+              <FormField invalid={!!errors?.lastName?.message} className="w-full">
+                <FormFieldLabel>{t(`${NAMESPACES.FORM}:lastname`)}*</FormFieldLabel>
+                <Input
+                  type={INPUT_TYPE.text}
+                  name={name}
                   data-testid="input-lastName"
-                  onOdsChange={(event) => field.onChange(event.target.value)}
+                  onBlur={onBlur}
+                  onChange={(event) => onChange(event.target.value)}
                 />
-              </OdsFormField>
+                <FormFieldError>{errors?.lastName?.message}</FormFieldError>
+              </FormField>
             )}
           />
         </div>
-        <OdsFormField error={errors?.login?.message}>
-          <label slot="label">{t(`${NAMESPACES.FORM}:login`)}*</label>
-          <div className="flex flex-wrap sm:flex-nowrap gap-5">
+        <FormField invalid={!!errors?.login?.message}>
+          <FormFieldLabel>{t(`${NAMESPACES.FORM}:login`)}*</FormFieldLabel>
+          <div className="flex flex-wrap gap-5 sm:flex-nowrap">
             <Controller
               name="login"
               control={control}
               rules={{ required: true }}
               render={({ field: { name, value, onBlur, onChange } }) => (
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                <Input
+                  type={INPUT_TYPE.text}
                   name={name}
                   value={value}
                   data-testid="input-login"
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
+                  onBlur={onBlur}
+                  onChange={onChange}
                   className="w-full"
                 />
               )}
@@ -232,62 +238,61 @@ export default function ModalOrderUsers() {
               name="domain"
               control={control}
               render={({ field: { name } }) => (
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                <Input
+                  type={INPUT_TYPE.text}
                   name={name}
                   data-testid="input-domain"
-                  isDisabled
+                  disabled
                   value={`@${domain}`}
                   className="w-full"
                 />
               )}
             />
           </div>
-        </OdsFormField>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <FormFieldError>{errors?.login?.message}</FormFieldError>
+        </FormField>
+        <Text preset={TEXT_PRESET.paragraph}>
           <ul className="mt-0">
             <li>{t('common:form_helper_login_conditions')}</li>
             <li>{t('common:form_helper_login_condition_exception')}</li>
           </ul>
-        </OdsText>
+        </Text>
         <div className="flex w-full">
-          <OdsFormField className="w-full">
-            <label slot="label">{t(`${NAMESPACES.DASHBOARD}:licence_type`)}*</label>
+          <FormField className="w-full">
+            <FormFieldLabel>{t(`${NAMESPACES.DASHBOARD}:licence_type`)}*</FormFieldLabel>
             <Controller
               name="licence"
               control={control}
               rules={{ required: true }}
-              render={({ field }) => (
-                <OdsSelect
-                  name="licence"
-                  placeholder={t(`${NAMESPACES.ACTIONS}:select`)}
+              render={({ field: { name, onChange } }) => (
+                <Select
+                  name={name}
                   data-testid="input-licence"
-                  onOdsChange={(event) => field.onChange(event.target.value)}
+                  onValueChange={(event) => onChange(event.value[0])}
+                  items={offerOptions}
                 >
-                  {offerOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </OdsSelect>
+                  <SelectControl placeholder={t(`${NAMESPACES.ACTIONS}:select`)} />
+                  <SelectContent />
+                </Select>
               )}
             />
-          </OdsFormField>
+          </FormField>
         </div>
         {officePrice?.value && (
-          <OdsFormField className="w-full">
-            <label slot="label">{t(`${NAMESPACES.FORM}:price`)}</label>
+          <FormField className="w-full">
+            <FormFieldLabel>{t(`${NAMESPACES.FORM}:price`)}</FormFieldLabel>
             <Price
               value={officePrice?.value}
               ovhSubsidiary={ovhSubsidiary as OvhSubsidiary}
-              intervalUnit={IntervalUnitType.month}
+              intervalUnit={IntervalUnit.month}
               locale={userLocale}
             ></Price>
-          </OdsFormField>
+          </FormField>
         )}
-        <OdsMessage className="mt-6 mb-6" isDismissible={false}>
-          {t('dashboard_users_order_users_message')}
-        </OdsMessage>
+        <Message className="my-6" dismissible={false}>
+          <MessageIcon name={ICON_NAME.circleInfo} />
+          <MessageBody>{t('dashboard_users_order_users_message')}</MessageBody>
+        </Message>
       </form>
     </Modal>
   );

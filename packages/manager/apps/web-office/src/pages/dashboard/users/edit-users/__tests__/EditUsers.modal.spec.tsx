@@ -58,7 +58,7 @@ describe('ModalEditUsers Component', () => {
           value: 'firstname',
         },
       });
-      inputFirstName.odsChange.emit({ name: 'firstname', value: 'firstname' });
+      inputFirstName.onChange.emit({ name: 'firstname', value: 'firstname' });
     });
 
     expect(editButton).toHaveAttribute('is-disabled', 'false');
@@ -99,7 +99,7 @@ describe('ModalEditUsers Component', () => {
           value: 'firstname',
         },
       });
-      inputFirstName.odsChange.emit({ name: 'firstname', value: 'firstname' });
+      inputFirstName.onChange.emit({ name: 'firstname', value: 'firstname' });
     });
 
     expect(editButton).toHaveAttribute('is-disabled', 'false');

@@ -1,5 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 
 import { order } from './type';
 

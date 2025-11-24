@@ -3,6 +3,6 @@ export type OdsEvent = {
 };
 
 export type OdsHTMLElement = HTMLElement & {
-  odsBlur: OdsEvent;
-  odsChange: OdsEvent;
+  onBlur: OdsEvent;
+  onChange: OdsEvent;
 };
