@@ -2,10 +2,8 @@ import { useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import { getOrderCatalogOKMS } from '@key-management-service/data/api/orderCatalogOKMS';
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
-import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
 import {
   okmsMock,
   okmsRoubaix1Mock,
@@ -31,6 +29,8 @@ import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-clie
 
 import { REGION_PICKER_TEST_IDS } from '@/common/components/region-picker/regionPicker.constants';
 import * as locationApi from '@/common/data/api/location';
+import { getOrderCatalogOkms } from '@/common/data/api/orderCatalogOkms';
+import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
 import { ErrorResponse } from '@/common/types/api.type';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
@@ -40,9 +40,9 @@ import { OkmsManagement } from './OkmsManagement.component';
 
 let i18nValue: i18n;
 
-const mockedGetOrderCatalogOKMS = vi.mocked(getOrderCatalogOKMS);
-vi.mock('@key-management-service/data/api/orderCatalogOKMS', () => ({
-  getOrderCatalogOKMS: vi.fn(),
+const mockedGetOrderCatalogOkms = vi.mocked(getOrderCatalogOkms);
+vi.mock('@/common/data/api/orderCatalogOkms', () => ({
+  getOrderCatalogOkms: vi.fn(),
 }));
 
 vi.spyOn(locationApi, 'getLocations').mockResolvedValue(locationsMock);
@@ -208,9 +208,17 @@ const selectRegion = async (user: UserEvent, region: string) => {
 
 /* OKMS MANAGEMENT TEST SUITE */
 describe('OKMS management test suite', () => {
+  beforeEach(() => {
+    // Set default successful mock behavior for all tests
+    mockedGetOrderCatalogOkms.mockResolvedValue(catalogMock);
+  });
+
+  afterEach(() => {
+    // Clean up all mocks after each test to prevent pollution
+    vi.clearAllMocks();
+  });
+
   it('should display a spinner when loading', async () => {
-    // GIVEN
-    mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
     // WHEN
     await renderOkmsManagement();
 
@@ -220,9 +228,9 @@ describe('OKMS management test suite', () => {
   });
 
   it('should display a notification message when error on catalog api', async () => {
-    // GIVEN
+    // GIVEN - override default mock for this specific test
     const mockError = createErrorResponseMock('errorCatalog');
-    mockedGetOrderCatalogOKMS.mockRejectedValue(mockError);
+    mockedGetOrderCatalogOkms.mockRejectedValue(mockError);
 
     // WHEN
     await renderOkmsManagement();
@@ -234,8 +242,6 @@ describe('OKMS management test suite', () => {
   });
 
   it('should display the available region list', async () => {
-    // GIVEN
-    mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
     // WHEN
     await renderOkmsManagement();
     await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
@@ -245,14 +251,9 @@ describe('OKMS management test suite', () => {
   });
 
   describe('on region selection', () => {
-    afterEach(() => {
-      vi.clearAllMocks();
-    });
     describe('when there is no okms', () => {
       it('should display a CTA', async () => {
         const user = userEvent.setup();
-        // GIVEN
-        mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
         await renderOkmsManagement();
         await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
@@ -272,8 +273,6 @@ describe('OKMS management test suite', () => {
 
     it('should not display anything when there is exactly one okms', async () => {
       const user = userEvent.setup();
-      // GIVEN
-      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
       await renderOkmsManagement();
       await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
@@ -291,9 +290,6 @@ describe('OKMS management test suite', () => {
 
     it('should display a filtered okms list when there is more than one okms', async () => {
       const user = userEvent.setup();
-
-      // GIVEN
-      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
       await renderOkmsManagement();
       await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
@@ -323,9 +319,6 @@ describe('OKMS management test suite', () => {
   });
 
   describe('When there is a okmsId search param', () => {
-    beforeEach(() => {
-      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
-    });
     it('should pre-select the right region and okms', async () => {
       // GIVEN
       const mockOkmsId = okmsRoubaix1Mock.id;

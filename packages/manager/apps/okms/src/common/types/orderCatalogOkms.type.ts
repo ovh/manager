@@ -1,15 +1,15 @@
 import { IntervalUnitType } from '@ovh-ux/manager-react-components';
 
-type OKMSCatalogPlanConfiguration = {
+type OkmsCatalogPlanConfiguration = {
   isCustom: boolean;
   isMandatory: boolean;
   name: string;
   values: string[];
 };
 
-type OKMSCatalogPlan = {
+type OkmsCatalogPlan = {
   planCode: string;
-  configurations: OKMSCatalogPlanConfiguration[];
+  configurations: OkmsCatalogPlanConfiguration[];
   pricings: CatalogPricing[];
 };
 
@@ -21,7 +21,7 @@ type CatalogPricing = {
   intervalUnit: IntervalUnitType;
 };
 
-type OKMSCatalogAddon = {
+type OkmsCatalogAddon = {
   planCode: string;
   invoiceName: string;
   product: string;
@@ -29,7 +29,7 @@ type OKMSCatalogAddon = {
   pricings: CatalogPricing[];
 };
 
-export type OKMSCatalog = {
-  plans: OKMSCatalogPlan[];
-  addons: OKMSCatalogAddon[];
+export type OkmsCatalog = {
+  plans: OkmsCatalogPlan[];
+  addons: OkmsCatalogAddon[];
 };
