@@ -4,7 +4,7 @@ import {
   REGION_CA_EAST_BHS,
   REGION_EU_WEST_RBX,
   REGION_EU_WEST_SBG,
-} from '../catalog/catalog.mock';
+} from '@/common/mocks/catalog/catalog.mock';
 
 type OkmsByRegion = {
   region: string;

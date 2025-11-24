@@ -1,5 +1,3 @@
-import { getCatalogKmsErrorMessage } from '@key-management-service/mocks/catalog/catalog.handler';
-import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
@@ -7,6 +5,8 @@ import { vi } from 'vitest';
 
 import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
+import { getCatalogKmsErrorMessage } from '@/common/mocks/catalog/catalog.handler';
+import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';

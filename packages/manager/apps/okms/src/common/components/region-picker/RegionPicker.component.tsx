@@ -1,4 +1,3 @@
-import { useOrderCatalogOkms } from '@key-management-service/data/hooks/useOrderCatalogOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 
@@ -6,6 +5,7 @@ import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
 import { RegionTypeBadge } from '@/common/components/region-type-badge/RegionTypeBadge.component';
 import { useLocations } from '@/common/data/hooks/useLocation';
+import { useOrderCatalogOkms } from '@/common/data/hooks/useOrderCatalogOkms';
 
 import { RadioCard } from '../radio-card/RadioCard.component';
 import { REGION_PICKER_TEST_IDS } from './regionPicker.constants';

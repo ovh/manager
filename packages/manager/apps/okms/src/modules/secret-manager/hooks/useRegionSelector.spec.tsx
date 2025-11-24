@@ -2,10 +2,6 @@ import { useParams } from 'react-router-dom';
 
 import { getOkmsList } from '@key-management-service/data/api/okms';
 import {
-  REGION_EU_WEST_RBX,
-  REGION_EU_WEST_SBG,
-} from '@key-management-service/mocks/catalog/catalog.mock';
-import {
   okmsRoubaix1Mock,
   okmsRoubaix2Mock,
   okmsStrasbourg1Mock,
@@ -15,6 +11,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { REGION_EU_WEST_RBX, REGION_EU_WEST_SBG } from '@/common/mocks/catalog/catalog.mock';
 import {
   LOCATION_EU_WEST_RBX,
   LOCATION_EU_WEST_SBG,
@@ -62,9 +59,13 @@ vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
 
 // Mock the useNotifications hook
 const mockAddError = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useNotifications: () => ({ addError: mockAddError }),
-}));
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...actual,
+    useNotifications: () => ({ addError: mockAddError }),
+  };
+});
 
 const renderCustomHook = async (state: 'success' | 'error') => {
   const { result, rerender } = renderHookWithClient(() => useRegionSelector());
