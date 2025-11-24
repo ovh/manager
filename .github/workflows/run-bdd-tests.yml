@@ -95,7 +95,7 @@ jobs:
             --filter='./packages/manager/modules/vcd-api' \
             --filter='./packages/manager/modules/manager-pci-common' \
             --filter='./packages/manager/modules/network-common' \
-            --filter='./packages/components/ovh-payment-method'
+            --filter='./packages/components/ovh-payment-method' --runner nx
 
       # ------------------------------------------
       # RUN TESTS ON CHANGED PACKAGES
@@ -127,4 +127,4 @@ jobs:
           fi
 
           yarn test --concurrency=1 \
-            --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}]
+            --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] --runner nx
