@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import TenantsListDatagrid from '@/components/listing/tenants/TenantsListDatagrid.component';
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
 import { Infrastructure } from '@/types/infrastructures.type';
-import { Tenant, TenantListing } from '@/types/tenants.type';
+import { Tenant } from '@/types/tenants.type';
 
 // Mock the hooks and components
 vi.mock('@/data/hooks/infrastructures/useLocations.hook', () => ({
@@ -67,7 +67,7 @@ vi.mock('@ovh-ux/muk', () => ({
                       return column.accessorFn(item);
                     }
                     if (column.accessorKey) {
-                      return (item as TenantListing)[column.accessorKey as keyof TenantListing];
+                      return (item as Record<string, unknown>)[column.accessorKey];
                     }
                     return item;
                   },
@@ -88,7 +88,7 @@ vi.mock('@ovh-ux/muk', () => ({
                       : null;
                 } else if (column.accessorKey) {
                   // If no custom cell function, render the value from accessorKey
-                  const value = (item as TenantListing)[column.accessorKey as keyof TenantListing];
+                  const value = (item as Record<string, unknown>)[column.accessorKey];
                   // Convert to renderable content (primitives only)
                   cellContent =
                     typeof value === 'string' ||
@@ -117,9 +117,9 @@ vi.mock('@ovh-ux/muk', () => ({
     addFilter: vi.fn(),
     removeFilter: vi.fn(),
   }),
-  useNotifications: () => ({
+  useNotifications: vi.fn(() => ({
     addError: vi.fn(),
-  }),
+  })),
   useDateFnsLocale: () => 'en-US',
 }));
 
@@ -131,6 +131,12 @@ vi.mock('@ovh-ux/manager-core-api', () => ({
   FilterCategories: {
     String: 'string',
     Tags: 'tags',
+    Numeric: 'numeric',
+  },
+  FilterTypeCategories: {
+    String: 'string',
+    Tags: 'tags',
+    Numeric: 'numeric',
   },
 }));
 
@@ -155,31 +161,33 @@ vi.mock(
   }),
 );
 
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => vi.fn(),
+}));
+
 vi.mock(
   '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component',
   () => ({
-    default: ({ id, label, path }: { id: string; label: string; path: string }) => (
+    default: ({ id, label }: { id: string; label: string }) => (
       <div data-testid={`link-cell-${id}`}>
-        <a href={path}>{label}</a>
+        <span data-testid={`link-label-${id}`}>{label}</span>
       </div>
     ),
   }),
 );
 
-vi.mock(
-  '@/components/listing/common/datagrid-cells/datagrid-cell-tags/DataGridCellTags.component',
-  () => ({
-    default: ({ tags }: { tags: string[] }) => (
-      <div data-testid="tags-cell">
-        {tags?.map((tag, index) => (
-          <span key={index} data-testid={`tag-${index}`}>
-            {tag}
+vi.mock('@/components/dashboard/TagsList.component', () => ({
+  default: ({ tags }: { tags: Record<string, string> }) => (
+    <div data-testid="tags-cell">
+      {tags &&
+        Object.entries(tags).map(([key, value], index) => (
+          <span key={index} data-testid={`tag-${key}-${value}`}>
+            {key}:{value}
           </span>
         ))}
-      </div>
-    ),
-  }),
-);
+    </div>
+  ),
+}));
 
 // Test wrapper for React Query
 const createWrapper = () => {
@@ -213,6 +221,8 @@ const mockInfrastructure: Infrastructure = {
 const mockTenants: Tenant[] = [
   {
     id: 'tenant-1',
+    createdAt: '2024-01-01T00:00:00Z',
+    updatedAt: '2024-01-01T00:00:00Z',
     currentState: {
       title: 'Tenant One',
       limits: {
@@ -220,11 +230,20 @@ const mockTenants: Tenant[] = [
         numberOfSeries: { current: 100, maximum: 200 },
       },
       infrastructure: mockInfrastructure,
-      tags: ['production', 'monitoring'],
+    },
+    iam: {
+      id: 'tenant-1',
+      urn: 'urn:ovh:tenant:tenant-1',
+      tags: {
+        environment: 'production',
+        team: 'monitoring',
+      },
     },
   },
   {
     id: 'tenant-2',
+    createdAt: '2024-01-02T00:00:00Z',
+    updatedAt: '2024-01-02T00:00:00Z',
     currentState: {
       title: 'Tenant Two',
       limits: {
@@ -232,11 +251,19 @@ const mockTenants: Tenant[] = [
         numberOfSeries: { current: 50, maximum: 100 },
       },
       infrastructure: undefined,
-      tags: ['staging'],
+    },
+    iam: {
+      id: 'tenant-2',
+      urn: 'urn:ovh:tenant:tenant-2',
+      tags: {
+        environment: 'staging',
+      },
     },
   },
   {
     id: 'tenant-3',
+    createdAt: '2024-01-03T00:00:00Z',
+    updatedAt: '2024-01-03T00:00:00Z',
     currentState: {
       title: 'Tenant Three',
       limits: {
@@ -244,7 +271,11 @@ const mockTenants: Tenant[] = [
         numberOfSeries: { current: 200, maximum: 500 },
       },
       infrastructure: mockInfrastructure,
-      tags: [],
+    },
+    iam: {
+      id: 'tenant-3',
+      urn: 'urn:ovh:tenant:tenant-3',
+      tags: {},
     },
   },
 ];
@@ -318,12 +349,33 @@ describe('TenantsListDatagrid', () => {
       expect(screen.getByTestId('link-cell-tenant-3')).toBeInTheDocument();
     });
 
+    it('should render name labels correctly', () => {
+      render(<TenantsListDatagrid {...defaultProps} />, {
+        wrapper: createWrapper(),
+      });
+
+      expect(screen.getByTestId('link-label-tenant-1')).toHaveTextContent('Tenant One');
+      expect(screen.getByTestId('link-label-tenant-2')).toHaveTextContent('Tenant Two');
+      expect(screen.getByTestId('link-label-tenant-3')).toHaveTextContent('Tenant Three');
+    });
+
     it('should render endpoint column', () => {
       render(<TenantsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
       });
 
       expect(screen.getAllByTestId('endpoint-cell')).toHaveLength(3);
+    });
+
+    it('should render endpoint values correctly', () => {
+      render(<TenantsListDatagrid {...defaultProps} />, {
+        wrapper: createWrapper(),
+      });
+
+      const endpointCells = screen.getAllByTestId('endpoint-cell');
+      expect(endpointCells[0]).toHaveTextContent('https://example.com');
+      expect(endpointCells[1]).toHaveTextContent('No endpoint');
+      expect(endpointCells[2]).toHaveTextContent('https://example.com');
     });
 
     it('should render retention column with correct values', () => {
@@ -366,6 +418,17 @@ describe('TenantsListDatagrid', () => {
       expect(screen.getAllByTestId('tags-cell')).toHaveLength(3);
     });
 
+    it('should render tags correctly', () => {
+      render(<TenantsListDatagrid {...defaultProps} />, {
+        wrapper: createWrapper(),
+      });
+
+      // Check that tags are rendered correctly
+      expect(screen.getByTestId('tag-environment-production')).toBeInTheDocument();
+      expect(screen.getByTestId('tag-team-monitoring')).toBeInTheDocument();
+      expect(screen.getByTestId('tag-environment-staging')).toBeInTheDocument();
+    });
+
     it('should render actions column', () => {
       render(<TenantsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
@@ -378,7 +441,16 @@ describe('TenantsListDatagrid', () => {
   });
 
   describe('Search Functionality', () => {
-    it('should filter tenants by name', () => {
+    it('should render datagrid with search functionality', () => {
+      render(<TenantsListDatagrid {...defaultProps} />, {
+        wrapper: createWrapper(),
+      });
+
+      // Test that search functionality is available
+      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+    });
+
+    it('should display all tenants initially', () => {
       render(<TenantsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
       });
@@ -388,19 +460,16 @@ describe('TenantsListDatagrid', () => {
       expect(screen.getByTestId('datagrid-item-1')).toBeInTheDocument();
       expect(screen.getByTestId('datagrid-item-2')).toBeInTheDocument();
     });
-
-    it('should filter tenants by endpoint', () => {
-      render(<TenantsListDatagrid {...defaultProps} />, {
-        wrapper: createWrapper(),
-      });
-
-      // Test that search functionality is available
-      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
-    });
   });
 
   describe('Error Handling', () => {
-    it('should handle error state', () => {
+    it('should handle error state and show notification', async () => {
+      const { useNotifications } = await import('@ovh-ux/muk');
+      const mockAddError = vi.fn();
+      vi.mocked(useNotifications).mockReturnValue({
+        addError: mockAddError,
+      } as never);
+
       const errorProps: TenantsListDatagridProps = {
         ...defaultProps,
         isError: true,
@@ -409,6 +478,10 @@ describe('TenantsListDatagrid', () => {
 
       render(<TenantsListDatagrid {...errorProps} />, {
         wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(mockAddError).toHaveBeenCalled();
       });
 
       expect(screen.getByTestId('datagrid')).toBeInTheDocument();
@@ -440,12 +513,14 @@ describe('TenantsListDatagrid', () => {
       const tenantsWithMissingData: Tenant[] = [
         {
           id: 'tenant-incomplete',
+          createdAt: '2024-01-01T00:00:00Z',
+          updatedAt: null,
           currentState: {
             title: 'Incomplete Tenant',
             limits: undefined,
             infrastructure: undefined,
-            tags: undefined,
           },
+          iam: undefined,
         },
       ];
 
@@ -457,20 +532,86 @@ describe('TenantsListDatagrid', () => {
       expect(screen.getByTestId('datagrid-item-0')).toBeInTheDocument();
     });
 
-    it('should handle tenants with null values', () => {
-      const tenantsWithNulls: Tenant[] = [
+    it('should handle tenants with undefined tags', () => {
+      const tenantsWithUndefinedTags: Tenant[] = [
         {
-          id: 'tenant-null',
+          id: 'tenant-no-tags',
+          createdAt: '2024-01-01T00:00:00Z',
+          updatedAt: null,
           currentState: {
-            title: 'Null Tenant',
-            limits: undefined,
+            title: 'No Tags Tenant',
+            limits: {
+              retention: { id: 'retention-4', duration: '30d' },
+              numberOfSeries: { current: 0, maximum: 100 },
+            },
             infrastructure: undefined,
-            tags: undefined,
+          },
+          iam: undefined,
+        },
+      ];
+
+      render(<TenantsListDatagrid {...defaultProps} tenantsList={tenantsWithUndefinedTags} />, {
+        wrapper: createWrapper(),
+      });
+
+      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+      expect(screen.getByTestId('datagrid-item-0')).toBeInTheDocument();
+      // Tags cell should still render even with empty tags
+      expect(screen.getByTestId('tags-cell')).toBeInTheDocument();
+    });
+
+    it('should handle tenants with empty tags object', () => {
+      const tenantsWithEmptyTags: Tenant[] = [
+        {
+          id: 'tenant-empty-tags',
+          createdAt: '2024-01-01T00:00:00Z',
+          updatedAt: null,
+          currentState: {
+            title: 'Empty Tags Tenant',
+            limits: {
+              retention: { id: 'retention-4', duration: '30d' },
+              numberOfSeries: { current: 0, maximum: 100 },
+            },
+            infrastructure: undefined,
+          },
+          iam: {
+            id: 'tenant-empty-tags',
+            urn: 'urn:ovh:tenant:tenant-empty-tags',
+            tags: {},
           },
         },
       ];
 
-      render(<TenantsListDatagrid {...defaultProps} tenantsList={tenantsWithNulls} />, {
+      render(<TenantsListDatagrid {...defaultProps} tenantsList={tenantsWithEmptyTags} />, {
+        wrapper: createWrapper(),
+      });
+
+      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+      expect(screen.getByTestId('tags-cell')).toBeInTheDocument();
+    });
+
+    it('should handle tenants with missing retention', () => {
+      const tenantsWithMissingRetention: Tenant[] = [
+        {
+          id: 'tenant-no-retention',
+          createdAt: '2024-01-01T00:00:00Z',
+          updatedAt: null,
+          currentState: {
+            title: 'No Retention Tenant',
+            limits: {
+              numberOfSeries: { current: 10, maximum: 100 },
+            },
+            infrastructure: mockInfrastructure,
+          },
+          iam: {
+            id: 'tenant-no-retention',
+            urn: 'urn:ovh:tenant:tenant-no-retention',
+            tags: { test: 'value' },
+          },
+        },
+      ];
+
+      render(<TenantsListDatagrid {...defaultProps} tenantsList={tenantsWithMissingRetention} />, {
         wrapper: createWrapper(),
       });
 
@@ -496,36 +637,24 @@ describe('TenantsListDatagrid', () => {
   });
 
   describe('Data Transformation', () => {
-    it('should transform tags array to semicolon-separated string', () => {
+    it('should transform tenant data to listing format', () => {
       render(<TenantsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
       });
 
-      // The tags should be processed correctly
+      // The data should be transformed correctly
       expect(screen.getAllByTestId('tags-cell')).toHaveLength(3);
+      expect(screen.getByTestId('link-label-tenant-1')).toHaveTextContent('Tenant One');
     });
 
-    it('should handle empty tags array', () => {
-      const tenantsWithEmptyTags: Tenant[] = [
-        {
-          id: 'tenant-empty-tags',
-          currentState: {
-            title: 'Empty Tags Tenant',
-            limits: {
-              retention: { id: 'retention-4', duration: '30d' },
-              numberOfSeries: { current: 0, maximum: 100 },
-            },
-            infrastructure: undefined,
-            tags: [],
-          },
-        },
-      ];
-
-      render(<TenantsListDatagrid {...defaultProps} tenantsList={tenantsWithEmptyTags} />, {
+    it('should handle tags transformation from iam object', () => {
+      render(<TenantsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
       });
 
-      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+      // Tags should be extracted from iam.tags
+      expect(screen.getByTestId('tag-environment-production')).toBeInTheDocument();
+      expect(screen.getByTestId('tag-team-monitoring')).toBeInTheDocument();
     });
   });
 });

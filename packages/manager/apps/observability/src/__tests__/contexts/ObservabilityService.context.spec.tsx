@@ -84,6 +84,8 @@ const TestComponent = () => {
         onClick={() =>
           context.setSelectedService({
             id: 'test-service-id',
+            createdAt: '2025-11-01T08:00:00.001Z',
+            updatedAt: '2025-11-01T08:00:00.001Z',
             currentState: { displayName: 'Test Service' },
           })
         }
@@ -103,8 +105,18 @@ describe('ObservabilityServiceContext', () => {
     it('should provide initial context values', () => {
       // Arrange
       const mockServices: ObservabilityService[] = [
-        { id: 'service-1', currentState: { displayName: 'Service 1' } },
-        { id: 'service-2', currentState: { displayName: 'Service 2' } },
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+        },
+        {
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 2' },
+        },
       ];
 
       mockUseObservabilityServices.mockReturnValue(
@@ -220,7 +232,12 @@ describe('ObservabilityServiceContext', () => {
     it('should memoize context value correctly', () => {
       // Arrange
       const mockServices: ObservabilityService[] = [
-        { id: 'service-1', currentState: { displayName: 'Service 1' } },
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+        },
       ];
 
       mockUseObservabilityServices.mockReturnValue(
@@ -276,7 +293,12 @@ describe('ObservabilityServiceContext', () => {
     it('should return context value when used within provider', () => {
       // Arrange
       const mockServices: ObservabilityService[] = [
-        { id: 'service-1', currentState: { displayName: 'Service 1' } },
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+        },
       ];
 
       mockUseObservabilityServices.mockReturnValue(
@@ -324,6 +346,8 @@ describe('ObservabilityServiceContext', () => {
       act(() => {
         result.current.setSelectedService({
           id: 'new-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'New Service' },
         });
       });
@@ -351,6 +375,8 @@ describe('ObservabilityServiceContext', () => {
       act(() => {
         result.current.setSelectedService({
           id: 'some-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Some Service' },
         });
       });
@@ -371,12 +397,27 @@ describe('ObservabilityServiceContext', () => {
     it('should reflect changes in useObservabilityServices hook', () => {
       // Arrange
       const initialServices: ObservabilityService[] = [
-        { id: 'service-1', currentState: { displayName: 'Service 1' } },
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+        },
       ];
 
       const updatedServices: ObservabilityService[] = [
-        { id: 'service-1', currentState: { displayName: 'Service 1' } },
-        { id: 'service-2', currentState: { displayName: 'Service 2' } },
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+        },
+        {
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 2' },
+        },
       ];
 
       // Start with initial services
