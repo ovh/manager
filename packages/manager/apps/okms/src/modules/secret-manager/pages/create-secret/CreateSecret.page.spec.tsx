@@ -64,6 +64,13 @@ describe('Create secret page test suite', () => {
     await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
   });
 
+  it('should display the price tile', async () => {
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.createSecret);
+
+    await assertTextVisibility(labels.secretManager.secrets_pricing_title);
+    await assertTextVisibility(labels.secretManager.secrets_pricing_subtitle);
+  });
+
   it('should navigate to the created secret page on submit', async () => {
     // GIVEN
     const user = userEvent.setup();
