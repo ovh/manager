@@ -99,7 +99,8 @@
       },
 
       "changelog": {
-        "projectChangelogs": true
+        "projectChangelogs": true,
+        "automaticFromRef": true
       },
 
       "releaseTag": {
