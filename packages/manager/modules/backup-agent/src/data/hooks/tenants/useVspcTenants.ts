@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import {
   DefinedInitialDataOptions,
   UseQueryResult,

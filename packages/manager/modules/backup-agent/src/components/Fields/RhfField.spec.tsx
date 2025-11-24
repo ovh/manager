@@ -7,7 +7,7 @@ import 'element-internals-polyfill';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { RhfField } from '.';
+import { RhfField } from './RhfField.component';
 
 const SCHEMA = z.object({
   inputTest: z.string().max(5),

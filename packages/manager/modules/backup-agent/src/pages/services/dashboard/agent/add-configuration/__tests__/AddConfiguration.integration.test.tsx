@@ -3,7 +3,7 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { TENANTS_MOCKS } from '@/mocks';
+import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 
