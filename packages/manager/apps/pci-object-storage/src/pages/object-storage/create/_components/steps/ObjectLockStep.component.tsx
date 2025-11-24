@@ -48,7 +48,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
           >
             {t(
               `versionningTypeLabel-${storages.ObjectLockStatusEnum.disabled}`,
-            )}{' '}
+            )}
           </Label>
         </div>
 
