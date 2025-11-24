@@ -480,17 +480,3 @@ export async function runStaticDynamicTests() {
 export async function runPerfBudgets(options = []) {
   return withWorkspaces(() => runTaskFromRoot('perf-budgets', 'manager-perf-budgets', options));
 }
-
-/**
- * Run arbitrary Lerna commands with workspace setup.
- *
- * @param {string[]} [options=[]] - Arguments for the `lerna` binary.
- * @returns {Promise<void>}
- * @example
- * await runLernaTask(['list', '--json']);
- */
-export async function runLernaTask(options = []) {
-  return withWorkspaces(async () => {
-    await runCommand('node_modules/.bin/lerna', options, managerRootPath);
-  });
-}

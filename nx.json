@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-
+  "cacheDirectory": ".nx/cache",
+  "defaultBase": "develop",
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",
@@ -9,7 +10,6 @@
       }
     }
   ],
-
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
@@ -33,7 +33,6 @@
       { "env": "VERSION" }
     ]
   },
-
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
@@ -44,14 +43,12 @@
       "inputs": ["production", "^production", "buildEnv"],
       "cache": true
     },
-
     "test": {
       "dependsOn": ["^test", "@ovh-ux/manager-static-analysis-kit#build"],
       "outputs": [],
       "inputs": ["default", "^default"],
       "cache": true
     },
-
     "dev": {
       "dependsOn": ["^dev"],
       "outputs": [
@@ -61,7 +58,6 @@
       "inputs": ["default", "^default"],
       "cache": true
     },
-
     "dev:watch": {
       "dependsOn": ["^dev:watch"],
       "outputs": [
@@ -71,26 +67,47 @@
       "inputs": ["default", "^default"],
       "cache": true
     },
-
     "start": {
       "dependsOn": ["^dev"],
       "cache": false
     },
-
     "lint:modern": {
       "dependsOn": ["^lint:modern", "^build"],
       "inputs": ["default", "^default"],
       "cache": true
     },
-
     "lint:modern:fix": {
       "dependsOn": ["^lint:modern", "^build"],
       "inputs": ["default", "^default"],
       "cache": true
+    },
+    "release": {
+      "projects": [
+        "docs",
+        "packages/components/*",
+        "packages/manager/apps/*",
+        "packages/manager/core/*",
+        "packages/manager/modules/*",
+        "packages/manager/tools/*",
+        "packages/manager-ui-kit"
+      ],
+
+      "projectsRelationship": "independent",
+
+      "version": {
+        "conventionalCommits": true
+      },
+
+      "changelog": {
+        "projectChangelogs": true
+      },
+
+      "releaseTag": {
+        "pattern": "{projectName}@{version}"
+      },
+      "git": {
+        "commitMessage": "chore(release): {projectName}@{version}"
+      }
     }
-  },
-
-  "cacheDirectory": ".nx/cache",
-
-  "defaultBase": "develop"
+  }
 }

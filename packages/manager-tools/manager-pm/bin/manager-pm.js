@@ -21,7 +21,6 @@ import {
   lintApplication,
   lintModule,
   publishPackage,
-  runLernaTask,
   runLifecycleTask,
   runManagerCli,
   runPerfBudgets,
@@ -133,9 +132,6 @@ ACTIONS
     buildCI [--filter <expr>] [other flags]
     testCI  [--filter <expr>] [other flags]
 
-  Lerna passthrough (flags forwarded to Lerna):
-    lerna <subcommand> [options]         Run any Lerna command with workspaces restored/cleaned
-
   Global:
     full-build                           Build ALL
     full-test                            Test ALL
@@ -182,9 +178,8 @@ RELEASE / PUBLISH FLAGS (forwarded to underlying tools)
                                            no file changes persist (working tree is restored)
   --tag <name>                           Dist-tag (publish) or explicit release tag (release)
   --seed <value>                         Seed used to compute release name
-  --conventional-prerelease              Forwarded to lerna (release)
   --preid <id>                           e.g. rc, alpha (with --conventional-prerelease)
-  (Any other unknown flags are forwarded to Turbo / lerna / npm / yarn as appropriate)
+  (Any other unknown flags are forwarded to Turbo / NX / npm / yarn as appropriate)
 
 EXAMPLES
   # Single app
@@ -207,11 +202,6 @@ EXAMPLES
   # Task manager (Turbo/NX/...) passthrough
   manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
   manager-pm --type pnpm --action testCI  --filter=tag:unit --parallel
-
-  # Lerna passthrough
-  manager-pm --action lerna list --all --json --toposort
-  manager-pm --action lerna publish from-package --yes
-  manager-pm --action lerna version --conventional-commits
 
   # Workspaces
   manager-pm --action workspace --mode prepare
@@ -244,7 +234,6 @@ NOTES
   • In dry release mode, the script safeguards your working tree: no tags/commits/push,
     no persistent file changes (package.json/CHANGELOG restored).
   • For "cli" action, everything after the word "cli" is forwarded to manager-cli verbatim.
-  • For "lerna" action, everything after the word "lerna" is forwarded to Lerna verbatim.
 `;
 
 /**
@@ -485,18 +474,6 @@ const actions = {
     }
 
     return runManagerCli(extraArgs);
-  },
-  async lerna() {
-    const lernaIndex = process.argv.indexOf('lerna');
-    let extraArgs = lernaIndex !== -1 ? process.argv.slice(lernaIndex + 1) : [];
-
-    // Strip --silent before passing to Lerna
-    if (extraArgs.includes('--silent')) {
-      extraArgs = extraArgs.filter((arg) => arg !== '--silent');
-      setLoggerMode('silent');
-    }
-
-    return runLernaTask(extraArgs);
   },
 };
 

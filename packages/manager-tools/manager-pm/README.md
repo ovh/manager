@@ -216,7 +216,7 @@ manager-pm --type pnpm --action <action> [--runner <turbo|nx|binary>] [options] 
 - `--container`: hint for “start” (container mode).
 - `--region <code>`: informational; surfaced in logs.
 - `--version` / `-V`: print CLI version.
-- `--silent`: suppress CLI logs, keep only raw tool output (Turbo/Nx/Lerna/etc.).
+- `--silent`: suppress CLI logs, keep only raw tool output (Turbo/Nx/etc.).
 
 ---
 
@@ -591,33 +591,27 @@ By default, `manager-pm` logs version, context, and execution details (useful fo
 When automating tasks (e.g., in CI/CD pipelines or JSON parsers), you can suppress these logs with `--silent`.
 
 ### Behavior
-| Mode | Output | Use Case |
-|------|---------|----------|
-| Default (verbose) | Context summary, logs, task info | Local debugging, interactive runs |
-| `--silent` | Only raw tool output (Turbo, Lerna, etc.) | Parsing JSON or feeding results to `jq`, `grep`, etc. |
-| `yarn -s` + `--silent` | Fully quiet Yarn + CLI output | Machine-readable pipelines |
+| Mode | Output                                 | Use Case |
+|------|----------------------------------------|----------|
+| Default (verbose) | Context summary, logs, task info       | Local debugging, interactive runs |
+| `--silent` | Only raw tool output (Turbo, NX, etc.) | Parsing JSON or feeding results to `jq`, `grep`, etc. |
+| `yarn -s` + `--silent` | Fully quiet Yarn + CLI output          | Machine-readable pipelines |
 
 ### Examples
 
 ```bash
 # Normal verbose mode
-yarn manager-pm --action lerna list --all --json --toposort
+yarn manager-pm --action buildCI --filter=@ovh-ux/manager-web
 
 # Silent mode (no context logs)
-yarn manager-pm --silent --action lerna list --all --json --toposort
-
-# Combine with Yarn’s -s for complete silence
-yarn -s manager-pm --silent --action lerna list --all --json --toposort | jq -r '.[].name'
+yarn manager-pm --action buildCI --filter=@ovh-ux/manager-web --silent
 ```
 
 ### Notes
-- Works with **all actions** (e.g., `lerna`, `cli`, `release`, `buildCI`, etc.).
+
+- Works with **all actions** (e.g., `cli`, `release`, `buildCI`, etc.).
 - Internally switches logger to `silent` mode (`stderr` and `stdout` suppressed except raw tool output).
 - Recommended for pipelines where you parse output, e.g.:
-
-  ```bash
-  PACKAGES=$(yarn -s manager-pm --silent --action lerna changed --all --json | jq -r '.[].name')
-  ```
 
 ---
 
@@ -715,257 +709,6 @@ yarn manager-pm --action buildCI --filter=@ovh-ux/manager-web --silent
 
 This reduces setup time from 15+ minutes to under 2 minutes in large repos —  
 ideal for quick CI runners, release automation, or script-driven catalog operations.
-
----
-
-## Continuous Delivery (CDS)
-
-In our previous workflow, Continuous Delivery jobs relied on **direct Lerna invocations** such as:
-
-```bash
-node_modules/.bin/lerna list   --all   --json   --toposort   | jq -r '.[].location | select(. | test("/packages/manager/apps"))'
-```
-
-This worked but bypassed the hybrid logic of `manager-pm`.  
-
-Now, all Lerna calls should go **through `manager-pm`**, ensuring that catalogs and hybrid workspaces are prepared/cleaned consistently.
-
-### New recommended usage
-
-```bash
-yarn -s manager-pm --silent --action lerna list --all --json --toposort --loglevel silent   | jq -r '.[].location | select(test("/packages/manager/apps"))'
-```
-
-Or equivalently:
-
-```bash
-node node_modules/.bin/manager-pm --silent --action lerna list --all --json --toposort --loglevel silent   | jq -r '.[].location | select(test("/packages/manager/apps"))'
-```
-
-Both commands guarantee:
-- Correct workspace preparation/cleanup before and after the run.
-- Silent Yarn headers/footers suppressed (so JSON remains parseable).
-- Full passthrough of flags and options to **Lerna**.
-
-### Passing arbitrary Lerna options
-
-`manager-pm` exposes a **Lerna passthrough mode**, so you can use any existing Lerna subcommand:
-
-```bash
-# Help
-yarn -s manager-pm --silent --action lerna --help
-
-# Info
-yarn -s manager-pm --silent --action lerna info  
-
-# Version
-yarn -s manager-pm --silent --action lerna -version
-
-# List packages
-yarn -s manager-pm --silent --action lerna list --all --json --toposort
-
-# Publish from local versions
-yarn -s manager-pm --silent --action lerna publish from-package --yes
-
-# Version with conventional commits
-yarn -s manager-pm --silent --action lerna version --conventional-commits
-```
-
-This ensures **CD pipelines and developers** use a single, unified CLI (`manager-pm`), regardless of whether the repo is Yarn-only, PNPM-only, or hybrid.
-
-Example:
-
-```bash
-yarn -s manager-pm --silent --action lerna -version
-5.6.2
-
-yarn -s manager-pm --silent --action lerna info    
-lerna notice cli v5.6.2
-lerna info versioning independent
-
- Environment info:
-
-  System:
-  ...
-  
-yarn -s manager-pm --silent --action lerna list    
-lerna notice cli v5.6.2
-lerna info versioning independent
-@ovh-ux/ng-at-internet-ui-router-plugin
-@ovh-ux/ng-log-live-tail
-@ovh-ux/ng-ovh-actions-menu
-@ovh-ux/ng-ovh-browser-alert
-...
-
-```
-
-### 🟡 Staging
-
-#### Detect changed packages (apps only)
-
-**Before**
-
-```bash
-PACKAGES_TO_BUILD=$(node_modules/.bin/lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(. | test("/packages/manager/apps"))')
-```
-
-**Now**
-
-```bash
-PACKAGES_TO_BUILD=$(yarn -s manager-pm --silent --action lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(test("/packages/manager/apps"))')
-```
-
-Example:
-
-```bash
-yarn -s manager-pm --silent --action lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(test("/packages/manager/apps"))'
-
-/packages/manager/apps/restricted
-/packages/manager/apps/billing
-/packages/manager/apps/carbon-calculator
-/packages/manager/apps/carrier-sip
-/packages/manager/apps/cda
-/packages/manager/apps/cloud-connect
-/packages/manager/apps/container
-/packages/manager/apps/dbaas-logs
-/packages/manager/apps/dedicated
-/packages/manager/apps/email-domain
-/packages/manager/apps/email-pro
-/packages/manager/apps/exchange
-/packages/manager/apps/freefax
-/packages/manager/apps/iam
-/packages/manager/apps/iplb
-/packages/manager/apps/metrics
-/packages/manager/apps/nasha
-/packages/manager/apps/netapp
-/packages/manager/apps/nutanix
-/packages/manager/apps/order-tracking
-/packages/manager/apps/overthebox
-/packages/manager/apps/pci
-/packages/manager/apps/pci-ai-tools
-/packages/manager/apps/pci-databases-analytics
-/packages/manager/apps/pci-dataplatform
-/packages/manager/apps/procedures
-/packages/manager/apps/public-cloud
-/packages/manager/apps/sign-up
-/packages/manager/apps/sms
-/packages/manager/apps/support
-/packages/manager/apps/telecom
-/packages/manager/apps/telecom-dashboard
-/packages/manager/apps/telecom-task
-/packages/manager/apps/veeam-enterprise
-/packages/manager/apps/vps
-/packages/manager/apps/vrack
-/packages/manager/apps/web
-/packages/manager/apps/account
-/packages/manager/apps/catalog
-/packages/manager/apps/communication
-/packages/manager/apps/dedicated-servers
-/packages/manager/apps/hpc-vmware-public-vcf-aas
-/packages/manager/apps/hub
-/packages/manager/apps/hycu
-/packages/manager/apps/identity-access-management
-/packages/manager/apps/key-management-service
-/packages/manager/apps/okms
-/packages/manager/apps/pci-ai-endpoints
-/packages/manager/apps/pci-billing
-/packages/manager/apps/pci-block-storage
-/packages/manager/apps/pci-cold-archive
-/packages/manager/apps/pci-gateway
-/packages/manager/apps/pci-instances
-/packages/manager/apps/pci-kubernetes
-/packages/manager/apps/pci-load-balancer
-/packages/manager/apps/pci-object-storage
-/packages/manager/apps/pci-private-network
-/packages/manager/apps/pci-private-registry
-/packages/manager/apps/pci-public-ip
-/packages/manager/apps/pci-quota
-/packages/manager/apps/pci-rancher
-/packages/manager/apps/pci-savings-plan
-/packages/manager/apps/pci-ssh-keys
-/packages/manager/apps/pci-users
-/packages/manager/apps/pci-volume-backup
-/packages/manager/apps/pci-volume-snapshot
-/packages/manager/apps/pci-vouchers
-/packages/manager/apps/pci-workflow
-/packages/manager/apps/sap-features-hub
-/packages/manager/apps/veeam-backup
-/packages/manager/apps/vrack-services
-/packages/manager/apps/web-domains
-/packages/manager/apps/web-hosting
-/packages/manager/apps/web-office
-/packages/manager/apps/web-ongoing-operations
-/packages/manager/apps/zimbra
-```
-
-#### Search an existing app on the list
-
-**Before**
-
-```bash
-app_path="$(node_modules/.bin/lerna list   --all   --parseable   --toposort   --long | grep ":${app}:" | cut -d: -f1)"
-```
-
-**Now**
-
-```bash
-app_path="$(yarn -s manager-pm --silent --action lerna list   --all   --parseable   --toposort   --long | grep ":${app}:" | cut -d: -f1)"
-```
-
-Example:
-
-```bash
-yarn -s manager-pm --silent --action lerna list   --all   --parseable   --toposort   --long | grep "zimbra" | cut -d: -f1
-
-/packages/manager/apps/zimbra
-```
-
-### 🔵 Production
-
-#### Changed packages on the release
-
-**Before**
-
-```bash
-packages=$(node_modules/.bin/lerna changed --all -l --json | jq -r '.[].name')
-```
-
-**Now**
-
-```bash
-packages=$(yarn -s manager-pm --silent --action lerna changed --all -l --json | jq -r '.[].name')
-```
-
-Example:
-
-```bash
-yarn -s manager-pm --silent --action lerna changed --all -l --json | jq -r '.[].name'
-
-@ovh-ux/manager-documentation
-@ovh-ux/ng-at-internet-ui-router-plugin
-@ovh-ux/ng-at-internet
-@ovh-ux/ng-log-live-tail
-@ovh-ux/ng-ovh-actions-menu
-@ovh-ux/ng-ovh-browser-alert
-@ovh-ux/ng-ovh-chart
-@ovh-ux/ng-ovh-checkbox-table
-@ovh-ux/ng-ovh-contact
-...
-```
-
-#### Get changed package in build pipeline
-
-**Before**
-
-```bash
-package_path=$(node_modules/.bin/lerna list -ap --scope="XXX")
-```
-
-**Now**
-
-```bash
-package_path=$(yarn -s manager-pm --silent --action lerna list -ap --scope="XXX")
-```
 
 ---
 
