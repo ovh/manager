@@ -133,6 +133,8 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 | **Concrete Mappings** | angularjs-react-mapping-guide.md ⭐ NEW | migration-patterns.md |
 | **Code Templates** | code-templates.md ⭐ NEW | angularjs-react-mapping-guide.md |
 | **Patterns Lookup** | migration-patterns.md | angularjs-react-mapping-guide.md + 30-best-practices/ |
+| **Visual Diffs** | 10-migration-diffs/ ⭐ NEW | angularjs-react-mapping-guide.md |
+| **Pitfalls Check** | 09-common-pitfalls/ ⭐ NEW | parity-validation-guide.md |
 | **Validation** | parity-validation-guide.md | us-migration-guide.md |
 | **Documentation** | migration-templates.md | us-migration-guide.md |
 | **React Patterns** | 30-best-practices/ | migration-patterns.md |
@@ -159,6 +161,33 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 - Use [parity-validation-guide.md](./parity-validation-guide.md) for validation
 - Use [us-migration-guide.md](./us-migration-guide.md) for US validation
 - Verify all detected features are implemented
+
+## 🧠 AI-Optimized Resources (Phase 3) ⭐ NEW
+
+### **Navigation & Discovery**
+- [00-semantic-index.yaml](./00-semantic-index.yaml) - **Semantic index for AI navigation** - Quick concept-to-doc mapping
+- [01-workflows/decision-tree-v2.json](./01-workflows/decision-tree-v2.json) - **Enhanced decision tree** - Contextual conditions for smarter decisions
+
+### **Pattern Detection & Validation**
+- [02-patterns/](./02-patterns/) - **Machine-readable patterns** - Regex patterns for AngularJS detection
+- [02-patterns/validate-patterns.ts](./02-patterns/validate-patterns.ts) - **Pattern validation script** - Test regex patterns
+
+### **Error Prevention**
+- [09-common-pitfalls/](./09-common-pitfalls/) - **Common pitfalls catalog** - Avoid frequent mistakes
+- [09-common-pitfalls/pitfalls-catalog.yaml](./09-common-pitfalls/pitfalls-catalog.yaml) - **Pitfalls with detection regex**
+
+### **Visual Diffs**
+- [10-migration-diffs/](./10-migration-diffs/) - **Side-by-side comparisons** - AngularJS → React transformations
+  - [routing-diffs.md](./10-migration-diffs/routing-diffs.md) - Routes, states, navigation
+  - [api-diffs.md](./10-migration-diffs/api-diffs.md) - API calls, data fetching
+  - [component-diffs.md](./10-migration-diffs/component-diffs.md) - UI components
+  - [state-diffs.md](./10-migration-diffs/state-diffs.md) - Controllers, services
+
+### **Workflow State**
+- [06-prompts/state-schema.yaml](./06-prompts/state-schema.yaml) - **Migration state schema** - Track progress across prompts
+
+### **Continuous Improvement**
+- [12-feedback/](./12-feedback/) - **Feedback loop** - Log improvements and pending updates
 
 ## 📚 Additional Resources
 
