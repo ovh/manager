@@ -22,6 +22,8 @@ export default function Multisite() {
     version: 'v6',
     route: `/hosting/web/${serviceName}/tasks`,
     cacheKey: ['hosting', 'web', serviceName, 'tasks'],
+    enabled: !!serviceName,
+    iceberg: true,
   });
   return (
     <React.Suspense fallback={<Loading />}>
@@ -44,7 +46,9 @@ export default function Multisite() {
         columns={flattenData ? columns : []}
         data={flattenData?.map((item) => item as TaskDetailsType) || []}
         hasNextPage={hasNextPage && !isLoading}
-        onFetchNextPage={void fetchNextPage}
+        onFetchNextPage={(): void => {
+          void fetchNextPage();
+        }}
         isLoading={isLoading}
       />
     </React.Suspense>

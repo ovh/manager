@@ -31,6 +31,7 @@ export default function ActivateCdnModal() {
     },
     (error: ApiError) => {
       addError(error?.response?.data?.message || t('multisite:multisite_cdn_activate_error'), true);
+      navigate(-1);
     },
   );
 
