@@ -28,6 +28,7 @@ import {
   CHANGELOG_CHAPTERS,
   CHANGELOG_LINKS,
 } from '@/utils/changelog.constants';
+import { PciGuidesHeader } from '@/components/guides-header';
 
 export interface ListingProps {
   data: RancherService[];
@@ -57,6 +58,7 @@ const ListingTablePage: React.FC<ListingProps> = ({
             links={CHANGELOG_LINKS}
             chapters={CHANGELOG_CHAPTERS}
           />
+          <PciGuidesHeader />
         </div>
       </div>
       <div className="my-3 mt-5">
