@@ -6,7 +6,7 @@ import {
   is3az,
   mapRetypingVolumeCatalog,
   mapVolumeCatalog,
-  putPreselectedModelFirst,
+  sortByPreselectedModel,
 } from '@/api/select/catalog';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '../hooks/useCatalogWithPreselection';
@@ -355,7 +355,7 @@ describe('select catalog', () => {
     });
   });
 
-  describe('putPreselectedModelFirst', () => {
+  describe('sortByPreselectedModel', () => {
     describe('with TVolumeModel', () => {
       const model0 = { name: 'model_0' } as TVolumeModel;
       const model1 = { name: 'model_1' } as TVolumeModel;
@@ -365,7 +365,7 @@ describe('select catalog', () => {
       it('should not change the order', () => {
         const volumeModels = [model0, model3, model2, model1];
 
-        const result = putPreselectedModelFirst(volumeModels);
+        const result = sortByPreselectedModel(volumeModels);
 
         expect(result).toEqual(volumeModels);
       });
@@ -393,7 +393,7 @@ describe('select catalog', () => {
       `(
         'should put the preselected model first and not change the order of the other models when $description',
         ({ volumeModels, expectedResult }) => {
-          const result = putPreselectedModelFirst(volumeModels);
+          const result = sortByPreselectedModel(volumeModels);
 
           expect(result).toEqual(expectedResult);
         },

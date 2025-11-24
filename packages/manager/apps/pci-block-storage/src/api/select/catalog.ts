@@ -405,7 +405,7 @@ export const mapRetypingVolumeCatalog = (
       ),
     );
 
-export const putPreselectedModelFirst = <T = TVolumeModel | TVolumeRetypeModel>(
+export const sortByPreselectedModel = <T = TVolumeModel | TVolumeRetypeModel>(
   volumeModels: T[],
 ): T[] =>
   [...volumeModels].sort((a, b) => {

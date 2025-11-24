@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
-import { putPreselectedModelFirst } from '@/api/select/catalog';
+import { sortByPreselectedModel } from '@/api/select/catalog';
 
 type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   volumeModels: T[];
@@ -75,7 +75,7 @@ export const VolumeModelTilesInput = ({
 
   const volumeTypes = useMemo(
     () =>
-      putPreselectedModelFirst(volumeModels).map((model) => ({
+      sortByPreselectedModel(volumeModels).map((model) => ({
         ...model,
         label: model.displayName,
         description: getDescription(model),
@@ -113,7 +113,7 @@ export const VolumeModelTilesInput = ({
       <Text preset={TEXT_PRESET.heading5}>{label}</Text>
       <TilesInput
         name="volume-type"
-        label=""
+        label={undefined}
         value={volumeTypeValue}
         elements={volumeTypes}
         onChange={(e) => onChange(e)}
