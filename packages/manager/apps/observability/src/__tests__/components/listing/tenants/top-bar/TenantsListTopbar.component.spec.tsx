@@ -84,6 +84,8 @@ const getTopbarContainer = (container: HTMLElement) => {
 describe('TenantsListTopbar', () => {
   const mockSelectedService = {
     id: 'test-service',
+    createdAt: '2025-11-01T08:00:00.001Z',
+    updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Test Service' },
     iam: {
       id: 'test-service',
@@ -199,6 +201,8 @@ describe('TenantsListTopbar', () => {
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService: {
           id: 'test-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Test Service' },
           iam: undefined,
         },
@@ -222,6 +226,8 @@ describe('TenantsListTopbar', () => {
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService: {
           id: 'test-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Test Service' },
           iam: undefined,
         },
@@ -267,6 +273,8 @@ describe('TenantsListTopbar', () => {
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService: {
           id: 'test-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Test Service' },
           iam: { id: 'test-service', urn: '' },
         },
@@ -291,6 +299,8 @@ describe('TenantsListTopbar', () => {
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService: {
           id: 'test-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Test Service' },
           iam: { id: 'test-service', urn: specialUrn },
         },
@@ -315,6 +325,8 @@ describe('TenantsListTopbar', () => {
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService: {
           id: 'test-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Test Service' },
           iam: { id: 'test-service', urn: longUrn },
         },
@@ -463,6 +475,8 @@ describe('TenantsListTopbar', () => {
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService: {
           id: 'new-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'New Service' },
           iam: { id: 'new-service', urn: 'new-urn' },
         },
@@ -503,6 +517,8 @@ describe('TenantsListTopbar', () => {
         mockUseObservabilityServiceContext.mockReturnValue({
           selectedService: {
             id: 'test-service',
+            createdAt: '2025-11-01T08:00:00.001Z',
+            updatedAt: '2025-11-01T08:00:00.001Z',
             currentState: { displayName: 'Test Service' },
             iam: { id: 'test-service', urn },
           },
