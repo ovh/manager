@@ -1,6 +1,11 @@
 import React from 'react';
 import { Links } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
 
@@ -19,6 +24,7 @@ export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
     TRANSLATION_NAMESPACES.error,
     'error',
   ]);
+  const { trackClick } = useOvhTracking();
   const { links } = useGuideUtils();
 
   return (
@@ -28,9 +34,19 @@ export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
         <div className="mb-2">
           {t('ip_reverse_update_failure_hint')}
           <Links
-            href={links?.configureReverseDnsGuide}
+            href={links?.configureReverseDnsGuide.link}
             label={t('ip_reverse_update_failure_hint_link')}
             target="_blank"
+            onClickReturn={() => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.link,
+                location: PageLocation.page,
+                actions: [
+                  `go-to_${links?.configureReverseDnsGuide.trackingLabel}`,
+                ],
+              });
+            }}
           />
           {'.'}
         </div>

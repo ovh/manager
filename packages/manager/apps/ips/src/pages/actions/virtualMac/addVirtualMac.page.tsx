@@ -185,9 +185,19 @@ export default function AddVirtualMacModal() {
                   {t('addVirtualMacNewInfo')}
                   <OdsLink
                     className="inline"
-                    href={links.virtualMacLink}
+                    href={links.virtualMacLink.link}
                     target="_blank"
                     label={t('addVirtualMacNewInfoGuide')}
+                    onClick={() => {
+                      trackClick({
+                        location: PageLocation.popup,
+                        buttonType: ButtonType.link,
+                        actionType: 'action',
+                        actions: [
+                          `go-to_${links.virtualMacLink.trackingLabel}`,
+                        ],
+                      });
+                    }}
                   />
                 </OdsText>
               </div>

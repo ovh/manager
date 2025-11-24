@@ -1,17 +1,17 @@
 export const LEVEL2 = {
   EU: {
     config: {
-      level2: 'Manager-Network',
+      level2: '152',
     },
   },
   CA: {
     config: {
-      level2: 'Manager-Network',
+      level2: '152',
     },
   },
   US: {
     config: {
-      level2: 'Manager-Network',
+      level2: '152',
     },
   },
 };

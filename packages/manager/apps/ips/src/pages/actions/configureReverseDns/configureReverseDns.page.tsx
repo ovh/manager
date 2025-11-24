@@ -157,9 +157,19 @@ export default function ConfigureReverseDns() {
         {t('reverseDnsModalDescription')}
         <OdsLink
           className="inline"
-          href={links.configureReverseDnsGuide}
+          href={links.configureReverseDnsGuide.link}
           target="_blank"
           label="guide"
+          onClick={() => {
+            trackClick({
+              location: PageLocation.popup,
+              buttonType: ButtonType.link,
+              actionType: 'action',
+              actions: [
+                `go-to_${links.configureReverseDnsGuide.trackingLabel}`,
+              ],
+            });
+          }}
         />
       </OdsText>
       {!id && (
