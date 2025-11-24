@@ -5,7 +5,7 @@ import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-co
 import { licensesMock, licensesPrepaidExpandedMock } from '@/data/api/__mocks__/license';
 import { usersMock } from '@/data/api/__mocks__/user';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { render } from '@/utils/Test.provider';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import Users from '../Users.page';
 
@@ -39,9 +39,9 @@ describe('Users page', () => {
       isLoading: false,
     });
 
-    const { getByTestId } = render(<Users />);
+    const { getByTestId } = renderWithRouter(<Users />);
     const orderButton = getByTestId('users-order-button');
-    expect(orderButton).toHaveAttribute('label', actions.order_users);
+    expect(orderButton).toHaveTextContent(actions.order_users);
   });
 
   it('Page for prepaid', () => {
@@ -50,20 +50,23 @@ describe('Users page', () => {
       isLoading: false,
     });
     hoistedMock.useUsers.mockReturnValue({
-      data: licensesPrepaidExpandedMock[0],
+      data: licensesPrepaidExpandedMock,
       isLoading: false,
     });
 
-    const { getByTestId } = render(<Users />);
+    const { getByTestId } = renderWithRouter(<Users />);
     const orderButton = getByTestId('licenses-order-button');
-    expect(orderButton).toHaveAttribute('label', commonTranslation.users_order_licenses);
+    expect(orderButton).toHaveTextContent(commonTranslation.users_order_licenses);
   });
 });
 
 describe('Users page W3C Validation', () => {
-  // issue with ods on label and input (for / id)
+  /*
+    issue with ods popover in datagrid
+    error: The “aria-controls” attribute must point to an element in the same document.
+   */
   it.skip('should have a valid html', async () => {
-    const { container } = render(<Users />);
+    const { container } = renderWithRouter(<Users />);
     const html = container.innerHTML;
 
     await expect(html).toBeValidHtml();

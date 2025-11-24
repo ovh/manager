@@ -32,5 +32,6 @@
   "no": "Não",
   "ok": "OK",
   "optional": "facultativo",
-  "step_number": "Etapa {{step}}"
+  "step_number": "Etapa {{step}}",
+  "required": "obrigatório"
 }
