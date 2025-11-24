@@ -75,6 +75,22 @@ Contains static assets served directly by the web server without processing:
 - **Naming**: Use kebab-case for folder names within assets (e.g., `feature-name/`)
 - **Organization**: Group assets by feature or module to maintain clarity
 
+```
+public/
+├── assets/                      # Static assets
+│   └── feature-name/           # Feature-specific assets
+└── translations/               # i18n translation files
+    └── namespace-name/         # Feature-specific translations
+        ├── Messages_de_DE.json
+        ├── Messages_en_GB.json
+        ├── Messages_es_ES.json
+        ├── Messages_fr_CA.json
+        ├── Messages_fr_FR.json
+        ├── Messages_it_IT.json
+        ├── Messages_pl_PL.json
+        └── Messages_pt_PT.json
+```
+
 ### `/src/components/` - Reusable Components
 
 Houses reusable UI components shared across multiple pages or features:
@@ -83,6 +99,14 @@ Houses reusable UI components shared across multiple pages or features:
 - **Optional files**: Constants file (`.constants.ts`) for component-specific constants
 - **Naming convention**: Component folder in camelCase, files in PascalCase
 - **Purpose**: Components should be generic and reusable across different contexts
+
+```
+components/
+└── componentName/              # Component-specific folder
+    ├── ComponentName.component.tsx    # Main component file
+    ├── componentName.constants.ts     # Component constants
+    └── ComponentName.spec.tsx         # Component tests
+```
 
 ### `/src/pages/` - Page Components
 
@@ -93,6 +117,14 @@ Contains top-level page components that represent routes in the application:
 - **Naming convention**: Page folder in camelCase, files in PascalCase
 - **Purpose**: Pages compose multiple components and represent full application views
 
+```
+pages/
+└── pageName/                   # Page-specific folder
+    ├── PageName.page.tsx       # Main page component
+    ├── pageName.constants.ts   # Page constants
+    └── PageName.spec.tsx       # Page tests
+```
+
 ### `/src/data/` - Data Layer
 
 Central location for all data fetching, API calls, and data-related logic:
@@ -102,6 +134,16 @@ Central location for all data fetching, API calls, and data-related logic:
 - **Pattern**: Separate concerns - API calls, data hooks, and types are in distinct folders
 - **Integration**: Hooks use API functions and types to provide data to components
 
+```
+data/
+├── api/                        # API service functions
+│   └── serviceName.api.ts      # API service file
+├── hooks/                      # Data fetching hooks
+│   └── useServiceName.ts       # Data hook file
+└── types/                      # Data type definitions
+    └── serviceName.types.ts    # Data types file
+```
+
 ### `/src/hooks/` - Custom Hooks
 
 Contains custom React hooks for shared logic and state management:
@@ -109,6 +151,11 @@ Contains custom React hooks for shared logic and state management:
 - **Purpose**: Encapsulate reusable logic, side effects, and stateful behavior
 - **Scope**: Application-wide hooks (not data-fetching hooks, which go in `/src/data/hooks/`)
 - **Examples**: Form handling, UI state, browser APIs, complex component logic
+
+```
+hooks/
+└── useHookName.ts              # Custom hook file
+```
 
 ### `/src/services/` - Business Logic
 
@@ -118,6 +165,11 @@ Houses business logic and complex operations that don't fit in components:
 - **Separation**: Keep business logic separate from UI components and API calls
 - **Testing**: Services should be pure functions when possible for easier testing
 
+```
+services/
+└── serviceName.service.ts      # Service file
+```
+
 ### `/src/types/` - Type Definitions
 
 Contains TypeScript type definitions and interfaces used across the application:
@@ -126,6 +178,11 @@ Contains TypeScript type definitions and interfaces used across the application:
 - **Scope**: Application-wide types (not data-specific types, which go in `/src/data/types/`)
 - **Organization**: Group related types in the same file
 
+```
+types/
+└── typeName.types.ts           # Type definition file
+```
+
 ### `/src/utils/` - Utility Functions
 
 Contains pure utility functions and helpers used throughout the application:
@@ -133,6 +190,11 @@ Contains pure utility functions and helpers used throughout the application:
 - **Purpose**: Pure functions for formatting, validation, transformation, etc.
 - **Requirements**: Should be stateless and side-effect free when possible
 - **Testing**: Each utility should have comprehensive unit tests
+
+```
+utils/
+└── utilName.utils.ts           # Utility function file
+```
 
 ## 📋 Naming Conventions
 
