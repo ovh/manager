@@ -4,6 +4,13 @@ import { vi } from 'vitest';
 import DataGridCellLink from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component';
 import { DataGridCellLinkProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.props';
 
+const { mockGetTenantDashboardUrl } = vi.hoisted(() => ({
+  mockGetTenantDashboardUrl: vi.fn((tenantId: string) => `/mocked/${tenantId}`),
+}));
+vi.mock('@/routes/Routes.utils', () => ({
+  getTenantDashboardUrl: mockGetTenantDashboardUrl,
+}));
+
 // Mock react-router-dom
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', () => ({
@@ -31,7 +38,6 @@ describe('DataGridCellLink', () => {
   const defaultProps: DataGridCellLinkProps = {
     id: 'test-id',
     label: 'Test Label',
-    path: '/test/path',
   };
 
   beforeEach(() => {
@@ -68,43 +74,33 @@ describe('DataGridCellLink', () => {
 
       expect(screen.getByText('Custom Label')).toBeInTheDocument();
     });
-
-    it('should render with custom path', () => {
-      const customProps = {
-        ...defaultProps,
-        path: '/custom/path',
-      };
-
-      render(<DataGridCellLink {...customProps} />);
-
-      const link = screen.getByTestId('cell-link-test-id');
-      expect(link).toBeInTheDocument();
-    });
   });
 
   describe('Navigation', () => {
-    it('should call navigate with correct path when clicked', () => {
+    it('should call navigate with tenant dashboard path when clicked', () => {
       render(<DataGridCellLink {...defaultProps} />);
 
       const link = screen.getByTestId('cell-link-test-id');
       fireEvent.click(link);
 
       expect(mockNavigate).toHaveBeenCalledTimes(1);
-      expect(mockNavigate).toHaveBeenCalledWith('/test/path');
+      expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith('test-id');
+      expect(mockNavigate).toHaveBeenCalledWith('/mocked/test-id');
     });
 
-    it('should navigate to different paths', () => {
+    it('should navigate to unique tenant paths based on id', () => {
       const customProps = {
         ...defaultProps,
-        path: '/different/path',
+        id: 'custom-id',
       };
 
       render(<DataGridCellLink {...customProps} />);
 
-      const link = screen.getByTestId('cell-link-test-id');
+      const link = screen.getByTestId('cell-link-custom-id');
       fireEvent.click(link);
 
-      expect(mockNavigate).toHaveBeenCalledWith('/different/path');
+      expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith('custom-id');
+      expect(mockNavigate).toHaveBeenCalledWith('/mocked/custom-id');
     });
 
     it('should handle multiple clicks', () => {
@@ -116,7 +112,7 @@ describe('DataGridCellLink', () => {
       fireEvent.click(link);
 
       expect(mockNavigate).toHaveBeenCalledTimes(3);
-      expect(mockNavigate).toHaveBeenCalledWith('/test/path');
+      expect(mockNavigate).toHaveBeenCalledWith('/mocked/test-id');
     });
   });
 
@@ -125,7 +121,6 @@ describe('DataGridCellLink', () => {
       const emptyProps = {
         id: '',
         label: '',
-        path: '',
       };
 
       render(<DataGridCellLink {...emptyProps} />);
@@ -139,7 +134,6 @@ describe('DataGridCellLink', () => {
       const specialProps = {
         id: 'id-with-special-chars-123',
         label: 'Label with "quotes" & <tags>',
-        path: '/path/with/special-chars',
       };
 
       render(<DataGridCellLink {...specialProps} />);
@@ -152,7 +146,6 @@ describe('DataGridCellLink', () => {
       const longProps = {
         id: 'a'.repeat(100),
         label: 'A'.repeat(200),
-        path: '/path/' + 'segment/'.repeat(50),
       };
 
       render(<DataGridCellLink {...longProps} />);
@@ -167,7 +160,6 @@ describe('DataGridCellLink', () => {
       const undefinedProps = {
         id: undefined as unknown as string,
         label: undefined as unknown as string,
-        path: undefined as unknown as string,
       };
 
       render(<DataGridCellLink {...undefinedProps} />);
@@ -179,7 +171,6 @@ describe('DataGridCellLink', () => {
       const nullProps = {
         id: null as unknown as string,
         label: null as unknown as string,
-        path: null as unknown as string,
       };
 
       render(<DataGridCellLink {...nullProps} />);
@@ -191,7 +182,6 @@ describe('DataGridCellLink', () => {
       const numericProps = {
         id: 123 as unknown as string,
         label: 456 as unknown as string,
-        path: 789 as unknown as string,
       };
 
       render(<DataGridCellLink {...numericProps} />);
