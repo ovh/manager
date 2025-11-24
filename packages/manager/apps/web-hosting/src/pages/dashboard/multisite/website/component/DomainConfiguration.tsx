@@ -125,11 +125,6 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                 </Checkbox>
               )}
             />
-            <label className="ml-4 cursor-pointer">
-              <Text preset={TEXT_PRESET.span}>
-                {t('dashboard:hosting_add_step2_mode_OVH_domain_name_subdomain_question')}
-              </Text>
-            </label>
           </div>
           {controlValues?.hasSubdomain && (
             <div className="flex flew-row w-1/3 gap-3">
@@ -178,11 +173,7 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             )}
           />
           {controlValues?.advancedConfiguration ? (
-            <DomainAdvancedConfiguration
-              control={control}
-              controlValues={controlValues}
-              isAddingDomain={isAddingDomain}
-            />
+            <DomainAdvancedConfiguration control={control} controlValues={controlValues} />
           ) : (
             <Message color={MESSAGE_COLOR.information} dismissible={false}>
               {t('multisite_add_website_configure_domain_advanced_message')}
@@ -230,23 +221,25 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
         </>
       )}
       {isNextButtonVisible && (
-        <Button
-          disabled={
-            !controlValues.name ||
-            !controlValues.fqdn ||
-            (controlValues.associationType === AssociationType.EXTERNAL &&
-              !isValidDomain(controlValues.fqdn)) ||
-            (isAddingDomain && !isValidDomain(controlValues.fqdn)) ||
-            (controlValues.hasSubdomain &&
-              (!controlValues.subdomain ||
-                !isValidDomain(`${controlValues.subdomain}.${controlValues.fqdn}`)))
-          }
-          onClick={() =>
-            setStep(controlValues?.associationType === AssociationType.EXISTING ? 4 : 3)
-          }
-        >
-          {t('common:web_hosting_common_action_continue')}
-        </Button>
+        <div>
+          <Button
+            disabled={
+              !controlValues.name ||
+              !controlValues.fqdn ||
+              (controlValues.associationType === AssociationType.EXTERNAL &&
+                !isValidDomain(controlValues.fqdn)) ||
+              (isAddingDomain && !isValidDomain(controlValues.fqdn)) ||
+              (controlValues.hasSubdomain &&
+                (!controlValues.subdomain ||
+                  !isValidDomain(`${controlValues.subdomain}.${controlValues.fqdn}`)))
+            }
+            onClick={() =>
+              setStep(controlValues?.associationType === AssociationType.EXISTING ? 4 : 3)
+            }
+          >
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
+        </div>
       )}
     </div>
   );

@@ -26,7 +26,7 @@ describe('BadgeStatus component', () => {
       { status: GitStatus.DELETING, color: BADGE_COLOR.warning },
       { status: GitStatus.ERROR, color: BADGE_COLOR.critical },
       { status: ServiceStatus.ACTIVE, color: BADGE_COLOR.success },
-      { status: ServiceStatus.NONE, color: BADGE_COLOR.critical },
+      { status: ServiceStatus.NONE, color: BADGE_COLOR.neutral },
     ];
 
     testCases.forEach(({ status, color }) => {

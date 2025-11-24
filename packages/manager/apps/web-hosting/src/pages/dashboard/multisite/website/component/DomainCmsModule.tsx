@@ -7,7 +7,9 @@ import {
   Card,
   Medium,
   Radio,
+  RadioControl,
   RadioGroup,
+  RadioLabel,
   TEXT_PRESET,
   Text,
 } from '@ovhcloud/ods-react';
@@ -38,21 +40,21 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
         name="module"
         control={control}
         render={({ field }) => (
-          <>
+          <RadioGroup value={field.value} onChange={field.onChange}>
             <div className="flex flex-row space-x-4">
               <Card
                 className="w-1/3 p-4"
                 color={!controlValues.module ? CARD_COLOR.primary : CARD_COLOR.neutral}
               >
                 <div className="flex gap-4 items-center">
-                  <RadioGroup>
-                    <Radio value={null} onChange={() => field.onChange(null)} />
-                  </RadioGroup>
-                  <label>
-                    <Text preset={TEXT_PRESET.heading6}>
-                      {t('multisite:multisite_add_website_module_cms_none')}
-                    </Text>
-                  </label>
+                  <Radio value={CmsType.NONE}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_module_cms_none')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_none_text')}
@@ -67,18 +69,15 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <RadioGroup>
-                    <Radio
-                      value={CmsType.WORDPRESS}
-                      onChange={() => field.onChange(CmsType.WORDPRESS)}
-                    />
-                  </RadioGroup>
-                  <label className="flex items-center space-x-5 cursor-pointer">
-                    <Medium src="cms/wordpress.svg" />
-                    <Text preset={TEXT_PRESET.heading6}>
-                      {t('multisite:multisite_add_website_module_cms_choice_wordpress')}
-                    </Text>
-                  </label>
+                  <Radio value={CmsType.WORDPRESS}>
+                    <RadioControl />
+                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                      <Medium src="cms/wordpress.svg" />
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_module_cms_choice_wordpress')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_wordpress_text')}
@@ -91,15 +90,15 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <RadioGroup>
-                    <Radio value={CmsType.DRUPAL} onChange={() => field.onChange(CmsType.DRUPAL)} />
-                  </RadioGroup>
-                  <label className="flex items-center space-x-5 cursor-pointer">
-                    <Medium src="cms/drupal.svg" />
-                    <Text preset={TEXT_PRESET.heading6}>
-                      {t('multisite:multisite_add_website_module_cms_choice_drupal')}
-                    </Text>
-                  </label>
+                  <Radio value={CmsType.DRUPAL}>
+                    <RadioControl />
+                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                      <Medium src="cms/drupal.svg" />
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_module_cms_choice_drupal')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_drupal_text')}
@@ -116,18 +115,15 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <RadioGroup>
-                    <Radio
-                      value={CmsType.PRESTASHOP}
-                      onChange={() => field.onChange(CmsType.PRESTASHOP)}
-                    />
-                  </RadioGroup>
-                  <label className="flex items-center space-x-5 cursor-pointer">
-                    <Medium src="cms/prestashop.svg" />
-                    <Text preset={TEXT_PRESET.heading6}>
-                      {t('multisite:multisite_add_website_module_cms_choice_prestashop')}
-                    </Text>
-                  </label>
+                  <Radio value={CmsType.PRESTASHOP}>
+                    <RadioControl />
+                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                      <Medium src="cms/prestashop.svg" />
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_module_cms_choice_prestashop')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_prestashop_text')}
@@ -140,22 +136,22 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                 }
               >
                 <div className="flex gap-4 items-center">
-                  <RadioGroup>
-                    <Radio value={CmsType.JOOMLA} onChange={() => field.onChange(CmsType.JOOMLA)} />
-                  </RadioGroup>
-                  <label className="flex items-center space-x-5 cursor-pointer">
-                    <Medium src="cms/joomla.svg" />
-                    <Text preset={TEXT_PRESET.heading6}>
-                      {t('multisite:multisite_add_website_module_cms_choice_joomla')}
-                    </Text>
-                  </label>
+                  <Radio value={CmsType.JOOMLA}>
+                    <RadioControl />
+                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                      <Medium src="cms/joomla.svg" />
+                      <Text preset={TEXT_PRESET.heading6}>
+                        {t('multisite:multisite_add_website_module_cms_choice_joomla')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
                   {t('multisite:multisite_add_website_module_cms_choice_joomla_text')}
                 </Text>
               </Card>
             </div>
-          </>
+          </RadioGroup>
         )}
       />
     </div>
