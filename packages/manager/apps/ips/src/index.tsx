@@ -15,7 +15,7 @@ import { UNIVERSE, SUB_UNIVERSE, LEVEL2 } from './tracking.constant';
 const trackingContext = {
   chapter1: UNIVERSE.toLowerCase(),
   chapter2: SUB_UNIVERSE,
-  chapter3: '',
+  chapter3: 'ip',
   appName: 'ip',
   pageTheme: UNIVERSE,
   level2Config: LEVEL2,

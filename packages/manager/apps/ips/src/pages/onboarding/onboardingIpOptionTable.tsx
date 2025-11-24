@@ -98,8 +98,10 @@ export function IpOptionTable() {
         <>
           {t('optionsAvailabilityCheck')}{' '}
           <Links
-            href={links?.presentationLink}
+            href={links?.presentationLink.link}
             label={t('optionsAvailabilityHere')}
+            target="_blank"
+            rel="noopener"
           />
         </>
       ),
