@@ -151,7 +151,7 @@ export default class ServicesCtrl {
 
     servicesToExport.forEach((service) => {
       datasToReturn.push([
-        service.serviceId,
+        service.serviceIdUnicode,
         this.$translate.instant(
           `billing_autorenew_service_type_${service.serviceType}`,
         ),
