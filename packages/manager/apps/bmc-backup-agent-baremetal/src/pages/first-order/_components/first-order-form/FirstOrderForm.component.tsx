@@ -28,7 +28,7 @@ export const FirstOrderFormComponent = () => {
       noValidate
       onSubmit={handleSubmit(onSubmit)}
     >
-      <RhfField
+      <RhfField<any, any>
         control={control}
         controllerParams={register('baremetal', { required: true })}
         helperMessage={t(`${NAMESPACES.FORM}:required_field`)}
