@@ -7,7 +7,7 @@ import { describe, vi } from 'vitest';
 import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import { TInstance, TProject } from '@ovh-ux/manager-pci-common';
 
-import { useWorkflows } from '@/api/hooks/workflows';
+import { useInstanceBackupWorkflows } from '@/api/hooks/workflows';
 import { shellContext, wrapper } from '@/wrapperRenders';
 
 import OnBoardingPage from './OnBoarding.page';
@@ -18,7 +18,7 @@ describe('OnBoardingPage', () => {
   it('should render children with create button instance when workflow are empty', () => {
     const { shell } = shellContext;
     shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
-    vi.mocked(useWorkflows).mockReturnValue({
+    vi.mocked(useInstanceBackupWorkflows).mockReturnValue({
       data: [],
       isPending: false,
     } as UseQueryResult<never[]>);
@@ -43,7 +43,7 @@ describe('OnBoardingPage', () => {
   it('should render children with create button workflow when workflow are empty', () => {
     const { shell } = shellContext;
     shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
-    vi.mocked(useWorkflows).mockReturnValue({
+    vi.mocked(useInstanceBackupWorkflows).mockReturnValue({
       data: [],
       isPending: false,
     } as UseQueryResult<never[]>);
@@ -73,7 +73,7 @@ describe('OnBoardingPage', () => {
   it('should render spinner when isLoading is true', () => {
     const { shell } = shellContext;
     shell.navigation.getURL.mockResolvedValue('https://www.ovh.com');
-    vi.mocked(useWorkflows).mockReturnValue({
+    vi.mocked(useInstanceBackupWorkflows).mockReturnValue({
       data: null,
       isPending: true,
     } as UseQueryResult<never[]>);

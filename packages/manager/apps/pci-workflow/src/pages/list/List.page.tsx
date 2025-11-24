@@ -45,7 +45,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { useRegionTranslation } from '@/api/hooks/region';
-import { TPaginatedWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
+import { TPaginatedWorkflow, usePaginatedInstanceBackupWorkflows } from '@/api/hooks/workflows';
 import Actions from '@/components/actions.component';
 import ExecutionStatusComponent from '@/components/execution-status.component';
 import { CHANGELOG_LINKS } from '@/constants';
@@ -65,7 +65,7 @@ export default function ListingPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { t: tFilter } = useTranslation('filter');
   const projectUrl = useProjectUrl('public-cloud');
-  const { data: workflows, isPending } = usePaginatedWorkflows(projectId, {
+  const { data: workflows, isPending } = usePaginatedInstanceBackupWorkflows(projectId, {
     pagination,
     sorting,
     filters,

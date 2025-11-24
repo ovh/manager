@@ -2,16 +2,13 @@ import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { buildInstanceSelectedResource } from '@/api/hooks/instance/selector/instances.selector';
+import { TWorkflowSelectedResource, WorkflowType } from '@/api/hooks/workflows';
 import { useStep } from '@/pages/new/hooks/useStep';
-
-export const enum WorkflowType {
-  INSTANCE_BACKUP = 'instance_backup',
-}
 
 export type TWorkflowCreationForm = {
   type: WorkflowType | null;
-  instanceId: TInstance['id'] | null;
+  resource: TWorkflowSelectedResource | null;
   scheduling: TWorkflowScheduling | null;
   name: string;
   distantRegion: string | null;
@@ -29,8 +26,8 @@ export type TWorkflowScheduling = {
 };
 
 export const DEFAULT_FORM_STATE: TWorkflowCreationForm = {
-  type: null,
-  instanceId: null,
+  type: WorkflowType.INSTANCE_BACKUP,
+  resource: null,
   scheduling: null,
   name: '',
   distantRegion: null,
@@ -44,13 +41,15 @@ export function useWorkflowStepper() {
     const queryInstanceId = searchParams.get('instanceId');
     const queryRegion = searchParams.get('region');
 
-    const instanceId =
-      !!queryInstanceId && !!queryRegion ? buildInstanceId(queryInstanceId, queryRegion) : null;
+    const resource =
+      !!queryInstanceId && !!queryRegion
+        ? buildInstanceSelectedResource(queryInstanceId, queryRegion)
+        : null;
 
     return {
       ...DEFAULT_FORM_STATE,
-      instanceId,
-      type: !!instanceId ? WorkflowType.INSTANCE_BACKUP : null,
+      resource,
+      type: !!resource ? WorkflowType.INSTANCE_BACKUP : DEFAULT_FORM_STATE.type,
     };
   });
 
@@ -60,7 +59,7 @@ export function useWorkflowStepper() {
   const schedulingStep = useStep();
 
   useEffect(() => {
-    if (form.instanceId) {
+    if (form.resource) {
       [typeStep, resourceStep].forEach((s) => {
         s.check();
         s.lock();
@@ -81,16 +80,18 @@ export function useWorkflowStepper() {
           step.unlock();
           step.close();
         });
-        setForm({ ...DEFAULT_FORM_STATE });
+        setForm((f) => ({ ...DEFAULT_FORM_STATE, type: f.type }));
       },
-      submit: (type: TWorkflowCreationForm['type']) => {
-        typeStep.check();
-        typeStep.lock();
-        resourceStep.open();
+      update: (type: TWorkflowCreationForm['type']) => {
         setForm((f) => ({
           ...f,
           type,
         }));
+      },
+      submit: () => {
+        typeStep.check();
+        typeStep.lock();
+        resourceStep.open();
       },
     },
     resource: {
@@ -103,10 +104,10 @@ export function useWorkflowStepper() {
           step.close();
         });
       },
-      update: (instance: TInstance) => {
+      update: (resource: TWorkflowSelectedResource) => {
         setForm((f) => ({
           ...f,
-          instanceId: instance.id,
+          resource,
         }));
       },
       submit: () => {
@@ -127,7 +128,7 @@ export function useWorkflowStepper() {
         setForm((f) => ({
           ...DEFAULT_FORM_STATE,
           type: f.type,
-          instanceId: f.instanceId,
+          resource: f.resource,
         }));
       },
       update: (name: string) => {
