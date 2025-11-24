@@ -6,7 +6,14 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Radio, RadioGroup, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import {
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -200,11 +207,14 @@ export default function PurgeCdnModal() {
                       className="mb-2"
                       input-id={`option-${option.patternType}`}
                     />
-                    <Text preset={TEXT_PRESET.paragraph}>
-                      {t(
-                        `multisite:multisite_cdn_modal_purge_option_${option.patternType.toLowerCase()}`,
-                      )}
-                    </Text>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.paragraph}>
+                        {t(
+                          `multisite:multisite_cdn_modal_purge_option_${option.patternType.toLowerCase()}`,
+                        )}
+                      </Text>
+                    </RadioLabel>
                   </RadioGroup>
                 </div>
               )}

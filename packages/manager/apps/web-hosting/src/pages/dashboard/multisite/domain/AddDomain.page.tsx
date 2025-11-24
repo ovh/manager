@@ -49,7 +49,7 @@ export default function AddWDomainPage() {
   const { control, handleSubmit, watch, reset } = useForm<FormData>({
     defaultValues: {
       name: state?.site ?? '',
-      path: state?.path ?? 'public_html',
+      path: 'public_html',
       autoConfigureDns: true,
     },
     resolver: zodResolver(websiteFormSchema),
@@ -86,7 +86,9 @@ export default function AddWDomainPage() {
         targetSpec: {
           name: data.name,
           fqdn: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
-          ...(data.module ? { module: { name: data.module as CmsType } } : {}),
+          ...(data.module && data.module !== CmsType.NONE
+            ? { module: { name: data.module as CmsType } }
+            : {}),
           bypassDNSConfiguration: !data.autoConfigureDns,
           ...(data.advancedConfiguration
             ? {
@@ -146,23 +148,29 @@ export default function AddWDomainPage() {
             control={control}
             controlValues={controlValues}
             setStep={setStep}
-            isNextButtonVisible={step === 2}
+            isNextButtonVisible={false}
             isAddingDomain={true}
           />
         </>
       )}
       {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
-        <>
+        <div>
           <DomainManagement controlValues={controlValues} />
           <Button onClick={() => void handleSubmit(onSubmit)()} disabled={!controlValues.fqdn}>
             {t('common:web_hosting_common_action_continue')}
           </Button>
-        </>
+        </div>
       )}
-      {controlValues.associationType === AssociationType.EXISTING && step >= 3 && (
-        <Button onClick={() => void handleSubmit(onSubmit)()} disabled={!controlValues.fqdn}>
-          {t('common:web_hosting_common_action_continue')}
-        </Button>
+      {controlValues.associationType === AssociationType.EXISTING && step >= 2 && (
+        <div>
+          <Button
+            onClick={() => void handleSubmit(onSubmit)()}
+            disabled={!controlValues.fqdn}
+            className="mt-4"
+          >
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
+        </div>
       )}
     </form>
   );

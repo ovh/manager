@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import {
+  BADGE_SIZE,
   BUTTON_VARIANT,
   Button,
   CARD_COLOR,
@@ -38,13 +39,11 @@ type FormData = z.infer<typeof websiteFormSchema>;
 interface DomainAdvancedConfigurationProps {
   control: Control<FormData, unknown, FormData>;
   controlValues: FormData;
-  isAddingDomain?: boolean;
 }
 
 export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationProps> = ({
   control,
   controlValues,
-  isAddingDomain = false,
 }: DomainAdvancedConfigurationProps) => {
   const { serviceName } = useParams();
 
@@ -67,7 +66,6 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 type={INPUT_TYPE.text}
                 className="w-full"
                 name="website-path"
-                disabled={isAddingDomain}
                 value={field.value}
                 onChange={(e) => field.onChange(e.target.value)}
               />
@@ -108,9 +106,12 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
               )}
             />
           </div>
-          <Text preset={TEXT_PRESET.caption} className="ml-8 mt-4 mb-5">
-            {t('multisite:multisite_add_website_advanced_options_ip')}
-          </Text>
+          <div className="ml-8 mt-4 mb-5">
+            <Text preset={TEXT_PRESET.caption}>
+              {t('multisite:multisite_add_website_advanced_options_ip')}
+            </Text>
+          </div>
+
           <Controller
             name="selectedIp"
             control={control}
@@ -119,6 +120,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 name="ip"
                 id="ip"
                 data-testid="ip"
+                disabled={!controlValues.ip}
                 value={field.value ? [field.value] : []}
                 items={hostingService?.data?.countriesIp?.map((item) => ({
                   label: item.country,
@@ -163,9 +165,11 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
               )}
             />
           </div>
-          <Text preset={TEXT_PRESET.caption} className="ml-8 mt-4">
-            {t('multisite:multisite_add_website_advanced_options_firewall')}
-          </Text>
+          <div className="ml-8 mt-4 mb-5">
+            <Text preset={TEXT_PRESET.caption}>
+              {t('multisite:multisite_add_website_advanced_options_firewall')}
+            </Text>
+          </div>
         </Card>
 
         <Card
@@ -192,9 +196,11 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
               )}
             />
           </div>
-          <Text preset={TEXT_PRESET.caption} className="ml-8 mt-4">
-            {t('multisite:multisite_add_website_advanced_options_cdn')}
-          </Text>
+          <div className="ml-8 mt-4 mb-5">
+            <Text preset={TEXT_PRESET.caption}>
+              {t('multisite:multisite_add_website_advanced_options_cdn')}
+            </Text>
+          </div>
         </Card>
       </div>
       <Divider />
@@ -220,12 +226,16 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                   <Radio value="auto">
                     <RadioControl />
                     <RadioLabel>
-                      <Text preset={TEXT_PRESET.heading6} className="mr-5">
+                      <Text preset={TEXT_PRESET.heading6}>
                         {t('multisite:multisite_add_website_advanced_options_dns_auto')}
+                        <Badge size={BADGE_SIZE.sm} className="ml-5">
+                          <Text preset={TEXT_PRESET.caption}>
+                            {t(
+                              'multisite:multisite_add_website_advanced_options_dns_auto_recommanded',
+                            )}
+                          </Text>
+                        </Badge>
                       </Text>
-                      <Badge>
-                        {t('multisite:multisite_add_website_advanced_options_dns_auto_recommanded')}
-                      </Badge>
                     </RadioLabel>
                   </Radio>
                 </div>
