@@ -48,7 +48,8 @@ export const VolumeModelTilesInput = ({
 
       if (horizontal) {
         const zoneDescription = zoneText ? `${zoneText}.\n` : '';
-        return `${zoneDescription}${model.iops}, ${capacityMax}`;
+        const bandwidth = model.bandwidth ? `${model.bandwidth}, ` : '';
+        return `${zoneDescription}${model.iops}, ${bandwidth}${capacityMax}`;
       }
 
       return zoneText;
@@ -106,11 +107,7 @@ export const VolumeModelTilesInput = ({
   );
 
   return (
-    <div
-      className={clsx(
-        horizontal && '[&_.config-card\\_\\_badges]:w-full whitespace-pre-line',
-      )}
-    >
+    <div className={clsx(horizontal && '[&_osds-text]:leading-[130%]')}>
       <Text preset={TEXT_PRESET.heading5} className="mt-4">
         {label}
       </Text>
