@@ -25,5 +25,14 @@
   "status_disabled": "Deaktiviert",
   "status_valid": "Aktiv",
   "status_to_validate": "Ausstehend",
-  "error_rate_limit_message": "Sie haben das Limit für Anfragen erreicht. Bitte versuchen Sie es später noch einmal."
+  "error_rate_limit_message": "Sie haben das Limit für Anfragen erreicht. Bitte versuchen Sie es später noch einmal.",
+  "guide_menu_header": "Guides",
+  "guide_menu_start_guide": "Geführte Tour",
+  "guided_tour_introduction_title": "Willkommen auf Ihrer neuen Seite Meine Kommunikationen",
+  "guided_tour_introduction_content": "Möchten Sie die geführte Tour sehen?",
+  "guided_tour_introduction_dont_display_again": "Nicht mehr anzeigen",
+  "guided_tour_introduction_start_guide": "Geführte Tour ansehen",
+  "guided_tour_communications": "Hier finden Sie alle E-Mails, die OVHcloud Ihnen gesendet hat, mit Ausnahme der Supportanfragen.",
+  "guided_tour_contacts": "Verwalten Sie hier Ihre Kontaktliste und fügen Sie Kontakte hinzu, um sie mit Ihren Versandparametern zu verknüpfen.",
+  "guided_tour_settings": "Fügen Sie Ihre Versandregeln hinzu und definieren Sie sie, um auszuwählen, welche Kontakte die Kommunikationen erhalten, basierend auf den ausgewählten Kategorien und Prioritäten."
 }
