@@ -1,0 +1,14 @@
+{
+  "title": "Wybierz nazwę domeny",
+  "description": "Buduj silną markę w sieci i chroń wizerunek,",
+  "descriptionWithLeaderPart": "korzystając z usług lidera rynku",
+  "orderButtonLabel": "Zamów",
+  "moreInfoButtonLabel": "Więcej informacji",
+  "guideCategory": "Tutorial",
+  "guideTransferTitle": "Transfery",
+  "guideTransferDescription": "Aby przenieść domenę do OVHcloud, postępuje według instrukcji",
+  "guideOrderAPITitle": "Zamówienie przez API",
+  "guideOrderAPIDescription": "Zamów domenę przez API",
+  "guideFAQTitle": "FAQ Domeny i DNS",
+  "guideFAQDescription": "Wszystko, co musisz wiedzieć o domenach i DNS"
+}

@@ -7150,15 +7150,15 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.10.0.tgz#b135fbf4c9fd64a6c2045ad54091a1982fbad2d0"
   integrity sha512-f4o6TSBloE1VfZQigkulEjPU7IlsMj1VqhKD+VETOIroHMmD0JUaLkWXNQWRlRZ+lFHZmDvSQGdqYwFWmQfNdw==
 
-"@ovh-ux/manager-common-translations@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"
-  integrity sha512-5upqmSqpbbNtg+/R2L+F7h9aJHilANq7BkgVUuEOaWgN8KMC1fTdnivQUFrC23mdnhD/H3LpDXKi+8+GajP39Q==
-
 "@ovh-ux/manager-common-translations@^0.22.2":
   version "0.22.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.22.2.tgz#4543cd343e2b893ebf417a920e55895cec0b56a9"
   integrity sha512-eQVXnmDZifWB3JoE/+uPbk4O8y/L/IcRqexQVx2OEU4apJg/OYl/mFqFnwt4SK/HqXnq6v+00dQPMLNYUBVk8g==
+
+"@ovh-ux/manager-common-translations@^0.23.0":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.23.2.tgz#71f4812de2400a5897159a18bb9d7f5f3a05fd30"
+  integrity sha512-+kWwTgA51z8rDTXbMiZiCH85L2nSewD9H/HVrqFivo1/1uZLrNHkOLKouGVmP7isnqFRAMyOa0FTbDtk2Dm6LQ==
 
 "@ovh-ux/manager-common-translations@^0.9.1":
   version "0.9.1"
@@ -7173,7 +7173,7 @@
     "@ovh-ux/manager-core-api" "^0.10.1"
     "@ovh-ux/manager-core-sso" "^0.5.0"
 
-"@ovh-ux/manager-core-api@0.19.4":
+"@ovh-ux/manager-core-api@0.19.4", "@ovh-ux/manager-core-api@^0.19.4":
   version "0.19.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.19.4.tgz#7aa6dc10a986a719aeee5d72595e1da0dbe72e27"
   integrity sha512-suQAiFgR3p50fkzgUq/qHf3qJt/cIWkPgjczgLXkcovEXEGlZFderBFEP7XId2j9lgV6zb1m4YjoJceOHXs79w==
@@ -7189,15 +7189,6 @@
   dependencies:
     "@ovh-ux/manager-core-sso" "^0.3.0"
     "@ovh-ux/request-tagger" "^0.4.0"
-    axios "^1.1.2"
-
-"@ovh-ux/manager-core-api@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.19.4.tgz#7aa6dc10a986a719aeee5d72595e1da0dbe72e27"
-  integrity sha512-suQAiFgR3p50fkzgUq/qHf3qJt/cIWkPgjczgLXkcovEXEGlZFderBFEP7XId2j9lgV6zb1m4YjoJceOHXs79w==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.5.0"
-    "@ovh-ux/request-tagger" "^0.5.9"
     axios "^1.1.2"
 
 "@ovh-ux/manager-core-sso@^0.3.0":
@@ -7336,6 +7327,11 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
+"@ovh-ux/manager-tests-setup@latest":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.6.1.tgz#0455896a6efd93e989afcd8bc7f4d4d6014c7618"
+  integrity sha512-LFc5seUn/EmMtVm1tEiIpqtF+QLeW7ztUAXvsiY732HFRA2AlMzD2PiHDpO/WB7CMIA0xu8y8I+Ar4ASSQBQ7Q==
+
 "@ovh-ux/muk@0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/muk/-/muk-0.9.0.tgz#873f3d0146c78dd06d20730b8291dcd85311f14d"
@@ -7348,11 +7344,6 @@
     sass "1.93.0"
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
-
-"@ovh-ux/manager-tests-setup@latest":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.6.1.tgz#0455896a6efd93e989afcd8bc7f4d4d6014c7618"
-  integrity sha512-LFc5seUn/EmMtVm1tEiIpqtF+QLeW7ztUAXvsiY732HFRA2AlMzD2PiHDpO/WB7CMIA0xu8y8I+Ar4ASSQBQ7Q==
 
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
@@ -7464,10 +7455,10 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.6.4", "@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.4":
-  version "18.6.4"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.4.tgz#7fc45c501f8ea6a7dda3be41ed1d7095b9c706c3"
-  integrity sha512-vC2qkHEutihuuI0gYo4fRB2Gc7m1X/tfVFzvQb6c2+DcmuzDefkz48otCvqvKX0cz+a0X7Il4yRHhgrqmsH3Tw==
+"@ovhcloud/ods-components@18.6.2", "@ovhcloud/ods-components@^18.6.2":
+  version "18.6.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.2.tgz#eac36f664d0a5f7773dde14addd7db9db1346f7f"
+  integrity sha512-lLkTN+EwAhx/aqa50WwZ56ivhr1swpA+cgiTwtSwSWbXGoyPl0kwaWXtD6Sa5bh2Rrm8uw01tV4HawPM+dlScQ==
   dependencies:
     "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
@@ -7477,10 +7468,10 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-components@^18.6.2":
-  version "18.6.2"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.2.tgz#eac36f664d0a5f7773dde14addd7db9db1346f7f"
-  integrity sha512-lLkTN+EwAhx/aqa50WwZ56ivhr1swpA+cgiTwtSwSWbXGoyPl0kwaWXtD6Sa5bh2Rrm8uw01tV4HawPM+dlScQ==
+"@ovhcloud/ods-components@18.6.4", "@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.4":
+  version "18.6.4"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.4.tgz#7fc45c501f8ea6a7dda3be41ed1d7095b9c706c3"
+  integrity sha512-vC2qkHEutihuuI0gYo4fRB2Gc7m1X/tfVFzvQb6c2+DcmuzDefkz48otCvqvKX0cz+a0X7Il4yRHhgrqmsH3Tw==
   dependencies:
     "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
@@ -7509,15 +7500,6 @@
     libphonenumber-js "1.12.8"
     react-hot-toast "2.6.0"
     react-shiki "0.9.0"
-
-"@ovhcloud/ods-react@^19.2.0", "@ovhcloud/ods-react@^19.2.1":
-  version "19.2.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.1.tgz#babc8f579f4109b091f7fb208b49858ca49563b8"
-  integrity sha512-xk7u7B/EsxyMrnW1n13PcNNj93SBxKcOzQH8/RNJ3gQYJO+TYcG7w858xlry+KUi+hO2q8aYDcBjS5iD/4x4Eg==
-  dependencies:
-    "@ark-ui/react" "5.25.1"
-    classnames "2.5.1"
-    libphonenumber-js "1.12.8"
 
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
@@ -7557,11 +7539,6 @@
   version "19.3.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.3.0.tgz#75b3f7d7d609d8ac68d9be12795431fcc2eae552"
   integrity sha512-wb+Nhu2+hX5KurouXBE2gDJTD9c/CCBgfZQyCVJffND1z1bavPYqlx8kG4We2wN24K15rwFVsvt9L3VRNr6E2Q==
-
-"@ovhcloud/ods-themes@^19.2.0", "@ovhcloud/ods-themes@^19.2.1":
-  version "19.2.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"
-  integrity sha512-zjtSoX2gaVMtpBVIGmg3HBNfjWeHRAHzTyTOxjeR47L+qo4iAj2pghL4riZpNvn9/YlVaIJT8GpO+Lw/IVAAnQ==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -10627,19 +10604,19 @@
   dependencies:
     "@tanstack/query-devtools" "5.28.10"
 
+"@tanstack/react-query-devtools@5.51.21", "@tanstack/react-query-devtools@^5.51.21":
+  version "5.51.21"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.51.21.tgz#8ccfcfdb07e64de9220c34f7a969691dfb12a9ae"
+  integrity sha512-mi5ef8dvsS48GsG6/8M60O2EgrzPK1kNPngOcHBTlIUrB5dGkxP9fuHf05GQRxtSp5W5GlyeUpzOmtkKNpf9dQ==
+  dependencies:
+    "@tanstack/query-devtools" "5.51.16"
+
 "@tanstack/react-query-devtools@^5.50.1":
   version "5.66.0"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.66.0.tgz#d54ba345cecf259181565699af1f80e0b284e714"
   integrity sha512-uB57wA2YZaQ2fPcFW0E9O1zAGDGSbRKRx84uMk/86VyU9jWVxvJ3Uzp+zNm+nZJYsuekCIo2opTdgNuvM3cKgA==
   dependencies:
     "@tanstack/query-devtools" "5.65.0"
-
-"@tanstack/react-query-devtools@^5.51.21":
-  version "5.51.21"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.51.21.tgz#8ccfcfdb07e64de9220c34f7a969691dfb12a9ae"
-  integrity sha512-mi5ef8dvsS48GsG6/8M60O2EgrzPK1kNPngOcHBTlIUrB5dGkxP9fuHf05GQRxtSp5W5GlyeUpzOmtkKNpf9dQ==
-  dependencies:
-    "@tanstack/query-devtools" "5.51.16"
 
 "@tanstack/react-query-devtools@^5.90.2":
   version "5.91.1"
@@ -11290,7 +11267,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@*", "@types/jest@^29.5.11", "@types/jest@^29.5.12":
+"@types/jest@*", "@types/jest@29.5.12", "@types/jest@^29.5.11", "@types/jest@^29.5.12":
   version "29.5.12"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.12.tgz#7f7dc6eb4cf246d2474ed78744b05d06ce025544"
   integrity sha512-eDC8bTvT/QhYdxJAulQikueigY5AsdBRH2yDKW3yveW7svY3+DzN84/2NUgkw10RTiJbWqZrTtoGVdYlvFJdLw==
@@ -11545,17 +11522,17 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-dom@18.3.0", "@types/react-dom@^18.2.18", "@types/react-dom@^18.2.19", "@types/react-dom@^18.3.0":
+  version "18.3.0"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.0.tgz#0cbc818755d87066ab6ca74fbedb2547d74a82b0"
+  integrity sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^18.0.0":
   version "18.2.19"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.19.tgz#b84b7c30c635a6c26c6a6dfbb599b2da9788be58"
   integrity sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==
-  dependencies:
-    "@types/react" "*"
-
-"@types/react-dom@^18.2.18", "@types/react-dom@^18.2.19", "@types/react-dom@^18.3.0":
-  version "18.3.0"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.0.tgz#0cbc818755d87066ab6ca74fbedb2547d74a82b0"
-  integrity sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==
   dependencies:
     "@types/react" "*"
 
@@ -11580,7 +11557,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@>=16.9.11", "@types/react@^18.2.45", "@types/react@^18.2.55":
+"@types/react@*", "@types/react@18.2.55", "@types/react@>=16.9.11", "@types/react@^18.2.45", "@types/react@^18.2.55":
   version "18.2.55"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.55.tgz#38141821b7084404b5013742bc4ae08e44da7a67"
   integrity sha512-Y2Tz5P4yz23brwm2d7jNon39qoAtMMmalOQv6+fEFt1mT+FcM3D841wDpoUvFXhaYenuROCy3FZYqdTjM7qVyA==
@@ -21832,10 +21809,17 @@ hyphenate-style-name@^1.0.0, hyphenate-style-name@^1.0.3:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
-i18next-http-backend@2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.2.tgz#bd53cacaed671e9f38bdcfd46ac9d1763a898186"
-  integrity sha512-wKrgGcaFQ4EPjfzBTjzMU0rbFTYpa0S5gv9N/d8WBmWS64+IgJb7cHddMvV+tUkse7vUfco3eVs2lB+nJhPo3w==
+i18next-http-backend@2.4.3, i18next-http-backend@^2.4.2, i18next-http-backend@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.3.tgz#be9a0aaff5f34542f1f9c1f7bd03eb96d8476dbd"
+  integrity sha512-jo2M03O6n1/DNb51WSQ8PsQ0xEELzLZRdYUTbf17mLw3rVwnJF9hwNgMXvEFSxxb+N8dT+o0vtigA6s5mGWyPA==
+  dependencies:
+    cross-fetch "4.0.0"
+
+i18next-http-backend@2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.7.3.tgz#335e5884b4c5446cdb4817cb35e81ee4ac7be9f4"
+  integrity sha512-FgZxrXdRA5u44xfYsJlEBL4/KH3f2IluBpgV/7riW0YW2VEyM8FzVt2XHAOi6id0Ppj7vZvCZVpp5LrGXnc8Ig==
   dependencies:
     cross-fetch "4.0.0"
 
@@ -21845,13 +21829,6 @@ i18next-http-backend@^1.3.0:
   integrity sha512-tLuHWuLWl6CmS07o+UB6EcQCaUjrZ1yhdseIN7sfq0u7phsMePJ8pqlGhIAdRDPF/q7ooyo5MID5DRFBCH+x5w==
   dependencies:
     cross-fetch "3.1.5"
-
-i18next-http-backend@^2.4.2, i18next-http-backend@^2.4.3:
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.3.tgz#be9a0aaff5f34542f1f9c1f7bd03eb96d8476dbd"
-  integrity sha512-jo2M03O6n1/DNb51WSQ8PsQ0xEELzLZRdYUTbf17mLw3rVwnJF9hwNgMXvEFSxxb+N8dT+o0vtigA6s5mGWyPA==
-  dependencies:
-    cross-fetch "4.0.0"
 
 i18next-http-backend@^2.5.2:
   version "2.5.2"
@@ -26643,6 +26620,13 @@ p-limit@^5.0.0:
   dependencies:
     yocto-queue "^1.0.0"
 
+p-limit@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-6.2.0.tgz#c254d22ba6aeef441a3564c5e6c2f2da59268a0f"
+  integrity sha512-kuUqqHNUqoIWp/c467RI4X6mmyuojY5jGutNU0wVTmEOOfcuwLqyMVoAi9MKi2Ak+5i9+nhmrK4ufZE8069kHA==
+  dependencies:
+    yocto-queue "^1.1.1"
+
 p-locate@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-2.0.0.tgz#20a0103b222a70c8fd39cc2e580680f3dde5ec43"
@@ -28206,10 +28190,15 @@ react-fast-compare@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
 
-react-hook-form@^7.47.0, react-hook-form@^7.50.1:
+react-hook-form@7.51.2, react-hook-form@^7.47.0, react-hook-form@^7.50.1:
   version "7.51.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.2.tgz#79f7f72ee217c5114ff831012d1a7ec344096e7f"
   integrity sha512-y++lwaWjtzDt/XNnyGDQy6goHskFualmDlf+jzEZvjvz6KWDf7EboL7pUvRCzPTJd0EOPpdekYaQLEvvG6m6HA==
+
+react-hook-form@7.56.0, react-hook-form@^7.55.0:
+  version "7.56.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.56.0.tgz#2ab5911a959f0173f4194849615d73a4fff39390"
+  integrity sha512-U2QQgx5z2Y8Z0qlXv3W19hWHJgfKdWMz0O/osuY+o+CYq568V2R/JhzC6OAXfR8k24rIN0Muan2Qliaq9eKs/g==
 
 react-hook-form@^7.51.4:
   version "7.51.4"
@@ -28231,11 +28220,6 @@ react-hook-form@^7.54.2:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.54.2.tgz#8c26ed54c71628dff57ccd3c074b1dd377cfb211"
   integrity sha512-eHpAUgUjWbZocoQYUHposymRb4ZP6d0uwUnooL2uOybA9/3tPUvoAKqEWK1WaSiTxxOfTpffNZP7QwlnM3/gEg==
 
-react-hook-form@^7.55.0:
-  version "7.56.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.56.0.tgz#2ab5911a959f0173f4194849615d73a4fff39390"
-  integrity sha512-U2QQgx5z2Y8Z0qlXv3W19hWHJgfKdWMz0O/osuY+o+CYq568V2R/JhzC6OAXfR8k24rIN0Muan2Qliaq9eKs/g==
-
 react-hook-form@^7.56.1:
   version "7.56.1"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.56.1.tgz#45b2040fef997b873d656959d2e7f864f35bf95d"
@@ -28249,20 +28233,20 @@ react-hot-toast@2.6.0:
     csstype "^3.1.3"
     goober "^2.1.16"
 
+react-i18next@14.1.0, react-i18next@^14.0.5:
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-14.1.0.tgz#44da74fbffd416f5d0c5307ef31735cf10cc91d9"
+  integrity sha512-3KwX6LHpbvGQ+sBEntjV4sYW3Zovjjl3fpoHbUwSgFHf0uRBcbeCBLR5al6ikncI5+W0EFb71QXZmfop+J6NrQ==
+  dependencies:
+    "@babel/runtime" "^7.23.9"
+    html-parse-stringify "^3.0.1"
+
 react-i18next@^11.18.1:
   version "11.18.6"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.18.6.tgz#e159c2960c718c1314f1e8fcaa282d1c8b167887"
   integrity sha512-yHb2F9BiT0lqoQDt8loZ5gWP331GwctHz9tYQ8A2EIEUu+CcEdjBLQWli1USG3RdWQt3W+jqQLg/d4rrQR96LA==
   dependencies:
     "@babel/runtime" "^7.14.5"
-    html-parse-stringify "^3.0.1"
-
-react-i18next@^14.0.5:
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-14.1.0.tgz#44da74fbffd416f5d0c5307ef31735cf10cc91d9"
-  integrity sha512-3KwX6LHpbvGQ+sBEntjV4sYW3Zovjjl3fpoHbUwSgFHf0uRBcbeCBLR5al6ikncI5+W0EFb71QXZmfop+J6NrQ==
-  dependencies:
-    "@babel/runtime" "^7.23.9"
     html-parse-stringify "^3.0.1"
 
 react-i18next@^14.1.2:
@@ -28396,6 +28380,14 @@ react-responsive@^9.0.0-beta.6:
     prop-types "^15.6.1"
     shallow-equal "^1.2.1"
 
+react-router-dom@6.16.0, react-router-dom@^6.3.0:
+  version "6.16.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.16.0.tgz#86f24658da35eb66727e75ecbb1a029e33ee39d9"
+  integrity sha512-aTfBLv3mk/gaKLxgRDUPbPw+s4Y/O+ma3rEN1u8EgEpLpPe6gNjIsWt9rxushMHHMb7mSwxRGdGlGdvmFsyPIg==
+  dependencies:
+    "@remix-run/router" "1.9.0"
+    react-router "6.16.0"
+
 react-router-dom@^6.24.1:
   version "6.29.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.29.0.tgz#2ffb56b03ef3d6d6daafcfad9f3922132d2ced94"
@@ -28411,14 +28403,6 @@ react-router-dom@^6.25.1:
   dependencies:
     "@remix-run/router" "1.19.2"
     react-router "6.26.2"
-
-react-router-dom@^6.3.0:
-  version "6.16.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.16.0.tgz#86f24658da35eb66727e75ecbb1a029e33ee39d9"
-  integrity sha512-aTfBLv3mk/gaKLxgRDUPbPw+s4Y/O+ma3rEN1u8EgEpLpPe6gNjIsWt9rxushMHHMb7mSwxRGdGlGdvmFsyPIg==
-  dependencies:
-    "@remix-run/router" "1.9.0"
-    react-router "6.16.0"
 
 react-router@6.16.0:
   version "6.16.0"
@@ -28544,7 +28528,7 @@ react-universal-interface@^0.6.2:
   resolved "https://registry.yarnpkg.com/react-universal-interface/-/react-universal-interface-0.6.2.tgz#5e8d438a01729a4dbbcbeeceb0b86be146fe2b3b"
   integrity sha512-dg8yXdcQmvgR13RIlZbTRQOoUrDciFVoSBZILwjE2LFISxZZ8loVJKAkuzswl5js8BHda79bIb2b84ehU8IjXw==
 
-react-use@^17.4.0, react-use@^17.5.0:
+react-use@17.5.0, react-use@^17.4.0, react-use@^17.5.0:
   version "17.5.0"
   resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.5.0.tgz#1fae45638828a338291efa0f0c61862db7ee6442"
   integrity sha512-PbfwSPMwp/hoL847rLnm/qkjg3sTRCvn6YhUZiHaUa3FA6/aNoFX79ul5Xt70O1rK+9GxSVqkY0eTwMdsR/bWg==
@@ -34758,6 +34742,11 @@ yocto-queue@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.0.0.tgz#7f816433fb2cbc511ec8bf7d263c3b58a1a3c251"
   integrity sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==
+
+yocto-queue@^1.1.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.2.2.tgz#3e09c95d3f1aa89a58c114c99223edf639152c00"
+  integrity sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==
 
 yoctocolors-cjs@^2.1.2:
   version "2.1.2"
