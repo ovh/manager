@@ -13,7 +13,6 @@ import DatagridContainer from '@/components/datagrid/container/DatagridContainer
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { ID_LABEL } from '../../dashboard.constants';
-import { ActionDeleteCell } from '@/components/datagrid/compute/ComputeCells.component';
 import {
   DatagridBillingCell,
   DatagridCapacityCell,
@@ -21,6 +20,7 @@ import {
   DatagridNameCell,
   DatagridProfileCell,
   DatagridTypeCell,
+  ActionDeleteStorageCell,
 } from '@/components/datagrid/storage/StorageCells.component';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
@@ -72,7 +72,7 @@ export default function StorageListingPage() {
     },
     {
       id: 'actions',
-      cell: ActionDeleteCell,
+      cell: ActionDeleteStorageCell,
       isSortable: false,
     },
   ] as DatagridColumn<unknown>[];
