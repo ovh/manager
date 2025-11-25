@@ -46,6 +46,7 @@ export const features = [
   'okms',
   'okms:key-management-service',
   'okms:secret-manager',
+  'okms:secret-manager:beta-badge',
   'pci-savings-plan',
   'pci-ai-endpoints',
   'pci-quantum-emulators',
@@ -432,7 +433,7 @@ export function getPciProjectMenu(
         isFeaturesAvailable('okms:secret-manager') && {
           id: 'okms-secret-manager',
           title: 'Secret Manager',
-          badge: 'beta',
+          badge: isFeaturesAvailable('okms:secret-manager:beta-badge') ? 'beta' : undefined,
           href: getURL('okms', `#/secret-manager`),
         },
       ],
