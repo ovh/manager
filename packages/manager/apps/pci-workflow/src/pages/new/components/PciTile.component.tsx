@@ -1,52 +1,41 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+import { clsx } from 'clsx';
+
+import { Card, Text } from '@ovhcloud/ods-react';
 
 interface PciTileProps {
   title: string;
   description?: string;
   isChecked?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 const checkedClass =
   'cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600]';
 const uncheckedClass =
-  'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
+  'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-050] hover:border-[--ods-color-blue-300]';
 
-// @TODO move to pci common
-export function PciTile({ title, description, isChecked, onClick }: Readonly<PciTileProps>) {
+export function PciTile({
+  title,
+  description,
+  isChecked,
+  onClick,
+  className,
+}: Readonly<PciTileProps>) {
   return (
-    <OsdsTile
-      className={isChecked ? checkedClass : uncheckedClass}
-      checked={isChecked}
+    <Card
+      className={clsx(
+        'p-6 overflow-x-hidden border-2',
+        isChecked ? checkedClass : uncheckedClass,
+        className,
+      )}
       data-testid="pciTile-Tile"
       onClick={() => onClick?.()}
     >
-      <div className="w-full">
-        <OsdsText
-          className="font-bold"
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {title}
-        </OsdsText>
-        {description && (
-          <div className="mt-4">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {description}
-            </OsdsText>
-          </div>
-        )}
+      <div className="flex flex-col gap-4">
+        <Text className="font-bold">{title}</Text>
+        {description && <Text>{description}</Text>}
       </div>
-    </OsdsTile>
+    </Card>
   );
 }

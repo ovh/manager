@@ -33,9 +33,11 @@ describe('PciTile Component', () => {
       <PciTile title={title} isChecked={false} onClick={onClickMock} />,
     );
     const tile = getByTestId('pciTile-Tile');
-    expect(tile).toHaveClass('border-[--ods-color-blue-100]');
-    expect(tile).toHaveClass('hover:bg-[--ods-color-blue-100]');
-    expect(tile).toHaveClass('hover:border-[--ods-color-blue-600]');
+    expect(tile).toHaveClass(
+      'border-[--ods-color-blue-100]',
+      'hover:bg-[--ods-color-blue-050]',
+      'hover:border-[--ods-color-blue-300]',
+    );
   });
 
   it('does not display description when none is provided', () => {

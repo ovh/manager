@@ -26,8 +26,10 @@ describe('WorkflowType Component', () => {
       />,
     );
 
-    expect(getByText(/pci_workflow_create_type_instance_backup_description/i)).toBeInTheDocument();
-    expect(getByText(/pci_workflow_type_instance_backup_title/i)).toBeInTheDocument();
+    expect(getByText(/pci_workflow_create_type_instance_backup_description/i)).toBeVisible();
+    expect(getByText(/pci_workflow_type_instance_backup_title/i)).toBeVisible();
+    expect(getByText(/pci_workflow_create_type_instance_backup_description/i)).toBeVisible();
+    expect(getByText(/pci_workflow_create_type_volume_backup_description/i)).toBeVisible();
   });
 
   it('calls onChange with "instance_backup" when tile is clicked', async () => {
