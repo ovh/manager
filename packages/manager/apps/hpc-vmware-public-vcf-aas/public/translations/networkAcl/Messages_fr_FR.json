@@ -16,6 +16,5 @@
   "managed_vcd_network_acl_status_ACTIVE": "Mis en place",
   "managed_vcd_network_acl_status_CREATING": "Création en cours",
   "managed_vcd_network_acl_status_DELETING": "Suppression en cours",
-  "managed_vcd_network_acl_status_organisation_terminated": "Le service a été résilié, vous n'avez plus accès à cette fonctionnalité",
   "managed_vcd_network_acl_normalized_info": "Votre plage IP va être automatiquement normalisée vers {{normalized}}."
 }
