@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
 
 import { APP_FEATURES } from '@/App.constants';
+import { sortByIpBlock } from '@/utils/Ip.utils';
 
 type AuthorizableAccess = {
   type: 'IP' | 'IP/Block';
@@ -38,10 +39,9 @@ export function useAuthorizableAccesses(serviceName: string, partitionName: stri
         ip: block,
       }));
 
-      return [...ips, ...blocks].sort((a, b) => {
-        // Simple sort by IP (could be improved with proper IP comparison)
-        return a.ip.localeCompare(b.ip);
-      });
+      // Sort by IP block number (same as AngularJS implementation)
+      // This ensures consistent sorting: 10.0.0.0 < 172.16.0.0 < 192.168.0.0
+      return [...ips, ...blocks].sort((a, b) => sortByIpBlock(a.ip, b.ip));
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
     retry: false,
