@@ -2,6 +2,11 @@ name: PNPM Migration
 
 on:
   workflow_dispatch:
+    inputs:
+      apps:
+        description: 'JSON array of app paths (e.g. ["packages/manager/apps/pci-billing"])'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,9 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [
-          "packages/manager/apps/pci-billing"
-        ]
+        app: ${{ fromJson(github.event.inputs.apps) }}
 
     steps:
       - name: Checkout code
