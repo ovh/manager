@@ -21,6 +21,7 @@
     "test": "manager-test run"
   },
   "dependencies": {
+    "@module-federation/runtime": "^0.21.2",
     "@ovh-ux/manager-common-translations": "^0.24.0",
     "@ovh-ux/manager-config": "^8.7.2",
     "@ovh-ux/manager-core-api": "^0.16.0",

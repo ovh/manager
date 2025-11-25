@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import BannerStatus from '@/domain/components/BannerStatus/BannerStatus';
 import GeneralInformationsCards from '@/domain/components/InformationsCards/GeneralInformations';
 import SubscriptionCards from '@/domain/components/SubscriptionCards/SubscriptionCards';
 import AssociatedServicesCards from '@/domain/components/AssociatedServicesCards/AssociatedServicesCards';
+import WebHostingOrderComponent from '@/domain/components/WebHostingOrder/webHostingOrderComponent';
 
 export default function GeneralInformations() {
   const { serviceName } = useParams<{ serviceName: string }>();

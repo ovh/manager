@@ -17,6 +17,9 @@ import {
 
 import FreeHostingDrawer from './FreeHostingDrawer';
 import { FREE_HOSTING_PLAN_CODE } from '@/domain/constants/order';
+import { useNavigate } from 'react-router-dom';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
+import { urls } from '@/domain/routes/routes.constant';
 
 interface HostingProps {
   readonly serviceName: string;
@@ -50,6 +53,7 @@ export default function Hosting({ serviceName }: HostingProps) {
     dnsMx: false,
     consent: false,
   });
+  const navigate = useNavigate();
 
   const { data: associatedHosting } = useGetAssociatedHosting(serviceName);
   const {
@@ -103,6 +107,14 @@ export default function Hosting({ serviceName }: HostingProps) {
       label: t(
         'domain_tab_general_information_associated_services_hosting_action_order',
       ),
+      onClick: () => {
+        navigate(
+          useGenerateUrl(urls.domainTabWebHostingOrder, 'path', {
+            serviceName,
+          }),
+          { replace: true },
+        );
+      },
     },
   ];
 
