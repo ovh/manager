@@ -85,4 +85,11 @@ describe('Changelog.page', () => {
       location: 'page',
     });
   });
+
+  it('should have a valid html', () => {
+    const { container } = renderComponent();
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });
