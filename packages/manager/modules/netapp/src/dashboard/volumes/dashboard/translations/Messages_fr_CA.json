@@ -39,5 +39,6 @@
   "netapp_volumes_dashboard_usage_files": "Fichiers utilisés",
   "netapp_volumes_dashboard_usage_nfs_client": "Clients NFS (actifs dans les 48 dernières heures)",
   "netapp_volumes_dashboard_usage_no_nfs_client": "Pas de connections actives",
-  "netapp_volumes_dashboard_usage_view_all": "Voir tous"
+  "netapp_volumes_dashboard_usage_view_all": "Voir tous",
+  "netapp_volumes_dashboard_actives_nfs_title": "Connexions NFS"
 }
