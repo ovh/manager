@@ -4,18 +4,16 @@ import { KeyPairName } from '@ovh-ux/manager-config';
 import LanguageMenu, { Props } from './index';
 
 const handleChange = vi.fn();
-const handleSetUserLanguge = vi.fn();
 
 const props: Props = {
   onChange: handleChange,
-  setUserLocale: handleSetUserLanguge,
-  userLocale: 'en_GB',
 };
 
 vi.mock('@/context', () => ({
   useShell: () => ({
     getPlugin: () => ({
       setLocale: vi.fn(() => 'en_GB'),
+      getLocale: vi.fn(() => 'en_GB'),
       getAvailableLocales: vi.fn(() =>
         Array<KeyPairName>(
           { name: 'English', key: 'en_GB' },
@@ -32,8 +30,6 @@ const renderLanguageMenu = (props: Props) => {
   return render(
     <LanguageMenu
       onChange={props.onChange}
-      setUserLocale={props.setUserLocale}
-      userLocale={props.userLocale}
     />,
   );
 };

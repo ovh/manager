@@ -24,9 +24,10 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
   const [iframe, setIframe] = useState(null);
   const shell = useShell();
   const { isStarted: isProgressAnimating } = useProgress();
+  // TODO: handle environment unavailability in MANAGER-19971
   const applications = shell
     .getPlugin('environment')
-    .getEnvironment()
+    ?.getEnvironment()
     .getApplications();
 
   const preloaderVisible = usePreloader(shell, iframe);
@@ -91,10 +92,12 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
           )}
           <Preloader visible={preloaderVisible}>
             <>
-              <IFrameAppRouter
-                iframeRef={iframeRef}
-                configuration={applications}
-              />
+              {applications && (
+                <IFrameAppRouter
+                  iframeRef={iframeRef}
+                  configuration={applications}
+                />
+              )}
               <iframe
                 title="app"
                 role="document"

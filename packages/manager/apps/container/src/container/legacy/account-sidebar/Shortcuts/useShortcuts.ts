@@ -12,11 +12,12 @@ interface UseShortcuts {
 
 const useShortcuts = (): UseShortcuts => {
   const shell = useShell();
+  // TODO: handle environment unavailability in MANAGER-19971
   const environment: Environment = shell
     .getPlugin('environment')
-    .getEnvironment();
-  const region = environment.getRegion();
-  const user = environment.getUser();
+    ?.getEnvironment();
+  const region = environment?.getRegion();
+  const user = environment?.getUser();
   const navigation = shell.getPlugin('navigation');
 
   const getShortcuts = (): Shortcut[] => {
@@ -30,7 +31,7 @@ const useShortcuts = (): UseShortcuts => {
       {
         id: 'bills',
         icon: getOdsIcon(ODS_ICON_NAME.RECEIPT_CONCEPT),
-        url: user.enterprise
+        url: user?.enterprise
           ? 'https://billing.us.ovhcloud.com/login'
           : navigation.getURL('dedicated', '#/billing/history'),
         tracking: 'hub::sidebar::shortcuts::go-to-bills',
@@ -48,7 +49,7 @@ const useShortcuts = (): UseShortcuts => {
             },
           ]
         : []),
-      ...(user.isTrusted
+      ...(user?.isTrusted
         ? []
         : [
             {
