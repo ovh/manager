@@ -5,6 +5,8 @@ import {
   getVcdNetworkAclListQueryKey,
   VCDNetworkAcl,
   VCDNetworkAclNetwork,
+  useVcdOrganization,
+  isStatusTerminated,
 } from '@ovh-ux/manager-module-vcd-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 
@@ -48,13 +50,14 @@ interface NetworkAclContextValue {
   hasActiveTasks: boolean;
   isPending: boolean;
   isError: boolean;
+  isActiveOrganisation: boolean;
 }
 
 const NetworkAclContext = createContext<NetworkAclContextValue | null>(null);
 
 export function NetworkAclProvider({ children }: { children: ReactNode }) {
   const { id } = useParams();
-
+  const { data: vcdOrganisation } = useVcdOrganization({ id });
   const { flattenData, isPending, isError } = useResourcesIcebergV2<
     VCDNetworkAcl
   >({
@@ -122,6 +125,9 @@ export function NetworkAclProvider({ children }: { children: ReactNode }) {
         currentNetworks,
         targetNetworks,
         organisationId: id,
+        isActiveOrganisation: !isStatusTerminated(
+          vcdOrganisation?.data?.resourceStatus,
+        ),
         aclId,
         hasActiveTasks,
         isPending,
