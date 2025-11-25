@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import type { SnapshotType, CustomSnapshot } from '@/types/Snapshot.type';
+
 type SnapshotRow = {
   type: string;
   name: string;
@@ -9,8 +11,8 @@ type SnapshotRow = {
 };
 
 type UseSnapshotsRowsProps = {
-  snapshotTypes?: string[];
-  customSnapshots?: string[];
+  snapshotTypes?: SnapshotType[];
+  customSnapshots?: CustomSnapshot[];
 };
 
 export function useSnapshotsRows({ snapshotTypes, customSnapshots }: UseSnapshotsRowsProps) {
@@ -21,9 +23,10 @@ export function useSnapshotsRows({ snapshotTypes, customSnapshots }: UseSnapshot
 
     // Add snapshot types row
     if (snapshotTypes && snapshotTypes.length > 0) {
+      const enabledTypes = snapshotTypes.filter((st) => st.enabled);
       rows.push({
         type: t('partition:snapshots.types', 'Snapshot types'),
-        name: snapshotTypes.join(', ') || t('partition:snapshots.no_types', 'None'),
+        name: enabledTypes.map((st) => st.label).join(', ') || t('partition:snapshots.no_types', 'None'),
         isCustom: false,
       });
     }

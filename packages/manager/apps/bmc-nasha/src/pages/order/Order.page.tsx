@@ -33,6 +33,7 @@ export default function OrderPage() {
 
         // Initialize Module Federation runtime
         init({
+          name: '@ovh-ux/manager-bmc-nasha-app',
           remotes: [
             {
               name: '@order/ConfigoNasHa',
@@ -44,8 +45,12 @@ export default function OrderPage() {
         });
 
         // Load the remote component
-        const component = await loadRemote('order_fm/ConfigoNasHa');
-        setConfigoNasHaComponent(() => component.default || component);
+        const component = await loadRemote<{ default: React.ComponentType } | React.ComponentType>('order_fm/ConfigoNasHa');
+        setConfigoNasHaComponent(() =>
+          (component && typeof component === 'object' && 'default' in component
+            ? component.default
+            : component) as React.ComponentType
+        );
       } catch (err) {
         console.error('Failed to load order component:', err);
         setError(err instanceof Error ? err : new Error('Failed to load order component'));

@@ -28,7 +28,7 @@ describe('useDashboardTabs', () => {
   it('returns all configured tabs with resolved parameters', () => {
     const { result } = renderHook(() => useDashboardTabs());
     expect(result.current).toHaveLength(2);
-    expect(result.current[0].name).toBe('general-information');
-    expect(result.current[1].name).toBe('partitions');
+    expect(result.current[0]?.name).toBe('general-information');
+    expect(result.current[1]?.name).toBe('partitions');
   });
 });

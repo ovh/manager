@@ -5,12 +5,7 @@ import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-
-type SnapshotType = {
-  enabled: boolean;
-  label: string;
-  value: string;
-};
+import type { SnapshotType } from '@/types/Snapshot.type';
 
 type UpdateSnapshotTypesParams = {
   serviceName: string;

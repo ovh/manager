@@ -92,7 +92,7 @@ export default function EditNamePage() {
       updateDisplayName={(newName: string) => {
         void handleUpdateName(newName);
       }}
-      error={error ? error.message : null}
+      error={error ? error.message : undefined}
       pattern={NAME_PATTERN.source}
       patternMessage={t(
         'edit-name:rules',

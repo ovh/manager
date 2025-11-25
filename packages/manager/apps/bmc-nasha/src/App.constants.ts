@@ -122,9 +122,9 @@ export const APP_FEATURES = {
   appSlug: 'bmc-nasha',
   tracking: {
     level2ByRegion: {
-      EU: { level2: '0' },
-      CA: { level2: '0' },
-      US: { level2: '0' },
+      EU: { config: { level2: '0' } },
+      CA: { config: { level2: '0' } },
+      US: { config: { level2: '0' } },
     } as const,
     universe: 'Baremetal' as const,
     subUniverse: 'storage_backup' as const,

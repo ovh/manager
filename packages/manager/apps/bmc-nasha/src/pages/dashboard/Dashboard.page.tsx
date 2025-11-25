@@ -140,12 +140,7 @@ export default function DashboardPage() {
     <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={{
-        title: (
-          <div>
-            <div>{displayName}</div>
-            <div className="text-sm text-gray-600 mt-1">{nasha.serviceName}</div>
-          </div>
-        ),
+        title: displayName,
         changelogButton: (
           <ChangelogMenu
             links={{

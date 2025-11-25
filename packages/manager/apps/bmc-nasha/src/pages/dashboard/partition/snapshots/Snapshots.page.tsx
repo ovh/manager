@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useMemo, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
@@ -48,6 +48,13 @@ export default function SnapshotsPage() {
   const [editableTypes, setEditableTypes] = useState<typeof snapshotTypes>(snapshotTypes || []);
   const [isEditingTypes, setIsEditingTypes] = useState(false);
 
+  // Sync editableTypes with snapshotTypes when data loads
+  useEffect(() => {
+    if (snapshotTypes) {
+      setEditableTypes(snapshotTypes);
+    }
+  }, [snapshotTypes]);
+
   // Check if types have changed
   const hasTypesChanged = useMemo(() => {
     if (!snapshotTypes || !editableTypes) return false;
@@ -57,13 +64,13 @@ export default function SnapshotsPage() {
   // Handle type toggle
   const handleTypeToggle = useCallback((typeValue: string, enabled: boolean) => {
     setEditableTypes((prev) =>
-      prev.map((type) => (type.value === typeValue ? { ...type, enabled } : type)),
+      prev?.map((type) => (type.value === typeValue ? { ...type, enabled } : type)) || [],
     );
   }, []);
 
   // Handle save types
   const handleSaveTypes = useCallback(async () => {
-    if (!serviceName || !partitionName || !snapshotTypes) return;
+    if (!serviceName || !partitionName || !snapshotTypes || !editableTypes) return;
 
     try {
       const result = await updateSnapshotTypes({
@@ -163,7 +170,7 @@ export default function SnapshotsPage() {
                   'Select which automatic snapshot types should be active for this partition',
                 )}
               </p>
-              {editableTypes.map((type) => (
+              {editableTypes?.map((type) => (
                 <FormField key={type.value}>
                   <Checkbox
                     checked={type.enabled}
