@@ -14,16 +14,11 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  createDedicatedServerTasksQueryKeyPredicate,
   deleteVirtualMACs,
+  getIcebergDedicatedServerTasksQueryKey,
 } from '@/data/api';
 import { useIpHasVmac } from '@/data/hooks/ip';
-import {
-  fromIdToIp,
-  ipFormatter,
-  TRANSLATION_NAMESPACES,
-  VMAC_UPDATE_FUNCTION_LIST,
-} from '@/utils';
+import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
 
 export default function DeleteVirtualMac() {
   const navigate = useNavigate();
@@ -68,10 +63,7 @@ export default function DeleteVirtualMac() {
       );
       if (service) {
         await queryClient.invalidateQueries({
-          predicate: createDedicatedServerTasksQueryKeyPredicate(
-            service,
-            VMAC_UPDATE_FUNCTION_LIST,
-          ),
+          queryKey: getIcebergDedicatedServerTasksQueryKey(service),
         });
       }
       closeModal();

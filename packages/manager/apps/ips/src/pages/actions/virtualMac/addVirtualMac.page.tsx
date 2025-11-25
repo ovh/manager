@@ -25,13 +25,14 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   useAddVirtualMacToIp,
   useAddIpToVirtualMac,
   useGetServerModels,
 } from '@/data/hooks';
 import { useGetIpVmac } from '@/data/hooks/ip';
-import { VirtualMac } from '@/data/api';
+import { getIcebergDedicatedServerTasksQueryKey, VirtualMac } from '@/data/api';
 import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 import Loading from '@/pages/listing/manageOrganisations/components/Loading/Loading';
 
@@ -54,6 +55,15 @@ export default function AddVirtualMacModal() {
   });
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
+
+  const queryClient = useQueryClient();
+  const invalidateGetTasksQueryKey = async (serviceName: string) => {
+    if (serviceName) {
+      await queryClient.invalidateQueries({
+        queryKey: getIcebergDedicatedServerTasksQueryKey(serviceName),
+      });
+    }
+  };
 
   const closeModal = () => {
     trackClick({
@@ -83,13 +93,14 @@ export default function AddVirtualMacModal() {
     ip,
     type: selectedType,
     virtualMachineName,
-    onSuccess: () => {
+    onSuccess: async () => {
       closeModal();
       addSuccess(t('addVirtualMacAddNewSuccess', { t0: ip }));
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'add_virtual-mac_success',
       });
+      await invalidateGetTasksQueryKey(service);
     },
     onError: (err) => {
       closeModal();
@@ -117,13 +128,14 @@ export default function AddVirtualMacModal() {
     macAddress,
     ip,
     virtualMachineName,
-    onSuccess: () => {
+    onSuccess: async () => {
       closeModal();
       addSuccess(t('addVirtualMacAddExistingSuccess', { t0: ip }));
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'add_virtual-mac_success',
       });
+      await invalidateGetTasksQueryKey(service);
     },
     onError: (err) => {
       closeModal();
