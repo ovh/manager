@@ -229,7 +229,7 @@ export default function CreatePartitionPage() {
             {PROTOCOL_OPTIONS.map((opt) => (
               <div key={opt.value} className="mb-2">
                 <Radio value={opt.value}>{opt.label}</Radio>
-                <p className="ml-6 text-sm text-gray-600">{opt.description}</p>
+                <p className="text-sm text-gray-600 ml-6">{opt.description}</p>
               </div>
             ))}
           </RadioGroup>
@@ -246,7 +246,7 @@ export default function CreatePartitionPage() {
           </Message>
         )}
 
-        <div className="mt-6 flex gap-4">
+        <div className="flex gap-4 mt-6">
           <Button
             type="submit"
             variant="default"

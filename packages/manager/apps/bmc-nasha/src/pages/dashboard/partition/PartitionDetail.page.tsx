@@ -135,7 +135,7 @@ export default function PartitionDetailPage() {
     >
       {/* General Information View */}
       {!location.pathname.includes('/accesses') && !location.pathname.includes('/snapshots') && (
-        <div className="grid grid-cols-1 gap-6 py-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-4">
           <PartitionInformationTile
             partition={partition}
             onEditDescription={handleEditDescription}

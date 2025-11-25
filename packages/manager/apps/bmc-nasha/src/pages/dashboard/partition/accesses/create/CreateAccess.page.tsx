@@ -120,7 +120,7 @@ export default function CreateAccessPage() {
           <select
             {...form.register('ip')}
             disabled={isLoadingAuthorizable || isSubmitting}
-            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
           >
             <option value="">
               {t('partition:accesses.create.ip_placeholder', 'Select an IP or IP block')}
@@ -143,7 +143,7 @@ export default function CreateAccessPage() {
           <select
             {...form.register('type')}
             disabled={isSubmitting}
-            className="w-full rounded-md border border-gray-300 px-3 py-2"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
           >
             {aclTypeOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -179,7 +179,7 @@ export default function CreateAccessPage() {
           <div className="text-critical">{form.formState.errors.root.message}</div>
         )}
 
-        <div className="mt-4 flex justify-end gap-4">
+        <div className="flex justify-end gap-4 mt-4">
           <Button type="button" variant="ghost" onClick={handleCancel} disabled={isSubmitting}>
             {t('partition:accesses.create.cancel', 'Cancel')}
           </Button>

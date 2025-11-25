@@ -139,14 +139,14 @@ export default function SnapshotsPage() {
         }}
       >
         <div className="mb-4">
-          <div className="mb-4 text-sm text-gray-600">
+          <div className="text-sm text-gray-600 mb-4">
             {t('partition:snapshots.description', 'Manage snapshot policies for this partition')}
           </div>
         </div>
 
         {/* Snapshot Types Section */}
-        <div className="mb-6 rounded-md border bg-gray-50 p-4">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="mb-6 p-4 border rounded-md bg-gray-50">
+          <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">
               {t('partition:snapshots.types_title', 'Automatic Snapshot Types')}
             </h3>
@@ -164,7 +164,7 @@ export default function SnapshotsPage() {
 
           {isEditingTypes ? (
             <div className="space-y-4">
-              <p className="mb-3 text-sm text-gray-600">
+              <p className="text-sm text-gray-600 mb-3">
                 {t(
                   'partition:snapshots.types_description',
                   'Select which automatic snapshot types should be active for this partition',
@@ -184,7 +184,7 @@ export default function SnapshotsPage() {
                 </FormField>
               ))}
 
-              <div className="mt-4 flex gap-2">
+              <div className="flex gap-2 mt-4">
                 <Button
                   variant="default"
                   onClick={() => void handleSaveTypes()}
@@ -214,7 +214,7 @@ export default function SnapshotsPage() {
 
         {/* Custom Snapshots Section */}
         <div className="mb-4">
-          <p className="mb-2 font-semibold">
+          <p className="font-semibold mb-2">
             {t('partition:snapshots.count_title', 'Custom snapshots count')}
           </p>
           <p>

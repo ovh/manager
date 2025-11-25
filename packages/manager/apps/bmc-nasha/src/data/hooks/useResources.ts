@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 
 import type { SortingState } from '@tanstack/react-table';
 
+import type { DatagridColumn } from '@ovh-ux/muk';
 import { useDataApi } from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
@@ -48,9 +49,9 @@ function createResourcesFactory<T extends Record<string, unknown>>() {
         route: params.route,
         version: 'v6',
         iceberg: true,
-        cacheKey: (params.queryKey ?? ['resources', params.route]) as string | string[],
+        cacheKey: (params.queryKey ?? ['resources', params.route]) as string[],
         pageSize: params.pageSize,
-        columns: params.columns as any,
+        columns: params.columns ? (params.columns as unknown as DatagridColumn<T>[]) : undefined,
         defaultSorting: params.defaultSorting,
         enabled: params.enabled,
         disableCache: params.disableCache,
@@ -62,7 +63,7 @@ function createResourcesFactory<T extends Record<string, unknown>>() {
       const response = useDataApi<T>({
         route: params.route,
         version: 'v2',
-        cacheKey: (params.queryKey ?? ['resources', params.route]) as string | string[],
+        cacheKey: (params.queryKey ?? ['resources', params.route]) as string[],
         pageSize: params.pageSize,
         enabled: params.enabled,
         fetchAll: params.fetchAll,
@@ -73,14 +74,14 @@ function createResourcesFactory<T extends Record<string, unknown>>() {
       const response = useDataApi<T>({
         route: params.route,
         version: 'v6',
-        cacheKey: (params.queryKey ?? ['resources', params.route]) as string | string[],
+        cacheKey: (params.queryKey ?? ['resources', params.route]) as string[],
         pageSize: params.pageSize,
-        columns: (params.columns ?? []) as any,
+        columns: params.columns ? (params.columns as unknown as DatagridColumn<T>[]) : undefined,
         defaultSorting: params.defaultSorting,
         enabled: params.enabled,
         refetchInterval: params.refetchInterval,
         fetchDataFn: params.fetchDataFn
-          ? (_route: string) => params.fetchDataFn().then((data) => ({ data }))
+          ? (route: string) => params.fetchDataFn!().then((data) => ({ data }))
           : undefined,
       });
       return mapResponse<T>(response);

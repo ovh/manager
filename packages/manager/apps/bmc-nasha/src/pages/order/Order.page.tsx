@@ -77,7 +77,7 @@ export default function OrderPage() {
     return (
       <BaseLayout header={{ title: t('common:order', 'Order') }}>
         <div className="p-4">
-          <div className="mb-4 text-red-600">
+          <div className="text-red-600 mb-4">
             {t('common:error_loading_order', 'Error loading order component')}
           </div>
           <button type="button" onClick={handleGoBack} className="text-blue-600 hover:underline">

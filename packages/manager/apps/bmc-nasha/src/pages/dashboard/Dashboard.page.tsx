@@ -185,7 +185,7 @@ export default function DashboardPage() {
 
       {/* General Information View */}
       {!location.pathname.includes('/partitions') && (
-        <div className="grid grid-cols-1 gap-6 py-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-4">
           {/* Information Tile */}
           <InformationTile nasha={nasha} displayName={displayName} onEditName={handleEditName} />
 

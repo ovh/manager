@@ -192,7 +192,7 @@ export default function BillingTile({
                     <Link
                       href={commitmentUrl}
                       target="_top"
-                      className="text-primary flex items-center gap-1 text-sm hover:underline"
+                      className="text-primary hover:underline flex items-center gap-1 text-sm"
                       onClick={() => trackAction('go-to-manage-commitment', false)}
                     >
                       <span className="flex items-center gap-1">

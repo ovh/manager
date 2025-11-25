@@ -60,7 +60,7 @@ export default function Metrics({
   return (
     <div className="nasha-metrics mb-5">
       <Tile.Root title={t('nasha:metrics.title', 'General metrics')}>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <Tile.Item.Root>
               <Tile.Item.Term label={t('nasha:metrics.ip', 'IP')} />
@@ -76,7 +76,7 @@ export default function Metrics({
               <Tile.Item.Term label={t('nasha:metrics.capacity', 'Capacity')} />
               <Tile.Item.Description>
                 <SpaceMeter usage={nasha.use} large legend />
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="text-sm text-gray-600 mt-2">
                   <em>
                     {t('nasha:metrics.capacity_delay_text', 'Data may be delayed by a few minutes')}
                   </em>
@@ -110,13 +110,13 @@ export default function Metrics({
             <Tile.Item.Root>
               <Tile.Item.Term label={t('nasha:metrics.space_usage', 'Space usage notification')} />
               <Tile.Item.Description>
-                <label className="flex cursor-pointer items-center gap-2">
+                <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={(nasha as PreparedNasha & { monitored?: boolean }).monitored ?? false}
                     disabled={isMonitoredUpdating}
                     onChange={(e) => onMonitoredChanged?.(e.target.checked)}
-                    className="size-4 cursor-pointer"
+                    className="w-4 h-4 cursor-pointer"
                   />
                   <span className="text-sm">
                     {(nasha as PreparedNasha & { monitored?: boolean }).monitored

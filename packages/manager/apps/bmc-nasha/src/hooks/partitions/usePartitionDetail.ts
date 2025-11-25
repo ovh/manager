@@ -44,13 +44,13 @@ function preparePartition(
           (result, type) => ({
             ...result,
             [type]: {
-              ...partition.use[type],
+              ...partition.use![type],
               name: (() => {
                 const key = `nasha_use_type_${type}`;
                 const name = t(key);
                 return name === key ? type : name;
               })(),
-              unit: t(`nasha_use_unit_${partition.use[type]?.unit ?? 'B'}`),
+              unit: t(`nasha_use_unit_${partition.use![type]?.unit ?? 'B'}`),
             },
           }),
           {},

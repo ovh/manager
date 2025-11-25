@@ -120,7 +120,7 @@ export const APP_FEATURES = {
   serviceParam: 'id',
   platformParam: 'id',
   appSlug: 'bmc-nasha',
-  tracking: {
+    tracking: {
     level2ByRegion: {
       EU: { config: { level2: '0' } },
       CA: { config: { level2: '0' } },

@@ -84,7 +84,7 @@ export function ZfsOptionsForm({
           value={model.template?.name || ''}
           onChange={(e) => onTemplateChange(e.target.value)}
           disabled={isPending}
-          className="w-full rounded-md border border-gray-300 px-3 py-2"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md"
         >
           <option value="">
             {t('partition:zfs_options.template_placeholder', 'Select a template')}
@@ -128,7 +128,7 @@ export function ZfsOptionsForm({
               value={model.recordsize}
               onChange={(e) => onRecordsizeChange(e.target.value)}
               disabled={isPending}
-              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
             >
               {recordsizeEnum.map((recordsize) => (
                 <option key={recordsize.value} value={recordsize.value}>
@@ -145,7 +145,9 @@ export function ZfsOptionsForm({
               value={model.sync}
               onChange={(e: FormEvent<HTMLDivElement>) => {
                 const target = e.currentTarget as HTMLDivElement;
-                const radio = target.querySelector('input[type="radio"]:checked') as HTMLInputElement | null;
+                const radio = target.querySelector(
+                  'input[type="radio"]:checked',
+                ) as HTMLInputElement | null;
                 if (radio?.value) onSyncChange(radio.value);
               }}
               disabled={isPending}
@@ -164,7 +166,7 @@ export function ZfsOptionsForm({
                     <div className="text-sm text-gray-600">
                       {t(`partition:zfs_options.sync_${sync.value}_description`, sync.value)}
                       {sync.value === 'disabled' && (
-                        <strong className="mt-1 block text-red-600">
+                        <strong className="block mt-1 text-red-600">
                           {t(
                             'partition:zfs_options.sync_disabled_warning',
                             'Warning: Disabling sync can lead to data loss',
@@ -181,7 +183,7 @@ export function ZfsOptionsForm({
       )}
 
       {/* Actions */}
-      <div className="mt-6 flex gap-4">
+      <div className="flex gap-4 mt-6">
         <Button
           type="submit"
           variant="default"

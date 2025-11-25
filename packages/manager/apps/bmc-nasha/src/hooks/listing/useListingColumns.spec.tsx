@@ -44,7 +44,7 @@ describe('useListingColumns', () => {
     const { result } = renderHook(() => useListingColumns());
     const columns = result.current;
 
-    const columnKeys = columns.map((col) => (col as any).accessorKey).filter(Boolean);
+    const columnKeys = columns.map((col) => (col as any).accessorKey || col.id).filter(Boolean);
 
     expect(columnKeys).toContain('serviceName');
     expect(columnKeys).toContain('canCreatePartition');
@@ -70,7 +70,7 @@ describe('useListingColumns', () => {
     const hiddenColumns = columns.filter((col) => col.meta && (col.meta as any).isHiddenByDefault);
 
     expect(hiddenColumns).toHaveLength(3);
-    expect(hiddenColumns.map((col) => (col as any).accessorKey)).toEqual([
+    expect(hiddenColumns.map((col) => (col as any).accessorKey || col.id)).toEqual([
       'monitored',
       'zpoolCapacity',
       'zpoolSize',
