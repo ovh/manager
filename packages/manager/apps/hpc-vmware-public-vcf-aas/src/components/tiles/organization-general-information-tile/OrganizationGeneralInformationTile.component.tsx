@@ -19,6 +19,7 @@ import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import DatacentresCount from './DatacentresCount.component';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { IpBlockCount } from './IpBlockCount.component';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
@@ -118,6 +119,11 @@ export default function OrganizationGenerationInformationTile({
               className="w-full"
             />
           ),
+        },
+        {
+          id: 'ipSpacesCount',
+          label: t('managed_vcd_dashboard_ip_block_count'),
+          value: <IpBlockCount />,
         },
       ]}
     />

@@ -19,6 +19,9 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => ({
+      data: `${basePath}${pathWithId}`,
+    })),
   };
 });
 

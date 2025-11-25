@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import {
   assertOdsModalVisibility,
@@ -8,6 +9,16 @@ import {
 import { act, waitFor } from '@testing-library/react';
 import { renderTest, labels, mockEditInputValue } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => ({
+      data: `${basePath}${pathWithId}`,
+    })),
+  };
+});
 
 describe('Organization General Information Page', () => {
   it('display the VCD dashboard general page', async () => {

@@ -25,6 +25,8 @@ import {
   getIamMocks,
   getVrackSegmentsMocks,
   GetVrackSegmentsMocksParams,
+  GetIpBlockMocksParams,
+  getIpBlockMocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   initTestI18n,
@@ -58,6 +60,7 @@ export const renderTest = async ({
   GetVeeamBackupMocksParams &
   TFeatureAvailabilityMockParams &
   GetVrackSegmentsMocksParams &
+  GetIpBlockMocksParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
@@ -69,6 +72,7 @@ export const renderTest = async ({
       ...getIamMocks(),
       ...getServicesMocks(mockParams),
       ...getVrackSegmentsMocks(mockParams),
+      ...getIpBlockMocks(mockParams),
       ...getFeatureAvailabilityMocks(mockParams),
     ]),
   );
