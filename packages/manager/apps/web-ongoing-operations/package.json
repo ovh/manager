@@ -12,7 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
+    "build:strict": "tsc --project tsconfig.json && vite build",
     "coverage": "manager-test run --coverage",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "manager-test run"
   },
