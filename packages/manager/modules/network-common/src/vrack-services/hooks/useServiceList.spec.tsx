@@ -7,8 +7,9 @@ import { useServiceList } from './useServiceList';
 import { useVrackService } from './useVrackServices';
 
 vi.mock('@tanstack/react-query', async () => {
-  const actual =
-    await vi.importActual<typeof import('@tanstack/react-query')>('@tanstack/react-query');
+  const actual = await vi.importActual<typeof import('@tanstack/react-query')>(
+    '@tanstack/react-query',
+  );
   return {
     ...actual,
     useQuery: vi.fn(),
@@ -16,7 +17,9 @@ vi.mock('@tanstack/react-query', async () => {
 });
 
 vi.mock('./useVrackServices', async () => {
-  const actual = await vi.importActual<typeof import('./useVrackServices')>('./useVrackServices');
+  const actual = await vi.importActual<typeof import('./useVrackServices')>(
+    './useVrackServices',
+  );
   return {
     ...actual,
     useVrackService: vi.fn(),
@@ -30,10 +33,12 @@ describe('useServiceList', () => {
     vi.clearAllMocks();
     vi.resetAllMocks();
 
-    getIamResourceQueryKeyMock = vi.fn().mockImplementation((val) => [`iam/resource/${val}`]);
+    getIamResourceQueryKeyMock = vi
+      .fn()
+      .mockImplementation((val) => [`iam/resource/${val}`]);
 
     vi.mocked(useVrackService).mockReturnValue({
-      data: {
+      data: ({
         currentState: {
           vrackId: 'vrack-id',
           displayName: '',
@@ -41,7 +46,7 @@ describe('useServiceList', () => {
           subnets: [],
           region: '',
         },
-      } as unknown as VrackServicesWithIAM,
+      } as unknown) as VrackServicesWithIAM,
       error: null,
       isError: false,
       isPending: false,
@@ -65,6 +70,8 @@ describe('useServiceList', () => {
       isStale: false,
       refetch: vi.fn(),
       fetchStatus: 'fetching',
+      isEnabled: true,
+      promise: new Promise(vi.fn()),
     });
     vi.mocked(useQuery).mockReturnValue({
       data: undefined,
@@ -91,6 +98,8 @@ describe('useServiceList', () => {
       isStale: false,
       refetch: vi.fn(),
       fetchStatus: 'fetching',
+      isEnabled: true,
+      promise: new Promise(vi.fn()),
     });
   });
 
@@ -103,8 +112,12 @@ describe('useServiceList', () => {
     };
 
     vi.mocked(useQuery).mockImplementation(({ queryKey }) => {
-      if (queryKey.includes('get/vrackServices/resource/test-vrack-id/eligibleManagedService')) {
-        return {
+      if (
+        queryKey.includes(
+          'get/vrackServices/resource/test-vrack-id/eligibleManagedService',
+        )
+      ) {
+        return ({
           data: mockServiceListResponse,
           isLoading: false,
           isFetching: false,
@@ -117,10 +130,10 @@ describe('useServiceList', () => {
           fetchStatus: 'idle',
           refetch: vi.fn(),
           status: 'success',
-        } as unknown as UseQueryResult;
+        } as unknown) as UseQueryResult;
       }
       if (queryKey.includes('iam/resource/urn:service:2,urn:service:1')) {
-        return {
+        return ({
           data: mockIamResources,
           isLoading: false,
           isFetching: false,
@@ -133,9 +146,9 @@ describe('useServiceList', () => {
           fetchStatus: 'idle',
           refetch: vi.fn(),
           status: 'success',
-        } as unknown as UseQueryResult;
+        } as unknown) as UseQueryResult;
       }
-      return {
+      return ({
         data: undefined,
         isLoading: true,
         isFetching: true,
@@ -148,13 +161,15 @@ describe('useServiceList', () => {
         fetchStatus: 'fetching',
         refetch: vi.fn(),
         status: 'loading',
-      } as unknown as UseQueryResult;
+      } as unknown) as UseQueryResult;
     });
 
     vi.mocked(useVrackService).mockReturnValue({
       data: {
         currentState: {
-          subnets: [{ serviceEndpoints: [{ managedServiceURN: 'urn:service:2' }] }],
+          subnets: [
+            { serviceEndpoints: [{ managedServiceURN: 'urn:service:2' }] },
+          ],
           displayName: '',
           productStatus: 'ACTIVE' as VrackServicesProductStatus,
           vrackId: '',
@@ -187,6 +202,8 @@ describe('useServiceList', () => {
         throw new Error('Function not implemented.');
       },
       fetchStatus: 'fetching',
+      isEnabled: true,
+      promise: new Promise(vi.fn()),
     });
 
     const { result } = renderHook(() =>
@@ -196,63 +213,71 @@ describe('useServiceList', () => {
       }),
     );
     await waitFor(() => {
-      expect(result.current.serviceListResponse).toEqual(mockServiceListResponse);
+      expect(result.current.serviceListResponse).toEqual(
+        mockServiceListResponse,
+      );
       expect(result.current.iamResources).toEqual(mockIamResources);
     });
   });
 
   it('Should handle query errors correctly', async () => {
-    vi.mocked(useQuery).mockImplementation((input): UseQueryResult => {
-      if (
-        input.queryKey.includes('get/vrackServices/resource/test-vrack-id/eligibleManagedService')
-      ) {
-        return {
-          data: undefined,
-          isLoading: false,
-          isFetching: false,
-          error: new Error('Service error'),
-          isError: true,
-          isFetched: true,
-          isFetchedAfterMount: true,
-          isFetchingNextPage: false,
-          isFetchingPreviousPage: false,
-          fetchStatus: 'idle',
-          refetch: vi.fn(),
-          status: 'error',
-        } as unknown as UseQueryResult;
-      }
-      if (input.queryKey.includes('iam/resource/urn:service:2,urn:service:1')) {
-        return {
-          data: undefined,
-          isLoading: false,
-          isFetching: false,
-          error: new Error('IAM error'),
-          isError: true,
-          isFetched: true,
-          isFetchedAfterMount: true,
-          isFetchingNextPage: false,
-          isFetchingPreviousPage: false,
-          fetchStatus: 'idle',
-          refetch: vi.fn(),
-          status: 'error',
-        } as unknown as UseQueryResult;
-      }
+    vi.mocked(useQuery).mockImplementation(
+      (input): UseQueryResult => {
+        if (
+          input.queryKey.includes(
+            'get/vrackServices/resource/test-vrack-id/eligibleManagedService',
+          )
+        ) {
+          return ({
+            data: undefined,
+            isLoading: false,
+            isFetching: false,
+            error: new Error('Service error'),
+            isError: true,
+            isFetched: true,
+            isFetchedAfterMount: true,
+            isFetchingNextPage: false,
+            isFetchingPreviousPage: false,
+            fetchStatus: 'idle',
+            refetch: vi.fn(),
+            status: 'error',
+          } as unknown) as UseQueryResult;
+        }
+        if (
+          input.queryKey.includes('iam/resource/urn:service:2,urn:service:1')
+        ) {
+          return ({
+            data: undefined,
+            isLoading: false,
+            isFetching: false,
+            error: new Error('IAM error'),
+            isError: true,
+            isFetched: true,
+            isFetchedAfterMount: true,
+            isFetchingNextPage: false,
+            isFetchingPreviousPage: false,
+            fetchStatus: 'idle',
+            refetch: vi.fn(),
+            status: 'error',
+          } as unknown) as UseQueryResult;
+        }
 
-      return {
-        data: undefined,
-        isLoading: false,
-        isFetching: false,
-        error: null,
-        isError: false,
-        isFetched: false,
-        isFetchedAfterMount: false,
-        isFetchingNextPage: false,
-        isFetchingPreviousPage: false,
-        fetchStatus: 'idle',
-        refetch: vi.fn(),
-        status: 'idle',
-      } as unknown as UseQueryResult;
-    });
+        return ({
+          data: undefined,
+          isLoading: false,
+          isFetching: false,
+          error: null,
+          isError: false,
+          isFetched: false,
+          isFetchedAfterMount: false,
+          isFetchingNextPage: false,
+          isFetchingPreviousPage: false,
+          fetchStatus: 'idle',
+          refetch: vi.fn(),
+          status: 'idle',
+        } as unknown) as UseQueryResult;
+      },
+    );
 
     vi.mocked(useVrackService).mockReturnValue({
       data: undefined,
@@ -281,6 +306,8 @@ describe('useServiceList', () => {
         throw new Error('Function not implemented.');
       },
       fetchStatus: 'fetching',
+      isEnabled: true,
+      promise: new Promise(vi.fn()),
     });
 
     const { result } = renderHook(() =>
@@ -320,10 +347,12 @@ describe('useServiceList', () => {
       isStale: false,
       refetch: vi.fn(),
       fetchStatus: 'fetching',
+      isEnabled: true,
+      promise: new Promise(vi.fn()),
     });
 
     vi.mocked(useVrackService).mockReturnValue({
-      data: {
+      data: ({
         currentState: {
           vrackId: 'vrack-id',
           displayName: '',
@@ -331,7 +360,7 @@ describe('useServiceList', () => {
           subnets: [],
           region: '',
         },
-      } as unknown as VrackServicesWithIAM,
+      } as unknown) as VrackServicesWithIAM,
       error: null,
       isError: false,
       isLoading: false,
@@ -355,6 +384,8 @@ describe('useServiceList', () => {
       isPending: false,
       isSuccess: true,
       status: 'success',
+      isEnabled: true,
+      promise: new Promise(vi.fn()),
     });
 
     const { result } = renderHook(() =>
