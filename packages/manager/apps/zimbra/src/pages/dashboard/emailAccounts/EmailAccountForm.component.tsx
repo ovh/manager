@@ -50,8 +50,9 @@ import {
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
 } from '@/data/api';
+import { getZimbraPlatformAccountDetailQueryKey } from '@/data/api/account';
 import { SlotWithService, useAccount, useDomains, useSlotsWithService } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+import { useCountries, useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
 import { ADD_EMAIL_ACCOUNT, CONFIRM, EDIT_EMAIL_ACCOUNT } from '@/tracking.constants';
 import {
@@ -64,7 +65,9 @@ import {
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
+  const [isAdvancedSettingsOpen, setIsAdvancedSettingsOpen] = useState(false);
   const { t } = useTranslation(['accounts/form', 'common', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
+  const { countryKeys } = useCountries();
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId, accountId } = useParams();
@@ -175,6 +178,9 @@ export const EmailAccountForm = () => {
       await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformAccountDetailQueryKey(platformId, accountId),
+      });
     },
   });
 
@@ -185,7 +191,6 @@ export const EmailAccountForm = () => {
       actionType: 'action',
       actions: [trackingName, CONFIRM],
     });
-
     addOrEditEmailAccount(formatAccountPayload(data, !!accountId));
   };
 
@@ -209,6 +214,7 @@ export const EmailAccountForm = () => {
       forceChangePasswordAfterLogin: !accountId,
       slotId: searchParams.get('slotId') || '',
       offer: emailAccount?.currentState?.offer,
+      contactInformation: { ...(emailAccount?.currentState?.contactInformation ?? {}) },
     },
     mode: 'onTouched',
     resolver: zodResolver(accountId ? editEmailAccountSchema : addEmailAccountSchema),
@@ -227,6 +233,7 @@ export const EmailAccountForm = () => {
         forceChangePasswordAfterLogin: !accountId,
         slotId: searchParams.get('slotId') || '',
         offer: emailAccount?.currentState?.offer,
+        contactInformation: { ...(emailAccount?.currentState?.contactInformation ?? {}) },
       });
     }
   }, [emailAccount]);
@@ -576,6 +583,333 @@ export const EmailAccountForm = () => {
         </div>
       )}
       <OdsButton
+        color={ODS_BUTTON_COLOR.primary}
+        iconAlignment="right"
+        icon={isAdvancedSettingsOpen ? ODS_ICON_NAME.chevronUp : ODS_ICON_NAME.chevronDown}
+        variant="outline"
+        data-testid="toggle-btn"
+        label={t('common:email_account_advanced_settings')}
+        onClick={() => setIsAdvancedSettingsOpen(!isAdvancedSettingsOpen)}
+        className="pt-6"
+      />
+      {isAdvancedSettingsOpen && (
+        <>
+          <div className="pt-6">
+            <OdsText preset="heading-4" className="block">
+              {t('common:email_account_company_information')}
+            </OdsText>
+          </div>
+          <div className="flex">
+            <Controller
+              control={control}
+              name="contactInformation.company"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pr-6"
+                  error={errors?.contactInformation?.company?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_company')}
+                  </label>
+                  <OdsInput
+                    placeholder={t('common:contactInformation_company')}
+                    data-testid="input-company"
+                    type={ODS_INPUT_TYPE.text}
+                    id={name}
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                  />
+                </OdsFormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.service"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pl-6"
+                  error={errors?.contactInformation?.service?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_service')}
+                  </label>
+                  <OdsInput
+                    type={ODS_INPUT_TYPE.text}
+                    data-testid="input-service"
+                    placeholder={t('common:contactInformation_service')}
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                  />
+                </OdsFormField>
+              )}
+            />
+          </div>
+          <div className="flex">
+            <Controller
+              control={control}
+              name="contactInformation.profession"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pr-6"
+                  error={errors?.contactInformation?.profession?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_profession')}
+                  </label>
+                  <OdsInput
+                    placeholder={t('common:contactInformation_profession')}
+                    data-testid="input-profession"
+                    type={ODS_INPUT_TYPE.text}
+                    id={name}
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                  />
+                </OdsFormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.office"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pl-6"
+                  error={errors?.contactInformation?.office?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_office')}
+                  </label>
+                  <OdsInput
+                    type={ODS_INPUT_TYPE.text}
+                    data-testid="input-office"
+                    placeholder={t('common:contactInformation_office')}
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                  />
+                </OdsFormField>
+              )}
+            />
+          </div>
+          <div className="pt-6">
+            <OdsText preset="heading-4" className="block">
+              {t('common:email_account_contact_information')}
+            </OdsText>
+          </div>
+          <div className="flex">
+            <Controller
+              control={control}
+              name="contactInformation.street"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pr-6"
+                  error={errors?.contactInformation?.street?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_street')}
+                  </label>
+                  <OdsInput
+                    placeholder={t('common:contactInformation_street')}
+                    data-testid="input-street"
+                    type={ODS_INPUT_TYPE.text}
+                    id={name}
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                  />
+                </OdsFormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.phoneNumber"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pl-6"
+                  error={errors?.contactInformation?.phoneNumber?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_phoneNumber')}
+                  </label>
+                  <OdsInput
+                    type={ODS_INPUT_TYPE.text}
+                    placeholder={t('common:contactInformation_phoneNumber')}
+                    data-testid="input-phoneNumber"
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                  />
+                </OdsFormField>
+              )}
+            />
+          </div>
+          <div className="flex">
+            <div className="flex md:w-1/2">
+              <Controller
+                control={control}
+                name="contactInformation.postcode"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField
+                    className="w-full md:w-1/2 pr-6"
+                    error={errors?.contactInformation?.postcode?.message}
+                  >
+                    <label htmlFor={name} slot="label">
+                      {t('common:contactInformation_postcode')}
+                    </label>
+                    <OdsInput
+                      placeholder={t('common:contactInformation_postcode')}
+                      data-testid="input-postcode"
+                      type={ODS_INPUT_TYPE.text}
+                      id={name}
+                      name={name}
+                      hasError={!!errors[name]}
+                      value={value}
+                      defaultValue=""
+                      onOdsBlur={onBlur}
+                      onOdsChange={onChange}
+                    />
+                  </OdsFormField>
+                )}
+              />
+              <Controller
+                control={control}
+                name="contactInformation.city"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField
+                    className="w-full md:w-1/2 pr-6"
+                    error={errors?.contactInformation?.city?.message}
+                  >
+                    <label htmlFor={name} slot="label">
+                      {t('common:contactInformation_city')}
+                    </label>
+                    <OdsInput
+                      placeholder={t('common:contactInformation_city')}
+                      data-testid="input-city"
+                      type={ODS_INPUT_TYPE.text}
+                      id={name}
+                      name={name}
+                      hasError={!!errors[name]}
+                      value={value}
+                      defaultValue=""
+                      onOdsBlur={onBlur}
+                      onOdsChange={onChange}
+                    />
+                  </OdsFormField>
+                )}
+              />
+            </div>
+            <div className="flex md:w-1/2">
+              <Controller
+                control={control}
+                name="contactInformation.mobileNumber"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField
+                    className="w-full pl-6"
+                    error={errors?.contactInformation?.mobileNumber?.message}
+                  >
+                    <label htmlFor={name} slot="label">
+                      {t('common:contactInformation_mobileNumber')}
+                    </label>
+                    <OdsInput
+                      type={ODS_INPUT_TYPE.text}
+                      data-testid="input-mobileNumber"
+                      placeholder={t('common:contactInformation_mobileNumber')}
+                      name={name}
+                      hasError={!!errors[name]}
+                      value={value}
+                      defaultValue=""
+                      onOdsBlur={onBlur}
+                      onOdsChange={onChange}
+                    />
+                  </OdsFormField>
+                )}
+              />
+            </div>
+          </div>
+          <div className="flex items-center">
+            <Controller
+              control={control}
+              name="contactInformation.country"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pr-6"
+                  error={errors?.contactInformation?.country?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_country')}
+                  </label>
+                  <div className="flex">
+                    <OdsSelect
+                      data-testid="select-country"
+                      placeholder={t('common:contactInformation_country')}
+                      className="mt-2 flex-1"
+                      id={name}
+                      name={name}
+                      value={value}
+                      hasError={!!errors[name]}
+                      onOdsChange={onChange}
+                      onOdsBlur={onBlur}
+                    >
+                      {countryKeys.map((key) => (
+                        <option key={key} value={key.split('_')[1]}>
+                          {t(`${NAMESPACES.COUNTRIES}:${key}`)}
+                        </option>
+                      ))}
+                    </OdsSelect>
+                  </div>
+                </OdsFormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.faxNumber"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField
+                  className="w-full md:w-1/2 pl-6"
+                  error={errors?.contactInformation?.faxNumber?.message}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_faxNumber')}
+                  </label>
+                  <OdsInput
+                    type={ODS_INPUT_TYPE.text}
+                    data-testid="input-faxNumber"
+                    placeholder={t('common:contactInformation_faxNumber')}
+                    name={name}
+                    hasError={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                  />
+                </OdsFormField>
+              )}
+            />
+          </div>
+        </>
+      )}
+      <OdsButton
+        className="block"
         slot="actions"
         type="submit"
         color={ODS_BUTTON_COLOR.primary}
