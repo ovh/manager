@@ -33,5 +33,11 @@
   "netapp_volumes_dashboard_snapshots": "Snapshot",
   "netapp_volumes_dashboard_volume_pattern": "Deve contenere esclusivamente numeri, lettere, underscore, trattini o punti ed essere composta da un massimo di 256 caratteri.",
   "netapp_volumes_dashboard_mount_path_not_configurated": "Impostazioni di rete non configurate",
-  "netapp_volumes_dashboard_information_reserve_space": "Riserva degli Snapshot"
+  "netapp_volumes_dashboard_information_reserve_space": "Riserva degli Snapshot",
+  "netapp_volumes_dashboard_capacity": "Capacità del volume",
+  "netapp_volumes_dashboard_volume_data_space": "Spazio dati",
+  "netapp_volumes_dashboard_volume_used": "Utilizzato",
+  "netapp_volumes_dashboard_volume_overflow": "Overflow",
+  "netapp_volumes_dashboard_volume_available": "Disponibile",
+  "netapp_volumes_dashboard_snapshot_space": "Riserva di Snapshot"
 }
