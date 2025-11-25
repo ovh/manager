@@ -41,6 +41,7 @@ export default function NetworkAclListContent() {
     hasActiveTasks,
     organisationId: id,
     isPending,
+    isActiveOrganisation,
   } = useNetworkAclContext();
   const navigate = useNavigate();
   const { addInfo, clearMessage } = useMessageContext();
@@ -48,6 +49,7 @@ export default function NetworkAclListContent() {
 
   const isDefaultAcl =
     networks.length === 1 && networks[0].network === DEFAULT_ACL_NETWORK;
+  const hasDisabledActions = hasActiveTasks || !isActiveOrganisation;
 
   const columns = [
     {
@@ -97,7 +99,7 @@ export default function NetworkAclListContent() {
                   },
                   label: t('managed_vcd_network_acl_ip_action_modify_ip'),
                   'data-testid': `actions-modify-${row.name}`,
-                  isDisabled: hasActiveTasks,
+                  isDisabled: hasDisabledActions,
                 },
                 {
                   id: 2,
@@ -112,7 +114,7 @@ export default function NetworkAclListContent() {
                   label: t('managed_vcd_network_acl_ip_action_delete_ip'),
                   color: ODS_BUTTON_COLOR.critical,
                   'data-testid': `actions-delete-${row.name}`,
-                  isDisabled: hasActiveTasks || isDefaultAcl,
+                  isDisabled: isDefaultAcl || hasDisabledActions,
                 },
               ]}
               isCompact
@@ -162,7 +164,7 @@ export default function NetworkAclListContent() {
                 : t('managed_vcd_network_acl_ip_cta_add_ip')
             }
             onClick={onCtaClicked}
-            isDisabled={hasActiveTasks}
+            isDisabled={hasDisabledActions}
             data-testid={TEST_IDS.networkAclCta}
           />
         </div>
