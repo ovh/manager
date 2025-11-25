@@ -3,6 +3,7 @@ export const subRoutes = {
   assignTag: 'assign-tag',
   tagDetail: ':tag',
   unassignTag: 'unassign-tag',
+  permanentTokens: 'manage-tokens/:userId',
 };
 
 export const urls = {
@@ -12,4 +13,5 @@ export const urls = {
   tagDetail: `/${subRoutes.tagManager}/${subRoutes.tagDetail}`,
   tagDetailAssign: `/${subRoutes.tagManager}/${subRoutes.tagDetail}/${subRoutes.assignTag}`,
   tagdetailUnassign: `/${subRoutes.tagManager}/${subRoutes.tagDetail}/${subRoutes.unassignTag}`,
+  permanentTokens: `/${subRoutes.permanentTokens}`,
 };

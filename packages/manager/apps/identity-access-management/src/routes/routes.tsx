@@ -13,6 +13,8 @@ const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
 const AssignTag = lazy(() =>
   import('@/pages/tagManager/assignTag/AssignTag.page'),
 );
+const PermanentTokensListing = lazy(() => import('@/pages/permanentTokens/listing/PermanentTokensListing.page'));
+
 
 export default (
   <Route
@@ -80,6 +82,10 @@ export default (
           pageType: PageType.listing,
         },
       }}
+    />
+    <Route
+      path={urls.permanentTokens}
+      Component={PermanentTokensListing}
     />
   </Route>
 );
