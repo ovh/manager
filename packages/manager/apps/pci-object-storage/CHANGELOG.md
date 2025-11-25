@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.21.1...@ovh-ux/manager-pci-object-storage-app@0.21.2) (2025-11-25)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** fix build of the µ-app ([70d5842](https://github.com/ovh/manager/commit/70d5842f9ee840381b174460f932ea0452ce7aa4))
+
+
+
+
+
 ## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.21.0...@ovh-ux/manager-pci-object-storage-app@0.21.1) (2025-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
