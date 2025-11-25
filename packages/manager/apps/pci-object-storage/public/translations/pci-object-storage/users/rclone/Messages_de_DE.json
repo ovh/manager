@@ -1,15 +1,15 @@
 {
-  "rcloneTitle": "Eine rclone-Konfigurationsdatei herunterladen",
-  "rcloneDescription": "Sie werden eine Konfigurationsdatei herunterladen, die Ihnen die Verbindung mit rclone ermöglicht.",
+  "rcloneTitle": "Rclone-Konfigurationsdatei herunterladen",
+  "rcloneDescription": "Sie sind im Begriff, eine Konfigurationsdatei für die Verbindung mit Rclone herunterzuladen.",
   "rcloneDoc": "Mehr erfahren",
   "typeLabel": "Dateityp",
   "swiftTypeLabel": "Swift",
   "s3TypeLabel": "S3-kompatibel",
-  "regionLabel": "Wählen Sie die Region aus, in der diese Datei angewendet wird:",
+  "regionLabel": "Wählen Sie die Region aus, in der diese Datei angewandt werden soll:",
   "regionPlaceholder": "Region auswählen",
   "noRegionFound": "Keine Ergebnisse",
-  "rcloneInfo": "Aus Sicherheitsgründen enthält die Konfigurationsdatei nicht Ihr Passwort. Es ist daher erforderlich, die Konfigurationsdatei zu bearbeiten, um Ihr Passwort manuell hinzuzufügen.",
-  "rcloneButtonConfirm": "Jetzt herunterladen",
+  "rcloneInfo": "Aus Sicherheitsgründen enthält die Konfigurationsdatei nicht Ihr Passwort. Um Ihr Passwort manuell hinzuzufügen, müssen Sie die Konfigurationsdatei daher bearbeiten.",
+  "rcloneButtonConfirm": "Herunterladen",
   "rcloneButtonCancel": "Abbrechen",
   "userRcloneDownloadFailed": "Es ist ein Fehler aufgetreten"
 }

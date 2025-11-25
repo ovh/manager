@@ -1,7 +1,7 @@
 {
-  "secretTitle": "Benutzerinformation",
-  "accessKeyLabel": "Zugangsschlüssel",
-  "secretKeyLabel": "Geheimschlüssel",
+  "secretTitle": "User-Informationen",
+  "accessKeyLabel": "Zugriffsschlüssel",
+  "secretKeyLabel": "Geheimer Schlüssel",
   "passwordCopy": "Kopiert!",
-  "useSecretButtonClose": "Schliessen"
+  "useSecretButtonClose": "Schließen"
 }

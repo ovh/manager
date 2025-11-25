@@ -2,7 +2,7 @@
   "addTagTitle": "Tag hinzufügen",
   "keyFieldLabel": "Schlüssel",
   "valueFieldLabel": "Wert",
-  "existingKeyError": "Dieser Schlüssel existiert bereits",
+  "existingKeyError": "Dieser Schlüssel besteht bereits",
   "cancelButton": "Abbrechen",
   "confirmButton": "Hinzufügen"
 }

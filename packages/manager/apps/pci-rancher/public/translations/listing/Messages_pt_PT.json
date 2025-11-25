@@ -35,5 +35,5 @@
   "rancherStatusCreating": "O seu Managed Rancher Service está a ser criado. Por favor, aguarde. Esta operação pode demorar alguns minutos.",
   "iam": "Autenticação IAM",
   "iam_authentication_status": "Autenticação IAM",
-  "iam_authentication_infos_tooltip": "Permite que o Harbor utilize as identidades geridas pelo OVHcloud IAM (Gestão de Identidade e Acesso) para controlar o acesso ao registro, evitando assim a gestão manual dos utilizadores."
+  "iam_authentication_infos_tooltip": "Permite ao Rancher usar as identidades geridas pelo OVHcloud IAM (Identity and Access Management) para controlar o acesso ao serviço, evitando assim a gestão manual dos utilizadores."
 }
