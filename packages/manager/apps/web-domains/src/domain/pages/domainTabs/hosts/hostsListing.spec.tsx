@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import { vi, describe, it, expect } from 'vitest';
-import { render, renderHook, screen } from '@testing-library/react';
+import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import HostsListing from './hostsListing';
 import { wrapper } from '@/common/utils/test.provider';
@@ -11,6 +11,10 @@ import { nichandle } from '@/common/__mocks__/nichandle';
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(() => ({
     domainResource: serviceInfoDetail,
+  })),
+  useUpdateDomainResource: vi.fn(() => ({
+    updateDomain: vi.fn(),
+    isUpdateDomainPending: false,
   })),
 }));
 
@@ -39,10 +43,18 @@ describe('Host Columns', () => {
 describe('Host Datagrid', () => {
   it('should display the content of host datagrid', async () => {
     nichandle.auth.account = 'admin-id';
-    render(<HostsListing />, {
+    const { getByTestId } = render(<HostsListing />, {
       wrapper,
     });
     expect(await screen.findByTestId('datagrid')).toBeInTheDocument();
+
+    const addButton = getByTestId('addButton');
+    expect(addButton).toBeInTheDocument();
+
+    fireEvent.click(addButton);
+
+    const drawer = getByTestId('drawer');
+    expect(drawer).toBeInTheDocument();
   });
 
   it('should display the warning message if nicadmin != user nic', async () => {

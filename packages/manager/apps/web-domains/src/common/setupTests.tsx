@@ -117,3 +117,9 @@ const ResizeObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
 }));
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+
+// Add a fake close() method because jsdom doesn't support HTMLDialogElement.
+// Without this mock, components using <dialog> (like the ODS Drawer) would crash during tests.
+Object.defineProperty(global.HTMLDialogElement.prototype, 'close', {
+  value: vi.fn(),
+});
