@@ -189,7 +189,6 @@ function CommunicationsPage() {
           {tCommon('iam_display_content_message')}
         </OdsMessage>
       )}
-
       <Datagrid
         items={flattenData}
         columns={columns}
