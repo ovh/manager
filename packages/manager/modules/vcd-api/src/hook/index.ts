@@ -8,6 +8,7 @@ export * from './useUpdateVcdVrackSegment';
 export * from './useVcdCatalog';
 export * from './useVcdDatacentre';
 export * from './useVcdDatacentreCompute';
+export * from './useVcdIpBlocks';
 export * from './useVcdOrder';
 export * from './useVcdOrganization';
 export * from './useVeeamBackup';

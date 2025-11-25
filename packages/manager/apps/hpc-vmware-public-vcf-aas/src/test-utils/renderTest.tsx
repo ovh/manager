@@ -27,6 +27,8 @@ import {
   GetVrackSegmentsMocksParams,
   getNetworkAclMock,
   GetNetworkAclMocksParams,
+  GetIpBlockMocksParams,
+  getIpBlockMocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   initTestI18n,
@@ -61,6 +63,7 @@ export const renderTest = async ({
   TFeatureAvailabilityMockParams &
   GetVrackSegmentsMocksParams &
   GetNetworkAclMocksParams &
+  GetIpBlockMocksParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
@@ -74,6 +77,7 @@ export const renderTest = async ({
       ...getVrackSegmentsMocks(mockParams),
       ...getFeatureAvailabilityMocks(mockParams),
       ...getNetworkAclMock(mockParams),
+      ...getIpBlockMocks(mockParams),
     ]),
   );
 
