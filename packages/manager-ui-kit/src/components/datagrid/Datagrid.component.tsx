@@ -101,7 +101,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
         />
       )}
       <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
-        <Table size={size} variant={variant}>
+        <Table className="table table-fixed w-full" size={size} variant={variant}>
           {!hideHeader && (
             <TableHeaderContent<T>
               headerGroups={headerGroups}
