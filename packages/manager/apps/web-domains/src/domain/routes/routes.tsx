@@ -3,6 +3,7 @@ import { Navigate, Outlet, Route, useParams } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/domain/routes/routes.constant';
+import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
 
 const LayoutPage = React.lazy(() => import('@/domain/pages/layout'));
 const DomainListingPage = React.lazy(() =>
@@ -102,6 +103,10 @@ export default (
         />
       </Route>
       <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
+      <Route
+        path={urls.domainTabWebHostingOrder}
+        Component={WebHostingOrderPage}
+      />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route
         path={urls.domainOnboarding}
