@@ -3,8 +3,8 @@ import { GUIDES_LIST, LangCode } from '@/guides.constants';
 export const removeQuotes = (comment: string) => {
   if (
     comment &&
-    comment[0].startsWith('"') &&
-    comment.slice(-1).endsWith('"')
+    comment.startsWith('"') &&
+    comment.endsWith('"')
   ) {
     return comment.replace(/"/g, '');
   }
@@ -20,7 +20,10 @@ export function getNicParams(fields: string[]): string {
 }
 
 export function getLanguageKey(lang: string): LangCode {
-  const code = lang.split(/[-_]/)[0].toUpperCase();
+  const code = lang.split(/[-_]/)[0]?.toUpperCase();
+  if (!code){
+    return 'DEFAULT'
+  }
   const isSupported = code in GUIDES_LIST.domains.url;
 
   return isSupported ? (code as LangCode) : 'DEFAULT';

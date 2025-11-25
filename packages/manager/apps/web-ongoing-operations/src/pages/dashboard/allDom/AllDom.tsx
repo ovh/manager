@@ -26,7 +26,7 @@ export default function AllDom() {
   const urn = allDomIAMRessources?.[0]?.urn;
   const { isAuthorized = false } = useAuthorizationIam(
     [iamGetAllDomAction],
-    urn,
+    urn ?? '',
   );
 
   const { data: availability } = useFeatureAvailability([
@@ -34,7 +34,7 @@ export default function AllDom() {
   ]);
 
   useEffect(() => {
-    if (!urn || !availability[allDomFeatureAvailibility] || !isAuthorized) {
+    if (!urn || (availability && !availability[allDomFeatureAvailibility]) || !isAuthorized) {
       const url = `/${urls.domain}`;
       trackPageNavivationTile(url);
       navigate(url);

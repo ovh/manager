@@ -25,13 +25,14 @@ import ActionMeDnsComponent from '@/components/Update/Content/Update.Me.Dns.comp
 import { processUploadedFiles } from '@/utils/update.utils';
 import { updateTask } from '@/data/api/web-ongoing-operations';
 import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
+import NotFound from '@/pages/404';
 
 export default function Update() {
   const { trackPageNavivationButton } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
   const { id } = useParams<{ id: string }>();
   const { product } = useParams<{ product: string }>();
-  const [actionName, setActionName] = useState<ActionNameEnum>(null);
+  const [actionName, setActionName] = useState<ActionNameEnum>(ActionNameEnum.CanRelaunch);
   const [uploadedFiles, setUploadedFiles] = useState<Record<string, File[]>>(
     {},
   );
@@ -120,7 +121,7 @@ export default function Update() {
 
     let isValid = true;
 
-    operationArguments.data.forEach((arg) => {
+    operationArguments.data?.forEach((arg) => {
       switch (arg.type) {
         case '/me/document': {
           const uploaded = uploadedFiles[arg.key];
@@ -153,16 +154,21 @@ export default function Update() {
     return <Loading />;
   }
 
+  if (!domain || !operationArguments){
+    return <NotFound/>
+  }
+
+  const domainName = domain.domain ?? ''
   return (
     <BaseLayout
       header={{
         title: t('domain_operations_dashboard_title'),
       }}
-      message={notifications.length ? <Notifications /> : null}
+      message={notifications.length ? <Notifications /> : undefined}
     >
       <SubHeader
         title={t('domain_operations_update_title', {
-          t0: toUnicode(domain.domain),
+          t0: toUnicode(domainName),
         })}
       />
       <section>
@@ -191,17 +197,17 @@ export default function Update() {
 
         {domain.function === DomainOperationsEnum.DomainDnsUpdate && (
           <div className="flex flex-col gap-y-4">
-            <ActionMeDnsComponent domainName={domain.domain} />
+            <ActionMeDnsComponent domainName={domainName} />
           </div>
         )}
 
-        {operationArguments?.data?.length > 0 && (
+        {operationArguments.data?.length > 0 && (
           <div className="flex flex-col gap-y-4 mb-8">
-            {operationArguments?.data?.map((argument, index) => (
+            {operationArguments.data?.map((argument, index) => (
               <div key={`${domain.id}-${index}`}>
                 <UpdateContentComponent
                   argument={argument}
-                  domainName={domain.domain}
+                  domainName={domainName}
                   operationName={domain.function}
                   onChange={onChange}
                   setUploadedFiles={setUploadedFiles}
