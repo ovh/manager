@@ -107,6 +107,7 @@ export const usePaginatedInstances = (
   { pagination, sorting }: { pagination: PaginationState; sorting: ColumnSort | undefined },
   filters: Filter[] = [],
 ) => {
+  console.log('usePaginatedInstances', { filters});
   const { instances, isPending } = useAllInstances(projectId);
   return {
     isPending,

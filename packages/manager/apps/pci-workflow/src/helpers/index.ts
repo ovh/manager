@@ -8,3 +8,5 @@ export const paginateResults = <T>(items: T[], pagination: PaginationState) => (
   pageCount: Math.ceil(items.length / pagination.pageSize),
   totalRows: items.length,
 });
+
+export type TPaginatedResult<T> = ReturnType<typeof paginateResults<T>>;
