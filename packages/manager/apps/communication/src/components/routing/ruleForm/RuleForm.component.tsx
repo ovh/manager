@@ -92,7 +92,7 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
     return contactMeans
       .filter((contactMean) => contactMean.status === ContactMeanStatus.VALID)
       .map((contactMean) => ({
-        label: contactMean.email,
+        label: contactMean.email || '',
         value: contactMean.id,
       }));
   }, [contactMeans]);

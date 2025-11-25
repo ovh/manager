@@ -62,7 +62,7 @@ describe('NotificationPriorityChip.component', () => {
         />,
       );
       const contactStatusElement = container.querySelector('ods-icon');
-      if (contacts[0].status === 'SENT') {
+      if (contacts[0]?.status === 'SENT') {
         expect(contactStatusElement).not.toBeInTheDocument();
         return;
       }
@@ -73,7 +73,7 @@ describe('NotificationPriorityChip.component', () => {
         ODS_ICON_NAME.triangleExclamation,
       );
 
-      if (contacts[0].status === 'DROPPED') {
+      if (contacts[0]?.status === 'DROPPED') {
         expect(contactStatusElement).toHaveClass(
           'text-[--ods-color-critical-500]',
         );

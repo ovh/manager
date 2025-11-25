@@ -288,6 +288,7 @@ function ContactsPage() {
         isLoading={isLoading}
         tableLayoutFixed={true}
         topbar={
+          <div id="create-contact-btn">
           <ManagerButton
             id="add-contact-button"
             iamActions={['account:apiovh:notification/contactMean/create']}
@@ -307,6 +308,7 @@ function ContactsPage() {
               navigate(urls.contact.create);
             }}
           />
+          </div>
         }
         totalItems={flattenData?.length || 0}
         hasNextPage={hasNextPage}
