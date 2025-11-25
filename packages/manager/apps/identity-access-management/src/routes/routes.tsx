@@ -13,6 +13,8 @@ const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
 const AssignTag = lazy(() =>
   import('@/pages/tagManager/assignTag/AssignTag.page'),
 );
+const ManageTokensListing = lazy(() => import('@/pages/manageTokens/listing/ManageTokensListing.page'));
+
 
 export default (
   <Route
@@ -80,6 +82,10 @@ export default (
           pageType: PageType.listing,
         },
       }}
+    />
+    <Route
+      path={urls.manageTokens}
+      Component={ManageTokensListing}
     />
   </Route>
 );
