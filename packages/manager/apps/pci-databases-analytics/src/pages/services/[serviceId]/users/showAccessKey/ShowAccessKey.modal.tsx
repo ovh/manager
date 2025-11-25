@@ -31,6 +31,7 @@ const ShowAccessKey = () => {
     'pci-databases-analytics/services/service/users',
   );
 
+  console.log('OKOKOK');
   return (
     <RouteModal isLoading={!useGetUserAccessQuery.isSuccess}>
       <DialogContent variant="information">
@@ -42,6 +43,7 @@ const ShowAccessKey = () => {
         <DialogBody>
           {useGetUserAccessQuery.data && (
             <Clipboard
+              data-testid="show-access-key-clipboard"
               value={`${useGetUserAccessQuery.data.key}`}
               showDownloadButton
             />

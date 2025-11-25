@@ -44,7 +44,7 @@ const Backups = () => {
       </div>
       <p>{t('description')}</p>
 
-      <div className="inline-block py-4">
+      <div className="inline-block py-4" data-testid="backups-table">
         {/* Ligne RetentionDays */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center border-b border-gray-200">
           <p className="font-semibold">{t('detailsRetentionDays')}</p>

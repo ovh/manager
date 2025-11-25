@@ -79,8 +79,8 @@ const UpdateTable = () => {
   ].filter((row) => Boolean(row));
   return (
     <>
-      {rows.map((row) => (
-        <>
+      {rows.map((row, key) => (
+        <div key={key}>
           <Separator className="my-2" />
           <div
             className="grid grid-cols-3 gap-x-4 items-center"
@@ -92,6 +92,7 @@ const UpdateTable = () => {
             <div className="p-0 flex justify-end items-center flex-wrap gap-2">
               {row.updateButtonDisplayed && (
                 <NavLink
+                  data-testid={`update-button-${row.title}`}
                   className="py-0"
                   to={row.path}
                   disabled={
@@ -104,7 +105,7 @@ const UpdateTable = () => {
               )}
             </div>
           </div>
-        </>
+        </div>
       ))}
       <>
         <Separator className="my-2" />

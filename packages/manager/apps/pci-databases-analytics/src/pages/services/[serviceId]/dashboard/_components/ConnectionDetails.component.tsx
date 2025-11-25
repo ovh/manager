@@ -67,7 +67,10 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
           <p className="font-semibold">
             {t('connectionDetailsTableHeaderHost')}
           </p>
-          <Clipboard value={`${selectedEndpoint.domain}`} />
+          <Clipboard
+            value={`${selectedEndpoint.domain}`}
+            data-testid="dashboard-connection-detail-domain-button"
+          />
         </div>
       )}
       {selectedEndpoint?.port > 0 && (
@@ -105,7 +108,10 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
           <p className="font-semibold">
             {t('connectionDetailsTableHeaderURI')}
           </p>
-          <Clipboard value={`${selectedEndpoint.uri}`} />
+          <Clipboard
+            value={`${selectedEndpoint.uri}`}
+            data-testid="dashboard-connection-detail-uri-button"
+          />
         </div>
       )}
 

@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+
 import {
   Badge,
   BadgeProps,
@@ -12,7 +13,10 @@ import {
   CollapsibleContent,
   Separator,
 } from '@datatr-ux/uxlib';
-import { ChevronsUpDownIcon } from 'lucide-react';
+import {
+  ChevronDown,
+} from 'lucide-react';
+
 import { useServiceData } from '../../Service.context';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import * as database from '@/types/cloud/project/database';
@@ -94,8 +98,8 @@ const Maintenances = () => {
   return (
     <div className="grid gap-2">
       <Separator className="my-2" />
-      {maintenanceQuery.data.map((maintenance) => (
-        <>
+      {maintenanceQuery.data.map((maintenance, key) => (
+        <div key={key}>
           <Collapsible
             key={maintenance.id}
             defaultOpen={
@@ -105,14 +109,14 @@ const Maintenances = () => {
                 database.service.maintenance.StatusEnum.ERROR
             }
           >
-            <CollapsibleTrigger className="flex items-center gap-4 w-full px-4 py-2 rounded cursor-pointer ">
+            <CollapsibleTrigger className="flex items-center justify-between gap-4 w-full px-4 py-2 rounded cursor-pointer [&[data-state=open]>svg]:rotate-180">
               <div className="flex flex-wrap gap-2">
                 <b>{t('maintenancesStatus')}</b>
                 <Badge
-                  className="text-xs"
+                  className="capitalize"
                   variant={getMaintenanceVariant(maintenance.status)}
                 >
-                  {maintenance.status}
+                  {maintenance.status.toLocaleLowerCase()}
                 </Badge>
                 {maintenance.scheduledAt && (
                   <>
@@ -139,40 +143,36 @@ const Maintenances = () => {
                   </>
                 )}
               </div>
-              <div className="ml-auto flex items-center">
-                <ChevronsUpDownIcon className="w-4 h-4" />
-              </div>
+              <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
             </CollapsibleTrigger>
             <CollapsibleContent className="px-4 py-2">
-              <div className="flex flex-col gap-2">
-                <span className="text-justify">{maintenance.description}</span>
-                {canApply(maintenance) && (
-                  <Button
-                    data-testid="apply-maintenance-button"
-                    disabled={
-                      isPending ||
-                      service.capabilities.maintenanceApply.create ===
-                        database.service.capability.StateEnum.disabled
-                    }
-                    size="sm"
-                    className="max-w-[150px]"
-                    onClick={() =>
-                      applyMaintenance({
-                        engine: service.engine,
-                        projectId,
-                        serviceId: service.id,
-                        maintenanceId: maintenance.id,
-                      })
-                    }
-                  >
-                    <b>{t('maintenancesApply')}</b>
-                  </Button>
-                )}
-              </div>
+              <p className="text-justify">{maintenance.description}</p>
+              {canApply(maintenance) && (
+                <Button
+                  data-testid="apply-maintenance-button"
+                  disabled={
+                    isPending ||
+                    service.capabilities.maintenanceApply.create ===
+                      database.service.capability.StateEnum.disabled
+                  }
+                  size="sm"
+                  className="mt-2"
+                  onClick={() =>
+                    applyMaintenance({
+                      engine: service.engine,
+                      projectId,
+                      serviceId: service.id,
+                      maintenanceId: maintenance.id,
+                    })
+                  }
+                >
+                  <b>{t('maintenancesApply')}</b>
+                </Button>
+              )}
             </CollapsibleContent>
           </Collapsible>
           <Separator className="my-2" />
-        </>
+        </div>
       ))}
     </div>
   );

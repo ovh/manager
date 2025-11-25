@@ -122,7 +122,7 @@ describe('PrometheusConfigTile', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('srvDomainLabel')).toBeInTheDocument();
+      expect(screen.getByText('srvDomain')).toBeInTheDocument();
     });
   });
 

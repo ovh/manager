@@ -42,12 +42,6 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
         max: formatStorage(storage.maximum),
       });
     };
-    // const clickInput = (flavorName: string) => {
-    //   const inputElement = document.getElementById(`flavor-${flavorName}`);
-    //   if (inputElement) {
-    //     // inputElement.click();
-    //   }
-    // };
     const handleKeyDown = (
       e: React.KeyboardEvent<HTMLTableRowElement>,
       flavorName: string,
@@ -90,8 +84,8 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
             className="contents"
             onValueChange={onChange}
           >
-            {flavors.map((flavor) => (
-              <RadioTile value={flavor.name} className="contents">
+            {flavors.map((flavor, key) => (
+              <RadioTile value={flavor.name} className="contents" key={key}>
                 <TableRow
                   data-testid={`flavor-table-row-${flavor.name}`}
                   tabIndex={0}

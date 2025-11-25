@@ -239,7 +239,7 @@ const Dashboard = () => {
           <CardContent>
             <div>
               <p className="font-semibold">{t('serviceIdLabel')}</p>
-              <Clipboard value={service.id} />
+              <Clipboard value={service.id} data-testid="dashboard-copy-id-button"/>
             </div>
             <div
               data-testid="dashboard-support-link"

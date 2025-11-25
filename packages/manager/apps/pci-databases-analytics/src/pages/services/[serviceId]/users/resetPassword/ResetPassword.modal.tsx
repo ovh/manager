@@ -78,7 +78,10 @@ const ResetUserPassword = () => {
 
   return (
     <RouteModal isLoading={!users}>
-      <DialogContent variant={`${newPass ? 'information' : 'warning'}`}>
+      <DialogContent
+        variant={`${newPass ? 'information' : 'warning'}`}
+        data-testid="code-pwd-container"
+      >
         <DialogHeader>
           <DialogTitle data-testid="reset-password-modal">
             {t('resetUserPasswordTitle')}
@@ -142,7 +145,7 @@ const ResetUserPassword = () => {
             <Button
               type="button"
               mode="ghost"
-              data-testid="reset-password-cancel-button"
+              data-testid="reset-password-close-button"
             >
               {t('resetUserPasswordButtonCancel')}
             </Button>

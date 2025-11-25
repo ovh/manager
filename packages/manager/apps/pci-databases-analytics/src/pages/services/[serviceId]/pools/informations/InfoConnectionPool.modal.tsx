@@ -75,7 +75,7 @@ const InfoConnectionPool = () => {
         </DialogHeader>
         <DialogBody>
           {certificateQuery.isSuccess && (
-            <div>
+            <div data-testid="info-pools-container">
               <p className="font-semibold">
                 {t('infoConnectionPoolDatabaseLabel')}
               </p>

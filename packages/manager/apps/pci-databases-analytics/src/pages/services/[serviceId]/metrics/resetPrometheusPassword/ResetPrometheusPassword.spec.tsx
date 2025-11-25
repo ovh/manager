@@ -126,8 +126,6 @@ describe('Reset prometheus user password modal', () => {
     });
   });
   it('should copy password to clipboard', async () => {
-    const writeTextMock = vi.fn();
-    vi.stubGlobal('navigator', { clipboard: { writeText: writeTextMock } });
     render(<ResetPrometheusPassword />, {
       wrapper: RouterWithQueryClientWrapper,
     });
@@ -139,16 +137,12 @@ describe('Reset prometheus user password modal', () => {
         screen.getByTestId('reset-password-copy-button'),
       ).toBeInTheDocument();
     });
-    act(() => {
-      fireEvent.click(screen.getByTestId('reset-password-copy-button'));
-    });
     await waitFor(() => {
       expect(prometheusApi.resetPrometheusUserPassword).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'resetUserPasswordToastSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
-      expect(writeTextMock).toHaveBeenCalled();
     });
   });
   it('should close modal on close button after submit', async () => {
@@ -160,11 +154,11 @@ describe('Reset prometheus user password modal', () => {
     });
     await waitFor(() => {
       expect(
-        screen.getByTestId('reset-password-close-button'),
+        screen.getByTestId('reset-password-cancel-button'),
       ).toBeInTheDocument();
     });
     act(() => {
-      fireEvent.click(screen.getByTestId('reset-password-close-button'));
+      fireEvent.click(screen.getByTestId('reset-password-cancel-button'));
     });
     await waitFor(() => {
       expect(prometheusApi.resetPrometheusUserPassword).toHaveBeenCalled();

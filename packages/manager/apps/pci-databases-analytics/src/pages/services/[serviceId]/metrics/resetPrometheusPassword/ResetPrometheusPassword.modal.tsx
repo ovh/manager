@@ -70,7 +70,7 @@ const ResetPrometheusPassword = () => {
         {newPass && (
           <DialogBody>
             <p>{t('resetUserPasswordSuccess')}</p>
-            <Clipboard value={`${newPass}`} secret />
+            <Clipboard value={`${newPass}`} secret data-testid="reset-password-copy-button"/>
           </DialogBody>
         )}
         <DialogFooter>

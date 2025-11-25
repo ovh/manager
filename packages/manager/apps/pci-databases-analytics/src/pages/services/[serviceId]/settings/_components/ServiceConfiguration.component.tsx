@@ -8,6 +8,7 @@ import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
 import * as database from '@/types/cloud/project/database';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import NavLink from '@/components/links/NavLink.component';
+import ServiceNameWithUpdate from '../../_components/ServiceNameWithUpdate.component';
 
 const ServiceConfiguration = () => {
   const { t } = useTranslation(
@@ -74,34 +75,13 @@ const ServiceConfiguration = () => {
   return (
     <>
       <div data-testid="service-configuration-table">
-        <Separator className="my-2" />
-        <div className="grid grid-cols-4 gap-x-4 items-center">
-          <div className="font-semibold col-span-2">
-            {t('serviceConfigurationServiceName')}
-          </div>
-          <div>{service.description}</div>
-          {service.capabilities.service?.update && (
-            <div className="p-0 flex justify-end items-center flex-wrap gap-2">
-              <Button
-                data-testid="service-config-rename-button"
-                disabled={
-                  service.capabilities.service?.update ===
-                  database.service.capability.StateEnum.disabled
-                }
-                mode="ghost"
-                className="rounded-full aspect-square h-auto p-1"
-                onClick={() => navigate('./rename')}
-              >
-                <Pen className="size-4" />
-              </Button>
-            </div>
-          )}
-        </div>
-
         {service.capabilities.maintenanceTime?.read && (
           <>
             <Separator className="my-2" />
-            <div className="grid grid-cols-4 gap-x-4 items-center">
+            <div
+              className="grid grid-cols-4 gap-x-4 items-center"
+              data-testid="maintenance-time"
+            >
               <div className="font-semibold col-span-2">
                 {t('serviceConfigurationServiceMaintenanceTime')}
               </div>
@@ -123,7 +103,7 @@ const ServiceConfiguration = () => {
             <Separator className="my-2" />
             <div
               className="grid grid-cols-4 gap-x-4 items-center"
-              data-testid="backup-time-cell"
+              data-testid="backup-time"
             >
               <div className="font-semibold col-span-2">
                 {t('serviceConfigurationServiceBackupTime')}
@@ -146,20 +126,17 @@ const ServiceConfiguration = () => {
             <Separator className="my-2" />
             <div
               className="grid grid-cols-4 gap-x-4 items-center"
-              data-testid="backup-time-cell"
             >
               <div className="font-semibold col-span-3">
                 {t('serviceConfigurationServiceDeletionProtection')}
               </div>
-              <div
-                className="p-0 flex justify-end items-center flex-wrap gap-2"
-                data-testid="service-config-deletion-protection-link"
-              >
+              <div className="p-0 flex justify-end items-center flex-wrap gap-2">
                 <NavLink
+                  data-testid="service-config-deletion-protection-link"
                   className="py-0"
                   to={'./deletion-protection'}
                   disabled={
-                    service.capabilities.service.update ===
+                    service.capabilities.deletionProtection?.update ===
                     database.service.capability.StateEnum.disabled
                   }
                 >

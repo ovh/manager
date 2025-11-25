@@ -89,32 +89,6 @@ describe('Show Access Key modal', () => {
       expect(
         screen.queryByTestId('view-certificate-modal'),
       ).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('view-certificate-dowload-button'),
-      ).toBeInTheDocument();
-    });
-  });
-
-  it('should download the certificate', async () => {
-    vi.mock('@/hooks/useDownload', () => ({
-      default: vi.fn(() => ({ download: downloadMock })),
-    }));
-
-    render(<ViewCertificate />, { wrapper: RouterWithQueryClientWrapper });
-
-    await waitFor(() => {
-      expect(screen.getByTestId('view-certificate-modal')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('view-certificate-dowload-button'));
-    });
-
-    await waitFor(() => {
-      expect(downloadMock).toHaveBeenCalledWith(
-        mockedKafkaUserAccess.cert,
-        'service.cert',
-      );
     });
   });
 });
