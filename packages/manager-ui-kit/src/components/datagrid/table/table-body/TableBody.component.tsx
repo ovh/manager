@@ -1,8 +1,9 @@
-import { Fragment, useCallback, useEffect, useMemo } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { flexRender } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
+import { getBrowserName } from '../../utils/Datagrid.utils';
 import { TableBodyProps } from './TableBody.props';
 import { EmptyRow } from './empty-row/EmptyRow.component';
 import { LoadingRow } from './loading-row/LoadingRow.component';
@@ -23,6 +24,7 @@ export const TableBody = <T,>({
   tableContainerRef,
   contentAlignLeft = true,
 }: TableBodyProps<T>) => {
+  const [browserName, setBrowserName] = useState<string>('unknown');
   const { rows } = rowModel;
   const previousRowsLength = usePrevious(rows?.length);
   const rowVirtualizer = useVirtualizer({
@@ -35,6 +37,10 @@ export const TableBody = <T,>({
         : undefined,
     overscan: 15,
   });
+
+  useEffect(() => {
+    setBrowserName(getBrowserName());
+  }, []);
 
   useEffect(() => {
     if (autoScroll && previousRowsLength !== undefined && rows?.length > previousRowsLength) {
@@ -91,7 +97,10 @@ export const TableBody = <T,>({
               style={{
                 left: leftPosition,
                 height: `${maxRowHeight}px`,
-                transform: `translateY(${translateY}px)`,
+                transform:
+                  browserName === 'Safari' && !hideHeader
+                    ? `translateY(${translateY + maxRowHeight}px)`
+                    : `translateY(${translateY}px)`,
                 width,
               }}
             >
