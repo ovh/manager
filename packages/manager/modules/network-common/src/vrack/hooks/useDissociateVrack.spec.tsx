@@ -44,8 +44,18 @@ type TestComponentProps = {
   onError?: () => void;
 };
 
-const TestComponent: React.FC<TestComponentProps> = ({ vrackServicesId, onSuccess, onError }) => {
-  const { dissociateVs, isPending, isError, error, isSuccess } = useDissociateVrack({
+const TestComponent: React.FC<TestComponentProps> = ({
+  vrackServicesId,
+  onSuccess,
+  onError,
+}) => {
+  const {
+    dissociateVs,
+    isPending,
+    isError,
+    error,
+    isSuccess,
+  } = useDissociateVrack({
     vrackServicesId,
     onSuccess,
     onError,
@@ -72,7 +82,7 @@ describe('useDissociateVrack', () => {
     queryClient.clear();
 
     vi.mocked(useVrackService).mockReturnValue({
-      data: {
+      data: ({
         currentState: {
           vrackId: 'vrack-id',
           displayName: '',
@@ -80,7 +90,7 @@ describe('useDissociateVrack', () => {
           subnets: [],
           region: '',
         },
-      } as unknown as VrackServicesWithIAM,
+      } as unknown) as VrackServicesWithIAM,
       error: null,
       isError: false,
       isPending: false,
@@ -104,6 +114,8 @@ describe('useDissociateVrack', () => {
       isStale: false,
       refetch: vi.fn(),
       fetchStatus: 'fetching',
+      isEnabled: true,
+      promise: new Promise(vi.fn()),
     });
   });
 
@@ -112,8 +124,8 @@ describe('useDissociateVrack', () => {
       data: {
         id: 1231,
         function: '',
-        lastUpdate: null as unknown as Date,
-        todoDate: null as unknown as Date,
+        lastUpdate: (null as unknown) as Date,
+        todoDate: (null as unknown) as Date,
         serviceName: 'vrack-service-id',
         status: '',
       },
@@ -126,12 +138,16 @@ describe('useDissociateVrack', () => {
       isPending: false,
       isError: false,
       isSuccess: true,
-      error: null as unknown as ApiError,
+      error: (null as unknown) as ApiError,
     });
 
     render(
       <QueryClientProvider client={queryClient}>
-        <TestComponent vrackServicesId="vrack-service-id" onSuccess={vi.fn()} onError={vi.fn()} />
+        <TestComponent
+          vrackServicesId="vrack-service-id"
+          onSuccess={vi.fn()}
+          onError={vi.fn()}
+        />
       </QueryClientProvider>,
     );
 
@@ -161,7 +177,11 @@ describe('useDissociateVrack', () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <TestComponent vrackServicesId="vrack-id" onSuccess={mockOnSuccess} onError={mockOnError} />
+        <TestComponent
+          vrackServicesId="vrack-id"
+          onSuccess={mockOnSuccess}
+          onError={mockOnError}
+        />
       </QueryClientProvider>,
     );
 
@@ -181,8 +201,8 @@ describe('useDissociateVrack', () => {
       data: {
         id: 1231,
         function: '',
-        lastUpdate: null as unknown as Date,
-        todoDate: null as unknown as Date,
+        lastUpdate: (null as unknown) as Date,
+        todoDate: (null as unknown) as Date,
         serviceName: '',
         status: '',
       },
@@ -195,12 +215,16 @@ describe('useDissociateVrack', () => {
       isPending: true,
       isError: false,
       isSuccess: false,
-      error: null as unknown as ApiError,
+      error: (null as unknown) as ApiError,
     });
 
     render(
       <QueryClientProvider client={queryClient}>
-        <TestComponent vrackServicesId="vrack-id" onSuccess={mockOnSuccess} onError={mockOnError} />
+        <TestComponent
+          vrackServicesId="vrack-id"
+          onSuccess={mockOnSuccess}
+          onError={mockOnError}
+        />
       </QueryClientProvider>,
     );
 

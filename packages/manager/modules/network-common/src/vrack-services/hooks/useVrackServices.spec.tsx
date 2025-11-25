@@ -23,8 +23,9 @@ vi.mock('../api', async () => {
 });
 
 vi.mock('@tanstack/react-query', async () => {
-  const actual =
-    await vi.importActual<typeof import('@tanstack/react-query')>('@tanstack/react-query');
+  const actual = await vi.importActual<typeof import('@tanstack/react-query')>(
+    '@tanstack/react-query',
+  );
   return {
     ...actual,
     useQuery: vi.fn(),
@@ -49,24 +50,24 @@ describe('useVrackService Hook', () => {
     });
 
     vi.mocked(useQueryClient).mockImplementation(() => {
-      return {
+      return ({
         setQueryData: vi.fn(),
-      } as unknown as QueryClient;
+      } as unknown) as QueryClient;
     });
   });
 
   it('should return vrack service data on success', () => {
     vi.mocked(useQuery).mockImplementation(
       ({ queryFn }): UseQueryResult<VrackServicesWithIAM, Error> => {
-        const mockResponse: VrackServicesWithIAM = {
+        const mockResponse: VrackServicesWithIAM = ({
           id: 'test-id',
           name: 'Test Vrack',
           currentTasks: [],
-        } as unknown as VrackServicesWithIAM;
+        } as unknown) as VrackServicesWithIAM;
 
-        void (queryFn as QueryFunction<VrackServicesWithIAM>)({
+        void (queryFn as QueryFunction<VrackServicesWithIAM>)(({
           queryKey: [],
-        } as unknown as QueryFunctionContext);
+        } as unknown) as QueryFunctionContext);
 
         return {
           data: mockResponse,
@@ -93,6 +94,8 @@ describe('useVrackService Hook', () => {
           isPlaceholderData: false,
           isStale: false,
           fetchStatus: 'idle',
+          isEnabled: true,
+          promise: new Promise(vi.fn()),
         };
       },
     );
@@ -112,9 +115,9 @@ describe('useVrackService Hook', () => {
   it('should handle a loading state', () => {
     vi.mocked(useQuery).mockImplementation(
       ({ queryFn }): UseQueryResult<VrackServicesWithIAM, Error> => {
-        void (queryFn as QueryFunction<VrackServicesWithIAM>)({
+        void (queryFn as QueryFunction<VrackServicesWithIAM>)(({
           queryKey: [],
-        } as unknown as QueryFunctionContext);
+        } as unknown) as QueryFunctionContext);
 
         return {
           data: undefined,
@@ -141,6 +144,8 @@ describe('useVrackService Hook', () => {
           isPlaceholderData: false,
           isStale: false,
           fetchStatus: 'fetching',
+          isEnabled: true,
+          promise: new Promise(vi.fn()),
         };
       },
     );
@@ -154,11 +159,11 @@ describe('useVrackService Hook', () => {
   it('should handle an error state', () => {
     vi.mocked(useQuery).mockImplementation(
       ({ queryFn }): UseQueryResult<VrackServicesWithIAM, Error> => {
-        void (queryFn as QueryFunction<VrackServicesWithIAM>)({
+        void (queryFn as QueryFunction<VrackServicesWithIAM>)(({
           queryKey: [],
-        } as unknown as QueryFunctionContext);
+        } as unknown) as QueryFunctionContext);
 
-        return {
+        return ({
           data: undefined,
           isLoading: false,
           isFetching: false,
@@ -183,7 +188,7 @@ describe('useVrackService Hook', () => {
           isPlaceholderData: false,
           isStale: false,
           fetchStatus: 'idle',
-        } as unknown as UseQueryResult<VrackServicesWithIAM, Error>;
+        } as unknown) as UseQueryResult<VrackServicesWithIAM, Error>;
       },
     );
 

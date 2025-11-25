@@ -1,4 +1,5 @@
 import {
+  QueryClient,
   UseMutationOptions,
   UseMutationResult,
   useMutation,
@@ -50,10 +51,10 @@ describe('useUpdateVrackServices Hook', () => {
     });
 
     // mock queryClient
-    queryClient = {
+    queryClient = ({
       invalidateQueries: vi.fn(),
       setQueryData: vi.fn(),
-    } as unknown as ReturnType<typeof useQueryClient>;
+    } as unknown) as ReturnType<typeof useQueryClient>;
     vi.mocked(useQueryClient).mockReturnValue(queryClient);
   });
 
@@ -73,7 +74,10 @@ describe('useUpdateVrackServices Hook', () => {
           UpdateVsContext
         >,
       ) => {
-        options?.onSuccess?.(mockResponse, _vars, undefined);
+        options?.onSuccess?.(mockResponse, _vars, undefined, {
+          client: new QueryClient(),
+          meta: undefined,
+        });
       },
     );
 

@@ -107,7 +107,6 @@ export default function TelecomSidebar() {
                   ...xdslStandalone.map((sdsl) => {
                     return {
                       ...sdsl,
-                      href: undefined,
                       async loader() {
                         return loadServices(
                           `/xdsl/sdsl/xdsl/${sdsl.serviceName}/lines`,
