@@ -7173,7 +7173,7 @@
     "@ovh-ux/manager-core-api" "^0.10.1"
     "@ovh-ux/manager-core-sso" "^0.5.0"
 
-"@ovh-ux/manager-core-api@0.19.4":
+"@ovh-ux/manager-core-api@0.19.4", "@ovh-ux/manager-core-api@^0.19.4":
   version "0.19.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.19.4.tgz#7aa6dc10a986a719aeee5d72595e1da0dbe72e27"
   integrity sha512-suQAiFgR3p50fkzgUq/qHf3qJt/cIWkPgjczgLXkcovEXEGlZFderBFEP7XId2j9lgV6zb1m4YjoJceOHXs79w==
