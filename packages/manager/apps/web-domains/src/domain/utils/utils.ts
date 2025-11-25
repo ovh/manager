@@ -1,3 +1,4 @@
+import { z } from 'zod/v4';
 import { GUIDES_LIST, LangCode } from '@/domain/constants/guideLinks';
 import {
   TDatagridDnsDetails,
@@ -11,6 +12,8 @@ import {
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
 import { FreeHostingOptions } from '../components/AssociatedServicesCards/Hosting';
+import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
+import { THost } from '../types/host';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -63,4 +66,113 @@ export const formatConfigurationValue = (
     return 'RESET_ONLY_MX';
   }
   return 'NO_CHANGE';
+};
+
+export function getIpsSupported(
+  ipv4Supported: boolean,
+
+  ipv6Supported: boolean,
+
+  multipleIPsSupported: boolean,
+): IpsSupportedEnum {
+  if (ipv4Supported && ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.All
+      : IpsSupportedEnum.OneIPv4OneIPv6;
+  }
+
+  if (ipv4Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv4
+      : IpsSupportedEnum.OneIPv4;
+  }
+
+  if (ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv6
+      : IpsSupportedEnum.OneIPv6;
+  }
+
+  return IpsSupportedEnum.All;
+}
+
+export const getHostnameErrorMessage = (
+  hostname: string,
+  serviceName: string,
+  hosts: THost[],
+): string => {
+  const fullHostname = `${hostname}.${serviceName}`;
+
+  if (hosts.some((h) => h.host.toLowerCase() === fullHostname.toLowerCase())) {
+    return 'domain_tab_hosts_drawer_add_invalid_host_same';
+  }
+
+  if (!z.hostname().safeParse(fullHostname).success || fullHostname === '') {
+    return 'domain_tab_hosts_drawer_add_invalid_host_format';
+  }
+
+  return '';
+};
+
+export const getIpsErrorMessage = (
+  ips: string[],
+  ipsSupported: IpsSupportedEnum,
+): string => {
+  const ipv4 = z.ipv4();
+  const ipv6 = z.ipv6();
+
+  const set = new Set<string>();
+
+  for (const ip of ips) {
+    const item = ip.trim();
+    if (item === '') continue;
+
+    if (set.has(ip)) {
+      return 'domain_tab_hosts_drawer_add_duplicate_ips';
+    }
+    set.add(ip);
+  }
+
+  switch (ipsSupported) {
+    case IpsSupportedEnum.All:
+      if (
+        ips.some(
+          (ip) => !ipv4.safeParse(ip).success && !ipv6.safeParse(ip).success,
+        )
+      ) {
+        return 'domain_tab_hosts_drawer_add_invalid_ips';
+      }
+      return '';
+
+    case IpsSupportedEnum.OneIPv4:
+      if (ips.length !== 1 || !ipv4.safeParse(ips[0]).success) {
+        return 'domain_tab_hosts_drawer_add_invalid_ips';
+      }
+      return '';
+
+    case IpsSupportedEnum.OneIPv6:
+      if (ips.length !== 1 || !ipv6.safeParse(ips[0]).success) {
+        return 'domain_tab_hosts_drawer_add_invalid_ips';
+      }
+      return '';
+
+    case IpsSupportedEnum.MultipleIPv4:
+      if (ips.some((ip) => !ipv4.safeParse(ip).success)) {
+        return 'domain_tab_hosts_drawer_add_invalid_ips';
+      }
+      return '';
+
+    case IpsSupportedEnum.MultipleIPv6:
+      if (ips.some((ip) => !ipv6.safeParse(ip).success)) {
+        return 'domain_tab_hosts_drawer_add_invalid_ips';
+      }
+      return '';
+
+    default:
+      return '';
+  }
+};
+
+export const tranformIpsStringToArray = (ipString: string) => {
+  return ipString?.split(',').map((ip: string) => ip.trim());
 };

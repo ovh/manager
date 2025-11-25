@@ -18,16 +18,27 @@ import { useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { StatusEnum } from '@/domain/enum/Status.enum';
+import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
+import HostDrawer from '@/domain/components/Host/HostDrawer';
+import { THost } from '@/domain/types/host';
 import Loading from '@/domain/components/Loading/Loading';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 
 export default function HostsListingTab() {
-  const params = useParams();
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const [hostsArray, setHostsArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { serviceName } = useParams<{ serviceName: string }>();
 
-  const { domainResource } = useGetDomainResource(params.serviceName);
+  const [drawer, setDrawer] = useState<{
+    isOpen: boolean;
+    action: DrawerActionEnum;
+  }>({
+    isOpen: false,
+    action: null,
+  });
+
+  const { domainResource } = useGetDomainResource(serviceName);
   const { nichandleInformation } = useNichandleInformation();
 
   // We compare the current and the targetSpec to add a status. The status depends of the difference between current and target object.
@@ -90,6 +101,7 @@ export default function HostsListingTab() {
       color={MESSAGE_COLOR.warning}
       className="w-full"
       data-testid="warningMessage"
+      dismissible={false}
     >
       <MessageIcon name={ICON_NAME.triangleExclamation} />
       <MessageBody>
@@ -103,7 +115,7 @@ export default function HostsListingTab() {
   ) : (
     <section>
       <div className="flex flex-col gap-y-4 mb-6">
-        <Message>
+        <Message dismissible={false}>
           <MessageIcon name={ICON_NAME.circleInfo} />
           <MessageBody className="flex flex-col">
             <Text>{t('domain_tab_hosts_information_banner_1')}</Text>
@@ -121,12 +133,38 @@ export default function HostsListingTab() {
           items={hostsArray}
           totalItems={hostsArray.length}
           topbar={
-            <Button size={BUTTON_SIZE.sm}>
+            <Button
+              size={BUTTON_SIZE.sm}
+              onClick={() => {
+                setDrawer({
+                  isOpen: true,
+                  action: DrawerActionEnum.Add,
+                });
+              }}
+              data-testid="addButton"
+            >
               {t(`${NAMESPACES.ACTIONS}:add`)}
             </Button>
           }
         />
       </div>
+
+      <HostDrawer
+        drawer={drawer}
+        setDrawer={setDrawer}
+        ipv4Supported={
+          domainResource.currentState.hostsConfiguration.ipv4Supported
+        }
+        ipv6Supported={
+          domainResource.currentState.hostsConfiguration.ipv6Supported
+        }
+        multipleIPsSupported={
+          domainResource.currentState.hostsConfiguration.multipleIPsSupported
+        }
+        serviceName={serviceName}
+        checksum={domainResource?.checksum}
+        targetSpec={domainResource?.targetSpec}
+      />
     </section>
   );
 }
