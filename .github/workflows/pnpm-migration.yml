@@ -80,8 +80,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr create \
-            --title "PNPM Migration: ${SCOPE}" \
-            --body "Automated PNPM migration for app: \`${APP}\`" \
+            --title "refactor(${SCOPE}): migrate ${SCOPE} to pnpm" \
+            --body "Automated PNPM migration for app: \`${APP}\` \n ref: #MANAGER-20363" \
             --base develop \
             --head "$BRANCH" \
             --draft || true
