@@ -83,3 +83,9 @@ export const getVrackSegmentQueryKey = ({
   vdcId: string;
   vrackSegmentId: string;
 }) => [...getVrackSegmentListQueryKey(id, vdcId), vrackSegmentId];
+
+// IP Block
+export const getVcdIpBlockListQueryKey = (id: string) => [
+  ...getVcdOrganizationQueryKey(id),
+  'ipBlock',
+];
