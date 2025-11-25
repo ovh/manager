@@ -1,0 +1,19 @@
+{
+  "iam_user_tokens_title": "Manage Tokens",
+  "iam_user_breadcrumb_iam": "Identity, Security & Operations",
+  "iam_user_breadcrumb_identities": "Identites",
+  "iam_user_breadcrumb_local_users": "Local Users",
+  "iam_user_breadcrumb_manage_tokens": "Manage tokens",
+  "iam_user_tokens_return_to_identity_list": "Retour à la liste des identités",
+  "iam_user_tokens_user_name": "Nom d'utilisateur:",
+  "iam_user_tokens_add_new_token": "Ajouter un nouveau token",
+  "iam_user_tokens_datagrid_column_name": "Nom",
+  "iam_user_tokens_datagrid_column_description": "Description",
+  "iam_user_tokens_datagrid_column_creation": "Creation",
+  "iam_user_tokens_datagrid_column_expiration": "Expiration",
+  "iam_user_tokens_datagrid_column_expiration_status": "Status",
+  "iam_user_tokens_datagrid_column_last_usage": "Dernière utilisation",
+  "iam_user_token_expiration_badge_active": "Actif",
+  "iam_user_token_expiration_badge_expired": "Expiré",
+  "iam_user_token_expiration_badge_invalid": "Invalide"
+}
