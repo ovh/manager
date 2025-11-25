@@ -157,8 +157,27 @@ describe('OdsFileUpload Component', () => {
     fileUploadElement.dispatchEvent(customEvent);
 
     expect(mockOnChange).toHaveBeenCalledWith(customEvent);
-    expect(mockOnChange.mock.calls[0][0].detail.files[0].name).toBe(
-      'example.jpg',
-    );
+
+    const firstCall = mockOnChange.mock.calls[0];
+    if (!firstCall) {
+      throw new Error('mockOnChange was not called');
+    }
+
+    const [event] = firstCall;
+    if (!event) {
+      throw new Error('No event object in the first call');
+    }
+
+    const { detail } = event;
+    if (!detail) {
+      throw new Error('No detail object in the event');
+    }
+
+    const { files: uploadedFiles } = detail;
+    if (!uploadedFiles || uploadedFiles.length === 0) {
+      throw new Error('No files in the detail object');
+    }
+
+    expect(uploadedFiles[0].name).toBe('example.jpg');
   });
 });
