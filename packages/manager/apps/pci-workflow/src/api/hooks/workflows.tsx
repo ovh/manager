@@ -32,6 +32,7 @@ import { useMe } from './user';
 
 export enum WorkflowType {
   INSTANCE_BACKUP = 'instance_backup',
+  VOLUME_BACKUP = 'volume_backup',
 }
 
 export type TWorkflowRegion = { region: string };

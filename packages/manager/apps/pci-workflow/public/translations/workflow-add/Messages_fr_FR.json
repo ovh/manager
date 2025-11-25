@@ -2,6 +2,7 @@
   "pci_workflow_create_type_title": "Sélectionnez un Workflow",
   "pci_workflow_create_type_description": "Un Workflow décrit une ou plusieurs actions.",
   "pci_workflow_create_type_instance_backup_description": "Ce Workflow générera des sauvegardes d'Instance, les sauvegardes pourront être utilisées pour démarrer de nouvelles Instances.",
+  "pci_workflow_create_type_volume_backup_description": "Ce Workflow générera des sauvegardes de volume, les sauvegardes pourront être utilisées pour démarrer de nouveaux volumes ou les restaurer.",
   "pci_workflow_create_resources_title": "Sélectionnez une ressource ciblée",
   "pci_workflow_create_select_instance": "Sélectionner une instance",
   "pci_workflow_create_schedule_title": "Définir l'ordonnancement",

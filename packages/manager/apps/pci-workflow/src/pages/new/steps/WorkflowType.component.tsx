@@ -1,12 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, BUTTON_SIZE, Button, Text } from '@ovhcloud/ods-react';
 
 import { WorkflowType } from '@/api/hooks/workflows';
 import { PciTile } from '@/pages/new/components/PciTile.component';
@@ -26,42 +20,35 @@ export function WorkflowTypeSelector({
   onChange,
   onSubmit,
 }: Readonly<WorkflowTypeProps>) {
-  const { t } = useTranslation('workflow-add');
-  const { t: tListing } = useTranslation('listing');
-  const { t: tCommon } = useTranslation('pci-common');
+  const { t } = useTranslation(['workflow-add', 'listing', 'pci-common']);
   return (
-    <>
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('pci_workflow_create_type_description')}
-      </OsdsText>
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
+    <div className="flex flex-col gap-8">
+      <Text>{t('workflow-add:pci_workflow_create_type_description')}</Text>
+      <div className="flex flex-row gap-10 flex-wrap">
         {Object.values(WorkflowType).map((type) => {
           return (
             <PciTile
               key={type}
-              title={tListing(`pci_workflow_type_${type}_title`)}
+              title={t(`listing:pci_workflow_type_${type}_title`)}
               isChecked={type === selectedWorkflowType}
-              description={t(`pci_workflow_create_type_${type}_description`)}
+              description={t(`workflow-add:pci_workflow_create_type_${type}_description`)}
               onClick={() => onChange(type)}
+              className="max-w-[33%]"
             />
           );
         })}
       </div>
       {!step.isLocked && (
-        <OsdsButton
-          className="w-fit mt-6"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...(selectedWorkflowType ? {} : { disabled: true })}
+        <Button
+          className="w-fit p-6"
+          size={BUTTON_SIZE.md}
+          color={BUTTON_COLOR.primary}
+          disabled={!selectedWorkflowType}
           onClick={onSubmit}
         >
-          {tCommon('common_stepper_next_button_label')}
-        </OsdsButton>
+          {t('pci-common:common_stepper_next_button_label')}
+        </Button>
       )}
-    </>
+    </div>
   );
 }

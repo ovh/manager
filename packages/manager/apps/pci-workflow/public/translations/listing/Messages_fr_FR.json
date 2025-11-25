@@ -14,6 +14,7 @@
   "pci_workflow_delete": "Supprimer",
   "pci_workflow_delete_title": "Supprimer la planification du workflow",
   "pci_workflow_type_instance_backup_title": "Sauvegarde automatisée des instances",
+  "pci_workflow_type_volume_backup_title": "Sauvegarde automatisée des volumes",
   "pci_workflow_view_executions": "Afficher les exécutions",
   "pci_workflow_execution_status_IDLE": "Inactif",
   "pci_workflow_execution_status_RUNNING": "En cours d’exécution",
