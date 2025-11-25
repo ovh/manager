@@ -28,20 +28,20 @@ export default function UpdateStringComponent({
   const schema = editableArgument[argumentKey] ?? editableArgument.default;
   const handleChange = (newValue: string) => {
     if (inputRef.current !== newValue) {
-      if (!newValue.trim()) {
-        setError(null);
-      } else {
-        const result = schema.safeParse(newValue);
-        if (!result.success) {
-          setError(
+      if (newValue.trim()) {
+        const result = schema?.safeParse(newValue);
+        if (result?.success) {
+         setError(null);
+          onChange(argumentKey, newValue);
+        } else {
+           setError(
             t('domain_operations_update_field_bad_value', {
               t0: argumentKey,
             }),
           );
-        } else {
-          setError(null);
-          onChange(argumentKey, newValue);
         }
+      } else {
+        setError(null);
       }
       inputRef.current = newValue;
       setInputValue(newValue);
@@ -50,7 +50,7 @@ export default function UpdateStringComponent({
 
   return (
     <div>
-      <FormField className="w-1/4" invalid={error?.length > 0}>
+      <FormField className="w-1/4" invalid={error != null && error.length > 0}>
         <FormFieldLabel>
           {t(`domain_operations_update_key_${argumentKey}`)}
         </FormFieldLabel>
