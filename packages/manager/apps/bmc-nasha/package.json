@@ -1,0 +1,69 @@
+{
+  "name": "@ovh-ux/manager-bmc-nasha-app",
+  "version": "5.0.0",
+  "private": true,
+  "description": "NAS-HA standalone application",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/bmc-nasha"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "build:strict": "tsc --project tsconfig.json && vite build",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "start": "vite",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "5.2.2",
+    "@module-federation/runtime": "^0.8.9",
+    "@ovh-ux/manager-common-translations": "*",
+    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-module-common-api": "*",
+    "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/muk": "0.5.0",
+    "@ovh-ux/request-tagger": "*",
+    "@ovh-ux/shell": "^4.5.7",
+    "@ovhcloud/ods-components": "*",
+    "@tanstack/react-query": "5.90.7",
+    "axios": "^1.13.2",
+    "i18next": "25.6.1",
+    "i18next-http-backend": "3.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.66.0",
+    "react-i18next": "16.2.4",
+    "react-router-dom": "7.9.5",
+    "tailwindcss": "^4.1.17",
+    "zod": "4.1.12"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "0.12.0",
+    "@ovh-ux/manager-tailwind-config": "^0.5.5",
+    "@ovh-ux/manager-tests-setup": "^0.5.0",
+    "@ovh-ux/manager-vite-config": "*",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@tanstack/react-query-devtools": "5.90.2",
+    "msw": "2.12.1",
+    "typescript": "5.9.3",
+    "vite": "7.2.2",
+    "vitest": "3.2.4"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ],
+  "universes": [
+    "Dedicated"
+  ]
+}
