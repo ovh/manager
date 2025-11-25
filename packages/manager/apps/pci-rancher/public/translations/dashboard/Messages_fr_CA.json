@@ -62,7 +62,7 @@
   "savingsPlanCTA": "Configurez vos Savings Plans",
   "badRequestSwitchPlan": "Une erreur est survenue lors du changement d'offre de votre Managed Rancher Service. Vous utilisez actuellement des pilotes qui ne sont pas pris en charge dans l'offre {{plan}}: {{drivers}}",
   "iam_section_title": "Authentification OVHcloud IAM",
-  "iam_tooltip_content": "Permet à Rancher d’utiliser les identités gérées par OVHcloud IAM (Identity and Access Management) pour contrôler l’accès au Rancher, évitant ainsi la gestion manuelle des utilisateurs.",
+  "iam_tooltip_content": "Permet à Rancher d’utiliser les identités gérées par OVHcloud IAM (Identity and Access Management) pour contrôler l’accès au service, évitant ainsi la gestion manuelle des utilisateurs.",
   "iam_section_content": "Gestion des   accès",
   "iam_button_content": "Désactiver IAM",
   "iam_status_enabled": "Activé",

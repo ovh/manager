@@ -1,16 +1,16 @@
 {
-  "errorFileRequired": "Gracias por seleccionar al menos un archivo",
-  "errorFileNumber": "Solo puede seleccionar un archivo",
+  "errorFileRequired": "Seleccione al menos un archivo",
+  "errorFileNumber": "Sólo se puede seleccionar un archivo",
   "errorJsonFile": "El archivo debe ser un JSON",
   "prefixRequiredError": "Este campo es obligatorio.",
   "prefixFieldLabel": "Prefijo",
-  "prefixFieldPlaceholder": "Introducir un prefijo",
+  "prefixFieldPlaceholder": "Escribir un prefijo",
   "importFileLabel": "Importar archivos",
   "importFileButton": "Seleccionar archivos...",
   "fileUploaderButtonCancel": "Cancelar",
   "fileUploaderButtonConfirm": "Importar",
-  "storageClassLabel": "Clase de almacenamiento",
-  "popOverDesc1": "Encuentra la información sobre:",
-  "popOverDesc2": "Las clases de almacenamiento",
-  "popOverDesc3": "Los precios"
+  "storageClassLabel": "Tipo de almacenamiento",
+  "popOverDesc1": "Consulte la información relativa a:",
+  "popOverDesc2": "Clases de almacenamiento",
+  "popOverDesc3": "Precios"
 }
