@@ -20,13 +20,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: ${{ fromJson(github.event.inputs.apps) }}
+        # apps must be a JSON array: ["packages/manager/apps/pci-billing", "..."]
+        app: ${{ fromJson(inputs.apps) }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # use the branch where you triggered the workflow
           ref: ${{ github.ref_name }}
 
       - name: Setup Node
