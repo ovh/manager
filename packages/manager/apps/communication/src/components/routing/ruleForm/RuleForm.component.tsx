@@ -26,7 +26,7 @@ import {
   OdsToggleCustomEvent,
 } from '@ovhcloud/ods-components';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import { Combobox, ComboboxContent, ComboboxControl } from '@ovh-ux/muk';
+import { Combobox, ComboboxContent, ComboboxControl, ComboboxItem } from '@ovhcloud/ods-react';
 import {
   NotificationRouting,
   CreateRouting,
@@ -87,12 +87,12 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
     enabled: true,
   });
 
-  const validContactMeans = useMemo(() => {
+  const validContactMeans: ComboboxItem[] = useMemo(() => {
     if (!Array.isArray(contactMeans)) return [];
     return contactMeans
       .filter((contactMean) => contactMean.status === ContactMeanStatus.VALID)
       .map((contactMean) => ({
-        label: contactMean.email,
+        label: contactMean.email || '',
         value: contactMean.id,
       }));
   }, [contactMeans]);
