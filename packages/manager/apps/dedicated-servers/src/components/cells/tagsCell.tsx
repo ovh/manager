@@ -9,7 +9,7 @@ import { DedicatedServer } from '@/data/types/server.type';
 import { useServerUrl } from '@/hooks/useServerUrl';
 
 export const TagsCell = (server: DedicatedServer) => {
-  const [toggleModal, setTogglModal] = useState(false);
+  const [toggleModal, setToggleModal] = useState(false);
   const { trackClick, trackPage } = useOvhTracking();
   const serverUrl = useServerUrl(server);
   return (
@@ -25,7 +25,7 @@ export const TagsCell = (server: DedicatedServer) => {
                   actionType: 'action',
                   actions: ['pop-up', 'edit-tags'],
                 });
-                setTogglModal(false);
+                setToggleModal(false);
                 window.location.href = `${serverUrl}/tag-manager`;
               }}
               onCancel={() => {
@@ -33,7 +33,7 @@ export const TagsCell = (server: DedicatedServer) => {
                   actionType: 'action',
                   actions: ['pop-up', 'cancel'],
                 });
-                setTogglModal(false);
+                setToggleModal(false);
               }}
               isOpen={toggleModal}
             />
@@ -47,7 +47,7 @@ export const TagsCell = (server: DedicatedServer) => {
                 buttonType: ButtonType.button,
                 actions: ['datagrid', ButtonType.button, 'edit-tags'],
               });
-              setTogglModal(true);
+              setToggleModal(true);
               trackPage({
                 pageType: PageType.popup,
                 pageName: 'edit-tags',
