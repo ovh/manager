@@ -12,6 +12,7 @@ export const subroutes = {
   onboarding: 'onboarding' as const,
   dashboards: 'dashboards' as const,
   delete: `delete/${URL_PARAMS.tenantId}` as const,
+  edit: `${URL_PARAMS.tenantId}/edit` as const,
   creation: 'creation' as const,
   dashboard: `${URL_PARAMS.tenantId}` as const,
   subscription: 'subscription' as const,
@@ -27,6 +28,7 @@ export const urls = {
     subroutes.onboarding
   }`,
   deleteTenant: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.delete}`,
+  editTenant: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.edit}`,
   tenantsCreation: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.creation}`,
   tenantDashboard: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}`,
   tenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}/${subroutes.subscription}`,
