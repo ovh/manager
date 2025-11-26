@@ -55,6 +55,7 @@ export function useOrderFunnel({
       },
       versioning: storages.VersioningStatusEnum.disabled,
       objectLock: storages.ObjectLockStatusEnum.disabled,
+      objectLockAcknowledgement: false,
       user: users[0]?.id ?? null,
       encryption: storages.EncryptionAlgorithmEnum.AES256,
     },
@@ -132,6 +133,15 @@ export function useOrderFunnel({
   useEffect(() => {
     if (objectLock === storages.ObjectLockStatusEnum.enabled) {
       form.setValue('versioning', storages.VersioningStatusEnum.enabled, {
+        shouldValidate: true,
+      });
+    }
+  }, [objectLock, form]);
+
+  // Reset acknowledgement checkbox when Object Lock is disabled
+  useEffect(() => {
+    if (objectLock === storages.ObjectLockStatusEnum.disabled) {
+      form.setValue('objectLockAcknowledgement', false, {
         shouldValidate: true,
       });
     }
