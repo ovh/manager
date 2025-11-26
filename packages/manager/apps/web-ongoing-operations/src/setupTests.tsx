@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
-import 'element-internals-polyfill';
 import { NavLinkProps } from 'react-router-dom';
 
 vi.mock('react-i18next', () => ({
@@ -78,6 +77,13 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
+  useOvhTracking: vi.fn(() => {
+    return {
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+      trackCurrentPage: vi.fn(),
+    };
+  }),
 }));
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
