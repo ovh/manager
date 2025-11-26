@@ -85,8 +85,8 @@ const useDatagridColumn = (
       label: t('pci_projects_project_workflow_instance_region_label'),
     },
     {
-      id: 'flavorName',
-      cell: (instance) => <DataGridTextCell>{instance.flavor.label}</DataGridTextCell>,
+      id: 'flavor',
+      cell: (instance) => <DataGridTextCell>{instance.flavor}</DataGridTextCell>,
       label: t('pci_projects_project_workflow_instance_flavor_label'),
     },
     {
@@ -175,7 +175,7 @@ export default function ResourceSelectorComponent({
                       comparators: FilterCategories.String,
                     },
                     {
-                      id: 'flavorName',
+                      id: 'flavor',
                       label: t('pci_projects_project_workflow_instance_flavor_label'),
                       comparators: FilterCategories.String,
                     },

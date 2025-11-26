@@ -7,19 +7,13 @@ import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption
 import { TEFlavor } from '@/types/flavor/entity';
 import { TEInstance } from '@/types/instance/entity';
 
-type TInstanceFlavor = Readonly<{
-  label: Opaque<string, TInstanceFlavor>;
-}>;
-
 const mapInstanceFlavor = (flavors: TEFlavor[] | null) => {
   const flavorsMap = new Map(flavors?.map((f) => [f.id, f]));
 
-  return (instance: TEInstance): TInstanceFlavor => {
+  return (instance: TEInstance): TInstance['flavor'] => {
     const flavor = flavorsMap.get(instance.flavorId);
 
-    return {
-      label: (flavor ? flavor.name : instance.flavorId) as TInstanceFlavor['label'],
-    };
+    return (flavor ? flavor.name : instance.flavorId) as TInstance['flavor'];
   };
 };
 
@@ -115,7 +109,7 @@ export type TInstance = Readonly<{
   id: Opaque<{ id: string; region: string }, TInstance>;
   name: Opaque<string, TInstance>;
   label: Opaque<string, TInstance>;
-  flavor: TInstanceFlavor;
+  flavor: Opaque<string, TInstance>;
   status: TInstanceStatus;
   region: TInstanceRegion;
   autoBackup: TInstanceAutoBackup;
@@ -148,17 +142,35 @@ export const mapInstance = (
     autoBackup: autoBackupMapper(instance),
     searchField: `${instance.name} ${regionMapper(instance).label} ${
       mapInstanceStatus(instance).name
-    } ${mapInstanceFlavor(flavors)(instance).label}`,
+    } ${mapInstanceFlavor(flavors)(instance)}`,
   }));
 };
 
 export const sortResults = (items: TInstance[], sorting: ColumnSort | undefined) => {
   if (!sorting) return items;
 
-  const fieldMapper: (instance: TInstance) => TInstance[keyof TInstance] | string =
-    sorting.id === 'status' ? (i) => i.status.group : (i) => i[sorting.id as keyof TInstance];
+  const fieldMapper: (instance: TInstance) => TInstance[keyof TInstance] | string = (
+    instance: TInstance,
+  ) => {
+    switch (sorting.id) {
+      case 'status':
+        return instance.status.group;
+      case 'region':
+        return instance.region.label;
+      default:
+        return instance[sorting.id as keyof TInstance];
+    }
+  };
 
-  let data = [...items].sort((a, b) => (fieldMapper(a) > fieldMapper(b) ? 1 : 0));
+  const compare = (instA: TInstance, instB: TInstance) => {
+    const valA = fieldMapper(instA);
+    const valB = fieldMapper(instB);
+
+    if (valA === valB) return 0;
+    return valA > valB ? 1 : -1;
+  };
+
+  let data = [...items].sort(compare);
 
   if (sorting.desc) {
     data.reverse();
