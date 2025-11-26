@@ -1,5 +1,9 @@
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
-import { CreateTenantsPayload, GetTenantPayload } from '@/data/api/tenants.props';
+import {
+  CreateTenantsPayload,
+  EditTenantPayload,
+  GetTenantPayload,
+} from '@/data/api/tenants.props';
 import { Tenant } from '@/types/tenants.type';
 
 const tenantsDataset: Tenant[] = [
@@ -32,8 +36,8 @@ const tenantsDataset: Tenant[] = [
           maximum: 300,
         },
         retention: {
-          id: 'retention-1',
-          duration: 'P6M',
+          id: '1',
+          duration: 'P1M',
           link: 'retention_link_1',
         },
       },
@@ -68,8 +72,8 @@ const tenantsDataset: Tenant[] = [
           maximum: 50,
         },
         retention: {
-          id: 'retention-2',
-          duration: 'P1Y',
+          id: '2',
+          duration: 'P3M',
           link: 'retention_link_2',
         },
       },
@@ -135,5 +139,16 @@ export const createTenant = async function ({
 }: CreateTenantsPayload): Promise<Tenant> {
   console.info(`[MOCK-ADAPTER][createTenant] mock creation of tenant for ${resourceName}`);
   console.info(`[MOCK-ADAPTER][createTenant] targetSpec -> `, targetSpec);
+  return Promise.resolve(tenantsDataset[0]!);
+};
+
+export const editTenant = async ({
+  resourceName,
+  tenantId,
+  targetSpec,
+}: EditTenantPayload): Promise<Tenant> => {
+  console.info(`[MOCK-ADAPTER][editTenant] mock editing of tenant for ${resourceName}`);
+  console.info(`[MOCK-ADAPTER][editTenant] tenantId ->`, tenantId);
+  console.info(`[MOCK-ADAPTER][editTenant] targetSpec ->`, targetSpec);
   return Promise.resolve(tenantsDataset[0]!);
 };
