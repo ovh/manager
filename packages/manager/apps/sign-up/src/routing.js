@@ -69,30 +69,15 @@ export const state = {
       ssoAuthentication.logout($location.search().onsuccess);
     },
 
-    featureAvailability: /* @ngInject */ ($http) => {
-      return $http.get(
-        `/feature/identity-documents,account-creation/availability`,
-        {
+    isKycFeatureAvailable: /* @ngInject */ ($http) => {
+      return $http
+        .get(`/feature/identity-documents/availability`, {
           serviceType: 'aapi',
-        },
-      );
-    },
-
-    isKycFeatureAvailable: /* @ngInject */ (featureAvailability) =>
-      featureAvailability.data['identity-documents'],
-
-    isNewAccountCreateAvailable: /* @ngInject */ (featureAvailability) =>
-      featureAvailability.data['account-creation'],
-
-    onEnter: /* @ngInject */ (
-      $window,
-      isNewAccountCreateAvailable,
-      coreURLBuilder,
-    ) => {
-      if (isNewAccountCreateAvailable) {
-        const url = coreURLBuilder.buildURL('account-creation', '/#/');
-        $window.location.assign(url);
-      }
+        })
+        .then(
+          ({ data: featureAvailability }) =>
+            featureAvailability['identity-documents'],
+        );
     },
 
     kycStatus: /* @ngInject */ ($http, isKycFeatureAvailable) => {
