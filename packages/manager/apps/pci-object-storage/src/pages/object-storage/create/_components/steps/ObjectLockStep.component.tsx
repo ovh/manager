@@ -10,9 +10,11 @@ import {
   Checkbox,
 } from '@datatr-ux/uxlib';
 import { HelpCircleIcon, Info } from 'lucide-react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import storages from '@/types/Storages';
+import A from '@/components/links/A.component';
+import { STORAGE_OBJECT_LOCK_LINKS, useLink } from '../orderFunnel.const';
 
 interface ObjectLockStepProps {
   value?: storages.ObjectLockStatusEnum;
@@ -36,9 +38,20 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
     ref,
   ) => {
     const { t } = useTranslation('pci-object-storage/order-funnel');
+    const objectLockDocLink = useLink(STORAGE_OBJECT_LOCK_LINKS);
     const isVersioningDisabled =
       versioning === storages.VersioningStatusEnum.disabled;
     const isObjectLockEnabled = value === storages.ObjectLockStatusEnum.enabled;
+
+    // Scroll to Object Lock section when error appears
+    useEffect(() => {
+      if (acknowledgementError) {
+        const section = document.getElementById('object-lock');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }, [acknowledgementError]);
 
     return (
       <div className="flex flex-col gap-4">
@@ -105,11 +118,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
             </Alert>
 
             {/* Acknowledgement checkbox */}
-            <div
-              className={`flex items-start gap-3 p-3 border rounded-md ${
-                acknowledgementError ? 'border-destructive' : 'border-border'
-              }`}
-            >
+            <div className="flex items-start gap-3 p-3 border border-border rounded-md">
               <Checkbox
                 id="object-lock-acknowledgement"
                 checked={acknowledgement}
@@ -121,10 +130,20 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
                   htmlFor="object-lock-acknowledgement"
                   className="font-normal cursor-pointer"
                 >
-                  {t('objectLockAcknowledgementLabel')}
+                  <Trans
+                    i18nKey="objectLockAcknowledgementLabel"
+                    ns="pci-object-storage/order-funnel"
+                    components={[
+                      <A href={objectLockDocLink} target="_blank" />,
+                    ]}
+                  />
                 </Label>
                 {acknowledgementError && (
-                  <p className="text-sm text-destructive">
+                  <p
+                    className="text-sm text-destructive"
+                    role="alert"
+                    aria-live="polite"
+                  >
                     {acknowledgementError}
                   </p>
                 )}
