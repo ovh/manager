@@ -88,5 +88,11 @@
   "region_TOR": "Toronto",
   "region_TOR_micro": "Toronto ({{ micro }})",
   "region_continent_TOR": "Nordamerika",
-  "region-description-localzone": "Eine Local Zone ermöglicht die Bereitstellung der Public-Cloud-Produkte von OVHcloud in Rechenzentren, die sich in unmittelbarer Nähe der Endnutzer:innen befinden."
+  "region-description-localzone": "Eine Local Zone ermöglicht die Bereitstellung der Public-Cloud-Produkte von OVHcloud in Rechenzentren, die sich in unmittelbarer Nähe der Endnutzer:innen befinden.",
+  "region_EU-SOUTH-MIL": "Mailand",
+  "region_EU-SOUTH-MIL_micro": "Mailand ({{ micro }})",
+  "region_MIL": "Mailand",
+  "region_MIL_micro": "Mailand ({{ micro }})",
+  "region_continent_MIL": "Südeuropa",
+  "region_location_MIL": "Südeuropa (Italien)"
 }

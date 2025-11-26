@@ -58,5 +58,6 @@
   "inProgressRestore": "Wiederherstellung läuft...",
   "available": "Verfügbar bis zum",
   "restoreAvailableUntil": "Das Objekt wird verfügbar sein bis zum",
-  "seeVersionsSwitchLabel": "Versionen anzeigen"
+  "seeVersionsSwitchLabel": "Versionen anzeigen",
+  "searchPlaceholder": "Suchen..."
 }
