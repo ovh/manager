@@ -30,8 +30,9 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 describe('HostDrawer', () => {
   const updateDomain = vi.fn();
 
-  const defaultProps = {
-    drawer: { isOpen: true, action: DrawerActionEnum.Add },
+  const sampleHost = serviceInfoDetail.targetSpec.hostsConfiguration.hosts[0];
+
+  const baseProps = {
     setDrawer: vi.fn(),
     ipv4Supported: true,
     ipv6Supported: true,
@@ -39,6 +40,18 @@ describe('HostDrawer', () => {
     serviceName: 'example.com',
     checksum: serviceInfoDetail.checksum,
     targetSpec: serviceInfoDetail.targetSpec,
+    hostData: sampleHost,
+  };
+
+  const defaultPropsAdd = {
+    ...baseProps,
+    drawer: { isOpen: true, action: DrawerActionEnum.Add },
+  };
+
+  const defaultPropsModify = {
+    ...baseProps,
+    drawer: { isOpen: true, action: DrawerActionEnum.Modify },
+    hostData: sampleHost,
   };
 
   const getPrimaryButton = () => {
@@ -63,17 +76,19 @@ describe('HostDrawer', () => {
     } as any);
   });
 
-  it('renders the drawer with add title', () => {
-    render(<HostDrawer {...defaultProps} />);
+  it('renders the drawer with add title and suffix .serviceName in Add mode', () => {
+    render(<HostDrawer {...defaultPropsAdd} />);
 
     expect(screen.getByTestId('drawer')).toBeInTheDocument();
     expect(
       screen.getByText('domain_tab_hosts_drawer_add_title'),
     ).toBeInTheDocument();
+
+    expect(screen.getByText('.example.com')).toBeInTheDocument();
   });
 
-  it('submits form and calls updateDomain on valid input', async () => {
-    render(<HostDrawer {...defaultProps} />);
+  it('submits form and calls updateDomain on valid input in Add mode', async () => {
+    render(<HostDrawer {...defaultPropsAdd} />);
 
     const [hostInput, ipsInput] = screen.getAllByRole('textbox');
 
@@ -123,8 +138,8 @@ describe('HostDrawer', () => {
     expect(clearNotifications).toHaveBeenCalled();
   });
 
-  it('calls addError when updateDomain fails', async () => {
-    render(<HostDrawer {...defaultProps} />);
+  it('calls addError when updateDomain fails in Add mode', async () => {
+    render(<HostDrawer {...defaultPropsAdd} />);
 
     const [hostInput, ipsInput] = screen.getAllByRole('textbox');
 
@@ -158,5 +173,64 @@ describe('HostDrawer', () => {
     expect(addError).toHaveBeenCalledWith(
       'domain_tab_hosts_drawer_add_error_message',
     );
+  });
+
+  it('prefills form and uses modify success message in Modify mode', async () => {
+    render(<HostDrawer {...defaultPropsModify} />);
+
+    expect(
+      screen.getByText('domain_tab_hosts_drawer_modify_title'),
+    ).toBeInTheDocument();
+
+    const [hostInput, ipsInput] = screen.getAllByRole('textbox');
+
+    const expectedHostPrefix = sampleHost.host.split('.')[0];
+    const expectedIps = String(sampleHost.ips);
+
+    expect(hostInput).toHaveValue(expectedHostPrefix);
+    expect(ipsInput).toHaveValue(expectedIps);
+
+    fireEvent.change(hostInput, { target: { value: 'updated-host' } });
+    fireEvent.change(ipsInput, { target: { value: '9.9.9.9' } });
+
+    const primaryButton = getPrimaryButton();
+
+    await waitFor(() => {
+      expect(primaryButton).not.toBeDisabled();
+    });
+
+    fireEvent.click(primaryButton);
+
+    await waitFor(() => {
+      expect(updateDomain).toHaveBeenCalledTimes(1);
+    });
+
+    const [[payload, callbacks]] = updateDomain.mock.calls as [
+      [
+        any,
+        {
+          onSuccess: () => void;
+          onError: (e: unknown) => void;
+          onSettled: () => void;
+        },
+      ],
+    ];
+
+    expect(payload.hosts).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          host: 'updated-host.example.com',
+          ips: ['9.9.9.9'],
+        }),
+      ]),
+    );
+
+    callbacks.onSuccess();
+    expect(addSuccess).toHaveBeenCalledWith(
+      'domain_tab_hosts_drawer_modify_success_message',
+    );
+
+    callbacks.onSettled();
+    expect(clearNotifications).toHaveBeenCalled();
   });
 });
