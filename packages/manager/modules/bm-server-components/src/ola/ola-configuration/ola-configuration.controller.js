@@ -3,7 +3,11 @@ import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-import { OLA_MODES } from '../ola.constants';
+import {
+  OLA_MODES,
+  NEW_LACP_MODE_BANNER_FEATURE_ID,
+  SCALE_HGR_MAC_COUNTER,
+} from '../ola.constants';
 
 export default class {
   /* @ngInject */
@@ -13,6 +17,7 @@ export default class {
     $translate,
     Alerter,
     ouiDatagridService,
+    ovhFeatureFlipping,
     olaService,
     OvhApiDedicatedServerPhysicalInterface,
     OvhApiDedicatedServerVirtualInterface,
@@ -25,11 +30,24 @@ export default class {
     this.PhysicalInterface = OvhApiDedicatedServerPhysicalInterface;
     this.VirtualInterface = OvhApiDedicatedServerVirtualInterface;
     this.ouiDatagridService = ouiDatagridService;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
     this.olaModes = Object.values(OLA_MODES);
     this.isLoading = false;
+    const nbMacs = this.interfaces.reduce((acc, item) => acc + item.nbMac, 0);
+    this.resilienceGuideUrl = this.olaService.getResilienceGuideUrl();
+    this.isLacpBannerAvailable = false;
+    if (nbMacs >= SCALE_HGR_MAC_COUNTER) {
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(NEW_LACP_MODE_BANNER_FEATURE_ID)
+        .then((featureAvailability) => {
+          this.isLacpBannerAvailable = featureAvailability.isFeatureAvailable(
+            NEW_LACP_MODE_BANNER_FEATURE_ID,
+          );
+        });
+    }
 
     this.configuration = {
       mode:

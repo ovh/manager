@@ -32,5 +32,8 @@
   "server_display_without-engagement": "without commitment",
   "server_display_renew-automatic": "Automatic",
   "server_display_renew-manual": "manual",
-  "server_display_vrack": "vRack"
+  "server_display_vrack": "vRack",
+  "guide_first_step_label": "Getting started with a dedicated server",
+  "guide_secure_label": "Secure my dedicated server",
+  "guide_ssh_connections_label": "How to get started with SSH connections"
 }
