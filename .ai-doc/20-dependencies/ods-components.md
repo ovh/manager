@@ -42,7 +42,7 @@ ODS is built on modern web standards and provides:
 ### Installation and Setup
 
 ```bash
-npm install @ovhcloud/ods-components@^18.6.2
+npm install @ovhcloud/ods-react@^19.2.1
 npm install @ovhcloud/ods-themes@^18.6.2
 ```
 
