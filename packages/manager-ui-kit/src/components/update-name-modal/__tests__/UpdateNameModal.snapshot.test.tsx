@@ -1,5 +1,7 @@
 import { vitest } from 'vitest';
+
 import { render } from '@/commons/tests-utils/Render.utils';
+
 import { UpdateNameModal } from '../UpdateNameModal.component';
 
 const mockUpdateDisplayName = vitest.fn();
