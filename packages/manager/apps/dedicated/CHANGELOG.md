@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.64.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.8...@ovh-ux/manager-dedicated@20.64.9) (2025-11-26)
+
+
+### Bug Fixes
+
+* **iplb:** add italy flag for order page ([cb1422f](https://github.com/ovh/manager/commit/cb1422f4b3790e3213d23b90733a92ec09ebbbf3)), closes [#MANAGER-20354](https://github.com/ovh/manager/issues/MANAGER-20354)
+
+
+
+
+
 ## [20.64.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.7...@ovh-ux/manager-dedicated@20.64.8) (2025-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
