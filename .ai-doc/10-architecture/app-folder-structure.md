@@ -69,81 +69,70 @@ This structure applies to:
 
 ### `/public/` - Static Assets
 
-```
-public/
-├── assets/                      # Static assets
-│   └── feature-name/           # Feature-specific assets
-└── translations/               # i18n translation files
-    └── namespace-name/         # Feature-specific translations
-        ├── Messages_de_DE.json
-        ├── Messages_en_GB.json
-        ├── Messages_es_ES.json
-        ├── Messages_fr_CA.json
-        ├── Messages_fr_FR.json
-        ├── Messages_it_IT.json
-        ├── Messages_pl_PL.json
-        └── Messages_pt_PT.json
-```
+Contains static assets served directly by the web server without processing:
+- **`assets/`**: Images, icons, and other static resources organized by feature name
+- **`translations/`**: i18n JSON files for all supported locales (8 languages: de_DE, en_GB, es_ES, fr_CA, fr_FR, it_IT, pl_PL, pt_PT)
+- **Naming**: Use kebab-case for folder names within assets (e.g., `feature-name/`)
+- **Organization**: Group assets by feature or module to maintain clarity
 
 ### `/src/components/` - Reusable Components
 
-```
-components/
-└── componentName/              # Component-specific folder
-    ├── ComponentName.component.tsx    # Main component file
-    ├── componentName.constants.ts     # Component constants
-    └── ComponentName.spec.tsx         # Component tests
-```
+Houses reusable UI components shared across multiple pages or features:
+- **Structure**: Each component lives in its own folder using camelCase naming
+- **Required files**: Component file (`.component.tsx`), test file (`.spec.tsx`)
+- **Optional files**: Constants file (`.constants.ts`) for component-specific constants
+- **Naming convention**: Component folder in camelCase, files in PascalCase
+- **Purpose**: Components should be generic and reusable across different contexts
 
 ### `/src/pages/` - Page Components
 
-```
-pages/
-└── pageName/                   # Page-specific folder
-    ├── PageName.page.tsx       # Main page component
-    ├── pageName.constants.ts   # Page constants
-    └── PageName.spec.tsx       # Page tests
-```
+Contains top-level page components that represent routes in the application:
+- **Structure**: Each page lives in its own folder using camelCase naming
+- **Required files**: Page file (`.page.tsx`), test file (`.spec.tsx`)
+- **Optional files**: Constants file (`.constants.ts`) for page-specific constants
+- **Naming convention**: Page folder in camelCase, files in PascalCase
+- **Purpose**: Pages compose multiple components and represent full application views
 
 ### `/src/data/` - Data Layer
 
-```
-data/
-├── api/                        # API service functions
-│   └── serviceName.api.ts      # API service file
-├── hooks/                      # Data fetching hooks
-│   └── useServiceName.ts       # Data hook file
-└── types/                      # Data type definitions
-    └── serviceName.types.ts    # Data types file
-```
+Central location for all data fetching, API calls, and data-related logic:
+- **`api/`**: API service functions that make HTTP requests (`.api.ts` suffix)
+- **`hooks/`**: Custom hooks for data fetching using TanStack Query (`use` prefix)
+- **`types/`**: TypeScript type definitions for API responses and data models (`.types.ts` suffix)
+- **Pattern**: Separate concerns - API calls, data hooks, and types are in distinct folders
+- **Integration**: Hooks use API functions and types to provide data to components
 
 ### `/src/hooks/` - Custom Hooks
 
-```
-hooks/
-└── useHookName.ts              # Custom hook file
-```
+Contains custom React hooks for shared logic and state management:
+- **Naming**: All hooks start with `use` prefix (e.g., `useHookName.ts`)
+- **Purpose**: Encapsulate reusable logic, side effects, and stateful behavior
+- **Scope**: Application-wide hooks (not data-fetching hooks, which go in `/src/data/hooks/`)
+- **Examples**: Form handling, UI state, browser APIs, complex component logic
 
 ### `/src/services/` - Business Logic
 
-```
-services/
-└── serviceName.service.ts      # Service file
-```
+Houses business logic and complex operations that don't fit in components:
+- **Naming**: camelCase with `.service.ts` suffix (e.g., `userManagement.service.ts`)
+- **Purpose**: Complex calculations, data transformations, business rules
+- **Separation**: Keep business logic separate from UI components and API calls
+- **Testing**: Services should be pure functions when possible for easier testing
 
 ### `/src/types/` - Type Definitions
 
-```
-types/
-└── typeName.types.ts           # Type definition file
-```
+Contains TypeScript type definitions and interfaces used across the application:
+- **Naming**: camelCase with `.types.ts` suffix (e.g., `userManagement.types.ts`)
+- **Purpose**: Shared types, interfaces, enums, and type utilities
+- **Scope**: Application-wide types (not data-specific types, which go in `/src/data/types/`)
+- **Organization**: Group related types in the same file
 
 ### `/src/utils/` - Utility Functions
 
-```
-utils/
-└── utilName.utils.ts           # Utility function file
-```
+Contains pure utility functions and helpers used throughout the application:
+- **Naming**: camelCase with `.utils.ts` suffix (e.g., `formatting.utils.ts`)
+- **Purpose**: Pure functions for formatting, validation, transformation, etc.
+- **Requirements**: Should be stateless and side-effect free when possible
+- **Testing**: Each utility should have comprehensive unit tests
 
 ## 📋 Naming Conventions
 
