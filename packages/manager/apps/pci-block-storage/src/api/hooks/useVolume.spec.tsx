@@ -33,7 +33,7 @@ import {
 } from '@/api/select/volume';
 
 vi.mock('@/api/data/volume', async (importOriginal) => {
-  const actual: any = await importOriginal();
+  const actual = await importOriginal<typeof import('@/api/data/volume')>();
   return {
     ...actual,
     getVolume: vi.fn(),
@@ -45,7 +45,7 @@ vi.mock('@/api/data/volume', async (importOriginal) => {
 });
 
 vi.mock('@/api/select/volume', async (importOriginal) => {
-  const actual: any = await importOriginal();
+  const actual = await importOriginal<typeof import('@/api/select/volume')>();
   return {
     ...actual,
     mapVolumeAttach: vi.fn().mockReturnValue(vi.fn()),

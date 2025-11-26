@@ -3,7 +3,7 @@ import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useQueries } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { getVolumeCatalogQuery } from '@/api/hooks/useCatalog';
+import { getVolumeCatalogQuery, TVolumeModel } from '@/api/hooks/useCatalog';
 import { getVolumeQuery } from '@/api/hooks/useVolume';
 import {
   mapRetypingVolumeCatalog,
@@ -20,6 +20,11 @@ export type TVolumeRetypeModel = TModelPrice &
   TModelName &
   TModelAttach &
   TModelPreselection;
+
+export const isRetypeModel = (
+  model: TVolumeModel | TVolumeRetypeModel,
+): model is TVolumeRetypeModel =>
+  'isPreselected' in (model as Record<string, unknown>);
 
 export const useCatalogWithPreselection = (
   projectId: string,

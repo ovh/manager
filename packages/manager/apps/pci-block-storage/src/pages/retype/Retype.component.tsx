@@ -67,6 +67,7 @@ export const Retype: FC<RetypeProps> = ({ volumeModelData }) => {
                 'retype:pci_projects_project_storages_blocks_retype_change_type_title',
               )}
               horizontal
+              hideBadges
             />
           )}
         />

@@ -3,7 +3,6 @@ import { FC } from 'react';
 import { useHref, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Link } from '@ovhcloud/ods-react';
-import { useForm } from 'react-hook-form';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { TAttachedInstance } from '@/api/select/instances';
 import { useDetachVolume } from '@/api/hooks/useVolume';
@@ -43,8 +42,11 @@ export const RetypeDetachInstance: FC<RetypeDetachInstanceProps> = ({
 
   return (
     <RetypeConfirmActionForm
+      label={t(
+        'pci_projects_project_storages_blocks_retype_detach_volume_label',
+      )}
       warningMessage={t(
-        'retype:pci_projects_project_storages_blocks_retype_detach_volume',
+        'retype:pci_projects_project_storages_blocks_retype_detach_volume_warning',
         {
           instance: instance.name,
         },

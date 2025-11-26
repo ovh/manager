@@ -5,7 +5,7 @@ import {
   PaginationState,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
-import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueries } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { pipe } from 'lodash/fp';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
