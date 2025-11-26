@@ -53,6 +53,7 @@ import {
   isMultiDeploymentZones,
   isOptionalValue,
 } from '@/helpers';
+import { getClusterUrlFragments } from '@/helpers/matchers/matchers';
 import { TKube } from '@/types';
 
 import TileLine from './TileLine.component';
@@ -86,14 +87,9 @@ export default function ClusterAccessAndSecurity({
     [oidcProvider],
   );
 
-  const { postKubeConfig, isPending: isKubeConfigPending } = useKubeConfig({
+  const { mutate: postKubeConfig, isPending: isKubeConfigPending } = useKubeConfig({
     projectId,
     kubeId,
-    onSuccess: (config) =>
-      downloadContent({
-        fileContent: config.content,
-        fileName: `${CONFIG_FILENAME}.yml`,
-      }),
     onError: (error: Error) =>
       addError(
         <Translation ns="service">
@@ -116,6 +112,23 @@ export default function ClusterAccessAndSecurity({
     [oidcProvider],
   );
   const hasOptionalValues = validOptionalKeys.length > 0;
+
+  const downloadConfigFile = () => {
+    postKubeConfig(undefined, {
+      onSuccess: (configFile) => {
+        const clusterShortId = getClusterUrlFragments(kubeDetail.url)?.shortId;
+
+        const fileName = clusterShortId
+          ? `${CONFIG_FILENAME}-${clusterShortId}.yml`
+          : `${CONFIG_FILENAME}.yml`;
+
+        downloadContent({
+          fileContent: configFile.content,
+          fileName,
+        });
+      },
+    });
+  };
 
   const getClusterRestrictionLabel = (length?: number) => {
     const suffixes = ['no_count', 'one', 'count'];
@@ -212,7 +225,7 @@ export default function ClusterAccessAndSecurity({
             data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
-            onClick={postKubeConfig}
+            onClick={downloadConfigFile}
             {...(isKubeConfigPending || kubeDetail?.status === KUBE_INSTALLING_STATUS
               ? { disabled: true }
               : {})}
