@@ -366,16 +366,19 @@ component_decisions:
     # -------------------------------------------------------------------------
     action_modal:
       name: "Action Modal (Create/Edit/Delete)"
-      use: "useOdsModal hook"
+      use: "OdsModal component with useState"
       pattern: |
         // @ai-pattern: action-modal
-        import { useOdsModal } from '@ovh-ux/muk';
+        import { useState } from 'react';
+        import { OdsModal, OdsButton } from '@ovhcloud/ods-components/react';
 
-        const { isOpen, open, close } = useOdsModal();
+        const [isOpen, setIsOpen] = useState(false);
+        const open = () => setIsOpen(true);
+        const close = () => setIsOpen(false);
 
         <OdsButton onClick={open}>{t('action_delete')}</OdsButton>
 
-        <OdsModal isOpen={isOpen} onClose={close}>
+        <OdsModal open={isOpen} onOdsModalChange={(e) => setIsOpen(e.detail.open)}>
           <OdsModal.Header>{t('modal_delete_title')}</OdsModal.Header>
           <OdsModal.Body>
             {t('modal_delete_confirmation', { name: service.name })}
