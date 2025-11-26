@@ -15,7 +15,7 @@
   },
   "delete": {
     "delete_tenant_title": "Supprimer le Tenant",
-    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant {{tenantName}}"
+    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\""
   },
   "onboarding": {
     "description": "Créez votre nouveau tenant pour continuer à explorer tout le potentiel des métriques d'observabilité. Vous pourrez envoyer des données, créer des tableaux de bord et configurer des alertes adaptées à vos besoins spécifiques.",
@@ -27,6 +27,10 @@
     "namePlaceholder": "Nom du tenant", 
     "description":"Description (optionnelle)",
     "descriptionPlaceholder": "Ajoutez une description des metrics que vous allez écrire dans ce tenant"
+  },
+  "edition": {
+    "title": "Modifier le tenant",
+    "subtitle": "Vous créez un tenant dans votre service d'observabilité \"{{tenantName}}\""
   },
   "configuration": {
     "title": "Configurez votre tenant",
