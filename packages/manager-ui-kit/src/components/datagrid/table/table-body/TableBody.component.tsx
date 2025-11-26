@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo } from 'react';
 
 import { flexRender } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -24,9 +24,9 @@ export const TableBody = <T,>({
   tableContainerRef,
   contentAlignLeft = true,
 }: TableBodyProps<T>) => {
-  const [browserName, setBrowserName] = useState<string>('unknown');
   const { rows } = rowModel;
   const previousRowsLength = usePrevious(rows?.length);
+  const browserName = useMemo(() => getBrowserName(), []);
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     estimateSize: useCallback(() => maxRowHeight, [maxRowHeight]),
@@ -37,10 +37,6 @@ export const TableBody = <T,>({
         : undefined,
     overscan: 15,
   });
-
-  useEffect(() => {
-    setBrowserName(getBrowserName());
-  }, []);
 
   useEffect(() => {
     if (autoScroll && previousRowsLength !== undefined && rows?.length > previousRowsLength) {
