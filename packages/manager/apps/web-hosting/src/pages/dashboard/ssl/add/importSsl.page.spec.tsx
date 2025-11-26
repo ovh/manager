@@ -1,20 +1,18 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React, { ComponentType } from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { navigate } from '@/utils/test.setup';
+import { createTestWrapper } from '@/utils/test.provider';
 
 import ImportModal from './importSsl.page';
 
-const queryClient = new QueryClient();
+const Wrappers = createTestWrapper();
 
 describe('ImportModal', () => {
   it('render all text area', () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <ImportModal />
-      </QueryClientProvider>,
-    );
+    render(<ImportModal />, { wrapper: Wrappers as ComponentType });
 
     expect(screen.getAllByText('ssl_order_manual_mode_certif')).toHaveLength(1);
     expect(screen.getAllByText('ssl_order_manual_mode_key')).toHaveLength(1);
@@ -26,11 +24,7 @@ describe('ImportModal', () => {
   });
 
   it('disable validate button when certificate or key is empty', () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <ImportModal />
-      </QueryClientProvider>,
-    );
+    render(<ImportModal />, { wrapper: Wrappers as ComponentType });
 
     const primaryBtn = screen.getByTestId('primary-button');
     expect(primaryBtn.getAttribute('is-disabled')).toBe('true');
@@ -54,11 +48,7 @@ describe('ImportModal', () => {
   });
 
   it('call useCreateCertificate with wright data and close modal', () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <ImportModal />
-      </QueryClientProvider>,
-    );
+    render(<ImportModal />, { wrapper: Wrappers as ComponentType });
 
     fireEvent(
       screen.getByTestId('ssl-manual-certif'),
@@ -87,11 +77,7 @@ describe('ImportModal', () => {
   });
 
   it('cancel button close modal', () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <ImportModal />
-      </QueryClientProvider>,
-    );
+    render(<ImportModal />, { wrapper: Wrappers as ComponentType });
 
     fireEvent.click(screen.getByTestId('secondary-button'));
     expect(navigate).toHaveBeenCalled();

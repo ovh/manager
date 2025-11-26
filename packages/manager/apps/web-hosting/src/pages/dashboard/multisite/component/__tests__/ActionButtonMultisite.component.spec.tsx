@@ -1,13 +1,85 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 
-import { describe, expect, it, vi } from 'vitest';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render } from '@testing-library/react';
+import { I18nextProvider } from 'react-i18next';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { WebHostingWebsiteDomainMocks } from '@/data/__mocks__';
+import { WebHostingWebsiteDomainMocks, WebHostingWebsiteMocks } from '@/data/__mocks__';
+import { webHostingMock } from '@/data/__mocks__/webHostingDashboard';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { render } from '@/utils/test.provider';
+import { createWrapper, i18n } from '@/utils/test.provider';
 import { navigate } from '@/utils/test.setup';
 
 import ActionButtonMultisite from '../ActionButtonMultisite.component';
+
+const testQueryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      retry: false,
+    },
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+vi.mock('@ovh-ux/muk', () => ({
+  ActionMenu: ({
+    id,
+    items,
+    ...props
+  }: React.PropsWithChildren<{
+    id?: string;
+    items?: Array<{ id: number; label: string; onClick?: () => void }>;
+    [key: string]: unknown;
+  }>) => (
+    <div data-testid="action-menu" data-id={id} {...props}>
+      {items?.map((item) => (
+        <button
+          key={item.id}
+          data-testid={`action-item-${item.id}`}
+          onClick={item.onClick}
+          type="button"
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  ),
+}));
+
+vi.mock('@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite', () => ({
+  useWebHostingWebsite: vi.fn().mockReturnValue({
+    data: WebHostingWebsiteMocks,
+    isLoading: false,
+  }),
+}));
+
+vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
+  useGetHostingService: vi.fn().mockReturnValue({
+    data: webHostingMock,
+    isLoading: false,
+  }),
+}));
+
+vi.mock('@/hooks/useHostingUrl', () => ({
+  useHostingUrl: vi.fn((service: string, path = '') => {
+    return `https://hosting.ovh.net/${service}${path ? `/${path}` : ''}`;
+  }),
+}));
+
+const RouterWrapper = createWrapper();
+
+const Wrappers = ({ children }: { children: React.ReactElement }) => {
+  return (
+    <RouterWrapper>
+      <QueryClientProvider client={testQueryClient}>
+        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+      </QueryClientProvider>
+    </RouterWrapper>
+  );
+};
 
 describe('ActionButtonMultisite component', () => {
   beforeEach(() => {
@@ -15,42 +87,56 @@ describe('ActionButtonMultisite component', () => {
   });
 
   it('should render site actions correctly', () => {
-    const { container } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />);
+    const { container, getByTestId } = render(
+      <ActionButtonMultisite context="site" siteId={'1'} path="www" />,
+      {
+        wrapper: Wrappers as ComponentType,
+      },
+    );
 
     expect(container).toBeInTheDocument();
 
-    const menuItems = container.querySelectorAll('ods-popover ods-button');
+    const actionMenu = getByTestId('action-menu');
+    expect(actionMenu).toBeInTheDocument();
+
+    const menuItems = container.querySelectorAll('button[data-testid^="action-item-"]');
     expect(menuItems.length).toBeGreaterThan(1);
 
-    const labels = Array.from(menuItems).map((el) => el.getAttribute('label'));
+    const labels = Array.from(menuItems).map((el) => el.textContent);
     expect(labels).toContain(commonTranslation.add_domain);
   });
 
   it('should navigate correctly when clicking a site action', () => {
-    const { container } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />);
-    const addDomainButton = container.querySelector('ods-button[label="Ajouter un domaine"]');
+    const { getByText } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />, {
+      wrapper: Wrappers as ComponentType,
+    });
+    const addDomainButton = getByText(commonTranslation.add_domain);
     expect(addDomainButton).toBeInTheDocument();
 
-    addDomainButton?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    addDomainButton.click();
     expect(navigate).toHaveBeenCalledTimes(1);
   });
 
   it('should render domain actions correctly', () => {
-    const { container } = render(
+    const { container, getByTestId } = render(
       <ActionButtonMultisite
         context="domain"
         domainId={'1'}
         domain="test.site"
         domains={WebHostingWebsiteDomainMocks}
       />,
+      { wrapper: Wrappers as ComponentType },
     );
 
     expect(container).toBeInTheDocument();
 
-    const menuItems = container.querySelectorAll('ods-popover ods-button');
+    const actionMenu = getByTestId('action-menu');
+    expect(actionMenu).toBeInTheDocument();
+
+    const menuItems = container.querySelectorAll('button[data-testid^="action-item-"]');
     expect(menuItems.length).toBeGreaterThan(1);
 
-    const labels = Array.from(menuItems).map((el) => el.getAttribute('label'));
+    const labels = Array.from(menuItems).map((el) => el.textContent);
     expect(labels).toContain(commonTranslation.modify_domain);
   });
 });
