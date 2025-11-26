@@ -1,14 +1,17 @@
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { PciTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
+
 import { TRegion } from '@/api/data/regions';
-import { EncryptionType } from '@/api/select/volume';
 import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
+import { EncryptionType } from '@/api/select/volume';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { Button } from '@/components/button/Button';
 

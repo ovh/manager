@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  initI18n,
-  initShellContext,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import { TRACKING_CONTEXT } from '@/tracking.constants';
-import App from './App';
 
+import ReactDOM from 'react-dom/client';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { TRACKING_CONTEXT } from '@/tracking.constants';
 import '@/vite-hmr.ts';
+
+import App from './App';
 
 const init = async (
   appName: string,

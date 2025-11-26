@@ -3,7 +3,6 @@
 
 export default eslintSharedConfig;
 */
-
 // Progressive adoption
 /*import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 import {
@@ -43,8 +42,8 @@ export default [
     files: ['**\/*.css', '**\/*.scss'],
   },
 ];*/
-
 // Progressive and disable some rules
+import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
@@ -58,4 +57,5 @@ export default [
       '@typescript-eslint/await-thenable': 'off',
     },
   },
+  prettierEslintConfig,
 ];

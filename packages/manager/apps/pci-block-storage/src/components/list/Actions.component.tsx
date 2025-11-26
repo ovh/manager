@@ -1,6 +1,9 @@
 import { useHref } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+
 import { TVolume } from '@/api/hooks/useVolume';
 import { useTrackAction } from '@/hooks/useTrackAction';
 
@@ -8,10 +11,7 @@ type ActionsProps = {
   volume: TVolume;
   projectUrl: string;
 };
-export default function ActionsComponent({
-  volume,
-  projectUrl,
-}: Readonly<ActionsProps>) {
+export default function ActionsComponent({ volume, projectUrl }: Readonly<ActionsProps>) {
   const { t } = useTranslation();
 
   const hrefEdit = useHref(`./${volume.id}/edit`);
@@ -20,13 +20,11 @@ export default function ActionsComponent({
   const hrefRemove = useHref(`./delete/${volume.id}`);
   const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volumeId=${volume.id}`;
 
-  const onTrackingClick = useTrackAction<(actionName: string) => void>(
-    (actionName) => ({
-      actionName,
-      buttonType: 'button',
-      actionValues: [volume.region, volume.type],
-    }),
-  );
+  const onTrackingClick = useTrackAction<(actionName: string) => void>((actionName) => ({
+    actionName,
+    buttonType: 'button',
+    actionValues: [volume.region, volume.type],
+  }));
 
   const items: (ActionMenuItem & { dataTestid?: string })[] = [
     {

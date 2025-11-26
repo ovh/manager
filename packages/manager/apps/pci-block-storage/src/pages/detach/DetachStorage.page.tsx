@@ -1,20 +1,8 @@
-import {
-  OsdsModal,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PropsWithChildren, useEffect, useMemo } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Controller,
   FormProvider,
@@ -23,20 +11,33 @@ import {
   useFormContext,
   useWatch,
 } from 'react-hook-form';
-import { z, ZodRawShape } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { Translation, useTranslation } from 'react-i18next';
+import { ZodRawShape, z } from 'zod';
+
 import {
-  useDetachVolume,
-  useVolume,
-  UseVolumeResult,
-} from '@/api/hooks/useVolume';
-import { useAttachedInstances } from '@/api/hooks/useInstance';
-import { useSearchFormParams } from '@/hooks/useSearchFormParams';
-import { TAttachedInstance } from '@/api/select/instances';
-import { useTrackBanner } from '@/hooks/useTrackBanner';
-import { Button } from '@/components/button/Button';
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  OsdsModal,
+  OsdsSelect,
+  OsdsSelectOption,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { useParam } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { useAttachedInstances } from '@/api/hooks/useInstance';
+import { UseVolumeResult, useDetachVolume, useVolume } from '@/api/hooks/useVolume';
+import { TAttachedInstance } from '@/api/select/instances';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { Button } from '@/components/button/Button';
+import { useSearchFormParams } from '@/hooks/useSearchFormParams';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
 
 const SelectInstance = ({ instances }: { instances: TAttachedInstance[] }) => {
   const { control } = useFormContext();
@@ -82,8 +83,7 @@ const InstanceDescription = ({
   const selectedInstanceId = useWatch({ control, name: 'instanceId' });
 
   const selectedInstance = useMemo(() => {
-    if (selectedInstanceId)
-      return instances.find(({ id }) => id === selectedInstanceId) || null;
+    if (selectedInstanceId) return instances.find(({ id }) => id === selectedInstanceId) || null;
     return null;
   }, [selectedInstanceId, instances]);
 
@@ -115,32 +115,20 @@ const Form = <Schema extends z.ZodObject<ZodRawShape>>({
   onSubmit: SubmitHandler<Partial<z.infer<Schema>>>;
   values?: Partial<z.infer<Schema>>;
 }>) => {
-  const { handleSubmit, formState, ...restForm } = useForm<
-    Partial<z.infer<Schema>>
-  >({
+  const { handleSubmit, formState, ...restForm } = useForm<Partial<z.infer<Schema>>>({
     resolver: zodResolver(schema),
     values,
   });
   useSearchFormParams(schema, restForm);
 
   return (
-    <FormProvider
-      formState={formState}
-      handleSubmit={handleSubmit}
-      {...restForm}
-    >
+    <FormProvider formState={formState} handleSubmit={handleSubmit} {...restForm}>
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>{children}</form>
     </FormProvider>
   );
 };
 
-const SubmitButton = ({
-  label,
-  region,
-}: {
-  label: string;
-  region?: string;
-}) => {
+const SubmitButton = ({ label, region }: { label: string; region?: string }) => {
   const { formState } = useFormContext();
   return (
     <Button
@@ -167,10 +155,10 @@ export default function DetachStorage() {
   const { data: volume } = useVolume(projectId, volumeId);
   const onClose = () => navigate(`/pci/projects/${projectId}/storages/blocks`);
 
-  const {
-    data: instances,
-    isPending: isInstancesPending,
-  } = useAttachedInstances(projectId, volumeId);
+  const { data: instances, isPending: isInstancesPending } = useAttachedInstances(
+    projectId,
+    volumeId,
+  );
   const actionValues = useMemo(() => [volume?.region], [volume]);
 
   const onTrackingBannerError = useTrackBanner({ type: 'error' }, (err) => {
@@ -191,12 +179,9 @@ export default function DetachStorage() {
     addSuccess(
       <Translation ns="detach">
         {(_t) =>
-          _t(
-            'pci_projects_project_storages_blocks_block_detach_success_message',
-            {
-              volume: volume?.name,
-            },
-          )
+          _t('pci_projects_project_storages_blocks_block_detach_success_message', {
+            volume: volume?.name,
+          })
         }
       </Translation>,
       true,
@@ -231,10 +216,7 @@ export default function DetachStorage() {
         })
       }
       values={{
-        instanceId:
-          !!volume && volume.attachedTo.length === 1
-            ? volume.attachedTo[0]
-            : undefined,
+        instanceId: !!volume && volume.attachedTo.length === 1 ? volume.attachedTo[0] : undefined,
       }}
     >
       <OsdsModal
@@ -272,9 +254,7 @@ export default function DetachStorage() {
           {t('pci_projects_project_storages_blocks_block_detach_cancel_label')}
         </ButtonLink>
         <SubmitButton
-          label={t(
-            'pci_projects_project_storages_blocks_block_detach_submit_label',
-          )}
+          label={t('pci_projects_project_storages_blocks_block_detach_submit_label')}
           region={volume?.region}
         />
       </OsdsModal>

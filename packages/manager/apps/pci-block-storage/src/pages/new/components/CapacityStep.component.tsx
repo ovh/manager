@@ -1,4 +1,20 @@
 import { useDeferredValue, useEffect, useState } from 'react';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_INPUT_TYPE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsIcon,
@@ -7,30 +23,17 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_SPINNER_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_INPUT_TYPE,
-} from '@ovhcloud/ods-components';
 
-import { Trans, useTranslation } from 'react-i18next';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import { StepState } from '@/pages/new/hooks/useStep';
-import { useRegionsQuota } from '@/api/hooks/useQuota';
+
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { TRegion } from '@/api/data/regions';
 import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
+import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { EncryptionType } from '@/api/select/volume';
 import ExternalLink from '@/components/ExternalLink';
 import { Button } from '@/components/button/Button';
+import { StepState } from '@/pages/new/hooks/useStep';
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
 export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wrong)
@@ -68,29 +71,23 @@ export function CapacityStep({
   );
 
   const [maxSize, setMaxSize] = useState(0);
-  const {
-    data: regionQuotas,
-    isLoading: isRegionQuotaLoading,
-  } = useRegionsQuota(projectId, region.name);
+  const { data: regionQuotas, isLoading: isRegionQuotaLoading } = useRegionsQuota(
+    projectId,
+    region.name,
+  );
   const projectUrl = useProjectUrl('public-cloud');
   const quotaUrl = `${projectUrl}/quota`;
 
-  const isCapacityValid =
-    volumeCapacity >= VOLUME_MIN_SIZE && volumeCapacity <= maxSize;
+  const isCapacityValid = volumeCapacity >= VOLUME_MIN_SIZE && volumeCapacity <= maxSize;
 
-  const { volumeMaxSize, isLoading: isVolumeMaxSizeLoading } = useVolumeMaxSize(
-    region.name,
-  );
+  const { volumeMaxSize, isLoading: isVolumeMaxSizeLoading } = useVolumeMaxSize(region.name);
 
   const isLoading = isRegionQuotaLoading && isVolumeMaxSizeLoading;
 
   useEffect(() => {
     if (!isLoading) {
       let availableGigabytes = volumeMaxSize;
-      if (
-        regionQuotas?.volume &&
-        regionQuotas.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
-      ) {
+      if (regionQuotas?.volume && regionQuotas.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA) {
         availableGigabytes = Math.min(
           volumeMaxSize,
           regionQuotas.volume.maxGigabytes - regionQuotas.volume.usedGigabytes,
@@ -127,11 +124,7 @@ export function CapacityStep({
           <OsdsInput
             type={ODS_INPUT_TYPE.number}
             value={volumeCapacity}
-            color={
-              isCapacityValid
-                ? ODS_THEME_COLOR_INTENT.primary
-                : ODS_THEME_COLOR_INTENT.error
-            }
+            color={isCapacityValid ? ODS_THEME_COLOR_INTENT.primary : ODS_THEME_COLOR_INTENT.error}
             onOdsValueChange={(event) => {
               setVolumeCapacity(Number(event.detail.value));
             }}
@@ -145,11 +138,7 @@ export function CapacityStep({
             size={ODS_BUTTON_SIZE.sm}
             text-align="center"
           >
-            <OsdsIcon
-              className="mr-2 bg-white"
-              name={ODS_ICON_NAME.PLUS}
-              size={ODS_ICON_SIZE.xs}
-            />
+            <OsdsIcon className="mr-2 bg-white" name={ODS_ICON_NAME.PLUS} size={ODS_ICON_SIZE.xs} />
           </OsdsButton>
         </OsdsQuantity>
         <OsdsText
@@ -228,11 +217,7 @@ export function CapacityStep({
         <OsdsText
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
           size={ODS_THEME_TYPOGRAPHY_SIZE._200}
-          color={
-            isCapacityValid
-              ? ODS_THEME_COLOR_INTENT.text
-              : ODS_THEME_COLOR_INTENT.error
-          }
+          color={isCapacityValid ? ODS_THEME_COLOR_INTENT.text : ODS_THEME_COLOR_INTENT.error}
         >
           <Trans
             t={t}

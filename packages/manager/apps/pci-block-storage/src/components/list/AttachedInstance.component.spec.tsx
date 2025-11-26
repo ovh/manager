@@ -1,17 +1,19 @@
-import { describe, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { render, screen } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
 import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import { TInstance } from '@ovh-ux/manager-pci-common';
+
 import AttachedInstanceComponent from '@/components/list/AttachedInstance.component';
 
 describe('AttachedInstanceComponent', () => {
   it('renders OsdsSkeleton when data is loading', () => {
-    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue(({
+    vi.spyOn(pciCommonModule, 'useInstance').mockReturnValue({
       data: {},
       isPending: true,
       isLoading: true,
-    } as unknown) as UseQueryResult<TInstance>);
+    } as unknown as UseQueryResult<TInstance>);
     const { getByTestId } = render(
       <AttachedInstanceComponent
         projectId="project1"
@@ -19,9 +21,7 @@ describe('AttachedInstanceComponent', () => {
         projectUrl="/project"
       />,
     );
-    expect(
-      getByTestId('AttachedInstanceComponent_skeleton'),
-    ).toBeInTheDocument();
+    expect(getByTestId('AttachedInstanceComponent_skeleton')).toBeInTheDocument();
   });
 
   it('renders instance name when data is loaded', async () => {

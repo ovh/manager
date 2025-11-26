@@ -1,20 +1,21 @@
-import { OsdsModal, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  useDeleteVolume,
-  useVolume,
-  useVolumeSnapshot,
-} from '@/api/hooks/useVolume';
-import DeleteWarningMessage from './DeleteWarningMessage';
-import DeleteConstraintWarningMessage from './DeleteConstraintWarningMessage';
-import { ButtonLink } from '@/components/button-link/ButtonLink';
-import { useTrackBanner } from '@/hooks/useTrackBanner';
-import { Button } from '@/components/button/Button';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsModal, OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { useParam } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { useDeleteVolume, useVolume, useVolumeSnapshot } from '@/api/hooks/useVolume';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { Button } from '@/components/button/Button';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
+
+import DeleteConstraintWarningMessage from './DeleteConstraintWarningMessage';
+import DeleteWarningMessage from './DeleteWarningMessage';
 
 export default function DeleteStorage() {
   const { projectId, volumeId } = useParam('projectId', 'volumeId');
@@ -23,45 +24,31 @@ export default function DeleteStorage() {
 
   const onClose = () => navigate('..');
   const { addError, addSuccess } = useNotifications();
-  const { data: volume, isPending: isVolumePending } = useVolume(
-    projectId,
-    volumeId,
-  );
-  const { data: snapshots, isPending: isSnapshotPending } = useVolumeSnapshot(
-    projectId,
-  );
+  const { data: volume, isPending: isVolumePending } = useVolume(projectId, volumeId);
+  const { data: snapshots, isPending: isSnapshotPending } = useVolumeSnapshot(projectId);
 
-  const onTrackingBannerError = useTrackBanner(
-    { type: 'error' },
-    (err: unknown) => {
-      addError(
-        <Translation ns="delete">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_blocks_block_delete_error_delete',
-              {
-                volume: volume?.name,
-                message: err instanceof Error ? err.message : undefined,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
-  );
+  const onTrackingBannerError = useTrackBanner({ type: 'error' }, (err: unknown) => {
+    addError(
+      <Translation ns="delete">
+        {(_t) =>
+          _t('pci_projects_project_storages_blocks_block_delete_error_delete', {
+            volume: volume?.name,
+            message: err instanceof Error ? err.message : undefined,
+          })
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
 
   const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
     addSuccess(
       <Translation ns="delete">
         {(_t) =>
-          _t(
-            'pci_projects_project_storages_blocks_block_delete_success_message',
-            {
-              volume: volume?.name,
-            },
-          )
+          _t('pci_projects_project_storages_blocks_block_delete_success_message', {
+            volume: volume?.name,
+          })
         }
       </Translation>,
       true,
@@ -77,8 +64,7 @@ export default function DeleteStorage() {
   });
 
   const isPending = isVolumePending || isSnapshotPending || isDeletePending;
-  const hasSnapshot =
-    !isPending && !!snapshots && snapshots.some((s) => s.volumeId === volumeId);
+  const hasSnapshot = !isPending && !!snapshots && snapshots.some((s) => s.volumeId === volumeId);
   const isAttached = !isPending && !!volume && volume.attachedTo.length > 0;
   const canDelete = !isPending && !isAttached && !hasSnapshot;
 
@@ -100,18 +86,12 @@ export default function DeleteStorage() {
           />
         ) : (
           <>
-            <DeleteConstraintWarningMessage
-              hasSnapshot={hasSnapshot}
-              isAttached={isAttached}
-            />
+            <DeleteConstraintWarningMessage hasSnapshot={hasSnapshot} isAttached={isAttached} />
             {canDelete && (
               <>
-                {t(
-                  'pci_projects_project_storages_blocks_block_delete_content',
-                  {
-                    volume: volume?.name,
-                  },
-                )}
+                {t('pci_projects_project_storages_blocks_block_delete_content', {
+                  volume: volume?.name,
+                })}
                 <DeleteWarningMessage />
               </>
             )}

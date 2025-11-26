@@ -1,11 +1,6 @@
 import { PropsWithChildren, useState } from 'react';
-import {
-  IconName,
-  Message,
-  MessageBody,
-  MessageIcon,
-  MessageProp,
-} from '@ovhcloud/ods-react';
+
+import { IconName, Message, MessageBody, MessageIcon, MessageProp } from '@ovhcloud/ods-react';
 
 type BannerProps = PropsWithChildren<
   {
@@ -30,11 +25,7 @@ export const Banner = ({
   if (!displayBanner) return null;
 
   return (
-    <Message
-      dismissible={dismissible}
-      onRemove={handleRemove}
-      {...messageProps}
-    >
+    <Message dismissible={dismissible} onRemove={handleRemove} {...messageProps}>
       {iconName && <MessageIcon name={iconName} />}
       <MessageBody>{children}</MessageBody>
     </Message>

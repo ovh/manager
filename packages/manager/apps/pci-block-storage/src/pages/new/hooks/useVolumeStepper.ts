@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Step, useStep } from '@/pages/new/hooks/useStep';
-import { TFormState } from '@/pages/new/form.type';
-import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+
 import { TRegion } from '@/api/data/regions';
 import { TVolumeModel, useVolumeCatalog } from '@/api/hooks/useCatalog';
+import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import { EncryptionType } from '@/api/select/volume';
+import { TFormState } from '@/pages/new/form.type';
+import { Step, useStep } from '@/pages/new/hooks/useStep';
 
 export function useVolumeStepper(projectId: string) {
   const { data: volumeCatalog } = useVolumeCatalog(projectId);
@@ -61,10 +62,7 @@ export function useVolumeStepper(projectId: string) {
         if (has3AZ) {
           if (
             volumeCatalog?.models.some((m) =>
-              m.pricings.some(
-                (p) =>
-                  p.regions.includes(region.name) && p.showAvailabilityZones,
-              ),
+              m.pricings.some((p) => p.regions.includes(region.name) && p.showAvailabilityZones),
             )
           ) {
             availabilityZoneStep.show();
@@ -82,12 +80,7 @@ export function useVolumeStepper(projectId: string) {
       step: volumeTypeStep,
       edit: () => {
         volumeTypeStep.unlock();
-        [
-          availabilityZoneStep,
-          capacityStep,
-          volumeNameStep,
-          validationStep,
-        ].forEach((step) => {
+        [availabilityZoneStep, capacityStep, volumeNameStep, validationStep].forEach((step) => {
           step.uncheck();
           step.unlock();
           step.close();

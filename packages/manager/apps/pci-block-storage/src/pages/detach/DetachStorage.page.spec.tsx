@@ -1,24 +1,20 @@
-import { act, waitFor } from '@testing-library/react';
-import { describe, it, vi } from 'vitest';
-import { UseQueryResult } from '@tanstack/react-query';
-import {
-  OdsSelectValueChangeEventDetail,
-  OsdsSelect,
-} from '@ovhcloud/ods-components';
-import DetachStorage from '@/pages/detach/DetachStorage.page';
-import { useDetachVolume, useVolume } from '@/api/hooks/useVolume';
-import { useAttachedInstances } from '@/api/hooks/useInstance';
-import { TAttachedInstance } from '@/api/select/instances';
-import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 import { useParams } from 'react-router-dom';
 
+import { UseQueryResult } from '@tanstack/react-query';
+import { act, waitFor } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
+import { OdsSelectValueChangeEventDetail, OsdsSelect } from '@ovhcloud/ods-components';
+
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+import { useAttachedInstances } from '@/api/hooks/useInstance';
+import { useDetachVolume, useVolume } from '@/api/hooks/useVolume';
+import { TAttachedInstance } from '@/api/select/instances';
+import DetachStorage from '@/pages/detach/DetachStorage.page';
+
 vi.mock('@/api/hooks/useVolume', () => ({
-  useVolume: vi
-    .fn()
-    .mockReturnValue({ data: { attachedTo: [] }, isPending: false }),
-  useDetachVolume: vi
-    .fn()
-    .mockReturnValue({ isPending: false, detachVolume: vi.fn() }),
+  useVolume: vi.fn().mockReturnValue({ data: { attachedTo: [] }, isPending: false }),
+  useDetachVolume: vi.fn().mockReturnValue({ isPending: false, detachVolume: vi.fn() }),
 }));
 
 vi.mock('react-router-dom');
@@ -40,9 +36,9 @@ describe('DetachStorage', () => {
     vi.mocked(useAttachedInstances).mockReturnValue({
       isPending: true,
     } as UseQueryResult<TAttachedInstance[]>);
-    vi.mocked(useVolume).mockReturnValue(({
+    vi.mocked(useVolume).mockReturnValue({
       isPending: true,
-    } as unknown) as ReturnType<typeof useVolume>);
+    } as unknown as ReturnType<typeof useVolume>);
 
     const { getByTestId } = renderWithMockedWrappers(<DetachStorage />);
     expect(getByTestId('detachStorage-spinner')).toBeInTheDocument();
@@ -53,17 +49,15 @@ describe('DetachStorage', () => {
       isPending: false,
       data: [{ id: 'Instance 1', name: 'Instance 1' }],
     } as UseQueryResult<TAttachedInstance[]>);
-    vi.mocked(useVolume).mockReturnValue(({
+    vi.mocked(useVolume).mockReturnValue({
       data: { name: 'Volume 1', attachedTo: ['Instance 1'] },
       isPending: false,
-    } as unknown) as ReturnType<typeof useVolume>);
+    } as unknown as ReturnType<typeof useVolume>);
 
     const { getByText } = renderWithMockedWrappers(<DetachStorage />);
     await waitFor(() => {
       expect(
-        getByText(
-          'pci_projects_project_storages_blocks_block_detach_detachvolume',
-        ),
+        getByText('pci_projects_project_storages_blocks_block_detach_detachvolume'),
       ).toBeInTheDocument();
     });
   });
@@ -81,23 +75,15 @@ describe('DetachStorage', () => {
       isPending: false,
     } as ReturnType<typeof useVolume>);
 
-    const { queryByText, getByText, getByTestId } = renderWithMockedWrappers(
-      <DetachStorage />,
-    );
+    const { queryByText, getByText, getByTestId } = renderWithMockedWrappers(<DetachStorage />);
     expect(
-      queryByText(
-        'pci_projects_project_storages_blocks_block_detach_detachvolume',
-      ),
+      queryByText('pci_projects_project_storages_blocks_block_detach_detachvolume'),
     ).not.toBeInTheDocument();
 
-    const select = (getByTestId(
-      'detachStorage-select-instance',
-    ) as unknown) as OsdsSelect;
+    const select = getByTestId('detachStorage-select-instance') as unknown as OsdsSelect;
     expect(select).toBeInTheDocument();
 
-    const button = getByText(
-      'pci_projects_project_storages_blocks_block_detach_submit_label',
-    );
+    const button = getByText('pci_projects_project_storages_blocks_block_detach_submit_label');
     expect(button).toBeDisabled();
 
     act(() => {
@@ -108,9 +94,7 @@ describe('DetachStorage', () => {
 
     await waitFor(() => {
       expect(
-        getByText(
-          'pci_projects_project_storages_blocks_block_detach_detachvolume',
-        ),
+        getByText('pci_projects_project_storages_blocks_block_detach_detachvolume'),
       ).toBeInTheDocument();
 
       expect(button).toBeInTheDocument();
@@ -122,9 +106,9 @@ describe('DetachStorage', () => {
     });
 
     await waitFor(() => {
-      expect(
-        vi.mocked(useDetachVolume().detachVolume),
-      ).toHaveBeenLastCalledWith(expect.objectContaining({ instanceId: 'i2' }));
+      expect(vi.mocked(useDetachVolume().detachVolume)).toHaveBeenLastCalledWith(
+        expect.objectContaining({ instanceId: 'i2' }),
+      );
     });
   });
 });

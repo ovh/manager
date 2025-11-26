@@ -1,47 +1,50 @@
-import {
-  Headers,
-  Links,
-  LinkType,
-  Notifications,
-  StepComponent,
-  useNotifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
-import { Trans, Translation, useTranslation } from 'react-i18next';
-import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  isApiCustomError,
-  isMaxQuotaReachedError,
-} from '@ovh-ux/manager-core-api';
+import { useContext } from 'react';
+
 import { useHref, useNavigate } from 'react-router-dom';
-import {
-  isDiscoveryProject,
-  PciDiscoveryBanner,
-  useParam,
-  useProject,
-} from '@ovh-ux/manager-pci-common';
+
+import { Trans, Translation, useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { isApiCustomError, isMaxQuotaReachedError } from '@ovh-ux/manager-core-api';
+import {
+  PciDiscoveryBanner,
+  isDiscoveryProject,
+  useParam,
+  useProject,
+} from '@ovh-ux/manager-pci-common';
+import {
+  Headers,
+  LinkType,
+  Links,
+  Notifications,
+  StepComponent,
+  useNotifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useContext } from 'react';
-import HidePreloader from '@/core/HidePreloader';
-import { VolumeTypeStep } from './components/VolumeTypeStep.component';
-import { CapacityStep } from './components/CapacityStep.component';
-import { VolumeNameStep } from './components/VolumeNameStep.component';
-import { ValidationStep } from './components/ValidationStep.component';
-import { LocationStep } from './components/LocationStep.component';
-import { useVolumeStepper } from './hooks/useVolumeStepper';
+
 import { useAddVolume } from '@/api/hooks/useVolume';
-import { ExtenBannerBeta } from '@/components/exten-banner-beta/ExtenBannerBeta';
-import { AvailabilityZoneStep } from '@/pages/new/components/AvailabilityZoneStep';
-import { DEPLOYMENT_MODES_HELP_URL } from '@/constants';
 import ExternalLink from '@/components/ExternalLink';
+import { ExtenBannerBeta } from '@/components/exten-banner-beta/ExtenBannerBeta';
+import { DEPLOYMENT_MODES_HELP_URL } from '@/constants';
+import HidePreloader from '@/core/HidePreloader';
 import { useTrackAction } from '@/hooks/useTrackAction';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
+import { AvailabilityZoneStep } from '@/pages/new/components/AvailabilityZoneStep';
+
+import { CapacityStep } from './components/CapacityStep.component';
+import { LocationStep } from './components/LocationStep.component';
+import { ValidationStep } from './components/ValidationStep.component';
+import { VolumeNameStep } from './components/VolumeNameStep.component';
+import { VolumeTypeStep } from './components/VolumeTypeStep.component';
+import { useVolumeStepper } from './hooks/useVolumeStepper';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -71,42 +74,37 @@ export default function NewPage(): JSX.Element {
     );
   });
 
-  const onTrackingBannerError = useTrackBanner(
-    { type: 'error' },
-    (err: unknown) => {
-      stepper.validation.step.unlock();
-      if (isApiCustomError(err)) {
-        if (isMaxQuotaReachedError(err)) {
-          addError(
-            <Trans
-              ns="add"
-              i18nKey="pci_projects_project_storages_blocks_add_error_quota_exceeded"
-              components={{
-                Link: (
-                  <ExternalLink href={`${projectUrl}/quota`} isTargetBlank />
-                ),
-              }}
-            />,
-            true,
-          );
-        } else {
-          addError(
-            <Trans
-              ns="add"
-              i18nKey="pci_projects_project_storages_blocks_add_error_post"
-              values={{
-                volume: stepper.form.volumeName,
-                message: err.response?.data.message || err.message || null,
-              }}
-            />,
-            true,
-          );
-        }
+  const onTrackingBannerError = useTrackBanner({ type: 'error' }, (err: unknown) => {
+    stepper.validation.step.unlock();
+    if (isApiCustomError(err)) {
+      if (isMaxQuotaReachedError(err)) {
+        addError(
+          <Trans
+            ns="add"
+            i18nKey="pci_projects_project_storages_blocks_add_error_quota_exceeded"
+            components={{
+              Link: <ExternalLink href={`${projectUrl}/quota`} isTargetBlank />,
+            }}
+          />,
+          true,
+        );
+      } else {
+        addError(
+          <Trans
+            ns="add"
+            i18nKey="pci_projects_project_storages_blocks_add_error_post"
+            values={{
+              volume: stepper.form.volumeName,
+              message: err.response?.data.message || err.message || null,
+            }}
+          />,
+          true,
+        );
       }
-      // scroll to top of page to display error message
-      window.scrollTo(0, 0);
-    },
-  );
+    }
+    // scroll to top of page to display error message
+    window.scrollTo(0, 0);
+  });
 
   const { addVolume } = useAddVolume({
     projectId,
@@ -115,8 +113,7 @@ export default function NewPage(): JSX.Element {
   });
 
   const deploymentModesUrl =
-    DEPLOYMENT_MODES_HELP_URL[ovhSubsidiary] ||
-    DEPLOYMENT_MODES_HELP_URL.DEFAULT;
+    DEPLOYMENT_MODES_HELP_URL[ovhSubsidiary] || DEPLOYMENT_MODES_HELP_URL.DEFAULT;
 
   const onTrackingEditAvailabilityZone = useTrackAction(
     {
@@ -214,9 +211,7 @@ export default function NewPage(): JSX.Element {
               </OsdsText>
               {stepper.form.region?.type === 'region-3-az' && (
                 <Links
-                  label={tAdd(
-                    'pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link',
-                  )}
+                  label={tAdd('pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link')}
                   href={deploymentModesUrl}
                   target={OdsHTMLAnchorElementTarget._blank}
                   className="ml-2"
@@ -239,9 +234,7 @@ export default function NewPage(): JSX.Element {
           <StepComponent
             order={stepper.getOrder(stepper.availabilityZone.step)}
             {...stepper.availabilityZone.step}
-            title={tAdd(
-              'pci_projects_project_storages_blocks_add_availability_zone',
-            )}
+            title={tAdd('pci_projects_project_storages_blocks_add_availability_zone')}
             edit={{
               action: onTrackingEditAvailabilityZone,
               label: tStepper('common_stepper_modify_this_step'),
@@ -253,9 +246,7 @@ export default function NewPage(): JSX.Element {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {tAdd(
-                  'pci_projects_project_storages_blocks_add_availability_zone_subtitle',
-                )}
+                {tAdd('pci_projects_project_storages_blocks_add_availability_zone_subtitle')}
               </OsdsText>
             }
           >
@@ -265,9 +256,7 @@ export default function NewPage(): JSX.Element {
                 region={stepper.form.region}
                 onSubmit={stepper.availabilityZone.submit}
               />
-            ) : (
-              undefined
-            )}
+            ) : undefined}
           </StepComponent>
         )}
         <StepComponent
@@ -295,9 +284,7 @@ export default function NewPage(): JSX.Element {
               step={stepper.capacity.step}
               onSubmit={stepper.capacity.submit}
             />
-          ) : (
-            undefined
-          )}
+          ) : undefined}
         </StepComponent>
         <StepComponent
           order={stepper.getOrder(stepper.volumeName.step)}
@@ -312,9 +299,7 @@ export default function NewPage(): JSX.Element {
             isDisabled: stepper.validation.step.isLocked,
           }}
         >
-          {stepper.form.region &&
-          stepper.form.volumeType &&
-          stepper.form.volumeCapacity ? (
+          {stepper.form.region && stepper.form.volumeType && stepper.form.volumeCapacity ? (
             <VolumeNameStep
               projectId={projectId}
               step={stepper.volumeName.step}
@@ -324,18 +309,14 @@ export default function NewPage(): JSX.Element {
               region={stepper.form.region.name}
               volumeCapacity={stepper.form.volumeCapacity}
             />
-          ) : (
-            undefined
-          )}
+          ) : undefined}
         </StepComponent>
         <StepComponent
           order={stepper.getOrder(stepper.validation.step)}
           {...stepper.validation.step}
           title={tAdd('pci_projects_project_storages_blocks_add_submit_title')}
         >
-          {stepper.form.region &&
-          stepper.form.volumeType &&
-          stepper.form.volumeCapacity ? (
+          {stepper.form.region && stepper.form.volumeType && stepper.form.volumeCapacity ? (
             <ValidationStep
               volumeCapacity={stepper.form.volumeCapacity}
               projectId={projectId}
@@ -363,9 +344,7 @@ export default function NewPage(): JSX.Element {
                 });
               }}
             />
-          ) : (
-            undefined
-          )}
+          ) : undefined}
         </StepComponent>
       </div>
     </>

@@ -1,26 +1,22 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  Card,
-  OnboardingLayout,
-  RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_LEVEL,
-  OdsBreadcrumbAttributeItem,
-} from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { Outlet, useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, OdsBreadcrumbAttributeItem } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { useParam, useProject } from '@ovh-ux/manager-pci-common';
-import HidePreloader from '@/core/HidePreloader';
-import { GUIDES } from './onboarding.constants';
+import { Card, OnboardingLayout, RedirectionGuard } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useAllVolumes } from '@/api/hooks/useVolume';
+import HidePreloader from '@/core/HidePreloader';
 import { TrackActionParams, useTrackAction } from '@/hooks/useTrackAction';
+
+import { GUIDES } from './onboarding.constants';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation();
@@ -36,11 +32,9 @@ export default function OnBoardingPage() {
   const newHref = useHref('../new');
 
   useEffect(() => {
-    navigation
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((data) => {
-        setUrlProject(data as string);
-      });
+    navigation.getURL('public-cloud', `#/pci/projects/${projectId}`, {}).then((data) => {
+      setUrlProject(data as string);
+    });
   }, [projectId, navigation]);
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
@@ -65,9 +59,7 @@ export default function OnBoardingPage() {
         ),
         category: tOnBoarding('onboarding_guide_title'),
       },
-      href:
-        GUIDES['create-attach-volume'][ovhSubsidiary] ||
-        GUIDES['create-attach-volume'].default,
+      href: GUIDES['create-attach-volume'][ovhSubsidiary] || GUIDES['create-attach-volume'].default,
     },
     {
       id: 'attach_pci_floating_ip_to_instance',
@@ -80,9 +72,7 @@ export default function OnBoardingPage() {
         ),
         category: tOnBoarding('onboarding_guide_title'),
       },
-      href:
-        GUIDES['configure-volume'][ovhSubsidiary] ||
-        GUIDES['configure-volume'].default,
+      href: GUIDES['configure-volume'][ovhSubsidiary] || GUIDES['configure-volume'].default,
     },
     {
       id: 'start_load_balancer_service',
@@ -96,9 +86,7 @@ export default function OnBoardingPage() {
         ),
         category: tOnBoarding('onboarding_guide_title'),
       },
-      href:
-        GUIDES['increase-volume-size'][ovhSubsidiary] ||
-        GUIDES['increase-volume-size'].default,
+      href: GUIDES['increase-volume-size'][ovhSubsidiary] || GUIDES['increase-volume-size'].default,
     },
   ];
 
@@ -109,13 +97,13 @@ export default function OnBoardingPage() {
     location: 'page',
   });
 
-  const onTrackingCardClick = useTrackAction<
-    (tileId: string) => TrackActionParams
-  >((tileId: string) => ({
-    buttonType: 'tile-tutorial',
-    actionName: 'go-to',
-    actionValues: [tileId],
-  }));
+  const onTrackingCardClick = useTrackAction<(tileId: string) => TrackActionParams>(
+    (tileId: string) => ({
+      buttonType: 'tile-tutorial',
+      actionName: 'go-to',
+      actionValues: [tileId],
+    }),
+  );
 
   return (
     <RedirectionGuard
@@ -137,9 +125,7 @@ export default function OnBoardingPage() {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 className="mt-8 block"
               >
-                {tOnBoarding(
-                  'pci_projects_project_storages_blocks_onboarding_content1',
-                )}
+                {tOnBoarding('pci_projects_project_storages_blocks_onboarding_content1')}
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -147,9 +133,7 @@ export default function OnBoardingPage() {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._500}
                 className="mt-6 block"
               >
-                {tOnBoarding(
-                  'pci_projects_project_storages_blocks_onboarding_content2',
-                )}
+                {tOnBoarding('pci_projects_project_storages_blocks_onboarding_content2')}
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -157,9 +141,7 @@ export default function OnBoardingPage() {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 className="mt-6 block"
               >
-                {tOnBoarding(
-                  'pci_projects_project_storages_blocks_onboarding_content3',
-                )}
+                {tOnBoarding('pci_projects_project_storages_blocks_onboarding_content3')}
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -167,9 +149,7 @@ export default function OnBoardingPage() {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 className="mt-6 block"
               >
-                {tOnBoarding(
-                  'pci_projects_project_storages_blocks_onboarding_content4',
-                )}
+                {tOnBoarding('pci_projects_project_storages_blocks_onboarding_content4')}
               </OsdsText>
             </>
           }
