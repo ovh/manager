@@ -1,17 +1,23 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React, { ComponentType } from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { navigate } from '@/utils/test.setup';
+import { createTestWrapper } from '@/utils/test.provider';
 
 import DetacheDomainModal from './DetacheDomain.modal';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (k: string) => k }),
-  Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-i18next')>();
+  return {
+    ...actual,
+    useTranslation: () => ({ t: (k: string) => k }),
+    Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
+  };
+});
 
-const queryClient = new QueryClient();
+const Wrappers = createTestWrapper();
 
 describe('DetacheDomainModal', () => {
   beforeEach(() => {
@@ -19,11 +25,7 @@ describe('DetacheDomainModal', () => {
   });
 
   it('should close modal on cancel', () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <DetacheDomainModal />
-      </QueryClientProvider>,
-    );
+    render(<DetacheDomainModal />, { wrapper: Wrappers as ComponentType });
 
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 

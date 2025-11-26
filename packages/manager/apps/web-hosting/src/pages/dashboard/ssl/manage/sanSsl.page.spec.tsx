@@ -1,5 +1,9 @@
+import React, { ComponentType } from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
+import { createTestWrapper } from '@/utils/test.provider';
 
 import SanModal from './sanSsl.page';
 
@@ -13,6 +17,8 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
+const Wrappers = createTestWrapper();
+
 describe('SanModal', () => {
   it('call deleteDomainCertificate and close modal', async () => {
     Object.assign(window.navigator, {
@@ -20,7 +26,7 @@ describe('SanModal', () => {
         writeText: vi.fn().mockImplementation(() => Promise.resolve()),
       },
     });
-    render(<SanModal />);
+    render(<SanModal />, { wrapper: Wrappers as ComponentType });
 
     fireEvent.click(screen.getByTestId('secondary-button'));
     const spy = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue();
@@ -30,7 +36,7 @@ describe('SanModal', () => {
   });
 
   it('cancel button close modal', () => {
-    render(<SanModal />);
+    render(<SanModal />, { wrapper: Wrappers as ComponentType });
 
     fireEvent.click(screen.getByTestId('primary-button'));
     expect(mockNavigate).toHaveBeenCalled();
