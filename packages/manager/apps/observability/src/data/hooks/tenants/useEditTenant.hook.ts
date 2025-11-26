@@ -1,27 +1,28 @@
 import { UseMutationOptions, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { deleteTenant } from '@/__mocks__/tenants/tenant.adapter';
-import type { GetTenantPayload } from '@/data/api/tenants.props';
-import { getTenantQueryKey, getTenantsQueryKey } from '@/data/hooks/tenants/useTenants.hook';
+import { editTenant } from '@/__mocks__/tenants/tenant.adapter';
+import type { EditTenantPayload } from '@/data/api/tenants.props';
 import { Tenant } from '@/types/tenants.type';
 
-export const useDeleteTenant = (
-  mutationOptions?: Omit<UseMutationOptions<Tenant, Error, GetTenantPayload>, 'mutationFn'>,
+import { getTenantQueryKey, getTenantsQueryKey } from './useTenants.hook';
+
+export const useEditTenant = (
+  mutationOptions?: Omit<UseMutationOptions<Tenant, Error, EditTenantPayload>, 'mutationFn'>,
 ) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: GetTenantPayload) => deleteTenant(payload),
-    onSuccess: (deletedTenant, variables, context) => {
+    mutationFn: (payload: EditTenantPayload) => editTenant(payload),
+    onSuccess: (updatedTenant, variables, context) => {
       void queryClient.invalidateQueries({
         queryKey: getTenantsQueryKey(variables.resourceName),
       });
 
       queryClient.setQueryData<Tenant>(
         getTenantQueryKey(variables.resourceName, variables.tenantId),
-        deletedTenant,
+        updatedTenant,
       );
-      mutationOptions?.onSuccess?.(deletedTenant, variables, context);
+      mutationOptions?.onSuccess?.(updatedTenant, variables, context);
     },
     onError: (error, variables, context) => {
       mutationOptions?.onError?.(error, variables, context);
