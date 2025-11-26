@@ -1,6 +1,9 @@
 import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
+import userEvents from '@testing-library/user-event';
 import { vi } from 'vitest';
+
+import { v6 } from '@ovh-ux/manager-core-api';
 
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
@@ -138,15 +141,19 @@ describe('ClusterAccessAndSecurity', () => {
     expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).not.toBeDisabled();
   });
 
-  it('enables spinner for kube config button when getting data and button disabled', () => {
-    vi.spyOn(useKubernetesModule, 'useKubeConfig').mockReturnValue({
-      isPending: true,
-    } as never);
+  it('enables spinner for kube config button when getting data and button disabled', async () => {
+    vi.mocked(v6.post).mockReturnValue(new Promise(() => {}));
+
     const { getByTestId } = render(
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
       { wrapper },
     );
-    expect(getByTestId('clusterAccessAndSecurity-spinnerKubeConfig')).toBeInTheDocument();
+
+    await userEvents.click(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig'));
+
+    getByTestId('clusterAccessAndSecurity-spinnerDownloadKubeConfig').click();
+
+    expect(getByTestId('clusterAccessAndSecurity-spinnerDownloadKubeConfig')).toBeInTheDocument();
     expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).toBeDisabled();
   });
 
