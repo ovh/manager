@@ -9,7 +9,6 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
@@ -21,11 +20,10 @@ import {
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSkeleton,
-  OsdsSpinner,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { Button, Icon } from '@ovhcloud/ods-react';
+import { Button, Icon, Spinner } from '@ovhcloud/ods-react';
 
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useParam } from '@ovh-ux/manager-pci-common';
@@ -68,6 +66,9 @@ export default function ClusterAccessAndSecurity({
   const { kubeId, projectId } = useParam('projectId', 'kubeId');
   const { addError } = useNotifications();
   const [isOptional, setIsOptional] = useState(true);
+  const [ongoingKubeConfigAction, setOngoingKubeConfigAction] = useState<
+    'copy' | 'download' | null
+  >(null);
 
   const hrefRestrictions = useHref('../restrictions');
   const hrefUAddOIDCProvider = useHref('./add-oidc-provider');
@@ -112,6 +113,7 @@ export default function ClusterAccessAndSecurity({
   const hasOptionalValues = validOptionalKeys.length > 0;
 
   const downloadConfigFile = () => {
+    setOngoingKubeConfigAction('download');
     postKubeConfig(undefined, {
       onSuccess: (configFile) => {
         const clusterShortId = getClusterUrlFragments(kubeDetail.url)?.shortId;
@@ -124,13 +126,19 @@ export default function ClusterAccessAndSecurity({
           fileContent: configFile.content,
           fileName,
         });
+
+        setOngoingKubeConfigAction(null);
       },
     });
   };
 
   const copyConfigFile = () => {
+    setOngoingKubeConfigAction('copy');
     postKubeConfig(undefined, {
-      onSuccess: (configFile) => navigator.clipboard.writeText(configFile.content),
+      onSuccess: async (configFile) => {
+        await navigator.clipboard.writeText(configFile.content);
+        setOngoingKubeConfigAction(null);
+      },
     });
   };
 
@@ -142,8 +150,8 @@ export default function ClusterAccessAndSecurity({
   };
 
   return (
-    <OsdsTile className="flex-col w-full shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
-      <div className="flex flex-col w-full">
+    <OsdsTile className="w-full flex-col shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
+      <div className="flex w-full flex-col">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.heading}
@@ -222,33 +230,36 @@ export default function ClusterAccessAndSecurity({
             />
           </OsdsPopoverContent>
         </OsdsPopover>
-        <div className="flex flex-col gap-3 items-start">
-          <Button
-            size="sm"
-            variant="ghost"
-            data-testid="ClusterAccessAndSecurity-CopyKubeConfig"
-            disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
-            onClick={copyConfigFile}
-          >
-            <Icon name="file-copy" /> {t('kube_service_copy_kubeconfig')}
-          </Button>
-          <Button
-            size="sm"
-            variant="ghost"
-            data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
-            disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
-            onClick={downloadConfigFile}
-          >
-            <Icon name="download" /> {t('kube_service_download_kubeconfig')}
-          </Button>
-          {/* Todo : Retirer/déplacer le spinner selon le retour de Samuel */}
-          {isKubeConfigPending && (
-            <OsdsSpinner
-              inline
-              size={ODS_SPINNER_SIZE.sm}
-              data-testid="clusterAccessAndSecurity-spinnerKubeConfig"
-            />
-          )}
+        <div className="flex flex-col items-start gap-3">
+          <div className="flex items-center">
+            <Button
+              size="sm"
+              variant="ghost"
+              data-testid="ClusterAccessAndSecurity-CopyKubeConfig"
+              disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
+              onClick={copyConfigFile}
+            >
+              <Icon name="file-copy" /> {t('kube_service_copy_kubeconfig')}
+            </Button>
+            {isKubeConfigPending && ongoingKubeConfigAction === 'copy' && (
+              <Spinner size="sm" data-testid="clusterAccessAndSecurity-spinnerCopyKubeConfig" />
+            )}
+          </div>
+
+          <div className="flex items-center">
+            <Button
+              size="sm"
+              variant="ghost"
+              data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
+              disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
+              onClick={downloadConfigFile}
+            >
+              <Icon name="download" /> {t('kube_service_download_kubeconfig')}
+            </Button>
+            {isKubeConfigPending && ongoingKubeConfigAction === 'download' && (
+              <Spinner size="sm" data-testid="clusterAccessAndSecurity-spinnerDownloadKubeConfig" />
+            )}
+          </div>
         </div>
 
         <OsdsDivider separator />
@@ -264,7 +275,7 @@ export default function ClusterAccessAndSecurity({
                 {t('kube_service_access_security_oidc_title')}
               </OsdsText>
 
-              <div className="min-w-10 ml-4">
+              <div className="ml-4 min-w-10">
                 <ActionMenu
                   icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
                   aria-label={t('kube_service_access_security_oidc_menu_action_sr_only')}
@@ -337,7 +348,7 @@ export default function ClusterAccessAndSecurity({
                                   key !== 'clientId',
                               )
                               .map(([key, value]) => (
-                                <div key={key} className="mb-4 mt-4 flex flex-col max-w-[400px]">
+                                <div key={key} className="my-4 flex max-w-[400px] flex-col">
                                   <OsdsText
                                     className="font-semibold"
                                     size={ODS_TEXT_SIZE._200}
