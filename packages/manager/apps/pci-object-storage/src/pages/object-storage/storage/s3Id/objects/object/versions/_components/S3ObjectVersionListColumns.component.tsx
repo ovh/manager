@@ -16,6 +16,7 @@ import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
+import { isDeepArchive } from '@/lib/s3ObjectHelper';
 
 interface ObjectVersionListColumnsProps {
   onDownloadClicked: (object: StorageObject) => void;
@@ -124,7 +125,7 @@ export const getColumns = ({
             >
               <DropdownMenuItem
                 variant="primary"
-                disabled={isPending}
+                disabled={isPending || isDeepArchive(object)}
                 onClick={() => onDownloadClicked(object)}
               >
                 {t('tableActionDownload')}

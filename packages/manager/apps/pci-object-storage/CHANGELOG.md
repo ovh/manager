@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.21.2...@ovh-ux/manager-pci-object-storage-app@0.22.0) (2025-11-26)
+
+
+### Features
+
+* **object-storage:** improve dashboard object ([fb6d3fe](https://github.com/ovh/manager/commit/fb6d3fe1cb771d4537349ebde1e9ceba4cd3e421)), closes [#DATATR-2681](https://github.com/ovh/manager/issues/DATATR-2681)
+
+
+
+
+
 ## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.21.1...@ovh-ux/manager-pci-object-storage-app@0.21.2) (2025-11-25)
 
 

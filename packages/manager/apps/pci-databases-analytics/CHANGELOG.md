@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.32.7...@ovh-ux/manager-pci-databases-analytics-app@1.33.0) (2025-11-26)
+
+
+### Features
+
+* **database:** add refresh button on network private ([31ffcf7](https://github.com/ovh/manager/commit/31ffcf7302359d6b41bac3a8dec5db6939860550)), closes [#DATATR-2550](https://github.com/ovh/manager/issues/DATATR-2550)
+
+
+
+
+
 ## [1.32.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.32.6...@ovh-ux/manager-pci-databases-analytics-app@1.32.7) (2025-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

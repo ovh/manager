@@ -1,15 +1,22 @@
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { Button, Label, Skeleton, Switch } from '@datatr-ux/uxlib';
-import { useState } from 'react';
+import {
+  Button,
+  Label,
+  Skeleton,
+  Switch,
+  Alert,
+  AlertDescription,
+} from '@datatr-ux/uxlib';
+import { useState, useMemo, useDeferredValue } from 'react';
 import { Plus } from 'lucide-react';
 import { useS3Data } from '../S3.context';
 import { useGetS3Objects } from '@/data/hooks/s3-storage/useGetS3Objects.hook';
 import Guides from '@/components/guides/Guides.component';
-import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import S3ObjectBrowser from './_components/S3ObjectBrowser.component';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import SearchBar from './_components/SearchBar.component';
 
 const Objects = () => {
   const { projectId } = useParams();
@@ -18,6 +25,8 @@ const Objects = () => {
   const isLocaleZone = useIsLocaleZone(s3, regions);
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const [withVersion, setWithVersion] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const objectQuery = useGetS3Objects({
     projectId,
     region: s3.region,
@@ -26,9 +35,28 @@ const Objects = () => {
   });
   const navigate = useNavigate();
 
+  const objects = objectQuery.data || [];
+
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+
+  const filteredObjects = useMemo(() => {
+    if (!deferredSearchQuery) return objects;
+    const query = deferredSearchQuery.toLowerCase();
+    return objects.filter((obj) => obj.key?.toLowerCase().includes(query));
+  }, [objects, deferredSearchQuery]);
+
   if (objectQuery.isLoading) return <Objects.Skeleton />;
 
-  const objects = objectQuery.data || [];
+  if (objectQuery.isError) {
+    return (
+      <Alert variant="critical">
+        <AlertDescription>
+          {t('errorLoadingObjects') ||
+            'An error occurred while loading objects'}
+        </AlertDescription>
+      </Alert>
+    );
+  }
 
   return (
     <>
@@ -39,7 +67,6 @@ const Objects = () => {
         <h2>{t('objectTitle')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
           <Guides selectors={['allGuides', 'gettingStarted']} />
-          <RoadmapChangelog />
         </div>
       </div>
 
@@ -56,6 +83,13 @@ const Objects = () => {
               onCheckedChange={setWithVersion}
             />
             <Label htmlFor="versions">{t('seeVersionsSwitchLabel')}</Label>
+            <SearchBar
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              deferredSearchQuery={deferredSearchQuery}
+              filteredObjects={filteredObjects}
+              placeholder={t('searchPlaceholder') || 'Search...'}
+            />
           </div>
         )}
       </div>
