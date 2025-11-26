@@ -1,8 +1,9 @@
 import { ManagerTile, useFormatDate } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useCreditDetails } from '@/data/hooks/useCredit';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+import { usePciUrl } from '@ovh-ux/manager-pci-common';
 
 export default function BillingTile() {
   const { t } = useTranslation('home');
@@ -11,6 +12,9 @@ export default function BillingTile() {
   const formatDate = useFormatDate();
 
   const { data: vouchersCreditDetails = [] } = useCreditDetails(projectId);
+
+  const hrefProject = usePciUrl();
+  const creditAndVouchersUrl = `${hrefProject}/vouchers`;
 
   if (vouchersCreditDetails?.length === 0) {
     return null;
@@ -21,7 +25,7 @@ export default function BillingTile() {
       <ManagerTile.Title>{t('pci_projects_home_billing')}</ManagerTile.Title>
       <ManagerTile.Divider />
 
-      {vouchersCreditDetails.map((item, itemIdx: number) => (
+      {vouchersCreditDetails.slice(0, 3).map((item, itemIdx: number) => (
         <ManagerTile.Item key={itemIdx}>
           <ManagerTile.Item.Label>
             {t('pci_projects_home_billing_voucher_credit', {
@@ -51,6 +55,12 @@ export default function BillingTile() {
           <ManagerTile.Divider />
         </ManagerTile.Item>
       ))}
+      <OdsLink
+        icon="external-link"
+        target="_blank"
+        href={creditAndVouchersUrl}
+        label={t('pci_projects_home_credits_vouchers')}
+      />
     </ManagerTile>
   );
 }
