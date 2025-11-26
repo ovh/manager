@@ -603,7 +603,7 @@ const result = await fetchIcebergV6({
 
 ### Essential Rules for AI Code Generation
 
-1. **Always use Iceberg for lists**: Use `fetchIcebergV6` or `fetchIcebergV2` for paginated data
+1. **Use Iceberg for lists when supported**: Use `fetchIcebergV6` or `fetchIcebergV2` for paginated data when the endpoint supports it
 2. **Handle errors properly**: Always wrap API calls in try-catch with proper error types
 3. **Use correct filter types**: Always specify `type` in Filter objects
 4. **Import specific functions**: Import only what you need from the package
