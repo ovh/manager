@@ -44,10 +44,10 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
     return currentPlan?.regions.find((r) => r.name === instanceId.region);
   }, [snapshotAvailabilities, instanceId]);
 
-  const regionPriceCalculator = useCallback(getRegionPricing(snapshotAvailabilities, catalog), [
-    snapshotAvailabilities,
-    catalog,
-  ]);
+  const regionPriceCalculator = useCallback(
+    (region: string) => getRegionPricing(snapshotAvailabilities, catalog)(region),
+    [snapshotAvailabilities, catalog],
+  );
 
   return {
     isPending: !snapshotAvailabilities || !catalog,
