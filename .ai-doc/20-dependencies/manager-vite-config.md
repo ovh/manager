@@ -290,18 +290,6 @@ const buildConfig = {
 };
 ```
 
-#### Environment Variables
-
-```javascript
-// Define environment variables
-const defineConfig = {
-  define: {
-    __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
-    __BUILD_DATE__: `'${new Date().toISOString()}'`,
-    __ENVIRONMENT__: `'${process.env.NODE_ENV}'`
-  }
-};
-```
 
 ### CSS Configuration
 
@@ -323,21 +311,6 @@ const cssConfig = {
 };
 ```
 
-#### PostCSS Integration
-
-```javascript
-// PostCSS configuration for Tailwind
-const postcssConfig = {
-  css: {
-    postcss: {
-      plugins: [
-        require('tailwindcss'),
-        require('autoprefixer')
-      ]
-    }
-  }
-};
-```
 
 ### Advanced Configuration
 
@@ -410,9 +383,9 @@ export default getBaseConfig({
   // Container-specific configuration
   base: './',
   server: {
-    port: 9001,
+    port: 9000,
     hmr: {
-      port: 9001
+      port: 9000
     }
   }
 });
@@ -426,9 +399,9 @@ export default getBaseConfig({
   // µApp-specific configuration
   base: '/app/',
   server: {
-    port: 9000,
+    port: 9001,
     hmr: {
-      port: 9000
+      port: 9001
     }
   }
 });
