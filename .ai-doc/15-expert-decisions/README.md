@@ -47,7 +47,7 @@ This directory contains decision matrices that guide AI to make correct technica
 | Need | Use |
 |------|-----|
 | List with columns | Datagrid from MUK |
-| Key-value display | Description from MUK |
+| Key-value display | Tile from MUK |
 | Simple action | Modal |
 | Complex form | Drawer |
 | Section navigation | OdsTabs |
