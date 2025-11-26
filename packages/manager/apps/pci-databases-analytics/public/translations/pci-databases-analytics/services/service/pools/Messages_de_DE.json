@@ -52,5 +52,6 @@
   "infoConnectionPoolUriLabel": "URI-Dienst",
   "infoConnectionPoolUriToast": "Der URI wurde in die Zwischenablage kopiert.",
   "infoConnectionPoolModeLabel": "Modus",
-  "infoConnectionPoolSizeLabel": "Größe"
+  "infoConnectionPoolSizeLabel": "Größe",
+  "infoConnectionPoolButtonClose": "Schliessen"
 }
