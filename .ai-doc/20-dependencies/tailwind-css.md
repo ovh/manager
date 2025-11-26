@@ -28,7 +28,7 @@ Tailwind CSS is designed for:
 
 This package is essential for:
 - **React µApps** in the Manager ecosystem
-- **Consistent styling** with MUK design tokens
+- **Consistent styling** with ODS design tokens
 - **Responsive layouts** with standardized breakpoints
 - **Component development** with utility classes
 
