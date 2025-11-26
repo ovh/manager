@@ -233,25 +233,23 @@ const OrderFunnel = ({
                   >
                     <FormField name="objectLock" form={form}>
                       {(field) => (
-                        <FormField name="objectLockAcknowledgement" form={form}>
-                          {(acknowledgementField) => (
-                            <ObjectLockStep
-                              versioning={versioning}
-                              {...field}
-                              acknowledgement={acknowledgementField.value}
-                              onAcknowledgementChange={
-                                acknowledgementField.onChange
-                              }
-                              acknowledgementError={
-                                (form.formState.errors as {
-                                  objectLockAcknowledgement?: {
-                                    message?: string;
-                                  };
-                                })?.objectLockAcknowledgement?.message
-                              }
-                            />
+                        <ObjectLockStep
+                          versioning={versioning}
+                          {...field}
+                          acknowledgement={form.watch(
+                            'objectLockAcknowledgement',
                           )}
-                        </FormField>
+                          onAcknowledgementChange={(checked) =>
+                            form.setValue('objectLockAcknowledgement', checked)
+                          }
+                          acknowledgementError={
+                            (form.formState.errors as {
+                              objectLockAcknowledgement?: {
+                                message?: string;
+                              };
+                            })?.objectLockAcknowledgement?.message
+                          }
+                        />
                       )}
                     </FormField>
                   </OrderSection>

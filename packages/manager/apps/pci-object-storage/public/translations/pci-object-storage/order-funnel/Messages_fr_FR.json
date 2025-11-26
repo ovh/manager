@@ -93,5 +93,7 @@
   "objectLockCannotDisableAlert": " Une fois l'Object Lock activé, vous ne pourrez plus le désactiver",
   "summaryObjectLockSection": "Object Lock",
   "summaryObjectLockEnabled": "Object Lock activé",
-  "summaryObjectLockDisabled": "Object Lock désactivé"
+  "summaryObjectLockDisabled": "Object Lock désactivé",
+  "objectLockAcknowledgementLabel": "Je comprends le fonctionnement et les implications de l'activation de la fonctionnalité d'Object Lock. <0>En savoir plus</0>",
+  "objectLockAcknowledgementRequired": "Vous devez reconnaître le fonctionnement de l'Object Lock avant de continuer"
 }
