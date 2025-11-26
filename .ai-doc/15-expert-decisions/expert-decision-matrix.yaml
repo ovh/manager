@@ -1,6 +1,9 @@
 # Expert Decision Matrix
 # @ai-purpose: Guide AI to make correct technical decisions like an expert developer
 # @ai-usage: Consult BEFORE implementing any feature to choose the right approach
+#
+# Note: When using ODS components in examples, consider the ODS version used in the µ-app
+# and verify component API compatibility. Component props and APIs may vary between versions.
 
 version: "1.0"
 last_updated: "2025-01-27"
