@@ -59,6 +59,7 @@
   "domain_table_state_activating": "En cours d'activation",
   "domain_table_state_enabled": "Actif",
   "domain_table_state_error": "En erreur",
+  "domain_table_state_updating": "Mise à jour en cours",
   "domain_dns_table_type_external": "Personnalisé",
   "domain_dns_table_type_anycast": "Anycast",
   "domain_dns_table_type_standard": "Standard",
@@ -221,6 +222,7 @@
   "domain_tab_hosts_information_banner_1": "Cette section avancée ne vous concerne que si vous souhaitez utiliser ce nom de domaine comme serveur de noms (NS) autoritaire pour un autre nom de domaine.",
   "domain_tab_hosts_information_banner_2": "Si vous définissez un DNS glue, nous créons automatiquement l’hôte nécessaire : vous n’avez rien à faire.",
   "domain_tab_hosts_drawer_add_title": "Ajout d'un nouvel hôte",
+  "domain_tab_hosts_drawer_modify_title": "Modifier l'hôte",
   "domain_tab_hosts_drawer_add_form_information": "Veuillez renseigner les champs suivants :",
   "domain_tab_hosts_drawer_add_form_hostName_label": "Nom de l'hôte",
   "domain_tab_hosts_drawer_add_form_ip_label": "IP(s) de destination",
@@ -238,5 +240,6 @@
   "domain_tab_hosts_drawer_add_invalid_ips": "Une ou plusieurs adresses IP sont invalides. Veuillez saisir des adresses IPv4 ou IPv6 valides.",
   "domain_tab_hosts_drawer_add_duplicate_ips": "Il y a une ou plusieurs IP dupliqué(es) dans la saisie",
   "domain_tab_hosts_drawer_add_success_message": "{{ host }} a été ajouté avec succès",
+  "domain_tab_hosts_drawer_modify_success_message": "{{ host }} est en cours de modification",
   "domain_tab_hosts_drawer_add_error_message": "Une erreur a été détectée lors de l'ajout de l'hôte : {{ error }}"
 }

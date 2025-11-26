@@ -81,7 +81,7 @@ describe('HostForm', () => {
     expect(textboxes).toHaveLength(2);
   });
 
-  it('displays hostname error when validation fails', async () => {
+  it('displays hostname error when validation fails in Add mode', async () => {
     getHostnameErrorMessageMock.mockReturnValue(
       'domain_tab_hosts_drawer_add_invalid_host_format',
     );
@@ -106,6 +106,21 @@ describe('HostForm', () => {
         'domain_tab_hosts_drawer_add_invalid_host_format',
       ),
     ).toBeInTheDocument();
+  });
+
+  it('does not validate hostname in Modify mode and input is readonly', async () => {
+    renderHostForm({ drawerAction: DrawerActionEnum.Modify });
+
+    const [hostInput] = screen.getAllByRole('textbox');
+
+    expect(hostInput).toHaveAttribute('readonly');
+
+    fireEvent.change(hostInput, { target: { value: 'bad-host' } });
+    fireEvent.blur(hostInput);
+
+    await waitFor(() => {
+      expect(getHostnameErrorMessageMock).not.toHaveBeenCalled();
+    });
   });
 
   it('displays ips error when validation fails', async () => {
@@ -151,5 +166,21 @@ describe('HostForm', () => {
     expect(
       screen.getByText('domain_tab_hosts_drawer_add_form_warning_list_ipv6'),
     ).toBeInTheDocument();
+  });
+
+  it('uses different suffix background between Add and Modify modes', () => {
+    const { unmount } = renderHostForm({ drawerAction: DrawerActionEnum.Add });
+
+    const suffixAdd = screen.getByText('.testdomain-puweb.com');
+    expect(suffixAdd.className).toContain('bg-white');
+
+    unmount();
+
+    renderHostForm({ drawerAction: DrawerActionEnum.Modify });
+
+    const suffixModify = screen.getByText('.testdomain-puweb.com');
+    expect(suffixModify.className).toContain(
+      'bg-[var(--ods-color-neutral-50)]',
+    );
   });
 });
