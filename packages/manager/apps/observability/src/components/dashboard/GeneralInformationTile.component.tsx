@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
 import { Link, Skeleton, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
@@ -5,8 +7,10 @@ import { Link, Skeleton, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 import { Clipboard, Tile, useFormatDate } from '@ovh-ux/muk';
 
 import { GeneralInformationTileProps } from '@/components/dashboard/GeneralInformationTile.props';
+import { getEditTenantUrl } from '@/routes/Routes.utils';
 
 export const GeneralInformationTile = ({
+  tenantId,
   title,
   description,
   iam,
@@ -17,10 +21,12 @@ export const GeneralInformationTile = ({
 }: GeneralInformationTileProps) => {
   const { t } = useTranslation('tenants');
 
+  const navigate = useNavigate();
+
   const formatDate = useFormatDate();
 
   const onClickEditTenantLink = () => {
-    alert('Open Drawer edit tenant');
+    navigate(getEditTenantUrl(tenantId));
   };
 
   return (
