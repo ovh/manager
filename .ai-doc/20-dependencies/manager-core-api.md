@@ -679,7 +679,7 @@ const categories = {
 ```typescript
 import { applyFilters } from '@ovh-ux/manager-core-api';
 
-// Appliquer des filtres sur des données locales
+// Apply filters on local data
 const filteredItems = applyFilters(items, [
   {
     key: 'name',
@@ -695,7 +695,7 @@ const filteredItems = applyFilters(items, [
 ```typescript
 import { transformTagsFiltersToQuery } from '@ovh-ux/manager-core-api';
 
-// Transformer les filtres de tags en query string
+// Transform tag filters to query string
 const tagsQuery = transformTagsFiltersToQuery([
   {
     type: FilterTypeCategories.Tags,

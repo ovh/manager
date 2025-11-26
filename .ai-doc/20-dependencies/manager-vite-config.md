@@ -593,7 +593,7 @@ export default {
 - **Development features** provide efficient development workflow with hot reload and proxy// ✅ Bon : Page listing comme home
 <Route index Component={ListingPage} />
 
-// ❌ Éviter : SmartRedirect complexe
+// ❌ Avoid: Complex SmartRedirect
 <Route index element={<SmartRedirectPage />} />
 - **Production optimization** ensures fast and efficient production builds
 - **Environment handling** enables flexible deployment across different environments

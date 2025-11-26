@@ -6,7 +6,7 @@ tags: [muk, manager, ui-kit, components, ovhcloud, react, ods]
 ai: true
 ---
 
-> **📝 Note:** Cette documentation a été mise à jour le 2025-01-27 avec tous les composants disponibles dans le Storybook MUK.
+> **📝 Note:** This documentation was updated on 2025-01-27 with all components available in MUK Storybook.
 
 # Manager UI Kit (MUK)
 
