@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo, useDeferredValue } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Command,
@@ -13,29 +14,33 @@ import {
   PopoverContent,
 } from '@datatr-ux/uxlib';
 import { Search, Folder } from 'lucide-react';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 
-interface SearchBarProps {
-  searchQuery: string;
-  onSearchChange: (value: string) => void;
-  deferredSearchQuery: string;
-  filteredObjects: StorageObject[];
-  placeholder?: string;
+interface NormalizedObject {
+  key: string;
+  versionId?: string;
 }
 
-const SearchBar = ({
-  searchQuery,
-  onSearchChange,
-  deferredSearchQuery,
-  filteredObjects,
-  placeholder = 'Search...',
-}: SearchBarProps) => {
-  const [searchOpen, setSearchOpen] = useState(false);
+interface SearchBarProps {
+  objects: NormalizedObject[];
+}
+
+const SearchBar = ({ objects }: SearchBarProps) => {
+  const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+
+  const filteredObjects = useMemo(() => {
+    if (!deferredSearchQuery) return objects;
+    const query = deferredSearchQuery.toLowerCase();
+    return objects.filter((obj) => obj.key?.toLowerCase().includes(query));
+  }, [objects, deferredSearchQuery]);
 
   const handleSearchChange = (value: string) => {
-    onSearchChange(value);
+    setSearchQuery(value);
     setSearchOpen(value.length > 0);
   };
 
@@ -44,14 +49,14 @@ const SearchBar = ({
 
   return (
     <Popover open={showResults} onOpenChange={setSearchOpen}>
-      <Command className="rounded-lg border-none shadow-none">
-        <div className="flex pl-4">
+      <Command className="rounded-lg border-none shadow-none w-fit">
+        <div className="flex px-4">
           <PopoverTrigger asChild className="cursor-pointer">
             <div className="flex items-stretch border rounded-md overflow-hidden [&>div]:border-none [&>div>svg]:hidden">
               <CommandInput
                 value={searchQuery}
                 onValueChange={handleSearchChange}
-                placeholder={placeholder}
+                placeholder={t('searchPlaceholder') || 'Search...'}
               />
               <Button className="rounded-l-none rounded-r-[5px] h-auto">
                 <Search />

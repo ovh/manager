@@ -8,6 +8,7 @@ import {
   useTranslatedMicroRegions,
 } from '@/hooks/useTranslatedMicroRegions';
 import { octetConverter } from '@/lib/bytesHelper';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 
 export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
   const { translateMacroRegion } = useTranslatedMicroRegions();
@@ -37,6 +38,7 @@ export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
           <Badge variant="outline">{octetConverter(swift.storedBytes)}</Badge>
         </div>
       </div>
+      <RoadmapChangelog />
     </div>
   );
 };
