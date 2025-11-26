@@ -24,8 +24,14 @@ const CommunicationsPage = lazy(() =>
 const CommunicationsDetailPage = lazy(() =>
   import('@/pages/communications/detail/CommunicationsDetail.page'),
 );
-const SettingsPage = lazy(() => import('@/pages/settings'));
-
+const RoutingListingPage = lazy(() => import('@/pages/settings/Settings.page'));
+const CreateRoutingPage = lazy(() =>
+  import('@/pages/settings/create/Create.page'),
+);
+const EditRoutingPage = lazy(() => import('@/pages/settings/edit/Edit.page'));
+const DeleteRoutingPage = lazy(() =>
+  import('@/pages/settings/delete/Delete.page'),
+);
 export default (
   <Route
     path={urls.root}
@@ -40,7 +46,7 @@ export default (
   >
     <Route Component={DashboardLayout}>
       <Route
-        path={urls.CommunicationsTab}
+        path={urls.communication.listing}
         Component={CommunicationsPage}
         handle={{
           tracking: {
@@ -51,7 +57,7 @@ export default (
         }}
       />
       <Route
-        path={urls.CommunicationsDetail}
+        path={urls.communication.detail}
         Component={CommunicationsDetailPage}
         handle={{
           tracking: {
@@ -62,7 +68,7 @@ export default (
         }}
       />
       <Route
-        path={urls.ContactsTab}
+        path={urls.contact.listing}
         Component={ContactsPage}
         handle={{
           tracking: {
@@ -73,53 +79,91 @@ export default (
         }}
       >
         <Route
-          path={urls.contactsAdd}
+          path={urls.contact.create}
           Component={CreateContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::add',
+              pageName: 'add_contact',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
         <Route
-          path={urls.contactsEdit}
+          path={urls.contact.edit}
           Component={EditContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::edit',
+              pageName: 'rename_contact',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
         <Route
-          path={urls.contactsValidate}
+          path={urls.contact.validate}
           Component={ValidateContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::validate',
+              pageName: 'enter_validation_code',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
         <Route
-          path={urls.contactsDelete}
+          path={urls.contact.delete}
           Component={DeleteContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::delete',
+              pageName: 'delete_contact',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
       </Route>
       <Route
-        path={urls.SettingsTab}
-        Component={SettingsPage}
+        path={urls.routing.listing}
+        Component={RoutingListingPage}
         handle={{
           tracking: {
-            pageName: 'preference-center',
-            pageType: PageType.dashboard,
+            pageName: 'rules-parameter',
+            pageType: PageType.listing,
+            subApp: TrackingSubApps.Settings,
+          },
+        }}
+      >
+        <Route
+          path={urls.routing.delete}
+          Component={DeleteRoutingPage}
+          handle={{
+            tracking: {
+              pageName: 'delete_rule',
+              pageType: PageType.popup,
+              subApp: TrackingSubApps.Settings,
+            },
+          }}
+        />
+      </Route>
+      <Route
+        path={urls.routing.create}
+        Component={CreateRoutingPage}
+        handle={{
+          tracking: {
+            pageName: 'create_rule',
+            pageType: PageType.funnel,
+            subApp: TrackingSubApps.Settings,
+          },
+        }}
+      />
+      <Route
+        path={urls.routing.edit}
+        Component={EditRoutingPage}
+        handle={{
+          tracking: {
+            pageName: 'modify_rule',
+            pageType: PageType.popup,
             subApp: TrackingSubApps.Settings,
           },
         }}

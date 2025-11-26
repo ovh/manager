@@ -50,7 +50,7 @@ export default function CommunicationsDetailPage() {
 
   return (
     <RedirectionGuard
-      route={urls.CommunicationsTab}
+      route={urls.communication.listing}
       isLoading={isLoading}
       condition={!isAuthorized || notification === undefined}
     >
@@ -74,7 +74,7 @@ export default function CommunicationsDetailPage() {
               />
             </OdsText>
             <div className="flex flex-row justify-start">
-              <Link to={urls.CommunicationsTab}>
+              <Link to={urls.communication.listing}>
                 <OdsButton
                   variant="ghost"
                   icon="arrow-left"
