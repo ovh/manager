@@ -519,7 +519,7 @@ const StatusFormatter = ReactFormatter(
 7. **Test locale conversion**: Verify locale mapping works correctly
 8. **Optimize performance**: Avoid unnecessary re-renders in formatters
 
-### Locale Conversion Checklist
+### Locale Conversion Checklist for Dates
 
 - [ ] Use getDateFnsLocale for OVH locale conversion
 - [ ] Map date-fns locales correctly
