@@ -117,23 +117,53 @@ import { BaseLayout } from '@ovh-ux/muk';
 Complete onboarding page with image, title, description, action buttons.
 
 ```typescript
-import { OnboardingLayout } from '@ovh-ux/muk';
+import { OnboardingLayout, Text } from '@ovh-ux/muk';
 
 <OnboardingLayout
-  title="Welcome"
-  description="Get started"
+  title="Welcome Onboarding"
+  description={
+    <Text preset="paragraph" className="text-center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </Text>
+  }
   img={{ src: '/image.png', alt: 'Alt' }}
+  orderHref="https://example.com/order"
   orderButtonLabel="Order Now"
   onOrderButtonClick={() => {}}
-  orderIam={{ urn: 'urn:resource', iamActions: ['action:create'] }}
-  moreInfoHref="/docs"
+  isActionDisabled={false}
+  orderIam={{ 
+    urn: 'urn:resource', 
+    iamActions: ['action:create'],
+    displayTooltip: true 
+  }}
+  moreInfoHref="https://example.com/more-info"
   moreInfoButtonLabel="Learn More"
+  moreInfoButtonIcon="info"
+  onMoreInfoButtonClick={() => {}}
+  isMoreInfoButtonDisabled={false}
+  hideHeadingSection={false}
 >
-  <div>Content</div>
+  <div>Content cards or other components</div>
 </OnboardingLayout>
 ```
 
-**Props:** `title`, `description?`, `img?`, `orderButtonLabel?`, `orderHref?`, `onOrderButtonClick?`, `isActionDisabled?`, `orderIam?`, `moreInfoHref?`, `moreInfoButtonLabel?`, `moreInfoButtonIcon?`, `isMoreInfoButtonDisabled?`, `hideHeadingSection?`, `children?`
+**Props:**
+- `title*` (required) - Main title of the onboarding layout
+- `description?` - Rich text content (string or React node). **Important:** Wrap in `<Text>` or `<p>` component
+- `img?` - Image configuration (extends `React.ComponentProps<"img">`)
+- `orderButtonLabel?` - Label for order button
+- `orderHref?` - URL for order button (opens in new tab)
+- `onOrderButtonClick?` - Callback when order button is clicked
+- `isActionDisabled?` - Disables order button when true
+- `orderIam?` - IAM config: `{ urn: string; iamActions: string[]; displayTooltip?: boolean }`
+- `moreInfoHref?` - URL for "More Info" button (opens in new tab)
+- `moreInfoButtonLabel?` - Label for "More Info" button
+- `moreInfoButtonIcon?` - Icon for "More Info" button
+- `onMoreInfoButtonClick?` - Callback when "More Info" button is clicked
+- `isMoreInfoButtonDisabled?` - Disables "More Info" button when true
+- `hideHeadingSection?` - Hides entire heading section (title, description, buttons) when true
+- `children?` - Child components displayed below header section
 
 #### RedirectionGuard
 Guard that redirects when condition is met.
