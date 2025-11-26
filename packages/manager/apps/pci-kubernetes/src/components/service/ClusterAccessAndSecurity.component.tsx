@@ -7,8 +7,6 @@ import { Translation, useTranslation } from 'react-i18next';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
@@ -18,7 +16,6 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   OsdsAccordion,
-  OsdsButton,
   OsdsDivider,
   OsdsIcon,
   OsdsPopover,
@@ -28,6 +25,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
+import { Button, Icon } from '@ovhcloud/ods-react';
 
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useParam } from '@ovh-ux/manager-pci-common';
@@ -130,6 +128,12 @@ export default function ClusterAccessAndSecurity({
     });
   };
 
+  const copyConfigFile = () => {
+    postKubeConfig(undefined, {
+      onSuccess: (configFile) => navigator.clipboard.writeText(configFile.content),
+    });
+  };
+
   const getClusterRestrictionLabel = (length?: number) => {
     const suffixes = ['no_count', 'one', 'count'];
     const len = length ?? 0;
@@ -218,21 +222,26 @@ export default function ClusterAccessAndSecurity({
             />
           </OsdsPopoverContent>
         </OsdsPopover>
-        <div className="flex items-center gap-5">
-          <OsdsButton
-            className="hover:shadow-lg w-fit"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            onClick={downloadConfigFile}
-            {...(isKubeConfigPending || kubeDetail?.status === KUBE_INSTALLING_STATUS
-              ? { disabled: true }
-              : {})}
-            inline
+        <div className="flex flex-col gap-3 items-start">
+          <Button
+            size="sm"
+            variant="ghost"
+            data-testid="ClusterAccessAndSecurity-CopyKubeConfig"
+            disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
+            onClick={copyConfigFile}
           >
-            {CONFIG_FILENAME}
-          </OsdsButton>
+            <Icon name="file-copy" /> {t('kube_service_copy_kubeconfig')}
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
+            disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
+            onClick={downloadConfigFile}
+          >
+            <Icon name="download" /> {t('kube_service_download_kubeconfig')}
+          </Button>
+          {/* Todo : Retirer/déplacer le spinner selon le retour de Samuel */}
           {isKubeConfigPending && (
             <OsdsSpinner
               inline
