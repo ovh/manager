@@ -178,10 +178,12 @@ export { CONSTANT_NAME } from './ConstantName.constants';
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "test": "manager-test",
+    "test:ui": "manager-test --ui",
+    "test:ci": "manager-test run --coverage",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src ; yarn lint:modern:imports:fix",
+    "lint:modern:imports:fix": "node scripts/muk-exports-order.mjs",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -192,12 +194,12 @@ export { CONSTANT_NAME } from './ConstantName.constants';
     "react-router-dom": "^6.0.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-tailwind-config": "^0.6.0",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
+    "@ovh-ux/manager-vite-config": "^0.15.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^5.0.0",
-    "vite": "^5.0.0",
-    "vitest": "^1.0.0"
+    "typescript": "^5.0.0"
   }
 }
 ```
@@ -206,29 +208,24 @@ export { CONSTANT_NAME } from './ConstantName.constants';
 
 ```json
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
+    "outDir": "dist",
+    "jsx": "react-jsx",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@/setupTest": ["./setupTest.ts"]
+    },
+    "resolveJsonModule": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src",
+    "**/*.json",
+    "setupTests.ts",
+    "global.d.ts"
+  ],
+  "exclude": ["node_modules", "dist", "types"]
 }
 ```
 
@@ -236,24 +233,12 @@ export { CONSTANT_NAME } from './ConstantName.constants';
 
 ```typescript
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 import { resolve } from 'path';
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
-    },
-  },
-  server: {
-    port: 3000,
-    open: true,
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: true,
-  },
+  ...getBaseConfig(),
+  root: resolve(process.cwd()),
 });
 ```
 
@@ -279,8 +264,8 @@ tests/
 - **Component tests**: `ComponentName.spec.tsx`
 - **Page tests**: `PageName.spec.tsx`
 - **Hook tests**: `useHookName.spec.ts`
-- **Service tests**: `serviceName.spec.ts`
-- **Utility tests**: `utilName.spec.ts`
+- **Service tests**: `ServiceName.spec.ts`
+- **Utility tests**: `UtilName.spec.ts`
 
 ## 📚 Best Practices
 
