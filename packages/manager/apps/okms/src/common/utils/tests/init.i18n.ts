@@ -5,6 +5,7 @@ import commonActions from '@ovh-ux/manager-common-translations/public/translatio
 import commonDashboard from '@ovh-ux/manager-common-translations/public/translations/dashboard/Messages_fr_FR.json';
 import commonError from '@ovh-ux/manager-common-translations/public/translations/error/Messages_fr_FR.json';
 import commonForm from '@ovh-ux/manager-common-translations/public/translations/form/Messages_fr_FR.json';
+import commonOnboarding from '@ovh-ux/manager-common-translations/public/translations/onboarding/Messages_fr_FR.json';
 import commonRegion from '@ovh-ux/manager-common-translations/public/translations/region/Messages_fr_FR.json';
 import commonStatus from '@ovh-ux/manager-common-translations/public/translations/status/Messages_fr_FR.json';
 
@@ -39,6 +40,7 @@ function addTranslations() {
     .addResources(defaultLocale, NAMESPACES.ACTIONS, commonActions)
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, NAMESPACES.FORM, commonForm)
+    .addResources(defaultLocale, NAMESPACES.ONBOARDING, commonOnboarding)
     .addResources(defaultLocale, NAMESPACES.STATUS, commonStatus)
     .addResources(defaultLocale, NAMESPACES.ERROR, commonError)
     .addResources(defaultLocale, NAMESPACES.REGION, commonRegion)
@@ -80,6 +82,7 @@ const commonLabels = {
   actions: commonActions,
   dashboard: commonDashboard,
   form: commonForm,
+  onboarding: commonOnboarding,
   status: commonStatus,
   error: commonError,
   region: commonRegion,
