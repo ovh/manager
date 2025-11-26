@@ -37,7 +37,7 @@ This directory contains decision matrices that guide AI to make correct technica
 | Fetch single resource | `useQuery` with v6 |
 | Fetch small list (<100) | `useQuery` with v6 + Promise.all |
 | Fetch large list (100+) | `useQuery` with Iceberg |
-| Fetch aggregated data | `useQuery` with AAPI |
+| Fetch aggregated data | `useQuery` with AAPI or Iceberg (depends on endpoint support - user decision) |
 | Create resource | `useMutation` with POST |
 | Update resource | `useMutation` with PUT |
 | Delete resource | `useMutation` with DELETE |
