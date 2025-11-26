@@ -1,9 +1,14 @@
+import React, { ComponentType } from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { navigate } from '@/utils/test.setup';
+import { createTestWrapper } from '@/utils/test.provider';
 
 import OrderDomainModal from './OrderDomain.page';
+
+const Wrappers = createTestWrapper();
 
 vi.mock('@/constants', async (importActual) => {
   const actual = await importActual<typeof import('@/constants')>();
@@ -24,7 +29,7 @@ describe('OrderDomainModal', () => {
   });
 
   it('display radio button and validate button is disabled', () => {
-    const { container } = render(<OrderDomainModal />);
+    const { container } = render(<OrderDomainModal />, { wrapper: Wrappers as ComponentType });
 
     const orderRadio = container.querySelector('ods-radio[value="ORDER"]');
     const attachRadio = container.querySelector('ods-radio[value="ATTACH"]');
@@ -36,7 +41,7 @@ describe('OrderDomainModal', () => {
   });
 
   it('select ORDER : activate button and open order page and close modal', () => {
-    const { container } = render(<OrderDomainModal />);
+    const { container } = render(<OrderDomainModal />, { wrapper: Wrappers as ComponentType });
 
     const primaryBtn = screen.getByTestId('primary-button');
     expect(primaryBtn.getAttribute('is-disabled')).toBe('true');
@@ -67,7 +72,7 @@ describe('OrderDomainModal', () => {
   });
 
   it('select ATTACH : activate validate button and navigate to addDomain', () => {
-    const { container } = render(<OrderDomainModal />);
+    const { container } = render(<OrderDomainModal />, { wrapper: Wrappers as ComponentType });
 
     const primaryBtn = screen.getByTestId('primary-button');
     const attachRadio = container.querySelector('ods-radio[value="ATTACH"]');
@@ -89,7 +94,7 @@ describe('OrderDomainModal', () => {
   });
 
   it('cancel button close modal', () => {
-    render(<OrderDomainModal />);
+    render(<OrderDomainModal />, { wrapper: Wrappers as ComponentType });
 
     fireEvent.click(screen.getByTestId('secondary-button'));
     expect(navigate).toHaveBeenCalled();
