@@ -1,16 +1,19 @@
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import { odsSetup } from '@ovhcloud/ods-common-core';
-
-import appRoutes from '@/routes';
-import queryClient from './queryClient';
-
-import '@ovhcloud/ods-themes/default';
 import '@ovhcloud/ods-theme-blue-jeans';
+import '@ovhcloud/ods-themes/default';
+
 import '@ovh-ux/manager-pci-common/dist/style.css';
-import './index.scss';
+
 import { GeneralBannerContextProvider } from '@/contexts/GeneralBanner.context';
+import appRoutes from '@/routes';
+
+import './index.scss';
+import queryClient from './queryClient';
 
 odsSetup();
 

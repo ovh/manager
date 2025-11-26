@@ -1,14 +1,16 @@
+import { useParams } from 'react-router-dom';
+
+import { UseMutateFunction } from '@tanstack/react-query';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { it, vi } from 'vitest';
-import { UseMutateFunction } from '@tanstack/react-query';
-import EditPage from './Edit.page';
 
-import { useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+import { useVolumeMaxSize } from '@/api/data/quota';
 import { useVolumeCatalog, useVolumePricing } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
-import { useVolumeMaxSize } from '@/api/data/quota';
-import { useParams } from 'react-router-dom';
+import { useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
+
+import EditPage from './Edit.page';
 
 vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
@@ -25,15 +27,13 @@ vi.mock('@/api/hooks/useQuota', () => ({
 }));
 
 vi.mock('@/api/hooks/useCatalog');
-vi.mocked(useVolumeCatalog).mockReturnValue(({
+vi.mocked(useVolumeCatalog).mockReturnValue({
   data: {
     models: [],
     regions: [],
   },
-} as unknown) as ReturnType<typeof useVolumeCatalog>);
-vi.mocked(useVolumePricing).mockReturnValue(
-  {} as ReturnType<typeof useVolumePricing>,
-);
+} as unknown as ReturnType<typeof useVolumeCatalog>);
+vi.mocked(useVolumePricing).mockReturnValue({} as ReturnType<typeof useVolumePricing>);
 
 vi.mock('@/api/hooks/useHas3AZRegion');
 vi.mocked(useHas3AZRegion).mockReturnValue({ has3AZ: true, isPending: false });
@@ -62,15 +62,11 @@ vi.mocked(useUpdateVolume).mockReturnValue({
 } as ReturnType<typeof useUpdateVolume>);
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
+  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
 
   return {
     ...mod,
-    useCatalogPrice: vi
-      .fn()
-      .mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
+    useCatalogPrice: vi.fn().mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
     useNotifications: vi.fn().mockReturnValue({
       addError: vi.fn(),
       addSuccess: vi.fn(),
@@ -96,9 +92,7 @@ describe('Edit volume page', () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolumeData);
     renderWithMockedWrappers(<EditPage />);
 
-    expect(screen.getByTestId('editPage-input_volumeName')).toHaveValue(
-      'Volume',
-    );
+    expect(screen.getByTestId('editPage-input_volumeName')).toHaveValue('Volume');
     expect(screen.getByText('standard')).toBeVisible();
     expect(screen.getByTestId('editPage-input_volumeSize')).toHaveValue(10);
   });
@@ -110,17 +104,15 @@ describe('Edit volume page', () => {
     fireEvent.change(screen.getByTestId('editPage-input_volumeName'), {
       target: { value: 'New Volume Name' },
     });
-    expect(screen.getByTestId('editPage-input_volumeName')).toHaveValue(
-      'New Volume Name',
-    );
+    expect(screen.getByTestId('editPage-input_volumeName')).toHaveValue('New Volume Name');
   });
 
   it('displays loading spinner when data is being fetched', () => {
-    vi.mocked(useVolume).mockReturnValue(({
+    vi.mocked(useVolume).mockReturnValue({
       data: null,
       isLoading: true,
       isPending: true,
-    } as unknown) as ReturnType<typeof useVolume>);
+    } as unknown as ReturnType<typeof useVolume>);
 
     renderWithMockedWrappers(<EditPage />);
 

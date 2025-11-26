@@ -1,8 +1,10 @@
-import { describe, it, vi } from 'vitest';
-import { render } from '@testing-library/react';
 import { useHref } from 'react-router-dom';
-import ActionsComponent from '@/components/list/Actions.component';
+
+import { render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
 import { TVolume } from '@/api/hooks/useVolume';
+import ActionsComponent from '@/components/list/Actions.component';
 
 vi.mock('@/hooks/useTrackAction', () => ({ useTrackAction: vi.fn() }));
 
@@ -11,7 +13,7 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('react-router-dom');
-const mockVolume = ({
+const mockVolume = {
   id: '1',
   attachedTo: [],
   creationDate: '2022-01-01',
@@ -29,7 +31,7 @@ const mockVolume = ({
   canAttachInstance: true,
   canDetachInstance: false,
   maxAttachedInstances: 1,
-} as unknown) as TVolume;
+} as unknown as TVolume;
 const mockVolumeDetach = {
   id: '1',
   attachedTo: ['attach-1'],
@@ -56,24 +58,16 @@ describe('ActionsComponent', () => {
       .mockReturnValueOnce('./attach/1')
       .mockReturnValueOnce('./detach/1')
       .mockReturnValueOnce('./delete/1');
-    const { getByTestId } = render(
-      <ActionsComponent volume={mockVolume} projectUrl="/project" />,
-    );
+    const { getByTestId } = render(<ActionsComponent volume={mockVolume} projectUrl="/project" />);
 
     expect(getByTestId('actionComponent-create-backup-button')).toHaveAttribute(
       'href',
       '/project/storages/volume-backup/create?volumeId=1',
     );
 
-    expect(getByTestId('actionComponent-remove-button')).toHaveAttribute(
-      'href',
-      './delete/1',
-    );
+    expect(getByTestId('actionComponent-remove-button')).toHaveAttribute('href', './delete/1');
 
-    expect(getByTestId('actionComponent-attach-button')).toHaveAttribute(
-      'href',
-      './attach/1',
-    );
+    expect(getByTestId('actionComponent-attach-button')).toHaveAttribute('href', './attach/1');
   });
 
   it('ActionsComponent renders correct button with detach link', () => {
@@ -86,9 +80,6 @@ describe('ActionsComponent', () => {
       <ActionsComponent volume={mockVolumeDetach} projectUrl="/project" />,
     );
 
-    expect(getByTestId('actionComponent-detach-button')).toHaveAttribute(
-      'href',
-      './detach/1',
-    );
+    expect(getByTestId('actionComponent-detach-button')).toHaveAttribute('href', './detach/1');
   });
 });

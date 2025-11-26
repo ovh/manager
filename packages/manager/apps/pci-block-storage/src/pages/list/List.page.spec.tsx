@@ -1,7 +1,9 @@
 import { waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import ListingPage from './List.page';
+
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+
+import ListingPage from './List.page';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -105,8 +107,6 @@ describe('ListingPage', () => {
   it('renders volumes when volumes are available', async () => {
     const { getByText } = renderWithMockedWrappers(<ListingPage />);
 
-    await waitFor(() =>
-      expect(getByText('Volume 1 for datagrid render')).toBeInTheDocument(),
-    );
+    await waitFor(() => expect(getByText('Volume 1 for datagrid render')).toBeInTheDocument());
   });
 });

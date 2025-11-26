@@ -1,9 +1,12 @@
+import { memo, useContext } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { GuidesHeader } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
-import { memo, useContext } from 'react';
-import { Guide, GUIDES } from '@/pages/list/guidesHeader.constants';
+
 import { useTrackAction } from '@/hooks/useTrackAction';
+import { GUIDES, Guide } from '@/pages/list/guidesHeader.constants';
 
 export const StorageGuidesHeader = memo(() => {
   const context = useContext(ShellContext);

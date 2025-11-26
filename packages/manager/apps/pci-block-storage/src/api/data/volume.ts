@@ -27,42 +27,24 @@ export type TVolumeSnapshot = {
   volumeId: string;
 };
 
-export const getVolume = async (
-  projectId: string,
-  volumeId: string,
-): Promise<TAPIVolume> => {
-  const { data } = await v6.get<TAPIVolume>(
-    `/cloud/project/${projectId}/volume/${volumeId}`,
-  );
+export const getVolume = async (projectId: string, volumeId: string): Promise<TAPIVolume> => {
+  const { data } = await v6.get<TAPIVolume>(`/cloud/project/${projectId}/volume/${volumeId}`);
   return data;
 };
 
-export const getVolumeSnapshot = async (
-  projectId: string,
-): Promise<TVolumeSnapshot[]> => {
-  const { data } = await v6.get<TVolumeSnapshot[]>(
-    `/cloud/project/${projectId}/volume/snapshot`,
-  );
+export const getVolumeSnapshot = async (projectId: string): Promise<TVolumeSnapshot[]> => {
+  const { data } = await v6.get<TVolumeSnapshot[]>(`/cloud/project/${projectId}/volume/snapshot`);
   return data;
 };
 
-export const getAllVolumes = async (
-  projectId: string,
-): Promise<TAPIVolume[]> => {
-  const { data } = await v6.get<TAPIVolume[]>(
-    `/cloud/project/${projectId}/volume`,
-  );
+export const getAllVolumes = async (projectId: string): Promise<TAPIVolume[]> => {
+  const { data } = await v6.get<TAPIVolume[]>(`/cloud/project/${projectId}/volume`);
   return data;
 };
 
-export const deleteVolume = async (
-  projectId: string,
-  volumeId: string,
-): Promise<null> => {
+export const deleteVolume = async (projectId: string, volumeId: string): Promise<null> => {
   try {
-    const { data } = await v6.delete(
-      `/cloud/project/${projectId}/volume/${volumeId}`,
-    );
+    const { data } = await v6.delete(`/cloud/project/${projectId}/volume/${volumeId}`);
     return data;
   } catch (e) {
     if (isApiCustomError(e)) {
@@ -89,10 +71,10 @@ export const updateVolume = async ({
   let promise2;
   try {
     if (originalVolume.name !== name || originalVolume.bootable !== bootable) {
-      promise1 = v6.put<TAPIVolume>(
-        `/cloud/project/${projectId}/volume/${originalVolume.id}`,
-        { name, bootable },
-      );
+      promise1 = v6.put<TAPIVolume>(`/cloud/project/${projectId}/volume/${originalVolume.id}`, {
+        name,
+        bootable,
+      });
     }
     if (size !== originalVolume.size) {
       promise2 = v6.post<TAPIVolume>(
@@ -113,11 +95,7 @@ export const updateVolume = async ({
   }
 };
 
-export const attachVolume = async (
-  projectId: string,
-  volumeId: string,
-  instanceId: string,
-) => {
+export const attachVolume = async (projectId: string, volumeId: string, instanceId: string) => {
   try {
     const { data } = await v6.post<TAPIVolume>(
       `/cloud/project/${projectId}/volume/${volumeId}/attach`,
@@ -143,12 +121,9 @@ export const detachVolume = async (
   instanceId: string,
 ): Promise<TAPIVolume> => {
   try {
-    const { data } = await v6.post(
-      `/cloud/project/${projectId}/volume/${volumeId}/detach`,
-      {
-        instanceId,
-      },
-    );
+    const { data } = await v6.post(`/cloud/project/${projectId}/volume/${volumeId}/detach`, {
+      instanceId,
+    });
     return data;
   } catch (e) {
     if (isApiCustomError(e)) {
@@ -170,11 +145,7 @@ export interface AddVolumeProps {
   availabilityZone: string | null;
 }
 
-export const addVolume = async ({
-  projectId,
-  region,
-  ...props
-}: AddVolumeProps): Promise<void> => {
+export const addVolume = async ({ projectId, region, ...props }: AddVolumeProps): Promise<void> => {
   const { data } = await v6.post<void>(
     `/cloud/project/${projectId}/region/${region}/volume`,
     props,

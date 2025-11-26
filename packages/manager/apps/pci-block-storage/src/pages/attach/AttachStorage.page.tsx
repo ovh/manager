@@ -1,3 +1,11 @@
+import { useEffect, useRef, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsModal,
   OsdsSelect,
@@ -5,39 +13,31 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useEffect, useRef, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+
+import { useParam } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useAttachableInstances } from '@/api/hooks/useInstance';
 import { useAttachVolume, useVolume } from '@/api/hooks/useVolume';
-import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
 import { TAttachableInstance } from '@/api/select/instances';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
-import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
-import { useParam } from '@ovh-ux/manager-pci-common';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
+
+import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
 
 export default function AttachStorage() {
   const navigate = useNavigate();
   const { projectId, volumeId } = useParam('projectId', 'volumeId');
   const { t } = useTranslation('attach');
   const { addError, addSuccess } = useNotifications();
-  const { data: volume, isPending: isVolumePending } = useVolume(
+  const { data: volume, isPending: isVolumePending } = useVolume(projectId, volumeId);
+  const { data: instances, isPending: isInstancesPending } = useAttachableInstances(
     projectId,
     volumeId,
   );
-  const {
-    data: instances,
-    isPending: isInstancesPending,
-  } = useAttachableInstances(projectId, volumeId);
 
-  const [
-    selectedInstance,
-    setSelectedInstance,
-  ] = useState<TAttachableInstance | null>(null);
+  const [selectedInstance, setSelectedInstance] = useState<TAttachableInstance | null>(null);
   const onClose = () => navigate('..');
 
   const selectRef = useRef<HTMLOsdsSelectElement>(null);
@@ -47,10 +47,7 @@ export default function AttachStorage() {
    * TODO: solve on ods side
    */
   useEffect(() => {
-    if (
-      selectRef.current &&
-      !selectRef.current.shadowRoot?.querySelector('style')
-    ) {
+    if (selectRef.current && !selectRef.current.shadowRoot?.querySelector('style')) {
       const style = document.createElement('style');
       style.innerHTML = '.ocdk-surface--open {max-width: 100%;}';
       selectRef.current.shadowRoot?.appendChild(style);
@@ -86,16 +83,13 @@ export default function AttachStorage() {
     addSuccess(
       <Translation ns="attach">
         {(_t) =>
-          _t(
-            'pci_projects_project_storages_blocks_block_attach_success_message',
-            {
-              volume: volume?.name,
-              volumeId: volume?.id,
-              type: volume?.type,
-              instance: selectedInstance?.name,
-              instanceId: selectedInstance?.id,
-            },
-          )
+          _t('pci_projects_project_storages_blocks_block_attach_success_message', {
+            volume: volume?.name,
+            volumeId: volume?.id,
+            type: volume?.type,
+            instance: selectedInstance?.name,
+            instanceId: selectedInstance?.id,
+          })
         }
       </Translation>,
       true,
@@ -134,10 +128,9 @@ export default function AttachStorage() {
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {t(
-              'pci_projects_project_storages_blocks_block_attach_multi_banner',
-              { count: volume.maxAttachedInstances },
-            )}
+            {t('pci_projects_project_storages_blocks_block_attach_multi_banner', {
+              count: volume.maxAttachedInstances,
+            })}
           </OsdsText>
         )}
         {!isPending && instances && instances?.length > 0 && (
@@ -148,9 +141,7 @@ export default function AttachStorage() {
               inline
               className="mt-5 w-[100%]"
               onOdsValueChange={(event) => {
-                const instance = instances.find(
-                  (instance) => instance.id === event.detail.value,
-                );
+                const instance = instances.find((instance) => instance.id === event.detail.value);
                 if (!instance) return;
                 setSelectedInstance(instance);
               }}

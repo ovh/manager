@@ -1,9 +1,9 @@
-import { TRegion } from '@ovh-ux/manager-react-components';
 import {
   Region3AZChip,
   RegionGlobalzoneChip,
   RegionLocalzoneChip,
 } from '@ovh-ux/manager-pci-common';
+import { TRegion } from '@ovh-ux/manager-react-components';
 
 export type ChipRegionProps = {
   region: Pick<TRegion, 'type'>;

@@ -1,6 +1,8 @@
-import { describe, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
 import * as pciCommon from '@ovh-ux/manager-pci-common';
+
 import StatusComponent from '@/components/list/Status.component';
 
 vi.mock('react-i18next', async (importOrig) => {
@@ -24,9 +26,7 @@ afterEach(() => {
 
 describe('StatusComponent', () => {
   it('renders correct color for ACTIVE status', () => {
-    const { getByText } = render(
-      <StatusComponent statusGroup="ACTIVE" status="ACTIVE" />,
-    );
+    const { getByText } = render(<StatusComponent statusGroup="ACTIVE" status="ACTIVE" />);
     expect(getByText('ACTIVE')).toBeInTheDocument();
     expect(badgeSpy).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -37,9 +37,7 @@ describe('StatusComponent', () => {
   });
 
   it('renders correct color for PENDING status', () => {
-    const { getByText } = render(
-      <StatusComponent statusGroup="PENDING" status="PENDING" />,
-    );
+    const { getByText } = render(<StatusComponent statusGroup="PENDING" status="PENDING" />);
     expect(getByText('PENDING')).toBeInTheDocument();
     expect(badgeSpy).toHaveBeenCalledWith(
       expect.objectContaining({ color: 'warning' }),
@@ -48,9 +46,7 @@ describe('StatusComponent', () => {
   });
 
   it('renders correct color for ERROR status', () => {
-    const { getByText } = render(
-      <StatusComponent statusGroup="ERROR" status="ERROR" />,
-    );
+    const { getByText } = render(<StatusComponent statusGroup="ERROR" status="ERROR" />);
     expect(getByText('ERROR')).toBeInTheDocument();
     expect(badgeSpy).toHaveBeenCalledWith(
       expect.objectContaining({ color: 'critical' }),
@@ -59,9 +55,7 @@ describe('StatusComponent', () => {
   });
 
   it('renders correct color for unknown status', () => {
-    const { getByText } = render(
-      <StatusComponent statusGroup="UNKNOWN" status="UNKNOWN" />,
-    );
+    const { getByText } = render(<StatusComponent statusGroup="UNKNOWN" status="UNKNOWN" />);
     expect(getByText('UNKNOWN')).toBeInTheDocument();
     expect(badgeSpy).toHaveBeenCalledWith(
       expect.objectContaining({ color: 'information' }),
@@ -70,9 +64,7 @@ describe('StatusComponent', () => {
   });
 
   it('renders correct translation when status and statusGroup are different', () => {
-    const { getByText } = render(
-      <StatusComponent statusGroup="ACTIVE" status="PENDING" />,
-    );
+    const { getByText } = render(<StatusComponent statusGroup="ACTIVE" status="PENDING" />);
     expect(getByText('PENDING')).toBeInTheDocument();
   });
 });

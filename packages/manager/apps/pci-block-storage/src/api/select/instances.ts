@@ -16,23 +16,19 @@ function canAttachVolume(
   );
 }
 
-export const selectAttachableInstances = (
-  availabilityZone: TVolume['availabilityZone'],
-  attachedInstances: TInstance['id'][],
-) => (instances: TInstance[]): TAttachableInstance[] =>
-  instances
-    .filter(
-      (i) =>
-        canAttachVolume(i, availabilityZone) &&
-        !attachedInstances.includes(i.id),
-    )
-    .map(({ id, name }) => ({
-      id,
-      name,
-    }));
+export const selectAttachableInstances =
+  (availabilityZone: TVolume['availabilityZone'], attachedInstances: TInstance['id'][]) =>
+  (instances: TInstance[]): TAttachableInstance[] =>
+    instances
+      .filter((i) => canAttachVolume(i, availabilityZone) && !attachedInstances.includes(i.id))
+      .map(({ id, name }) => ({
+        id,
+        name,
+      }));
 
 export type TAttachedInstance = Pick<TInstance, 'id' | 'name'>;
 
-export const selectAttachedInstances = (ids: TInstance['id'][]) => (
-  instances: TInstance[],
-): TAttachedInstance[] => instances.filter(({ id }) => ids.includes(id));
+export const selectAttachedInstances =
+  (ids: TInstance['id'][]) =>
+  (instances: TInstance[]): TAttachedInstance[] =>
+    instances.filter(({ id }) => ids.includes(id));

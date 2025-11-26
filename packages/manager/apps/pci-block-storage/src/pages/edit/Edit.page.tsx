@@ -1,13 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
+
 import { useHref, useNavigate } from 'react-router-dom';
+
 import { Trans, Translation, useTranslation } from 'react-i18next';
 
-import {
-  Headers,
-  useNotifications,
-  useProjectUrl,
-  useTranslatedMicroRegions,
-} from '@ovh-ux/manager-react-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -34,24 +30,32 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+
 import {
   PCICommonContext,
-  useParam,
   usePCICommonContextFactory,
+  useParam,
   useProject,
 } from '@ovh-ux/manager-pci-common';
-import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
-import ChipRegion from '@/components/edit/ChipRegion.component';
-import { TVolume, useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
-import HidePreloader from '@/core/HidePreloader';
+import {
+  Headers,
+  useNotifications,
+  useProjectUrl,
+  useTranslatedMicroRegions,
+} from '@ovh-ux/manager-react-components';
+
 import { useVolumeMaxSize } from '@/api/data/quota';
-import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
+import { useRegionsQuota } from '@/api/hooks/useQuota';
+import { TVolume, useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
 import ExternalLink from '@/components/ExternalLink';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
-import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
+import ChipRegion from '@/components/edit/ChipRegion.component';
+import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
+import HidePreloader from '@/core/HidePreloader';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
 
 type TFormState = {
   name: string;
@@ -112,33 +116,27 @@ export default function EditPage() {
     isInitialized: false,
   });
 
-  const onTrackingBannerError = useTrackBanner(
-    { type: 'error' },
-    (err: unknown) => {
-      addError(
-        <Translation ns="edit">
-          {(_t) =>
-            _t('pci_projects_project_storages_blocks_block_edit_error_put', {
-              volume: volume?.name,
-              message: err instanceof Error ? err.message : undefined,
-            })
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
-  );
+  const onTrackingBannerError = useTrackBanner({ type: 'error' }, (err: unknown) => {
+    addError(
+      <Translation ns="edit">
+        {(_t) =>
+          _t('pci_projects_project_storages_blocks_block_edit_error_put', {
+            volume: volume?.name,
+            message: err instanceof Error ? err.message : undefined,
+          })
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
   const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
     addSuccess(
       <Translation ns="edit">
         {(_t) =>
-          _t(
-            'pci_projects_project_storages_blocks_block_edit_success_message',
-            {
-              volume: volume?.name,
-            },
-          )
+          _t('pci_projects_project_storages_blocks_block_edit_success_message', {
+            volume: volume?.name,
+          })
         }
       </Translation>,
       true,
@@ -164,10 +162,7 @@ export default function EditPage() {
 
   const getMaxSize = (_volume: TVolume) => {
     if (regionQuota) {
-      if (
-        regionQuota.volume &&
-        regionQuota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA
-      ) {
+      if (regionQuota.volume && regionQuota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA) {
         const availableGigabytes =
           regionQuota.volume.maxGigabytes - regionQuota.volume.usedGigabytes;
         return Math.min(_volume.size + availableGigabytes, volumeMaxSize);
@@ -231,9 +226,7 @@ export default function EditPage() {
               disabled: true,
             },
             {
-              label: tEdit(
-                'pci_projects_project_storages_blocks_block_edit_title',
-              ),
+              label: tEdit('pci_projects_project_storages_blocks_block_edit_title'),
             },
           ]}
         />
@@ -250,11 +243,7 @@ export default function EditPage() {
         <>
           <div className="header mb-6 mt-8">
             <div className="flex items-center justify-between">
-              <Headers
-                title={tEdit(
-                  'pci_projects_project_storages_blocks_block_edit_title',
-                )}
-              />
+              <Headers title={tEdit('pci_projects_project_storages_blocks_block_edit_title')} />
             </div>
           </div>
 
@@ -284,9 +273,7 @@ export default function EditPage() {
             size={ODS_THEME_TYPOGRAPHY_SIZE._100}
             className="font-bold block mt-8"
           >
-            {tVolumeEdit(
-              'pci_projects_project_storages_blocks_block_volume-edit_type_label',
-            )}
+            {tVolumeEdit('pci_projects_project_storages_blocks_block_volume-edit_type_label')}
           </OsdsText>
           <OsdsText
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
@@ -305,9 +292,7 @@ export default function EditPage() {
               className="font-bold"
               slot="label"
             >
-              {tVolumeEdit(
-                'pci_projects_project_storages_blocks_block_volume-edit_name_label',
-              )}
+              {tVolumeEdit('pci_projects_project_storages_blocks_block_volume-edit_name_label')}
             </OsdsText>
 
             <OsdsInput
@@ -315,11 +300,7 @@ export default function EditPage() {
               default-value={volume?.name}
               value={formState.name}
               className="w-1/3"
-              color={
-                formState.name
-                  ? ODS_THEME_COLOR_INTENT.primary
-                  : ODS_THEME_COLOR_INTENT.error
-              }
+              color={formState.name ? ODS_THEME_COLOR_INTENT.primary : ODS_THEME_COLOR_INTENT.error}
               onOdsValueChange={(event) =>
                 setFormState({ ...formState, name: event.detail.value ?? '' })
               }
@@ -345,9 +326,7 @@ export default function EditPage() {
                 className="font-bold"
                 slot="label"
               >
-                {tVolumeEdit(
-                  'pci_projects_project_storages_blocks_block_volume-edit_size_label',
-                )}
+                {tVolumeEdit('pci_projects_project_storages_blocks_block_volume-edit_size_label')}
               </OsdsText>
 
               <OsdsQuantity>
@@ -369,11 +348,7 @@ export default function EditPage() {
 
                 <OsdsInput
                   type={ODS_INPUT_TYPE.number}
-                  color={
-                    hasError
-                      ? ODS_THEME_COLOR_INTENT.error
-                      : ODS_THEME_COLOR_INTENT.primary
-                  }
+                  color={hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.primary}
                   min={formState.size.min}
                   max={formState.size.max}
                   step={1}
@@ -381,9 +356,7 @@ export default function EditPage() {
                   default-value={size}
                   size={ODS_INPUT_SIZE.md}
                   error={hasError}
-                  onOdsValueChange={(event) =>
-                    setSize(Number(event.detail.value))
-                  }
+                  onOdsValueChange={(event) => setSize(Number(event.detail.value))}
                   data-testid="editPage-input_volumeSize"
                 />
 
@@ -411,9 +384,7 @@ export default function EditPage() {
               color={ODS_THEME_COLOR_INTENT.text}
               className="pl-4 inline"
             >
-              {tVolumeEdit(
-                'pci_projects_project_storages_blocks_block_volume-edit_size_unit',
-              )}
+              {tVolumeEdit('pci_projects_project_storages_blocks_block_volume-edit_size_unit')}
             </OsdsText>
           </div>
 
@@ -425,12 +396,9 @@ export default function EditPage() {
                   size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {t(
-                    'add:pci_projects_project_storages_blocks_add_submit_price_text',
-                    {
-                      price: volume.monthlyPrice.value,
-                    },
-                  )}
+                  {t('add:pci_projects_project_storages_blocks_add_submit_price_text', {
+                    price: volume.monthlyPrice.value,
+                  })}
                 </OsdsText>
               )}
             </div>
@@ -461,11 +429,7 @@ export default function EditPage() {
           <OsdsText
             level={ODS_TEXT_LEVEL.caption}
             size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-            color={
-              hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.primary
-            }
+            color={hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.primary}
             className="block"
           >
             <Trans
@@ -486,9 +450,7 @@ export default function EditPage() {
               actionValues={actionValues}
               slot="actions"
             >
-              {tVolumeEdit(
-                'pci_projects_project_storages_blocks_block_volume-edit_cancel_label',
-              )}
+              {tVolumeEdit('pci_projects_project_storages_blocks_block_volume-edit_cancel_label')}
             </ButtonLink>
 
             <Button
@@ -500,9 +462,7 @@ export default function EditPage() {
               slot="actions"
               data-testid="editPage-button_submit"
             >
-              {tEdit(
-                'pci_projects_project_storages_blocks_block_edit_submit_label',
-              )}
+              {tEdit('pci_projects_project_storages_blocks_block_edit_submit_label')}
             </Button>
           </div>
         </>

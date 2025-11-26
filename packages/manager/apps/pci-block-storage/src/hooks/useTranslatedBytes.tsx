@@ -55,16 +55,12 @@ export const useTranslatedBytes = (
   const divider = toKibi ? 1024 : 1000;
   const number = Math.floor(Math.log(bytes) / Math.log(divider));
 
-  let value = (bytes / Math.pow(divider, Math.floor(number))).toFixed(
-    precision,
-  );
+  let value = (bytes / Math.pow(divider, Math.floor(number))).toFixed(precision);
 
   if (/\.0+$/.test(value)) {
     value = value.replace(/\.0+$/, '');
   }
   const translatedUnits = units.map(translateUnit);
   const translatedUnitsKibi = unitsKibi.map(translateUnit);
-  return `${value} ${
-    toKibi ? translatedUnitsKibi[number] : translatedUnits[number]
-  }`;
+  return `${value} ${toKibi ? translatedUnitsKibi[number] : translatedUnits[number]}`;
 };

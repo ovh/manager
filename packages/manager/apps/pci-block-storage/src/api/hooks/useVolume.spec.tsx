@@ -1,10 +1,17 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+  TAPIVolume,
+  attachVolume,
+  deleteVolume,
+  detachVolume,
+  getAllVolumes,
+  getVolume,
+} from '@/api/data/volume';
 import {
   useAttachVolume,
   useDeleteVolume,
@@ -12,14 +19,6 @@ import {
   useVolume,
   useVolumes,
 } from '@/api/hooks/useVolume';
-import {
-  attachVolume,
-  deleteVolume,
-  detachVolume,
-  getAllVolumes,
-  getVolume,
-  TAPIVolume,
-} from '@/api/data/volume';
 
 vi.mock('@/api/data/volume', async (importOriginal) => {
   const actual: any = await importOriginal();

@@ -1,8 +1,11 @@
-import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { getInstancesByRegion, TInstance } from '@ovh-ux/manager-pci-common';
+
+import { TInstance, getInstancesByRegion } from '@ovh-ux/manager-pci-common';
+
 import { useAttachableInstances } from '@/api/hooks/useInstance';
+
 import { useVolume } from './useVolume';
 
 vi.mock('@ovh-ux/manager-pci-common');
@@ -55,20 +58,17 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances data when volumeId is provided', async () => {
-    vi.mocked(useVolume).mockReturnValue(({
+    vi.mocked(useVolume).mockReturnValue({
       data: {
         region: 'region1',
         attachedTo: [],
         type: 'model1',
       },
-    } as unknown) as ReturnType<typeof useVolume>);
+    } as unknown as ReturnType<typeof useVolume>);
 
-    const { result } = renderHook(
-      () => useAttachableInstances('123', 'volume1'),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useAttachableInstances('123', 'volume1'), {
+      wrapper,
+    });
 
     await waitFor(() => {
       expect(getInstancesByRegion).toHaveBeenCalledWith('123', 'region1');
@@ -77,9 +77,7 @@ describe('useAttachableInstances', () => {
   });
 
   it('does not fetch data when volume is not provided', () => {
-    vi.mocked(useVolume).mockReturnValue({ isPending: true } as ReturnType<
-      typeof useVolume
-    >);
+    vi.mocked(useVolume).mockReturnValue({ isPending: true } as ReturnType<typeof useVolume>);
 
     const { result } = renderHook(() => useAttachableInstances('123', ''), {
       wrapper,
@@ -90,19 +88,16 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns active instances', async () => {
-    vi.mocked(useVolume).mockReturnValue(({
+    vi.mocked(useVolume).mockReturnValue({
       data: {
         region: 'region1',
         attachedTo: [],
         type: 'model1',
       },
-    } as unknown) as ReturnType<typeof useVolume>);
-    const { result } = renderHook(
-      () => useAttachableInstances('123', 'volume1'),
-      {
-        wrapper,
-      },
-    );
+    } as unknown as ReturnType<typeof useVolume>);
+    const { result } = renderHook(() => useAttachableInstances('123', 'volume1'), {
+      wrapper,
+    });
 
     await waitFor(() => {
       expect(result.current.data).toEqual([
@@ -114,20 +109,17 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances when availability zone is any', async () => {
-    vi.mocked(useVolume).mockReturnValue(({
+    vi.mocked(useVolume).mockReturnValue({
       data: {
         region: 'region2',
         availabilityZone: 'any',
         attachedTo: [],
         type: 'model1',
       },
-    } as unknown) as ReturnType<typeof useVolume>);
-    const { result } = renderHook(
-      () => useAttachableInstances('123', 'volume1'),
-      {
-        wrapper,
-      },
-    );
+    } as unknown as ReturnType<typeof useVolume>);
+    const { result } = renderHook(() => useAttachableInstances('123', 'volume1'), {
+      wrapper,
+    });
 
     await waitFor(() => {
       expect(result.current.data).toEqual([
@@ -139,20 +131,17 @@ describe('useAttachableInstances', () => {
   });
 
   it('returns instances with same availability zone', async () => {
-    vi.mocked(useVolume).mockReturnValue(({
+    vi.mocked(useVolume).mockReturnValue({
       data: {
         region: 'region2',
         availabilityZone: 'region2-a',
         attachedTo: [],
         type: 'model1',
       },
-    } as unknown) as ReturnType<typeof useVolume>);
-    const { result } = renderHook(
-      () => useAttachableInstances('123', 'volume1'),
-      {
-        wrapper,
-      },
-    );
+    } as unknown as ReturnType<typeof useVolume>);
+    const { result } = renderHook(() => useAttachableInstances('123', 'volume1'), {
+      wrapper,
+    });
 
     await waitFor(() => {
       expect(result.current.data).toEqual([
@@ -172,12 +161,9 @@ describe('useAttachableInstances', () => {
         type: 'model1',
       },
     } as ReturnType<typeof useVolume>);
-    const { result } = renderHook(
-      () => useAttachableInstances('123', 'volume1'),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useAttachableInstances('123', 'volume1'), {
+      wrapper,
+    });
 
     await waitFor(() => {
       expect(result.current.data).toEqual([

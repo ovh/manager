@@ -1,6 +1,7 @@
 packages/manager/apps/container
 packages/manager/apps/pci-contacts
 packages/manager/apps/pci-kubernetes
+packages/manager/apps/pci-block-storage
 packages/manager/apps/web-office
 packages/manager/modules/config
 custom-elements-bundle

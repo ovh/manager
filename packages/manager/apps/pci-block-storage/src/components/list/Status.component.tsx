@@ -1,14 +1,12 @@
 import { ComponentProps, useMemo } from 'react';
+
 import { Badge } from '@ovh-ux/manager-pci-common';
 
 type StatusComponentProps = {
   statusGroup: string;
   status: string;
 };
-export default function StatusComponent({
-  statusGroup,
-  status,
-}: Readonly<StatusComponentProps>) {
+export default function StatusComponent({ statusGroup, status }: Readonly<StatusComponentProps>) {
   const chipAttribute = useMemo<Partial<ComponentProps<typeof Badge>>>(() => {
     switch (statusGroup) {
       case 'ACTIVE':
@@ -30,7 +28,5 @@ export default function StatusComponent({
     }
   }, [statusGroup]);
 
-  return (
-    <Badge {...chipAttribute} className="w-fit" size="sm" label={status} />
-  );
+  return <Badge {...chipAttribute} className="w-fit" size="sm" label={status} />;
 }

@@ -1,10 +1,13 @@
-import { describe, vi } from 'vitest';
-import { screen } from '@testing-library/react';
 import { Navigate } from 'react-router-dom';
+
 import { UseQueryResult } from '@tanstack/react-query';
-import { TVolume, useAllVolumes } from '@/api/hooks/useVolume';
-import OnBoardingPage from './OnBoarding.page';
+import { screen } from '@testing-library/react';
+import { describe, vi } from 'vitest';
+
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+import { TVolume, useAllVolumes } from '@/api/hooks/useVolume';
+
+import OnBoardingPage from './OnBoarding.page';
 
 vi.mock('@/api/hooks/useVolume');
 vi.mock('react-router-dom');
@@ -21,10 +24,10 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
 
 describe('OnBoardingPage', () => {
   it('should render children when volumes are empty', () => {
-    vi.mocked(useAllVolumes).mockReturnValue(({
+    vi.mocked(useAllVolumes).mockReturnValue({
       data: [],
       isPending: false,
-    } as unknown) as UseQueryResult<TVolume[]>);
+    } as unknown as UseQueryResult<TVolume[]>);
 
     const { getByText } = renderWithMockedWrappers(<OnBoardingPage />);
     expect(
@@ -33,10 +36,10 @@ describe('OnBoardingPage', () => {
   });
 
   it('should render spinner when isLoading is true', () => {
-    vi.mocked(useAllVolumes).mockReturnValue(({
+    vi.mocked(useAllVolumes).mockReturnValue({
       data: null,
       isPending: true,
-    } as unknown) as UseQueryResult<TVolume[]>);
+    } as unknown as UseQueryResult<TVolume[]>);
     renderWithMockedWrappers(<OnBoardingPage />);
 
     expect(screen.getByTestId('redirectionGuard_spinner')).toBeInTheDocument();

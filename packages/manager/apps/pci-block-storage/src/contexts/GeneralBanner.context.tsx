@@ -1,10 +1,4 @@
-import {
-  createContext,
-  FC,
-  PropsWithChildren,
-  useContext,
-  useState,
-} from 'react';
+import { FC, PropsWithChildren, createContext, useContext, useState } from 'react';
 
 type BannerName = string;
 type BannerValue = FC<{ onRemove: () => void }> | null;
@@ -19,13 +13,10 @@ const GeneralBannerContext = createContext<TGeneralBannerValue>({
   getBanner: () => null,
 });
 
-export const GeneralBannerContextProvider = ({
-  children,
-}: PropsWithChildren) => {
+export const GeneralBannerContextProvider = ({ children }: PropsWithChildren) => {
   const [banners, setBanners] = useState<Record<BannerName, BannerValue>>({});
 
-  const removeBanner = (name: BannerName) =>
-    setBanners((prev) => ({ ...prev, [name]: null }));
+  const removeBanner = (name: BannerName) => setBanners((prev) => ({ ...prev, [name]: null }));
 
   const addBanner = (name: BannerName, bannerValue: BannerValue) => {
     setBanners((prev) => ({ [name]: bannerValue, ...prev }));

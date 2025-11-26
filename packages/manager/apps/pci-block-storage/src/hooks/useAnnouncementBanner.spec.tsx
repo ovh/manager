@@ -1,13 +1,12 @@
 import { renderHook } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
 import {
   UseFeatureAvailabilityResult,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import { describe, it, vi } from 'vitest';
-import {
-  PCI_ANNOUNCEMENT_BANNER_FEATURE,
-  useAnnouncementBanner,
-} from './useAnnouncementBanner';
+
+import { PCI_ANNOUNCEMENT_BANNER_FEATURE, useAnnouncementBanner } from './useAnnouncementBanner';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFeatureAvailability: vi.fn(),
@@ -15,10 +14,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 describe('useAnnouncementBanner', () => {
   it('returns isBannerVisible as true when feature is available', () => {
-    vi.mocked(useFeatureAvailability).mockReturnValue(({
+    vi.mocked(useFeatureAvailability).mockReturnValue({
       data: { [PCI_ANNOUNCEMENT_BANNER_FEATURE]: true },
       isLoading: false,
-    } as unknown) as ReturnType<typeof useFeatureAvailability>);
+    } as unknown as ReturnType<typeof useFeatureAvailability>);
 
     const { result } = renderHook(() => useAnnouncementBanner());
     expect(result.current.isBannerVisible).toBe(true);
@@ -26,10 +25,10 @@ describe('useAnnouncementBanner', () => {
   });
 
   it('returns isBannerVisible as false when feature is not available', () => {
-    vi.mocked(useFeatureAvailability).mockReturnValue(({
+    vi.mocked(useFeatureAvailability).mockReturnValue({
       data: { [PCI_ANNOUNCEMENT_BANNER_FEATURE]: false },
       isLoading: false,
-    } as unknown) as ReturnType<typeof useFeatureAvailability>);
+    } as unknown as ReturnType<typeof useFeatureAvailability>);
 
     const { result } = renderHook(() => useAnnouncementBanner());
     expect(result.current.isBannerVisible).toBe(false);

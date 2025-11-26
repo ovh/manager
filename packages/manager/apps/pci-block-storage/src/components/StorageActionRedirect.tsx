@@ -5,9 +5,7 @@ export const StorageActionRedirect = ({ action }: { action: string }) => {
   const [searchParams] = useSearchParams();
   return (
     <Navigate
-      to={`/pci/projects/${projectId}/storages/blocks/${action}/${searchParams.get(
-        'storageId',
-      )}`}
+      to={`/pci/projects/${projectId}/storages/blocks/${action}/${searchParams.get('storageId')}`}
       replace
     />
   );

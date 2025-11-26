@@ -1,5 +1,6 @@
-import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsLink, OsdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import { useInstance } from '@ovh-ux/manager-pci-common';
 
 interface AttachedInstanceComponentProps {
@@ -13,10 +14,7 @@ export default function AttachedInstanceComponent({
   instanceId,
   projectUrl,
 }: Readonly<AttachedInstanceComponentProps>) {
-  const { data: instance, isPending, isLoading } = useInstance(
-    projectId,
-    instanceId,
-  );
+  const { data: instance, isPending, isLoading } = useInstance(projectId, instanceId);
   return isPending || isLoading ? (
     <OsdsSkeleton data-testid="AttachedInstanceComponent_skeleton" />
   ) : (

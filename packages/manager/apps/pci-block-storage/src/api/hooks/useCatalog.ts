@@ -1,11 +1,19 @@
-import { queryOptions, useQuery } from '@tanstack/react-query';
-import { getCatalog } from '@ovh-ux/manager-pci-common';
-import { pipe } from 'lodash/fp';
 import { useCallback, useMemo } from 'react';
+
+import { queryOptions, useQuery } from '@tanstack/react-query';
+import { pipe } from 'lodash/fp';
 import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { getCatalog } from '@ovh-ux/manager-pci-common';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+
+import { TVolumeCatalog, getVolumeCatalog } from '@/api/data/catalog';
 import {
+  TModelAttach,
+  TModelAvailabilityZones,
+  TModelName,
+  TModelPrice,
   getPricingSpecsFromModelPricings,
   getVolumeModelPricings,
   mapFilterLeastPrice,
@@ -13,12 +21,7 @@ import {
   mapVolumeModelAttach,
   mapVolumeModelName,
   mapVolumeModelPriceSpecs,
-  TModelAttach,
-  TModelAvailabilityZones,
-  TModelName,
-  TModelPrice,
 } from '@/api/select/catalog';
-import { getVolumeCatalog, TVolumeCatalog } from '@/api/data/catalog';
 import { EncryptionType } from '@/api/select/volume';
 
 export const getCatalogQuery = (ovhSubsidiary: string) => ({
@@ -32,8 +35,7 @@ export const getVolumeCatalogQuery = (projectId: string) =>
     queryFn: () => getVolumeCatalog(projectId),
   });
 
-export const useVolumeCatalog = (projectId: string) =>
-  useQuery(getVolumeCatalogQuery(projectId));
+export const useVolumeCatalog = (projectId: string) => useQuery(getVolumeCatalogQuery(projectId));
 
 export const useVolumeRegions = (projectId: string) => {
   const { t } = useTranslation(['add', 'order-price', NAMESPACES.BYTES]);
@@ -55,12 +57,7 @@ export const useVolumeRegions = (projectId: string) => {
         deployments: catalog.filters.deployment.map(
           pipe(
             mapFilterTags,
-            mapFilterLeastPrice(
-              catalog.regions,
-              catalog.models,
-              getFormattedCatalogPrice,
-              t,
-            ),
+            mapFilterLeastPrice(catalog.regions, catalog.models, getFormattedCatalogPrice, t),
           ),
         ),
       };
@@ -78,10 +75,7 @@ export const useVolumeRegions = (projectId: string) => {
   };
 };
 
-export type TVolumeModel = TModelPrice &
-  TModelAvailabilityZones &
-  TModelName &
-  TModelAttach;
+export type TVolumeModel = TModelPrice & TModelAvailabilityZones & TModelName & TModelAttach;
 
 export const useVolumeModels = (projectId: string, region: string) => {
   const { t } = useTranslation(['add', 'common', NAMESPACES.BYTES]);
@@ -99,12 +93,7 @@ export const useVolumeModels = (projectId: string, region: string) => {
         .filter((m) => m.pricings.length > 0)
         .map<TVolumeModel>(
           pipe(
-            mapVolumeModelPriceSpecs(
-              catalog.regions,
-              region,
-              getFormattedCatalogPrice,
-              t,
-            ),
+            mapVolumeModelPriceSpecs(catalog.regions, region, getFormattedCatalogPrice, t),
             mapVolumeModelName(catalog.regions, region),
             mapVolumeModelAttach,
           ),
@@ -142,10 +131,7 @@ export const useVolumePricing = (
     [data, region, modelName, encryptionType],
   );
 
-  const is3azRegion = useMemo(
-    () => !!data?.regions.find((r) => r.name === region),
-    [data, region],
-  );
+  const is3azRegion = useMemo(() => !!data?.regions.find((r) => r.name === region), [data, region]);
 
   return {
     data: useMemo(

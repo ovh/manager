@@ -1,19 +1,17 @@
-import { describe, it } from 'vitest';
-import { renderHook } from '@testing-library/react';
-import {
-  isBlockStorageListColumn,
-  useDatagridColumn,
-} from '@/hooks/useDatagridColumn';
-import { TVolume } from '@/api/hooks/useVolume';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ReactElement } from 'react';
-import StatusComponent from '@/components/list/Status.component';
+
+import { renderHook } from '@testing-library/react';
+import { describe, it } from 'vitest';
+
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
+import { TVolume } from '@/api/hooks/useVolume';
 import ActionsComponent from '@/components/list/Actions.component';
 import CapacityComponent from '@/components/list/Capacity.component';
+import StatusComponent from '@/components/list/Status.component';
+import { isBlockStorageListColumn, useDatagridColumn } from '@/hooks/useDatagridColumn';
 
-type ElementWithProps<T> = T extends (p: infer P) => JSX.Element
-  ? ReactElement<P>
-  : never;
+type ElementWithProps<T> = T extends (p: infer P) => JSX.Element ? ReactElement<P> : never;
 
 type TextCellElement = ElementWithProps<typeof DataGridTextCell>;
 
@@ -42,9 +40,7 @@ const volumeTestData: TVolume[] = [
 
 describe('useDatagridColumn', () => {
   it('should return correct columns', () => {
-    const { result } = renderHook(() =>
-      useDatagridColumn('project-01', '/project-01'),
-    );
+    const { result } = renderHook(() => useDatagridColumn('project-01', '/project-01'));
 
     const columns = result.current;
 
@@ -61,45 +57,33 @@ describe('useDatagridColumn', () => {
   });
 
   it('should render correct cells', () => {
-    const { result } = renderHook(() =>
-      useDatagridColumn('project-01', '/project-01'),
-    );
+    const { result } = renderHook(() => useDatagridColumn('project-01', '/project-01'));
 
     const columns = result.current;
 
     const nameCell = columns[0]?.cell(volumeTestData[0]!) as TextCellElement;
     const idCell = columns[1]?.cell(volumeTestData[0]!) as TextCellElement;
-    const regionNameCell = columns[2]?.cell(
-      volumeTestData[0]!,
-    ) as TextCellElement;
+    const regionNameCell = columns[2]?.cell(volumeTestData[0]!) as TextCellElement;
     const typeCell = columns[3]?.cell(volumeTestData[0]!) as TextCellElement;
     const sizeCell = columns[4]?.cell(volumeTestData[0]!) as ElementWithProps<
       typeof CapacityComponent
     >;
-    const attachedToCell = columns[5]?.cell(
-      volumeTestData[0]!,
-    ) as TextCellElement;
-    const encryptionStatusCell = columns[6]?.cell(
-      volumeTestData[0]!,
-    ) as TextCellElement;
+    const attachedToCell = columns[5]?.cell(volumeTestData[0]!) as TextCellElement;
+    const encryptionStatusCell = columns[6]?.cell(volumeTestData[0]!) as TextCellElement;
     const statusCell = columns[7]?.cell(volumeTestData[0]!) as ElementWithProps<
       typeof StatusComponent
     >;
-    const actionsCell = columns[8]?.cell(
-      volumeTestData[0]!,
-    ) as ElementWithProps<typeof ActionsComponent>;
+    const actionsCell = columns[8]?.cell(volumeTestData[0]!) as ElementWithProps<
+      typeof ActionsComponent
+    >;
 
     expect(nameCell?.props.children).toBe(volumeTestData[0]?.name);
     expect(idCell?.props.children).toBe(volumeTestData[0]?.id);
     expect(regionNameCell?.props.children).toBe(volumeTestData[0]?.regionName);
     expect(typeCell?.props.children).toBe(volumeTestData[0]?.type);
     expect(sizeCell?.props.size).toBe(volumeTestData[0]?.size);
-    expect(attachedToCell?.props.children).toHaveLength(
-      volumeTestData[0]!.attachedTo.length,
-    );
-    expect(encryptionStatusCell?.props.children).toBe(
-      volumeTestData[0]?.encryptionStatus,
-    );
+    expect(attachedToCell?.props.children).toHaveLength(volumeTestData[0]!.attachedTo.length);
+    expect(encryptionStatusCell?.props.children).toBe(volumeTestData[0]?.encryptionStatus);
     expect(statusCell?.props.statusGroup).toBe(volumeTestData[0]?.statusGroup);
     expect(statusCell?.props.status).toBe(volumeTestData[0]?.statusLabel);
     expect(actionsCell?.props.projectUrl).toBeDefined();

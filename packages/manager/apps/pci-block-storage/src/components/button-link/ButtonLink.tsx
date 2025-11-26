@@ -1,16 +1,15 @@
-import {
-  ComponentProps,
-  forwardRef,
-  HTMLAttributes,
-  PropsWithChildren,
-  useMemo,
-} from 'react';
+import { ComponentProps, HTMLAttributes, PropsWithChildren, forwardRef, useMemo } from 'react';
+
 import { Link } from 'react-router-dom';
-import { ButtonColor, ButtonSize, ButtonVariant } from '@ovhcloud/ods-react';
-import './style.scss';
+
 import clsx from 'clsx';
+
+import { ButtonColor, ButtonSize, ButtonVariant } from '@ovhcloud/ods-react';
+
 import { TrackActionParams, useTrackAction } from '@/hooks/useTrackAction';
+
 import { Icon } from '../icon/Icon';
+import './style.scss';
 
 type InternalButtonProps = {
   isExternal?: false;
@@ -35,10 +34,7 @@ type ButtonLinkProps = (InternalButtonProps | ExternalButtonProps) & {
 /**
  * Link with button style
  */
-export const ButtonLink = forwardRef<
-  HTMLAnchorElement,
-  PropsWithChildren<ButtonLinkProps>
->(
+export const ButtonLink = forwardRef<HTMLAnchorElement, PropsWithChildren<ButtonLinkProps>>(
   (
     {
       isExternal,
@@ -80,25 +76,13 @@ export const ButtonLink = forwardRef<
     ]);
 
     return isExternal ? (
-      <a
-        className={classNames}
-        href={href}
-        onClick={handleTrackingClick}
-        ref={ref}
-        {...htmlProps}
-      >
+      <a className={classNames} href={href} onClick={handleTrackingClick} ref={ref} {...htmlProps}>
         {!!icon && <Icon name={icon} />}
 
         {children}
       </a>
     ) : (
-      <Link
-        className={classNames}
-        to={to}
-        onClick={handleTrackingClick}
-        ref={ref}
-        {...htmlProps}
-      >
+      <Link className={classNames} to={to} onClick={handleTrackingClick} ref={ref} {...htmlProps}>
         {!!icon && <Icon name={icon} />}
 
         {children}

@@ -1,6 +1,8 @@
-import { render } from '@testing-library/react';
 import { useEffect } from 'react';
+
+import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
+
 import {
   GeneralBannerContextProvider,
   useGeneralBannerContext,

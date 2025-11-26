@@ -1,11 +1,9 @@
 import { ComponentProps, PropsWithChildren, forwardRef, useMemo } from 'react';
-import {
-  Button as OdsButton,
-  ButtonColor,
-  ButtonSize,
-  ButtonVariant,
-} from '@ovhcloud/ods-react';
+
+import { ButtonColor, ButtonSize, ButtonVariant, Button as OdsButton } from '@ovhcloud/ods-react';
+
 import { TrackActionParams, useTrackAction } from '@/hooks/useTrackAction';
+
 import { Icon } from '../icon/Icon';
 
 type ButtonProps = {
@@ -20,10 +18,7 @@ type ButtonProps = {
 /**
  * Link with button style
  */
-export const Button = forwardRef<
-  HTMLButtonElement,
-  PropsWithChildren<ButtonProps>
->(
+export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (
     {
       variant = 'default',
