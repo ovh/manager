@@ -1,7 +1,10 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { VCDStorage } from '@ovh-ux/manager-module-vcd-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { capitalize } from '@/utils/capitalize';
 
 export const DatagridIdCell = (vcdStorage: VCDStorage) => (
@@ -17,9 +20,7 @@ export const DatagridProfileCell = (vcdStorage: VCDStorage) => (
 );
 
 export const DatagridTypeCell = (vcdStorage: VCDStorage) => (
-  <DataGridTextCell>
-    {capitalize(vcdStorage?.currentState?.type)}
-  </DataGridTextCell>
+  <DataGridTextCell>{capitalize(vcdStorage?.currentState?.type)}</DataGridTextCell>
 );
 
 export const DatagridCapacityCell = (vcdStorage: VCDStorage) => {
@@ -37,9 +38,7 @@ export const DatagridBillingCell = (vcdStorage: VCDStorage) => {
   const { t } = useTranslation('datacentres/compute');
   return (
     <DataGridTextCell>
-      {t(
-        `managed_vcd_vdc_compute_billing_${vcdStorage?.currentState?.billingType}`,
-      )}
+      {t(`managed_vcd_vdc_compute_billing_${vcdStorage?.currentState?.billingType}`)}
     </DataGridTextCell>
   );
 };

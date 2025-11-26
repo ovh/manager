@@ -1,21 +1,21 @@
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
-import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+
+import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  ChangelogButton,
-  HeadersProps,
-} from '@ovh-ux/manager-react-components';
+import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { ChangelogButton, HeadersProps } from '@ovh-ux/manager-react-components';
+
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-
-import { subRoutes, urls } from '@/routes/routes.constant';
-import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
-import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
-import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
+import { subRoutes, urls } from '@/routes/routes.constant';
+import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+
+import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -65,11 +65,7 @@ export default function DashboardPage() {
     <VcdDashboardLayout
       tabs={tabsList}
       header={header}
-      message={
-        <MessageSuspendedService
-          status={vcdOrganisation?.data?.resourceStatus}
-        />
-      }
+      message={<MessageSuspendedService status={vcdOrganisation?.data?.resourceStatus} />}
       backLinkLabel={tActions('back_to_list')}
       onClickReturn={() => navigate(urls.listing)}
     />

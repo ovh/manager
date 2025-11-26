@@ -1,27 +1,32 @@
+import { Suspense, useEffect, useMemo } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Effect } from 'effect';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { z } from 'zod/v3';
+
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VCDVrackSegment,
   useUpdateVcdVrackSegment,
   useVcdVrackSegmentOptions,
 } from '@ovh-ux/manager-module-vcd-api';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
 import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { ApiResponse } from '@ovh-ux/manager-core-api';
-import { Suspense, useEffect, useMemo } from 'react';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { RhfField } from '@/components/Fields';
-import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
-import { isGatewayCidr } from '@/utils/isGatewayCidr';
-import { hasIpv4CIDRConflictInArray } from '@/utils/hasIpv4CIDRConflictInArray';
+import { subRoutes } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
+import { hasIpv4CIDRConflictInArray } from '@/utils/hasIpv4CIDRConflictInArray';
+import { isGatewayCidr } from '@/utils/isGatewayCidr';
 
 function AddNetworkVrackSegmentLoaded() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -64,10 +69,10 @@ function AddNetworkVrackSegmentLoaded() {
           })
           .refine(
             (network) =>
-              hasIpv4CIDRConflictInArray(
-                network,
-                vrackSegmentTargetSpec.networks,
-              ).pipe(Effect.isFailure, Effect.runPromise),
+              hasIpv4CIDRConflictInArray(network, vrackSegmentTargetSpec.networks).pipe(
+                Effect.isFailure,
+                Effect.runPromise,
+              ),
             {
               message: t('managed_vcd_dashboard_vrack_add_network_input_error'),
             },
@@ -79,23 +84,16 @@ function AddNetworkVrackSegmentLoaded() {
                 Effect.runSync,
               ),
             {
-              message: t(
-                'managed_vcd_dashboard_vrack_add_network_input_helper',
-              ),
+              message: t('managed_vcd_dashboard_vrack_add_network_input_helper'),
             },
           ),
       }),
     [t, vrackSegmentTargetSpec],
   );
 
-  const {
-    register,
-    formState,
-    handleSubmit,
-    control,
-    reset,
-    getValues,
-  } = useForm<z.infer<typeof ADD_NETWORK_FORM_SCHEMA>>({
+  const { register, formState, handleSubmit, control, reset, getValues } = useForm<
+    z.infer<typeof ADD_NETWORK_FORM_SCHEMA>
+  >({
     mode: 'onChange',
     resolver: zodResolver(ADD_NETWORK_FORM_SCHEMA),
     values: {
@@ -124,19 +122,14 @@ function AddNetworkVrackSegmentLoaded() {
           }),
         }),
         includedSubRoutes: [vdcId],
-        excludedSubRoutes: [
-          subRoutes.datacentreCompute,
-          subRoutes.datacentreStorage,
-        ],
+        excludedSubRoutes: [subRoutes.datacentreCompute, subRoutes.datacentreStorage],
       });
       closeModal();
     },
     onError: (error) => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: `add_network_error::${error.message
-          .replaceAll(' ', '-')
-          .toLowerCase()}`,
+        pageName: `add_network_error::${error.message.replaceAll(' ', '-').toLowerCase()}`,
       });
     },
   });
@@ -156,9 +149,7 @@ function AddNetworkVrackSegmentLoaded() {
     );
   }
 
-  const onSubmit: SubmitHandler<z.infer<typeof ADD_NETWORK_FORM_SCHEMA>> = ({
-    network,
-  }) => {
+  const onSubmit: SubmitHandler<z.infer<typeof ADD_NETWORK_FORM_SCHEMA>> = ({ network }) => {
     trackClick(TRACKING.vrackModifyVlanId.confirm);
     updateVrackSegment({
       ...vrackSegmentTargetSpec,
@@ -189,17 +180,11 @@ function AddNetworkVrackSegmentLoaded() {
               })}
             </OdsMessage>
           )}
-          <OdsText>
-            {t('managed_vcd_dashboard_vrack_form_add_network_description')}
-          </OdsText>
+          <OdsText>{t('managed_vcd_dashboard_vrack_form_add_network_description')}</OdsText>
           <RhfField controllerParams={register('network')} control={control}>
-            <RhfField.Label>
-              {t('managed_vcd_dashboard_vrack_network_address')}
-            </RhfField.Label>
+            <RhfField.Label>{t('managed_vcd_dashboard_vrack_network_address')}</RhfField.Label>
             <RhfField.HelperAuto
-              helperMessage={t(
-                'managed_vcd_dashboard_vrack_add_network_input_helper',
-              )}
+              helperMessage={t('managed_vcd_dashboard_vrack_add_network_input_helper')}
             />
             <RhfField.Input />
           </RhfField>
@@ -215,11 +200,7 @@ export default function AddNetworkVrackSegment() {
   return (
     <Suspense
       fallback={
-        <Modal
-          isOpen
-          heading={t('managed_vcd_dashboard_vrack_add_network')}
-          isLoading
-        ></Modal>
+        <Modal isOpen heading={t('managed_vcd_dashboard_vrack_add_network')} isLoading></Modal>
       }
     >
       <AddNetworkVrackSegmentLoaded />;

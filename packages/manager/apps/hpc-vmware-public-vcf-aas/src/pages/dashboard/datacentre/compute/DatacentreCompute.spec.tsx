@@ -1,29 +1,25 @@
 import { waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { expect, vi } from 'vitest';
+
+import { OdsMessageColor } from '@ovhcloud/ods-components';
+
 import {
-  organizationList,
-  datacentreList,
-} from '@ovh-ux/manager-module-vcd-api';
-import {
+  WAIT_FOR_DEFAULT_OPTIONS,
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
-  WAIT_FOR_DEFAULT_OPTIONS,
   getElementByTestId,
   getNthElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { expect, vi } from 'vitest';
-import { OdsMessageColor } from '@ovhcloud/ods-components';
-import { act } from '@testing-library/react';
-import {
-  DEFAULT_LISTING_ERROR,
-  labels,
-  renderTest,
-} from '../../../../test-utils';
-import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
-import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
-import TEST_IDS from '../../../../utils/testIds.constants';
+import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { DEFAULT_LISTING_ERROR, labels, renderTest } from '../../../../test-utils';
 import { TRACKING } from '../../../../tracking.constants';
+import TEST_IDS from '../../../../utils/testIds.constants';
+import { VHOSTS_LABEL } from '../compute/datacentreCompute.constants';
+import { COMPUTE_LABEL } from '../datacentreDashboard.constants';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -71,19 +67,15 @@ describe('Datacentre Compute Listing Page', () => {
       testId: TEST_IDS.cellDeleteCta,
     });
     await assertElementVisibility(deleteButton);
-    expect(deleteButton).toBeDisabled();
+    expect(deleteButton).toHaveAttribute('is-disabled', 'true');
 
     const tooltip = await getNthElementByTestId({
       testId: TEST_IDS.cellDeleteTooltip,
     });
-    expect(tooltip).toHaveTextContent(
-      labels.datacentres.managed_vcd_vdc_contact_support,
-    );
+    expect(tooltip).toHaveTextContent(labels.datacentres.managed_vcd_vdc_contact_support);
 
     await waitFor(() => {
-      const banner = queryByText(
-        labels.datacentresCompute.managed_vcd_vdc_compute_special_offer,
-      );
+      const banner = queryByText(labels.datacentresCompute.managed_vcd_vdc_compute_special_offer);
       expect(banner).not.toBeInTheDocument();
     });
   });
@@ -117,9 +109,7 @@ describe('Datacentre Compute Listing Page', () => {
     const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
 
     await act(() => user.click(orderButton));
-    expect(trackClickMock).toHaveBeenCalledWith(
-      TRACKING.compute.addVirtualHost,
-    );
+    expect(trackClickMock).toHaveBeenCalledWith(TRACKING.compute.addVirtualHost);
   });
 
   it('display an error', async () => {

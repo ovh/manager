@@ -1,14 +1,12 @@
-import {
-  organizationList,
-  datacentreList,
-} from '@ovh-ux/manager-module-vcd-api';
+import { vi } from 'vitest';
+
 import {
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { vi } from 'vitest';
+import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
 
 import { DEFAULT_LISTING_ERROR, renderTest } from '../../../test-utils';
 import TEST_IDS from '../../../utils/testIds.constants';
@@ -36,9 +34,7 @@ describe('Datacentres Listing Page', () => {
     await assertTextVisibility(VIRTUAL_DATACENTERS_LABEL);
 
     // and
-    const vdcLink = await getElementByTestId(
-      TEST_IDS.listingDatacentreNameLink,
-    );
+    const vdcLink = await getElementByTestId(TEST_IDS.listingDatacentreNameLink);
 
     await assertElementVisibility(vdcLink);
     await assertElementLabel({

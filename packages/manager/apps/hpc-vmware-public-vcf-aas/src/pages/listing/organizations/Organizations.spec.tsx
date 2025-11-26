@@ -1,16 +1,17 @@
+import { screen } from '@testing-library/dom';
+import { act, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
 import {
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { screen } from '@testing-library/dom';
-import { act, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
-
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { ORDER_VCD_REDIRECTION_URL } from '../../../utils/orderVcdRedirection.constants';
+
 import { labels, renderTest } from '../../../test-utils';
+import { ORDER_VCD_REDIRECTION_URL } from '../../../utils/orderVcdRedirection.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 
 describe('Organizations Listing Page', () => {
@@ -19,7 +20,7 @@ describe('Organizations Listing Page', () => {
     await renderTest({ nbOrganization: 1 });
 
     // then
-    const headers = [
+    const texts = [
       labels.listing.managed_vcd_listing_name,
       labels.commun.dashboard.description,
       labels.commun.region.localisation,
@@ -27,7 +28,7 @@ describe('Organizations Listing Page', () => {
       labels.listing.managed_vcd_listing_web_interface_url,
     ];
 
-    headers.forEach((element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
 
     // and
     const vcdDetails = organizationList[0].currentState;
@@ -58,7 +59,7 @@ describe('Organizations Listing Page', () => {
 });
 
 describe('VCD Order CTA redirection', () => {
-  let windowOpenSpy: any;
+  let windowOpenSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
@@ -76,7 +77,7 @@ describe('VCD Order CTA redirection', () => {
 
     const expectedUrl = ORDER_VCD_REDIRECTION_URL.FR;
 
-    await act(async () => {
+    act(() => {
       orderButton.click();
     });
 

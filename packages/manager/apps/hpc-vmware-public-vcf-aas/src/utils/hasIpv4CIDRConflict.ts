@@ -7,17 +7,9 @@ import ipaddr from 'ipaddr.js';
  * @param {string} cidrNetworkB - The second CIDR network.
  * @returns {boolean} - Returns Effect succeed(true) if the CIDR networks overlap or are equal, Effect succeed false otherwise.
  */
-export const hasIpv4CIDRConflict = (
-  cidrNetworkA: string,
-  cidrNetworkB: string,
-) => {
-  if (
-    !ipaddr.IPv4.isValidCIDR(cidrNetworkA) ||
-    !ipaddr.IPv4.isValidCIDR(cidrNetworkB)
-  ) {
-    return Effect.fail(
-      `Unable to parse CIDR (${cidrNetworkA} or ${cidrNetworkB})`,
-    );
+export const hasIpv4CIDRConflict = (cidrNetworkA: string, cidrNetworkB: string) => {
+  if (!ipaddr.IPv4.isValidCIDR(cidrNetworkA) || !ipaddr.IPv4.isValidCIDR(cidrNetworkB)) {
+    return Effect.fail(`Unable to parse CIDR (${cidrNetworkA} or ${cidrNetworkB})`);
   }
 
   const minA = ipaddr.IPv4.networkAddressFromCIDR(cidrNetworkA);

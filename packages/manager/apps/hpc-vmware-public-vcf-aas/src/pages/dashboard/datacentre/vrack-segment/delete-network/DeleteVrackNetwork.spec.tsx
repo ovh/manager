@@ -1,14 +1,16 @@
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor, fireEvent } from '@testing-library/react';
+
 import {
-  organizationList,
   datacentreList,
   mockVrackSegmentList,
+  organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
+
+import { subRoutes, urls } from '../../../../../routes/routes.constant';
 import { labels, renderTest } from '../../../../../test-utils';
 import { encodeVrackNetwork } from '../../../../../utils/encodeVrackNetwork';
-import { urls, subRoutes } from '../../../../../routes/routes.constant';
 
 const testVrack = mockVrackSegmentList[0];
 
@@ -18,10 +20,7 @@ const initialRoute = urls.vrackSegmentDeleteNetwork
   .replace(subRoutes.dashboard, organizationList[0].id)
   .replace(subRoutes.vdcId, datacentreList[0].id)
   .replace(subRoutes.vrackSegmentId, testVrack.id)
-  .replace(
-    subRoutes.vrackNetworkId,
-    encodeVrackNetwork(testVrack.targetSpec.networks[0]),
-  );
+  .replace(subRoutes.vrackNetworkId, encodeVrackNetwork(testVrack.targetSpec.networks[0]));
 
 const {
   managed_vcd_dashboard_vrack_delete_network: title,
@@ -77,10 +76,7 @@ describe('Delete Vrack Network Page', () => {
           .replace(varRegex('subnet'), testVrack.targetSpec.networks[0])
           .replace(
             varRegex('vrack'),
-            labelVrack.replace(
-              varRegex('vlanId'),
-              testVrack.currentState.vlanId,
-            ),
+            labelVrack.replace(varRegex('vlanId'), testVrack.currentState.vlanId),
           ),
       ),
     ).toBeVisible();
@@ -88,7 +84,7 @@ describe('Delete Vrack Network Page', () => {
 
   // TODO : unskip when page is unmocked
   it.skip('should display an error if updateService is KO', async () => {
-    const { debug, container } = await renderTest({
+    await renderTest({
       initialRoute,
       isVrackSegmentUpdateKo: true,
     });
@@ -99,14 +95,8 @@ describe('Delete Vrack Network Page', () => {
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    await waitFor(
-      async () => {
-        expect(submitCta).toBeEnabled();
-        debug(container, Infinity);
-        await act(() => userEvent.click(submitCta));
-      },
-      { timeout: 10_000 },
-    );
+    expect(submitCta).toBeEnabled();
+    await act(() => userEvent.click(submitCta));
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), {

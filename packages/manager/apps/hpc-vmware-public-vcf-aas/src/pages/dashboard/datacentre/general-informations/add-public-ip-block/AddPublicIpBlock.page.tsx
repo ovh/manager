@@ -1,39 +1,27 @@
-import { useState, Suspense, useMemo, useEffect } from 'react';
+import { Suspense, useMemo, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsMessage, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   useUpdateVcdVrackSegment,
   useVcdDatacentre,
   useVcdVrackSegmentsList,
 } from '@ovh-ux/manager-module-vcd-api';
-
 import { useVrackIpList } from '@ovh-ux/manager-network-common/src/vrack/hooks/useVrackIpList';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  Modal,
-  ErrorBoundary,
-  LinkType,
-  Links,
-} from '@ovh-ux/manager-react-components';
+import { ErrorBoundary, LinkType, Links, Modal } from '@ovh-ux/manager-react-components';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import {
-  OdsMessage,
-  OdsText,
-  OdsFormField,
-  OdsSelect,
-} from '@ovhcloud/ods-components/react';
-import {
-  VRACK_PATH,
-  DEDICATED_PATH,
-} from '@/pages/listing/datacentres/Datacentres.constants';
-
-import { subRoutes } from '@/routes/routes.constant';
-import TEST_IDS from '@/utils/testIds.constants';
 
 import { useMessageContext } from '@/context/Message.context';
+import { DEDICATED_PATH, VRACK_PATH } from '@/pages/listing/datacentres/Datacentres.constants';
+import { subRoutes } from '@/routes/routes.constant';
 import { getGatewayFromCIDR } from '@/utils/ipaddrUtilities';
+import TEST_IDS from '@/utils/testIds.constants';
 
 function AddPublicIpBlockLoaded() {
   const { id, vdcId } = useParams();
@@ -46,11 +34,7 @@ function AddPublicIpBlockLoaded() {
 
   const { addSuccess } = useMessageContext();
 
-  const [selectedBlockIp, setSelectedBlockIp] = useState(null);
-  const [
-    doesBlockIpExistInVrackSegment,
-    setDoesBlockIpExistInVrackSegment,
-  ] = useState(null);
+  const [selectedBlockIp, setSelectedBlockIp] = useState<string>(null);
 
   const {
     data: vdcData,
@@ -66,27 +50,29 @@ function AddPublicIpBlockLoaded() {
   } = useVcdVrackSegmentsList(id, vdcId, { enabled: !!id && !!vdcId });
 
   const vrackSegment = useMemo(() => {
-    if (!segmentListData?.data) return undefined;
-
-    return segmentListData.data.find(
-      (segment) => segment?.currentState?.mode === 'UNTAGGED',
-    );
+    if (!segmentListData?.data) {
+      return undefined;
+    }
+    return segmentListData.data.find((segment) => segment?.currentState?.mode === 'UNTAGGED');
   }, [segmentListData]);
+
+  const doesBlockIpExistInVrackSegment = useMemo(() => {
+    if (
+      selectedBlockIp &&
+      vrackSegment?.currentState?.networks?.includes(getGatewayFromCIDR(selectedBlockIp))
+    ) {
+      return true;
+    }
+    return false;
+  }, [selectedBlockIp, vrackSegment]);
 
   const vrackSegmentId = vrackSegment?.id;
 
-  const { ip: ipVrackList, isLoading: isLoadingIpVrackList } = useVrackIpList(
-    vrack,
-    {
-      enabled: !!vrack,
-    },
-  );
+  const { ip: ipVrackList, isLoading: isLoadingIpVrackList } = useVrackIpList(vrack, {
+    enabled: !!vrack,
+  });
 
-  const { data: urlVrack } = useNavigationGetUrl([
-    DEDICATED_PATH,
-    `/${VRACK_PATH}/${vrack}`,
-    {},
-  ]);
+  const { data: urlVrack } = useNavigationGetUrl([DEDICATED_PATH, `/${VRACK_PATH}/${vrack}`, {}]);
 
   const {
     mutate: updateVrackSegment,
@@ -98,18 +84,12 @@ function AddPublicIpBlockLoaded() {
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
-        content: t(
-          'managed_vcd_dashboard_add_ip_public_block_message_success',
-          {
-            gateway: getGatewayFromCIDR(selectedBlockIp),
-            blockIp: selectedBlockIp,
-          },
-        ),
+        content: t('managed_vcd_dashboard_add_ip_public_block_message_success', {
+          gateway: getGatewayFromCIDR(selectedBlockIp),
+          blockIp: selectedBlockIp,
+        }),
         includedSubRoutes: [vdcId],
-        excludedSubRoutes: [
-          subRoutes.datacentreCompute,
-          subRoutes.datacentreStorage,
-        ],
+        excludedSubRoutes: [subRoutes.datacentreCompute, subRoutes.datacentreStorage],
       });
       closeModal();
     },
@@ -119,27 +99,10 @@ function AddPublicIpBlockLoaded() {
     if (vrackSegment) {
       updateVrackSegment({
         ...vrackSegment.targetSpec,
-        networks: [
-          ...vrackSegment.targetSpec.networks,
-          getGatewayFromCIDR(selectedBlockIp),
-        ],
+        networks: [...vrackSegment.targetSpec.networks, getGatewayFromCIDR(selectedBlockIp)],
       });
     }
   };
-
-  useEffect(() => {
-    if (
-      selectedBlockIp &&
-      vrackSegment &&
-      vrackSegment.currentState?.networks?.includes(
-        getGatewayFromCIDR(selectedBlockIp),
-      )
-    ) {
-      setDoesBlockIpExistInVrackSegment(true);
-    } else {
-      setDoesBlockIpExistInVrackSegment(false);
-    }
-  }, [selectedBlockIp]);
 
   if (isErrorVcdDatacenter || isErrorVrackSegmentList) {
     return (
@@ -154,9 +117,7 @@ function AddPublicIpBlockLoaded() {
       <Modal
         isOpen
         heading={t('managed_vcd_dashboard_add_ip_public_block_modal_heading')}
-        primaryLabel={
-          ipVrackList && ipVrackList.length > 0 ? tActions('add') : null
-        }
+        primaryLabel={ipVrackList && ipVrackList.length > 0 ? tActions('add') : null}
         isPrimaryButtonLoading={isUpdatePending}
         isPrimaryButtonDisabled={
           isUpdatePending || !selectedBlockIp || doesBlockIpExistInVrackSegment
@@ -165,29 +126,20 @@ function AddPublicIpBlockLoaded() {
         secondaryLabel={tActions('cancel')}
         onSecondaryButtonClick={closeModal}
         onDismiss={closeModal}
-        isLoading={
-          isLoadingIpVrackList ||
-          isLoadingVcdDatacenter ||
-          isLoadingVrackSegmentList
-        }
+        isLoading={isLoadingIpVrackList || isLoadingVcdDatacenter || isLoadingVrackSegmentList}
         primaryButtonTestId={TEST_IDS.modalSubmitCta}
       >
         {ipVrackList && ipVrackList.length > 0 ? (
           <div className="flex flex-col gap-2">
             {updateError && (
               <OdsMessage color="critical" isDismissible={false}>
-                {tVrackSegment(
-                  'managed_vcd_dashboard_vrack_add_network_error',
-                  {
-                    errorApi: updateError.message,
-                  },
-                )}
+                {tVrackSegment('managed_vcd_dashboard_vrack_add_network_error', {
+                  errorApi: updateError.message,
+                })}
               </OdsMessage>
             )}
 
-            <OdsText>
-              {t('managed_vcd_dashboard_add_ip_public_block_description')}
-            </OdsText>
+            <OdsText>{t('managed_vcd_dashboard_add_ip_public_block_description')}</OdsText>
 
             <OdsMessage color="information" isDismissible={false}>
               <>{t('managed_vcd_dashboard_add_ip_public_block_information')}</>
@@ -201,7 +153,7 @@ function AddPublicIpBlockLoaded() {
             />
 
             <OdsFormField className="mt-3">
-              <div slot="label" className="space-y-2 mb-2">
+              <div slot="label" className="mb-2 space-y-2">
                 <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
                   {t('managed_vcd_dashboard_add_ip_public_block_label')}
                 </OdsText>
@@ -219,18 +171,11 @@ function AddPublicIpBlockLoaded() {
                 ))}
               </OdsSelect>
               {doesBlockIpExistInVrackSegment && (
-                <OdsMessage
-                  className="mt-2"
-                  color="critical"
-                  isDismissible={false}
-                >
-                  {t(
-                    'managed_vcd_dashboard_add_ip_public_block_add_already_exist',
-                    {
-                      gateway: getGatewayFromCIDR(selectedBlockIp),
-                      blockIp: selectedBlockIp,
-                    },
-                  )}
+                <OdsMessage className="mt-2" color="critical" isDismissible={false}>
+                  {t('managed_vcd_dashboard_add_ip_public_block_add_already_exist', {
+                    gateway: getGatewayFromCIDR(selectedBlockIp),
+                    blockIp: selectedBlockIp,
+                  })}
                 </OdsMessage>
               )}
             </OdsFormField>
@@ -238,9 +183,7 @@ function AddPublicIpBlockLoaded() {
         ) : (
           <>
             <OdsMessage color="information" isDismissible={false}>
-              {t(
-                'managed_vcd_dashboard_add_ip_public_block_no_vrack_ip_information',
-              )}
+              {t('managed_vcd_dashboard_add_ip_public_block_no_vrack_ip_information')}
             </OdsMessage>
             <Links
               className="mt-2"
@@ -263,11 +206,7 @@ export default function AddPuplicIpBlock() {
   return (
     <Suspense
       fallback={
-        <Modal
-          isOpen
-          heading={t('managed_vcd_dashboard_vrack_add_network')}
-          isLoading
-        ></Modal>
+        <Modal isOpen heading={t('managed_vcd_dashboard_vrack_add_network')} isLoading></Modal>
       }
     >
       <AddPublicIpBlockLoaded />;

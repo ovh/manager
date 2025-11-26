@@ -1,8 +1,4 @@
-import {
-  ButtonType,
-  PageLocation,
-  TrackingClickParams,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
 
 export const LEVEL2 = {
   EU: {
@@ -27,10 +23,7 @@ export const APP_NAME_TRACKING = 'vcfaas';
 export const APP_NAME = 'hpc-vmware-public-vcf-aas';
 
 type GetTrackingParams = (param: string | string[]) => TrackingClickParams;
-type AppTracking = Record<
-  string,
-  Record<string, TrackingClickParams | GetTrackingParams>
->;
+type AppTracking = Record<string, Record<string, TrackingClickParams | GetTrackingParams>>;
 
 const defineTrackingConfig = <T extends AppTracking>(config: T) => config;
 
@@ -304,9 +297,7 @@ export const TRACKING_TABS_ACTIONS = {
   edgeGateways: ['edge-gateways'],
 };
 
-export const getTabTrackingParams = (
-  actions: string[],
-): TrackingClickParams => ({
+export const getTabTrackingParams = (actions: string[]): TrackingClickParams => ({
   location: PageLocation.mainTabnav,
   buttonType: ButtonType.tab,
   actionType: 'navigation',

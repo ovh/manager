@@ -1,18 +1,22 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
+  VCDDatacentreTargetSpec,
   isStatusTerminated,
   useUpdateVdcDetails,
   useVcdDatacentre,
-  VCDDatacentreTargetSpec,
 } from '@ovh-ux/manager-module-vcd-api';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { RedirectionGuard } from '@ovh-ux/manager-react-components';
-import { validateDescription } from '@/utils/formValidation';
+
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
 import { useMessageContext } from '@/context/Message.context';
 import { subRoutes } from '@/routes/routes.constant';
+import { validateDescription } from '@/utils/formValidation';
 
 export default function EditVdcDescription() {
   const { t } = useTranslation('dashboard');
@@ -29,17 +33,13 @@ export default function EditVdcDescription() {
       addSuccess({
         content: t('managed_vcd_dashboard_edit_description_modal_success'),
         includedSubRoutes: [vdcId],
-        excludedSubRoutes: [
-          subRoutes.datacentreCompute,
-          subRoutes.datacentreStorage,
-        ],
+        excludedSubRoutes: [subRoutes.datacentreCompute, subRoutes.datacentreStorage],
       });
       closeModal();
     },
   });
 
-  const currentVdcDetails: VCDDatacentreTargetSpec =
-    vcdDatacentre.data.targetSpec;
+  const currentVdcDetails: VCDDatacentreTargetSpec = vcdDatacentre.data.targetSpec;
 
   return (
     <RedirectionGuard
@@ -51,9 +51,7 @@ export default function EditVdcDescription() {
         detailValue={vcdDatacentre?.data?.currentState?.description}
         headline={t('managed_vcd_dashboard_edit_description_modal_title')}
         inputLabel={tDashboard('description')}
-        errorHelper={t(
-          'managed_vcd_dashboard_edit_description_modal_helper_error',
-        )}
+        errorHelper={t('managed_vcd_dashboard_edit_description_modal_helper_error')}
         validateDetail={validateDescription}
         onCloseModal={closeModal}
         onEdit={(description) =>

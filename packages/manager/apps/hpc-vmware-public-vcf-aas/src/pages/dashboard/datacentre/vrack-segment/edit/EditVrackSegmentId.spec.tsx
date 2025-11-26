@@ -1,15 +1,17 @@
+import { waitFor } from '@testing-library/dom';
 import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
+
 import {
-  organizationList,
   datacentreList,
   mockVrackSegmentList,
+  organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { waitFor } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
-import { renderTest, labels } from '../../../../../test-utils';
+
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 import { subRoutes } from '../../../../../routes/routes.constant';
+import { labels, renderTest } from '../../../../../test-utils';
 
 const queryModalTitle = () => {
   return screen.queryByText(
@@ -21,15 +23,9 @@ const queryModalTitle = () => {
 };
 
 const checkFormInputAndCta = (container: HTMLElement) => {
-  expect(
-    screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan),
-  ).toBeVisible();
-  expect(
-    container.querySelector(`[label="${labels.commun.actions.modify}"]`),
-  ).toBeVisible();
-  expect(
-    container.querySelector(`[label="${labels.commun.actions.cancel}"]`),
-  ).toBeVisible();
+  expect(screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan)).toBeVisible();
+  expect(container.querySelector(`[label="${labels.commun.actions.modify}"]`)).toBeVisible();
+  expect(container.querySelector(`[label="${labels.commun.actions.cancel}"]`)).toBeVisible();
 
   const input = container.querySelector('input[name="vlanId"]');
 
@@ -37,34 +33,22 @@ const checkFormInputAndCta = (container: HTMLElement) => {
 };
 
 const checkVlanValue = (container: HTMLElement, vlanId: string) => {
-  const input = container.querySelector(
-    `input[name="vlanId"][value="${vlanId}"]`,
-  );
+  const input = container.querySelector(`input[name="vlanId"][value="${vlanId}"]`);
 
   expect(input).toBeInTheDocument();
 };
 
-const expectSubmitButton = (container) =>
-  expect(
-    container.querySelector(
-      `ods-button[label="${labels.commun.actions.modify}"]`,
-    ),
-  );
+const getSubmitButton = (container: HTMLElement) =>
+  container.querySelector(`ods-button[label="${labels.commun.actions.modify}"]`);
 
 const submitForm = (container: HTMLElement) => {
-  return act(() =>
-    userEvent.click(
-      container.querySelector(
-        `ods-button[label="${labels.commun.actions.modify}"]`,
-      ) as Element,
-    ),
-  );
+  return act(() => userEvent.click(getSubmitButton(container)));
 };
 
 const editVlanValue = (newValue: string | number) => {
-  const odsQuantity = document.querySelector(
+  const odsQuantity = document.querySelector<HTMLElement & { value: number }>(
     'ods-quantity[name="vlanId"]',
-  ) as HTMLElement & { value?: number };
+  );
 
   if (!odsQuantity) throw new Error('ods-quantity not found');
 
@@ -88,9 +72,7 @@ const checkSuccessBannerIsVisible = () => {
 };
 
 const checkErrorBannerIsVisible = () => {
-  screen.queryByText(
-    fr_FR.managed_vcd_dashboard_vrack_edit_error.replace('{{errorApi}}', ''),
-  );
+  screen.queryByText(fr_FR.managed_vcd_dashboard_vrack_edit_error.replace('{{errorApi}}', ''));
 };
 
 const initialRoute = `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/${subRoutes.vrackEditVlanId}`;
@@ -115,11 +97,11 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    expectSubmitButton(container).toBeDisabled();
+    expect(getSubmitButton(container)).toBeDisabled();
 
-    await editVlanValue(430);
+    editVlanValue(430);
 
-    await waitFor(() => expectSubmitButton(container).not.toBeDisabled(), {
+    await waitFor(() => expect(getSubmitButton(container)).not.toBeDisabled(), {
       timeout: 2000,
     });
 

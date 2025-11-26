@@ -1,122 +1,93 @@
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+
+import { Navigate, Route } from 'react-router-dom';
+
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import NotFound from '@/pages/404';
 import { subRoutes, urls } from '@/routes/routes.constant';
 
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
-const OnboardingPage = React.lazy(() =>
-  import('@/pages/onboarding/Onboarding.page'),
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const ListingPage = React.lazy(() => import('@/pages/listing/organizations/Organizations.page'));
+const OrganizationDashboardPage = React.lazy(
+  () => import('@/pages/dashboard/organization/OrganizationDashboard.page'),
 );
-const ListingPage = React.lazy(() =>
-  import('@/pages/listing/organizations/Organizations.page'),
+const OrganizationGeneralInformationPage = React.lazy(
+  () =>
+    import(
+      '@/pages/dashboard/organization/general-information/OrganizationGeneralInformation.page'
+    ),
 );
-const OrganizationDashboardPage = React.lazy(() =>
-  import('@/pages/dashboard/organization/OrganizationDashboard.page'),
+const OrganizationEditNamePage = React.lazy(
+  () => import('@/pages/dashboard/organization/general-information/edit/EditName.page'),
 );
-const OrganizationGeneralInformationPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/OrganizationGeneralInformation.page'
-  ),
+const OrganizationEditDescriptionPage = React.lazy(
+  () => import('@/pages/dashboard/organization/general-information/edit/EditDescription.page'),
 );
-const OrganizationEditNamePage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/edit/EditName.page'
-  ),
-);
-const OrganizationEditDescriptionPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/edit/EditDescription.page'
-  ),
-);
-const OrganizationResetPasswordPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/edit/EditPassword.page'
-  ),
-);
-const DatacentresPage = React.lazy(() =>
-  import('@/pages/listing/datacentres/Datacentres.page'),
+const OrganizationResetPasswordPage = React.lazy(
+  () => import('@/pages/dashboard/organization/general-information/edit/EditPassword.page'),
 );
 
-const NetworkAclPage = React.lazy(() =>
-  import('@/pages/listing/networkAcl/NetworkAcl.page'),
+const NetworkAclPage = React.lazy(() => import('@/pages/listing/networkAcl/NetworkAcl.page'));
+const NetworkAclPageAddEdit = React.lazy(
+  () => import('@/pages/listing/networkAcl/update-network-acl/UpdateNetworkAcl.page'),
+);
+const NetworkAclPageDelete = React.lazy(
+  () => import('@/pages/listing/networkAcl/delete-network-acl/DeleteNetworkAcl.page'),
 );
 
-const NetworkAclPageAddEdit = React.lazy(() =>
-  import('@/pages/listing/networkAcl/update-network-acl/UpdateNetworkAcl.page'),
+const DatacentresPage = React.lazy(() => import('@/pages/listing/datacentres/Datacentres.page'));
+const DatacentreDashboardPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/DatacentreDashboard.page'),
+);
+const DatacentreGeneralInformationPage = React.lazy(
+  () =>
+    import('@/pages/dashboard/datacentre/general-informations/DatacentreGeneralInformation.page'),
+);
+const DatacentreEditDescriptionPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/general-informations/edit/EditVdcDescription.page'),
+);
+const DatacentreStoragePage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/storage/DatacentreStorage.page'),
+);
+const DatacentreStorageOrderPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/storage-order/DatacentreStorageOrder.page'),
+);
+const DatacentreComputePage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/compute/DatacentreCompute.page'),
+);
+const DatacentreComputeOrderPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/compute-order/DatacentreComputeOrder.page'),
 );
 
-const NetworkAclPageDelete = React.lazy(() =>
-  import('@/pages/listing/networkAcl/delete-network-acl/DeleteNetworkAcl.page'),
+const DatacenterVrackSegmentPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/DatacentreVrack.page'),
+);
+const EditVrackSegmentIdPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'),
+);
+const DeleteVrackNetworkPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/delete-network/DeleteVrackNetwork.page'),
+);
+const AddNetworkInVrackSegmentPage = React.lazy(
+  () =>
+    import('@/pages/dashboard/datacentre/vrack-segment/add-network/AddNetworkInVrackSegment.page'),
+);
+const DeleteVrackSegmentPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/delete-segment/DeleteVrackSegment.page'),
 );
 
-const DatacentreDashboardPage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/DatacentreDashboard.page'),
-);
-const DatacentreGeneralInformationPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/general-informations/DatacentreGeneralInformation.page'
-  ),
-);
-const DatacentreEditDescriptionPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/general-informations/edit/EditVdcDescription.page'
-  ),
-);
-const DatacentreStoragePage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/storage/DatacentreStorage.page'),
-);
-const DatacentreStorageOrderPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/storage-order/DatacentreStorageOrder.page'
-  ),
-);
-const DatacentreComputePage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/compute/DatacentreCompute.page'),
-);
-const DatacentreComputeOrderPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/compute-order/DatacentreComputeOrder.page'
-  ),
+const TerminateOrganizationPage = React.lazy(
+  () => import('@/pages/terminate/TerminateOrganization.page'),
 );
 
-const DatacenterVrackSegmentPage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/vrack-segment/DatacentreVrack.page'),
-);
-
-const EditVrackSegmentIdPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'
-  ),
-);
-
-const DeleteVrackNetworkPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/delete-network/DeleteVrackNetwork.page'
-  ),
-);
-
-const AddNetworkInVrackSegmentPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/add-network/AddNetworkInVrackSegment.page'
-  ),
-);
-
-const DeleteVrackSegmentPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/delete-segment/DeleteVrackSegment.page'
-  ),
-);
-
-const TerminateOrganizationPage = React.lazy(() =>
-  import('@/pages/terminate/TerminateOrganization.page'),
-);
-
-const AddPublicIpBlockPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/general-informations/add-public-ip-block/AddPublicIpBlock.page'
-  ),
+const AddPublicIpBlockPage = React.lazy(
+  () =>
+    import(
+      '@/pages/dashboard/datacentre/general-informations/add-public-ip-block/AddPublicIpBlock.page'
+    ),
 );
 
 export default (
@@ -138,23 +109,13 @@ export default (
         id={'listing'}
         path={urls.listing}
         Component={ListingPage}
-        handle={{
-          tracking: {
-            pageName: 'listing',
-            pageType: PageType.listing,
-          },
-        }}
+        handle={{ tracking: { pageName: 'listing', pageType: PageType.listing } }}
       >
         <Route
           id="listing-terminate"
           path={`${subRoutes.terminate}/:id`}
           Component={TerminateOrganizationPage}
-          handle={{
-            tracking: {
-              pageName: 'delete_vcfaas',
-              pageType: PageType.popup,
-            },
-          }}
+          handle={{ tracking: { pageName: 'delete_vcfaas', pageType: PageType.popup } }}
         />
       </Route>
       <Route path={urls.dashboard} Component={OrganizationDashboardPage}>
@@ -162,74 +123,40 @@ export default (
           id={'dashboard'}
           path={''}
           Component={OrganizationGeneralInformationPage}
-          handle={{
-            tracking: {
-              pageName: 'general-information',
-              pageType: PageType.dashboard,
-            },
-          }}
+          handle={{ tracking: { pageName: 'general-information', pageType: PageType.dashboard } }}
         >
           <Route
             id={'edit-name'}
             path={urls.editName}
             Component={OrganizationEditNamePage}
-            handle={{
-              tracking: {
-                pageName: 'edit-name',
-                pageType: PageType.popup,
-              },
-            }}
+            handle={{ tracking: { pageName: 'edit-name', pageType: PageType.popup } }}
           />
           <Route
             id={'edit-description'}
             path={urls.editDescription}
             Component={OrganizationEditDescriptionPage}
-            handle={{
-              tracking: {
-                pageName: 'edit-description',
-                pageType: PageType.popup,
-              },
-            }}
+            handle={{ tracking: { pageName: 'edit-description', pageType: PageType.popup } }}
           />
           <Route
             id={'reset-password'}
             path={urls.resetPassword}
             Component={OrganizationResetPasswordPage}
-            handle={{
-              tracking: {
-                pageName: 'reset-password',
-                pageType: PageType.popup,
-              },
-            }}
+            handle={{ tracking: { pageName: 'reset-password', pageType: PageType.popup } }}
           />
           <Route
             id="dashboard-terminate"
             path={subRoutes.terminate}
             Component={TerminateOrganizationPage}
-            handle={{
-              tracking: {
-                pageName: 'delete_vcfaas',
-                pageType: PageType.popup,
-              },
-            }}
+            handle={{ tracking: { pageName: 'delete_vcfaas', pageType: PageType.popup } }}
           />
         </Route>
         <Route
           id={'datacentres'}
           path={urls.datacentres}
           Component={DatacentresPage}
-          handle={{
-            tracking: {
-              pageName: 'datacenters',
-              pageType: PageType.listing,
-            },
-          }}
+          handle={{ tracking: { pageName: 'datacenters', pageType: PageType.listing } }}
         />
-        <Route
-          id={'network-acl'}
-          path={urls.networkAcl}
-          Component={NetworkAclPage}
-        >
+        <Route id={'network-acl'} path={urls.networkAcl} Component={NetworkAclPage}>
           <Route
             id={'network-acl-add'}
             path={urls.networkAclAdd}
@@ -250,34 +177,19 @@ export default (
       <Route
         path={urls.datacentreDashboard}
         Component={DatacentreDashboardPage}
-        handle={{
-          tracking: {
-            pageName: 'datacenter',
-            pageType: PageType.dashboard,
-          },
-        }}
+        handle={{ tracking: { pageName: 'datacenter', pageType: PageType.dashboard } }}
       >
         <Route
           id={'vDcDashboard'}
           path={''}
           Component={DatacentreGeneralInformationPage}
-          handle={{
-            tracking: {
-              pageName: 'datacenter',
-              pageType: PageType.dashboard,
-            },
-          }}
+          handle={{ tracking: { pageName: 'datacenter', pageType: PageType.dashboard } }}
         >
           <Route
             id={'vdc-edit-description'}
             path={urls.datacentreEditDescription}
             Component={DatacentreEditDescriptionPage}
-            handle={{
-              tracking: {
-                pageName: 'vdc-edit-description',
-                pageType: PageType.popup,
-              },
-            }}
+            handle={{ tracking: { pageName: 'vdc-edit-description', pageType: PageType.popup } }}
           />
           <Route
             id={'vdc-add-public-ip'}
@@ -289,23 +201,13 @@ export default (
           id={'vDcStorage'}
           path={urls.datacentreStorage}
           Component={DatacentreStoragePage}
-          handle={{
-            tracking: {
-              pageName: 'storage',
-              pageType: PageType.listing,
-            },
-          }}
+          handle={{ tracking: { pageName: 'storage', pageType: PageType.listing } }}
         />
         <Route
           id={'vDcStorage-order'}
           path={urls.datacentreStorageOrder}
           Component={DatacentreStorageOrderPage}
-          handle={{
-            tracking: {
-              pageName: 'storage-order',
-              pageType: PageType.funnel,
-            },
-          }}
+          handle={{ tracking: { pageName: 'storage-order', pageType: PageType.funnel } }}
         />
         <Route
           id={'vrack-segment'}
@@ -337,35 +239,20 @@ export default (
           id={'vDcCompute'}
           path={urls.datacentreCompute}
           Component={DatacentreComputePage}
-          handle={{
-            tracking: {
-              pageName: 'compute',
-              pageType: PageType.listing,
-            },
-          }}
+          handle={{ tracking: { pageName: 'compute', pageType: PageType.listing } }}
         />
         <Route
           id={'vDcCompute-order'}
           path={urls.datacentreComputeOrder}
           Component={DatacentreComputeOrderPage}
-          handle={{
-            tracking: {
-              pageName: 'upgrade_vcpu-speed',
-              pageType: PageType.popup,
-            },
-          }}
+          handle={{ tracking: { pageName: 'upgrade_vcpu-speed', pageType: PageType.popup } }}
         />
       </Route>
       <Route
         id={'onboarding'}
         path={urls.onboarding}
         Component={OnboardingPage}
-        handle={{
-          tracking: {
-            pageName: 'onboarding',
-            pageType: PageType.onboarding,
-          },
-        }}
+        handle={{ tracking: { pageName: 'onboarding', pageType: PageType.onboarding } }}
       />
       <Route path={'*'} element={<NotFound />} />
     </Route>

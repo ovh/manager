@@ -43,6 +43,7 @@ packages/manager-tools/manager-pm
 packages/manager-tools/manager-cli-core
 packages/manager/apps/cloud-shell/src/wasm_exec.js
 packages/manager/modules/backup-agent
+packages/manager/apps/hpc-vmware-public-vcf-aas
 packages/manager/apps/okms
 packages/manager/apps/hpc-backup-agent-iaas
 packages/manager/apps/bmc-backup-agent-baremetal

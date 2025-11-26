@@ -1,47 +1,48 @@
 import React from 'react';
-import { SetupServer } from 'msw/node';
+
+import { render, screen, waitFor } from '@testing-library/react';
 import { i18n } from 'i18next';
+import { SetupServer } from 'msw/node';
 import { I18nextProvider } from 'react-i18next';
 import { expect } from 'vitest';
+
+import {
+  getAuthenticationMocks,
+  initTestI18n,
+  toMswHandlers,
+} from '@ovh-ux/manager-core-test-utils';
+import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
+import {
+  GetDatacentreOrderMocksParams,
+  GetDatacentresMocksParams,
+  GetNetworkAclMocksParams,
+  GetOrganizationMocksParams,
+  GetVeeamBackupMocksParams,
+  GetVrackSegmentsMocksParams,
+  getDatacentreOrderMocks,
+  getDatacentresMocks,
+  getIamMocks,
+  getNetworkAclMock,
+  getOrganizationMocks,
+  getVeeamBackupMocks,
+  getVrackSegmentsMocks,
+} from '@ovh-ux/manager-module-vcd-api';
 import {
   ShellContext,
   ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { render, waitFor, screen } from '@testing-library/react';
+
 import {
-  getServicesMocks,
-  GetServicesMocksParams,
-} from '@ovh-ux/manager-module-common-api';
-import {
-  getVeeamBackupMocks,
-  getOrganizationMocks,
-  GetOrganizationMocksParams,
-  getDatacentresMocks,
-  GetDatacentresMocksParams,
-  getDatacentreOrderMocks,
-  GetDatacentreOrderMocksParams,
-  GetVeeamBackupMocksParams,
-  getIamMocks,
-  getVrackSegmentsMocks,
-  GetVrackSegmentsMocksParams,
-  getNetworkAclMock,
-  GetNetworkAclMocksParams,
-} from '@ovh-ux/manager-module-vcd-api';
-import {
-  initTestI18n,
-  getAuthenticationMocks,
-  toMswHandlers,
-} from '@ovh-ux/manager-core-test-utils';
-import { translations } from './test-i18n';
-import { TestApp } from './TestApp';
-import { APP_NAME } from '@/tracking.constants';
-import {
-  getFeatureAvailabilityMocks,
   TFeatureAvailabilityMockParams,
+  getFeatureAvailabilityMocks,
 } from '@/mocks/feature-availability';
-import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 import { urls } from '@/routes/routes.constant';
+import { APP_NAME } from '@/tracking.constants';
+import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
+
+import { TestApp } from './TestApp';
+import { translations } from './test-i18n';
 
 let context: ShellContextType;
 let i18nState: i18n;
@@ -62,7 +63,7 @@ export const renderTest = async ({
   GetVrackSegmentsMocksParams &
   GetNetworkAclMocksParams &
   GetServicesMocksParams = {}) => {
-  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
+  (global as unknown as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getVeeamBackupMocks(mockParams),

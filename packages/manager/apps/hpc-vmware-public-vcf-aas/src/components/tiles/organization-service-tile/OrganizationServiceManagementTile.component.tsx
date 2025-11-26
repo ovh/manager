@@ -1,16 +1,17 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { DashboardTile } from '@ovh-ux/manager-react-components';
+
 import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  isStatusTerminated,
-  useVcdOrganization,
-} from '@ovh-ux/manager-module-vcd-api';
-import ServiceRenewTileItem from './renew-tile-item/ServiceRenewTileItem';
+import { isStatusTerminated, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { DashboardTile } from '@ovh-ux/manager-react-components';
+
+import CancellationTileItem from './cancellation-tile-item/CancellationTileItem';
 import ServiceContactsTileItem from './contact-tile-item/ServiceContactsTileItem';
 import ServicePasswordTileItem from './password-tile-item/ServicePasswordTileItem';
-import CancellationTileItem from './cancellation-tile-item/CancellationTileItem';
+import ServiceRenewTileItem from './renew-tile-item/ServiceRenewTileItem';
 
 export default function OrganizationServiceManagementTile() {
   const { t } = useTranslation('dashboard');

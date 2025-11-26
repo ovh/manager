@@ -1,31 +1,25 @@
+import { waitFor } from '@testing-library/dom';
 import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import {
-  organizationList,
   datacentreList,
   mockVrackSegmentList,
+  organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { waitFor } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
-import { renderTest, labels } from '../../../../../test-utils';
+
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
+import { labels, renderTest } from '../../../../../test-utils';
 
 const checkTitleIsVisible = () =>
-  expect(
-    screen.queryAllByText(fr_FR.managed_vcd_dashboard_vrack_add_network)[0],
-  ).toBeVisible();
+  expect(screen.queryAllByText(fr_FR.managed_vcd_dashboard_vrack_add_network)[0]).toBeVisible();
 
 const checkFormInputAndCta = (container: HTMLElement) => {
+  expect(screen.queryAllByText(fr_FR.managed_vcd_dashboard_vrack_add_network)[0]).toBeVisible();
   expect(
-    screen.queryAllByText(fr_FR.managed_vcd_dashboard_vrack_add_network)[0],
+    container.querySelector(`[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`),
   ).toBeVisible();
-  expect(
-    container.querySelector(
-      `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
-    ),
-  ).toBeVisible();
-  expect(
-    container.querySelector(`[label=${labels.commun.actions.cancel}]`),
-  ).toBeVisible();
+  expect(container.querySelector(`[label=${labels.commun.actions.cancel}]`)).toBeVisible();
 
   const input = container.querySelector('input[name="network"]');
 
@@ -33,9 +27,7 @@ const checkFormInputAndCta = (container: HTMLElement) => {
 };
 
 const checkNetworkValue = (container: HTMLElement, vlanId: string) => {
-  const input = container.querySelector(
-    `input[name="network"][value="${vlanId}"]`,
-  );
+  const input = container.querySelector(`input[name="network"][value="${vlanId}"]`);
 
   expect(input).toBeInTheDocument();
 };
@@ -43,19 +35,14 @@ const checkNetworkValue = (container: HTMLElement, vlanId: string) => {
 const submitForm = (container: HTMLElement) => {
   return act(() =>
     userEvent.click(
-      container.querySelector(
-        `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
-      ) as Element,
+      container.querySelector(`[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`),
     ),
   );
 };
 
 const checkErrorBannerIsVisible = () => {
   screen.queryByText(
-    fr_FR.managed_vcd_dashboard_vrack_add_network_error.replace(
-      '{{errorApi}}',
-      '',
-    ),
+    fr_FR.managed_vcd_dashboard_vrack_add_network_error.replace('{{errorApi}}', ''),
   );
 };
 

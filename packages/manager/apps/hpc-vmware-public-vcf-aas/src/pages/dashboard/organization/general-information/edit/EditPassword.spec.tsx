@@ -1,14 +1,13 @@
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { labels, renderTest } from '../../../../../test-utils';
-import { urls, subRoutes } from '../../../../../routes/routes.constant';
 
-const initialRoute = urls.resetPassword.replace(
-  subRoutes.dashboard,
-  organizationList[0].id,
-);
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { subRoutes, urls } from '../../../../../routes/routes.constant';
+import { labels, renderTest } from '../../../../../test-utils';
+
+const initialRoute = urls.resetPassword.replace(subRoutes.dashboard, organizationList[0].id);
 
 const {
   managed_vcd_dashboard_password_modal_title: title,
@@ -56,13 +55,8 @@ describe('Delete Vrack Network Page', () => {
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    await waitFor(
-      async () => {
-        expect(submitCta).toBeEnabled();
-        await act(() => userEvent.click(submitCta));
-      },
-      { timeout: 10_000 },
-    );
+    expect(submitCta).toBeEnabled();
+    await act(() => userEvent.click(submitCta));
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), {

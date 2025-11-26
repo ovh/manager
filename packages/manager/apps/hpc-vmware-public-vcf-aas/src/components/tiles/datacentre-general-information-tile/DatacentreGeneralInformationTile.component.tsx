@@ -1,38 +1,29 @@
-import {
-  LinkType,
-  Links,
-  Clipboard,
-  DashboardTile,
-} from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import {
-  isStatusTerminated,
-  VCDDatacentre,
-  VCDOrganization,
-} from '@ovh-ux/manager-module-vcd-api';
+
 import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
-import {
-  useOvhTracking,
-  useNavigationGetUrl,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+import { VCDDatacentre, VCDOrganization, isStatusTerminated } from '@ovh-ux/manager-module-vcd-api';
+import { Clipboard, DashboardTile, LinkType, Links } from '@ovh-ux/manager-react-components';
+import { useNavigationGetUrl, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { FEATURE_FLAGS } from '@/app.constants';
+import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import { subRoutes } from '@/routes/routes.constant';
+import { TRACKING } from '@/tracking.constants';
+import { capitalize } from '@/utils/capitalize';
 import { iamActions } from '@/utils/iam.constants';
-import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
+import TEST_IDS from '@/utils/testIds.constants';
+
 import {
-  VRACK_PATH,
   DEDICATED_PATH,
   VRACK_ONBOARDING_PATH,
+  VRACK_PATH,
 } from '../../../pages/listing/datacentres/Datacentres.constants';
-
-import { capitalize } from '@/utils/capitalize';
-import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
-import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constants';
-import { FEATURE_FLAGS } from '@/app.constants';
+import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -53,14 +44,12 @@ export default function DatacentreGenerationInformationTile({
     FEATURE_FLAGS.VRACK_ASSOCIATION,
   ]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
-  const isVrackAssociationFeatureAvailable =
-    featuresAvailable?.[FEATURE_FLAGS.VRACK_ASSOCIATION];
+  const isVrackAssociationFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK_ASSOCIATION];
   const canBeAssociatedWithVrack = !vcdDatacentre?.currentState?.vrack;
 
   const { data: urlVrack } = useNavigationGetUrl([
     DEDICATED_PATH,
-    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vrack ||
-      VRACK_ONBOARDING_PATH}`,
+    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vrack || VRACK_ONBOARDING_PATH}`,
     {},
   ]);
 
@@ -75,9 +64,7 @@ export default function DatacentreGenerationInformationTile({
             <EditableTileItem
               value={vcdDatacentre?.currentState?.description}
               name="vdcDescription"
-              iamActions={[
-                iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit,
-              ]}
+              iamActions={[iamActions.vmwareCloudDirectorApiovhOrganizationVirtualDataCenterEdit]}
               urn={vcdDatacentre?.iam?.urn}
               onClickEdit={() => navigate(subRoutes.editDescription)}
               isDisabled={isStatusTerminated(vcdOrganization.resourceStatus)}
@@ -87,20 +74,12 @@ export default function DatacentreGenerationInformationTile({
         {
           id: 'commercialRange',
           label: tVdc('managed_vcd_vdc_commercial_range'),
-          value: (
-            <OdsText>
-              {capitalize(vcdDatacentre?.currentState?.commercialRange)}
-            </OdsText>
-          ),
+          value: <OdsText>{capitalize(vcdDatacentre?.currentState?.commercialRange)}</OdsText>,
         },
         {
           id: 'cpuCount',
           label: tVdc('managed_vcd_vdc_vcpu_count'),
-          value: (
-            <OdsText>
-              {vcdDatacentre?.currentState.vCPUCount?.toString()}
-            </OdsText>
-          ),
+          value: <OdsText>{vcdDatacentre?.currentState.vCPUCount?.toString()}</OdsText>,
         },
         {
           id: 'ramCount',
@@ -134,9 +113,7 @@ export default function DatacentreGenerationInformationTile({
               label={t('managed_vcd_dashboard_management_interface_access')}
               target="_blank"
               data-testid={TEST_IDS.dashboardDatacentreInterfaceLink}
-              onClickReturn={() =>
-                trackClick(TRACKING.datacentreDashboard.goToVcdPortal)
-              }
+              onClickReturn={() => trackClick(TRACKING.datacentreDashboard.goToVcdPortal)}
             />
           ),
         },
@@ -148,21 +125,15 @@ export default function DatacentreGenerationInformationTile({
               <Links
                 id={`vrack-${vcdDatacentre.id}`}
                 aria-labelledby={
-                  !isVrackAssociationFeatureAvailable &&
-                  canBeAssociatedWithVrack
+                  !isVrackAssociationFeatureAvailable && canBeAssociatedWithVrack
                     ? `vrack-${vcdDatacentre.id}-tooltip`
                     : undefined
                 }
                 href={urlVrack as string}
                 type={LinkType.next}
-                isDisabled={
-                  !isVrackAssociationFeatureAvailable &&
-                  canBeAssociatedWithVrack
-                }
-                label={
-                  vcdDatacentre.currentState?.vrack ||
-                  tVdc('managed_vcd_vdc_associate_vrack')
-                }
+                isDisabled={!isVrackAssociationFeatureAvailable && canBeAssociatedWithVrack}
+                label={vcdDatacentre.currentState?.vrack || tVdc('managed_vcd_vdc_associate_vrack')}
+                data-testid={TEST_IDS.dashboardDatacentreVrackLink}
               />
               {!isVrackAssociationFeatureAvailable && canBeAssociatedWithVrack && (
                 <OdsTooltip
@@ -179,12 +150,7 @@ export default function DatacentreGenerationInformationTile({
         {
           id: 'apiUrl',
           label: t('managed_vcd_dashboard_api_url'),
-          value: (
-            <Clipboard
-              value={vcdOrganization?.currentState?.apiUrl}
-              className="w-full"
-            />
-          ),
+          value: <Clipboard value={vcdOrganization?.currentState?.apiUrl} className="w-full" />,
         },
         {
           id: 'vdcId',

@@ -1,56 +1,50 @@
+import React, { useState } from 'react';
+
+import { useHref } from 'react-router-dom';
+
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { FilterCategories, FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
+import {
+  VCDVrackSegment,
+  isStatusTerminated,
+  useVcdOrganization,
+  useVcdVrackSegmentListOptions,
+} from '@ovh-ux/manager-module-vcd-api';
 import {
   ColumnSort,
   Datagrid,
   DatagridColumnTypes,
   useColumnFilters,
 } from '@ovh-ux/manager-react-components';
-import {
-  applyFilters,
-  FilterCategories,
-  FilterComparator,
-} from '@ovh-ux/manager-core-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  isStatusTerminated,
-  useVcdOrganization,
-  useVcdVrackSegmentListOptions,
-  VCDVrackSegment,
-} from '@ovh-ux/manager-module-vcd-api';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useHref } from 'react-router-dom';
-import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
-import { subRoutes, urls } from '@/routes/routes.constant';
+
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
+import { subRoutes, urls } from '@/routes/routes.constant';
+import { TRACKING } from '@/tracking.constants';
+
 import ActionMenu from '../action/Action.component';
 import { VrackSegmentStatusBadge } from '../vrackSegmentStatusBadge/VrackSegmentStatusBadge.component';
-import { TRACKING } from '@/tracking.constants';
+import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
 
 export type VrackSegmentDatagridProps = {
   id: string;
   vdcId: string;
 };
 
-export const VrackSegmentDatagrid = ({
-  id,
-  vdcId,
-}: VrackSegmentDatagridProps) => {
-  const { t } = useTranslation([
-    'datacentres/vrack-segment',
-    NAMESPACES.STATUS,
-  ]);
+export const VrackSegmentDatagrid = ({ id, vdcId }: VrackSegmentDatagridProps) => {
+  const { t } = useTranslation(['datacentres/vrack-segment', NAMESPACES.STATUS]);
   const { trackClick } = useOvhTracking();
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const isVcdTerminated = isStatusTerminated(
-    vcdOrganization?.data?.resourceStatus,
-  );
+  const isVcdTerminated = isStatusTerminated(vcdOrganization?.data?.resourceStatus);
 
   const vcdVrackNetworkOptions = useVcdVrackSegmentListOptions(id, vdcId);
   const { data: vrackSegments, isLoading } = useQuery({
@@ -63,38 +57,26 @@ export const VrackSegmentDatagrid = ({
       data.data
         .map((item) => ({
           ...item,
-          searchableValue: `${t(
-            'managed_vcd_dashboard_vrack_column_segment_vrack_label',
-            { vlanId: item.targetSpec.vlanId },
-          )} ${item.targetSpec.networks.map((network) => network).join(' ')}`,
+          searchableValue: `${t('managed_vcd_dashboard_vrack_column_segment_vrack_label', {
+            vlanId: item.targetSpec.vlanId,
+          })} ${item.targetSpec.networks.map((network) => network).join(' ')}`,
         }))
-        .sort((a, b) =>
-          String(a.targetSpec.vlanId).localeCompare(
-            String(b.targetSpec.vlanId),
-          ),
-        ),
+        .sort((a, b) => String(a.targetSpec.vlanId).localeCompare(String(b.targetSpec.vlanId))),
   });
 
   const hrefEdit = useHref(
-    urls.vrackSegmentEditVlanId
-      .replace(subRoutes.dashboard, id)
-      .replace(subRoutes.vdcId, vdcId),
+    urls.vrackSegmentEditVlanId.replace(subRoutes.dashboard, id).replace(subRoutes.vdcId, vdcId),
   );
 
   const hrefAddNetwork = useHref(
-    urls.vrackSegmentAddNetwork
-      .replace(subRoutes.dashboard, id)
-      .replace(subRoutes.vdcId, vdcId),
+    urls.vrackSegmentAddNetwork.replace(subRoutes.dashboard, id).replace(subRoutes.vdcId, vdcId),
   );
 
   const hrefVrackSegmentDelete = useHref(
-    urls.vrackSegmentDelete
-      .replace(subRoutes.dashboard, id)
-      .replace(subRoutes.vdcId, vdcId),
+    urls.vrackSegmentDelete.replace(subRoutes.dashboard, id).replace(subRoutes.vdcId, vdcId),
   );
 
-  const hasExtraSegments =
-    (vrackSegments?.length ?? 0) > VRACK_SEGMENTS_MIN_LENGTH;
+  const hasExtraSegments = (vrackSegments?.length ?? 0) > VRACK_SEGMENTS_MIN_LENGTH;
 
   const columns = [
     {
@@ -103,12 +85,9 @@ export const VrackSegmentDatagrid = ({
       cell: (item: VCDVrackSegment) => {
         return (
           <OdsText preset="paragraph">
-            {t(
-              'datacentres/vrack-segment:managed_vcd_dashboard_vrack_column_segment_vrack_label',
-              {
-                vlanId: item.targetSpec.vlanId,
-              },
-            )}
+            {t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_column_segment_vrack_label', {
+              vlanId: item.targetSpec.vlanId,
+            })}
           </OdsText>
         );
       },
@@ -155,9 +134,7 @@ export const VrackSegmentDatagrid = ({
                   id: 1,
                   onClick: () => trackClick(TRACKING.vrack.modifyVlanId),
                   href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
-                  label: t(
-                    'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
-                  ),
+                  label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan'),
                   isDisabled: isNotEditable,
                   tooltipMessage:
                     isNotEditable &&
@@ -168,13 +145,8 @@ export const VrackSegmentDatagrid = ({
                 {
                   id: 2,
                   onClick: () => trackClick(TRACKING.vrack.addNetwork),
-                  href: hrefAddNetwork.replace(
-                    subRoutes.vrackSegmentId,
-                    item.id,
-                  ),
-                  label: t(
-                    'datacentres/vrack-segment:managed_vcd_dashboard_vrack_add_network',
-                  ),
+                  href: hrefAddNetwork.replace(subRoutes.vrackSegmentId, item.id),
+                  label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_add_network'),
                 },
                 ...(hasExtraSegments && item.targetSpec.type !== 'DEFAULT'
                   ? [
@@ -185,10 +157,7 @@ export const VrackSegmentDatagrid = ({
                           'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
                         ),
                         onClick: () => trackClick(TRACKING.vrack.deleteSegment),
-                        href: hrefVrackSegmentDelete.replace(
-                          subRoutes.vrackSegmentId,
-                          item.id,
-                        ),
+                        href: hrefVrackSegmentDelete.replace(subRoutes.vrackSegmentId, item.id),
                       },
                     ]
                   : []),
@@ -207,9 +176,7 @@ export const VrackSegmentDatagrid = ({
           {t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_segments')}
         </OdsText>
         <OdsText preset="paragraph">
-          {t(
-            'datacentres/vrack-segment:managed_vcd_dashboard_vrack_description',
-          )}
+          {t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_description')}
         </OdsText>
       </div>
       <React.Suspense>
@@ -232,9 +199,7 @@ export const VrackSegmentDatagrid = ({
           totalItems={vrackSegments?.length ?? 0}
           contentAlignLeft
           getRowCanExpand={(row) => row.original.targetSpec.networks.length > 0}
-          renderSubComponent={(row) => (
-            <VrackSegmentSubDatagrid vrackSegment={row.original} />
-          )}
+          renderSubComponent={(row) => <VrackSegmentSubDatagrid vrackSegment={row.original} />}
           sorting={sorting}
           onSortChange={setSorting}
           manualSorting={false}
