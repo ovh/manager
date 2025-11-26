@@ -20,3 +20,8 @@ export type CreateTenantsPayload = {
 export type GetTenantPayload = {
   tenantId: string;
 } & ObservabilityServiceParams;
+
+export type EditTenantPayload = {
+  tenantId: string;
+  targetSpec: TTargetSpecPayload;
+} & ObservabilityServiceParams;
