@@ -462,4 +462,3 @@ console.log('ODS Component State:', state);
 - [ODS GitHub Repository](https://github.com/ovh/design-system)
 - [React Documentation](https://reactjs.org/docs)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs)
-- [Stencil.js Documentation](https://stenciljs.com/docs)
