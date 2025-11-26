@@ -449,40 +449,36 @@ const routes = [
 ### Hash Router Setup
 
 ```typescript
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
-export const router = createHashRouter([
-  {
-    id: 'root',
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        id: 'dashboard',
-        path: 'dashboard',
-        element: <DashboardPage />
-      }
-    ]
-  }
-]);
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createHashRouter(
+  createRoutesFromElements(
+    <Route path="/" Component={MainLayoutPage}>
+      <Route path="dashboard" Component={DashboardPage} />
+    </Route>
+  )
+);
 ```
 
 ### Shell Integration
 
 ```typescript
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { OvhContainerRoutingSync } from '@ovh-ux/manager-react-core-application';
 
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
 function App() {
-  const routes = [
-    {
-      id: 'dashboard',
-      path: 'dashboard',
-      element: <DashboardPage />
-    }
-  ];
+  const router = createHashRouter(
+    createRoutesFromElements(
+      <Route path="dashboard" Component={DashboardPage} />
+    )
+  );
   
-  return <OvhContainerRoutingSync routes={routes} />;
+  return <OvhContainerRoutingSync router={router} />;
 }
 ```
 
@@ -549,32 +545,37 @@ export default function DashboardLayout() {
 ### Route Error Elements
 
 ```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    element: <DashboardPage />,
-    errorElement: <ErrorPage />
-  }
-];
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="dashboard"
+      Component={DashboardPage}
+      errorElement={<ErrorPage />}
+    />
+  )
+);
 ```
 
 ### Error Boundary
 
 ```typescript
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    element: (
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <DashboardPage />
-      </ErrorBoundary>
-    )
-  }
-];
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="dashboard"
+      element={
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <DashboardPage />
+        </ErrorBoundary>
+      }
+    />
+  )
+);
 ```
 
 ## ⚠️ Best Practices & Common Pitfalls
@@ -582,35 +583,36 @@ const routes = [
 ### ✅ Best Practices
 
 ```typescript
-// ✅ CORRECT: Hierarchical route structure
-const routes = [
-  {
-    id: 'root',
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        id: 'dashboard',
-        path: 'dashboard',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: {
+// ✅ CORRECT: Hierarchical route structure using Route components
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" Component={MainLayoutPage}>
+      <Route
+        path="dashboard"
+        Component={DashboardPage}
+        handle={{
           tracking: { pageName: 'dashboard', pageType: PageType.dashboard }
-        }
-      }
-    ]
-  }
-];
+        }}
+      />
+    </Route>
+  )
+);
 
 // ✅ CORRECT: Complete route metadata
-{
-  id: 'dashboard',
-  path: 'dashboard/:id',
-  ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-  handle: {
+<Route
+  path="dashboard/:id"
+  Component={DashboardPage}
+  handle={{
     tracking: { pageName: 'details', pageType: PageType.details },
     breadcrumb: { label: 'Service Details' }
-  }
-}
+  }}
+/>
 ```
 
 ### ❌ Common Mistakes
