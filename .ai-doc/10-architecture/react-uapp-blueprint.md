@@ -230,7 +230,7 @@ export function useServices(params: { page: number; pageSize: number; sortBy?: s
 ## Datagrid Pattern (MUK + Iceberg)
 - Source of truth: `useDatagrid` for pagination/sorting state.
 - On manual mode, pass `items`, `totalItems`, `pagination`, `sorting`, `onPaginationChange`, `onSortChange`.
-- Use `useResourcesIcebergV6` for infinite mode when suitable.
+- Use `useDataApi` for infinite mode when suitable.
 
 Minimal example:
 ```typescript
