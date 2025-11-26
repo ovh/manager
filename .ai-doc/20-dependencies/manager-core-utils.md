@@ -556,7 +556,7 @@ const StatusFormatter = ReactFormatter(
 
 **👉 Good utilities are invisible to users but essential for application consistency.**
 
-## 🔄 Exports en Cascade
+## 🔄 Cascade Exports
 
 ### ReactFormatter
 
