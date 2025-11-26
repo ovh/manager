@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { useMessageContext } from '@/context/Message.context';
+
 import { Message } from './Message.component';
 
 type Props = { className?: string };

@@ -1,6 +1,9 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { GuideButton, GuideItem } from '@ovh-ux/manager-react-components';
+
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 
 export default function VcdGuidesHeader() {

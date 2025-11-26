@@ -1,32 +1,22 @@
+import { useContext, useMemo } from 'react';
+
 import { User } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext, useEffect, useState } from 'react';
 
 type TCurrentUserData = {
   user: User;
   dateTimeFormat: Intl.DateTimeFormat;
 };
 
-const useCurrentUser = () => {
+export const useCurrentUser = () => {
   const { environment } = useContext(ShellContext);
 
-  const [currentUserData, setCurrentUserData] = useState<TCurrentUserData>({
-    user: null,
-    dateTimeFormat: null,
-  });
-
-  useEffect(() => {
+  return useMemo<TCurrentUserData>(() => {
     const user = environment.getUser();
-    const dateTimeFormat = new Intl.DateTimeFormat(
-      environment.getUserLocale().replace('_', '-'),
-      {
-        dateStyle: 'medium',
-      },
-    );
-    setCurrentUserData({ user, dateTimeFormat });
+    const dateTimeFormat = new Intl.DateTimeFormat(environment.getUserLocale().replace('_', '-'), {
+      dateStyle: 'medium',
+    });
+
+    return { user, dateTimeFormat };
   }, [environment]);
-
-  return currentUserData;
 };
-
-export default useCurrentUser;

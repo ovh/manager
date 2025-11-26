@@ -1,10 +1,12 @@
 import { Effect, Equal } from 'effect/index';
+
 import { hasIpv4CIDRConflict } from './hasIpv4CIDRConflict';
 
 const isTrueSuccess = (result: Effect.Effect<boolean, never, never>) => {
   if (Equal.equals(result, Effect.succeed(true))) {
     return Effect.succeed(true);
   }
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
   return Effect.fail(`Result is not a Effect.succeed(true) : ${result}`);
 };
 

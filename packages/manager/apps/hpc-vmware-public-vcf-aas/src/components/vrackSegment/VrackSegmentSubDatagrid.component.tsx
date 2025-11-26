@@ -1,17 +1,22 @@
-import { Datagrid } from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsTooltip } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import {
+  VCDVrackSegment,
   isStatusTerminated,
   useVcdOrganization,
-  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
-import { LABELS } from '../../utils/labels.constants';
+import { Datagrid } from '@ovh-ux/manager-react-components';
+
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { encodeVrackNetwork } from '@/utils/encodeVrackNetwork';
-import { TRACKING } from '@/tracking.constants';
+
+import { LABELS } from '../../utils/labels.constants';
 
 const CSS = `
       .sub-row > td {
@@ -48,9 +53,7 @@ export const VrackSegmentSubDatagrid = ({
   const navigate = useNavigate();
   const { id, vdcId } = useParams();
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const isVcdTerminated = isStatusTerminated(
-    vcdOrganization?.data?.resourceStatus,
-  );
+  const isVcdTerminated = isStatusTerminated(vcdOrganization?.data?.resourceStatus);
   const {
     id: vrackSegmentId,
     resourceStatus: vrackSegmentStatus,
@@ -78,8 +81,7 @@ export const VrackSegmentSubDatagrid = ({
             label: '',
             cell: (network: string) => {
               const isNotReadyForChange =
-                !isVcdTerminated &&
-                !['READY', 'ERROR'].includes(vrackSegmentStatus);
+                !isVcdTerminated && !['READY', 'ERROR'].includes(vrackSegmentStatus);
               const isLastNetwork = networks.length <= 1;
               const buttonId = `delete-network-${network}`;
               return (
@@ -99,18 +101,13 @@ export const VrackSegmentSubDatagrid = ({
                           .replace(subRoutes.dashboard, id)
                           .replace(subRoutes.vdcId, vdcId)
                           .replace(subRoutes.vrackSegmentId, vrackSegmentId)
-                          .replace(
-                            subRoutes.vrackNetworkId,
-                            encodeVrackNetwork(network),
-                          ),
+                          .replace(subRoutes.vrackNetworkId, encodeVrackNetwork(network)),
                       );
                     }}
                   />
                   {isLastNetwork && (
                     <OdsTooltip triggerId={buttonId}>
-                      {t(
-                        'managed_vcd_dashboard_vrack_unable_delete_last_network',
-                      )}
+                      {t('managed_vcd_dashboard_vrack_unable_delete_last_network')}
                     </OdsTooltip>
                   )}
                 </div>

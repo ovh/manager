@@ -1,24 +1,19 @@
 import { screen, waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
+
 import {
-  organizationList,
-  datacentreList,
-} from '@ovh-ux/manager-module-vcd-api';
-import {
+  WAIT_FOR_DEFAULT_OPTIONS,
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
   getElementByTestId,
   getNthElementByTestId,
-  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import {
-  DEFAULT_LISTING_ERROR,
-  labels,
-  renderTest,
-} from '../../../../test-utils';
-import { STORAGE_LABEL } from '../datacentreDashboard.constants';
+import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { DEFAULT_LISTING_ERROR, labels, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
+import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 
 describe('Datacentre Storage Listing Page', () => {
   it('access and display storage listing page', async () => {
@@ -53,9 +48,7 @@ describe('Datacentre Storage Listing Page', () => {
     const tooltip = await getNthElementByTestId({
       testId: TEST_IDS.cellDeleteTooltip,
     });
-    expect(tooltip).toHaveTextContent(
-      labels.datacentres.managed_vcd_vdc_contact_support,
-    );
+    expect(tooltip).toHaveTextContent(labels.datacentres.managed_vcd_vdc_contact_support);
   });
 
   it('display an error', async () => {

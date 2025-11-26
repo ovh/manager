@@ -1,19 +1,18 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   getVcdDatacentreComputeRoute,
   getVdcComputeQueryKey,
   isStatusTerminated,
   useVcdDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
-import {
-  DatagridColumn,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { DatagridColumn, useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { ID_LABEL } from '../../dashboard.constants';
-import { VHOST_LABEL, VHOSTS_LABEL } from './datacentreCompute.constants';
+
 import {
   ActionDeleteCell,
   DatagridBillingCell,
@@ -24,19 +23,20 @@ import {
 } from '@/components/datagrid/compute/ComputeCells.component';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { FEATURES } from '@/utils/features.constants';
-import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { FEATURES } from '@/utils/features.constants';
 import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
+import TEST_IDS from '@/utils/testIds.constants';
+
+import { ID_LABEL } from '../../dashboard.constants';
+import { VHOSTS_LABEL, VHOST_LABEL } from './datacentreCompute.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('datacentres/compute');
   const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
-  const { data: features } = useFeatureAvailability([
-    FEATURES.COMPUTE_SPECIAL_OFFER_BANNER,
-  ]);
+  const { data: features } = useFeatureAvailability([FEATURES.COMPUTE_SPECIAL_OFFER_BANNER]);
   const { trackClick } = useOvhTracking();
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
 

@@ -1,14 +1,13 @@
-import React, { useId, useMemo } from 'react';
+import React, { useId } from 'react';
+
+import clsx from 'clsx';
+import { Control, FieldValues, UseControllerProps, useController } from 'react-hook-form';
+
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  Control,
-  FieldValues,
-  useController,
-  UseControllerProps,
-} from 'react-hook-form';
+
 import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
-import { RhfQuantity } from './RhfQuantity.component';
 import { RhfInput } from './RhfInput.component';
+import { RhfQuantity } from './RhfQuantity.component';
 
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
@@ -28,14 +27,7 @@ export const RhfField = ({
   const id = useId();
   const controller = useController({ ...controllerParams, control });
 
-  const contextValues = useMemo(
-    () => ({
-      id,
-      helperMessage,
-      controller,
-    }),
-    [id, controller],
-  );
+  const contextValues = { id, helperMessage, controller };
 
   const hasError = !isHiddenError && !!controller.fieldState?.error;
   const errorMessage = helperMessage || controller.fieldState?.error?.message;
@@ -55,9 +47,7 @@ export const RhfField = ({
   );
 };
 
-export const RhfLabel = (
-  props: Readonly<React.LabelHTMLAttributes<HTMLLabelElement>>,
-) => {
+export const RhfLabel = (props: Readonly<React.LabelHTMLAttributes<HTMLLabelElement>>) => {
   const { id } = useRhfFieldContext();
 
   return <label htmlFor={id} slot="label" {...props} />;
@@ -76,7 +66,7 @@ export const RhfHelper = ({
   return (
     <OdsText
       id={`helper-${id}`}
-      className={`ods-field-helper ${className ?? ''}`}
+      className={clsx('[&::part(text)]:w-full [&::part(text)]:text-start', className)}
       slot="helper"
       preset="caption"
       {...rest}
@@ -95,9 +85,7 @@ export const RhfHelperAuto = ({
   const { helperMessage, controller } = useRhfFieldContext();
 
   if (!controller.fieldState.error) {
-    return (
-      <RhfHelper {...rest}>{customHelperMessage ?? helperMessage}</RhfHelper>
-    );
+    return <RhfHelper {...rest}>{customHelperMessage ?? helperMessage}</RhfHelper>;
   }
 
   return <></>;
@@ -106,16 +94,14 @@ export const RhfHelperAuto = ({
 export const RhfVisualHintCounter = ({
   max,
   ...rest
-}: Readonly<
-  React.ComponentProps<typeof OdsText> & { max: string | number }
->) => {
+}: Readonly<React.ComponentProps<typeof OdsText> & { max: string | number }>) => {
   const {
     controller: { field },
   } = useRhfFieldContext();
 
   return (
     <RhfVisualHint {...rest}>
-      {field.value?.length ?? 0}/{max}
+      {(field.value as string)?.length ?? 0}/{max}
     </RhfVisualHint>
   );
 };

@@ -1,38 +1,39 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
-import { OdsSkeleton, OdsBadge } from '@ovhcloud/ods-components/react';
-import {
+  VCDOrganization,
   getBackupIdFromOrganization,
   useVeeamBackup,
-  VCDOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { veeamBackupAppName } from '@/routes/routes.constant';
+import { TRACKING } from '@/tracking.constants';
+import TEST_IDS from '@/utils/testIds.constants';
 import {
   BackupBadgeParams,
   getBackupBadgeParams,
   getBackupBadgeStatus,
 } from '@/utils/veeamBackupBadge';
-import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
 };
 
-export default function BackupTileItem({
-  vcdOrganization,
-}: Readonly<TTileProps>) {
+export default function BackupTileItem({ vcdOrganization }: Readonly<TTileProps>) {
   const { t } = useTranslation('dashboard');
   const { shell } = React.useContext(ShellContext);
   const { trackClick } = useOvhTracking();
-  const { data: vcdBackup, isLoading, error } = useVeeamBackup(
-    getBackupIdFromOrganization(vcdOrganization),
-  );
+  const {
+    data: vcdBackup,
+    isLoading,
+    error,
+  } = useVeeamBackup(getBackupIdFromOrganization(vcdOrganization));
   const [veeamHref, setVeeamHref] = React.useState('');
   const badgeParams: BackupBadgeParams = getBackupBadgeParams(
     getBackupBadgeStatus({
@@ -42,10 +43,8 @@ export default function BackupTileItem({
   );
 
   React.useEffect(() => {
-    shell.navigation
-      .getURL(veeamBackupAppName, '', {})
-      .then((url: string) => setVeeamHref(url));
-  }, []);
+    shell.navigation.getURL(veeamBackupAppName, '', {}).then((url: string) => setVeeamHref(url));
+  }, [shell.navigation]);
 
   return (
     <div className="flex flex-col items-start">
