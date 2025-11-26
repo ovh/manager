@@ -16,7 +16,6 @@ export function getCommonTranslations() {
     viteStaticPluginTargets.push({
       src: `${path.dirname(require.resolve(COMMON_TRANSLATIONS_PACKAGE))}/@ovh-ux`,
       dest: `translations`,
-      overwrite: true,
     });
   }
   return viteStaticPluginTargets;

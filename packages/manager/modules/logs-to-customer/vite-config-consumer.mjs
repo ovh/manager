@@ -16,8 +16,7 @@ export function getLogsToCustomerConfig() {
     staticCopyTargets: [
       {
         src: `${translationsSourcePath}/*`,
-        dest: 'translations/@ovh-ux/logs-to-customer',
-        overwrite: true,
+        dest: 'translations/logs-to-customer',
       },
     ],
     dedupe: [
