@@ -53,11 +53,11 @@
   "objectLockOptionsButtonConfirm": "Sauvegarder",
   "objectLockRetentionModeGroupLabel": "Mode de rétention",
   "objectLockRetentionModeLabel_governance": "Gouvernance",
-  "objectLockRetentionModeLabel_compliance": "Compliance",
+  "objectLockRetentionModeLabel_compliance": "Conformité",
   "objectLockDurationLabel": "Durée de rétention",
   "objectLockDurationUnitDays": "Jours",
   "objectLockDurationUnitYears": "Années",
-  "objectLockComplianceModeWarning": "En mode confirmité, un objet est immuable jusqu'à l'expiration de sa date de conservation. Pour supprimer les objets configurés de cette manière, vous devez fermer le compte auquel ils sont associés.",
+  "objectLockComplianceModeWarning": "En mode conformité, un objet est immuable jusqu'à l'expiration de sa date de conservation. Pour supprimer les objets configurés de cette manière, vous devez fermer le compte auquel ils sont associés.",
   "objectLockRetentionModeDescription_governance": "Les utilisateurs disposant d'autorisations IAM spécifiques peuvent écraser ou supprimer un objet protégé pendant la période de conservation.",
   "objectLockRetentionModeDescription_compliance": "Aucun utilisateur ne peut écraser ou supprimer les versions d'objets protégés pendant le mode de rétention.",
   "editObjectLockToastSuccessDescription": "Les options d'Object Lock ont été mises à jour"
