@@ -92,7 +92,7 @@ i18n
     debug: process.env.NODE_ENV === 'development',
     
     backend: {
-      loadPath: '/translations/{{lng}}/{{ns}}.json',
+      loadPath: '/translations/{{ns}}/Messages_{{lng}}.json',
     },
     
     ns: ['common', 'dashboard', 'onboarding'],
