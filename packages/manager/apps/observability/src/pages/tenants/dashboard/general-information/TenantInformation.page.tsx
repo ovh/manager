@@ -38,6 +38,8 @@ export default function TenantsInformationPage() {
   const endpoint = infrastructure?.currentState.entryPoint ?? '';
   const limits = tenantState?.limits;
 
+  const currentTenantId = tenantId ?? '';
+
   useEffect(() => {
     if (isError) {
       addError(
@@ -57,6 +59,7 @@ export default function TenantsInformationPage() {
       <div className="w-full block">
         <div className="grid grid-cols-1 lg:items-start lg:grid-cols-3 gap-4 lg:gap-6">
           <GeneralInformationTile
+            tenantId={currentTenantId}
             title={title}
             description={description}
             iam={iam}
@@ -74,10 +77,10 @@ export default function TenantsInformationPage() {
               isLoading={isLoading}
             />
 
-            <TagsTile tenantId={tenantId ?? ''} tags={iam?.tags} isLoading={isLoading} />
+            <TagsTile tenantId={currentTenantId} tags={iam?.tags} isLoading={isLoading} />
           </div>
 
-          <SubscriptionTile tenantId={tenantId ?? ''} subscriptions={5} isLoading={isLoading} />
+          <SubscriptionTile tenantId={currentTenantId} subscriptions={5} isLoading={isLoading} />
         </div>
       </div>
     </section>
