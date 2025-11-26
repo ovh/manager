@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-object-storage-app",
-  "version": "0.21.1",
+  "version": "0.21.2",
   "private": true,
   "description": "pci-object-storage",
   "repository": {
@@ -20,7 +20,7 @@
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "@datatr-ux/ovhcloud-types": "^1.0.68",
+    "@datatr-ux/ovhcloud-types": "1.0.68",
     "@datatr-ux/uxlib": "1.0.0-alpha-34",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-common-translations": "^0.9.1",
@@ -66,8 +66,8 @@
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/parser": "^7.0.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
     "@vitest/ui": "^2.1.9",

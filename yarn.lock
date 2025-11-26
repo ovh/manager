@@ -3578,6 +3578,11 @@
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.11.tgz#bac1d9b460cc969a191967cd2b1d0858de713d78"
   integrity sha512-NSqgUoIXKHxVRY5fnp5hV2kNQJxbX9/Om0naInG1tnztBvdkRuuhfzga9+ReYVqkktaSg/kb3CGZzyWi2tpvCg==
 
+"@datatr-ux/ovhcloud-types@1.0.68":
+  version "1.0.68"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.68.tgz#69780e4e1c2a8f3ca5588118543ced74fba55275"
+  integrity sha512-5E7KT5LcNIzkQ+ScYBYjyoFNiUngAM+swlzL8+a4OwA1W6R4zebMMwxzSmEcuDlhx8+gsb7PJp6LAem22GjfZQ==
+
 "@datatr-ux/ovhcloud-types@1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.8.tgz#0e6a8359cc8a52389f65c1aebfae57261ec8215a"
@@ -3587,11 +3592,6 @@
   version "1.0.38"
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.38.tgz#db207335ed3e66f29023cedc8d6611fd928802d0"
   integrity sha512-3DJcNoCsosdLAmd0UX+pTBMUxc4Zl69JjrNtVBBbUjHsau2l16nQnBQSU1GcExsln2gn91OyPg87B1eHRoLvHQ==
-
-"@datatr-ux/ovhcloud-types@^1.0.68":
-  version "1.0.83"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.83.tgz#1e148f4f83b4c79126464a778ed3e16a053f56ba"
-  integrity sha512-KrcsnAEGSfUfP9Te7WQ9Fw3y/AdiEdIb0sL7NTEb4fnCQo+hhaRkA4J3FpapU1TB+Iun/4iznhOTiQ4HG6zWbg==
 
 "@datatr-ux/uxlib@0.0.10":
   version "0.0.10"
