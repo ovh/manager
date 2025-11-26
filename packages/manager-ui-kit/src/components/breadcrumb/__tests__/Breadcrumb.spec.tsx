@@ -16,6 +16,13 @@ describe('Breadcrumb component - behavior', () => {
     await expect(container).toBeAccessible();
   });
 
+  it('should have a valid html', async () => {
+    const { container } = renderBreadcrumb({ hideRootLabel: false });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
   it('renders 3 breadcrumb items when hideRootLabel is false', () => {
     const { container } = renderBreadcrumb({ hideRootLabel: false });
     const items = container.querySelectorAll('li');
