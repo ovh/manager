@@ -1,14 +1,16 @@
+import { act, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import {
   assertElementVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { act, waitFor } from '@testing-library/react';
-import { renderTest, labels } from '../../test-utils';
-import TEST_IDS from '../../utils/testIds.constants';
-import { ORDER_VCD_REDIRECTION_URL } from '../../utils/orderVcdRedirection.constants';
+
+import { labels, renderTest } from '../../test-utils';
 import { VMWARE_CLOUD_DIRECTOR_LABEL } from '../../utils/label.constants';
+import { ORDER_VCD_REDIRECTION_URL } from '../../utils/orderVcdRedirection.constants';
+import TEST_IDS from '../../utils/testIds.constants';
 
 describe('Onboarding Page', () => {
   it('display the onboarding page if there is no VCD Organization', async () => {
@@ -23,7 +25,7 @@ describe('Onboarding Page', () => {
 });
 
 describe('VCD Order CTA redirection', () => {
-  let windowOpenSpy: any;
+  let windowOpenSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
@@ -41,7 +43,7 @@ describe('VCD Order CTA redirection', () => {
 
     const expectedUrl = ORDER_VCD_REDIRECTION_URL.FR;
 
-    await act(async () => {
+    act(() => {
       orderButton.click();
     });
 

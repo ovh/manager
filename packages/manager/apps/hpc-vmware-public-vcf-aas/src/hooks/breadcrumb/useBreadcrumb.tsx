@@ -1,5 +1,7 @@
-import { useLocation, useHref } from 'react-router-dom';
+import { useHref, useLocation } from 'react-router-dom';
+
 import { JSX } from '@ovhcloud/ods-components';
+
 import { urls } from '@/routes/routes.constant';
 import { useApplicationBreadcrumbItems } from './useApplicationBreadcrumbItems';
 

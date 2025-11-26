@@ -1,10 +1,14 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+
 import { VCDOrderableVhostPriced } from '@ovh-ux/manager-module-vcd-api';
-import { getVdcResourcePriceLabel } from '@/utils/getPricedOrderableResource';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
+import { getVdcResourcePriceLabel } from '@/utils/getPricedOrderableResource';
 
 export const ComputeOrderSelectCell = (vHost: VCDOrderableVhostPriced) => {
   const { selectedResource, setSelectedResource } = useDatacentreOrderContext();
@@ -52,7 +56,7 @@ export const ComputeOrderPriceCell = (vHost: VCDOrderableVhostPriced) => {
   const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
-      <OdsText className="semibold block">
+      <OdsText className="block [&::part(text)]:font-semibold">
         {getVdcResourcePriceLabel(vHost)}
       </OdsText>
       <OdsText>{t('managed_vcd_vdc_order_price_detail')}</OdsText>

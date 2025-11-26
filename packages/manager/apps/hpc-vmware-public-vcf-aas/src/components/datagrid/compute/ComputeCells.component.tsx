@@ -1,12 +1,12 @@
 import React from 'react';
-import { OdsButton, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  isStatusTerminated,
-  VCDCompute,
-  VCDStorage,
-} from '@ovh-ux/manager-module-vcd-api';
+
+import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
+import { VCDCompute, VCDStorage, isStatusTerminated } from '@ovh-ux/manager-module-vcd-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import TEST_IDS from '@/utils/testIds.constants';
 
 export const DatagridIdCell = (vcdCompute: VCDCompute) => (
@@ -25,9 +25,7 @@ export const DatagridBillingCell = (vcdCompute: VCDCompute) => {
   const { t } = useTranslation('datacentres/compute');
   return (
     <DataGridTextCell>
-      {t(
-        `managed_vcd_vdc_compute_billing_${vcdCompute.currentState?.billingType}`,
-      )}
+      {t(`managed_vcd_vdc_compute_billing_${vcdCompute.currentState?.billingType}`)}
     </DataGridTextCell>
   );
 };

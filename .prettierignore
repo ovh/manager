@@ -12,6 +12,7 @@ custom-elements
 loader
 react
 vue
+packages/manager/apps/hpc-vmware-public-vcf-aas
 packages/manager/apps/okms
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts

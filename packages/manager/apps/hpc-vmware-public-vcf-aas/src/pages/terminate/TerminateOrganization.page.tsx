@@ -1,4 +1,10 @@
 import { useContext } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 import {
@@ -8,9 +14,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { useMessageContext } from '@/context/Message.context';
 import { APP_NAME_TRACKING, TRACKING } from '@/tracking.constants';
 

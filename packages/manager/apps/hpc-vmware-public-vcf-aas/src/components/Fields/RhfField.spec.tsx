@@ -1,10 +1,12 @@
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
+import 'element-internals-polyfill';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod/v3';
+
 import { RhfField } from '.';
 
 const SCHEMA = z.object({
@@ -13,7 +15,7 @@ const SCHEMA = z.object({
 
 const HELPER_MESSAGE = 'Do not write more 5 caracters';
 
-const FieldRender = ({ defaultValue = '' }) => {
+const FieldRender = ({ defaultValue = '' }: { defaultValue?: string }) => {
   const methods = useForm<z.infer<typeof SCHEMA>>({
     resolver: zodResolver(SCHEMA),
     mode: 'all',
@@ -22,7 +24,7 @@ const FieldRender = ({ defaultValue = '' }) => {
     },
   });
 
-  methods.trigger('inputTest');
+  void methods.trigger('inputTest');
 
   return (
     <FormProvider {...methods}>
@@ -42,7 +44,7 @@ const FieldRender = ({ defaultValue = '' }) => {
 };
 
 describe('RhfField component unit test suite', () => {
-  it('should render field with correct helper', async () => {
+  it('should render field with correct helper', () => {
     const { getByText } = render(<FieldRender />);
 
     expect(getByText('My Input')).toBeVisible();
@@ -50,17 +52,12 @@ describe('RhfField component unit test suite', () => {
   });
 
   it('should render field with correct error', async () => {
-    const { getByTestId, queryByText } = render(
-      <FieldRender defaultValue="too lonnnnnng chain" />,
-    );
+    const { getByTestId, queryByText } = render(<FieldRender defaultValue="too lonnnnnng chain" />);
 
     await waitFor(
       () => {
         expect(queryByText(HELPER_MESSAGE)).not.toBeInTheDocument();
-        expect(getByTestId('rhfField')).toHaveAttribute(
-          'error',
-          HELPER_MESSAGE,
-        );
+        expect(getByTestId('rhfField')).toHaveAttribute('error', HELPER_MESSAGE);
       },
       { timeout: 500 },
     );

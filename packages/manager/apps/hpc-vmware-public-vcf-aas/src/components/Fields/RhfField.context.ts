@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react';
+
 import { FieldValues, UseControllerReturn } from 'react-hook-form';
 
 export type RhfFieldContextParams<TFieldValues> = {
@@ -7,16 +8,12 @@ export type RhfFieldContextParams<TFieldValues> = {
   controller: UseControllerReturn<TFieldValues>;
 };
 
-export const RhfFieldContext = createContext<RhfFieldContextParams<
-  FieldValues
-> | null>(null);
+export const RhfFieldContext = createContext<RhfFieldContextParams<FieldValues> | null>(null);
 
 export const useRhfFieldContext = () => {
   const context = useContext(RhfFieldContext);
   if (!context) {
-    throw new Error(
-      'RhfFieldContext must be used within a RhfFieldControllerProvider',
-    );
+    throw new Error('RhfFieldContext must be used within a RhfFieldControllerProvider');
   }
   return context;
 };

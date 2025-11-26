@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { OdsMessage } from '@ovhcloud/ods-components/react';
+
 import { MessageType, useMessageContext } from '@/context/Message.context';
 
 type MessageProps = {
@@ -15,8 +18,8 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
     uid,
     type = 'information',
     isDismissible = true,
-    includedSubRoutes,
-    excludedSubRoutes,
+    includedSubRoutes = [],
+    excludedSubRoutes = [],
     duration,
   } = message;
 
@@ -27,22 +30,21 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
     ) {
       clearMessage(uid);
     }
-  }, [uid, includedSubRoutes, excludedSubRoutes, pathname]);
+  }, [uid, includedSubRoutes, excludedSubRoutes, pathname, clearMessage]);
 
   useEffect(() => {
-    if (!duration) return;
+    if (!duration) return undefined;
     const durationTimeout = setTimeout(() => clearMessage(uid), duration);
 
-    // eslint-disable-next-line consistent-return
     return () => clearTimeout(durationTimeout);
-  }, [duration]);
+  }, [clearMessage, duration, uid]);
 
   return (
     <OdsMessage
       className="mb-2"
       color={type}
       isDismissible={isDismissible}
-      onOdsRemove={isDismissible ? () => clearMessage(uid) : null}
+      onOdsRemove={isDismissible ? () => clearMessage(uid) : undefined}
     >
       {content}
     </OdsMessage>

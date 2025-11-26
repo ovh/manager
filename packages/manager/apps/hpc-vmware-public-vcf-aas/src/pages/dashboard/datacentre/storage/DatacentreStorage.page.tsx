@@ -1,6 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import {
   getVcdDatacentreStorageRoute,
   getVdcStorageQueryKey,
@@ -9,11 +12,9 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import { STORAGE_LABEL } from '../datacentreDashboard.constants';
-import { subRoutes, urls } from '@/routes/routes.constant';
-import { ID_LABEL } from '../../dashboard.constants';
+
 import { ActionDeleteCell } from '@/components/datagrid/compute/ComputeCells.component';
+import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import {
   DatagridBillingCell,
   DatagridCapacityCell,
@@ -22,8 +23,12 @@ import {
   DatagridProfileCell,
   DatagridTypeCell,
 } from '@/components/datagrid/storage/StorageCells.component';
-import TEST_IDS from '@/utils/testIds.constants';
+import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
+import TEST_IDS from '@/utils/testIds.constants';
+
+import { ID_LABEL } from '../../dashboard.constants';
+import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 
 export default function StorageListingPage() {
   const { id, vdcId } = useParams();

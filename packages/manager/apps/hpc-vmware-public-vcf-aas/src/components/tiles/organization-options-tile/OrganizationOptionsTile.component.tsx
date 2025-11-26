@@ -1,13 +1,18 @@
 import React from 'react';
-import { ActionMenu, DashboardTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useParams } from 'react-router-dom';
-import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
+import { ActionMenu, DashboardTile } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
+
 import { TRACKING } from '@/tracking.constants';
+import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 
 export default function OrganizationOptionsTile({
@@ -34,14 +39,10 @@ export default function OrganizationOptionsTile({
             id: 'license',
             label: t('managed_vcd_dashboard_windows_license'),
             value: isLicenseActive ? (
-              <OdsText>
-                {t('managed_vcd_dashboard_windows_license_active')}
-              </OdsText>
+              <OdsText>{t('managed_vcd_dashboard_windows_license_active')}</OdsText>
             ) : (
-              <div className="flex justify-between items-center">
-                <OdsText>
-                  {t('managed_vcd_dashboard_windows_license_unactive')}
-                </OdsText>
+              <div className="flex items-center justify-between">
+                <OdsText>{t('managed_vcd_dashboard_windows_license_unactive')}</OdsText>
                 <ActionMenu
                   id="license_menu"
                   isCompact
@@ -51,9 +52,7 @@ export default function OrganizationOptionsTile({
                   items={[
                     {
                       id: 1,
-                      label: t(
-                        'managed_vcd_dashboard_windows_license_activate',
-                      ),
+                      label: t('managed_vcd_dashboard_windows_license_activate'),
                       onClick: () => {
                         trackClick(TRACKING.dashboard.activateWindowsLicence);
                         redirectToOrder();
