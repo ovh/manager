@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useServiceDetails } from '@ovh-ux/manager-react-components';
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { CustomerContact } from '@ovh-ux/manager-module-common-api';
 
 export default function ServiceContactsTileItem() {
   const { t } = useTranslation('dashboard');
@@ -10,7 +11,7 @@ export default function ServiceContactsTileItem() {
   const { data: serviceDetails, isLoading, isError } = useServiceDetails({
     resourceName: id,
   });
-  const contactList = serviceDetails?.data?.customer?.contacts;
+  const contactList: CustomerContact[] = serviceDetails?.data?.customer?.contacts;
 
   if (isLoading) {
     return (
