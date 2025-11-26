@@ -13,7 +13,7 @@ ai: true
 
 ## 🧭 Purpose
 
-**Tailwind CSS** is a utility-first CSS framework used in the OVHcloud Manager ecosystem for styling React applications. It's configured with `@ovh-ux/manager-tailwind-config` to provide standardized spacing, breakpoints, and design tokens that integrate with the MUK (Manager UI Kit).
+**Tailwind CSS** is a utility-first CSS framework used in the OVHcloud Manager ecosystem for styling React applications. It's configured with `@ovh-ux/manager-tailwind-config` to provide standardized spacing, breakpoints, and design tokens that integrate with the MUK (Manager UI Kit) and ODS.
 
 This package is essential for consistent styling across all Manager applications, providing utility classes that work seamlessly with MUK components and design tokens.
 
