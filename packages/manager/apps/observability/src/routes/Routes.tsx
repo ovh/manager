@@ -18,6 +18,7 @@ const TenantsLayoutPage = React.lazy(() => import('@/pages/tenants/Tenants.layou
 
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
 const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantsCreation.page'));
+const EditTenantPage = React.lazy(() => import('@/pages/tenants/edit/EditTenant.page'));
 const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
 
 const TenantDashboardPage = React.lazy(
@@ -93,6 +94,16 @@ export default (
               handle={{
                 tracking: {
                   pageName: 'tenant-delete',
+                  pageType: PageType.popup,
+                },
+              }}
+            />
+            <Route
+              path={`${subroutes.edit}`}
+              Component={EditTenantPage}
+              handle={{
+                tracking: {
+                  pageName: 'tenant-edit',
                   pageType: PageType.popup,
                 },
               }}
