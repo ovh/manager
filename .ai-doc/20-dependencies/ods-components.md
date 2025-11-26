@@ -8,8 +8,7 @@ ai: true
 
 # OVHcloud Design System (ODS) — React Components
 
-> **⚠️ DEPRECATED**: This library is being replaced by [MUK Components](./muk.md). Use MUK as the single source of truth for all UI components.
-> **📦 Version:** `@ovhcloud/ods-components@^18.6.2` (Target Documentation Version)
+> **📦 Version:** `@ovhcloud/ods-components@^19.2.1` (Target Documentation Version)
 > **Currently Installed:** `@ovhcloud/ods-components@17.2.2`
 
 The **OVHcloud Design System (ODS)** provides a unified and reusable set of **React UI components** used across OVHcloud products to ensure a consistent, accessible, and modern user experience.
