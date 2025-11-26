@@ -326,3 +326,4 @@ tests/
 - [React Best Practices](../30-best-practices/react-best-practices.md)
 - [Testing Guidelines](../30-best-practices/testing-guidelines.md)
 - [TypeScript Guidelines](../30-best-practices/typescript-guidelines.md)
+
