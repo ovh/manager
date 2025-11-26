@@ -342,19 +342,6 @@ component_decisions:
 
           <Datagrid data={services} columns={columns} />
 
-      use_simple_list:
-        when:
-          - "Simple list without columns"
-          - "List shows <10 items"
-          - "No sorting/pagination needed"
-        pattern: |
-          // @ai-pattern: simple-list
-          <ul>
-            {items.map(item => (
-              <li key={item.id}>{item.name}</li>
-            ))}
-          </ul>
-
     display_key_value:
       name: "Display Key-Value Data"
       use: "Description component from MUK"
