@@ -2,6 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { GeneralInformationTile } from '@/components/dashboard/GeneralInformationTile.component';
+import { getEditTenantUrl } from '@/routes/Routes.utils';
+
+const { mockNavigate } = vi.hoisted(() => ({
+  mockNavigate: vi.fn(),
+}));
 
 const { mockFormatDate } = vi.hoisted(() => ({
   mockFormatDate: vi.fn(),
@@ -11,6 +16,10 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
   }),
+}));
+
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => mockNavigate,
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
@@ -51,6 +60,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
 
 describe('GeneralInformationTile.component', () => {
   const baseProps = {
+    tenantId: 'tenant-id',
     title: 'tenant-name',
     description: 'tenant description',
     iam: {
@@ -62,16 +72,10 @@ describe('GeneralInformationTile.component', () => {
     updatedAt: '2023-06-05T10:00:00Z',
   };
 
-  let alertSpy: ReturnType<typeof vi.spyOn>;
-
   beforeEach(() => {
     vi.clearAllMocks();
     mockFormatDate.mockImplementation(({ date }: { date: string }) => `formatted-${date}`);
-    alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => undefined);
-  });
-
-  afterEach(() => {
-    alertSpy.mockRestore();
+    mockNavigate.mockReset();
   });
 
   it('renders skeletons when loading', () => {
@@ -92,11 +96,11 @@ describe('GeneralInformationTile.component', () => {
     expect(screen.getByText(`formatted-${baseProps.updatedAt}`)).toBeInTheDocument();
   });
 
-  it('opens the edit tenant alert when link is clicked', () => {
+  it('navigates to edit tenant page when link is clicked', () => {
     render(<GeneralInformationTile {...baseProps} isLoading={false} />);
 
     fireEvent.click(screen.getByTestId('edit-link'));
 
-    expect(window.alert).toHaveBeenCalledWith('Open Drawer edit tenant');
+    expect(mockNavigate).toHaveBeenCalledWith(getEditTenantUrl(baseProps.tenantId));
   });
 });
