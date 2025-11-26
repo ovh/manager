@@ -25,7 +25,17 @@ export const useGetIpVmac = ({
     error,
   } = useQuery<IcebergFetchResultV6<DedicatedServerVmacType>, ApiError>({
     queryKey: getdedicatedServerVmacQueryKey({ serviceName }),
-    queryFn: () => getdedicatedServerVmac({ serviceName }),
+    queryFn: async () => {
+      try {
+        return await getdedicatedServerVmac({ serviceName });
+      } catch (queryError) {
+        return {
+          data: [],
+          totalCount: 0,
+          status: 200,
+        };
+      }
+    },
     enabled:
       enabled &&
       !!serviceName &&
