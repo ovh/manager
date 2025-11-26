@@ -2,6 +2,8 @@ import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
 import { UrlRecord } from './types';
 
+export const TOASTER_SUCCESS_DURATION = 5000;
+
 export const ANTI_AFFINITY_MAX_NODES = 5;
 
 export const NODE_RANGE = {
