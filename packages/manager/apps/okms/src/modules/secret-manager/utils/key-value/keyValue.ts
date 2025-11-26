@@ -1,4 +1,15 @@
-import { KeyValuePair } from '../KeyValuesEditorItem';
+/**
+ * Type representing a simple key-value object with primitive values
+ */
+export type KeyValueObject = Record<string, string | number | boolean | null | undefined>;
+
+/**
+ * Type representing a key-value pair
+ */
+export type KeyValuePair = {
+  key: string;
+  value: string;
+};
 
 /**
  * Checks if an object is made of simple key/value pairs only.
@@ -12,7 +23,7 @@ import { KeyValuePair } from '../KeyValuesEditorItem';
  * isKeyValueObject({ key: { nested: "object" } }) // false
  * isKeyValueObject({ key: [1, 2, 3] }) // false
  */
-export function isKeyValueObject(obj: unknown): boolean {
+export function isKeyValueObject(obj: unknown): obj is KeyValueObject {
   // Check if the input is a not null object
   if (obj === null || typeof obj !== 'object') {
     return false;
@@ -48,7 +59,7 @@ export function isKeyValueObject(obj: unknown): boolean {
  * @returns true if the string is an object with key/value pairs
  * @returns true if the string is empty
  */
-export function isStringValidForKeyValueForm(obj: string | undefined): boolean {
+export function isKeyValueObjectString(obj: string | undefined): boolean {
   try {
     if (!obj) {
       return true;
@@ -61,26 +72,35 @@ export function isStringValidForKeyValueForm(obj: string | undefined): boolean {
 }
 
 /**
+ * Formats a key value object into an array of key-value pairs.
+ * @param obj - The key value object
+ * @returns The key-value pairs
+ */
+export function objectToKeyValuePairs(obj: KeyValueObject): KeyValuePair[] {
+  return Object.entries(obj).map(([key, value]) => ({
+    key: String(key),
+    value: String(value),
+  }));
+}
+
+/**
  * Formats a key value object string into an array of key-value pairs.
  * @param obj - The string to parse
  * @returns The key-value pairs
  *
  * @example
- * formatKeyValueArrayFromString('{"key1":"value1","key2":"value2"}') // [{ key: 'key1', value: 'value1' }, { key: 'key2', value: 'value2' }]
- * formatKeyValueArrayFromString('') // []
- * formatKeyValueArrayFromString('{ invalid: "json" }') // []
+ * stringToKeyValuePairs('{"key1":"value1","key2":"value2"}') // [{ key: 'key1', value: 'value1' }, { key: 'key2', value: 'value2' }]
+ * stringToKeyValuePairs('') // []
+ * stringToKeyValuePairs('{ invalid: "json" }') // []
  */
-export function formatKeyValueArrayFromString(obj: string): KeyValuePair[] {
+export function stringToKeyValuePairs(obj: string): KeyValuePair[] {
   const emptyPair: KeyValuePair = { key: '', value: '' };
   try {
     const parsedObj = JSON.parse(obj) as object;
     if (!isKeyValueObject(parsedObj)) {
       return [emptyPair];
     }
-    return Object.entries(parsedObj).map(([key, value]) => ({
-      key: String(key),
-      value: String(value),
-    }));
+    return objectToKeyValuePairs(parsedObj);
   } catch {
     return [emptyPair];
   }
@@ -92,10 +112,10 @@ export function formatKeyValueArrayFromString(obj: string): KeyValuePair[] {
  * @returns The string
  *
  * @example
- * formatStringFromKeyValueArray([{ key: 'key1', value: 'value1' }, { key: 'key2', value: 'value2' }]) // '{"key1":"value1","key2":"value2"}'
- * formatStringFromKeyValueArray([]) // ''
+ * keyValuePairsToString([{ key: 'key1', value: 'value1' }, { key: 'key2', value: 'value2' }]) // '{"key1":"value1","key2":"value2"}'
+ * keyValuePairsToString([]) // ''
  */
-export function formatStringFromKeyValueArray(pairs: KeyValuePair[]): string {
+export function keyValuePairsToString(pairs: KeyValuePair[]): string {
   if (pairs.length === 0) {
     return '';
   }
