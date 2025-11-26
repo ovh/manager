@@ -428,20 +428,30 @@ function PermissionGuard({
 
 ### Using Guards in Routes
 
+**Note:** Route guards are not needed for all routes. Only use them for routes that require authentication or specific permissions.
+
 ```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard/:id',
-    element: (
-      <ProtectedRoute>
-        <PermissionGuard requiredPermission="service:read">
-          <DashboardPage />
-        </PermissionGuard>
-      </ProtectedRoute>
-    )
-  }
-];
+// Example: Protected route that requires authentication
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="dashboard/:id"
+      Component={DashboardPage}
+      loader={async ({ params }) => {
+        // Authorization check in loader (recommended)
+        const isAuthorized = await checkAuthorization(params.id);
+        if (!isAuthorized) {
+          return redirect('/login');
+        }
+        return null;
+      }}
+    />
+  )
+);
 ```
 
 ## 🔗 Hash Routing (µApps)
@@ -640,7 +650,7 @@ import DashboardPage from '@/pages/dashboard/Dashboard.page';
 3. **Include route metadata**: Add tracking and breadcrumb handles
 4. **Handle loading states**: Implement Suspense and error boundaries
 5. **Use proper navigation**: Use useNavigate for programmatic navigation
-6. **Implement route guards**: Add authentication and permission checks
+6. **Implement route guards when needed**: Add authentication and permission checks only for routes that require protection (not all routes need guards)
 7. **Follow nested structure**: Use hierarchical route organization
 8. **Handle errors gracefully**: Implement error boundaries and error elements
 
