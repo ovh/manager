@@ -35,10 +35,10 @@ const TopbarComponent = <T,>({
         id="container"
         className="flex flex-wrap justify-between pb-6 items-center"
       >
-        <div id="left-side" className="flex-1 w-full md:w-auto md:order-1 mr-4">
+        <div id="left-side" className="flex-1 w-full sm:w-auto sm:order-1 mr-4">
           {topbar && <>{topbar}</>}
         </div>
-        <div id="right-side" className="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3">
+        <div id="right-side" className="w-full mt-[10px] sm:mt-[0px] sm:w-auto sm:order-3">
           <div className="flex justify-end items-center">
             {enableSearch && search && <ColumnsSearch search={search} />}
             {enableFilter && filtersColumns?.length > 0 && (
