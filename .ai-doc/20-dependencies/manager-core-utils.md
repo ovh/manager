@@ -560,20 +560,20 @@ const StatusFormatter = ReactFormatter(
 
 ### ReactFormatter
 
-#### Utilisation avec Tabulator
+#### Usage with Tabulator
 
 ```typescript
 import { ReactFormatter } from '@ovh-ux/manager-core-utils';
 import React from 'react';
 
-// Créer un formateur React pour Tabulator
+// Create a React formatter for Tabulator
 const StatusFormatter = ReactFormatter(
   <div className="status-badge">
     <span data-testid="status">{/* Status component */}</span>
   </div>
 );
 
-// Utilisation dans la configuration Tabulator
+// Usage in Tabulator configuration
 const columns = [
   {
     title: 'Status',
@@ -583,26 +583,26 @@ const columns = [
 ];
 ```
 
-#### Props Injectées
+#### Injected Props
 
 ```typescript
-// Le formateur reçoit automatiquement cellData et rowData
+// The formatter automatically receives cellData and rowData
 const CustomFormatter = ReactFormatter(
   <div>
-    <span>{/* cellData sera disponible */}</span>
-    <span>{/* rowData sera disponible */}</span>
+    <span>{/* cellData will be available */}</span>
+    <span>{/* rowData will be available */}</span>
   </div>
 );
 ```
 
 ### Date-fns Locale
 
-#### Conversion de Locale OVH
+#### OVH Locale Conversion
 
 ```typescript
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
-// Conversion des locales OVH vers date-fns
+// Convert OVH locales to date-fns
 const locales = {
   'fr_FR': 'fr',
   'en_GB': 'enGB', 
@@ -611,7 +611,7 @@ const locales = {
   'es_ES': 'es'
 };
 
-// Utilisation avec date-fns
+// Usage with date-fns
 import { format } from 'date-fns';
 import { fr, enGB, frCA } from 'date-fns/locale';
 
@@ -625,7 +625,7 @@ const formatDate = (date: Date, ovhLocale: string) => {
 };
 ```
 
-#### Intégration avec i18next
+#### Integration with i18next
 
 ```typescript
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
@@ -635,7 +635,7 @@ function DateComponent() {
   const { i18n } = useTranslation();
   const locale = getDateFnsLocale(i18n.language);
   
-  // Utiliser la locale avec date-fns
-  return <div>{/* Composant avec date formatée */}</div>;
+  // Use the locale with date-fns
+  return <div>{/* Component with formatted date */}</div>;
 }
 ```
