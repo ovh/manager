@@ -3,17 +3,25 @@ import {
   PATTERN,
   REDHAT_COMMAND,
   UBUNTU_COMMAND,
+  PUBLIC_CLOUD_GUIDE,
+  BARE_METAL_GUIDE,
 } from './constants';
 import { getFileSystemMountPath, saveMountPath } from './utils';
 
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, coreConfig) {
     this.$translate = $translate;
     this.REDHAT = REDHAT_COMMAND;
     this.UBUNTU = UBUNTU_COMMAND;
     this.FOLDER_CREATION = FOLDER_CREATION;
     this.PATTERN = PATTERN;
+
+    const language = coreConfig.getUser().ovhSubsidiary;
+    this.BARE_METAL_GUIDE =
+      BARE_METAL_GUIDE[language] || BARE_METAL_GUIDE.DEFAULT;
+    this.PUBLIC_CLOUD_GUIDE =
+      PUBLIC_CLOUD_GUIDE[language] || PUBLIC_CLOUD_GUIDE.DEFAULT;
   }
 
   $onInit() {
