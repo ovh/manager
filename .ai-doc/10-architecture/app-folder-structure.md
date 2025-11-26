@@ -143,9 +143,9 @@ Contains pure utility functions and helpers used throughout the application:
 - **Pages**: `PascalCase` (e.g., `UserManagement.page.tsx`)
 - **Hooks**: `camelCase` with `use` prefix (e.g., `useUserManagement.ts`)
 - **Services**: `camelCase` with `.service.ts` suffix (e.g., `userManagement.service.ts`)
-- **Types**: `camelCase` with `.types.ts` suffix (e.g., `userManagement.types.ts`)
-- **Utils**: `camelCase` with `.utils.ts` suffix (e.g., `userManagement.utils.ts`)
-- **Constants**: `camelCase` with `.constants.ts` suffix (e.g., `userManagement.constants.ts`)
+- **Types**: `PascalCase` with `.types.ts` suffix (e.g., `UserManagement.types.ts`)
+- **Utils**: `PascalCase` with `.utils.ts` suffix (e.g., `UserManagement.utils.ts`)
+- **Constants**: `PascalCase` with `.constants.ts` suffix (e.g., `UserManagement.constants.ts`)
 - **Tests**: `PascalCase` with `.spec.tsx` suffix (e.g., `UserManagement.spec.tsx`)
 
 ### Import/Export Patterns
@@ -157,17 +157,14 @@ export { ComponentName } from './ComponentName.component';
 // Hook exports
 export { useHookName } from './useHookName';
 
-// Service exports
-export { serviceName } from './serviceName.service';
-
 // Type exports
-export type { TypeName } from './typeName.types';
+export type { TypeName } from './TypeName.types';
 
 // Utility exports
-export { utilName } from './utilName.utils';
+export { utilName } from './UtilName.utils';
 
 // Constant exports
-export { CONSTANT_NAME } from './constantName.constants';
+export { CONSTANT_NAME } from './ConstantName.constants';
 ```
 
 ## 🔧 Configuration Files
