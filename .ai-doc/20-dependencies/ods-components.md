@@ -13,7 +13,6 @@ ai: true
 
 The **OVHcloud Design System (ODS)** provides a unified and reusable set of **React UI components** used across OVHcloud products to ensure a consistent, accessible, and modern user experience.
 
-**🚨 MIGRATION REQUIRED**: All ODS usage should be migrated to MUK components. See [MUK Components](./muk.md) for the new unified approach.
 
 Official documentation: [ODS Storybook](https://ovh.github.io/design-system/latest/?path=/docs/ovhcloud-design-system-get-started--docs)
 
