@@ -13,14 +13,14 @@ import { DeploymentMode } from '@/types';
 import { StepState } from '../hooks/useStep';
 import NetworkClusterStep, { TNetworkFormState } from './NetworkClusterStep.component';
 
-export interface NetworkStepProps {
+export type TNetworkStepProps = {
   region: string;
   type: DeploymentMode;
   onSubmit: (networkForm: TNetworkFormState) => void;
   step: StepState;
-}
+};
 
-export function NetworkStep({ region, type, onSubmit, step }: Readonly<NetworkStepProps>) {
+export function NetworkStep({ region, type, onSubmit, step }: Readonly<TNetworkStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const [state, setState] = useState<TNetworkFormState>({});
   const isGatewayValid =
