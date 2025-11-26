@@ -26,11 +26,12 @@ export type TFormStore = {
   scaling: TScalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
+
   steps: Map<StepsEnum, TStep>;
   set: {
     name: (val: string) => void;
     flavor: (val?: TComputedKubeFlavor) => void;
-    selectedAvailabilityZones: (val: { zone: string; checked: boolean }[]) => void;
+    selectAvailabilityZones: (val: { zone: string; checked: boolean }[]) => void;
     scaling: (val: TScalingState) => void;
     antiAffinity: (val: boolean) => void;
     isMonthlyBilling: (val: boolean) => void;
@@ -106,10 +107,11 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   scaling: initScale,
   antiAffinity: false,
   isMonthlyBilling: false,
+  attachFloatingIPs: null,
   selectedAvailabilityZones: null,
   steps: initialSteps(),
   set: {
-    selectedAvailabilityZones: (val: { zone: string; checked: boolean }[]) => {
+    selectAvailabilityZones: (val: { zone: string; checked: boolean }[]) => {
       set({
         selectedAvailabilityZones: val,
       });
@@ -257,6 +259,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       antiAffinity: false,
       selectedAvailabilityZones: null,
       isMonthlyBilling: false,
+
       steps: initialSteps(),
     }));
   },
