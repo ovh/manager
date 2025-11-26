@@ -15,8 +15,8 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
     uid,
     type = 'information',
     isDismissible = true,
-    includedSubRoutes,
-    excludedSubRoutes,
+    includedSubRoutes = [],
+    excludedSubRoutes = [],
     duration,
   } = message;
 
@@ -30,10 +30,9 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
   }, [uid, includedSubRoutes, excludedSubRoutes, pathname]);
 
   useEffect(() => {
-    if (!duration) return;
+    if (!duration) return undefined;
     const durationTimeout = setTimeout(() => clearMessage(uid), duration);
 
-    // eslint-disable-next-line consistent-return
     return () => clearTimeout(durationTimeout);
   }, [duration]);
 
@@ -42,7 +41,7 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
       className="mb-2"
       color={type}
       isDismissible={isDismissible}
-      onOdsRemove={isDismissible ? () => clearMessage(uid) : null}
+      onOdsRemove={isDismissible ? () => clearMessage(uid) : undefined}
     >
       {content}
     </OdsMessage>

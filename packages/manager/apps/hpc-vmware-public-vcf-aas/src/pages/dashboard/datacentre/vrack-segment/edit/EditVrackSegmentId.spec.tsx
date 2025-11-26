@@ -39,7 +39,7 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const expectSubmitButton = (container) =>
+const expectSubmitButton = (container: HTMLElement) =>
   expect(container.querySelector('ods-button[label="modify"]'));
 
 const submitForm = (container: HTMLElement) => {

@@ -15,7 +15,7 @@ export const useAutoRefetch = ({
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled) return undefined;
 
     const refetchQueries = () => {
       queryClient.invalidateQueries({ queryKey });
@@ -23,7 +23,6 @@ export const useAutoRefetch = ({
 
     const refetchInterval = setInterval(() => refetchQueries(), interval);
 
-    // eslint-disable-next-line consistent-return
     return () => clearInterval(refetchInterval);
   }, [enabled, interval, queryKey, queryClient]);
 };
