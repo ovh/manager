@@ -128,14 +128,14 @@ export function useOrderFunnel({
     }
   }, [replication, form]);
 
-  // Force disable object lock if versioning is disabled
+  // Force enable versioning if object lock is enabled
   useEffect(() => {
-    if (versioning === storages.VersioningStatusEnum.disabled) {
-      form.setValue('objectLock', storages.ObjectLockStatusEnum.disabled, {
+    if (objectLock === storages.ObjectLockStatusEnum.enabled) {
+      form.setValue('versioning', storages.VersioningStatusEnum.enabled, {
         shouldValidate: true,
       });
     }
-  }, [versioning, form]);
+  }, [objectLock, form]);
 
   // build order model
   const result = useMemo(() => {

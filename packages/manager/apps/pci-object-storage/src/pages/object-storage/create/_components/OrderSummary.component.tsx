@@ -12,11 +12,10 @@ import {
   Puzzle,
   Tag,
   User,
+  FileLock2,
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import Flag from '@/components/flag/Flag.component';
-import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import cloud from '@/types/Cloud';
 import storages from '@/types/Storages';
 import { isS3Order, isSwiftOrder } from './useOrderFunnel.hook';
@@ -164,7 +163,7 @@ const OrderSummary = ({
             <>
               <SummarySection
                 label={t('summaryVersionningSection')}
-                onAnchorClicked={() => scrollToDiv('replication')}
+                onAnchorClicked={() => scrollToDiv('versions')}
               >
                 <SummaryItem>
                   <History className="size-4" />
@@ -173,6 +172,21 @@ const OrderSummary = ({
                     storages.VersioningStatusEnum.enabled
                       ? t('summaryVersionningEnabled')
                       : t('summaryVersionningDisabled')}
+                  </span>
+                </SummaryItem>
+              </SummarySection>
+
+              <SummarySection
+                label={t('summaryObjectLockSection')}
+                onAnchorClicked={() => scrollToDiv('object-lock')}
+              >
+                <SummaryItem>
+                  <FileLock2 className="size-4" />
+                  <span>
+                    {order.objectLock.status ===
+                    storages.ObjectLockStatusEnum.enabled
+                      ? t('summaryObjectLockEnabled')
+                      : t('summaryObjectLockDisabled')}
                   </span>
                 </SummaryItem>
               </SummarySection>
