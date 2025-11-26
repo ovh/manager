@@ -1,41 +1,33 @@
-import { createContext, useContext, ReactNode, useMemo } from 'react';
+import { ReactNode, createContext, useContext, useMemo } from 'react';
+
 import { useParams } from 'react-router-dom';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  getVcdOrganisationNetworkAclList,
-  getVcdNetworkAclListQueryKey,
   VCDNetworkAcl,
   VCDNetworkAclNetwork,
-  useVcdOrganization,
-  isStatusTerminated,
   VCDNetworkAclResourceStatus,
+  getVcdNetworkAclListQueryKey,
+  getVcdOrganisationNetworkAclList,
+  isStatusTerminated,
+  useVcdOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
 
 const INTERVAL_POLLING = 2 * 1000; // 2s
 const ACTIVE_TASK_STATUS = ['PENDING', 'RUNNING'];
 const RUNNING_RSSOURCE_STATUS = ['CREATING', 'UPDATING', 'DELETING'];
 
-export const checkHasActiveTasks = (
-  data: VCDNetworkAcl[] | undefined,
-): boolean => {
+export const checkHasActiveTasks = (data: VCDNetworkAcl[] | undefined): boolean => {
   return (
     data?.some((item) =>
-      item.currentTasks?.some((task) =>
-        ACTIVE_TASK_STATUS.includes(task.status),
-      ),
+      item.currentTasks?.some((task) => ACTIVE_TASK_STATUS.includes(task.status)),
     ) ?? false
   );
 };
 
-export const checkResourceStatus = (
-  data: VCDNetworkAcl[] | undefined,
-): boolean => {
-  return (
-    data?.some((item) =>
-      RUNNING_RSSOURCE_STATUS.includes(item.resourceStatus),
-    ) ?? false
-  );
+export const checkResourceStatus = (data: VCDNetworkAcl[] | undefined): boolean => {
+  return data?.some((item) => RUNNING_RSSOURCE_STATUS.includes(item.resourceStatus)) ?? false;
 };
 
 export type NetworkAclStatus = 'ACTIVE' | 'DELETING' | 'CREATING';
@@ -62,9 +54,7 @@ const NetworkAclContext = createContext<NetworkAclContextValue | null>(null);
 export function NetworkAclProvider({ children }: { children: ReactNode }) {
   const { id } = useParams();
   const { data: vcdOrganisation } = useVcdOrganization({ id });
-  const { flattenData, isPending, isError, error } = useResourcesIcebergV2<
-    VCDNetworkAcl
-  >({
+  const { flattenData, isPending, isError, error } = useResourcesIcebergV2<VCDNetworkAcl>({
     route: getVcdOrganisationNetworkAclList(id),
     queryKey: getVcdNetworkAclListQueryKey(id),
     refetchInterval: (query) => {
@@ -79,9 +69,7 @@ export function NetworkAclProvider({ children }: { children: ReactNode }) {
   });
 
   const acl = useMemo(() => {
-    return Array.isArray(flattenData) && flattenData.length > 0
-      ? flattenData[0]
-      : null;
+    return Array.isArray(flattenData) && flattenData.length > 0 ? flattenData[0] : null;
   }, [flattenData]);
 
   const targetNetworks = useMemo<VCDNetworkAclNetwork[]>(() => {
@@ -98,14 +86,10 @@ export function NetworkAclProvider({ children }: { children: ReactNode }) {
     const currentMap = new Map(currentNetworks.map((n) => [n.network, n]));
     const targetMap = new Map(targetNetworks.map((n) => [n.network, n]));
 
-    const activeOrDeleting: NetworkWithStatus[] = currentNetworks.map(
-      (curr) => ({
-        ...curr,
-        status: (targetMap.has(curr.network)
-          ? 'ACTIVE'
-          : 'DELETING') as NetworkAclStatus,
-      }),
-    );
+    const activeOrDeleting: NetworkWithStatus[] = currentNetworks.map((curr) => ({
+      ...curr,
+      status: (targetMap.has(curr.network) ? 'ACTIVE' : 'DELETING') as NetworkAclStatus,
+    }));
 
     const creating: NetworkWithStatus[] = targetNetworks
       .filter((targ) => !currentMap.has(targ.network))
@@ -129,9 +113,7 @@ export function NetworkAclProvider({ children }: { children: ReactNode }) {
         currentNetworks,
         targetNetworks,
         organisationId: id,
-        isActiveOrganisation: !isStatusTerminated(
-          vcdOrganisation?.data?.resourceStatus,
-        ),
+        isActiveOrganisation: !isStatusTerminated(vcdOrganisation?.data?.resourceStatus),
         aclId,
         hasActiveTasks,
         isPending,

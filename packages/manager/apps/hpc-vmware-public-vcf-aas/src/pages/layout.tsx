@@ -1,12 +1,11 @@
-import React, { useEffect, useContext } from 'react';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { useContext, useEffect } from 'react';
+
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
-import {
-  useOvhTracking,
-  useRouteSynchro,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import { subRoutes, urls } from '@/routes/routes.constant';
+
+import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
+
+import { subRoutes } from '@/routes/routes.constant';
 
 export default function Layout() {
   const location = useLocation();
@@ -18,7 +17,7 @@ export default function Layout() {
   useEffect(() => {
     const match = matches.slice(-1);
     defineCurrentPage(`app.hpc-vmware-public-vcf-aas-${match[0]?.id}`);
-  }, [location]);
+  }, [location, matches]);
 
   useEffect(() => {
     const { hash } = window.location;
@@ -27,17 +26,15 @@ export default function Layout() {
     const duplicated = `${subRoutes.root}/${subRoutes.root}`;
     if (hash.includes(duplicated)) {
       const fixedHash = hash.replace(duplicated, subRoutes.root);
-      window.location.replace(
-        `${window.location.origin}${window.location.pathname}${fixedHash}`,
-      );
+      window.location.replace(`${window.location.origin}${window.location.pathname}${fixedHash}`);
       return;
     }
     trackCurrentPage();
-  }, [location]);
+  }, [location, trackCurrentPage]);
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+  }, [shell.ux]);
 
   return <Outlet />;
 }

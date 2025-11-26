@@ -1,13 +1,12 @@
 import { Outlet, useParams } from 'react-router-dom';
-import {
-  isStatusTerminated,
-  useVcdOrganization,
-} from '@ovh-ux/manager-module-vcd-api';
+
+import { isStatusTerminated, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+
 import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
+import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
-import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
 import OrganizationServiceManagementTile from '@/components/tiles/organization-service-tile/OrganizationServiceManagementTile.component';
 
 export default function GeneralInformation() {
@@ -36,18 +35,14 @@ export default function GeneralInformation() {
   }
 
   return (
-    <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-10">
-      <OrganizationGenerationInformationTile
-        vcdOrganization={vcdOrganization.data}
-      />
+    <div className="grid gap-8 px-10 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <OrganizationGenerationInformationTile vcdOrganization={vcdOrganization.data} />
       <div className="flex flex-col gap-8">
         <OrganizationOptionsTile
           isLicenseActive={!!vcdOrganization.data?.currentState?.spla}
           isDisabled={isStatusTerminated(vcdOrganization.data?.resourceStatus)}
         />
-        <OrganizationDataProtectionTile
-          vcdOrganization={vcdOrganization.data}
-        />
+        <OrganizationDataProtectionTile vcdOrganization={vcdOrganization.data} />
       </div>
       <OrganizationServiceManagementTile />
       <Outlet />

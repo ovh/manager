@@ -1,15 +1,13 @@
 import React from 'react';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
 import { describe, vi } from 'vitest';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import DatagridContainer, {
-  TDatagridContainerProps,
-} from './DatagridContainer.component';
+
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
+import DatagridContainer, { TDatagridContainerProps } from './DatagridContainer.component';
 
 const navigationMock = vi.fn();
 
@@ -23,9 +21,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (managerComponents) => {
-  const module = await managerComponents<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
+  const module = await managerComponents<typeof import('@ovh-ux/manager-react-components')>();
   return {
     ...module,
     useResourcesIcebergV2: vi.fn().mockReturnValue({
@@ -61,9 +57,7 @@ const renderComponent = (props: TDatagridContainerProps) => {
   const queryClient = new QueryClient();
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <DatagridContainer {...props} />
       </ShellContext.Provider>
     </QueryClientProvider>,
@@ -99,15 +93,10 @@ describe('DatagridContainer component unit test suite', () => {
       const { getByRole, queryAllByText, queryByRole } = renderComponent(props);
 
       // then
-      expect(getByRole('region', { name: props.title })).toHaveAttribute(
-        'class',
-        `px-10 ${css}`,
-      );
+      expect(getByRole('region', { name: props.title })).toHaveAttribute('class', `px-10 ${css}`);
 
       // and
-      await waitFor(() =>
-        expect(queryAllByText('value for id')[0]).toBeInTheDocument(),
-      );
+      await waitFor(() => expect(queryAllByText('value for id')[0]).toBeInTheDocument());
 
       if (!isEmbedded) {
         expect(getByRole('button', { name: 'Changelog Button' })).toBeVisible();

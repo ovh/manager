@@ -1,32 +1,26 @@
-import {
-  Datagrid,
-  DataGridTextCell,
-  ActionMenu,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import React, { useEffect, useRef } from 'react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
-import { OdsButton, OdsBadge } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
   ODS_BADGE_COLOR,
   ODS_BUTTON_COLOR,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
-import { subRoutes } from '@/routes/routes.constant';
-import {
-  useNetworkAclContext,
-  NetworkWithStatus,
-  NetworkAclStatus,
-} from './NetworkAcl.context';
+import { OdsBadge, OdsButton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu, DataGridTextCell, Datagrid } from '@ovh-ux/manager-react-components';
+
 import { useMessageContext } from '@/context/Message.context';
+import { subRoutes } from '@/routes/routes.constant';
 import TEST_IDS from '@/utils/testIds.constants';
-import {
-  DEFAULT_ACL_NETWORK,
-  SERVER_ERROR_MESSAGE,
-} from './NetworkAcl.constant';
+
+import { DEFAULT_ACL_NETWORK, SERVER_ERROR_MESSAGE } from './NetworkAcl.constant';
+import { NetworkAclStatus, NetworkWithStatus, useNetworkAclContext } from './NetworkAcl.context';
 
 const STATUS2COLORS: Record<NetworkAclStatus, ODS_BADGE_COLOR> = {
   CREATING: ODS_BADGE_COLOR.warning,
@@ -56,13 +50,9 @@ export default function NetworkAclListContent() {
   const msgUidActiveTaskRef = useRef<number | null>(null);
   const errorShownRef = useRef<boolean | null>(null);
 
-  const isDefaultAcl =
-    networks.length === 1 && networks[0].network === DEFAULT_ACL_NETWORK;
+  const isDefaultAcl = networks.length === 1 && networks[0].network === DEFAULT_ACL_NETWORK;
   const hasDisabledActions =
-    hasActiveTasks ||
-    !isActiveOrganisation ||
-    isError ||
-    resourceStatus === 'ERROR';
+    hasActiveTasks || !isActiveOrganisation || isError || resourceStatus === 'ERROR';
 
   const columns = [
     {
@@ -106,9 +96,7 @@ export default function NetworkAclListContent() {
                       network: row.network,
                       description: row.name,
                     });
-                    navigate(
-                      `${subRoutes.editNetworkAcl}?${params.toString()}`,
-                    );
+                    navigate(`${subRoutes.editNetworkAcl}?${params.toString()}`);
                   },
                   label: t('managed_vcd_network_acl_ip_action_modify_ip'),
                   'data-testid': `actions-modify-${row.name}`,
@@ -120,9 +108,7 @@ export default function NetworkAclListContent() {
                     const params = new URLSearchParams({
                       network: row.network,
                     });
-                    navigate(
-                      `${subRoutes.deleteNetworkAcl}?${params.toString()}`,
-                    );
+                    navigate(`${subRoutes.deleteNetworkAcl}?${params.toString()}`);
                   },
                   label: t('managed_vcd_network_acl_ip_action_delete_ip'),
                   color: ODS_BUTTON_COLOR.critical,
@@ -147,20 +133,19 @@ export default function NetworkAclListContent() {
       msgUidActiveTaskRef.current = addInfo({
         content: t('managed_vcd_network_acl_operation_ongoing'),
         includedSubRoutes: [id],
-      }) as number;
+      });
     } else if (msgUidActiveTaskRef.current !== null) {
       clearMessage(msgUidActiveTaskRef.current);
       msgUidActiveTaskRef.current = null;
     }
-  }, [hasActiveTasks]);
+  }, [addInfo, clearMessage, hasActiveTasks, id, t]);
 
   useEffect(() => {
     if (errorShownRef.current) return;
 
     if (!(isError || resourceStatus === 'ERROR')) return;
 
-    const message =
-      error?.response?.data?.message || error?.message || SERVER_ERROR_MESSAGE;
+    const message = error?.response?.data?.message || error?.message || SERVER_ERROR_MESSAGE;
 
     addCritical({
       content: tError('error_message', { message }),
@@ -168,7 +153,7 @@ export default function NetworkAclListContent() {
     });
 
     errorShownRef.current = true;
-  }, [isError, resourceStatus, error]);
+  }, [isError, resourceStatus, error, addCritical, tError, id]);
 
   const onCtaClicked = () => {
     if (isDefaultAcl) {
@@ -185,7 +170,7 @@ export default function NetworkAclListContent() {
   return (
     <React.Suspense>
       <section className="px-10" aria-labelledby="datagrid-title">
-        <div className="w-fit mt-4 mb-8">
+        <div className="mb-8 mt-4 w-fit">
           <OdsButton
             label={
               isDefaultAcl

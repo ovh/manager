@@ -1,14 +1,17 @@
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { screen } from '@testing-library/react';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 
 import { labels, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
 
 describe('Network ACL Add new acl', () => {
   beforeAll(() => {
+    // TODO: fix these "as any" to remove eslint-disable
     if (!(HTMLElement.prototype as any).close) {
       (HTMLElement.prototype as any).close = vi.fn();
     }
@@ -34,30 +37,20 @@ describe('Network ACL Add new acl', () => {
     expect(confirmButton).not.toBeNull();
     expect(confirmButton).toHaveAttribute('is-disabled', 'true');
     // Title
-    await assertTextVisibility(
-      labels.networkAcl.managed_vcd_network_acl_ip_cta_add_ip,
-    );
+    await assertTextVisibility(labels.networkAcl.managed_vcd_network_acl_ip_cta_add_ip);
 
     // actions
-    const addCurrentIpButton = await screen.findByTestId(
-      TEST_IDS.networkAclAddCurrentIpAction,
-    );
+    const addCurrentIpButton = await screen.findByTestId(TEST_IDS.networkAclAddCurrentIpAction);
     expect(addCurrentIpButton).toBeInTheDocument();
     expect(addCurrentIpButton).toBeEnabled();
 
-    const fromAnywhereButton = await screen.findByTestId(
-      TEST_IDS.networkAclfromAnywhereIpAction,
-    );
+    const fromAnywhereButton = await screen.findByTestId(TEST_IDS.networkAclfromAnywhereIpAction);
     expect(fromAnywhereButton).toBeInTheDocument();
     expect(fromAnywhereButton).toBeEnabled();
 
     // Form
-    const ipInput = await screen.findByLabelText(
-      labels.networkAcl.managed_vcd_network_acl_ip_name,
-    );
-    const descriptionInput = await screen.findByLabelText(
-      labels.commun.dashboard.description,
-    );
+    const ipInput = await screen.findByLabelText(labels.networkAcl.managed_vcd_network_acl_ip_name);
+    const descriptionInput = await screen.findByLabelText(labels.commun.dashboard.description);
 
     expect(ipInput).toBeInTheDocument();
     expect(descriptionInput).toBeInTheDocument();
@@ -66,6 +59,7 @@ describe('Network ACL Add new acl', () => {
 
 describe('Network ACL modify existing acl', () => {
   beforeAll(() => {
+    // TODO: fix these "as any" to remove eslint-disable
     if (!(HTMLElement.prototype as any).close) {
       (HTMLElement.prototype as any).close = vi.fn();
     }
@@ -75,16 +69,15 @@ describe('Network ACL modify existing acl', () => {
       initialRoute: `/${organizationList[0].id}/network-acl/edit-network-acl?network=0.0.0.0%2F0&description=Network+ACLs+disabled`,
     });
 
-    await assertTextVisibility(
-      labels.networkAcl.managed_vcd_network_acl_drawer_header_edit_ip,
+    await assertTextVisibility(labels.networkAcl.managed_vcd_network_acl_drawer_header_edit_ip);
+
+    const ipInput = await screen.findByLabelText<HTMLInputElement>(
+      labels.networkAcl.managed_vcd_network_acl_ip_name,
+    );
+    const descriptionInput = await screen.findByLabelText<HTMLInputElement>(
+      labels.commun.dashboard.description,
     );
 
-    const ipInput = (await screen.findByLabelText(
-      labels.networkAcl.managed_vcd_network_acl_ip_name,
-    )) as any;
-    const descriptionInput = (await screen.findByLabelText(
-      labels.commun.dashboard.description,
-    )) as any;
     expect(ipInput.value).toBe('0.0.0.0/0');
     expect(descriptionInput.value).toBe('Network ACLs disabled');
   });

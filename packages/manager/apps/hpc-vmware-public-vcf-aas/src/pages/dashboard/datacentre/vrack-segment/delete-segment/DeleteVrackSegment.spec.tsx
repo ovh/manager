@@ -1,13 +1,15 @@
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+
 import {
-  organizationList,
   datacentreList,
   mockVrackSegmentList,
+  organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
+
+import { subRoutes, urls } from '../../../../../routes/routes.constant';
 import { labels, renderTest } from '../../../../../test-utils';
-import { urls, subRoutes } from '../../../../../routes/routes.constant';
 
 const testVrack = mockVrackSegmentList[0];
 const initialRoute = urls.vrackSegmentDelete
@@ -51,7 +53,7 @@ describe('Delete Vrack Network Page', () => {
 
   // TODO : unskip when page is unmocked
   it.skip('should display an error if deleteService is KO', async () => {
-    const { debug, container } = await renderTest({
+    await renderTest({
       initialRoute,
       isVrackSegmentDeleteKo: true,
     });
@@ -62,11 +64,8 @@ describe('Delete Vrack Network Page', () => {
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    await waitFor(async () => {
-      expect(submitCta).toBeEnabled();
-      debug(container, Infinity);
-      await act(() => userEvent.click(submitCta));
-    }, WAIT_OPTIONS);
+    expect(submitCta).toBeEnabled();
+    await act(() => userEvent.click(submitCta));
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), WAIT_OPTIONS);

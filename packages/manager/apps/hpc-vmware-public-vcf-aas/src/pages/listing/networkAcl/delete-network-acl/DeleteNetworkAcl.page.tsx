@@ -1,13 +1,18 @@
-import { useNavigate, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
-import { Modal } from '@ovh-ux/manager-react-components';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useUpdateVcdNetworkAcl } from '@ovh-ux/manager-module-vcd-api';
+import { Modal } from '@ovh-ux/manager-react-components';
+
 import { useMessageContext } from '@/context/Message.context';
+
 import { useNetworkAclContext } from '../NetworkAcl.context';
 
 export default function AddEditNetworkAcl() {
@@ -41,11 +46,7 @@ export default function AddEditNetworkAcl() {
 
   const onSubmit = () => {
     const payload = {
-      networks: [
-        ...targetNetworks.filter(
-          (net) => net.network !== searchParams.get('network'),
-        ),
-      ],
+      networks: [...targetNetworks.filter((net) => net.network !== searchParams.get('network'))],
     };
     updateNetworkAcl(payload);
   };
@@ -72,9 +73,7 @@ export default function AddEditNetworkAcl() {
               })}
             </OdsMessage>
           )}
-          <OdsText>
-            {t('managed_vcd_network_acl_drawer_body_suppression_ip')}
-          </OdsText>
+          <OdsText>{t('managed_vcd_network_acl_drawer_body_suppression_ip')}</OdsText>
           <OdsMessage color="warning" isDismissible={false}>
             {searchParams.get('network')}
           </OdsMessage>
