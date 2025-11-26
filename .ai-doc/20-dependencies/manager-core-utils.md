@@ -14,20 +14,17 @@ ai: true
 
 The **Manager Core Utils** package provides essential utility functions for OVHcloud Manager applications. It includes locale normalization utilities (Manager locale to Date-fns locale) and React formatters for data grids.
 
-This package is the foundation for common utility functions used across all Manager applications, providing standardized patterns for date handling, React component formatting, and locale management.
+This package provides locale normalization utilities and React component formatters for data grids used across Manager applications.
 
 ## ⚙️ Context
 
 Manager Core Utils is designed for:
 - **Locale normalization** from Manager locale to Date-fns locale
 - **React component formatting** for data grids
-- **Utility functions** for common operations
-- **Standardized patterns** across applications
 
 This package is essential for:
 - **Locale normalization** from Manager locale to Date-fns locale
 - **Data grid formatting** with React components
-- **Common utility functions** for consistency
 
 ## 🔗 References
 
