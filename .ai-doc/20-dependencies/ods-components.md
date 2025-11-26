@@ -26,7 +26,6 @@ ODS is built on modern web standards and provides:
 - **React 18.2+** compatibility
 - **TypeScript** support with full type definitions
 - **Accessibility** compliance (WCAG 2.1)
-- **Stencil.js** web components with React wrappers
 - **Theme system** with multiple color intents and variants
 - **Performance** optimized components
 
