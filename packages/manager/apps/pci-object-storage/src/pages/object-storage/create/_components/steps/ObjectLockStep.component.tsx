@@ -12,7 +12,6 @@ import { HelpCircleIcon, Info } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import storages from '@/types/Storages';
-import { cn } from '@/lib/utils';
 
 interface ObjectLockStepProps {
   value?: storages.ObjectLockStatusEnum;
@@ -57,18 +56,12 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
           <RadioGroupItem
             value={storages.ObjectLockStatusEnum.enabled}
             id="object-lock-enabled-option"
-            disabled={isVersioningDisabled}
           />
-          <Label htmlFor="object-lock-enabled-option">
-            <span
-              className={cn(
-                isVersioningDisabled && 'opacity-70 cursor-not-allowed',
-              )}
-            >
-              {t(
-                `versionningTypeLabel-${storages.ObjectLockStatusEnum.enabled}`,
-              )}
-            </span>
+          <Label
+            htmlFor="object-lock-enabled-option"
+            className="flex gap-2 justify-center"
+          >
+            {t(`versionningTypeLabel-${storages.ObjectLockStatusEnum.enabled}`)}
           </Label>
           {/* Help popover shown when versioning is disabled */}
           {isVersioningDisabled && (
