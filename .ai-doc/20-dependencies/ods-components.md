@@ -20,6 +20,8 @@ Official documentation: [ODS Storybook](https://ovh.github.io/design-system/late
 
 This documentation provides comprehensive guidance for AI systems to generate correct, secure, and performant React code using ODS components. It includes complete prop interfaces, usage patterns, and best practices based on actual TypeScript definitions from version 17.2.2 with forward-looking guidance for 18.6.2.
 
+**Note:** With the new ODS strategy, MUK will no longer be the single source of truth. ODS components can be used directly when appropriate, and MUK should be considered as a wrapper layer with Manager-specific enhancements rather than the exclusive entry point.
+
 ## ⚙️ Context
 
 ODS is built on modern web standards and provides:
