@@ -229,6 +229,7 @@ export type TCreateNodePoolParam = {
   autoscale: boolean;
   minNodes?: number;
   desiredNodes: number;
+  attachFloatingIPs?: TAttachFloatingIPs;
   maxNodes?: number;
 };
 

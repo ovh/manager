@@ -22,7 +22,7 @@ import { IAM_AUTHENTICATION_INFOS, IAM_AUTHENTICATION_INFOS_PRICE } from '@/cons
 type PublicConnectivityProps = {
   disabled?: boolean;
   checked: boolean;
-  onChange: (publicConnectivity: boolean) => void;
+  onChange: (enabled: boolean) => void;
   price: { hourFormatted: string | null; monthFormatted: string | null } | null;
 };
 
