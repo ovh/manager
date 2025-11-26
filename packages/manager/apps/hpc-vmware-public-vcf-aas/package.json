@@ -12,8 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "build:strict": "tsc --project tsconfig.strict.json && vite build",
+    "coverage": "manager-test run --coverage",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "tsc && vite",
     "test": "manager-test --config vitest.config.mjs run",
     "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
@@ -53,8 +55,8 @@
   "devDependencies": {
     "@effect/vitest": "^0.25.1",
     "@ovh-ux/manager-core-test-utils": "^0.11.8",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-tests-setup": "^0.8.0",
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",

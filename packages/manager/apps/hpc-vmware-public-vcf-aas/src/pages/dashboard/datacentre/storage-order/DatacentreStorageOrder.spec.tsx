@@ -1,28 +1,27 @@
-import React from 'react';
-import { vitest } from 'vitest';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import {
-  organizationList,
-  datacentreList,
-  orderableResourceData,
-} from '@ovh-ux/manager-module-vcd-api';
+import { vitest } from 'vitest';
+
 import {
   assertElementLabel,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { labels, renderTest } from '../../../../test-utils';
-import { PERFORMANCE_CLASS_LABEL } from './datacentreStorageOrder.constants';
-import TEST_IDS from '../../../../utils/testIds.constants';
-import { IOPS_LABEL } from '../../../../utils/label.constants';
+import {
+  datacentreList,
+  orderableResourceData,
+  organizationList,
+} from '@ovh-ux/manager-module-vcd-api';
+
 import { subRoutes } from '../../../../routes/routes.constant';
+import { labels, renderTest } from '../../../../test-utils';
+import { IOPS_LABEL } from '../../../../utils/label.constants';
+import TEST_IDS from '../../../../utils/testIds.constants';
+import { PERFORMANCE_CLASS_LABEL } from './datacentreStorageOrder.constants';
 
 // remove mock when ods element-internals-polyfill is fixed
 vitest.mock('@ovhcloud/ods-components/react', async () => {
-  const originalModule = await vitest.importActual(
-    '@ovhcloud/ods-components/react',
-  );
+  const originalModule = await vitest.importActual('@ovhcloud/ods-components/react');
 
   return {
     ...originalModule,

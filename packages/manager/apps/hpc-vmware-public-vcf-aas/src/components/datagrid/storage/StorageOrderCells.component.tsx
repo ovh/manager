@@ -1,10 +1,14 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+
 import { VCDOrderableStoragePriced } from '@ovh-ux/manager-module-vcd-api';
-import { getVdcResourcePriceLabel } from '@/utils/getPricedOrderableResource';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
+import { getVdcResourcePriceLabel } from '@/utils/getPricedOrderableResource';
 import { IOPS_LABEL } from '@/utils/label.constants';
 
 export const StorageOrderSelectCell = (storage: VCDOrderableStoragePriced) => {
@@ -29,7 +33,7 @@ export const StorageOrderPriceCell = (storage: VCDOrderableStoragePriced) => {
   const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>
-      <OdsText className="semibold block">
+      <OdsText className="block [&::part(text)]:font-semibold">
         {getVdcResourcePriceLabel(storage)}
       </OdsText>
       <OdsText>{t('managed_vcd_vdc_order_price_detail')}</OdsText>
@@ -37,9 +41,7 @@ export const StorageOrderPriceCell = (storage: VCDOrderableStoragePriced) => {
   );
 };
 
-export const StoragePerformanceClassCell = ({
-  performanceClass,
-}: VCDOrderableStoragePriced) => {
+export const StoragePerformanceClassCell = ({ performanceClass }: VCDOrderableStoragePriced) => {
   const { t } = useTranslation('datacentres/order');
   return (
     <DataGridTextCell>

@@ -1,5 +1,5 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
     "types": [
       "vite/client",
@@ -10,9 +10,12 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@ovh-ux/manager-module-vcd-api": ["../../modules/vcd-api/src/dist"],
-      "@ovh-ux/manager-network-common": ["../../modules/network-common/src/dist"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@ovh-ux/manager-module-vcd-api": [
+        "../../modules/vcd-api/src/dist"
+      ]
     },
     "baseUrl": "."
   },

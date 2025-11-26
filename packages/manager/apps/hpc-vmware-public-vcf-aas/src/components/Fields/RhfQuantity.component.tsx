@@ -1,5 +1,7 @@
-import { OdsQuantity } from '@ovhcloud/ods-components/react';
 import React, { ComponentProps } from 'react';
+
+import { OdsQuantity } from '@ovhcloud/ods-components/react';
+
 import { useRhfFieldContext } from './RhfField.context';
 
 export function RhfQuantity(

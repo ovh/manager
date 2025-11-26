@@ -1,8 +1,12 @@
 import { useMemo } from 'react';
-import { HeadersProps, BaseLayout } from '@ovh-ux/manager-react-components';
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
+import { BaseLayout, HeadersProps } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { MessageList } from '@/components/message/MessageList.component';
 import { getTabTrackingParams } from '@/tracking.constants';
@@ -57,9 +61,7 @@ export default function VcdDashboardLayout({
                   }
                 }}
               >
-                <OdsTab isSelected={tab?.name === activeTab?.name}>
-                  {tab.title}
-                </OdsTab>
+                <OdsTab isSelected={tab?.name === activeTab?.name}>{tab.title}</OdsTab>
               </NavLink>
             ))}
           </OdsTabs>

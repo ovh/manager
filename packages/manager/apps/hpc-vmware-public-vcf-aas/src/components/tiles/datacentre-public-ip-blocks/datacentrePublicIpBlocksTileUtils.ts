@@ -1,4 +1,5 @@
 import ipaddr from 'ipaddr.js';
+
 import { VCDVrackSegment } from '@ovh-ux/manager-module-vcd-api';
 
 /**
