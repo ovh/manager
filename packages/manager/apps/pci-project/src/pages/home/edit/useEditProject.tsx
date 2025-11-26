@@ -8,6 +8,7 @@ import {
 } from '@/data/api/projects';
 import queryClient from '@/queryClient';
 import { getDefaultProjectQueryKey } from '@/data/hooks/useProjects';
+import { projectsWithServiceQueryKey } from '@/data/api/projects-with-services';
 
 export type EditProjectParams = {
   description: string;
@@ -62,6 +63,16 @@ export const useEditProject = (
           queryKey: getProjectQueryKey(projectId),
         });
       }
+
+      if (
+        variables?.isDefaultPropertyChanged ||
+        variables?.isDescriptionChanged
+      ) {
+        queryClient.invalidateQueries({
+          queryKey: [projectsWithServiceQueryKey()],
+        });
+      }
+
       onSuccess();
     },
     onError,
