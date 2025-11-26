@@ -488,36 +488,59 @@ function App() {
 
 ## 📥 Route Loaders
 
-### Basic Loader
+**Note:** In Manager applications, we don't recommend using route loaders for data fetching. Instead, we display skeletons while making queries using React Query hooks (`useQuery`). Route loaders should only be used for authorization checks and redirects.
+
+### Recommended Pattern: Skeletons with React Query
 
 ```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard/:id',
-    ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-    loader: async ({ params }) => {
-      const service = await fetchService(params.id);
-      return { service };
-    }
-  }
-];
-```
-
-### Using Loader Data
-
-```typescript
-import { useLoaderData } from 'react-router-dom';
+// pages/Dashboard.page.tsx
+import { useQuery } from '@tanstack/react-query';
+import { Skeleton } from '@ovh-ux/muk';
+import { useParams } from 'react-router-dom';
+import { getService } from '@/data/api/services.api';
 
 function DashboardPage() {
-  const { service } = useLoaderData() as { service: Service };
+  const { id } = useParams<{ id: string }>();
+  const { data: service, isLoading } = useQuery({
+    queryKey: ['service', id],
+    queryFn: () => getService(id),
+  });
+  
+  if (isLoading) {
+    return <Skeleton />;
+  }
   
   return (
     <div>
-      <h1>{service.name}</h1>
-      <p>{service.description}</p>
+      <h1>{service?.name}</h1>
+      <p>{service?.description}</p>
     </div>
   );
+}
+```
+
+### Route Loaders (Only for Authorization/Redirects)
+
+Route loaders should only be used for authorization checks and redirects, not for data fetching:
+
+```typescript
+// pages/Dashboard.layout.tsx
+import { Outlet, redirect } from 'react-router-dom';
+
+export const Loader = async ({ params }) => {
+  // Only use loader for authorization checks
+  const { projectId } = params;
+  const isAuthorized = await checkAuthorization(projectId);
+  
+  if (!isAuthorized) {
+    return redirect('/login');
+  }
+  
+  return null;
+};
+
+export default function DashboardLayout() {
+  return <Outlet />;
 }
 ```
 
