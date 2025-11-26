@@ -132,18 +132,22 @@ export const mapInstance = (
   const regionMapper = mapInstanceRegion(translateMicroRegion);
   const autoBackupMapper = mapAutoBackup(snapshotAvailability, regions);
 
-  return instances.map<TInstance>((instance) => ({
-    ...(pick(instance, ['name']) as Pick<TInstance, 'name'>),
-    id: buildInstanceId(instance.id, instance.region),
-    label: instance.id as TInstance['label'],
-    flavor: mapInstanceFlavor(flavors)(instance),
-    status: mapInstanceStatus(instance),
-    region: regionMapper(instance),
-    autoBackup: autoBackupMapper(instance),
-    searchField: `${instance.name} ${regionMapper(instance).label} ${
-      mapInstanceStatus(instance).name
-    } ${mapInstanceFlavor(flavors)(instance)}`,
-  }));
+  return instances.map<TInstance>((instance) => {
+    const flavor = mapInstanceFlavor(flavors)(instance);
+    const status = mapInstanceStatus(instance);
+    const region = regionMapper(instance);
+
+    return {
+      ...(pick(instance, ['name']) as Pick<TInstance, 'name'>),
+      id: buildInstanceId(instance.id, instance.region),
+      label: instance.id as TInstance['label'],
+      flavor,
+      status,
+      region,
+      autoBackup: autoBackupMapper(instance),
+      searchField: `${instance.name} ${region.label} ${status.name} ${flavor}`,
+    };
+  });
 };
 
 export const sortResults = (items: TInstance[], sorting: ColumnSort | undefined) => {
