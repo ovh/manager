@@ -188,8 +188,8 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
           >
             {numberOfZoneSelected && numberOfZoneSelected > 1
               ? t('node-pool:kube_common_add_node_pool_plural', {
-                count: numberOfZoneSelected,
-              })
+                  count: numberOfZoneSelected,
+                })
               : t('node-pool:kube_common_add_node_pool')}
           </OsdsButton>
         )}

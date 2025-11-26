@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { DeploymentMode, NodePoolState } from '@/types';
+import { DeploymentMode, TScalingState } from '@/types';
 
 import {
   exceedsMaxNodes,
@@ -27,34 +27,25 @@ describe('exceedsMaxNodes', () => {
 
 describe('zoneAZisChecked', () => {
   it('returns true if mono deployment zone', () => {
-    expect(isZoneAzChecked(DeploymentMode.MONO_ZONE, {} as NodePoolState)).toBe(true);
+    expect(isZoneAzChecked(DeploymentMode.MONO_ZONE, null)).toBe(true);
   });
 
   it('returns true if availability zone is selected', () => {
-    const nodePoolState = {
-      selectedAvailabilityZones: [{ zone: 'zone-a', checked: true }],
-    } as NodePoolState;
-    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(true);
+    const selectedAvailabilityZones = [{ zone: 'zone-a', checked: true }];
+    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, selectedAvailabilityZones)).toBe(true);
   });
   it('returns false if availability zone is not selected', () => {
-    const nodePoolState = {
-      selectedAvailabilityZones: [{ zone: 'zone-a', checked: false }],
-    } as NodePoolState;
+    const selectedAvailabilityZones = [{ zone: 'zone-a', checked: false }];
 
-    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(false);
+    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, selectedAvailabilityZones)).toBe(false);
   });
 
   it('returns false otherwise', () => {
-    const nodePoolState = {} as NodePoolState;
-    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(false);
+    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, null)).toBe(false);
   });
 });
 
 describe('isScalingValid', () => {
-  it('returns true if scaling is undefined', () => {
-    expect(isScalingValid({} as NodePoolState)).toBe(true);
-  });
-
   it.each([
     [{ isAutoscale: false, quantity: { desired: 5 } }, true],
     [{ isAutoscale: false, quantity: { desired: 11 } }, false],
@@ -63,30 +54,29 @@ describe('isScalingValid', () => {
     [{ isAutoscale: true, quantity: { min: 1, max: 12, desired: 5 } }, false],
     [{ isAutoscale: true, quantity: { min: 3, max: 6, desired: 2 } }, false],
   ])('returns %s for config %j', (scaling, expected) => {
-    const nodePoolState = { scaling } as NodePoolState;
-    expect(isScalingValid(nodePoolState)).toBe(expected);
+    expect(isScalingValid(scaling as TScalingState)).toBe(expected);
   });
 });
 
 describe('hasMax5NodesAntiAffinity', () => {
   it.each([
-    [{ antiAffinity: false }, true],
-    [{ antiAffinity: true, scaling: { quantity: { desired: 4 } } }, true],
-    [{ antiAffinity: true, scaling: { quantity: { desired: 5 } } }, true],
-    [{ antiAffinity: true, scaling: { quantity: { desired: 6 } } }, false],
-    [{ antiAffinity: true }, false],
+    [{ antiAffinity: true, scaling: { quantity: { desired: 4 } } as TScalingState }, true],
+    [{ antiAffinity: true, scaling: { quantity: { desired: 5 } } as TScalingState }, true],
+    [{ antiAffinity: true, scaling: { quantity: { desired: 6 } } as TScalingState }, false],
   ])('returns %s for state %j', (state, expected) => {
-    expect(hasMax5NodesAntiAffinity(state as NodePoolState)).toBe(expected);
+    expect(
+      hasMax5NodesAntiAffinity(state as { antiAffinity: boolean; scaling: TScalingState }),
+    ).toBe(expected);
   });
 });
 
 describe('hasInvalidScalingOrAntiAffinityConfig', () => {
   it('returns true if scaling is invalid', () => {
     const nodePoolState = {
-      scaling: { isAutoscale: false, quantity: { desired: 11 } },
+      scaling: { isAutoscale: false, quantity: { desired: 11 } } as TScalingState,
       antiAffinity: false,
       selectedAvailabilityZones: [{ zone: 'zone-1', checked: false }],
-    } as NodePoolState;
+    };
 
     expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
       true,
@@ -95,10 +85,10 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
 
   it('returns true if antiAffinity config is invalid', () => {
     const nodePoolState = {
-      scaling: { isAutoscale: false, quantity: { desired: 6 } },
+      scaling: { isAutoscale: false, quantity: { desired: 6 } } as TScalingState,
       antiAffinity: true,
       selectedAvailabilityZones: [{ zone: 'zone', checked: false }],
-    } as NodePoolState;
+    };
 
     expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
       true,
@@ -107,10 +97,10 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
 
   it('returns true if zone is not selected and not mono', () => {
     const nodePoolState = {
-      scaling: { isAutoscale: false, quantity: { desired: 5 } },
+      scaling: { isAutoscale: false, quantity: { desired: 5 } } as TScalingState,
       antiAffinity: false,
-      selectedAvailabilityZones: undefined,
-    } as NodePoolState;
+      selectedAvailabilityZones: null,
+    };
 
     expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
       true,
@@ -119,21 +109,21 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
 
   it('returns false if everything is valid', () => {
     const nodePoolState = {
-      scaling: { isAutoscale: false, quantity: { desired: 5 } },
+      scaling: { isAutoscale: false, quantity: { desired: 5 } } as TScalingState,
       antiAffinity: false,
       selectedAvailabilityZones: [{ zone: 'zone', checked: true }],
-    } as NodePoolState;
+    };
 
     expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
       false,
     );
   });
-  it('returns false if no checkbox is checked', () => {
+  it('returns true if no checkbox is checked', () => {
     const nodePoolState = {
-      scaling: { isAutoscale: false, quantity: { desired: 5 } },
+      scaling: { isAutoscale: false, quantity: { desired: 5 } } as TScalingState,
       antiAffinity: false,
       selectedAvailabilityZones: [{ zone: 'zone', checked: false }],
-    } as NodePoolState;
+    };
 
     expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
       true,

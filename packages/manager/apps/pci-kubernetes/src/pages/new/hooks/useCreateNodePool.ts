@@ -47,7 +47,11 @@ const hasInvalidConfig = (
 ): boolean => {
   if (!isNodePoolValid) return true;
   if (!type) return false;
-  return hasInvalidScalingOrAntiAffinityConfig(type, nodePoolState);
+  return hasInvalidScalingOrAntiAffinityConfig(type, {
+    scaling: nodePoolState.scaling,
+    antiAffinity: nodePoolState.antiAffinity,
+    selectedAvailabilityZones: nodePoolState.selectedAvailabilityZones ?? null,
+  });
 };
 
 const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boolean }) => {
