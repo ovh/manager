@@ -358,7 +358,50 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 ```
 
-### Permission Guard
+### Permission Guard (Recommended: Use Route Loader)
+
+**Best Practice:** Use route loaders with `redirect()` for authorization checks. This is the recommended approach in React Router v7 and matches the pattern used in pci-project.
+
+```typescript
+// pages/Dashboard.layout.tsx
+import { Outlet, redirect } from 'react-router-dom';
+import queryClient from '@/queryClient';
+import { getAuthorization } from '@/data/api/authorization.api';
+
+interface DashboardLayoutProps {
+  params: {
+    projectId: string;
+  };
+}
+
+export const Loader = async ({ params }: DashboardLayoutProps) => {
+  const { projectId } = params;
+  
+  // Check authorization
+  try {
+    const authResult = await queryClient.fetchQuery({
+      queryKey: [projectId, 'authorization'],
+      queryFn: () => getAuthorization({ projectId }),
+    });
+    
+    if (!authResult.authorized) {
+      // Redirect directly to login page for unauthorized scenarios
+      return redirect('/login');
+    }
+  } catch (error) {
+    // Redirect to login on authorization error
+    return redirect('/login');
+  }
+  
+  return null;
+};
+
+export default function DashboardLayout() {
+  return <Outlet />;
+}
+```
+
+**Alternative: Component Guard (if needed)**
 
 ```typescript
 import { Navigate } from 'react-router-dom';
@@ -374,11 +417,13 @@ function PermissionGuard({
   const auth = useAuthentication();
   
   if (!auth.roles().includes(requiredPermission)) {
-    return <Navigate to="/unauthorized" replace />;
+    // Redirect directly to login page for unauthorized scenarios
+    return <Navigate to="/login" replace />;
   }
   
   return <>{children}</>;
 }
+```
 ```
 
 ### Using Guards in Routes
