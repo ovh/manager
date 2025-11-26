@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Path, To } from 'react-router-dom';
 
 import { vi } from 'vitest';
@@ -34,18 +32,6 @@ const mocksAxios = vi.hoisted(() => ({
   post: vi.fn(),
   put: vi.fn(),
   delete: vi.fn(),
-}));
-
-const mocksHostingUrl = vi.hoisted(() => ({
-  shell: {
-    navigation: {
-      getURL: vi.fn().mockResolvedValue('test-url'),
-    },
-  },
-  environment: {
-    getRegion: () => 'FR',
-    getUser: () => ({ ovhSubsidiary: 'FR' }),
-  },
 }));
 
 export const deleteMock = vi.fn();
@@ -83,46 +69,39 @@ vi.mock('axios', async (importActual) => {
   return mockAxios;
 });
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
-  const actual = await importActual<typeof import('@ovh-ux/manager-react-shell-client')>();
-  return {
-    ...actual,
-    ShellContext: React.createContext(mocksHostingUrl),
-    useContext: React.useContext,
-    useOvhTracking: vi.fn(() => {
-      return {
-        trackClick: vi.fn(),
-        trackPage: vi.fn(),
-        trackCurrentPage: vi.fn(),
-      };
-    }),
-    PageLocation: {
-      page: 'page',
-      tile: 'tile',
-    },
-    ButtonType: {
-      button: 'button',
-      externalLink: 'externalLink',
-    },
-  };
-});
-
-vi.mock('@ovh-ux/muk', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovh-ux/muk')>();
-  return {
-    ...actual,
-    useNotifications: () => ({
-      addSuccess: vi.fn(),
-      addWarning: vi.fn(),
-    }),
-  };
-});
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
 vi.mock('export-to-csv', () => ({
   generateCsv: () => vi.fn().mockReturnValue('csv-content'),
   mkConfig: vi.fn().mockReturnValue({ filename: 'websites.csv' }),
   download: vi.fn().mockImplementation(() => vi.fn()),
 }));
+
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/muk')>();
+  return {
+    ...actual,
+    useNotifications: vi.fn(() => ({
+      addSuccess: vi.fn(),
+      addError: vi.fn(),
+      addWarning: vi.fn(),
+      addInfo: vi.fn(),
+    })),
+    useDataApi: vi.fn(() => ({
+      flattenData: [],
+      hasNextPage: false,
+      fetchNextPage: vi.fn(),
+      isLoading: false,
+      filters: {},
+      sorting: {},
+    })),
+  };
+});
 
 export const navigate = vi.fn();
 
