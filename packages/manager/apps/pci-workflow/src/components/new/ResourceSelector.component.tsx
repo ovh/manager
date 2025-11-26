@@ -33,7 +33,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { TInstance, isSameInstanceId } from '@/api/hooks/instance/selector/instances.selector';
-import { usePaginatedInstances } from '@/api/hooks/instance/useInstances';
+import { usePaginatedInstances } from '@/api/hooks/instance/usePaginatedInstances';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
 import StatusComponent from '@/components/new/Status.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
@@ -136,13 +136,14 @@ export default function ResourceSelectorComponent({
             <OsdsSearchBar
               className="w-[70%]"
               value={searchField}
+              onChange={(e) => setSearchField(e.currentTarget.value)}
               onOdsSearchSubmit={({ detail }) => {
                 setPagination({
                   pageIndex: 0,
                   pageSize: pagination.pageSize,
                 });
                 addFilter({
-                  key: 'search',
+                  key: 'searchField',
                   value: detail.inputValue,
                   comparator: FilterComparator.Includes,
                   label: '',

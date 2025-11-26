@@ -2,13 +2,15 @@ import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
 import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstance, usePaginatedInstances } from '@/api/hooks/instance/useInstances';
+import { useInstance } from '@/api/hooks/instance/useAllInstances';
+import { usePaginatedInstances } from '@/api/hooks/instance/usePaginatedInstances';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { wrapper } from '@/wrapperRenders';
 
 import { WorkflowResource } from './WorkflowResource.component';
 
-vi.mock('@/api/hooks/instance/useInstances');
+vi.mock('@/api/hooks/instance/useAllInstances');
+vi.mock('@/api/hooks/instance/usePaginatedInstances');
 
 vi.mocked(useInstance).mockReturnValue({ instance: null });
 

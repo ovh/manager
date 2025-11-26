@@ -2,22 +2,17 @@ import { useMemo } from 'react';
 
 import { queryOptions, usePrefetchQuery, useQueries, useQuery } from '@tanstack/react-query';
 
-import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
-import { getProductAvailabilityQuery } from '@ovh-ux/manager-pci-common';
-import { getProjectRegions } from '@ovh-ux/manager-pci-common';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import { getProductAvailabilityQuery, getProjectRegions } from '@ovh-ux/manager-pci-common';
 
 import { getFlavor } from '@/api/data/flavor';
 import { getInstances } from '@/api/data/instance';
 import {
   TInstance,
-  instancesSelector,
   isSameInstanceId,
-  sortResults,
+  mapInstance,
 } from '@/api/hooks/instance/selector/instances.selector';
 import { useRegionTranslation } from '@/api/hooks/region';
 import { useMe } from '@/api/hooks/user';
-import { paginateResults } from '@/helpers';
 import { TEInstance } from '@/types/instance/entity';
 
 const getInstancesQueryOptions = (projectId: string) =>
@@ -75,9 +70,9 @@ export const useAllInstances = (projectId: string) => {
   });
 
   return {
-    instances: useMemo(
+    instances: useMemo<TInstance[]>(
       () =>
-        instancesSelector(
+        mapInstance(
           instances ?? [],
           flavors,
           translateMicroRegion,
@@ -106,23 +101,6 @@ export const usePrefetchInstances = (projectId: string) => {
   usePrefetchQuery(instancesQueryOption);
   usePrefetchQuery(productAvailabilityQueryOptions);
   usePrefetchQuery(projectRegionsQueryOptions);
-};
-
-export const usePaginatedInstances = (
-  projectId: string,
-  { pagination, sorting }: { pagination: PaginationState; sorting: ColumnSort | undefined },
-  filters: Filter[] = [],
-) => {
-  const { instances, isPending } = useAllInstances(projectId);
-  return {
-    isPending,
-
-    data: useMemo(
-      () =>
-        paginateResults(sortResults(applyFilters(instances || [], filters), sorting), pagination),
-      [instances, pagination, sorting, filters],
-    ),
-  };
 };
 
 export const useInstance = (projectId: string, instanceId: TInstance['id'] | null) => {

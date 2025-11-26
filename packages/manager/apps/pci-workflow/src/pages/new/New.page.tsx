@@ -20,7 +20,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 
-import { usePrefetchInstances } from '@/api/hooks/instance/useInstances';
+import { usePrefetchInstances } from '@/api/hooks/instance/useAllInstances';
 import { usePrefetchSnapshotPricing } from '@/api/hooks/order/order';
 import { useAddWorkflow } from '@/api/hooks/workflows';
 import { useSafeParam } from '@/hooks/useSafeParam';

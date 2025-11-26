@@ -118,8 +118,8 @@ export type TInstance = Readonly<{
   flavor: TInstanceFlavor;
   status: TInstanceStatus;
   region: TInstanceRegion;
-
   autoBackup: TInstanceAutoBackup;
+  searchField: string;
 }>;
 
 export const buildInstanceId = (id: string, region: string) => ({ id, region }) as TInstance['id'];
@@ -127,7 +127,7 @@ export const buildInstanceId = (id: string, region: string) => ({ id, region }) 
 export const isSameInstanceId = (a: TInstance['id'], b: TInstance['id']): boolean =>
   a.id === b.id && a.region === b.region;
 
-export const instancesSelector = (
+export const mapInstance = (
   instances: TEInstance[],
   flavors: TEFlavor[] | null,
   translateMicroRegion: TMicroRegionTranslator,
@@ -146,6 +146,9 @@ export const instancesSelector = (
     status: mapInstanceStatus(instance),
     region: regionMapper(instance),
     autoBackup: autoBackupMapper(instance),
+    searchField: `${instance.name} ${regionMapper(instance).label} ${
+      mapInstanceStatus(instance).name
+    } ${mapInstanceFlavor(flavors)(instance).label}`,
   }));
 };
 
