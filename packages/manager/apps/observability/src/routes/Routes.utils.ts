@@ -6,6 +6,10 @@ export function getDeleteTenantUrl(tenantId: string) {
   return urls.deleteTenant.replace(':tenantId', tenantId);
 }
 
+export function getEditTenantUrl(tenantId: string) {
+  return urls.editTenant.replace(':tenantId', tenantId);
+}
+
 export function getTenantDashboardUrl(tenantId: string) {
   return urls.tenantDashboard.replace(':tenantId', tenantId);
 }

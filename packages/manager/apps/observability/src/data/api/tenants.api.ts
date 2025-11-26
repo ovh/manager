@@ -1,9 +1,12 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
+import {
+  CreateTenantsPayload,
+  EditTenantPayload,
+  GetTenantPayload,
+} from '@/data/api/tenants.props';
 import { Tenant } from '@/types/tenants.type';
-
-import { CreateTenantsPayload, GetTenantPayload } from './tenants.props';
 
 export const getTenants = async ({
   resourceName,
@@ -51,5 +54,18 @@ export const createTenants = async ({
     { targetSpec },
     { signal },
   );
+  return data;
+};
+
+export const editTenant = async ({
+  tenantId,
+  resourceName,
+  targetSpec,
+}: EditTenantPayload): Promise<Tenant> => {
+  const { data } = await apiClient.v2.put<Tenant>(
+    `/observability/resource/${resourceName}/metric/tenant/${tenantId}`,
+    { targetSpec },
+  );
+
   return data;
 };
