@@ -107,7 +107,11 @@ export const VolumeModelTilesInput = ({
   );
 
   return (
-    <div className={clsx(horizontal && '[&_osds-text]:leading-[130%]')}>
+    <div
+      className={clsx(
+        horizontal && 'whitespace-pre-line [&_osds-text]:leading-[130%]',
+      )}
+    >
       <Text preset={TEXT_PRESET.heading5} className="mt-4">
         {label}
       </Text>
