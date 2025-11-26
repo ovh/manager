@@ -2,11 +2,23 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { Dispatch, SetStateAction } from 'react';
 import { THost } from '@/domain/types/host';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/DatagridColumnStatus';
 import { StatusEnum } from '@/domain/enum/Status.enum';
+import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
 
-export const useHostsDatagridColumns = () => {
+interface UseHostsDatagridColumnsProps {
+  readonly setDrawer: Dispatch<
+    SetStateAction<{ isOpen: boolean; action?: DrawerActionEnum }>
+  >;
+  readonly setHostData: Dispatch<SetStateAction<THost>>;
+}
+
+export const useHostsDatagridColumns = ({
+  setDrawer,
+  setHostData,
+}: UseHostsDatagridColumnsProps) => {
   const { t } = useTranslation([
     'domain',
     NAMESPACES.ACTIONS,
@@ -44,6 +56,10 @@ export const useHostsDatagridColumns = () => {
             {
               id: 1,
               label: t(`${NAMESPACES.ACTIONS}:modify`),
+              onClick: () => {
+                setDrawer({ isOpen: true, action: DrawerActionEnum.Modify });
+                setHostData(props);
+              },
             },
             {
               id: 2,

@@ -65,15 +65,18 @@ export default function HostForm({
           <Input
             name="host-input"
             className="relative w-full"
+            readOnly={drawerAction === DrawerActionEnum.Modify}
             {...register('host', {
               validate: (value: string) => {
-                const errorKey = getHostnameErrorMessage(
-                  value,
-                  serviceName,
-                  hostsTargetSpec,
-                );
-
-                return errorKey ? t(errorKey) : true;
+                // We use the if to make the error invalid
+                if (drawerAction === DrawerActionEnum.Add) {
+                  const errorKey = getHostnameErrorMessage(
+                    value,
+                    serviceName,
+                    hostsTargetSpec,
+                  );
+                  return errorKey ? t(errorKey) : true;
+                }
               },
             })}
           />

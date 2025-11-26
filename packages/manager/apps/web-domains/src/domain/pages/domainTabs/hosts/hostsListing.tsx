@@ -20,9 +20,9 @@ import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
 import HostDrawer from '@/domain/components/Host/HostDrawer';
-import { THost } from '@/domain/types/host';
 import Loading from '@/domain/components/Loading/Loading';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
+import { THost } from '@/domain/types/host';
 
 export default function HostsListingTab() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
@@ -36,6 +36,11 @@ export default function HostsListingTab() {
   }>({
     isOpen: false,
     action: null,
+  });
+
+  const [hostData, setHostData] = useState<THost>({
+    host: '',
+    ips: [''],
   });
 
   const { domainResource } = useGetDomainResource(serviceName);
@@ -85,7 +90,10 @@ export default function HostsListingTab() {
     setIsLoading(false);
   }, [domainResource]);
 
-  const columns = useHostsDatagridColumns();
+  const columns = useHostsDatagridColumns({
+    setDrawer,
+    setHostData: setHostData,
+  });
 
   if (isLoading && nichandleInformation) {
     return <Loading />;
@@ -148,7 +156,6 @@ export default function HostsListingTab() {
           }
         />
       </div>
-
       <HostDrawer
         drawer={drawer}
         setDrawer={setDrawer}
@@ -164,6 +171,7 @@ export default function HostsListingTab() {
         serviceName={serviceName}
         checksum={domainResource?.checksum}
         targetSpec={domainResource?.targetSpec}
+        hostData={hostData}
       />
     </section>
   );
