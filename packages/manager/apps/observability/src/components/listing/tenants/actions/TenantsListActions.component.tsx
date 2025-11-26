@@ -14,7 +14,7 @@ import {
   POPOVER_POSITION,
 } from '@ovh-ux/muk';
 
-import { getDeleteTenantUrl } from '@/routes/Routes.utils';
+import { getDeleteTenantUrl, getEditTenantUrl } from '@/routes/Routes.utils';
 
 import { TenantsListActionsProps } from './TenantsListActions.props';
 
@@ -34,6 +34,9 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
     {
       id: 2,
       label: t(`${NAMESPACES.ACTIONS}:modify`),
+      onClick: () => {
+        navigate(getEditTenantUrl(tenantId));
+      },
     },
     {
       id: 3,
