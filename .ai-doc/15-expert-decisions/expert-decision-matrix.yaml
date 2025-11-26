@@ -344,18 +344,22 @@ component_decisions:
 
     display_key_value:
       name: "Display Key-Value Data"
-      use: "Description component from MUK"
+      use: "Tile component from MUK"
       pattern: |
         // @ai-pattern: key-value-display
-        import { Description } from '@ovh-ux/muk';
+        import { Tile } from '@ovh-ux/muk';
 
-        <Description>
-          <Description.Term>{t('label_name')}</Description.Term>
-          <Description.Details>{service.name}</Description.Details>
+        <Tile>
+          <Tile.Item>
+            <Tile.Item.Term>{t('label_name')}</Tile.Item.Term>
+            <Tile.Item.Description>{service.name}</Tile.Item.Description>
+          </Tile.Item>
 
-          <Description.Term>{t('label_status')}</Description.Term>
-          <Description.Details><StatusBadge status={service.status} /></Description.Details>
-        </Description>
+          <Tile.Item>
+            <Tile.Item.Term>{t('label_status')}</Tile.Item.Term>
+            <Tile.Item.Description><StatusBadge status={service.status} /></Tile.Item.Description>
+          </Tile.Item>
+        </Tile>
 
     # -------------------------------------------------------------------------
     # User Actions
