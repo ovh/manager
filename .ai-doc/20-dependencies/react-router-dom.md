@@ -59,38 +59,40 @@ React Router DOM is designed for:
 
 ```typescript
 // routes/Routes.tsx
-import { createBrowserRouter } from 'react-router-dom';
-import { lazyRouteConfig } from '@ovh-ux/manager-core';
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-export const router = createBrowserRouter([
-  {
-    id: 'root',
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/Main.layout')),
-    children: [
-      {
-        id: 'listing',
-        path: 'listing',
-        ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
-        handle: {
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      Component={MainLayoutPage}
+    >
+      <Route
+        path="listing"
+        Component={ListingPage}
+        handle={{
           tracking: {
             pageName: 'listing',
             pageType: PageType.listing
           }
-        }
-      },
-      {
-        id: 'dashboard',
-        path: 'dashboard/:id',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: {
+        }}
+      />
+      <Route
+        path="dashboard/:id"
+        Component={DashboardPage}
+        handle={{
           tracking: { pageName: 'details', pageType: PageType.details }
-        }
-      }
-    ]
-  }
-]);
+        }}
+      />
+    </Route>
+  )
+);
 ```
 
 ```typescript
