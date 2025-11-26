@@ -290,12 +290,6 @@ tests/
 - **Clear naming**: Use clear and descriptive names for components
 - **Proper structure**: Follow the established component structure
 
-### 4. Service Organization
-
-- **Business logic separation**: Keep business logic in services
-- **API separation**: Keep API calls in separate files
-- **Hook integration**: Use hooks to integrate services with components
-- **Type safety**: Use TypeScript for all service files
 
 ### 5. Testing Organization
 
