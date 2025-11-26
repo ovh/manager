@@ -46,6 +46,10 @@ export const urlDynamicParts = {
   service: ':service',
 };
 
+const targetQueryParams = {
+  serviceName: 'routedTo.serviceName',
+};
+
 export const targetRedirectUrls = {
   root: subRoutes.root,
   listing: subRoutes.root,
@@ -65,8 +69,11 @@ export function mapAngularStateToReactUrl(stateName, params) {
   const baseReactPath = targetRedirectUrls.listing;
   const encodeParam = (paramId) =>
     params[paramId] ? encodeURIComponent(params[paramId]) : '';
+  const serviceNameQueryParam = params.serviceName
+    ? `?${targetQueryParams.serviceName}=${encodeParam('serviceName')}`
+    : '';
   const stateMap = {
-    'app.ip.dashboard': baseReactPath,
+    'app.ip.dashboard': `${baseReactPath}${serviceNameQueryParam}`,
     'app.ip.dashboard.terminate': targetRedirectUrls.listingIpTerminate.replace(
       urlDynamicParts.id,
       encodeParam('id'),
@@ -91,7 +98,9 @@ export function mapAngularStateToReactUrl(stateName, params) {
   };
 
   // Fallback – just send the user to the React root
-  return stateMap[stateName] || baseReactPath;
+  return stateName === 'app.ip.dashboard' && params.action === 'toggleFirewall'
+    ? stateMap['app.ip.dashboard.ip.firewall']
+    : stateMap[stateName] || baseReactPath;
 }
 
 export const listRouting = {
