@@ -1,7 +1,7 @@
 {
-  "objectClassDefault": "Idéntico a la fuente",
+  "objectClassDefault": "Igual que la fuente",
   "objectClass_STANDARD": "Standard",
   "objectClass_HIGH_PERF": "Alto rendimiento",
-  "objectClass_DEEP_ARCHIVE": "Cold Archive",
+  "objectClass_DEEP_ARCHIVE": "Archivo de almacenamiento profundo",
   "objectClass_STANDARD_IA": "Infrequent Access"
 }

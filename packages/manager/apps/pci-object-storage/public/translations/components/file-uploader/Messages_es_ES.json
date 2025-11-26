@@ -1,8 +1,8 @@
 {
   "errorFileRequired": "Seleccione al menos un archivo",
   "errorFileNumber": "Sólo se puede seleccionar un archivo",
-  "errorJsonFile": "El archivo debe ser un JSON",
-  "prefixRequiredError": "Este campo es obligatorio.",
+  "errorJsonFile": "El archivo debe ser formato JSON",
+  "prefixRequiredError": "Este campo es obligatorio",
   "prefixFieldLabel": "Prefijo",
   "prefixFieldPlaceholder": "Escribir un prefijo",
   "importFileLabel": "Importar archivos",

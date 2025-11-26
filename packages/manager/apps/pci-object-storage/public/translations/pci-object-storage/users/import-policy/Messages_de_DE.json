@@ -1,11 +1,11 @@
 {
-  "addUserPolicyTitle": "Eine Datei importieren",
-  "addUserPolicyDescription": "Sie können eine JSON-Datei importieren, um die Berechtigungen Ihres Benutzers zu verwalten.",
+  "addUserPolicyTitle": "Datei importieren",
+  "addUserPolicyDescription": "Sie können eine JSON-Datei importieren und damit die Rechte des Nutzers verwalten.",
   "userPolicyToastErrorTitle": "Fehler",
-  "userPolicySuccessTitle": "Erfolg",
-  "userPolicyToastSuccessDescription": "Die Richtlinie wurde importiert",
+  "userPolicySuccessTitle": "Erfolgreich",
+  "userPolicyToastSuccessDescription": "Die Policy wurde importiert.",
   "userPolicyJSONToastError": "Beim Lesen der JSON-Datei ist ein Fehler aufgetreten.",
-  "errorFileRequired": "Bitte wählen Sie 1 Datei aus",
+  "errorFileRequired": "Bitte 1 Datei auswählen",
   "fileUploaderButtonCancel": "Abbrechen",
   "fileUploaderButtonConfirm": "Importieren"
 }
