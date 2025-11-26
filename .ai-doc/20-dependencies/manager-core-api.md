@@ -654,16 +654,16 @@ const result = await fetchIcebergV6({
 
 **👉 Good API integration is invisible to users but essential for application reliability.**
 
-## 🔄 Exports en Cascade
+## 🔄 Cascade Exports
 
-### Filtres et Utilitaires
+### Filters and Utilities
 
 #### FilterCategories
 
 ```typescript
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 
-// Catégories de filtres disponibles
+// Available filter categories
 const categories = {
   Numeric: ['IsEqual', 'IsDifferent', 'IsLower', 'IsHigher'],
   String: ['Includes', 'StartsWith', 'EndsWith', 'IsEqual', 'IsDifferent'],
@@ -704,43 +704,44 @@ const tagsQuery = transformTagsFiltersToQuery([
     value: 'production'
   }
 ]);
-// Résultat: '{"environment":[{"operator":"EQ","value":"production"}]}'
+// Result: '{"environment":[{"operator":"EQ","value":"production"}]}'
 ```
 
-### Gestion d'Erreurs Avancée
+### Advanced Error Handling
 
 #### Type Guards
 
 ```typescript
 import { isApiCustomError, isMaxQuotaReachedError } from '@ovh-ux/manager-core-api';
 
-// Vérifier si c'est une erreur API personnalisée
+// Check if it's a custom API error
 if (isApiCustomError(error)) {
-  console.log('Erreur API:', error.response.data.message);
+  console.log('API Error:', error.response.data.message);
 }
 
-// Vérifier si c'est une erreur de quota maximum
+// Check if it's a maximum quota error
 if (isMaxQuotaReachedError(error)) {
-  console.log('Quota maximum atteint');
+  console.log('Maximum quota reached');
 }
 ```
 
-### Intégration avec Request Tagger
+### Integration with Request Tagger
 
 ```typescript
-// Les clients API intègrent automatiquement request-tagger
+// API clients automatically integrate request-tagger
 import { v6 } from '@ovh-ux/manager-core-api';
 
-// Les headers de tagging sont automatiquement ajoutés
+// Tagging headers are automatically added
 const response = await v6.get('/me');
-// Headers automatiques: X-OVH-MANAGER-NAVIGATION-ID, X-OVH-MANAGER-REQUEST-ID, etc.
+// Automatic headers: X-OVH-MANAGER-NAVIGATION-ID, X-OVH-MANAGER-REQUEST-ID, etc.
 ```
 
-### Gestion d'Authentification
+### Authentication Handling
 
 ```typescript
-// Les clients gèrent automatiquement les erreurs d'authentification
-// 401: Redirection vers logout
-// 471: Redirection vers login
-// 403: Conversion en 401 si session invalide
+// Clients automatically handle authentication errors
+// 401: Redirect to logout
+// 471: Redirect to login
+// 403: Convert to 401 if session invalid
 ```
+
