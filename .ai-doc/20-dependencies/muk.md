@@ -14,7 +14,9 @@ ai: true
 
 ## 🧭 Purpose
 
-The **Manager UI Kit (MUK)** is the official UI component library for OVHcloud Manager applications. It provides a unified entry point for all Manager components, hooks, and utilities, built on top of OVHcloud Design System (ODS) v19.2.1.
+The **Manager UI Kit (MUK)** is the official UI component library for OVHcloud Manager applications. It serves as the **single source of truth** for all UI components, hooks, and utilities in the Manager ecosystem. MUK wraps and enhances OVHcloud Design System (ODS) components with Manager-specific features like IAM integration, data fetching, and accessibility compliance.
+
+**MUK-First Strategy**: Always use MUK components. ODS components should only be used as a temporary fallback when a MUK equivalent doesn't exist yet, with proper documentation and a follow-up ticket to replace with MUK.
 
 MUK eliminates dependency clutter, simplifies imports, and accelerates development with one consistent source of truth for all Manager applications.
 
@@ -238,26 +240,25 @@ interface DatagridColumn<T> extends ColumnDef<T> {
 | **Accordion** | `children` (AccordionItem) | Collapsible content |
 | **ActionMenu** | `items`, `trigger?`, `placement?` | Action menu dropdown |
 | **Badge** | `color?`, `size?`, `variant?` | Status badges |
-| **Badges** | `badges`, `maxDisplay?`, `onBadgeClick?` | Multiple badges display |
 | **Breadcrumb** | `items: Array<{label, href?}>` | Navigation breadcrumbs |
 | **Card** | `title?`, `description?`, `image?`, `href?`, `actions?` + IAM | Content card |
 | **Clipboard** | `text`, `onCopy?`, `tooltip?` | Copy to clipboard |
 | **Code** | `code`, `language?`, `showLineNumbers?` | Code display |
 | **Divider** | `orientation?`, `spacing?` | Visual separator |
 | **Drawer** | `open`, `onOpenChange`, `side?`, `size?` | Slide-out panel |
-| **Icon** | `name`, `size?`, `color?` | Icon display |
+| **Icon** | `name` | Icon display |
 | **Link** | `href`, `external?` + IAM | Enhanced links |
 | **LinkCard** | `href`, `title`, `description?`, `image?` + IAM | Card with link |
 | **Medium** | `src`, `alt?`, `type?` | Media display (image/video) |
 | **Message** | `type`, `title?`, `description?`, `closable?`, `onClose?` | User messages |
 | **Meter** | `value` (required, default: 0), `min` (required, default: 0), `max` (required, default: 100), `low?`, `high?`, `optimum?` | Progress meter indicator with thresholds and optimal values |
-| **Modal** | `open`, `onOpenChange`, `title?`, `size?` | Modal dialogs |
+| **Modal** | `open`, `onOpenChange`, `title?`, `primaryButton`, `secondaryButton` | Modal dialogs |
 | **Notifications** | `notifications`, `onRemove`, `position?`, `duration?` | Toast notifications |
 | **Pagination** | `current`, `total`, `pageSize?`, `onPageChange?` | Pagination controls |
 | **Popover** | `children` (PopoverTrigger, PopoverContent) | Floating content |
 | **ProgressBar** | `value` (required, default: 0), `max` (required, default: 100) | Progress bar indicator (extends native HTML progress attributes) |
-| **Skeleton** | `variant?`, `width?`, `height?`, `count?` | Loading skeleton |
-| **Spinner** | `size?`, `variant?` | Loading spinner |
+| **Skeleton** | N/A | Loading skeleton |
+| **Spinner** | `size?`, `color?` | Loading spinner |
 | **Table** | `columns`, `data`, `sortable?`, `selectable?` | Data table |
 | **Tabs** | ❌ **NOT AVAILABLE** - Use ODS `Tabs`, `TabList`, `Tab` from `@ovhcloud/ods-react` | Tab navigation |
 | **Tag** | `label`, `color?`, `size?`, `onRemove?` | Single tag |
@@ -278,7 +279,7 @@ interface DatagridColumn<T> extends ColumnDef<T> {
 | **Error** | `title?`, `message?`, `details?`, `onRetry?`, `onDismiss?` | Error displays |
 | **ErrorBoundary** | `fallback?`, `onError?`, `children` | Error catching |
 | **ServiceStateBadge** | `status`, `size?`, `showIcon?` | Service status |
-| **TagsList** | `tags`, `onAdd?`, `onRemove?`, `onEdit?`, `editable?`, `addLabel?` | Tag management |
+| **TagsList** | `tags`, `onEditTags?`, `modalHeading?` | Tag management |
 | **TagsTile** | `tags`, `maxDisplay?`, `onTagClick?`, `showCount?` | Tag display |
 | **UpdateNameModal** | `isOpen`, `onClose`, `updateDisplayName`, `defaultValue`, `headline`, `inputLabel`, `isLoading?`, `error?` (string), `pattern?`, `patternMessage?` | Update resource name (see [Modals Guide](../30-best-practices/muk-modals-guide.md)) |
 | **DeleteModal** | `open`, `onOpenChange`, `title`, `description?`, `onConfirm` | Deletion confirmation |
