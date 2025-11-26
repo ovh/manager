@@ -180,7 +180,11 @@ function NavigationComponent() {
 }
 ```
 
-### ShellContext Navigation (Alternative)
+### ShellContext Navigation
+
+**When to use:**
+- `useNavigationGetUrl`: Use when you need a URL to attach to an anchor element (`<a href={url}>`)
+- `shell.navigation.getURL()`: Use when you need a URL inside a button click callback or event handler
 
 ```typescript
 import { useContext } from 'react';
@@ -193,7 +197,18 @@ function MyComponent() {
     await shell.navigation.navigateTo('billing', '/billing/history');
   };
   
-  return <button onClick={handleNavigate}>Go to Billing</button>;
+  const handleGetUrl = async () => {
+    const url = await shell.navigation.getURL('billing', '/billing/history');
+    // Use URL in button click callback
+    window.location.href = url;
+  };
+  
+  return (
+    <div>
+      <button onClick={handleNavigate}>Navigate</button>
+      <button onClick={handleGetUrl}>Get URL</button>
+    </div>
+  );
 }
 ```
 
