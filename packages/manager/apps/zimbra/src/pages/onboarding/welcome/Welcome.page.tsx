@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
@@ -27,10 +27,8 @@ import {
   GUIDE_ADMINISTRATOR,
   GUIDE_HOW_TO_CONFIGURE,
   GUIDE_WEBMAIL,
-  ONBOARDING_WELCOME_CONFIGURE_LATER_CTA,
   ONBOARDING_WELCOME_CONFIGURE_NOW_CTA,
 } from '@/tracking.constants';
-import { setOnboarded } from '@/utils';
 
 import onboardingImgSrc from '../onboarding-img.png';
 
@@ -41,7 +39,6 @@ export const OnboardingWelcome = () => {
   const { platformId } = usePlatform();
   const navigate = useNavigate();
   const configureUrl = useGenerateUrl(`../configure/${platformId}/organization`, 'path');
-  const dashboardUrl = useGenerateUrl(`/${platformId}`);
 
   const { trackClick } = useOvhTracking();
 
@@ -53,17 +50,6 @@ export const OnboardingWelcome = () => {
       actions: [ONBOARDING_WELCOME_CONFIGURE_NOW_CTA],
     });
     navigate(configureUrl);
-  };
-
-  const onSecondaryClick = () => {
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'navigation',
-      actions: [ONBOARDING_WELCOME_CONFIGURE_LATER_CTA],
-    });
-    setOnboarded();
-    navigate(dashboardUrl);
   };
 
   const onboardingGuides = [
@@ -107,13 +93,6 @@ export const OnboardingWelcome = () => {
               size={ODS_BUTTON_SIZE.md}
               label={t('common:configure_now')}
               onClick={onPrimaryClick}
-            />
-            <OdsButton
-              className="sm:w-auto [&::part(button)]:w-full"
-              size={ODS_BUTTON_SIZE.md}
-              variant={ODS_BUTTON_VARIANT.outline}
-              label={t('common:configure_later')}
-              onClick={onSecondaryClick}
             />
           </div>
         </>
