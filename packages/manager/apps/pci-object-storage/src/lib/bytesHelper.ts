@@ -8,6 +8,14 @@
  *
  * @return Formatted string.
  */
+
+export function localeBytesConverter(value: number, locale: string, si = false, dp = 1) {
+  if (locale?.toLowerCase().startsWith('fr')) {
+    return octetConverter(value, si, dp);
+  }
+  return bytesConverter(value, si, dp);
+}
+
 export function bytesConverter(bytes: number, si = false, dp = 1) {
   const thresh = si ? 1000 : 1024;
   let resultBytes = bytes;

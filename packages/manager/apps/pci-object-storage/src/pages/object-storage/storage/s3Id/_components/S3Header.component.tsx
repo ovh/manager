@@ -4,13 +4,15 @@ import { Badge, Skeleton } from '@datatr-ux/uxlib';
 import Flag from '@/components/flag/Flag.component';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
-import { octetConverter } from '@/lib/bytesHelper';
+import { localeBytesConverter } from '@/lib/bytesHelper';
 import { RegionTypeBadge } from '@/components/region-type-badge/RegionTypeBadge.component';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import { useLocale } from '@/hooks/useLocale';
 
 export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
   const { translateMacroRegion } = useTranslatedMicroRegions();
+  const locale = useLocale();
   const { regions } = useObjectStorageData();
   const isLocaleZone = useIsLocaleZone(s3, regions);
   const region = regions?.find((reg) => reg.name === s3.region);
@@ -44,7 +46,9 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
             )}
 
             {!isLocaleZone && (
-              <Badge variant="outline">{octetConverter(s3.objectsSize)}</Badge>
+              <Badge variant="outline">
+                {localeBytesConverter(s3.objectsSize, locale)}
+              </Badge>
             )}
           </div>
         </div>
