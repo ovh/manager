@@ -7,10 +7,12 @@
   "dashboard_users_change_password_label_email": "Conta de e-mail para receção da palavra-passe",
   "dashboard_users_change_password_helper1": "Tenha em conta que a palavra-passe deve respeitar as seguintes condições:",
   "dashboard_users_change_password_helper2": "8 caracteres, no mínimo",
-  "dashboard_users_change_password_helper3": "16 caracteres, no máximo",
+  "dashboard_users_change_password_helper3": "Não deve conter o ID",
   "dashboard_users_change_password_helper4": "Pelo menos 1 letra minúscula, 1 letra maiúscula, 1 algarismo ou 1 caráter especial",
   "dashboard_users_change_password_email-edit-title": "Se não indicar uma palavra-passe, a mesma será gerada automaticamente e enviada por e-mail para endereço indicado",
   "dashboard_users_change_password_email-edit": "Enviar por e-mail",
   "dashboard_users_change_password_message_error": "Erro ao carregar informações",
-  "dashboard_users_change_password_message_success": "A alteração da palavra-passe foi registada."
+  "dashboard_users_change_password_message_success": "A alteração da palavra-passe foi registada.",
+  "dashboard_users_change_password_generate_password_tooltip": "Gerar uma palavra-passe",
+  "dashboard_users_change_password_generated_password_tooltip": "Palavra-passe copiada para a área de transferência!"
 }
