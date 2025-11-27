@@ -150,7 +150,7 @@ export default function CreatePage() {
   };
 
   return (
-    <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
+    <div className="mt-4 flex w-full flex-col items-start gap-4 md:w-1/2">
       <Text preset={TEXT_PRESET.heading1} className="mb-4">
         {t('common:create_website')}
       </Text>
@@ -171,7 +171,7 @@ export default function CreatePage() {
           name="cmsSpecific.wordpress.language"
           control={control}
           render={({ field }) => (
-            <FormField className="w-full mb-4">
+            <FormField className="mb-4 w-full">
               <FormFieldLabel>
                 {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin')}
               </FormFieldLabel>
@@ -205,7 +205,7 @@ export default function CreatePage() {
           name="phpVersion"
           control={control}
           render={({ field }) => (
-            <FormField className="w-full mb-4">
+            <FormField className="mb-4 w-full">
               <FormFieldLabel>
                 {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_php_version')}*
               </FormFieldLabel>
@@ -236,7 +236,7 @@ export default function CreatePage() {
           name="adminLogin"
           control={control}
           render={({ field, fieldState: { error, invalid } }) => (
-            <FormField className="w-full mb-4" invalid={!!error && invalid}>
+            <FormField className="mb-4 w-full" invalid={!!error && invalid}>
               <FormFieldLabel>{t('common:web_hosting_common_admin_email')}*</FormFieldLabel>
               <Input
                 type={INPUT_TYPE.text}
@@ -258,7 +258,7 @@ export default function CreatePage() {
           name="adminPassword"
           control={control}
           render={({ field, fieldState: { error, invalid } }) => (
-            <FormField className="w-full mb-4" invalid={!!error && invalid}>
+            <FormField className="mb-4 w-full" invalid={!!error && invalid}>
               <FormFieldLabel>{t('common:web_hosting_common_admin_password')}*</FormFieldLabel>
               <Password
                 name={field.name}

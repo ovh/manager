@@ -74,7 +74,10 @@ export function createWrapper(opts?: ProvidersOptions) {
   return function Wrapper({ children }: { children: ReactNode }) {
     const value: ShellContextType = {
       shell: createMockShell(opts?.shell),
-      environment: (opts?.environment ?? {}) as Environment,
+      environment: (opts?.environment ?? {
+        getRegion: () => 'FR',
+        getUser: () => ({ ovhSubsidiary: 'FR' }),
+      }) as Environment,
       ...(opts?.tracking !== undefined ? { tracking: opts.tracking } : {}),
     };
 
@@ -150,7 +153,7 @@ export const wrapperWithI18n = ({ children }: { children: React.ReactNode }) => 
  * Use this in tests that need all providers but want to customize the QueryClient or route
  */
 export function createTestWrapper(opts?: ProvidersOptions & { queryClient?: QueryClient }) {
-  const RouterWrapper = createWrapper(opts);
+  const RouterWrapper = createWrapper();
   const testQueryClient = opts?.queryClient ?? queryClient;
 
   return function TestWrapper({ children }: { children: React.ReactElement }) {

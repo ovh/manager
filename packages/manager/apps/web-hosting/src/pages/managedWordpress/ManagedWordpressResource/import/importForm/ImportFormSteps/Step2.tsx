@@ -69,7 +69,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
         </Text>
       </div>
 
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+      <div className="mt-4 grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {/* === Plugins === */}
         <Tile.Root title={t('common:web_hosting_common_plugins')} color={CARD_COLOR.neutral}>
           <Tile.Item.Root>
@@ -84,7 +84,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
 
           <Tile.Item.Root>
             <Tile.Item.Description>
-              <div className="flex flex-row mt-2">
+              <div className="mt-2 flex flex-row">
                 <Checkbox
                   checked={watch('plugins').every((p) => p.enabled)}
                   onCheckedChange={() => {
@@ -131,7 +131,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       name={`plugins.${index}.enabled`}
                       control={control}
                       render={({ field: { value, onBlur, onChange } }) => (
-                        <div className="flex flex-row mt-4">
+                        <div className="mt-4 flex flex-row">
                           <Checkbox
                             name={`plugins.${index}.enabled`}
                             id={plugin.name}
@@ -168,7 +168,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
 
           <Tile.Item.Root>
             <Tile.Item.Description>
-              <div className="flex flex-row mt-2">
+              <div className="mt-2 flex flex-row">
                 <Checkbox
                   checked={watch('themes').every((p) => p.active)}
                   onCheckedChange={() => {
@@ -219,7 +219,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                       name={`themes.${index}.active`}
                       control={control}
                       render={({ field: { value, onBlur, onChange } }) => (
-                        <div className="flex flex-row mt-4">
+                        <div className="mt-4 flex flex-row">
                           <Checkbox
                             name={`themes.${index}.active`}
                             id={theme.name}
@@ -255,7 +255,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                 name="media"
                 control={control}
                 render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
+                  <div className="mt-4 flex flex-row">
                     <Checkbox
                       data-testid="import-media"
                       checked={value}
@@ -284,7 +284,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
       >
         <Tile.Item.Root>
           <Tile.Item.Description>
-            <div className="flex flex-col items-start justify-between mb-4">
+            <div className="mb-4 flex flex-col items-start justify-between">
               <Text preset={TEXT_PRESET.span}>
                 {t(
                   'managedWordpress:web_hosting_managed_wordpress_import_select_database_description',
@@ -302,7 +302,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                     onBlur();
                   }}
                 >
-                  <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+                  <div className="grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
                     <Tile.Root
                       title={t(
                         'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_select',
@@ -356,12 +356,12 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
               )}
             </Text>
 
-            <div className="flex flex-row mt-4">
+            <div className="mt-4 flex flex-row">
               <Controller
                 name="posts"
                 control={control}
                 render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
+                  <div className="mt-4 flex flex-row">
                     <Checkbox
                       id="import-posts"
                       name={name}
@@ -379,12 +379,12 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                 )}
               />
             </div>
-            <div className="flex flex-row mt-4">
+            <div className="mt-4 flex flex-row">
               <Controller
                 name="pages"
                 control={control}
                 render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
+                  <div className="mt-4 flex flex-row">
                     <Checkbox
                       id="import-pages"
                       name={name}
@@ -402,12 +402,12 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                 )}
               />
             </div>
-            <div className="flex flex-row mt-4">
+            <div className="mt-4 flex flex-row">
               <Controller
                 name="comments"
                 control={control}
                 render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
+                  <div className="mt-4 flex flex-row">
                     <Checkbox
                       id="import-comments"
                       name={name}
@@ -425,12 +425,12 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                 )}
               />
             </div>
-            <div className="flex flex-row mt-4">
+            <div className="mt-4 flex flex-row">
               <Controller
                 name="tags"
                 control={control}
                 render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
+                  <div className="mt-4 flex flex-row">
                     <Checkbox
                       id="import-tags"
                       name={name}
@@ -448,12 +448,12 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                 )}
               />
             </div>
-            <div className="flex flex-row mt-4">
+            <div className="mt-4 flex flex-row">
               <Controller
                 name="users"
                 control={control}
                 render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
+                  <div className="mt-4 flex flex-row">
                     <Checkbox
                       id="import-users"
                       name={name}

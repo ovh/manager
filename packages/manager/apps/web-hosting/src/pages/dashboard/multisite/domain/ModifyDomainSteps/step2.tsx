@@ -16,7 +16,7 @@ export default function Step2({ watch, hosting }: Step2Props) {
       <Text className="text-center">
         {t('multisite:multisite_modal_domain_configuration_modify_step2_summary')}
       </Text>
-      <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm w-3/4">
+      <div className="grid w-3/4 grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
         <Text className="text-right" preset={TEXT_PRESET.heading6}>
           {t('web_hosting_status_header_fqdn')}
         </Text>

@@ -58,7 +58,7 @@ export default function ImportModal() {
       open
       heading={t('import_ssl_certificate')}
     >
-      <div className="flex flex-col space-y-4 mb-4">
+      <div className="mb-4 flex flex-col space-y-4">
         <FormField className="w-full">
           <FormFieldLabel>
             <Text className="block">{t('ssl_order_manual_mode_certif')}</Text>

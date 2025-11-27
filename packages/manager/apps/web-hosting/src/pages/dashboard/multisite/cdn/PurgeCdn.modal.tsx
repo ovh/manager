@@ -197,7 +197,7 @@ export default function PurgeCdnModal() {
               control={control}
               key={option.patternType}
               render={() => (
-                <div className="flex leading-none gap-4 mt-4">
+                <div className="mt-4 flex gap-4 leading-none">
                   <RadioGroup>
                     <Radio
                       id={`option-${option.patternType}`}

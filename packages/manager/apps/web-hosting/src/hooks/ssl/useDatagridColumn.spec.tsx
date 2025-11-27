@@ -5,9 +5,8 @@ import { renderHook } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { describe, it } from 'vitest';
 
-import { createWrapper, i18n } from '@/utils/test.provider';
-
 import useDatagridColumn from '@/hooks/ssl/useDatagridColumn';
+import { createWrapper, i18n } from '@/utils/test.provider';
 
 const testQueryClient = new QueryClient({
   defaultOptions: {

@@ -62,16 +62,16 @@ export default function RemoveSeoSubscriptionModal() {
         onClick: closeModal,
       }}
     >
-      <div className="flex flex-col space-y-8 mb-10 mt-5">
+      <div className="mb-10 mt-5 flex flex-col space-y-8">
         <Text>{t('hosting_tab_LOCAL_SEO_delete_confirm')}</Text>
         <div className="flex">
-          <Text preset={TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
+          <Text preset={TEXT_PRESET.heading6} className="w-1/2 pr-4 text-right">
             {t('hosting_tab_LOCAL_SEO_table_header_name')}
           </Text>
           <Text className="w-1/2">{companyName}</Text>
         </div>
         <div className="flex">
-          <Text preset={TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
+          <Text preset={TEXT_PRESET.heading6} className="w-1/2 pr-4 text-right">
             {t('hosting_tab_LOCAL_SEO_table_header_address')}
           </Text>
           <Text className="w-1/2">
@@ -79,7 +79,7 @@ export default function RemoveSeoSubscriptionModal() {
           </Text>
         </div>
         <div className="flex">
-          <Text preset={TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
+          <Text preset={TEXT_PRESET.heading6} className="w-1/2 pr-4 text-right">
             {t('hosting_tab_LOCAL_SEO_table_header_email')}
           </Text>
           <Text className="w-1/2">{email}</Text>

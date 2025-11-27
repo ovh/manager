@@ -1,10 +1,12 @@
 import React, { ComponentType } from 'react';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { I18nextProvider } from 'react-i18next';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { createWrapper, i18n } from '@/utils/test.provider';
 import { navigate } from '@/utils/test.setup';
-import { createTestWrapper } from '@/utils/test.provider';
 
 import CdnConfirmationModal from './CdnConfirmation.modal';
 
@@ -17,7 +19,28 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-const Wrappers = createTestWrapper();
+const testQueryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      retry: false,
+    },
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+const RouterWrapper = createWrapper();
+
+const Wrappers = ({ children }: { children: React.ReactElement }) => {
+  return (
+    <RouterWrapper>
+      <QueryClientProvider client={testQueryClient}>
+        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+      </QueryClientProvider>
+    </RouterWrapper>
+  );
+};
 
 describe('CdnConfirmationModal', () => {
   beforeEach(() => {
