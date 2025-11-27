@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 
+import { useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -13,6 +15,7 @@ import { Resource } from '@/types/Resource.type';
 import { AgentActionsCell, AgentIpsCell, AgentNameCell, AgentPolicyCell } from '../_components';
 
 export function useAgentsListingColumnsHooks() {
+  const { tenantId } = useParams();
   const { t } = useTranslation([
     BACKUP_AGENT_NAMESPACES.COMMON,
     NAMESPACES.DASHBOARD,
@@ -59,7 +62,9 @@ export function useAgentsListingColumnsHooks() {
       },
       {
         id: 'action',
-        cell: AgentActionsCell,
+        cell: (agentResource: Resource<Agent>) => (
+          <AgentActionsCell tenantId={tenantId!} agentId={agentResource.id} />
+        ),
         label: '',
       },
     ],
