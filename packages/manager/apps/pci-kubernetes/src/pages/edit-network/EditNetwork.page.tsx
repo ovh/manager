@@ -182,7 +182,7 @@ export default function EditNetworkPage() {
               color={ODS_THEME_COLOR_INTENT.text}
               level={ODS_TEXT_LEVEL.heading}
               size={ODS_TEXT_SIZE._400}
-              className="block my-8 flex items-center"
+              className="my-8 block flex items-center"
               onClick={() => setIsExpanded((e) => !e)}
             >
               {tAdd('kubernetes_network_form_load_balancers_subnet_toggler')}

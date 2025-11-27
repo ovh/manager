@@ -1,5 +1,6 @@
 import { ReactElement, useEffect } from 'react';
 
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
 import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
 import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
@@ -28,6 +29,7 @@ export default function SizeStep({
   const floatingIpPriceData = useFloatingIpsPrice(true, regionInformations?.type ?? null);
   const floatingIpPrice = floatingIpPriceData.price;
   const isStandardPlan = regionInformations?.type === DeploymentMode.MULTI_ZONES;
+  const has3AZFeature = use3AZPlanAvailable();
 
   useEffect(() => {
     if (regionInformations?.availabilityZones.length && !store.selectedAvailabilityZones) {
@@ -51,7 +53,7 @@ export default function SizeStep({
           />
         </div>
       )}
-      {isStandardPlan && (
+      {has3AZFeature && isStandardPlan && (
         <PublicConnectivity
           checked={!!store.attachFloatingIPs?.enabled}
           onChange={(enabled: boolean) => store.set.attachFloatingIPs({ enabled })}

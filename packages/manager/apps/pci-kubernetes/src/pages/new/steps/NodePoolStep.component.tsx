@@ -14,9 +14,10 @@ import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import BillingStep from '@/components/create/BillingStep.component';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { TScalingState } from '@/types';
+import { DeploymentMode, TScalingState } from '@/types';
 
 import useCreateNodePools from '../hooks/useCreateNodePool';
 import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
@@ -37,19 +38,23 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
     name: stepper.form.region?.name,
   });
 
-  const featureFlipping3az = use3AZPlanAvailable();
+  const has3AZFeature = use3AZPlanAvailable();
+  const { projectId } = useSafeParams('projectId');
+  const { data: regionInformations } = useRegionInformations(
+    projectId,
+    stepper.form.region?.name ?? null,
+  );
+  const isStandardPlan = has3AZFeature && regionInformations?.type === DeploymentMode.MULTI_ZONES;
 
   const columns = useMemo(
     () =>
       getDatagridColumns({
         onDelete: actions.onDelete,
         t,
-        showFloatingIp: Boolean(state.nodePoolState.selectedAvailabilityZones),
+        showFloatingIp: isStandardPlan,
       }),
-    [actions.onDelete, state.nodePoolState.selectedAvailabilityZones, t],
+    [actions.onDelete, t],
   );
-
-  const { projectId } = useSafeParams('projectId');
 
   const numberOfZoneSelected = state.nodePoolState.selectedAvailabilityZones?.filter(
     ({ checked }) => checked,
@@ -82,7 +87,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
             )}
           </div>
 
-          {featureFlipping3az && state.nodePoolState.selectedAvailabilityZones && (
+          {has3AZFeature && state.nodePoolState.selectedAvailabilityZones && (
             <div className="mb-6 gap-4">
               <DeploymentZone
                 multiple
@@ -96,7 +101,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               />
             </div>
           )}
-          {featureFlipping3az && state.nodePoolState.selectedAvailabilityZones && (
+          {has3AZFeature && isStandardPlan && (
             <PublicConnectivity
               checked={Boolean(state.nodePoolState.attachFloatingIPs?.enabled)}
               price={state.priceFloatingIp}
