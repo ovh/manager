@@ -31,9 +31,19 @@
 
 #### AAPI vs v6
 ```typescript
-// Check AngularJS source:
+// Check AngularJS source for API type indicators:
+
+// Direct API method calls:
 // .Aapi() → use aapi client
 // .v6() → use v6 client
+
+// OvhHttp configuration:
+// rootPath: '2api' → use v6 client (2API is v6)
+// rootPath: 'apiv6' → use v6 client
+
+// $http service configuration:
+// serviceType: 'aapi' → use aapi client
+// serviceType: 'apiv6' → use v6 client
 ```
 
 #### Data Transformations
