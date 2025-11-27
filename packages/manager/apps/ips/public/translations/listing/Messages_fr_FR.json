@@ -33,6 +33,8 @@
   "listingColumnsIpEdgeFirewallPendingTooltip": "La reconfiguration du Network Edge Firewall est en cours et sera appliquée dans quelques instants. Clickez pour configurer.",
   "listingColumnsIpGameFirewallAvailable": "Disponible",
   "listingColumnsIpGameFirewallAvailableTooltip": "Le Game Firewall est disponible mais n'est pas configuré pour le moment. Pour activer la protection, configurez vos règles de jeu. Cliquez pour configurer.",
+  "listingColumnsIpGameFirewallConfigured": "Configuré",
+  "listingColumnsIpGameFirewallConfiguredTooltip": "Le Game Firewall est configuré. Cliquez pour re-configurer.",
   "listingColumnsIpGameFirewallPending": "En cours",
   "listingColumnsIpGameFirewallPendingTooltip": "La reconfiguration du Game Firewall est en cours et sera appliquée dans quelques instants. Clickez pour configurer.",
   "listingColumnsIpAlertsSpam": "IP bloquée (anti-spam)",

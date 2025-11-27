@@ -16,6 +16,7 @@ export type IpGameFirewallDisplayProps = {
   ip: string;
   ipGameFirewall: IpGameFirewallType;
   enabled: boolean;
+  rules: number[];
 };
 
 /**
@@ -32,12 +33,17 @@ export const IpGameFirewallDisplay = ({
   ip,
   ipGameFirewall,
   enabled,
+  rules,
 }: IpGameFirewallDisplayProps) => {
   const id = `gamefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation('listing');
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const [search] = useSearchParams();
+
+  if (!enabled || !ipGameFirewall) {
+    return null;
+  }
 
   return (
     <div
@@ -57,24 +63,32 @@ export const IpGameFirewallDisplay = ({
         );
       }}
     >
-      {enabled && ipGameFirewall?.state === IpGameFirewallStateEnum.OK && (
-        <BadgeCell
-          badgeColor={ODS_BADGE_COLOR.information}
-          text={t('listingColumnsIpGameFirewallAvailable')}
-          tooltip={t('listingColumnsIpGameFirewallAvailableTooltip')}
-          trigger={id}
-        />
-      )}
-      {enabled &&
-        !!ipGameFirewall &&
-        ipGameFirewall.state !== IpGameFirewallStateEnum.OK && (
+      {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
+        rules.length === 0 && (
           <BadgeCell
-            badgeColor={ODS_BADGE_COLOR.warning}
-            text={t('listingColumnsIpGameFirewallPending')}
-            tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
+            badgeColor={ODS_BADGE_COLOR.neutral}
+            text={t('listingColumnsIpGameFirewallAvailable')}
+            tooltip={t('listingColumnsIpGameFirewallAvailableTooltip')}
             trigger={id}
           />
         )}
+      {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
+        rules.length > 0 && (
+          <BadgeCell
+            badgeColor={ODS_BADGE_COLOR.success}
+            text={t('listingColumnsIpGameFirewallConfigured')}
+            tooltip={t('listingColumnsIpGameFirewallConfiguredTooltip')}
+            trigger={id}
+          />
+        )}
+      {ipGameFirewall?.state !== IpGameFirewallStateEnum.OK && (
+        <BadgeCell
+          badgeColor={ODS_BADGE_COLOR.information}
+          text={t('listingColumnsIpGameFirewallPending')}
+          tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
+          trigger={id}
+        />
+      )}
     </div>
   );
 };
