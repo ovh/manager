@@ -231,7 +231,7 @@ notes:
     note: "Module uses custom prepareNasha function, need to migrate to usePrepareNasha hook"
   - timestamp: "2025-01-27T11:30:00Z"
     phase: "implement"
-    note: "Datagrid requires server-side pagination, using useResourcesIcebergV6"
+    note: "Datagrid requires server-side pagination, using useDataApi"
 ```
 
 ---

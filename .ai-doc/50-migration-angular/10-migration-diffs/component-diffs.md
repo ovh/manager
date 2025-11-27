@@ -134,7 +134,7 @@ $ctrl.loadRows = (config) => {
 ### React Equivalent
 
 ```typescript
-import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { useDataApi } from '@ovh-ux/manager-react-components';
 
 const ListingPage = () => {
   const {
@@ -146,7 +146,7 @@ const ListingPage = () => {
     setPageSize,
     sorting,
     setSorting,
-  } = useResourcesIcebergV6({
+  } = useDataApi({
     route: '/dedicated/nasha',
     queryKey: ['nasha', 'list'],
   });
@@ -169,7 +169,7 @@ const ListingPage = () => {
 
 ### Transformation Rules
 
-1. `rows-loader` → `useResourcesIcebergV6` hook
+1. `rows-loader` → `useDataApi` hook
 2. Manual pagination → Hook provides state and setters
 3. `$config` → Destructured from hook
 4. Server-side handled by hook internals
