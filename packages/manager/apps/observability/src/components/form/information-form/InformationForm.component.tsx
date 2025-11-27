@@ -25,7 +25,7 @@ export const InformationForm = ({
   return (
     <>
       <Text preset={TEXT_PRESET.heading4}>{title}</Text>
-      <div className="space-y-4 mt-6">
+      <div className="mt-6 space-y-4">
         <Controller
           name="title"
           control={control}
