@@ -140,12 +140,12 @@ export const DomainForm = ({
         queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 
-      // domain needs verification, redirect to verify page
-      if (domain?.currentState?.expectedDNSConfig?.ownership?.cname) {
+      if (onSettled) {
+        onSettled(domain, error);
+      } else if (domain?.currentState?.expectedDNSConfig?.ownership?.cname) {
+        // domain needs verification, redirect to verify page
         return navigate(`/${platformId}/domains/${domain.id}/verify`);
       }
-
-      return onSettled?.(domain, error);
     },
   });
 
