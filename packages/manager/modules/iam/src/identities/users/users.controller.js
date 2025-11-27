@@ -15,6 +15,7 @@ export default class IamUsersCtrl {
     $timeout,
     trackClick,
     trackPage,
+    coreURLBuilder,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -33,6 +34,7 @@ export default class IamUsersCtrl {
     this.descriptionMaxSize = 40;
     this.$scope.trackPage = trackPage;
     this.$scope.trackClick = trackClick;
+    this.coreURLBuilder = coreURLBuilder;
 
     this.$scope.$on('iam.security.users.refresh', () => {
       this.$onInit();
@@ -45,6 +47,11 @@ export default class IamUsersCtrl {
     this.groupIds = [];
     this.usersLoading = true;
     this.initIdentityProvider();
+    this.USERS_TRACKING_HITS = USERS_TRACKING_HITS;
+    this.manageTokensBaseUrl = this.coreURLBuilder.buildURL(
+      'identity-access-management',
+      `/manage-tokens/`,
+    );
 
     this.$scope.resetAction = function resetAction() {
       this.$scope.setAction(false);
