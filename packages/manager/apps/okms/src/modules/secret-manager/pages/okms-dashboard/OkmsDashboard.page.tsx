@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
@@ -15,26 +17,49 @@ import {
   BaseLayout,
   ErrorBanner,
   Notifications,
+  useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 
-import { OkmsDomainDashboardTiles } from '@/common/components/okms-dashboard/okms-domain-dashboard-tiles/OkmsDomainDashboardTiles.component';
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
+import {
+  TabNavigation,
+  TabNavigationItem,
+} from '@/common/components/tab-navigation/TabNavigation.component';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+import { filterFalsy } from '@/common/utils/tools/filterFalsy';
 
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 import { OkmsDashboardOutletContext } from './OkmsDashboard.type';
 
 export default function OkmsDashboardPage() {
-  const { t } = useTranslation('secret-manager');
+  const { t } = useTranslation(['secret-manager', 'key-management-service/dashboard']);
   const navigate = useNavigate();
   const { notifications } = useNotifications();
   const { okmsId } = useRequiredParams('okmsId');
 
   const { data: okms, isPending, error } = useOkmsById(okmsId);
 
-  if (isPending) {
+  const { data: features, isPending: isFeatureAvailabilityLoading } = useFeatureAvailability([
+    KMS_FEATURES.LOGS,
+  ]);
+
+  const tabsList: TabNavigationItem[] = filterFalsy([
+    {
+      name: 'general-information',
+      title: t('key-management-service/dashboard:general_informations'),
+      url: SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId),
+    },
+    features?.[KMS_FEATURES.LOGS] && {
+      name: 'logs',
+      title: t('key-management-service/dashboard:logs'),
+      url: SECRET_MANAGER_ROUTES_URLS.okmsDashboardLogs(okmsId),
+    },
+  ]);
+
+  if (isPending || isFeatureAvailabilityLoading) {
     return <PageSpinner />;
   }
 
@@ -74,9 +99,11 @@ export default function OkmsDashboardPage() {
         </OdsBreadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
+      tabs={<TabNavigation tabs={tabsList} />}
     >
-      <OkmsDomainDashboardTiles okms={okms.data} />
-      <Outlet context={contextValue} />
+      <Suspense fallback={null}>
+        <Outlet context={contextValue} />
+      </Suspense>
     </BaseLayout>
   );
 }

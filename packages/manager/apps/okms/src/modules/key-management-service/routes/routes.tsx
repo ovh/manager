@@ -37,7 +37,7 @@ const KmsGeneralInformations = React.lazy(
   () =>
     import('@key-management-service/pages/dashboard/general-informations/GeneralInformations.page'),
 );
-const KmsLogs = React.lazy(() => import('@key-management-service/pages/dashboard/logs/Logs.page'));
+const KmsLogs = React.lazy(() => import('@/common/pages/okms-logs/OkmsLogs.page'));
 const KmsRenameModal = React.lazy(
   () =>
     import(
