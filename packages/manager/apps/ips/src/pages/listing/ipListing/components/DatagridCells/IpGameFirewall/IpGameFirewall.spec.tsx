@@ -28,9 +28,16 @@ const useGetIpGameFirewall = vi.hoisted(() =>
   })),
 );
 
+const useIpGameFirewallRuleList = vi.hoisted(() =>
+  vi.fn(() => ({
+    data: [],
+  })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useGetIpGameFirewall,
+  useIpGameFirewallRuleList,
 }));
 
 vi.mock('react-router-dom', () => ({
@@ -76,7 +83,7 @@ describe('IpGameFirewall Component', async () => {
       label: 'listingColumnsIpGameFirewallAvailable',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.information);
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
     });
   });
 

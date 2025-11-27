@@ -19,20 +19,21 @@ import {
   useGetIpGameFirewall,
   useGetIpMitigationWithoutIceberg,
   useGetIpVmacWithIp,
+  useIpGameFirewallRuleList,
 } from '@/data/hooks';
 
 export const useIpGroupDatagridColumns = ({
   parentIp,
   parentHeaders,
-  isGameFirewallEnabled,
-  isAntiDdosEnabled,
+  isGameFirewallAvailable,
+  isAntiDdosAvailable,
   serviceName,
   isByoipSlice,
 }: {
   parentIp: string;
   parentHeaders: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
-  isGameFirewallEnabled?: boolean;
-  isAntiDdosEnabled?: boolean;
+  isGameFirewallAvailable?: boolean;
+  isAntiDdosAvailable?: boolean;
   serviceName?: string;
   isByoipSlice?: boolean;
 }) => {
@@ -50,7 +51,13 @@ export const useIpGroupDatagridColumns = ({
     isLoading: isGameFirewallLoading,
   } = useGetIpGameFirewall({
     ip: parentIp,
-    enabled: isGameFirewallEnabled && !isByoipSlice,
+    enabled: isGameFirewallAvailable && !isByoipSlice,
+  });
+
+  const { data: ruleListQuery } = useIpGameFirewallRuleList({
+    ip: parentIp,
+    ipOnGame: ipGameFirewall?.[0]?.ipOnGame,
+    enabled: isGameFirewallAvailable && !isByoipSlice,
   });
 
   const { vmacsWithIp, isLoading: isVmacsLoading } = useGetIpVmacWithIp({
@@ -122,7 +129,7 @@ export const useIpGroupDatagridColumns = ({
       cell: (ip: string) => (
         <IpAntiDdosDisplay
           ipMitigation={ipMitigation}
-          enabled={isAntiDdosEnabled}
+          enabled={isAntiDdosAvailable}
           ip={ip}
         />
       ),
@@ -149,7 +156,8 @@ export const useIpGroupDatagridColumns = ({
           ipGameFirewall={ipGameFirewall?.find(
             (firewall) => firewall.ipOnGame === ip,
           )}
-          enabled={isGameFirewallEnabled}
+          enabled={isGameFirewallAvailable}
+          rules={ruleListQuery?.data || []}
         />
       ),
       size: parentHeaders.current['ip-game-firewall'].clientWidth,
