@@ -46,7 +46,6 @@ This structure applies to:
 │   │       ├── PageName.page.tsx
 │   │       ├── PageName.constants.ts
 │   │       └── PageName.spec.tsx
-│   ├── services/                 # Business logic services
 │   ├── types/                    # TypeScript type definitions
 │   ├── utils/                    # Utility functions
 │   ├── App.tsx                   # Main application component
@@ -89,9 +88,6 @@ Central location for all data fetching, API calls, and data-related logic. The `
 
 Contains custom React hooks for shared logic and state management. All hooks start with the `use` prefix (e.g., `useHookName.ts`). These hooks encapsulate reusable logic, side effects, and stateful behavior. This folder is for application-wide hooks (not data-fetching hooks, which go in `/src/data/hooks/`). Examples include form handling, UI state, browser APIs, and complex component logic.
 
-### Business Logic (`/src/services/`)
-
-Houses business logic and complex operations that don't fit in components. Files use camelCase naming with `.service.ts` suffix (e.g., `userManagement.service.ts`). Services handle complex calculations, data transformations, and business rules. Keep business logic separate from UI components and API calls. Services should be pure functions when possible for easier testing.
 
 ### Type Definitions (`/src/types/`)
 
@@ -109,7 +105,6 @@ Contains pure utility functions and helpers used throughout the application. Fil
 - **Components**: `PascalCase` (e.g., `UserManagement.component.tsx`)
 - **Pages**: `PascalCase` (e.g., `UserManagement.page.tsx`)
 - **Hooks**: `camelCase` with `use` prefix (e.g., `useUserManagement.ts`)
-- **Services**: `camelCase` with `.service.ts` suffix (e.g., `userManagement.service.ts`)
 - **Types**: `PascalCase` with `.types.ts` suffix (e.g., `UserManagement.types.ts`)
 - **Utils**: `PascalCase` with `.utils.ts` suffix (e.g., `UserManagement.utils.ts`)
 - **Constants**: `PascalCase` with `.constants.ts` suffix (e.g., `UserManagement.constants.ts`)
@@ -221,7 +216,6 @@ tests/
 │   ├── components/            # Component tests
 │   ├── pages/                 # Page tests
 │   ├── hooks/                 # Hook tests
-│   ├── services/              # Service tests
 │   └── utils/                 # Utility tests
 └── setup.ts                   # Test setup
 ```
@@ -231,7 +225,6 @@ tests/
 - **Component tests**: `ComponentName.spec.tsx`
 - **Page tests**: `PageName.spec.tsx`
 - **Hook tests**: `useHookName.spec.ts`
-- **Service tests**: `ServiceName.spec.ts`
 - **Utility tests**: `UtilName.spec.ts`
 
 ## 📚 Best Practices
