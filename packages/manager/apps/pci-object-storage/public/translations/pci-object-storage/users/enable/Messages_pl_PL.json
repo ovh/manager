@@ -1,12 +1,12 @@
 {
-  "enableUserTitle": "Aktywuj użytkownika dla S3",
-  "enableUSerDescription": "Ta akcja pozwala na wygenerowanie danych uwierzytelniających S3 dla użytkownika {{ name }}.",
+  "enableUserTitle": "Aktywuj dostęp użytkownika do S3",
+  "enableUSerDescription": "Operacja ta umożliwia wygenerowanie danych logowania do S3 dla użytkownika {{name}}.",
   "enableUserButtonCancel": "Anuluj",
   "enableUserButtonConfirm": "Zatwierdź",
   "enableUserToastErrorTitle": "Błąd",
-  "enableUserToastSuccessTitle": "Sukces",
+  "enableUserToastSuccessTitle": "Operacja zakończona pomyślnie",
   "accessKeyLabel": "Klucz dostępu",
   "secretKeyLabel": "Klucz tajny",
   "enableUserButtonClose": "Zamknij",
-  "enableUserToastSuccessDescription": "Dane użytkownika {{ name }} zostały wygenerowane."
+  "enableUserToastSuccessDescription": "Dane użytkownika {{name}} zostały wygenerowane."
 }
