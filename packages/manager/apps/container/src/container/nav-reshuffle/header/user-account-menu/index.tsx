@@ -3,9 +3,6 @@ import { useRef, useState, useEffect } from 'react';
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import useClickAway from 'react-use/lib/useClickAway';
 
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Environment } from '@ovh-ux/manager-config';
 import UserAccountMenuButton from './Button';
 import UserAccountMenuContent from './Content';
@@ -88,14 +85,6 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
           }
         }}
       >
-        <span slot="start" className={style.userIcon}>
-          <OsdsIcon
-            name={ODS_ICON_NAME.USER}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_ICON_SIZE.sm}
-            aria-hidden="true"
-          ></OsdsIcon>
-        </span>
         <span className={style.userInfos}>
           {user.legalform === LEGAL_FORMS.CORPORATION
             ? user.organisation
