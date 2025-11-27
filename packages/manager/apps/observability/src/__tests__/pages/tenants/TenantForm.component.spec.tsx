@@ -12,7 +12,7 @@ import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.
 import { CreateTenantsPayload } from '@/data/api/tenants.props';
 import { useCreateTenants } from '@/data/hooks/tenants/useCreateTenants.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
-import { TenantsForm } from '@/pages/tenants/TenantsForm.component';
+import { TenantForm } from '@/pages/tenants/TenantForm.component';
 import { urls } from '@/routes/Routes.constants';
 import { ObservabilityService } from '@/types/observability.type';
 import { Tenant, TenantFormData } from '@/types/tenants.type';
@@ -161,7 +161,7 @@ const createWrapper = () => {
   return TestWrapper;
 };
 
-describe('TenantsForm', () => {
+describe('TenantForm', () => {
   const mockService: ObservabilityService = {
     id: 'service-123',
     createdAt: '2025-11-01T08:00:00.001Z',
@@ -229,7 +229,7 @@ describe('TenantsForm', () => {
       ['cancel-tenant', 'testId'],
       ['create-tenant', 'testId'],
     ])('should render %s', (identifier, queryType) => {
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       if (queryType === 'text') {
         expect(screen.getByText(identifier)).toBeInTheDocument();
@@ -239,7 +239,7 @@ describe('TenantsForm', () => {
     });
 
     it('should render dividers between sections', () => {
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       const dividers = screen.getAllByTestId('divider');
       expect(dividers).toHaveLength(2);
@@ -249,7 +249,7 @@ describe('TenantsForm', () => {
     });
 
     it('should pass correct props to InformationForm', () => {
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       expect(mockInformationForm).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -264,7 +264,7 @@ describe('TenantsForm', () => {
 
   describe('Button States', () => {
     it('should enable create button when form is valid and service is selected', () => {
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       const createButton = screen.getByTestId('create-tenant');
       expect(createButton).not.toBeDisabled();
@@ -302,7 +302,7 @@ describe('TenantsForm', () => {
       },
     ])('should disable create button when $scenario', ({ setup }) => {
       setup();
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       const createButton = screen.getByTestId('create-tenant');
       expect(createButton).toBeDisabled();
@@ -318,7 +318,7 @@ describe('TenantsForm', () => {
         data: undefined,
       } as unknown as UseMutationResult<Tenant, Error, CreateTenantsPayload>);
 
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       const createButton = screen.getByTestId('create-tenant');
       const cancelButton = screen.getByTestId('cancel-tenant');
@@ -331,7 +331,7 @@ describe('TenantsForm', () => {
 
   describe('Navigation', () => {
     it('should navigate back to tenants list when cancel button is clicked', () => {
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       const cancelButton = screen.getByTestId('cancel-tenant');
       fireEvent.click(cancelButton);
@@ -365,7 +365,7 @@ describe('TenantsForm', () => {
         } as unknown as UseMutationResult<Tenant, Error, CreateTenantsPayload>;
       });
 
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       // Trigger the success callback
       if (onSuccessCallback) {
@@ -380,7 +380,7 @@ describe('TenantsForm', () => {
 
   describe('Form Submission', () => {
     it('should call createTenant with correct payload on form submit', async () => {
-      const { container } = render(<TenantsForm />, {
+      const { container } = render(<TenantForm />, {
         wrapper: createWrapper(),
       });
 
@@ -442,7 +442,7 @@ describe('TenantsForm', () => {
         schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
       });
 
-      const { container } = render(<TenantsForm />, {
+      const { container } = render(<TenantForm />, {
         wrapper: createWrapper(),
       });
 
@@ -478,7 +478,7 @@ describe('TenantsForm', () => {
         schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
       });
 
-      const { container } = render(<TenantsForm />, {
+      const { container } = render(<TenantForm />, {
         wrapper: createWrapper(),
       });
 
@@ -524,7 +524,7 @@ describe('TenantsForm', () => {
         } as unknown as UseMutationResult<Tenant, Error, CreateTenantsPayload>;
       });
 
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       // Trigger the error callback
       if (onErrorCallback) {
@@ -544,7 +544,7 @@ describe('TenantsForm', () => {
 
   describe('Integration', () => {
     it('should render form within layout with correct structure', () => {
-      const { container } = render(<TenantsForm />, {
+      const { container } = render(<TenantForm />, {
         wrapper: createWrapper(),
       });
 
@@ -558,7 +558,7 @@ describe('TenantsForm', () => {
     });
 
     it('should call form handleSubmit on create button click', async () => {
-      render(<TenantsForm />, { wrapper: createWrapper() });
+      render(<TenantForm />, { wrapper: createWrapper() });
 
       const createButton = screen.getByTestId('create-tenant');
       fireEvent.click(createButton);
