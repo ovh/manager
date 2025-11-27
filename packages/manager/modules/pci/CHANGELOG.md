@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.101.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.4...@ovh-ux/manager-pci@6.101.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
 ## [6.100.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.3...@ovh-ux/manager-pci@6.100.4) (2025-11-27)
 
 

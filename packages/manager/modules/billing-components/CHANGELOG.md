@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.29.0...@ovh-ux/manager-billing-components@4.30.0) (2025-11-27)
+
+
+### Features
+
+* **billing:** disable cache in services ([6a7471f](https://github.com/ovh/manager/commit/6a7471f836ffa41b6a9520eae1d4405a80e8fbcc)), closes [#MANAGER-20010](https://github.com/ovh/manager/issues/MANAGER-20010)
+* **billing:** replace serviceinfo call with services on cancel resillation ([db20d86](https://github.com/ovh/manager/commit/db20d86b793f83af2bb95fd64617d614ff5506c0)), closes [#MANAGER-20162](https://github.com/ovh/manager/issues/MANAGER-20162)
+
+
+
+
+
 # [4.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.28.1...@ovh-ux/manager-billing-components@4.29.0) (2025-11-27)
 
 
