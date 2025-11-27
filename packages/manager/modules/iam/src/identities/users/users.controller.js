@@ -15,6 +15,7 @@ export default class IamUsersCtrl {
     $timeout,
     trackClick,
     trackPage,
+    shellClient,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -33,6 +34,7 @@ export default class IamUsersCtrl {
     this.descriptionMaxSize = 40;
     this.$scope.trackPage = trackPage;
     this.$scope.trackClick = trackClick;
+    this.ovhShell = shellClient;
 
     this.$scope.$on('iam.security.users.refresh', () => {
       this.$onInit();
@@ -127,6 +129,15 @@ export default class IamUsersCtrl {
   disableUser(user) {
     this.$scope.trackClick(USERS_TRACKING_HITS.DISABLE_USER);
     this.$scope.setAction('disable/users-disable', user);
+  }
+
+  manageTokens(user) {
+    this.$scope.trackClick(USERS_TRACKING_HITS.MANAGE_TOKENS);
+    this.ovhShell.navigation
+      .getURL('identity-access-management', `/manage-tokens/${user.login}`)
+      .then((url) => {
+        window.location.href = url;
+      });
   }
 
   onTransformItem(userId) {
