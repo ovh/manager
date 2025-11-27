@@ -142,7 +142,7 @@ function useGuideUtils() {
       const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
       setList(guideList);
     };
-    getSubSidiary();
+    void getSubSidiary();
   }, []);
   return list as GuideLinkProps;
 }

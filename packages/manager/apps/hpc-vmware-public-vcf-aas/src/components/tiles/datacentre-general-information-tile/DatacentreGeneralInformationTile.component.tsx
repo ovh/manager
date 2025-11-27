@@ -160,6 +160,7 @@ export default function DatacentreGenerationInformationTile({
                   vcdDatacentre.currentState?.vrack ||
                   tVdc('managed_vcd_vdc_associate_vrack')
                 }
+                data-testid={TEST_IDS.dashboardDatacentreVrackLink}
               />
               {!isVrackAssociationFeatureAvailable && canBeAssociatedWithVrack && (
                 <OdsTooltip

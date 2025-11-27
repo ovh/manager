@@ -22,7 +22,7 @@ const FieldRender = ({ defaultValue = '' }) => {
     },
   });
 
-  methods.trigger('inputTest');
+  void methods.trigger('inputTest');
 
   return (
     <FormProvider {...methods}>
@@ -42,7 +42,7 @@ const FieldRender = ({ defaultValue = '' }) => {
 };
 
 describe('RhfField component unit test suite', () => {
-  it('should render field with correct helper', async () => {
+  it('should render field with correct helper', () => {
     const { getByText } = render(<FieldRender />);
 
     expect(getByText('My Input')).toBeVisible();

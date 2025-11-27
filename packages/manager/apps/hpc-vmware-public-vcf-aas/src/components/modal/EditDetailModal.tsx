@@ -47,7 +47,7 @@ export const EditDetailModal = ({
       try {
         await onEdit(newDetail);
       } catch (err) {
-        setUpdateError(err);
+        setUpdateError(err as ApiError);
       }
     }
   };

@@ -18,7 +18,7 @@ export const useAutoRefetch = ({
     if (!enabled) return undefined;
 
     const refetchQueries = () => {
-      queryClient.invalidateQueries({ queryKey });
+      void queryClient.invalidateQueries({ queryKey });
     };
 
     const refetchInterval = setInterval(() => refetchQueries(), interval);

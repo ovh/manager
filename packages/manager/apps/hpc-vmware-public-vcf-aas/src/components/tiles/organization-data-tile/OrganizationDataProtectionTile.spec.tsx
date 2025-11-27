@@ -1,6 +1,5 @@
 import { act, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import React from 'react';
 import {
   QueryClient,
   QueryClientProvider,
@@ -24,7 +23,6 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
-import { labels } from '../../../test-utils';
 import {
   DATA_PROTECTION_BACKUP_LABEL,
   DATA_PROTECTION_RECOVERY_LABEL,
@@ -82,13 +80,13 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
     renderComponent();
 
     // then
-    const elements = [
-      labels.dashboard.managed_vcd_dashboard_data_protection,
+    const texts = [
+      'managed_vcd_dashboard_data_protection',
       DATA_PROTECTION_BACKUP_LABEL,
       DATA_PROTECTION_RECOVERY_LABEL,
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
   });
 
   it('should track click on redirect to VeeamBackup', async () => {

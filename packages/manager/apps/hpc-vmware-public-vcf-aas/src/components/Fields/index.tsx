@@ -115,7 +115,7 @@ export const RhfVisualHintCounter = ({
 
   return (
     <RhfVisualHint {...rest}>
-      {field.value?.length ?? 0}/{max}
+      {(field.value as string)?.length ?? 0}/{max}
     </RhfVisualHint>
   );
 };

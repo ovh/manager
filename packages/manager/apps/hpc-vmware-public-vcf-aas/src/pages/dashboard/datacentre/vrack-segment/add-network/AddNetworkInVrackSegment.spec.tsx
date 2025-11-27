@@ -43,7 +43,7 @@ const submitForm = (container: HTMLElement) => {
     userEvent.click(
       container.querySelector(
         `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
-      ) as Element,
+      ),
     ),
   );
 };

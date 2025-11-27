@@ -63,10 +63,14 @@ export default [
 
 // Progressive and disable full rules
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 
 export default [
+  javascriptEslintConfig,
+  typescriptEslintConfig,
   {
-    ...typescriptEslintConfig,
-    rules: {},
+    rules: {
+      '@typescript-eslint/no-misused-promises': 'off'
+    },
   },
 ];

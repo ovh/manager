@@ -1,16 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useServiceDetails } from '@ovh-ux/manager-react-components';
+import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-react-components';
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { CustomerContact } from '@ovh-ux/manager-module-common-api';
+import { ApiResponse } from '@ovh-ux/manager-core-api';
 
 export default function ServiceContactsTileItem() {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
-  const { data: serviceDetails, isLoading, isError } = useServiceDetails({
-    resourceName: id,
-  });
+  const { data: serviceDetails, isLoading, isError } =
+    useServiceDetails({ resourceName: id }) as {
+      data?: ApiResponse<ServiceDetails>;
+      isLoading: boolean;
+      isError: boolean;
+    };
   const contactList: CustomerContact[] = serviceDetails?.data?.customer?.contacts;
 
   if (isLoading) {
