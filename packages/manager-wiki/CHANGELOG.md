@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.19.0...@ovh-ux/manager-wiki@0.20.0) (2025-11-27)
+
+
+### Bug Fixes
+
+* **manager-wiki:** correct base layout stories ([2bb3ea2](https://github.com/ovh/manager/commit/2bb3ea28f7bf70a2acba8d2bc11658d9816821ba)), closes [#MANAGER-20210](https://github.com/ovh/manager/issues/MANAGER-20210)
+* **manager-wiki:** correct build storybook ([be9eeee](https://github.com/ovh/manager/commit/be9eeee4164276ff7d5757ad1ab033e1be5f1d8b)), closes [#MANAGER-20210](https://github.com/ovh/manager/issues/MANAGER-20210)
+* **manager-wiki:** correct dashbaord page ([87a83c3](https://github.com/ovh/manager/commit/87a83c31a7144fe07b64601094cfabf43570cd98)), closes [#MANAGER-20206](https://github.com/ovh/manager/issues/MANAGER-20206)
+* **manager-wiki:** correct use translated migro region translations ([d54534b](https://github.com/ovh/manager/commit/d54534b22726cfce9171b3f74d266f829c1812ca)), closes [#MANAGER-20207](https://github.com/ovh/manager/issues/MANAGER-20207)
+* **manager-wiki:** trigger modal on demand ([949b8c8](https://github.com/ovh/manager/commit/949b8c81431f283c49b56c691e58b78f75a4e01e)), closes [#MANAGER-20216](https://github.com/ovh/manager/issues/MANAGER-20216)
+* **manager-wiki:** update datagrid stories ([7de8aa7](https://github.com/ovh/manager/commit/7de8aa77c2b887f01b86f8929b1838540f8a7455)), closes [#MANAGER-20389](https://github.com/ovh/manager/issues/MANAGER-20389)
+* **muk:** datagrid attributes hide header ([e66dfba](https://github.com/ovh/manager/commit/e66dfbaa793af065dadf1c7c2c83a7308e27be99)), closes [#MANAGER-20355](https://github.com/ovh/manager/issues/MANAGER-20355)
+
+
+### Features
+
+* **manager-wiki:** update documentation tags tile ([cbf6146](https://github.com/ovh/manager/commit/cbf61461329d24ae4032d38215a44cefdf4b37c5)), closes [#MANAGER-20215](https://github.com/ovh/manager/issues/MANAGER-20215)
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.18.1...@ovh-ux/manager-wiki@0.19.0) (2025-11-19)
 
 
