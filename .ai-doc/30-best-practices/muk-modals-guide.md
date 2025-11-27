@@ -21,21 +21,18 @@ There are two implementation patterns:
 1. **Route-based modals** (recommended for most cases)
 2. **Integrated modals** (for simple, quick actions)
 
-## 📘 Decision Tree
+## 📘 Pattern: Route-Based Modals Only
 
-```
-Is the modal action:
-├─ Simple & quick (e.g., inline edit)?
-│  └─ YES → Use integrated modal in parent component
-│
-└─ NO → Does it need:
-   ├─ Shareable URL?
-   ├─ Browser navigation (back/forward)?
-   ├─ Deep linking?
-   └─ YES → Use route-based modal (separate page)
-```
+**All modals MUST be route-based** to enable:
+- Shareable URLs
+- Browser navigation (back/forward)
+- Deep linking
+- Better separation of concerns
+- Easier testing
 
-## 🎯 Pattern 1: Route-Based Modal (Recommended)
+There is no "integrated modal" pattern - all modals should have dedicated routes.
+
+## 🎯 Implementation: Route-Based Modal
 
 **Use when:**
 - Modal needs shareable URL
@@ -304,166 +301,6 @@ export default function DeletePartitionPage() {
 }
 ```
 
-## 🎯 Pattern 2: Integrated Modal (For Simple Actions)
-
-**Use when:**
-- Simple, quick actions
-- No need for shareable URL
-- Inline editing
-- Component is already complex enough
-
-### Example: UpdateNameModal Integrated
-
-```tsx
-// src/components/EditNameModal/EditNameModal.component.tsx
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-
-import { v6 as httpV6 } from '@ovh-ux/manager-core-api';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { UpdateNameModal } from '@ovh-ux/muk';
-
-import { APP_FEATURES } from '@/App.constants';
-import { APP_NAME } from '@/Tracking.constants';
-
-const NAME_PATTERN = /^[^<>]+$/;
-const PREFIX_TRACKING_EDIT_NAME = 'dashboard::edit-name';
-
-type EditNameModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  serviceName: string;
-  currentName: string;
-  serviceDisplayName: string;
-  onSuccess: () => void;
-};
-
-export default function EditNameModal({
-  isOpen,
-  onClose,
-  serviceName,
-  currentName,
-  serviceDisplayName,
-  onSuccess,
-}: EditNameModalProps) {
-  const { t } = useTranslation(['common', 'edit-name']);
-  const { trackClick } = useOvhTracking();
-
-  const [customName, setCustomName] = useState('');
-  const [isUpdatingName, setIsUpdatingName] = useState(false);
-  const [nameError, setNameError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      setCustomName(currentName || '');
-      setNameError(null);
-    }
-  }, [isOpen, currentName]);
-
-  const handleClose = () => {
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: [APP_NAME, PREFIX_TRACKING_EDIT_NAME, 'cancel'],
-    });
-    onClose();
-  };
-
-  const handleUpdateName = async (newName: string) => {
-    if (!serviceName) return;
-
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: [APP_NAME, PREFIX_TRACKING_EDIT_NAME, 'confirm'],
-    });
-
-    setIsUpdatingName(true);
-    setNameError(null);
-
-    try {
-      await httpV6.put(`${APP_FEATURES.listingEndpoint}/${serviceName}`, {
-        customName: newName.trim(),
-      });
-
-      onSuccess();
-      onClose();
-    } catch (err) {
-      setNameError((err as Error).message || t('edit-name:error', 'An error occurred'));
-      setIsUpdatingName(false);
-    }
-  };
-
-  if (!isOpen) {
-    return null;
-  }
-
-  return (
-    <UpdateNameModal
-      isOpen={isOpen}
-      headline={t('edit-name:title', { name: serviceDisplayName }, `Edit name for ${serviceDisplayName}`)}
-      description={t('edit-name:description', 'Update the display name for this service')}
-      inputLabel={t('edit-name:label', { name: serviceDisplayName }, `Name for ${serviceDisplayName}`)}
-      defaultValue={customName}
-      isLoading={isUpdatingName}
-      onClose={handleClose}
-      updateDisplayName={handleUpdateName}
-      error={nameError}
-      pattern={NAME_PATTERN.source}
-      patternMessage={t(
-        'edit-name:rules',
-        'Only alphanumeric characters, hyphens and underscores are allowed',
-      )}
-      cancelButtonLabel={t('edit-name:cancel', 'Cancel')}
-      confirmButtonLabel={t('edit-name:confirm', 'Confirm')}
-    />
-  );
-}
-```
-
-### Usage in Parent Component
-
-```tsx
-// src/pages/dashboard/Dashboard.page.tsx
-import { useState } from 'react';
-import EditNameModal from '@/components/EditNameModal/EditNameModal.component';
-
-function DashboardPage() {
-  const [isEditNameModalOpen, setIsEditNameModalOpen] = useState(false);
-  const { data: nasha, refetch: refetchNasha } = useNashaDetail(serviceName ?? '');
-
-  const handleEditName = () => {
-    setIsEditNameModalOpen(true);
-  };
-
-  const handleEditNameSuccess = () => {
-    void refetchNasha();
-  };
-
-  return (
-    <>
-      <button onClick={handleEditName}>Edit Name</button>
-
-      {nasha && (
-        <EditNameModal
-          isOpen={isEditNameModalOpen}
-          onClose={() => setIsEditNameModalOpen(false)}
-          serviceName={serviceName ?? ''}
-          currentName={nasha.customName || ''}
-          serviceDisplayName={nasha.serviceName}
-          onSuccess={handleEditNameSuccess}
-        />
-      )}
-    </>
-  );
-}
-```
 
 ## 📋 MUK Modal Components
 
@@ -667,9 +504,6 @@ See: `packages/manager/apps/web-office/src/pages/dashboard/general-information/u
 
 See: `packages/manager/apps/bmc-nasha/src/pages/dashboard/partitions/delete/DeletePartition.page.tsx`
 
-### Example 3: Integrated Modal Component
-
-See: `packages/manager/apps/bmc-nasha/src/components/EditNameModal/EditNameModal.component.tsx`
 
 ## 🔗 References
 
