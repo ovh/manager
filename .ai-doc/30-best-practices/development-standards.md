@@ -219,32 +219,40 @@ function MyComponent() {
 
 ## 🧪 Unit Testing
 
-### Test Framework (Jest)
+### Test Framework (Vitest)
 
-```javascript
-// jest.config.js
-module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/__setup__/jest.setup.ts'],
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
+```typescript
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/__setup__/vitest.setup.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/**/*.d.ts'],
+      thresholds: {
+        branches: 80,
+        functions: 80,
+        lines: 80,
+        statements: 80
+      }
     }
   }
-};
+});
 ```
 
 ### Test Structure
 
 ```typescript
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+
 describe('UserService', () => {
   let userService: UserService;
-  let mockApi: jest.Mocked<ApiClient>;
+  let mockApi: Mocked<ApiClient>;
 
   beforeEach(() => {
     mockApi = createMockApiClient();
@@ -252,7 +260,7 @@ describe('UserService', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should authenticate user with valid credentials', async () => {
