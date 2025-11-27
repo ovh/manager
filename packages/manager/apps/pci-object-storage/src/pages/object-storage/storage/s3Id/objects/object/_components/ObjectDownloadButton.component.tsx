@@ -6,7 +6,7 @@ import {
   TooltipContent,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import { useS3ObjectActions } from '../../_hooks/useS3ObjectActions.hook';
 import { DownloadIcon } from '../../_components/DownloadIcon.component';
 

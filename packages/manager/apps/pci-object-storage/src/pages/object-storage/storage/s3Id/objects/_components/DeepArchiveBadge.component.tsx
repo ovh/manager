@@ -2,7 +2,7 @@ import { Badge } from '@datatr-ux/uxlib';
 import { Pen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { isDeepArchive } from '@/lib/s3ObjectHelper';
 

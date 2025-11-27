@@ -16,7 +16,7 @@ import {
   ComboboxItem,
 } from '@datatr-ux/uxlib';
 import React from 'react';
-import { Region } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region } from '@datatr-ux/ovhcloud-types/cloud';
 import { useTranslation } from 'react-i18next';
 import { Info } from 'lucide-react';
 import { MappedRegions } from './RegionStep.component';
@@ -53,7 +53,9 @@ const OffsiteReplicationStep = React.forwardRef<
     ...r,
   }));
   const continents = [
-    ...new Set([...mappedRegions.map((mr) => mr.continent).toSorted()]),
+    ...new Set([...mappedRegions.map((mr) => mr.continent)
+            .slice()
+            .sort(),]),
   ];
   const selectedRegion = mappedRegions.find((r) => r.name === value.region);
 

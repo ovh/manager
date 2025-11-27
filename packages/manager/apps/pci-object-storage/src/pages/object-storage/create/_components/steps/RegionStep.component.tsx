@@ -15,7 +15,7 @@ import {
   Checkbox,
   Label,
 } from '@datatr-ux/uxlib';
-import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import {
   DeploymentModeSelection,
@@ -88,7 +88,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
     const continents = [
       ...new Set([
         t(`region_continent_all`),
-        ...regionsFilteredByDeployment.map((mr) => mr.continent).toSorted(),
+        ...regionsFilteredByDeployment.map((mr) => mr.continent).slice().sort(),
       ]),
     ];
 
@@ -128,7 +128,8 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
           t(`region_continent_all`),
           ...newRegionsFilteredByDeployment
             .map((mr) => mr.continent)
-            .toSorted(),
+            .slice()
+            .sort(),
         ]),
       ];
 

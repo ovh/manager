@@ -1,4 +1,4 @@
-import * as storages from '@datatr-ux/ovhcloud-types/cloud/storage/index';
+import * as storages from '@datatr-ux/ovhcloud-types/cloud/storage';
 import cloud from './Cloud';
 
 export default storages;

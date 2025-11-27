@@ -7,7 +7,6 @@ import {
 import initI18n from './i18n';
 import App from './App';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
-import '@/vite-hmr.ts';
 import './global.css';
 import '@datatr-ux/uxlib/style.css';
 import '@ovhcloud/ods-themes/default';

@@ -13,7 +13,7 @@ import {
   PopoverContent,
 } from '@datatr-ux/uxlib';
 import { Search, Folder } from 'lucide-react';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 
 interface SearchBarProps {

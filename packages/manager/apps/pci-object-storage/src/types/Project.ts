@@ -1,3 +1,3 @@
-import * as project from '@datatr-ux/ovhcloud-types/cloud/project/index';
+import * as project from '@datatr-ux/ovhcloud-types/cloud/project';
 
 export default project;

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
 import storages from '@/types/Storages';
 
