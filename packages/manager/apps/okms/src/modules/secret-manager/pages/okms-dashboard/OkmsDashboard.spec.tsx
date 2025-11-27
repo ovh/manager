@@ -66,5 +66,7 @@ describe('OkmsDashboard page test suite', () => {
     expect(
       screen.getByTestId(OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS.okmsDashboardTiles),
     ).toBeInTheDocument();
+    expect(screen.getByTestId('general-information')).toBeVisible();
+    expect(screen.getByTestId('logs')).toBeVisible();
   });
 });
