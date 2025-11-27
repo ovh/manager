@@ -65,74 +65,41 @@ This structure applies to:
 └── README.md                    # Project documentation
 ```
 
-## 📁 Folder Details
+## 📁 Folder Descriptions
 
-### `/public/` - Static Assets
+This section provides detailed descriptions and guidelines for each folder in the standard structure. Refer to the "Complete Application Structure" section above for the visual folder hierarchy.
 
-Contains static assets served directly by the web server without processing:
-- **`assets/`**: Images, icons, and other static resources organized by feature name
-- **`translations/`**: i18n JSON files for all supported locales (8 languages: de_DE, en_GB, es_ES, fr_CA, fr_FR, it_IT, pl_PL, pt_PT)
-- **Naming**: Use kebab-case for folder names within assets (e.g., `feature-name/`)
-- **Organization**: Group assets by feature or module to maintain clarity
+### Static Assets (`/public/`)
 
-### `/src/components/` - Reusable Components
+Contains static assets served directly by the web server without processing. The `assets/` subfolder houses images, icons, and other static resources organized by feature name. The `translations/` subfolder contains i18n JSON files for all supported locales (8 languages: de_DE, en_GB, es_ES, fr_CA, fr_FR, it_IT, pl_PL, pt_PT). Use kebab-case for folder names within assets (e.g., `feature-name/`) and group assets by feature or module to maintain clarity.
 
-Houses reusable UI components shared across multiple pages or features:
-- **Structure**: Each component lives in its own folder using camelCase naming
-- **Required files**: Component file (`.component.tsx`), test file (`.spec.tsx`)
-- **Optional files**: Constants file (`.constants.ts`) for component-specific constants
-- **Naming convention**: Component folder in camelCase, files in PascalCase
-- **Purpose**: Components should be generic and reusable across different contexts
+### Reusable Components (`/src/components/`)
 
-### `/src/pages/` - Page Components
+Houses reusable UI components shared across multiple pages or features. Each component lives in its own folder using camelCase naming. Required files include the component file (`.component.tsx`) and test file (`.spec.tsx`). Optional files include a constants file (`.constants.ts`) for component-specific constants. Component folders use camelCase naming, while files use PascalCase. Components should be generic and reusable across different contexts.
 
-Contains top-level page components that represent routes in the application:
-- **Structure**: Each page lives in its own folder using camelCase naming
-- **Required files**: Page file (`.page.tsx`), test file (`.spec.tsx`)
-- **Optional files**: Constants file (`.constants.ts`) for page-specific constants
-- **Naming convention**: Page folder in camelCase, files in PascalCase
-- **Purpose**: Pages compose multiple components and represent full application views
+### Page Components (`/src/pages/`)
 
-### `/src/data/` - Data Layer
+Contains top-level page components that represent routes in the application. Each page lives in its own folder using camelCase naming. Required files include the page file (`.page.tsx`) and test file (`.spec.tsx`). Optional files include a constants file (`.constants.ts`) for page-specific constants. Page folders use camelCase naming, while files use PascalCase. Pages compose multiple components and represent full application views.
 
-Central location for all data fetching, API calls, and data-related logic:
-- **`api/`**: API service functions that make HTTP requests (`.api.ts` suffix)
-- **`hooks/`**: Custom hooks for data fetching using TanStack Query (`use` prefix)
-- **`types/`**: TypeScript type definitions for API responses and data models (`.types.ts` suffix)
-- **Pattern**: Separate concerns - API calls, data hooks, and types are in distinct folders
-- **Integration**: Hooks use API functions and types to provide data to components
+### Data Layer (`/src/data/`)
 
-### `/src/hooks/` - Custom Hooks
+Central location for all data fetching, API calls, and data-related logic. The `api/` subfolder contains API service functions that make HTTP requests (`.api.ts` suffix). The `hooks/` subfolder contains custom hooks for data fetching using TanStack Query (`use` prefix). The `types/` subfolder contains TypeScript type definitions for API responses and data models (`.types.ts` suffix). The pattern separates concerns - API calls, data hooks, and types are in distinct folders. Hooks use API functions and types to provide data to components.
 
-Contains custom React hooks for shared logic and state management:
-- **Naming**: All hooks start with `use` prefix (e.g., `useHookName.ts`)
-- **Purpose**: Encapsulate reusable logic, side effects, and stateful behavior
-- **Scope**: Application-wide hooks (not data-fetching hooks, which go in `/src/data/hooks/`)
-- **Examples**: Form handling, UI state, browser APIs, complex component logic
+### Custom Hooks (`/src/hooks/`)
 
-### `/src/services/` - Business Logic
+Contains custom React hooks for shared logic and state management. All hooks start with the `use` prefix (e.g., `useHookName.ts`). These hooks encapsulate reusable logic, side effects, and stateful behavior. This folder is for application-wide hooks (not data-fetching hooks, which go in `/src/data/hooks/`). Examples include form handling, UI state, browser APIs, and complex component logic.
 
-Houses business logic and complex operations that don't fit in components:
-- **Naming**: camelCase with `.service.ts` suffix (e.g., `userManagement.service.ts`)
-- **Purpose**: Complex calculations, data transformations, business rules
-- **Separation**: Keep business logic separate from UI components and API calls
-- **Testing**: Services should be pure functions when possible for easier testing
+### Business Logic (`/src/services/`)
 
-### `/src/types/` - Type Definitions
+Houses business logic and complex operations that don't fit in components. Files use camelCase naming with `.service.ts` suffix (e.g., `userManagement.service.ts`). Services handle complex calculations, data transformations, and business rules. Keep business logic separate from UI components and API calls. Services should be pure functions when possible for easier testing.
 
-Contains TypeScript type definitions and interfaces used across the application:
-- **Naming**: camelCase with `.types.ts` suffix (e.g., `userManagement.types.ts`)
-- **Purpose**: Shared types, interfaces, enums, and type utilities
-- **Scope**: Application-wide types (not data-specific types, which go in `/src/data/types/`)
-- **Organization**: Group related types in the same file
+### Type Definitions (`/src/types/`)
 
-### `/src/utils/` - Utility Functions
+Contains TypeScript type definitions and interfaces used across the application. Files use camelCase naming with `.types.ts` suffix (e.g., `userManagement.types.ts`). This folder contains shared types, interfaces, enums, and type utilities. It's for application-wide types (not data-specific types, which go in `/src/data/types/`). Group related types in the same file.
 
-Contains pure utility functions and helpers used throughout the application:
-- **Naming**: camelCase with `.utils.ts` suffix (e.g., `formatting.utils.ts`)
-- **Purpose**: Pure functions for formatting, validation, transformation, etc.
-- **Requirements**: Should be stateless and side-effect free when possible
-- **Testing**: Each utility should have comprehensive unit tests
+### Utility Functions (`/src/utils/`)
+
+Contains pure utility functions and helpers used throughout the application. Files use camelCase naming with `.utils.ts` suffix (e.g., `formatting.utils.ts`). Utilities provide pure functions for formatting, validation, transformation, etc. They should be stateless and side-effect free when possible. Each utility should have comprehensive unit tests.
 
 ## 📋 Naming Conventions
 
