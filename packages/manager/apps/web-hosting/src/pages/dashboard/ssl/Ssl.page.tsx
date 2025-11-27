@@ -117,7 +117,7 @@ export default function Ssl() {
     <React.Suspense fallback={<Loading />}>
       <Notifications />
       <Topbar />
-      <div className="flex mb-7">
+      <div className="mb-7 flex">
         <div className="w-2/3">
           <Button
             variant={BUTTON_VARIANT.outline}
@@ -131,7 +131,7 @@ export default function Ssl() {
             </>
           </Button>
         </div>
-        <div className="flex flex-wrap justify-end w-1/3">
+        <div className="flex w-1/3 flex-wrap justify-end">
           <Button
             variant={BUTTON_VARIANT.outline}
             color={BUTTON_COLOR.primary}

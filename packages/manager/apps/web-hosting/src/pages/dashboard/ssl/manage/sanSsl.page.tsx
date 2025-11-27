@@ -36,14 +36,14 @@ export default function SanModal() {
       onOpenChange={closeModal}
       open
     >
-      <div className="flex flex-col space-y-4 mb-4">
+      <div className="mb-4 flex flex-col space-y-4">
         <Text className="mb-4" preset={TEXT_PRESET.heading4}>
           {t('san_ssl_title')}
         </Text>
         <Text>{t('san_ssl_message', { n, domain })}</Text>
         <Text>{san}</Text>
       </div>
-      <div className="flex space-x-4 justify-end">
+      <div className="flex justify-end space-x-4">
         <Button
           color={BUTTON_COLOR.primary}
           onClick={() => {

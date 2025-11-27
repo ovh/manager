@@ -58,12 +58,12 @@ export default function OrderDomainModal() {
         onClick: closeModal,
       }}
     >
-      <div className="flex flex-col space-y-8 mb-10">
+      <div className="mb-10 flex flex-col space-y-8">
         <Text className="mb-4" preset={TEXT_PRESET.heading4}>
           {t('hosting_dashboard_add_or_order_title')}
         </Text>
         <Text>{t('hosting_dashboard_add_or_order_step1_title')}</Text>
-        <div className="flex gap-4 items-center">
+        <div className="flex items-center gap-4">
           <RadioGroup>
             <Radio
               value={ACTIONS.ORDER}

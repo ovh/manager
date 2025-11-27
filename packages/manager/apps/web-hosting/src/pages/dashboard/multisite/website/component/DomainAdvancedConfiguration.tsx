@@ -58,7 +58,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
         render={({ field }) => (
           <div className="flex flex-col">
             <Text>{t('dashboard:hosting_multisite_domain_configuration_home')}</Text>
-            <div className="flex items-center space-x-2 w-1/3">
+            <div className="flex w-1/3 items-center space-x-2">
               <Button size="sm" variant={BUTTON_VARIANT.outline} disabled={true}>
                 ./
               </Button>
@@ -106,7 +106,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
               )}
             />
           </div>
-          <div className="ml-8 mt-4 mb-5">
+          <div className="mb-5 ml-8 mt-4">
             <Text preset={TEXT_PRESET.caption}>
               {t('multisite:multisite_add_website_advanced_options_ip')}
             </Text>
@@ -145,7 +145,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
           className="w-1/3 p-4"
           color={controlValues.firewall ? CARD_COLOR.primary : CARD_COLOR.neutral}
         >
-          <div className="flex flew-row">
+          <div className="flew-row flex">
             <Controller
               name="firewall"
               control={control}
@@ -165,7 +165,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
               )}
             />
           </div>
-          <div className="ml-8 mt-4 mb-5">
+          <div className="mb-5 ml-8 mt-4">
             <Text preset={TEXT_PRESET.caption}>
               {t('multisite:multisite_add_website_advanced_options_firewall')}
             </Text>
@@ -176,7 +176,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
           className="w-1/3 p-4"
           color={controlValues.cdn ? CARD_COLOR.primary : CARD_COLOR.neutral}
         >
-          <div className="flex flew-row">
+          <div className="flew-row flex">
             <Controller
               name="cdn"
               control={control}
@@ -196,7 +196,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
               )}
             />
           </div>
-          <div className="ml-8 mt-4 mb-5">
+          <div className="mb-5 ml-8 mt-4">
             <Text preset={TEXT_PRESET.caption}>
               {t('multisite:multisite_add_website_advanced_options_cdn')}
             </Text>
@@ -222,7 +222,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 className="w-1/2 p-4"
                 color={controlValues.autoConfigureDns ? CARD_COLOR.primary : CARD_COLOR.neutral}
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio value="auto">
                     <RadioControl />
                     <RadioLabel>
@@ -239,7 +239,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
                   {t('multisite:multisite_add_website_advanced_options_dns_auto_text')}
                 </Text>
               </Card>
@@ -247,7 +247,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 className="w-1/2 p-4"
                 color={!controlValues.autoConfigureDns ? CARD_COLOR.primary : CARD_COLOR.neutral}
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio value="manual">
                     <RadioControl />
                     <RadioLabel>
@@ -257,7 +257,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
                   {t('multisite:multisite_add_website_advanced_options_dns_manual_text')}
                 </Text>
               </Card>
