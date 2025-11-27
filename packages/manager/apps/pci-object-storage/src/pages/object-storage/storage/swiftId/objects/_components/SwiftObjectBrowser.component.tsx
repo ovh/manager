@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ContainerObject } from '@datatr-ux/ovhcloud-types/cloud/storage/index';
+import { ContainerObject } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import S3ObjectDropFileModal, {
   DroppedFiles,
 } from './SwiftObjectDropFile.component';

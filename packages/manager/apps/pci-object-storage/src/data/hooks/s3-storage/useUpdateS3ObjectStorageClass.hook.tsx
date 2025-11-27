@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import { ObjStoError } from '@/data/api';
 import {
   UpdateS3ObjectStorageClassParams,
