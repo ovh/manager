@@ -184,38 +184,84 @@ try {
 
 ### Notifications (MUK)
 
-**❌ WRONG: Using console.log/console.error**
+**Important:** `useNotifications` and `useLogger` serve different purposes:
+- **`useNotifications`**: Display messages to end-users in the UI (success, error, warning, info)
+- **`useLogger`**: Technical logging for system logs and debugging (not visible to end-users)
+
+**❌ WRONG: Using console.log/console.error for user-facing messages**
 ```typescript
 try {
   await apiCall();
 } catch (error) {
-  console.error('API call failed:', error); // ❌
+  console.error('API call failed:', error); // ❌ User won't see this
 }
 ```
 
-**✅ CORRECT: Using useNotifications**
+**✅ CORRECT: Using useNotifications for user-facing messages + useLogger for technical logging**
 ```typescript
-import { useNotifications } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useLogger } from '@ovh-ux/manager-react-core-application';
 
 function MyComponent() {
   const { addSuccess, addError } = useNotifications();
+  const logger = useLogger();
   
   const handleApiCall = async () => {
     try {
       await apiCall();
-      addSuccess('Operation completed successfully');
+      addSuccess('Operation completed successfully'); // ✅ User sees this
     } catch (error) {
-      addError('Operation failed. Please try again.');
+      // Log technical error for system logs/debugging
+      if (logger) {
+        logger.error('API call failed:', error); // ✅ Technical logging
+      }
+      
+      // Display user-friendly error message
+      addError('Operation failed. Please try again.'); // ✅ User sees this
     }
   };
 }
 ```
 
+**Pattern in pci-project:**
+```typescript
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useLogger } from '@ovh-ux/manager-react-core-application';
+
+// In mutation hooks (useMutation from TanStack Query)
+function MyComponent() {
+  const { addSuccess, addError } = useNotifications();
+  const logger = useLogger();
+  
+  const { mutate } = useMutation({
+    mutationFn: apiCall,
+    onSuccess: () => {
+      addSuccess('Operation completed successfully');
+    },
+    onError: (error) => {
+      // Technical logging (for system logs/debugging)
+      if (logger) {
+        logger.error('API call failed:', error);
+      }
+      
+      // User-facing notification
+      addError('Operation failed. Please try again.');
+    },
+  });
+}
+```
+
+**Logger API:**
+- `logger.info(message: string, ...args): void` - Info level logging
+- `logger.warn(message: string, ...args): void` - Warning level logging
+- `logger.error(message: string, ...args): void` - Error level logging
+- `logger.debug(message: string, ...args): void` - Debug level logging
+
 **Notification Types:**
-- `addSuccess(message)` - Success notifications
-- `addError(message)` - Error notifications
-- `addWarning(message)` - Warning notifications
-- `addInfo(message)` - Information notifications
+- `addSuccess(message)` - Success notifications (user-facing)
+- `addError(message)` - Error notifications (user-facing)
+- `addWarning(message)` - Warning notifications (user-facing)
+- `addInfo(message)` - Information notifications (user-facing)
 
 ## 🧪 Unit Testing
 
