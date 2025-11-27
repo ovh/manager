@@ -29,6 +29,7 @@ import NodePoolToggle from './node-pool/NodePoolToggle.component';
 import NodePoolType from './node-pool/NodePoolType.component';
 import PublicConnectivity from './node-pool/PublicConnectivity.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreationStepper> }) => {
   const { t } = useTranslation(['stepper', 'node-pool']);
@@ -59,6 +60,8 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
   const numberOfZoneSelected = state.nodePoolState.selectedAvailabilityZones?.filter(
     ({ checked }) => checked,
   ).length;
+
+  const isStandardPlan = has3AZFeature && regionInformations?.type === DeploymentMode.MULTI_ZONES;
 
   return (
     <>
@@ -193,8 +196,8 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
           >
             {numberOfZoneSelected && numberOfZoneSelected > 1
               ? t('node-pool:kube_common_add_node_pool_plural', {
-                  count: numberOfZoneSelected,
-                })
+                count: numberOfZoneSelected,
+              })
               : t('node-pool:kube_common_add_node_pool')}
           </OsdsButton>
         )}

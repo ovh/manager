@@ -10,6 +10,7 @@ import { DeploymentMode, TSelectedAvailabilityZones } from '@/types';
 import { TRegionInformations } from '@/types/region';
 
 import { useNewPoolStore } from '../store';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 
 type TSizeStepProps = {
   regionInformations?: TRegionInformations | null;
