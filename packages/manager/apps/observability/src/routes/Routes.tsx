@@ -10,14 +10,19 @@ import NotFound from '@/pages/not-found/404.page';
 import { redirectionApp, subroutes, urls } from './Routes.constants';
 import { DeleteTenantModal, TenantsPage } from './lazy-parallel/tenants/listing.lazy';
 
-const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const MainLayout = React.lazy(() => import('@/pages/Main.layout'));
 
 const DashboardsPage = React.lazy(() => import('@/pages/dashboards/Dashboards.page'));
 
-const TenantsLayoutPage = React.lazy(() => import('@/pages/tenants/Tenants.layout'));
-
+const TenantsLayout = React.lazy(() => import('@/pages/tenants/Tenants.layout'));
+const TenantsBaseLayout = React.lazy(() => import('@/pages/tenants/TenantsBase.layout'));
+const TenantLayout = React.lazy(() => import('@/pages/tenants/Tenant.layout'));
+const MetricsLayout = React.lazy(() => import('@/pages/metrics/Metrics.layout'));
+const OnboardingServiceLayout = React.lazy(
+  () => import('@/pages/metrics/OnboardingService.layout'),
+);
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
-const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantsCreation.page'));
+const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantCreation.page'));
 const EditTenantPage = React.lazy(() => import('@/pages/tenants/edit/EditTenant.page'));
 const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
 
@@ -40,7 +45,7 @@ export default (
     <Route
       id="root"
       path={urls.root}
-      Component={MainLayoutPage}
+      Component={MainLayout}
       errorElement={
         <ErrorBoundary
           isPreloaderHide={true}
@@ -63,11 +68,8 @@ export default (
         }}
       />
 
-      {/* Metrics route */}
-      <Route path={subroutes.metrics} Component={TenantsLayoutPage}>
-        {/* Default landing inside root → redirect to tenants */}
-        <Route index element={<Navigate to={urls.tenants} replace />} />
-        {/* Onboarding observability service */}
+      {/* Onboarding observability service */}
+      <Route path={subroutes.metrics} Component={OnboardingServiceLayout}>
         <Route
           path={subroutes.onboarding}
           Component={OnboardingServicePage}
@@ -77,8 +79,15 @@ export default (
             },
           }}
         />
-        {/* Tenants routes */}
-        <Route path={subroutes.tenants}>
+      </Route>
+
+      {/* Metrics route */}
+      <Route path={subroutes.metrics} Component={MetricsLayout}>
+        {/* Default landing inside root → redirect to tenants */}
+        <Route index element={<Navigate to={urls.tenants} replace />} />
+
+        {/* Tenants routes with base layout + tenants description */}
+        <Route path={subroutes.tenants} Component={TenantsLayout}>
           <Route
             path=""
             Component={TenantsPage}
@@ -109,6 +118,9 @@ export default (
               }}
             />
           </Route>
+        </Route>
+        {/* Tenants routes with default layout*/}
+        <Route path={subroutes.tenants} Component={TenantsBaseLayout}>
           <Route
             path={subroutes.onboarding}
             Component={OnboardingTenantPage}
@@ -118,10 +130,15 @@ export default (
               },
             }}
           />
+        </Route>
+
+        {/* Tenant layout */}
+        <Route path={subroutes.tenants} Component={TenantLayout}>
           <Route
             path={subroutes.creation}
             Component={TenantsCreationPage}
             handle={{
+              titleKey: 'creation.title',
               tracking: {
                 pageName: 'tenants-creation',
               },
