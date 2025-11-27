@@ -12,12 +12,12 @@
   "labelLocation": "Location",
   "labelContainerType": "Container type",
   "labelOffsiteReplication": "Offsite Replication",
-  "descriptionOffsiteReplication": "Automatically replicate your data to a remote site in an Infrequent Access storage class. <0>Learn more</0>",
+  "descriptionOffsiteReplication": "Automatically replicate your data to a remote site in an Infrequent Access storage class. &lt;0>Learn more&lt;/0>",
   "labelVersioning": "Version management",
   "descriptionVersioning": "Automates the creation of versions of an object to prevent accidental deletion, or simply when a new object is uploaded.",
   "labelUser": "User",
   "descriptionUser": "You can grant access to the container to one of your preconfigured OpenStack users with an \"Administrator\" or \"Object Storage Operator\" role, or create a new user.",
-  "labelEncryption": "Encrypt your data",
+  "labelEncryption": "Encryption of your data",
   "descriptionEncryption": "The data dumped into this container is encrypted on the fly by OVHcloud.",
   "summaryTitle": "Summary",
   "pricingDisclaimer": " For more information on pricing, <0>see the pricing page</0>.",
@@ -30,7 +30,7 @@
   "summaryOfferS3": "S3 compatible API",
   "summaryOfferSwift": "Swift API",
   "summaryLocationSection": "Region",
-  "summaryOffsiteReplicationSection": "Replication",
+  "summaryOffsiteReplicationSection": "Offsite Replication",
   "summaryOffsiteReplicationEnabled": "Replication enabled",
   "summaryOffsiteReplicationDisabled": "Replication disabled",
   "summaryOffsiteReplicationRegion": "Region:",
@@ -84,5 +84,6 @@
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "High resilience/high availability deployment for your critical applications across 3 availability zones.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Deploy your applications as close to your users as possible for low latency and data residency.",
   "selectGeographicalZone": "Select a geographical area",
-  "showAllRegions": "View all regions"
+  "showAllRegions": "Show all regions",
+  "summaryEncryptionPlaintext": "None"
 }
