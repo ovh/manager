@@ -26,6 +26,8 @@ export default /* @ngInject */ function LicenseDetailsCtrl(
   $scope.changeOsTaskRunning = false;
   let changeOsPollingId;
 
+  $scope.formatName = License.formatName;
+
   function fetchLicense() {
     return License.get('/{licenseId}', {
       urlParams: $stateParams,
@@ -44,7 +46,15 @@ export default /* @ngInject */ function LicenseDetailsCtrl(
             );
         }
 
-        return $scope.license;
+        if (license.type === $scope.licenseTypes.SPLA) return $scope.license;
+
+        return License.getServiceId(license).then(({ serviceId }) =>
+          License.getActualLicenseVersion(serviceId).then((detailedLicense) => {
+            const description = detailedLicense?.resource?.product?.description;
+            if (description) $scope.license.description = description;
+            return $scope.license;
+          }),
+        );
       })
       .catch(() => {
         Alerter.alertFromSWS(
