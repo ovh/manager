@@ -12,7 +12,7 @@ import {
   Puzzle,
   Tag,
   User,
-  FileLock2,
+  FolderLock,
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -181,7 +181,7 @@ const OrderSummary = ({
                 onAnchorClicked={() => scrollToDiv('object-lock')}
               >
                 <SummaryItem>
-                  <FileLock2 className="size-4" />
+                  <FolderLock className="size-4" />
                   <span>
                     {order.objectLock.status ===
                     storages.ObjectLockStatusEnum.enabled
