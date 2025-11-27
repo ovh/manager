@@ -309,13 +309,13 @@ htmlW3cTestsSetup();
 
 ```bash
 # Run ESLint
-npx manager-lint
+yarn lint:modern
 
 # Run ESLint with fix
-npx manager-lint --fix
+yarn lint:modern --fix
 
 # Run ESLint on specific files
-npx manager-lint src/**/*.{js,jsx,ts,tsx}
+yarn lint:modern src/**/*.{js,jsx,ts,tsx}
 ```
 
 #### Code Duplication
