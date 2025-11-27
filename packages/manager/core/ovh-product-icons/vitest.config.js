@@ -1,11 +1,12 @@
-import path from 'path';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 import svgr from 'vite-plugin-svgr';
+
 import {
-  sharedConfig,
-  mergeConfig,
   createConfig,
   defaultExcludedFiles,
+  mergeConfig,
+  sharedConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(

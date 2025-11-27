@@ -119,3 +119,187 @@ exports[`TagsList Component - Snapshot Tests > displays modal on click of "More 
   </div>
 </body>
 `;
+
+exports[`TagsList Component - Snapshot Tests > displays modal on click of "More tags" link 2`] = `
+<body>
+  <div>
+    <div
+      class="w-full h-full flex flex-wrap min-w-[85px]"
+    >
+      <span
+        class="_badge_14ftx_2 _badge--neutral_14ftx_53 _badge--md_14ftx_82 mr-1 mb-1 truncate inline-block"
+        data-ods="badge"
+        style="max-width: -32px;"
+      >
+        tag1:tag1
+      </span>
+      <span
+        class="_badge_14ftx_2 _badge--neutral_14ftx_53 _badge--md_14ftx_82 mr-1 mb-1 truncate inline-block"
+        data-ods="badge"
+        style="max-width: -32px;"
+      >
+        tag2:tag2
+      </span>
+      <a
+        class="_link_1qra4_2 _link--no-text_1qra4_42 text-xs"
+        data-ods="link"
+        href="#"
+      >
+        <span>
+          ​
+        </span>
+        <span
+          class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
+          data-ods="icon"
+          role="presentation"
+        />
+      </a>
+    </div>
+  </div>
+  <div
+    class="_modal-backdrop_11des_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::r0::backdrop"
+    style="z-index: calc(var(--ods-theme-overlay-z-index) - 2);"
+  />
+  <div
+    class="_modal-positioner_11des_28"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::r0::positioner"
+    style="z-index: calc(var(--ods-theme-overlay-z-index) - 1);"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_11des_33"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::r0::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_7pkdv_2 _modal-header--neutral_7pkdv_21"
+      >
+        <button
+          aria-label="Close"
+          class="_button_6crpx_2 _button--neutral_6crpx_259 _button--xs_6crpx_200 _button--ghost_6crpx_327 _modal-header__close_7pkdv_27"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::r0::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_17jys_2 text-left"
+        data-ods="modal-body"
+      >
+        <div
+          class="flex items-center mb-4"
+        >
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block mr-3 flex-1"
+            data-ods="text"
+          >
+            Tags: Test Resource
+          </h4>
+        </div>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div
+            class="flex w-full mb-4"
+          >
+            <div
+              class="_input_11yl9_2 rounded-l flex-1 mr-1"
+            >
+              <input
+                aria-busy="false"
+                class="_input__field_11yl9_41"
+                data-ods="input"
+                id=":r1:"
+                name="search"
+                placeholder="rechercher"
+                type="text"
+                value=""
+              />
+            </div>
+            <button
+              class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--outline_6crpx_435"
+              data-ods="button"
+              type="button"
+            >
+              Rechercher
+            </button>
+          </div>
+          <div
+            class="w-full min-w-[85px] max-h-[120px] overflow-auto"
+          >
+            <div
+              class="w-full h-full flex flex-wrap min-w-[85px]"
+            >
+              <span
+                class="_badge_14ftx_2 _badge--neutral_14ftx_53 _badge--md_14ftx_82 mr-1 mb-1 truncate inline-block"
+                data-ods="badge"
+                style="max-width: -32px;"
+              >
+                tag1:tag1
+              </span>
+              <span
+                class="_badge_14ftx_2 _badge--neutral_14ftx_53 _badge--md_14ftx_82 mr-1 mb-1 truncate inline-block"
+                data-ods="badge"
+                style="max-width: -32px;"
+              >
+                tag2:tag2
+              </span>
+              <span
+                class="_badge_14ftx_2 _badge--neutral_14ftx_53 _badge--md_14ftx_82 mr-1 mb-1 truncate inline-block"
+                data-ods="badge"
+                style="max-width: -32px;"
+              >
+                tag3:tag3
+              </span>
+              <span
+                class="_badge_14ftx_2 _badge--neutral_14ftx_53 _badge--md_14ftx_82 mr-1 mb-1 truncate inline-block"
+                data-ods="badge"
+                style="max-width: -32px;"
+              >
+                tag4:tag4
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_6crpx_2 _button--primary_6crpx_276 _button--md_6crpx_217 _button--ghost_6crpx_327 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Retour
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
