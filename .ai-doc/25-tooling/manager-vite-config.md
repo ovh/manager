@@ -411,9 +411,9 @@ export default getBaseConfig({
   // Container-specific configuration
   base: './',
   server: {
-    port: 9001,
+    port: 9000,
     hmr: {
-      port: 9001
+      port: 9000
     }
   }
 });
@@ -427,9 +427,9 @@ export default getBaseConfig({
   // µApp-specific configuration
   base: '/app/',
   server: {
-    port: 9000,
+    port: 9001,
     hmr: {
-      port: 9000
+      port: 9001
     }
   }
 });
