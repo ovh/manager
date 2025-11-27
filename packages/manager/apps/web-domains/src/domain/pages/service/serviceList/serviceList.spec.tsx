@@ -50,9 +50,6 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   return {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
-    Breadcrumb: ({ children }: { children?: React.ReactNode }) => (
-      <div data-testid="breadcrumb">{children}</div>
-    ),
     Datagrid: ({
       items,
       topbar,
@@ -97,12 +94,10 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     ),
     BaseLayout: ({
       children,
-      breadcrumb,
       header,
       message,
     }: {
       children: React.ReactNode;
-      breadcrumb?: React.ReactNode;
       header?: {
         title: string;
         changelogButton?: React.ReactNode;
@@ -111,7 +106,6 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       message?: React.ReactNode;
     }) => (
       <div data-testid="base-layout">
-        {breadcrumb}
         {header?.changelogButton}
         {header?.headerButton}
         {message}
@@ -499,7 +493,6 @@ describe('Domains datagrid', () => {
     it('renders all required sub-components', async () => {
       const { getByTestId } = render(<ServiceList />, { wrapper });
 
-      expect(getByTestId('breadcrumb')).toBeInTheDocument();
       expect(getByTestId('top-bar-cta')).toBeInTheDocument();
       expect(getByTestId('domain-guide-button')).toBeInTheDocument();
       expect(getByTestId('changelog-button')).toBeInTheDocument();

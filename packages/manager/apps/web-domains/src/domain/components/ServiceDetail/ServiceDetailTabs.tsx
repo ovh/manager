@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
+  Icon,
+  ICON_NAME,
   Tab,
   TabContent,
   TabList,
   Tabs,
   TabsValueChangeEvent,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ServiceDetailTabsProps } from '@/domain/constants/serviceDetail';
@@ -44,13 +49,44 @@ export default function ServiceDetailsTabs({
     }
   }, [location.pathname]);
 
+  const isDisabled = (value: string, name: string, bool: boolean) => {
+    if (value.includes(name) && bool) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
         {ServiceDetailTabsProps.map((tab) => {
           return (
-            <Tab key={tab.id} value={tab.value} data-testid={tab.id}>
+            <Tab
+              key={tab.id}
+              value={tab.value}
+              data-testid={tab.id}
+              disabled={isDisabled(
+                tab.value,
+                'hosts',
+                !domainResource.currentState.hostsConfiguration.hostSupported,
+              )}
+              className="flex items-center gap-x-4"
+            >
               {t(tab.name)}
+              {isDisabled(
+                tab.value,
+                'hosts',
+                !domainResource.currentState.hostsConfiguration.hostSupported,
+              ) && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon name={ICON_NAME.circleInfo} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {t('domain_tab_name_not_supported')}
+                  </TooltipContent>
+                </Tooltip>
+              )}
             </Tab>
           );
         })}

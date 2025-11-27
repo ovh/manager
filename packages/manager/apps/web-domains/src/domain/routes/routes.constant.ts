@@ -11,6 +11,7 @@ export const urls = {
   domainTabRedirection: '/domain/:serviceName/redirection',
   domainTabDynHost: '/domain/:serviceName/dynhost',
   domainTabHost: '/domain/:serviceName/hosts',
+  domainTabHostDelete: '/domain/:serviceName/hosts/:hostname/delete',
   domainTabDnssec: '/domain/:serviceName/dnssec',
   domainTabContactManagement: '/domain/:serviceName/contact-management',
 };

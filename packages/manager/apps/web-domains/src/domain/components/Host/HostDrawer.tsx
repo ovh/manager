@@ -55,18 +55,21 @@ export default function HostDrawer({
   const formData = useForm({
     mode: 'onChange',
     values: {
-      host:
-        drawer.action === DrawerActionEnum.Modify
-          ? hostData.host.split('.')[0]
-          : '',
-      ips:
-        drawer.action === DrawerActionEnum.Modify ? String(hostData.ips) : '',
+      host: isAddAction ? '' : hostData.host.split('.')[0],
+      ips: isAddAction ? '' : String(hostData.ips),
     },
   });
 
-  const { handleSubmit, formState, clearErrors } = formData;
+  const { handleSubmit, formState, clearErrors, reset } = formData;
 
   const onDismiss = () => {
+    // We added the if here to allow the input to be empty if you re-open the drawer on add mode.
+    if (isAddAction) {
+      reset({
+        host: '',
+        ips: '',
+      });
+    }
     setDrawer({
       isOpen: false,
       action: null,

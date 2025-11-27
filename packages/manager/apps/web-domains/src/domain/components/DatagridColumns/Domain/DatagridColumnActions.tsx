@@ -1,9 +1,6 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
-import {
-  useNavigation,
-  useNavigationGetUrl,
-} from '@ovh-ux/manager-react-shell-client';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
@@ -15,6 +12,9 @@ import {
 } from '@/common/enum/common.enum';
 import { DomainServiceStateEnum } from '@/domain/types/domainResource';
 import { DOMAIN } from '@/common/constants';
+import { urls } from '@/domain/routes/routes.constant';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
+import { useNavigate } from 'react-router-dom';
 
 interface DatagridColumnActionsProps {
   readonly serviceName: string;
@@ -32,7 +32,11 @@ export default function DatagridColumnActions({
     NAMESPACES.ACTIONS,
     NAMESPACES.CONTACT,
   ]);
+  const domainDetailUrl = useGenerateUrl(urls.domainDetail, 'path', {
+    serviceName,
+  });
 
+  const navigate = useNavigate();
   const { navigateTo } = useNavigation();
 
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
@@ -46,7 +50,7 @@ export default function DatagridColumnActions({
       {
         id: 1,
         label: t(`${NAMESPACES.ACTIONS}:see_details`),
-        href: `/domain/${serviceName}/information`,
+        onClick: () => navigate(domainDetailUrl),
       },
     ];
 
