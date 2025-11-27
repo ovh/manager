@@ -33,7 +33,7 @@ This structure applies to:
 │   ├── components/               # Reusable UI components
 │   │   └── componentName/        # Component-specific folder
 │   │       ├── ComponentName.component.tsx
-│   │       ├── componentName.constants.ts
+│   │       ├── ComponentName.constants.ts
 │   │       └── ComponentName.spec.tsx
 │   ├── constants/                # Application constants
 │   ├── data/                     # Data layer
@@ -44,7 +44,7 @@ This structure applies to:
 │   ├── pages/                    # Page components
 │   │   └── pageName/             # Page-specific folder
 │   │       ├── PageName.page.tsx
-│   │       ├── pageName.constants.ts
+│   │       ├── PageName.constants.ts
 │   │       └── PageName.spec.tsx
 │   ├── services/                 # Business logic services
 │   ├── types/                    # TypeScript type definitions
