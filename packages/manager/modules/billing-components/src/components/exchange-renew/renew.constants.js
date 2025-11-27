@@ -1,0 +1,9 @@
+export const RENEW_PERIODS = {
+  YEARLY: 'YEARLY',
+  MONTHLY: 'MONTHLY',
+  DELETE_AT_EXPIRATION: 'DELETE_AT_EXPIRATION',
+};
+
+export default {
+  RENEW_PERIODS,
+};

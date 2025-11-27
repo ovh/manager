@@ -1,0 +1,23 @@
+{
+  "exchange_update_billing_button_title": "Configuration du renouvellement",
+  "exchange_update_billing_action_title": "Période de renouvellement",
+  "exchange_update_billing_validation_title": "Validation",
+  "exchange_update_billing_periode_intro": "Choisissez la périodicité souhaitée pour le renouvellement automatique de chaque compte. <br />Celle-ci sera appliquée à partir du prochain renouvellement.",
+  "exchange_update_billing_actions_label": "Actions",
+  "exchange_update_billing_email_label": "Compte e-mail",
+  "exchange_update_billing_expiration_date_label": "Expiration",
+  "exchange_update_billing_current_periode_label": "Valeur actuelle",
+  "exchange_update_billing_periode_label": "Renouvellement",
+  "exchange_update_billing_header_new_periode": "Nouvelle période",
+  "exchange_update_billing_periode_action_MONTHLY": "Modifier en \"Mensuelle\"",
+  "exchange_update_billing_periode_action_YEARLY": "Modifier en \"Annuelle\"",
+  "exchange_update_billing_periode_action_DELETE_AT_EXPIRATION": "Modifier en \"Expire à terme\"",
+  "exchange_update_billing_periode_value_MONTHLY": "Mensuelle",
+  "exchange_update_billing_periode_value_YEARLY": "Annuelle",
+  "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Expire au terme",
+  "exchange_update_billing_periode_delete_warning": "Attention! Ce choix implique que le service va expirer à terme et les données seront perdues. Il sera alors impossible de récupérer les données du compte.",
+  "exchange_update_billing_periode_resume": "Vous allez changer la période de renouvellement de vos comptes :",
+  "exchange_update_billing_periode_success": "La période de renouvellement des comptes sélectionnés a été mise à jour.",
+  "exchange_update_billing_periode_partial": "Certaines périodes de renouvellement n'ont pas été mises à jour.",
+  "exchange_update_billing_periode_failure": "Une erreur est survenue lors de la mise à jour du renouvellement des comptes"
+}
