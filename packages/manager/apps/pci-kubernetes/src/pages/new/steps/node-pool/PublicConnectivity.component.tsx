@@ -45,7 +45,7 @@ const PublicConnectivity = ({
 
   return (
     <div className="max-w-3xl">
-      <Text className="text-[--ods-color-text-500] my-6 font-bold" preset={TEXT_PRESET.heading4}>
+      <Text className="my-6 font-bold text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
         {t('kube_common_node_pool_public_connetivity_title')}
       </Text>
       <div className="mb-6">
@@ -62,16 +62,18 @@ const PublicConnectivity = ({
                 <span className="font-semibold">
                   {t('kube_common_node_pool_public_connetivity_toggle')}
                 </span>
-                {price && <span> {` (${price?.hourFormatted} / ${t('kube_common_node_pool_node')})`}</span>}
+                {price && (
+                  <span> {` (${price?.hourFormatted} / ${t('kube_common_node_pool_node')})`}</span>
+                )}
               </ToggleLabel>
             </Toggle>
             <PopoverTrigger asChild>
               <Icon
-                className="cursor-help text-[--ods-color-primary-500] text-[1.3rem]"
+                className="cursor-help text-[1.3rem] text-[--ods-color-primary-500]"
                 name="circle-question"
               />
             </PopoverTrigger>
-            <PopoverContent className="p-4 max-w-[500px]">
+            <PopoverContent className="max-w-[500px] p-4">
               <div className="p-6">
                 <Text className="ml-4" color="text">
                   <Trans
@@ -104,7 +106,7 @@ const PublicConnectivity = ({
                   <li>{t('kube_common_node_pool_deploy_floating_ip_content4')}</li>
                 </ul>
                 <Text className="font-bold">
-                  <Icon name="triangle-exclamation" className="inline-block mr-2" />
+                  <Icon name="triangle-exclamation" className="mr-2 inline-block" />
                   {t('kube_common_node_pool_public_connectivity_warning_title')}
                 </Text>
                 <Text color="text">

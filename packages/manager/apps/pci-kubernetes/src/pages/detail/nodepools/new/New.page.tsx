@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useMemo, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 
 import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
@@ -13,7 +13,7 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/react';
 
 import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
-import { Notifications, StepComponent } from '@ovh-ux/manager-react-components';
+import { Notifications, StepComponent, useNotifications } from '@ovh-ux/manager-react-components';
 
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
@@ -39,6 +39,7 @@ export default function NewPage(): ReactElement {
   const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
   const { data: cluster, isPending: isClusterPending } = useKubernetesCluster(projectId, clusterId);
   const { data: regionInformations } = useRegionInformations(projectId, cluster?.region ?? null);
+  const { addError, addSuccess } = useNotifications();
 
   const price = useMergedFlavorById(projectId, cluster?.region ?? null, store.flavor?.id, {
     select: (flavor) =>
@@ -56,7 +57,35 @@ export default function NewPage(): ReactElement {
     onAntiAffinityChange: store.set.antiAffinity,
   });
 
-  const { create, isAdding } = useNodePoolCreation(projectId, clusterId);
+  const { create, isAdding } = useNodePoolCreation(projectId, clusterId, {
+    onSuccess: () => {
+      addSuccess(
+        <Translation ns="add">
+          {(_t) =>
+            _t('kube_add_node_pool_success', {
+              nodePoolName: store.name.value,
+            })
+          }
+        </Translation>,
+        true,
+      );
+      navigate('../nodepools');
+    },
+    onError: (e) => {
+      addError(
+        <Translation ns="add">
+          {(_t) =>
+            _t('kube_add_node_pool_error', {
+              message: e?.response?.data?.message || e?.message || null,
+              nodePoolName: store.name.value,
+            })
+          }
+        </Translation>,
+        true,
+      );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+  });
 
   useEffect(() => {
     store.reset();
