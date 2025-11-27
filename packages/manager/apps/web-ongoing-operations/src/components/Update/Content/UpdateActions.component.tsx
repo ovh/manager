@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -54,9 +53,9 @@ export default function UpdateActions({
           <RadioControl />
           <RadioLabel
             className={
-              !data?.canRelaunch
-                ? 'text-[var(--ods-color-text-disabled-default)]'
-                : 'text-[var(--ods-color-text)]'
+              data.canRelaunch
+                ? 'text-[var(--ods-color-text)]'
+                : 'text-[var(--ods-color-text-disabled-default)]'
             }
           >
             {t('domain_operations_relaunch_title')}
@@ -69,9 +68,9 @@ export default function UpdateActions({
           <RadioControl />
           <RadioLabel
             className={
-              !data?.canAccelerate
-                ? 'text-[var(--ods-color-text-disabled-default)]'
-                : 'text-[var(--ods-color-text)]'
+              data.canAccelerate
+                ? 'text-[var(--ods-color-text)]'
+                : 'text-[var(--ods-color-text-disabled-default)]'
             }
           >
             {t('domain_operations_accelerate_title')}
@@ -81,9 +80,9 @@ export default function UpdateActions({
           <RadioControl />
           <RadioLabel
             className={
-              !data?.canCancel
-                ? 'text-[var(--ods-color-text-disabled-default)]'
-                : 'text-[var(--ods-color-text)]'
+              data.canCancel
+                ? 'text-[var(--ods-color-text)]'
+                : 'text-[var(--ods-color-text-disabled-default)]'
             }
           >
             {t('domain_operations_cancel_title')}

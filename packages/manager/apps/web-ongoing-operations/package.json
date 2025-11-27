@@ -12,7 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
+    "build:strict": "tsc --project tsconfig.json && vite build",
     "coverage": "manager-test run --coverage",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "manager-test run"
   },
@@ -45,7 +48,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.13.0",
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.15.0",
     "@tanstack/react-query-devtools": "5.90.2"
