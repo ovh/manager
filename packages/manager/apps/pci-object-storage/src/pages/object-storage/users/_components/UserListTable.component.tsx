@@ -7,7 +7,7 @@ import { useGetColumns } from './UsertListColumns.component';
 import DataTable from '@/components/data-table';
 import { useGetFilters } from './UserListFilters.component';
 import user from '@/types/User';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 import { useObjectStorageData } from '../../ObjectStorage.context';
 import { getUserPolicy } from '@/data/api/user/user.api';
 

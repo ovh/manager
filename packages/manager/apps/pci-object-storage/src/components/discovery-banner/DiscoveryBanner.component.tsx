@@ -11,6 +11,7 @@ const DiscoveryBanner = ({ children }: { children: ReactNode }) => {
   const { t } = useTranslation('pci-object-storage/order-funnel');
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
+
   if (!isProjectDiscoveryMode) {
     return null;
   }
