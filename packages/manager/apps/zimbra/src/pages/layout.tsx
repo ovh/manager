@@ -6,19 +6,14 @@ import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { Error } from '@/components';
-import { useOrganizations, usePlatform } from '@/data/hooks';
-import { isOnboarded } from '@/utils';
+import { usePlatform } from '@/data/hooks';
 
 export const Layout = () => {
   const location = useLocation();
   const { trackCurrentPage } = useOvhTracking();
   const { shell } = useContext(ShellContext);
 
-  const { platformId, isLoading, isError, error } = usePlatform();
-
-  const onboarded = isOnboarded();
-
-  const { data: organizations } = useOrganizations();
+  const { platformId, data: platform, isLoading, isError, error } = usePlatform();
 
   useEffect(() => {
     trackCurrentPage();
@@ -29,20 +24,32 @@ export const Layout = () => {
     shell.ux.hidePreloader();
   }, []);
 
-  const shouldOnboard =
-    !onboarded && organizations?.length === 0 && !location.pathname.startsWith('/onboarding');
+  const isOnboardingNeeded =
+    platform?.currentState?.numberOfOrganizations === 0 &&
+    !location.pathname.startsWith('/onboarding');
 
-  return (
-    <>
-      <Outlet />
-      {isError && <Error error={error as ErrorBannerProps['error']} />}
-      {!platformId && !isLoading && (
-        <Navigate key={location.pathname} to="onboarding" replace={true} />
-      )}
-      {shouldOnboard && <Navigate key={location.pathname} to="onboarding/welcome" replace={true} />}
-      {!shouldOnboard && location.pathname === '/' && <Navigate to={platformId} replace={true} />}
-    </>
-  );
+  if (isError) {
+    return <Error error={error as ErrorBannerProps['error']} />;
+  }
+
+  if (!isLoading) {
+    // 1. No platformId → go to onboarding
+    if (!platformId) {
+      return <Navigate to="onboarding" replace />;
+    }
+
+    // 2. Needs onboarding → go to welcome
+    if (isOnboardingNeeded) {
+      return <Navigate to="onboarding/welcome" replace />;
+    }
+
+    // 3. Root path → redirect to platformId
+    if (location.pathname === '/') {
+      return <Navigate to={platformId} replace />;
+    }
+  }
+
+  return <Outlet />;
 };
 
 export default Layout;

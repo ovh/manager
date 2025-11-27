@@ -11,7 +11,6 @@ import { Loading } from '@/components';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { EXIT, ONBOARDING_CONFIGURE } from '@/tracking.constants';
-import { setOnboarded } from '@/utils';
 
 export const ConfigureLayout: React.FC = () => {
   const { trackClick } = useOvhTracking();
@@ -39,7 +38,6 @@ export const ConfigureLayout: React.FC = () => {
           actionType: 'action',
           actions: [ONBOARDING_CONFIGURE, EXIT],
         });
-        setOnboarded();
       }}
     >
       <Suspense fallback={<Loading />}>

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { useLocation, useMatches, useSearchParams } from 'react-router-dom';
+import { useMatches, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +23,6 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
   const { t } = useTranslation(namespace);
   const [searchParams] = useSearchParams();
   const matches = useMatches() as RouteMatch[];
-  const location = useLocation();
 
   const organizationId = searchParams.get('organizationId');
   const search = buildURLSearchParams({
@@ -82,7 +81,7 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
     }
 
     return crumbItems;
-  }, [location, matches, organization, account, domain]);
+  }, [matches, organization, account, domain]);
 
   return (
     <OdsBreadcrumb key={items.length} data-testid="breadcrumb">
