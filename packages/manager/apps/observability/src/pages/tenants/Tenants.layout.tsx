@@ -1,20 +1,17 @@
-import { BaseLayout, Breadcrumb, Notifications } from '@ovh-ux/muk';
+import { useTranslation } from 'react-i18next';
 
-import { AppConfig, appName } from '@/App.constants';
-import { ObservabilityServiceProvider } from '@/contexts/ObservabilityService.context';
-import TenantsOutlet from '@/pages/tenants/Tenants.outlet';
-import { LABELS } from '@/utils/labels.constants';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
+import TenantsBaseLayout from '@/pages/tenants/TenantsBase.layout';
 
 export default function TenantsLayout() {
+  const { t } = useTranslation('tenants');
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb appName={appName} rootLabel={AppConfig.rootLabel} />}
-      header={{ title: LABELS.TENANTS }}
-      message={<Notifications />}
-    >
-      <ObservabilityServiceProvider>
-        <TenantsOutlet />
-      </ObservabilityServiceProvider>
-    </BaseLayout>
+    <TenantsBaseLayout>
+      <Text preset={TEXT_PRESET.paragraph}>{t('listing.description')}</Text>
+      <Text preset={TEXT_PRESET.paragraph} className="mb-6">
+        {t('listing.description_bis')}
+      </Text>
+    </TenantsBaseLayout>
   );
 }
