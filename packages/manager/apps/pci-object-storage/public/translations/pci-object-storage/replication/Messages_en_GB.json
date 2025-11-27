@@ -73,5 +73,6 @@
   "noAvailableDestinationContainersAlert": "To use asynchronous replication, you need another container with versioning enabled.",
   "replicationRequiresVersioningAlert": "To use asynchronous replication, versioning must be enabled.",
   "destinationFieldLabel": "Destination container",
-  "replicationButtonCancel": "Cancel"
+  "replicationButtonCancel": "Cancel",
+  "disabledClassDestinationHelper": "Select a destination container to enable this option"
 }

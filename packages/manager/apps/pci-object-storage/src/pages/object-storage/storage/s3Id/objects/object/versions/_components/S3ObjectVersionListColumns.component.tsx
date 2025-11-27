@@ -13,10 +13,11 @@ import {
 } from '@datatr-ux/uxlib';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
-import { octetConverter } from '@/lib/bytesHelper';
+import { localeBytesConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import { isDeepArchive } from '@/lib/s3ObjectHelper';
+import { useLocale } from '@/hooks/useLocale';
 
 interface ObjectVersionListColumnsProps {
   onDownloadClicked: (object: StorageObject) => void;
@@ -28,6 +29,7 @@ export const getColumns = ({
   onDownloadClicked,
   onDeleteClicked,
 }: ObjectVersionListColumnsProps) => {
+  const locale = useLocale();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
@@ -100,7 +102,7 @@ export const getColumns = ({
           {t('tableHeaderSize')}
         </DataTable.SortableHeader>
       ),
-      cell: ({ row }) => <span>{octetConverter(row.original.size)}</span>,
+      cell: ({ row }) => <span>{localeBytesConverter(row.original.size, locale)}</span>,
     },
     {
       id: MENU_COLUMN_ID,

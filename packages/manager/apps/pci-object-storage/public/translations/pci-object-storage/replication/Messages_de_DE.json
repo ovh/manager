@@ -73,5 +73,6 @@
   "noAvailableDestinationContainersAlert": "Um die asynchrone Replikation zu verwenden, benötigen Sie einen anderen Container mit aktivierter Versionsverwaltung.",
   "replicationRequiresVersioningAlert": "Um die asynchrone Replikation zu verwenden, muss das Versioning aktiviert sein.",
   "destinationFieldLabel": "Zielcontainer",
-  "replicationButtonCancel": "Abbrechen"
+  "replicationButtonCancel": "Abbrechen",
+  "disabledClassDestinationHelper": "Wählen Sie einen Zielcontainer aus, um diese Option zu aktivieren."
 }

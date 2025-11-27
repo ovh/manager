@@ -3,8 +3,9 @@ import { Upload, X } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { octetConverter } from '@/lib/bytesHelper';
+import { localeBytesConverter, octetConverter } from '@/lib/bytesHelper';
 import FileIcon from '../file-icon/FileIcon.component';
+import { useLocale } from '@/hooks/useLocale';
 
 interface FileInputProps
   extends Omit<
@@ -18,6 +19,7 @@ interface FileInputProps
 export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
   ({ value = [], onChange, multiple = false, className, ...props }, ref) => {
     const { t } = useTranslation('components/file-uploader');
+    const locale = useLocale();
     const [isDragging, setIsDragging] = React.useState(false);
     const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -98,7 +100,7 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
                     </p>
                   </div>
                   <div className="flex flex-row items-center justify-end gap-4">
-                    <p>{octetConverter(file.size)}</p>
+                    <p>{localeBytesConverter(file.size, locale)}</p>
                     <Button
                       type="button"
                       mode="ghost"

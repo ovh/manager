@@ -7,9 +7,11 @@ import {
   getMacroRegion,
   useTranslatedMicroRegions,
 } from '@/hooks/useTranslatedMicroRegions';
-import { octetConverter } from '@/lib/bytesHelper';
+import { localeBytesConverter } from '@/lib/bytesHelper';
+import { useLocale } from '@/hooks/useLocale';
 
 export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
+  const locale = useLocale();
   const { translateMacroRegion } = useTranslatedMicroRegions();
   return (
     <div
@@ -34,7 +36,7 @@ export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
               {translateMacroRegion(swift.region)}
             </div>
           </Badge>
-          <Badge variant="outline">{octetConverter(swift.storedBytes)}</Badge>
+          <Badge variant="outline">{localeBytesConverter(swift.storedBytes, locale)}</Badge>
         </div>
       </div>
     </div>
