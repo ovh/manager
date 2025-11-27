@@ -50,14 +50,10 @@ const commonInvalidNames = [
 const commonValidNames = ['aa', 'a1', 'a-a', 'a--a', 'name-1'];
 
 const validMaxNodePoolName = 'a'.repeat(NODE_POOL_NAME_CONSTRAINTS.MAX_LENGTH);
-const invalidMaxNodePoolName = 'a'.repeat(
-  NODE_POOL_NAME_CONSTRAINTS.MAX_LENGTH + 1,
-);
+const invalidMaxNodePoolName = 'a'.repeat(NODE_POOL_NAME_CONSTRAINTS.MAX_LENGTH + 1);
 
 const validMaxClusterName = 'a'.repeat(CLUSTER_NAME_CONSTRAINTS.MAX_LENGTH);
-const invalidMaxClusterName = 'a'.repeat(
-  CLUSTER_NAME_CONSTRAINTS.MAX_LENGTH + 1,
-);
+const invalidMaxClusterName = 'a'.repeat(CLUSTER_NAME_CONSTRAINTS.MAX_LENGTH + 1);
 
 const validNodePoolNames = ['1', '1a', '1-1', '1--1', 'a'];
 
@@ -117,7 +113,7 @@ const INVALID_KUBE_URLS = [
 ];
 
 describe(`getClusterUrlFragments`, () => {
-  it('should parsed well formated kubernetes URLs', () => {
+  it('should parse well formated kubernetes URLs', () => {
     const parsed = getClusterUrlFragments(VALID_KUBE_URL);
 
     expect(parsed?.shortId).toBe('3izocz');
@@ -125,11 +121,8 @@ describe(`getClusterUrlFragments`, () => {
     expect(parsed?.region).toBe('gra9');
   });
 
-  test.each(INVALID_KUBE_URLS)(
-    'should not parse invalid kubenertes URL',
-    (url) => {
-      const match = getClusterUrlFragments(url);
-      expect(match).toBe(null);
-    },
-  );
+  test.each(INVALID_KUBE_URLS)('should not parse invalid kubenertes URL', (url) => {
+    const match = getClusterUrlFragments(url);
+    expect(match).toBe(null);
+  });
 });

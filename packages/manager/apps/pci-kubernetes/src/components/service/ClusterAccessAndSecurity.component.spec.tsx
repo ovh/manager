@@ -1,9 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import userEvents from '@testing-library/user-event';
 import { vi } from 'vitest';
-
-import { v6 } from '@ovh-ux/manager-core-api';
 
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
@@ -124,39 +121,6 @@ describe('ClusterAccessAndSecurity', () => {
     );
     expect(getByText(/kube_service_upgrade_policy_automatic/i)).toBeInTheDocument();
   });
-
-  it('disables kube config button when status is installing', () => {
-    const { getByTestId } = render(
-      <ClusterAccessAndSecurity kubeDetail={{ status: 'INSTALLING' } as TKube} />,
-      { wrapper },
-    );
-    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).toBeDisabled();
-  });
-
-  it('enables kube config button when status is ready', () => {
-    const { getByTestId } = render(
-      <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
-      { wrapper },
-    );
-    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).not.toBeDisabled();
-  });
-
-  it('enables spinner for kube config button when getting data and button disabled', async () => {
-    vi.mocked(v6.post).mockReturnValue(new Promise(() => {}));
-
-    const { getByTestId } = render(
-      <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
-      { wrapper },
-    );
-
-    await userEvents.click(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig'));
-
-    getByTestId('clusterAccessAndSecurity-spinnerDownloadKubeConfig').click();
-
-    expect(getByTestId('clusterAccessAndSecurity-spinnerDownloadKubeConfig')).toBeInTheDocument();
-    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).toBeDisabled();
-  });
-
   it('renders nodes URL with clipboard component in 1az', () => {
     const { container, getByText } = render(
       <ClusterAccessAndSecurity

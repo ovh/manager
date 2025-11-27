@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 
 import { useHref } from 'react-router-dom';
 
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -23,35 +23,17 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { Button, Icon, Spinner } from '@ovhcloud/ods-react';
 
-import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useParam } from '@ovh-ux/manager-pci-common';
-import {
-  ActionMenu,
-  Clipboard,
-  LinkType,
-  Links,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { ActionMenu, Clipboard, LinkType, Links } from '@ovh-ux/manager-react-components';
 
-import { useClusterRestrictions, useKubeConfig, useOidcProvider } from '@/api/hooks/useKubernetes';
+import { useClusterRestrictions, useOidcProvider } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import {
-  CONFIG_FILENAME,
-  KUBECONFIG_URL,
-  KUBE_INSTALLING_STATUS,
-  PROCESSING_STATUS,
-} from '@/constants';
-import {
-  downloadContent,
-  getValidOptionalKeys,
-  isMultiDeploymentZones,
-  isOptionalValue,
-} from '@/helpers';
-import { getClusterUrlFragments } from '@/helpers/matchers/matchers';
+import { KUBECONFIG_URL, PROCESSING_STATUS } from '@/constants';
+import { getValidOptionalKeys, isMultiDeploymentZones, isOptionalValue } from '@/helpers';
 import { TKube } from '@/types';
 
+import { ClusterConfigFileActions } from './ClusterConfigFileActions.component';
 import TileLine from './TileLine.component';
 
 export type ClusterAccessAndSecurityProps = {
@@ -64,11 +46,7 @@ export default function ClusterAccessAndSecurity({
   const { t } = useTranslation('service');
 
   const { kubeId, projectId } = useParam('projectId', 'kubeId');
-  const { addError } = useNotifications();
   const [isOptional, setIsOptional] = useState(true);
-  const [ongoingKubeConfigAction, setOngoingKubeConfigAction] = useState<
-    'copy' | 'download' | null
-  >(null);
 
   const hrefRestrictions = useHref('../restrictions');
   const hrefUAddOIDCProvider = useHref('./add-oidc-provider');
@@ -86,23 +64,6 @@ export default function ClusterAccessAndSecurity({
     [oidcProvider],
   );
 
-  const { mutate: postKubeConfig, isPending: isKubeConfigPending } = useKubeConfig({
-    projectId,
-    kubeId,
-    onError: (error: Error) =>
-      addError(
-        <Translation ns="service">
-          {(_t) =>
-            _t('kube_service_file_error', {
-              message: isApiCustomError(error)
-                ? error?.response?.data?.message
-                : (error?.message ?? null),
-            })
-          }
-        </Translation>,
-        true,
-      ),
-  });
   const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
   const { data: regionInformations } = useRegionInformations(projectId, kubeDetail?.region);
 
@@ -111,36 +72,6 @@ export default function ClusterAccessAndSecurity({
     [oidcProvider],
   );
   const hasOptionalValues = validOptionalKeys.length > 0;
-
-  const downloadConfigFile = () => {
-    setOngoingKubeConfigAction('download');
-    postKubeConfig(undefined, {
-      onSuccess: (configFile) => {
-        const clusterShortId = getClusterUrlFragments(kubeDetail.url)?.shortId;
-
-        const fileName = clusterShortId
-          ? `${CONFIG_FILENAME}-${clusterShortId}.yml`
-          : `${CONFIG_FILENAME}.yml`;
-
-        downloadContent({
-          fileContent: configFile.content,
-          fileName,
-        });
-
-        setOngoingKubeConfigAction(null);
-      },
-    });
-  };
-
-  const copyConfigFile = () => {
-    setOngoingKubeConfigAction('copy');
-    postKubeConfig(undefined, {
-      onSuccess: async (configFile) => {
-        await navigator.clipboard.writeText(configFile.content);
-        setOngoingKubeConfigAction(null);
-      },
-    });
-  };
 
   const getClusterRestrictionLabel = (length?: number) => {
     const suffixes = ['no_count', 'one', 'count'];
@@ -230,37 +161,7 @@ export default function ClusterAccessAndSecurity({
             />
           </OsdsPopoverContent>
         </OsdsPopover>
-        <div className="flex flex-col items-start gap-3">
-          <div className="flex items-center">
-            <Button
-              size="sm"
-              variant="ghost"
-              data-testid="ClusterAccessAndSecurity-CopyKubeConfig"
-              disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
-              onClick={copyConfigFile}
-            >
-              <Icon name="file-copy" /> {t('kube_service_copy_kubeconfig')}
-            </Button>
-            {isKubeConfigPending && ongoingKubeConfigAction === 'copy' && (
-              <Spinner size="sm" data-testid="clusterAccessAndSecurity-spinnerCopyKubeConfig" />
-            )}
-          </div>
-
-          <div className="flex items-center">
-            <Button
-              size="sm"
-              variant="ghost"
-              data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
-              disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
-              onClick={downloadConfigFile}
-            >
-              <Icon name="download" /> {t('kube_service_download_kubeconfig')}
-            </Button>
-            {isKubeConfigPending && ongoingKubeConfigAction === 'download' && (
-              <Spinner size="sm" data-testid="clusterAccessAndSecurity-spinnerDownloadKubeConfig" />
-            )}
-          </div>
-        </div>
+        <ClusterConfigFileActions projectId={projectId} kubeDetail={kubeDetail} />
 
         <OsdsDivider separator />
 
