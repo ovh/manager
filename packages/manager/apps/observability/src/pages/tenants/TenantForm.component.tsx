@@ -16,13 +16,13 @@ import { TenantConfigurationForm } from '@/components/metrics/tenant-configurati
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useCreateTenants } from '@/data/hooks/tenants/useCreateTenants.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
-import { TenantsFormLayout } from '@/pages/tenants/TenantsForm.layout';
+import { TenantFormLayout } from '@/pages/tenants/TenantForm.layout';
 import { urls } from '@/routes/Routes.constants';
 import type { TenantFormData } from '@/types/tenants.type';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
-export const TenantsForm = () => {
+export const TenantForm = () => {
   const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
   const { selectedService } = useObservabilityServiceContext();
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ export const TenantsForm = () => {
 
   // FIXME: fix warning "React does not recognize the `isIamTrigger` prop on a DOM element."
   return (
-    <TenantsFormLayout>
+    <TenantFormLayout>
       <FormProvider {...form}>
         <form
           onSubmit={(e) => {
@@ -80,7 +80,7 @@ export const TenantsForm = () => {
             void form.handleSubmit(handleSubmit)(e);
           }}
         >
-          <Text className="block mt-6" preset="heading-2">
+          <Text className="mt-6 block" preset="heading-2">
             {t('tenants:creation.title')}
           </Text>
           <section className="mt-6">
@@ -98,7 +98,7 @@ export const TenantsForm = () => {
           <section className="mt-6">
             <TenantConfigurationForm />
           </section>
-          <section className="flex flex-row gap-6 mt-10 mx-auto justify-between">
+          <section className="mx-auto mt-10 flex flex-row justify-between gap-6">
             <Button
               id="cancel-tenant"
               variant={BUTTON_VARIANT.ghost}
@@ -125,6 +125,6 @@ export const TenantsForm = () => {
           </section>
         </form>
       </FormProvider>
-    </TenantsFormLayout>
+    </TenantFormLayout>
   );
 };

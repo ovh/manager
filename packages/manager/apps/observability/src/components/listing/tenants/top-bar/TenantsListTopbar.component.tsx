@@ -22,7 +22,7 @@ export default function TenantsListTopbar() {
 
   // FIXME: fix warning "React does not recognize the `isIamTrigger` prop on a DOM element."
   return (
-    <div className="flex justify-between w-full items-center mr-4">
+    <div className="mr-4 flex w-full items-center justify-between">
       <Button
         id="create-tenant"
         onClick={addNewTenant}

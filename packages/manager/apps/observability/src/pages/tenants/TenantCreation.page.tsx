@@ -1,10 +1,10 @@
 import { RedirectionGuard } from '@ovh-ux/muk';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { TenantsForm } from '@/pages/tenants/TenantsForm.component';
+import { TenantForm } from '@/pages/tenants/TenantForm.component';
 import { urls } from '@/routes/Routes.constants';
 
-export default function TenantsCreationPage() {
+export default function TenantCreationPage() {
   const { selectedService, isLoading, isSuccess } = useObservabilityServiceContext();
 
   return (
@@ -13,7 +13,7 @@ export default function TenantsCreationPage() {
       isLoading={isLoading}
       route={urls.tenants}
     >
-      <TenantsForm />
+      <TenantForm />
     </RedirectionGuard>
   );
 }

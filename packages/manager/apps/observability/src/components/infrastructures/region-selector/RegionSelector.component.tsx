@@ -57,7 +57,7 @@ export default function RegionSelector() {
   return (
     <>
       <Text preset={TEXT_PRESET.heading4}>{t('infrastructure.region.title')}</Text>
-      <FormField className="block my-4">
+      <FormField className="my-4 block">
         <Controller
           name="infrastructureId"
           control={control}
@@ -77,7 +77,7 @@ export default function RegionSelector() {
                   ))}
                 </TabList>
               </Tabs>
-              <div className="space-y-4 mt-4">
+              <div className="mt-4 space-y-4">
                 {groupedInfrastructures[selectedZone]?.map((infrastructure) => (
                   <RadioCard
                     id={infrastructure.id}
