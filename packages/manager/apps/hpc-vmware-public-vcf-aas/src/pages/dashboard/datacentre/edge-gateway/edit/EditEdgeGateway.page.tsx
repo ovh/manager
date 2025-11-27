@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
@@ -18,7 +17,6 @@ import {
   EDGE_GATEWAY_NAME_MAX_LENGTH,
   EDGE_GATEWAY_NAME_MIN_LENGTH,
 } from '../add/adgeEdgeGateway.constants';
-import Loading from '@/components/loading/Loading.component';
 
 export default function EditEdgeGatewayPage() {
   const { t } = useTranslation('datacentres/edge-gateway');
@@ -52,16 +50,15 @@ export default function EditEdgeGatewayPage() {
     mode: 'onTouched',
     resolver: zodResolver(EDGE_FORM_SCHEMA),
     defaultValues: async () => {
-      try {
-        const data = await refetch();
-        if (!data?.data) throw new Error('Cannot access Edge data.');
-        return {
-          edgeGatewayName: data.data.currentState.edgeGatewayName,
-          ipBlock: data.data.currentState.ipBlock,
-        };
-      } catch (error) {
-        return { edgeGatewayName: '', ipBlock: '' };
-      }
+      const data = await refetch();
+      const edge = data?.data;
+
+      if (!edge) return { edgeGatewayName: '', ipBlock: '' };
+
+      return {
+        edgeGatewayName: edge.currentState.edgeGatewayName,
+        ipBlock: edge.currentState.ipBlock,
+      };
     },
   });
 
@@ -69,56 +66,51 @@ export default function EditEdgeGatewayPage() {
     updateEdgeGateway({ edgeGatewayNewName: data.edgeGatewayName });
 
   return (
-    <Suspense fallback={<Loading />}>
-      <Drawer
-        isOpen
-        heading={edge?.currentState.edgeGatewayName ?? ''}
-        isLoading={isLoading}
-        primaryButtonLabel={tActions('modify')}
-        onPrimaryButtonClick={handleSubmit(onSubmit)}
-        isPrimaryButtonLoading={isUpdating}
-        isPrimaryButtonDisabled={isLoading || isUpdating || !isValid}
-        secondaryButtonLabel={tActions('cancel')}
-        onSecondaryButtonClick={closeDrawer}
-        onDismiss={closeDrawer}
-      >
-        <form
-          className="flex flex-col gap-y-6"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <Controller
-            control={control}
-            name="edgeGatewayName"
-            render={({ field, fieldState }) => (
-              <InputField
-                field={field}
-                label={t('edge_add_input_name_label')}
-                validator={{ maxlength: EDGE_GATEWAY_NAME_MAX_LENGTH }}
-                error={
-                  fieldState.error &&
-                  t('edge_add_input_name_helper', {
-                    edgeNameMinLength: EDGE_GATEWAY_NAME_MIN_LENGTH,
-                    edgeNameMaxLength: EDGE_GATEWAY_NAME_MAX_LENGTH,
-                  })
-                }
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="ipBlock"
-            render={({ field }) => (
-              <SelectField
-                field={field}
-                label={t('edge_ip_block')}
-                options={[field.value]}
-                isDisabled
-                helperText={t('edge_update_ip_block_helper')}
-              />
-            )}
-          />
-        </form>
-      </Drawer>
-    </Suspense>
+    <Drawer
+      isOpen
+      heading={edge?.currentState.edgeGatewayName ?? ''}
+      isLoading={isLoading}
+      primaryButtonLabel={tActions('modify')}
+      onPrimaryButtonClick={handleSubmit(onSubmit)}
+      isPrimaryButtonLoading={isUpdating}
+      isPrimaryButtonDisabled={isLoading || isUpdating || !isValid}
+      secondaryButtonLabel={tActions('cancel')}
+      onSecondaryButtonClick={closeDrawer}
+      onDismiss={closeDrawer}
+    >
+      <form className="flex flex-col gap-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          control={control}
+          name="edgeGatewayName"
+          render={({ field, fieldState }) => (
+            <InputField
+              field={field}
+              label={t('edge_add_input_name_label')}
+              validator={{ maxlength: EDGE_GATEWAY_NAME_MAX_LENGTH }}
+              error={
+                fieldState.error &&
+                t('edge_add_input_name_helper', {
+                  edgeNameMinLength: EDGE_GATEWAY_NAME_MIN_LENGTH,
+                  edgeNameMaxLength: EDGE_GATEWAY_NAME_MAX_LENGTH,
+                })
+              }
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="ipBlock"
+          render={({ field }) => (
+            <SelectField
+              field={field}
+              label={t('edge_ip_block')}
+              options={[field.value]}
+              isDisabled
+              helperText={t('edge_update_ip_block_helper')}
+            />
+          )}
+        />
+      </form>
+    </Drawer>
   );
 }
