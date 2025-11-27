@@ -127,6 +127,17 @@
                                             data-translate="user_users_update"
                                         ></button>
                                     </li>
+                                    <li ng-if="$ctrl.enablePermanentTokens">
+                                        <a
+                                            class="oui-button"
+                                            data-ng-href="{{ $ctrl.manageTokensBaseUrl + user.login}}"
+                                            data-track-on="click"
+                                            data-track-name="{{:: $ctrl.USERS_TRACKING_HITS.MANAGE_TOKENS }}"
+                                            data-track-type="action"
+                                            >{{'user_users_manage_tokens' |
+                                            translate}}</a
+                                        >
+                                    </li>
                                     <li>
                                         <button
                                             type="button"
