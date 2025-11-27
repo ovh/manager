@@ -9,7 +9,9 @@ interface HolderInformationProps {
 export default function HolderInformation({
   contactID,
 }: HolderInformationProps) {
-  const { domainContact } = useGetDomainContact(contactID);
+  const { domainContact } = useGetDomainContact(contactID, {
+    enabled: true,
+  });
 
   if (!domainContact) {
     return <Spinner size={SPINNER_SIZE.xs} />;

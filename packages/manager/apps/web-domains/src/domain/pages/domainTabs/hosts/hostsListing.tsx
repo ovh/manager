@@ -11,9 +11,10 @@ import {
   MessageBody,
   MessageIcon,
   Link,
+  Icon,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
@@ -25,7 +26,12 @@ import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleIn
 import { THost } from '@/domain/types/host';
 
 export default function HostsListingTab() {
-  const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
+  const { t } = useTranslation([
+    'domain',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+    NAMESPACES.ONBOARDING,
+  ]);
   const [hostsArray, setHostsArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -128,9 +134,10 @@ export default function HostsListingTab() {
           <MessageBody className="flex flex-col">
             <Text>{t('domain_tab_hosts_information_banner_1')}</Text>
             <Text>{t('domain_tab_hosts_information_banner_2')}</Text>
-            <Link>
-              {t('domain_tab_DNS_modification_warning_message_guides')}
-            </Link>
+            <div className="flex items-center gap-x-4">
+              <Link>{t(`${NAMESPACES.ONBOARDING}:find_out_more`)}</Link>
+              <Icon name={ICON_NAME.externalLink} />
+            </div>
           </MessageBody>
         </Message>
       </div>
@@ -173,6 +180,7 @@ export default function HostsListingTab() {
         targetSpec={domainResource?.targetSpec}
         hostData={hostData}
       />
+      <Outlet />
     </section>
   );
 }
