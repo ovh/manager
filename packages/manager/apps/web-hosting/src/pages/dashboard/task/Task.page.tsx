@@ -27,7 +27,7 @@ export default function Multisite() {
   });
   return (
     <React.Suspense fallback={<Loading />}>
-      <div className="flex flex-wrap justify-end mb-6">
+      <div className="mb-6 flex flex-wrap justify-end">
         <Button
           variant={BUTTON_VARIANT.outline}
           color={BUTTON_COLOR.primary}

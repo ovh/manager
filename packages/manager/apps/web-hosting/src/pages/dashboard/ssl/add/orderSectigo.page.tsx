@@ -63,7 +63,7 @@ export default function SectigoModal() {
         onClick: closeModal,
       }}
     >
-      <div className="flex flex-col space-y-8 mb-10">
+      <div className="mb-10 flex flex-col space-y-8">
         <Select
           id="ssl-select-domain"
           data-testid="ssl-select-domain"

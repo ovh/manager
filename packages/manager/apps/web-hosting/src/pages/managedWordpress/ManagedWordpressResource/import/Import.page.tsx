@@ -18,7 +18,7 @@ export default function ImportPage() {
   const navigate = useNavigate();
   const goBackUrl = () => navigate(-1);
   return (
-    <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
+    <div className="mt-4 flex w-full flex-col items-start gap-4 md:w-1/2">
       <Text preset={TEXT_PRESET.heading1} className="mb-4">
         {t('import_website')}
       </Text>
