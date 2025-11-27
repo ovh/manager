@@ -64,7 +64,7 @@ export default function Topbar() {
         label: it?.currentState?.fqdn,
       })) || [];
   return (
-    <div className="flex flex-col space-y-10 mb-10">
+    <div className="mb-10 flex flex-col space-y-10">
       <div className="flex space-x-4">
         <Button
           size={BUTTON_SIZE.sm}

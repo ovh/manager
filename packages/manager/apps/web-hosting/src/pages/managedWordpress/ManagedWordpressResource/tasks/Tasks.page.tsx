@@ -155,7 +155,7 @@ export default function TasksPage() {
   };
   return (
     <>
-      <div className="mb-4 mt-4 flex justify-end">
+      <div className="my-4 flex justify-end">
         <Button
           onClick={() => handleRefreshClick()}
           data-testid="refresh"

@@ -171,7 +171,7 @@ export default function MyWebsitesPage() {
             <Text preset={TEXT_PRESET.span} className="mb-4 block">
               {t('dashboard:hosting_managed_wordpress_websites_description')}
             </Text>
-            <div className="flex flex-wrap items-center gap-4 m-4">
+            <div className="m-4 flex flex-wrap items-center gap-4">
               <Button id="my-websites-create" onClick={handleCreateClick}>
                 {t(`${NAMESPACES.ACTIONS}:create`)}
               </Button>

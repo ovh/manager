@@ -24,31 +24,6 @@ const testQueryClient = new QueryClient({
   },
 });
 
-vi.mock('@ovh-ux/muk', () => ({
-  ActionMenu: ({
-    id,
-    items,
-    ...props
-  }: React.PropsWithChildren<{
-    id?: string;
-    items?: Array<{ id: number; label: string; onClick?: () => void }>;
-    [key: string]: unknown;
-  }>) => (
-    <div data-testid="action-menu" data-id={id} {...props}>
-      {items?.map((item) => (
-        <button
-          key={item.id}
-          data-testid={`action-item-${item.id}`}
-          onClick={item.onClick}
-          type="button"
-        >
-          {item.label}
-        </button>
-      ))}
-    </div>
-  ),
-}));
-
 vi.mock('@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite', () => ({
   useWebHostingWebsite: vi.fn().mockReturnValue({
     data: WebHostingWebsiteMocks,

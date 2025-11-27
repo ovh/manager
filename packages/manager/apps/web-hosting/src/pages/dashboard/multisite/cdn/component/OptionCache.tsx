@@ -111,7 +111,7 @@ export const OptionCache: React.FC<OptionCacheProps> = ({
               toggleValue={!!field.value}
               onToggle={(detail) => field.onChange(detail.checked)}
             >
-              <div className="flex flex-col ml-6">
+              <div className="ml-6 flex flex-col">
                 <Text>{t('cdn_shared_option_query_string_sort_ignored')}</Text>
                 <Text>{t('cdn_shared_option_query_string_sort_true')}</Text>
                 <Text>{t('cdn_shared_option_query_string_sort_false')}</Text>
