@@ -587,7 +587,9 @@ const filter: Filter = {
 const services = await v6.get('/product/services');
 ```
 
-#### ✅ Correct: Use Iceberg for Pagination
+#### ✅ Correct: Use Iceberg for Pagination (when supported)
+
+**Note:** Not all endpoints support Iceberg. Use Iceberg when the endpoint supports it, otherwise use v6 with appropriate pagination handling.
 
 ```typescript
 const result = await fetchIcebergV6({
