@@ -94,16 +94,14 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
               )}
             </Label>
             {/* Help popover shown when versioning is disabled */}
-            {isVersioningDisabled && (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <HelpCircleIcon className="size-4" />
-                </PopoverTrigger>
-                <PopoverContent className="text-sm">
-                  {t('objectLockTypeDisabledPopover')}
-                </PopoverContent>
-              </Popover>
-            )}
+            <Popover>
+              <PopoverTrigger asChild>
+                <HelpCircleIcon className="size-4" />
+              </PopoverTrigger>
+              <PopoverContent className="text-sm">
+                {t('objectLockTypeDisabledPopover')}
+              </PopoverContent>
+            </Popover>
           </div>
         </RadioGroup>
 
