@@ -188,7 +188,7 @@ export const EditDomainModal = () => {
               >
                 {organizations?.map((organization) => (
                   <option key={organization.id} value={organization.id}>
-                    {organization.currentState.label}
+                    {organization.currentState.name}
                   </option>
                 ))}
               </OdsSelect>
