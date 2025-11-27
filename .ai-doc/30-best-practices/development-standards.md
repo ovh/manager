@@ -111,13 +111,13 @@ For comprehensive TypeScript guidelines, see [TypeScript Cheat Sheet](./typescri
 
 ```bash
 # Run static analysis
-npm run lint
+yarn run lint
 
 # Fix auto-fixable issues
-npm run lint:fix
+yarn run lint:fix
 
 # Type checking
-npm run type-check
+yarn run type-check
 ```
 
 ## 📖 Documentation Standards
