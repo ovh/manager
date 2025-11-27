@@ -24,7 +24,7 @@ describe('Organization Terminate Page', () => {
   it('Should display the VCD terminate modal when user clicks on terminate button', async () => {
     await renderTest({ nbOrganization: 1 });
 
-    openTerminateModal();
+    await openTerminateModal();
 
     const modalDescription = await screen.findByTestId(
       'manager-delete-modal-description',
@@ -35,7 +35,7 @@ describe('Organization Terminate Page', () => {
   it('Should display listing page without cancel service when termination is canceled', async () => {
     await renderTest({ nbOrganization: 1 });
 
-    openTerminateModal();
+    await openTerminateModal();
 
     const cancelButton = await screen.findByTestId(
       'manager-delete-modal-cancel',
@@ -54,13 +54,13 @@ describe('Organization Terminate Page', () => {
   it('Should display listing page and cancel service when termination is confirmed', async () => {
     await renderTest({ nbOrganization: 1 });
 
-    openTerminateModal();
+    await openTerminateModal();
 
     const confirmButton = await screen.findByTestId(
       'manager-delete-modal-confirm',
     );
     expect(confirmButton).toBeVisible();
-    await act(() => {
+    act(() => {
       confirmButton.click();
     });
 

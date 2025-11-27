@@ -74,11 +74,11 @@ const renderVrackSegmentDatagrid = () => {
 };
 
 describe('VrackSegmentDatagrid', () => {
-  it('should render the component with title and description', () => {
+  it('should render the component with title and description', async () => {
     renderVrackSegmentDatagrid();
 
     // Check if title is rendered
-    waitFor(() =>
+    await waitFor(() =>
       expect(
         screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
       ).toBeInTheDocument(),
@@ -90,11 +90,11 @@ describe('VrackSegmentDatagrid', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render the datagrid with correct columns', () => {
+  it('should render the datagrid with correct columns', async () => {
     renderVrackSegmentDatagrid();
 
     // Check if column headers are rendered
-    waitFor(() =>
+    await waitFor(() =>
       expect(
         screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
       ).toBeInTheDocument(),
@@ -103,7 +103,9 @@ describe('VrackSegmentDatagrid', () => {
       screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segment)[0],
     ).toBeInTheDocument();
 
-    waitFor(
+    screen.debug(undefined, Infinity)
+
+    await waitFor(
       () => {
         expect(
           screen.getAllByText(
@@ -115,9 +117,11 @@ describe('VrackSegmentDatagrid', () => {
         ).toBeInTheDocument();
         // Check if all VLAN IDs are rendered
         mockVrackSegmentList.forEach((network) => {
-          expect(
-            screen.getByText(network.targetSpec.vlanId),
-          ).toBeInTheDocument();
+          const vlanId = screen.getByText(
+            fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label
+            .replace('{{ vlanId }}', network.targetSpec.vlanId)
+          );
+          expect(vlanId).toBeInTheDocument();
         });
       },
       { timeout: 4_000 },

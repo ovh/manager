@@ -75,7 +75,6 @@ const ButtonItem = ({
 const MenuItem = ({
   item,
   isTrigger,
-  id,
 }: {
   item: Omit<ActionMenuItem, 'id'>;
   isTrigger: boolean;

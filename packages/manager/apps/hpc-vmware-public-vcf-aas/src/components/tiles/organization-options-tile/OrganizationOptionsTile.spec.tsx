@@ -1,4 +1,3 @@
-import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import { describe, it, vi, expect, afterEach, vitest } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -12,7 +11,6 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
-import { labels } from '../../../test-utils';
 import { TRACKING } from '../../../tracking.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 
@@ -67,12 +65,12 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     renderComponent({ isDisabled: false, isLicenseActive: false });
 
     // then
-    const elements = [
-      labels.dashboard.managed_vcd_dashboard_options,
-      labels.dashboard.managed_vcd_dashboard_windows_license,
+    const texts = [
+      'managed_vcd_dashboard_options',
+      'managed_vcd_dashboard_windows_license',
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
   });
 
   it('should track click on activateLicense', async () => {
@@ -98,7 +96,7 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     expect(window.open).toHaveBeenCalledOnce();
   });
 
-  it('should not be able to activate license when service is disabled', async () => {
+  it('should not be able to activate license when service is disabled', () => {
     // when
     renderComponent({ isDisabled: true, isLicenseActive: false });
 
@@ -107,7 +105,7 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     expect(menu.getAttribute('is-disabled')).toBe('true');
   });
 
-  it('should not display action menu when licence is active', async () => {
+  it('should not display action menu when licence is active', () => {
     // when
     renderComponent({ isDisabled: true, isLicenseActive: true });
 

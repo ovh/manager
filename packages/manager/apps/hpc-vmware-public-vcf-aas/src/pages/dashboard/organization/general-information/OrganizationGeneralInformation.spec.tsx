@@ -13,14 +13,14 @@ describe('Organization General Information Page', () => {
   it('display the VCD dashboard general page', async () => {
     await renderTest({ initialRoute: `/${organizationList[0].id}` });
 
-    const dashboardElements = [
+    const texts = [
       labels.dashboard.managed_vcd_dashboard_general_information,
       labels.dashboard.managed_vcd_dashboard_options,
       labels.dashboard.managed_vcd_dashboard_data_protection,
       labels.dashboard.managed_vcd_dashboard_service_management,
     ];
 
-    dashboardElements.forEach(async (element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
   });
 });
 
@@ -52,7 +52,7 @@ describe('Organization General Information Page Updates', () => {
       await waitFor(() => expect(submitCta).toBeDisabled());
       await mockEditInputValue(value);
       await waitFor(() => expect(submitCta).toBeEnabled());
-      await act(async () => {
+      act(() => {
         submitCta.click();
       });
       await assertOdsModalVisibility({ container, isVisible: false });
@@ -112,7 +112,7 @@ describe('Organization General Information Page Updates', () => {
       const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
       await mockEditInputValue(value);
       await waitFor(() => expect(submitCta).toBeEnabled());
-      await act(async () => {
+      act(() => {
         submitCta.click();
       });
       await assertOdsModalVisibility({ container, isVisible: true });

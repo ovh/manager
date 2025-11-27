@@ -66,7 +66,7 @@ describe('Datacentre Dashboard Page', () => {
     await waitFor(() => expect(submitCta).toBeDisabled());
     await mockEditInputValue(value);
     await waitFor(() => expect(submitCta).toBeEnabled());
-    await act(async () => {
+    act(() => {
       submitCta.click();
     });
     await assertOdsModalVisibility({ container, isVisible: false });
@@ -105,7 +105,7 @@ describe('Datacentre Dashboard Page', () => {
     const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
     await mockEditInputValue('Valid description');
     await waitFor(() => expect(submitCta).toBeEnabled());
-    await act(async () => {
+    act(() => {
       submitCta.click();
     });
     await assertOdsModalVisibility({ container, isVisible: true });

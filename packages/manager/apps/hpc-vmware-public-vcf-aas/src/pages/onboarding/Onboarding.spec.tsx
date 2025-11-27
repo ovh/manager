@@ -23,7 +23,7 @@ describe('Onboarding Page', () => {
 });
 
 describe('VCD Order CTA redirection', () => {
-  let windowOpenSpy: any;
+  let windowOpenSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
@@ -41,7 +41,7 @@ describe('VCD Order CTA redirection', () => {
 
     const expectedUrl = ORDER_VCD_REDIRECTION_URL.FR;
 
-    await act(async () => {
+     act(() => {
       orderButton.click();
     });
 

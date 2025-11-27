@@ -31,7 +31,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 }));
 
 // Mock useTranslation
-vi.mock('react-i18next', async () => {
+vi.mock('react-i18next', () => {
   return {
     useTranslation: () => ({
       t: (key: string) => `__${key}__`,

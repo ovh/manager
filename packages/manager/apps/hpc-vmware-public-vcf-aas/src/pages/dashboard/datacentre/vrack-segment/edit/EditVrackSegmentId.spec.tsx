@@ -45,15 +45,15 @@ const expectSubmitButton = (container: HTMLElement) =>
 const submitForm = (container: HTMLElement) => {
   return act(() =>
     userEvent.click(
-      container.querySelector('ods-button[label="modify"]') as Element,
+      container.querySelector('ods-button[label="modify"]'),
     ),
   );
 };
 
 const editVlanValue = (newValue: string | number) => {
-  const odsQuantity = document.querySelector(
+  const odsQuantity = document.querySelector<HTMLElement & {value: number}>(
     'ods-quantity[name="vlanId"]',
-  ) as HTMLElement & { value?: number };
+  );
 
   if (!odsQuantity) throw new Error('ods-quantity not found');
 
@@ -106,7 +106,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
     expectSubmitButton(container).toBeDisabled();
 
-    await editVlanValue(430);
+    editVlanValue(430);
 
     await waitFor(() => expectSubmitButton(container).not.toBeDisabled(), {
       timeout: 2000,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, expect, it, vi } from 'vitest';
@@ -10,10 +9,8 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import DatacentreGeneralInformationTile from './DatacentreGeneralInformationTile.component';
-import { labels } from '../../../test-utils';
 import {
-  ID_LABEL,
-  VRACK_LABEL,
+  ID_LABEL
 } from '../../../pages/dashboard/dashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 import { TRACKING } from '../../../tracking.constants';
@@ -21,6 +18,7 @@ import {
   VRACK_PATH,
   VRACK_ONBOARDING_PATH,
 } from '../../../pages/listing/datacentres/Datacentres.constants';
+import { FEATURE_FLAGS } from '@/app.constants';
 
 const trackClickMock = vi.fn();
 let mockedUrl = '';
@@ -119,21 +117,20 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
     );
 
     // then
-    const elements = [
-      labels.dashboard.managed_vcd_dashboard_general_information,
-      labels.datacentres.managed_vcd_vdc_commercial_range,
-      labels.datacentres.managed_vcd_vdc_vcpu_count,
-      labels.datacentres.managed_vcd_vdc_ram_count,
-      labels.datacentres.managed_vcd_vdc_vcpu_speed,
-      labels.dashboard.managed_vcd_dashboard_management_interface,
-      labels.dashboard.managed_vcd_dashboard_api_url,
+    const texts = [
+      'managed_vcd_dashboard_general_information',
+      'managed_vcd_vdc_commercial_range',
+      'managed_vcd_vdc_vcpu_count',
+      'managed_vcd_vdc_ram_count',
+      'managed_vcd_vdc_vcpu_speed',
+      'managed_vcd_dashboard_management_interface',
+      'managed_vcd_dashboard_api_url',
       ID_LABEL,
-      VRACK_LABEL,
       datacentre.currentState.description,
       datacentre.currentState.vCPUCount.toString(),
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
 
     // and
     const webUrlLink = await getElementByTestId(
@@ -154,7 +151,7 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
     );
   });
 
-  it('should not be able to update description when datacenter is suspended', async () => {
+  it('should not be able to update description when datacenter is suspended', () => {
     // when
     render(
       <QueryClientProvider client={queryClient}>
@@ -197,6 +194,15 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
   ])(
     'should define tileTitle and sections $scenario',
     async ({ datacentre: dc, expectedUrlPath, shouldDisplayVrackId }) => {
+      vi.mock('@ovh-ux/manager-module-common-api', () => ({
+        useFeatureAvailability: () => ({
+          data: {
+            [FEATURE_FLAGS.VRACK]: true,
+            [FEATURE_FLAGS.VRACK_ASSOCIATION]: true,
+          },
+        }),
+      }));
+
       mockedUrl = '';
       trackClickMock.mockClear();
       render(
@@ -208,8 +214,9 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
         </QueryClientProvider>,
       );
 
-      if (shouldDisplayVrackId && (dc.currentState as any).vrack) {
-        assertTextVisibility((dc.currentState as any).vrack);
+      if (shouldDisplayVrackId && 'vrack' in dc.currentState && dc.currentState.vrack) {
+        const link = await screen.findByTestId(TEST_IDS.dashboardDatacentreVrackLink);
+        expect(link).toHaveAttribute('label', dc.currentState.vrack);
       }
 
       expect(mockedUrl).toContain(expectedUrlPath);

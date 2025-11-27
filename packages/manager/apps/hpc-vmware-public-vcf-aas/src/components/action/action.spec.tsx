@@ -38,7 +38,7 @@ const actionItems: ActionMenuProps = {
 };
 const queryClient = new QueryClient();
 
-const setupSpecTest = async (customProps?: Partial<ActionMenuProps>) =>
+const setupSpecTest = (customProps?: Partial<ActionMenuProps>) =>
   render(
     <QueryClientProvider client={queryClient}>
       <ActionMenu {...actionItems} {...customProps} />
@@ -52,7 +52,7 @@ describe('ActionMenu', () => {
       isLoading: true,
       isFetched: true,
     });
-    await setupSpecTest();
+    setupSpecTest();
 
     const actionMenuIcon = screen.getByTestId(
       'navigation-action-trigger-action',
@@ -73,16 +73,16 @@ describe('ActionMenu', () => {
     });
   });
 
-  it('renders compact menu with classic ellipsis correctly', async () => {
-    await setupSpecTest({ isCompact: true });
+  it('renders compact menu with classic ellipsis correctly', () => {
+    setupSpecTest({ isCompact: true });
     const actionMenuIcon = screen.getByTestId(
       'navigation-action-trigger-action',
     );
     expect(actionMenuIcon.getAttribute('icon')).toBe('ellipsis-vertical');
   });
 
-  it('renders compact menu with custom icon menu correctly', async () => {
-    await setupSpecTest({
+  it('renders compact menu with custom icon menu correctly', () => {
+    setupSpecTest({
       icon: ODS_ICON_NAME.ellipsisHorizontal,
     });
     const actionMenuIcon = screen.getByTestId(
@@ -91,8 +91,8 @@ describe('ActionMenu', () => {
     expect(actionMenuIcon.getAttribute('icon')).toBe('ellipsis-horizontal');
   });
 
-  it('renders compact menu with popover position bottom-end', async () => {
-    await setupSpecTest({
+  it('renders compact menu with popover position bottom-end', () => {
+    setupSpecTest({
       popoverPosition: ODS_POPOVER_POSITION.bottomEnd,
     });
     const popover = screen.getByTestId(

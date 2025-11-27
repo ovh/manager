@@ -19,7 +19,7 @@ describe('Organizations Listing Page', () => {
     await renderTest({ nbOrganization: 1 });
 
     // then
-    const headers = [
+    const texts = [
       labels.listing.managed_vcd_listing_name,
       labels.listing.managed_vcd_listing_description,
       labels.listing.managed_vcd_listing_location,
@@ -27,7 +27,7 @@ describe('Organizations Listing Page', () => {
       labels.listing.managed_vcd_listing_web_interface_url,
     ];
 
-    headers.forEach((element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
 
     // and
     const vcdDetails = organizationList[0].currentState;
@@ -58,7 +58,7 @@ describe('Organizations Listing Page', () => {
 });
 
 describe('VCD Order CTA redirection', () => {
-  let windowOpenSpy: any;
+  let windowOpenSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
@@ -76,7 +76,7 @@ describe('VCD Order CTA redirection', () => {
 
     const expectedUrl = ORDER_VCD_REDIRECTION_URL.FR;
 
-    await act(async () => {
+    act(() => {
       orderButton.click();
     });
 

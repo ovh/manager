@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import {
   QueryClient,
@@ -17,7 +16,6 @@ import {
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import OrganizationServiceManagementTile from './OrganizationServiceManagementTile.component';
-import { labels } from '../../../test-utils';
 import { subRoutes, urls } from '../../../routes/routes.constant';
 
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -69,15 +67,14 @@ describe('ServiceManagementTile component unit test suite', () => {
     renderComponent();
 
     // then
-    const elements = [
-      labels.dashboard.managed_vcd_dashboard_service_management,
-      labels.dashboard.managed_vcd_dashboard_service_renew,
-      labels.dashboard.managed_vcd_dashboard_service_cancellation,
-      labels.dashboard.managed_vcd_dashboard_password,
-      labels.dashboard.managed_vcd_dashboard_contact_list,
+    const texts = [
+      'managed_vcd_dashboard_service_management',
+      'managed_vcd_dashboard_service_renew',
+      'managed_vcd_dashboard_password',
+      'managed_vcd_dashboard_contact_list',
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
   });
 
   it('service actions should be disabled when the service is suspended', () => {

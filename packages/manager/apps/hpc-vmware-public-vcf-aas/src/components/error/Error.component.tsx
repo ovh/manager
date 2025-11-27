@@ -9,12 +9,13 @@ import {
 import { urls } from '@/routes/routes.constant';
 
 interface ErrorObject {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 function getTrackingTypology(error: ErrorMessage) {
-  if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
-    return [401, 403].includes(error.detail.status)
+  const status = (error?.detail as { status: number } | undefined)?.status;
+  if (status && typeof status === 'number' && Math.floor(status / 100) === 4) {
+    return [401, 403].includes(status)
       ? TRACKING_LABELS.UNAUTHORIZED
       : TRACKING_LABELS.SERVICE_NOT_FOUND;
   }
@@ -29,7 +30,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   const env = environment.getEnvironment();
 
   React.useEffect(() => {
-    env.then((response: any) => {
+    env.then((response: { applicationName: string }) => {
       const { applicationName } = response;
       const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
       tracking.trackPage({
