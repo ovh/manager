@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { ContainerObjectTempURL } from '@datatr-ux/ovhcloud-types/cloud/storage/index';
+import { ContainerObjectTempURL } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import { ObjStoError } from '@/data/api';
 import {
   DownloadSwiftData,
