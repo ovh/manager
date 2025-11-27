@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_VARIANT, Button } from '@ovhcloud/ods-react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/muk';
 
@@ -13,6 +11,7 @@ import ConfigurationTile from '@/components/dashboard/ConfigurationTile.componen
 import GeneralInformationTile from '@/components/dashboard/GeneralInformationTile.component';
 import SubscriptionTile from '@/components/dashboard/SubscriptionTile.component';
 import TagsTile from '@/components/dashboard/TagsTile.component';
+import GrafanaButton from '@/components/metrics/grafana-button/GrafanaButton.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
 
@@ -53,11 +52,11 @@ export default function TenantsInformationPage() {
   return (
     <section>
       <div className="my-8">
-        <Button variant={BUTTON_VARIANT.outline}>{t('dashboard.explore_in_grafana_button')}</Button>
+        <GrafanaButton />
       </div>
 
-      <div className="w-full block">
-        <div className="grid grid-cols-1 lg:items-start lg:grid-cols-3 gap-4 lg:gap-6">
+      <div className="block w-full">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start lg:gap-6">
           <GeneralInformationTile
             tenantId={currentTenantId}
             title={title}
