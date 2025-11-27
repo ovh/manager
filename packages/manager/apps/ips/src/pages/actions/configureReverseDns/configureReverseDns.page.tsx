@@ -8,6 +8,7 @@ import {
   OdsFormField,
   OdsInput,
   OdsMessage,
+  OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -234,7 +235,9 @@ export default function ConfigureReverseDns() {
           className={`block mb-4`}
           color={ODS_MESSAGE_COLOR.critical}
         >
-          <IpReverseError apiError={apiError} />
+          <React.Suspense fallback={<OdsSpinner />}>
+            <IpReverseError apiError={apiError} />
+          </React.Suspense>
         </OdsMessage>
       )}
     </Modal>

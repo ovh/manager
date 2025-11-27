@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { useGetIcebergIpReverse } from '@/data/hooks/ip';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
@@ -43,7 +44,12 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   // If there is an error while deleting / updating
   // Add error notification
   const onError = (apiError: ApiError) => {
-    addError(<IpReverseError apiError={apiError} />, true);
+    addError(
+      <React.Suspense fallback={<OdsSpinner />}>
+        <IpReverseError apiError={apiError} />
+      </React.Suspense>,
+      true,
+    );
     trackPage({
       pageType: PageType.bannerError,
       pageName: 'update_reverse-dns_error',
