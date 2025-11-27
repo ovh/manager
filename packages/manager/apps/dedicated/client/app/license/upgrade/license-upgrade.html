@@ -24,7 +24,7 @@
                 </label>
                 <p
                     class="form-control-static"
-                    data-ng-bind="('license_designation_' + license.type + '_version_' + license.version) | translate"
+                    data-translate="{{ license.description || ('license_designation_' + license.type + '_version_' + license.version)}}"
                 ></p>
             </div>
 
