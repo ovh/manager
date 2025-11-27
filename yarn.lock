@@ -10948,6 +10948,13 @@
   dependencies:
     "@volar/source-map" "1.11.1"
 
+"@volar/language-core@2.4.11":
+  version "2.4.11"
+  resolved "https://registry.yarnpkg.com/@volar/language-core/-/language-core-2.4.11.tgz#d95a9ec4f14fbdb41a6a64f9f321d11d23a5291c"
+  integrity sha512-lN2C1+ByfW9/JRPpqScuZt/4OrUUse57GLI6TbLgTIqBVemdl1wNcZ1qYGEo2+Gw8coYLgCy7SuKqn6IrQcQgg==
+  dependencies:
+    "@volar/source-map" "2.4.11"
+
 "@volar/language-core@2.4.12", "@volar/language-core@~2.4.11":
   version "2.4.12"
   resolved "https://registry.yarnpkg.com/@volar/language-core/-/language-core-2.4.12.tgz#98c8424f8d81a9cad1760a587b1c6db27d05f0cc"
@@ -10962,10 +10969,24 @@
   dependencies:
     muggle-string "^0.3.1"
 
+"@volar/source-map@2.4.11":
+  version "2.4.11"
+  resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-2.4.11.tgz#5876d4531508129724c2755e295db1df98bd5895"
+  integrity sha512-ZQpmafIGvaZMn/8iuvCFGrW3smeqkq/IIh9F1SdSx9aUl0J4Iurzd6/FhmjNO5g2ejF3rT45dKskgXWiofqlZQ==
+
 "@volar/source-map@2.4.12":
   version "2.4.12"
   resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-2.4.12.tgz#7cc8c6b1b134a2215f06c91ad011d94eef81b0ed"
   integrity sha512-bUFIKvn2U0AWojOaqf63ER0N/iHIBYZPpNGogfLPQ68F5Eet6FnLlyho7BS0y2HJ1jFhSif7AcuTx1TqsCzRzw==
+
+"@volar/typescript@2.4.11":
+  version "2.4.11"
+  resolved "https://registry.yarnpkg.com/@volar/typescript/-/typescript-2.4.11.tgz#aafbfa413337654db211bf4d8fb6670c89f6fa57"
+  integrity sha512-2DT+Tdh88Spp5PyPbqhyoYavYCPDsqbHLFwcUI9K1NlY1YgUJvujGdrqUp0zWxnW7KWNTr3xSpMuv2WnaTKDAw==
+  dependencies:
+    "@volar/language-core" "2.4.11"
+    path-browserify "^1.0.1"
+    vscode-uri "^3.0.8"
 
 "@volar/typescript@^2.4.11":
   version "2.4.12"
@@ -30628,10 +30649,10 @@ vite-plugin-dts@3.5.1:
     kolorist "^1.8.0"
     vue-tsc "^1.8.8"
 
-vite-plugin-dts@^4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/vite-plugin-dts/-/vite-plugin-dts-4.5.3.tgz#9d9e64c12e21e9389efd9f999e034cd5864b0027"
-  integrity sha512-P64VnD00dR+e8S26ESoFELqc17+w7pKkwlBpgXteOljFyT0zDwD8hH4zXp49M/kciy//7ZbVXIwQCekBJjfWzA==
+vite-plugin-dts@4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/vite-plugin-dts/-/vite-plugin-dts-4.5.4.tgz#51b60aaaa760d9cf5c2bb3676c69d81910d6b08c"
+  integrity sha512-d4sOM8M/8z7vRXHHq/ebbblfaxENjogAAekcfcDCCwAyvGqnPrc7f4NZbvItS+g4WTgerW0xDwSz5qz11JT3vg==
   dependencies:
     "@microsoft/api-extractor" "^7.50.1"
     "@rollup/pluginutils" "^5.1.4"
@@ -30643,10 +30664,10 @@ vite-plugin-dts@^4.5.3:
     local-pkg "^1.0.0"
     magic-string "^0.30.17"
 
-vite-plugin-dts@^4.5.4:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/vite-plugin-dts/-/vite-plugin-dts-4.5.4.tgz#51b60aaaa760d9cf5c2bb3676c69d81910d6b08c"
-  integrity sha512-d4sOM8M/8z7vRXHHq/ebbblfaxENjogAAekcfcDCCwAyvGqnPrc7f4NZbvItS+g4WTgerW0xDwSz5qz11JT3vg==
+vite-plugin-dts@^4.5.3:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/vite-plugin-dts/-/vite-plugin-dts-4.5.3.tgz#9d9e64c12e21e9389efd9f999e034cd5864b0027"
+  integrity sha512-P64VnD00dR+e8S26ESoFELqc17+w7pKkwlBpgXteOljFyT0zDwD8hH4zXp49M/kciy//7ZbVXIwQCekBJjfWzA==
   dependencies:
     "@microsoft/api-extractor" "^7.50.1"
     "@rollup/pluginutils" "^5.1.4"
