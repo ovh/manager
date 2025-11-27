@@ -51,7 +51,7 @@ export const ConfirmationModal = ({
         <Text preset={TEXT_PRESET.paragraph}>{message}</Text>
 
         {isLoading && (
-          <div data-testid="spinner" className="flex justify-center my-5">
+          <div data-testid="spinner" className="my-5 flex justify-center">
             <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>
           </div>
         )}
