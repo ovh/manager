@@ -1,0 +1,1 @@
+export const VOLUME_MULTI_ATTACH_MAX = 16;
