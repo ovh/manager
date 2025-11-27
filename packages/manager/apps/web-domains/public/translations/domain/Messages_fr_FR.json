@@ -47,6 +47,7 @@
   "domain_tab_name_host": "Hosts",
   "domain_tab_name_ds_records": "DS Records",
   "domain_tab_name_contact_management": "Gestion des contacts",
+  "domain_tab_name_not_supported": "La fonctionnalité n’est pas supportée pour cette extension.",
   "domain_back_to_service_list": "Retour à la liste de services",
   "domain_back_to_service_details": "Retour aux informations générales",
   "domain_back_to_previous_page": "Retour à la page précédente",
@@ -278,6 +279,10 @@
   "domain_tab_hosts_drawer_add_invalid_ips": "Une ou plusieurs adresses IP sont invalides. Veuillez saisir des adresses IPv4 ou IPv6 valides.",
   "domain_tab_hosts_drawer_add_duplicate_ips": "Il y a une ou plusieurs IP dupliqué(es) dans la saisie",
   "domain_tab_hosts_drawer_add_success_message": "{{ host }} a été ajouté avec succès",
-  "domain_tab_hosts_drawer_modify_success_message": "{{ host }} est en cours de modification",
-  "domain_tab_hosts_drawer_add_error_message": "Une erreur a été détectée lors de l'ajout de l'hôte : {{ error }}"
+  "domain_tab_hosts_drawer_modify_success_message": "{{ host }} a été modifié avec succès",
+  "domain_tab_hosts_drawer_add_error_message": "Une erreur a été détectée lors de l'ajout de l'hôte : {{ error }}",
+  "domain_tab_hosts_modal_delete_title": "Supprimer l'hôte {{hostname}}",
+  "domain_tab_hosts_modal_delete_information_message": "Êtes-vous sur de voulour supprimer cet hôte ?",
+  "domain_tab_hosts_modal_delete_success_message": "L'hôte est en cours de suppression",
+  "domain_tab_hosts_modal_delete_error_message": "Une erreur a été détectée lors de la suppression de l'hôte"
 }

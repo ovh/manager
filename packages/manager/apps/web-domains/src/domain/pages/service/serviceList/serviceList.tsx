@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   Breadcrumb,
@@ -226,13 +226,6 @@ export default function ServiceList() {
 
   return (
     <BaseLayout
-      breadcrumb={
-        <Breadcrumb
-          rootLabel={t('title')}
-          appName={appConfig.rootLabel}
-          hideRootLabel
-        />
-      }
       header={{
         title: t('title'),
         changelogButton: <ChangelogButton links={changelogLinks} />,

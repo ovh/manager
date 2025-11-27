@@ -32,9 +32,10 @@ import {
 } from '@/domain/hooks/data/query';
 import DnsConfigurationRadio from '@/domain/components/ModifyNameServer/DnsConfigurationRadio';
 import { TNameServer } from '@/domain/types/domainResource';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export default function DnsModifyPage() {
-  const { t, i18n } = useTranslation('domain');
+  const { t, i18n } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
   const { serviceName } = useParams<{ serviceName: string }>();
   const navigate = useNavigate();
   const langCode = getLanguageKey(i18n.language);
@@ -108,7 +109,7 @@ export default function DnsModifyPage() {
               className="text-[--ods-color-primary-500]"
               target="_blank"
             >
-              {t('domain_tab_DNS_modification_warning_message_guides')}
+              {t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
               <Icon name={ICON_NAME.externalLink} />
             </Link>
           </MessageBody>
