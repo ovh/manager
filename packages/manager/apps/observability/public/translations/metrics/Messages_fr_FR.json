@@ -6,5 +6,9 @@
   "onboarding": {
     "description": "Créez votre service pour découvrir comment les métriques d'observabilité vont vous aider à accéder à une vision plus fine et granulaire des performances de votre infrastructure et vos applications.",
     "orderButtonLabel": "Activez votre service"
+  },
+  "guide": {
+    "getting_started": "Premiers pas",
+    "documentation": "Documentation"
   }
 }
