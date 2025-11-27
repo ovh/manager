@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.14...@ovh-ux/sign-up-app@4.4.0) (2025-11-27)
+
+
+### Features
+
+* **sign-up:** redirect uk customer to the new account creation ([00362ee](https://github.com/ovh/manager/commit/00362ee127e2b42b8cb9ba0afd08a1997cafce44)), closes [#MANAGER-17391](https://github.com/ovh/manager/issues/MANAGER-17391)
+
+
+### Reverts
+
+* **sign-up:** redirect uk customer to the new account creation ([7ba0b48](https://github.com/ovh/manager/commit/7ba0b48ea57b30c87cc816b144e6c98a8e43cb19)), closes [#MANAGER-17391](https://github.com/ovh/manager/issues/MANAGER-17391)
+
+
+
+
+
 ## [4.3.14](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.13...@ovh-ux/sign-up-app@4.3.14) (2025-11-27)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.164.2",
+  "version": "0.165.0",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {
@@ -32,7 +32,7 @@
     "@ovh-ux/ovh-product-icons": "^0.13.9",
     "@ovh-ux/ovh-reket": "^2.1.21",
     "@ovh-ux/request-tagger": "^0.5.9",
-    "@ovh-ux/shell": "^4.9.0",
+    "@ovh-ux/shell": "^4.9.1",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",

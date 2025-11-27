@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.5.1...@ovh-ux/manager-gcj-module@0.6.0) (2025-11-27)
+
+
+### Features
+
+* **account-creation:** redirection post account creation ([087312d](https://github.com/ovh/manager/commit/087312d875d2904df051498079fdbee333992efa)), closes [#MANAGER-19812](https://github.com/ovh/manager/issues/MANAGER-19812)
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.5.0...@ovh-ux/manager-gcj-module@0.5.1) (2025-11-27)
 
 

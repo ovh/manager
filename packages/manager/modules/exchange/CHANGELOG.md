@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.12...@ovh-ux/manager-exchange@4.16.0) (2025-11-27)
+
+
+### Features
+
+* **billing:** disable cache in services ([6a7471f](https://github.com/ovh/manager/commit/6a7471f836ffa41b6a9520eae1d4405a80e8fbcc)), closes [#MANAGER-20010](https://github.com/ovh/manager/issues/MANAGER-20010)
+
+
+
+
+
 ## [4.15.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.11...@ovh-ux/manager-exchange@4.15.12) (2025-11-27)
 
 

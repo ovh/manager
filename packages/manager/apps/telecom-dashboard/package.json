@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard-app",
-  "version": "8.0.64",
+  "version": "8.0.65",
   "private": true,
   "description": "Telecom dashboard standalone application.",
   "repository": {
@@ -20,7 +20,7 @@
     "@ovh-ux/manager-core": "^13.2.21",
     "@ovh-ux/manager-telecom-dashboard": "^6.11.3",
     "@ovh-ux/manager-telecom-styles": "^4.8.7",
-    "@ovh-ux/ng-at-internet": "^6.0.35",
+    "@ovh-ux/ng-at-internet": "^6.0.36",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.5",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.6",
     "@ovh-ux/ng-ovh-http": "^5.1.6",

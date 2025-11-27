@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.67...@ovh-ux/manager-billing-app@0.5.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
 ## [0.4.67](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.66...@ovh-ux/manager-billing-app@0.4.67) (2025-11-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app

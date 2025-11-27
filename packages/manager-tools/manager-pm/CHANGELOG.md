@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.39.0...@ovh-ux/manager-pm@0.40.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
 # [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.38.0...@ovh-ux/manager-pm@0.39.0) (2025-11-27)
 
 

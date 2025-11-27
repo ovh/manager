@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.26.0...@ovh-ux/ovh-at-internet@0.27.0) (2025-11-27)
+
+
+### Features
+
+* **communication:** add tracking on contacts page ([9f5f5e7](https://github.com/ovh/manager/commit/9f5f5e7a17c4ac8bb5c87d7f151e5aa9228145b9)), closes [#MANAGER-19530](https://github.com/ovh/manager/issues/MANAGER-19530)
+
+
+
+
+
 # [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.25.2...@ovh-ux/ovh-at-internet@0.26.0) (2025-11-27)
 
 
