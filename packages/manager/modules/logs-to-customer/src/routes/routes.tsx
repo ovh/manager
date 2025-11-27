@@ -1,17 +1,14 @@
 import React, { ComponentType, lazy } from 'react';
 
-import { Route, RouteObject } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-const importLogsPage = () => import('../pages/logs/Logs.page');
-const importLogsDataStreamsPage = () => import('../pages/data-streams/DataStreams.page');
-const importLogsTerminateSubscriptionPage = () =>
-  import('../pages/logs/Logs-Subscription-terminate.page');
-
-const logsPage = lazy(importLogsPage);
-const logsDataStreamsPage = lazy(importLogsDataStreamsPage);
-const logsTerminateSubscriptionPage = lazy(importLogsTerminateSubscriptionPage);
+const logsPage = lazy(() => import('@/pages/logs/Logs.page'));
+const logsDataStreamsPage = lazy(() => import('@/pages/data-streams/DataStreams.page'));
+const logsTerminateSubscriptionPage = lazy(
+  () => import('@/pages/logs/Logs-Subscription-terminate.page'),
+);
 
 type ModuleWithDefault<T extends ComponentType<unknown>, E extends object> = {
   default: T;
@@ -32,37 +29,8 @@ export function lazyRouteConfig<T extends ComponentType<unknown>, E extends obje
   };
 }
 
-export const logsRoutes: RouteObject[] = [
-  {
-    path: '',
-    ...lazyRouteConfig(importLogsPage),
-    handle: {
-      tracking: {
-        pageName: 'logs_access',
-        pageType: PageType.dashboard,
-      },
-    },
-    children: [
-      {
-        path: `subscription/:subscriptionId/terminate`,
-        ...lazyRouteConfig(importLogsTerminateSubscriptionPage),
-      },
-    ],
-  },
-  {
-    path: 'streams',
-    ...lazyRouteConfig(importLogsDataStreamsPage),
-    handle: {
-      tracking: {
-        pageName: 'log_subscriptions',
-        pageType: PageType.dashboard,
-      },
-    },
-  },
-];
-
-export const getLogsRoute = () => (
-  <>
+export const LogsToCustomerRoutes = () => (
+  <Routes>
     <Route
       path=""
       id="logs-tail"
@@ -91,5 +59,5 @@ export const getLogsRoute = () => (
         },
       }}
     />
-  </>
+  </Routes>
 );

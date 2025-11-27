@@ -1,34 +1,27 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { Outlet } from 'react-router-dom';
-
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
-import { LogsContext } from './LogsToCustomer.context';
-import ApiError from './components/apiError/ApiError.component';
-import { getLogKindsQueryKey, useLogKinds } from './data/hooks/useLogKinds';
-import { LogApiVersion } from './data/types/apiVersion';
-import { LogKind } from './data/types/dbaas/logs';
-import useLogTrackingActions from './hooks/useLogTrackingActions';
-import { ZoomedInOutProvider } from './hooks/useZoomedInOut';
-import './translations';
-import { LogsActionEnum } from './types/logsTracking';
-
-export type ApiUrls = {
-  logKind: string;
-  logSubscription: string;
-  logUrl: string;
-};
-
-export type LogIamActions = {
-  postSubscription: string[];
-  deleteSubscription: string[];
-};
+import { LogsContext } from '@/LogsToCustomer.context';
+import { ApiUrls, LogIamActions } from '@/LogsToCustomer.props';
+import ApiError from '@/components/apiError/ApiError.component';
+import { getLogKindsQueryKey, useLogKinds } from '@/data/hooks/useLogKinds';
+import { LogApiVersion } from '@/data/types/apiVersion';
+import { LogKind } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { ZoomedInOutProvider } from '@/hooks/useZoomedInOut';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { LogsToCustomerRoutes } from '@/routes/routes';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export interface ILogsToCustomerModule {
   logApiUrls: ApiUrls;
@@ -45,24 +38,23 @@ export function LogsToCustomerModule({
   logApiVersion,
   logIamActions,
   resourceURN,
-  trackingOptions,
-}: Readonly<ILogsToCustomerModule>) {
+  trackingOptions = undefined,
+}: ILogsToCustomerModule) {
   const queryClient = useQueryClient();
   const [currentLogKind, setCurrentLogKind] = useState<LogKind>();
-  const { t } = useTranslation('logKind');
+  const { t } = useTranslation(NAMESPACES.LOG_KIND);
   const { trackClick } = useOvhTracking();
-  const selectKindLogsAccess = useLogTrackingActions(LogsActionEnum.select_kind_logs_access);
-  const {
-    data: logKinds,
-    error,
-    isPending,
-  } = useLogKinds({
+  const selectKindLogsAccess = useLogTrackingActions(
+    LogsActionEnum.select_kind_logs_access,
+  );
+  const { data: logKinds, error, isPending } = useLogKinds({
     logKindUrl: logApiUrls.logKind,
     apiVersion: logApiVersion,
   });
 
   useEffect(() => {
-    if (!isPending && logKinds && logKinds.length > 0) setCurrentLogKind(logKinds[0]);
+    if (!isPending && logKinds && logKinds.length > 0)
+      setCurrentLogKind(logKinds[0]);
   }, [logKinds, isPending]);
 
   const LogsContextValues = useMemo(
@@ -74,7 +66,14 @@ export function LogsToCustomerModule({
       resourceURN,
       trackingOptions,
     }),
-    [currentLogKind, logApiUrls, logApiVersion, logIamActions, resourceURN, trackingOptions],
+    [
+      currentLogKind,
+      logApiUrls,
+      logApiVersion,
+      logIamActions,
+      resourceURN,
+      trackingOptions,
+    ],
   );
 
   if (isPending)
@@ -98,22 +97,32 @@ export function LogsToCustomerModule({
     );
 
   if (logKinds.length === 0)
-    return <OdsText preset="paragraph">{t('log_kind_empty_state_description')}</OdsText>;
+    return (
+      <OdsText preset="paragraph">
+        {t('log_kind_empty_state_description')}
+      </OdsText>
+    );
 
   if (!currentLogKind)
-    return <OdsText preset="paragraph">{t('log_kind_no_kind_selected')}</OdsText>;
+    return (
+      <OdsText preset="paragraph">{t('log_kind_no_kind_selected')}</OdsText>
+    );
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <OdsText preset="paragraph">{t('log_kind_selector_select_label')}</OdsText>
+        <OdsText preset="paragraph">
+          {t('log_kind_selector_select_label')}
+        </OdsText>
         <OdsSelect
           className="w-full md:w-96 "
           name="select-log-kind"
           isDisabled={logKinds.length === 1}
           value={currentLogKind?.kindId}
           onOdsChange={(event) => {
-            const newLogKind = logKinds.find((k) => k.kindId === event.detail.value);
+            const newLogKind = logKinds.find(
+              (k) => k.kindId === event.detail.value,
+            );
             if (newLogKind) {
               setCurrentLogKind(newLogKind);
               trackClick({
@@ -127,7 +136,11 @@ export function LogsToCustomerModule({
           data-testid={'logKindSelect'}
         >
           {logKinds.map((k) => (
-            <option key={k.kindId} value={k.kindId} data-testid={'logKindOption'}>
+            <option
+              key={k.kindId}
+              value={k.kindId}
+              data-testid={'logKindOption'}
+            >
               {k.displayName}
             </option>
           ))}
@@ -135,7 +148,7 @@ export function LogsToCustomerModule({
       </div>
       <LogsContext.Provider value={LogsContextValues}>
         <ZoomedInOutProvider>
-          <Outlet />
+          <LogsToCustomerRoutes />
         </ZoomedInOutProvider>
       </LogsContext.Provider>
     </div>

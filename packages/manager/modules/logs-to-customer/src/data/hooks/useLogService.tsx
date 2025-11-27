@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { getLogService, getLogServices } from '../api/logService';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { getLogService, getLogServices } from '@/data/api/logService';
+import { Service } from '@/data/types/dbaas/logs';
 
 /**
  * Use log Services list
@@ -17,12 +18,12 @@ export const useLogServices = () => {
  * Use log Service
  */
 export const getLogServiceQueryKey = (serviceName: string) => [
-  'getLogService',
+  getLogServicesQueryKey()[0],
   `/dbaas/logs/${serviceName}`,
 ];
 
-export const useLogService = (serviceName: string) => {
-  return useQuery({
+export const useLogService = (serviceName: string): UseQueryResult<Service> => {
+  return useQuery<Service>({
     queryKey: getLogServiceQueryKey(serviceName),
     queryFn: () => getLogService(serviceName),
   });

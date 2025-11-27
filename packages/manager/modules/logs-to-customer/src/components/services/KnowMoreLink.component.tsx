@@ -6,10 +6,11 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   KNOW_MORE_BASE_URL,
   KNOW_MORE_LIST,
-} from '../subscriptions/SubscriptionEmpty.constants';
+} from '@/components/subscriptions/SubscriptionEmpty.constants';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const KnowMoreLink = () => {
-  const { t } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [knowMoreLink, setKnowMoreLink] = useState('');
