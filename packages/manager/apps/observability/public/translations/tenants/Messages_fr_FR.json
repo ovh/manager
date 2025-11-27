@@ -1,7 +1,9 @@
 {
   "listing": {
     "title": "Liste des tenants",
-    "endpoint_cell": "Endpoint",
+    "description": "Les tenants vous permettent d'organiser vos métriques dès leur arrivée sur le service d'observabilité.",
+    "description_bis": "Avec plusieurs tenants, vous pouvez structurer vos données selon vos besoins, niveaux de confidentialité, politiques d’accès, stratégies de rétention et de localisation adaptée.",
+    "endpoint_cell": "URL du serveur Prometheus",
     "retention_cell": "Rétention",
     "active_metrics_cell": "Métriques actifs",
     "tags_cell": "Tags",
