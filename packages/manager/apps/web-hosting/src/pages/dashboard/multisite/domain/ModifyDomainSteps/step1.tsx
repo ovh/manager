@@ -58,7 +58,7 @@ export default function Step1({
         <Controller
           name="domain"
           control={control}
-          render={({ field }) => <Input {...field} disabled className="w-2/3 ml-2" />}
+          render={({ field }) => <Input {...field} disabled className="ml-2 w-2/3" />}
         />
       </FormField>
       <FormField>
@@ -77,7 +77,7 @@ export default function Step1({
                 {...field}
                 disabled
                 placeholder={t('multisite:multisite_modal_domain_configuration_modify_myfolder')}
-                className="w-1/3 ml-2"
+                className="ml-2 w-1/3"
               />
             )}
           />
@@ -97,7 +97,7 @@ export default function Step1({
             name="cdn"
             control={control}
             render={({ field }) => (
-              <div className="flex items-center mt-2">
+              <div className="mt-2 flex items-center">
                 <Checkbox
                   id="cdn-checkbox"
                   name="cdn"
@@ -116,13 +116,13 @@ export default function Step1({
                 <Text id="cdn-tooltip">
                   <Icon
                     name={ICON_NAME.circleQuestion}
-                    className="color-disabled cursor-pointer ml-4"
+                    className="color-disabled ml-4 cursor-pointer"
                   />
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Icon
                         name={ICON_NAME.circleQuestion}
-                        className="color-disabled cursor-pointer ml-4"
+                        className="color-disabled ml-4 cursor-pointer"
                       />
                     </TooltipTrigger>
                     <TooltipContent>
@@ -138,7 +138,7 @@ export default function Step1({
           name="firewall"
           control={control}
           render={({ field }) => (
-            <div className="flex items-center mt-2">
+            <div className="mt-2 flex items-center">
               <Checkbox
                 id="firewall-checkbox"
                 name="firewall"
@@ -159,7 +159,7 @@ export default function Step1({
                   <TooltipTrigger asChild>
                     <Icon
                       name={ICON_NAME.circleQuestion}
-                      className="color-disabled cursor-pointer ml-4"
+                      className="color-disabled ml-4 cursor-pointer"
                     />
                   </TooltipTrigger>
                   <TooltipContent>
@@ -174,7 +174,7 @@ export default function Step1({
           name="countriesIpEnabled"
           control={control}
           render={({ field }) => (
-            <div className="flex flex-col mt-2">
+            <div className="mt-2 flex flex-col">
               <div className="flex items-center">
                 <Checkbox
                   id="countries-ip-checkbox"
@@ -239,7 +239,7 @@ export default function Step1({
           name="enableOwnLog"
           control={control}
           render={({ field }) => (
-            <div className="flex flex-col mt-2">
+            <div className="mt-2 flex flex-col">
               <div className="flex items-center">
                 <Checkbox
                   id="own-log-checkbox"

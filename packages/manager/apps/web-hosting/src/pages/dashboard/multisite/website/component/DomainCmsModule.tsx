@@ -46,7 +46,7 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                 className="w-1/3 p-4"
                 color={!controlValues.module ? CARD_COLOR.primary : CARD_COLOR.neutral}
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio value={CmsType.NONE}>
                     <RadioControl />
                     <RadioLabel>
@@ -56,7 +56,7 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
                   {t('multisite:multisite_add_website_module_cms_none_text')}
                 </Text>
               </Card>
@@ -68,10 +68,10 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     : CARD_COLOR.neutral
                 }
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio value={CmsType.WORDPRESS}>
                     <RadioControl />
-                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                    <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/wordpress.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
                         {t('multisite:multisite_add_website_module_cms_choice_wordpress')}
@@ -79,7 +79,7 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
                   {t('multisite:multisite_add_website_module_cms_choice_wordpress_text')}
                 </Text>
               </Card>
@@ -89,10 +89,10 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                   controlValues.module === CmsType.DRUPAL ? CARD_COLOR.primary : CARD_COLOR.neutral
                 }
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio value={CmsType.DRUPAL}>
                     <RadioControl />
-                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                    <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/drupal.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
                         {t('multisite:multisite_add_website_module_cms_choice_drupal')}
@@ -100,7 +100,7 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
                   {t('multisite:multisite_add_website_module_cms_choice_drupal_text')}
                 </Text>
               </Card>
@@ -114,10 +114,10 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     : CARD_COLOR.neutral
                 }
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio value={CmsType.PRESTASHOP}>
                     <RadioControl />
-                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                    <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/prestashop.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
                         {t('multisite:multisite_add_website_module_cms_choice_prestashop')}
@@ -125,7 +125,7 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
                   {t('multisite:multisite_add_website_module_cms_choice_prestashop_text')}
                 </Text>
               </Card>
@@ -135,10 +135,10 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                   controlValues.module === CmsType.JOOMLA ? CARD_COLOR.primary : CARD_COLOR.neutral
                 }
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio value={CmsType.JOOMLA}>
                     <RadioControl />
-                    <RadioLabel className="flex items-center space-x-5 cursor-pointer">
+                    <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/joomla.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
                         {t('multisite:multisite_add_website_module_cms_choice_joomla')}
@@ -146,7 +146,7 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     </RadioLabel>
                   </Radio>
                 </div>
-                <Text preset={TEXT_PRESET.caption} className="ml-8 m-4">
+                <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
                   {t('multisite:multisite_add_website_module_cms_choice_joomla_text')}
                 </Text>
               </Card>

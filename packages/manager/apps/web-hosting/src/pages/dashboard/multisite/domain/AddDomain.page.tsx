@@ -128,7 +128,7 @@ export default function AddWDomainPage() {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Icon id="cdn-tooltip" name={ICON_NAME.circleInfo} className="cursor-pointer ml-4" />
+            <Icon id="cdn-tooltip" name={ICON_NAME.circleInfo} className="ml-4 cursor-pointer" />
           </TooltipTrigger>
           <TooltipContent>{t('multisite:multisite_add_website_domain_info')}</TooltipContent>
         </Tooltip>
