@@ -21,12 +21,12 @@ import {
   TableCell,
   Label,
 } from '@datatr-ux/uxlib';
-import { useQuery } from '@tanstack/react-query';
-import * as database from '@/types/cloud/project/database';
+import { IpRestriction } from '@datatr-ux/ovhcloud-types/cloud/project/database/service';
+import { useGetGeolocation } from '@/hooks/api/me/useGetGeolocation.hook';
 
 interface IpsRestrictionsFormProps {
-  value: Omit<database.service.IpRestriction, 'status'>[];
-  onChange: (newIps: Omit<database.service.IpRestriction, 'status'>[]) => void;
+  value: Omit<IpRestriction, 'status'>[];
+  onChange: (newIps: Omit<IpRestriction, 'status'>[]) => void;
   disabled?: boolean;
 }
 
@@ -42,14 +42,7 @@ const IpsRestrictionsForm = React.forwardRef<
   HTMLInputElement,
   IpsRestrictionsFormProps
 >(({ value, onChange, disabled }, ref) => {
-  const ipQuery = useQuery({
-    queryKey: ['ip'],
-    queryFn: async () => {
-      const response = await fetch('https://api.ipify.org?format=json');
-      const data: { ip: string } = await response.json();
-      return data;
-    },
-  });
+  const ipQuery = useGetGeolocation();
   const { t } = useTranslation(
     'pci-databases-analytics/components/order-options',
   );
