@@ -1,0 +1,14 @@
+{
+  "title": "Choisissez votre nom de domaine",
+  "description": "Créez votre présence en ligne, affirmez et protégez votre identité",
+  "descriptionWithLeaderPart": "avec le leader du marché",
+  "orderButtonLabel": "Commander",
+  "moreInfoButtonLabel": "Plus d'informations",
+  "guideCategory": "Tutoriel",
+  "guideTransferTitle": "Transferts",
+  "guideTransferDescription": "Suivez nos étapes pour transférer votre nom de domaine vers OVHcloud",
+  "guideOrderAPITitle": "Commande par API",
+  "guideOrderAPIDescription": "Commander votre nom de domaine avec l'API",
+  "guideFAQTitle": "FAQ Noms de domaine & DNS",
+  "guideFAQDescription": "Tout ce que vous devez savoir sur les noms de domaine et les DNS"
+}
