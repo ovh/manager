@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   BADGE_COLOR,
   Badge,
@@ -15,7 +14,9 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useGenerateUrl } from '@/hooks';
 import { VERIFY_DOMAIN } from '@/tracking.constants';

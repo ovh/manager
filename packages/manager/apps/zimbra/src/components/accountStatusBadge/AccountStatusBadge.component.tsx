@@ -11,7 +11,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
 
 import { CurrentAccountStatus, ResourceStatus } from '@/data/api';
 import { EmailAccountItem } from '@/pages/dashboard/emailAccounts/EmailAccounts.types';

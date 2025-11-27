@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -37,18 +37,18 @@ export const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({ ite
   };
 
   return (
-    <ManagerButton
+    <Button
       id={`delete-alias-${item.id}`}
       data-testid="delete-alias"
       onClick={handleDeleteAliasClick}
       urn={platformUrn}
       iamActions={[IAM_ACTIONS.alias.delete]}
-      isDisabled={item.status !== ResourceStatus.READY}
-      variant={ODS_BUTTON_VARIANT.ghost}
-      color={ODS_BUTTON_COLOR.critical}
-      icon={ODS_ICON_NAME.trash}
-      label=""
-    />
+      disabled={item.status !== ResourceStatus.READY}
+      variant={BUTTON_VARIANT.ghost}
+      color={BUTTON_COLOR.critical}
+    >
+      <Icon name={ICON_NAME.trash} />
+    </Button>
   );
 };
 

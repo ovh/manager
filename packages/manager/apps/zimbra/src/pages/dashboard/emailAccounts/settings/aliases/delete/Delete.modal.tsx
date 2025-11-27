@@ -5,18 +5,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { MODAL_COLOR, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { deleteZimbraPlatformAlias, getZimbraPlatformAliasQueryKey } from '@/data/api';
 import { useAlias } from '@/data/hooks';
@@ -94,16 +93,20 @@ export const DeleteAlias = () => {
   return (
     <Modal
       heading={t('common:delete_alias')}
-      type={ODS_MODAL_COLOR.critical}
-      onDismiss={onClose}
-      isOpen
-      isLoading={isLoading}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      onPrimaryButtonClick={handleDeleteClick}
-      isPrimaryButtonLoading={isDeleting}
-      primaryButtonTestId="delete-btn"
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
+      type={MODAL_COLOR.critical}
+      onOpenChange={onClose}
+      open
+      loading={isLoading}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
+        onClick: handleDeleteClick,
+        loading: isDeleting,
+        testId: 'delete-btn',
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+      }}
     >
       <Text preset={TEXT_PRESET.paragraph}>
         <Trans

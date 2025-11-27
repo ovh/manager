@@ -4,12 +4,21 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_LINK_COLOR, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import {
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { IconLinkAlignmentType, LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { BUTTON_VARIANT, Button, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Link, LinkType } from '@ovh-ux/muk';
 
 import {
   Loading,
@@ -178,12 +187,10 @@ export const DomainDiagnostics = () => {
 
   return (
     <div className="flex flex-col w-full gap-4" data-testid="domain-diagnostic-page">
-      <Links
-        iconAlignment={IconLinkAlignmentType.left}
+      <Link
         type={LinkType.back}
         href={goBackUrl}
-        color={ODS_LINK_COLOR.primary}
-        onClickReturn={() => {
+        onClick={() => {
           trackClick({
             location: PageLocation.page,
             buttonType: ButtonType.button,
@@ -191,8 +198,9 @@ export const DomainDiagnostics = () => {
             actions: [DOMAIN_DIAGNOSTICS, BACK_PREVIOUS_PAGE],
           });
         }}
-        label={t('zimbra_domain_diagnostic_cta_back')}
-      />
+      >
+        {t('zimbra_domain_diagnostic_cta_back')}
+      </Link>
       <Text preset={TEXT_PRESET.heading3}>
         {t('zimbra_domain_diagnostic_subtitle', {
           domain: domain?.domainName,
@@ -202,7 +210,7 @@ export const DomainDiagnostics = () => {
         <Button
           data-testid="refresh"
           variant={BUTTON_VARIANT.outline}
-          isLoading={isFetching}
+          loading={isFetching}
           onClick={handleRefreshClick}
         >
           <Icon name={ICON_NAME.refresh} />
@@ -214,9 +222,10 @@ export const DomainDiagnostics = () => {
       </div>
       {isFetching && !isError && <Loading />}
       {!isFetching && isError && (
-        <OdsMessage className="md:w-1/2" isDismissible={false} color={ODS_MESSAGE_COLOR.danger}>
-          {t('zimbra_domain_diagnostics_loading_error')}
-        </OdsMessage>
+        <Message className="md:w-1/2" dismissible={false} color={MESSAGE_COLOR.critical}>
+          <MessageIcon name={ICON_NAME.hexagonExclamation} />
+          <MessageBody>{t('zimbra_domain_diagnostics_loading_error')}</MessageBody>
+        </Message>
       )}
       {!isFetching && !isError && domain && currentTab}
     </div>

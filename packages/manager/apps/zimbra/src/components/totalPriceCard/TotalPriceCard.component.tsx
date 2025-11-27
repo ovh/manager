@@ -2,21 +2,22 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsCard, OdsSkeleton } from '@ovhcloud/ods-components/react';
-
-import { Price as PriceType } from '@ovh-ux/manager-module-order';
-import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 import {
   Button,
+  Card,
   ICON_NAME,
   Icon,
+  Skeleton,
   TEXT_PRESET,
   TOOLTIP_POSITION,
   Text,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
+
+import { Price as PriceType } from '@ovh-ux/manager-module-order';
+import { OvhSubsidiary, Price } from '@ovh-ux/muk';
 
 import { order } from '@/data/api';
 import { cn } from '@/utils';
@@ -46,14 +47,12 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
 }: TotalPriceCardProps) => {
   const { t } = useTranslation(['accounts']);
   return (
-    <OdsCard
-      className={cn('flex flex-col w-full h-max min-w-72 border-2 border-gray-300', className)}
-    >
+    <Card className={cn('flex flex-col w-full h-max min-w-72 border-2 border-gray-300', className)}>
       <div className="flex flex-1 gap-6 justify-between items-start pt-6 px-6">
         <Text preset="heading-6">{t('common:next_billing')}</Text>
         <div className="flex flex-col items-end">
           {isLoading ? (
-            <OdsSkeleton data-testid="next-billing-loading" className="[&::part(skeleton)]:w-12" />
+            <Skeleton data-testid="next-billing-loading" className="[&::part(skeleton)]:w-12" />
           ) : (
             nextBilling && (
               <Price
@@ -84,7 +83,7 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
           </div>
           <div className="flex flex-col items-end">
             {isLoading ? (
-              <OdsSkeleton data-testid="total-price-loading" className="[&::part(skeleton)]:w-12" />
+              <Skeleton data-testid="total-price-loading" className="[&::part(skeleton)]:w-12" />
             ) : (
               <Text preset="heading-6">
                 <Price value={total?.value || 0} ovhSubsidiary={subsidiary} locale={locale}></Price>
@@ -106,7 +105,7 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
           </span>
         </Button>
       </div>
-    </OdsCard>
+    </Card>
   );
 };
 

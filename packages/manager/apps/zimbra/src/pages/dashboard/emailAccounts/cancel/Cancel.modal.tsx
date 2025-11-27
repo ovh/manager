@@ -5,17 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { MODAL_COLOR, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Modal, useFormatDate, useNotifications } from '@ovh-ux/muk';
 
 import {
   SlotServiceTerminationPolicy,
@@ -103,16 +102,20 @@ export const CancelSlotModal = () => {
       heading={t('common:cancel_slot_title', {
         offer: capitalize(slotWithService?.offer),
       })}
-      type={ODS_MODAL_COLOR.critical}
-      onDismiss={onClose}
-      isLoading={isLoading}
-      isOpen
-      primaryLabel={t('common:cancel_slot')}
-      primaryButtonTestId="primary-btn"
-      isPrimaryButtonLoading={isSending || isLoading}
-      onPrimaryButtonClick={handleSlotCancelClick}
-      secondaryLabel={t('common:cancel_slot_refuse')}
-      onSecondaryButtonClick={handleCancelClick}
+      type={MODAL_COLOR.critical}
+      onOpenChange={onClose}
+      loading={isLoading}
+      open
+      primaryButton={{
+        label: t('common:cancel_slot'),
+        loading: isSending || isLoading,
+        onClick: handleSlotCancelClick,
+        testId: 'primary-btn',
+      }}
+      secondaryButton={{
+        label: t(`common:cancel_slot_refuse`),
+        onClick: handleCancelClick,
+      }}
     >
       <>
         <Text

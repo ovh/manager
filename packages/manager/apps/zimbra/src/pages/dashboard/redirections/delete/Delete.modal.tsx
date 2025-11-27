@@ -5,18 +5,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { MODAL_COLOR, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import {
@@ -99,17 +98,21 @@ export const DeleteOrganizationModal = () => {
 
   return (
     <Modal
-      type={ODS_MODAL_COLOR.critical}
+      type={MODAL_COLOR.critical}
       heading={t('common:delete_redirection')}
-      isOpen
-      onDismiss={onClose}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      onPrimaryButtonClick={handleConfirmClick}
-      isPrimaryButtonLoading={isSending}
-      primaryButtonTestId="delete-btn"
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      secondaryButtonTestId="cancel-btn"
+      open
+      onOpenChange={onClose}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
+        onClick: handleConfirmClick,
+        loading: isSending,
+        testId: 'delete-btn',
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+        testId: 'cancel-btn',
+      }}
     >
       <>
         <Text preset={TEXT_PRESET.paragraph} className="mt-5 mb-5" data-testid="modal-content">

@@ -4,14 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { BUTTON_SIZE, BUTTON_VARIANT, Button, Text } from '@ovhcloud/ods-react';
+
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { BUTTON_SIZE, BUTTON_VARIANT, Button, Text } from '@ovh-ux/muk';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { usePlatform } from '@/data/hooks';
 import {
@@ -120,7 +121,7 @@ export const OnboardingWelcome = () => {
       }
     >
       {onboardingGuides.map(({ href, key, tracking }) => (
-        <Card
+        <LinkCard
           key={key}
           href={href}
           texts={{

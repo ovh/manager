@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { BADGE_COLOR, Badge } from '@ovh-ux/muk';
+import { BADGE_COLOR, Badge } from '@ovhcloud/ods-react';
 
 import { ResourceStatus } from '@/data/api';
 

@@ -2,21 +2,21 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
-
-import { useFormatDate } from '@ovh-ux/manager-react-components';
 import {
   BADGE_COLOR,
   Badge,
   ICON_NAME,
   Icon,
+  Skeleton,
   TEXT_PRESET,
   TOOLTIP_POSITION,
   Text,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
+
+import { useFormatDate } from '@ovh-ux/muk';
 
 import { ServiceBillingState, SlotService } from '@/data/api';
 
@@ -74,10 +74,7 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
 
   if (!service || isLoading) {
     return (
-      <OdsSkeleton
-        data-testid="billing-state-loading"
-        className="[&::part(skeleton)]:max-w-[10rem]"
-      />
+      <Skeleton data-testid="billing-state-loading" className="[&::part(skeleton)]:max-w-[10rem]" />
     );
   }
 

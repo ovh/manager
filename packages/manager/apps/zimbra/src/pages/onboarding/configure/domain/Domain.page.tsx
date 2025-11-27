@@ -4,11 +4,12 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { useDomains } from '@/data/hooks';

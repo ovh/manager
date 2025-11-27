@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from 'react';
 
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ErrorProps } from '@ovh-ux/muk';
 
 import { Error } from '@/components';
 import { useOrganizations, usePlatform } from '@/data/hooks';
@@ -35,7 +35,7 @@ export const Layout = () => {
   return (
     <>
       <Outlet />
-      {isError && <Error error={error as ErrorBannerProps['error']} />}
+      {isError && <Error error={error as ErrorProps['error']} />}
       {!platformId && !isLoading && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}

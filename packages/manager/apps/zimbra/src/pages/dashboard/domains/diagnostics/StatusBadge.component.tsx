@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { StyleReactProps } from '@ovhcloud/ods-components/react/dist/types/react-component-lib/interfaces';
-
-import { BADGE_COLOR, Badge, BadgeProps } from '@ovh-ux/muk';
+import { BADGE_COLOR, Badge, type BadgeProp } from '@ovhcloud/ods-react';
 
 import { DomainDiagnosisTestStatusEnum } from '@/data/api';
 
@@ -20,10 +18,9 @@ const getStatusBadgeColor = (status: DomainDiagnosisTestStatusEnum): BADGE_COLOR
   }
 };
 
-type StatusBadgeProps = StyleReactProps &
-  Omit<BadgeProps, 'label' | 'color'> & {
-    status: DomainDiagnosisTestStatusEnum;
-  };
+type StatusBadgeProps = Omit<BadgeProp, 'label' | 'color'> & {
+  status: DomainDiagnosisTestStatusEnum;
+};
 
 const StatusBadge = ({ status, ...props }: StatusBadgeProps) => {
   const { t } = useTranslation('domains/diagnostic');

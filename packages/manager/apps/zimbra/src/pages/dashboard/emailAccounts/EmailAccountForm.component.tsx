@@ -8,40 +8,43 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  ODS_SPINNER_SIZE,
-  OdsSelectChangeEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsInput,
-  OdsMessage,
-  OdsPassword,
-  OdsSelect,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  Button,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  ICON_NAME,
+  INPUT_TYPE,
+  Icon,
+  Input,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Password,
+  SPINNER_SIZE,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  Button,
-  ICON_NAME,
-  Icon,
-  TEXT_PRESET,
-  Text,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@ovh-ux/muk';
+import { useFormatDate, useNotifications } from '@ovh-ux/muk';
 
 import { GeneratePasswordButton, Loading } from '@/components';
 import {
@@ -247,9 +250,9 @@ export const EmailAccountForm = () => {
     }
   }, [slotId, slots]);
 
-  const setSelectedOrganization = (e: OdsSelectChangeEvent) => {
+  const setSelectedOrganization = (value: string[]) => {
     const organizationLabel = domains?.find(
-      ({ currentState }) => currentState.name === e?.detail?.value,
+      ({ currentState }) => currentState.name === value?.at(0),
     )?.currentState.organizationLabel;
     setSelectedDomainOrganization(organizationLabel);
   };
@@ -263,29 +266,29 @@ export const EmailAccountForm = () => {
         control={control}
         name="account"
         render={({ field: { name, value, onChange, onBlur } }) => (
-          <OdsFormField className="w-full" error={errors?.[name]?.message}>
+          <FormField className="w-full" invalid={!!errors?.[name]}>
             <label htmlFor={name} slot="label">
               {t('common:email_account')} *
             </label>
             <div className="flex">
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              <Input
+                type={INPUT_TYPE.text}
                 placeholder={t('common:account_name')}
                 data-testid="input-account"
                 className="flex-1"
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={!!errors[name]}
                 value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
+                onBlur={onBlur}
+                onChange={onChange}
               />
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              <Input
+                type={INPUT_TYPE.text}
                 name="@"
                 value="@"
-                isReadonly
-                isDisabled
+                readOnly
+                disabled
                 className="input-at w-10"
               />
               <Controller
@@ -293,36 +296,37 @@ export const EmailAccountForm = () => {
                 name="domain"
                 render={({ field }) => (
                   <div className="flex flex-1">
-                    <OdsSelect
+                    <Select
                       key={hackKeyDomains}
+                      items={hackDomains.map(({ currentState: domain }) => ({
+                        label: domain.name,
+                        value: domain.name,
+                      }))}
                       id={name}
                       name={field.name}
-                      hasError={!!errors[field.name]}
-                      value={field.value}
-                      placeholder={t('common:select_domain')}
-                      onOdsChange={(e) => {
-                        field.onChange(e);
-                        setSelectedOrganization(e);
+                      invalid={!!errors[field.name]}
+                      value={[field.value]}
+                      onValueChange={({ value }) => {
+                        field.onChange(value);
+                        setSelectedOrganization(value);
                       }}
-                      onOdsBlur={field.onBlur}
-                      isDisabled={isLoadingDomains || !domains}
+                      onBlur={field.onBlur}
+                      disabled={isLoadingDomains || !domains}
                       className="w-full"
                       data-testid="select-domain"
                     >
-                      {hackDomains.map(({ currentState: domain }) => (
-                        <option key={domain.name} value={domain.name}>
-                          {domain.name}
-                        </option>
-                      ))}
-                    </OdsSelect>
+                      <SelectControl placeholder={t('common:select_domain')} />
+                      <SelectContent />
+                    </Select>
                     {(isLoadingDomains || !domains) && (
-                      <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
+                      <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                     )}
                   </div>
                 )}
               />
             </div>
-          </OdsFormField>
+            <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+          </FormField>
         )}
       />
       <Text preset={TEXT_PRESET.caption} className="flex flex-col">
@@ -334,56 +338,61 @@ export const EmailAccountForm = () => {
         ))}
       </Text>
       {selectedDomainOrganization && (
-        <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.information}>
-          <Text preset={TEXT_PRESET.paragraph}>
-            {t('zimbra_account_add_message_organization', {
-              organizationLabel: selectedDomainOrganization,
-            })}
-          </Text>
-        </OdsMessage>
+        <Message className="w-full" dismissible={false} color={MESSAGE_COLOR.information}>
+          <MessageIcon name={ICON_NAME.circleInfo} />
+          <MessageBody>
+            <Text preset={TEXT_PRESET.paragraph}>
+              {t('zimbra_account_add_message_organization', {
+                organizationLabel: selectedDomainOrganization,
+              })}
+            </Text>
+          </MessageBody>
+        </Message>
       )}
       <div className="flex">
         <Controller
           control={control}
           name="lastName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full md:w-1/2 pr-6" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+            <FormField className="w-full md:w-1/2 pr-6" invalid={!!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_lastName_label')}
-              </label>
-              <OdsInput
+              </FormFieldLabel>
+              <Input
                 placeholder={t('zimbra_account_add_input_lastName_placeholder')}
-                type={ODS_INPUT_TYPE.text}
+                type={INPUT_TYPE.text}
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={!!errors[name]}
                 value={value}
                 defaultValue=""
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
+                onBlur={onBlur}
+                onChange={onChange}
               />
-            </OdsFormField>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
         <Controller
           control={control}
           name="firstName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full md:w-1/2 pl-6" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+            <FormField className="w-full md:w-1/2 pl-6" invalid={!!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_firstName_label')}
-              </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              </FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 placeholder={t('zimbra_account_add_input_firstName_placeholder')}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={!!errors[name]}
                 value={value}
                 defaultValue=""
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
+                onBlur={onBlur}
+                onChange={onChange}
               />
-            </OdsFormField>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
       </div>
@@ -392,41 +401,41 @@ export const EmailAccountForm = () => {
           control={control}
           name="displayName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full md:w-1/2 md:pr-6" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+            <FormField className="w-full md:w-1/2 md:pr-6" invalid={!!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_displayName_label')}
-              </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              </FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 placeholder={t('zimbra_account_add_input_displayName_placeholder')}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={!!errors[name]}
                 value={value}
                 defaultValue=""
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
+                onBlur={onBlur}
+                onChange={onChange}
               />
-            </OdsFormField>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
         <Controller
           control={control}
           name="hideInGal"
           render={({ field: { name, value, onChange } }) => (
-            <OdsFormField
+            <FormField
               className="flex justify-center w-full mt-7 md:w-1/2 md:pl-6"
-              error={errors?.[name]?.message}
+              invalid={!!errors?.[name]}
             >
-              <div className="flex leading-none gap-4">
-                <OdsCheckbox
-                  inputId={name}
-                  id={name}
-                  name={name}
-                  value={value as unknown as string}
-                  isChecked={value}
-                  onClick={() => onChange(!value)}
-                ></OdsCheckbox>
-                <label htmlFor={name}>
+              <Checkbox
+                id={name}
+                name={name}
+                value={value as unknown as string}
+                checked={value}
+                onCheckedChange={onChange}
+              >
+                <CheckboxControl />
+                <CheckboxLabel>
                   <Text preset={TEXT_PRESET.paragraph}>
                     {t('zimbra_account_add_checkbox_hide_in_gal')}
                     <Tooltip>
@@ -440,9 +449,10 @@ export const EmailAccountForm = () => {
                       </TooltipContent>
                     </Tooltip>
                   </Text>
-                </label>
-              </div>
-            </OdsFormField>
+                </CheckboxLabel>
+              </Checkbox>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
       </div>
@@ -451,26 +461,21 @@ export const EmailAccountForm = () => {
           control={control}
           name="password"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full md:w-1/2 md:pr-6" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+            <FormField className="w-full md:w-1/2 md:pr-6" invalid={!!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_password_label')}
                 {!emailAccount && ' *'}
-              </label>
+              </FormFieldLabel>
               <div className="flex flex-1 gap-4">
-                <OdsPassword
+                <Password
                   data-testid="input-password"
-                  isMasked
                   className="w-full"
                   id={name}
                   name={name}
-                  hasError={!!errors[name]}
+                  invalid={!!errors[name]}
                   value={value}
-                  onOdsBlur={onBlur}
-                  onOdsChange={(e) => {
-                    // this is necessary because OdsPassword returns
-                    // value as null somehow
-                    onChange(e?.detail?.value || '');
-                  }}
+                  onBlur={onBlur}
+                  onChange={onChange}
                 />
                 <GeneratePasswordButton
                   id="generate-password-btn"
@@ -479,27 +484,27 @@ export const EmailAccountForm = () => {
                   }}
                 />
               </div>
-            </OdsFormField>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
         <Controller
           control={control}
           name="forceChangePasswordAfterLogin"
           render={({ field: { name, value, onChange } }) => (
-            <OdsFormField
+            <FormField
               className="flex justify-center w-full mt-7 md:w-1/2 md:pl-6"
-              error={errors?.[name]?.message}
+              invalid={!!errors?.[name]}
             >
-              <div className="flex leading-none gap-4">
-                <OdsCheckbox
-                  inputId={name}
-                  id={name}
-                  name={name}
-                  value={value as unknown as string}
-                  isChecked={value}
-                  onClick={() => onChange(!value)}
-                ></OdsCheckbox>
-                <label htmlFor={name}>
+              <Checkbox
+                id={name}
+                name={name}
+                value={value as unknown as string}
+                checked={value}
+                onCheckedChange={onChange}
+              >
+                <CheckboxControl />
+                <CheckboxLabel>
                   <Text preset={TEXT_PRESET.paragraph}>
                     {t('zimbra_account_add_checkbox_force_change_password')}
                     <Tooltip>
@@ -513,9 +518,10 @@ export const EmailAccountForm = () => {
                       </TooltipContent>
                     </Tooltip>
                   </Text>
-                </label>
-              </div>
-            </OdsFormField>
+                </CheckboxLabel>
+              </Checkbox>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
       </div>
@@ -533,48 +539,47 @@ export const EmailAccountForm = () => {
             control={control}
             name="slotId"
             render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField className="w-full md:pr-6" error={errors?.[name]?.message}>
-                <label htmlFor={name} slot="label">
+              <FormField className="w-full md:pr-6" invalid={!!errors?.[name]}>
+                <FormFieldLabel htmlFor={name} slot="label">
                   {t('common:offer')}
                   {' *'}
-                </label>
+                </FormFieldLabel>
                 <div className="flex flex-1">
-                  <OdsSelect
+                  <Select
                     key={hackKeyGroupedSlots}
+                    items={Object.keys(hackGroupedSlots).map((offer) => {
+                      return {
+                        label: `${capitalize(offer.toLowerCase())} - ${t('common:monthly')}`,
+                        options: hackGroupedSlots[offer].map((slot: SlotWithService) => ({
+                          value: slot.id,
+                          label: t('common:renewal_at', {
+                            date: format({
+                              date: slot.service?.nextBillingDate,
+                              format: 'P',
+                            }),
+                          }),
+                        })),
+                      };
+                    })}
                     id={name}
                     name={name}
-                    hasError={!!errors[name]}
-                    value={value}
-                    placeholder={t('common:select_slot')}
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                    isDisabled={isLoadingSlots}
+                    invalid={!!errors[name]}
+                    value={[value]}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    disabled={isLoadingSlots}
                     className="w-full"
                     data-testid="select-slot"
                   >
-                    {Object.keys(hackGroupedSlots).map((offer) => (
-                      <optgroup
-                        key={offer}
-                        label={`${capitalize(offer.toLowerCase())} - ${t('common:monthly')}`}
-                      >
-                        {hackGroupedSlots[offer].map((slot: SlotWithService) => (
-                          <option key={slot.id} value={slot.id}>
-                            {t('common:renewal_at', {
-                              date: format({
-                                date: slot.service?.nextBillingDate,
-                                format: 'P',
-                              }),
-                            })}
-                          </option>
-                        ))}
-                      </optgroup>
-                    ))}
-                  </OdsSelect>
+                    <SelectControl placeholder={t('common:select_slot')} />
+                    <SelectContent />
+                  </Select>
                   {isLoadingSlots && (
-                    <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
+                    <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                   )}
                 </div>
-              </OdsFormField>
+                <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+              </FormField>
             )}
           />
         </div>
@@ -582,7 +587,7 @@ export const EmailAccountForm = () => {
       <Button
         slot="actions"
         type="submit"
-        color={ODS_BUTTON_COLOR.primary}
+        color={BUTTON_COLOR.primary}
         disabled={!isDirty || !isValid}
         loading={isSending}
         data-testid="confirm-btn"

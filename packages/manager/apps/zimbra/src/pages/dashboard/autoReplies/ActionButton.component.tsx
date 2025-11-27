@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -40,18 +40,18 @@ export const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({ it
   };
 
   return (
-    <ManagerButton
+    <Button
       id={`delete-auto-reply-${item.id}`}
       data-testid="delete-auto-reply"
       onClick={handleDeleteClick}
       urn={platformUrn}
       iamActions={[IAM_ACTIONS.autoReply.delete]}
-      isDisabled={item.status !== ResourceStatus.READY ? true : null}
-      variant={ODS_BUTTON_VARIANT.ghost}
-      color={ODS_BUTTON_COLOR.critical}
-      icon={ODS_ICON_NAME.trash}
-      label=""
-    ></ManagerButton>
+      disabled={item.status !== ResourceStatus.READY ? true : null}
+      variant={BUTTON_VARIANT.ghost}
+      color={BUTTON_COLOR.critical}
+    >
+      <Icon name={ICON_NAME.trash} />
+    </Button>
   );
 };
 

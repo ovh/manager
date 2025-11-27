@@ -2,15 +2,16 @@ import React, { useContext, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import { Text } from '@ovhcloud/ods-react';
+
 import { getOrderURL } from '@ovh-ux/manager-module-order';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Text } from '@ovh-ux/muk';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import {
   ZIMBRA_ADMINISTRATOR_GUIDE,
@@ -85,7 +86,7 @@ export const Onboarding = () => {
       moreInfoHref={WEBSITE_LINK[ovhSubsidiary] || WEBSITE_LINK.DEFAULT}
     >
       {onboardingGuides.map(({ href, key, tracking }) => (
-        <Card
+        <LinkCard
           key={key}
           href={href}
           texts={{

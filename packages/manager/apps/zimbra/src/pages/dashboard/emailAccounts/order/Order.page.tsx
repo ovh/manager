@@ -4,20 +4,16 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
-import {
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, TEXT_PRESETS, Text } from '@ovh-ux/muk';
+import { Link, LinkType, useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { useOrderCatalog } from '@/data/hooks';
@@ -62,7 +58,7 @@ export const EmailAccountsOrder = () => {
   useEffect(() => {
     if (isError && error) {
       addError(
-        <Text preset={TEXT_PRESETS.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_account_order_no_product_error_message')}
         </Text>,
         true,
@@ -72,12 +68,9 @@ export const EmailAccountsOrder = () => {
 
   return (
     <div className="flex flex-col items-start space-y-4 mb-5 w-full md:w-3/4">
-      <Links
-        type={LinkType.back}
-        onClickReturn={goBack}
-        label={t('zimbra_account_order_cta_back')}
-        iconAlignment={IconLinkAlignmentType.left}
-      />
+      <Link type={LinkType.back} onClick={goBack}>
+        {t('zimbra_account_order_cta_back')}
+      </Link>
       <Text data-testid="page-title" preset={TEXT_PRESET.heading2} className="mb-6">
         {t('zimbra_account_order_title')}
       </Text>

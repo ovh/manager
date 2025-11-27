@@ -4,11 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, BUTTON_COLOR, BUTTON_VARIANT } from '@ovh-ux/muk';
 
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -74,7 +72,7 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.delete],
       label: t(`${NAMESPACES.ACTIONS}:delete`),
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     },
   ];
   return (
@@ -82,7 +80,7 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
       id={item.id}
       isDisabled={item.status !== ResourceStatus.READY}
       items={actionItems.filter((i) => !i.hidden)}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       isCompact
     />
   );

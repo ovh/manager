@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import { ADD_DOMAIN } from '@/tracking.constants';

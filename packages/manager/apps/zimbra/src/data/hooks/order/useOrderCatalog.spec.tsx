@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, expect } from 'vitest';
 
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 
 import { orderCatalogMock } from '@/data/api';
 import { useOrderCatalog } from '@/data/hooks';

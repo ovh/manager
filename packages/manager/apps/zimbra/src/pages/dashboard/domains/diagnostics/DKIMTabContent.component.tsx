@@ -5,13 +5,20 @@ import { useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import {
+  Button,
+  ICON_NAME,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Clipboard, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Clipboard, useNotifications } from '@ovh-ux/muk';
 
 import { GuideLink } from '@/components';
 import {
@@ -110,9 +117,10 @@ const DKIMTabContent = ({
 
   if (!diagnostic) {
     return (
-      <OdsMessage className="md:w-1/2" isDismissible={false} color={ODS_MESSAGE_COLOR.danger}>
-        {t('zimbra_domain_diagnostic_loading_error')}
-      </OdsMessage>
+      <Message className="md:w-1/2" dismissible={false} color={MESSAGE_COLOR.critical}>
+        <MessageIcon name={ICON_NAME.hexagonExclamation} />
+        <MessageBody>{t('zimbra_domain_diagnostic_loading_error')}</MessageBody>
+      </Message>
     );
   }
 
@@ -125,11 +133,14 @@ const DKIMTabContent = ({
         <StatusBadge className="ml-4" status={diagnosticStatus} />
       </Text>
       {!isOk && (
-        <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
-          {t(
-            `zimbra_domain_diagnostic_information_banner_dkim_${diagnostic?.status.toLowerCase()}`,
-          )}
-        </OdsMessage>
+        <Message className="w-full" dismissible={false} color={MESSAGE_COLOR.warning}>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <MessageBody>
+            {t(
+              `zimbra_domain_diagnostic_information_banner_dkim_${diagnostic?.status.toLowerCase()}`,
+            )}
+          </MessageBody>
+        </Message>
       )}
       <Text preset={TEXT_PRESET.paragraph}>
         <Trans

@@ -5,19 +5,26 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import {
+  ICON_NAME,
+  MESSAGE_COLOR,
+  MODAL_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { deleteZimbraPlatformAccount, getZimbraPlatformListQueryKey } from '@/data/api';
 import { useAccount } from '@/data/hooks';
@@ -98,16 +105,20 @@ export const DeleteEmailAccountModal = () => {
   return (
     <Modal
       heading={t('common:delete_email_account')}
-      type={ODS_MODAL_COLOR.critical}
-      onDismiss={onClose}
-      isLoading={isLoading}
-      isOpen
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      isPrimaryButtonLoading={step === 1 ? false : isSending}
-      onPrimaryButtonClick={step === 1 ? () => setStep(2) : handleDeleteClick}
-      primaryButtonTestId="primary-btn"
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
+      type={MODAL_COLOR.critical}
+      onOpenChange={onClose}
+      loading={isLoading}
+      open
+      primaryButton={{
+        label: t('${NAMESPACES.ACTIONS}:delete'),
+        loading: step === 1 ? false : isSending,
+        onClick: step === 1 ? () => setStep(2) : handleDeleteClick,
+        testId: 'primary-btn',
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+      }}
     >
       <>
         {step === 1 && (
@@ -135,11 +146,14 @@ export const DeleteEmailAccountModal = () => {
                 }}
               />
             </Text>
-            <OdsMessage className="mt-4" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
-              <Text preset={TEXT_PRESET.paragraph} className="font-bold">
-                {t('zimbra_account_delete_modal_warn_message')}
-              </Text>
-            </OdsMessage>
+            <Message className="mt-4" dismissible={false} color={MESSAGE_COLOR.warning}>
+              <MessageIcon name={ICON_NAME.triangleExclamation} />
+              <MessageBody>
+                <Text preset={TEXT_PRESET.paragraph} className="font-bold">
+                  {t('zimbra_account_delete_modal_warn_message')}
+                </Text>
+              </MessageBody>
+            </Message>
           </>
         )}
       </>

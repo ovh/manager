@@ -2,7 +2,7 @@
 // TODO: Dupilicate of packages/manager/apps/pci-databases-analytics/src/types/catalog.ts
 // share it across projects and remove this
 import { Order } from '@ovh-ux/manager-module-order';
-import { CurrencyCode, IntervalUnitType, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { CurrencyCode, IntervalUnit, OvhSubsidiary } from '@ovh-ux/muk';
 
 import { ZimbraPlanCodes } from '../type';
 
@@ -576,7 +576,7 @@ export namespace order {
       /** Length of the interval */
       interval: number;
       /** Unit of the interval */
-      intervalUnit: IntervalUnitType;
+      intervalUnit: IntervalUnit;
       /** Pricing mode */
       mode: string;
       /** Pricing must be completed */

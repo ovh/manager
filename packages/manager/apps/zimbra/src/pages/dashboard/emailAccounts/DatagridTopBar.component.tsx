@@ -5,19 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_ICON_ALIGNMENT,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-
-import { ManagerButton } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import {
   BUTTON_COLOR,
   BUTTON_SIZE,
-  Button,
+  BUTTON_VARIANT,
   ICON_NAME,
   Icon,
   TEXT_PRESET,
@@ -25,7 +15,10 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useDomains, usePlatform } from '@/data/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -106,7 +99,7 @@ export const DatagridTopbar = () => {
           >
             <>
               <Icon name={ICON_NAME.plus} />
-              {t('zimbra_account_account_ad>d')}
+              {t('zimbra_account_account_add')}
             </>
           </Button>
         </TooltipTrigger>
@@ -122,27 +115,30 @@ export const DatagridTopbar = () => {
           </TooltipContent>
         )}
       </Tooltip>
-      <ManagerButton
+      <Button
         id="order-account-btn"
         urn={platformUrn}
         iamActions={[IAM_ACTIONS.account.create]}
         data-testid="order-account-btn"
-        color={ODS_BUTTON_COLOR.primary}
-        variant={ODS_BUTTON_VARIANT.outline}
-        size={ODS_BUTTON_SIZE.sm}
+        color={BUTTON_COLOR.primary}
+        variant={BUTTON_VARIANT.outline}
+        size={BUTTON_SIZE.sm}
         onClick={handleOrderEmailAccountClick}
-        label={t('zimbra_account_account_order')}
-      />
-      <ManagerButton
+      >
+        {t('zimbra_account_account_order')}
+      </Button>
+      <Button
         id="ovh-mail-migrator-btn"
-        color={ODS_BUTTON_COLOR.primary}
-        variant={ODS_BUTTON_VARIANT.outline}
-        size={ODS_BUTTON_SIZE.sm}
+        color={BUTTON_COLOR.primary}
+        variant={BUTTON_VARIANT.outline}
+        size={BUTTON_SIZE.sm}
         onClick={handleOvhMailMigratorAccountClick}
-        label={t('zimbra_account_account_migrate')}
-        iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-        icon={ODS_ICON_NAME.externalLink}
-      />
+      >
+        <>
+          {t('zimbra_account_account_migrate')}
+          <Icon name={ICON_NAME.externalLink} />
+        </>
+      </Button>
       <EmailAccountsExportCsv />
     </div>
   );

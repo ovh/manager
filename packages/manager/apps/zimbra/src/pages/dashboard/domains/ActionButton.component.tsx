@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -64,28 +64,28 @@ export const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({ item }) 
     navigate(hrefDiagnosticsDomain);
   };
 
-  const actionItems = [
+  const actionItems: ActionMenuItemProps[] = [
     {
       id: 1,
-      onclick: handleEditDomainClick,
+      onClick: handleEditDomainClick,
       label: t(`${NAMESPACES.ACTIONS}:configure`),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.edit],
     },
     {
       id: 2,
-      onclick: handleDiagnosticsDomainClick,
+      onClick: handleDiagnosticsDomainClick,
       label: t('common:diagnostics'),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.edit],
     },
     {
       id: 3,
-      onclick: handleDeleteDomainClick,
+      onClick: handleDeleteDomainClick,
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.delete],
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     },
   ];
 
@@ -94,7 +94,7 @@ export const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({ item }) 
       id={item.id}
       isDisabled={item.status !== ResourceStatus.READY}
       items={actionItems}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       isCompact
     />
   );

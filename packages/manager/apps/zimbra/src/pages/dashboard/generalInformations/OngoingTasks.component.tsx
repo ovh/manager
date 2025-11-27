@@ -2,10 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME, ODS_LINK_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
-
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { ICON_NAME, Icon, Link, SPINNER_SIZE, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { Loading } from '@/components';
 import { TaskStatus, TaskType } from '@/data/api';
@@ -27,7 +24,7 @@ export const OngoingTasks: React.FC = () => {
 
   useEffect(() => {
     setTasks(loadMore ? ongoingTasks : ongoingTasks?.slice(0, defaultNumberToShow));
-  }, [loadMore, data]);
+  }, [loadMore, data, ongoingTasks]);
 
   return (
     <div className="flex flex-col" data-testid="ongoingtasks">
@@ -41,28 +38,19 @@ export const OngoingTasks: React.FC = () => {
         </ul>
       ) : null}
       {ongoingTasks?.length > defaultNumberToShow && (
-        <OdsLink
-          className="mt-5 ml-9"
-          color={ODS_LINK_COLOR.primary}
-          onClick={(e) => {
-            e?.preventDefault();
-            setLoadMore(!loadMore);
-          }}
-          href="#"
-          label={
-            !loadMore
-              ? t('zimbra_dashboard_tile_status_ongoingTask_viewMore')
-              : t('zimbra_dashboard_tile_status_ongoingTask_viewLess')
-          }
-          icon={!loadMore ? ODS_ICON_NAME.chevronDown : ODS_ICON_NAME.chevronUp}
-        ></OdsLink>
+        <Link className="mt-5 ml-9" onClick={() => setLoadMore(!loadMore)} href="#">
+          {!loadMore
+            ? t('zimbra_dashboard_tile_status_ongoingTask_viewMore')
+            : t('zimbra_dashboard_tile_status_ongoingTask_viewLess')}
+          <Icon name={loadMore ? ICON_NAME.chevronUp : ICON_NAME.chevronDown} />
+        </Link>
       )}
       {(!tasks?.length || isError) && !isPending && (
         <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_dashboard_tile_status_ongoingTask_none')}
         </Text>
       )}
-      {isPending && <Loading size={ODS_SPINNER_SIZE.xs} />}
+      {isPending && <Loading size={SPINNER_SIZE.xs} />}
     </div>
   );
 };

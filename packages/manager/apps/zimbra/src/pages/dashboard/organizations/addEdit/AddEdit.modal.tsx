@@ -7,27 +7,31 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  ICON_NAME,
+  INPUT_TYPE,
+  Icon,
+  Input,
+  MODAL_COLOR,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  ICON_NAME,
-  Icon,
-  TEXT_PRESET,
-  Text,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@ovh-ux/muk';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import {
   OrganizationBodyParamsType,
@@ -159,17 +163,21 @@ export const AddEditOrganizationModal = () => {
   return (
     <Modal
       heading={organizationId ? t('common:edit_organization') : t('common:add_organization')}
-      isOpen
-      type={ODS_MODAL_COLOR.information}
-      onDismiss={onClose}
-      isLoading={isLoading}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      primaryButtonTestId="confirm-btn"
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      isPrimaryButtonLoading={isLoading || isSending}
-      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
+      open
+      type={MODAL_COLOR.information}
+      onOpenChange={onClose}
+      loading={isLoading}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
+        testId: 'confirm-btn',
+        disabled: !isDirty || !isValid,
+        loading: isLoading || isSending,
+        onClick: handleSubmit(handleSaveClick),
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+      }}
     >
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleSaveClick)}>
         {!organizationId && (
@@ -187,38 +195,31 @@ export const AddEditOrganizationModal = () => {
           control={control}
           name="name"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              data-testid="field-name"
-              error={errors?.[name]?.message}
-              className="w-full"
-            >
-              <label htmlFor={name} slot="label">
+            <FormField data-testid="field-name" invalid={!!errors?.[name]} className="w-full">
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_organization_add_form_input_name_title')} *
-              </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              </FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 data-testid="input-name"
                 placeholder={t('zimbra_organization_add_form_input_name_placeholder')}
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={!!errors[name]}
                 value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
-            </OdsFormField>
+                onBlur={onBlur}
+                onChange={onChange}
+              />
+              <FormFieldError>{errors?.[name]?.message} </FormFieldError>
+            </FormField>
           )}
         />
         <Controller
           control={control}
           name="label"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              data-testid="field-label"
-              error={errors?.[name]?.message}
-              className="w-full"
-            >
-              <label htmlFor={name} slot="label">
+            <FormField data-testid="field-label" invalid={!!errors?.[name]} className="w-full">
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_organization_add_form_input_label_title')} *
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -230,19 +231,20 @@ export const AddEditOrganizationModal = () => {
                     </Text>
                   </TooltipContent>
                 </Tooltip>
-              </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              </FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 data-testid="input-label"
                 placeholder={t('zimbra_organization_add_form_input_label_placeholder')}
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={!!errors[name]}
                 value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
-            </OdsFormField>
+                onBlur={onBlur}
+                onChange={onChange}
+              />
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
       </form>

@@ -4,8 +4,10 @@ import { Outlet, useMatches, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { IconLinkAlignmentType, LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Link, LinkType, TEXT_PRESET } from '@ovh-ux/muk';
 
 import { Loading, TabItemProps, TabsPanel, useComputePathMatchers } from '@/components';
 import { useAccount } from '@/data/hooks';
@@ -110,11 +112,10 @@ export const EmailAccountSettingsLayout = () => {
       {!isLoading && (
         <>
           <div className="flex flex-col items-start space-y-4 mb-6" data-testid="page-title">
-            <Links
-              iconAlignment={IconLinkAlignmentType.left}
+            <Link
               type={LinkType.back}
               href={goBackUrl}
-              onClickReturn={() => {
+              onClick={() => {
                 trackClick({
                   location: PageLocation.funnel,
                   buttonType: ButtonType.link,
@@ -122,13 +123,14 @@ export const EmailAccountSettingsLayout = () => {
                   actions: [EDIT_EMAIL_ACCOUNT, BACK_PREVIOUS_PAGE],
                 });
               }}
-              label={t('zimbra_account_add_cta_back')}
-            />
-            <Subtitle>
+            >
+              {t('zimbra_account_add_cta_back')}
+            </Link>
+            <Text preset={TEXT_PRESET.heading3}>
               {t('zimbra_account_edit_title', {
                 account: account?.currentState?.email,
               })}
-            </Subtitle>
+            </Text>
           </div>
           <div className="mt-5 mb-8">
             <TabsPanel tabs={tabsList} />

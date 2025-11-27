@@ -2,21 +2,25 @@ import React, { useMemo } from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { OdsCard, OdsRadio, OdsSkeleton } from '@ovhcloud/ods-components/react';
-
-import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 import {
   BADGE_COLOR,
   Badge,
+  Card,
   ICON_NAME,
   Icon,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  Skeleton,
   TEXT_PRESET,
   TOOLTIP_POSITION,
   Text,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
+
+import { OvhSubsidiary, Price } from '@ovh-ux/muk';
 
 import { businessFeatures, proFeatures, starterFeatures } from '@/constants';
 import { ZimbraOffer, order } from '@/data/api';
@@ -77,7 +81,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
   }, [isCurrentOffer, planCode]);
 
   return (
-    <OdsCard
+    <Card
       className={cn(
         'flex flex-col w-full border-2 cursor-pointer overflow-hidden',
         isSelected ? 'bg-color-primary-050 border-color-primary-500' : 'border-gray-300',
@@ -92,7 +96,11 @@ export const PriceCard: React.FC<PriceCardProps> = ({
         )}
       >
         <div className="flex gap-4 items-center">
-          <OdsRadio name={planCode} isChecked={isSelected} onClick={() => false} />
+          <RadioGroup value={isSelected ? 'selected' : ''}>
+            <Radio value="selected" onClick={() => false}>
+              <RadioControl />
+            </Radio>
+          </RadioGroup>
           <Text preset="heading-4" className={cn(isDisabled && '[&::part(text)]:text-gray-500')}>
             {capitalize(planCode)}
           </Text>
@@ -142,7 +150,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
         )}
       >
         {isLoading ? (
-          <OdsSkeleton data-testid="price-loading" className="[&::part(skeleton)]:w-16" />
+          <Skeleton data-testid="price-loading" className="[&::part(skeleton)]:w-16" />
         ) : (
           price && (
             <Text
@@ -162,7 +170,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
           )
         )}
       </div>
-    </OdsCard>
+    </Card>
   );
 };
 

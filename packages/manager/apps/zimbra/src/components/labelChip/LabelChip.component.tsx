@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { BADGE_SIZE, Badge } from '@ovh-ux/muk';
+import { BADGE_SIZE, Badge } from '@ovhcloud/ods-react';
 
 export interface LabelChipProps {
   id: string;

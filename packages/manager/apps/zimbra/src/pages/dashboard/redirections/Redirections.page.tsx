@@ -4,15 +4,10 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
+import { Button, Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { BadgeStatus } from '@/components';
 import { ResourceStatus } from '@/data/api';
@@ -43,27 +38,28 @@ const items: RedirectionItem[] = [
 const columns: DatagridColumn<RedirectionItem>[] = [
   {
     id: 'from',
-    cell: (item) => <div>{item.from}</div>,
+    accessorKey: 'from',
     label: 'zimbra_redirections_from',
   },
   {
     id: 'to',
-    cell: (item) => <div>{item.to}</div>,
+    accessorKey: 'to',
     label: 'zimbra_redirections_to',
   },
   {
     id: 'organization',
-    cell: (item) => <div>{item.organization}</div>,
+    accessorKey: 'organization',
     label: 'common:organization',
   },
   {
     id: 'status',
-    cell: (item) => <BadgeStatus status={item.status} />,
+    accessorKey: 'status',
+    cell: ({ getValue }) => <BadgeStatus status={getValue<keyof typeof ResourceStatus>()} />,
     label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
-    cell: (item) => <ActionButton data-testid="add-redirection-btn" item={item} />,
+    cell: ({ row }) => <ActionButton data-testid="add-redirection-btn" item={row.original} />,
     label: '',
   },
 ];
@@ -89,30 +85,32 @@ export const Redirections = () => {
         <>
           {accountId && (
             <div className="mb-6">
-              <Subtitle>{t('zimbra_redirections_account_title')}</Subtitle>
+              <Text preset={TEXT_PRESET.heading3}>{t('zimbra_redirections_account_title')}</Text>
             </div>
           )}
           <Datagrid
             topbar={
-              <ManagerButton
-                color={ODS_BUTTON_COLOR.primary}
-                inline-block
-                size={ODS_BUTTON_SIZE.sm}
+              <Button
+                color={BUTTON_COLOR.primary}
+                size={BUTTON_SIZE.sm}
                 onClick={handleAddEmailRedirectionClick}
                 urn={platformUrn}
                 iamActions={[IAM_ACTIONS.redirection.create]}
                 data-testid="add-redirection-btn"
                 id="add-redirection-btn"
-                icon={ODS_ICON_NAME.plus}
-                label={t('common:add_redirection')}
-              />
+              >
+                <>
+                  <Icon name={ICON_NAME.plus} />
+                  {t('common:add_redirection')}
+                </>
+              </Button>
             }
             columns={columns.map((column) => ({
               ...column,
               label: t(column.label),
             }))}
-            items={items}
-            totalItems={items.length}
+            data={items}
+            totalCount={items.length}
             isLoading={isLoading}
           />
         </>

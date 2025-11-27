@@ -7,19 +7,27 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import {
+  BUTTON_COLOR,
+  Button,
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { BUTTON_COLOR, Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -118,25 +126,26 @@ export const ConfigureOrganization: React.FC = () => {
         control={control}
         name="name"
         render={({ field: { name, value, onChange, onBlur } }) => (
-          <OdsFormField data-testid="field-name" error={errors?.[name]?.message} className="w-full">
-            <label htmlFor={name} slot="label">
+          <FormField data-testid="field-name" invalid={!!errors?.[name]} className="w-full">
+            <FormFieldLabel>
               {t('organizations/form:zimbra_organization_add_form_input_name_title')}
               {' *'}
-            </label>
-            <OdsInput
-              type={ODS_INPUT_TYPE.text}
+            </FormFieldLabel>
+            <Input
+              type={INPUT_TYPE.text}
               data-testid="input-name"
               placeholder={t(
                 'organizations/form:zimbra_organization_add_form_input_name_placeholder',
               )}
               id={name}
               name={name}
-              hasError={!!errors[name]}
+              invalid={!!errors[name]}
               value={value}
-              onOdsBlur={onBlur}
-              onOdsChange={onChange}
-            ></OdsInput>
-          </OdsFormField>
+              onBlur={onBlur}
+              onChange={onChange}
+            />
+            <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+          </FormField>
         )}
       />
       <Button

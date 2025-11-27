@@ -4,15 +4,10 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-  OvhSubsidiary,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   ButtonType,
@@ -21,7 +16,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Link, LinkType, OvhSubsidiary, useNotifications } from '@ovh-ux/muk';
 
 import { Loading, PriceCard, TotalPriceCard } from '@/components';
 import { ZimbraOffer, ZimbraPlanCodes, getZimbraPlatformAccountsQueryKey, order } from '@/data/api';
@@ -150,11 +145,10 @@ export const UpdateOffer = () => {
 
   return (
     <div className="flex flex-col items-start mb-6" data-testid="update-offer-account-page">
-      <Links
-        iconAlignment={IconLinkAlignmentType.left}
+      <Link
         type={LinkType.back}
         href={goBackUrl}
-        onClickReturn={() => {
+        onClick={() => {
           trackClick({
             location: PageLocation.funnel,
             buttonType: ButtonType.link,
@@ -162,8 +156,9 @@ export const UpdateOffer = () => {
             actions: [UPDATE_OFFER_SLOT, BACK_PREVIOUS_PAGE],
           });
         }}
-        label={t('zimbra_account_upgrade_cta_back')}
-      />
+      >
+        {t('zimbra_account_upgrade_cta_back')}
+      </Link>
       <Text preset="heading-3" className="mt-5">
         {t('common:update_offer_title')}
       </Text>

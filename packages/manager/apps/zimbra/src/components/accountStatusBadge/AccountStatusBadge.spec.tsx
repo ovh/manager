@@ -2,7 +2,7 @@ import React from 'react';
 
 import { describe, expect } from 'vitest';
 
-import { BADGE_COLOR } from '@ovh-ux/muk';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
 import { CurrentAccountStatus, ResourceStatus } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';

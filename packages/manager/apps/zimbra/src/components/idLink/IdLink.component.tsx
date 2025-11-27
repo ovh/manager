@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Link } from '@ovhcloud/ods-react';
 
-import { IconLinkAlignmentType } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useGenerateUrl } from '@/hooks';
@@ -30,13 +28,9 @@ export const IdLink: React.FC<IdLinkProps> = ({ id, label }) => {
   };
 
   return (
-    <OdsLink
-      color={ODS_LINK_COLOR.primary}
-      onClick={handleLinkClick}
-      label={label}
-      iconAlignment={IconLinkAlignmentType.left}
-      href={url}
-    />
+    <Link onClick={handleLinkClick} href={url}>
+      {label}
+    </Link>
   );
 };
 

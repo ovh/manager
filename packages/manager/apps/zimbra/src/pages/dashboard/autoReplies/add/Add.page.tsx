@@ -7,26 +7,37 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_DATEPICKER_LOCALE, ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
-  OdsCheckbox,
-  OdsDatepicker,
-  OdsFormField,
-  OdsInput,
-  OdsRadio,
-  OdsSelect,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  Datepicker,
+  DatepickerContent,
+  DatepickerControl,
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  SPINNER_SIZE,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+  Textarea,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-  Subtitle,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -34,7 +45,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { BUTTON_COLOR, BUTTON_VARIANT, Button, TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { Link, LinkType, useFormatDate, useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { useAccount, useAccounts, useDomains } from '@/data/hooks';
@@ -81,6 +92,7 @@ export const AddAutoReply = () => {
   const organizationId = searchParams.get('organizationId');
   const trackingName = accountId ? EMAIL_ACCOUNT_ADD_AUTO_REPLY : ADD_AUTO_REPLY;
   const [selectedOrganizationId, setSelectedOrganizationId] = useState(organizationId);
+  const format = useFormatDate();
 
   const goBackUrl = useGenerateUrl('..', 'href');
 
@@ -219,10 +231,10 @@ export const AddAutoReply = () => {
       onSubmit={handleSubmit(handleSavelick)}
       className="w-full md:w-3/4 flex flex-col space-y-5"
     >
-      <Links
+      <Link
         type={LinkType.back}
         href={goBackUrl}
-        onClickReturn={() => {
+        onClick={() => {
           trackClick({
             location: PageLocation.page,
             buttonType: ButtonType.link,
@@ -230,10 +242,10 @@ export const AddAutoReply = () => {
             actions: [trackingName, BACK_PREVIOUS_PAGE],
           });
         }}
-        iconAlignment={IconLinkAlignmentType.left}
-        label={t('zimbra_auto_replies_add_cta_back')}
-      />
-      <Subtitle>{t('common:add_auto_reply')}</Subtitle>
+      >
+        {t('zimbra_auto_replies_add_cta_back')}
+      </Link>
+      <Text preset={TEXT_PRESET.heading3}>{t('common:add_auto_reply')}</Text>
       {accountId && account && !isLoadingAccount && (
         <Text data-testid="create-for-account" preset={TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_header_create_for_account')}
@@ -249,30 +261,30 @@ export const AddAutoReply = () => {
           control={control}
           name="account"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+            <FormField className="w-full" invalid={!!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_auto_replies_add_account_label')} *
-              </label>
+              </FormFieldLabel>
               <div className="flex">
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                <Input
+                  type={INPUT_TYPE.text}
                   placeholder={t('common:alias')}
                   data-testid="input-account"
                   className="flex-1"
-                  isDisabled={accountId ? true : null}
+                  disabled={accountId ? true : null}
                   name={name}
-                  hasError={!!errors[name]}
+                  invalid={!!errors[name]}
                   value={value}
                   defaultValue=""
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
+                  onBlur={onBlur}
+                  onChange={onChange}
                 />
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                <Input
+                  type={INPUT_TYPE.text}
                   name="@"
                   value="@"
-                  isReadonly
-                  isDisabled
+                  readOnly
+                  disabled
                   className="input-at w-10"
                 />
                 <Controller
@@ -280,32 +292,33 @@ export const AddAutoReply = () => {
                   name="domain"
                   render={({ field }) => (
                     <div className="flex flex-1">
-                      <OdsSelect
+                      <Select
                         key={hackKeyDomains}
-                        isDisabled={isLoading || accountId ? true : null}
+                        items={domains?.map(({ currentState: domain }) => ({
+                          label: domain.name,
+                          value: domain.name,
+                        }))}
+                        disabled={isLoading || accountId ? true : null}
                         name={field.name}
-                        hasError={!!errors[field.name]}
-                        value={field.value}
-                        placeholder={t('common:select_domain')}
-                        onOdsChange={field.onChange}
-                        onOdsBlur={field.onBlur}
+                        invalid={!!errors[field.name]}
+                        value={[field.value]}
+                        onValueChange={field.onChange}
+                        onBlur={field.onBlur}
                         data-testid="select-domain"
                         className="flex-1"
                       >
-                        {domains?.map(({ currentState: domain }) => (
-                          <option key={domain.name} value={domain.name}>
-                            {domain.name}
-                          </option>
-                        ))}
-                      </OdsSelect>
+                        <SelectControl placeholder={t('common:select_domain')} />
+                        <SelectContent />
+                      </Select>
                       {isLoading && (
-                        <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
+                        <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                       )}
                     </div>
                   )}
                 />
               </div>
-            </OdsFormField>
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
       )}
@@ -313,25 +326,26 @@ export const AddAutoReply = () => {
         control={control}
         name="duration"
         render={({ field }) => (
-          <OdsFormField error={errors?.[field.name]?.message}>
-            <label htmlFor={field.name} slot="label">
+          <FormField invalid={!!errors?.[field.name]}>
+            <FormFieldLabel htmlFor={field.name} slot="label">
               {t('zimbra_auto_replies_add_duration_label')} *
-            </label>
-            {durationChoices.map(({ value, key }) => (
-              <div key={value} className="flex leading-none gap-4">
-                <OdsRadio
+            </FormFieldLabel>
+            <RadioGroup value={field.value} onValueChange={field.onChange}>
+              {durationChoices.map(({ value, key }) => (
+                <Radio
                   id={value}
-                  name={value}
+                  key={value}
                   value={value}
-                  isChecked={(field.value as AutoReplyDurations) === value}
-                  onOdsChange={field.onChange}
                   data-testid={value}
-                  className="cursor-pointer"
-                ></OdsRadio>
-                <Text preset={TEXT_PRESET.paragraph}>{t(key)}</Text>
-              </div>
-            ))}
-          </OdsFormField>
+                  className="flex leading-none gap-4"
+                >
+                  <RadioControl />
+                  <RadioLabel>{t(key)}</RadioLabel>
+                </Radio>
+              ))}
+            </RadioGroup>
+            <FormFieldError>{errors?.[field.name]?.message}</FormFieldError>
+          </FormField>
         )}
       />
       {(formValues.duration as AutoReplyDurations) === AutoReplyDurations.TEMPORARY && (
@@ -340,49 +354,57 @@ export const AddAutoReply = () => {
             control={control}
             name="from"
             render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField className="flex-1" error={errors?.[name]?.message}>
-                <label htmlFor={name} slot="label">
+              <FormField className="flex-1" invalid={!!errors?.[name]}>
+                <FormFieldLabel htmlFor={name} slot="label">
                   {t('common:from')} *
-                </label>
-                <OdsDatepicker
+                </FormFieldLabel>
+                <Datepicker
                   name={name}
                   id={name}
                   data-testid={name}
                   placeholder={t('zimbra_auto_replies_add_datepicker_placeholder')}
-                  format="dd/mm/yyyy"
-                  locale={locale as ODS_DATEPICKER_LOCALE}
-                  hasError={!!errors[name]}
+                  dateFormatter={({ date }) => format({ date, format: 'dd/mm/yyyy' })}
+                  locale={locale}
+                  invalid={!!errors[name]}
                   value={value}
                   min={now}
                   max={formValues.until || null}
-                  onOdsChange={onChange}
+                  onValueChange={onChange}
                   onBlur={onBlur}
-                ></OdsDatepicker>
-              </OdsFormField>
+                >
+                  <DatepickerControl />
+                  <DatepickerContent />
+                </Datepicker>
+                <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+              </FormField>
             )}
           />
           <Controller
             control={control}
             name="until"
             render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField className="flex-1" error={errors?.[name]?.message}>
-                <label htmlFor={name} slot="label">
+              <FormField className="flex-1" invalid={!!errors?.[name]}>
+                <FormFieldLabel htmlFor={name} slot="label">
                   {t('common:until')} *
-                </label>
-                <OdsDatepicker
+                </FormFieldLabel>
+                <Datepicker
                   name={name}
                   id={name}
                   data-testid={name}
                   placeholder={t('zimbra_auto_replies_add_datepicker_placeholder')}
-                  format="dd/mm/yyyy"
-                  locale={locale as ODS_DATEPICKER_LOCALE}
-                  hasError={!!errors[name]}
+                  dateFormatter={({ date }) => format({ date, format: 'dd/mm/yyyy' })}
+                  locale={locale}
+                  invalid={!!errors[name]}
                   value={value}
                   min={formValues.from || now}
-                  onOdsChange={onChange}
+                  onValueChange={onChange}
                   onBlur={onBlur}
-                ></OdsDatepicker>
-              </OdsFormField>
+                >
+                  <DatepickerControl />
+                  <DatepickerContent />
+                </Datepicker>
+                <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+              </FormField>
             )}
           />
         </div>
@@ -391,23 +413,19 @@ export const AddAutoReply = () => {
         control={control}
         name="sendCopy"
         render={({ field: { name, value, onChange } }) => (
-          <OdsFormField error={errors?.[name]?.message}>
-            <div className="flex leading-none gap-4">
-              <OdsCheckbox
-                inputId={name}
-                id={name}
-                name={name}
-                value={value as unknown as string}
-                isChecked={value}
-                onClick={() => onChange(!value)}
-              ></OdsCheckbox>
-              <label htmlFor={name}>
-                <Text preset={TEXT_PRESET.paragraph}>
-                  {t('zimbra_auto_replies_add_send_copy_label')}
-                </Text>
-              </label>
-            </div>
-          </OdsFormField>
+          <FormField invalid={!!errors?.[name]}>
+            <Checkbox
+              id={name}
+              name={name}
+              value={value as unknown as string}
+              checked={value}
+              onCheckedChange={({ checked }) => onChange(checked)}
+            >
+              <CheckboxControl />
+              <CheckboxLabel>{t('zimbra_auto_replies_add_send_copy_label')}</CheckboxLabel>
+            </Checkbox>
+            <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+          </FormField>
         )}
       />
       {!!formValues.sendCopy && (
@@ -415,32 +433,31 @@ export const AddAutoReply = () => {
           control={control}
           name="sendCopyTo"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField error={errors?.[name]?.message}>
-              <div className="flex">
-                <OdsSelect
-                  key={hackKeyOrgAccounts}
-                  id={name}
-                  name={name}
-                  data-testid="select-send-copy-to"
-                  placeholder={t('zimbra_auto_replies_add_select_send_copy_to')}
-                  value={value}
-                  hasError={!!errors[name]}
-                  className="w-1/2"
-                  isDisabled={!orgAccounts || isOrgAccountsLoading ? true : null}
-                  onOdsChange={onChange}
-                  onOdsBlur={onBlur}
-                >
-                  {(orgAccounts || []).map(({ currentState: acc }, index) => (
-                    <option key={`copy-${acc.email}-${index}`} value={acc.email}>
-                      {acc.email}
-                    </option>
-                  ))}
-                </OdsSelect>
-                {isOrgAccountsLoading && (
-                  <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
-                )}
-              </div>
-            </OdsFormField>
+            <FormField invalid={!!errors?.[name]}>
+              <Select
+                key={hackKeyOrgAccounts}
+                items={orgAccounts?.map((org) => ({
+                  label: org.currentState.email,
+                  value: org.currentState.email,
+                }))}
+                id={name}
+                name={name}
+                data-testid="select-send-copy-to"
+                value={[value]}
+                invalid={!!errors[name]}
+                className="w-1/2"
+                disabled={!orgAccounts || isOrgAccountsLoading ? true : null}
+                onValueChange={onChange}
+                onBlur={onBlur}
+              >
+                <SelectControl placeholder={t('zimbra_auto_replies_add_select_send_copy_to')} />
+                <SelectContent />
+              </Select>
+              {isOrgAccountsLoading && (
+                <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
+              )}
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
           )}
         />
       )}
@@ -449,23 +466,26 @@ export const AddAutoReply = () => {
         name="message"
         render={({ field: { name, value, onChange, onBlur } }) => (
           <div className="flex flex-col">
-            <OdsFormField error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+            <FormField invalid={!!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_auto_replies_add_message_label')} *
-              </label>
-              <OdsTextarea
+              </FormFieldLabel>
+              <Textarea
                 id={name}
                 name={name}
                 data-testid="message"
                 value={value}
                 placeholder={t('zimbra_auto_replies_add_message_placeholder')}
-                hasError={!!errors[name]}
-                onOdsChange={onChange}
+                invalid={!!errors[name]}
+                onChange={onChange}
                 onBlur={onBlur}
-                isResizable
-              ></OdsTextarea>
-            </OdsFormField>
-            <Text preset={TEXT_PRESET.caption}>{t('zimbra_auto_replies_add_message_helper')}</Text>
+                style={{
+                  resize: 'both',
+                }}
+              />
+              <FormFieldError>{errors?.[name]?.message}</FormFieldError>
+            </FormField>
+            <FormFieldHelper>{t('zimbra_auto_replies_add_message_helper')}</FormFieldHelper>
           </div>
         )}
       />
