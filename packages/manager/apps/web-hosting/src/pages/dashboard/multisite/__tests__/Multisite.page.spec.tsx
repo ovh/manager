@@ -47,6 +47,13 @@ vi.mock('@/data/hooks/webHosting/webHostingWebsiteDomain/webHostingWebsiteDomain
     isLoading: false,
     refetch: vi.fn(),
   }),
+  useWebHostingWebsiteDomains: vi.fn().mockReturnValue([
+    {
+      data: WebHostingWebsiteDomainMocks,
+      isLoading: false,
+      refetch: vi.fn(),
+    },
+  ]),
 }));
 
 describe('MultisitePage component', () => {

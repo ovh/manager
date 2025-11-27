@@ -210,9 +210,9 @@ export default function Layout() {
 
   return (
     <BaseLayout breadcrumb={<Breadcrumb />}>
-      <div className="flex items-center justify-between mt-10">
+      <div className="mt-10 flex items-center justify-between">
         {editDisplayName ? (
-          <div className="w-2/3 mb-4">
+          <div className="mb-4 w-2/3">
             <Input
               className="w-2/3"
               name="edit-detail"
@@ -242,14 +242,14 @@ export default function Layout() {
             </Button>
           </div>
         )}
-        <div className="flex flex-wrap gap-5 justify-end">
+        <div className="flex flex-wrap justify-end gap-5">
           <ChangelogMenu links={CHANGELOG_LINKS} />
           <GuideMenu items={guideItems} />
         </div>
       </div>
       {!isOverridedPage && (
         <>
-          <div className="flex items-center justify-between mb-7">
+          <div className="mb-7 flex items-center justify-between">
             <Text>{data?.serviceName}</Text>
             <div className="flex flex-wrap justify-end">
               <ActionMenu
@@ -279,7 +279,7 @@ export default function Layout() {
             </Message>
           )}
           <Notifications />
-          <div className=" mt-8 mb-6">
+          <div className=" mb-6 mt-8">
             <Tabs withArrows defaultValue={tabs[0].name}>
               <TabList>
                 {tabs.map((tab: DashboardTab) => (

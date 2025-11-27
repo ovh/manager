@@ -55,9 +55,9 @@ export default function DisableSslModal() {
         onClick: closeModal,
       }}
     >
-      <div className="flex flex-col space-y-8 mb-8 mt-8">
+      <div className="my-8 flex flex-col space-y-8">
         <div className="flex flex-row">
-          <Text preset={TEXT_PRESET.heading6} className="flex justify-end mr-10 w-1/2">
+          <Text preset={TEXT_PRESET.heading6} className="mr-10 flex w-1/2 justify-end">
             {t('hosting_domain_name')}
           </Text>
           <Text className="w-1/2">{domain}</Text>

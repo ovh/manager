@@ -84,29 +84,26 @@ export default function LastDeploymentGitModal() {
       }}
     >
       {isFetching ? (
-        <div className="flex justify-center items-center h-48">
+        <div className="flex h-48 items-center justify-center">
           <Spinner size={SPINNER_SIZE.lg} />
         </div>
       ) : isError ? (
         <Text preset={TEXT_PRESET.paragraph}>{String(error?.message ?? t('common:unknown'))}</Text>
       ) : logs?.length ? (
         <Code className="whitespace-pre-wrap break-words text-sm text-white">
-          {logs?.map((log) => {
-            const rawDate = log.date;
-            const formattedDate =
-              rawDate instanceof Date
-                ? rawDate.toLocaleString()
-                : rawDate
-                  ? new Date(rawDate).toLocaleString()
-                  : t('common:unknown');
+          {logs
+            ?.map((log) => {
+              const rawDate = log.date;
+              const formattedDate =
+                rawDate instanceof Date
+                  ? rawDate.toLocaleString()
+                  : rawDate
+                    ? new Date(rawDate).toLocaleString()
+                    : t('common:unknown');
 
-            return (
-              <span key={`${formattedDate}-${log.message ?? ''}`}>
-                {`${formattedDate}: ${log.message ?? ''}`}
-                <br />
-              </span>
-            );
-          })}
+              return `${formattedDate}: ${log.message ?? ''}`;
+            })
+            .join('\n')}
         </Code>
       ) : (
         <Text preset={TEXT_PRESET.paragraph}>{t('common:no_data')}</Text>
