@@ -58,8 +58,8 @@ export default function ClusterManagement({ kubeDetail }: Readonly<ClusterManage
   }, [cloudSchema]);
 
   return (
-    <OsdsTile className="flex-col w-full shadow-lg" rounded variant={ODS_TILE_VARIANT.ghost}>
-      <div className="flex flex-col w-full">
+    <OsdsTile className="w-full flex-col shadow-lg" rounded variant={ODS_TILE_VARIANT.ghost}>
+      <div className="flex w-full flex-col">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.heading}

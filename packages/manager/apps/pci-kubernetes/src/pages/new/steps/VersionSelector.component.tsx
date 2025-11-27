@@ -42,7 +42,7 @@ export function VersionSelector({
   }
 
   return (
-    <div className="grid gap-6 list-none grid-cols-1 md:grid-cols-3">
+    <div className="grid list-none grid-cols-1 gap-6 md:grid-cols-3">
       {versionSelected && (
         <OsdsFormField className="mt-2">
           <OsdsText
@@ -67,7 +67,7 @@ export function VersionSelector({
           >
             {reverseVersion.map((version) => (
               <OsdsSelectOption key={version} value={version}>
-                <div className="flex gap-4 items-baseline">
+                <div className="flex items-baseline gap-4">
                   {`${t('versions:pci_project_versions_list_version', {
                     version,
                   })} `}

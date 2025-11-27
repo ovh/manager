@@ -184,7 +184,7 @@ export default function NewPage() {
       {/**  need to hide the global notif if opened * */}
       {(!stepper.location.step.isOpen || stepper.location.step.isChecked) && <Notifications />}
 
-      <div className="mb-5 sticky top-0 z-50">
+      <div className="sticky top-0 z-50 mb-5">
         {project && <PciDiscoveryBanner project={project} />}
       </div>
 

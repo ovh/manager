@@ -60,12 +60,15 @@ describe('isScalingValid', () => {
 
 describe('hasMax5NodesAntiAffinity', () => {
   it.each([
-    [{ antiAffinity: true, scaling: { quantity: { desired: 4 } } as TScalingState }, true],
-    [{ antiAffinity: true, scaling: { quantity: { desired: 5 } } as TScalingState }, true],
-    [{ antiAffinity: true, scaling: { quantity: { desired: 6 } } as TScalingState }, false],
-  ])('returns %s for state %j', (state, expected) => {
+    [{ antiAffinity: true, nodes: 4 }, true],
+    [{ antiAffinity: true, nodes: 5 }, true],
+    [{ antiAffinity: true, nodes: 6 }, false],
+  ])('returns %s for state %j', ({ antiAffinity, nodes }, expected) => {
     expect(
-      hasMax5NodesAntiAffinity(state as { antiAffinity: boolean; scaling: TScalingState }),
+      hasMax5NodesAntiAffinity({ antiAffinity, scaling: { quantity: { desired: nodes } } } as {
+        antiAffinity: boolean;
+        scaling: TScalingState;
+      }),
     ).toBe(expected);
   });
 });

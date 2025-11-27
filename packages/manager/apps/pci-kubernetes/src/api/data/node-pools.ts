@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { TCreateNodePoolParam } from '@/types';
+import { TAttachFloatingIPs, TCreateNodePoolParam } from '@/types';
 
 type TRawClusterNodePool = {
   id: string;
@@ -22,6 +22,7 @@ type TRawClusterNodePool = {
   updatedAt: string;
   location?: string;
   availabilityZones?: string[];
+  attachFloatingIPs?: TAttachFloatingIPs;
   autoscaling: {
     scaleDownUtilizationThreshold: number;
     scaleDownUnneededTimeSeconds: number;
@@ -49,6 +50,7 @@ export type TClusterNodePool = Pick<
   | 'desiredNodes'
   | 'autoscale'
   | 'availabilityZones'
+  | 'attachFloatingIPs'
   | 'monthlyBilled'
   | 'createdAt'
   | 'status'
@@ -86,6 +88,9 @@ export const getClusterNodePools = async (
         maxNodes: item.maxNodes,
         ...(item.availabilityZones && {
           availabilityZones: item.availabilityZones,
+        }),
+        ...(item.attachFloatingIPs && {
+          attachFloatingIPs: item.attachFloatingIPs,
         }),
       }) as TClusterNodePool,
   );

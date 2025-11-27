@@ -50,7 +50,7 @@ export default function FinalBillingStep({
       />
 
       {!isAdding ? (
-        <div className="flex mt-4">
+        <div className="mt-4 flex">
           <OsdsButton onClick={onCreate} inline color={ODS_THEME_COLOR_INTENT.primary}>
             {t('listing:kube_common_save')}
           </OsdsButton>

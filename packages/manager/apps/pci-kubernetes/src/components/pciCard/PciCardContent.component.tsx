@@ -7,5 +7,5 @@ type TPciCardContentProps = PropsWithChildren<{
 }>;
 
 export const PciCardContent = ({ children, className }: TPciCardContentProps) => (
-  <div className={clsx('flex flex-col grow', className)}>{children}</div>
+  <div className={clsx('flex grow flex-col', className)}>{children}</div>
 );

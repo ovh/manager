@@ -58,7 +58,7 @@ const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
   if (!content) return null;
 
   return (
-    <OsdsMessage type={MessageType.warning} color={TextColorIntent.warning} className="flex my-2">
+    <OsdsMessage type={MessageType.warning} color={TextColorIntent.warning} className="my-2 flex">
       <div>
         <OsdsText level={TypographyLevel.body} size={TypographySize._400} color={ColorIntent.text}>
           {content.text}{' '}
