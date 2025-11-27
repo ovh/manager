@@ -1,8 +1,16 @@
 import React, { useMemo } from 'react';
 
-import { FormField, FormFieldHelper, FormFieldLabel, Skeleton } from '@ovhcloud/ods-react';
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxControl,
+  FormField,
+  FormFieldHelper,
+  FormFieldLabel,
+  Skeleton,
+} from '@ovhcloud/ods-react';
 
-import { Select, SelectContent, SelectControl, TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectFieldProps } from '@/components/form/select-field/SelectField.props';
 
@@ -38,9 +46,8 @@ export const SelectField = ({
               <Text preset={TEXT_PRESET.paragraph}>{label}</Text>
             </FormFieldLabel>
           )}
-          <Select
+          <Combobox
             className={className}
-            fitControlWidth={true}
             value={value ? [value] : []}
             name={name}
             onValueChange={(detail) => {
@@ -49,10 +56,11 @@ export const SelectField = ({
             invalid={!!error && !isDisabled}
             disabled={isDisabled}
             items={items}
+            allowCustomValue={false}
           >
-            <SelectControl placeholder={placeholder} />
-            <SelectContent />
-          </Select>
+            <ComboboxControl placeholder={placeholder} clearable={true} />
+            <ComboboxContent />
+          </Combobox>
           {error && (
             <FormFieldHelper>
               <Text preset={TEXT_PRESET.caption}>{error}</Text>
