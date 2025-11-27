@@ -56,7 +56,14 @@ export default function NewPage(): ReactElement {
     onAntiAffinityChange: store.set.antiAffinity,
   });
 
-  const { create, isAdding } = useNodePoolCreation(projectId, clusterId);
+  const { create, isAdding } = useNodePoolCreation(projectId, clusterId, {
+    onSuccess: () => {
+      navigate('../nodepools');
+    },
+    onError: () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+  });
 
   useEffect(() => {
     store.reset();

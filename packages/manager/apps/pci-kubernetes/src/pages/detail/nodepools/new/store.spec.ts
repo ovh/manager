@@ -120,7 +120,7 @@ describe('NewPoolStore', () => {
       selectedAvailabilityZones: state.selectedAvailabilityZones,
       antiAffinity: state.antiAffinity,
       isMonthlyBilling: state.isMonthlyBilling,
-
+      attachFloatingIPs: state.attachFloatingIPs,
       steps: state.steps,
     });
 
@@ -131,7 +131,7 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-
+        attachFloatingIPs: null,
         scaling: {
           isAutoscale: false,
           quantity: {
@@ -192,7 +192,7 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-
+        attachFloatingIPs: null,
         scaling: {
           isAutoscale: false,
           quantity: {
@@ -253,7 +253,7 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-
+        attachFloatingIPs: null,
         scaling: {
           isAutoscale: false,
           quantity: {
