@@ -1,41 +1,46 @@
 import { useId } from 'react';
 
+import { useHref } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
-import { BACKUP_AGENT_NAMESPACES } from '@/lib';
-import { Agent } from '@/types/Agent.type';
-import { Resource } from '@/types/Resource.type';
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import { urlParams, urls } from '@/routes/Routes.constants';
 
-export const AgentActionsCell = (resourceAgent: Resource<Agent>) => {
+export type AgentActionsCellProps = {
+  tenantId: string;
+  agentId: string;
+};
+
+export const AgentActionsCell = ({ tenantId, agentId }: AgentActionsCellProps) => {
   const id = useId();
   const { t } = useTranslation([NAMESPACES.ACTIONS, BACKUP_AGENT_NAMESPACES.COMMON]);
+  const configurationHref = useHref(
+    urls.editAgentConfiguration.replace(urlParams.tenantId, tenantId).replace(':agentId', agentId),
+  );
+
+  const actions: ActionMenuItem[] = [
+    {
+      id: 0,
+      label: t(`${NAMESPACES.ACTIONS}:configure`),
+      href: configurationHref,
+    },
+    {
+      id: 1,
+      label: t(`${NAMESPACES.ACTIONS}:delete`),
+      href: '',
+      color: ODS_BUTTON_COLOR.critical,
+    },
+  ];
 
   return (
     <DataGridTextCell>
-      <OdsButton
-        id={id}
-        role="button"
-        label=""
-        icon="ellipsis-vertical"
-        variant="ghost"
-        aria-label={t(`${BACKUP_AGENT_NAMESPACES.COMMON}:actions`)}
-      />
-      <OdsPopover triggerId={id} with-arrow="">
-        <OdsButton
-          label={t(`${NAMESPACES.ACTIONS}:configure`)}
-          onClick={() => console.log(`Configure ${resourceAgent.id}`)}
-        />
-        <OdsButton
-          color="critical"
-          label={t(`${NAMESPACES.ACTIONS}:delete`)}
-          onClick={() => console.log(`Delete ${resourceAgent.id}`)}
-        />
-      </OdsPopover>
+      <ActionMenu id={id} items={actions} isCompact />
     </DataGridTextCell>
   );
 };
