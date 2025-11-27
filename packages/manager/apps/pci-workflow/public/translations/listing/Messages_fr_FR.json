@@ -20,6 +20,7 @@
   "pci_workflow_execution_status_SUCCESS": "Succès",
   "pci_workflow_execution_status_ERROR": "Erreur",
   "pci_workflow_execution_status_PAUSED": "Pause",
+  "pci_workflow_execution_status_CANCELED": "Annulé",
   "pci_workflow_executions_title": "Exécution du Workflow '{{ workflowName }}'",
   "pci_workflow_executions_empty": "Aucune exécution trouvée",
   "pci_workflow_executions_ececution_date": "Date (UTC)",

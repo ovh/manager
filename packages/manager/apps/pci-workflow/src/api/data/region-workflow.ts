@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-export type TExecutionState = 'SUCCESS' | 'PAUSED' | 'ERROR';
+export type TExecutionState = 'SUCCESS' | 'PAUSED' | 'ERROR' | 'CANCELED';
 
 export type TWorkflowExecution = {
   id: string;
