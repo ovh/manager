@@ -57,5 +57,6 @@
   "pagination_go": "OK",
   "pagination_display": "Mostrar",
   "user_modal_confirm": "Validar",
-  "user_modal_cancel": "Anular"
+  "user_modal_cancel": "Anular",
+  "user_users_manage_tokens": "Gerir os tokens"
 }
