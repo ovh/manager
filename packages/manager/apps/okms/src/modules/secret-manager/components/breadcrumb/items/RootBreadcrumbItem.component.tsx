@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import {
   SECRET_MANAGER_ROUTES_URIS,
@@ -11,7 +11,7 @@ import { OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
 import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
 export const RootBreadcrumbItem = () => {
-  const navigate = useNavigate();
+  const link = useHref(SECRET_MANAGER_ROUTES_URLS.root);
   const { t } = useTranslation('secret-manager');
 
   return (
@@ -19,8 +19,7 @@ export const RootBreadcrumbItem = () => {
       data-testid={BREADCRUMB_ITEM_TEST_IDS.ROOT}
       key={SECRET_MANAGER_ROUTES_URIS.root}
       label={t('secret_manager')}
-      onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.root)}
-      href=""
+      href={link}
     />
   );
 };
