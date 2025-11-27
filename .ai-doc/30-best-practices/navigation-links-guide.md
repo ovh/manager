@@ -59,18 +59,15 @@ function MyComponent() {
 
 ```typescript
 import { Link } from 'react-router-dom';
-import { urls } from '@/routes/Routes.constants';
 
 function MyComponent() {
   return (
     <Link to="listing">Go to Listing</Link>
-    // OR with full path
-    <Link to={urls.dashboard.replace(':serviceName', 'my-service')}>
-      Go to Dashboard
-    </Link>
   );
 }
 ```
+
+**Note:** Prefer relative paths with `<Link>` for internal navigation. Avoid using route constants with `.replace()` for internal links.
 
 #### ✅ Good: Nested Route Navigation
 
@@ -125,11 +122,13 @@ navigate('listing'); // Relative to current route
 **Use when:** Navigating to another Manager application (e.g., billing, dedicated, etc.)
 
 **How to implement:**
-- Use `useNavigationGetUrl` hook to get the URL
+- Use `useNavigationGetUrl` hook (recommended) or `useEffect` + `shell.navigation.getURL()` pattern
 - Use `<a href={url}>` for links
-- Use `window.location.href` or `shell.navigation.navigateTo()` for programmatic navigation
+- Use `shell.navigation.navigateTo()` for programmatic navigation
 
-#### ✅ Good: Using `useNavigationGetUrl` Hook
+#### Pattern 1: Using `useNavigationGetUrl` Hook (Recommended)
+
+**When to use:** For links in JSX that need React Query caching and loading states.
 
 ```typescript
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -139,6 +138,8 @@ function MyComponent() {
     'billing',                    // Target app name
     '#/billing/invoices',          // Path in target app
     {},                            // Query parameters
+  ], {
+    staleTime: 5 * 60 * 1000,     // Cache for 5 minutes
   ]);
   
   if (isLoading) return <div>Loading...</div>;
@@ -148,6 +149,44 @@ function MyComponent() {
   );
 }
 ```
+
+**Benefits:**
+- Automatic caching with React Query
+- Built-in loading/error states
+- Automatic refetch management
+
+#### Pattern 2: Using `useEffect` + `shell.navigation.getURL()` (Alternative)
+
+**When to use:** When you need more control or when creating custom hooks (as used in pci-project).
+
+```typescript
+import { useContext, useEffect, useState } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useParams } from 'react-router-dom';
+
+function MyComponent() {
+  const { shell } = useContext(ShellContext);
+  const { projectId } = useParams();
+  const [projectUrl, setProjectUrl] = useState('');
+  
+  useEffect(() => {
+    if (projectId) {
+      shell.navigation
+        .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
+        .then((url) => setProjectUrl(url as string));
+    }
+  }, [shell, projectId]);
+  
+  return (
+    <a href={projectUrl}>Go to Project</a>
+  );
+}
+```
+
+**Benefits:**
+- More control over state management
+- Useful for custom hooks (e.g., `usePciUrl`, `useServerUrl`)
+- No React Query dependency
 
 #### ✅ Good: Programmatic Navigation to External App
 
@@ -166,7 +205,7 @@ function MyComponent() {
 }
 ```
 
-#### ✅ Good: External Link with URL Builder
+#### ✅ Good: Navigation to Legacy AngularJS App
 
 ```typescript
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -174,7 +213,7 @@ import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 function MyComponent() {
   const { serviceName } = useParams();
   
-  // Navigate to old AngularJS app (e.g., dedicated/nasha)
+  // Link to old AngularJS app (e.g., dedicated/nasha)
   const { data: oldAppUrl } = useNavigationGetUrl([
     'dedicated',
     `#/nasha/${serviceName}/edit-name`,
@@ -182,7 +221,7 @@ function MyComponent() {
   ]);
   
   return (
-    <a href={oldAppUrl}>Go to Old App</a>
+    <a href={oldAppUrl}>Edit Name (Legacy)</a>
   );
 }
 ```
@@ -243,109 +282,29 @@ Is the link within the same React app?
       └─ YES → Use <a href> with target="_blank"
 ```
 
-## 🔍 Examples by Use Case
+## 🔍 Real-World Examples
 
-### Example 1: Navigation within Same App
+### Example: Navigation in Nested Routes
 
 ```typescript
-// ✅ Internal navigation - same app
-import { useNavigate } from 'react-router-dom';
+// Route structure:
+// /dashboard/:serviceName
+//   ├─ /partitions
+//   └─ /partition/:partitionName
+//       └─ /edit-description
 
-function DashboardPage() {
+function PartitionDetailPage() {
   const navigate = useNavigate();
   
-  const handleViewPartitions = () => {
-    // ✅ Navigate to partitions list using relative path
-    navigate('partitions'); // Child route
-  };
-  
-  const handleEditName = () => {
-    // ✅ Navigate to edit-name route (child route)
-    navigate('edit-name');
+  const handleEdit = () => {
+    navigate('edit-description'); // Child route
   };
   
   const handleCloseModal = () => {
-    // ✅ Navigate back to parent with replace (removes modal from history)
-    navigate('..', { replace: true });
+    navigate('..', { replace: true }); // Parent route, removes from history
   };
   
-  return <button onClick={handleViewPartitions}>View Partitions</button>;
-}
-```
-
-**Route Structure:**
-```
-/dashboard/:serviceName (DashboardPage)
-  ├─ /partitions (PartitionsListPage)
-  ├─ /edit-name (EditNamePage)
-  └─ /partition/:partitionName (PartitionDetailPage)
-      ├─ /edit-description
-      ├─ /edit-size
-      ├─ /accesses
-      └─ /snapshots
-```
-
-### Example 2: Navigation to Another Manager App
-
-```typescript
-// ✅ External navigation - different Manager app
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-
-function MyComponent() {
-  const { data: billingUrl } = useNavigationGetUrl([
-    'billing',
-    '#/billing/invoices',
-    {},
-  ]);
-  
-  return (
-    <a href={billingUrl}>
-      View Invoices
-    </a>
-  );
-}
-```
-
-### Example 3: Navigation to Legacy AngularJS App
-
-```typescript
-// ✅ External navigation - legacy AngularJS app
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-
-function MyComponent() {
-  const { serviceName } = useParams();
-  
-  // Link to old nasha module (AngularJS)
-  const { data: oldNashaUrl } = useNavigationGetUrl([
-    'dedicated',
-    `#/nasha/${serviceName}/edit-name`,
-    {},
-  ]);
-  
-  return (
-    <a href={oldNashaUrl}>
-      Edit Name (Legacy)
-    </a>
-  );
-}
-```
-
-### Example 4: Navigation to External Documentation
-
-```typescript
-// ✅ External navigation - external website
-function MyComponent() {
-  const docsUrl = 'https://docs.ovh.com/fr/storage/nas/';
-  
-  return (
-    <a 
-      href={docsUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Documentation
-    </a>
-  );
+  return <button onClick={handleEdit}>Edit</button>;
 }
 ```
 
@@ -440,11 +399,11 @@ const handleCloseModal = () => {
 7. ✅ Relative paths automatically resolve based on current route context
 
 ### External Links (Other Manager Apps)
-1. ✅ Use `useNavigationGetUrl` hook
+1. ✅ Use `useNavigationGetUrl` hook (recommended) or `useEffect` + `shell.navigation.getURL()` pattern
 2. ✅ Use `<a href={url}>` for links
 3. ✅ Use `shell.navigation.navigateTo()` for programmatic navigation
 4. ✅ Handle loading states
-5. ✅ Cache URLs with `staleTime` option
+5. ✅ Cache URLs with `staleTime` option when using `useNavigationGetUrl`
 
 ### External Links (External Websites)
 1. ✅ Always use `target="_blank"` for new tabs
@@ -460,33 +419,7 @@ import { useLocation } from 'react-router-dom';
 
 function MyComponent() {
   const location = useLocation();
-  
-  useEffect(() => {
-    console.log('Current pathname:', location.pathname);
-    console.log('Current search:', location.search);
-  }, [location]);
-}
-```
-
-### Verify External URL Generation
-```typescript
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-
-function MyComponent() {
-  const { data: url, isLoading, error } = useNavigationGetUrl([
-    'billing',
-    '#/billing/invoices',
-    {},
-  ]);
-  
-  useEffect(() => {
-    if (url) {
-      console.log('Generated URL:', url);
-    }
-    if (error) {
-      console.error('URL generation error:', error);
-    }
-  }, [url, error]);
+  // Access location.pathname and location.search for debugging
 }
 ```
 
