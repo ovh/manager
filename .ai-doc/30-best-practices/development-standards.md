@@ -296,8 +296,8 @@ npm run test:coverage
 ```json
 {
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=22.0.0",
+    "yarn": ">=1.22.0"
   },
   "dependencies": {
     "react": "^18.2.0"
@@ -307,8 +307,8 @@ npm run test:coverage
 
 ```bash
 # Check dependencies
-npm audit
-npm outdated
+yarn audit
+yarn outdated
 
 # Update dependencies
 npm update
