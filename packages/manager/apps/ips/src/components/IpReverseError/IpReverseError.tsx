@@ -30,26 +30,26 @@ export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
   return (
     <span>
       <div className="font-bold">{t('ip_reverse_update_failure_title')}</div>
+      <div className="my-2">
+        {t('ip_reverse_update_failure_hint')}
+        <Links
+          href={links?.configureReverseDnsGuide.link}
+          label={t('ip_reverse_update_failure_hint_link')}
+          target="_blank"
+          onClickReturn={() => {
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.link,
+              location: PageLocation.page,
+              actions: [
+                `go-to_${links?.configureReverseDnsGuide.trackingLabel}`,
+              ],
+            });
+          }}
+        />
+        {'.'}
+      </div>
       <p>
-        <div className="mb-2">
-          {t('ip_reverse_update_failure_hint')}
-          <Links
-            href={links?.configureReverseDnsGuide.link}
-            label={t('ip_reverse_update_failure_hint_link')}
-            target="_blank"
-            onClickReturn={() => {
-              trackClick({
-                actionType: 'action',
-                buttonType: ButtonType.link,
-                location: PageLocation.page,
-                actions: [
-                  `go-to_${links?.configureReverseDnsGuide.trackingLabel}`,
-                ],
-              });
-            }}
-          />
-          {'.'}
-        </div>
         <li>
           <span className="inline-block min-w-24 font-bold">
             {t('ip_reverse_update_failure_api_error')}
