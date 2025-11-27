@@ -75,7 +75,7 @@ export default function CdnCorsResourceSharingModal() {
           name="domainList"
           data-testid="domainList"
           className="mt-3 w-full"
-          items={domainLists.map((item) => ({
+          items={domainLists?.map((item) => ({
             label: item,
             value: item,
           }))}

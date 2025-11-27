@@ -458,7 +458,7 @@ export default function Websites() {
                 <Icon className="ml-2" name={ICON_NAME.externalLink}></Icon>
               </>
             </Button>
-            <div className="py-[8px] px-0 w-max">
+            <div className="w-max px-0 py-[8px]">
               <Popover
                 aria-label="Export menu"
                 position={POPOVER_POSITION.bottomStart}
@@ -482,7 +482,7 @@ export default function Websites() {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent aria-label="Export menu" withArrow>
-                  <div className="flex flex-col w-full p-2">
+                  <div className="flex w-full flex-col p-2">
                     {actionItems.map((action) => (
                       <Button
                         key={action.id}
