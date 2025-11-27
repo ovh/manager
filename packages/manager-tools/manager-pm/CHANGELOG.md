@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.38.0...@ovh-ux/manager-pm@0.39.0) (2025-11-27)
+
+
+### Features
+
+* extends forge cli to create module and static kit update ([992f693](https://github.com/ovh/manager/commit/992f693fdd17ba82f2afb8f6cdfeb8fbd063929c))
+
+
+
+
+
 # [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.37.1...@ovh-ux/manager-pm@0.38.0) (2025-11-18)
 
 

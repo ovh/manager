@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "3.0.55",
+  "version": "3.0.56",
   "private": true,
   "description": "Support standalone application.",
   "repository": {
@@ -13,19 +13,19 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.7.1",
-    "@ovh-ux/manager-core": "^13.2.20",
-    "@ovh-ux/manager-support": "^2.1.31",
-    "@ovh-ux/ng-at-internet": "^6.0.34",
+    "@ovh-ux/manager-config": "^8.7.2",
+    "@ovh-ux/manager-core": "^13.2.21",
+    "@ovh-ux/manager-support": "^2.1.32",
+    "@ovh-ux/ng-at-internet": "^6.0.35",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-http": "^5.1.6",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.6",
-    "@ovh-ux/ng-ovh-request-tagger": "^2.0.13",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.14",
     "@ovh-ux/ng-ovh-sso-auth": "^4.9.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.6",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.6",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.2",
-    "@ovh-ux/request-tagger": "^0.5.8",
+    "@ovh-ux/request-tagger": "^0.5.9",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",

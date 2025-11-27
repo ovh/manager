@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.27...@ovh-ux/manager-web-domains-app@1.3.28) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
 ## [1.3.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.26...@ovh-ux/manager-web-domains-app@1.3.27) (2025-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app

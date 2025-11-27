@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.1...@ovh-ux/manager-web-hosting-app@0.10.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* **web-hosting:** skip delete modal test ([9cce4a9](https://github.com/ovh/manager/commit/9cce4a9f005e69b661a658c00040da58a42f9bde))
+
+
+
+
+
 ## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.0...@ovh-ux/manager-web-hosting-app@0.10.1) (2025-11-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
