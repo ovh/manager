@@ -1,5 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, fireEvent, act } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
+import { act, render } from '@testing-library/react';
 import {
   TRegion,
   TRegionQuota,
@@ -9,6 +10,7 @@ import {
 } from '@/api/api.types';
 import VolumeEdit from '@/pages/create-volume/VolumeEdit.component';
 import { createWrapper } from '@/wrapperRenders';
+import { VOLUME_NAME_MAX_LENGTH } from '@/constants';
 
 const MOCK_VOLUME: TVolume = {
   id: 'fake-volume-id',
@@ -105,7 +107,7 @@ describe('VolumeEdit', () => {
 
   describe('Name input', () => {
     it('uses suggested name as default value if specified', async () => {
-      const { container } = render(
+      const { getByRole } = render(
         <VolumeEdit
           projectId="fake-project-id"
           volume={MOCK_VOLUME}
@@ -116,12 +118,13 @@ describe('VolumeEdit', () => {
         />,
         { wrapper: createWrapper() },
       );
-      const nameInput = container.querySelector('input[name="volume_name"]');
+
+      const nameInput = getByRole('textbox');
       expect(nameInput).toHaveValue('Some suggested name');
     });
 
     it('uses volume.name as default value if no suggested name', async () => {
-      const { container } = render(
+      const { getByRole } = render(
         <VolumeEdit
           projectId="fake-project-id"
           volume={MOCK_VOLUME}
@@ -131,69 +134,103 @@ describe('VolumeEdit', () => {
         />,
         { wrapper: createWrapper() },
       );
-      const nameInput = container.querySelector('input[name="volume_name"]');
+
+      const nameInput = getByRole('textbox');
       expect(nameInput).toHaveValue(MOCK_VOLUME.name);
     });
 
-    it('allows an empty value', async () => {
-      const onSubmit = vi.fn();
-      const { container, queryByText } = render(
-        <VolumeEdit
-          projectId="fake-project-id"
-          volume={MOCK_VOLUME}
-          submitLabel="submit-label"
-          onSubmit={onSubmit}
-          onCancel={() => {}}
-        />,
-        { wrapper: createWrapper() },
-      );
-      const nameInput = container.querySelector('input[name="volume_name"]');
-      act(() =>
-        fireEvent.change(nameInput as Element, { target: { value: '' } }),
-      );
+    it.each([[''], ['    ']])(
+      'shows an error when name is "%s"',
+      async (value: string) => {
+        const onSubmit = vi.fn();
+        const { getByRole, queryByText, getByText } = render(
+          <VolumeEdit
+            projectId="fake-project-id"
+            volume={MOCK_VOLUME}
+            submitLabel="submit-label"
+            onSubmit={onSubmit}
+            onCancel={() => {}}
+          />,
+          { wrapper: createWrapper() },
+        );
 
-      // Check that no error message is present
-      const errorMessage = queryByText('common_field_error_required');
-      expect(errorMessage).toBeNull();
-
-      // Check that form is submittable
-      const submitButton = queryByText('submit-label');
-      expect(submitButton).not.toBeDisabled();
-      const formElt = container.querySelector('form');
-      act(() => fireEvent.submit(formElt as Element));
-      expect(onSubmit).toHaveBeenCalled();
-    });
-
-    it('show an error when name is too long and disable form', () => {
-      const onSubmit = vi.fn();
-      const { container, queryByText } = render(
-        <VolumeEdit
-          projectId="fake-project-id"
-          volume={MOCK_VOLUME}
-          submitLabel="submit-label"
-          onSubmit={onSubmit}
-          onCancel={() => {}}
-        />,
-        { wrapper: createWrapper() },
-      );
-      const nameInput = container.querySelector('input[name="volume_name"]');
-      act(() => {
-        fireEvent.change(nameInput as Element, {
-          target: { value: 'Some very long string. '.repeat(50) },
+        const nameInput = getByRole('textbox');
+        await act(async () => {
+          await userEvent.clear(nameInput);
+          if (value) await userEvent.type(nameInput, value);
         });
+
+        const errorMessage = queryByText('common_field_error_required');
+        expect(errorMessage).toBeVisible();
+
+        const submitButton = getByText('submit-label');
+        expect(submitButton).toBeDisabled();
+      },
+    );
+
+    it('shows an error when name is too long and disable form', async () => {
+      const onSubmit = vi.fn();
+      const { getByRole, getByText } = render(
+        <VolumeEdit
+          projectId="fake-project-id"
+          volume={MOCK_VOLUME}
+          submitLabel="submit-label"
+          onSubmit={onSubmit}
+          onCancel={() => {}}
+        />,
+        { wrapper: createWrapper() },
+      );
+      const nameInput = getByRole('textbox');
+      await act(async () => {
+        await userEvent.clear(nameInput);
+        await userEvent.type(
+          nameInput,
+          new Array(VOLUME_NAME_MAX_LENGTH + 1).fill('a').join(''),
+        );
       });
 
-      // Check error message
-      const errorMessage = queryByText('common_field_error_maxlength');
-      expect(errorMessage).toBeTruthy();
-      expect(errorMessage).toHaveClass('text-critical');
+      const errorMessage = getByText('common_field_error_maxlength');
+      expect(errorMessage).toBeVisible();
 
-      // Check that form is not submittable
-      const submitButton = queryByText('submit-label');
+      const submitButton = getByText('submit-label');
       expect(submitButton).toBeDisabled();
-      const formElt = container.querySelector('form');
-      act(() => fireEvent.submit(formElt as Element));
-      expect(onSubmit).not.toHaveBeenCalled();
+    });
+
+    it('sends the form when its valid', async () => {
+      const volumeName = ' my new name ';
+      const onSubmit = vi.fn();
+      const { getByRole } = render(
+        <VolumeEdit
+          projectId="fake-project-id"
+          volume={MOCK_VOLUME}
+          submitLabel="submit-label"
+          onSubmit={onSubmit}
+          onCancel={() => {}}
+        />,
+        { wrapper: createWrapper() },
+      );
+
+      const nameInput = getByRole('textbox');
+      await act(async () => {
+        await userEvent.clear(nameInput);
+        await userEvent.type(nameInput, volumeName);
+      });
+
+      const submitButton = getByRole('button', { name: 'submit-label' });
+      expect(submitButton).toBeEnabled();
+
+      // I don't know why, but the button is correctly of type submit when running the app, but is of type 'button' when testing
+      // This is a band-aid that should be removed when migrating to ODS19
+      submitButton.setAttribute('type', 'submit');
+
+      await act(async () => {
+        await userEvent.click(submitButton);
+      });
+      expect(onSubmit).toHaveBeenCalledWith({
+        bootable: MOCK_VOLUME.bootable,
+        name: volumeName,
+        size: MOCK_VOLUME.size,
+      });
     });
   });
 });
