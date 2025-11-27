@@ -167,7 +167,7 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
               />
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 my-5">
+            <div className="my-5 grid gap-6 md:grid-cols-3 lg:grid-cols-4">
               {tilesData.map(({ title, pillLabel, description, regionType, badge }) => (
                 <KubeDeploymentTile
                   key={regionType}
@@ -196,7 +196,7 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
       {step.isLocked && region && (
         <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
           <OsdsText
-            className="block w-[20rem]"
+            className="block w-80"
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._200}
             color={ODS_THEME_COLOR_INTENT.text}

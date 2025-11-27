@@ -79,7 +79,7 @@ export default function PrivateNetworkSelect({
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
-        className="block mb-4 mt-4"
+        className="my-4 block"
       >
         {t('kubernetes_network_form_label')}
       </OsdsText>
@@ -135,7 +135,7 @@ export default function PrivateNetworkSelect({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          className="xs:mb-0.5 sm:mb-0 ml-0.5"
+          className="ml-0.5 xs:mb-0.5 sm:mb-0"
           onClick={() => {
             refresh();
           }}

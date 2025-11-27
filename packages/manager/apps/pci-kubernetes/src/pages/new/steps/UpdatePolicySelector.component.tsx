@@ -73,7 +73,7 @@ export function UpdatePolicySelector({
         </OsdsLink>
       </div>
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {UPGRADE_POLICIES.map((policy: UpdatePolicy) => (
           <OsdsTile
             data-testid={policy}
@@ -82,8 +82,8 @@ export function UpdatePolicySelector({
             className={clsx(tileClass, policy === selectPolicy ? selectedTileClass : null)}
             onClick={() => onPolicyChange(policy)}
           >
-            <div slot="end" className="align-bottom inline-block">
-              <div className="flex gap-x-4 gap-y-2 flex-wrap">
+            <div slot="end" className="inline-block align-bottom">
+              <div className="flex flex-wrap gap-x-4 gap-y-2">
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.text}
                   size={ODS_TEXT_SIZE._600}

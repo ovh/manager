@@ -4,12 +4,18 @@ import { useNavigate } from 'react-router-dom';
 
 import { Translation } from 'react-i18next';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
 import { createNodePool } from '@/api/data/node-pools';
 import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 import queryClient from '@/queryClient';
-import { TCreateNodePoolParam, TScalingState, TSelectedAvailabilityZones } from '@/types';
+import {
+  TAttachFloatingIPs,
+  TCreateNodePoolParam,
+  TScalingState,
+  TSelectedAvailabilityZones,
+} from '@/types';
 
 interface NodePoolFormData {
   name: string;
@@ -17,11 +23,15 @@ interface NodePoolFormData {
   selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
-
+  attachFloatingIPs?: TAttachFloatingIPs | null;
   scaling?: TScalingState;
 }
 
-export function useNodePoolCreation(projectId: string, clusterId: string) {
+export function useNodePoolCreation(
+  projectId: string,
+  clusterId: string,
+  { onSuccess, onError }: { onSuccess?: () => void; onError?: (e: ApiError) => void },
+) {
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const [isAdding, setIsAdding] = useState(false);
@@ -41,7 +51,7 @@ export function useNodePoolCreation(projectId: string, clusterId: string) {
       name: formData.name,
       antiAffinity: formData.antiAffinity,
       monthlyBilled: formData.isMonthlyBilling,
-
+      ...(formData.attachFloatingIPs && { attachFloatingIPs: formData.attachFloatingIPs }),
       autoscale: Boolean(formData.scaling?.isAutoscale),
       ...(Boolean(formData.scaling?.isAutoscale) && {
         minNodes: formData.scaling?.quantity.min ?? 0,
@@ -52,35 +62,13 @@ export function useNodePoolCreation(projectId: string, clusterId: string) {
 
     createNodePool(projectId, clusterId, param)
       .then(() => {
-        addSuccess(
-          <Translation ns="add">
-            {(_t) =>
-              _t('kube_add_node_pool_success', {
-                nodePoolName: formData.name,
-              })
-            }
-          </Translation>,
-          true,
-        );
-
         queryClient.invalidateQueries({
           queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
         });
-        navigate('../nodepools');
+        onSuccess?.();
       })
       .catch((e) => {
-        addError(
-          <Translation ns="add">
-            {(_t) =>
-              _t('kube_add_node_pool_error', {
-                message: e?.response?.data?.message || e?.message || null,
-                nodePoolName: formData.name,
-              })
-            }
-          </Translation>,
-          true,
-        );
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        onError?.(e);
       })
       .finally(() => {
         setIsAdding(false);

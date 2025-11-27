@@ -18,8 +18,8 @@ const Estimation = ({ rows }: { rows: EstimationRow[] }) => {
   const { t } = useTranslation('node-pool');
 
   return (
-    <div className="flex flex-col mb-8">
-      <Text className="text-[--ods-color-text-500] my-6" preset={TEXT_PRESET.heading4}>
+    <div className="mb-8 flex flex-col">
+      <Text className="my-6 text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
         {t('kube_common_node_pool_estimated_cost')}
       </Text>
 

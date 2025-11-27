@@ -125,8 +125,8 @@ export default function ClusterAccessAndSecurity({
   };
 
   return (
-    <OsdsTile className="flex-col w-full shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
-      <div className="flex flex-col w-full">
+    <OsdsTile className="w-full flex-col shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
+      <div className="flex w-full flex-col">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.heading}
@@ -207,7 +207,7 @@ export default function ClusterAccessAndSecurity({
         </OsdsPopover>
         <div className="flex items-center gap-5">
           <OsdsButton
-            className="hover:shadow-lg w-fit"
+            className="w-fit hover:shadow-lg"
             color={ODS_THEME_COLOR_INTENT.primary}
             data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
             size={ODS_BUTTON_SIZE.sm}
@@ -242,7 +242,7 @@ export default function ClusterAccessAndSecurity({
                 {t('kube_service_access_security_oidc_title')}
               </OsdsText>
 
-              <div className="min-w-10 ml-4">
+              <div className="ml-4 min-w-10">
                 <ActionMenu
                   icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
                   aria-label={t('kube_service_access_security_oidc_menu_action_sr_only')}
@@ -315,7 +315,7 @@ export default function ClusterAccessAndSecurity({
                                   key !== 'clientId',
                               )
                               .map(([key, value]) => (
-                                <div key={key} className="mb-4 mt-4 flex flex-col max-w-[400px]">
+                                <div key={key} className="my-4 flex max-w-[400px] flex-col">
                                   <OsdsText
                                     className="font-semibold"
                                     size={ODS_TEXT_SIZE._200}

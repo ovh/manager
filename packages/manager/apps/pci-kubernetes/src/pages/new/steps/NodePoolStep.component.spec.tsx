@@ -1,4 +1,4 @@
-import { QueryObserver, QueryObserverSuccessResult, UseQueryResult } from '@tanstack/react-query';
+import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';

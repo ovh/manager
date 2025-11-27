@@ -102,7 +102,7 @@ export function Autoscaling({
       </Text>
       {isAutoscale && (
         <div className="mt-8">
-          <div className={clsx('gap-4 flex')}>
+          <div className={clsx('flex gap-4')}>
             <QuantitySelector
               id="min-nodes"
               className="max-w-32"
