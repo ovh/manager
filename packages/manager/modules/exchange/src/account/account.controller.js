@@ -21,6 +21,9 @@ import punycode from 'punycode';
 import {
   DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
   OVH_MAIL_MIGRATOR_URL,
+  TICKET_SUPPORT_URL,
+  TICKET_SUPPORT_PROPS_WITH_TICKET,
+  TICKET_SUPPORT_PROPS_WITHOUT_TICKET,
 } from './account.constants';
 
 export default class ExchangeAccountHomeController {
@@ -71,18 +74,6 @@ export default class ExchangeAccountHomeController {
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
 
-    this.linkToSpamTicket = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/support/tickets',
-      {
-        filters: JSON.stringify({
-          comparator: 'is',
-          field: 'serviceName',
-          reference: [this.productId],
-        }),
-      },
-    );
-
     this.initialAccountRetrieval = true;
     this.atLeastOneDomainIsAssociatedToCurrentExchangeService = true;
     this.availableDomains = [];
@@ -103,6 +94,14 @@ export default class ExchangeAccountHomeController {
     );
 
     return this.fetchInitialData();
+  }
+
+  static spamTicketUrl(account) {
+    return `${TICKET_SUPPORT_URL}${
+      account.spamTicketNumber
+        ? TICKET_SUPPORT_PROPS_WITH_TICKET + account.spamTicketNumber
+        : TICKET_SUPPORT_PROPS_WITHOUT_TICKET
+    }`;
   }
 
   getColumnParameters() {
