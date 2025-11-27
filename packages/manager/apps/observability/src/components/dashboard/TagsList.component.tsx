@@ -27,7 +27,7 @@ export const TagsList = ({ tags, isLoading, maxVisibleTags }: TagsListProps) => 
   const toggleShowMoreTags = () => setShowAllTags((prev) => !prev);
 
   return (
-    <div className="flex flex-wrap align-items-center gap-4 mb-4">
+    <div className="align-items-center mb-4 flex flex-wrap gap-4">
       {isLoading ? (
         <Skeleton />
       ) : (

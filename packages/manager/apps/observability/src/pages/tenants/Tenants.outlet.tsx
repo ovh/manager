@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 
+import GrafanaButton from '@/components/metrics/grafana-button/GrafanaButton.component';
 import ServicesDropDown from '@/components/services/ServicesDropDown.component';
 import { useTenantsRedirect } from '@/hooks/useTenantsRedirect.hook';
 import { urls } from '@/routes/Routes.constants';
@@ -11,7 +12,12 @@ const TenantsOutlet = () => {
 
   return (
     <>
-      <ServicesDropDown onChange={() => navigate(urls.tenants)} />
+      <div className="flex justify-end">
+        <ServicesDropDown onChange={() => navigate(urls.tenants)} />
+        <div className="whitespace-nowrap">
+          <GrafanaButton />
+        </div>
+      </div>
       <Outlet />
     </>
   );

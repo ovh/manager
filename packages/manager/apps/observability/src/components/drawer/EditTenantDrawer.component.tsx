@@ -13,7 +13,7 @@ import { Drawer } from '@ovh-ux/muk';
 import { useEditTenant } from '@/data/hooks/tenants/useEditTenant.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
-import { TenantsFormLayout } from '@/pages/tenants/TenantsForm.layout';
+import { TenantFormLayout } from '@/pages/tenants/TenantForm.layout';
 import { TenantFormData } from '@/types/tenants.type';
 import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
@@ -107,7 +107,7 @@ const EditTenantDrawer = ({ tenantId, resourceName }: EditTenantDrawerProps) => 
               tenantName: tenant?.currentState?.title,
             })}
           </Text>
-          <TenantsFormLayout>
+          <TenantFormLayout>
             <section className="mt-6">
               <InformationForm
                 title={t('tenants:creation.tenantInformation')}
@@ -119,7 +119,7 @@ const EditTenantDrawer = ({ tenantId, resourceName }: EditTenantDrawerProps) => 
             <section className="mt-6">
               <TenantConfigurationForm />
             </section>
-          </TenantsFormLayout>
+          </TenantFormLayout>
         </Drawer.Content>
 
         <Drawer.Footer
