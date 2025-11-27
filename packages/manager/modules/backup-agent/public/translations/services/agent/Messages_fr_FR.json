@@ -1,5 +1,7 @@
 {
   "add_configuration": "Ajouter une configuration",
+  "edit_configuration": "Éditer un agent",
+  "service_informations": "Informations sur le service",
   "link_agent_to_a_server": "Lier un agent à un serveur existant",
   "add_server": "Ajouter un serveur",
   "select_server": "Sélectionner le serveur",
