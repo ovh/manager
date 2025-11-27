@@ -312,7 +312,7 @@ const ObjectLockOptions = () => {
                 <SelectContent>
                   {durationUnitOptions.map((option) => (
                     <SelectItem key={option.id} value={option.id}>
-                      {t(option.label)}
+                      {t(option.label, { count: duration.value })}
                     </SelectItem>
                   ))}
                 </SelectContent>
