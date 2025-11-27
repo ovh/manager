@@ -8,6 +8,7 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS } from '@/common/components/okms-dashboard/okms-domain-dashboard-tiles/OkmsDomainDashboardTiles.constants';
 import { PAGE_SPINNER_TEST_ID } from '@/common/components/page-spinner/PageSpinner.constants';
+import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
@@ -52,7 +53,7 @@ describe('OkmsDashboard page test suite', () => {
     // GIVEN
 
     // WHEN
-    await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl, { feature: KMS_FEATURES.LOGS });
 
     // THEN
     await assertTextVisibility(labels.secretManager.okms_dashboard_title);
@@ -64,7 +65,9 @@ describe('OkmsDashboard page test suite', () => {
     ]);
 
     expect(
-      screen.getByTestId(OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS.okmsDashboardTiles),
+      await screen.findByTestId(OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS.okmsDashboardTiles),
     ).toBeInTheDocument();
+    expect(await screen.findByTestId('general-information')).toBeVisible();
+    expect(await screen.findByTestId('logs')).toBeVisible();
   });
 });

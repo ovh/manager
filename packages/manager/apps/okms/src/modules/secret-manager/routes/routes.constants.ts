@@ -15,6 +15,7 @@ const URIS = {
   terminate: 'terminate',
   dashboard: 'dashboard',
   editSecretConfig: 'edit-secret-config',
+  logs: 'logs',
 };
 
 const URLS = {
@@ -30,6 +31,8 @@ const URLS = {
   okmsList: (regionId: string) => `/${URIS.root}/${URIS.region}/${regionId}`,
 
   okmsDashboard: (okmsId: string) => `/${URIS.root}/${okmsId}/${URIS.dashboard}`,
+
+  okmsDashboardLogs: (okmsId: string) => `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.logs}`,
 
   okmsUpdateNameModal: (okmsId: string) =>
     `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.update}`,

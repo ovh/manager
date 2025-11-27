@@ -12,9 +12,10 @@ import {
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 
-import KmsLogs from './Logs.page';
+import OkmsLogsPage from './OkmsLogs.page';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module = await importOriginal<typeof import('react-router-dom')>();
@@ -37,10 +38,15 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 
 vi.mock('@ovh-ux/logs-to-customer/src/LogsToCustomer.module');
 
+vi.mock('@/common/hooks/useProductType');
+
 describe('Logs page tests suite', () => {
+  beforeEach(() => {
+    vi.mocked(useProductType).mockReturnValue('key-management-service');
+  });
   afterEach(() => vi.clearAllMocks());
 
-  const renderLogsPage = () => render(<KmsLogs />);
+  const renderLogsPage = () => render(<OkmsLogsPage />);
 
   it('should display logs if logs feature is enabled', () => {
     vi.mocked(useFeatureAvailability).mockReturnValue({
@@ -69,14 +75,30 @@ describe('Logs page tests suite', () => {
     );
   });
 
-  it('should redirect to dashboard if logs feature is disabled', () => {
-    vi.mocked(useFeatureAvailability).mockReturnValue({
-      data: { [KMS_FEATURES.LOGS]: false },
-    } as unknown as UseFeatureAvailabilityResult);
+  it.each<{
+    productType: ProductType;
+    expectedRedirectRoute: string;
+  }>([
+    {
+      productType: 'key-management-service',
+      expectedRedirectRoute: '/key-management-service/okmsId',
+    },
+    {
+      productType: 'secret-manager',
+      expectedRedirectRoute: '/secret-manager/okmsId/dashboard',
+    },
+  ])(
+    'should redirect to $expectedRedirectRoute if logs feature is disabled and productType is $productType',
+    ({ productType, expectedRedirectRoute }) => {
+      vi.mocked(useProductType).mockReturnValue(productType);
+      vi.mocked(useFeatureAvailability).mockReturnValue({
+        data: { [KMS_FEATURES.LOGS]: false },
+      } as unknown as UseFeatureAvailabilityResult);
 
-    renderLogsPage();
+      renderLogsPage();
 
-    expect(Navigate).toHaveBeenCalledWith({ to: '/key-management-service/okmsId' }, {});
-    expect(LogsToCustomerModule).not.toHaveBeenCalled();
-  });
+      expect(Navigate).toHaveBeenCalledWith({ to: expectedRedirectRoute }, {});
+      expect(LogsToCustomerModule).not.toHaveBeenCalled();
+    },
+  );
 });
