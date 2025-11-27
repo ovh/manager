@@ -9,6 +9,7 @@ export default {
     user: '<',
     confirmTermination: '<',
     goBack: '<',
+    shouldHideQuestions: '<',
   },
   controller,
   template,
