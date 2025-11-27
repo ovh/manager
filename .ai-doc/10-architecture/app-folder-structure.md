@@ -95,7 +95,7 @@ Houses business logic and complex operations that don't fit in components. Files
 
 ### Type Definitions (`/src/types/`)
 
-Contains TypeScript type definitions and interfaces used across the application. Files use camelCase naming with `.types.ts` suffix (e.g., `userManagement.types.ts`). This folder contains shared types, interfaces, enums, and type utilities. It's for application-wide types (not data-specific types, which go in `/src/data/types/`). Group related types in the same file.
+Contains TypeScript type definitions and interfaces used across the application. Files use PascalCase naming with `.types.ts` suffix (e.g., `UserManagement.types.ts`). This folder contains shared types, interfaces, enums, and type utilities. It's for application-wide types (not data-specific types, which go in `/src/data/types/`). Group related types in the same file.
 
 ### Utility Functions (`/src/utils/`)
 
