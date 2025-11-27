@@ -17,6 +17,7 @@ import {
 } from '@/data/api/contacts';
 import {
   ContactMean,
+  ContactMeanStatus,
   ValidateContactMean,
 } from '@/data/types/contact-mean.type';
 
@@ -102,14 +103,17 @@ export const useChangeContactMeanStatus = ({
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (status: 'DISABLED' | 'VALID') => {
+    mutationFn: async (status: ContactMeanStatus.DISABLED | ContactMeanStatus.VALID) => {
       const contactMean = await queryClient.fetchQuery<ContactMean>({
         queryKey: getContactMeanQueryKey(contactMeanId),
         queryFn: async () => getContactMean(contactMeanId),
       });
       return updateContactMean({
         contactMeanId,
-        data: { description: contactMean.description, status },
+        data: {
+          description: contactMean.description,
+          status,
+        },
       });
     },
     onSuccess: async (contactMean: ContactMean) => {
@@ -192,7 +196,7 @@ export const useDeleteContactMean = ({
         queryClient.invalidateQueries({
           queryKey: getContactMeanListQueryKey(),
         }),
-        queryClient.invalidateQueries({
+        queryClient.removeQueries({
           queryKey: getContactMeanQueryKey(contactMean.id),
         }),
       ]);

@@ -5,11 +5,18 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import {
+  ButtonType,
+  PageLocation,
+  PageType,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useContactMean,
   useDeleteContactMean,
 } from '@/data/hooks/useContactMean/useContactMean';
 import { useAuthorization, usePendingRedirect } from '@/hooks';
 import { urls } from '@/routes/routes.constant';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 export default function DeleteContactPage() {
   const { contactMeanId } = useParams();
@@ -19,6 +26,7 @@ export default function DeleteContactPage() {
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/contactMean/delete',
   ]);
+  const { trackPage, trackClick } = useTracking();
 
   const { data: contactMean, isLoading: isLoadingContactMean } = useContactMean(
     {
@@ -30,13 +38,32 @@ export default function DeleteContactPage() {
   const { mutate, isPending } = useDeleteContactMean({
     id: contactMeanId as string,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_contact_success',
+        subApp: TrackingSubApps.Contacts,
+      });
       clearNotifications();
       addSuccess(t('delete_contact_success_message'));
-      navigate(urls.ContactsTab);
+      navigate(urls.contact.listing);
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'delete_contact_error',
+        subApp: TrackingSubApps.Contacts,
+      });
     },
   });
 
   const onConfirm = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['delete_contact', 'confirm'],
+      subApp: TrackingSubApps.Contacts,
+    });
     if (isPending) return;
     mutate();
   };
@@ -45,7 +72,7 @@ export default function DeleteContactPage() {
     isLoading: isLoadingContactMean || isLoadingAuthorization,
     isAuthorized,
     condition: !!contactMeanId,
-    redirectTo: urls.ContactsTab,
+    redirectTo: urls.contact.listing,
   });
 
   return (
@@ -53,8 +80,17 @@ export default function DeleteContactPage() {
       isOpen
       type={ODS_MODAL_COLOR.warning}
       heading={t('delete_contact_modal_title')}
-      onDismiss={() => navigate(urls.ContactsTab)}
-      onSecondaryButtonClick={() => navigate(urls.ContactsTab)}
+      onDismiss={() => navigate(urls.contact.listing)}
+      onSecondaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete_contact', 'cancel'],
+          subApp: TrackingSubApps.Contacts,
+        });
+        navigate(urls.contact.listing);
+      }}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       onPrimaryButtonClick={onConfirm}

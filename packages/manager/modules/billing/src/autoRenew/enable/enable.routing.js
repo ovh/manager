@@ -1,6 +1,6 @@
 import filter from 'lodash/filter';
-
-import { revertFailedBulkAction } from '../helpers/bulk-action-message.helper';
+import { SERVICE_RENEW_MODES } from '../autorenew.constants';
+import { mapErrorsForBulkActions } from '../helpers/bulk-action-message.helper';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.enableRedirection', {
@@ -13,7 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'billingAutorenewEnable',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       servicesId: /* @ngInject */ ($transition$) =>
         $transition$.params().services.split(','),
       servicesList: /* @ngInject */ (
@@ -29,18 +28,18 @@ export default /* @ngInject */ ($stateProvider) => {
           currentUser.auth.account,
         ),
       /* @ngInject */
-      updateRenew: ($q, BillingAutoRenew) => (services) =>
-        BillingAutoRenew.updateServices(
-          services.map((service) => {
-            service.setAutomaticRenew();
-            return service;
-          }),
-        ).catch((error) => {
-          revertFailedBulkAction(services, error?.messages, (service) => {
-            service.setManualRenew();
-          });
-          return $q.reject(error);
-        }),
+      updateRenew: ($q, BillingAutoRenew) => (services) => {
+        const updateRenewModePromises = services.map((service) =>
+          BillingAutoRenew.updateRenewMode(
+            service.id,
+            SERVICE_RENEW_MODES.AUTOMATIC,
+          ),
+        );
+
+        return $q
+          .all(updateRenewModePromises)
+          .then((results) => mapErrorsForBulkActions(results));
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_autorenew_enable_breadcrumb'),
     },

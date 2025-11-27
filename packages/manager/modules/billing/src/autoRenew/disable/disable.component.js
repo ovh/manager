@@ -3,7 +3,7 @@ import template from './disable.html';
 
 export default {
   bindings: {
-    goBack: '<',
+    goToAutorenew: '<',
     servicesList: '<',
     updateRenew: '<',
   },

@@ -50,6 +50,7 @@ import {
   shouldAccessOrganizationSearch,
   shouldEnableSIRENDisplay,
 } from '@/helpers/flowHelper';
+import { useDetailsRedirection } from '@/hooks/redirection/useDetailsRedirection';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -72,6 +73,8 @@ function AccountDetailsForm({
     NAMESPACES.COUNTRY,
   ]);
   const { addError, addSuccess } = useNotifications();
+
+  const { url: redirectionUrl, isLoading: isRedirectionUrlLoading } = useDetailsRedirection();
 
   const {
     legalForm,
@@ -181,13 +184,13 @@ function AccountDetailsForm({
       }
     },
     onSuccess: () => {
-      // TODO: redirect user to query param or the hub
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('account_details_success_message')}
         </OdsText>,
         true,
       );
+      window.location.assign(redirectionUrl!);
     },
     onError: () => {
       addError(
@@ -869,7 +872,7 @@ function AccountDetailsForm({
           className="w-full"
           color={ODS_BUTTON_COLOR.primary}
           variant={ODS_BUTTON_VARIANT.default}
-          isLoading={isFormPending}
+          isLoading={isFormPending || isRedirectionUrlLoading || !redirectionUrl}
           data-testid="confirm-btn"
           label={t('account_details_button_validate')}
         ></OdsButton>
