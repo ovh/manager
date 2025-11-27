@@ -50,7 +50,6 @@
   "packages/manager/apps/pci-public-ip",
   "packages/manager/apps/pci-quota",
   "packages/manager/apps/pci-rancher",
-  "packages/manager/apps/pci-savings-plan",
   "packages/manager/apps/pci-ssh-keys",
   "packages/manager/apps/pci-users",
   "packages/manager/apps/pci-volume-backup",
