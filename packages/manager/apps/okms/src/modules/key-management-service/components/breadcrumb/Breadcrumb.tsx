@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import {
   BreadcrumbItem,
@@ -12,25 +12,20 @@ export type BreadcrumbProps = {
 };
 
 function Breadcrumb({ items }: BreadcrumbProps) {
-  const navigate = useNavigate();
   const breadcrumbItems = useBreadcrumb({ items });
 
   return (
     <OdsBreadcrumb>
       {breadcrumbItems.map(({ id, label, navigateTo }) => (
-        <OdsBreadcrumbItem
-          key={id}
-          label={label}
-          onOdsClick={() => {
-            if (navigateTo) {
-              navigate(navigateTo);
-            }
-          }}
-          href={''}
-        />
+        <Item key={id} id={id} label={label} navigateTo={navigateTo} />
       ))}
     </OdsBreadcrumb>
   );
 }
+
+const Item = ({ id, label, navigateTo }: BreadcrumbItem) => {
+  const href = useHref(navigateTo ?? '');
+  return <OdsBreadcrumbItem key={id} label={label} href={href} />;
+};
 
 export default Breadcrumb;
