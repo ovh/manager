@@ -9,7 +9,6 @@ import {
   BaseLayout,
   ChangelogButton,
   Datagrid,
-  PciGuidesHeader,
   RedirectionGuard,
   useDataGrid,
   useProjectUrl,
@@ -30,13 +29,14 @@ import {
 import { Suspense, useContext, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
+import { useDatagridColumn } from '@/pages/listing/hooks/useDatagridColumn';
 import { CHANGELOG_LINKS } from '@/constants';
 import {
   useAllSnapshots,
   usePaginatedVolumeSnapshot,
 } from '@/api/hooks/useSnapshots';
 import { useQueryParamNotifications } from '@/hooks/useQueryParamNotifications';
+import { VolumeSnapshotGuidesHeader } from '@/pages/listing/components/VolumeSnapshotGuidesHeader.component';
 
 export default function ListingPage() {
   const { t } = useTranslation(['volumes']);
@@ -110,7 +110,7 @@ export default function ListingPage() {
         }
         header={{
           title: t('pci_projects_project_storages_snapshots_title'),
-          headerButton: <PciGuidesHeader category="storage" />,
+          headerButton: <VolumeSnapshotGuidesHeader />,
           changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
         }}
       >
