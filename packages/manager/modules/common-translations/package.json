@@ -26,6 +26,7 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.13.0",
     "@ovh-ux/manager-vite-config": "^0.15.0",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "4.5.4",
+    "@volar/typescript": "2.4.11"
   }
 }
