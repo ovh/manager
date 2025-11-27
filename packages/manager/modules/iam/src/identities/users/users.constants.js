@@ -27,6 +27,7 @@ export const USERS_TRACKING_HITS = {
   ENABLE_USER_SUCCESS: `${USERS_TRACKING_PREFIX}banner-info::enable-user_success`,
   ENABLE_USER_ERROR: `${USERS_TRACKING_PREFIX}banner-error::enable-user_error`,
   DISABLE_USER: `${USERS_TRACKING_PREFIX}datagrid::button::disable_user`,
+  MANAGE_TOKENS: `${USERS_TRACKING_PREFIX}datagrid::button::manage_tokens`,
   DISABLE_USER_MODAL: `${USERS_TRACKING_PREFIX}pop-up::disable_user`,
   DISABLE_USER_CANCEL: `${USERS_TRACKING_PREFIX}pop-up::button::disable-user::cancel`,
   DISABLE_USER_CONFIRM: `${USERS_TRACKING_PREFIX}pop-up::button::disable-user::validate`,

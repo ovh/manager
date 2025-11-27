@@ -128,6 +128,17 @@
                                         ></button>
                                     </li>
                                     <li>
+                                        <a
+                                            class="oui-button"
+                                            data-ng-href="{{ $ctrl.manageTokensBaseUrl + user.login}}"
+                                            data-track-on="click"
+                                            data-track-name="{{:: $ctrl.USERS_TRACKING_HITS.MANAGE_TOKENS }}"
+                                            data-track-type="action"
+                                            >{{'user_users_manage_tokens' |
+                                            translate}}</a
+                                        >
+                                    </li>
+                                    <li>
                                         <button
                                             type="button"
                                             class="btn btn-link"
