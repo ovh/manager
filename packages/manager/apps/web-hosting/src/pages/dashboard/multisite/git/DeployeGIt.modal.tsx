@@ -73,7 +73,7 @@ export default function DeployeGitModal() {
       }}
     >
       {isFetching ? (
-        <div className="flex justify-center items-center h-48">
+        <div className="flex h-48 items-center justify-center">
           <Spinner size={SPINNER_SIZE.lg} />
         </div>
       ) : isError || deployError ? (
@@ -86,7 +86,7 @@ export default function DeployeGitModal() {
             {t('deploy_git_description')}
           </Text>
 
-          <div className="flex gap-3 items-start">
+          <div className="flex items-start gap-3">
             <Checkbox
               name="deploy-git-reset"
               checked={reset}

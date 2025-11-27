@@ -88,7 +88,7 @@ export default function DetacheDomainModal() {
       onOpenChange={onClose}
       open={true}
     >
-      <div className="flex flex-col mb-10 mt-5">
+      <div className="mb-10 mt-5 flex flex-col">
         <Text>{t('hosting_tab_DOMAINS_configuration_remove_title')}</Text>
         <Text preset={TEXT_PRESET.heading6} className="mt-6">
           {t('hosting_tab_DOMAINS_configuration_domain_name')}
@@ -109,7 +109,7 @@ export default function DetacheDomainModal() {
           />
         </div>
         {wwwDomainExists && (
-          <div className="flex flex-row mt-6">
+          <div className="mt-6 flex flex-row">
             <Checkbox
               checked={wwwRemoved}
               onCheckedChange={() => setWwwRemoved(!wwwRemoved)}
@@ -126,7 +126,7 @@ export default function DetacheDomainModal() {
             </Checkbox>
           </div>
         )}
-        <div className="flex flex-row mt-6 mb-6">
+        <div className="my-6 flex flex-row">
           <Checkbox
             checked={isAutoconfigure}
             onCheckedChange={() => setIsAutoconfigure(!isAutoconfigure)}

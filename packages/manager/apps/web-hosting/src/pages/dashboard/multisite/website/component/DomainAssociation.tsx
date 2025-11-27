@@ -78,7 +78,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     : CARD_COLOR.neutral
                 }
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio
                     value={AssociationType.EXISTING}
                     onClick={() => {
@@ -114,7 +114,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     : CARD_COLOR.neutral
                 }
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio
                     value={AssociationType.EXTERNAL}
                     onClick={() => {
@@ -148,7 +148,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     : CARD_COLOR.neutral
                 }
               >
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio
                     value={AssociationType.ORDER}
                     onClick={() => {

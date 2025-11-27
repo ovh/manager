@@ -82,10 +82,185 @@ vi.mock('export-to-csv', () => ({
   download: vi.fn().mockImplementation(() => vi.fn()),
 }));
 
-vi.mock('@ovh-ux/muk', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovh-ux/muk')>();
+/* eslint-disable react/no-multi-comp */
+vi.mock('@ovh-ux/muk', () => {
   return {
-    ...actual,
+    Datagrid: ({
+      columns,
+      topbar,
+      ...props
+    }: React.PropsWithChildren<{
+      columns?: Array<{ id: string; header?: string }>;
+      topbar?: React.ReactElement;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="datagrid" {...props}>
+        {topbar}
+        {columns?.map((column) => (
+          <div key={column.id} data-testid={`header-${column.id}`}>
+            {column.header || column.id}
+          </div>
+        ))}
+      </div>
+    ),
+    Notifications: ({
+      message,
+    }: React.PropsWithChildren<{
+      message?: string;
+    }>) => <div>{message}</div>,
+    ActionMenu: ({
+      id,
+      items,
+      ...props
+    }: React.PropsWithChildren<{
+      id?: string;
+      items?: Array<{ id: number; label: string }>;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="action-menu" data-id={id} {...props}>
+        {items?.map((item) => (
+          <button key={item.id} data-testid={`action-item-${item.id}`}>
+            {item.label}
+          </button>
+        ))}
+      </div>
+    ),
+    ChangelogMenu: ({
+      id,
+      links,
+      ...props
+    }: React.PropsWithChildren<{
+      id?: string;
+      links?: Array<{ id: number; label: string }>;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="action-menu" data-id={id} {...props}>
+        {links?.map((item) => (
+          <button key={item.id} data-testid={`action-item-${item.id}`}>
+            {item.label}
+          </button>
+        ))}
+      </div>
+    ),
+    Modal: ({
+      children,
+      primaryButton,
+      secondaryButton,
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      primaryButton?: { label: string; disabled: boolean; onClick: () => void };
+      secondaryButton?: { label: string; disabled: boolean; onClick: () => void };
+    }>) => (
+      <div data-testid="modal">
+        {children}
+        {primaryButton && (
+          <button
+            data-testid="primary-button"
+            onClick={primaryButton.onClick}
+            disabled={primaryButton.disabled}
+          >
+            {primaryButton.label}
+          </button>
+        )}
+        {secondaryButton && (
+          <button
+            data-testid="secondary-button"
+            onClick={secondaryButton.onClick}
+            disabled={secondaryButton.disabled}
+          >
+            {secondaryButton.label}
+          </button>
+        )}
+      </div>
+    ),
+    BaseLayout: ({
+      breadcrumb,
+      message,
+      children,
+      tabs,
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      message: React.ReactElement;
+      breadcrumb: React.ReactElement;
+      tabs: React.ReactElement;
+    }>) => (
+      <div>
+        <div>{breadcrumb}</div>
+        {message && <div>{message}</div>}
+        {tabs && <div>{tabs}</div>}
+        {children}
+      </div>
+    ),
+    OnboardingLayout: ({
+      title,
+      description,
+      children,
+    }: React.PropsWithChildren<{
+      title: string;
+      children: React.ReactNode;
+      description: string;
+    }>) => (
+      <main>
+        <section aria-labelledby="onboarding-title">
+          {title}
+          {description}
+        </section>
+        {children && <div>{children}</div>}
+      </main>
+    ),
+    Badge: ({
+      children,
+      itemStatus,
+      statusColor,
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      itemStatus: string;
+      statusColor: string;
+    }>) => (
+      <div>
+        <span data-testid={`badge-status-${itemStatus}`} color={statusColor}>
+          {children}
+        </span>
+      </div>
+    ),
+    LinkCard: ({
+      href,
+      externalHref,
+      description,
+    }: React.PropsWithChildren<{
+      externalHref: string;
+      href: string;
+      description: string;
+    }>) => (
+      <a
+        href={href}
+        target={externalHref ? '_blank' : undefined}
+        rel={externalHref ? 'noreferrer' : undefined}
+        className="no-underline"
+      >
+        {description}
+      </a>
+    ),
+    MODAL_COLOR: {
+      critical: 'critical',
+      information: 'information',
+      neutral: 'neutral',
+      primary: 'primary',
+      success: 'success',
+      warning: 'warning',
+    },
+    BADGE_COLOR: {
+      alpha: 'alpha',
+      beta: 'beta',
+      new: 'new',
+      promotion: 'promotion',
+      critical: 'critical',
+      information: 'information',
+      neutral: 'neutral',
+      primary: 'primary',
+      success: 'success',
+      warning: 'warning',
+    },
     useNotifications: vi.fn(() => ({
       addSuccess: vi.fn(),
       addError: vi.fn(),
@@ -100,8 +275,10 @@ vi.mock('@ovh-ux/muk', async (importOriginal) => {
       filters: {},
       sorting: {},
     })),
+    useFormatDate: vi.fn((date: string) => `formatted-${date}`),
   };
 });
+/* eslint-enable react/no-multi-comp */
 
 export const navigate = vi.fn();
 
