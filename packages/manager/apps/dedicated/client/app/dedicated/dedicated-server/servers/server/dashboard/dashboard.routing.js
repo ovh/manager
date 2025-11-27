@@ -177,6 +177,19 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           )
           .then((url) => () => url),
+      goToResiliationService: /* @ngInject */ (
+        $state,
+        serverName,
+        shellClient,
+      ) =>
+        shellClient.navigation
+          .getURL(
+            'dedicated',
+            $state.href('app.dedicated-server.server.dashboard.resiliate', {
+              productId: serverName,
+            }),
+          )
+          .then((url) => () => url),
       goToResiliation: /* @ngInject */ ($state, serverName, shellClient) =>
         shellClient.navigation
           .getURL(
