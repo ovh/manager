@@ -1,3 +1,4 @@
+import { KeyValuePair } from '@secret-manager/utils/key-value/keyValue';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
@@ -7,11 +8,6 @@ import { OdsButton, OdsFormField, OdsInput } from '@ovhcloud/ods-components/reac
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
-
-export type KeyValuePair = {
-  key: string;
-  value: string;
-};
 
 type KeyValuesEditorItemProps = {
   index: number;

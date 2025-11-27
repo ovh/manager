@@ -1,18 +1,19 @@
 import { useState } from 'react';
 
+import { KeyValuesErrorMessage } from '@secret-manager/components/messages/KeyValuesErrorMessage';
+import {
+  KeyValuePair,
+  isKeyValueObjectString,
+  keyValuePairsToString,
+  stringToKeyValuePairs,
+} from '@secret-manager/utils/key-value/keyValue';
 import { UseControllerProps, useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { OdsButton, OdsFormField } from '@ovhcloud/ods-components/react';
 
-import { KeyValuesEditorErrorMessage } from './KeyValuesEditorErrorMessage';
-import { KeyValuePair, KeyValuesEditorItem } from './KeyValuesEditorItem';
+import { KeyValuesEditorItem } from './KeyValuesEditorItem';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
-import {
-  formatKeyValueArrayFromString,
-  formatStringFromKeyValueArray,
-  isStringValidForKeyValueForm,
-} from './utils/keyValue';
 
 export type FormFieldInput = {
   data: string;
@@ -29,7 +30,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
   // We store the data in a local array to allow 2 rows with the same key
   // Otherwise, a row would disappear while typing as soon as a key appears twice
   const [keyValuePairs, setKeyValuePairs] = useState<KeyValuePair[]>(
-    formatKeyValueArrayFromString(field.value),
+    stringToKeyValuePairs(field.value),
   );
 
   const updateFormState = (newKeyValuePairs: KeyValuePair[]) => {
@@ -48,7 +49,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
     clearErrors(name);
 
     // Update global form state
-    const data = formatStringFromKeyValueArray(newKeyValuePairs);
+    const data = keyValuePairsToString(newKeyValuePairs);
     field.onChange(data);
   };
 
@@ -74,8 +75,8 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
     updateFormState(keyValuePairs);
   };
 
-  if (!isStringValidForKeyValueForm(field.value)) {
-    return <KeyValuesEditorErrorMessage />;
+  if (!isKeyValueObjectString(field.value)) {
+    return <KeyValuesErrorMessage />;
   }
 
   return (
