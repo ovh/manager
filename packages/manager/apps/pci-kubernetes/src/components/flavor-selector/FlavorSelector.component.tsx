@@ -44,7 +44,7 @@ export function FlavorSelector({ projectId, region, onSelect }: Readonly<FlavorS
         </OsdsText>
       )}
       contentElement={(category) => (
-        <div className="grid gap-6 p-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 p-6 md:grid-cols-2 xl:grid-cols-4">
           {mergedFlavors
             .filter((flavor) => flavor.flavorCategory === category.category)
             .map((flavor) => (

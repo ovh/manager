@@ -76,7 +76,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
   return (
     <div className="max-w-3xl">
       <div className="my-6">
-        <Text className="text-[--ods-color-text-500] my-6" preset={TEXT_PRESET.heading4}>
+        <Text className="my-6 text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
           {t('flavor-billing:pci_projects_project_instances_configure_billing_type')}
         </Text>
         {props.monthlyBilling.isComingSoon && showSavingPlan ? (
@@ -87,7 +87,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
                 <Text>{t('kubernetes_add_billing_savings_plan_banner')}</Text>
                 <Link className="mt-2 flex items-baseline" target="_blank" href={savingsPlanUrl}>
                   {t('kubernetes_add_billing_savings_plan_cta')}
-                  <Icon className="w-3 h-3" aria-hidden="true" name="arrow-right" />
+                  <Icon className="size-3" aria-hidden="true" name="arrow-right" />
                 </Link>
               </div>
             </Message>
@@ -102,7 +102,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
         )}
       </div>
 
-      <div className="flex gap-10 my-8">
+      <div className="my-8 flex gap-10">
         <Card
           data-testid="hourly_tile"
           className={clsx(
