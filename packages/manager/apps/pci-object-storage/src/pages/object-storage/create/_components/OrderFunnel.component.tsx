@@ -39,6 +39,7 @@ import { PlanCode } from '@/configuration/project';
 import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
 import A from '@/components/links/A.component';
 import user from '@/types/User';
+import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 
 interface OrderFunnelProps {
   regions: Region[];
@@ -73,7 +74,7 @@ const OrderFunnel = ({
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'critical',
-        description: err.message,
+        description: getObjectStoreApiErrorMessage(err),
       });
       setIsSubmitting(false);
     },
@@ -89,7 +90,7 @@ const OrderFunnel = ({
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'critical',
-        description: err.message,
+        description: getObjectStoreApiErrorMessage(err),
       });
       setIsSubmitting(false);
     },
