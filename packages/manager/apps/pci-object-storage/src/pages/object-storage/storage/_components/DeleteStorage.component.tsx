@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud';
 import { useState } from 'react';
 import {
   Button,
