@@ -1,1 +1,1 @@
-export const mockTenantBackupPolicies = ['windows', 'linux', 'macos'];
+export const mockTenantBackupPolicies = ['windows', 'linux', 'daily-backup-retention-30d', 'macos'];

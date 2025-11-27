@@ -6,6 +6,7 @@ import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-co
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
 import region from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/region/Messages_fr_FR.json';
 import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
+import system from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/system/Messages_fr_FR.json';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 
@@ -35,6 +36,7 @@ function addTranslations() {
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, NAMESPACES.BILLING, billing)
     .addResources(defaultLocale, NAMESPACES.REGION, region)
+    .addResources(defaultLocale, NAMESPACES.SYSTEM, system)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -75,4 +77,5 @@ export const labels = {
   billing,
   region,
   servicesAgent,
+  system,
 };

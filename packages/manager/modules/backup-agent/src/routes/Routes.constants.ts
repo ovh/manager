@@ -12,11 +12,13 @@ export const subRoutes = Object.freeze({
   agents: 'agents',
   buckets: 'buckets',
   add: 'add',
+  configure: 'configure',
 });
 
 export const urlParams = {
   vaultId: ':vaultId' as const,
   tenantId: ':tenantId' as const,
+  agentId: ':agentId' as const,
 } as const;
 
 export const urls = {
@@ -29,6 +31,7 @@ export const urls = {
   dashboardTenants: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}`,
   dashboardTenantAgents: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}`,
   addAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.add}`,
+  editAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.configure}/${urlParams.agentId}`,
   listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
   dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,
   listingBilling: `/${subRoutes.billing}`,
