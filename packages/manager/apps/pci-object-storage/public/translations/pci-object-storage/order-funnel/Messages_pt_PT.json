@@ -12,7 +12,7 @@
   "labelLocation": "Localização",
   "labelContainerType": "Tipo de contêiner",
   "labelOffsiteReplication": "Replicação Offsite",
-  "descriptionOffsiteReplication": "Replicar automaticamente os seus dados para um site remoto numa classe de armazenamento Acesso Infrequente. <0>Saiba mais</0>",
+  "descriptionOffsiteReplication": "Replicar automaticamente os seus dados para um site remoto numa classe de armazenamento Acesso Infrequente. &lt;0>Saiba mais&lt;/0>",
   "labelVersioning": "Gestão das versões",
   "descriptionVersioning": "Automatiza a criação de versões de um objeto para evitar a eliminação acidental do mesmo, ou simplesmente quando um novo objeto é carregado.",
   "labelUser": "Utilizador",
@@ -30,7 +30,7 @@
   "summaryOfferS3": "API compatível com S3",
   "summaryOfferSwift": "API Swift",
   "summaryLocationSection": "Area",
-  "summaryOffsiteReplicationSection": "Replicação",
+  "summaryOffsiteReplicationSection": "Replicação Offsite",
   "summaryOffsiteReplicationEnabled": "Replicação ativada",
   "summaryOffsiteReplicationDisabled": "Replicação desativada",
   "summaryOffsiteReplicationRegion": "Região:",
@@ -83,7 +83,8 @@
   "pci_instances_common_instance_region_deployment_mode_description": "Implantação resiliente e econômica em 1 zona de disponibilidade.",
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Implantação de alta resiliência/alta disponibilidade para suas aplicações críticas em 3 zonas de disponibilidade.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Implantação de suas aplicações o mais próximo possível dos seus usuários para baixa latência e residência de dados.",
-  "selectGeographicalZone": "Selecione uma zona geográfica",
-  "showAllRegions": "Mostre todas as regiões",
-  "nameInputInfo": "O nome do contêiner deve ter entre 3 e 63 caracteres, deve começar e terminar com caracteres alfanuméricos minúsculos (de a a z e de 0 a 9) e pode conter os seguintes sinais de pontuação: « . » e « - »."
+  "nameInputInfo": "O nome do contêiner deve ter entre 3 e 63 caracteres, deve começar e terminar com caracteres alfanuméricos minúsculos (de a a z e de 0 a 9) e pode conter os seguintes sinais de pontuação: « . » e « - ».",
+  "selectGeographicalZone": "Selecionar uma zona geográfica",
+  "showAllRegions": "Mostrar todas as regiões",
+  "summaryEncryptionPlaintext": "Nenhuma"
 }
