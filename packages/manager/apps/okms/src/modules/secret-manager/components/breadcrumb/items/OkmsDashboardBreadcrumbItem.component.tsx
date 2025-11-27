@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import {
   SECRET_MANAGER_ROUTES_URIS,
@@ -14,15 +14,14 @@ import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
 const Item = ({ okmsId }: { okmsId: string }) => {
   const { t } = useTranslation('secret-manager');
-  const navigate = useNavigate();
+  const link = useHref(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId));
 
   return (
     <OdsBreadcrumbItem
       data-testid={BREADCRUMB_ITEM_TEST_IDS.OKMS_DASHBOARD}
       key={SECRET_MANAGER_ROUTES_URIS.dashboard}
       label={t('okms_dashboard_title')}
-      onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId))}
-      href=""
+      href={link}
     />
   );
 };
