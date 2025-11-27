@@ -16,5 +16,7 @@
     "resolveFullExtension": ".js"
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "template"]
+  "exclude": ["node_modules", "dist",
+    "template"
+  ]
 }

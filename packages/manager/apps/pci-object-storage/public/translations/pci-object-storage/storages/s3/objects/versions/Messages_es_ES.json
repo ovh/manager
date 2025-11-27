@@ -1,10 +1,10 @@
 {
   "objectVersionToastErrorTitle": "Se ha producido un error",
-  "objectVersionToastSuccessTitle": "Éxito",
-  "deleteObjectVersionToastSuccessDescription": "La versión del objeto {{- name }} ha sido eliminada.",
+  "objectVersionToastSuccessTitle": "Realizado",
+  "deleteObjectVersionToastSuccessDescription": "Se ha eliminado la versión del objeto {{- name }}.",
   "deleteObjectVersionTitle": "Eliminar una versión de un objeto",
   "deleteObjectVersionDescription": "¿Desea eliminar permanentemente esta versión del objeto {{- name }}? Esta acción no se puede deshacer.",
-  "deleteObjectVersionConfirmation": "Escriba ELIMINAR PERMANENTEMENTE para confirmar",
+  "deleteObjectVersionConfirmation": "Escriba PERMANENTLY DELETE para confirmar esta acción",
   "deleteObjectVersionButtonCancel": "Cancelar",
   "deleteObjectVersionButtonConfirm": "Eliminar"
 }

@@ -1,12 +1,12 @@
 {
-  "deleteReplicationTitle": "Eine Replikationsregel löschen",
+  "deleteReplicationTitle": "Replikationsregel löschen",
   "deleteReplicationDescription": "Möchten Sie die Replikationsregel <strong>{{decodedRuleId}}</strong> wirklich löschen?",
   "deleteReplicationButtonConfirm": "Löschen",
   "deleteReplicationButtonCancel": "Abbrechen",
   "deleteReplicationToastSuccessTitle": "Regel gelöscht",
-  "deleteReplicationToastSuccessMessage": "Das Löschen Ihrer Replikationsregel war erfolgreich.",
-  "deleteReplicationToastErrorTitle": "Löschfehler",
-  "deleteReplicationToastErrorMessage": "Ein Fehler ist aufgetreten beim Löschen Ihrer Replikationsregel: {{message}}.",
+  "deleteReplicationToastSuccessMessage": "Die Replikationsregel wurde erfolgreich gelöscht.",
+  "deleteReplicationToastErrorTitle": "Fehler beim Löschen",
+  "deleteReplicationToastErrorMessage": "Beim Löschen Ihrer Replikationsregel ist ein Fehler aufgetreten: {{ message }}.",
   "replicationRuleNotFound": "Die Replikationsregel wurde nicht gefunden.",
-  "close": "Schliessen"
+  "close": "Schließen"
 }

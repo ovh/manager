@@ -11,12 +11,13 @@
     "manager-forge-application": "bin/manager-forge-application.mjs",
     "manager-forge-component": "bin/manager-forge-component.mjs",
     "manager-forge-hook": "bin/manager-forge-hook.mjs",
-    "manager-forge-page": "bin/manager-forge-page.mjs"
+    "manager-forge-page": "bin/manager-forge-page.mjs",
+    "manager-forge-module": "bin/manager-forge-module.mjs"
   },
   "scripts": {
     "build": "tsc && tsc-alias",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**/**.ts ./bin/**/**.*js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**/**.ts ./bin/**/**.*js",
+    "lint:modern": "manager-lint --config eslint.config.mjs \"src/**/*.{mjs,js,jsx,ts,tsx}\" \"bin/**/*.{mjs,js,jsx,ts,tsx}\"",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs \"src/**/*.{mjs,js,jsx,ts,tsx}\" \"bin/**/*.{mjs,js,jsx,ts,tsx}\"",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },

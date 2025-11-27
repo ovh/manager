@@ -1,11 +1,11 @@
 {
-  "deleteUserTitle": "Einen Benutzer für S3 deaktivieren",
-  "deleteUserDescription": "Die vollständige Löschung eines Benutzers erfolgt im Abschnitt Benutzer und Rollen.",
-  "deleteUSerDescription1": "Meine Benutzer verwalten",
-  "deleteUSerDescription2": "Diese Aktion ermöglicht es Ihnen, die S3-Anmeldeinformationen des Benutzers {{ name }} zu löschen.",
+  "deleteUserTitle": "User für S3 deaktivieren",
+  "deleteUserDescription": "Die vollständige Löschung eines Users erfolgt im Bereich Users & Roles.",
+  "deleteUSerDescription1": "Meine User verwalten",
+  "deleteUSerDescription2": "Mit dieser Aktion können Sie die S3-Login-Daten des Users {{ name }} löschen.",
   "deleteUserButtonCancel": "Abbrechen",
   "deleteUserButtonConfirm": "Bestätigen",
   "deleteUserToastErrorTitle": "Fehler",
-  "deleteUserToastSuccessTitle": "Erfolg",
-  "deleteUserToastSuccessDescription": "Der Benutzer {{ name }} wurde gelöscht."
+  "deleteUserToastSuccessTitle": "Erfolgreich",
+  "deleteUserToastSuccessDescription": "Der User {{ name }} wurde gelöscht."
 }

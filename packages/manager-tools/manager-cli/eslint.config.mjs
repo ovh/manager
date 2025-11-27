@@ -21,6 +21,7 @@ export default [
     rules: {
       'no-undef': 'off',
       'import/no-nodejs-modules': 'off',
+      'no-console': 'off',
     },
   },
 ];

@@ -2,7 +2,12 @@ import { useRef } from 'react';
 
 import { TABLE_SIZE, TABLE_VARIANT, Table } from '@ovhcloud/ods-react';
 
-import { ContainerHeight, DatagridProps, RowHeight } from '@/components/datagrid/Datagrid.props';
+import {
+  ContainerHeight,
+  ContainerWihtoutHeaderHeight,
+  DatagridProps,
+  RowHeight,
+} from '@/components/datagrid/Datagrid.props';
 import { TableHeaderContent } from '@/components/datagrid/table/table-head';
 
 import { TableBody } from './table/table-body/TableBody.component';
@@ -21,6 +26,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
   expandable,
   filters,
   hasNextPage,
+  hideHeader = false,
   isLoading,
   maxRowHeight,
   resourceType,
@@ -37,7 +43,8 @@ export const Datagrid = <T extends Record<string, unknown>>({
   renderSubComponent,
 }: DatagridProps<T>) => {
   const rowHeight = RowHeight[size];
-  const DEFAULT_CONTAINER_HEIGHT = maxRowHeight || ContainerHeight[size];
+  const DEFAULT_CONTAINER_HEIGHT =
+    maxRowHeight || (hideHeader ? ContainerWihtoutHeaderHeight[size] : ContainerHeight[size]);
   const {
     features,
     getHeaderGroups,
@@ -94,14 +101,17 @@ export const Datagrid = <T extends Record<string, unknown>>({
         />
       )}
       <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
-        <Table size={size} variant={variant}>
-          <TableHeaderContent<T>
-            headerGroups={headerGroups}
-            onSortChange={sorting?.setSorting}
-            enableSorting={hasSortingFeature}
-            contentAlignLeft={contentAlignLeft}
-          />
+        <Table className="table table-fixed w-full" size={size} variant={variant}>
+          {!hideHeader && (
+            <TableHeaderContent<T>
+              headerGroups={headerGroups}
+              onSortChange={sorting?.setSorting}
+              enableSorting={hasSortingFeature}
+              contentAlignLeft={contentAlignLeft}
+            />
+          )}
           <TableBody
+            hideHeader={hideHeader}
             columns={visibleColumns}
             autoScroll={autoScroll}
             expanded={expandable?.expanded ?? {}}

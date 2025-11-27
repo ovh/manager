@@ -1,16 +1,16 @@
 {
   "title": "Object Storage",
-  "description1": "Aún no ha creado un servicio de Object Storage.",
-  "description2": "Disfrute del almacenamiento ilimitado bajo demanda, accesible a través de API.",
-  "description3": "El Object Storage consiste en colocar sus datos en un espacio ilimitado, accesible directamente a través de una API HTTP. Así puede integrar el acceso a esta información desde sus aplicaciones, gracias a las numerosas bibliotecas de OpenStack Swift existentes. Además de la administración de los derechos de acceso, el Object Storage integra funcionalidades de «almacenamiento inteligente» como la gestión de versiones y fechas de expiración, así como la sincronización entre diferentes ubicaciones.",
-  "description4": "Sus datos están asegurados en tres réplicas, para garantizar su duración, y usted disfruta de una facturación por uso desde el primer GB.",
+  "description1": "Todavía no ha creado ningún servicio de Object Storage.",
+  "description2": "Disfrute de almacenamiento ilimitado bajo demanda, con acceso a través de la API.",
+  "description3": "Object Storage permite almacenar los datos en un espacio ilimitado al que podrá acceder directamente a través de una API HTTP. Gracias a las numerosas librerías OpenStack Swift existentes, podrá integrar el acceso a esta información desde sus aplicaciones. Además de administrar los permisos de acceso, Object Storage incorpora funcionalidades de «almacenamiento inteligente», como la gestión de versiones y fechas de expiración o la sincronización entre diferentes localizaciones.",
+  "description4": "Los datos están protegidos mediante triple replicación para garantizar su durabilidad. Asimismo, el servicio se factura por consumo desde el primer GB.",
   "createButtonLabel": "Crear un contenedor de objetos",
-  "cardTopGuide": "Tutorial",
-  "cardFindOutMore": "Saber más",
+  "cardTopGuide": "Guía",
+  "cardFindOutMore": "Más información",
   "cardLeftTitle": "Colocar un contenedor de Object Storage detrás de un nombre de dominio",
-  "cardLeftDesc": "Descubra cómo configurar su contenedor de objetos con su dominio",
+  "cardLeftDesc": "Esta guía explica cómo configurar un contenedor de objetos con un dominio",
   "cardMiddleTitle": "Configurar la eliminación automática de objetos",
-  "cardMiddleDescription": "Descubra cómo activar la eliminación automática de los objetos de su contenedor",
-  "cardRightTitle": "Compartir un objeto con una dirección temporal",
-  "cardRightDesc": "Descubra cómo compartir un objeto sin proporcionar su información personal"
+  "cardMiddleDescription": "Cómo activar la eliminación automática de objetos en el contenedor",
+  "cardRightTitle": "Compartir un objeto con una URL temporal",
+  "cardRightDesc": "Cómo compartir un objeto sin comunicar información personal"
 }

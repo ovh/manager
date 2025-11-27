@@ -1,10 +1,10 @@
 {
-  "switchTypeTitle": "Cambia il tipo del tuo contenitore",
-  "switchToPublicDescription": "Vuoi rendere il contenitore di dati pubblico?",
-  "switchToPrivateDescription": "Vuoi rendere il contenitore di dati privato?",
-  "switchTypeButtonCancel": "Annulla",
-  "switchTypeButtonConfirm": "Conferma",
+  "switchTypeTitle": "Modificare la tipologia del tuo container",
+  "switchToPublicDescription": "Vuoi rendere pubblico il container di dati?",
+  "switchToPrivateDescription": "Vuoi rendere privato il container di dati?",
+  "switchTypeButtonCancel": "Annullare",
+  "switchTypeButtonConfirm": "Confermare",
   "updateContainerToastErrorTitle": "Si è verificato un errore",
-  "updateContainerToastSuccessTitle": "Successo",
-  "updateContainerToastSuccessDescription": "Il contenitore è stato modificato"
+  "updateContainerToastSuccessTitle": "Riuscito",
+  "updateContainerToastSuccessDescription": "Il container è stato modificato"
 }

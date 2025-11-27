@@ -15,6 +15,6 @@
     "dist",
     "types",
     "**/__tests__",
-    "src/**/*.spec.ts"
+    "src/**/*.spec.ts*"
   ]
 }

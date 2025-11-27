@@ -1,0 +1,7 @@
+{
+  "title": "Elija la configuración de la cuenta",
+  "description": "¿Ya tiene una cuenta? <Link label=\"Connectez-vous\"></Link>",
+  "country_setting": "País de residencia fiscal",
+  "currency_setting": "Divisa",
+  "site_setting": "Sitio web (idioma)"
+}

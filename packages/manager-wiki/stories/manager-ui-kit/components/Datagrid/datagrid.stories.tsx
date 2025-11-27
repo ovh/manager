@@ -128,6 +128,7 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
     variant,
     totalCount,
     topbar,
+    hideHeader,
   } = args;
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -178,26 +179,6 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
   );
   return (
     <>
-      {'containerHeight' in args && (
-        <div className="py-4">
-          <div className="max-w-[200px]">
-            <FormField>
-              <FormFieldLabel>Container Height</FormFieldLabel>
-              <Input
-                value={containerHeightState}
-                onChange={(e) =>
-                  setContainerHeightState(Number(e.target.value))
-                }
-              />
-              <Button
-                onClick={() => setContainerHeightStyle(containerHeightState)}
-              >
-                Update
-              </Button>
-            </FormField>
-          </div>
-        </div>
-      )}
       <Datagrid
         columns={colsArgs}
         data={applyFilters(itemsArgs, filters)}
@@ -228,7 +209,8 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
                   age: items.length + 1,
                 },
               ]),
-          })}
+        })}
+        {...('hideHeader' in args && { hideHeader })}
         {...('renderSubComponent' in args && { renderSubComponent })}
         {...('subComponentHeight' in args && { subComponentHeight })}
         {...('maxRowHeight' in args && { maxRowHeight })}
@@ -247,6 +229,7 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
             setColumnVisibility,
           },
         })}
+
         {...('topbar' in args && { topbar })}
         {...('filters' in args && {
           filters: {
@@ -288,12 +271,7 @@ Size.args = {
   columns,
   data,
   size: TABLE_SIZE.sm,
-  hasNextPage: true,
-  onFetchNextPage: () => {},
-  onFetchAllPages: () => {},
 };
-
-
 
 export const Variant = DatagridStory.bind({});
 
@@ -302,8 +280,6 @@ Variant.args = {
   data,
   variant: TABLE_VARIANT.striped,
 };
-
-
 
 export const Sorting = DatagridStory.bind({});
 
@@ -344,15 +320,6 @@ LoadAllAndLoading.args = {
   hasNextPage: true,
   onFetchAllPages: () => {},
   onFetchNextPage: () => {},
-};
-
-export const ContainerHeight = DatagridStory.bind({});
-
-ContainerHeight.args = {
-  columns,
-  data: [...data],
-  manualSorting: false,
-  containerHeight: '260px',
 };
 
 export const SubComponent = DatagridStory.bind({});
@@ -435,6 +402,14 @@ RowSelection.args = {
   },
 };
 
+export const HideHeader = DatagridStory.bind({});
+
+HideHeader.args = {
+  columns,
+  data: [...data],
+  hideHeader: true,
+};
+
 export const Topbar = DatagridStory.bind({});
 
 Topbar.args = {
@@ -489,7 +464,7 @@ FullFooter.args = {
 };
 
 const meta = {
-  title: 'Manager UI Kit/Components/Datagrid New',
+  title: 'Manager UI Kit/Components/Datagrid',
   component: Datagrid,
   tags: ['autodocs'],
   decorators: [withRouter],
@@ -502,7 +477,9 @@ const meta = {
     },
     preserveArgs: false,
   },
-  args: {},
+  args: {
+    containerHeight: 250,
+  },
   argTypes: {
     size: {
       description: 'Controls the table row size',

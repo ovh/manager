@@ -6,11 +6,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -32,9 +32,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -64,9 +64,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -106,11 +106,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -132,9 +132,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -164,9 +164,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -206,11 +206,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
   style="max-height: 400px; height: 400px;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -232,9 +232,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -264,9 +264,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -306,11 +306,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] =
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -354,11 +354,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -380,9 +380,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -412,9 +412,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -454,11 +454,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--lg_1xkmm_106"
+    class="_table--lg_1xkmm_106 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -480,9 +480,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
       style="height: 131px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 64.5px; transform: translateY(0px);"
+        style="left: -1px; height: 64.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -512,9 +512,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 64.5px; transform: translateY(64.5px);"
+        style="left: -1px; height: 64.5px; transform: translateY(62.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -554,11 +554,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -580,9 +580,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
       style="height: 533.5px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -612,9 +612,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -974,11 +974,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -1000,9 +1000,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1032,9 +1032,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1074,11 +1074,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -1100,9 +1100,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1132,9 +1132,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1174,11 +1174,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -1262,9 +1262,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1361,9 +1361,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1470,11 +1470,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -1496,9 +1496,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1528,9 +1528,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1570,11 +1570,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--sm_1xkmm_2"
+    class="_table--sm_1xkmm_2 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -1596,9 +1596,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
       style="height: 67px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 32.5px; transform: translateY(0px);"
+        style="left: -1px; height: 32.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1628,9 +1628,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 32.5px; transform: translateY(32.5px);"
+        style="left: -1px; height: 32.5px; transform: translateY(30.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1670,11 +1670,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -1728,9 +1728,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1760,9 +1760,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -1802,11 +1802,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
   style="max-height: 500px; height: 500px;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -1958,9 +1958,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -2083,9 +2083,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -2218,11 +2218,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -2306,9 +2306,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -2410,9 +2410,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -2519,11 +2519,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
     <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
     >
       <tr>
         <th
@@ -2549,9 +2549,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -2607,9 +2607,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
@@ -2669,41 +2669,23 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
 </div>
 `;
 
-exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`] = `
+exports[`Datagrid Snapshot Tests > should match snapshot with hideHeader enabled 1`] = `
 <div
   class="overflow-auto relative w-full"
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 _table--striped_1xkmm_158"
+    class="_table--md_1xkmm_54 table table-fixed w-full"
     data-ods="table"
   >
-    <thead
-      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
-    >
-      <tr>
-        <th
-          class="text-left pl-4 whitespace-nowrap "
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          name
-        </th>
-        <th
-          class="text-left pl-4 whitespace-nowrap "
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          age
-        </th>
-      </tr>
-    </thead>
     <tbody
       class="relative p-0 overflow-hidden"
       style="height: 99px;"
     >
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="0"
-        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+        style="left: 0px; height: 48.5px; transform: translateY(1px); width: calc(100% - 1px);"
       >
         <td
           class="pl-4"
@@ -2733,9 +2715,109 @@ exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`
         </td>
       </tr>
       <tr
-        class="table overflow-hidden absolute top-0 w-full table table-fixed"
+        class="table overflow-hidden absolute top-0 table table-fixed"
         data-index="1"
-        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+        style="left: 0px; height: 48.5px; transform: translateY(48.5px); width: calc(100% - 1px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 _table--striped_1xkmm_158 table table-fixed w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[0px] z-10 bg-white overflow-hidden"
+    >
+      <tr>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
+    >
+      <tr
+        class="table overflow-hidden absolute top-0 table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table overflow-hidden absolute top-0 table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;"
       >
         <td
           class="pl-4"
