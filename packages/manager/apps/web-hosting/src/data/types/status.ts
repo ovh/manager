@@ -11,6 +11,7 @@ export enum ResourceStatus {
 export enum ServiceStatus {
   ACTIVE = 'ACTIVE',
   NONE = 'NONE',
+  INACTIVE = 'INACTIVE',
 }
 
 export enum GitStatus {
@@ -22,6 +23,13 @@ export enum GitStatus {
   ERROR = 'ERROR',
   INITIALERROR = 'INITIAL_ERROR',
 }
+export const GIT_STATUS_WITH_TOOLTIP = {
+  [GitStatus.DISABLED]: 'disabled',
+  [GitStatus.INITIALERROR]: 'lastdeploy',
+  [GitStatus.ERROR]: 'lastdeploy',
+  [GitStatus.DELETING]: 'lastdeploy',
+  [GitStatus.DEPLOYING]: 'lastdeploy',
+};
 
 export enum SeoStatus {
   CREATED = 'created',
