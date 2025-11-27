@@ -18,6 +18,10 @@
       }
     }
   }
+
+  &.cancel-action::part(link) {
+    color: var(--ods-color-critical-500);
+  }
 }
 
 // Customize <OdsButton />
