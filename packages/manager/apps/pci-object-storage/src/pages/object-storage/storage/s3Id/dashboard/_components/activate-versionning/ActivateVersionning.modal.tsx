@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
+import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import {
   Button,
   DialogBody,

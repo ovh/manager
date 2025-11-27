@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-pci-object-storage-app",
   "version": "0.22.2",
   "private": true,
-  "description": "pci-object-storage",
+  "description": "pcqi-object-storage",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -13,14 +13,17 @@
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
-    "coverage": "vitest run --coverage",
+    "build:strict": "tsc --project tsconfig.json && vite build",
+    "coverage": "manager-test run --coverage",
     "lint": "eslint ./src",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "tsc && vite",
-    "test": "vitest run --pool=threads",
-    "test-ui": "vitest --ui --coverage.enabled=true"
+    "test": "manager-test run --pool=threads",
+    "test-ui": "manager-test --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "@datatr-ux/ovhcloud-types": "1.0.68",
+    "@datatr-ux/ovhcloud-types": "2.0.1",
     "@datatr-ux/uxlib": "1.0.0-alpha-34",
     "@hookform/resolvers": "3.3.4",
     "@ovh-ux/manager-common-translations": "^0.9.1",
@@ -63,22 +66,18 @@
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
+    "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
     "@types/jest": "29.5.12",
     "@types/node": "^20.10.6",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
-    "@vitejs/plugin-react": "^4.3.0",
-    "@vitest/coverage-v8": "^2.1.9",
-    "@vitest/ui": "^2.1.9",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
     "postcss": "^8.4.49",
     "rollup": "^4.18.0",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5",
-    "vitest": "^2.1.9"
+    "typescript": "^5.4.5"
   },
   "regions": [
     "CA",

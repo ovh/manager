@@ -1,4 +1,4 @@
-import { Project } from '@datatr-ux/ovhcloud-types/cloud/Project';
+import { Project } from '@datatr-ux/ovhcloud-types/cloud';
 import { apiClient } from '@/data/api/api.client';
 
 export const getProject = async (projectId: string): Promise<Project> =>
