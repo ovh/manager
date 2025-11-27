@@ -9,8 +9,6 @@ import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpGroupDatagrid } from './ipGroupDatagrid';
 import { VmacWithIpType } from '@/data/hooks/ip';
 import {
-  IpEdgeFirewallStateEnum,
-  IpEdgeFirewallType,
   IpGameFirewallStateEnum,
   IpGameFirewallType,
   IpMitigationStateEnum,
@@ -74,6 +72,12 @@ const useByoipAggregateMock = vi.hoisted(() =>
   })),
 );
 
+const useIpGameFirewallRuleListMock = vi.hoisted(() =>
+  vi.fn(() => ({
+    data: { data: [] },
+  })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useGetIcebergIpReverse: useGetIcebergIpReverseMock,
@@ -82,6 +86,7 @@ vi.mock('@/data/hooks/ip', () => ({
   useGetIpVmacWithIp: useGetIpVmacWithIpMock,
   useByoipSlice: useByoipSliceMock,
   useByoipAggregate: useByoipAggregateMock,
+  useIpGameFirewallRuleList: useIpGameFirewallRuleListMock,
 }));
 
 vi.mock('../DatagridCells', () => ({

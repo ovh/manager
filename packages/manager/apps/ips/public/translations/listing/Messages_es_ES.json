@@ -28,13 +28,13 @@
   "listingColumnsIpEdgeFirewallEnabled": "Activado",
   "listingColumnsIpEdgeFirewallDisabled": "Desactivado",
   "listingColumnsIpEdgeFirewallPending": "En curso",
-  "listingColumnsIpEdgeFirewallEnabledTooltip": "El Network Edge Firewall protege actualmente esta IP filtrando el tráfico entrante. Haga clic para configurar.",
-  "listingColumnsIpEdgeFirewallDisabledTooltip": "El tráfico no pasa por Network Edge Firewall a menos que se detecte un ataque. En caso de ataque, este se activará automáticamente. Haga clic para configurar.",
-  "listingColumnsIpEdgeFirewallPendingTooltip": "La reconfiguración del Network Edge Firewall está en curso y se aplicará en unos instantes. Haga clic para configurar.",
+  "listingColumnsIpEdgeFirewallEnabledTooltip": "El Network Edge Firewall protege actualmente esta IP filtrando el tráfico entrante. Haga clic aquí para configurar.",
+  "listingColumnsIpEdgeFirewallDisabledTooltip": "El tráfico no pasa por Network Edge Firewall a menos que se detecte un ataque. En caso de ataque, este se activará automáticamente. Haga clic aquí para configurar.",
+  "listingColumnsIpEdgeFirewallPendingTooltip": "La reconfiguración del Network Edge Firewall está en curso y se aplicará en unos instantes. Haga clic aquí para configurar.",
   "listingColumnsIpGameFirewallAvailable": "Disponible",
   "listingColumnsIpGameFirewallAvailableTooltip": "El Game Firewall está disponible, pero no está configurado en este momento. Para activar la protección, configure las reglas de juego. Haga clic para configurar.",
   "listingColumnsIpGameFirewallPending": "En curso",
-  "listingColumnsIpGameFirewallPendingTooltip": "La reconfiguración del Game Firewall está en curso y se aplicará en unos instantes. Haga clic para configurar.",
+  "listingColumnsIpGameFirewallPendingTooltip": "La reconfiguración del Game Firewall está en curso y se aplicará en unos instantes. Haga clic aquí para configurar.",
   "listingColumnsIpAlertsSpam": "IP bloqueada (antispam)",
   "listingColumnsIpAlertsMitigation": "IP atacada (mitigación anti-DDoS)",
   "listingColumnsIpAlertsAntihack": "IP bloqueada (anti-hack)",
@@ -112,5 +112,7 @@
   "aggregate_in_progress": "Agregación en curso",
   "creation_in_progress": "Creando...",
   "survey_link": "¿Le gusta?",
-  "survey_link_tooltip": "¿Le gusta esta página? ¡Envíenos sus comentarios!"
+  "survey_link_tooltip": "¿Le gusta esta página? ¡Envíenos sus comentarios!",
+  "listingColumnsIpGameFirewallConfigured": "Configurada",
+  "listingColumnsIpGameFirewallConfiguredTooltip": "El Game Firewall está configurado correctamente. Haga clic aquí para volver a configurarlo."
 }

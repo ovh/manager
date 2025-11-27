@@ -8,8 +8,8 @@ import {
 } from '@/data/hooks/ip';
 import { useIpGroupDatagridColumns } from './useIpGroupDatagridColumns';
 import {
-  isAntiDdosEnabled,
-  isGameFirewallEnabled,
+  isAntiDdosAvailable,
+  isGameFirewallAvailable,
 } from '../DatagridCells/enableCellsUtils';
 import { getIpv4SubIpList, isValidIpv6Block } from '@/utils';
 
@@ -35,8 +35,8 @@ export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
     parentIp: row.original.ip,
     parentHeaders,
     serviceName: ipDetails?.routedTo?.serviceName,
-    isAntiDdosEnabled: isAntiDdosEnabled(ipDetails),
-    isGameFirewallEnabled: isGameFirewallEnabled(ipDetails),
+    isAntiDdosAvailable: isAntiDdosAvailable(ipDetails),
+    isGameFirewallAvailable: isGameFirewallAvailable(ipDetails),
     isByoipSlice: isIpDetailsLoading || !!ipDetails?.bringYourOwnIp,
   });
 
