@@ -138,6 +138,15 @@ export function useOrderFunnel({
     }
   }, [objectLock, form]);
 
+  // Force disable object lock if versioning is disabled
+  useEffect(() => {
+    if (versioning === storages.VersioningStatusEnum.disabled) {
+      form.setValue('objectLock', storages.ObjectLockStatusEnum.disabled, {
+        shouldValidate: true,
+      });
+    }
+  }, [versioning, form]);
+
   // Reset acknowledgement checkbox when Object Lock is disabled
   useEffect(() => {
     if (objectLock === storages.ObjectLockStatusEnum.disabled) {
