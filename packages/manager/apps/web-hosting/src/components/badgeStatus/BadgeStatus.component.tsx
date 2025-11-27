@@ -70,7 +70,7 @@ export const BadgeStatus: React.FC<BadgeStatusProps> = ({
       }}
       data-testid={`badge-status-${itemStatus}`}
       color={statusColor}
-      className="mr-4 cursor-pointer inline-block"
+      className="mr-4 inline-block cursor-pointer"
       isLoading={isLoading}
     >
       {label || t(`web_hosting_status_${itemStatus.toLowerCase()}`)}

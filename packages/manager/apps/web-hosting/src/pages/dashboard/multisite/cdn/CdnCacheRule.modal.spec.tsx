@@ -3,8 +3,8 @@ import React, { ComponentType } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { navigate } from '@/utils/test.setup';
 import { createTestWrapper } from '@/utils/test.provider';
+import { navigate } from '@/utils/test.setup';
 
 import CdnCacheRuleModal from './CdnCacheRule.modal';
 

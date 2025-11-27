@@ -127,7 +127,7 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             />
           </div>
           {controlValues?.hasSubdomain && (
-            <div className="flex flew-row w-1/3 gap-3">
+            <div className="flew-row flex w-1/3 gap-3">
               <Controller
                 name="subdomain"
                 control={control}

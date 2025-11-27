@@ -170,7 +170,7 @@ export default function CdnCacheRuleModal() {
           render={({ field }) => (
             <>
               <RadioGroup value={field.value} onChange={field.onChange}>
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio {...field} value="extension" disabled={Boolean(modifiedOption)}>
                     <RadioControl />
                     <RadioLabel>
@@ -180,7 +180,7 @@ export default function CdnCacheRuleModal() {
                     </RadioLabel>
                   </Radio>
                 </div>
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio {...field} value="folder" disabled={enableOnlyExtension}>
                     <RadioControl />
                     <RadioLabel>
@@ -190,7 +190,7 @@ export default function CdnCacheRuleModal() {
                     </RadioLabel>
                   </Radio>
                 </div>
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio {...field} value="regex" disabled={enableOnlyExtension}>
                     <RadioControl />
                     <RadioLabel>
@@ -200,7 +200,7 @@ export default function CdnCacheRuleModal() {
                     </RadioLabel>
                   </Radio>
                 </div>
-                <div className="flex gap-4 items-center">
+                <div className="flex items-center gap-4">
                   <Radio {...field} value="uri" disabled={enableOnlyExtension}>
                     <RadioControl />
                     <RadioLabel>
