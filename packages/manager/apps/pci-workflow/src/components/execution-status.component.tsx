@@ -24,6 +24,7 @@ export default function ExecutionStatusComponent({
       case 'PAUSED':
         return ODS_THEME_COLOR_INTENT.warning;
       case 'ERROR':
+      case 'CANCELED':
         return ODS_THEME_COLOR_INTENT.error;
       default:
         return ODS_THEME_COLOR_INTENT.info;
