@@ -45,11 +45,14 @@ export default function OrderPage() {
         });
 
         // Load the remote component
-        const component = await loadRemote<{ default: React.ComponentType } | React.ComponentType>('order_fm/ConfigoNasHa');
-        setConfigoNasHaComponent(() =>
-          (component && typeof component === 'object' && 'default' in component
-            ? component.default
-            : component) as React.ComponentType
+        const component = await loadRemote<{ default: React.ComponentType } | React.ComponentType>(
+          'order_fm/ConfigoNasHa',
+        );
+        setConfigoNasHaComponent(
+          () =>
+            (component && typeof component === 'object' && 'default' in component
+              ? component.default
+              : component) as React.ComponentType,
         );
       } catch (err) {
         console.error('Failed to load order component:', err);
@@ -74,7 +77,7 @@ export default function OrderPage() {
     return (
       <BaseLayout header={{ title: t('common:order', 'Order') }}>
         <div className="p-4">
-          <div className="text-red-600 mb-4">
+          <div className="mb-4 text-red-600">
             {t('common:error_loading_order', 'Error loading order component')}
           </div>
           <button type="button" onClick={handleGoBack} className="text-blue-600 hover:underline">

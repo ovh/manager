@@ -79,7 +79,9 @@ function createResourcesFactory<T extends Record<string, unknown>>() {
         defaultSorting: params.defaultSorting,
         enabled: params.enabled,
         refetchInterval: params.refetchInterval,
-        fetchDataFn: params.fetchDataFn ? ((_route: string) => params.fetchDataFn!().then(data => ({ data }))) : undefined,
+        fetchDataFn: params.fetchDataFn
+          ? (_route: string) => params.fetchDataFn().then((data) => ({ data }))
+          : undefined,
       });
       return mapResponse<T>(response);
     },

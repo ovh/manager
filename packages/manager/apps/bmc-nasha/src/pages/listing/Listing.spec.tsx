@@ -95,9 +95,7 @@ vi.mock('@ovh-ux/muk', () => ({
     </button>
   ),
   ChangelogMenu: ({ links }: any) => (
-    <div data-testid="changelog">
-      {links.changelog && <span>changelog</span>}
-    </div>
+    <div data-testid="changelog">{links.changelog && <span>changelog</span>}</div>
   ),
   GuideMenu: ({ items }: any) => (
     <div data-testid="guides">

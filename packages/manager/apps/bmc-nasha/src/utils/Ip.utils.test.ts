@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { ipBlockToNumber, sortByIpBlock } from './Ip.utils';
 
@@ -25,39 +25,19 @@ describe('Ip.utils', () => {
 
   describe('sortByIpBlock', () => {
     it('should sort IP blocks in ascending order', () => {
-      const ipBlocks = [
-        '192.168.1.0/24',
-        '10.0.0.0/8',
-        '172.16.0.0/12',
-        '192.168.0.0/16',
-      ];
+      const ipBlocks = ['192.168.1.0/24', '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'];
 
       const sorted = ipBlocks.sort(sortByIpBlock);
 
-      expect(sorted).toEqual([
-        '10.0.0.0/8',
-        '172.16.0.0/12',
-        '192.168.0.0/16',
-        '192.168.1.0/24',
-      ]);
+      expect(sorted).toEqual(['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', '192.168.1.0/24']);
     });
 
     it('should sort mixed IPs and blocks correctly', () => {
-      const mixed = [
-        '192.168.1.1/32',
-        '10.0.0.0/8',
-        '192.168.1.0/24',
-        '10.0.0.1/32',
-      ];
+      const mixed = ['192.168.1.1/32', '10.0.0.0/8', '192.168.1.0/24', '10.0.0.1/32'];
 
       const sorted = mixed.sort(sortByIpBlock);
 
-      expect(sorted).toEqual([
-        '10.0.0.0/8',
-        '10.0.0.1/32',
-        '192.168.1.0/24',
-        '192.168.1.1/32',
-      ]);
+      expect(sorted).toEqual(['10.0.0.0/8', '10.0.0.1/32', '192.168.1.0/24', '192.168.1.1/32']);
     });
 
     it('should handle single IP address', () => {
@@ -73,12 +53,7 @@ describe('Ip.utils', () => {
     });
 
     it('should sort subnets within the same network', () => {
-      const subnets = [
-        '192.168.1.0/26',
-        '192.168.1.0/24',
-        '192.168.1.0/25',
-        '192.168.1.0/32',
-      ];
+      const subnets = ['192.168.1.0/26', '192.168.1.0/24', '192.168.1.0/25', '192.168.1.0/32'];
 
       const sorted = subnets.sort(sortByIpBlock);
 
@@ -120,11 +95,7 @@ describe('Ip.utils', () => {
 
       const sorted = ips.sort(sortByIpBlock);
 
-      expect(sorted).toEqual([
-        '10.0.0.1/32',
-        '172.16.0.1/32',
-        '192.168.1.1/32',
-      ]);
+      expect(sorted).toEqual(['10.0.0.1/32', '172.16.0.1/32', '192.168.1.1/32']);
     });
 
     it('should handle blocks returned by authorizableBlocks endpoint', () => {
@@ -132,11 +103,7 @@ describe('Ip.utils', () => {
 
       const sorted = blocks.sort(sortByIpBlock);
 
-      expect(sorted).toEqual([
-        '10.0.0.0/16',
-        '172.16.0.0/20',
-        '192.168.0.0/24',
-      ]);
+      expect(sorted).toEqual(['10.0.0.0/16', '172.16.0.0/20', '192.168.0.0/24']);
     });
   });
 });

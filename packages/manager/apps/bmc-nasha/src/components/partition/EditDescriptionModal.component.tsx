@@ -63,7 +63,7 @@ export function EditDescriptionModal({
           )}
         </FormField>
 
-        <div className="flex gap-4 justify-end mt-6">
+        <div className="mt-6 flex justify-end gap-4">
           <Button type="button" variant="ghost" onClick={onCancel} disabled={isSubmitting}>
             {t('partition:edit_description.cancel', 'Cancel')}
           </Button>

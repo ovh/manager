@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import type { SnapshotType, CustomSnapshot } from '@/types/Snapshot.type';
+import type { CustomSnapshot, SnapshotType } from '@/types/Snapshot.type';
 
 type SnapshotRow = {
   type: string;
@@ -26,7 +26,9 @@ export function useSnapshotsRows({ snapshotTypes, customSnapshots }: UseSnapshot
       const enabledTypes = snapshotTypes.filter((st) => st.enabled);
       rows.push({
         type: t('partition:snapshots.types', 'Snapshot types'),
-        name: enabledTypes.map((st) => st.label).join(', ') || t('partition:snapshots.no_types', 'None'),
+        name:
+          enabledTypes.map((st) => st.label).join(', ') ||
+          t('partition:snapshots.no_types', 'None'),
         isCustom: false,
       });
     }

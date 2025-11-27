@@ -102,7 +102,7 @@ export default function CreateSnapshotPage() {
       </div>
       <form onSubmit={void handleSubmit} className="flex flex-col gap-4">
         <div className="mb-4">
-          <p className="text-sm text-gray-600 mb-2">
+          <p className="mb-2 text-sm text-gray-600">
             {t('partition:snapshots.create.prefix_info', {
               prefix: CUSTOM_SNAPSHOT_NAME_PREFIX,
               separator: CUSTOM_SNAPSHOT_NAME_SEPARATOR,
@@ -137,7 +137,7 @@ export default function CreateSnapshotPage() {
           <div className="text-critical">{form.formState.errors.root.message}</div>
         )}
 
-        <div className="flex justify-end gap-4 mt-4">
+        <div className="mt-4 flex justify-end gap-4">
           <Button type="button" variant="ghost" onClick={handleCancel} disabled={isSubmitting}>
             {t('partition:snapshots.create.cancel', 'Cancel')}
           </Button>

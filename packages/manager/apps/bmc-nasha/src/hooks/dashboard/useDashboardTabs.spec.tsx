@@ -16,7 +16,7 @@ describe('useDashboardTabs', () => {
     const { result } = renderHook(() => useDashboardTabs());
     const generalTab = result.current.find((t) => t.name === 'general-information');
     expect(generalTab).toBeDefined();
-    expect(generalTab!.to).toBe('/bmc-nasha/dashboard/123');
+    expect(generalTab.to).toBe('/bmc-nasha/dashboard/123');
   });
 
   it('marks the correct tab as active based on pathname', () => {

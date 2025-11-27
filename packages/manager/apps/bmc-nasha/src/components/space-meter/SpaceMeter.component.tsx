@@ -88,19 +88,19 @@ function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterProps) {
       )}
 
       {/* Legend and Progress Bars Layout */}
-      <div className={legend ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}>
+      <div className={legend ? 'grid grid-cols-1 gap-4 md:grid-cols-2' : ''}>
         {/* Legend */}
         {legend && usageItems.length > 0 && (
           <div>
-            <Text preset="paragraph" className="text-sm font-semibold mb-2">
+            <Text preset="paragraph" className="mb-2 text-sm font-semibold">
               {t('dashboard:configuration.usage', 'Usage')}
             </Text>
             <ul className="space-y-1">
               {usageItems.map((item) => (
-                <li key={item.type} className="flex justify-between text-sm items-center">
+                <li key={item.type} className="flex items-center justify-between text-sm">
                   <span className="flex items-center gap-2">
                     <span
-                      className="inline-block w-3 h-3 rounded"
+                      className="inline-block size-3 rounded"
                       style={{ backgroundColor: getColorForType(item.type) }}
                     />
                     <span>{item.name}:</span>
@@ -135,7 +135,7 @@ function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterProps) {
               return (
                 <div
                   key={item.type}
-                  className="absolute top-0 bottom-0"
+                  className="absolute inset-y-0"
                   style={{
                     left: `${previousPercentage}%`,
                     width: `${percentage}%`,

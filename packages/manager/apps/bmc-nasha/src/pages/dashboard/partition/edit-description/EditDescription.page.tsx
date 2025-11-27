@@ -94,7 +94,7 @@ export default function EditDescriptionPage() {
           )}
         </FormField>
 
-        <div className="flex gap-4 mt-6">
+        <div className="mt-6 flex gap-4">
           <Button
             type="submit"
             variant="default"

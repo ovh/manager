@@ -1,5 +1,5 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
     "paths": {
       "@/public/*": [
@@ -23,3 +23,4 @@
     "src/__tests__"
   ]
 }
+

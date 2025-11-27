@@ -89,7 +89,7 @@ export default function TaskTracker({
 
       {isPending && (
         <div className="flex items-center gap-2">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+          <div className="border-primary size-6 animate-spin rounded-full border-b-2"></div>
           <span>{t('task-tracker:processing')}</span>
         </div>
       )}
