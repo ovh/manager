@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
 
 import { queryOptions, useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
-import { addMinutes, format, parseISO } from 'date-fns';
-import * as dateFnsLocales from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
@@ -17,6 +15,7 @@ import {
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 
 import { getInstance } from '@/api/data/instance';
+import { addLastExecution } from '@/api/data/mapper/workflow.mapper';
 import {
   TExecutionState,
   TRemoteWorkflow,
@@ -33,12 +32,17 @@ import { useMe } from './user';
 
 export const WORKFLOW_TYPE = 'instance_backup';
 
-export type TWorkflow = TRemoteWorkflow & {
-  instanceName: string;
-  region: string;
+export type TWorkflowRegion = { region: string };
+export type TWorkflowLastExecution = {
   lastExecution: string;
   lastExecutionStatus: TExecutionState;
 };
+
+export type TWorkflow = TRemoteWorkflow &
+  TWorkflowRegion &
+  TWorkflowLastExecution & {
+    instanceName: string;
+  };
 
 const getWorkflowQueryOptions = (projectId: string, regionName: string) =>
   queryOptions({
@@ -69,7 +73,7 @@ export const useWorkflows = (projectId: string) => {
     combine: (results) => ({
       data: (() =>
         results
-          .flatMap((result, i) =>
+          .flatMap<(TRemoteWorkflow & TWorkflowRegion) | null>((result, i) =>
             result.data
               ? result.data.map((workflow) => ({
                   ...workflow,
@@ -78,44 +82,7 @@ export const useWorkflows = (projectId: string) => {
               : null,
           )
           .filter((w) => !!w)
-          .map((w) => {
-            if (!w.executions) {
-              return {
-                ...w,
-                lastExecution: '',
-                lastExecutionStatus: undefined,
-              };
-            }
-
-            let [lastExecutionAt, lastExecutionStatus]: [Date, TExecutionState | undefined] = [
-              new Date(),
-              undefined,
-            ];
-
-            if (Array.isArray(w.executions) && w.executions.length) {
-              const executions = w.executions
-                .map((execution) => ({
-                  at: parseISO(execution.executedAt),
-                  ...execution,
-                }))
-                .sort((a, b) => b.at.getTime() - a.at.getTime());
-
-              lastExecutionAt = executions[0].at;
-              lastExecutionStatus = executions[0].state;
-            }
-
-            return {
-              ...w,
-              lastExecution: format(
-                addMinutes(lastExecutionAt, lastExecutionAt.getTimezoneOffset()),
-                'dd MMM yyyy HH:mm:ss',
-                {
-                  locale: dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
-                },
-              ),
-              lastExecutionStatus,
-            };
-          }))(),
+          .map(addLastExecution(userLocale)))(),
       isPending: results.some((result) => result.isPending) || isRegionsPending,
     }),
   });
