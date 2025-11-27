@@ -1,5 +1,6 @@
 export * from './catalog';
 export * from './vcd-datacentre';
+export * from './vcd-edge-gateway';
 export * from './vcd-ip-block';
 export * from './vcd-organization';
 export * from './vcd-reset-password';

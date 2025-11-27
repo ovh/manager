@@ -10,7 +10,10 @@ import { subRoutes } from '@/routes/routes.constant';
 import { VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import { VHOSTS_LABEL } from '@/pages/dashboard/datacentre/compute/datacentreCompute.constants';
-import { STORAGE_LABEL } from '@/pages/dashboard/datacentre/datacentreDashboard.constants';
+import {
+  EDGE_GATEWAY_LABEL,
+  STORAGE_LABEL,
+} from '@/pages/dashboard/datacentre/datacentreDashboard.constants';
 
 export const useApplicationBreadcrumbItems = () => {
   const { t } = useTranslation([
@@ -18,6 +21,7 @@ export const useApplicationBreadcrumbItems = () => {
     'datacentres/compute',
     'datacentres/storage',
     'datacentres/vrack-segment',
+    'datacentres/edge-gateway',
     NAMESPACES.ACTIONS,
   ]);
   const { id, vdcId } = useParams();
@@ -57,6 +61,12 @@ export const useApplicationBreadcrumbItems = () => {
     ),
     [subRoutes.addNetwork]: t(
       'datacentres/vrack-segment:managed_vcd_dashboard_vrack_add_network',
+    ),
+    [subRoutes.edgeGateway]: EDGE_GATEWAY_LABEL,
+    [subRoutes.addEdgeGateway]: t('datacentres/edge-gateway:edge_add_title'),
+    [subRoutes.editEdgeGateway]: t('datacentres/edge-gateway:edge_edit_config'),
+    [subRoutes.deleteEdgeGateway]: t(
+      'datacentres/edge-gateway:edge_delete_title',
     ),
   } as const;
 
