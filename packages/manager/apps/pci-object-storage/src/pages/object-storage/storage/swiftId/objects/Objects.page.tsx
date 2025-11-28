@@ -1,3 +1,4 @@
+import { useState, useMemo, useDeferredValue } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Button, Skeleton } from '@datatr-ux/uxlib';
@@ -6,14 +7,26 @@ import { useSwiftData } from '../Swift.context';
 import Guides from '@/components/guides/Guides.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import SwiftObjectBrowser from './_components/SwiftObjectBrowser.component';
+import SimpleSearchBar from '@/components/simple-search-bar/SimpleSearchBar.component';
 
 const SwiftObjectsPage = () => {
   const { t } = useTranslation('pci-object-storage/storages/swift/objects');
   const { swiftQuery } = useSwiftData();
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const objects = swiftQuery.data?.objects || [];
+
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+
+  const filteredObjects = useMemo(() => {
+    if (!deferredSearchQuery) return objects;
+    const query = deferredSearchQuery.toLowerCase();
+    return objects.filter((obj) => obj.name?.toLowerCase().includes(query));
+  }, [objects, deferredSearchQuery]);
 
   if (swiftQuery.isLoading) return <Skeleton className="h-96 w-full" />;
-  const objects = swiftQuery.data.objects || [];
+
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -24,12 +37,19 @@ const SwiftObjectsPage = () => {
         </div>
       </div>
 
-      <Button onClick={() => navigate('./add-object')}>
-        <Plus className="size-6" />
-        {t('addNewObject')}
-      </Button>
+      <div className="flex justify-between">
+        <Button onClick={() => navigate('./add-object')}>
+          <Plus className="size-6" />
+          {t('addNewObject')}
+        </Button>
+        <SimpleSearchBar
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder={t('searchPlaceholder') || 'Search...'}
+        />
+      </div>
 
-      <SwiftObjectBrowser objects={objects} />
+      <SwiftObjectBrowser objects={filteredObjects} />
       <Outlet />
     </>
   );
