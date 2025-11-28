@@ -32,6 +32,7 @@ import useCategories from '@/hooks/useCategories/useCategories';
 import useHelpLink from '@/hooks/useHelpLink/useHelpLink';
 import { useTracking } from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
+import { useGuide } from '@/hooks/useGuide';
 
 function CommunicationsPage() {
   const { trackClick } = useTracking();
@@ -153,6 +154,7 @@ function CommunicationsPage() {
 
   const isLoading = isLoadingNotificationHistory || isLoadingAuthorization;
   const helpLink = useHelpLink();
+  const { start } = useGuide();
 
   return (
     <>
@@ -190,7 +192,7 @@ function CommunicationsPage() {
           {tCommon('iam_display_content_message')}
         </OdsMessage>
       )}
-
+      <div id="communications-list">
       <Datagrid
         items={flattenData}
         columns={columns}
@@ -200,6 +202,8 @@ function CommunicationsPage() {
         search={search}
         filters={filters}
         topbar={
+          <>
+            <button onClick={() => start()}>Start Guide</button>
           <OdsButton
             variant="outline"
             icon="refresh"
@@ -209,12 +213,14 @@ function CommunicationsPage() {
             size="sm"
             onClick={() => refetch()}
           />
+          </>
         }
         totalItems={flattenData?.length || 0}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
         manualSorting={true}
       />
+      </div>
     </>
   );
 }
