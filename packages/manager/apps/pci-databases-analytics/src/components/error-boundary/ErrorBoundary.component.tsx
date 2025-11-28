@@ -29,7 +29,7 @@ const ErrorBoundary = () => {
             <img src={errorImgSrc} alt="" className="mw-100 inline mb-4" />
           </div>
           <h2>{t('manager_error_page_title')}</h2>
-          <Alert variant="destructive">
+          <Alert variant="critical">
             <AlertDescription>
               <p className="text-red-500">{t('manager_error_page_default')}</p>
               <p className="text-red-500 font-semibold">{error.message}</p>
@@ -43,10 +43,9 @@ const ErrorBoundary = () => {
             </AlertDescription>
           </Alert>
 
-          <div className="flex flex-col items-stretch md:items-center md:flex-row justify-end gap-2">
+          <div className="flex flex-col items-stretch md:items-center md:flex-row justify-end gap-2 mt-2">
             <Button
-              mode={'ghost'}
-              size={'sm'}
+              mode="ghost"
               className="inline"
               onClick={() => navigateToHomepage()}
               data-testid="errorBoundaryGoToHomepage"
@@ -54,8 +53,7 @@ const ErrorBoundary = () => {
               {t('manager_error_page_action_home_label')}
             </Button>
             <Button
-              mode={'outline'}
-              size={'sm'}
+              mode="outline"
               className="inline"
               onClick={() => reloadPage()}
               data-testid="errorBoundaryReload"

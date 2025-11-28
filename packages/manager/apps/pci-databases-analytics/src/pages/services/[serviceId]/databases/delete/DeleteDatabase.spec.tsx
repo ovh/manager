@@ -114,7 +114,7 @@ describe('Delete database modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'deleteDatabaseToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

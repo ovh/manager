@@ -52,5 +52,6 @@
   "infoConnectionPoolUriLabel": "Serviço URI",
   "infoConnectionPoolUriToast": "O URI foi copiado para a sua área de transferência",
   "infoConnectionPoolModeLabel": "Modo",
-  "infoConnectionPoolSizeLabel": "Dimensão"
+  "infoConnectionPoolSizeLabel": "Dimensão",
+  "infoConnectionPoolButtonClose": "Fechar"
 }

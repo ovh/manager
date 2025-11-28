@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -45,7 +46,7 @@ const UpdateVersion = () => {
     onError: (err) => {
       toast.toast({
         title: t('updateVersionToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -94,50 +95,54 @@ const UpdateVersion = () => {
 
   return (
     <RouteModal isLoading={!listVersions}>
-      <DialogContent>
-        <Form {...form}>
-          <form onSubmit={onSubmit}>
-            <DialogHeader>
-              <DialogTitle data-testid="update-version-modal">
-                {t('updateVersionTitle')}
-              </DialogTitle>
-            </DialogHeader>
-            <FormField
-              control={form.control}
-              name="version"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('updateVersionInputLabel')}</FormLabel>
-                  <FormControl>
-                    <VersionSelect
-                      versions={listVersions}
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter className="flex justify-end mt-2">
-              <DialogClose asChild>
-                <Button
-                  data-testid="update-version-cancel-button"
-                  type="button"
-                  mode="outline"
-                >
-                  {t('updateVersionCancelButton')}
-                </Button>
-              </DialogClose>
-              <Button
-                data-testid="update-version-submit-button"
-                disabled={isPending}
-              >
-                {t('updateVersionSubmitButton')}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+      <DialogContent variant="information">
+        <DialogHeader>
+          <DialogTitle data-testid="update-version-modal">
+            {t('updateVersionTitle')}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
+          <Form {...form}>
+            <form onSubmit={onSubmit} id="updateVersionForm">
+              <FormField
+                control={form.control}
+                name="version"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('updateVersionInputLabel')}</FormLabel>
+                    <FormControl>
+                      <VersionSelect
+                        versions={listVersions}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              data-testid="update-version-cancel-button"
+              type="button"
+              mode="ghost"
+            >
+              {t('updateVersionCancelButton')}
+            </Button>
+          </DialogClose>
+          <Button
+            form="updateVersionForm"
+            type="submit"
+            data-testid="update-version-submit-button"
+            disabled={isPending}
+          >
+            {t('updateVersionSubmitButton')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

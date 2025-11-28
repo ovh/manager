@@ -119,7 +119,7 @@ describe('DeleteIndex modal', () => {
     const errorMsg = {
       description: 'api error message',
       title: 'deleteIndexToastErrorTitle',
-      variant: 'destructive',
+      variant: 'critical',
     };
     vi.mocked(indexesApi.deleteIndex).mockImplementationOnce(() => {
       throw apiErrorMock;
