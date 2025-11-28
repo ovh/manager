@@ -3,7 +3,9 @@ import { describe, expect, it } from 'vitest';
 import { urls } from '@/routes/Routes.constants';
 
 import {
+  TBuildDeleteAgentUrlParams,
   TBuildDeleteTenantUrlParams,
+  buildDeleteAgentUrl,
   buildDeleteTenantUrl,
   buildSearchQuery,
 } from '../buildSearchQuery.utils';
@@ -71,5 +73,47 @@ describe('buildDeleteTenantUrl test suite', () => {
 
   it.each(testCases)('returns the $desc', ({ tenantId, origin, expectedUrl }) => {
     expect(buildDeleteTenantUrl({ tenantId, origin })).toEqual(expectedUrl);
+  });
+});
+
+describe('buildDeleteAgentUrl test suite', () => {
+  const testCases: Array<
+    TBuildDeleteAgentUrlParams & {
+      desc: string;
+      expectedUrl: string;
+    }
+  > = [
+    {
+      desc: 'fallback url if tenantId is empty',
+      tenantId: '',
+      agentId: 'A1',
+      origin: 'dashboard',
+      expectedUrl: urls.dashboardTenantAgents,
+    },
+    {
+      desc: 'fallback url if tenantId is undefined',
+      tenantId: undefined as unknown as string,
+      agentId: 'A1',
+      origin: 'dashboard',
+      expectedUrl: urls.dashboardTenantAgents,
+    },
+    {
+      desc: 'dashboard deleteUrl if tenantId & agentId are valid',
+      tenantId: '42',
+      agentId: '007',
+      origin: 'dashboard',
+      expectedUrl: `${urls.dashboardTenantAgentDelete}?tenantId=42&agentId=007`,
+    },
+    {
+      desc: 'configuration origin still uses same base and fallback',
+      tenantId: '42',
+      agentId: 'abc',
+      origin: 'configuration',
+      expectedUrl: `${urls.dashboardTenantAgentDelete}?tenantId=42&agentId=abc`,
+    },
+  ];
+
+  it.each(testCases)('returns the $desc', ({ tenantId, agentId, origin, expectedUrl }) => {
+    expect(buildDeleteAgentUrl({ tenantId, agentId, origin })).toEqual(expectedUrl);
   });
 });
