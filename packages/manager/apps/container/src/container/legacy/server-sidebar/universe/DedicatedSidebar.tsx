@@ -12,6 +12,7 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
+import backupAgentLogo from '@/assets/images/sidebar/backup-agent-logo.png';
 
 export const features = [
   'bmc-backup-agent-baremetal',
@@ -371,7 +372,9 @@ export default function DedicatedSidebar() {
           feature['bmc-backup-agent-baremetal'] && {
             id: 'bmc-backup-agent-baremetal',
             label: t('sidebar_backup_agent_baremetal'),
-            icon: getIcon('ovh-font ovh-font-cloudnas'),
+            icon: (
+              <img alt="" src={backupAgentLogo} className="mb-1 w-6 aspect-square" />
+            ),
             pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
             badge: 'new',
             async loader() {
