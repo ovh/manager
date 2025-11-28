@@ -98,17 +98,7 @@ export default class TelecomTelephonyAliasChangeTypeCtrl {
   }
 
   canChangeType() {
-    if (this.showExpertOptions) {
-      return (
-        this.options.expertMode.includes(this.selectedFeatureType.id) &&
-        this.selectedFeatureType.id !== this.number.featureType
-      );
-    }
-
-    return (
-      this.options.simpleMode.includes(this.selectedFeatureType.id) &&
-      this.selectedFeatureType.id !== this.number.featureType
-    );
+    return this.selectedFeatureType.id !== this.number.featureType;
   }
 
   confirmChoice() {
@@ -200,18 +190,6 @@ export default class TelecomTelephonyAliasChangeTypeCtrl {
 
       return chain;
     };
-  }
-
-  switchOptionMode() {
-    this.showExpertOptions = !this.showExpertOptions;
-    this.initSelectedFeatureType();
-
-    this.atInternet.trackClick({
-      name: `telecom::telephony::alias::configuration::change_type::${
-        this.showExpertOptions ? 'show_expert_options' : 'show_simple_options'
-      }`,
-      type: 'action',
-    });
   }
 
   /* ===========================
