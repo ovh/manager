@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import {
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
-  useInfiniteQuery,
-  useMutation,
-} from '@tanstack/react-query';
+import { UseInfiniteQueryOptions, useInfiniteQuery, useMutation } from '@tanstack/react-query';
 
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { ApiError, IcebergFetchResultV2 } from '@ovh-ux/manager-core-api';
 
 import {
   deleteAttachedDomains,
@@ -47,9 +42,9 @@ export const useWebHostingAttachedDomain = (props: UseWebsitesListParams = {}) =
       typeof props.enabled === 'function'
         ? props.enabled(q)
         : typeof props.enabled !== 'boolean' || props.enabled,
-    getNextPageParam: (lastPage: { cursorNext?: string }) => lastPage.cursorNext,
+    getNextPageParam: (lastPage: IcebergFetchResultV2<WebsiteType>) => lastPage.cursorNext,
     select: (data) =>
-      data?.pages.flatMap((page: UseInfiniteQueryResult<WebsiteType[]>) => page.data),
+      data?.pages.flatMap((page: IcebergFetchResultV2<WebsiteType>) => page.data ?? []),
   });
 
   const fetchAllPages = useCallback(() => {

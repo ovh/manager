@@ -66,6 +66,7 @@
   "hosting_multisite_domain_configuration_ownlog": "Logs séparés",
   "hosting_multisite_domain_configuration_ownlog_help": "Activez cette option pour avoir des logs séparés pour votre multisite.",
   "hosting_add_step2_mode_OVH_domain_name_www_question": "Créer également le sous domaine www.{{t0}}",
+  "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Créer un sous-domaine",
   "hosting_add_step2_mode_OVH_domain_name_starter_offer": "Vous ne pouvez pas décocher la case ci-dessous avec votre offre STARTER.",
   "hosting_add_step2_mode_OVH_domain_name_starter_offer_link": "Passez à une offre d'hébergement supérieure ici.",
   "hosting_add_step2_information_mode_OVH": "Configuration à appliquer sur la zone DNS",

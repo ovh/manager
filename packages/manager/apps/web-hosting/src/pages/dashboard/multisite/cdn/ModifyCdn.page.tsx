@@ -6,15 +6,17 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  MESSAGE_COLOR,
+  Message,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Links } from '@ovh-ux/manager-react-components';
+import { Link } from '@ovh-ux/muk';
 
 import { CDN_ADVANCED } from '@/constants';
 import { useGetCdnOption, useGetServiceNameCdn } from '@/data/hooks/cdn/useCdn';
@@ -72,18 +74,20 @@ export default function ModifyCdnPage() {
   const controlValues = watch();
 
   return (
-    <form className="flex flex-col space-y-6">
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+    <div className="flex flex-col space-y-6">
+      <Text preset={TEXT_PRESET.heading3}>
         {t('cdn_shared_title', {
           domain,
           range,
         })}
-      </OdsText>
-      <OdsText>{t('cdn_shared_info')}</OdsText>
-      <OdsMessage color={ODS_MESSAGE_COLOR.information} isDismissible={false} className="w-full">
+      </Text>
+      <Text>{t('cdn_shared_info')}</Text>
+      <Message color={MESSAGE_COLOR.information} dismissible={false} className="w-full">
         {t('cdn_shared_help')}
-        <Links label={t('cdn_shared_help_link')} target="_blank" className="ml-4" />
-      </OdsMessage>
+        <Link target="_blank" className="ml-4">
+          {t('cdn_shared_help_link')}
+        </Link>
+      </Message>
 
       <OptionPerformance controlValues={controlValues} control={control} optionsData={data} />
 
@@ -99,20 +103,22 @@ export default function ModifyCdnPage() {
       <OptionSecurity controlValues={controlValues} control={control} optionsData={data} />
 
       <div className="flex space-x-4">
-        <OdsButton
-          label={t(`${NAMESPACES.ACTIONS}:cancel`)}
-          variant={ODS_BUTTON_VARIANT.outline}
-          color={ODS_BUTTON_COLOR.primary}
+        <Button
+          variant={BUTTON_VARIANT.outline}
+          color={BUTTON_COLOR.primary}
           onClick={() => navigate(-1)}
-        />
-        <OdsButton
-          label={t('cdn_shared_option_cache_rule_btn_validate')}
-          variant={ODS_BUTTON_VARIANT.default}
-          color={ODS_BUTTON_COLOR.primary}
-          isDisabled={!isDirty}
+        >
+          {t(`${NAMESPACES.ACTIONS}:cancel`)}
+        </Button>
+        <Button
+          variant={BUTTON_VARIANT.default}
+          color={BUTTON_COLOR.primary}
+          disabled={!isDirty}
           onClick={() => void handleSubmit(onSubmit)()}
-        />
+        >
+          {t('cdn_shared_option_cache_rule_btn_validate')}
+        </Button>
       </div>
-    </form>
+    </div>
   );
 }
