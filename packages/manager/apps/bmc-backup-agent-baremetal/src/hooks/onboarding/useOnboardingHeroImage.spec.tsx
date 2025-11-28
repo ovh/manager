@@ -27,7 +27,7 @@ describe('useOnboardingHeroImage', () => {
         productName: 'MyTestApp',
         heroImage: { src: '/hero.png', alt: 'Hero' },
       },
-      expected: { src: '/hero.png', alt: 'Hero' },
+      expected: { src: '/hero.png', alt: 'Hero', height: '100px', width: '100px' },
     },
     {
       description:
@@ -36,7 +36,12 @@ describe('useOnboardingHeroImage', () => {
         productName: 'MyTestApp',
         heroImage: { src: '/hero.png' },
       },
-      expected: { src: '/hero.png', alt: 'translated_onboarding:hero_alt_MyTestApp' },
+      expected: {
+        src: '/hero.png',
+        alt: 'translated_onboarding:hero_alt_MyTestApp',
+        height: '100px',
+        width: '100px',
+      },
     },
     {
       description: 'useOnboardingHeroImage should return undefined if no hero image is provided',
