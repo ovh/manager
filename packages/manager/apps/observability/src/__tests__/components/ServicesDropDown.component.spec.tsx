@@ -369,7 +369,7 @@ describe('ServicesDropDown', () => {
 
       // Assert
       const select = screen.getByTestId('select');
-      expect(select).toHaveClass('max-w-[20rem]');
+      expect(select).toHaveClass('max-w-xs');
     });
 
     it('should apply correct CSS classes to skeleton when loading', () => {
@@ -390,7 +390,7 @@ describe('ServicesDropDown', () => {
 
       // Assert
       const skeleton = screen.getByTestId('skeleton');
-      expect(skeleton).toHaveClass('max-w-[20rem]');
+      expect(skeleton).toHaveClass('max-w-xs');
     });
   });
 
