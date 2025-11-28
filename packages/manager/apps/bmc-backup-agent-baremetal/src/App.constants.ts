@@ -1,9 +1,9 @@
 import { OnboardingConfigType } from '@/types/Onboarding.type';
 
-import ovhcloudBackupImg from './assets/OVHcloudBackup.svg?url';
+import backupAgentImage from './assets/backup-agent.png';
 
 export const appName = 'bmc-backup-agent-baremetal';
-export const productName = 'OVHcloud Backup Agent for Bare Metal';
+export const productName = 'OVHcloud Backup Agent';
 
 export const AppConfig = {
   listing: {
@@ -31,7 +31,7 @@ export const ONBOARDING_CONFIG: OnboardingConfigType = {
     faq: docUrl,
   },
   title: productName,
-  heroImage: { src: ovhcloudBackupImg },
+  heroImage: { src: backupAgentImage },
 };
 
 export type ListingApi = 'v6Iceberg' | 'v6' | 'v2';
