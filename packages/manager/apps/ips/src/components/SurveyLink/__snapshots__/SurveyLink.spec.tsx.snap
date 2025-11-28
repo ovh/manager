@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SurveyLink Component > Should render correctly with survey URL and tooltip 1`] = `
+<DocumentFragment>
+  <ods-link
+    color="primary"
+    href="https://survey.ovh.com/index.php/933956?lang=fr&nic=test-nic"
+    icon="emoticon-smile"
+    icon-alignment="left"
+    id="survey-link-tooltip-trigger"
+    label="survey_link"
+    referrerpolicy="strict-origin-when-cross-origin"
+    target="_blank"
+  />
+  <ods-tooltip
+    trigger-id="survey-link-tooltip-trigger"
+    with-arrow="true"
+  >
+    <ods-text>
+      survey_link_tooltip
+    </ods-text>
+  </ods-tooltip>
+</DocumentFragment>
+`;

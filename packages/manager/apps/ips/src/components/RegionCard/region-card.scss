@@ -1,0 +1,8 @@
+.region_card {
+  border: var(--ods-border-width-sm) solid var(--ods-color-primary-100);
+  margin: 0;
+}
+.region_card_selected {
+  border: var(--ods-border-width-md) solid var(--ods-color-primary-500);
+  margin: 0;
+}
