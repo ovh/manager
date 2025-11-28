@@ -167,12 +167,12 @@ describe('InformationForm', () => {
       expect(titleInput).toHaveAttribute('placeholder', 'Enter name here');
       expect(titleInput).toHaveAttribute('required');
       expect(titleInput).toHaveAttribute('type', 'text');
-      expect(screen.getByLabelText('dashboard:name*')).toBeInTheDocument();
+      expect(screen.getByLabelText('dashboard:name - shared:mandatory')).toBeInTheDocument();
 
       const descriptionInput = screen.getByTestId('description-input');
       expect(descriptionInput).toHaveAttribute('placeholder', 'Enter description here');
       expect(descriptionInput).not.toHaveAttribute('required');
-      expect(screen.getByLabelText('shared:description')).toBeInTheDocument();
+      expect(screen.getByLabelText('dashboard:description')).toBeInTheDocument();
     });
 
     it('should render without description placeholder when not provided', () => {
@@ -264,8 +264,8 @@ describe('InformationForm', () => {
 
       expect(titleInput).toHaveAttribute('id', 'title');
       expect(descriptionInput).toHaveAttribute('id', 'description');
-      expect(screen.getByLabelText('dashboard:name*')).toBe(titleInput);
-      expect(screen.getByLabelText('shared:description')).toBe(descriptionInput);
+      expect(screen.getByLabelText('dashboard:name - shared:mandatory')).toBe(titleInput);
+      expect(screen.getByLabelText('dashboard:description')).toBe(descriptionInput);
       expect(titleInput).toHaveAttribute('required');
       expect(descriptionInput).not.toHaveAttribute('required');
     });
