@@ -16,6 +16,7 @@ import Guides from '@/components/guides/Guides.component';
 import S3ObjectBrowser from './_components/S3ObjectBrowser.component';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import SimpleSearchBar from '@/components/simple-search-bar/SimpleSearchBar.component';
 import SearchBar from './_components/SearchBar.component';
 
 const Objects = () => {
@@ -75,7 +76,13 @@ const Objects = () => {
           <Plus className="size-6" />
           {t('addNewObject')}
         </Button>
-        {!isLocaleZone && (
+        {isLocaleZone ? (
+          <SimpleSearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder={t('searchPlaceholder') || 'Search...'}
+          />
+        ) : (
           <div className="flex items-center space-x-2">
             <Switch
               id="versions"
@@ -94,7 +101,7 @@ const Objects = () => {
         )}
       </div>
       <S3ObjectBrowser
-        objects={objects}
+        objects={filteredObjects}
         isLocaleZone={isLocaleZone}
         showVersion={withVersion}
       />
