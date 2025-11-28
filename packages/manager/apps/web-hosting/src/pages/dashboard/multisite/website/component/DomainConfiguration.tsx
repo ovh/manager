@@ -30,6 +30,7 @@ import { websiteFormSchema } from '@/utils/formSchemas.utils';
 import { isValidDomain } from '@/utils/validator';
 
 import { DomainAdvancedConfiguration } from './DomainAdvancedConfiguration';
+import { PathField } from './fields/Pathfield';
 
 type FormData = z.infer<typeof websiteFormSchema>;
 
@@ -173,7 +174,11 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             )}
           />
           {controlValues?.advancedConfiguration ? (
-            <DomainAdvancedConfiguration control={control} controlValues={controlValues} />
+            <DomainAdvancedConfiguration
+              control={control}
+              controlValues={controlValues}
+              isAddingDomain={isAddingDomain}
+            />
           ) : (
             <Message color={MESSAGE_COLOR.information} dismissible={false}>
               {t('multisite_add_website_configure_domain_advanced_message')}
@@ -216,6 +221,20 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                   onChange={(e) => field.onChange(e.target.value)}
                 />
               </div>
+            )}
+          />
+          <Controller
+            name="path"
+            control={control}
+            render={({ field }) => (
+              <PathField
+                label={t('dashboard:hosting_multisite_domain_configuration_home')}
+                helpText={t(
+                  'multisite:multisite_add_website_configure_domain_advanced_path_message',
+                )}
+                field={field}
+                disabled={isAddingDomain}
+              />
             )}
           />
         </>
