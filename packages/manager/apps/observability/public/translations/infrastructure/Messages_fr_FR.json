@@ -6,7 +6,7 @@
       "us": "États-Unis",
       "ap": "Asie Pacifique",
       "ca": "Amérique du Nord",
-      "title": "Sélectionnez la région",
+      "title": "Sélectionner la région",
       "zone": {
         "local": "Déploiement de vos applications au plus près de vos utilisatrices et utilisateurs pour une faible latence et la résidence des données.",
         "1_az": "Déploiement résilient et économique sur 1 zone de disponibilité.",

@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Divider } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button, Text } from '@ovh-ux/muk';
+import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button } from '@ovh-ux/muk';
 
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
 import RegionSelector from '@/components/infrastructures/region-selector/RegionSelector.component';
@@ -80,9 +80,6 @@ export const TenantForm = () => {
             void form.handleSubmit(handleSubmit)(e);
           }}
         >
-          <Text className="mt-6 block" preset="heading-2">
-            {t('tenants:creation.title')}
-          </Text>
           <section className="mt-6">
             <RegionSelector />
           </section>

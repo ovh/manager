@@ -40,7 +40,7 @@ vi.mock('@/utils/duration.utils', () => ({
 }));
 
 vi.mock('@/utils/form.utils', () => ({
-  toRequiredLabel: vi.fn((label: string) => `${label}*`),
+  toRequiredLabel: vi.fn((label: string, requiredLabel: string) => `${label} - ${requiredLabel}`),
 }));
 
 // Mock ODS React components
@@ -53,10 +53,9 @@ vi.mock('@ovhcloud/ods-react', () => ({
   FormFieldHelper: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="form-field-helper">{children}</div>
   ),
-}));
-
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+  FormFieldLabel: ({ children }: { children: React.ReactNode }) => (
+    <label data-testid="form-field-label">{children}</label>
+  ),
   Quantity: ({
     children,
     name,
@@ -65,6 +64,7 @@ vi.mock('@ovh-ux/muk', () => ({
     value,
     onValueChange,
     invalid,
+    disabled,
   }: {
     children: React.ReactNode;
     name?: string;
@@ -73,8 +73,9 @@ vi.mock('@ovh-ux/muk', () => ({
     value?: string;
     onValueChange?: (detail: { value: string }) => void;
     invalid?: boolean;
+    disabled?: boolean;
   }) => (
-    <div data-testid="quantity">
+    <div data-testid="quantity" data-disabled={disabled}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(
@@ -85,6 +86,7 @@ vi.mock('@ovh-ux/muk', () => ({
               value?: string;
               onValueChange?: (detail: { value: string }) => void;
               invalid?: boolean;
+              disabled?: boolean;
             }>,
             {
               name,
@@ -93,6 +95,7 @@ vi.mock('@ovh-ux/muk', () => ({
               value,
               onValueChange,
               invalid,
+              disabled,
             },
           );
         }
@@ -108,6 +111,7 @@ vi.mock('@ovh-ux/muk', () => ({
     value,
     onValueChange,
     invalid,
+    disabled,
   }: {
     children?: React.ReactNode;
     name?: string;
@@ -116,6 +120,7 @@ vi.mock('@ovh-ux/muk', () => ({
     value?: string;
     onValueChange?: (detail: { value: string }) => void;
     invalid?: boolean;
+    disabled?: boolean;
   }) => (
     <div data-testid="quantity-control">
       {React.Children.map(children, (child) => {
@@ -128,6 +133,7 @@ vi.mock('@ovh-ux/muk', () => ({
               value?: string;
               onValueChange?: (detail: { value: string }) => void;
               invalid?: boolean;
+              disabled?: boolean;
             }>,
             {
               name,
@@ -136,6 +142,7 @@ vi.mock('@ovh-ux/muk', () => ({
               value,
               onValueChange,
               invalid,
+              disabled,
             },
           );
         }
@@ -150,6 +157,7 @@ vi.mock('@ovh-ux/muk', () => ({
     value,
     onValueChange,
     invalid,
+    disabled,
   }: {
     name?: string;
     min?: number;
@@ -157,6 +165,7 @@ vi.mock('@ovh-ux/muk', () => ({
     value?: string;
     onValueChange?: (detail: { value: string }) => void;
     invalid?: boolean;
+    disabled?: boolean;
   }) => (
     <input
       data-testid="quantity-input"
@@ -169,8 +178,13 @@ vi.mock('@ovh-ux/muk', () => ({
         onValueChange?.({ value: e.target.value });
       }}
       data-has-error={invalid}
+      disabled={disabled}
     />
   ),
+}));
+
+// Mock MUK components
+vi.mock('@ovh-ux/muk', () => ({
   Text: ({
     children,
     preset,
@@ -185,6 +199,7 @@ vi.mock('@ovh-ux/muk', () => ({
     </span>
   ),
   TEXT_PRESET: {
+    heading2: 'heading2',
     heading4: 'heading4',
     heading6: 'heading6',
     paragraph: 'paragraph',
@@ -387,7 +402,7 @@ describe('TenantConfigurationForm', () => {
         </TestWrapper>,
       );
 
-      expect(screen.getByTestId('text-heading4')).toHaveTextContent('configuration.title');
+      expect(screen.getByTestId('text-heading2')).toHaveTextContent('configuration.title');
     });
 
     it('should render retention select field with proper label', () => {
@@ -397,7 +412,9 @@ describe('TenantConfigurationForm', () => {
         </TestWrapper>,
       );
 
-      expect(screen.getByTestId('select-label')).toHaveTextContent('configuration.retention*');
+      expect(screen.getByTestId('select-label')).toHaveTextContent(
+        'tenants:configuration.retention - shared:mandatory',
+      );
     });
 
     it('should render quantity input for maxSeries', () => {
@@ -414,17 +431,26 @@ describe('TenantConfigurationForm', () => {
       expect(quantityInput).toHaveAttribute('max', '1000');
     });
 
-    it('should render limit title and description', () => {
+    it('should render limit title in form field label', () => {
       render(
         <TestWrapper>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      expect(screen.getByTestId('text-heading6')).toHaveTextContent('configuration.limit.title');
-      expect(screen.getByTestId('text-paragraph')).toHaveTextContent(
-        'configuration.limit.description',
+      const formFieldLabel = screen.getByTestId('form-field-label');
+      expect(formFieldLabel).toHaveTextContent('tenants:configuration.limit.title');
+    });
+
+    it('should render limit description in form field helper', () => {
+      render(
+        <TestWrapper>
+          <TenantConfigurationForm />
+        </TestWrapper>,
       );
+
+      const formFieldHelper = screen.getByTestId('form-field-helper');
+      expect(formFieldHelper).toHaveTextContent('tenants:configuration.limit.description');
     });
   });
 
@@ -568,7 +594,9 @@ describe('TenantConfigurationForm', () => {
 
       const quantityInput = screen.getByTestId('quantity-input');
       expect(quantityInput).toHaveAttribute('data-has-error', 'false');
-      expect(screen.queryByTestId('text-caption')).not.toBeInTheDocument();
+      // The description is always shown, but error message should not be present
+      const formFieldHelper = screen.getByTestId('form-field-helper');
+      expect(formFieldHelper).not.toHaveTextContent('Must be between');
     });
   });
 

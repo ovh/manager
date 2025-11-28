@@ -1,3 +1,4 @@
 {
-  "description":"Description (optionnelle)"
+  "mandatory":"obligatoire",
+  "service":"Service <strong>{{serviceName}}</strong>"
 }
