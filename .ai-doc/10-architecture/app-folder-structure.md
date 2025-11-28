@@ -33,7 +33,7 @@ This structure applies to:
 │   ├── components/               # Reusable UI components
 │   │   └── componentName/        # Component-specific folder
 │   │       ├── ComponentName.component.tsx
-│   │       ├── componentName.constants.ts
+│   │       ├── ComponentName.constants.ts
 │   │       └── ComponentName.spec.tsx
 │   ├── constants/                # Application constants
 │   ├── data/                     # Data layer
@@ -44,9 +44,8 @@ This structure applies to:
 │   ├── pages/                    # Page components
 │   │   └── pageName/             # Page-specific folder
 │   │       ├── PageName.page.tsx
-│   │       ├── pageName.constants.ts
+│   │       ├── PageName.constants.ts
 │   │       └── PageName.spec.tsx
-│   ├── services/                 # Business logic services
 │   ├── types/                    # TypeScript type definitions
 │   ├── utils/                    # Utility functions
 │   ├── App.tsx                   # Main application component
@@ -65,136 +64,38 @@ This structure applies to:
 └── README.md                    # Project documentation
 ```
 
-## 📁 Folder Details
+## 📁 Folder Descriptions
 
-### `/public/` - Static Assets
+This section provides detailed descriptions and guidelines for each folder in the standard structure. Refer to the "Complete Application Structure" section above for the visual folder hierarchy.
 
-Contains static assets served directly by the web server without processing:
-- **`assets/`**: Images, icons, and other static resources organized by feature name
-- **`translations/`**: i18n JSON files for all supported locales (8 languages: de_DE, en_GB, es_ES, fr_CA, fr_FR, it_IT, pl_PL, pt_PT)
-- **Naming**: Use kebab-case for folder names within assets (e.g., `feature-name/`)
-- **Organization**: Group assets by feature or module to maintain clarity
+### Static Assets (`/public/`)
 
-```
-public/
-├── assets/                      # Static assets
-│   └── feature-name/           # Feature-specific assets
-└── translations/               # i18n translation files
-    └── namespace-name/         # Feature-specific translations
-        ├── Messages_de_DE.json
-        ├── Messages_en_GB.json
-        ├── Messages_es_ES.json
-        ├── Messages_fr_CA.json
-        ├── Messages_fr_FR.json
-        ├── Messages_it_IT.json
-        ├── Messages_pl_PL.json
-        └── Messages_pt_PT.json
-```
+Contains static assets served directly by the web server without processing. The `assets/` subfolder houses images, icons, and other static resources organized by feature name. The `translations/` subfolder contains i18n JSON files for all supported locales (8 languages: de_DE, en_GB, es_ES, fr_CA, fr_FR, it_IT, pl_PL, pt_PT). Use kebab-case for folder names within assets (e.g., `feature-name/`) and group assets by feature or module to maintain clarity.
 
-### `/src/components/` - Reusable Components
+### Reusable Components (`/src/components/`)
 
-Houses reusable UI components shared across multiple pages or features:
-- **Structure**: Each component lives in its own folder using camelCase naming
-- **Required files**: Component file (`.component.tsx`), test file (`.spec.tsx`)
-- **Optional files**: Constants file (`.constants.ts`) for component-specific constants
-- **Naming convention**: Component folder in camelCase, files in PascalCase
-- **Purpose**: Components should be generic and reusable across different contexts
+Houses reusable UI components shared across multiple pages or features. Each component lives in its own folder using camelCase naming. Required files include the component file (`.component.tsx`) and test file (`.spec.tsx`). Optional files include a constants file (`.constants.ts`) for component-specific constants. Component folders use camelCase naming, while files use PascalCase. Components should be generic and reusable across different contexts.
 
-```
-components/
-└── componentName/              # Component-specific folder
-    ├── ComponentName.component.tsx    # Main component file
-    ├── componentName.constants.ts     # Component constants
-    └── ComponentName.spec.tsx         # Component tests
-```
+### Page Components (`/src/pages/`)
 
-### `/src/pages/` - Page Components
+Contains top-level page components that represent routes in the application. Each page lives in its own folder using camelCase naming. Required files include the page file (`.page.tsx`) and test file (`.spec.tsx`). Optional files include a constants file (`.constants.ts`) for page-specific constants. Page folders use camelCase naming, while files use PascalCase. Pages compose multiple components and represent full application views.
 
-Contains top-level page components that represent routes in the application:
-- **Structure**: Each page lives in its own folder using camelCase naming
-- **Required files**: Page file (`.page.tsx`), test file (`.spec.tsx`)
-- **Optional files**: Constants file (`.constants.ts`) for page-specific constants
-- **Naming convention**: Page folder in camelCase, files in PascalCase
-- **Purpose**: Pages compose multiple components and represent full application views
+### Data Layer (`/src/data/`)
 
-```
-pages/
-└── pageName/                   # Page-specific folder
-    ├── PageName.page.tsx       # Main page component
-    ├── pageName.constants.ts   # Page constants
-    └── PageName.spec.tsx       # Page tests
-```
+Central location for all data fetching, API calls, and data-related logic. The `api/` subfolder contains API service functions that make HTTP requests (`.api.ts` suffix). The `hooks/` subfolder contains custom hooks for data fetching using TanStack Query (`use` prefix). The `types/` subfolder contains TypeScript type definitions for API responses and data models (`.types.ts` suffix). The pattern separates concerns - API calls, data hooks, and types are in distinct folders. Hooks use API functions and types to provide data to components.
 
-### `/src/data/` - Data Layer
+### Custom Hooks (`/src/hooks/`)
 
-Central location for all data fetching, API calls, and data-related logic:
-- **`api/`**: API service functions that make HTTP requests (`.api.ts` suffix)
-- **`hooks/`**: Custom hooks for data fetching using TanStack Query (`use` prefix)
-- **`types/`**: TypeScript type definitions for API responses and data models (`.types.ts` suffix)
-- **Pattern**: Separate concerns - API calls, data hooks, and types are in distinct folders
-- **Integration**: Hooks use API functions and types to provide data to components
+Contains custom React hooks for shared logic and state management. All hooks start with the `use` prefix (e.g., `useHookName.ts`). These hooks encapsulate reusable logic, side effects, and stateful behavior. This folder is for application-wide hooks (not data-fetching hooks, which go in `/src/data/hooks/`). Examples include form handling, UI state, browser APIs, and complex component logic.
 
-```
-data/
-├── api/                        # API service functions
-│   └── serviceName.api.ts      # API service file
-├── hooks/                      # Data fetching hooks
-│   └── useServiceName.ts       # Data hook file
-└── types/                      # Data type definitions
-    └── serviceName.types.ts    # Data types file
-```
 
-### `/src/hooks/` - Custom Hooks
+### Type Definitions (`/src/types/`)
 
-Contains custom React hooks for shared logic and state management:
-- **Naming**: All hooks start with `use` prefix (e.g., `useHookName.ts`)
-- **Purpose**: Encapsulate reusable logic, side effects, and stateful behavior
-- **Scope**: Application-wide hooks (not data-fetching hooks, which go in `/src/data/hooks/`)
-- **Examples**: Form handling, UI state, browser APIs, complex component logic
+Contains TypeScript type definitions and interfaces used across the application. Files use PascalCase naming with `.types.ts` suffix (e.g., `UserManagement.types.ts`). This folder contains shared types, interfaces, enums, and type utilities. It's for application-wide types (not data-specific types, which go in `/src/data/types/`). Group related types in the same file.
 
-```
-hooks/
-└── useHookName.ts              # Custom hook file
-```
+### Utility Functions (`/src/utils/`)
 
-### `/src/services/` - Business Logic
-
-Houses business logic and complex operations that don't fit in components:
-- **Naming**: camelCase with `.service.ts` suffix (e.g., `userManagement.service.ts`)
-- **Purpose**: Complex calculations, data transformations, business rules
-- **Separation**: Keep business logic separate from UI components and API calls
-- **Testing**: Services should be pure functions when possible for easier testing
-
-```
-services/
-└── serviceName.service.ts      # Service file
-```
-
-### `/src/types/` - Type Definitions
-
-Contains TypeScript type definitions and interfaces used across the application:
-- **Naming**: camelCase with `.types.ts` suffix (e.g., `userManagement.types.ts`)
-- **Purpose**: Shared types, interfaces, enums, and type utilities
-- **Scope**: Application-wide types (not data-specific types, which go in `/src/data/types/`)
-- **Organization**: Group related types in the same file
-
-```
-types/
-└── typeName.types.ts           # Type definition file
-```
-
-### `/src/utils/` - Utility Functions
-
-Contains pure utility functions and helpers used throughout the application:
-- **Naming**: camelCase with `.utils.ts` suffix (e.g., `formatting.utils.ts`)
-- **Purpose**: Pure functions for formatting, validation, transformation, etc.
-- **Requirements**: Should be stateless and side-effect free when possible
-- **Testing**: Each utility should have comprehensive unit tests
-
-```
-utils/
-└── utilName.utils.ts           # Utility function file
-```
+Contains pure utility functions and helpers used throughout the application. Files use camelCase naming with `.utils.ts` suffix (e.g., `formatting.utils.ts`). Utilities provide pure functions for formatting, validation, transformation, etc. They should be stateless and side-effect free when possible. Each utility should have comprehensive unit tests.
 
 ## 📋 Naming Conventions
 
@@ -204,10 +105,9 @@ utils/
 - **Components**: `PascalCase` (e.g., `UserManagement.component.tsx`)
 - **Pages**: `PascalCase` (e.g., `UserManagement.page.tsx`)
 - **Hooks**: `camelCase` with `use` prefix (e.g., `useUserManagement.ts`)
-- **Services**: `camelCase` with `.service.ts` suffix (e.g., `userManagement.service.ts`)
-- **Types**: `camelCase` with `.types.ts` suffix (e.g., `userManagement.types.ts`)
-- **Utils**: `camelCase` with `.utils.ts` suffix (e.g., `userManagement.utils.ts`)
-- **Constants**: `camelCase` with `.constants.ts` suffix (e.g., `userManagement.constants.ts`)
+- **Types**: `PascalCase` with `.types.ts` suffix (e.g., `UserManagement.types.ts`)
+- **Utils**: `PascalCase` with `.utils.ts` suffix (e.g., `UserManagement.utils.ts`)
+- **Constants**: `PascalCase` with `.constants.ts` suffix (e.g., `UserManagement.constants.ts`)
 - **Tests**: `PascalCase` with `.spec.tsx` suffix (e.g., `UserManagement.spec.tsx`)
 
 ### Import/Export Patterns
@@ -219,17 +119,14 @@ export { ComponentName } from './ComponentName.component';
 // Hook exports
 export { useHookName } from './useHookName';
 
-// Service exports
-export { serviceName } from './serviceName.service';
-
 // Type exports
-export type { TypeName } from './typeName.types';
+export type { TypeName } from './TypeName.types';
 
 // Utility exports
-export { utilName } from './utilName.utils';
+export { utilName } from './UtilName.utils';
 
 // Constant exports
-export { CONSTANT_NAME } from './constantName.constants';
+export { CONSTANT_NAME } from './ConstantName.constants';
 ```
 
 ## 🔧 Configuration Files
@@ -243,10 +140,12 @@ export { CONSTANT_NAME } from './constantName.constants';
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "test": "manager-test",
+    "test:ui": "manager-test --ui",
+    "test:ci": "manager-test run --coverage",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src ; yarn lint:modern:imports:fix",
+    "lint:modern:imports:fix": "node scripts/muk-exports-order.mjs",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -257,12 +156,12 @@ export { CONSTANT_NAME } from './constantName.constants';
     "react-router-dom": "^6.0.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-tailwind-config": "^0.6.0",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
+    "@ovh-ux/manager-vite-config": "^0.15.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^5.0.0",
-    "vite": "^5.0.0",
-    "vitest": "^1.0.0"
+    "typescript": "^5.0.0"
   }
 }
 ```
@@ -271,29 +170,24 @@ export { CONSTANT_NAME } from './constantName.constants';
 
 ```json
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
+    "outDir": "dist",
+    "jsx": "react-jsx",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@/setupTest": ["./setupTest.ts"]
+    },
+    "resolveJsonModule": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src",
+    "**/*.json",
+    "setupTests.ts",
+    "global.d.ts"
+  ],
+  "exclude": ["node_modules", "dist", "types"]
 }
 ```
 
@@ -301,24 +195,12 @@ export { CONSTANT_NAME } from './constantName.constants';
 
 ```typescript
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 import { resolve } from 'path';
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
-    },
-  },
-  server: {
-    port: 3000,
-    open: true,
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: true,
-  },
+  ...getBaseConfig(),
+  root: resolve(process.cwd()),
 });
 ```
 
@@ -334,7 +216,6 @@ tests/
 │   ├── components/            # Component tests
 │   ├── pages/                 # Page tests
 │   ├── hooks/                 # Hook tests
-│   ├── services/              # Service tests
 │   └── utils/                 # Utility tests
 └── setup.ts                   # Test setup
 ```
@@ -344,8 +225,7 @@ tests/
 - **Component tests**: `ComponentName.spec.tsx`
 - **Page tests**: `PageName.spec.tsx`
 - **Hook tests**: `useHookName.spec.ts`
-- **Service tests**: `serviceName.spec.ts`
-- **Utility tests**: `utilName.spec.ts`
+- **Utility tests**: `UtilName.spec.ts`
 
 ## 📚 Best Practices
 
@@ -370,12 +250,6 @@ tests/
 - **Clear naming**: Use clear and descriptive names for components
 - **Proper structure**: Follow the established component structure
 
-### 4. Service Organization
-
-- **Business logic separation**: Keep business logic in services
-- **API separation**: Keep API calls in separate files
-- **Hook integration**: Use hooks to integrate services with components
-- **Type safety**: Use TypeScript for all service files
 
 ### 5. Testing Organization
 
@@ -406,3 +280,4 @@ tests/
 - [React Best Practices](../30-best-practices/react-best-practices.md)
 - [Testing Guidelines](../30-best-practices/testing-guidelines.md)
 - [TypeScript Guidelines](../30-best-practices/typescript-guidelines.md)
+

@@ -36,3 +36,32 @@ GET /feature/sms,sms:order/availability
 npm run explain featurename
 npm run explain featurename:subfeature -- --all
 ```
+
+### Frontend Usage
+
+Use the `useFeatureAvailability` hook to check feature availability in React components:
+
+```tsx
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const { data: features, isLoading } = useFeatureAvailability([
+    'sms',
+    'sms:order'
+  ]);
+
+  if (isLoading) return <Spinner />;
+
+  return (
+    <>
+      {features?.sms && <SmsFeature />}
+      {features?.['sms:order'] && <SmsOrderButton />}
+    </>
+  );
+}
+```
+
+The hook returns:
+- `data`: Object with feature names as keys and boolean availability as values
+- `isLoading`: Loading state
+- `error`: Error state if the request fails

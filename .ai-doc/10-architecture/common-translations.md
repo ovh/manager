@@ -14,6 +14,7 @@ ai: true
 1. Create folder under `public/translations`.
 2. Add `Messages_fr_FR.json`.
 3. Add keys (no app‑specific prefixes).
+4. Add an export statement in index.ts to export the newly created namespace.
 
 ### Consuming
 ```ts

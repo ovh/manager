@@ -1,8 +1,8 @@
 ---
 title: UI Component Detection Patterns
 version: 1.0.0
-last_update: 2025-01-27
-tags: [patterns, ui, components, oui, muk]
+last_update: 2025-11-28
+tags: [patterns, ui, components, oui, ods, ods-v19, muk]
 ai: true
 ---
 
@@ -10,7 +10,7 @@ ai: true
 
 ## Purpose
 
-Patterns for detecting OUI components in AngularJS templates and mapping them to MUK components in React.
+Patterns for detecting OUI components in AngularJS templates and mapping them to ODS v19/MUK components in React.
 
 ---
 
@@ -368,12 +368,12 @@ oui_spinner:
   flags: gi
   groups: []
   maps_to:
-    muk: '<Loader> from @ovh-ux/muk or loading state pattern'
+    ods: '<OdsSpinner> from @ovhcloud/ods-react for loading states, or <OdsSkeleton> for content placeholders'
   test_cases:
     - input: '<oui-spinner size="s"></oui-spinner>'
       expected:
         component: 'oui-spinner'
-        maps_to_muk: 'Loader'
+        maps_to_ods: 'OdsSpinner or OdsSkeleton'
 ```
 
 ---
@@ -562,19 +562,18 @@ if (template.match(searchPattern.regex)) {
 
 ---
 
-## MUK-First Policy
+## Component Migration Policy (ODS v19)
 
-**IMPORTANT**: All OUI components MUST be replaced with MUK equivalents. Only use ODS as temporary fallback if MUK doesn't provide the component yet.
+**IMPORTANT**: All OUI components MUST be replaced with ODS/MUK equivalents.
 
 ### Decision Flow
 
 ```
 1. Check if MUK has component
-   ├─ YES → Use MUK component
+   ├─ YES → Use MUK component (preferred for complex patterns like Datagrid, BaseLayout)
    └─ NO → Check if ODS has component
-       ├─ YES → Use ODS temporarily
-       │        Document in MIGRATION_NOTES.md
-       │        Create ticket to replace with MUK
+       ├─ YES → Use ODS component
+       │        (ODS v19 is the primary design system)
        └─ NO → Implement custom component
                 Document in MIGRATION_NOTES.md
 ```

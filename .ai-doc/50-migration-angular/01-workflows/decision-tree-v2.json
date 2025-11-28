@@ -374,12 +374,12 @@
   "pattern_mappings": {
     "description": "Quick lookup for pattern decisions",
     "oui-datagrid": {
-      "target": "Datagrid from @ovh-ux/manager-react-components",
+      "target": "Datagrid from @ovh-ux/muk",
       "decision_node": "component_selection",
       "diff_reference": "10-migration-diffs/component-diffs.md#datagrid"
     },
     "oui-field": {
-      "target": "OdsFormField from @ovhcloud/ods-components",
+      "target": "OdsFormField from @ovhcloud/ods-react",
       "decision_node": "form_pattern_selection",
       "diff_reference": "10-migration-diffs/component-diffs.md#form"
     },

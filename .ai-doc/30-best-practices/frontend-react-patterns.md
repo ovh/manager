@@ -456,7 +456,10 @@ function loadingReducer(state: LoadingState, action: LoadingAction): LoadingStat
 ### 1. Virtual Scrolling
 
 ```typescript
-// ✅ CORRECT: Virtual scrolling for large lists
+// ✅ CORRECT: Virtual scrolling for large lists using TanStack Virtual
+import { useRef } from 'react';
+import { useVirtualizer } from '@tanstack/react-virtual';
+
 function VirtualList<T>({ 
   items, 
   itemHeight, 
@@ -468,29 +471,44 @@ function VirtualList<T>({
   containerHeight: number;
   renderItem: (item: T, index: number) => React.ReactNode;
 }) {
-  const [scrollTop, setScrollTop] = useState(0);
+  const parentRef = useRef<HTMLDivElement>(null);
   
-  const visibleStart = Math.floor(scrollTop / itemHeight);
-  const visibleEnd = Math.min(
-    visibleStart + Math.ceil(containerHeight / itemHeight) + 1,
-    items.length
-  );
-  
-  const visibleItems = items.slice(visibleStart, visibleEnd);
+  const virtualizer = useVirtualizer({
+    count: items.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => itemHeight,
+    overscan: 5,
+  });
   
   return (
     <div
+      ref={parentRef}
       style={{ height: containerHeight, overflow: 'auto' }}
-      onScroll={(e) => setScrollTop(e.currentTarget.scrollTop)}
     >
-      <div style={{ height: items.length * itemHeight, position: 'relative' }}>
-        <div style={{ transform: `translateY(${visibleStart * itemHeight}px)` }}>
-          {visibleItems.map((item, index) => (
-            <div key={visibleStart + index} style={{ height: itemHeight }}>
-              {renderItem(item, visibleStart + index)}
-            </div>
-          ))}
-        </div>
+      <div
+        style={{
+          height: `${virtualizer.getTotalSize()}px`,
+          width: '100%',
+          position: 'relative',
+        }}
+      >
+        {virtualizer.getVirtualItems().map((virtualItem) => (
+          <div
+            key={virtualItem.key}
+            data-index={virtualItem.index}
+            ref={virtualizer.measureElement}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: `${virtualItem.size}px`,
+              transform: `translateY(${virtualItem.start}px)`,
+            }}
+          >
+            {renderItem(items[virtualItem.index], virtualItem.index)}
+          </div>
+        ))}
       </div>
     </div>
   );

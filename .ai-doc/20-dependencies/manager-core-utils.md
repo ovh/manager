@@ -12,24 +12,19 @@ ai: true
 
 ## 🧭 Purpose
 
-The **Manager Core Utils** package provides essential utility functions for OVHcloud Manager applications. It includes date formatting utilities, React formatters for data grids, and locale conversion functions.
+The **Manager Core Utils** package provides essential utility functions for OVHcloud Manager applications. It includes locale normalization utilities (Manager locale to Date-fns locale) and React formatters for data grids.
 
-This package is the foundation for common utility functions used across all Manager applications, providing standardized patterns for date handling, React component formatting, and locale management.
+This package provides locale normalization utilities and React component formatters for data grids used across Manager applications.
 
 ## ⚙️ Context
 
 Manager Core Utils is designed for:
-- **Date formatting** with locale support
+- **Locale normalization** from Manager locale to Date-fns locale
 - **React component formatting** for data grids
-- **Locale conversion** between OVH and date-fns formats
-- **Utility functions** for common operations
-- **Standardized patterns** across applications
 
 This package is essential for:
-- **Date and time formatting** in React applications
+- **Locale normalization** from Manager locale to Date-fns locale
 - **Data grid formatting** with React components
-- **Locale management** in internationalized applications
-- **Common utility functions** for consistency
 
 ## 🔗 References
 
@@ -524,7 +519,7 @@ const StatusFormatter = ReactFormatter(
 7. **Test locale conversion**: Verify locale mapping works correctly
 8. **Optimize performance**: Avoid unnecessary re-renders in formatters
 
-### Locale Conversion Checklist
+### Locale Conversion Checklist for Dates
 
 - [ ] Use getDateFnsLocale for OVH locale conversion
 - [ ] Map date-fns locales correctly
@@ -561,24 +556,24 @@ const StatusFormatter = ReactFormatter(
 
 **👉 Good utilities are invisible to users but essential for application consistency.**
 
-## 🔄 Exports en Cascade
+## 🔄 Cascade Exports
 
 ### ReactFormatter
 
-#### Utilisation avec Tabulator
+#### Usage with Tabulator
 
 ```typescript
 import { ReactFormatter } from '@ovh-ux/manager-core-utils';
 import React from 'react';
 
-// Créer un formateur React pour Tabulator
+// Create a React formatter for Tabulator
 const StatusFormatter = ReactFormatter(
   <div className="status-badge">
     <span data-testid="status">{/* Status component */}</span>
   </div>
 );
 
-// Utilisation dans la configuration Tabulator
+// Usage in Tabulator configuration
 const columns = [
   {
     title: 'Status',
@@ -588,26 +583,26 @@ const columns = [
 ];
 ```
 
-#### Props Injectées
+#### Injected Props
 
 ```typescript
-// Le formateur reçoit automatiquement cellData et rowData
+// The formatter automatically receives cellData and rowData
 const CustomFormatter = ReactFormatter(
   <div>
-    <span>{/* cellData sera disponible */}</span>
-    <span>{/* rowData sera disponible */}</span>
+    <span>{/* cellData will be available */}</span>
+    <span>{/* rowData will be available */}</span>
   </div>
 );
 ```
 
 ### Date-fns Locale
 
-#### Conversion de Locale OVH
+#### OVH Locale Conversion
 
 ```typescript
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
-// Conversion des locales OVH vers date-fns
+// Convert OVH locales to date-fns
 const locales = {
   'fr_FR': 'fr',
   'en_GB': 'enGB', 
@@ -616,7 +611,7 @@ const locales = {
   'es_ES': 'es'
 };
 
-// Utilisation avec date-fns
+// Usage with date-fns
 import { format } from 'date-fns';
 import { fr, enGB, frCA } from 'date-fns/locale';
 
@@ -630,7 +625,7 @@ const formatDate = (date: Date, ovhLocale: string) => {
 };
 ```
 
-#### Intégration avec i18next
+#### Integration with i18next
 
 ```typescript
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
@@ -640,7 +635,7 @@ function DateComponent() {
   const { i18n } = useTranslation();
   const locale = getDateFnsLocale(i18n.language);
   
-  // Utiliser la locale avec date-fns
-  return <div>{/* Composant avec date formatée */}</div>;
+  // Use the locale with date-fns
+  return <div>{/* Component with formatted date */}</div>;
 }
 ```

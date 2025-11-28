@@ -70,7 +70,7 @@ export const queryClient = new QueryClient({
 
 ## Routing + Tracking
 
-### Configuration des Routes
+### Configuration of Routes
 
 ```typescript
 // routes/Routes.tsx
@@ -131,59 +131,59 @@ export default (
 );
 ```
 
-### Configuration des Constantes
+### Configuration of Constants
 
 ```typescript
 // App.constants.ts
 export const APP_FEATURES = {
-  // ... autres configs
-  appSlug: '', // ⚠️ IMPORTANT: Laisser vide pour éviter le double slug
-  // ... autres configs
+  // ... other configs
+  appSlug: '', // ⚠️ IMPORTANT: Leave empty to avoid double slug
+  // ... other configs
 } as const;
 
 // Routes.constants.ts
 export const urls = {
-  root: getRoot(), // Retourne /app-name
-  listing: 'listing', // Route relative
+  root: getRoot(), // Returns /app-name
+  listing: 'listing', // Relative route
 } as const;
 ```
 
-### Problèmes de Routing Courants
+### Common Routing Issues
 
-#### ❌ Double Slug dans l'URL
-**Problème** : URL devient `/app-name/app-name/listing` au lieu de `/app-name/listing`
+#### ❌ Double Slug in URL
+**Problem**: URL becomes `/app-name/app-name/listing` instead of `/app-name/listing`
 
-**Solution** :
+**Solution**:
 ```typescript
 // App.constants.ts
 export const APP_FEATURES = {
-  appSlug: '', // ⚠️ Laisser vide, pas appName
+  appSlug: '', // ⚠️ Leave empty, not appName
   // ...
 } as const;
 ```
 
-#### ❌ Navigation Absolue vs Relative
-**Problème** : `navigate('/listing')` ne fonctionne pas dans un contexte imbriqué
+#### ❌ Absolute vs Relative Navigation
+**Problem**: `navigate('/listing')` doesn't work in a nested context
 
-**Solution** :
+**Solution**:
 ```typescript
-// ✅ Bon : Navigation relative
+// ✅ Good: Relative navigation
 navigate('listing', { replace: true });
 
-// ❌ Éviter : Navigation absolue
+// ❌ Avoid: Absolute navigation
 navigate('/listing', { replace: true });
 ```
 
-#### ❌ SmartRedirect Complexe
-**Problème** : Redirection conditionnelle complexe
+#### ❌ Complex SmartRedirect
+**Problem**: Complex conditional redirection
 
-**Solution** : Utiliser la page listing comme page d'accueil avec gestion d'état vide
+**Solution**: Use listing page as home page with empty state handling
 
 ```typescript
-// ✅ Bon : Page listing comme home
+// ✅ Good: Listing page as home
 <Route index Component={ListingPage} />
 
-// ❌ Éviter : SmartRedirect complexe
+// ❌ Avoid: Complex SmartRedirect
 <Route index element={<SmartRedirectPage />} />
 ```
 
@@ -230,7 +230,7 @@ export function useServices(params: { page: number; pageSize: number; sortBy?: s
 ## Datagrid Pattern (MUK + Iceberg)
 - Source of truth: `useDatagrid` for pagination/sorting state.
 - On manual mode, pass `items`, `totalItems`, `pagination`, `sorting`, `onPaginationChange`, `onSortChange`.
-- Use `useResourcesIcebergV6` for infinite mode when suitable.
+- Use `useDataApi` for infinite mode when suitable.
 
 Minimal example:
 ```typescript
@@ -285,7 +285,7 @@ const { data, isLoading } = useServices({
 - Click tracking on primary actions with enums (see react-tracking.md).
 
 ## Parity & Migration Notes
-- Follow [us-migration-guide.md](../50-migration-angular/us-migration-guide.md): parité fonctionnelle, URLs conservées, strangler pattern, and DoD.
+- Follow [us-migration-guide.md](../50-migration-angular/us-migration-guide.md): functional parity, preserved URLs, strangler pattern, and DoD.
 
 ## ❌ Common Routing Mistakes
 
@@ -315,5 +315,6 @@ const { data, isLoading } = useServices({
 
 ## Copy-Paste Starters
 - Use code snippets above as templates; adjust endpoints, columns, and namespaces per product.
+
 
 

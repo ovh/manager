@@ -111,13 +111,13 @@ For comprehensive TypeScript guidelines, see [TypeScript Cheat Sheet](./typescri
 
 ```bash
 # Run static analysis
-npm run lint
+yarn run lint
 
 # Fix auto-fixable issues
-npm run lint:fix
+yarn run lint:fix
 
 # Type checking
-npm run type-check
+yarn run type-check
 ```
 
 ## 📖 Documentation Standards
@@ -184,67 +184,121 @@ try {
 
 ### Notifications (MUK)
 
-**❌ WRONG: Using console.log/console.error**
+**Important:** `useNotifications` and `useLogger` serve different purposes:
+- **`useNotifications`**: Display messages to end-users in the UI (success, error, warning, info)
+- **`useLogger`**: Technical logging for system logs and debugging (not visible to end-users)
+
+**❌ WRONG: Using console.log/console.error for user-facing messages**
 ```typescript
 try {
   await apiCall();
 } catch (error) {
-  console.error('API call failed:', error); // ❌
+  console.error('API call failed:', error); // ❌ User won't see this
 }
 ```
 
-**✅ CORRECT: Using useNotifications**
+**✅ CORRECT: Using useNotifications for user-facing messages + useLogger for technical logging**
 ```typescript
-import { useNotifications } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useLogger } from '@ovh-ux/manager-react-core-application';
 
 function MyComponent() {
   const { addSuccess, addError } = useNotifications();
+  const logger = useLogger();
   
   const handleApiCall = async () => {
     try {
       await apiCall();
-      addSuccess('Operation completed successfully');
+      addSuccess('Operation completed successfully'); // ✅ User sees this
     } catch (error) {
-      addError('Operation failed. Please try again.');
+      // Log technical error for system logs/debugging
+      if (logger) {
+        logger.error('API call failed:', error); // ✅ Technical logging
+      }
+      
+      // Display user-friendly error message
+      addError('Operation failed. Please try again.'); // ✅ User sees this
     }
   };
 }
 ```
 
+**Pattern in pci-project:**
+```typescript
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useLogger } from '@ovh-ux/manager-react-core-application';
+
+// In mutation hooks (useMutation from TanStack Query)
+function MyComponent() {
+  const { addSuccess, addError } = useNotifications();
+  const logger = useLogger();
+  
+  const { mutate } = useMutation({
+    mutationFn: apiCall,
+    onSuccess: () => {
+      addSuccess('Operation completed successfully');
+    },
+    onError: (error) => {
+      // Technical logging (for system logs/debugging)
+      if (logger) {
+        logger.error('API call failed:', error);
+      }
+      
+      // User-facing notification
+      addError('Operation failed. Please try again.');
+    },
+  });
+}
+```
+
+**Logger API:**
+- `logger.info(message: string, ...args): void` - Info level logging
+- `logger.warn(message: string, ...args): void` - Warning level logging
+- `logger.error(message: string, ...args): void` - Error level logging
+- `logger.debug(message: string, ...args): void` - Debug level logging
+
 **Notification Types:**
-- `addSuccess(message)` - Success notifications
-- `addError(message)` - Error notifications
-- `addWarning(message)` - Warning notifications
-- `addInfo(message)` - Information notifications
+- `addSuccess(message)` - Success notifications (user-facing)
+- `addError(message)` - Error notifications (user-facing)
+- `addWarning(message)` - Warning notifications (user-facing)
+- `addInfo(message)` - Information notifications (user-facing)
 
 ## 🧪 Unit Testing
 
-### Test Framework (Jest)
+### Test Framework (Vitest)
 
-```javascript
-// jest.config.js
-module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/__setup__/jest.setup.ts'],
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
+```typescript
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/__setup__/vitest.setup.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/**/*.d.ts'],
+      thresholds: {
+        branches: 80,
+        functions: 80,
+        lines: 80,
+        statements: 80
+      }
     }
   }
-};
+});
 ```
 
 ### Test Structure
 
 ```typescript
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+
 describe('UserService', () => {
   let userService: UserService;
-  let mockApi: jest.Mocked<ApiClient>;
+  let mockApi: Mocked<ApiClient>;
 
   beforeEach(() => {
     mockApi = createMockApiClient();
@@ -252,7 +306,7 @@ describe('UserService', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should authenticate user with valid credentials', async () => {
@@ -288,8 +342,8 @@ npm run test:coverage
 ```json
 {
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=22.0.0",
+    "yarn": ">=1.22.0"
   },
   "dependencies": {
     "react": "^18.2.0"
@@ -299,8 +353,8 @@ npm run test:coverage
 
 ```bash
 # Check dependencies
-npm audit
-npm outdated
+yarn audit
+yarn outdated
 
 # Update dependencies
 npm update

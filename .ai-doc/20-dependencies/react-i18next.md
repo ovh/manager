@@ -92,7 +92,7 @@ i18n
     debug: process.env.NODE_ENV === 'development',
     
     backend: {
-      loadPath: '/translations/{{lng}}/{{ns}}.json',
+      loadPath: '/translations/{{ns}}/Messages_{{lng}}.json',
     },
     
     ns: ['common', 'dashboard', 'onboarding'],
@@ -138,26 +138,28 @@ export const useI18n = () => {
 
 #### File Organization
 
+In Manager, we create namespaces as folders, and each folder contains translation files for all locales:
+
 ```
 public/translations/
-├── fr_FR/
-│   ├── common.json
-│   ├── dashboard.json
-│   └── onboarding.json
-├── en_GB/
-│   ├── common.json
-│   ├── dashboard.json
-│   └── onboarding.json
-└── de_DE/
-    ├── common.json
-    ├── dashboard.json
-    └── onboarding.json
+├── common/
+│   ├── Messages_fr_FR.json
+│   ├── Messages_en_GB.json
+│   └── Messages_de_DE.json
+├── dashboard/
+│   ├── Messages_fr_FR.json
+│   ├── Messages_en_GB.json
+│   └── Messages_de_DE.json
+└── onboarding/
+    ├── Messages_fr_FR.json
+    ├── Messages_en_GB.json
+    └── Messages_de_DE.json
 ```
 
 #### Translation File Examples
 
 ```json
-// public/translations/fr_FR/common.json
+// public/translations/common/Messages_fr_FR.json
 {
   "welcome": "Bienvenue",
   "loading": "Chargement...",
@@ -177,7 +179,7 @@ public/translations/
 ```
 
 ```json
-// public/translations/fr_FR/dashboard.json
+// public/translations/dashboard/Messages_fr_FR.json
 {
   "title": "Tableau de bord",
   "services": {

@@ -1,6 +1,9 @@
 # Expert Decision Matrix
 # @ai-purpose: Guide AI to make correct technical decisions like an expert developer
 # @ai-usage: Consult BEFORE implementing any feature to choose the right approach
+#
+# Note: When using ODS components in examples, consider the ODS version used in the µ-app
+# and verify component API compatibility. Component props and APIs may vary between versions.
 
 version: "1.0"
 last_updated: "2025-01-27"
@@ -342,49 +345,43 @@ component_decisions:
 
           <Datagrid data={services} columns={columns} />
 
-      use_simple_list:
-        when:
-          - "Simple list without columns"
-          - "List shows <10 items"
-          - "No sorting/pagination needed"
-        pattern: |
-          // @ai-pattern: simple-list
-          <ul>
-            {items.map(item => (
-              <li key={item.id}>{item.name}</li>
-            ))}
-          </ul>
-
     display_key_value:
       name: "Display Key-Value Data"
-      use: "Description component from MUK"
+      use: "Tile component from MUK"
       pattern: |
         // @ai-pattern: key-value-display
-        import { Description } from '@ovh-ux/muk';
+        import { Tile } from '@ovh-ux/muk';
 
-        <Description>
-          <Description.Term>{t('label_name')}</Description.Term>
-          <Description.Details>{service.name}</Description.Details>
+        <Tile>
+          <Tile.Item>
+            <Tile.Item.Term>{t('label_name')}</Tile.Item.Term>
+            <Tile.Item.Description>{service.name}</Tile.Item.Description>
+          </Tile.Item>
 
-          <Description.Term>{t('label_status')}</Description.Term>
-          <Description.Details><StatusBadge status={service.status} /></Description.Details>
-        </Description>
+          <Tile.Item>
+            <Tile.Item.Term>{t('label_status')}</Tile.Item.Term>
+            <Tile.Item.Description><StatusBadge status={service.status} /></Tile.Item.Description>
+          </Tile.Item>
+        </Tile>
 
     # -------------------------------------------------------------------------
     # User Actions
     # -------------------------------------------------------------------------
     action_modal:
       name: "Action Modal (Create/Edit/Delete)"
-      use: "useOdsModal hook"
+      use: "OdsModal component with useState"
       pattern: |
         // @ai-pattern: action-modal
-        import { useOdsModal } from '@ovh-ux/muk';
+        import { useState } from 'react';
+        import { OdsModal, OdsButton } from '@ovhcloud/ods-components/react';
 
-        const { isOpen, open, close } = useOdsModal();
+        const [isOpen, setIsOpen] = useState(false);
+        const open = () => setIsOpen(true);
+        const close = () => setIsOpen(false);
 
         <OdsButton onClick={open}>{t('action_delete')}</OdsButton>
 
-        <OdsModal isOpen={isOpen} onClose={close}>
+        <OdsModal open={isOpen} onOdsModalChange={(e) => setIsOpen(e.detail.open)}>
           <OdsModal.Header>{t('modal_delete_title')}</OdsModal.Header>
           <OdsModal.Body>
             {t('modal_delete_confirmation', { name: service.name })}

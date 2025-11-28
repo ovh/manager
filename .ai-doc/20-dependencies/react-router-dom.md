@@ -59,38 +59,40 @@ React Router DOM is designed for:
 
 ```typescript
 // routes/Routes.tsx
-import { createBrowserRouter } from 'react-router-dom';
-import { lazyRouteConfig } from '@ovh-ux/manager-core';
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-export const router = createBrowserRouter([
-  {
-    id: 'root',
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/Main.layout')),
-    children: [
-      {
-        id: 'listing',
-        path: 'listing',
-        ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
-        handle: {
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      Component={MainLayoutPage}
+    >
+      <Route
+        path="listing"
+        Component={ListingPage}
+        handle={{
           tracking: {
             pageName: 'listing',
             pageType: PageType.listing
           }
-        }
-      },
-      {
-        id: 'dashboard',
-        path: 'dashboard/:id',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: {
+        }}
+      />
+      <Route
+        path="dashboard/:id"
+        Component={DashboardPage}
+        handle={{
           tracking: { pageName: 'details', pageType: PageType.details }
-        }
-      }
-    ]
-  }
-]);
+        }}
+      />
+    </Route>
+  )
+);
 ```
 
 ```typescript
@@ -356,7 +358,50 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 ```
 
-### Permission Guard
+### Permission Guard (Recommended: Use Route Loader)
+
+**Best Practice:** Use route loaders with `redirect()` for authorization checks. This is the recommended approach in React Router v7 and matches the pattern used in pci-project.
+
+```typescript
+// pages/Dashboard.layout.tsx
+import { Outlet, redirect } from 'react-router-dom';
+import queryClient from '@/queryClient';
+import { getAuthorization } from '@/data/api/authorization.api';
+
+interface DashboardLayoutProps {
+  params: {
+    projectId: string;
+  };
+}
+
+export const Loader = async ({ params }: DashboardLayoutProps) => {
+  const { projectId } = params;
+  
+  // Check authorization
+  try {
+    const authResult = await queryClient.fetchQuery({
+      queryKey: [projectId, 'authorization'],
+      queryFn: () => getAuthorization({ projectId }),
+    });
+    
+    if (!authResult.authorized) {
+      // Redirect directly to login page for unauthorized scenarios
+      return redirect('/login');
+    }
+  } catch (error) {
+    // Redirect to login on authorization error
+    return redirect('/login');
+  }
+  
+  return null;
+};
+
+export default function DashboardLayout() {
+  return <Outlet />;
+}
+```
+
+**Alternative: Component Guard (if needed)**
 
 ```typescript
 import { Navigate } from 'react-router-dom';
@@ -372,29 +417,41 @@ function PermissionGuard({
   const auth = useAuthentication();
   
   if (!auth.roles().includes(requiredPermission)) {
-    return <Navigate to="/unauthorized" replace />;
+    // Redirect directly to login page for unauthorized scenarios
+    return <Navigate to="/login" replace />;
   }
   
   return <>{children}</>;
 }
 ```
+```
 
 ### Using Guards in Routes
 
+**Note:** Route guards are not needed for all routes. Only use them for routes that require authentication or specific permissions.
+
 ```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard/:id',
-    element: (
-      <ProtectedRoute>
-        <PermissionGuard requiredPermission="service:read">
-          <DashboardPage />
-        </PermissionGuard>
-      </ProtectedRoute>
-    )
-  }
-];
+// Example: Protected route that requires authentication
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="dashboard/:id"
+      Component={DashboardPage}
+      loader={async ({ params }) => {
+        // Authorization check in loader (recommended)
+        const isAuthorized = await checkAuthorization(params.id);
+        if (!isAuthorized) {
+          return redirect('/login');
+        }
+        return null;
+      }}
+    />
+  )
+);
 ```
 
 ## 🔗 Hash Routing (µApps)
@@ -402,75 +459,94 @@ const routes = [
 ### Hash Router Setup
 
 ```typescript
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
-export const router = createHashRouter([
-  {
-    id: 'root',
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        id: 'dashboard',
-        path: 'dashboard',
-        element: <DashboardPage />
-      }
-    ]
-  }
-]);
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createHashRouter(
+  createRoutesFromElements(
+    <Route path="/" Component={MainLayoutPage}>
+      <Route path="dashboard" Component={DashboardPage} />
+    </Route>
+  )
+);
 ```
 
 ### Shell Integration
 
 ```typescript
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { OvhContainerRoutingSync } from '@ovh-ux/manager-react-core-application';
 
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
 function App() {
-  const routes = [
-    {
-      id: 'dashboard',
-      path: 'dashboard',
-      element: <DashboardPage />
-    }
-  ];
+  const router = createHashRouter(
+    createRoutesFromElements(
+      <Route path="dashboard" Component={DashboardPage} />
+    )
+  );
   
-  return <OvhContainerRoutingSync routes={routes} />;
+  return <OvhContainerRoutingSync router={router} />;
 }
 ```
 
 ## 📥 Route Loaders
 
-### Basic Loader
+**Note:** In Manager applications, we don't recommend using route loaders for data fetching. Instead, we display skeletons while making queries using React Query hooks (`useQuery`). Route loaders should only be used for authorization checks and redirects.
+
+### Recommended Pattern: Skeletons with React Query
 
 ```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard/:id',
-    ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-    loader: async ({ params }) => {
-      const service = await fetchService(params.id);
-      return { service };
-    }
-  }
-];
-```
-
-### Using Loader Data
-
-```typescript
-import { useLoaderData } from 'react-router-dom';
+// pages/Dashboard.page.tsx
+import { useQuery } from '@tanstack/react-query';
+import { Skeleton } from '@ovh-ux/muk';
+import { useParams } from 'react-router-dom';
+import { getService } from '@/data/api/services.api';
 
 function DashboardPage() {
-  const { service } = useLoaderData() as { service: Service };
+  const { id } = useParams<{ id: string }>();
+  const { data: service, isLoading } = useQuery({
+    queryKey: ['service', id],
+    queryFn: () => getService(id),
+  });
+  
+  if (isLoading) {
+    return <Skeleton />;
+  }
   
   return (
     <div>
-      <h1>{service.name}</h1>
-      <p>{service.description}</p>
+      <h1>{service?.name}</h1>
+      <p>{service?.description}</p>
     </div>
   );
+}
+```
+
+### Route Loaders (Only for Authorization/Redirects)
+
+Route loaders should only be used for authorization checks and redirects, not for data fetching:
+
+```typescript
+// pages/Dashboard.layout.tsx
+import { Outlet, redirect } from 'react-router-dom';
+
+export const Loader = async ({ params }) => {
+  // Only use loader for authorization checks
+  const { projectId } = params;
+  const isAuthorized = await checkAuthorization(projectId);
+  
+  if (!isAuthorized) {
+    return redirect('/login');
+  }
+  
+  return null;
+};
+
+export default function DashboardLayout() {
+  return <Outlet />;
 }
 ```
 
@@ -479,32 +555,37 @@ function DashboardPage() {
 ### Route Error Elements
 
 ```typescript
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    element: <DashboardPage />,
-    errorElement: <ErrorPage />
-  }
-];
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="dashboard"
+      Component={DashboardPage}
+      errorElement={<ErrorPage />}
+    />
+  )
+);
 ```
 
 ### Error Boundary
 
 ```typescript
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 
-const routes = [
-  {
-    id: 'dashboard',
-    path: 'dashboard',
-    element: (
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <DashboardPage />
-      </ErrorBoundary>
-    )
-  }
-];
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="dashboard"
+      element={
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <DashboardPage />
+        </ErrorBoundary>
+      }
+    />
+  )
+);
 ```
 
 ## ⚠️ Best Practices & Common Pitfalls
@@ -512,35 +593,36 @@ const routes = [
 ### ✅ Best Practices
 
 ```typescript
-// ✅ CORRECT: Hierarchical route structure
-const routes = [
-  {
-    id: 'root',
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        id: 'dashboard',
-        path: 'dashboard',
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: {
+// ✅ CORRECT: Hierarchical route structure using Route components
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" Component={MainLayoutPage}>
+      <Route
+        path="dashboard"
+        Component={DashboardPage}
+        handle={{
           tracking: { pageName: 'dashboard', pageType: PageType.dashboard }
-        }
-      }
-    ]
-  }
-];
+        }}
+      />
+    </Route>
+  )
+);
 
 // ✅ CORRECT: Complete route metadata
-{
-  id: 'dashboard',
-  path: 'dashboard/:id',
-  ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-  handle: {
+<Route
+  path="dashboard/:id"
+  Component={DashboardPage}
+  handle={{
     tracking: { pageName: 'details', pageType: PageType.details },
     breadcrumb: { label: 'Service Details' }
-  }
-}
+  }}
+/>
 ```
 
 ### ❌ Common Mistakes
@@ -568,7 +650,7 @@ import DashboardPage from '@/pages/dashboard/Dashboard.page';
 3. **Include route metadata**: Add tracking and breadcrumb handles
 4. **Handle loading states**: Implement Suspense and error boundaries
 5. **Use proper navigation**: Use useNavigate for programmatic navigation
-6. **Implement route guards**: Add authentication and permission checks
+6. **Implement route guards when needed**: Add authentication and permission checks only for routes that require protection (not all routes need guards)
 7. **Follow nested structure**: Use hierarchical route organization
 8. **Handle errors gracefully**: Implement error boundaries and error elements
 

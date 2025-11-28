@@ -1,385 +1,263 @@
-# Recipe: Search + Filter + Pagination
+# Recipe: Search + Filter + Pagination with Iceberg
 
-> @ai-purpose: Complete implementation recipe for a common complex feature
+> @ai-purpose: Complete implementation recipe for server-side pagination with Iceberg API using MUK's useDataApi hook
 
 ## Overview
 
 This recipe implements a full-featured data table with:
-- Server-side pagination (Iceberg)
-- Client-side search
-- Multi-column filtering
-- URL state persistence
+- **Server-side pagination** using Iceberg API
+- **Server-side search** (via Iceberg filters)
+- **Server-side filtering** (via Iceberg filters)
+- **Server-side sorting** (via Iceberg sort params)
+- **Infinite scrolling** with automatic fetching
 - Loading and error states
+
+**Note:** With Iceberg, all operations (search, sort, filter) should be done server-side, not client-side.
 
 ## Prerequisites
 
-- [ ] MUK Datagrid component
-- [ ] React Query configured
-- [ ] React Router for URL state
+- [ ] MUK Datagrid component with `useDataApi` hook
+- [ ] Iceberg-compatible API endpoint
+- [ ] React Router configured
 - [ ] Translation namespace set up
 
-## Step 1: Create the API Hook
+## Step 1: Define Data Types
 
 ```typescript
-// src/data/api/hooks/useResourceList.ts
+// src/data/types/Resource.types.ts
 
-import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-
-interface UseResourceListParams {
-  page: number;
-  pageSize: number;
-  sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
-}
-
-interface Resource {
+export type Resource = {
   id: string;
   name: string;
-  status: string;
+  status: 'active' | 'inactive' | 'pending';
   createdAt: string;
-}
-
-interface ResourceListResponse {
-  data: Resource[];
-  totalCount: number;
-}
-
-export function useResourceList({
-  page,
-  pageSize,
-  sortBy,
-  sortOrder,
-}: UseResourceListParams) {
-  return useQuery<ResourceListResponse>({
-    queryKey: ['resources', 'list', { page, pageSize, sortBy, sortOrder }],
-    queryFn: async () => {
-      const response = await fetchIcebergV6<Resource>({
-        route: '/api/resources',
-        page,
-        pageSize,
-        ...(sortBy && { sortBy }),
-        ...(sortOrder && { sortOrder }),
-      });
-      return {
-        data: response.data,
-        totalCount: response.totalCount,
-      };
-    },
-    // Keep previous data while fetching new page
-    placeholderData: keepPreviousData,
-  });
-}
-```
-
-## Step 2: Create URL State Hook
-
-```typescript
-// src/hooks/useResourceFilters.ts
-
-import { useSearchParams } from 'react-router-dom';
-import { useMemo, useCallback } from 'react';
-
-interface Filters {
-  page: number;
-  pageSize: number;
-  search: string;
-  status: string | null;
-  sortBy: string | null;
-  sortOrder: 'asc' | 'desc';
-}
-
-const DEFAULT_FILTERS: Filters = {
-  page: 1,
-  pageSize: 25,
-  search: '',
-  status: null,
-  sortBy: null,
-  sortOrder: 'asc',
 };
-
-export function useResourceFilters() {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const filters = useMemo<Filters>(() => ({
-    page: parseInt(searchParams.get('page') || String(DEFAULT_FILTERS.page), 10),
-    pageSize: parseInt(searchParams.get('pageSize') || String(DEFAULT_FILTERS.pageSize), 10),
-    search: searchParams.get('search') || DEFAULT_FILTERS.search,
-    status: searchParams.get('status') || DEFAULT_FILTERS.status,
-    sortBy: searchParams.get('sortBy') || DEFAULT_FILTERS.sortBy,
-    sortOrder: (searchParams.get('sortOrder') as 'asc' | 'desc') || DEFAULT_FILTERS.sortOrder,
-  }), [searchParams]);
-
-  const setFilters = useCallback((updates: Partial<Filters>) => {
-    setSearchParams((prev) => {
-      const newParams = new URLSearchParams(prev);
-
-      Object.entries(updates).forEach(([key, value]) => {
-        if (value === null || value === '' || value === DEFAULT_FILTERS[key as keyof Filters]) {
-          newParams.delete(key);
-        } else {
-          newParams.set(key, String(value));
-        }
-      });
-
-      // Reset page when filters change (except for page itself)
-      if (!('page' in updates) && Object.keys(updates).length > 0) {
-        newParams.delete('page');
-      }
-
-      return newParams;
-    });
-  }, [setSearchParams]);
-
-  const resetFilters = useCallback(() => {
-    setSearchParams({});
-  }, [setSearchParams]);
-
-  return { filters, setFilters, resetFilters };
-}
 ```
 
-## Step 3: Create Filter Components
+## Step 2: Define Column Configuration
 
 ```typescript
-// src/pages/Resources/components/ResourceFilters.tsx
+// src/pages/resources/columns.ts
 
-import { useTranslation } from 'react-i18next';
-import { OdsInput, OdsSelect } from '@ovhcloud/ods-components/react';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { DatagridColumn, FilterTypeCategories } from '@ovh-ux/manager-react-components';
+import { Resource } from '@/data/types/Resource.types';
 
-interface ResourceFiltersProps {
-  search: string;
-  status: string | null;
-  onSearchChange: (value: string) => void;
-  onStatusChange: (value: string | null) => void;
-  onReset: () => void;
-}
-
-const STATUS_OPTIONS = [
-  { value: '', label: 'All' },
-  { value: 'active', label: 'Active' },
-  { value: 'inactive', label: 'Inactive' },
-  { value: 'pending', label: 'Pending' },
+export const resourceColumns: DatagridColumn<Resource>[] = [
+  {
+    id: 'name',
+    label: 'Name',
+    type: FilterTypeCategories.String,
+    isSearchable: true, // Enable search on this column
+    isSortable: true,
+  },
+  {
+    id: 'status',
+    label: 'Status',
+    type: FilterTypeCategories.String,
+    isSearchable: true,
+    isSortable: true,
+  },
+  {
+    id: 'createdAt',
+    label: 'Created At',
+    type: FilterTypeCategories.Date,
+    isSortable: true,
+  },
 ];
-
-export function ResourceFilters({
-  search,
-  status,
-  onSearchChange,
-  onStatusChange,
-  onReset,
-}: ResourceFiltersProps) {
-  const { t } = useTranslation('resources');
-
-  return (
-    <div className="flex gap-4 mb-4">
-      {/* Search Input */}
-      <OdsInput
-        type="search"
-        placeholder={t('resources_search_placeholder')}
-        value={search}
-        onOdsChange={(e) => onSearchChange(e.detail.value || '')}
-        clearable
-      />
-
-      {/* Status Filter */}
-      <OdsSelect
-        value={status || ''}
-        onOdsChange={(e) => onStatusChange(e.detail.value || null)}
-      >
-        {STATUS_OPTIONS.map((option) => (
-          <option key={option.value} value={option.value}>
-            {t(`resources_status_${option.value || 'all'}`)}
-          </option>
-        ))}
-      </OdsSelect>
-
-      {/* Reset Button */}
-      <OdsButton variant="ghost" onClick={onReset}>
-        {t('common_reset_filters')}
-      </OdsButton>
-    </div>
-  );
-}
 ```
 
-## Step 4: Create the Main Page Component
+## Step 3: Create the Page Component with useDataApi
 
 ```typescript
-// src/pages/Resources/ResourcesList.page.tsx
+// src/pages/resources/Listing.page.tsx
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Datagrid, DatagridColumn, Loading, ErrorBanner } from '@ovh-ux/muk';
-import { useResourceList } from '@/data/api/hooks/useResourceList';
-import { useResourceFilters } from '@/hooks/useResourceFilters';
-import { ResourceFilters } from './components/ResourceFilters';
-import { StatusBadge } from '@/components/StatusBadge';
-import { formatDate } from '@/utils/formatDate';
+import { 
+  Datagrid, 
+  useDataApi,
+  ErrorBanner 
+} from '@ovh-ux/manager-react-components';
+import { resourceColumns } from './columns';
+import { Resource } from '@/data/types/Resource.types';
 
-interface Resource {
-  id: string;
-  name: string;
-  status: string;
-  createdAt: string;
-}
-
-export function ResourcesListPage() {
+export default function ResourcesListingPage() {
   const { t } = useTranslation('resources');
-  const { filters, setFilters, resetFilters } = useResourceFilters();
+  const [searchInput, setSearchInput] = useState('');
 
-  // Fetch data with server-side pagination
+  // useDataApi handles pagination, sorting, filtering, and search automatically
   const {
-    data: response,
+    flattenData,
+    isError,
+    totalCount,
+    hasNextPage,
+    fetchNextPage,
     isLoading,
-    error,
-    isFetching,
-  } = useResourceList({
-    page: filters.page,
-    pageSize: filters.pageSize,
-    sortBy: filters.sortBy || undefined,
-    sortOrder: filters.sortOrder,
+    sorting,
+    setSorting,
+    filters,
+    search,
+  } = useDataApi<Resource>({
+    route: '/api/resources',
+    version: 'v6',
+    iceberg: true, // Enable Iceberg mode
+    cacheKey: ['resources', 'list'],
+    pageSize: 25,
+    columns: resourceColumns,
+    defaultSorting: [{ id: 'name', desc: false }],
   });
 
-  // Client-side filtering (search + status)
-  const filteredData = useMemo(() => {
-    if (!response?.data) return [];
+  // Debounced search
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      search.setSearchInput(searchInput.toLowerCase());
+    }, 300);
 
-    return response.data.filter((item) => {
-      // Search filter
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
-        if (!item.name.toLowerCase().includes(searchLower)) {
-          return false;
-        }
-      }
+    return () => clearTimeout(debounce);
+  }, [searchInput]);
 
-      // Status filter
-      if (filters.status && item.status !== filters.status) {
-        return false;
-      }
-
-      return true;
-    });
-  }, [response?.data, filters.search, filters.status]);
-
-  // Column definitions
-  const columns = useMemo<DatagridColumn<Resource>[]>(() => [
-    {
-      id: 'name',
-      label: t('resources_column_name'),
-      cell: (row) => row.name,
-      isSortable: true,
-    },
-    {
-      id: 'status',
-      label: t('resources_column_status'),
-      cell: (row) => <StatusBadge status={row.status} />,
-      isSortable: true,
-    },
-    {
-      id: 'createdAt',
-      label: t('resources_column_created'),
-      cell: (row) => formatDate(row.createdAt),
-      isSortable: true,
-    },
-  ], [t]);
-
-  // Handle sort
-  const handleSort = (columnId: string) => {
-    if (filters.sortBy === columnId) {
-      setFilters({
-        sortOrder: filters.sortOrder === 'asc' ? 'desc' : 'asc',
-      });
-    } else {
-      setFilters({
-        sortBy: columnId,
-        sortOrder: 'asc',
-      });
-    }
-  };
-
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    setFilters({ page });
-  };
-
-  // Loading state (initial load only)
-  if (isLoading) {
-    return <Loading />;
-  }
+  // Trigger search when searchInput changes
+  useEffect(() => {
+    search.onSearch(search.searchInput);
+  }, [search.searchInput]);
 
   // Error state
-  if (error) {
-    return <ErrorBanner error={error} />;
+  if (isError) {
+    return (
+      <ErrorBanner
+        error={{
+          status: 500,
+          data: { message: t('resources_error_loading') },
+        }}
+      />
+    );
   }
 
   return (
     <div>
       <h1>{t('resources_title')}</h1>
 
-      {/* Filters */}
-      <ResourceFilters
-        search={filters.search}
-        status={filters.status}
-        onSearchChange={(search) => setFilters({ search })}
-        onStatusChange={(status) => setFilters({ status })}
-        onReset={resetFilters}
-      />
-
-      {/* Data Table */}
+      {/* Datagrid with infinite scrolling */}
       <Datagrid
-        data={filteredData}
-        columns={columns}
-        pageSize={filters.pageSize}
-        totalItems={response?.totalCount || 0}
-        currentPage={filters.page}
-        onPageChange={handlePageChange}
-        onSort={handleSort}
-        sortBy={filters.sortBy || undefined}
-        sortOrder={filters.sortOrder}
-        isLoading={isFetching}
+        isLoading={isLoading}
+        columns={resourceColumns}
+        items={flattenData || []}
+        totalItems={totalCount || 0}
+        hasNextPage={hasNextPage && !isLoading}
+        onFetchNextPage={fetchNextPage}
+        sorting={sorting}
+        onSortChange={setSorting}
+        filters={filters}
+        search={{
+          searchInput,
+          setSearchInput,
+          onSearch: () => null, // Handled by useEffect
+        }}
       />
     </div>
   );
 }
 ```
 
-## Step 5: Add Translations
+## Step 4: Add Translations
 
 ```json
 // public/translations/resources/Messages_en_GB.json
 {
   "resources_title": "Resources",
-  "resources_search_placeholder": "Search by name...",
-  "resources_status_all": "All statuses",
-  "resources_status_active": "Active",
-  "resources_status_inactive": "Inactive",
-  "resources_status_pending": "Pending",
-  "resources_column_name": "Name",
-  "resources_column_status": "Status",
-  "resources_column_created": "Created",
-  "common_reset_filters": "Reset filters"
+  "resources_error_loading": "Failed to load resources. Please try again."
 }
+```
+
+## useDataApi Features
+
+The `useDataApi` hook from MUK provides:
+
+### Pagination
+- **Infinite scrolling**: Automatically fetches next page when needed
+- `flattenData`: All loaded data flattened from pages
+- `hasNextPage`: Boolean indicating if more data is available
+- `fetchNextPage`: Function to fetch the next page
+- `totalCount`: Total number of items from API
+
+### Sorting
+- `sorting`: Current sorting state (SortingState from TanStack Table)
+- `setSorting`: Function to update sorting
+- Automatically sends `sortBy` and `sortOrder` to Iceberg API
+
+### Filtering
+- `filters`: Current column filters
+- `addFilter`: Function to add a filter
+- `removeFilter`: Function to remove a filter
+- Filters are sent to Iceberg API as query parameters
+
+### Search
+- `search.searchInput`: Current search input value
+- `search.setSearchInput`: Function to update search input
+- `search.onSearch`: Function to trigger search (applies to searchable columns)
+- Searches across all columns marked with `isSearchable: true`
+
+### Loading States
+- `isLoading`: Initial data loading
+- `isFetching`: Any data fetching (including refetch)
+- `isError`: Error state
+- `error`: Error object
+
+## Configuration Options
+
+```typescript
+useDataApi<TData>({
+  // Required
+  route: string,           // API endpoint path
+  version: 'v2' | 'v6',    // API version
+  cacheKey: string | string[], // React Query cache key
+  
+  // Iceberg-specific
+  iceberg?: boolean,       // Enable Iceberg mode (default: false)
+  pageSize?: number,       // Items per page (default: 25)
+  fetchAll?: boolean,      // Fetch all pages at once (default: false)
+  
+  // Data transformation
+  columns?: DatagridColumn<TData>[], // Column configuration for filtering/sorting
+  defaultSorting?: SortingState, // Initial sort state
+  
+  // React Query options
+  enabled?: boolean,       // Enable/disable query (default: true)
+  refetchInterval?: number | false, // Auto-refetch interval
+  disableCache?: boolean,  // Disable React Query cache
+  
+  // Custom fetch (advanced)
+  fetchDataFn?: (route: string) => Promise<{ data: TData[] }>,
+})
 ```
 
 ## Verification Checklist
 
-- [ ] **Pagination**: Page changes update URL and fetch new data
-- [ ] **Search**: Search term persists in URL, filters data correctly
-- [ ] **Filters**: Status filter persists in URL, filters data correctly
-- [ ] **Sort**: Sort column and order persist in URL, request sorted data
-- [ ] **Reset**: Reset button clears all filters and URL params
-- [ ] **Loading**: Shows loading state during initial load and page changes
+- [ ] **Infinite Scrolling**: Scroll to bottom loads more data automatically
+- [ ] **Search**: Search input filters data across searchable columns
+- [ ] **Filters**: Column filters work correctly with Iceberg API
+- [ ] **Sort**: Clicking column headers sorts data server-side
+- [ ] **Loading**: Shows loading state during initial load and pagination
 - [ ] **Error**: Shows error banner on API failure
 - [ ] **Empty**: Shows appropriate message when no results
-- [ ] **URL Sharing**: Copy URL → Paste → Same view appears
 
 ## Common Mistakes to Avoid
 
-1. **Don't reset page on every filter change** - Only reset when search/filters change, not pagination
-2. **Don't fetch without pageSize** - Always pass pagination params to API
-3. **Don't use useState for URL state** - Use useSearchParams for shareable URLs
-4. **Don't inline columns array** - Use useMemo to prevent re-renders
-5. **Don't mix server and client pagination** - Pick one approach per use case
+1. **Don't use client-side filtering with Iceberg** - All filtering should be server-side
+2. **Don't mix useDataApi with custom fetching** - Use either useDataApi or custom implementation, not both
+3. **Don't forget column configuration** - Columns must be defined for search/filter/sort to work
+4. **Don't inline columns array** - Define columns outside component or use useMemo
+5. **Always set `iceberg: true`** - Required for Iceberg endpoints
+
+## When NOT to Use Iceberg
+
+If your API endpoint does NOT support Iceberg:
+- Use `version: 'v6'` and `iceberg: false`
+- Implement pagination manually with traditional v6 endpoints
+- Consider client-side filtering/sorting for small datasets
+
+## Reference
+
+- [MUK useDataApi Documentation](https://github.com/ovh/manager/tree/develop/packages/manager-ui-kit)
+- [Iceberg API Documentation](https://api.ovh.com/console/#/)
+- [TanStack Table (used internally)](https://tanstack.com/table)
