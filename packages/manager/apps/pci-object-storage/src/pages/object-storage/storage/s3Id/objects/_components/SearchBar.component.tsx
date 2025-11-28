@@ -29,7 +29,7 @@ const SearchBar = ({
   onSearchChange,
   deferredSearchQuery,
   filteredObjects,
-  placeholder = 'Search...',
+  placeholder,
 }: SearchBarProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
@@ -52,6 +52,7 @@ const SearchBar = ({
                 value={searchQuery}
                 onValueChange={handleSearchChange}
                 placeholder={placeholder}
+                className="text-sm"
               />
               <Button className="rounded-l-none rounded-r-[5px] h-auto">
                 <Search />
