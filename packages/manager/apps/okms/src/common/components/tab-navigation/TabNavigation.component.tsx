@@ -1,11 +1,17 @@
+import { ComponentProps } from 'react';
+
 import { NavLink, useLocation } from 'react-router-dom';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { OdsBadge, OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
 export type TabNavigationItem = {
   name: string;
   url: string;
   title: string;
+  badge?: {
+    label: string;
+    color: ComponentProps<typeof OdsBadge>['color'];
+  };
 };
 
 export type TabNavigationProps = {
@@ -48,8 +54,17 @@ export const TabNavigation = ({ tabs }: TabNavigationProps) => {
             data-testid={tab.name}
             role="tab"
             isSelected={activeTabIndex === index}
+            className="space-x-1"
           >
-            {tab.title}
+            <span>{tab.title}</span>
+            {tab.badge && (
+              <OdsBadge
+                label={tab.badge.label}
+                color={tab.badge.color}
+                size="sm"
+                className="font-normal"
+              />
+            )}
           </OdsTab>
         </NavLink>
       ))}

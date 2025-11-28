@@ -56,6 +56,10 @@ export default function OkmsDashboardPage() {
       name: 'logs',
       title: t('key-management-service/dashboard:logs'),
       url: SECRET_MANAGER_ROUTES_URLS.okmsDashboardLogs(okmsId),
+      badge: {
+        label: 'beta',
+        color: 'information',
+      },
     },
   ]);
 
