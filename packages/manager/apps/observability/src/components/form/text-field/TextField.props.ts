@@ -12,6 +12,7 @@ export type TextFieldProps = {
   rows?: number;
   className?: string;
   isRequired?: boolean;
+  isDisabled?: boolean;
   onChange?: (value: string) => void;
   onBlur?: () => void;
   error?: string;
