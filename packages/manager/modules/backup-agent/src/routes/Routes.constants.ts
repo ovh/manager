@@ -31,6 +31,7 @@ export const urls = {
   dashboardTenants: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}`,
   dashboardTenantAgents: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}`,
   addAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.add}`,
+  dashboardTenantAgentDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.delete}/${urlParams.agentId}`,
   editAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.configure}/${urlParams.agentId}`,
   listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
   dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,

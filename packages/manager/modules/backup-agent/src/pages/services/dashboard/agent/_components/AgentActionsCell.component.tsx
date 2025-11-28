@@ -16,12 +16,17 @@ export type AgentActionsCellProps = {
   tenantId: string;
   agentId: string;
 };
-
 export const AgentActionsCell = ({ tenantId, agentId }: AgentActionsCellProps) => {
   const id = useId();
   const { t } = useTranslation([NAMESPACES.ACTIONS, BACKUP_AGENT_NAMESPACES.COMMON]);
   const configurationHref = useHref(
     urls.editAgentConfiguration.replace(urlParams.tenantId, tenantId).replace(':agentId', agentId),
+  );
+
+  const deleteHref = useHref(
+    urls.dashboardTenantAgentDelete
+      .replace(urlParams.tenantId, tenantId)
+      .replace(':agentId', agentId),
   );
 
   const actions: ActionMenuItem[] = [
@@ -33,7 +38,7 @@ export const AgentActionsCell = ({ tenantId, agentId }: AgentActionsCellProps) =
     {
       id: 1,
       label: t(`${NAMESPACES.ACTIONS}:delete`),
-      href: '',
+      href: deleteHref,
       color: ODS_BUTTON_COLOR.critical,
     },
   ];

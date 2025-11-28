@@ -8,53 +8,53 @@
   "sideEffects": false,
   "exports": {
     ".": {
+      "types": "./dist/types/src/lib.d.ts",
       "import": "./dist/src/lib",
-      "require": "./dist/src/lib.js",
-      "types": "./dist/types/src/lib.d.ts"
+      "require": "./dist/src/lib.js"
     },
     "./package.json": {
       "import": "./package.json",
       "require": "./package.json"
     },
     "./data/hooks/baremetal/useBaremetalsList": {
+      "types": "./dist/types/src/data/hooks/baremetal/useBaremetalsList.d.ts",
       "import": "./dist/src/data/hooks/baremetal/useBaremetalsList",
-      "require": "./dist/src/data/hooks/baremetal/useBaremetalsList.js",
-      "types": "./dist/types/src/data/hooks/baremetal/useBaremetalsList.d.ts"
+      "require": "./dist/src/data/hooks/baremetal/useBaremetalsList.js"
     },
     "./mocks/baremetals/baremetals.mocks": {
+      "types": "./dist/types/src/mocks/baremetals/baremetals.mocks.d.ts",
       "import": "./dist/src/mocks/baremetals/baremetals.mocks",
-      "require": "./dist/src/mocks/baremetals/baremetals.mocks.js",
-      "types": "./dist/types/src/mocks/baremetals/baremetals.mocks.d.ts"
+      "require": "./dist/src/mocks/baremetals/baremetals.mocks.js"
     },
     "./mocks/baremetals/baremetals.handler": {
+      "types": "./dist/types/src/mocks/baremetals/baremetals.handler.d.ts",
       "import": "./dist/src/mocks/baremetals/baremetals.handler",
-      "require": "./dist/src/mocks/baremetals/baremetals.handler.js",
-      "types": "./dist/types/src/mocks/baremetals/baremetals.handler.d.ts"
+      "require": "./dist/src/mocks/baremetals/baremetals.handler.js"
     },
     "./components/Fields/RhfField/RhfField.component": {
+      "types": "./dist/types/src/components/Fields/RhfField.component.d.ts",
       "import": "./dist/src/components/Fields/RhfField.component",
-      "require": "./dist/src/components/Fields/RhfField.component.js",
-      "types": "./dist/types/src/components/Fields/RhfField.component.d.ts"
+      "require": "./dist/src/components/Fields/RhfField.component.js"
     },
     "./components/Fields/RhfInput": {
+      "types": "./dist/types/src/components/Fields/RhfInput.d.ts",
       "import": "./dist/src/components/Fields/RhfInput",
-      "require": "./dist/src/components/Fields/RhfInput.js",
-      "types": "./dist/types/src/components/Fields/RhfInput.d.ts"
+      "require": "./dist/src/components/Fields/RhfInput.js"
     },
     "./components/Fields/RhfQuantity": {
+      "types": "./dist/types/src/components/Fields/RhfQuantity.d.ts",
       "import": "./dist/src/components/Fields/RhfQuantity",
-      "require": "./dist/src/components/Fields/RhfQuantity.js",
-      "types": "./dist/types/src/components/Fields/RhfQuantity.d.ts"
+      "require": "./dist/src/components/Fields/RhfQuantity.js"
     },
     "./components/Fields/RhfCombobox": {
+      "types": "./dist/types/src/components/Fields/RhfCombobox.d.ts",
       "import": "./dist/src/components/Fields/RhfCombobox",
-      "require": "./dist/src/components/Fields/RhfCombobox.js",
-      "types": "./dist/types/src/components/Fields/RhfCombobox.d.ts"
+      "require": "./dist/src/components/Fields/RhfCombobox.js"
     },
     "./components/CommonFields/BaremetalOption/BaremetalOption.component": {
+      "types": "./dist/types/src/components/CommonFields/BaremetalOption/BaremetalOption.component.d.ts",
       "import": "./dist/src/components/CommonFields/BaremetalOption/BaremetalOption.component",
-      "require": "./dist/src/components/CommonFields/BaremetalOption/BaremetalOption.component.js",
-      "types": "./dist/types/src/components/CommonFields/BaremetalOption/BaremetalOption.component.d.ts"
+      "require": "./dist/src/components/CommonFields/BaremetalOption/BaremetalOption.component.js"
     }
   },
   "main": "./dist/src/lib.js",
@@ -75,9 +75,9 @@
     "@ovh-ux/manager-core-api": "^0.18.7",
     "@ovh-ux/manager-module-common-api": "*",
     "@ovh-ux/manager-react-components": "^2.42.4",
-    "@ovh-ux/manager-static-analysis-kit": "0.13.0",
+    "@ovh-ux/manager-static-analysis-kit": "0.14.0",
     "@ovh-ux/manager-tests-setup": "0.6.0",
-    "@ovh-ux/manager-vite-config": "0.15.0",
+    "@ovh-ux/manager-vite-config": "0.15.2",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
     "@types/lodash.capitalize": "^4.2.1",
@@ -110,7 +110,7 @@
     "lodash.capitalize": "^4.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.66.1",
+    "react-hook-form": "7.66.1",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0"
   }

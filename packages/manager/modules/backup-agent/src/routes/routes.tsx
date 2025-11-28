@@ -43,6 +43,10 @@ const VaultBucketsPage = React.lazy(
   () => import('../pages/vaults/dashboard/buckets/VaultBuckets.page'),
 );
 
+const AgentDeletePage = React.lazy(
+  () => import('@/pages/services/dashboard/agent/delete/DeleteAgent.page'),
+);
+
 export default (
   <>
     <Route path="" Component={MainLayout}>
@@ -95,6 +99,11 @@ export default (
           <Route
             path={`${subRoutes.configure}/${urlParams.agentId}`}
             Component={AgentEditConfigurationPage}
+          />
+          <Route
+            path={`${subRoutes.delete}/${urlParams.agentId}`}
+            Component={AgentDeletePage}
+            handle={{ tracking: { pageName: 'delete-agent', pageType: PageType.popup } }}
           />
         </Route>
       </Route>
