@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   Badge,
   FormField,
@@ -6,70 +6,61 @@ import {
   Select,
   SelectContent,
   SelectControl,
+  SelectCustomOptionRendererArg,
+  SelectOptionItem,
   SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { mockedDistributionImageVersions } from '@/__mocks__/instance/constants';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
+import {
+  TAvailableOption,
+  TCustomData,
+} from '../../view-models/imagesViewModel';
 
-type TSelectedVersion = {
-  label: string;
-  value: string;
-  osType: string;
+type TDistributionVersionList = {
+  versions: SelectOptionItem<TCustomData>[];
 };
 
-const DistributionVersionList: FC = () => {
+const DistributionVersionList = ({ versions }: TDistributionVersionList) => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [selectedImageId, selectedVersion] = useWatch({
+  const selectedVersion = useWatch({
     control,
-    name: ['distributionImageId', 'distributionImageVersion'],
+    name: 'distributionImageVersion',
   });
 
-  // TODO: will be handle by a view-models
-  const versions = useMemo(
-    () =>
-      mockedDistributionImageVersions
-        .find(({ imageId }) => imageId === selectedImageId)
-        ?.versions.map(({ name, osType, unavailable }) => ({
-          label: name,
-          value: name,
-          disabled: !!unavailable,
-          osType,
-          customRendererData: {
-            unavailable,
-          },
-        })),
-    [selectedImageId],
-  );
-
   const updateImageVersionFields = useCallback(
-    (version?: TSelectedVersion) => {
-      setValue('distributionImageVersion', version?.value ?? null);
-      setValue('distributionImageOsType', version?.osType ?? null);
-
-      if (version?.osType === 'windows') {
-        setValue('sshKeyId', null);
-        setValue('newSshPublicKey', null);
-      }
+    (version: SelectOptionItem | null) => {
+      setValue('distributionImageVersion', {
+        distributionImageVersionId: version?.value ?? null,
+        distributionImageVersionName: version?.label ?? null,
+      });
     },
     [setValue],
   );
 
   const handleSelectVersion = ({ items }: SelectValueChangeDetail) => {
-    const version = (items as TSelectedVersion[])[0];
-    updateImageVersionFields(version);
+    const version = (items as TAvailableOption[])[0];
+    updateImageVersionFields(version ?? null);
   };
 
   useEffect(() => {
-    const version = versions?.find(({ disabled }) => !disabled);
-
-    updateImageVersionFields(version);
-  }, [updateImageVersionFields, versions]);
-
-  if (!versions || versions.length <= 1) return null;
+    const foundVersion = versions.find(
+      ({ value }) => value === selectedVersion.distributionImageVersionId,
+    );
+    if (!foundVersion) {
+      const firstAvailableVersion = versions.find(
+        ({ customRendererData }) => customRendererData?.available,
+      );
+      updateImageVersionFields(firstAvailableVersion ?? null);
+    }
+  }, [
+    selectedVersion.distributionImageVersionId,
+    updateImageVersionFields,
+    versions,
+  ]);
 
   return (
     <Controller
@@ -84,16 +75,23 @@ const DistributionVersionList: FC = () => {
           </FormFieldLabel>
           <Select
             items={versions}
-            value={selectedVersion ? [selectedVersion] : []}
+            value={
+              selectedVersion.distributionImageVersionId
+                ? [selectedVersion.distributionImageVersionId]
+                : []
+            }
             onValueChange={handleSelectVersion}
           >
             <SelectControl />
             <SelectContent
               className="[&>div>span:first-child]:w-full"
-              customOptionRenderer={({ label, customData }) => (
+              customOptionRenderer={({
+                label,
+                customData,
+              }: SelectCustomOptionRendererArg) => (
                 <div className="flex justify-between items-center w-full py-4">
                   <Text>{label}</Text>
-                  {customData?.unavailable && (
+                  {!(customData as TCustomData).available && (
                     <Badge
                       className="bg-[--ods-color-neutral-500] text-[--ods-color-element-text-selected] text-xs"
                       color="neutral"

@@ -10,10 +10,6 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
-import {
-  TFlavorData,
-  TGpuFlavorData,
-} from '@/pages/instances/create/view-models/flavorsViewModel';
 import { ComponentType, SVGProps } from 'react';
 
 export const mockedInstance: TAggregatedInstance = {
@@ -228,6 +224,12 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
           prices: [
             {
               type: 'hour',
+              monthlyEquivalent: {
+                currencyCode: 'EUR',
+                priceInUcents: 366670000,
+                text: '3.67 €',
+                value: 3.6667,
+              },
               price: {
                 currencyCode: 'EUR',
                 priceInUcents: 4650000,
@@ -235,6 +237,7 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
                 value: 0.0465,
               },
               includeVat: false,
+              hourlyVcoreEquivalent: null,
             },
           ],
         },
@@ -251,6 +254,13 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
                 value: 0.0465,
               },
               includeVat: false,
+              hourlyVcoreEquivalent: null,
+              monthlyEquivalent: {
+                currencyCode: 'EUR',
+                priceInUcents: 366670000,
+                text: '3.67 €',
+                value: 3.6667,
+              },
             },
           ],
         },
@@ -267,6 +277,13 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
                 value: 0.0465,
               },
               includeVat: false,
+              hourlyVcoreEquivalent: null,
+              monthlyEquivalent: {
+                currencyCode: 'EUR',
+                priceInUcents: 366670000,
+                text: '3.67 €',
+                value: 3.6667,
+              },
             },
             {
               type: 'licence',
@@ -277,6 +294,13 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
                 value: 5,
               },
               includeVat: false,
+              monthlyEquivalent: null,
+              hourlyVcoreEquivalent: {
+                currencyCode: 'EUR',
+                priceInUcents: 670000,
+                text: '0.0067 €',
+                value: 0.006667,
+              },
             },
           ],
         },
@@ -564,11 +588,20 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             prices: [
               {
                 type: 'hour',
-                currencyCode: 'EUR',
                 includeVat: false,
-                value: 0.0465,
-                priceInUcents: 4650000,
-                text: '0.05 €',
+                price: {
+                  currencyCode: 'EUR',
+                  value: 0.0465,
+                  priceInUcents: 4650000,
+                  text: '0.05 €',
+                },
+                monthlyEquivalent: {
+                  currencyCode: 'EUR',
+                  priceInUcents: 366670000,
+                  text: '3.67 €',
+                  value: 3.6667,
+                },
+                hourlyVcoreEquivalent: null,
               },
             ],
           },
@@ -580,11 +613,20 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             prices: [
               {
                 type: 'hour',
-                currencyCode: 'EUR',
                 includeVat: false,
-                value: 0.0465,
-                priceInUcents: 4650000,
-                text: '0.04 €',
+                price: {
+                  currencyCode: 'EUR',
+                  value: 0.0465,
+                  priceInUcents: 4650000,
+                  text: '0.04 €',
+                },
+                hourlyVcoreEquivalent: null,
+                monthlyEquivalent: {
+                  currencyCode: 'EUR',
+                  priceInUcents: 366670000,
+                  text: '3.67 €',
+                  value: 3.6667,
+                },
               },
             ],
           },
@@ -596,19 +638,37 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             prices: [
               {
                 type: 'hour',
-                currencyCode: 'EUR',
                 includeVat: false,
-                value: 0.0465,
-                priceInUcents: 4650000,
-                text: '0.05 €',
+                price: {
+                  currencyCode: 'EUR',
+                  value: 0.0465,
+                  priceInUcents: 4650000,
+                  text: '0.05 €',
+                },
+                hourlyVcoreEquivalent: null,
+                monthlyEquivalent: {
+                  currencyCode: 'EUR',
+                  priceInUcents: 366670000,
+                  text: '3.67 €',
+                  value: 3.6667,
+                },
               },
               {
                 type: 'licence',
-                currencyCode: 'EUR',
                 includeVat: false,
-                value: 5,
-                priceInUcents: 500000000,
-                text: '5 €',
+                price: {
+                  currencyCode: 'EUR',
+                  value: 5,
+                  priceInUcents: 500000000,
+                  text: '5 €',
+                },
+                monthlyEquivalent: null,
+                hourlyVcoreEquivalent: {
+                  currencyCode: 'EUR',
+                  priceInUcents: 670000,
+                  text: '0.0067 €',
+                  value: 0.006667,
+                },
               },
             ],
           },
@@ -690,57 +750,45 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
     },
     imageTypes: {
       byId: new Map([
-        ['linux', { name: 'linux', imageVariantIds: ['almalinux'] }],
-        ['windows', { name: 'windows', imageVariantIds: ['windows'] }],
-      ]),
-      allIds: ['linux', 'windows'],
-    },
-
-    imageVariants: {
-      byId: new Map([
         [
-          'almalinux',
-          {
-            name: 'almalinux',
-            imageVersionIds: ['AlmaLinux 8', 'AlmaLinux 9 - UEFI'],
-          },
+          'linux',
+          { id: 'linux', imageIds: ['AlmaLinux 8', 'AlmaLinux 9 - UEFI'] },
         ],
         [
           'windows',
           {
-            name: 'windows',
-            imageVersionIds: ['Windows Server 2016 Standard (Desktop)'],
+            id: 'windows',
+            imageIds: ['Windows Server 2016 Standard (Desktop)'],
           },
         ],
       ]),
-      allIds: ['almalinux', 'windows'],
+      allIds: ['linux', 'windows'],
     },
-    imageVersions: {
+
+    images: {
       byId: new Map([
         [
           'AlmaLinux 8',
           {
-            name: 'AlmaLinux 8',
-            regionalizedImageVersionIds: [
-              'AlmaLinux 8_GRA4',
-              'AlmaLinux 8_GRA11',
-            ],
+            id: 'AlmaLinux 8',
+            variant: 'almalinux',
+            osType: 'linux',
           },
         ],
         [
           'AlmaLinux 9 - UEFI',
           {
-            name: 'AlmaLinux 9 - UEFI',
-            regionalizedImageVersionIds: ['AlmaLinux 9 - UEFI_GRA4'],
+            id: 'AlmaLinux 9 - UEFI',
+            variant: 'almalinux',
+            osType: 'linux',
           },
         ],
         [
           'Windows Server 2016 Standard (Desktop)',
           {
-            name: 'Windows Server 2016 Standard (Desktop)',
-            regionalizedImageVersionIds: [
-              'Windows Server 2016 Standard (Desktop)_BHS3',
-            ],
+            id: 'Windows Server 2016 Standard (Desktop)',
+            osType: 'windows',
+            variant: 'windows',
           },
         ],
       ]),
@@ -750,7 +798,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
         'Windows Server 2016 Standard (Desktop)',
       ],
     },
-    regionalizedImageVersions: {
+    regionalizedImages: {
       byId: new Map([
         [
           'AlmaLinux 8_GRA4',
@@ -1225,495 +1273,5 @@ export const mockedFlavorCategories = [
       },
     ],
     tags: null,
-  },
-];
-
-export const mockedFlavors: TFlavorData[] = [
-  {
-    id: '1',
-    unavailable: false,
-    unavailableQuota: false,
-    name: 'b3-8',
-    memory: 8,
-    vCore: 2,
-    bandwidthPublic: '500 Mbit/s',
-    bandwidthPrivate: '4 Gbit/s max',
-    storage: 50,
-    mode: 'region-3-az',
-    hourlyPrice: 0.0465,
-    monthlyPrice: 25.5,
-  },
-  {
-    id: '2',
-    unavailable: false,
-    unavailableQuota: false,
-    name: 'b3-16',
-    memory: 16,
-    vCore: 4,
-    bandwidthPublic: '500 Mbit/s',
-    bandwidthPrivate: '4 Gbit/s max',
-    storage: 100,
-    mode: 'region-3-az',
-    hourlyPrice: 0.186,
-    monthlyPrice: 51.0,
-  },
-  {
-    id: '3',
-    unavailable: false,
-    unavailableQuota: false,
-    name: 'b3-32',
-    memory: 32,
-    vCore: 8,
-    bandwidthPublic: '500 Mbit/s',
-    bandwidthPrivate: '4 Gbit/s max',
-    storage: 200,
-    mode: 'region-3-az',
-    hourlyPrice: 0.372,
-    monthlyPrice: 102.0,
-  },
-  {
-    id: '4',
-    unavailable: false,
-    unavailableQuota: true,
-    name: 'b3-256',
-    memory: 256,
-    vCore: 128,
-    bandwidthPublic: '500 Mbit/s',
-    bandwidthPrivate: '4 Gbit/s max',
-    storage: 400,
-    mode: 'region-3-az',
-    hourlyPrice: 2.9756,
-    monthlyPrice: 816.0,
-  },
-  {
-    id: '5',
-    unavailable: true,
-    unavailableQuota: false,
-    name: 'b3-512',
-    memory: 512,
-    vCore: 160,
-    bandwidthPublic: '500 Mbit/s',
-    bandwidthPrivate: '4 Gbit/s max',
-    storage: 400,
-    mode: 'region-3-az',
-    hourlyPrice: 3.7195,
-    monthlyPrice: 1632.0,
-  },
-];
-
-export const mockedGpuFlavors: TGpuFlavorData[] = [
-  {
-    id: '1',
-    unavailable: false,
-    unavailableQuota: false,
-    name: 'A10-45',
-    gpu: 'A-10',
-    numberOfGpu: 1,
-    vRamTotal: 24,
-    memory: 45,
-    vCore: 30,
-    storage: 400,
-    bandwidthPublic: '500 Mbit/s',
-    bandwidthPrivate: '4 Gbit/s max',
-    hourlyPrice: 0.76,
-    monthlyPrice: 554.8,
-    mode: 'region',
-  },
-  {
-    id: '2',
-    unavailable: false,
-    unavailableQuota: true,
-    name: 'A10-90',
-    gpu: 'A-10',
-    numberOfGpu: 2,
-    vRamTotal: 48,
-    memory: 90,
-    vCore: 60,
-    storage: 400,
-    bandwidthPublic: '1 Gbit/s',
-    bandwidthPrivate: '6 Gbit/s max',
-    hourlyPrice: 1.52,
-    monthlyPrice: 1109.6,
-    mode: 'region',
-  },
-  {
-    id: '3',
-    unavailable: true,
-    unavailableQuota: false,
-    name: 'A10-180',
-    gpu: 'A-10',
-    numberOfGpu: 4,
-    vRamTotal: 180,
-    memory: 180,
-    vCore: 120,
-    storage: 400,
-    bandwidthPublic: '2 Gbit/s',
-    bandwidthPrivate: '8 Gbit/s max',
-    hourlyPrice: 3.04,
-    monthlyPrice: 2219.2,
-    mode: 'region',
-  },
-];
-
-export const mockedDistributionImageList = [
-  {
-    category: 'linux',
-    subCategory: 'ubuntu',
-    label: 'Ubuntu',
-    imageId: 'fake-ubuntuId',
-  },
-  {
-    category: 'linux',
-    subCategory: 'fedora',
-    label: 'Fedora',
-    imageId: 'fake-fedoraId',
-  },
-  {
-    category: 'linux',
-    subCategory: 'freebsd',
-    label: 'FreeBSD',
-    imageId: 'fake-freebsdId',
-  },
-  {
-    category: 'linux',
-    subCategory: 'centos',
-    label: 'CentOS',
-    imageId: 'fake-centosId',
-  },
-  {
-    category: 'linux',
-    subCategory: 'almalinux',
-    label: 'Almalinux',
-    imageId: 'fake-almalinuxId',
-  },
-  {
-    category: 'linux',
-    subCategory: 'rockylinux',
-    label: 'Rocky Linux',
-    imageId: 'fake-rockylinuxId',
-  },
-  {
-    category: 'linux',
-    subCategory: 'cloudlinux',
-    label: 'CloudLinux',
-    imageId: 'fake-cloudlinuxId',
-  },
-  {
-    category: 'linux',
-    subCategory: 'debian',
-    label: 'Debian',
-    imageId: 'fake-debianId',
-  },
-  {
-    category: 'windows',
-    subCategory: 'windows',
-    label: 'Windows Server 2022 Standard (Desktop)',
-    pricing: '+0,0347 € HT/vCore/heure',
-    imageId: 'fake-windows2022Id',
-  },
-  {
-    category: 'windows',
-    subCategory: 'windows',
-    label: 'Windows Server 2023 Standard (Desktop)',
-    pricing: '+0,0347 € HT/vCore/heure',
-    imageId: 'fake-windows2023Id',
-  },
-  {
-    category: 'windows',
-    subCategory: 'windows',
-    label: 'Windows Server 2019 Standard (Desktop) - UEFI',
-    pricing: '+0,0347 € HT/vCore/heure',
-    imageId: 'fake-windows2019Id',
-  },
-  {
-    category: 'windows',
-    subCategory: 'windows',
-    label: 'Windows Server 2025 Standard (Desktop)',
-    pricing: '+0,0347 € HT/vCore/heure',
-    imageId: 'fake-windows2025Id',
-  },
-  {
-    category: 'apps',
-    subCategory: 'cpanel',
-    label: 'cPanel',
-    unavailable: true,
-    imageId: 'fake-cpanelId',
-  },
-  {
-    category: 'apps',
-    subCategory: 'plesk',
-    label: 'Plesk',
-    imageId: 'fake-pleskId',
-  },
-  {
-    category: 'apps',
-    subCategory: 'docker',
-    label: 'Docker',
-    imageId: 'fake-dockerId',
-  },
-  {
-    category: 'apps',
-    subCategory: 'nvidia_ngc',
-    label: 'NVIDIA GPU Cloud (NGC)',
-    unavailable: true,
-    imageId: 'fake-nvidiaId',
-  },
-  {
-    category: 'apps',
-    subCategory: 'n8n',
-    label: 'n8n',
-    imageId: 'fake-n8nId',
-  },
-  {
-    category: 'backups',
-    subCategory: 'backups',
-    label: 'autobackup-b2-30-bhs5',
-    imageId: 'fake-autobackup-b2-30-bhs5Id',
-  },
-  {
-    category: 'backups',
-    subCategory: 'backups',
-    label: 'test-node 02/03/2024 23:10',
-    imageId: 'fake-test-nodeId',
-  },
-];
-
-export const mockedDistributionImageVersions = [
-  {
-    imageId: 'fake-ubuntuId',
-    versions: [
-      {
-        name: 'Baremetal - Ubuntu 22.04',
-        unavailable: true,
-        osType: 'baremetal-linux',
-      },
-      {
-        name: 'Baremetal - Ubuntu 24.04',
-        unavailable: true,
-        osType: 'baremetal-linux',
-      },
-      {
-        name: 'Ubuntu 25.04 - UEFI',
-        osType: 'linux',
-      },
-      {
-        name: 'Ubuntu 24.10',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-fedoraId',
-    versions: [
-      {
-        name: 'Fedora 42',
-        osType: 'linux',
-      },
-      {
-        name: 'Fedora 43 - UEFI',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-freebsdId',
-    versions: [
-      {
-        name: 'FreeBSD-14.3 - UEFI',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-centosId',
-    versions: [
-      {
-        name: 'Centos 7 - UEFI',
-        osType: 'linux',
-      },
-      {
-        name: 'Centos 7',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-almalinuxId',
-    versions: [
-      {
-        name: 'AlmaLinux 9 - UEFI',
-        osType: 'linux',
-      },
-      {
-        name: 'Rocky Linux 10 - UEFI',
-        osType: 'linux',
-      },
-      {
-        name: 'AlmaLinux 9',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-rockylinuxId',
-    versions: [
-      {
-        name: 'Rocky Linux 10',
-        osType: 'linux',
-      },
-      {
-        name: 'Rocky Linux 8',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-cloudlinuxId',
-    versions: [
-      {
-        name: 'CloudLinux 8',
-        osType: 'linux',
-      },
-      {
-        name: 'CloudLinux 9',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-debianId',
-    versions: [
-      {
-        name: 'Debian 11',
-        osType: 'linux',
-      },
-      {
-        name: 'Debian 10',
-        osType: 'linux',
-      },
-      {
-        name: 'Baremetal - Debian 11',
-        unavailable: true,
-        osType: 'baremetal-linux',
-      },
-      {
-        name: 'Baremetal - Debian 12',
-        unavailable: true,
-        osType: 'baremetal-linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-windows2022Id',
-    versions: [
-      {
-        name: 'Windows Server 2022 Standard (Desktop)',
-        osType: 'windows',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-windows2023Id',
-    versions: [
-      {
-        name: 'Windows Server 2023 Standard (Desktop)',
-        osType: 'windows',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-windows2019Id',
-    versions: [
-      {
-        name: 'Windows Server 2019 Standard (Desktop) - UEFI',
-        osType: 'windows',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-windows2025Id',
-    versions: [
-      {
-        name: 'Windows Server 2025 Standard (Desktop)',
-        osType: 'windows',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-cpanelId',
-    versions: [
-      {
-        name: 'AlmaLinux 9 - cPanel',
-        unavailable: true,
-        osType: 'linux',
-      },
-      {
-        name: 'AlmaLinux 8 - cPanel',
-        unavailable: true,
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-pleskId',
-    versions: [
-      {
-        name: 'Debian 12 - Plesk',
-        osType: 'linux',
-      },
-      {
-        name: 'Debian 10 - Plesk',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-dockerId',
-    versions: [
-      {
-        name: 'Debian 12 - Docker',
-        osType: 'linux',
-      },
-      {
-        name: 'Debian 10 - Docker',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-nvidiaId',
-    versions: [
-      {
-        name: 'NVIDIA GPU Cloud (NGC)',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-n8nId',
-    versions: [
-      {
-        name: 'Debian 12 - n8n',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-autobackup-b2-30-bhs5Id',
-    versions: [
-      {
-        name: 'backups - autobackup-b2-30-bhs5',
-        osType: 'linux',
-      },
-    ],
-  },
-  {
-    imageId: 'fake-test-nodeId',
-    versions: [
-      {
-        name: 'backups - test-node 02/03/2024 23:10',
-        osType: 'linux',
-      },
-    ],
   },
 ];

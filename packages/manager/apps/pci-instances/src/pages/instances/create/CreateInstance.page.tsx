@@ -17,11 +17,11 @@ import {
   nameSchema,
   quantitySchema,
   distributionImageTypeSchema,
-  distributionImageIdSchema,
+  distributionImageVariantIdSchema,
   sshKeyIdSchema,
   sshPublicKeySchema,
-  distributionImageVersionSchema,
   distributionImageOsTypeSchema,
+  distributionImageVersionSchema,
 } from '@/pages/instances/create/CreateInstance.schema';
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
@@ -40,7 +40,7 @@ export const instanceCreationSchema = z.object({
   microRegion: microRegionSelectionSchema,
   availabilityZone: availabilityZoneSelectionSchema,
   distributionImageType: distributionImageTypeSchema,
-  distributionImageId: distributionImageIdSchema,
+  distributionImageVariantId: distributionImageVariantIdSchema,
   distributionImageVersion: distributionImageVersionSchema,
   distributionImageOsType: distributionImageOsTypeSchema,
   sshKeyId: sshKeyIdSchema,

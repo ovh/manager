@@ -18,7 +18,7 @@ export type TFlavorCategoryID = TFlavorCategoryName;
 type TFlavorTypeName = string;
 export type TFlavorTypeID = TFlavorTypeName;
 
-type TOsType = 'baremetal-linux' | 'linux' | 'windows';
+export type TOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
 
 type TFlavorName = string;
 export type TFlavorID = TFlavorName;
@@ -31,6 +31,8 @@ type TImageVariantName = string;
 type TImageVersionName = string;
 export type TRegionalizedImageVersionID = string;
 export type TImageTypeID = TImageTypeName;
+export type TImageID = TImageTypeID;
+export type TRegionalizedImageID = TImageTypeID;
 export type TImageVariantID = TImageVariantName;
 export type TImageVersionID = TImageVersionName;
 
@@ -88,13 +90,19 @@ type TSpecifications = {
   };
 };
 
-export type TPrice = {
-  type: 'hour' | 'month' | 'licence';
+export type TPriceDetails = {
   currencyCode: string;
-  includeVat: boolean;
-  value: number;
   priceInUcents: number;
   text: string;
+  value: number;
+};
+
+export type TPrice = {
+  type: 'hour' | 'month' | 'licence';
+  includeVat: boolean;
+  price: TPriceDetails;
+  hourlyVcoreEquivalent: TPriceDetails | null;
+  monthlyEquivalent: TPriceDetails | null;
 };
 
 export type TFlavorPrices = {
@@ -138,26 +146,22 @@ export type TFlavor = {
 };
 
 export type TImageType = {
-  name: TImageTypeName;
-  imageVariantIds: TImageVariantID[];
+  id: TImageTypeID;
+  imageIds: TImageID[];
 };
 
-export type TImageVariant = {
-  name: TImageVariantName;
-  imageVersionIds: TImageVersionID[];
+export type TImage = {
+  id: TImageID;
+  osType: TOsType;
+  variant: string;
 };
 
-export type TImageVersion = {
-  name: TImageVersionName;
-  regionalizedImageVersionIds: TRegionalizedImageVersionID[];
-};
-
-export type TRegionalizedImageVersion = {
-  /**
-   *  id: imageVersion_region
-   *  Ex: 'Ubuntu 23.04 - UEFI_BHS1'
-   */
-  id: TRegionalizedImageVersionID;
+/**
+ *  id: imageId_region
+ *  Ex: "Baremetal - Ubuntu 22.04_SGP2"
+ */
+export type TRegionalizedImage = {
+  id: TRegionalizedImageID;
   imageId: string;
 };
 
@@ -204,17 +208,10 @@ export type TInstancesCatalog = {
       allIds: TFlavorPricesID[];
     };
     imageTypes: { byId: Map<TImageTypeID, TImageType>; allIds: TImageTypeID[] };
-    imageVariants: {
-      byId: Map<TImageVariantID, TImageVariant>;
-      allIds: TImageVariantID[];
-    };
-    imageVersions: {
-      byId: Map<TImageVersionID, TImageVersion>;
-      allIds: TImageVersionID[];
-    };
-    regionalizedImageVersions: {
-      byId: Map<TRegionalizedImageVersionID, TRegionalizedImageVersion>;
-      allIds: TRegionalizedImageVersionID[];
+    images: { byId: Map<TImageID, TImage>; allIds: TImageID[] };
+    regionalizedImages: {
+      byId: Map<TImageTypeID, TRegionalizedImage>;
+      allIds: TImageTypeID[];
     };
   };
   relations: {

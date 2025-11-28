@@ -30,7 +30,7 @@ type TRegionSelectionModalProps = PropsWithChildren<{
   onValidateSelect: (region: TCustomRegionSelected) => void;
 }>;
 
-type TSelectRegionChageDetail = {
+type TSelectRegionChangeDetail = {
   items: SelectItem[];
   value: string[];
 };
@@ -50,7 +50,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
   const [selectRegionValue, setSelectRegionValue] = useState<string[]>([]);
   const { setValue } = useFormContext<TInstanceCreationForm>();
 
-  const handleSelect = ({ items, value }: TSelectRegionChageDetail) => {
+  const handleSelect = ({ items, value }: TSelectRegionChangeDetail) => {
     const newRegion = items[0];
 
     if (newRegion && newRegion.customRendererData && 'value' in newRegion)
