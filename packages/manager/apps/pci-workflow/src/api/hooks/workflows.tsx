@@ -106,7 +106,15 @@ export const sortWorkflows = (
   if (sorting) {
     const { id: sortKey, desc } = sorting;
 
-    data.sort(defaultCompareFunction(sortKey as keyof Omit<TWorkflow, 'executions'>));
+    const comparisonFunction = (() => {
+      if (sortKey === 'regions') {
+        return (a: TWorkflow, b: TWorkflow) => a.region.localeCompare(b.region);
+      } else {
+        return defaultCompareFunction(sortKey as keyof Omit<TWorkflow, 'executions'>);
+      }
+    })();
+
+    data.sort(comparisonFunction);
     if (desc) {
       data.reverse();
     }
