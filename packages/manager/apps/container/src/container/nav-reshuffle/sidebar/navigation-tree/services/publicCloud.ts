@@ -178,7 +178,6 @@ pciNode.children = [
         },
         features: ['cold-archive'],
         forceVisibility: true,
-        tag: NodeTag.NEW,
       },
       {
         id: 'pci-cloud-archive',
