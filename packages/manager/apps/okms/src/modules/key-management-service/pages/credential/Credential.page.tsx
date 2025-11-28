@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { NavLink, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom';
+import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
@@ -16,13 +16,15 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
-
 import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import {
+  TabNavigation,
+  TabNavigationItem,
+} from '@/common/components/tab-navigation/TabNavigation.component';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 export type CredentialContextType = {
@@ -38,7 +40,6 @@ const CredentialDashboard = () => {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
-  const location = useLocation();
   const { okmsId, credentialId } = useRequiredParams('okmsId', 'credentialId');
 
   const { data: okms, isPending: isLoadingKms, error: errorKms } = useOkmsById(okmsId);
@@ -88,6 +89,19 @@ const CredentialDashboard = () => {
     },
   ];
 
+  const tabsList: TabNavigationItem[] = [
+    {
+      name: 'general-information',
+      title: t('key_management_service_credential_dashboard_tab_informations'),
+      url: KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId),
+    },
+    {
+      name: 'identities',
+      title: t('key_management_service_credential_dashboard_tab_identities'),
+      url: KMS_ROUTES_URLS.credentialIdentitiesList(okmsId, credentialId),
+    },
+  ];
+
   return (
     <Suspense fallback={<Loading />}>
       <BaseLayout
@@ -108,50 +122,7 @@ const CredentialDashboard = () => {
             actions: ['return_listing_page'],
           });
         }}
-        tabs={
-          <OdsTabs>
-            <OdsTab
-              isSelected={
-                location.pathname === KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId)
-              }
-            >
-              <NavLink
-                to={KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId)}
-                className="flex no-underline"
-                onClick={() => {
-                  trackClick({
-                    location: PageLocation.page,
-                    buttonType: ButtonType.tab,
-                    actionType: 'navigation',
-                    actions: ['general-informations'],
-                  });
-                }}
-              >
-                {t('key_management_service_credential_dashboard_tab_informations')}
-              </NavLink>
-            </OdsTab>
-            <OdsTab
-              isSelected={
-                location.pathname === KMS_ROUTES_URLS.credentialIdentitiesList(okmsId, credentialId)
-              }
-            >
-              <NavLink
-                to={KMS_ROUTES_URLS.credentialIdentitiesList(okmsId, credentialId)}
-                className="flex no-underline"
-                onClick={() => {
-                  trackClick({
-                    location: PageLocation.page,
-                    buttonType: ButtonType.tab,
-                    actionType: 'navigation',
-                    actions: ['identities'],
-                  });
-                }}
-              >
-                {t('key_management_service_credential_dashboard_tab_identities')}
-              </NavLink>
-            </OdsTab>
-          </OdsTabs>
-        }
+        tabs={<TabNavigation tabs={tabsList} />}
       >
         <Outlet context={{ credential, okms: okms.data } as CredentialContextType} />
       </BaseLayout>
