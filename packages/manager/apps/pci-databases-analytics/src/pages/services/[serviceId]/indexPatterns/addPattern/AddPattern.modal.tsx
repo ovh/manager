@@ -18,6 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
   useToast,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { useAddPattern } from '@/hooks/api/database/pattern/useAddPattern.hook';
 import { useServiceData } from '../../Service.context';
@@ -37,7 +38,7 @@ const AddPattern = () => {
     onError: (err) => {
       toast.toast({
         title: t('addPatternToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -106,107 +107,119 @@ const AddPattern = () => {
 
   return (
     <RouteModal isLoading={!service}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-pattern-modal">
             {t('addPatternTitle')}
           </DialogTitle>
         </DialogHeader>
-        <div className="text-sm flex flex-col gap-2">
-          <p>{t('addPatternDescription1')}</p>
-          <p>{t('addPatternDescription2')}</p>
-          <p>{t('addPatternDescriptionExemples')}</p>
-          <ul className="list-disc pl-8">
-            <li>
-              <Trans
-                t={t}
-                i18nKey={'addPatternDescriptionExemple1'}
-                components={{
-                  anchor: <strong />,
-                }}
-              ></Trans>
-            </li>
-            <li>
-              <Trans
-                t={t}
-                i18nKey={'addPatternDescriptionExemple2'}
-                components={{
-                  anchor: <strong />,
-                }}
-              ></Trans>
-            </li>
-            <li>
-              <Trans
-                t={t}
-                i18nKey={'addPatternDescriptionExemple3'}
-                components={{
-                  anchor: <strong />,
-                }}
-              ></Trans>
-            </li>
-            <li>
-              <Trans
-                t={t}
-                i18nKey={'addPatternDescriptionExemple4'}
-                components={{
-                  anchor: <strong />,
-                }}
-              ></Trans>
-            </li>
-          </ul>
-        </div>
+        <DialogBody>
+          <div className="text-sm flex flex-col gap-2">
+            <p>{t('addPatternDescription1')}</p>
+            <p>{t('addPatternDescription2')}</p>
+            <p>{t('addPatternDescriptionExemples')}</p>
+            <ul className="list-disc pl-8">
+              <li>
+                <Trans
+                  t={t}
+                  i18nKey={'addPatternDescriptionExemple1'}
+                  components={{
+                    anchor: <strong />,
+                  }}
+                ></Trans>
+              </li>
+              <li>
+                <Trans
+                  t={t}
+                  i18nKey={'addPatternDescriptionExemple2'}
+                  components={{
+                    anchor: <strong />,
+                  }}
+                ></Trans>
+              </li>
+              <li>
+                <Trans
+                  t={t}
+                  i18nKey={'addPatternDescriptionExemple3'}
+                  components={{
+                    anchor: <strong />,
+                  }}
+                ></Trans>
+              </li>
+              <li>
+                <Trans
+                  t={t}
+                  i18nKey={'addPatternDescriptionExemple4'}
+                  components={{
+                    anchor: <strong />,
+                  }}
+                ></Trans>
+              </li>
+            </ul>
+          </div>
 
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="grid gap-4">
-            <FormField
-              control={form.control}
-              name="pattern"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('addPatternInputPatternLabel')}</FormLabel>
-                  <FormControl>
-                    <Input {...field} data-testid="add-pattern-pattern-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="maxIndexCount"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('addPatternInpuMaxIndexCountLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      data-testid="add-pattern-maxIndexCount-input"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button
-                  type="button"
-                  mode="outline"
-                  data-testid="add-pattern-cancel-button"
-                >
-                  {t('addPatternButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                disabled={isPending}
-                data-testid="add-pattern-submit-button"
-              >
-                {t('addPatternButtonAdd')}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+          <Form {...form}>
+            <form
+              onSubmit={onSubmit}
+              className="grid gap-4"
+              id="add-pattern-form"
+            >
+              <FormField
+                control={form.control}
+                name="pattern"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('addPatternInputPatternLabel')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        data-testid="add-pattern-pattern-input"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="maxIndexCount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t('addPatternInpuMaxIndexCountLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        data-testid="add-pattern-maxIndexCount-input"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="button"
+              mode="ghost"
+              data-testid="add-pattern-cancel-button"
+            >
+              {t('addPatternButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            form="add-pattern-form"
+            type="submit"
+            disabled={isPending}
+            data-testid="add-pattern-submit-button"
+          >
+            {t('addPatternButtonAdd')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

@@ -122,7 +122,7 @@ describe('PrometheusConfigTile', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('srvDomainLabel')).toBeInTheDocument();
+      expect(screen.getByText('srvDomain')).toBeInTheDocument();
     });
   });
 
@@ -175,7 +175,7 @@ describe('PrometheusConfigTile', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'errorToastTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

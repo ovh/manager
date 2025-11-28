@@ -39,7 +39,7 @@ const DeleteIntegration = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteIntegrationToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -69,7 +69,7 @@ const DeleteIntegration = () => {
 
   return (
     <RouteModal isLoading={!integrations || !deletedIntegration}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-integrations-modal">
             {t('deleteIntegrationTitle')}
@@ -85,7 +85,7 @@ const DeleteIntegration = () => {
             <Button
               data-testid="delete-integrations-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteIntegrationButtonCancel')}
             </Button>

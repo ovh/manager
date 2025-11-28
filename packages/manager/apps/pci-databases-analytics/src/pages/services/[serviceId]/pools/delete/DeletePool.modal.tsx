@@ -40,7 +40,7 @@ const DeletePool = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteConnectionPoolToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -70,7 +70,7 @@ const DeletePool = () => {
 
   return (
     <RouteModal isLoading={!pools || !deletedPool}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-pools-modal">
             {t('deleteConnectionPoolTitle')}
@@ -81,12 +81,12 @@ const DeletePool = () => {
             })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-pools-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteConnectionPoolButtonCancel')}
             </Button>

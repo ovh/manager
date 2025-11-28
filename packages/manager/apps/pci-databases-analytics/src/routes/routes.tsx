@@ -196,42 +196,6 @@ export default [
             ],
           },
           {
-            path: 'namespaces',
-            id: 'service.{service.engine}.namespaces',
-            ...lazyLoadRoute(() =>
-              import('@/pages/services/[serviceId]/namespaces/Namespace.page'),
-            ),
-            children: [
-              {
-                id: 'service.{service.engine}.namespaces.add',
-                path: 'add',
-                ...lazyLoadRoute(() =>
-                  import(
-                    '@/pages/services/[serviceId]/namespaces/add/AddNamespace.modal'
-                  ),
-                ),
-              },
-              {
-                id: 'service.{service.engine}.namespaces.edit',
-                path: 'edit/:namespaceId',
-                ...lazyLoadRoute(() =>
-                  import(
-                    '@/pages/services/[serviceId]/namespaces/edit/EditNamespace.modal'
-                  ),
-                ),
-              },
-              {
-                id: 'service.{service.engine}.namespaces.delete',
-                path: 'delete/:namespaceId',
-                ...lazyLoadRoute(() =>
-                  import(
-                    '@/pages/services/[serviceId]/namespaces/delete/DeleteNamespace.modal'
-                  ),
-                ),
-              },
-            ],
-          },
-          {
             path: 'pools',
             id: 'service.{service.engine}.pools',
             ...lazyLoadRoute(() =>

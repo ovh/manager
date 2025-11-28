@@ -3580,57 +3580,6 @@
     tailwindcss-animate "^1.0.7"
     vaul "^1.1.2"
 
-"@datatr-ux/uxlib@0.0.12-beta-3":
-  version "0.0.12-beta-3"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.12-beta-3.tgz#9f7f2b75f67bf4ba15e16e64d25a641788f1354e"
-  integrity sha512-r8RKXPY1ACZCSRuI8x/F1kpjptm4ioJPKlcApaVmJny6LK3Hg5l3Y+Up22h1R5wUvVBV1q3w/l6QfaMNarz0uw==
-  dependencies:
-    "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
-    "@ovhcloud/ods-themes" "^18.4.1"
-    "@radix-ui/react-accordion" "^1.2.2"
-    "@radix-ui/react-alert-dialog" "^1.1.4"
-    "@radix-ui/react-aspect-ratio" "^1.1.1"
-    "@radix-ui/react-avatar" "^1.1.2"
-    "@radix-ui/react-checkbox" "^1.1.3"
-    "@radix-ui/react-collapsible" "^1.1.2"
-    "@radix-ui/react-context-menu" "^2.2.4"
-    "@radix-ui/react-dialog" "^1.1.4"
-    "@radix-ui/react-dropdown-menu" "^2.1.4"
-    "@radix-ui/react-hover-card" "^1.1.4"
-    "@radix-ui/react-label" "^2.1.1"
-    "@radix-ui/react-menubar" "^1.1.4"
-    "@radix-ui/react-navigation-menu" "^1.2.3"
-    "@radix-ui/react-popover" "^1.1.4"
-    "@radix-ui/react-progress" "^1.1.1"
-    "@radix-ui/react-radio-group" "^1.2.2"
-    "@radix-ui/react-scroll-area" "^1.2.2"
-    "@radix-ui/react-select" "^2.1.4"
-    "@radix-ui/react-separator" "^1.1.1"
-    "@radix-ui/react-slider" "^1.2.2"
-    "@radix-ui/react-slot" "^1.1.1"
-    "@radix-ui/react-switch" "^1.1.2"
-    "@radix-ui/react-tabs" "^1.1.2"
-    "@radix-ui/react-toast" "^1.2.4"
-    "@radix-ui/react-toggle" "^1.1.1"
-    "@radix-ui/react-toggle-group" "^1.1.1"
-    "@radix-ui/react-tooltip" "^1.1.6"
-    class-variance-authority "^0.7.1"
-    clsx "^2.1.1"
-    cmdk "^1.0.0"
-    date-fns "^3.6.0"
-    embla-carousel-react "^8.5.1"
-    input-otp "^1.4.1"
-    lodash "^4.17.21"
-    lucide-react "^0.469.0"
-    next-themes "^0.4.4"
-    react-day-picker "^8.10.1"
-    react-resizable-panels "^2.1.7"
-    shiki "^3.2.1"
-    sonner "^1.7.1"
-    tailwind-merge "^2.6.0"
-    tailwindcss-animate "^1.0.7"
-    vaul "^1.1.2"
-
 "@datatr-ux/uxlib@1.0.0-alpha-34":
   version "1.0.0-alpha-34"
   resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-1.0.0-alpha-34.tgz#e8e58b30782f67d3b1550f40c04769f6b9c3a8ac"
@@ -7173,7 +7122,7 @@
     "@ovh-ux/manager-core-api" "^0.10.1"
     "@ovh-ux/manager-core-sso" "^0.5.0"
 
-"@ovh-ux/manager-core-api@0.19.4":
+"@ovh-ux/manager-core-api@0.19.4", "@ovh-ux/manager-core-api@^0.19.4":
   version "0.19.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.19.4.tgz#7aa6dc10a986a719aeee5d72595e1da0dbe72e27"
   integrity sha512-suQAiFgR3p50fkzgUq/qHf3qJt/cIWkPgjczgLXkcovEXEGlZFderBFEP7XId2j9lgV6zb1m4YjoJceOHXs79w==
@@ -7189,15 +7138,6 @@
   dependencies:
     "@ovh-ux/manager-core-sso" "^0.3.0"
     "@ovh-ux/request-tagger" "^0.4.0"
-    axios "^1.1.2"
-
-"@ovh-ux/manager-core-api@^0.19.4":
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.19.4.tgz#7aa6dc10a986a719aeee5d72595e1da0dbe72e27"
-  integrity sha512-suQAiFgR3p50fkzgUq/qHf3qJt/cIWkPgjczgLXkcovEXEGlZFderBFEP7XId2j9lgV6zb1m4YjoJceOHXs79w==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.5.0"
-    "@ovh-ux/request-tagger" "^0.5.9"
     axios "^1.1.2"
 
 "@ovh-ux/manager-core-sso@^0.3.0":
@@ -7528,6 +7468,11 @@
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
+
+"@ovhcloud/ods-themes@19.2.0":
+  version "19.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.0.tgz#8e2851579245907a4d0506bfd8cf9f68b66d4d22"
+  integrity sha512-X4n1o+RzAN35FlJpeE+HtNcLOqCZf26SSl6pzNbGw2Ig+wkozoPcl1YiJrMZJ0T/pR+OSYZZdLI3wjjKzQaqew==
 
 "@ovhcloud/ods-themes@19.2.1", "@ovhcloud/ods-themes@^19.0.2", "@ovhcloud/ods-themes@^19.2.0":
   version "19.2.1"

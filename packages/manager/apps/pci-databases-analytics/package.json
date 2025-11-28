@@ -22,9 +22,8 @@
     "test-ui": "manager-test --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "@datatr-ux/ods-tailwind-config": "1.0.3",
     "@datatr-ux/ovhcloud-types": "1.0.11",
-    "@datatr-ux/uxlib": "0.0.12-beta-3",
+    "@datatr-ux/uxlib": "1.0.0-alpha-34",
     "@hookform/resolvers": "^3.3.4",
     "@monaco-editor/react": "^4.7.0",
     "@ovh-ux/manager-config": "^8.8.2",
@@ -34,7 +33,9 @@
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.5.10",
     "@ovh-ux/shell": "^4.9.4",
+    "@ovhcloud/ods-react": "19.2.1",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
+    "@ovhcloud/ods-themes": "19.2.0",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
     "class-variance-authority": "^0.7.0",
