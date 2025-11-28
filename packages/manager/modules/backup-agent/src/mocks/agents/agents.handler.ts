@@ -28,4 +28,14 @@ export const getAgentMocks = ({ isAgentsError = false }: TAgentMockParams = {}):
     method: 'get',
     status: isAgentsError ? 500 : 200,
   },
+  {
+    url: '/backup/tenant/vspc/:vspcTenantId/backupAgent/:backupAgentId',
+    response: (_: unknown, params: PathParams) => {
+      if (isAgentsError) return null;
+      return mockAgents.find((agent) => agent.id === params.backupAgentId);
+    },
+    api: 'v2',
+    method: 'delete',
+    status: isAgentsError ? 500 : 200,
+  },
 ];
