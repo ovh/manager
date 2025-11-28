@@ -13,8 +13,11 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { BaseLayout, Button, ChangelogMenu, Datagrid, GuideMenu } from '@ovh-ux/muk';
 
+import { Breadcrumb } from '@ovh-ux/manager-react-components';
+
 import { APP_FEATURES } from '@/App.constants';
 import { APP_NAME } from '@/Tracking.constants';
+import { AppConfig, appName } from '@/App.constants';
 import { GUIDES_URL } from '@/constants/Nasha.constants';
 import { useListingColumns } from '@/hooks/listing/useListingColumns';
 import type { NashaService } from '@/types/Nasha.type';
@@ -60,6 +63,7 @@ export default function ListingPage() {
 
   return (
     <BaseLayout
+      breadcrumb={<Breadcrumb appName={appName} rootLabel={AppConfig.rootLabel} />}
       header={{
         title: t('listing:title'),
         changelogButton: (

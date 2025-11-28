@@ -14,9 +14,11 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { BaseLayout, ChangelogMenu, GuideMenu, Message } from '@ovh-ux/muk';
 
+import { Breadcrumb } from '@ovh-ux/manager-react-components';
+
 import { APP_NAME } from '@/Tracking.constants';
+import { AppConfig, appName } from '@/App.constants';
 import BillingTile from '@/components/billing-tile/BillingTile.component';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import ConfigurationTile from '@/components/dashboard/ConfigurationTile.component';
 import InformationTile from '@/components/dashboard/InformationTile.component';
 import { GUIDES_URL } from '@/constants/Nasha.constants';
@@ -138,7 +140,7 @@ export default function DashboardPage() {
 
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb />}
+      breadcrumb={<Breadcrumb appName={appName} rootLabel={AppConfig.rootLabel} />}
       header={{
         title: displayName,
         changelogButton: (
