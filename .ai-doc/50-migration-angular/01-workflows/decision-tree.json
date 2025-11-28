@@ -18,7 +18,7 @@
 
     "error_need_source": {
       "type": "error",
-      "message": "Cannot proceed without AngularJS source path. Ask user for: packages/manager/modules/{module-name}",
+      "message": "Cannot proceed without AngularJS source path. Ask user for: packages/manager/modules/{module-name} or packages/manager/apps/{app-name}",
       "action": "stop"
     },
 
