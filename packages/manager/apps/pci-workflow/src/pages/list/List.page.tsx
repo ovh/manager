@@ -101,8 +101,8 @@ export default function ListingPage() {
         id: 'regions',
         label: t('pci_workflow_localisation'),
         cell: (workflow) => (
-          <DataGridTextCell>
-            {workflow.regions.map(translateMicroRegion).join(', ')}
+          <DataGridTextCell className="whitespace-pre-line">
+            {workflow.regions.filter(Boolean).map(translateMicroRegion).join(',\n')}
           </DataGridTextCell>
         ),
       },
