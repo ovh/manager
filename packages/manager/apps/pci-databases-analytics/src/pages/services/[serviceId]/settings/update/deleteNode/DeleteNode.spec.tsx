@@ -119,7 +119,7 @@ describe('Delete Node Modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'deleteNodeToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

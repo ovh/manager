@@ -163,7 +163,7 @@ describe('Update Version modal', () => {
   //   const errorMsg = {
   //     description: 'api error message',
   //     title: 'updateVersionToastErrorTitle',
-  //     variant: 'destructive',
+  //     variant: 'critical',
   //   };
   //   vi.mocked(serviceApi.editService).mockImplementationOnce(() => {
   //     throw apiErrorMock;

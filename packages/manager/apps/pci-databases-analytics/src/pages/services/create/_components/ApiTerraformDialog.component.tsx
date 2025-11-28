@@ -18,11 +18,9 @@ import {
   TabsList,
   TabsTrigger,
   useToast,
-} from '@datatr-ux/uxlib';
-import {
   json as JsonLanguage,
   terraform as TerraformLanguage,
-} from '@datatr-ux/uxlib/components/code';
+} from '@datatr-ux/uxlib';
 import A from '@/components/links/A.component';
 import { useServiceToTerraform } from '@/hooks/api/database/terraform/useServiceToTerraform';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -89,7 +87,7 @@ const ApiTerraformDialog = ({
     onError: () => {
       toast({
         title: t('pciDatabasesAddCommandDialogTerraformFetchError'),
-        variant: 'destructive',
+        variant: 'critical',
       });
     },
     onSuccess: (data) => {

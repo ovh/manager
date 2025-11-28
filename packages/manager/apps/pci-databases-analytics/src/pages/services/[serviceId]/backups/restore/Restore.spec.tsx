@@ -135,7 +135,7 @@ describe('Restore Service Modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'restoreBackupToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

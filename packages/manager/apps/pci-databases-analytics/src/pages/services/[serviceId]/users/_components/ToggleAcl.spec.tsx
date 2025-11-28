@@ -178,7 +178,7 @@ describe('ToggleAcl Component', () => {
       });
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'toggleAclErrorTitle',
-        variant: 'destructive',
+        variant: 'critical',
         description: 'Error Message',
       });
     });
