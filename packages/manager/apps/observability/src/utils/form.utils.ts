@@ -1,16 +1,18 @@
 /**
- * Add a required asterisk to a label.
- * @param label - The label to add a required asterisk to.
- * @returns The label with a required asterisk.
+ * Add a required label to a label.
+ * @param label - The label to add a required label to.
+ * @param requiredLabel - The required label to add to the label.
+ * @returns The label with a required label.
  * @example
  * ```ts
  * const label = 'Title';
- * const requiredLabel = toRequiredLabel(label);
+ * const requiredLabel = 'required';
+ * const requiredLabel = toRequiredLabel(label, requiredLabel);
  * console.log(requiredLabel);
- * // Title*
+ * // Title - required
  */
-export const toRequiredLabel = (label: string) => {
-  return `${label}*`;
+export const toRequiredLabel = (label: string, requiredLabel: string) => {
+  return `${label} - ${requiredLabel}`;
 };
 
 /**

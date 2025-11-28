@@ -56,7 +56,7 @@ export default function RegionSelector() {
 
   return (
     <>
-      <Text preset={TEXT_PRESET.heading4}>{t('infrastructure.region.title')}</Text>
+      <Text preset={TEXT_PRESET.heading2}>{t('infrastructure.region.title')}</Text>
       <FormField className="my-4 block">
         <Controller
           name="infrastructureId"

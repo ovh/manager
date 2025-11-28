@@ -16,7 +16,7 @@ export default function ServicesDropDown({ onChange }: ServicesDropDownProps) {
 
   return (
     <SelectField
-      className="max-w-[20rem]"
+      className="max-w-xs"
       label={t('listing.service')}
       value={selectedService?.id}
       name="select-observability-service"
