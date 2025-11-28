@@ -49,8 +49,6 @@
   "optionsGeolocationIpv6": "N/A",
 
   "optionsCost": "Coût",
-  "optionsCostIpv4": "À partir de { } prix à partir d'Agora { } € par IP",
-  "optionsCostIpv6": "Gratuit",
 
   "optionsCompatibleServices": "Services compatibles",
   "optionsCompatibleServicesIpv4": "Bare Metal Cloud\nPublic Cloud\nHosted Private Cloud\nIP Load Balancer\nTout service compatible avec le vRack",
