@@ -75,7 +75,7 @@ describe('KMS creation page test suite', () => {
       label: labels.create.key_management_service_create_cta_cancel,
     });
 
-    await act(() => user.click(cancelButton));
+    await act(async () => await user.click(cancelButton));
 
     expect(navigate).toHaveBeenCalledWith(KMS_ROUTES_URLS.kmsListing);
   });
