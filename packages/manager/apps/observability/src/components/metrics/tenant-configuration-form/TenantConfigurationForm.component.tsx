@@ -3,9 +3,16 @@ import React from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { FormField, FormFieldHelper } from '@ovhcloud/ods-react';
+import {
+  FormField,
+  FormFieldHelper,
+  FormFieldLabel,
+  Quantity,
+  QuantityControl,
+  QuantityInput,
+} from '@ovhcloud/ods-react';
 
-import { Quantity, QuantityControl, QuantityInput, TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectField } from '@/components/form/select-field/SelectField.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
@@ -17,7 +24,7 @@ import { toRequiredLabel } from '@/utils/form.utils';
 import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
 export const TenantConfigurationForm = () => {
-  const { t } = useTranslation('tenants');
+  const { t } = useTranslation(['tenants', 'shared']);
   const {
     control,
     formState: { errors },
@@ -26,7 +33,6 @@ export const TenantConfigurationForm = () => {
   const { selectedService } = useObservabilityServiceContext();
   const dateFnsLocale = useDateFnsLocale();
 
-  // Watch the infrastructureId field to use it for fetching retentions
   const infrastructureId = useWatch({
     control,
     name: 'infrastructureId',
@@ -43,7 +49,7 @@ export const TenantConfigurationForm = () => {
 
   return (
     <>
-      <Text preset={TEXT_PRESET.heading4}>{t('configuration.title')}</Text>
+      <Text preset={TEXT_PRESET.heading2}>{t('configuration.title')}</Text>
       <div className="space-y-4">
         <Controller
           name="retentionId"
@@ -55,8 +61,8 @@ export const TenantConfigurationForm = () => {
               isLoading={isLoading}
               value={field.value}
               name="select-retention"
-              label={toRequiredLabel(t('configuration.retention'))}
-              placeholder={t('configuration.retentionPlaceholder')}
+              label={toRequiredLabel(t('tenants:configuration.retention'), t('shared:mandatory'))}
+              placeholder={t('tenants:configuration.retentionPlaceholder')}
               onChange={(value) => field.onChange(value ?? '')}
               options={retentions?.map((option) => ({
                 value: option.id,
@@ -67,14 +73,14 @@ export const TenantConfigurationForm = () => {
           )}
         />
 
-        <Text preset={TEXT_PRESET.heading6}>{t('configuration.limit.title')}</Text>
-        <Text preset={TEXT_PRESET.paragraph}>{t('configuration.limit.description')}</Text>
-
         <Controller
           name="maxSeries"
           control={control}
           render={({ field }) => (
             <FormField className="block">
+              <FormFieldLabel>
+                <Text preset={TEXT_PRESET.paragraph}>{t('tenants:configuration.limit.title')}</Text>
+              </FormFieldLabel>
               <Quantity
                 name="limit-quantity"
                 min={INGESTION_BOUNDS.MIN}
@@ -84,14 +90,20 @@ export const TenantConfigurationForm = () => {
                   field.onChange(detail.value ? parseInt(detail.value, 10) : null)
                 }
                 invalid={!!errors.maxSeries}
+                disabled={!infrastructureId}
               >
                 <QuantityControl>
-                  <QuantityInput className="w-[6.25rem]" />
+                  <QuantityInput className="w-24" />
                 </QuantityControl>
               </Quantity>
               <FormFieldHelper>
+                <Text preset={TEXT_PRESET.caption}>
+                  {t('tenants:configuration.limit.description')}
+                </Text>
                 {errors.maxSeries && (
-                  <Text preset={TEXT_PRESET.caption}>{errors.maxSeries.message}</Text>
+                  <div>
+                    <Text preset={TEXT_PRESET.caption}>{errors.maxSeries.message}</Text>
+                  </div>
                 )}
               </FormFieldHelper>
             </FormField>
