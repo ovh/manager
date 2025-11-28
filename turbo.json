@@ -10,10 +10,7 @@
       "env": ["VERSION"]
     },
     "test": {
-      "dependsOn": [
-        "^test",
-        "@ovh-ux/manager-static-analysis-kit#build"
-      ],
+      "dependsOn": ["^test", "@ovh-ux/manager-static-analysis-kit#build"],
       "outputs": []
     },
     "dev": {
@@ -40,17 +37,11 @@
     },
     "lint:modern": {
       "outputs": [],
-      "dependsOn": [
-        "^lint:modern",
-        "^build"
-      ]
+      "dependsOn": ["^lint:modern", "^build"]
     },
     "lint:modern:fix": {
       "outputs": [],
-      "dependsOn": [
-        "^lint:modern",
-        "^build"
-      ]
+      "dependsOn": ["^lint:modern", "^build"]
     }
   }
 }
