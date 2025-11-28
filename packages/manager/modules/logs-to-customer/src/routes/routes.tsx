@@ -65,7 +65,6 @@ export const getLogsRoute = () => (
   <>
     <Route
       path=""
-      id="logs-tail"
       Component={logsPage}
       handle={{
         tracking: {
@@ -76,13 +75,11 @@ export const getLogsRoute = () => (
     >
       <Route
         path="subscription/:subscriptionId/terminate"
-        id="logs-terminate-subscription"
         Component={logsTerminateSubscriptionPage}
       />
     </Route>
     <Route
       path="streams"
-      id="data-streams"
       Component={logsDataStreamsPage}
       handle={{
         tracking: {
