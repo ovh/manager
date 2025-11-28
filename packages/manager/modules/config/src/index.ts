@@ -143,6 +143,10 @@ const getNewUrl = (appName = '', currentValue = '', region: 'EU' | 'CA' | 'US') 
 
 // TODO: Temporarily update the domains of µ-app URLs as they are still pointing to the old ones from BFF. To clean this method after BFF deployment
 const updateDomain = (configObj: Environment) => {
+  if (window.location.pathname?.includes('/manager/')) {
+    // fix to skip updating URLs for LABEU
+    return;
+  }
   const { region } = configObj;
   Object.entries(configObj.applicationURLs).forEach(([key, value]) => {
     configObj.applicationURLs[key] = getNewUrl(key, value, region);
