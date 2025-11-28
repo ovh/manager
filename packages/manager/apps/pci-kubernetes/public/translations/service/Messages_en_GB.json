@@ -101,6 +101,6 @@
   "kube_service_show_optional": "See more settings",
   "kube_service_hide_optional": "See fewer settings",
   "kube_service_cluster_status_MULTI_ZONES": "The MKS Premium solution is currently in beta. We are still working on some features, which will be added soon.",
-  "kube_service_copy_kubeconfig": "Copy Kubeconfig",
-  "kube_service_download_kubeconfig": "Download Kubeconfig"
+  "kube_service_copy_kubeconfig": "Copy kubeconfig",
+  "kube_service_download_kubeconfig": "Download kubeconfig"
 }
