@@ -20,7 +20,7 @@ export default mergeConfig(
         '@': path.resolve(__dirname, 'src'),
         '@ovh-ux/manager-gcj-module': path.resolve(
           __dirname,
-          '__mocks__/gcj-module.ts',
+          '__mocks__/gcj-module.tsx',
         ),
       },
     },
