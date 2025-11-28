@@ -119,7 +119,7 @@ describe('DeletePattern modal', () => {
     const errorMsg = {
       description: 'api error message',
       title: 'deletePatternToastErrorTitle',
-      variant: 'destructive',
+      variant: 'critical',
     };
     vi.mocked(patternApi.deletePattern).mockImplementationOnce(() => {
       throw apiErrorMock;

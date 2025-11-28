@@ -21,12 +21,9 @@ const PriceUnitSwitch = ({ showMonthly, onChange }: PriceUnitSwitch) => {
         mode="ghost"
         size="sm"
         onClick={() => handleClick(false)}
-        className={cn(
-          'text-sm font-semibold h-6 text-primary-500 border-2 border-primary-100 rounded-r-none hover:bg-primary-100 hover:border-primary-500',
-          {
-            'border-primary-500': !showMonthly,
-          },
-        )}
+        className={cn('font-semibold h-6', {
+          'bg-primary-100': !showMonthly,
+        })}
       >
         {t('pricing_button_hourly')}
       </Button>
@@ -36,12 +33,9 @@ const PriceUnitSwitch = ({ showMonthly, onChange }: PriceUnitSwitch) => {
         mode="ghost"
         size="sm"
         onClick={() => handleClick(true)}
-        className={cn(
-          'text-sm font-semibold h-6 text-primary-500 border-2 border-primary-100 rounded-l-none hover:bg-primary-100 hover:border-primary-500',
-          {
-            'border-primary-500': showMonthly,
-          },
-        )}
+        className={cn('font-semibold h-6', {
+          'bg-primary-100': showMonthly,
+        })}
       >
         {t('pricing_button_monthly')}
       </Button>

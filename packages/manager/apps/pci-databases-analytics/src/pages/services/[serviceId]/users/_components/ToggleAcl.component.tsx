@@ -22,7 +22,7 @@ const ToggleAcl = () => {
     onError: (err) => {
       toast.toast({
         title: t('toggleAclErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: err.response.data.message,
       });
       setSwitchState(aclsEnabled);

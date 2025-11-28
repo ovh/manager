@@ -28,7 +28,7 @@ const ServiceNameWithUpdate = ({ service }: { service: database.Service }) => {
     onError: (err) => {
       toast.toast({
         title: t('renameServiceToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -111,10 +111,10 @@ const ServiceNameWithUpdate = ({ service }: { service: database.Service }) => {
       <Button
         onClick={() => setIsEditing(true)}
         mode="ghost"
-        className="text-text size-4 p-0 hover:bg-transparent hover:text-primary"
+        className="rounded-full aspect-square h-auto p-1"
         data-testid="edit-button"
       >
-        <Pen />
+        <Pen className="size-4" />
       </Button>
     </div>
   );
