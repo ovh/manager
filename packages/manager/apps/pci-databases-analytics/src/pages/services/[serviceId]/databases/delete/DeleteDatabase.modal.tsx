@@ -41,7 +41,7 @@ const DeleteDatabase = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteDatabaseToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -71,7 +71,7 @@ const DeleteDatabase = () => {
 
   return (
     <RouteModal isLoading={!databases || !deletedDatabase}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-database-modal">
             {t('deleteDatabaseTitle')}
@@ -80,11 +80,11 @@ const DeleteDatabase = () => {
             {t('deleteDatabaseDescription', { name: deletedDatabase?.name })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               type="button"
-              mode="outline"
+              mode="ghost"
               data-testid="delete-database-cancel-button"
             >
               {t('deleteDatabaseButtonCancel')}

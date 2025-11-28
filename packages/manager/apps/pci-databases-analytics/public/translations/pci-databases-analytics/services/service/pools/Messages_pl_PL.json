@@ -52,5 +52,6 @@
   "infoConnectionPoolUriLabel": "Usługa URI",
   "infoConnectionPoolUriToast": "Identyfikator URI został skopiowany do schowka",
   "infoConnectionPoolModeLabel": "Tryb",
-  "infoConnectionPoolSizeLabel": "Rozmiar"
+  "infoConnectionPoolSizeLabel": "Rozmiar",
+  "infoConnectionPoolButtonClose": "Zamknij"
 }

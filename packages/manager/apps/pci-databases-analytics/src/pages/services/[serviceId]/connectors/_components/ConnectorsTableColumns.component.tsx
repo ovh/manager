@@ -112,7 +112,7 @@ export const getColumns = ({
             badgeVariant = 'warning';
             break;
           case database.kafkaConnect.connector.StatusEnum.FAILED:
-            badgeVariant = 'destructive';
+            badgeVariant = 'critical';
             break;
           default:
             badgeVariant = 'primary';
@@ -207,7 +207,7 @@ export const getColumns = ({
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   data-testid="connector-action-delete-button"
-                  variant="destructive"
+                  variant="critical"
                   disabled={
                     service.capabilities.connector?.delete ===
                     database.service.capability.StateEnum.disabled

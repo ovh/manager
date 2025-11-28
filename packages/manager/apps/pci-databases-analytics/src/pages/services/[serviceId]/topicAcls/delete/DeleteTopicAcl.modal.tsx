@@ -41,7 +41,7 @@ const DeleteTopicAcl = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteTopicAclToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -71,7 +71,7 @@ const DeleteTopicAcl = () => {
 
   return (
     <RouteModal isLoading={!topicAcls || !deletedTopicAcl}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-topic-acl-modal">
             {t('deleteTopicAclTitle')}
@@ -82,11 +82,11 @@ const DeleteTopicAcl = () => {
             })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               type="button"
-              mode="outline"
+              mode="ghost"
               data-testid="delete-topic-acl-cancel-button"
             >
               {t('deleteTopicAclButtonCancel')}

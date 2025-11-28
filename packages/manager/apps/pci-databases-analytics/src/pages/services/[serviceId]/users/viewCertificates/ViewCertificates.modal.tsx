@@ -7,21 +7,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  useToast,
-  Code,
-  githubDark,
-  ScrollArea,
+  Clipboard,
+  DialogBody,
 } from '@datatr-ux/uxlib';
-import { Download } from 'lucide-react';
 import { useServiceData } from '../../Service.context';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useGetUserAccess } from '@/hooks/api/database/user/useGetUserAccess.hook';
-import useDownload from '@/hooks/useDownload';
 
 const ViewCertificate = () => {
   const { userId } = useParams();
   const { projectId, service } = useServiceData();
-  const { download } = useDownload();
   const useGetUserAccessQuery = useGetUserAccess(
     projectId,
     service.engine,
@@ -36,58 +31,27 @@ const ViewCertificate = () => {
     'pci-databases-analytics/services/service/users',
   );
 
-  const toast = useToast();
-
   return (
     <RouteModal isLoading={!useGetUserAccessQuery.isSuccess}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="view-certificate-modal">
             {t('viewCertificatesTitle')}
           </DialogTitle>
         </DialogHeader>
-        <ScrollArea className="h-auto max-h-64">
-          <div className="p-2 max-w-lg">
-            {useGetUserAccessQuery.data && (
-              <Code
-                code={useGetUserAccessQuery.data.cert}
-                label={
-                  <div className="flex flex-row items-center justify-between w-full mr-2">
-                    <div>
-                      <span>{t('viewCertificatesTitle')}</span>
-                    </div>
-                    <Button
-                      size="xs"
-                      variant="neutral"
-                      className="bg-neutral-700 hover:bg-neutral-800"
-                      data-testid="view-certificate-dowload-button"
-                      onClick={() => {
-                        download(
-                          useGetUserAccessQuery.data.cert,
-                          'service.cert',
-                        );
-                      }}
-                    >
-                      <Download className="size-4 mr-1" />
-                      {t('downloadButton')}
-                    </Button>
-                  </div>
-                }
-                theme={githubDark}
-                onCopied={() =>
-                  toast.toast({
-                    title: t('viewCertificateCopy'),
-                  })
-                }
-              />
-            )}
-          </div>
-        </ScrollArea>
-        <DialogFooter className="flex justify-end">
+        <DialogBody>
+          {useGetUserAccessQuery.data && (
+            <Clipboard
+              value={`${useGetUserAccessQuery.data.cert}`}
+              showDownloadButton
+            />
+          )}
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               type="button"
-              mode="outline"
+              mode="ghost"
               data-testid="view-certificate-close-button"
             >
               {t('userButtonClose')}

@@ -38,7 +38,7 @@ const DeletePatternModal = () => {
     onError: (err) => {
       toast.toast({
         title: t('deletePatternToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -67,7 +67,7 @@ const DeletePatternModal = () => {
   };
   return (
     <RouteModal isLoading={!patterns || !deletedPattern}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-patterns-modal">
             {t('deletePatternTitle')}
@@ -78,12 +78,12 @@ const DeletePatternModal = () => {
             })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-patterns-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deletePatternButtonCancel')}
             </Button>
