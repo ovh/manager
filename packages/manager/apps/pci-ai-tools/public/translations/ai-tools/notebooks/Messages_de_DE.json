@@ -17,5 +17,9 @@
   "tableActionDelete": "Löschen",
   "deleteTableTooltip": "Das Notebook muss sich im Status „Beendet“ befinden",
   "quantumTitle": "Emulators",
-  "qpuTitle": "QPUs"
+  "qpuTitle": "QPUs",
+  "tableActionRestart": "Neustarten",
+  "shutdownLabel": "Stoppen ",
+  "restartLabel": "Neustart ",
+  "timeOutLabel": "Ablauf"
 }

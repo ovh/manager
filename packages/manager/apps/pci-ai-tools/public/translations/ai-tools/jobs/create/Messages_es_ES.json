@@ -46,5 +46,11 @@
   "successCreatingJobDescription": "Su job se ha creado correctamente",
   "fieldDockerCommandLabel": "Comandos Docker:",
   "summaryFieldVolumesLabel": "Volúmenes:",
-  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
+  "defaultAutoRestartInfo": "El trabajo se detendrá automáticamente después de 7 días. Su configuración y sus datos serán guardados. ",
+  "fieldTimeOutLabel": "Expiración",
+  "fieldAutoRestartLabel": "Reinicio automático",
+  "fieldAutoRestartDescription": "Si está activado, el trabajo se reiniciará automáticamente cada 7 días. Si está desactivado, el trabajo se detendrá automáticamente después de 7 días. En ambos casos, su configuración y sus datos serán guardados.",
+  "filedEnable": "Activado",
+  "filedDisable": "Desactivado"
 }

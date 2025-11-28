@@ -1,14 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 import {
   BrainCircuitIcon,
   Globe,
   LockKeyhole,
+  OctagonX,
+  RefreshCcw,
   Repeat1Icon,
   Square,
 } from 'lucide-react';
 import { useState } from 'react';
 import { Badge, Button, Skeleton } from '@datatr-ux/uxlib';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import ai from '@/types/AI';
 import JobStatusBadge from '../../_components/JobStatusBadge.component';
 import KillJob from './KillJob.component';
@@ -21,6 +25,8 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
   const { t: tRegions } = useTranslation('regions');
   const [isRestartOpen, setIsRestartOpen] = useState(false);
   const [isStopOpen, setIsStopOpen] = useState(false);
+  const dateLocale = useDateFnsLocale();
+  const isAutoRestart = job.spec.timeoutAutoRestart;
   return (
     <>
       <div
@@ -59,7 +65,33 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
           <div className="flex gap-2 flex-wrap">
             <JobStatusBadge status={job.status.state} />
             <Badge variant="outline">{job.spec.image}</Badge>
-
+            {job.status.timeoutAt && (
+              <Badge variant="outline">
+                <div className=" bottom-0 right-0 flex items-center gap-2 ">
+                  {isAutoRestart ? (
+                    <>
+                      <RefreshCcw size={16} />
+                      <span>
+                        {t('restartLabel')}
+                        {format(job.status.timeoutAt, 'PPpp', {
+                          locale: dateLocale,
+                        })}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <OctagonX size={16} />
+                      <span>
+                        {t('shutdownLabel')}
+                        {format(job.status.timeoutAt, 'PPpp', {
+                          locale: dateLocale,
+                        })}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </Badge>
+            )}
             <Badge variant="outline">
               {tRegions(`region_${job.spec.region}`)}
             </Badge>
