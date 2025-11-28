@@ -1,7 +1,7 @@
 import {
   ProjectStorageCreation,
   StorageContainerCreation,
-} from '@datatr-ux/ovhcloud-types/cloud/index';
+} from '@datatr-ux/ovhcloud-types/cloud';
 import { Button, Separator, Skeleton } from '@datatr-ux/uxlib';
 import {
   Copy,
@@ -15,8 +15,6 @@ import {
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import Flag from '@/components/flag/Flag.component';
-import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import cloud from '@/types/Cloud';
 import storages from '@/types/Storages';
 import { isS3Order, isSwiftOrder } from './useOrderFunnel.hook';
