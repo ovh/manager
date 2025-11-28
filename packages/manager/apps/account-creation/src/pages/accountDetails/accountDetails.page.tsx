@@ -468,7 +468,7 @@ function AccountDetailsForm({
                 </OdsText>
                 {!isLoading ? (
                   <OdsSelect
-                    isDisabled={true}
+                    isDisabled={currentUser.country !== 'UNKNOWN'}
                     name={name}
                     value={value}
                     onOdsChange={onChange}
