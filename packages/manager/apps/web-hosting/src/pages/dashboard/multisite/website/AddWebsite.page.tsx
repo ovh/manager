@@ -101,6 +101,7 @@ export default function AddWebsitePage() {
         targetSpec: {
           name: data.name,
           fqdn: data.fqdn,
+          path: data.path ?? null,
         },
       };
       postWebHostingWebsites([payload, data.wwwNeeded ?? false]);
@@ -121,7 +122,7 @@ export default function AddWebsitePage() {
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_choose_domain_title')}
-        <OdsIcon id="cdn-tooltip" name={ODS_ICON_NAME.circleInfo} className="cursor-pointer ml-4" />
+        <OdsIcon id="cdn-tooltip" name={ODS_ICON_NAME.circleInfo} className="ml-4 cursor-pointer" />
         <OdsTooltip triggerId="cdn-tooltip">
           <OdsText>{t('multisite:multisite_add_website_domain_info')}</OdsText>
         </OdsTooltip>

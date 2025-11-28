@@ -2,7 +2,12 @@ import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_INPUT_TYPE, ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsInput,
@@ -155,6 +160,35 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                   value={field.value}
                   onOdsChange={(e) => field.onChange(e.target.value)}
                 />
+              </div>
+            )}
+          />
+          <Controller
+            name="path"
+            control={control}
+            render={({ field }) => (
+              <div className="flex flex-col">
+                <OdsText>{t('dashboard:hosting_multisite_domain_configuration_home')}</OdsText>
+                <div className="flex w-1/3 items-center space-x-2">
+                  <OdsButton
+                    size="sm"
+                    variant={ODS_BUTTON_VARIANT.outline}
+                    label="./"
+                    isDisabled={true}
+                  />
+                  <OdsInput
+                    type={ODS_INPUT_TYPE.text}
+                    className="w-full"
+                    name="website-path"
+                    isDisabled={isAddingDomain}
+                    value={field.value}
+                    onOdsChange={(e) => field.onChange(e.target.value)}
+                  />
+                </div>
+
+                <OdsText preset={ODS_TEXT_PRESET.caption}>
+                  {t('multisite:multisite_add_website_configure_domain_advanced_path_message')}
+                </OdsText>
               </div>
             )}
           />
