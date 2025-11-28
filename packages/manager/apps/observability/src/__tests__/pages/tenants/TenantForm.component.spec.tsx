@@ -222,7 +222,6 @@ describe('TenantForm', () => {
 
   describe('Rendering', () => {
     it.each([
-      ['Create Tenant', 'text'],
       ['region-selector', 'testId'],
       ['information-form', 'testId'],
       ['tenant-configuration-form', 'testId'],

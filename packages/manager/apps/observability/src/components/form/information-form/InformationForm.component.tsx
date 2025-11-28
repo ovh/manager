@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -22,9 +22,14 @@ export const InformationForm = ({
     formState: { errors },
   } = useFormContext<TenantFormData>();
 
+  const infrastructureId = useWatch({
+    control,
+    name: 'infrastructureId',
+  });
+
   return (
     <>
-      <Text preset={TEXT_PRESET.heading4}>{title}</Text>
+      <Text preset={TEXT_PRESET.heading2}>{title}</Text>
       <div className="mt-6 space-y-4">
         <Controller
           name="title"
@@ -32,7 +37,7 @@ export const InformationForm = ({
           render={({ field }) => (
             <TextField
               id="title"
-              label={toRequiredLabel(t(`${NAMESPACES.DASHBOARD}:name`))}
+              label={toRequiredLabel(t(`${NAMESPACES.DASHBOARD}:name`), t('shared:mandatory'))}
               placeholder={namePlaceholder}
               type="text"
               isRequired
@@ -40,6 +45,7 @@ export const InformationForm = ({
               onChange={field.onChange}
               onBlur={field.onBlur}
               error={errors.title?.message}
+              isDisabled={!infrastructureId}
             />
           )}
         />
@@ -49,7 +55,7 @@ export const InformationForm = ({
           render={({ field }) => (
             <TextField
               id="description"
-              label={t('shared:description')}
+              label={t(`${NAMESPACES.DASHBOARD}:description`)}
               placeholder={descriptionPlaceholder}
               type="textarea"
               rows={4}
@@ -57,6 +63,7 @@ export const InformationForm = ({
               onChange={field.onChange}
               onBlur={field.onBlur}
               error={errors.description?.message}
+              isDisabled={!infrastructureId}
             />
           )}
         />
