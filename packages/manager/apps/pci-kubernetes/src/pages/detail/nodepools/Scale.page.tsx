@@ -85,7 +85,7 @@ export default function ScalePage(): ReactElement {
     poolId,
   });
 
-  const isDisabled = isPendingScaling || (state && !isScalingValid({ scaling: state }));
+  const isDisabled = isPendingScaling || (state && !isScalingValid(state));
 
   const scaleObject = useMemo(() => {
     const { desired, min, max } = state?.quantity || {};
