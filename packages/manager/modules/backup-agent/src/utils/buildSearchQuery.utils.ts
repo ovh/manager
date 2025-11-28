@@ -19,6 +19,12 @@ export type TBuildDeleteTenantUrlParams = {
   origin?: 'listing' | 'dashboard';
 };
 
+export type TBuildDeleteAgentUrlParams = {
+  tenantId: string;
+  agentId: string;
+  origin?: 'dashboard' | 'configuration';
+};
+
 export const buildDeleteTenantUrl = ({
   tenantId,
   origin = 'listing',
@@ -29,4 +35,17 @@ export const buildDeleteTenantUrl = ({
       : { fallback: urls.listingTenants, base: urls.listingTenantDelete };
 
   return tenantId ? `${url.base}${buildSearchQuery({ tenantId })}` : url.fallback;
+};
+
+export const buildDeleteAgentUrl = ({
+  tenantId,
+  agentId,
+  origin = 'dashboard',
+}: TBuildDeleteAgentUrlParams) => {
+  const url =
+    origin === 'dashboard'
+      ? { fallback: urls.dashboardTenantAgents, base: urls.dashboardTenantAgentDelete }
+      : { fallback: urls.dashboardTenantAgents, base: urls.dashboardTenantAgentDelete };
+
+  return tenantId ? `${url.base}${buildSearchQuery({ tenantId, agentId })}` : url.fallback;
 };

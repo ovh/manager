@@ -11,6 +11,9 @@ export const getEditConfigurationBackupAgentsRoute = (
   backupAgentId: string,
 ) => `/backup/tenant/vspc/${vspcTenantId}/backupAgent/${backupAgentId}`;
 
+export const getDeleteBackupAgentsRoute = (vspcTenantId: string, backupAgentId: string) =>
+  `/backup/tenant/vspc/${vspcTenantId}/backupAgent/${backupAgentId}`;
+
 export type EditConfigurationBackupAgentsParams = {
   vspcTenantId: string;
   backupAgentId: string;
@@ -25,3 +28,9 @@ export const editConfigurationBackupAgents = async ({
   ...payload
 }: EditConfigurationBackupAgentsParams): Promise<ApiResponse<string>> =>
   v2.put(getEditConfigurationBackupAgentsRoute(vspcTenantId, backupAgentId), payload);
+
+export const deleteBackupAgent = async (
+  vspcTenantId: string,
+  agentId: string,
+): Promise<ApiResponse<string>> =>
+  v2.delete(`${getDeleteBackupAgentsRoute(vspcTenantId, agentId)}`);
