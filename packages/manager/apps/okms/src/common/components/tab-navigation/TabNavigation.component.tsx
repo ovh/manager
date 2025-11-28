@@ -4,6 +4,8 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import { OdsBadge, OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 export type TabNavigationItem = {
   name: string;
   url: string;
@@ -37,8 +39,17 @@ function getActiveTab(tabs: TabNavigationItem[], currentPath: string): number {
 }
 
 export const TabNavigation = ({ tabs }: TabNavigationProps) => {
+  const { trackClick } = useOvhTracking();
   const location = useLocation();
   const activeTabIndex = getActiveTab(tabs, location.pathname);
+
+  const handleTrackClickTab = (action: string) =>
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: [action],
+    });
 
   return (
     <OdsTabs>
@@ -55,6 +66,7 @@ export const TabNavigation = ({ tabs }: TabNavigationProps) => {
             role="tab"
             isSelected={activeTabIndex === index}
             className="space-x-1"
+            onClick={() => handleTrackClickTab(tab.name)}
           >
             <span>{tab.title}</span>
             {tab.badge && (
