@@ -101,6 +101,6 @@
   "kube_service_show_optional": "Wyświetl więcej ustawień",
   "kube_service_hide_optional": "Wyświetl mniej ustawień",
   "kube_service_cluster_status_MULTI_ZONES": "Usługa MKS Premium działa obecnie w trybie beta. Niektóre funkcje nie są jeszcze dostępne, ale zostaną wkrótce dodane.",
-  "kube_service_copy_kubeconfig": "Skopiuj Kubeconfig",
-  "kube_service_download_kubeconfig": "Pobierz Kubeconfig"
+  "kube_service_copy_kubeconfig": "Skopiuj kubeconfig",
+  "kube_service_download_kubeconfig": "Pobierz kubeconfig"
 }
