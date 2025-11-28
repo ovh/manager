@@ -142,7 +142,6 @@ export function getPciProjectMenu(
         isFeaturesAvailable('cold-archive') && {
           id: 'cold-archive',
           title: 'Cold Archive',
-          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/cold-archive`,
