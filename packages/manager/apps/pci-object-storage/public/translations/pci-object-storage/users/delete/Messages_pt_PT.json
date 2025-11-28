@@ -1,11 +1,11 @@
 {
   "deleteUserTitle": "Desativar um utilizador para S3",
-  "deleteUserDescription": "A eliminação total de um utilizador é feita na secção Utilizadores e Funções.",
+  "deleteUserDescription": "A eliminação total de um utilizador deve ser efetuada na secção «Users & Roles».",
   "deleteUSerDescription1": "Gerir os meus utilizadores",
-  "deleteUSerDescription2": "Esta ação permite-lhe remover as credenciais S3 do utilizador {{ name }}.",
+  "deleteUSerDescription2": "Esta ação permite-lhe eliminar as informações de identificação S3 do utilizador {{ name }}.",
   "deleteUserButtonCancel": "Anular",
   "deleteUserButtonConfirm": "Confirmar",
   "deleteUserToastErrorTitle": "Erro",
-  "deleteUserToastSuccessTitle": "Sucesso",
-  "deleteUserToastSuccessDescription": "O utilizador {{ name }} foi eliminado."
+  "deleteUserToastSuccessTitle": "Êxito",
+  "deleteUserToastSuccessDescription": "O utilizador {{ name }} foi eliminado"
 }
