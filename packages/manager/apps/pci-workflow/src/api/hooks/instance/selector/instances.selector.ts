@@ -72,12 +72,14 @@ const mapInstanceStatus = ({ status }: TEInstance): TInstanceStatus => {
 type TMicroRegionTranslator = (region: string) => string;
 type TInstanceRegion = Readonly<{
   label: Opaque<string, TInstanceRegion>;
+  id: Opaque<string, TInstanceRegion>;
 }>;
 
 const mapInstanceRegion =
   (translateMicroRegion: TMicroRegionTranslator) =>
   (instance: TEInstance): TInstanceRegion => ({
     label: translateMicroRegion(instance.region) as TInstanceRegion['label'],
+    id: instance.region as TInstanceRegion['id'],
   });
 
 type TInstanceAutoBackup = boolean;
@@ -160,7 +162,7 @@ export const sortResults = (items: TInstance[], sorting: ColumnSort | undefined)
       case 'status':
         return instance.status.group;
       case 'region':
-        return instance.region.label;
+        return instance.region.id;
       default:
         return instance[sorting.id as keyof TInstance];
     }
