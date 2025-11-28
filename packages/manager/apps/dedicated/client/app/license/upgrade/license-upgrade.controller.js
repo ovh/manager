@@ -74,9 +74,14 @@ export default /* @ngInject */ (
     return opts;
   }
 
+  const getLicenseDescription = () => {
+    const description = License.licenseDescription;
+    if (description && $scope.license) $scope.license.description = description;
+  };
+
   const getUpgradeVersion = () => {
     $scope.loaders.orderableVersion = true;
-    License.getServiceId($scope.license)
+    return License.getServiceId($scope.license)
       .then((data) => {
         $scope.serviceInfo = data;
         return License.getUpgradeVersion($scope.serviceInfo.serviceId);
@@ -115,8 +120,9 @@ export default /* @ngInject */ (
       .then((license) => {
         $scope.license = license;
       })
+      .then(() => getUpgradeVersion())
       .then(() => {
-        getUpgradeVersion();
+        getLicenseDescription();
       })
       .finally(() => {
         $scope.loaders.init = false;
