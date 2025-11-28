@@ -1,14 +1,12 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
-import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
-import {
-  editProject,
-  setAsDefaultProject,
-  unFavProject,
-} from '@/data/api/projects';
-import queryClient from '@/queryClient';
-import { getDefaultProjectQueryKey } from '@/data/hooks/useProjects';
+import { AxiosError } from 'axios';
+
+import { editProject, setAsDefaultProject, unFavProject } from '@/data/api/projects';
 import { projectsWithServiceQueryKey } from '@/data/api/projects-with-services';
+import { getDefaultProjectQueryKey, getProjectQueryKey } from '@/data/hooks/useProjects';
+import queryClient from '@/queryClient';
+
+type ApiError = AxiosError<{ message: string }>;
 
 export type EditProjectParams = {
   description: string;
@@ -56,19 +54,16 @@ export const useEditProject = (
     },
     onSuccess: (_, variables) => {
       if (variables?.isDefaultPropertyChanged) {
-        queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
+        void queryClient.invalidateQueries({ queryKey: getDefaultProjectQueryKey });
       }
       if (variables?.isDescriptionChanged) {
-        queryClient.invalidateQueries({
+        void queryClient.invalidateQueries({
           queryKey: getProjectQueryKey(projectId),
         });
       }
 
-      if (
-        variables?.isDefaultPropertyChanged ||
-        variables?.isDescriptionChanged
-      ) {
-        queryClient.invalidateQueries({
+      if (variables?.isDefaultPropertyChanged || variables?.isDescriptionChanged) {
+        void queryClient.invalidateQueries({
           queryKey: [projectsWithServiceQueryKey()],
         });
       }

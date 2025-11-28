@@ -1,10 +1,13 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import useActiveProjects from '../data/hooks/useActiveProjects';
-import useRedirectTarget, { TRedirectTarget } from './useRedirectTarget';
 import useCheckFeatureAvailability, {
   TFeatureAvailabilityState,
 } from './useCheckFeatureAvailability';
+import useRedirectTarget, { TRedirectTarget } from './useRedirectTarget';
+import { useRedirectionHelper } from './useRedirectionHelper';
 
 export type TRedirectStatus = {
   isRedirectRequired: boolean;
@@ -36,16 +39,9 @@ type TRedirectInformation = {
  */
 const getRedirectInformation = (
   { isRedirectRequired, redirectTargetParams, featureState }: TRedirectTarget,
-  {
-    available: isFFAvailable,
-    check: shouldCheckFeatureFlipping,
-  }: TFeatureAvailabilityState,
+  { available: isFFAvailable, check: shouldCheckFeatureFlipping }: TFeatureAvailabilityState,
 ): TRedirectInformation => {
-  if (
-    isRedirectRequired &&
-    featureState &&
-    (!shouldCheckFeatureFlipping || isFFAvailable)
-  ) {
+  if (isRedirectRequired && featureState && (!shouldCheckFeatureFlipping || isFFAvailable)) {
     return {
       isRedirectExternal: featureState.isExternal || false,
       redirectExternalUrl: featureState.url,
@@ -96,59 +92,18 @@ export default (): TRedirectStatus => {
   const { activeProjects, isReady } = useActiveProjects();
   const redirectTarget = useRedirectTarget();
 
-  const featureAvailabilityState = useCheckFeatureAvailability(
-    redirectTarget.featureState,
-  );
+  const featureAvailabilityState = useCheckFeatureAvailability(redirectTarget.featureState);
 
-  const {
+  const { isRedirectExternal, redirectExternalUrl, redirectParams, redirectPath } =
+    getRedirectInformation(redirectTarget, featureAvailabilityState);
+
+  const { redirect, redirectUrl } = useRedirectionHelper({
     isRedirectExternal,
     redirectExternalUrl,
-    redirectParams,
     redirectPath,
-  } = getRedirectInformation(redirectTarget, featureAvailabilityState);
-
-  const redirect = useCallback(
-    (projectId: string) => {
-      if (isRedirectExternal) {
-        (window.top || window).location.assign(
-          redirectExternalUrl.replace(/:projectId/g, projectId),
-        );
-      } else {
-        navigation.navigateTo('public-cloud', redirectPath, {
-          ...redirectParams,
-          projectId,
-        });
-      }
-    },
-    [
-      isRedirectExternal,
-      redirectExternalUrl,
-      redirectPath,
-      redirectParams,
-      navigation,
-    ],
-  );
-
-  const redirectUrl = useCallback(
-    async (projectId: string): Promise<string> => {
-      if (isRedirectExternal) {
-        return redirectExternalUrl.replace(/:projectId/g, projectId);
-      }
-      return navigation
-        .getURL('public-cloud', redirectPath, {
-          ...redirectParams,
-          projectId,
-        })
-        .then((url: unknown) => url as string);
-    },
-    [
-      isRedirectExternal,
-      redirectExternalUrl,
-      redirectPath,
-      redirectParams,
-      navigation,
-    ],
-  );
+    redirectParams,
+    navigation,
+  });
 
   useEffect(() => {
     // We immediately redirect because there is only one project
@@ -156,23 +111,15 @@ export default (): TRedirectStatus => {
       isReady &&
       redirectTarget.isRedirectRequired &&
       activeProjects?.length === 1 &&
-      redirectPath !== ''
+      redirectPath !== '' &&
+      activeProjects[0]
     ) {
       redirect(activeProjects[0].project_id);
     }
-  }, [
-    isReady,
-    redirectTarget.isRedirectRequired,
-    activeProjects,
-    redirectPath,
-    redirect,
-  ]);
+  }, [isReady, redirectTarget.isRedirectRequired, activeProjects, redirectPath, redirect]);
 
   return {
-    isRedirectRequired:
-      isReady &&
-      redirectTarget.isRedirectRequired &&
-      activeProjects?.length > 1,
+    isRedirectRequired: isReady && redirectTarget.isRedirectRequired && activeProjects?.length > 1,
     isRedirectExternal,
     redirectUrl,
     redirect,

@@ -1,4 +1,5 @@
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+
 import { TFeatureStateDetail } from '@/constants';
 
 export type TFeatureAvailabilityState = {
@@ -24,18 +25,13 @@ export type TFeatureAvailabilityState = {
  * }
  * ```
  */
-export default (
-  featureState: TFeatureStateDetail | undefined,
-): TFeatureAvailabilityState => {
+export default (featureState: TFeatureStateDetail | undefined): TFeatureAvailabilityState => {
   const feature: string | undefined = featureState?.featureAvailability;
   const check = !!feature;
 
-  const { data: availability } = useFeatureAvailability(
-    (feature ? [feature] : []) as [string],
-    {
-      enabled: check,
-    },
-  );
+  const { data: availability } = useFeatureAvailability((feature ? [feature] : []) as [string], {
+    enabled: check,
+  });
 
   if (!feature) {
     return { available: false, feature: '', check: false };

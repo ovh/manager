@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
+
 import { PCI_FEATURES_STATES, TFeatureStateDetail } from '@/constants';
 
 export type TTarget = {
@@ -43,17 +44,13 @@ export default (): TRedirectTarget => {
   const [searchParams] = useSearchParams();
 
   try {
-    const redirectTarget = JSON.parse(
-      searchParams.get('target') || '{}',
-    ) as TTarget;
+    const redirectTarget = JSON.parse(searchParams.get('target') || '{}') as TTarget;
 
     const { category, state } = redirectTarget;
 
-    const upperCategory = category?.toUpperCase() as
-      | keyof typeof PCI_FEATURES_STATES
-      | undefined;
+    const upperCategory = category?.toUpperCase() as keyof typeof PCI_FEATURES_STATES | undefined;
     const upperState = state?.toUpperCase() as
-      | keyof typeof PCI_FEATURES_STATES[keyof typeof PCI_FEATURES_STATES]
+      | keyof (typeof PCI_FEATURES_STATES)[keyof typeof PCI_FEATURES_STATES]
       | undefined;
 
     if (!upperCategory || !upperState) {
@@ -74,7 +71,7 @@ export default (): TRedirectTarget => {
               ...params,
               ...(typeof redirectTarget[targetKey] === 'object' &&
               redirectTarget[targetKey] !== null
-                ? (redirectTarget[targetKey] as Record<string, string>)
+                ? redirectTarget[targetKey]
                 : {}),
             }),
             {},
@@ -82,7 +79,7 @@ export default (): TRedirectTarget => {
         : {},
       featureState,
     };
-  } catch (error) {
+  } catch {
     return {
       isRedirectRequired: false,
       redirectTargetParams: {},

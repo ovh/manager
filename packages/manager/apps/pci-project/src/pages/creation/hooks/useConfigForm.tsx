@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
+
 import { format } from 'date-fns';
+
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import {
-  useGetCartConfiguration,
-  useGetProjectItem,
-  useIsHdsChecked,
-} from '@/data/hooks/useCart';
+
+import { useGetCartConfiguration, useGetProjectItem, useIsHdsChecked } from '@/data/hooks/useCart';
 
 export type ConfigFormState = {
   description: string;
@@ -14,10 +13,7 @@ export type ConfigFormState = {
   isHdsChecked: boolean;
 };
 
-export const useConfigForm = (
-  ovhSubsidiary: OvhSubsidiary,
-  cartId: string | undefined,
-) => {
+export const useConfigForm = (ovhSubsidiary: OvhSubsidiary, cartId: string | undefined) => {
   const [form, setForm] = useState<ConfigFormState>({
     description: `Project ${format(new Date(), 'yyyy-MM-dd')}`,
     isContractsChecked: !!cartId,
@@ -44,20 +40,24 @@ export const useConfigForm = (
   const { data: hdsItem } = useIsHdsChecked(cartId);
 
   useEffect(() => {
-    if (cartConfigurationDescription) {
-      setForm((prev) => ({
-        ...prev,
-        description: cartConfigurationDescription.value || '',
-      }));
+    if (cartConfigurationDescription && form.description !== cartConfigurationDescription.value) {
+      setTimeout(() => {
+        setForm((prev) => ({
+          ...prev,
+          description: cartConfigurationDescription.value || '',
+        }));
+      }, 0);
     }
-  }, [cartConfigurationDescription, setForm]);
+  }, [cartConfigurationDescription, setForm, form.description]);
 
   useEffect(() => {
     if (hdsItem) {
-      setForm((prev) => ({
-        ...prev,
-        isHdsChecked: !!hdsItem,
-      }));
+      setTimeout(() => {
+        setForm((prev) => ({
+          ...prev,
+          isHdsChecked: !!hdsItem,
+        }));
+      }, 0);
     }
   }, [hdsItem, setForm]);
 

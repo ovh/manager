@@ -9,8 +9,8 @@ export function usePaginatedItems<T>(allItems: T[], itemsPerPage = 10) {
 
   useEffect(() => {
     // Initialize it to first page on item load.
-    setNbDisplayedPages(Math.min(1, nbPages));
-  }, [allItems, itemsPerPage]);
+    setTimeout(() => setNbDisplayedPages(Math.min(1, nbPages)), 0);
+  }, [allItems, itemsPerPage, nbPages]);
 
   const fetchNextPage = () => {
     if (hasNextPage) {
