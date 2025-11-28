@@ -52,5 +52,6 @@
   "infoConnectionPoolUriLabel": "Service URI",
   "infoConnectionPoolUriToast": "L'URI a été copiée dans votre presse papier",
   "infoConnectionPoolModeLabel": "Mode",
-  "infoConnectionPoolSizeLabel": "Taille"
+  "infoConnectionPoolSizeLabel": "Taille",
+  "infoConnectionPoolButtonClose": "Fermer"
 }

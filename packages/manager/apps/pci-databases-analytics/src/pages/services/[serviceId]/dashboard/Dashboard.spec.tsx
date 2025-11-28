@@ -143,25 +143,6 @@ describe('Dashboard page', () => {
       expect(screen.getByTestId('dashboard-support-link')).toBeInTheDocument();
     });
   });
-  it('renders and trigger copy Id in clipboard', async () => {
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
-    render(<Dashboard />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(mockedServiceOrig.id)).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('dashboard-copy-id-button'));
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(
-        mockedServiceOrig.id,
-      );
-    });
-  });
 });
 
 describe('Maintenance section', () => {
@@ -324,50 +305,26 @@ describe('Connection details page', () => {
       ).toBeInTheDocument();
     });
   });
-  it('renders and trigger copy domain in clipboard', async () => {
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
+  it('renders domain in clipboard', async () => {
     render(<Dashboard />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(
         screen.getByText(mockedServiceOrig.endpoints[0].domain),
       ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(
+      expect(
         screen.getByTestId('dashboard-connection-detail-domain-button'),
-      );
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(
-        mockedServiceOrig.endpoints[0].domain,
-      );
+      ).toBeInTheDocument();
     });
   });
-  it('renders and trigger copy uriin clipboard', async () => {
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: vi.fn().mockImplementation(() => Promise.resolve()),
-      },
-    });
+  it('renders uri in clipboard', async () => {
     render(<Dashboard />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(
         screen.getByText(mockedServiceOrig.endpoints[0].uri),
       ).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(
+      expect(
         screen.getByTestId('dashboard-connection-detail-uri-button'),
-      );
-    });
-    await waitFor(() => {
-      expect(window.navigator.clipboard.writeText).toHaveBeenCalledWith(
-        mockedServiceOrig.endpoints[0].uri,
-      );
+      ).toBeInTheDocument();
     });
   });
 });

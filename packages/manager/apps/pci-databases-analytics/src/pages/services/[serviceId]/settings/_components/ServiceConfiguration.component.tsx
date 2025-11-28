@@ -1,20 +1,12 @@
-import { Pen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  Badge,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  useToast,
-} from '@datatr-ux/uxlib';
+import { Button, Separator, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
 import * as database from '@/types/cloud/project/database';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import NavLink from '@/components/links/NavLink.component';
 
 const ServiceConfiguration = () => {
   const { t } = useTranslation(
@@ -27,7 +19,7 @@ const ServiceConfiguration = () => {
     onError: (err) => {
       toast.toast({
         title: t('serviceConfigurationUpdateToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -80,37 +72,17 @@ const ServiceConfiguration = () => {
 
   return (
     <>
-      <Table>
-        <TableBody data-testid="service-configuration-table">
-          <TableRow>
-            <TableCell className="font-semibold">
-              {t('serviceConfigurationServiceName')}
-            </TableCell>
-            <TableCell>{service.description}</TableCell>
-            {service.capabilities.service?.update && (
-              <TableCell className="text-right">
-                <Button
-                  data-testid="service-config-rename-button"
-                  disabled={
-                    service.capabilities.service?.update ===
-                    database.service.capability.StateEnum.disabled
-                  }
-                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                  onClick={() => navigate('./rename')}
-                >
-                  <Pen />
-                </Button>
-              </TableCell>
-            )}
-          </TableRow>
-          {service.capabilities.maintenanceTime?.read && (
-            <TableRow>
-              <TableCell
-                data-testid="maintenance-time-cell"
-                className="font-semibold"
-              >
+      <div data-testid="service-configuration-table">
+        {service.capabilities.maintenanceTime?.read && (
+          <>
+            <Separator className="my-2" />
+            <div
+              className="grid grid-cols-4 gap-x-4 items-center"
+              data-testid="maintenance-time"
+            >
+              <div className="font-semibold col-span-2">
                 {t('serviceConfigurationServiceMaintenanceTime')}
-              </TableCell>
+              </div>
               <TimeUpdate
                 readonly={!service.capabilities.maintenanceTime.update}
                 disabled={
@@ -120,16 +92,20 @@ const ServiceConfiguration = () => {
                 initialValue={convertTimeToDateTime(service.maintenanceTime)}
                 onSubmit={onMaintenanceTimeSubmit}
               />
-            </TableRow>
-          )}
-          {service.capabilities.backupTime?.read && (
-            <TableRow>
-              <TableCell
-                data-testid="backup-time-cell"
-                className="font-semibold"
-              >
+            </div>
+          </>
+        )}
+
+        {service.capabilities.backupTime?.read && (
+          <>
+            <Separator className="my-2" />
+            <div
+              className="grid grid-cols-4 gap-x-4 items-center"
+              data-testid="backup-time"
+            >
+              <div className="font-semibold col-span-2">
                 {t('serviceConfigurationServiceBackupTime')}
-              </TableCell>
+              </div>
               <TimeUpdate
                 readonly={!service.capabilities.backupTime.update}
                 disabled={
@@ -139,52 +115,55 @@ const ServiceConfiguration = () => {
                 initialValue={convertTimeToDateTime(service.backups.time)}
                 onSubmit={onBackupTimeSubmit}
               />
-            </TableRow>
-          )}
-          {service.capabilities.deletionProtection?.read && (
-            <TableRow>
-              <TableCell className="font-semibold">
+            </div>
+          </>
+        )}
+
+        {service.capabilities.deletionProtection?.read && (
+          <>
+            <Separator className="my-2" />
+            <div
+              className="grid grid-cols-4 gap-x-4 items-center"
+            >
+              <div className="font-semibold col-span-3">
                 {t('serviceConfigurationServiceDeletionProtection')}
-              </TableCell>
-              <TableCell>
-                <Badge
-                  variant={service.deletionProtection ? 'success' : 'neutral'}
-                >
-                  {service.deletionProtection
-                    ? t('serviceDeletionProtectionActivated')
-                    : t('serviceDeletionProtectionActivatedDeactivated')}
-                </Badge>
-              </TableCell>
-              <TableCell className="text-right">
-                <Button
-                  data-testid="service-config-deletion-protection-button"
+              </div>
+              <div className="p-0 flex justify-end items-center flex-wrap gap-2">
+                <NavLink
+                  data-testid="service-config-deletion-protection-link"
+                  className="py-0"
+                  to={'./deletion-protection'}
                   disabled={
                     service.capabilities.deletionProtection?.update ===
                     database.service.capability.StateEnum.disabled
                   }
-                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                  onClick={() => navigate('./deletion-protection')}
                 >
-                  <Pen />
-                </Button>
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+                  {!service.deletionProtection
+                    ? t('serviceDeletionProtectionActivate')
+                    : t('serviceDeletionProtectionActivatedDeactivate')}
+                </NavLink>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+
       {service.capabilities.service?.delete && (
-        <Button
-          data-testid="service-config-delete-button"
-          disabled={
-            service.capabilities.service?.delete ===
-            database.service.capability.StateEnum.disabled
-          }
-          variant="destructive"
-          className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
-          onClick={() => navigate('./delete')}
-        >
-          {t('serviceConfigurationDeleteService')}
-        </Button>
+        <>
+          <Separator className="mb-2" />
+          <Button
+            data-testid="service-config-delete-button"
+            disabled={
+              service.capabilities.service?.delete ===
+              database.service.capability.StateEnum.disabled
+            }
+            mode="outline"
+            variant="critical"
+            onClick={() => navigate('./delete')}
+          >
+            {t('serviceConfigurationDeleteService')}
+          </Button>
+        </>
       )}
     </>
   );

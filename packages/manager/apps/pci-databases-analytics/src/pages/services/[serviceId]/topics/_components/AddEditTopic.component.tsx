@@ -23,6 +23,7 @@ import {
   AccordionTrigger,
   AccordionItem,
   AccordionContent,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -53,7 +54,7 @@ const AddEditTopic = ({ service, topics, editedTopic }: AddEditTopicProps) => {
     onError: (err) => {
       toast.toast({
         title: t(`${prefix}TopicToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -168,7 +169,7 @@ const AddEditTopic = ({ service, topics, editedTopic }: AddEditTopicProps) => {
 
   return (
     <RouteModal isLoading={!service}>
-      <DialogContent className="max-h-[80vh] overflow-y-auto">
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-topic-modal">
             {t(`${prefix}TopicTitle`)}
@@ -177,165 +178,171 @@ const AddEditTopic = ({ service, topics, editedTopic }: AddEditTopicProps) => {
             {t(`${prefix}TopicDescription`)}
           </DialogDescription>
         </DialogHeader>
-
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="grid gap-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('addTopicInputNameLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      data-testid="add-topic-name-input"
-                      disabled={isEdition}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Accordion
-              type="single"
-              collapsible
-              className="border border-border p-2 rounded-md"
+        <DialogBody>
+          <Form {...form}>
+            <form
+              onSubmit={onSubmit}
+              className="grid gap-4"
+              id="addEditTopicForm"
             >
-              <AccordionItem value="advanced" className="border-none">
-                <AccordionTrigger className="text-base font-semibold py-2">
-                  {t('addTopicAdvancedConfigurationTrigger')}
-                </AccordionTrigger>
-                <AccordionContent className="px-1">
-                  <FormField
-                    control={form.control}
-                    name="minInsyncReplicas"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          {t('addTopicInputMinInsyncReplicasLabel')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            data-testid="add-topic-min-insync-replicas-input"
-                            type="number"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="partitions"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          {t('addTopicInputPartitionsLabel')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            data-testid="add-topic-partitions-input"
-                            type="number"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="replication"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          {t('addTopicInputReplicationLabel')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            data-testid="add-topic-replication-input"
-                            type="number"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="retentionBytes"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          {t('addTopicInputRetentionBytesLabel')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            data-testid="add-topic-retention-bytes-input"
-                            type="number"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="retentionHours"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          {t('addTopicInputRetentionHoursLabel')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            data-testid="add-topic-retention-hours-input"
-                            type="number"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('addTopicInputCleanupPolicy')}</FormLabel>
+                    <FormLabel>{t('addTopicInputNameLabel')}</FormLabel>
                     <FormControl>
                       <Input
-                        disabled
-                        value={'default'}
-                        data-testid="add-topic-cleanup-policy-input"
+                        {...field}
+                        data-testid="add-topic-name-input"
+                        disabled={isEdition}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button
-                  type="button"
-                  mode="outline"
-                  data-testid="add-topic-cancel-button"
-                >
-                  {t('addTopicButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                disabled={isPendingAddTopic || isPendingEditTopic}
-                data-testid="add-topic-submit-button"
+                )}
+              />
+              <Accordion
+                type="single"
+                collapsible
+                className="border border-border p-2 rounded-md"
               >
-                {t(`${prefix}TopicButtonConfirm`)}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+                <AccordionItem value="advanced" className="border-none">
+                  <AccordionTrigger className="text-base font-semibold py-2">
+                    {t('addTopicAdvancedConfigurationTrigger')}
+                  </AccordionTrigger>
+                  <AccordionContent className="px-1">
+                    <FormField
+                      control={form.control}
+                      name="minInsyncReplicas"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            {t('addTopicInputMinInsyncReplicasLabel')}
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-testid="add-topic-min-insync-replicas-input"
+                              type="number"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="partitions"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            {t('addTopicInputPartitionsLabel')}
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-testid="add-topic-partitions-input"
+                              type="number"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="replication"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            {t('addTopicInputReplicationLabel')}
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-testid="add-topic-replication-input"
+                              type="number"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="retentionBytes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            {t('addTopicInputRetentionBytesLabel')}
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-testid="add-topic-retention-bytes-input"
+                              type="number"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="retentionHours"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            {t('addTopicInputRetentionHoursLabel')}
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-testid="add-topic-retention-hours-input"
+                              type="number"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormItem>
+                      <FormLabel>{t('addTopicInputCleanupPolicy')}</FormLabel>
+                      <FormControl>
+                        <Input
+                          disabled
+                          value={'default'}
+                          data-testid="add-topic-cleanup-policy-input"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="button"
+              mode="ghost"
+              data-testid="add-topic-cancel-button"
+            >
+              {t('addTopicButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            type="submit"
+            form="addEditTopicForm"
+            disabled={isPendingAddTopic || isPendingEditTopic}
+            data-testid="add-topic-submit-button"
+          >
+            {t(`${prefix}TopicButtonConfirm`)}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

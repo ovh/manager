@@ -2,7 +2,6 @@ import {
   AlertCircle,
   ArrowRight,
   Cpu,
-  Files,
   Globe2,
   HardDrive,
   MemoryStick,
@@ -18,10 +17,10 @@ import {
   CardContent,
   CardHeader,
   Button,
-  useToast,
   Alert,
   AlertDescription,
   Skeleton,
+  Clipboard,
 } from '@datatr-ux/uxlib';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
@@ -49,7 +48,6 @@ const Dashboard = () => {
   const vrackQuery = useGetVrack(projectId);
   const subnet = useGetServiceSubnet(projectId, service);
   const metricsQuery = useGetMetrics(projectId, service.engine, service.id);
-  const toast = useToast();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
   );
@@ -108,27 +106,26 @@ const Dashboard = () => {
           <Guides section={GuideSections.dashboard} engine={service.engine} />
         </div>
       </div>
-      <Alert variant="primary">
-        <AlertDescription className="text-base">
-          <div className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4">
-            <div className="flex flex-row gap-5 items-center">
-              <AlertCircle className="h-6 w-6" />
-              <p>{t('upgradeAlertDescription')}</p>
-            </div>
-            <Button
-              data-testid="dashboard-upgrade-button"
-              type="button"
-              asChild
-            >
-              <Link
-                className="hover:no-underline hover:text-primary-foreground"
-                to={'settings#update'}
-              >
-                {t('upgradeButton')}
-                <ArrowRight className="w-4 h-4 ml-2 mt-1" />
-              </Link>
-            </Button>
+      <Alert variant="information" className="rounded-md">
+        <AlertDescription className="flex flex-col md:flex-row items-center justify-between w-full">
+          <div className="flex flex-row items-center gap-2">
+            <AlertCircle className="size-6" />
+            <p>{t('upgradeAlertDescription')}</p>
           </div>
+          <Button
+            data-testid="dashboard-upgrade-button"
+            className="whitespace-nowrap"
+            type="button"
+            asChild
+          >
+            <Link
+              className="flex items-center hover:no-underline hover:text-primary-foreground"
+              to={'settings#update'}
+            >
+              {t('upgradeButton')}
+              <ArrowRight className="w-4 h-4 ml-2 mt-1" />
+            </Link>
+          </Button>
         </AlertDescription>
       </Alert>
 
@@ -240,24 +237,9 @@ const Dashboard = () => {
             </h5>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-between text-base mr-2">
-              <div className="flex flex-row gap-2">
-                <p className="font-semibold">{t('serviceIdLabel')}</p>
-                <p>{service.id}</p>
-              </div>
-              <Button
-                data-testid="dashboard-copy-id-button"
-                type="button"
-                className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                onClick={() => {
-                  navigator.clipboard.writeText(service.id);
-                  toast.toast({
-                    title: t('serviceIdCopyToast'),
-                  });
-                }}
-              >
-                <Files className="w-4 h-4" />
-              </Button>
+            <div>
+              <p className="font-semibold">{t('serviceIdLabel')}</p>
+              <Clipboard value={service.id} data-testid="dashboard-copy-id-button"/>
             </div>
             <div
               data-testid="dashboard-support-link"

@@ -58,7 +58,7 @@ const RoadmapChangelog = () => {
               </g>
             </g>
           </svg>
-          <span className="ml-2 font-semibold hover:text-primary">
+          <span className="font-semibold hover:text-primary">
             Roadmap & Changelog
           </span>
         </Button>
