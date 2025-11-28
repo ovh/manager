@@ -22,7 +22,7 @@ import {
   useSecretDataSchema,
 } from '@secret-manager/validation';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/createSecret/SecretForm.constants';
-import { SecretFormBackLink } from './BackLink.component';
+import { SecretFormBackLinkSimple } from './BackLink.component';
 import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
 import { PATH_LABEL } from '@/constants';
 
@@ -136,7 +136,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
         <OdsText preset="heading-2">{t('create_secret_form_payment_section_title')}</OdsText>
       </div> */}
       <div className="flex justify-between items-center py-3">
-        <SecretFormBackLink />
+        <SecretFormBackLinkSimple />
         <OdsButton
           type="submit"
           isDisabled={!isDirty || !isValid || !okmsId}

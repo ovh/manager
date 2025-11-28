@@ -38,6 +38,8 @@ const URLS = {
     `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.terminate}`,
 
   secretList: (okmsId: string) => `/${URIS.root}/${okmsId}`,
+  addSecret: (okmsId: string) => `/${URIS.root}/${okmsId}/${URIS.create}`,
+  addDomain: (okmsId: string) => `/${URIS.root}/${okmsId}/${URIS.order}`,
 
   secretListDeleteSecretModal: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${URIS.delete}/${encodeSecretPath(secretPath)}`,

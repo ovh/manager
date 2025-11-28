@@ -6,7 +6,7 @@ import {
 } from '@secret-manager/routes/routes.constants';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref, useSearchParams } from 'react-router-dom';
+import { useHref, useNavigate, useSearchParams } from 'react-router-dom';
 
 export const SecretFormBackLink = () => {
   const { t } = useTranslation([NAMESPACES.ACTIONS]);
@@ -23,6 +23,20 @@ export const SecretFormBackLink = () => {
       label={t('back', { ns: NAMESPACES.ACTIONS })}
       type={LinkType.back}
       href={backLink}
+    />
+  );
+};
+
+export const SecretFormBackLinkSimple = () => {
+  const { t } = useTranslation([NAMESPACES.ACTIONS]);
+  const navigate = useNavigate();
+
+  return (
+    <Links
+      label={t('back', { ns: NAMESPACES.ACTIONS })}
+      type={LinkType.back}
+      href={null}
+      onClickReturn={() => navigate('..')}
     />
   );
 };

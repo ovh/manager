@@ -8,6 +8,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useAllRegionSelector } from '@secret-manager/hooks/useAllRegionSelector';
 import { Link } from '@/common/components/Link/Link.component';
 import { useRegionSelector } from '@/modules/secret-manager/hooks/useRegionSelector';
 
@@ -18,6 +19,14 @@ export const RegionSelector = () => {
     isLoading,
     isError,
   } = useRegionSelector();
+
+  // const {
+  //   geographyGroups,
+  //   currentRegion,
+  //   isLoading,
+  //   isError,
+  // } = useAllRegionSelector();
+
   const { t } = useTranslation(NAMESPACES.REGION);
   const popoverRef = useRef<HTMLOdsPopoverElement>(null);
 

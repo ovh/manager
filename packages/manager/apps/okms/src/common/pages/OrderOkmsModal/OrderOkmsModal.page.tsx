@@ -51,15 +51,16 @@ const TermsAndConditions = ({
     NAMESPACES.ERROR,
     NAMESPACES.ACTIONS,
   ]);
-  const { region } = useParams();
+  // const { region } = useParams();
+  // const region = 'eu-west-rbx';
   const navigate = useNavigate();
-  const { setOrderProcessingRegion } = useOrderOkmsModalContext();
+  // const { setOrderProcessingRegion } = useOrderOkmsModalContext();
   const [isContractAccepted, setIsContractAccepted] = useState(false);
 
   const { mutate, isPending, error } = useCheckoutOrder({
     onSuccess: () => {
       navigate('..');
-      setOrderProcessingRegion(region);
+      // setOrderProcessingRegion(region);
     },
   });
 
@@ -126,7 +127,8 @@ const OrderOkmsModal = () => {
     NAMESPACES.ACTIONS,
   ]);
   const { environment } = useShellContext();
-  const { region } = useParams();
+  // const { region } = useParams();
+  const region = 'eu-west-rbx';
   const { ovhSubsidiary } = environment.getUser();
   const navigate = useNavigate();
 

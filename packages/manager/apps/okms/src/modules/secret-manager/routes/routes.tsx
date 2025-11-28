@@ -37,6 +37,9 @@ const OkmsTerminateModal = React.lazy(() =>
 const SecretList = React.lazy(() =>
   import('@/modules/secret-manager/pages/secretList/SecretList.page'),
 );
+const CreateSecretPage = React.lazy(() =>
+  import('@secret-manager/pages/secretList/createSecret/CreateSecret.page'),
+);
 const DeleteSecretModal = React.lazy(() =>
   import(
     '@/modules/secret-manager/pages/modals/deleteSecretModal/DeleteSecretModal.page'
@@ -122,7 +125,15 @@ export default (
           path={`${SECRET_MANAGER_ROUTES_URIS.delete}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={DeleteSecretModal}
         />
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.order}`}
+          Component={OrderOkmsModal}
+        />
       </Route>
+      <Route
+        path={SECRET_MANAGER_ROUTES_URIS.create}
+        Component={CreateSecretPage}
+      />
       <Route
         path={`${SECRET_MANAGER_ROUTES_URIS.dashboard}`}
         Component={OkmsDashboard}

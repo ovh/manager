@@ -25,6 +25,7 @@ import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
 import { useBackToOkmsListUrl } from '@secret-manager/hooks/useBackToOkmsListUrl';
+import DomainSelector from '@secret-manager/components/domainSelector/DomainSelector.component';
 import {
   DatagridAction,
   DatagridCellPath,
@@ -96,24 +97,27 @@ export default function SecretListPage() {
       breadcrumb={
         <OdsBreadcrumb>
           <RootBreadcrumbItem />
-          <OkmsBreadcrumbItem />
+          {/* <OkmsBreadcrumbItem /> */}
         </OdsBreadcrumb>
       }
       message={notifications.length > 0 && <Notifications />}
-      onClickReturn={() => navigate(okmsListUrl)}
-      // if okmsListUrl is not defined, we do not display the back link label
-      backLinkLabel={okmsListUrl ? t('back_to_okms_list') : null}
+      // onClickReturn={() => navigate(okmsListUrl)}
+      // // if okmsListUrl is not defined, we do not display the back link label
+      // backLinkLabel={okmsListUrl ? t('back_to_okms_list') : null}
     >
       <div className="space-y-6">
         <div className="flex justify-between">
-          <RegionSelector />
-          <OdsButton
+          <div>
+            <RegionSelector />
+            <DomainSelector />
+          </div>
+          {/* <OdsButton
             label={t('okms_manage_label')}
             variant="outline"
             onClick={() =>
               navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId))
             }
-          />
+          /> */}
         </div>
         <Datagrid
           columns={columns}
@@ -128,11 +132,12 @@ export default function SecretListPage() {
           topbar={
             <OdsButton
               label={t('create_a_secret')}
-              onClick={() =>
-                navigate({
-                  pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
-                  search: `?${SECRET_MANAGER_SEARCH_PARAMS.okmsId}=${okmsId}`,
-                })
+              onClick={
+                () => navigate(SECRET_MANAGER_ROUTES_URLS.addSecret(okmsId))
+                // navigate({
+                //   pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
+                //   search: `?${SECRET_MANAGER_SEARCH_PARAMS.okmsId}=${okmsId}`,
+                // })
               }
             />
           }
