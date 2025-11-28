@@ -4,6 +4,7 @@ import { ProtectionStateEnum } from '../enum/protectionState.enum';
 import { SuspensionStateEnum } from '../enum/suspensionState.enum';
 import { TDomainResource } from '../types/domainResource';
 import { ResourceStatusEnum } from '../enum/resourceStatus.enum';
+import { StatusEnum } from '../enum/Status.enum';
 
 export const serviceList: TDomainResource[] = [
   {
@@ -35,6 +36,21 @@ export const serviceList: TDomainResource[] = [
         ],
         configurationType: DnsConfigurationTypeEnum.HOSTING,
       },
+      hostsConfiguration: {
+        ipv4Supported: true,
+        ipv6Supported: true,
+        multipleIPsSupported: true,
+        hostSupported: true,
+        hosts: [
+          {
+            host: 'ns1.example.com',
+            ips: ['1.0.0.0'],
+            status: StatusEnum.ENABLED,
+          },
+        ],
+      },
+      authInfoManagedByOVHcloud: true,
+      authInfoSupported: true,
       contactsConfiguration: {
         contactAdministrator: { id: 'admin-id' },
         contactBilling: {
@@ -56,6 +72,7 @@ export const serviceList: TDomainResource[] = [
           },
         ],
       },
+      protectionState: ProtectionStateEnum.PROTECTED,
     },
     currentTasks: [],
     iam: {

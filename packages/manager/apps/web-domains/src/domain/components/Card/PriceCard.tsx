@@ -13,7 +13,7 @@ interface PriceCardProps {
   readonly checked: boolean;
   readonly disabled?: boolean;
   readonly title: string;
-  readonly footer: string | JSX.Element;
+  readonly footer?: string | JSX.Element;
   readonly onCheckBoxChange?: () => void;
 }
 
@@ -49,12 +49,14 @@ export default function PriceCard({
           </CheckboxLabel>
         </Checkbox>
       </div>
-      <div
-        className="bg-gray-100 px-4 py-6 rounded-b-[8px]"
-        data-testid="price-footer"
-      >
-        {footer}
-      </div>
+      {footer && (
+        <div
+          className="bg-gray-100 px-4 py-6 rounded-b-[8px]"
+          data-testid="price-footer"
+        >
+          {footer}
+        </div>
+      )}
     </Card>
   );
 }

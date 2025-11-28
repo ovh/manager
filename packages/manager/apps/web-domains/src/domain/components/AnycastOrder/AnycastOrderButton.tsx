@@ -73,7 +73,7 @@ export default function AnycastOrderButtonComponent({
             )
           }
         >
-          {t('domain_dns_tab_button_order_anycast')}
+          {t('domain_tab_DNS_anycast_order')}
         </Button>
       )}
       {anycastOption && restoreAnycast && (
