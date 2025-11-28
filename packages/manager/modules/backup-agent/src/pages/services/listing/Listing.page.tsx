@@ -32,7 +32,6 @@ export default function ListingPage() {
           <Datagrid
             topbar={
               <OdsButton
-                icon={ODS_ICON_NAME.network}
                 size={ODS_BUTTON_SIZE.md}
                 label={t(`${BACKUP_AGENT_NAMESPACES.SERVICE_LISTING}:order`)}
                 onClick={onNavigateToDashboardClicked}
