@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Accordion, Icon } from '@ovh-ux/muk';
 import { Node } from '../../data/config/navigation/types/node';
@@ -17,7 +17,7 @@ export const SubMenu = ({ node, open, close }: SubMenuProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const { t } = useTranslation('sidebar');
   const buttonRef = useRef(null);
-  const [accordionValue, setAccordionValue] = useState(null);
+  const [accordionValue, setAccordionValue] = useState<string>(null);
   const openedAccordion = useActiveAccordion(node);
 
   useEffect(() => {
@@ -35,6 +35,24 @@ export const SubMenu = ({ node, open, close }: SubMenuProps) => {
     if (!isOpen) return;
     buttonRef.current?.focus();
   }, [isOpen]);
+
+  const visibleChildren = useMemo(
+    () =>
+      node.children
+        .filter((childNode: Node) => !shouldHideElement(childNode, true))
+        .map((childNode: Node) => (
+          <SidebarAccordionItem
+            key={childNode.id}
+            node={childNode}
+            onClick={(event) =>
+              setAccordionValue(
+                (event.target as HTMLElement).closest('button')?.id,
+              )
+            }
+          />
+        )),
+    [node.children],
+  );
 
   if (!isOpen) return <></>;
   return (
@@ -62,19 +80,7 @@ export const SubMenu = ({ node, open, close }: SubMenuProps) => {
         <div className="pl-2 pt-2 pb-1 text-xs">{t(node.translation)}</div>
         {node?.id.startsWith('pci') && <PciSection />}
         <Accordion value={[accordionValue]} multiple={false}>
-          {node.children
-            .filter((childNode: Node) => !shouldHideElement(childNode, true))
-            .map((childNode: Node) => (
-              <SidebarAccordionItem
-                key={childNode.id}
-                node={childNode}
-                onClick={(event) =>
-                  setAccordionValue(
-                    (event.target as HTMLElement).closest('button')?.id,
-                  )
-                }
-              />
-            ))}
+          {visibleChildren}
         </Accordion>
       </div>
     </div>

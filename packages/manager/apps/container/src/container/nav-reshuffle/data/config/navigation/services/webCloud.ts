@@ -1,4 +1,4 @@
-import illustration from '@/assets/images/sidebar/web-cloud.png';
+import { ICON_NAME } from '@ovh-ux/muk';
 import { Node } from '../types/node';
 
 const webCloudUniverse: Node = {
@@ -6,8 +6,7 @@ const webCloudUniverse: Node = {
   idAttr: 'web-cloud-link',
   translation: 'sidebar_web_cloud',
   shortTranslation: 'sidebar_web_cloud_short',
-  illustration,
-  svgIcon: 'monitor',
+  icon: ICON_NAME.monitor,
   features: ['web'],
 };
 

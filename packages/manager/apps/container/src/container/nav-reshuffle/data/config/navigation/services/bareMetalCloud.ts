@@ -1,13 +1,12 @@
-import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
 import { Node } from '../types/node';
+import { ICON_NAME } from '@ovh-ux/muk';
 
 const baremetalUniverse: Node = {
   id: 'baremetal-cloud',
   idAttr: 'baremetal-cloud-link',
   translation: 'sidebar_bare_metal_cloud',
   shortTranslation: 'sidebar_bare_metal_cloud_short',
-  illustration,
-  svgIcon: 'server',
+  icon: ICON_NAME.server,
   features: ['bare-metal-cloud'],
 };
 

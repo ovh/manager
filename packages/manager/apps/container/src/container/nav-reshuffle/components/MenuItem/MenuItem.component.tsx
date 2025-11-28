@@ -18,34 +18,34 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   const { t } = useTranslation('sidebar');
   const url = useNodeUrl()(node.routing);
 
+  const content = (
+    <>
+      <Icon
+        name={node.icon}
+        className="shrink-0 p-1 mr-1 fill-[var(--ods-color-primary-800)]"
+      />
+      {t(node.translation)}
+    </>
+  );
+
   return url ? (
     <Link
       href={url}
       onClick={onClick}
       onKeyUp={onKeyUp}
       aria-label={t('sidebar_dashboard')}
-      className="p-2 gap-0 text-[var(--ods-color-primary-800)] w-full hover:no-underline focus:no-underline hover:after:transform-none focus:after:transform-none"
+      className="w-full gap-0 p-2 text-[var(--ods-color-primary-800)] hover:no-underline focus:no-underline hover:after:transform-none focus:after:transform-none"
     >
-      <>
-        <Icon
-          name={node.svgIcon as ICON_NAME}
-          className="p-1 mr-1 fill-[var(--ods-color-primary-800)] shrink-0"
-        />
-        {t(node.translation)}
-      </>
+      {content}
     </Link>
   ) : (
     <div
-      className="w-full p-2 font-semibold text-[var(--ods-color-primary-800)] cursor-pointer hover:text-[var(--ods-color-primary-700)]"
+      className="w-full p-2 font-semibold cursor-pointer text-[var(--ods-color-primary-800)] hover:text-[var(--ods-color-primary-700)]"
       tabIndex={0}
       onClick={onClick}
       onKeyUp={onKeyUp}
     >
-      <Icon
-        name={node.svgIcon as ICON_NAME}
-        className="p-1 mr-1 fill-[var(--ods-color-primary-800)] shrink-0"
-      />
-      {t(node.translation)}
+      {content}
     </div>
   );
 };

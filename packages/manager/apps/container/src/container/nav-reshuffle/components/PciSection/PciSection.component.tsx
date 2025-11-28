@@ -3,26 +3,20 @@ import { useTranslation } from 'react-i18next';
 import { Location, useLocation } from 'react-router-dom';
 import { Button, Icon, ICON_NAME } from '@ovh-ux/muk';
 import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
-import ProjectSelector from '../../sidebar/ProjectSelector/ProjectSelector';
-import { PciProject } from '../../sidebar/ProjectSelector/PciProject';
-import { usePciProjects } from '../../data/hooks/pciProjects/usePciProjects';
-import { useDefaultPublicCloudProject } from '../../data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
+import ProjectSelector from '@/container/nav-reshuffle/sidebar/ProjectSelector/ProjectSelector';
+import { usePciProjects } from '@/container/nav-reshuffle/data/hooks/pciProjects/usePciProjects';
+import { usePciProjectSelection } from '@/container/nav-reshuffle/data/hooks/pciProjectSelection/usePciProjectSelection';
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 export const PciSection = () => {
-  const [selectedPciProject, setSelectedPciProject] = useState<PciProject>(
-    null,
-  );
   const { setSelectedPciProjectId } = useProductNavReshuffle();
-
   const { t } = useTranslation('sidebar');
   const shell = useShell();
   const navigationPlugin = shell.getPlugin('navigation');
   const trackingPlugin = shell.getPlugin('tracking');
   const environment = shell.getPlugin('environment').getEnvironment();
   const user = environment.getUser();
-
   const location = useLocation();
 
   const parseContainerURL = (
@@ -31,7 +25,6 @@ export const PciSection = () => {
     const [, appId, appHash] = /^\/([^/]*)(.*)/.exec(loc.pathname);
     return { appId, appHash: `${appHash}${loc.search}` };
   };
-
   const [containerURL, setContainerURL] = useState(parseContainerURL(location));
 
   const canCreateProject = useMemo(() => user.kycValidated, [
@@ -45,18 +38,10 @@ export const PciSection = () => {
     refetch: refetchPciProjects,
   } = usePciProjects();
 
-  const {
-    data: defaultPciProject,
-    isFetched: isDefaultProjectFetched,
-  } = useDefaultPublicCloudProject({
-    select: (defaultProjectId: string | null): PciProject | null => {
-      return defaultProjectId !== null
-        ? pciProjects?.find(
-            (project: PciProject) => project.project_id === defaultProjectId,
-          ) || null
-        : null;
-    },
-    enabled: !selectedPciProject && !pciProjects,
+  const { selectedPciProject, setSelectedPciProject } = usePciProjectSelection({
+    containerURL,
+    pciProjects,
+    navigationPlugin,
   });
 
   /** Watch URL changes to update selected menu dynamically */
@@ -64,53 +49,23 @@ export const PciSection = () => {
     setContainerURL(parseContainerURL(location));
   }, [location]);
 
-  /**
-   * Synchronize selected public cloud project with pci's project id in URL
-   */
-  useEffect(() => {
-    const { appHash } = containerURL;
-    if (appHash.startsWith('/pci/projects/new')) {
-      setSelectedPciProject(null);
-    } else {
-      if (!pciProjects?.length) return;
-
-      const pciProjectMatch = (appHash || '').match(
-        /^\/pci\/projects\/([^/?]+)/,
-      );
-      let project;
-      if (pciProjectMatch && pciProjectMatch.length >= 2) {
-        const [, pciProjectId] = pciProjectMatch;
-        project = pciProjects.find(
-          (p: { project_id: string }) => p.project_id === pciProjectId,
-        );
-      }
-      if (project) {
-        setSelectedPciProject(project);
-      } else if (defaultPciProject) {
-        setSelectedPciProject(defaultPciProject);
-        if (!pciProjectMatch) {
-          navigationPlugin.navigateTo(
-            'public-cloud',
-            `#/pci/projects/${defaultPciProject.project_id}`,
-          );
-        }
-      } else if (isDefaultProjectFetched) {
-        // In order to avoid loading the first project before loading the default project, we'll wait till the default project has been loaded
-        const firstProject = pciProjects[0];
-        setSelectedPciProject(firstProject);
-        if (!pciProjectMatch) {
-          navigationPlugin.navigateTo(
-            'public-cloud',
-            `#/pci/projects/${firstProject.project_id}`,
-          );
-        }
-      }
-    }
-  }, [containerURL, pciProjects, defaultPciProject, navigationPlugin]);
-
   useEffect(() => {
     setSelectedPciProjectId(selectedPciProject?.project_id || null);
   }, [selectedPciProject, setSelectedPciProjectId]);
+
+  const handleProjectChange = (option: typeof selectedPciProject) => {
+    if (selectedPciProject !== option) {
+      trackingPlugin.trackClick({
+        name: 'navbar_v3_entry_home::pci::specific_project_from_listing',
+        type: 'navigation',
+      });
+      setSelectedPciProject(option);
+      navigationPlugin.navigateTo(
+        'public-cloud',
+        `#/pci/projects/${option.project_id}`,
+      );
+    }
+  };
 
   return (
     <>
@@ -119,20 +74,7 @@ export const PciSection = () => {
           isLoading={!pciSuccess}
           projects={pciProjects}
           selectedProject={selectedPciProject}
-          onProjectChange={(option: typeof selectedPciProject) => {
-            if (selectedPciProject !== option) {
-              trackingPlugin.trackClick({
-                name:
-                  'navbar_v3_entry_home::pci::specific_project_from_listing',
-                type: 'navigation',
-              });
-              setSelectedPciProject(option);
-              navigationPlugin.navigateTo(
-                'public-cloud',
-                `#/pci/projects/${option.project_id}`,
-              );
-            }
-          }}
+          onProjectChange={handleProjectChange}
           onSeeAllProjects={() => {
             navigationPlugin.navigateTo('public-cloud', `#/pci/projects`);
           }}

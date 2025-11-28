@@ -1,5 +1,5 @@
 import { Node, NodeTag } from '../types/node';
-import illustration from '@/assets/images/sidebar/public-cloud.png';
+import { ICON_NAME } from '@ovh-ux/muk';
 
 export const PUBLICCLOUD_UNIVERSE_ID = 'pci';
 
@@ -8,9 +8,8 @@ export const pciNode: Node = {
   idAttr: 'pci-link',
   translation: 'sidebar_pci',
   shortTranslation: 'sidebar_pci_short',
-  illustration,
   universe: PUBLICCLOUD_UNIVERSE_ID,
-  svgIcon: 'globe',
+  icon: ICON_NAME.globe,
   features: ['public-cloud'],
   forceVisibility: true,
   routing: {
@@ -26,7 +25,6 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci',
     shortTranslation: 'sidebar_pci_short',
-    illustration,
     hidden: true,
     features: ['public-cloud'],
     routing: {
@@ -40,7 +38,6 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci',
     shortTranslation: 'sidebar_pci_short',
-    illustration,
     hidden: true,
     features: ['public-cloud'],
     routing: {

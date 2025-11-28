@@ -1,13 +1,12 @@
 import { Node } from '../types/node';
-import illustration from '@/assets/images/sidebar/sunrise.png';
+import { ICON_NAME } from '@ovh-ux/muk';
 
 const sunriseUniverse: Node = {
   id: 'sunrise',
   idAttr: 'sunrise-link',
   translation: 'sidebar_sunrise',
   shortTranslation: 'sidebar_sunrise_short',
-  illustration,
-  svgIcon: 'box',
+  icon: ICON_NAME.box,
   routing: {
     application: 'sunrise',
   },

@@ -1,13 +1,12 @@
-import illustration from '@/assets/images/sidebar/network.png';
 import { Node } from '../types/node';
+import { ICON_NAME } from '@ovh-ux/muk';
 
 const networkUniverse: Node = {
   id: 'network',
   idAttr: 'network-link',
   translation: 'sidebar_network',
   shortTranslation: 'sidebar_network_short',
-  illustration,
-  svgIcon: 'network',
+  icon: ICON_NAME.network,
   features: [
     'vrack:bare-metal-cloud',
     'ip',

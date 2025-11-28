@@ -1,3 +1,5 @@
+import { ICON_NAME } from '@ovh-ux/muk';
+
 export type NodeRouting = {
   application?: string;
   hash?: string;
@@ -21,8 +23,6 @@ export type Node = {
   hideIfFeatures?: string[];
   translation?: string;
   shortTranslation?: string;
-  illustration?: string;
-  svgIcon?: string;
   features?: string[];
   separator?: boolean;
   idAttr?: string;
@@ -36,6 +36,6 @@ export type Node = {
   routing?: NodeRouting;
   region?: string[];
   tag?: NodeTag;
-  icon?: string;
+  icon?: ICON_NAME;
   onClick?: () => void;
 };

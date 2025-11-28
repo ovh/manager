@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccordionItem, AccordionTrigger, AccordionContent } from '@ovh-ux/muk';
 import { Node } from '../../data/config/navigation/types/node';
@@ -15,6 +16,16 @@ export const SidebarAccordionItem: React.FC<SidebarAccordionItemProps> = ({
 }) => {
   const { t } = useTranslation('sidebar');
 
+  const visibleChildren = useMemo(
+    () =>
+      node?.children
+        ?.filter((childNode: Node) => !shouldHideElement(childNode, true))
+        .map((childNode: Node) => (
+          <SubmenuItem key={childNode.id} node={childNode} />
+        )),
+    [node?.children],
+  );
+
   return (
     <AccordionItem value={node.id} className="px-2">
       <AccordionTrigger
@@ -24,13 +35,7 @@ export const SidebarAccordionItem: React.FC<SidebarAccordionItemProps> = ({
       >
         {t(node.translation)}
       </AccordionTrigger>
-      <AccordionContent className="p-0">
-        {node?.children
-          ?.filter((childNode: Node) => !shouldHideElement(childNode, true))
-          .map((childNode: Node) => (
-            <SubmenuItem key={childNode.id} node={childNode} />
-          ))}
-      </AccordionContent>
+      <AccordionContent className="p-0">{visibleChildren}</AccordionContent>
     </AccordionItem>
   );
 };

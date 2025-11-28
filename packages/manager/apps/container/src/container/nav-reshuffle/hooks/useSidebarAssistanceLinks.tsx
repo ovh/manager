@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import { useShell } from '@/context';
@@ -11,16 +12,20 @@ export const useSidebarAssistanceLinks = () => {
   const urls = useURL(environment);
   const getUrl = useNodeUrl();
 
-  return navigationTree.children
-    .find((node: Node) => node.id === 'assistance')
-    .children.map((node: Node) => {
-      if (
-        node.url &&
-        typeof node.url === 'string' &&
-        !node.url.startsWith('http')
-      ) {
-        return { ...node, url: urls.get(node.url as keyof ContentURLS) };
-      }
-      return { ...node, url: getUrl(node.routing) };
-    });
+  return useMemo(
+    () =>
+      navigationTree.children
+        .find((node: Node) => node.id === 'assistance')
+        .children.map((node: Node) => {
+          if (
+            node.url &&
+            typeof node.url === 'string' &&
+            !node.url.startsWith('http')
+          ) {
+            return { ...node, url: urls.get(node.url as keyof ContentURLS) };
+          }
+          return { ...node, url: getUrl(node.routing) };
+        }),
+    [navigationTree.children, urls, getUrl],
+  );
 };

@@ -16,21 +16,27 @@ const TAG_CLASSES: Record<NodeTag, string> = {
 };
 
 export const SubmenuItem: React.FC<SubmenuItemProps> = ({ node }) => {
+  const [isHighlighted, setIsHighlighted] = useState(false);
   const { t } = useTranslation('sidebar');
   const getNodeUrl = useNodeUrl();
-  const { currentNavigationNode, selectedPciProjectId } = useProductNavReshuffle();
+  const {
+    currentNavigationNode,
+    selectedPciProjectId,
+  } = useProductNavReshuffle();
 
   const url = useMemo(() => {
     if (!node.routing) return null;
 
     if (selectedPciProjectId && node.routing.hash?.includes('{projectId}')) {
-      const hash = node.routing.hash.replace('{projectId}', selectedPciProjectId);
+      const hash = node.routing.hash.replace(
+        '{projectId}',
+        selectedPciProjectId,
+      );
       return getNodeUrl({ ...node.routing, hash });
     }
 
     return getNodeUrl(node.routing);
   }, [selectedPciProjectId]);
-  const [isHighlighted, setIsHighlighted] = useState(false);
 
   useEffect(() => {
     setIsHighlighted(currentNavigationNode?.id === node.id);

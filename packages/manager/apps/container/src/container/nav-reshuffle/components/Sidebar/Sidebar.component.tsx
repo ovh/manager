@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Icon, Link, LinkType } from '@ovh-ux/muk';
 import { useSidebarNodes } from '../../hooks/useSidebarNodes';
@@ -7,6 +7,7 @@ import { Node } from '../../data/config/navigation/types/node';
 import { SubMenu } from '../Submenu/Submenu.component';
 import { useSidebarAssistanceLinks } from '../../hooks/useSidebarAssistanceLinks';
 import { useNodeUrl } from '../../hooks/useNodeUrl';
+import { shouldHideElement } from '../../sidebar/utils';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 export const Sidebar = () => {
@@ -25,6 +26,42 @@ export const Sidebar = () => {
 
   const { t } = useTranslation('sidebar');
 
+  const visibleNodes = useMemo(
+    () => nodes.filter((node) => !shouldHideElement(node, false)),
+    [nodes],
+  );
+
+  const menuItems = useMemo(
+    () =>
+      visibleNodes.map((node) => (
+        <li key={node.id}>
+          <MenuItem
+            node={node}
+            onClick={() => openSubmenu(node)}
+            onKeyUp={(e) => {
+              if (e.key === 'Enter') {
+                openSubmenu(node);
+              }
+            }}
+          />
+        </li>
+      )),
+    [visibleNodes],
+  );
+
+  const subMenus = useMemo(
+    () =>
+      visibleNodes.map((node) => (
+        <SubMenu
+          key={node.id}
+          node={node}
+          open={node.id === currentUniverse?.id}
+          close={closeSubMenu}
+        />
+      )),
+    [visibleNodes, currentUniverse?.id],
+  );
+
   return (
     <div className="relative flex flex-col w-[20rem] min-h-screen border-r border-solid border-gray-300 bg-white">
       <Link
@@ -41,30 +78,9 @@ export const Sidebar = () => {
         </>
       </Link>
       <div className="pl-2 pt-2 pb-1 text-xs">{t('sidebar_service')}</div>
-      <ul className="pb-2 px-0">
-        {nodes.map((node) => (
-          <li key={node.id}>
-            <MenuItem
-              node={node}
-              onClick={() => openSubmenu(node)}
-              onKeyUp={(e) => {
-                if (e.key === 'Enter') {
-                  openSubmenu(node);
-                }
-              }}
-            />
-          </li>
-        ))}
-      </ul>
+      <ul className="pb-2 px-0">{menuItems}</ul>
 
-      {nodes.map((node) => (
-        <SubMenu
-          key={node.id}
-          node={node}
-          open={node.id === currentUniverse?.id}
-          close={closeSubMenu}
-        />
-      ))}
+      {subMenus}
 
       <Link
         className="flex justify-center items-center w-auto mx-2 p-2 rounded-lg cursor-pointer bg-[var(--ods-color-primary-500)] text-white hover:bg-[var(--ods-color-primary-600)] focus:bg-[var(--ods-color-primary-600)] hover:no-underline focus:no-underline hover:after:transform-none focus:after:transform-none"

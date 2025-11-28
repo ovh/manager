@@ -1,13 +1,12 @@
-import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
 import { Node, NodeTag } from '../types/node';
+import { ICON_NAME } from '@ovh-ux/muk';
 
 const hostedPrivateCloudUniverse: Node = {
   id: 'hosted-private-cloud',
   idAttr: 'hosted-private-cloud-link',
   translation: 'sidebar_hpc',
   shortTranslation: 'sidebar_hpc_short',
-  illustration,
-  svgIcon: 'lock-close',
+  icon: ICON_NAME.lockClose,
   features: ['hosted-private-cloud'],
 };
 

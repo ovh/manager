@@ -1,4 +1,4 @@
-import illustration from '@/assets/images/sidebar/telecom.png';
+import { ICON_NAME } from '@ovh-ux/muk';
 import { Node } from '../types/node';
 
 const telecomUniverse: Node = {
@@ -6,8 +6,7 @@ const telecomUniverse: Node = {
   idAttr: 'telecom-link',
   translation: 'sidebar_telecom',
   shortTranslation: 'sidebar_telecom_short',
-  illustration,
-  svgIcon: 'phone',
+  icon: ICON_NAME.phone,
   features: ['telecom'],
   forceNavigate: true,
   routing: {

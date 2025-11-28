@@ -29,6 +29,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
         variant={!useBeta ? BUTTON_VARIANT.default : BUTTON_VARIANT.ghost}
         onClick={() => toggleVersion('classic')}
         className="min-w-16 rounded-lg text-sm p-1 min-h-[32px]"
+        disabled={!useBeta}
       >
         {t('beta_modal_old')}
       </Button>
@@ -36,6 +37,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
         variant={useBeta ? BUTTON_VARIANT.default : BUTTON_VARIANT.ghost}
         onClick={() => toggleVersion('beta')}
         className="min-w-16 rounded-lg text-sm p-1 min-h-[32px]"
+        disabled={useBeta}
       >
         {t('beta_modal_new')}
       </Button>
