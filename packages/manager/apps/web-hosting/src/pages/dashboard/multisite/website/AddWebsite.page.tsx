@@ -104,6 +104,7 @@ export default function AddWebsitePage() {
         targetSpec: {
           name: data.name,
           fqdn: data.fqdn,
+          path: data.path ?? null,
         },
       };
       postWebHostingWebsites([payload, data.wwwNeeded ?? false]);
