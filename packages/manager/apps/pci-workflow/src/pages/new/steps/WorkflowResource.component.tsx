@@ -6,7 +6,7 @@ import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { Spinner } from '@ovhcloud/ods-react';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstance } from '@/api/hooks/instance/useInstances';
+import { useInstance } from '@/api/hooks/instance/useAllInstances';
 import ResourceSelectorComponent from '@/components/new/ResourceSelector.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
 import { StepState } from '@/pages/new/hooks/useStep';

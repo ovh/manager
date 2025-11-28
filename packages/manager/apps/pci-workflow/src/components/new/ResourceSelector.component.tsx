@@ -33,7 +33,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { TInstance, isSameInstanceId } from '@/api/hooks/instance/selector/instances.selector';
-import { usePaginatedInstances } from '@/api/hooks/instance/useInstances';
+import { usePaginatedInstances } from '@/api/hooks/instance/usePaginatedInstances';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
 import StatusComponent from '@/components/new/Status.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
@@ -85,8 +85,8 @@ const useDatagridColumn = (
       label: t('pci_projects_project_workflow_instance_region_label'),
     },
     {
-      id: 'flavorName',
-      cell: (instance) => <DataGridTextCell>{instance.flavor.label}</DataGridTextCell>,
+      id: 'flavor',
+      cell: (instance) => <DataGridTextCell>{instance.flavor}</DataGridTextCell>,
       label: t('pci_projects_project_workflow_instance_flavor_label'),
     },
     {
@@ -136,13 +136,14 @@ export default function ResourceSelectorComponent({
             <OsdsSearchBar
               className="w-[70%]"
               value={searchField}
+              onChange={(e) => setSearchField(e.currentTarget.value)}
               onOdsSearchSubmit={({ detail }) => {
                 setPagination({
                   pageIndex: 0,
                   pageSize: pagination.pageSize,
                 });
                 addFilter({
-                  key: 'search',
+                  key: 'searchField',
                   value: detail.inputValue,
                   comparator: FilterComparator.Includes,
                   label: '',
@@ -174,7 +175,7 @@ export default function ResourceSelectorComponent({
                       comparators: FilterCategories.String,
                     },
                     {
-                      id: 'flavorName',
+                      id: 'flavor',
                       label: t('pci_projects_project_workflow_instance_flavor_label'),
                       comparators: FilterCategories.String,
                     },

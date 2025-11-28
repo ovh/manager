@@ -7,19 +7,13 @@ import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption
 import { TEFlavor } from '@/types/flavor/entity';
 import { TEInstance } from '@/types/instance/entity';
 
-type TInstanceFlavor = Readonly<{
-  label: Opaque<string, TInstanceFlavor>;
-}>;
-
 const mapInstanceFlavor = (flavors: TEFlavor[] | null) => {
   const flavorsMap = new Map(flavors?.map((f) => [f.id, f]));
 
-  return (instance: TEInstance): TInstanceFlavor => {
+  return (instance: TEInstance): TInstance['flavor'] => {
     const flavor = flavorsMap.get(instance.flavorId);
 
-    return {
-      label: (flavor ? flavor.name : instance.flavorId) as TInstanceFlavor['label'],
-    };
+    return (flavor ? flavor.name : instance.flavorId) as TInstance['flavor'];
   };
 };
 
@@ -78,12 +72,14 @@ const mapInstanceStatus = ({ status }: TEInstance): TInstanceStatus => {
 type TMicroRegionTranslator = (region: string) => string;
 type TInstanceRegion = Readonly<{
   label: Opaque<string, TInstanceRegion>;
+  id: Opaque<string, TInstanceRegion>;
 }>;
 
 const mapInstanceRegion =
   (translateMicroRegion: TMicroRegionTranslator) =>
   (instance: TEInstance): TInstanceRegion => ({
     label: translateMicroRegion(instance.region) as TInstanceRegion['label'],
+    id: instance.region as TInstanceRegion['id'],
   });
 
 type TInstanceAutoBackup = boolean;
@@ -115,11 +111,11 @@ export type TInstance = Readonly<{
   id: Opaque<{ id: string; region: string }, TInstance>;
   name: Opaque<string, TInstance>;
   label: Opaque<string, TInstance>;
-  flavor: TInstanceFlavor;
+  flavor: Opaque<string, TInstance>;
   status: TInstanceStatus;
   region: TInstanceRegion;
-
   autoBackup: TInstanceAutoBackup;
+  searchField: string;
 }>;
 
 export const buildInstanceId = (id: string, region: string) => ({ id, region }) as TInstance['id'];
@@ -127,7 +123,7 @@ export const buildInstanceId = (id: string, region: string) => ({ id, region }) 
 export const isSameInstanceId = (a: TInstance['id'], b: TInstance['id']): boolean =>
   a.id === b.id && a.region === b.region;
 
-export const instancesSelector = (
+export const mapInstance = (
   instances: TEInstance[],
   flavors: TEFlavor[] | null,
   translateMicroRegion: TMicroRegionTranslator,
@@ -138,24 +134,49 @@ export const instancesSelector = (
   const regionMapper = mapInstanceRegion(translateMicroRegion);
   const autoBackupMapper = mapAutoBackup(snapshotAvailability, regions);
 
-  return instances.map<TInstance>((instance) => ({
-    ...(pick(instance, ['name']) as Pick<TInstance, 'name'>),
-    id: buildInstanceId(instance.id, instance.region),
-    label: instance.id as TInstance['label'],
-    flavor: mapInstanceFlavor(flavors)(instance),
-    status: mapInstanceStatus(instance),
-    region: regionMapper(instance),
-    autoBackup: autoBackupMapper(instance),
-  }));
+  return instances.map<TInstance>((instance) => {
+    const flavor = mapInstanceFlavor(flavors)(instance);
+    const status = mapInstanceStatus(instance);
+    const region = regionMapper(instance);
+
+    return {
+      ...(pick(instance, ['name']) as Pick<TInstance, 'name'>),
+      id: buildInstanceId(instance.id, instance.region),
+      label: instance.id as TInstance['label'],
+      flavor,
+      status,
+      region,
+      autoBackup: autoBackupMapper(instance),
+      searchField: `${instance.name} ${region.label} ${status.name} ${flavor}`,
+    };
+  });
 };
 
 export const sortResults = (items: TInstance[], sorting: ColumnSort | undefined) => {
   if (!sorting) return items;
 
-  const fieldMapper: (instance: TInstance) => TInstance[keyof TInstance] | string =
-    sorting.id === 'status' ? (i) => i.status.group : (i) => i[sorting.id as keyof TInstance];
+  const fieldMapper: (instance: TInstance) => TInstance[keyof TInstance] | string = (
+    instance: TInstance,
+  ) => {
+    switch (sorting.id) {
+      case 'status':
+        return instance.status.group;
+      case 'region':
+        return instance.region.id;
+      default:
+        return instance[sorting.id as keyof TInstance];
+    }
+  };
 
-  let data = [...items].sort((a, b) => (fieldMapper(a) > fieldMapper(b) ? 1 : 0));
+  const compare = (instA: TInstance, instB: TInstance) => {
+    const valA = fieldMapper(instA);
+    const valB = fieldMapper(instB);
+
+    if (valA === valB) return 0;
+    return valA > valB ? 1 : -1;
+  };
+
+  let data = [...items].sort(compare);
 
   if (sorting.desc) {
     data.reverse();
