@@ -6,16 +6,12 @@ import { z } from 'zod';
 
 import {
   BADGE_SIZE,
-  BUTTON_VARIANT,
-  Button,
   CARD_COLOR,
   Card,
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
   Divider,
-  INPUT_TYPE,
-  Input,
   Radio,
   RadioControl,
   RadioGroup,
@@ -34,16 +30,21 @@ import { Badge } from '@ovh-ux/muk';
 import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
 
+import { DomainManagement } from './DomainManagement';
+import { PathField } from './fields/Pathfield';
+
 type FormData = z.infer<typeof websiteFormSchema>;
 
 interface DomainAdvancedConfigurationProps {
   control: Control<FormData, unknown, FormData>;
   controlValues: FormData;
+  isAddingDomain?: boolean;
 }
 
 export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationProps> = ({
   control,
   controlValues,
+  isAddingDomain = false,
 }: DomainAdvancedConfigurationProps) => {
   const { serviceName } = useParams();
 
@@ -56,25 +57,12 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
         name="path"
         control={control}
         render={({ field }) => (
-          <div className="flex flex-col">
-            <Text>{t('dashboard:hosting_multisite_domain_configuration_home')}</Text>
-            <div className="flex w-1/3 items-center space-x-2">
-              <Button size="sm" variant={BUTTON_VARIANT.outline} disabled={true}>
-                ./
-              </Button>
-              <Input
-                type={INPUT_TYPE.text}
-                className="w-full"
-                name="website-path"
-                value={field.value}
-                onChange={(e) => field.onChange(e.target.value)}
-              />
-            </div>
-
-            <Text preset={TEXT_PRESET.caption}>
-              {t('multisite:multisite_add_website_configure_domain_advanced_path_message')}
-            </Text>
-          </div>
+          <PathField
+            label={t('dashboard:hosting_multisite_domain_configuration_home')}
+            helpText={t('multisite:multisite_add_website_configure_domain_advanced_path_message')}
+            field={field}
+            disabled={isAddingDomain}
+          />
         )}
       />
       <Divider />
@@ -265,6 +253,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
           </RadioGroup>
         )}
       />
+      {!controlValues?.autoConfigureDns && <DomainManagement controlValues={controlValues} />}
     </>
   );
 };

@@ -21,10 +21,9 @@ import {
 
 import { Link, LinkType, useNotifications } from '@ovh-ux/muk';
 
-import { usePostWebHostingWebsites } from '@/data/hooks/webHosting/webHostingWebsiteDomain/webHostingWebsiteDomain';
-import { CmsType } from '@/data/types/product/managedWordpress/cms';
+import { useCreateAttachedDomainService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
+import { HostingCountries, HostingDomainStatus } from '@/data/types/product/webHosting';
 import { AssociationType } from '@/data/types/product/website';
-import { ServiceStatus } from '@/data/types/status';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
 
 import { DomainAssociation } from '../website/component/DomainAssociation';
@@ -49,7 +48,7 @@ export default function AddWDomainPage() {
   const { control, handleSubmit, watch, reset } = useForm<FormData>({
     defaultValues: {
       name: state?.site ?? '',
-      path: 'public_html',
+      path: state?.path ?? 'public_html',
       autoConfigureDns: true,
     },
     resolver: zodResolver(websiteFormSchema),
@@ -57,7 +56,7 @@ export default function AddWDomainPage() {
 
   const controlValues = watch();
 
-  const { postWebHostingWebsites } = usePostWebHostingWebsites(
+  const { createAttachedDomainService } = useCreateAttachedDomainService(
     serviceName,
     () => {
       addSuccess(
@@ -73,7 +72,7 @@ export default function AddWDomainPage() {
     (error) => {
       addWarning(
         t('multisite:multisite_add_website_error', {
-          error: error?.response?.data?.message,
+          error: error?.message,
         }),
         true,
       );
@@ -83,36 +82,28 @@ export default function AddWDomainPage() {
   const onSubmit = (data: FormData) => {
     if (data.associationType === AssociationType.EXISTING) {
       const payload = {
-        targetSpec: {
-          name: data.name,
-          fqdn: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
-          ...(data.module && data.module !== CmsType.NONE
-            ? { module: { name: data.module as CmsType } }
-            : {}),
-          bypassDNSConfiguration: !data.autoConfigureDns,
-          ...(data.advancedConfiguration
-            ? {
-                ...(data.ip ? { ipLocation: data.selectedIp } : {}),
-                firewall: {
-                  status: data.firewall ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
-                },
-                cdn: {
-                  status: data.cdn ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
-                },
-                path: data.path,
-              }
-            : {}),
-        },
+        serviceName,
+        domain: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
+        ssl: true,
+        path: data.path,
+        bypassDNSConfiguration: !data.autoConfigureDns,
+        ...(data.advancedConfiguration
+          ? {
+              ...(data.ip ? { ipLocation: data.selectedIp as HostingCountries } : {}),
+              firewall: data.firewall ? HostingDomainStatus.ACTIVE : HostingDomainStatus.NONE,
+              cdn: data.cdn ? HostingDomainStatus.ACTIVE : HostingDomainStatus.NONE,
+            }
+          : {}),
       };
-      postWebHostingWebsites([payload, false]);
+
+      createAttachedDomainService({ ...payload });
     } else {
       const payload = {
-        targetSpec: {
-          name: data.name,
-          fqdn: data.fqdn,
-        },
+        serviceName: serviceName,
+        domain: data.fqdn,
+        path: data.path ?? null,
       };
-      postWebHostingWebsites([payload, data.wwwNeeded ?? false]);
+      createAttachedDomainService({ ...payload });
     }
     navigate(-1);
   };
@@ -148,7 +139,9 @@ export default function AddWDomainPage() {
             control={control}
             controlValues={controlValues}
             setStep={setStep}
-            isNextButtonVisible={false}
+            isNextButtonVisible={
+              step === 2 && controlValues.associationType === AssociationType.EXTERNAL
+            }
             isAddingDomain={true}
           />
         </>
@@ -156,7 +149,11 @@ export default function AddWDomainPage() {
       {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
         <div>
           <DomainManagement controlValues={controlValues} />
-          <Button onClick={() => void handleSubmit(onSubmit)()} disabled={!controlValues.fqdn}>
+          <Button
+            onClick={() => void handleSubmit(onSubmit)()}
+            disabled={!controlValues.fqdn}
+            className="mt-4"
+          >
             {t('common:web_hosting_common_action_continue')}
           </Button>
         </div>

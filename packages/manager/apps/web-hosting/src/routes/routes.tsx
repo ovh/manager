@@ -39,7 +39,6 @@ import {
   MODIFY_DOMAIN,
   MULTISITE,
   ONBOARDING,
-  ORDER_DOMAIN,
   ORDER_SECTIGO,
   PURGE_CDN,
   REMOVE_SEO_SUBSCIPTION,
@@ -68,12 +67,7 @@ import {
   RootPage,
   WebsitesPage,
 } from './pages/default';
-import {
-  AddDomainPage,
-  DetacheDomainModal,
-  ModifyDomainModal,
-  OrderDomainPage,
-} from './pages/domain';
+import { AddDomainPage, DetacheDomainModal, ModifyDomainModal } from './pages/domain';
 import {
   AssociateGitPage,
   ConfigureGitPage,

@@ -85,7 +85,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                       reset?.({
                         associationType: AssociationType.EXISTING,
                         autoConfigureDns: true,
-                        path: controlValues.path,
+                        path: controlValues.path || 'public_html',
                         fqdn: '',
                         name: isAddingDomain ? controlValues.name : '',
                       });
@@ -122,6 +122,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                         associationType: AssociationType.EXTERNAL,
                         fqdn: '',
                         name: isAddingDomain ? controlValues.name : '',
+                        path: controlValues.path || 'public_html',
                       });
                       setStep(1);
                     }}
