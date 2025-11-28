@@ -36,7 +36,10 @@ describe('useOnboardingHeroImage', () => {
         productName: 'MyTestApp',
         heroImage: { src: '/hero.png' },
       },
-      expected: { src: '/hero.png', alt: 'translated_onboarding:hero_alt_MyTestApp' },
+      expected: {
+        src: '/hero.png',
+        alt: 'translated_onboarding:hero_alt_MyTestApp',
+      },
     },
     {
       description: 'useOnboardingHeroImage should return undefined if no hero image is provided',
