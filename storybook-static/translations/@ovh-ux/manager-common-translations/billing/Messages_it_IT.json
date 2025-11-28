@@ -1,0 +1,8 @@
+{
+  "billing": "Fatturazione",
+  "automatic_renew": "Rinnovo automatico",
+  "subscription": "Abbonamento",
+  "cancel_service": "Disattivare il servizio",
+  "cancel_service_success": "Il servizio è stato disattivato",
+  "next_due_date": "Prossima scadenza"
+}

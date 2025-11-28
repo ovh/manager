@@ -1,0 +1,22 @@
+{
+  "address_ip": "Adresse IP",
+  "address_ipv4": "Adresse IPv4",
+  "address_ipv6": "Adresse IPv6",
+  "cluster": "Cluster",
+  "clusters": "Clusters",
+  "datacentre": "Datacentre",
+  "datacentres": "Datacentres",
+  "domain_name": "Nom de domaine",
+  "installation": "Installation",
+  "key": "Clé",
+  "key_access": "Clé d'accès",
+  "key_secret": "Clé secrète",
+  "password": "Mot de passe",
+  "passwords": "Mots de passe",
+  "password_root": "Mot de passe Root",
+  "ram": "RAM",
+  "ram_gb": "RAM (Go)",
+  "role": "Rôle",
+  "vm": "Machine virtuelle",
+  "vms": "Machines virtuelles"
+}

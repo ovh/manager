@@ -1,0 +1,8 @@
+{
+  "billing": "Billing",
+  "automatic_renew": "Automatic renewal",
+  "subscription": "Subscription",
+  "cancel_service": "Cancel the service",
+  "cancel_service_success": "Service cancelled!",
+  "next_due_date": "Next payment date"
+}

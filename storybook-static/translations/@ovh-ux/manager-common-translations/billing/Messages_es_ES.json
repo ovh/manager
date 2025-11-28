@@ -1,0 +1,8 @@
+{
+  "billing": "Facturación",
+  "automatic_renew": "Renovación automática",
+  "subscription": "Suscripción",
+  "cancel_service": "Dar de baja el servicio",
+  "cancel_service_success": "El servicio se ha dado de baja correctamente.",
+  "next_due_date": "Próxima fecha de vencimiento"
+}

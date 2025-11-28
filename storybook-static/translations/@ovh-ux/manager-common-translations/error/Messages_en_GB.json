@@ -1,0 +1,6 @@
+{
+  "oops": "Oops!",
+  "error_code": "Error code: {{code}}",
+  "error_message": "An error has occurred: {{message}}",
+  "error_loading_page": "An error has occurred loading the page."
+}

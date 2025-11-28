@@ -1,0 +1,11 @@
+{
+  "administrator": "Administrator",
+  "administrator_code": "Administratorcode",
+  "technical": "Technisch",
+  "technical_code": "Technischer Code",
+  "billing": "Abrechnung",
+  "billing_code": "Abrechnungscode",
+  "contacts": "Kontakte",
+  "contact": "Kontakt",
+  "manage_contacts": "Kontakte verwalten"
+}
