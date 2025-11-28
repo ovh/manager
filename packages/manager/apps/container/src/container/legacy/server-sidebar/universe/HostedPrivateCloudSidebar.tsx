@@ -15,6 +15,7 @@ import getIcon from './GetIcon';
 import infinityCLoud from '@/assets/images/sidebar/infinity-cloud.png';
 import hycuLogo from '@/assets/images/sidebar/hycu-logo.svg?url';
 import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
+import backupAgentLogo from '@/assets/images/sidebar/backup-agent-logo.png';
 
 const features = [
   'dedicated-cloud',
@@ -357,7 +358,7 @@ export default function HostedPrivateCloudSidebar() {
             id: 'hpc-backup-agent-iaas',
             label: t('sidebar_backup_agent_iaas'),
             icon: (
-              <img alt="" src={hycuLogo} className="mb-1 w-6 aspect-square" />
+              <img alt="" src={backupAgentLogo} className="mb-1 w-6 aspect-square" />
             ),
             pathMatcher: new RegExp('^/hpc-backup-agent-iaas'),
             badge: 'new',
