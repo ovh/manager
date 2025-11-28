@@ -52,5 +52,6 @@
   "infoConnectionPoolUriLabel": "Servizio URI",
   "infoConnectionPoolUriToast": "L'URI è stato copiato negli appunti",
   "infoConnectionPoolModeLabel": "Modo",
-  "infoConnectionPoolSizeLabel": "Taglia"
+  "infoConnectionPoolSizeLabel": "Taglia",
+  "infoConnectionPoolButtonClose": "Chiudere"
 }

@@ -26,16 +26,16 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
         <ServiceNameWithUpdate service={service} />
         <div className="flex gap-2 flex-wrap">
           <ServiceStatusBadge status={service.status} />
-          <Badge variant={'outline'}>
+          <Badge variant="neutral">
             {humanizeEngine(service.engine)} {service.version}
           </Badge>
-          <Badge variant={'outline'} className="capitalize">
+          <Badge variant="neutral" className="capitalize">
             {service.plan}
           </Badge>
-          <Badge variant={'outline'} className="capitalize">
+          <Badge variant="neutral" className="capitalize">
             {service.flavor}
           </Badge>
-          <Badge variant={'outline'} className="capitalize">
+          <Badge variant="neutral" className="capitalize">
             <div className="flex items-center gap-1">
               <Flag
                 flagName={getRegionFlag(service.nodes[0].region)}
@@ -45,9 +45,7 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
             </div>
           </Badge>
           {service?.deletionProtection && (
-            <Badge variant={'outline'}>
-              {t('deletionProtectionBadgeLabel')}
-            </Badge>
+            <Badge variant="neutral">{t('deletionProtectionBadgeLabel')}</Badge>
           )}
         </div>
       </div>

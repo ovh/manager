@@ -122,7 +122,7 @@ describe('Delete integration modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'deleteIntegrationToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

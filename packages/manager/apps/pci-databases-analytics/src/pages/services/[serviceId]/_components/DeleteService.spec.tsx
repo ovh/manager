@@ -117,7 +117,7 @@ describe('Delete service modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'deleteServiceToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });
