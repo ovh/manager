@@ -25,6 +25,7 @@
     "@emotion/styled": "^11.10.0",
     "@ovh-ux/manager-config": "^8.7.2",
     "@ovh-ux/manager-core-api": "^0.19.3",
+    "@ovh-ux/manager-core-sso": "^0.4.9",
     "@ovh-ux/manager-react-components": "^1.47.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/manager-vite-config": "^0.15.1",
