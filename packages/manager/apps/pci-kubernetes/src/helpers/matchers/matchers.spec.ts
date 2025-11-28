@@ -1,6 +1,7 @@
 import {
   CLUSTER_NAME_CONSTRAINTS,
   NODE_POOL_NAME_CONSTRAINTS,
+  getClusterUrlFragments,
   isClusterNameValid,
   isNodePoolNameValid,
 } from './matchers';
@@ -100,4 +101,28 @@ describe(`Clusters and Node pool names should follow strict rules`, () => {
       expect(isClusterNameValid(name)).toBe(false);
     },
   );
+});
+
+const VALID_KUBE_URL = '3izocz.c1.gra9.k8s.ovh.net';
+const INVALID_KUBE_URLS = [
+  'gra9.k8s.ovh.net',
+  'c1.gra9.k8s.ovh.net',
+  '3usucz..gra9.k8s.ovh.net',
+  '3usucz.c1.k8s.ovh.net',
+  '3us_cz.c1.gra9.k8s.ovh.net',
+];
+
+describe(`getClusterUrlFragments`, () => {
+  it('should parse well formated kubernetes URLs', () => {
+    const parsed = getClusterUrlFragments(VALID_KUBE_URL);
+
+    expect(parsed?.shortId).toBe('3izocz');
+    expect(parsed?.subRegion).toBe('c1');
+    expect(parsed?.region).toBe('gra9');
+  });
+
+  test.each(INVALID_KUBE_URLS)('should not parse invalid kubenertes URL', (url) => {
+    const match = getClusterUrlFragments(url);
+    expect(match).toBe(null);
+  });
 });
