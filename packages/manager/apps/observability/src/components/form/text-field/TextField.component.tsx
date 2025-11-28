@@ -20,6 +20,7 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
       rows = 4,
       className = 'my-4 w-full',
       isRequired = false,
+      isDisabled = false,
       onChange,
       onBlur,
       error,
@@ -48,6 +49,7 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
             onChange={handleValueChange}
             onBlur={onBlur}
             invalid={!!error}
+            disabled={isDisabled}
           />
         ) : (
           <Input
@@ -61,6 +63,7 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
             onChange={handleValueChange}
             onBlur={onBlur}
             invalid={!!error}
+            disabled={isDisabled}
           />
         )}
         {error && (
