@@ -2,7 +2,7 @@
   "objectTitle": "Objects",
   "addNewObject": "Add objects",
   "tableHeaderName": "Name",
-  "tableSuppressionBadgeLabel": "Deletion marker",
+  "tableSuppressionBadgeLabel": "Delete marker",
   "tableHeaderUpdateDate": "Last updated",
   "tableHeaderSize": "Size",
   "tableHeaderStorageClass": "Storage class",

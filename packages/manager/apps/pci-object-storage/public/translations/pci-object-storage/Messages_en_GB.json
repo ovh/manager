@@ -1,6 +1,6 @@
 {
   "title": "Object Storage",
-  "description": "Host your data catalogue in our Object Storage solution. You can manage this data from your application using S3-compatible APIs.",
+  "description": "Host your data catalogue in our object storage solution. You can manage this data via your application, using S3-compatible APIs.",
   "crumb-object-storage": "Object Storage",
   "containerTab": "My containers",
   "usersTab": "Users",

@@ -1,16 +1,16 @@
 {
   "title": "Object Storage",
-  "description1": "Você ainda não criou um serviço de Object Storage.",
-  "description2": "Usufrua de um armazenamento ilimitado a pedido, acessível via API.",
-  "description3": "O Object Storage consiste em colocar seus dados em um espaço ilimitado, acessível diretamente via uma API HTTP. Dessa forma, você pode integrar o acesso a essas informações a partir de suas aplicações, graças às numerosas bibliotecas OpenStack Swift existentes. Além da administração dos direitos de acesso, o Object Storage integra funcionalidades de \"armazenamento inteligente\" como a gestão de versões e datas de expiração, bem como a sincronização entre diferentes localizações.",
-  "description4": "Seus dados estão seguros em três réplicas, a fim de garantir sua durabilidade, e você se beneficia de uma cobrança por uso a partir do primeiro GB.",
-  "createButtonLabel": "Criar um containers de objetos",
+  "description1": "Ainda não criou nenhum serviço Object Storage.",
+  "description2": "Usufrua do armazenamento ilimitado a pedido, acessível por API.",
+  "description3": "O Object Storage consiste em colocar os seus dados num espaço ilimitado, acessível diretamente através de uma API HTTP. Assim, poderá integrar o acesso a estas informações a partir das suas aplicações, graças às múltiplas bibliotecas OpenStack Swift existentes. Além da administração dos direitos de acesso, o Object Storage integra funcionalidades de \"armazenamento inteligente\" como a gestão das versões e das datas de expiração, bem como a sincronização entre diferentes localizações.",
+  "description4": "Os seus dados ficam protegidos em três replicações para garantir a sua duração de vida, e poderá assim usufruir de uma faturação consoante a sua utilização a partir do primeiro GB.",
+  "createButtonLabel": "Criar um container de objetos",
   "cardTopGuide": "Tutorial",
-  "cardFindOutMore": "Saiba mais",
-  "cardLeftTitle": "Apontar um nome de domínio para um container de Object Storage",
-  "cardLeftDesc": "Descubra como configurar seu container de objeto com seu domínio",
+  "cardFindOutMore": "Saber mais",
+  "cardLeftTitle": "Colocar um container do Object Storage por detrás de um nome de domínio",
+  "cardLeftDesc": "Saiba como configurar o seu container de objetos com o seu nome de domínio",
   "cardMiddleTitle": "Configurar a eliminação automática de objetos",
-  "cardMiddleDescription": "Descubra como ativar a eliminação automática dos objetos do seu container",
+  "cardMiddleDescription": "Saiba como ativar a eliminação automática dos objetos do seu container",
   "cardRightTitle": "Partilhar um objeto com um endereço temporário",
-  "cardRightDesc": "Descubra como compartilhar um objeto sem fornecer suas informações pessoais"
+  "cardRightDesc": "Saiba como partilhar um objeto sem fornecer dados pessoais"
 }
