@@ -56,7 +56,7 @@
     "dedicated": "https://www.ovh.com/manager/dedicated/",
     "hub": "https://www.ovh.com/manager/hub/",
     "public-cloud": "https://www.ovh.com/manager/public-cloud/",
-    "telecom": "https://www.ovhtelecom.fr/manager/telecom/",
+    "telecom": "https://manager.eu.ovhcloud.com/telecom/",
     "web": "https://www.ovh.com/manager/web/",
     "sunrise": "https://www.ovh.com/manager/sunrise/",
     "billing": "https://www.ovh.com/manager/dedicated/#/billing",
@@ -64,11 +64,11 @@
     "exchange": "https://www.ovh.com/manager/web/",
     "sharepoint": "https://www.ovh.com/manager/web/",
     "office": "https://www.ovh.com/manager/web/",
-    "telephony": "https://www.ovhtelecom.fr/manager/telecom/",
-    "pack-xdsl": "https://www.ovhtelecom.fr/manager/telecom/",
-    "overthebox": "https://www.ovhtelecom.fr/manager/telecom/",
-    "freefax": "https://www.ovhtelecom.fr/manager/telecom/",
-    "sms": "https://www.ovhtelecom.fr/manager/telecom/",
+    "telephony": "https://manager.eu.ovhcloud.com/telecom/",
+    "pack-xdsl": "https://manager.eu.ovhcloud.com/telecom/",
+    "overthebox": "https://manager.eu.ovhcloud.com/telecom/",
+    "freefax": "https://manager.eu.ovhcloud.com/telecom/",
+    "sms": "https://manager.eu.ovhcloud.com/telecom/",
     "catalog": "https://www.ovh.com/manager/catalog",
     "iam": "https://www.ovh.com/manager/security",
     "carbon-calculator": "https://www.ovh.com/manager/carbon-calculator/",
@@ -109,9 +109,9 @@
     },
     "telecom": {
       "universe": "telecom",
-      "url": "https://www.ovhtelecom.fr/manager/telecom/",
+      "url": "https://manager.eu.ovhcloud.com/telecom/",
       "container": { "isDefault": false, "enabled": true, "path": "telecom" },
-      "publicURL": "https://www.ovhtelecom.fr/manager/#/telecom"
+      "publicURL": "https://manager.eu.ovhcloud.com/#/telecom"
     },
     "web": {
       "universe": "web",
@@ -156,33 +156,33 @@
     },
     "telephony": {
       "universe": "telecom",
-      "url": "https://www.ovhtelecom.fr/manager/telecom/",
+      "url": "https://manager.eu.ovhcloud.com/telecom/",
       "container": { "isDefault": false },
-      "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+      "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
     },
     "pack-xdsl": {
       "universe": "telecom",
-      "url": "https://www.ovhtelecom.fr/manager/telecom/",
+      "url": "https://manager.eu.ovhcloud.com/telecom/",
       "container": { "isDefault": false },
-      "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+      "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
     },
     "overthebox": {
       "universe": "telecom",
-      "url": "https://www.ovhtelecom.fr/manager/telecom/",
+      "url": "https://manager.eu.ovhcloud.com/telecom/",
       "container": { "isDefault": false },
-      "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+      "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
     },
     "freefax": {
       "universe": "telecom",
-      "url": "https://www.ovhtelecom.fr/manager/telecom/",
+      "url": "https://manager.eu.ovhcloud.com/telecom/",
       "container": { "isDefault": false },
-      "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+      "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
     },
     "sms": {
       "universe": "telecom",
-      "url": "https://www.ovhtelecom.fr/manager/telecom/",
+      "url": "https://manager.eu.ovhcloud.com/telecom/",
       "container": { "isDefault": false },
-      "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+      "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
     },
     "catalog": {
       "universe": "hub",
