@@ -39,7 +39,7 @@ const DeleteConnector = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteConnectorToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -69,7 +69,7 @@ const DeleteConnector = () => {
 
   return (
     <RouteModal isLoading={!connectors || !deletedConnector}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-connector-modal">
             {t('deleteConnectorTitle')}
@@ -82,12 +82,12 @@ const DeleteConnector = () => {
             </p>
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-connector-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteConnectorButtonCancel')}
             </Button>
