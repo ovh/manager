@@ -36,16 +36,15 @@ const Wrappers = ({ children }: { children: React.ReactElement }) => {
 
 describe('ActionButtonStatistics component', () => {
   it('should render', () => {
-    const { container } = render(<ActionButtonStatistics webSiteItem={websitesMocks[0]} />, {
+    const { getByTestId } = render(<ActionButtonStatistics webSiteItem={websitesMocks[0]} />, {
       wrapper: Wrappers as ComponentType,
     });
-    expect(container).toBeInTheDocument();
-    const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(menuItems.length).toBe(1);
-    expect(menuItems[0]).toHaveAttribute(
-      'label',
-      commonTranslation.web_hosting_dashboard_action_statistics,
-    );
+    const actionMenu = getByTestId('action-menu');
+    expect(actionMenu).toBeInTheDocument();
+
+    const menuItem = getByTestId('action-item-1');
+    expect(menuItem).toBeInTheDocument();
+    expect(menuItem).toHaveTextContent(commonTranslation.web_hosting_dashboard_action_statistics);
   });
 });

@@ -10,14 +10,17 @@ import { createWrapper, i18n } from '@/utils/test.provider';
 import SanModal from './sanSsl.page';
 
 const mockNavigate = vi.fn();
-vi.mock('react-router-dom', () => ({
-  useParams: () => ({
-    serviceName: 'serviceName',
-    domain: 'domain',
-  }),
-  useSearchParams: () => [new URLSearchParams({ san: 'mySAN' })],
-  useNavigate: () => mockNavigate,
-}));
+vi.mock('react-router-dom', async (importActual) => {
+  return {
+    ...(await importActual<typeof import('react-router-dom')>()),
+    useParams: () => ({
+      serviceName: 'serviceName',
+      domain: 'domain',
+    }),
+    useSearchParams: () => [new URLSearchParams({ san: 'mySAN' })],
+    useNavigate: () => mockNavigate,
+  };
+});
 
 const testQueryClient = new QueryClient({
   defaultOptions: {

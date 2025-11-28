@@ -309,7 +309,13 @@ export default function MultisitePage() {
           expandable={{
             expanded,
             setExpanded,
-            //   getRowCanExpand: () => {},
+            getRowCanExpand: (row) => {
+              if (isDomain(row.original)) {
+                return false;
+              }
+              const website = row.original as WebHostingWebsiteType;
+              return (website.currentState?.linkedDomains ?? 0) > 0;
+            },
           }}
         />
       )}
