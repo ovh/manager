@@ -1,5 +1,5 @@
 name: Run tests
-on: 
+on:
   push:
     branches-ignore: [master]
 
@@ -37,20 +37,20 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-            
+
       - name: Install repository
         run: yarn install --frozen-lockfile
       - name: Build covered packages and dependencies
         run: |
-          yarn build --filter="./packages/manager/core/*" --concurrency=5
-          yarn build --filter="./packages/manager-ui-kit"
-          yarn build --filter="./packages/manager/modules/order"
-          yarn build --filter="./packages/manager/modules/common-api"
-          yarn build --filter="./packages/manager/modules/common-translations"
-          yarn build --filter="./packages/manager/modules/vcd-api"
-          yarn build --filter="./packages/manager/modules/manager-pci-common"
-          yarn build --filter="./packages/manager/modules/network-common"
-          yarn build --filter="./packages/components/ovh-payment-method"
+          yarn build --filter="./packages/manager/core/*" --concurrency=5 --runner nx
+          yarn build --filter="./packages/manager-ui-kit" --runner nx
+          yarn build --filter="./packages/manager/modules/order" --runner nx
+          yarn build --filter="./packages/manager/modules/common-api" --runner nx
+          yarn build --filter="./packages/manager/modules/common-translations" --runner nx
+          yarn build --filter="./packages/manager/modules/vcd-api" --runner nx
+          yarn build --filter="./packages/manager/modules/manager-pci-common" --runner nx
+          yarn build --filter="./packages/manager/modules/network-common" --runner nx
+          yarn build --filter="./packages/components/ovh-payment-method" --runner nx
       - name: Run tests on changed packages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -76,4 +76,4 @@ jobs:
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
-          yarn test --concurrency=1 --filter=...[origin/${BASE_BRANCH}...origin/${BRANCH}]
+          yarn test --concurrency=1 --filter=...[origin/${BASE_BRANCH}...origin/${BRANCH}] --runner nx

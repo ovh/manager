@@ -1,189 +1,118 @@
 #!/usr/bin/env node
 /**
- * scripts/publish.js
+ * Nx-based publish script (replaces Lerna).
  *
- * - Supports --dry-run / --dryrun / -n (simulates publish)
- * - Forwards all other CLI flags (e.g., --tag v1.2.3, --access public)
- * - Uses a project-local npm cache to avoid EACCES on ~/.npm
+ * - Supports --dry-run / --dryrun / -n
+ * - Forwards --tag, --access, etc. to Nx Release / npm
+ * - Uses a project-local npm cache (target/.npm-cache) to avoid EACCES on ~/.npm
+ * - Relies on Nx Release configuration in nx.json to know which projects to publish.
  */
-const execa = require('execa');
-const pSeries = require('p-series');
+
 const fs = require('fs');
 const path = require('path');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 
-// ---------- CLI flags ----------
-const rawArgs = process.argv.slice(2);
-const isDryRun =
-  rawArgs.includes('--dry-run') ||
-  rawArgs.includes('--dryrun') ||
-  rawArgs.includes('-n');
+// Nx Release programmatic API
+const { releasePublish } = require('nx/release');
 
-// forward every flag except the dry-run aliases
-const forwardArgs = rawArgs.filter(
-  (a) => a !== '--dry-run' && a !== '--dryrun' && a !== '-n',
-);
+(async () => {
+  const argv = await yargs(hideBin(process.argv))
+    .version(false)
+    .option('dry-run', {
+      alias: ['dryrun', 'n'],
+      type: 'boolean',
+      describe: 'Simulate publish without pushing to the registry',
+      default: false,
+    })
+    .option('tag', {
+      type: 'string',
+      describe: 'npm dist-tag to use (e.g. latest, next)',
+    })
+    .option('access', {
+      type: 'string',
+      describe: 'npm access (e.g. public, restricted)',
+    })
+    .option('projects', {
+      type: 'string',
+      describe:
+        'Comma-separated list of Nx projects to publish (subset of Nx release config)',
+    })
+    .option('verbose', {
+      type: 'boolean',
+      default: false,
+      describe: 'Enable verbose Nx Release logging',
+    })
+    // don't show default help/version noise (CI-friendly)
+    .help(false)
+    .parseAsync();
 
-// ---------- Local npm cache to avoid permission issues ----------
-const npmCache =
-  process.env.NPM_CONFIG_CACHE ||
-  path.resolve(process.cwd(), 'target/.npm-cache');
+  const isDryRun = Boolean(argv['dry-run']);
 
-try {
-  fs.mkdirSync(npmCache, { recursive: true });
-} catch (_) {
-  // best effort; if it fails, npm will still try default cache
-}
+  // ---------- Local npm cache (same behaviour as old script) ----------
+  const npmCache =
+    process.env.NPM_CONFIG_CACHE ||
+    path.resolve(process.cwd(), 'target/.npm-cache');
 
-const baseEnv = {
-  ...process.env,
-  NPM_CONFIG_CACHE: npmCache,   // npm respects both cases
-  npm_config_cache: npmCache,
-};
+  try {
+    fs.mkdirSync(npmCache, { recursive: true });
+  } catch {
+    // best effort; if it fails, npm will fallback to its default cache
+  }
 
-// convenience wrappers
-const npmInfo = (pkgSpec) =>
-  execa('npm', ['info', pkgSpec], { env: baseEnv }); // capture stdout
+  process.env.NPM_CONFIG_CACHE = npmCache;
+  process.env.npm_config_cache = npmCache;
 
-const lernaExec = (args, inherit = true) =>
-  execa('lerna', args, {
-    env: baseEnv,
-    stdio: inherit ? 'inherit' : 'pipe',
+  // Optional project filter: allows you to mimic lerna --scope-like behaviour
+  const projectsFilter = argv.projects
+    ? String(argv.projects)
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+    : undefined;
+
+  const commonOptions = {
+    dryRun: isDryRun,
+    verbose: argv.verbose,
+    ...(projectsFilter ? { projects: projectsFilter } : {}),
+  };
+
+  // ---------- Publish phase ----------
+  // NOTE:
+  //  - This uses whatever versions are already in package.json.
+  //  - Nx Release will check the registry and skip versions that are already published.
+  const publishResults = await releasePublish({
+    ...commonOptions,
+    tag: argv.tag,
+    access: argv.access,
+    // Any extra releasePublish options you need can be added here.
   });
 
-execa('lerna', ['ls', '-pl', '--json', '--toposort'], { env: baseEnv })
-  .then(({ stdout }) => {
-    const packages = JSON.parse(stdout);
+  const failures = Object.entries(publishResults).filter(
+    ([, result]) => result.code !== 0,
+  );
 
-    return Promise.all(
-      packages.map(async (pkg) => {
-        // read package.json for per-package knobs
-        const pkgJsonPath = path.join(pkg.location, 'package.json');
-        let ignoreDependencies = false;
-        try {
-          const parseFullPkg = JSON.parse(
-            fs.readFileSync(pkgJsonPath, { encoding: 'utf-8' }),
-          );
-          ignoreDependencies = Boolean(parseFullPkg.ignoreDependencies);
-        } catch (_) {
-          // ignore; default false
-        }
-
-        // check if version already exists on registry
-        try {
-          const { stdout: infoOut } = await npmInfo(
-            `${pkg.name}@${pkg.version}`,
-          );
-          // if we got any output, consider it published
-          return {
-            ...pkg,
-            publish: infoOut && infoOut.length > 0, // true => already published
-            ignoreDependencies,
-          };
-        } catch (err) {
-          // 404 → not published yet; any other error: surface helpful message but keep going
-          const stderr = String(err.stderr || '');
-          if (!stderr.includes('404')) {
-            console.error(
-              'npm info failed for',
-              `${pkg.name}@${pkg.version}`,
-              '\n',
-              stderr || err.message || err,
-            );
-            // NOTE: don’t exit here; we’ll treat as "not published" so the pipeline can proceed.
-          }
-          return {
-            ...pkg,
-            publish: false, // not found or info failed → attempt publish
-            ignoreDependencies,
-          };
-        }
-      }),
-    );
-  })
-  .then((packages) =>
-    pSeries(
-      packages
-        .map((pkg) => {
-          if (!pkg.publish) {
-            return async () => {
-              const prefix = isDryRun ? '[DRY-RUN] ' : '';
-              console.log(`${prefix}Publishing package ${pkg.name}`);
-
-              // Step 1: (optional) prepare — validates artifacts even in dry-run
-              const includeDeps = pkg.ignoreDependencies
-                ? []
-                : ['--include-dependencies'];
-
-              await lernaExec(
-                [
-                  'exec',
-                  '--scope',
-                  pkg.name,
-                  ...includeDeps,
-                  '--',
-                  'npm',
-                  'run',
-                  'prepare',
-                  '--if-present',
-                ],
-                true,
-              );
-
-              // Step 2: publish
-              if (isDryRun) {
-                // Simulate publish with npm (no registry writes)
-                await lernaExec(
-                  [
-                    'exec',
-                    '--scope',
-                    pkg.name,
-                    '--',
-                    'npm',
-                    'publish',
-                    '--dry-run',
-                    ...forwardArgs,
-                  ],
-                  true,
-                );
-              } else {
-                // Real publish with yarn (kept from original script)
-                await lernaExec(
-                  [
-                    'exec',
-                    '--scope',
-                    pkg.name,
-                    '--',
-                    'yarn',
-                    'publish',
-                    '--access=public',
-                    '--non-interactive',
-                    ...forwardArgs,
-                  ],
-                  true,
-                );
-              }
-            };
-          }
-
-          console.log(
-            `Package ${pkg.name} has been skipped (already published)`,
-          );
-          return null;
-        })
-        .filter(Boolean),
-    ),
-  )
-  .catch((err) => {
-    // Print a clearer hint for cache permission issues
-    const stderr = String(err.stderr || '');
-    if (stderr.includes('EACCES') && stderr.includes('/.npm')) {
-      console.error(
-        '\n⚠️  Detected npm cache permission issue on your home directory.\n' +
-        '   This script now uses a project-local cache to avoid that, but if you still see this,\n' +
-        `   ensure ${npmCache} is writable or fix your ~/.npm perms:\n` +
-        '     sudo chown -R $(id -u):$(id -g) ~/.npm\n',
-      );
-    }
-    console.error(err);
+  if (failures.length) {
+    console.error('Some packages failed to publish:\n');
+    failures.forEach(([name, result]) => {
+      console.error(` - ${name}: exit code ${result.code}`);
+    });
     process.exit(1);
-  });
+  }
+
+  process.exit(0);
+})().catch((err) => {
+  // Keep the nice EACCES hint you had before, if you like:
+  const stderr = String(err.stderr || err.message || '');
+  if (stderr.includes('EACCES') && stderr.includes('/.npm')) {
+    console.error(
+      '\n⚠️  Detected npm cache permission issue on your home directory.\n' +
+      '   This script uses a project-local cache, but if you still see this,\n' +
+      `   ensure ${npmCache} is writable or fix your ~/.npm perms:\n` +
+      '     sudo chown -R $(id -u):$(id -g) ~/.npm\n',
+    );
+  }
+
+  console.error(err);
+  process.exit(1);
+});
