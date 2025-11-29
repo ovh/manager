@@ -1,0 +1,12 @@
+{
+  "content": "Découvrez des services de stockage managés qui s'appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d'espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
+  "order": "Commander un NAS-HA",
+  "tutorial": "Tutoriel",
+  "hero_alt": "NAS-HA",
+  "getting-started_title": "Premiers pas avec un NAS-HA",
+  "getting-started_content": "Découvrez comment gérer un NAS-HA depuis l'espace client OVHcloud",
+  "nfs_title": "Monter votre NAS via un partage NFS",
+  "nfs_content": "Découvrez comment monter un NAS via un partage NFS",
+  "cifs_title": "Monter votre NAS sur Windows Server via CIFS",
+  "cifs_content": "Découvrez comment monter un NAS sur Windows Server via le protocol CIFS"
+}

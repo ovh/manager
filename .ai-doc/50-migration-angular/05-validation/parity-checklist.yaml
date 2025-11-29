@@ -1,0 +1,632 @@
+---
+title: Parity Validation Checklist
+version: 1.0.0
+last_update: 2025-01-27
+tags: [validation, parity, automation, checklist]
+ai: true
+---
+
+# Parity Validation Checklist
+
+## Purpose
+
+Automated validation rules to ensure 100% parity between AngularJS and React implementations. Each check is executable with clear pass/fail criteria.
+
+---
+
+## Validation Categories
+
+validation_categories:
+  - route_parity
+  - api_parity
+  - component_parity
+  - translation_parity
+  - feature_parity
+  - tracking_parity
+  - performance_parity
+
+---
+
+## Route Parity
+
+route_parity:
+  description: "Validate all routes migrated correctly"
+
+  checks:
+    - id: route_count
+      name: "Route count matches"
+      automated: true
+      severity: critical
+      check:
+        type: comparison
+        source: "count(angularjs_states)"
+        target: "count(react_routes)"
+        operator: equals
+      error_message: "Route count mismatch: AngularJS has {source} states, React has {target} routes"
+      fix_suggestion: "Review Routes.tsx and ensure all AngularJS states are mapped"
+
+    - id: route_urls
+      name: "URL patterns match"
+      automated: true
+      severity: critical
+      check:
+        type: pattern_match
+        for_each: angularjs_state
+        extract: url_pattern
+        find_in: react_routes
+        transform:
+          angularjs: "/:param → :param"
+          react: ":param"
+      error_message: "URL mismatch for state '{state_name}': AngularJS '{angular_url}' != React '{react_url}'"
+      fix_suggestion: "Update path prop in <Route> to match AngularJS URL"
+
+    - id: route_redirects
+      name: "Redirects implemented"
+      automated: true
+      severity: high
+      check:
+        type: exists
+        for_each: "angularjs_state[has redirectTo]"
+        find_in: react_routes
+        pattern: "useNavigate|<Navigate"
+      error_message: "Redirect not implemented for '{state_name}' → '{redirect_target}'"
+      fix_suggestion: "Add useNavigate() + useEffect() or <Navigate> component"
+
+    - id: route_params
+      name: "Route params match"
+      automated: true
+      severity: high
+      check:
+        type: param_match
+        for_each: angularjs_state
+        extract: url_params
+        find_in: react_routes
+        verify: "useParams() includes all params"
+      error_message: "Missing route param '{param}' in React route '{route_path}'"
+      fix_suggestion: "Add :{param} to path and extract in useParams()"
+
+---
+
+## API Parity
+
+api_parity:
+  description: "Validate all API calls migrated correctly"
+
+  checks:
+    - id: api_call_count
+      name: "API endpoint count matches"
+      automated: true
+      severity: critical
+      check:
+        type: comparison
+        source: "count(angularjs_api_calls)"
+        target: "count(react_hooks)"
+        operator: equals
+      error_message: "API call count mismatch: AngularJS has {source}, React has {target}"
+      fix_suggestion: "Create custom hooks for all AngularJS API calls"
+
+    - id: aapi_migration
+      name: "AAPI calls use aapi client"
+      automated: true
+      severity: critical
+      check:
+        type: pattern_check
+        for_each: "angularjs_api_calls[type=AAPI]"
+        find_in: react_hooks
+        pattern: "import.*aapi.*from.*@ovh-ux/manager-core-api"
+        verify: "aapi.get|aapi.post|aapi.put|aapi.delete"
+      error_message: "AAPI call '{endpoint}' not migrated to aapi client"
+      fix_suggestion: "Use: import { aapi } from '@ovh-ux/manager-core-api'; aapi.get(endpoint)"
+
+    - id: iceberg_migration
+      name: "Iceberg queries use fetchIcebergV6"
+      automated: true
+      severity: critical
+      check:
+        type: pattern_check
+        for_each: "angularjs_api_calls[type=Iceberg]"
+        find_in: react_hooks
+        pattern: "fetchIcebergV6"
+      error_message: "Iceberg query '{endpoint}' not migrated to fetchIcebergV6"
+      fix_suggestion: "Use: import { fetchIcebergV6 } from '@ovh-ux/manager-core-api'"
+
+    - id: v6_migration
+      name: "v6 calls use apiClient.v6"
+      automated: true
+      severity: critical
+      check:
+        type: pattern_check
+        for_each: "angularjs_api_calls[type=v6]"
+        find_in: react_hooks
+        pattern: "v6\\.(get|post|put|delete)"
+      error_message: "v6 API call '{endpoint}' not migrated to v6 client"
+      fix_suggestion: "Use: import { v6 } from '@ovh-ux/manager-core-api'; v6.{method}(endpoint)"
+
+    - id: cache_removed
+      name: "No resetCache calls (React Query handles caching)"
+      automated: true
+      severity: medium
+      check:
+        type: not_exists
+        in: react_code
+        pattern: "resetCache"
+      error_message: "Found resetCache() call - React Query handles caching automatically"
+      fix_suggestion: "Remove resetCache() calls, use queryClient.invalidateQueries() if needed"
+
+    - id: data_preparation
+      name: "Data preparation functions preserved"
+      automated: true
+      severity: high
+      check:
+        type: exists
+        for_each: "angularjs_functions[name=prepare*]"
+        find_in: react_hooks
+        pattern: "usePrepare{ResourceName}"
+      error_message: "Data preparation function '{function_name}' not migrated"
+      fix_suggestion: "Create usePrepare{ResourceName}() hook with same logic"
+
+---
+
+## Component Parity
+
+component_parity:
+  description: "Validate UI components migrated to MUK"
+
+  checks:
+    - id: oui_components_replaced
+      name: "All OUI components replaced with MUK"
+      automated: true
+      severity: critical
+      check:
+        type: not_exists
+        in: react_code
+        pattern: "<oui-"
+      error_message: "Found OUI component in React code: {component}"
+      fix_suggestion: "Replace with MUK equivalent (see ui-patterns.yaml)"
+
+    - id: no_ods_when_muk_exists
+      name: "No ODS when MUK equivalent exists"
+      automated: true
+      severity: critical
+      check:
+        type: muk_first_policy
+        for_each: "ods_imports"
+        verify: "muk_has_equivalent"
+      error_message: "Using ODS {component} but MUK has equivalent"
+      fix_suggestion: "Use MUK component instead (MUK-first policy)"
+
+    - id: manager_list_layout_migrated
+      name: "managerListLayout → BaseLayout + Datagrid"
+      automated: true
+      severity: critical
+      check:
+        type: pattern_exists
+        if: "angularjs_uses_managerListLayout"
+        then:
+          find_in: react_code
+          pattern: "<BaseLayout.*<Datagrid"
+      error_message: "managerListLayout not migrated to BaseLayout + Datagrid"
+      fix_suggestion: "Use: <BaseLayout><Datagrid /></BaseLayout>"
+
+    - id: oui_tile_structure
+      name: "Tile structure matches"
+      automated: true
+      severity: high
+      check:
+        type: structure_match
+        for_each: "angularjs_tiles"
+        verify:
+          - "Tile.Root exists"
+          - "Tile.Item.Term count matches oui-tile-definition"
+          - "Tile.Item.Description count matches oui-tile-description"
+      error_message: "Tile structure mismatch in '{component_location}'"
+      fix_suggestion: "Use Tile.Root > Tile.Item.Root > Tile.Item.Term + Tile.Item.Description"
+
+    - id: datagrid_columns_match
+      name: "Datagrid columns match"
+      automated: true
+      severity: high
+      check:
+        type: comparison
+        source: "count(angularjs_datagrid_columns)"
+        target: "count(react_datagrid_columns)"
+        operator: equals
+      error_message: "Column count mismatch: AngularJS {source}, React {target}"
+      fix_suggestion: "Add missing columns to columns array"
+
+---
+
+## Translation Parity
+
+translation_parity:
+  description: "Validate translations migrated with exact values"
+
+  checks:
+    - id: translation_count
+      name: "Translation key count matches"
+      automated: true
+      severity: critical
+      check:
+        type: comparison
+        source: "count(angularjs_translation_keys)"
+        target: "count(react_translation_keys)"
+        operator: ">="
+      error_message: "Translation count mismatch: AngularJS {source}, React {target}"
+      fix_suggestion: "Migrate all translation keys from Messages_*.json"
+
+    - id: translation_values_exact
+      name: "Translation values exactly match"
+      automated: true
+      severity: critical
+      check:
+        type: value_match
+        for_each: angularjs_translation
+        find_in: react_translations
+        verify: "value_equals"
+      error_message: "Translation value changed: '{key}' AngularJS='{angular_value}' React='{react_value}'"
+      fix_suggestion: "Use exact value from AngularJS (parity policy)"
+
+    - id: no_missing_translations
+      name: "No missing translations"
+      automated: true
+      severity: critical
+      check:
+        type: exists
+        for_each: "t() calls in React"
+        verify: "translation_exists in translations/*.json"
+      error_message: "Missing translation for key: '{key}'"
+      fix_suggestion: "Add translation to translations/*.json"
+
+    - id: key_mapping_documented
+      name: "Key changes documented"
+      automated: false
+      severity: high
+      check:
+        type: manual
+        if: "translation_keys_renamed"
+        verify: "MIGRATION_NOTES.md has mapping table"
+      error_message: "Translation keys renamed but not documented"
+      fix_suggestion: "Add mapping table to MIGRATION_NOTES.md"
+
+---
+
+## Feature Parity
+
+feature_parity:
+  description: "Validate all features implemented"
+
+  checks:
+    - id: search_feature
+      name: "Search feature implemented"
+      automated: true
+      severity: high
+      check:
+        type: feature_match
+        if: "angularjs_has_search"
+        then:
+          find_in: react_code
+          pattern: "search.*searchInput.*setSearchInput"
+      error_message: "Search feature not implemented"
+      fix_suggestion: "Add search prop to Datagrid with useState"
+
+    - id: filter_feature
+      name: "Filter feature implemented"
+      automated: true
+      severity: high
+      check:
+        type: feature_match
+        if: "angularjs_has_filter"
+        then:
+          find_in: react_code
+          pattern: "filter|useColumnFilters"
+      error_message: "Filter feature not implemented"
+      fix_suggestion: "Add filters prop to Datagrid with useColumnFilters"
+
+    - id: pagination_feature
+      name: "Pagination feature implemented"
+      automated: true
+      severity: high
+      check:
+        type: feature_match
+        if: "angularjs_has_pagination"
+        then:
+          find_in: react_code
+          pattern: "hasNextPage.*fetchNextPage"
+      error_message: "Pagination feature not implemented"
+      fix_suggestion: "Add hasNextPage/fetchNextPage to Datagrid"
+
+    - id: column_customization
+      name: "Column customization implemented"
+      automated: true
+      severity: medium
+      check:
+        type: feature_match
+        if: "angularjs_has_column_customization"
+        then:
+          find_in: react_code
+          pattern: "columnVisibility.*setColumnVisibility"
+      error_message: "Column customization not implemented"
+      fix_suggestion: "Add columnVisibility prop to Datagrid"
+
+    - id: topbar_cta
+      name: "Topbar CTA implemented"
+      automated: true
+      severity: medium
+      check:
+        type: feature_match
+        if: "angularjs_has_topbar_cta"
+        then:
+          find_in: react_code
+          pattern: "<Button.*variant"
+      error_message: "Topbar CTA button not implemented"
+      fix_suggestion: "Add Button above Datagrid"
+
+    - id: changelog_button
+      name: "Changelog button implemented"
+      automated: true
+      severity: low
+      check:
+        type: feature_match
+        if: "angularjs_has_changelog"
+        then:
+          find_in: react_code
+          pattern: "<ChangelogMenu"
+      error_message: "Changelog button not implemented"
+      fix_suggestion: "Add ChangelogMenu to BaseLayout header"
+
+    - id: guides_menu
+      name: "Guides menu implemented"
+      automated: true
+      severity: low
+      check:
+        type: feature_match
+        if: "angularjs_has_guides"
+        then:
+          find_in: react_code
+          pattern: "<GuideMenu"
+      error_message: "Guides menu not implemented"
+      fix_suggestion: "Add GuideMenu to BaseLayout header"
+
+---
+
+## Tracking Parity
+
+tracking_parity:
+  description: "Validate tracking events migrated"
+
+  checks:
+    - id: tracking_event_count
+      name: "Tracking event count matches"
+      automated: true
+      severity: high
+      check:
+        type: comparison
+        source: "count(angularjs_tracking_calls)"
+        target: "count(react_tracking_calls)"
+        operator: equals
+      error_message: "Tracking event mismatch: AngularJS {source}, React {target}"
+      fix_suggestion: "Add missing trackClick calls"
+
+    - id: tracking_hook_imported
+      name: "useOvhTracking hook used"
+      automated: true
+      severity: critical
+      check:
+        type: exists
+        in: react_code
+        pattern: "import.*useOvhTracking.*from.*@ovh-ux/manager-react-shell-client"
+      error_message: "useOvhTracking not imported"
+      fix_suggestion: "Import: import { useOvhTracking } from '@ovh-ux/manager-react-shell-client'"
+
+    - id: tracking_events_match
+      name: "Tracking event names match"
+      automated: true
+      severity: high
+      check:
+        type: event_match
+        for_each: angularjs_tracking_call
+        find_in: react_tracking_calls
+        verify: "action_name_matches"
+      error_message: "Tracking event name mismatch: '{angular_action}' not found in React"
+      fix_suggestion: "Add: trackClick({ actions: ['{action}'] })"
+
+---
+
+## Performance Parity
+
+performance_parity:
+  description: "Validate no performance regressions"
+
+  checks:
+    - id: bundle_size
+      name: "Bundle size reasonable"
+      automated: true
+      severity: medium
+      check:
+        type: comparison
+        source: "react_bundle_size"
+        target: "angularjs_bundle_size * 1.5"
+        operator: "<="
+      error_message: "Bundle size too large: React {source}KB vs AngularJS {target}KB"
+      fix_suggestion: "Check for unnecessary imports, use code splitting"
+
+    - id: initial_load_time
+      name: "Initial load time acceptable"
+      automated: false
+      severity: medium
+      check:
+        type: manual
+        verify: "Load time < 3 seconds"
+      error_message: "Initial load time > 3 seconds"
+      fix_suggestion: "Optimize imports, lazy load pages"
+
+    - id: api_call_waterfall
+      name: "No API call waterfall"
+      automated: false
+      severity: medium
+      check:
+        type: manual
+        verify: "API calls are parallelized where possible"
+      error_message: "Sequential API calls causing waterfall"
+      fix_suggestion: "Use Promise.all or parallel useQuery calls"
+
+---
+
+## Code Quality
+
+code_quality:
+  description: "Validate code quality standards"
+
+  checks:
+    - id: linting_passes
+      name: "ESLint passes"
+      automated: true
+      severity: critical
+      command: "npm run lint"
+      check:
+        type: exit_code
+        expected: 0
+      error_message: "ESLint errors found"
+      fix_suggestion: "Run 'npm run lint --fix' or fix errors manually"
+
+    - id: type_check_passes
+      name: "TypeScript type checking passes"
+      automated: true
+      severity: critical
+      command: "npm run type-check"
+      check:
+        type: exit_code
+        expected: 0
+      error_message: "TypeScript errors found"
+      fix_suggestion: "Fix type errors"
+
+    - id: build_succeeds
+      name: "Build succeeds"
+      automated: true
+      severity: critical
+      command: "npm run build"
+      check:
+        type: exit_code
+        expected: 0
+      error_message: "Build failed"
+      fix_suggestion: "Fix build errors"
+
+    - id: no_todos_remaining
+      name: "No TODO comments (except documented)"
+      automated: true
+      severity: high
+      check:
+        type: not_exists
+        in: react_code
+        pattern: "// TODO|// FIXME"
+        except: "documented in MIGRATION_NOTES.md"
+      error_message: "Unresolved TODO found: '{todo_text}'"
+      fix_suggestion: "Complete implementation or document in MIGRATION_NOTES.md"
+
+    - id: no_console_logs
+      name: "No console.log in production code"
+      automated: true
+      severity: medium
+      check:
+        type: not_exists
+        in: react_code
+        pattern: "console\\.(log|debug)"
+      error_message: "console.log found in code"
+      fix_suggestion: "Remove console.log or use proper logging"
+
+---
+
+## Usage Instructions
+
+### For AI Assistants
+
+1. **Load checklist**: Read this YAML file
+2. **Run automated checks**: Execute checks where automated=true
+3. **Report results**: Generate validation report with pass/fail
+4. **Manual checks**: Flag checks where automated=false for human review
+5. **Provide fixes**: Include fix_suggestion in report
+
+### Example Implementation
+
+```typescript
+// Load checklist
+const checklist = loadYAML('parity-checklist.yaml');
+
+// Run validation
+const results = {
+  passed: [],
+  failed: [],
+  manual: []
+};
+
+// Check route parity
+for (const check of checklist.route_parity.checks) {
+  if (check.automated) {
+    const result = executeCheck(check);
+    if (result.passed) {
+      results.passed.push(check);
+    } else {
+      results.failed.push({
+        check,
+        error: check.error_message,
+        fix: check.fix_suggestion
+      });
+    }
+  } else {
+    results.manual.push(check);
+  }
+}
+
+// Generate report
+generateValidationReport(results);
+```
+
+---
+
+## Validation Report Template
+
+```markdown
+# Validation Report
+
+**Date**: {date}
+**React Path**: {target_path}
+**AngularJS Path**: {source_path}
+
+## Summary
+
+- ✅ Passed: {passed_count} checks
+- ❌ Failed: {failed_count} checks
+- ⚠️ Manual: {manual_count} checks
+
+## Automated Checks
+
+### Route Parity
+- ✅ route_count: PASS
+- ✅ route_urls: PASS
+- ❌ route_redirects: FAIL - Redirect not implemented for 'nasha.dashboard.edit'
+  **Fix**: Add useNavigate() + useEffect() or <Navigate> component
+
+### API Parity
+- ✅ api_call_count: PASS
+- ✅ aapi_migration: PASS
+- ...
+
+## Manual Checks Required
+
+- ⚠️ initial_load_time: Manual verification needed
+- ⚠️ key_mapping_documented: Check MIGRATION_NOTES.md
+
+## Next Steps
+
+1. Fix failed checks (see error messages above)
+2. Perform manual checks
+3. Re-run validation
+```
+
+---
+
+## References
+
+- [Parity Validation Guide](../parity-validation-guide.md)
+- [AngularJS React Mapping Guide](../angularjs-react-mapping-guide.md)
+- [Development Standards](@.ai-doc/30-best-practices/development-standards.md)

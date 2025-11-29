@@ -1,0 +1,12 @@
+{
+  "title": "Edit name for {{ name }}",
+  "description": "Update the display name for this service",
+  "label": "Name for {{ name }}",
+  "rules": "Characters < and > are not allowed",
+  "success": "Name updated successfully",
+  "cancel": "Close",
+  "confirm": "Update service name"
+}
+
+
+

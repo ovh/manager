@@ -1,0 +1,21 @@
+{
+  "title": "NAS-HA",
+  "order_button": "Contratar un HA-NAS",
+  "guides": {
+    "title": "Guías"
+  },
+  "columns": {
+    "serviceName": "ID del servicio",
+    "canCreatePartition": "Creación de partición",
+    "canCreatePartition_true": "Permitida",
+    "canCreatePartition_false": "No permitida",
+    "customName": "Nombre",
+    "datacenter": "Ubicación del datacenter",
+    "diskType": "Tipo de disco",
+    "monitored": "Supervisado",
+    "monitored_true": "Sí",
+    "monitored_false": "No",
+    "zpoolCapacity": "Capacidad zpool",
+    "zpoolSize": "Tamaño zpool"
+  }
+}

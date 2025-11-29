@@ -1,0 +1,37 @@
+{
+  "edit": "Edit",
+  "guides": {
+    "title": "General documentation"
+  },
+  "tabs": {
+    "general_information": "General information",
+    "partitions": "Partitions"
+  },
+  "information": {
+    "title": "Information",
+    "name": "Name",
+    "id": "Service ID",
+    "datacenter": "Datacentre location",
+    "disk_type": "Disk type",
+    "disk_size": "Storage size"
+  },
+  "configuration": {
+    "title": "Configuration",
+    "quota": "Quota",
+    "link": "Create a partition"
+  },
+  "billing": {
+    "title": "Billing",
+    "creation": "Creation date",
+    "status": "Status",
+    "expiration": "Expiration date",
+    "next_billing_date": "Next billing date",
+    "view_billing": "View billing",
+    "renewal": {
+      "automatic": "Automatic renewal every {{ period }} month{{ period > 1 ? 's' : '' }}",
+      "automatic_generic": "Automatic renewal",
+      "manual": "Manual renewal"
+    }
+  },
+  "eol_banner_message": "This service is in end-of-life period"
+}

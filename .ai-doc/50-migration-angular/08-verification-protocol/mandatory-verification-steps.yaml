@@ -1,0 +1,421 @@
+# Mandatory Verification Protocol
+# @ai-purpose: Systematic verification steps AI MUST complete before declaring migration done
+# @ai-usage: Run EVERY check before saying "migration complete"
+
+version: "1.0"
+last_updated: "2025-01-27"
+
+# =============================================================================
+# PRE-FLIGHT CHECKS (Before starting verification)
+# =============================================================================
+pre_flight:
+  title: "Pre-flight Checks"
+  description: "Ensure everything is ready for verification"
+
+  checks:
+    source_available:
+      name: "AngularJS source code accessible"
+      action: "Verify you can read the original AngularJS files"
+      required: true
+
+    react_compiles:
+      name: "React code compiles without errors"
+      action: "Run `yarn build` or `yarn typecheck`"
+      command: "yarn workspace @ovh-ux/manager-{app-name} build"
+      required: true
+
+    tests_pass:
+      name: "All tests pass"
+      action: "Run `yarn test`"
+      command: "yarn workspace @ovh-ux/manager-{app-name} test"
+      required: true
+
+# =============================================================================
+# ROUTE VERIFICATION
+# =============================================================================
+route_verification:
+  title: "Route Parity Verification"
+  description: "Verify all routes are migrated correctly"
+
+  checks:
+    route_count:
+      name: "Route count matches"
+      severity: critical
+      action: |
+        1. Count states in AngularJS: grep -c "\$stateProvider.state" {source}/**/*.routing.js
+        2. Count Routes in React: grep -c "<Route" src/Routes.tsx
+        3. Compare counts - must match
+      pass_criteria: "AngularJS state count == React Route count"
+
+    route_urls:
+      name: "Route URLs match"
+      severity: critical
+      action: |
+        1. Extract all URL patterns from AngularJS states
+        2. Extract all path patterns from React Routes
+        3. Verify each AngularJS URL has equivalent React path
+      example:
+        angularjs: "url: '/:serviceName'"
+        react: "path=':serviceName'"
+
+    route_parameters:
+      name: "Route parameters preserved"
+      severity: critical
+      action: |
+        1. List all URL parameters in AngularJS (:serviceName, :partitionId, etc.)
+        2. Verify same parameters in React routes
+        3. Verify parameters are extracted with useParams()
+
+    nested_routes:
+      name: "Nested routes structure preserved"
+      severity: high
+      action: |
+        1. Map AngularJS state hierarchy (parent.child.grandchild)
+        2. Verify React Router nesting matches
+        3. Verify Outlet components in parent routes
+
+# =============================================================================
+# API VERIFICATION
+# =============================================================================
+api_verification:
+  title: "API Parity Verification"
+  description: "Verify all API calls are migrated correctly"
+
+  checks:
+    api_call_count:
+      name: "API call count matches"
+      severity: critical
+      action: |
+        1. Count API calls in AngularJS (OvhApi*, $http, etc.)
+        2. Count API hooks in React (useQuery, useMutation)
+        3. Compare - should be similar (React may combine some)
+
+    api_endpoints:
+      name: "API endpoints match"
+      severity: critical
+      action: |
+        For each AngularJS API call:
+        1. Identify the endpoint
+        2. Find corresponding React hook
+        3. Verify EXACT same endpoint
+      example:
+        angularjs: "OvhApiDedicatedNasha.v6().get({ serviceName })"
+        react: "v6.get(`/dedicated/nasha/${serviceName}`)"
+
+    api_method_match:
+      name: "HTTP methods match"
+      severity: critical
+      action: |
+        Verify each API call uses correct method:
+        - .query() / .get() → GET
+        - .save() → POST
+        - .update() → PUT
+        - .delete() → DELETE
+
+    aapi_vs_v6:
+      name: "AAPI vs v6 endpoints match"
+      severity: critical
+      action: |
+        Check each API call:
+        - OvhApi*.Aapi() → must use aapi client
+        - OvhApi*.v6() → must use v6 client
+        DO NOT mix these up!
+
+    data_transformation:
+      name: "Data transformations preserved"
+      severity: high
+      action: |
+        1. Find all prepare* functions in AngularJS
+        2. Verify equivalent usePrepare* hooks in React
+        3. Compare transformation logic
+
+# =============================================================================
+# COMPONENT VERIFICATION
+# =============================================================================
+component_verification:
+  title: "Component Parity Verification"
+  description: "Verify all UI components are migrated correctly"
+
+  checks:
+    datagrid_columns:
+      name: "Datagrid columns match"
+      severity: high
+      action: |
+        For each oui-datagrid:
+        1. Count columns (including action column)
+        2. List column properties/fields
+        3. Check sortable columns
+        4. Verify React Datagrid has same columns
+
+    datagrid_pagination:
+      name: "Datagrid pagination matches"
+      severity: high
+      action: |
+        1. Check page-size in AngularJS
+        2. Verify pageSize in React matches exactly
+
+    action_menus:
+      name: "Action menus match"
+      severity: high
+      action: |
+        For each oui-action-menu:
+        1. Count menu items
+        2. List action labels
+        3. Verify React ActionMenu has same items
+
+    form_fields:
+      name: "Form fields match"
+      severity: critical
+      action: |
+        For each form:
+        1. List all input fields
+        2. List validation rules
+        3. List default values
+        4. Verify React form has same fields, validation, defaults
+
+    modals:
+      name: "Modal dialogs match"
+      severity: high
+      action: |
+        1. Count modals in AngularJS (oui-modal, $uibModal)
+        2. Verify same modals exist in React
+        3. Check modal content matches
+
+# =============================================================================
+# FEATURE VERIFICATION
+# =============================================================================
+feature_verification:
+  title: "Feature Parity Verification"
+  description: "Verify all features work correctly"
+
+  checks:
+    navigation_flows:
+      name: "Navigation flows work"
+      severity: critical
+      action: |
+        Test each navigation scenario:
+        1. Main menu → feature page
+        2. List → detail view
+        3. Action complete → redirect
+        4. Back button works
+
+    crud_operations:
+      name: "CRUD operations work"
+      severity: critical
+      action: |
+        For each entity:
+        - [ ] Create works (form → API → list refresh)
+        - [ ] Read works (list loads, detail loads)
+        - [ ] Update works (edit form → API → data refresh)
+        - [ ] Delete works (confirm → API → navigate away)
+
+    error_handling:
+      name: "Error handling works"
+      severity: high
+      action: |
+        Test error scenarios:
+        - [ ] API error shows error banner
+        - [ ] Form validation shows field errors
+        - [ ] Mutation error shows notification
+        - [ ] 404 redirects appropriately
+
+    loading_states:
+      name: "Loading states display"
+      severity: high
+      action: |
+        Test loading states:
+        - [ ] Initial page load shows loader
+        - [ ] Data refetch shows loading indicator
+        - [ ] Form submit shows button loading
+        - [ ] Skeleton shown for partial loads
+
+# =============================================================================
+# TRANSLATION VERIFICATION
+# =============================================================================
+translation_verification:
+  title: "Translation Parity Verification"
+  description: "Verify all translations are present"
+
+  checks:
+    translation_keys_exist:
+      name: "All translation keys exist"
+      severity: critical
+      action: |
+        1. Extract all t() calls from React code
+        2. Check each key exists in translation files
+        3. Report any missing keys
+
+    no_hardcoded_strings:
+      name: "No hardcoded strings"
+      severity: critical
+      action: |
+        Search for hardcoded strings in JSX:
+        grep -E '<[A-Z][a-z]+[^>]*>[A-Z][a-z]+' src/**/*.tsx
+        Should return no results (except for component names)
+
+    translation_file_structure:
+      name: "Translation files complete"
+      severity: high
+      action: |
+        1. Check Messages_en_GB.json exists
+        2. Check Messages_fr_FR.json exists
+        3. Verify key count matches between locales
+
+# =============================================================================
+# TRACKING VERIFICATION
+# =============================================================================
+tracking_verification:
+  title: "Tracking Parity Verification"
+  description: "Verify analytics tracking is preserved"
+
+  checks:
+    page_tracking:
+      name: "Page tracking preserved"
+      severity: medium
+      action: |
+        1. Find atInternet/tracking calls in AngularJS
+        2. Verify equivalent tracking in React
+        3. Check page names match
+
+    action_tracking:
+      name: "Action tracking preserved"
+      severity: medium
+      action: |
+        1. Find click tracking in AngularJS
+        2. Verify same actions tracked in React
+        3. Check action names match
+
+# =============================================================================
+# CODE QUALITY VERIFICATION
+# =============================================================================
+code_quality_verification:
+  title: "Code Quality Verification"
+  description: "Verify code meets quality standards"
+
+  checks:
+    no_typescript_errors:
+      name: "No TypeScript errors"
+      severity: critical
+      command: "yarn workspace @ovh-ux/manager-{app-name} typecheck"
+      pass_criteria: "Exit code 0"
+
+    no_eslint_errors:
+      name: "No ESLint errors"
+      severity: critical
+      command: "yarn workspace @ovh-ux/manager-{app-name} lint"
+      pass_criteria: "Exit code 0"
+
+    no_console_logs:
+      name: "No console.log statements"
+      severity: medium
+      action: "grep -r 'console.log' src/"
+      pass_criteria: "No results"
+
+    no_any_types:
+      name: "No 'any' types"
+      severity: medium
+      action: "grep -r ': any' src/"
+      pass_criteria: "Minimal results (justify each)"
+
+# =============================================================================
+# FINAL CHECKLIST
+# =============================================================================
+final_checklist:
+  title: "Final Migration Checklist"
+  description: "Complete this before declaring migration done"
+
+  items:
+    - section: "Routes"
+      checks:
+        - "[ ] All AngularJS states have React equivalents"
+        - "[ ] URL patterns match exactly"
+        - "[ ] Parameters extracted correctly"
+
+    - section: "API"
+      checks:
+        - "[ ] All API calls migrated"
+        - "[ ] Correct client used (v6/aapi/iceberg)"
+        - "[ ] Data transformations preserved"
+        - "[ ] Query invalidation configured"
+
+    - section: "Components"
+      checks:
+        - "[ ] All UI elements present"
+        - "[ ] Column counts match"
+        - "[ ] Action menus complete"
+        - "[ ] Form fields match"
+
+    - section: "Features"
+      checks:
+        - "[ ] CRUD operations work"
+        - "[ ] Navigation flows work"
+        - "[ ] Error handling works"
+        - "[ ] Loading states display"
+
+    - section: "Translations"
+      checks:
+        - "[ ] All keys defined"
+        - "[ ] No hardcoded strings"
+        - "[ ] Multiple locales supported"
+
+    - section: "Quality"
+      checks:
+        - "[ ] TypeScript compiles"
+        - "[ ] ESLint passes"
+        - "[ ] Tests pass"
+        - "[ ] No code smells"
+
+# =============================================================================
+# VERIFICATION REPORT TEMPLATE
+# =============================================================================
+report_template: |
+  # Migration Verification Report
+
+  **Source**: {angularjs_path}
+  **Target**: {react_path}
+  **Date**: {date}
+
+  ## Summary
+
+  | Category | Status | Issues |
+  |----------|--------|--------|
+  | Routes | ✅/❌ | {count} |
+  | API | ✅/❌ | {count} |
+  | Components | ✅/❌ | {count} |
+  | Features | ✅/❌ | {count} |
+  | Translations | ✅/❌ | {count} |
+  | Quality | ✅/❌ | {count} |
+
+  ## Detailed Results
+
+  ### Routes
+  - Total AngularJS states: {count}
+  - Total React routes: {count}
+  - Issues: {list}
+
+  ### API
+  - Total AngularJS API calls: {count}
+  - Total React hooks: {count}
+  - Issues: {list}
+
+  ### Components
+  - Issues: {list}
+
+  ### Features
+  - Issues: {list}
+
+  ### Translations
+  - Issues: {list}
+
+  ### Quality
+  - TypeScript: {pass/fail}
+  - ESLint: {pass/fail}
+  - Tests: {pass/fail}
+
+  ## Conclusion
+
+  Migration is: **COMPLETE** / **INCOMPLETE**
+
+  Remaining issues:
+  1. {issue}
+  2. {issue}

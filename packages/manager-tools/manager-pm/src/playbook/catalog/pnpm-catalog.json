@@ -1,4 +1,5 @@
 [
+  "packages/manager/apps/bmc-nasha",
   "packages/manager/apps/web-office",
   "packages/manager/apps/zimbra",
   "packages/manager/apps/pci-contacts",

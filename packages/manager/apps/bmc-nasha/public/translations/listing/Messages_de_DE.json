@@ -1,0 +1,21 @@
+{
+  "title": "NAS-HA",
+  "order_button": "HA-NAS bestellen",
+  "guides": {
+    "title": "Anleitungen"
+  },
+  "columns": {
+    "serviceName": "Dienst-ID",
+    "canCreatePartition": "Partitionserstellung",
+    "canCreatePartition_true": "Zugelassen",
+    "canCreatePartition_false": "Nicht zugelassen",
+    "customName": "Name",
+    "datacenter": "Standort des Rechenzentrums",
+    "diskType": "Festplattentyp",
+    "monitored": "Überwacht",
+    "monitored_true": "Ja",
+    "monitored_false": "Nein",
+    "zpoolCapacity": "Zpool-Kapazität",
+    "zpoolSize": "Zpool-Größe"
+  }
+}
