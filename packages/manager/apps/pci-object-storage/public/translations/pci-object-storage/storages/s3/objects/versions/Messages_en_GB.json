@@ -1,9 +1,9 @@
 {
-  "objectVersionToastErrorTitle": "An error occurred",
+  "objectVersionToastErrorTitle": "An error has occurred",
   "objectVersionToastSuccessTitle": "Success",
-  "deleteObjectVersionToastSuccessDescription": "The version of the object {{- name }} has been deleted.",
-  "deleteObjectVersionTitle": "Delete a version of an object",
-  "deleteObjectVersionDescription": "Do you want to permanently delete this version of the object {{- name }}? This action cannot be undone.",
+  "deleteObjectVersionToastSuccessDescription": "The object version {{- name }} has been deleted.",
+  "deleteObjectVersionTitle": "Delete an object version",
+  "deleteObjectVersionDescription": "Do you want to permanently delete this version of the object {{- name }}? This action cannot be reversed.",
   "deleteObjectVersionConfirmation": "Type PERMANENTLY DELETE to confirm",
   "deleteObjectVersionButtonCancel": "Cancel",
   "deleteObjectVersionButtonConfirm": "Delete"

@@ -1,7 +1,7 @@
 {
-  "switchTypeTitle": "Mudar o tipo do seu container",
-  "switchToPublicDescription": "Deseja tornar o container de dados público?",
-  "switchToPrivateDescription": "Deseja tornar o container de dados privado?",
+  "switchTypeTitle": "Alterar o tipo do seu container",
+  "switchToPublicDescription": "Deseja passar o container de dados para público?",
+  "switchToPrivateDescription": "Deseja passar o container de dados para privado?",
   "switchTypeButtonCancel": "Anular",
   "switchTypeButtonConfirm": "Confirmar",
   "updateContainerToastErrorTitle": "Ocorreu um erro",

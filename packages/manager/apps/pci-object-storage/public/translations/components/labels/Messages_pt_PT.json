@@ -1,5 +1,5 @@
 {
-  "addTagTitle": "Adicionar uma etiqueta",
+  "addTagTitle": "Adicionar uma tag",
   "keyFieldLabel": "Chave",
   "valueFieldLabel": "Valor",
   "existingKeyError": "Esta chave já existe",

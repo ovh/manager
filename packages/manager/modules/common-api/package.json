@@ -30,7 +30,7 @@
     "@ovh-ux/manager-core-test-utils": "^0.10.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
-    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.1",
     "msw": "2.1.7"
   },

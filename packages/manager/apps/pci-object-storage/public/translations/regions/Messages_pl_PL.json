@@ -90,9 +90,9 @@
   "region_continent_TOR": "Ameryka Północna",
   "region-description-localzone": "Local Zone umożliwia wdrażanie produktów Public Cloud OVHcloud w centrach danych zlokalizowanych jak najbliżej użytkowników końcowych.",
   "region_EU-SOUTH-MIL": "Mediolan",
-  "region_EU-SOUTH-MIL_micro": "Mediolan ({{ micro }})",
+  "region_EU-SOUTH-MIL_micro": "Mediolan ({{micro}})",
   "region_MIL": "Mediolan",
-  "region_MIL_micro": "Mediolan ({{ micro }})",
+  "region_MIL_micro": "Mediolan ({{micro}})",
   "region_continent_MIL": "Europa Południowa",
   "region_location_MIL": "Europa Południowa (Włochy)"
 }

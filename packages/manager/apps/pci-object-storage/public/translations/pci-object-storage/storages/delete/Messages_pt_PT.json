@@ -1,10 +1,10 @@
 {
-  "deleteStorageTitle": "Remover um contêiner",
-  "deleteStorageDescription": "Tem certeza de que deseja remover o contêiner {{ name }}?",
-  "deleteStorageConfirmation": "Digite « TERMINAR » para confirmar sua escolha.",
+  "deleteStorageTitle": "Eliminar um container",
+  "deleteStorageDescription": "Tem a certeza de que deseja eliminar o container {{ name }}",
+  "deleteStorageConfirmation": "Introduza «TERMINATE» para confirmar a sua escolha.",
   "deleteStorageButtonCancel": "Anular",
   "deleteStorageButtonConfirm": "Confirmar",
   "deleteStorageToastErrorTitle": "Erro",
-  "deleteStorageToastSuccessTitle": "Sucesso",
-  "deleteStorageToastSuccessDescription": "O contêiner {{ name }} foi removido."
+  "deleteStorageToastSuccessTitle": "Êxito",
+  "deleteStorageToastSuccessDescription": "O container {{ name }} foi eliminado"
 }

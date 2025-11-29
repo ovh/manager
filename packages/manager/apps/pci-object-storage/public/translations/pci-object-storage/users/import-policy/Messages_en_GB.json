@@ -1,9 +1,9 @@
 {
-  "addUserPolicyTitle": "Import a file",
+  "addUserPolicyTitle": "Import file",
   "addUserPolicyDescription": "You can import a JSON file to manage your user's rights.",
   "userPolicyToastErrorTitle": "Error",
   "userPolicySuccessTitle": "Success",
-  "userPolicyToastSuccessDescription": "The policy has been imported",
+  "userPolicyToastSuccessDescription": "Policy imported",
   "userPolicyJSONToastError": "An error occurred while reading the JSON file.",
   "errorFileRequired": "Please select 1 file",
   "fileUploaderButtonCancel": "Cancel",
