@@ -12,10 +12,9 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "coverage": "manager-test run --coverage",
     "start": "tsc && vite",
-    "test": "manager-test run",
-    "test:coverage": "manager-test run --coverage"
+    "test": "manager-test --config vitest.config.mjs run",
+    "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "5.1.1",
@@ -51,7 +50,7 @@
   "devDependencies": {
     "@effect/vitest": "^0.25.1",
     "@ovh-ux/manager-core-test-utils": "^0.10.1",
-    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.1",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
