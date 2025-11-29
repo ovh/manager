@@ -12,10 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "coverage": "manager-test run --coverage",
     "lint": "eslint ./src",
     "start": "vite",
-    "test": "manager-test run"
+    "test": "manager-test --config vitest.config.mjs run",
+    "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.24.0",
