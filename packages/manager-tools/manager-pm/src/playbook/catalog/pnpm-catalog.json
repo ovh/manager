@@ -6,6 +6,7 @@
   "packages/manager/apps/pci-billing",
   "packages/manager/apps/pci-block-storage",
   "packages/manager/apps/pci-contacts",
+  "packages/manager/apps/pci-gateway",
   "packages/manager/apps/pci-kubernetes",
   "packages/manager/apps/pci-instances",
   "packages/manager/apps/pci-load-balancer",
