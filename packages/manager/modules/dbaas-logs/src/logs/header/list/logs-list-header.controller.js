@@ -1,7 +1,8 @@
 export default class LogsListHeaderCtrl {
   /* @ngInject */
-  constructor(LogsHelperService) {
+  constructor(LogsHelperService, constants) {
     this.LogsHelperService = LogsHelperService;
+    this.constants = constants;
   }
 
   $onInit() {
