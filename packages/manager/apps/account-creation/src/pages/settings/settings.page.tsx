@@ -237,7 +237,7 @@ export default function Settings() {
                 isDisabled={!languages?.length}
                 onOdsChange={onChange}
                 onBlur={onBlur}
-                key={`languages_for_${selectedCountry}`}
+                key={`languages_for_${selectedCountry}_${selectedCurrency}`}
                 hasError={Boolean(languages?.length && errors[name])}
                 data-testid="language-select"
               >
