@@ -1,32 +1,36 @@
-import React, { Suspense, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import {
-  Notifications,
-  BaseLayout,
-  HeadersProps,
-  ErrorBanner,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import { Suspense, useMemo } from 'react';
+
+import { Outlet, useNavigate } from 'react-router-dom';
+
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import KmsTabs, {
   KmsTabProps,
 } from '@key-management-service/components/layout-helpers/dashboard/KmsTabs';
-import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import {
-  KMS_ROUTES_URIS,
-  KMS_ROUTES_URLS,
-} from '@key-management-service/routes/routes.constants';
-import { SERVICE_KEYS_LABEL } from '@/constants';
-import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
-import { KmsDashboardOutletContext } from './KmsDashboard.type';
+  BaseLayout,
+  ErrorBanner,
+  HeadersProps,
+  Notifications,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+import { SERVICE_KEYS_LABEL } from '@/constants';
+
+import { KmsDashboardOutletContext } from './KmsDashboard.type';
 
 export default function DashboardPage() {
   const { t } = useTranslation([
@@ -36,27 +40,19 @@ export default function DashboardPage() {
     'key-management-service/credential',
   ]);
   const navigate = useNavigate();
-  const { okmsId } = useParams() as {
-    okmsId: string;
-  };
-  const {
-    data: okms,
-    isPending: isOkmsLoading,
-    error: okmsError,
-  } = useOkmsById(okmsId);
+  const { okmsId } = useRequiredParams('okmsId');
 
-  const {
-    data: features,
-    isLoading: isFeatureAvailabilityLoading,
-  } = useFeatureAvailability([KMS_FEATURES.LOGS]);
+  const { data: okms, isPending: isOkmsLoading, error: okmsError } = useOkmsById(okmsId);
+
+  const { data: features, isLoading: isFeatureAvailabilityLoading } = useFeatureAvailability([
+    KMS_FEATURES.LOGS,
+  ]);
 
   const tabsList: KmsTabProps[] = useMemo(() => {
     const tabs: KmsTabProps[] = [
       {
         url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
-        content: (
-          <>{t('key-management-service/dashboard:general_informations')}</>
-        ),
+        content: <>{t('key-management-service/dashboard:general_informations')}</>,
       },
       {
         url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
@@ -64,9 +60,7 @@ export default function DashboardPage() {
       },
       {
         url: KMS_ROUTES_URLS.credentialListing(okmsId),
-        content: (
-          <>{t('key-management-service/dashboard:access_certificates')}</>
-        ),
+        content: <>{t('key-management-service/dashboard:access_certificates')}</>,
       },
     ];
     if (features?.[KMS_FEATURES.LOGS]) {
@@ -75,12 +69,7 @@ export default function DashboardPage() {
         content: (
           <div className="flex gap-2">
             {t('key-management-service/dashboard:logs')}{' '}
-            <OdsBadge
-              size="sm"
-              label="beta"
-              color="information"
-              className="font-normal"
-            />
+            <OdsBadge size="sm" label="beta" color="information" className="font-normal" />
           </div>
         ),
       });
@@ -122,16 +111,12 @@ export default function DashboardPage() {
     },
     {
       id: KMS_ROUTES_URIS.credentials,
-      label: t(
-        'key-management-service/credential:key_management_service_credential',
-      ),
+      label: t('key-management-service/credential:key_management_service_credential'),
       navigateTo: KMS_ROUTES_URLS.credentialListing(okmsId),
     },
     {
       id: KMS_ROUTES_URIS.kmsEditName,
-      label: t(
-        'key-management-service/dashboard:key_management_service_update_name',
-      ),
+      label: t('key-management-service/dashboard:key_management_service_update_name'),
       navigateTo: KMS_ROUTES_URLS.kmsEditName(okmsId),
     },
     {

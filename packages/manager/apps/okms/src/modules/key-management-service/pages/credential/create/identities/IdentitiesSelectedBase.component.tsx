@@ -1,18 +1,19 @@
-import React from 'react';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
+  IdentityGroup,
+  IdentityOauthClient,
+  IdentityUser,
+} from '@key-management-service/types/identity.type';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_BUTTON_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  IdentityUser,
-  IdentityGroup,
-  IdentityOauthClient,
-} from '@key-management-service/types/identity.type';
+
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 
 type IdentityType = IdentityUser | IdentityGroup | IdentityOauthClient;
 

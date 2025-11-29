@@ -1,10 +1,8 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import OkmsTerminateModal from '@/common/components/okms-terminate-modal/OkmsTerminateModal.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const OkmsTerminateModalPage = () => {
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
 
   return <OkmsTerminateModal okmsId={okmsId} />;
 };

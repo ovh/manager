@@ -1,6 +1,8 @@
 import React from 'react';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+
 import { useHref, useNavigate } from 'react-router-dom';
+
+import { OdsLink } from '@ovhcloud/ods-components/react';
 
 type OdsLinkProps = React.ComponentProps<typeof OdsLink> & {
   /** Display a OdsLink but uses the router for navigation */

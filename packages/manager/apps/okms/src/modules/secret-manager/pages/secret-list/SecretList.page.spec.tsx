@@ -1,23 +1,27 @@
-import { screen, act, waitFor } from '@testing-library/react';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
+import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import {
+  WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
   getOdsButtonByIcon,
   getOdsButtonByLabel,
-  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
-import userEvent from '@testing-library/user-event';
-import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { PATH_LABEL } from '@/constants';
+import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
+
 import { CREATE_VERSION_DRAWER_TEST_IDS } from '../drawers/create-version-drawer/CreateVersionDrawer.constants';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(okmsMock[0].id);
+const mockOkms = okmsRoubaix1Mock;
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(mockOkms.id);
 
 const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
@@ -30,7 +34,7 @@ const renderPage = async () => {
 
 // TEMP fix to ensure ods links and buttons are properly rendered
 const assertDatagridIsLoaded = async (container: HTMLElement) => {
-  await waitFor(async () => {
+  await waitFor(() => {
     const skeletons = container.querySelectorAll<HTMLElement>('ods-skeleton');
     expect(skeletons.length).toBe(0);
   });
@@ -39,6 +43,8 @@ const assertDatagridIsLoaded = async (container: HTMLElement) => {
 describe('Secret list page test suite', () => {
   it('should display the secrets list page', async () => {
     await renderPage();
+
+    await assertTextVisibility(labels.secretManager.secret_manager);
   });
 
   it('should display the breadcrumb', async () => {
@@ -83,7 +89,7 @@ describe('Secret list page test suite', () => {
 
     const secretPageLink = await getOdsButtonByLabel({
       container,
-      label: secretListMock[0].path,
+      label: secretListMock[0]?.path ?? '',
       isLink: true,
     });
 
@@ -99,7 +105,7 @@ describe('Secret list page test suite', () => {
     expect(dashboardPageLabels.length).toBeGreaterThan(0);
   });
 
-  it('should navigate to OKMS dashboard on click on "manage okms" button ', async () => {
+  it('should navigate to OKMS dashboard on click on "manage okms" button', async () => {
     // GIVEN
     const user = userEvent.setup();
     const { container } = await renderPage();
@@ -134,9 +140,7 @@ describe('Secret list page test suite', () => {
 
     // THEN
     await assertTextVisibility(labels.secretManager.create_a_secret);
-    await assertTextVisibility(
-      labels.secretManager.create_secret_form_region_section_title,
-    );
+    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
   });
 
   /* ITEM MENU ACTIONS */
@@ -163,8 +167,7 @@ describe('Secret list page test suite', () => {
     },
     {
       actionLabel: labels.secretManager.delete_secret,
-      assertion: () =>
-        assertTextVisibility(labels.secretManager.delete_secret_modal_title),
+      assertion: () => assertTextVisibility(labels.secretManager.delete_secret_modal_title),
     },
   ];
 
@@ -179,8 +182,6 @@ describe('Secret list page test suite', () => {
 
         const mainActionButton = await getOdsButtonByIcon({
           container,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           iconName: 'ellipsis-vertical',
         });
 
