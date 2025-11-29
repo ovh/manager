@@ -1,0 +1,452 @@
+# Code Smell Detector
+# @ai-purpose: Detect anti-patterns and common mistakes in React code
+# @ai-usage: Run these checks BEFORE declaring migration complete
+
+version: "1.0"
+last_updated: "2025-01-27"
+
+# =============================================================================
+# CRITICAL SMELLS (Must Fix)
+# =============================================================================
+critical_smells:
+
+  # ---------------------------------------------------------------------------
+  # State Management Smells
+  # ---------------------------------------------------------------------------
+  useState_for_server_data:
+    name: "useState for Server Data"
+    severity: critical
+    description: "Using useState for data that comes from an API"
+    detection:
+      pattern: 'useState\([^)]*\)\s*;\s*\n.*fetch\(|axios\.|v6\.|aapi\.'
+      flags: gm
+    example_bad: |
+      const [data, setData] = useState(null);
+      useEffect(() => {
+        fetch('/api/data').then(r => r.json()).then(setData);
+      }, []);
+    example_good: |
+      const { data } = useQuery({
+        queryKey: ['data'],
+        queryFn: () => fetch('/api/data').then(r => r.json()),
+      });
+    fix: "Use React Query (useQuery) for server state"
+    reference: "@.ai-doc/15-expert-decisions/expert-decision-matrix.yaml#state_management.server_state"
+
+  missing_loading_state:
+    name: "Missing Loading State"
+    severity: critical
+    description: "Component renders data without checking isLoading"
+    detection:
+      pattern: 'useQuery\([^)]+\)(?!.*isLoading)'
+      flags: g
+    example_bad: |
+      const { data } = useServiceDetail(serviceName);
+      return <div>{data.name}</div>; // Crashes if data is undefined
+    example_good: |
+      const { data, isLoading } = useServiceDetail(serviceName);
+      if (isLoading) return <Loading />;
+      return <div>{data.name}</div>;
+    fix: "Always destructure and check isLoading before rendering data"
+
+  missing_error_handling:
+    name: "Missing Error Handling"
+    severity: critical
+    description: "Component doesn't handle API errors"
+    detection:
+      pattern: 'useQuery\([^)]+\)(?!.*error)'
+      flags: g
+    example_bad: |
+      const { data, isLoading } = useServiceDetail(serviceName);
+    example_good: |
+      const { data, isLoading, error } = useServiceDetail(serviceName);
+      if (error) return <ErrorBanner error={error} />;
+    fix: "Always destructure and handle error state"
+
+  hardcoded_strings:
+    name: "Hardcoded UI Strings"
+    severity: critical
+    description: "UI text not using translation"
+    detection:
+      pattern: '<(Ods\w+|button|span|div|p|h[1-6])[^>]*>([A-Z][a-z]+(\s+[a-z]+)*)</'
+      flags: g
+    example_bad: |
+      <OdsButton>Create Partition</OdsButton>
+      <h1>Dashboard</h1>
+    example_good: |
+      <OdsButton>{t('nasha_partition_add_button')}</OdsButton>
+      <h1>{t('nasha_dashboard_title')}</h1>
+    fix: "Use t() from useTranslation for all UI strings"
+
+  # ---------------------------------------------------------------------------
+  # API Smells
+  # ---------------------------------------------------------------------------
+  wrong_api_pattern:
+    name: "Wrong API Client"
+    severity: critical
+    description: "Using wrong API client (v6 vs aapi vs iceberg)"
+    detection:
+      patterns:
+        - pattern: 'v6\.get.*Aapi|v6\.get.*/aapi/'
+          message: "Using v6 for AAPI endpoint - use aapi client instead"
+        - pattern: 'aapi\.get(?!.*aapi|.*Aapi)'
+          message: "Using aapi for non-AAPI endpoint - use v6 instead"
+    fix: "Match API client to endpoint type: v6 for /v6, aapi for /aapi"
+
+  missing_query_invalidation:
+    name: "Missing Query Invalidation"
+    severity: critical
+    description: "Mutation doesn't invalidate related queries"
+    detection:
+      pattern: 'useMutation\(\{[^}]*mutationFn[^}]*\}\s*\)'
+      negative_lookahead: 'invalidateQueries'
+      flags: g
+    example_bad: |
+      return useMutation({
+        mutationFn: async (payload) => v6.post('/api/resource', payload),
+      });
+    example_good: |
+      return useMutation({
+        mutationFn: async (payload) => v6.post('/api/resource', payload),
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['resources'] });
+        },
+      });
+    fix: "Add onSuccess handler to invalidate related queries"
+
+  # ---------------------------------------------------------------------------
+  # Form Smells
+  # ---------------------------------------------------------------------------
+  uncontrolled_ods_input:
+    name: "Uncontrolled ODS Input"
+    severity: critical
+    description: "ODS input without Controller from react-hook-form"
+    detection:
+      pattern: '<OdsInput[^>]*(?!.*Controller)[^>]*(?<!value=)[^>]*>'
+      flags: g
+    example_bad: |
+      <OdsInput name="email" />
+    example_good: |
+      <Controller
+        name="email"
+        control={control}
+        render={({ field }) => <OdsInput {...field} />}
+      />
+    fix: "Wrap ODS inputs with Controller for proper form integration"
+
+  missing_form_validation:
+    name: "Missing Form Validation"
+    severity: critical
+    description: "useForm without resolver/validation"
+    detection:
+      pattern: 'useForm\(\{(?![^}]*resolver)[^}]*\}\)'
+      flags: g
+    example_bad: |
+      const { control } = useForm({
+        defaultValues: { name: '' },
+      });
+    example_good: |
+      const { control } = useForm({
+        resolver: zodResolver(schema),
+        defaultValues: { name: '' },
+      });
+    fix: "Add zodResolver for validation"
+
+# =============================================================================
+# HIGH PRIORITY SMELLS
+# =============================================================================
+high_smells:
+
+  # ---------------------------------------------------------------------------
+  # Performance Smells
+  # ---------------------------------------------------------------------------
+  inline_object_in_jsx:
+    name: "Inline Object in JSX"
+    severity: high
+    description: "Creating new object/array in render causes unnecessary re-renders"
+    detection:
+      pattern: '(style|columns|data|options)=\{\s*\[|\{\s*\{'
+      flags: g
+    example_bad: |
+      <Datagrid columns={[{ id: 'name', label: 'Name' }]} />
+    example_good: |
+      const columns = useMemo(() => [{ id: 'name', label: 'Name' }], []);
+      <Datagrid columns={columns} />
+    fix: "Extract to useMemo or define outside component"
+
+  missing_key_prop:
+    name: "Missing Key in List"
+    severity: high
+    description: "List items without unique key prop"
+    detection:
+      pattern: '\.map\([^)]+\)\s*=>\s*<(?!.*key=)'
+      flags: g
+    example_bad: |
+      {items.map(item => <ListItem>{item.name}</ListItem>)}
+    example_good: |
+      {items.map(item => <ListItem key={item.id}>{item.name}</ListItem>)}
+    fix: "Add unique key prop to list items"
+
+  useEffect_for_derived_state:
+    name: "useEffect for Derived State"
+    severity: high
+    description: "Using useEffect to compute derived values"
+    detection:
+      pattern: 'useEffect\(\s*\(\)\s*=>\s*\{[^}]*set\w+\([^)]*\)'
+      flags: g
+    example_bad: |
+      const [fullName, setFullName] = useState('');
+      useEffect(() => {
+        setFullName(`${firstName} ${lastName}`);
+      }, [firstName, lastName]);
+    example_good: |
+      const fullName = useMemo(() => `${firstName} ${lastName}`, [firstName, lastName]);
+    fix: "Use useMemo for derived state instead of useEffect + setState"
+
+  # ---------------------------------------------------------------------------
+  # Navigation Smells
+  # ---------------------------------------------------------------------------
+  window_location_navigation:
+    name: "Window Location Navigation"
+    severity: high
+    description: "Using window.location instead of React Router"
+    detection:
+      pattern: 'window\.location\.(href|assign|replace)'
+      flags: g
+    example_bad: |
+      window.location.href = '/dashboard';
+    example_good: |
+      navigate('/dashboard');
+    fix: "Use navigate() from useNavigate() for client-side navigation"
+
+  missing_navigate_after_mutation:
+    name: "Missing Navigation After Delete"
+    severity: high
+    description: "Delete mutation without navigating away"
+    detection:
+      pattern: 'useDelete\w+.*mutateAsync(?!.*navigate)'
+      flags: gm
+    example_bad: |
+      const handleDelete = async () => {
+        await deleteMutation.mutateAsync();
+        onClose();
+      };
+    example_good: |
+      const handleDelete = async () => {
+        await deleteMutation.mutateAsync();
+        navigate('/list');
+      };
+    fix: "Navigate to list view after successful delete"
+
+  # ---------------------------------------------------------------------------
+  # Notification Smells
+  # ---------------------------------------------------------------------------
+  missing_success_notification:
+    name: "Missing Success Notification"
+    severity: high
+    description: "Mutation success without user feedback"
+    detection:
+      pattern: 'mutateAsync\(\)(?!.*addSuccess)'
+      flags: gm
+    example_bad: |
+      await createMutation.mutateAsync(data);
+      onClose();
+    example_good: |
+      await createMutation.mutateAsync(data);
+      addSuccess(t('success_message'));
+      onClose();
+    fix: "Add addSuccess notification after mutation"
+
+  try_catch_without_error_notification:
+    name: "Try-Catch Without Error Notification"
+    severity: high
+    description: "Catching error without notifying user"
+    detection:
+      pattern: 'catch\s*\([^)]*\)\s*\{(?![^}]*addError)'
+      flags: g
+    example_bad: |
+      try {
+        await mutation.mutateAsync(data);
+      } catch (error) {
+        console.error(error);
+      }
+    example_good: |
+      try {
+        await mutation.mutateAsync(data);
+      } catch (error) {
+        addError(t('error_message'), error);
+      }
+    fix: "Add addError notification in catch block"
+
+# =============================================================================
+# MEDIUM PRIORITY SMELLS
+# =============================================================================
+medium_smells:
+
+  # ---------------------------------------------------------------------------
+  # Code Organization Smells
+  # ---------------------------------------------------------------------------
+  api_call_in_component:
+    name: "API Call in Component"
+    severity: medium
+    description: "Direct API call instead of using hook"
+    detection:
+      pattern: '(v6|aapi|axios)\.(get|post|put|delete)'
+      exclude_paths: ['src/data/api/', 'src/hooks/']
+    example_bad: |
+      // In component file
+      const fetchData = async () => {
+        const { data } = await v6.get('/api/resource');
+        return data;
+      };
+    example_good: |
+      // In src/data/api/hooks/useResource.ts
+      export function useResource() {
+        return useQuery({
+          queryKey: ['resource'],
+          queryFn: async () => {
+            const { data } = await v6.get('/api/resource');
+            return data;
+          },
+        });
+      }
+    fix: "Extract API calls to dedicated hooks in src/data/api/hooks/"
+
+  large_component:
+    name: "Large Component"
+    severity: medium
+    description: "Component file over 200 lines"
+    detection:
+      type: file_size
+      max_lines: 200
+      glob: "**/*.tsx"
+    fix: "Split into smaller, focused components"
+
+  missing_typescript_types:
+    name: "Missing TypeScript Types"
+    severity: medium
+    description: "Using any or missing type annotations"
+    detection:
+      patterns:
+        - ': any'
+        - 'as any'
+        - 'useState\(\)'  # Without type parameter
+    fix: "Add proper TypeScript types"
+
+  # ---------------------------------------------------------------------------
+  # Style Smells
+  # ---------------------------------------------------------------------------
+  inline_styles:
+    name: "Inline Styles"
+    severity: medium
+    description: "Using style prop instead of CSS classes"
+    detection:
+      pattern: 'style=\{\{[^}]+\}\}'
+      flags: g
+    example_bad: |
+      <div style={{ marginTop: '16px', padding: '8px' }}>
+    example_good: |
+      <div className="mt-4 p-2">
+    fix: "Use Tailwind classes or CSS modules"
+
+  magic_numbers:
+    name: "Magic Numbers"
+    severity: medium
+    description: "Hardcoded numbers without explanation"
+    detection:
+      pattern: '(timeout|delay|size|limit|page)\s*[:=]\s*\d{2,}'
+      flags: g
+    example_bad: |
+      setTimeout(fetchData, 5000);
+      const pageSize = 25;
+    example_good: |
+      const REFETCH_DELAY_MS = 5000;
+      const DEFAULT_PAGE_SIZE = 25;
+      setTimeout(fetchData, REFETCH_DELAY_MS);
+    fix: "Extract to named constants with descriptive names"
+
+# =============================================================================
+# LOW PRIORITY SMELLS (Nice to fix)
+# =============================================================================
+low_smells:
+
+  console_log:
+    name: "Console Log"
+    severity: low
+    description: "console.log left in code"
+    detection:
+      pattern: 'console\.(log|debug|info)'
+      flags: g
+    fix: "Remove or replace with proper logging"
+
+  commented_code:
+    name: "Commented Code"
+    severity: low
+    description: "Blocks of commented-out code"
+    detection:
+      pattern: '//.*\n//.*\n//.*'
+      flags: g
+    fix: "Remove commented code (use git history instead)"
+
+  todo_without_ticket:
+    name: "TODO Without Ticket"
+    severity: low
+    description: "TODO comment without issue reference"
+    detection:
+      pattern: '// TODO(?!.*[A-Z]+-\d+)'
+      flags: g
+    example_bad: |
+      // TODO: Fix this later
+    example_good: |
+      // TODO(MANAGER-1234): Fix this later
+    fix: "Add ticket reference to TODO comments"
+
+# =============================================================================
+# MIGRATION-SPECIFIC SMELLS
+# =============================================================================
+migration_smells:
+
+  angularjs_leftover:
+    name: "AngularJS Leftover"
+    severity: critical
+    description: "AngularJS code patterns in React"
+    detection:
+      patterns:
+        - '$scope'
+        - '$state'
+        - '$translate'
+        - 'angular\.'
+        - '@ngInject'
+        - '\$promise'
+        - 'OvhApi'
+    fix: "Remove all AngularJS references"
+
+  different_page_size:
+    name: "Different Page Size"
+    severity: high
+    description: "Page size doesn't match AngularJS original"
+    check: "Compare pageSize prop with original oui-datagrid page-size"
+    fix: "Match exact page size from AngularJS"
+
+  missing_feature:
+    name: "Missing Feature"
+    severity: critical
+    description: "Feature from AngularJS not implemented"
+    check: "Compare routes, actions, and UI elements count"
+    fix: "Implement all features from AngularJS source"
+
+  different_api_endpoint:
+    name: "Different API Endpoint"
+    severity: critical
+    description: "Using different API endpoint than AngularJS"
+    check: "Compare API paths between AngularJS and React"
+    fix: "Use exact same API endpoints"
+
+  missing_data_transformation:
+    name: "Missing Data Transformation"
+    severity: high
+    description: "prepare* function not migrated"
+    detection:
+      pattern: 'prepare\w+'
+      check: "Ensure all prepare functions from AngularJS have React equivalents"
+    fix: "Create equivalent usePrepare* hooks"

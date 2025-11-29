@@ -1,0 +1,290 @@
+---
+title: Semantic Index for AI Navigation
+version: 1.0.0
+last_update: 2025-01-27
+description: |
+  Semantic index mapping migration concepts to their primary documentation sources.
+  AI assistants should use this index to quickly find relevant documentation
+  without scanning all 25+ files.
+tags: [index, navigation, ai, semantic]
+ai: true
+---
+
+# Concept-to-Documentation Mapping
+
+concepts:
+  # ============================================
+  # ROUTING MIGRATION
+  # ============================================
+  routing_migration:
+    description: "AngularJS $stateProvider → React Router"
+    keywords: [routes, states, url, navigation, redirect, params]
+    primary: migration-patterns.md#resolve-function-mapping-patterns
+    secondary:
+      - angularjs-react-mapping-guide.md#routing-mappings
+      - 02-patterns/angularjs-patterns.yaml#routing-patterns
+    examples: 07-parity-examples/perfect-parity-examples.md#route-resolve-parity
+    validation: 08-verification-protocol/mandatory-verification-steps.yaml#route_verification
+    templates: code-templates.md#routing-templates
+
+  redirect_handling:
+    description: "redirectTo configuration → Navigate component"
+    keywords: [redirect, redirectTo, Navigate, useNavigate]
+    primary: angularjs-react-mapping-guide.md#redirect-mappings
+    patterns: 02-patterns/angularjs-patterns.yaml#redirect_to
+
+  url_parameters:
+    description: "URL parameters and $stateParams → useParams"
+    keywords: [params, stateParams, useParams, serviceName]
+    primary: migration-patterns.md#url-parameters
+    examples: code-templates.md#route-with-params
+
+  # ============================================
+  # API MIGRATION
+  # ============================================
+  aapi_migration:
+    description: "OvhApi*.Aapi() → aapi from manager-core-api"
+    keywords: [aapi, OvhApi, Aapi, aggregated, api]
+    primary: angularjs-react-mapping-guide.md#api-mappings
+    secondary:
+      - "@.ai-doc/20-dependencies/manager-core-api.md#aapi"
+      - 02-patterns/angularjs-patterns.yaml#aapi_call
+    validation: 05-validation/parity-checklist.yaml#api_parity
+    pitfalls:
+      - "Missing query invalidation after mutation"
+      - "Wrong API endpoint format"
+
+  iceberg_migration:
+    description: "iceberg().query().expand() → fetchIcebergV6"
+    keywords: [iceberg, fetchIcebergV6, pagination, listing]
+    primary: "@.ai-doc/20-dependencies/manager-core-api.md#iceberg"
+    patterns: 02-patterns/angularjs-patterns.yaml#iceberg_query
+
+  v6_api_migration:
+    description: "$http calls → apiClient.v6"
+    keywords: [http, v6, get, post, put, delete, apiClient]
+    primary: "@.ai-doc/20-dependencies/manager-core-api.md#v6"
+    patterns: 02-patterns/angularjs-patterns.yaml#v6_http_call
+
+  query_caching:
+    description: "React Query caching and invalidation"
+    keywords: [cache, invalidate, staleTime, refetch, useQuery]
+    primary: "@.ai-doc/20-dependencies/tanstack-react-query.md"
+    pitfalls:
+      - "Forgetting invalidateQueries after mutation"
+      - "Wrong queryKey format"
+
+  # ============================================
+  # COMPONENT MIGRATION
+  # ============================================
+  datagrid_migration:
+    description: "oui-datagrid → MUK Datagrid"
+    keywords: [datagrid, table, listing, columns, pagination, sorting]
+    primary: 02-patterns/ui-patterns.yaml#datagrid
+    secondary:
+      - "@.ai-doc/20-dependencies/muk.md#datagrid"
+      - angularjs-react-mapping-guide.md#template-mappings
+    examples: 07-parity-examples/perfect-parity-examples.md#datagrid-actions-parity
+    validation: 05-validation/parity-checklist.yaml#component_parity
+    templates: code-templates.md#datagrid-template
+
+  form_migration:
+    description: "ng-model/ng-submit → React Hook Form"
+    keywords: [form, input, validation, submit, Controller, useForm]
+    primary: migration-patterns.md#form-pattern
+    secondary:
+      - "@.ai-doc/20-dependencies/react-hook-form.md"
+      - 02-patterns/ui-patterns.yaml#forms
+    examples: 07-parity-examples/perfect-parity-examples.md#form-submission-parity
+    templates: code-templates.md#form-template
+
+  modal_migration:
+    description: "Modal patterns including modals with routes"
+    keywords: [modal, dialog, popup, route, overlay]
+    primary: modal-avec-route-guide.md
+    secondary:
+      - "@.ai-doc/20-dependencies/muk.md#modal"
+      - 02-patterns/ui-patterns.yaml#modals
+    templates: code-templates.md#modal-template
+
+  tile_migration:
+    description: "oui-tile → MUK Tile components"
+    keywords: [tile, card, dashboard, info]
+    primary: 02-patterns/ui-patterns.yaml#tile
+    secondary: "@.ai-doc/20-dependencies/muk.md#tile"
+
+  menu_migration:
+    description: "oui-action-menu → MUK Menu components"
+    keywords: [menu, action, dropdown, context]
+    primary: 02-patterns/ui-patterns.yaml#menus
+    secondary: "@.ai-doc/20-dependencies/muk.md#menu"
+
+  # ============================================
+  # STATE MANAGEMENT
+  # ============================================
+  controller_to_hook:
+    description: "AngularJS Controller → React custom hook"
+    keywords: [controller, scope, hook, useState, useEffect]
+    primary: migration-patterns.md#controller-hook
+    patterns: 02-patterns/angularjs-patterns.yaml#controller_definition
+    examples: angularjs-react-mapping-guide.md#controller-mappings
+
+  scope_to_state:
+    description: "$scope variables → useState/useQuery"
+    keywords: [scope, state, useState, variable]
+    primary: migration-patterns.md#scope-migration
+    patterns: 02-patterns/angularjs-patterns.yaml#scope_variable
+
+  service_to_hook:
+    description: "AngularJS Service → utility module or hook"
+    keywords: [service, factory, provider, utility]
+    primary: migration-patterns.md#service-migration
+    patterns: 02-patterns/angularjs-patterns.yaml#service_definition
+
+  # ============================================
+  # TRANSLATIONS
+  # ============================================
+  translation_migration:
+    description: "$translate.instant → t() from react-i18next"
+    keywords: [translate, i18n, t, translation, messages]
+    primary: "@.ai-doc/20-dependencies/react-i18next.md"
+    patterns: 02-patterns/angularjs-patterns.yaml#translate_call
+    validation: 05-validation/parity-checklist.yaml#translation_parity
+    pitfalls:
+      - "Hardcoded strings instead of translation keys"
+      - "Missing translation keys"
+
+  # ============================================
+  # TRACKING
+  # ============================================
+  tracking_migration:
+    description: "atInternet tracking → useTracking hook"
+    keywords: [tracking, analytics, atInternet, page, click]
+    primary: "@.ai-doc/20-dependencies/manager-react-shell-client.md#tracking"
+    validation: 05-validation/parity-checklist.yaml#tracking_parity
+
+  # ============================================
+  # LAYOUT & STRUCTURE
+  # ============================================
+  layout_migration:
+    description: "managerListLayout → BaseLayout + Datagrid"
+    keywords: [layout, base, manager, list, structure]
+    primary: migration-patterns.md#layout-patterns
+    secondary: "@.ai-doc/20-dependencies/muk.md#layout"
+    templates: code-templates.md#layout-template
+
+  # ============================================
+  # WORKFLOWS
+  # ============================================
+  automated_migration:
+    description: "Full automated migration in 2 prompts"
+    keywords: [automated, full, prompt, batch]
+    primary: automated-migration-guide.md
+    prompts:
+      - 06-prompts/01-analyze-and-structure.prompt.md
+      - 06-prompts/02-implement-features.prompt.md
+      - 06-prompts/03-validate-migration.prompt.md
+    workflow: 01-workflows/decision-tree.json#workflow_automated
+
+  manual_us_migration:
+    description: "User story by user story migration"
+    keywords: [manual, us, story, incremental, step]
+    primary: us-migration-guide.md
+    workflow: 01-workflows/decision-tree.json#workflow_manual_us
+
+  # ============================================
+  # VALIDATION
+  # ============================================
+  parity_validation:
+    description: "100% parity verification process"
+    keywords: [parity, validation, check, verify, quality]
+    primary: parity-validation-guide.md
+    secondary:
+      - 05-validation/parity-checklist.yaml
+      - 08-verification-protocol/mandatory-verification-steps.yaml
+    examples: 07-parity-examples/perfect-parity-examples.md
+
+  visual_parity:
+    description: "Visual comparison validation"
+    keywords: [visual, ui, appearance, screenshot]
+    primary: parity-validation-guide.md#visual-parity
+    checklist: 05-validation/parity-checklist.yaml#visual_checks
+
+  functional_parity:
+    description: "Behavior and feature validation"
+    keywords: [functional, behavior, feature, test]
+    primary: parity-validation-guide.md#functional-parity
+    checklist: 05-validation/parity-checklist.yaml#functional_checks
+
+# ============================================
+# Quick Reference by Task
+# ============================================
+task_references:
+  start_new_migration:
+    steps:
+      - "Read README.md for overview"
+      - "Choose workflow: automated-migration-guide.md OR us-migration-guide.md"
+      - "Follow 01-workflows/decision-tree.json"
+    primary: README.md
+
+  analyze_angularjs_code:
+    steps:
+      - "Use patterns from 02-patterns/angularjs-patterns.yaml"
+      - "Use patterns from 02-patterns/ui-patterns.yaml"
+      - "Reference migration-patterns.md for mappings"
+    primary: 02-patterns/angularjs-patterns.yaml
+
+  implement_component:
+    steps:
+      - "Find pattern in 02-patterns/ui-patterns.yaml"
+      - "Get template from code-templates.md"
+      - "Check MUK docs at @.ai-doc/20-dependencies/muk.md"
+    primary: code-templates.md
+
+  validate_migration:
+    steps:
+      - "Run 05-validation/parity-checklist.yaml checks"
+      - "Follow 08-verification-protocol/mandatory-verification-steps.yaml"
+      - "Reference 07-parity-examples/ for expected patterns"
+    primary: parity-validation-guide.md
+
+  debug_issue:
+    steps:
+      - "Check 09-common-pitfalls/pitfalls-catalog.yaml for known issues"
+      - "Review 07-parity-examples/perfect-parity-examples.md for correct patterns"
+      - "Validate against 05-validation/parity-checklist.yaml"
+    primary: 09-common-pitfalls/pitfalls-catalog.yaml
+
+# ============================================
+# Search Shortcuts
+# ============================================
+search_shortcuts:
+  # Component shortcuts
+  "datagrid": "concepts.datagrid_migration"
+  "table": "concepts.datagrid_migration"
+  "form": "concepts.form_migration"
+  "modal": "concepts.modal_migration"
+  "tile": "concepts.tile_migration"
+  "menu": "concepts.menu_migration"
+
+  # API shortcuts
+  "aapi": "concepts.aapi_migration"
+  "iceberg": "concepts.iceberg_migration"
+  "v6": "concepts.v6_api_migration"
+  "api": "concepts.aapi_migration"
+
+  # Routing shortcuts
+  "route": "concepts.routing_migration"
+  "redirect": "concepts.redirect_handling"
+  "params": "concepts.url_parameters"
+
+  # State shortcuts
+  "controller": "concepts.controller_to_hook"
+  "scope": "concepts.scope_to_state"
+  "service": "concepts.service_to_hook"
+
+  # Other
+  "translate": "concepts.translation_migration"
+  "tracking": "concepts.tracking_migration"
+  "layout": "concepts.layout_migration"
+  "parity": "concepts.parity_validation"

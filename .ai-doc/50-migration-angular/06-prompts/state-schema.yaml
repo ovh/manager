@@ -1,0 +1,392 @@
+---
+title: Migration State Schema
+version: 1.0.0
+last_update: 2025-01-27
+description: |
+  Schema for maintaining state between migration prompts.
+  AI assistants should update this state after each phase
+  and use it to inform subsequent actions.
+tags: [state, prompts, workflow, context]
+ai: true
+---
+
+# Migration State Schema
+
+## Purpose
+
+This schema defines the structure for tracking migration progress across multiple prompts.
+AI assistants should:
+1. Initialize state at the start of migration
+2. Update state after each phase completion
+3. Use state to validate prerequisites before starting new phases
+4. Store state in a `MIGRATION_STATE.yaml` file in the target directory
+
+---
+
+## State Structure
+
+```yaml
+# MIGRATION_STATE.yaml - Created in target React app directory
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-01-27T10:00:00Z"
+  last_updated: "2025-01-27T12:30:00Z"
+  migration_id: "nasha-20250127"
+
+source:
+  module_name: "bmc-nasha"
+  source_path: "packages/manager/modules/bmc-nasha"
+  analyzed_at: "2025-01-27T10:05:00Z"
+
+target:
+  app_name: "nasha"
+  target_path: "packages/manager/apps/pci-nasha"
+  created_at: "2025-01-27T10:10:00Z"
+
+phase: "implement" # analyze | implement | validate | complete
+
+analysis:
+  completed: true
+  completed_at: "2025-01-27T10:30:00Z"
+
+  routes:
+    total: 5
+    detected:
+      - name: "nasha"
+        url: "/nasha"
+        type: "redirect"
+        target: "nasha.directory"
+      - name: "nasha.directory"
+        url: "/listing"
+        type: "listing"
+        has_resolve: true
+      - name: "nasha.dashboard"
+        url: "/:serviceName"
+        type: "dashboard"
+        has_resolve: true
+      - name: "nasha.dashboard.partitions"
+        url: "/partitions"
+        type: "listing"
+        has_resolve: true
+      - name: "nasha.create"
+        url: "/new"
+        type: "form"
+        has_resolve: false
+
+  api_calls:
+    total: 8
+    by_type:
+      aapi: 3
+      iceberg: 2
+      v6: 3
+    detected:
+      - type: "aapi"
+        pattern: "OvhApiDedicatedNasha.Aapi().get"
+        location: "nasha.routing.js:25"
+        react_equivalent: "useNasha hook with aapi.get"
+      - type: "iceberg"
+        pattern: "iceberg('/dedicated/nasha').query()"
+        location: "nasha.routing.js:42"
+        react_equivalent: "useNashaList with fetchIcebergV6"
+
+  components:
+    has_datagrid: true
+    has_forms: true
+    has_modals: true
+    has_tabs: true
+    has_tiles: true
+    detected:
+      - type: "oui-datagrid"
+        location: "listing.template.html"
+        features: ["pagination", "sorting", "search", "actions"]
+      - type: "oui-field"
+        location: "create.template.html"
+        count: 5
+
+  translations:
+    files:
+      - "translations/Messages_fr_FR.json"
+      - "translations/Messages_en_GB.json"
+    key_count: 45
+    migrated: false
+
+  complexity:
+    score: 6
+    level: "moderate"
+    factors:
+      - "Multiple routes with resolves"
+      - "Datagrid with server pagination"
+      - "Forms with validation"
+
+implementation:
+  completed: false
+  started_at: "2025-01-27T11:00:00Z"
+  completed_at: null
+
+  routes:
+    implemented: 3
+    pending: 2
+    status:
+      - route: "nasha.directory"
+        status: "completed"
+        file: "src/pages/ListingPage.tsx"
+      - route: "nasha.dashboard"
+        status: "completed"
+        file: "src/pages/DashboardPage.tsx"
+      - route: "nasha.dashboard.partitions"
+        status: "completed"
+        file: "src/pages/PartitionsPage.tsx"
+      - route: "nasha.create"
+        status: "in_progress"
+        file: "src/pages/CreatePage.tsx"
+        blockers: []
+      - route: "nasha (redirect)"
+        status: "pending"
+        file: null
+
+  hooks:
+    created: 4
+    pending: 2
+    status:
+      - name: "useNasha"
+        status: "completed"
+        file: "src/hooks/useNasha.ts"
+      - name: "useNashaList"
+        status: "completed"
+        file: "src/hooks/useNashaList.ts"
+      - name: "usePartitions"
+        status: "completed"
+        file: "src/hooks/usePartitions.ts"
+      - name: "useCreateNasha"
+        status: "completed"
+        file: "src/hooks/useCreateNasha.ts"
+      - name: "useDeletePartition"
+        status: "pending"
+        file: null
+      - name: "useUpdateNasha"
+        status: "pending"
+        file: null
+
+  components:
+    created: 5
+    pending: 3
+    status:
+      - name: "NashaDatagrid"
+        status: "completed"
+        file: "src/components/NashaDatagrid.tsx"
+      - name: "CreateForm"
+        status: "in_progress"
+        file: "src/components/CreateForm.tsx"
+        blockers: ["validation schema incomplete"]
+
+  translations:
+    migrated: true
+    migrated_at: "2025-01-27T11:30:00Z"
+
+validation:
+  completed: false
+  started_at: null
+  completed_at: null
+
+  checks:
+    route_parity:
+      status: "pending"
+      passed: null
+      issues: []
+    api_parity:
+      status: "pending"
+      passed: null
+      issues: []
+    component_parity:
+      status: "pending"
+      passed: null
+      issues: []
+    translation_parity:
+      status: "pending"
+      passed: null
+      issues: []
+    tracking_parity:
+      status: "pending"
+      passed: null
+      issues: []
+
+  pitfalls_check:
+    completed: false
+    critical_found: 0
+    high_found: 0
+    medium_found: 0
+    issues: []
+
+blockers:
+  - id: "blocker-1"
+    type: "missing_api_endpoint"
+    description: "New API endpoint needed for batch operations"
+    status: "open"
+    created_at: "2025-01-27T11:45:00Z"
+
+notes:
+  - timestamp: "2025-01-27T10:30:00Z"
+    phase: "analysis"
+    note: "Module uses custom prepareNasha function, need to migrate to usePrepareNasha hook"
+  - timestamp: "2025-01-27T11:30:00Z"
+    phase: "implement"
+    note: "Datagrid requires server-side pagination, using useDataApi"
+```
+
+---
+
+## State Transitions
+
+```yaml
+transitions:
+  analyze_to_implement:
+    from_phase: "analyze"
+    to_phase: "implement"
+    prerequisites:
+      - analysis.completed == true
+      - analysis.routes.total > 0
+      - analysis.complexity.score is set
+    actions:
+      - "Create target directory structure"
+      - "Initialize React app files"
+      - "Copy translation files"
+
+  implement_to_validate:
+    from_phase: "implement"
+    to_phase: "validate"
+    prerequisites:
+      - implementation.routes.pending == 0
+      - implementation.hooks.pending == 0
+      - implementation.translations.migrated == true
+      - blockers where status == "open" is empty
+    actions:
+      - "Run pitfalls check"
+      - "Verify all routes"
+      - "Test API calls"
+
+  validate_to_complete:
+    from_phase: "validate"
+    to_phase: "complete"
+    prerequisites:
+      - validation.completed == true
+      - validation.checks.*.passed == true for all checks
+      - validation.pitfalls_check.critical_found == 0
+    actions:
+      - "Generate migration report"
+      - "Update MIGRATION_NOTES.md"
+      - "Mark as complete"
+```
+
+---
+
+## AI Usage Instructions
+
+### Starting a New Migration
+
+```markdown
+1. Create MIGRATION_STATE.yaml with initial values
+2. Set phase to "analyze"
+3. Run analysis prompt
+4. Update state with analysis results
+5. Validate prerequisites for next phase
+```
+
+### Resuming a Migration
+
+```markdown
+1. Read existing MIGRATION_STATE.yaml
+2. Check current phase
+3. Check pending items in current phase
+4. Continue from where stopped
+5. Update state after each completion
+```
+
+### Phase Completion Check
+
+```typescript
+// Pseudo-code for AI to validate phase completion
+function canProceedToNextPhase(state, targetPhase) {
+  const transition = transitions[`${state.phase}_to_${targetPhase}`];
+
+  for (const prereq of transition.prerequisites) {
+    if (!evaluate(prereq, state)) {
+      return { canProceed: false, blocker: prereq };
+    }
+  }
+
+  return { canProceed: true };
+}
+```
+
+---
+
+## Integration with Prompts
+
+### Prompt 1 (Analyze) Output
+
+After running `01-analyze-and-structure.prompt.md`:
+- Set `phase: "analyze"`
+- Populate `analysis` section completely
+- Set `analysis.completed: true`
+- Create `MIGRATION_STATE.yaml` file
+
+### Prompt 2 (Implement) Updates
+
+During `02-implement-features.prompt.md`:
+- Update `phase: "implement"`
+- Update route/hook/component status as completed
+- Add blockers if encountered
+- Add notes for important decisions
+
+### Prompt 3 (Validate) Updates
+
+During `03-validate-migration.prompt.md`:
+- Update `phase: "validate"`
+- Run all validation checks
+- Document any issues found
+- Set `validation.completed: true` when all pass
+
+---
+
+## Example State File
+
+```yaml
+# Minimal valid state for starting implementation
+metadata:
+  version: "1.0.0"
+  created_at: "2025-01-27T10:00:00Z"
+  migration_id: "nasha-20250127"
+
+source:
+  module_name: "bmc-nasha"
+  source_path: "packages/manager/modules/bmc-nasha"
+
+target:
+  app_name: "nasha"
+  target_path: "packages/manager/apps/pci-nasha"
+
+phase: "implement"
+
+analysis:
+  completed: true
+  routes:
+    total: 5
+  api_calls:
+    total: 8
+  complexity:
+    score: 6
+    level: "moderate"
+
+implementation:
+  completed: false
+  routes:
+    implemented: 0
+    pending: 5
+
+validation:
+  completed: false
+
+blockers: []
+notes: []
+```
