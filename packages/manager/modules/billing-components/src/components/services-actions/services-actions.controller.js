@@ -9,6 +9,7 @@ export default class ServicesActionsCtrl {
   constructor(
     $injector,
     $q,
+    $window,
     atInternet,
     coreConfig,
     coreURLBuilder,
@@ -19,11 +20,11 @@ export default class ServicesActionsCtrl {
     this.SERVICE_ACTIVE_STATUS = SERVICE_ACTIVE_STATUS;
     this.$injector = $injector;
     this.$q = $q;
+    this.$window = $window;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.coreConfig = coreConfig;
     this.billingLink = this.coreURLBuilder.buildURL('billing', '#/history');
-
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isLoading = true;
     this.BillingLinksService = BillingLinksService;
@@ -35,6 +36,7 @@ export default class ServicesActionsCtrl {
     this.initActionMenuClick();
     this.user = this.coreConfig.getUser();
     this.isUSRegion = this.coreConfig.isRegion('US');
+
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
       getCommitmentLink: this.getCommitmentLink,
@@ -284,6 +286,19 @@ export default class ServicesActionsCtrl {
         .finally(() => {
           this.loadedPendingEngagement = true;
         });
+    }
+  }
+
+  onAdvancePaymentClick() {
+    // To check with PO about tracking
+    this.trackAction('go-to-anticipate-payment');
+
+    if (!this.service.possibleActions.includes('earlyRenewal')) {
+      if (typeof this.advancePaymentCallBack === 'function') {
+        this.advancePaymentCallBack({ service: this.service });
+      }
+    } else {
+      this.$window.open(this.getRenewUrl());
     }
   }
 }
