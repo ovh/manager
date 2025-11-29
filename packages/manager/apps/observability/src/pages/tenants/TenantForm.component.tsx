@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,27 +15,36 @@ import RegionSelector from '@/components/infrastructures/region-selector/RegionS
 import { TenantConfigurationForm } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useCreateTenants } from '@/data/hooks/tenants/useCreateTenants.hook';
+import { useEditTenant } from '@/data/hooks/tenants/useEditTenant.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
 import { TenantFormLayout } from '@/pages/tenants/TenantForm.layout';
+import { TenantFormProps } from '@/pages/tenants/TenantForm.props';
 import { urls } from '@/routes/Routes.constants';
 import type { TenantFormData } from '@/types/tenants.type';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
-export const TenantForm = () => {
+export const TenantForm = ({ tenant }: TenantFormProps) => {
   const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
   const { selectedService } = useObservabilityServiceContext();
   const navigate = useNavigate();
+
+  const isEditionMode = tenant !== undefined;
+
   const { form } = useTenantsFormSchema();
 
   const goBack = () => {
-    navigate(urls.tenants);
+    if (isEditionMode) {
+      navigate(-1);
+    } else {
+      navigate(urls.tenants);
+    }
   };
 
-  const { mutate: createTenant, isPending } = useCreateTenants({
-    onSuccess: (tenant) => {
+  const createMutation = useCreateTenants({
+    onSuccess: (createdTenant) => {
       // TODO: Add notification
-      console.info('Tenant created:', tenant);
+      console.info('Tenant created:', createdTenant);
       // Navigate back to tenants list on successful creation
       goBack();
     },
@@ -45,12 +54,24 @@ export const TenantForm = () => {
     },
   });
 
-  const handleSubmit = (data: TenantFormData) => {
-    if (!selectedService) return;
+  const editMutation = useEditTenant({
+    onSuccess: (updatedTenant) => {
+      // TODO: Add notification
+      console.info('Tenant updated:', updatedTenant);
+    },
+    onError: (error) => {
+      // TODO: Handle error (show notification, etc.)
+      console.error('Failed to update tenant:', error);
+    },
+  });
 
-    const formData = {
-      resourceName: selectedService.id,
-      targetSpec: {
+  const { isPending } = isEditionMode ? editMutation : createMutation;
+
+  const handleSubmit = useCallback(
+    (data: TenantFormData) => {
+      if (!selectedService) return;
+
+      const targetSpec = {
         title: data.title,
         description: data.description,
         infrastructure: {
@@ -64,11 +85,49 @@ export const TenantForm = () => {
             id: data.retentionId,
           },
         },
-      },
-    };
+      };
 
-    createTenant(formData);
-  };
+      if (isEditionMode && tenant?.id) {
+        editMutation.mutate({
+          resourceName: selectedService.id,
+          tenantId: tenant.id,
+          targetSpec,
+        });
+      } else {
+        createMutation.mutate({
+          resourceName: selectedService.id,
+          targetSpec,
+        });
+      }
+    },
+    [selectedService, isEditionMode, tenant, editMutation, createMutation],
+  );
+
+  const initialValues = useMemo<Partial<TenantFormData>>(() => {
+    if (!isEditionMode || !tenant) {
+      return {};
+    }
+
+    const tenantState = tenant.currentState;
+    const limits = tenantState?.limits;
+
+    return {
+      title: tenantState?.title ?? '',
+      description: tenantState?.description ?? '',
+      infrastructureId: tenantState?.infrastructure?.id ?? '',
+      retentionId: limits?.retention?.id ?? '',
+      maxSeries:
+        limits?.numberOfSeries?.maximum ??
+        limits?.numberOfSeries?.current ??
+        INGESTION_BOUNDS.DEFAULT,
+    };
+  }, [isEditionMode, tenant]);
+
+  useEffect(() => {
+    if (isEditionMode && tenant && initialValues && Object.keys(initialValues).length > 0) {
+      form.reset(initialValues);
+    }
+  }, [isEditionMode, tenant, initialValues, form]);
 
   // FIXME: fix warning "React does not recognize the `isIamTrigger` prop on a DOM element."
   return (
@@ -80,9 +139,12 @@ export const TenantForm = () => {
             void form.handleSubmit(handleSubmit)(e);
           }}
         >
-          <section className="mt-6">
-            <RegionSelector />
-          </section>
+          {!isEditionMode && (
+            <section className="mt-6">
+              <RegionSelector />
+            </section>
+          )}
+
           <Divider spacing="24" />
           <section className="mt-6">
             <InformationForm
@@ -107,17 +169,17 @@ export const TenantForm = () => {
               {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </Button>
             <Button
-              id="create-tenant"
+              id={isEditionMode ? 'edit-tenant' : 'create-tenant'}
               type="submit"
               size={BUTTON_SIZE.sm}
               color={BUTTON_COLOR.primary}
               disabled={!selectedService || isPending || !form.formState.isValid}
               loading={isPending}
-              iamActions={IAM_ACTIONS.CREATE_TENANT}
+              iamActions={isEditionMode ? IAM_ACTIONS.EDIT_TENANT : IAM_ACTIONS.CREATE_TENANT}
               urn={selectedService?.iam?.urn}
               isIamTrigger={true}
             >
-              {t(`${NAMESPACES.ACTIONS}:create`)}
+              {t(`${NAMESPACES.ACTIONS}:${isEditionMode ? 'save' : 'create'}`)}
             </Button>
           </section>
         </form>
