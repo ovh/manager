@@ -1,31 +1,15 @@
-import { act } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { cleanup, render } from '@/commons/tests-utils/Render.utils';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { UpdateNameModal } from '../UpdateNameModal.component';
 
 const mockUpdateDisplayName = vitest.fn();
 const mockOnClose = vitest.fn();
 
-describe.skip('UpdateNameModal Snapshot Tests', () => {
-  afterEach(async () => {
-    // Wait for all pending async operations and state updates
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    });
-
-    cleanup();
-
-    // Wait for cleanup and any library internal async operations
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    });
-
-    vitest.resetAllMocks();
-
-    // Remove scroll lock attribute that modal adds to body
-    document.body.removeAttribute('data-scroll-lock');
+describe('UpdateNameModal', () => {
+  beforeEach(() => {
+    vitest.clearAllMocks();
   });
 
   describe('Basic Modal States', () => {
