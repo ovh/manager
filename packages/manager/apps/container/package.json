@@ -68,7 +68,7 @@
     "@ovh-ux/manager-core-test-utils": "^0.10.1",
     "@ovh-ux/manager-dev-server-config": "^6.2.1",
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
-    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@types/dompurify": "^2.3.3",
     "@types/lodash-es": "^4.17.12",
     "@types/react": "^18.2.45",

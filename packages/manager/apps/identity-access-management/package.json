@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.10.1",
-    "@ovh-ux/manager-tests-setup": "^0.2.0",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.6.3",

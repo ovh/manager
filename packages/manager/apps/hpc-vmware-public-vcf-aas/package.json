@@ -51,7 +51,7 @@
   "devDependencies": {
     "@effect/vitest": "^0.25.1",
     "@ovh-ux/manager-core-test-utils": "^0.10.1",
-    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.1",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
