@@ -20,5 +20,7 @@
   "creating": "Wird erstellt",
   "updating": "Update",
   "unconfigured": "Nicht konfiguriert",
-  "unPaid": "Unbezahlte Rechnung"
+  "unPaid": "Unbezahlte Rechnung",
+  "error": "Fehler",
+  "ready": "Aktiv"
 }
