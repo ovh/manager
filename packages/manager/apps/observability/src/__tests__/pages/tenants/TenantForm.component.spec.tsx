@@ -9,8 +9,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { CreateTenantsPayload } from '@/data/api/tenants.props';
+import { CreateTenantsPayload, EditTenantPayload } from '@/data/api/tenants.props';
 import { useCreateTenants } from '@/data/hooks/tenants/useCreateTenants.hook';
+import { useEditTenant } from '@/data/hooks/tenants/useEditTenant.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
 import { TenantForm } from '@/pages/tenants/TenantForm.component';
 import { urls } from '@/routes/Routes.constants';
@@ -28,6 +29,10 @@ vi.mock('@/contexts/ObservabilityService.context', () => ({
 
 vi.mock('@/data/hooks/tenants/useCreateTenants.hook', () => ({
   useCreateTenants: vi.fn(),
+}));
+
+vi.mock('@/data/hooks/tenants/useEditTenant.hook', () => ({
+  useEditTenant: vi.fn(),
 }));
 
 vi.mock('@/hooks/form/useTenantsFormSchema.hook', () => ({
@@ -97,12 +102,14 @@ vi.mock('@ovh-ux/muk', () => ({
   ),
   BUTTON_VARIANT: {
     outline: 'outline',
+    ghost: 'ghost',
   },
   BUTTON_SIZE: {
     sm: 'sm',
   },
   BUTTON_COLOR: {
     primary: 'primary',
+    neutral: 'neutral',
   },
   TEXT_PRESET: {
     heading4: 'heading4',
@@ -126,6 +133,7 @@ vi.mock('react-i18next', () => ({
         'tenants:creation.descriptionPlaceholder': 'Enter tenant description',
         'actions:cancel': 'Cancel',
         'actions:create': 'Create',
+        'actions:save': 'Save',
       };
       return translations[key] || key;
     },
@@ -136,6 +144,7 @@ const mockNavigate = vi.fn();
 const mockUseObservabilityServiceContext = vi.mocked(useObservabilityServiceContext);
 const mockUseNavigate = vi.mocked(useNavigate);
 const mockUseCreateTenants = vi.mocked(useCreateTenants);
+const mockUseEditTenant = vi.mocked(useEditTenant);
 const mockUseTenantsFormSchema = vi.mocked(useTenantsFormSchema);
 const mockInformationForm = vi.mocked(InformationForm);
 
@@ -191,9 +200,11 @@ describe('TenantForm', () => {
     control: {},
     register: vi.fn(),
     getValues: vi.fn(),
+    reset: vi.fn(),
   } as unknown as UseFormReturn<TenantFormData>;
 
   const mockMutate = vi.fn();
+  const mockEditMutate = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -218,6 +229,14 @@ describe('TenantForm', () => {
       error: null,
       data: undefined,
     } as unknown as UseMutationResult<Tenant, Error, CreateTenantsPayload>);
+    mockUseEditTenant.mockReturnValue({
+      mutate: mockEditMutate,
+      isPending: false,
+      isError: false,
+      isSuccess: false,
+      error: null,
+      data: undefined,
+    } as unknown as UseMutationResult<Tenant, Error, EditTenantPayload>);
   });
 
   describe('Rendering', () => {
@@ -564,6 +583,424 @@ describe('TenantForm', () => {
 
       await waitFor(() => {
         expect(mockForm.handleSubmit).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('Edition Mode', () => {
+    const mockTenant: Tenant = {
+      id: '1',
+      createdAt: '2025-11-21T14:26:14.041Z',
+      updatedAt: '2025-11-21T14:26:14.041Z',
+      iam: {
+        id: '92c16299-3f5b-4ea9-a806-e0464e7bfa31',
+        tags: {
+          'ovh:ldp:cluster:name': 'sbg159',
+          Application: 'Website',
+          Compliance: 'PCI-DSS',
+          Departement: 'ITOperations',
+          Environment: 'Prod',
+          Location: 'Europe',
+          Owner: 'JohnDoe',
+          Project: 'CustomerPortal',
+          Region: 'EUR-East',
+          Risk: 'Low',
+        },
+        urn: 'urn:v1:eu:resource:ldp:ldp-sbg-55078',
+      },
+      currentState: {
+        title: 'Tenant 1',
+        description: 'Tenant 1 description',
+        limits: {
+          numberOfSeries: {
+            current: 222,
+            maximum: 300,
+          },
+          retention: {
+            id: '1',
+            duration: 'P1M',
+            link: 'retention_link_1',
+          },
+        },
+        infrastructure: {
+          id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          currentState: {
+            location: 'eu-west-sbg',
+            entryPoint: 'sbg1.metrics.ovh.com',
+            type: 'SHARED',
+            usage: 'METRICS',
+          },
+        },
+      },
+    };
+
+    describe('Rendering', () => {
+      it('should not render RegionSelector in edition mode', () => {
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        expect(screen.queryByTestId('region-selector')).not.toBeInTheDocument();
+      });
+
+      it('should render edit button instead of create button in edition mode', () => {
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        expect(screen.queryByTestId('create-tenant')).not.toBeInTheDocument();
+        expect(screen.getByTestId('edit-tenant')).toBeInTheDocument();
+        expect(screen.getByTestId('edit-tenant')).toHaveTextContent('Save');
+      });
+
+      it('should render same number of dividers in edition mode', () => {
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        const dividers = screen.getAllByTestId('divider');
+        expect(dividers).toHaveLength(2);
+      });
+    });
+
+    describe('Form Initialization', () => {
+      it('should initialize form with tenant values', () => {
+        const mockFormReset = vi.fn();
+        const formWithReset = {
+          ...mockForm,
+          reset: mockFormReset,
+        } as unknown as UseFormReturn<TenantFormData>;
+
+        mockUseTenantsFormSchema.mockReturnValue({
+          form: formWithReset,
+          schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
+        });
+
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        expect(mockFormReset).toHaveBeenCalledWith({
+          title: 'Tenant 1',
+          description: 'Tenant 1 description',
+          infrastructureId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+          retentionId: '1',
+          maxSeries: 300,
+        });
+      });
+
+      it('should use current numberOfSeries when maximum is not available', () => {
+        const tenantWithCurrentOnly: Tenant = {
+          ...mockTenant,
+          currentState: {
+            ...mockTenant.currentState,
+            limits: {
+              numberOfSeries: {
+                current: 300,
+                maximum: undefined as unknown as number,
+              },
+              retention: {
+                id: '1',
+                duration: 'P1M',
+              },
+            },
+          },
+        };
+
+        const mockFormReset = vi.fn();
+        const formWithReset = {
+          ...mockForm,
+          reset: mockFormReset,
+        } as unknown as UseFormReturn<TenantFormData>;
+
+        mockUseTenantsFormSchema.mockReturnValue({
+          form: formWithReset,
+          schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
+        });
+
+        render(<TenantForm tenant={tenantWithCurrentOnly} />, { wrapper: createWrapper() });
+
+        expect(mockFormReset).toHaveBeenCalledWith(
+          expect.objectContaining({
+            maxSeries: 300,
+          }),
+        );
+      });
+
+      it('should use default maxSeries when limits are not available', () => {
+        const tenantWithoutLimits: Tenant = {
+          ...mockTenant,
+          currentState: {
+            title: 'Tenant 1',
+            description: 'Tenant 1 description',
+            infrastructure: {
+              id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+              currentState: {
+                location: 'eu-west-sbg',
+                entryPoint: 'sbg1.metrics.ovh.com',
+                type: 'SHARED',
+                usage: 'METRICS',
+              },
+            },
+          },
+        };
+
+        const mockFormReset = vi.fn();
+        const formWithReset = {
+          ...mockForm,
+          reset: mockFormReset,
+        } as unknown as UseFormReturn<TenantFormData>;
+
+        mockUseTenantsFormSchema.mockReturnValue({
+          form: formWithReset,
+          schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
+        });
+
+        render(<TenantForm tenant={tenantWithoutLimits} />, { wrapper: createWrapper() });
+
+        expect(mockFormReset).toHaveBeenCalledWith(
+          expect.objectContaining({
+            maxSeries: 102, // INGESTION_BOUNDS.DEFAULT
+          }),
+        );
+      });
+    });
+
+    describe('Button States', () => {
+      it('should enable edit button when form is valid and service is selected', () => {
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        const editButton = screen.getByTestId('edit-tenant');
+        expect(editButton).not.toBeDisabled();
+        expect(editButton).toHaveAttribute('data-loading', 'false');
+      });
+
+      it('should disable edit button when form is invalid', () => {
+        mockUseTenantsFormSchema.mockReturnValue({
+          form: {
+            ...mockForm,
+            formState: {
+              ...mockForm.formState,
+              isValid: false,
+            },
+          },
+          schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
+        });
+
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        const editButton = screen.getByTestId('edit-tenant');
+        expect(editButton).toBeDisabled();
+      });
+
+      it('should disable both buttons when edit mutation is pending', () => {
+        mockUseEditTenant.mockReturnValue({
+          mutate: mockEditMutate,
+          isPending: true,
+          isError: false,
+          isSuccess: false,
+          error: null,
+          data: undefined,
+        } as unknown as UseMutationResult<Tenant, Error, EditTenantPayload>);
+
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        const editButton = screen.getByTestId('edit-tenant');
+        const cancelButton = screen.getByTestId('cancel-tenant');
+
+        expect(editButton).toBeDisabled();
+        expect(editButton).toHaveAttribute('data-loading', 'true');
+        expect(cancelButton).toBeDisabled();
+      });
+    });
+
+    describe('Form Submission', () => {
+      it('should call editTenant with correct payload on form submit', async () => {
+        const { container } = render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
+
+        const form = container.querySelector('form') as HTMLFormElement;
+        fireEvent.submit(form);
+
+        await waitFor(() => {
+          expect(mockEditMutate).toHaveBeenCalledWith(
+            expect.objectContaining<EditTenantPayload>({
+              resourceName: 'service-123',
+              tenantId: '1',
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              targetSpec: expect.objectContaining({
+                title: 'Test Tenant',
+                description: 'Test Description',
+                infrastructure: {
+                  id: 'infra-1',
+                },
+                limits: {
+                  numberOfSeries: {
+                    maximum: 1000,
+                  },
+                  retention: {
+                    id: 'retention-1',
+                  },
+                },
+              }),
+            }),
+          );
+        });
+      });
+
+      it('should not call createMutation in edition mode', async () => {
+        const { container } = render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
+
+        const form = container.querySelector('form') as HTMLFormElement;
+        fireEvent.submit(form);
+
+        await waitFor(() => {
+          expect(mockEditMutate).toHaveBeenCalled();
+        });
+
+        expect(mockMutate).not.toHaveBeenCalled();
+      });
+
+      it('should use default maxSeries value when null in edition mode', async () => {
+        const mockFormWithNullMaxSeries = {
+          ...mockForm,
+          handleSubmit: vi.fn((callback: (data: TenantFormData) => void) => (e: Event) => {
+            e.preventDefault();
+            const mockData: TenantFormData = {
+              title: 'Test Tenant',
+              description: 'Test Description',
+              infrastructureId: 'infra-1',
+              retentionId: 'retention-1',
+              maxSeries: null,
+            };
+            callback(mockData);
+          }),
+        } as unknown as UseFormReturn<TenantFormData>;
+
+        mockUseTenantsFormSchema.mockReturnValue({
+          form: mockFormWithNullMaxSeries,
+          schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
+        });
+
+        const { container } = render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
+
+        const form = container.querySelector('form') as HTMLFormElement;
+        fireEvent.submit(form);
+
+        await waitFor(() => {
+          expect(mockEditMutate).toHaveBeenCalledWith(
+            expect.objectContaining<EditTenantPayload>({
+              resourceName: 'service-123',
+              tenantId: '1',
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              targetSpec: expect.objectContaining({
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                limits: expect.objectContaining({
+                  numberOfSeries: {
+                    maximum: 102,
+                  },
+                }),
+              }),
+            }),
+          );
+        });
+      });
+    });
+
+    describe('Navigation', () => {
+      it('should navigate back in browser history when cancel button is clicked in edition mode', () => {
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        const cancelButton = screen.getByTestId('cancel-tenant');
+        fireEvent.click(cancelButton);
+
+        expect(mockNavigate).toHaveBeenCalledWith(-1);
+        expect(mockNavigate).not.toHaveBeenCalledWith(urls.tenants);
+      });
+
+      it('should not navigate after successful edit', async () => {
+        const updatedTenant: Tenant = {
+          ...mockTenant,
+          currentState: {
+            title: 'Updated Tenant',
+            description: 'Updated Description',
+          },
+        };
+
+        let onSuccessCallback:
+          | ((data: Tenant, variables: EditTenantPayload, context: unknown) => unknown)
+          | undefined;
+        mockUseEditTenant.mockImplementation((options) => {
+          onSuccessCallback = options?.onSuccess;
+          return {
+            mutate: mockEditMutate,
+            isPending: false,
+            isError: false,
+            isSuccess: false,
+            error: null,
+            data: undefined,
+          } as unknown as UseMutationResult<Tenant, Error, EditTenantPayload>;
+        });
+
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        // Trigger the success callback
+        if (onSuccessCallback) {
+          onSuccessCallback(updatedTenant, {} as EditTenantPayload, undefined);
+        }
+
+        await waitFor(() => {
+          // Should not navigate on edit success
+          expect(mockNavigate).not.toHaveBeenCalledWith(urls.tenants);
+        });
+      });
+    });
+
+    describe('Error Handling', () => {
+      it('should handle edit error', async () => {
+        const mockError = new Error('Failed to update tenant');
+        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+        let onErrorCallback:
+          | ((error: Error, variables: EditTenantPayload, context: unknown) => unknown)
+          | undefined;
+        mockUseEditTenant.mockImplementation((options) => {
+          onErrorCallback = options?.onError;
+          return {
+            mutate: mockEditMutate,
+            isPending: false,
+            isError: false,
+            isSuccess: false,
+            error: null,
+            data: undefined,
+          } as unknown as UseMutationResult<Tenant, Error, EditTenantPayload>;
+        });
+
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        // Trigger the error callback
+        if (onErrorCallback) {
+          onErrorCallback(mockError, {} as EditTenantPayload, undefined);
+        }
+
+        await waitFor(() => {
+          expect(consoleErrorSpy).toHaveBeenCalledWith('Failed to update tenant:', mockError);
+        });
+
+        // Should not navigate on error
+        expect(mockNavigate).not.toHaveBeenCalledWith(urls.tenants);
+
+        consoleErrorSpy.mockRestore();
+      });
+    });
+
+    describe('Integration', () => {
+      it('should call form handleSubmit on edit button click', async () => {
+        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+
+        const editButton = screen.getByTestId('edit-tenant');
+        fireEvent.click(editButton);
+
+        await waitFor(() => {
+          expect(mockForm.handleSubmit).toHaveBeenCalled();
+        });
       });
     });
   });
