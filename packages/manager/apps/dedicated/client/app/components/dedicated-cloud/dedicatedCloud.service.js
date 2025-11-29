@@ -1723,7 +1723,7 @@ class DedicatedCloudService {
 
   getLocation(serviceName) {
     return this.$http
-      .get(`/dedicatedCloud/${serviceName}/location`)
+      .get(`/dedicatedCloud/${serviceName}/location`, { cache: true })
       .then(({ data }) => data);
   }
 
