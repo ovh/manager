@@ -5,6 +5,9 @@ export default {
   bindings: {
     alert: '<',
     cursors: '<',
+    identities: '<',
+    resources: '<',
+    actions: '<',
     goTo: '<',
     trackClick: '<',
   },
