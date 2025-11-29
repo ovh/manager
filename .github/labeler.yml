@@ -65,6 +65,8 @@ enabler:
   - packages/manager/apps/iam/**
 manager-components:
   - packages/manager-components/src/**
+muk:
+  - packages/manager-ui-kit/**
 common:
   - packages/components/**
   - packages/manager/core/**
