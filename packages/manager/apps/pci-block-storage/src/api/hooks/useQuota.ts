@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { getRegionsQuota } from '@/api/data/quota';
 
 export const useRegionsQuota = (projectId: string, region: string) =>

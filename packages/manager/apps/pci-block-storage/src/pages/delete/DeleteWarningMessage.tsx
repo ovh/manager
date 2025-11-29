@@ -1,11 +1,12 @@
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { ODS_ICON_NAME, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 
 export default function DeleteWarningMessage() {
   const { t } = useTranslation('delete');

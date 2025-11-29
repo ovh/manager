@@ -1,8 +1,10 @@
 import { RouteObject } from 'react-router-dom';
+
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { StorageActionRedirect } from '@/components/StorageActionRedirect';
 
-const lazyRouteConfig = (importFn: CallableFunction) => ({
+const lazyRouteConfig = <T extends Record<string, any>>(importFn: () => Promise<T>) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
 
@@ -40,9 +42,7 @@ const ROUTES: RouteObject[] = [
           },
           {
             path: 'attach/:volumeId',
-            ...lazyRouteConfig(() =>
-              import('@/pages/attach/AttachStorage.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/attach/AttachStorage.page')),
             handle: {
               tracking: {
                 pageName: 'attach_instance',
@@ -56,9 +56,7 @@ const ROUTES: RouteObject[] = [
           },
           {
             path: 'detach/:volumeId',
-            ...lazyRouteConfig(() =>
-              import('@/pages/detach/DetachStorage.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detach/DetachStorage.page')),
             handle: {
               tracking: {
                 pageName: 'detach_instance',
@@ -72,9 +70,7 @@ const ROUTES: RouteObject[] = [
           },
           {
             path: 'delete/:volumeId',
-            ...lazyRouteConfig(() =>
-              import('@/pages/delete/DeleteStorage.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/delete/DeleteStorage.page')),
             handle: {
               tracking: {
                 pageName: 'delete_volume_block_storage',

@@ -1,4 +1,5 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { useTranslatedBytes } from '@/hooks/useTranslatedBytes';
 
 export default function CapacityComponent({ size }: { size: number }) {

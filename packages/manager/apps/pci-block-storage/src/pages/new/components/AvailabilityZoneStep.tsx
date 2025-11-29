@@ -1,9 +1,12 @@
 import { useMemo, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { TilesInput } from '@ovh-ux/manager-pci-common';
-import { Step } from '@/pages/new/hooks/useStep';
+
 import { TRegion } from '@/api/data/regions';
 import { Button } from '@/components/button/Button';
+import { Step } from '@/pages/new/hooks/useStep';
 
 interface AvailabilityZoneStepProps {
   region: TRegion;
@@ -25,9 +28,7 @@ export function AvailabilityZoneStep({
       })),
     [region.availabilityZones],
   );
-  const [selectedZone, setSelectedZone] = useState<
-    typeof elements[number] | null
-  >(null);
+  const [selectedZone, setSelectedZone] = useState<(typeof elements)[number] | null>(null);
 
   return (
     <div>

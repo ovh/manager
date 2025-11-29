@@ -1,11 +1,14 @@
-import { describe, it, vi } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
-import { UseQueryResult } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import AttachStorage from './AttachStorage.page';
+
+import { UseQueryResult } from '@tanstack/react-query';
+import { screen, waitFor } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 import { useAttachableInstances } from '@/api/hooks/useInstance';
 import { TAttachableInstance } from '@/api/select/instances';
-import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+
+import AttachStorage from './AttachStorage.page';
 
 vi.mock('react-router-dom');
 
@@ -17,19 +20,15 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 }));
 
 vi.mock('@/api/hooks/useVolume', () => ({
-  useAttachVolume: vi
-    .fn()
-    .mockReturnValue({ isPending: false, attachVolume: vi.fn() }),
-  useVolume: vi
-    .fn()
-    .mockReturnValue({ data: { attachedTo: [] }, isPending: false }),
+  useAttachVolume: vi.fn().mockReturnValue({ isPending: false, attachVolume: vi.fn() }),
+  useVolume: vi.fn().mockReturnValue({ data: { attachedTo: [] }, isPending: false }),
 }));
 
 vi.mock('@/api/hooks/useInstance');
 
 describe('AttachStorage', () => {
   it('renders spinner when data is loading', () => {
-    vi.mocked(useParams).mockReturnValue({ projectId: '1' });
+    vi.mocked(useParams).mockReturnValue({ projectId: '1', volumeId: '1' });
     vi.mocked(useAttachableInstances).mockReturnValue({
       isPending: true,
     } as UseQueryResult<TAttachableInstance[]>);
@@ -40,13 +39,11 @@ describe('AttachStorage', () => {
     vi.mocked(useAttachableInstances).mockReturnValue({
       data: [],
       isPending: false,
-    } as UseQueryResult<TAttachableInstance[]>);
+    } as unknown as UseQueryResult<TAttachableInstance[]>);
 
     const { getByTestId } = renderWithMockedWrappers(<AttachStorage />);
     await waitFor(() =>
-      expect(
-        getByTestId('AttachStorage-NoInstanceWarningMessage'),
-      ).toBeDefined(),
+      expect(getByTestId('AttachStorage-NoInstanceWarningMessage')).toBeDefined(),
     );
   });
 
@@ -57,11 +54,7 @@ describe('AttachStorage', () => {
     } as UseQueryResult<TAttachableInstance[]>);
 
     const { queryByTestId } = renderWithMockedWrappers(<AttachStorage />);
-    await waitFor(() =>
-      expect(
-        queryByTestId('AttachStorage-NoInstanceWarningMessage'),
-      ).toBeNull(),
-    );
+    await waitFor(() => expect(queryByTestId('AttachStorage-NoInstanceWarningMessage')).toBeNull());
   });
 
   it('does not render NoInstanceWarningMessage when instances are pending', () => {
@@ -71,8 +64,6 @@ describe('AttachStorage', () => {
     } as UseQueryResult<TAttachableInstance[]>);
 
     renderWithMockedWrappers(<AttachStorage />);
-    expect(
-      screen.queryByText('No instances available'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText('No instances available')).not.toBeInTheDocument();
   });
 });

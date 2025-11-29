@@ -12,4 +12,7 @@ export default defineConfig({
       plugins: [tailwindcss],
     },
   },
+  resolve: {
+    ...baseConfig.resolve,
+  },
 });

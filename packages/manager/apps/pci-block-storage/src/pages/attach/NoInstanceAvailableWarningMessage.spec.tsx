@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
 
 vi.mock('react-i18next', () => ({

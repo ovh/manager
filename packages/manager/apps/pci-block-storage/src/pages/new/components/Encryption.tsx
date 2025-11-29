@@ -1,37 +1,30 @@
 import React, { PropsWithChildren, useMemo } from 'react';
+
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsRadio,
   OsdsRadioButton,
   OsdsRadioGroup,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Subtitle } from '@ovh-ux/manager-react-components';
-import {
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { Badge } from '@ovh-ux/manager-pci-common';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
-import { EncryptionType } from '@/api/select/volume';
+import { Subtitle } from '@ovh-ux/manager-react-components';
+
 import { useVolumeEncryptions } from '@/api/hooks/useCatalog';
+import { EncryptionType } from '@/api/select/volume';
 
 const Radio = ({
   children,
   value,
   disabled,
 }: PropsWithChildren<{ value: string; disabled?: boolean }>) => (
-  <OsdsRadio
-    value={value}
-    name="encryption"
-    {...(disabled ? { disabled: true } : {})}
-  >
-    <OsdsRadioButton
-      size={ODS_RADIO_BUTTON_SIZE.xs}
-      color={ODS_THEME_COLOR_INTENT.primary}
-    >
+  <OsdsRadio value={value} name="encryption" {...(disabled ? { disabled: true } : {})}>
+    <OsdsRadioButton size={ODS_RADIO_BUTTON_SIZE.xs} color={ODS_THEME_COLOR_INTENT.primary}>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         size={ODS_TEXT_SIZE._400}
@@ -75,9 +68,7 @@ export const Encryption = ({ encryptionType, onChange }: Props) => {
   return (
     <fieldset className="border-0 p-0" role="radiogroup">
       <legend className="flex items-baseline p-0">
-        <Subtitle>
-          {t('common:pci_projects_project_storages_blocks_encrypted_label')}
-        </Subtitle>
+        <Subtitle>{t('common:pci_projects_project_storages_blocks_encrypted_label')}</Subtitle>
         <Badge
           color="new"
           label={t('common:pci_projects_project_storages_blocks_new')}
@@ -98,11 +89,7 @@ export const Encryption = ({ encryptionType, onChange }: Props) => {
           name="encryption"
           value={encryptionType ?? 'none'}
           onOdsValueChange={({ detail }) =>
-            onChange(
-              detail.newValue === 'none'
-                ? null
-                : (detail.newValue as EncryptionType),
-            )
+            onChange(detail.newValue === 'none' ? null : (detail.newValue as EncryptionType))
           }
         >
           {enabledEncryptions.map(({ value, label }) => (
@@ -120,9 +107,7 @@ export const Encryption = ({ encryptionType, onChange }: Props) => {
 
             {comingSoon && (
               <Badge
-                label={t(
-                  'common:pci_projects_project_storages_blocks_coming_soon',
-                )}
+                label={t('common:pci_projects_project_storages_blocks_coming_soon')}
                 color="neutral"
                 className="ml-5"
               />

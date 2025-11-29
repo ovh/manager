@@ -1,10 +1,9 @@
 import { useContext, useEffect } from 'react';
+
 import { useLocation, useMatches, useRouteLoaderData } from 'react-router-dom';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { TProject } from '@ovh-ux/manager-pci-common';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 const DISCOVERY_PLANCODE = 'project.discovery';

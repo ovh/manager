@@ -1,11 +1,12 @@
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 
 interface DeleteConstraintWarningMessageProps {
   hasSnapshot: boolean;
@@ -34,29 +35,17 @@ export default function DeleteConstraintWarningMessage({
       >
         {hasSnapshot &&
           !isAttached &&
-          t(
-            'pci_projects_project_storages_blocks_block_delete_error_should_snapshots',
-          )}
+          t('pci_projects_project_storages_blocks_block_delete_error_should_snapshots')}
         {!hasSnapshot &&
           isAttached &&
-          t(
-            'pci_projects_project_storages_blocks_block_delete_error_should_detach',
-          )}
+          t('pci_projects_project_storages_blocks_block_delete_error_should_detach')}
         {hasSnapshot && isAttached && (
           <>
-            {t(
-              'pci_projects_project_storages_blocks_block_delete_error_should_multiple',
-            )}
+            {t('pci_projects_project_storages_blocks_block_delete_error_should_multiple')}
             <ul>
+              <li>{t('pci_projects_project_storages_blocks_block_delete_error_detach')}</li>
               <li>
-                {t(
-                  'pci_projects_project_storages_blocks_block_delete_error_detach',
-                )}
-              </li>
-              <li>
-                {t(
-                  'pci_projects_project_storages_blocks_block_delete_error_delete_snapshots',
-                )}
+                {t('pci_projects_project_storages_blocks_block_delete_error_delete_snapshots')}
               </li>
             </ul>
           </>

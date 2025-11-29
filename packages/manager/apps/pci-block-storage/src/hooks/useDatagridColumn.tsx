@@ -1,13 +1,12 @@
-import {
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+
 import { Badge } from '@ovh-ux/manager-pci-common';
+import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { TVolume } from '@/api/hooks/useVolume';
-import CapacityComponent from '@/components/list/Capacity.component';
 import ActionsComponent from '@/components/list/Actions.component';
 import AttachedInstanceComponent from '@/components/list/AttachedInstance.component';
+import CapacityComponent from '@/components/list/Capacity.component';
 import StatusComponent from '@/components/list/Status.component';
 
 export enum BlockStorageListColumn {
@@ -75,28 +74,20 @@ export const useDatagridColumn = (projectId: string, projectUrl: string) => {
     {
       id: BlockStorageListColumn.ENCRYPTION,
       cell: (volume) => (
-        <Badge
-          label={volume.encryptionStatus}
-          color={volume.encrypted ? 'success' : 'neutral'}
-        />
+        <Badge label={volume.encryptionStatus} color={volume.encrypted ? 'success' : 'neutral'} />
       ),
       label: t('pci_projects_project_storages_blocks_encrypted_label'),
     },
     {
       id: BlockStorageListColumn.STATUS,
       cell: (props) => (
-        <StatusComponent
-          statusGroup={props.statusGroup}
-          status={props.statusLabel}
-        />
+        <StatusComponent statusGroup={props.statusGroup} status={props.statusLabel} />
       ),
       label: t('pci_projects_project_storages_blocks_status_label'),
     },
     {
       id: BlockStorageListColumn.ACTIONS,
-      cell: (props) => (
-        <ActionsComponent projectUrl={projectUrl} volume={props} />
-      ),
+      cell: (props) => <ActionsComponent projectUrl={projectUrl} volume={props} />,
       label: t(''),
     },
   ];

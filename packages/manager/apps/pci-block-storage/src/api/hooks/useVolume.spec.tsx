@@ -1,10 +1,17 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+  TAPIVolume,
+  attachVolume,
+  deleteVolume,
+  detachVolume,
+  getAllVolumes,
+  getVolume,
+} from '@/api/data/volume';
 import {
   useAttachVolume,
   useDeleteVolume,
@@ -12,14 +19,6 @@ import {
   useVolume,
   useVolumes,
 } from '@/api/hooks/useVolume';
-import {
-  attachVolume,
-  deleteVolume,
-  detachVolume,
-  getAllVolumes,
-  getVolume,
-  TAPIVolume,
-} from '@/api/data/volume';
 
 vi.mock('@/api/data/volume', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -44,7 +43,7 @@ const shellContextValue: RecursivePartial<ShellContextType> = {
   },
 };
 
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: { children?: React.ReactNode }) => (
   <ShellContext.Provider value={shellContextValue as ShellContextType}>
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   </ShellContext.Provider>
@@ -91,7 +90,7 @@ describe('useVolume', () => {
   });
 
   it('does not fetch data when volumeId is not provided', () => {
-    const { result } = renderHook(() => useVolume('123', null), { wrapper });
+    const { result } = renderHook(() => useVolume('123', ''), { wrapper });
 
     expect(getVolume).not.toHaveBeenCalled();
     expect(result.current.isPending).toBe(true);
@@ -194,7 +193,7 @@ describe('useVolumes', () => {
   it('does not fetch data when projectId is not provided', () => {
     const { result } = renderHook(
       () =>
-        useVolumes(null, {
+        useVolumes('', {
           pagination: { pageIndex: 0, pageSize: 10 },
           sorting: { id: 'name', desc: false },
         }),
@@ -236,7 +235,7 @@ describe('useDeleteVolume', () => {
       () =>
         useDeleteVolume({
           projectId: '123',
-          volumeId: null,
+          volumeId: '',
           onSuccess,
           onError,
         }),
