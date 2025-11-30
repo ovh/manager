@@ -52,9 +52,19 @@ const UpdateScaling = () => {
       averageUsageTarget: z.coerce.number(),
       replicasMax: z.coerce.number(),
       replicasMin: z.coerce.number(),
-      resourceType: z.nativeEnum(
-        ai.app.ScalingAutomaticStrategyResourceTypeEnum,
-      ),
+      resourceType: z
+        .union([
+          z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+          z.literal('CUSTOM'),
+        ])
+        .optional(),
+      metricUrl: z.string().optional(),
+      dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
+      dataLocation: z.string().optional(),
+      targetMetricValue: z.number().optional(),
+      aggregationType: z
+        .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
+        .optional(),
     }),
   });
 
@@ -70,9 +80,22 @@ const UpdateScaling = () => {
         app.spec.scalingStrategy?.automatic?.replicasMin,
       replicasMax: app.spec.scalingStrategy?.automatic?.replicasMax || 1,
       replicasMin: app.spec.scalingStrategy?.automatic?.replicasMin || 1,
-      resourceType:
-        app.spec.scalingStrategy?.automatic?.resourceType ||
-        ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+      resourceType: app.spec.scalingStrategy?.automatic?.customMetrics
+        ? 'CUSTOM'
+        : app.spec.scalingStrategy?.automatic?.resourceType ||
+          ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+      metricUrl:
+        app.spec.scalingStrategy?.automatic?.customMetrics?.apiUrl || '',
+      dataFormat:
+        app.spec.scalingStrategy?.automatic?.customMetrics?.format ||
+        ai.app.CustomMetricsFormatEnum.JSON,
+      dataLocation:
+        app.spec.scalingStrategy?.automatic?.customMetrics?.valueLocation || '',
+      targetMetricValue:
+        app.spec.scalingStrategy?.automatic?.customMetrics?.targetValue || 0,
+      aggregationType:
+        app.spec.scalingStrategy?.automatic?.customMetrics?.aggregationType ||
+        ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
     },
   };
 
@@ -99,14 +122,31 @@ const UpdateScaling = () => {
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
+    const isCustom = formValues.scaling.resourceType === 'CUSTOM';
+
     const scalingInfo: ai.app.ScalingStrategyInput = formValues.scaling
       .autoScaling
       ? {
           automatic: {
-            averageUsageTarget: formValues.scaling.averageUsageTarget,
-            replicasMax: formValues.scaling.replicasMax,
             replicasMin: formValues.scaling.replicasMin,
-            resourceType: formValues.scaling.resourceType,
+            replicasMax: formValues.scaling.replicasMax,
+            ...((!isCustom && {
+              averageUsageTarget: formValues.scaling.averageUsageTarget,
+              resourceType: formValues.scaling
+                .resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
+            }) ||
+              {}),
+            ...(isCustom && {
+              customMetrics: {
+                apiUrl: formValues.scaling.metricUrl,
+                format: formValues.scaling
+                  .dataFormat as ai.app.CustomMetricsFormatEnum,
+                targetValue: formValues.scaling.targetMetricValue,
+                valueLocation: formValues.scaling.dataLocation,
+                aggregationType: formValues.scaling
+                  .aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
+              },
+            }),
           },
         }
       : { fixed: { replicas: formValues.scaling.replicas } };
@@ -119,7 +159,7 @@ const UpdateScaling = () => {
       backUrl="../"
       isLoading={!catalogQuery.isSuccess && !(pricingResource.price > 0)}
     >
-      <DialogContent>
+      <DialogContent className="max-w-[calc(theme(maxWidth.2xl)+30px)]">
         <DialogHeader>
           <DialogTitle data-testid="update-scaling-modal">
             {t('updateScalingTitle')}
@@ -142,6 +182,11 @@ const UpdateScaling = () => {
                         replicasMax: field.value.replicasMax,
                         replicasMin: field.value.replicasMin,
                         resourceType: field.value.resourceType,
+                        metricUrl: field.value.metricUrl,
+                        dataFormat: field.value.dataFormat,
+                        dataLocation: field.value.dataLocation,
+                        targetMetricValue: field.value.targetMetricValue,
+                        aggregationType: field.value.aggregationType,
                       }}
                       onChange={(newScaling) =>
                         form.setValue('scaling', newScaling)

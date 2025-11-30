@@ -47,16 +47,47 @@ const ScalingStrat = () => {
                 rep: app.spec.scalingStrategy.automatic.replicasMax,
               })}
             </li>
-            <li className="ml-8">
-              {t('resourceTypeLabel', {
-                res: app.spec.scalingStrategy.automatic.resourceType,
-              })}
-            </li>
-            <li className="ml-8">
-              {t('averageUsegeLabel', {
-                val: app.spec.scalingStrategy.automatic.averageUsageTarget,
-              })}
-            </li>
+            {app.spec.scalingStrategy.automatic.resourceType && (
+              <li className="ml-8">
+                {t('resourceTypeLabel', {
+                  res: app.spec.scalingStrategy.automatic.resourceType,
+                })}
+              </li>
+            )}
+            {app.spec.scalingStrategy.automatic.customMetrics ? (
+              <>
+                <li className="ml-8 break-all">
+                  {t('customMetricsUrlLabel')}:{' '}
+                  {app.spec.scalingStrategy.automatic.customMetrics.apiUrl}
+                </li>
+                <li className="ml-8">
+                  {t('customMetricsFormatLabel', {
+                    for:
+                      app.spec.scalingStrategy.automatic.customMetrics.format,
+                  })}
+                </li>
+                <li className="ml-8 break-all">
+                  {t('customMetricsLocationLabel', {
+                    loc:
+                      app.spec.scalingStrategy.automatic.customMetrics
+                        .valueLocation,
+                  })}
+                </li>
+                <li className="ml-8">
+                  {t('customMetricsTargetValueLabel', {
+                    val:
+                      app.spec.scalingStrategy.automatic.customMetrics
+                        .targetValue,
+                  })}
+                </li>
+              </>
+            ) : (
+              <li className="ml-8">
+                {t('averageUsegeLabel', {
+                  val: app.spec.scalingStrategy.automatic.averageUsageTarget,
+                })}
+              </li>
+            )}
           </>
         )}
       </ul>
