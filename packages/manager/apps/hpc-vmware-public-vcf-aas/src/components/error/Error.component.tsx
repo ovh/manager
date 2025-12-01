@@ -1,11 +1,10 @@
 import React from 'react';
+
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { ErrorBanner, ErrorMessage, TRACKING_LABELS } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  ErrorMessage,
-  TRACKING_LABELS,
-  ErrorBanner,
-} from '@ovh-ux/manager-react-components';
+
 import { urls } from '@/routes/routes.constant';
 
 interface ErrorObject {

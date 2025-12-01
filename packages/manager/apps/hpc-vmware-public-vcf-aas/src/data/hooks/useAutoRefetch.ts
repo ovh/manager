@@ -1,5 +1,6 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+
+import { useQueryClient } from '@tanstack/react-query';
 
 type AutoRefetchProps = {
   queryKey: string[];
@@ -7,11 +8,7 @@ type AutoRefetchProps = {
   interval?: number;
 };
 
-export const useAutoRefetch = ({
-  queryKey,
-  enabled,
-  interval = 10_000,
-}: AutoRefetchProps) => {
+export const useAutoRefetch = ({ queryKey, enabled, interval = 10_000 }: AutoRefetchProps) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {

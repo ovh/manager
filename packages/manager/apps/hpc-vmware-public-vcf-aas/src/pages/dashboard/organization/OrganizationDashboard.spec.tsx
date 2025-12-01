@@ -1,9 +1,12 @@
 import React from 'react';
-import { vi } from 'vitest';
+
 import { screen } from '@testing-library/react';
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+import { vi } from 'vitest';
+
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { renderTest, labels } from '../../../test-utils';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { labels, renderTest } from '../../../test-utils';
 import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {

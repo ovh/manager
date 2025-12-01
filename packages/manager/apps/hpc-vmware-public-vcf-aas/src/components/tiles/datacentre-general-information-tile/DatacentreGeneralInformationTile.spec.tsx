@@ -1,24 +1,25 @@
-import { act, render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
-import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+
 import {
+  assertElementLabel,
   assertTextVisibility,
   getElementByTestId,
-  assertElementLabel,
 } from '@ovh-ux/manager-core-test-utils';
-import userEvent from '@testing-library/user-event';
-import DatacentreGeneralInformationTile from './DatacentreGeneralInformationTile.component';
-import {
-  ID_LABEL
-} from '../../../pages/dashboard/dashboard.constants';
-import TEST_IDS from '../../../utils/testIds.constants';
-import { TRACKING } from '../../../tracking.constants';
-import {
-  VRACK_PATH,
-  VRACK_ONBOARDING_PATH,
-} from '../../../pages/listing/datacentres/Datacentres.constants';
+import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+
 import { FEATURE_FLAGS } from '@/app.constants';
+
+import { ID_LABEL } from '../../../pages/dashboard/dashboard.constants';
+import {
+  VRACK_ONBOARDING_PATH,
+  VRACK_PATH,
+} from '../../../pages/listing/datacentres/Datacentres.constants';
+import { TRACKING } from '../../../tracking.constants';
+import TEST_IDS from '../../../utils/testIds.constants';
+import DatacentreGeneralInformationTile from './DatacentreGeneralInformationTile.component';
 
 const trackClickMock = vi.fn();
 let mockedUrl = '';
@@ -133,22 +134,15 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
     await Promise.all(texts.map((text) => assertTextVisibility(text)));
 
     // and
-    const webUrlLink = await getElementByTestId(
-      TEST_IDS.dashboardDatacentreInterfaceLink,
-    );
+    const webUrlLink = await getElementByTestId(TEST_IDS.dashboardDatacentreInterfaceLink);
     await assertElementLabel({
       element: webUrlLink,
       label: 'managed_vcd_dashboard_management_interface_access',
     });
-    expect(webUrlLink).toHaveAttribute(
-      'href',
-      vcdOrg.currentState.webInterfaceUrl,
-    );
+    expect(webUrlLink).toHaveAttribute('href', vcdOrg.currentState.webInterfaceUrl);
 
     await act(() => user.click(webUrlLink));
-    expect(trackClickMock).toHaveBeenCalledWith(
-      TRACKING.datacentreDashboard.goToVcdPortal,
-    );
+    expect(trackClickMock).toHaveBeenCalledWith(TRACKING.datacentreDashboard.goToVcdPortal);
   });
 
   it('should not be able to update description when datacenter is suspended', () => {
@@ -157,17 +151,13 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
       <QueryClientProvider client={queryClient}>
         <DatacentreGeneralInformationTile
           vcdOrganization={vcdOrg as VCDOrganization}
-          vcdDatacentre={
-            { ...datacentre, resourceStatus: 'SUSPENDED' } as VCDDatacentre
-          }
+          vcdDatacentre={{ ...datacentre, resourceStatus: 'SUSPENDED' } as VCDDatacentre}
         />
       </QueryClientProvider>,
     );
 
     // then
-    expect(
-      screen.getByTestId(TEST_IDS.editButton).getAttribute('is-disabled'),
-    ).toBe('true');
+    expect(screen.getByTestId(TEST_IDS.editButton).getAttribute('is-disabled')).toBe('true');
   });
 });
 

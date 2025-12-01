@@ -1,12 +1,7 @@
-import userEvent from '@testing-library/user-event';
-import {
-  screen,
-  act,
-  waitFor,
-  fireEvent,
-  waitForOptions,
-} from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { act, fireEvent, screen, waitFor, waitForOptions } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';

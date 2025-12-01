@@ -1,8 +1,11 @@
 import React from 'react';
-import { vi } from 'vitest';
-import { waitFor, screen, fireEvent, render } from '@testing-library/react';
-import { ODS_ICON_NAME, ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { ODS_ICON_NAME, ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
+
 import { ActionMenu, ActionMenuProps } from './Action.component';
 
 const mocks = vi.hoisted(() => ({
@@ -54,19 +57,13 @@ describe('ActionMenu', () => {
     });
     setupSpecTest();
 
-    const actionMenuIcon = screen.getByTestId(
-      'navigation-action-trigger-action',
-    );
+    const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
     fireEvent.click(actionMenuIcon);
 
     // Wait for the button text to update
     await waitFor(() => {
-      const action1 = screen.getAllByTestId(
-        'manager-button-without-tooltip',
-      )[0];
-      const action2 = screen.getAllByTestId(
-        'manager-button-without-tooltip',
-      )[1];
+      const action1 = screen.getAllByTestId('manager-button-without-tooltip')[0];
+      const action2 = screen.getAllByTestId('manager-button-without-tooltip')[1];
       expect(action1).toBeInTheDocument();
       expect(action2).toBeInTheDocument();
       expect(actionMenuIcon.getAttribute('icon')).toBe('chevron-down');
@@ -75,9 +72,7 @@ describe('ActionMenu', () => {
 
   it('renders compact menu with classic ellipsis correctly', () => {
     setupSpecTest({ isCompact: true });
-    const actionMenuIcon = screen.getByTestId(
-      'navigation-action-trigger-action',
-    );
+    const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
     expect(actionMenuIcon.getAttribute('icon')).toBe('ellipsis-vertical');
   });
 
@@ -85,9 +80,7 @@ describe('ActionMenu', () => {
     setupSpecTest({
       icon: ODS_ICON_NAME.ellipsisHorizontal,
     });
-    const actionMenuIcon = screen.getByTestId(
-      'navigation-action-trigger-action',
-    );
+    const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
     expect(actionMenuIcon.getAttribute('icon')).toBe('ellipsis-horizontal');
   });
 
@@ -95,9 +88,7 @@ describe('ActionMenu', () => {
     setupSpecTest({
       popoverPosition: ODS_POPOVER_POSITION.bottomEnd,
     });
-    const popover = screen.getByTestId(
-      'navigation-action-trigger-action-popover',
-    );
+    const popover = screen.getByTestId('navigation-action-trigger-action-popover');
     expect(popover.getAttribute('position')).toBe('bottom-end');
   });
 });

@@ -1,34 +1,25 @@
+import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
 import { act, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  useVeeamBackup,
-  VeeamBackup,
-  organizationList,
-} from '@ovh-ux/manager-module-vcd-api';
 import {
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import userEvent from '@testing-library/user-event';
-import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
+import { VeeamBackup, organizationList, useVeeamBackup } from '@ovh-ux/manager-module-vcd-api';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import {
   DATA_PROTECTION_BACKUP_LABEL,
   DATA_PROTECTION_RECOVERY_LABEL,
 } from '../../../pages/dashboard/organization/organizationDashboard.constants';
-import TEST_IDS from '../../../utils/testIds.constants';
 import { TRACKING } from '../../../tracking.constants';
+import TEST_IDS from '../../../utils/testIds.constants';
+import OrganizationDataProtectionTile from './OrganizationDataProtectionTile.component';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -48,9 +39,7 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
   };
 });
 
-vi.mocked(useVeeamBackup).mockReturnValue(
-  {} as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>,
-);
+vi.mocked(useVeeamBackup).mockReturnValue({} as UseQueryResult<ApiResponse<VeeamBackup>, ApiError>);
 
 const shellContext = {
   shell: {
@@ -65,9 +54,7 @@ const renderComponent = () => {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <OrganizationDataProtectionTile vcdOrganization={organizationList[0]} />
       </ShellContext.Provider>
     </QueryClientProvider>,
@@ -95,13 +82,9 @@ describe('OrganizationDataProtectionTile component unit test suite', () => {
     renderComponent();
 
     // then
-    const veeamLink = await getElementByTestId(
-      TEST_IDS.dashboardVeeamBackupLink,
-    );
+    const veeamLink = await getElementByTestId(TEST_IDS.dashboardVeeamBackupLink);
     await act(() => user.click(veeamLink));
-    expect(trackClickMock).toHaveBeenCalledWith(
-      TRACKING.dashboard.goToManageBackup,
-    );
+    expect(trackClickMock).toHaveBeenCalledWith(TRACKING.dashboard.goToManageBackup);
   });
 });
 

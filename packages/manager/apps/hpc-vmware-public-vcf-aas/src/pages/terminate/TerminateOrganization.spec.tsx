@@ -1,18 +1,16 @@
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { screen } from '@testing-library/dom';
 import { act } from '@testing-library/react';
-import { renderTest, labels } from '../../test-utils';
+
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { labels, renderTest } from '../../test-utils';
 
 const openTerminateModal = async () => {
-  const vcdActionMenu = await screen.findByTestId(
-    'navigation-action-trigger-action',
-  );
+  const vcdActionMenu = await screen.findByTestId('navigation-action-trigger-action');
   expect(vcdActionMenu).toBeVisible();
   act(() => vcdActionMenu.click());
 
-  const terminateCta = await screen.findByTestId(
-    `terminate-cta-${organizationList[0].id}`,
-  );
+  const terminateCta = await screen.findByTestId(`terminate-cta-${organizationList[0].id}`);
   expect(terminateCta).toBeVisible();
 
   act(() => {
@@ -26,9 +24,7 @@ describe('Organization Terminate Page', () => {
 
     await openTerminateModal();
 
-    const modalDescription = await screen.findByTestId(
-      'manager-delete-modal-description',
-    );
+    const modalDescription = await screen.findByTestId('manager-delete-modal-description');
     expect(modalDescription).toBeVisible();
   });
 
@@ -37,17 +33,13 @@ describe('Organization Terminate Page', () => {
 
     await openTerminateModal();
 
-    const cancelButton = await screen.findByTestId(
-      'manager-delete-modal-cancel',
-    );
+    const cancelButton = await screen.findByTestId('manager-delete-modal-cancel');
     expect(cancelButton).toBeVisible();
     act(() => {
       cancelButton.click();
     });
 
-    const nameLabel = await screen.findByText(
-      labels.listing.managed_vcd_listing_name,
-    );
+    const nameLabel = await screen.findByText(labels.listing.managed_vcd_listing_name);
     expect(nameLabel).toBeVisible();
   });
 
@@ -56,9 +48,7 @@ describe('Organization Terminate Page', () => {
 
     await openTerminateModal();
 
-    const confirmButton = await screen.findByTestId(
-      'manager-delete-modal-confirm',
-    );
+    const confirmButton = await screen.findByTestId('manager-delete-modal-confirm');
     expect(confirmButton).toBeVisible();
     act(() => {
       confirmButton.click();
@@ -68,16 +58,11 @@ describe('Organization Terminate Page', () => {
     await act(() => new Promise((resolve) => setTimeout(resolve, 2000)));
 
     const successBanner = await screen.findByText(
-      labels.terminate.terminate_managed_vcd_success.replace(
-        '{{service}}',
-        organizationList[0].id,
-      ),
+      labels.terminate.terminate_managed_vcd_success.replace('{{service}}', organizationList[0].id),
     );
     expect(successBanner).toBeVisible();
 
-    const nameLabel = await screen.findByText(
-      labels.listing.managed_vcd_listing_name,
-    );
+    const nameLabel = await screen.findByText(labels.listing.managed_vcd_listing_name);
     expect(nameLabel).toBeVisible();
   });
 });

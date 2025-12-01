@@ -1,11 +1,15 @@
 import React from 'react';
-import { vi } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+
 import { OdsBadgeColor } from '@ovhcloud/ods-components';
+
 import { VrackSegmentResourceStatus } from '@ovh-ux/manager-module-vcd-api';
+
 import {
-  getVrackSegmentColorFromResourceStatus,
   VrackSegmentStatusBadge,
+  getVrackSegmentColorFromResourceStatus,
 } from './VrackSegmentStatusBadge.component';
 
 describe('getVrackSegmentColorFromResourceStatus function', () => {

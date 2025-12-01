@@ -1,12 +1,14 @@
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import {
-  assertOdsModalVisibility,
-  getElementByTestId,
-  assertOdsModalText,
-  assertTextVisibility,
-} from '@ovh-ux/manager-core-test-utils';
 import { act, waitFor } from '@testing-library/react';
-import { renderTest, labels, mockEditInputValue } from '../../../../test-utils';
+
+import {
+  assertOdsModalText,
+  assertOdsModalVisibility,
+  assertTextVisibility,
+  getElementByTestId,
+} from '@ovh-ux/manager-core-test-utils';
+import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { labels, mockEditInputValue, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
 
 describe('Organization General Information Page', () => {
@@ -32,15 +34,13 @@ describe('Organization General Information Page Updates', () => {
     {
       inputName: 'name',
       initialRoute: editNameRoute,
-      successMessage:
-        labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
+      successMessage: labels.dashboard.managed_vcd_dashboard_edit_name_modal_success,
       value: `New VCD Name`,
     },
     {
       inputName: 'description',
       initialRoute: editDescriptionRoute,
-      successMessage:
-        labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
+      successMessage: labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
       value: 'New VCD Description',
     },
   ])(
@@ -64,15 +64,12 @@ describe('Organization General Information Page Updates', () => {
     {
       inputName: 'name',
       initialRoute: editNameRoute,
-      error:
-        labels.dashboard.managed_vcd_dashboard_edit_name_modal_helper_error,
+      error: labels.dashboard.managed_vcd_dashboard_edit_name_modal_helper_error,
     },
     {
       inputName: 'description',
       initialRoute: editDescriptionRoute,
-      error:
-        labels.dashboard
-          .managed_vcd_dashboard_edit_description_modal_helper_error,
+      error: labels.dashboard.managed_vcd_dashboard_edit_description_modal_helper_error,
     },
   ])(
     'display helper message when the input $inputName is invalid',

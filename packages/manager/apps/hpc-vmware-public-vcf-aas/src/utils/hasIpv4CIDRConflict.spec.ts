@@ -1,5 +1,6 @@
-import { Exit } from 'effect';
 import { expect } from '@effect/vitest';
+import { Exit } from 'effect';
+
 import { hasIpv4CIDRConflict } from './hasIpv4CIDRConflict';
 
 it.each([
@@ -17,8 +18,6 @@ it.each([
 ] as const)(
   'hasIpv4CIDRConflict with %s should return Effect.%s(%s)',
   ([networkA, networkB], exitType, expected) => {
-    expect(hasIpv4CIDRConflict(networkA, networkB)).toStrictEqual(
-      Exit[exitType](expected),
-    );
+    expect(hasIpv4CIDRConflict(networkA, networkB)).toStrictEqual(Exit[exitType](expected));
   },
 );

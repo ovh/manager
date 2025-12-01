@@ -1,4 +1,8 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
+import React, { useState } from 'react';
+
+import { AxiosResponse } from 'axios';
+import { useTranslation } from 'react-i18next';
+
 import {
   OdsButton,
   OdsFormField,
@@ -7,11 +11,12 @@ import {
   OdsModal,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { AxiosResponse } from 'axios';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import Loading from '../loading/Loading.component';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import TEST_IDS from '@/utils/testIds.constants';
+
+import Loading from '../loading/Loading.component';
 
 interface EditModalProps {
   detailValue: string;
@@ -57,22 +62,14 @@ export const EditDetailModal = ({
       <div className="flex flex-col">
         <OdsText preset="heading-3">{headline}</OdsText>
         {!!updateError && (
-          <OdsMessage
-            color="danger"
-            isDismissible
-            onOdsRemove={() => setUpdateError(null)}
-          >
+          <OdsMessage color="danger" isDismissible onOdsRemove={() => setUpdateError(null)}>
             {t('managed_vcd_dashboard_edit_modal_error', {
-              error:
-                updateError.response?.data?.message || updateError?.message,
+              error: updateError.response?.data?.message || updateError?.message,
             })}
           </OdsMessage>
         )}
       </div>
-      <OdsFormField
-        className="flex flex-col"
-        error={isValid ? undefined : errorHelper}
-      >
+      <OdsFormField className="flex flex-col" error={isValid ? undefined : errorHelper}>
         <OdsText className="mt-6" slot="label">
           {inputLabel}
         </OdsText>

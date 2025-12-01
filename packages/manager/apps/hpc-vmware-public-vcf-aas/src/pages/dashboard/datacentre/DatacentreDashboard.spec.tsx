@@ -1,19 +1,17 @@
-import {
-  organizationList,
-  datacentreList,
-} from '@ovh-ux/manager-module-vcd-api';
 import { act, waitFor } from '@testing-library/react';
-import {
-  assertTextVisibility,
-  assertOdsModalVisibility,
-  getElementByTestId,
-  assertOdsModalText,
-} from '@ovh-ux/manager-core-test-utils';
 import { vi } from 'vitest';
 
-import { labels, renderTest, mockEditInputValue } from '../../../test-utils';
-import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
+import {
+  assertOdsModalText,
+  assertOdsModalVisibility,
+  assertTextVisibility,
+  getElementByTestId,
+} from '@ovh-ux/manager-core-test-utils';
+import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { labels, mockEditInputValue, renderTest } from '../../../test-utils';
 import TEST_IDS from '../../../utils/testIds.constants';
+import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
@@ -56,8 +54,7 @@ describe('Datacentre Dashboard Page', () => {
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
     });
     const value = 'description toto';
-    const successMessage =
-      labels.dashboard.managed_vcd_dashboard_edit_description_modal_success;
+    const successMessage = labels.dashboard.managed_vcd_dashboard_edit_description_modal_success;
     await assertOdsModalVisibility({
       container,
       isVisible: true,
@@ -74,9 +71,7 @@ describe('Datacentre Dashboard Page', () => {
   });
 
   it('Display helper message when the input is invalid', async () => {
-    const error =
-      labels.dashboard
-        .managed_vcd_dashboard_edit_description_modal_helper_error;
+    const error = labels.dashboard.managed_vcd_dashboard_edit_description_modal_helper_error;
     const { container } = await renderTest({
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
     });

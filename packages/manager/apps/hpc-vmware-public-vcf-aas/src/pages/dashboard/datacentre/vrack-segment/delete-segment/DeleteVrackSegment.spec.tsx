@@ -1,13 +1,15 @@
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+
 import {
-  organizationList,
   datacentreList,
   mockVrackSegmentList,
+  organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
+
+import { subRoutes, urls } from '../../../../../routes/routes.constant';
 import { labels, renderTest } from '../../../../../test-utils';
-import { urls, subRoutes } from '../../../../../routes/routes.constant';
 
 const testVrack = mockVrackSegmentList[0];
 const initialRoute = urls.vrackSegmentDelete

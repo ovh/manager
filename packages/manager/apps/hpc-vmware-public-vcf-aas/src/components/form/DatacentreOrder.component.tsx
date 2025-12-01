@@ -1,32 +1,34 @@
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsQuantity, OdsText } from '@ovhcloud/ods-components/react';
+
+import {
+  VCDOrderableStoragePriced,
+  VCDOrderableVhostPriced,
+  isStatusTerminated,
+  useVcdCatalog,
+  useVcdDatacentre,
+  useVcdOrder,
+  useVdcOrderableResource,
+} from '@ovh-ux/manager-module-vcd-api';
 import {
   Datagrid,
   DatagridColumn,
   ErrorBanner,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
-import {
-  OdsButton,
-  OdsQuantity,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  isStatusTerminated,
-  useVcdCatalog,
-  useVcdDatacentre,
-  useVcdOrder,
-  useVdcOrderableResource,
-  VCDOrderableStoragePriced,
-  VCDOrderableVhostPriced,
-} from '@ovh-ux/manager-module-vcd-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
+import { TRACKING } from '@/tracking.constants';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
+
 import Loading from '../loading/Loading.component';
-import { TRACKING } from '@/tracking.constants';
 
 type OrderType = 'compute' | 'storage';
 type OrderColumns<T extends OrderType> = T extends 'compute'
@@ -57,22 +59,14 @@ export const DatacentreOrder = <T extends OrderType>({
   const { id, vdcId } = useParams();
   const { trackClick } = useOvhTracking();
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
-  const {
-    selectedResource,
-    setSelectedResource,
-    selectedQuantity,
-    setSelectedQuantity,
-  } = useDatacentreOrderContext();
+  const { selectedResource, setSelectedResource, selectedQuantity, setSelectedQuantity } =
+    useDatacentreOrderContext();
   const {
     data: orderableResource,
     isLoading: isLoadingResource,
     isError: isResourceError,
   } = useVdcOrderableResource(id, vdcId);
-  const {
-    data: catalog,
-    isLoading: isLoadingCatalog,
-    isError: isCatalogError,
-  } = useVcdCatalog(id);
+  const { data: catalog, isLoading: isLoadingCatalog, isError: isCatalogError } = useVcdCatalog(id);
   const { redirectToOrder } = useVcdOrder({
     serviceName: id,
     planCode: selectedResource,
@@ -88,9 +82,7 @@ export const DatacentreOrder = <T extends OrderType>({
   const pricedResources = getPricedVdcResources({
     catalog: catalog?.data,
     resources:
-      orderType === 'compute'
-        ? orderableResource?.data?.compute
-        : orderableResource?.data?.storage,
+      orderType === 'compute' ? orderableResource?.data?.compute : orderableResource?.data?.storage,
   });
 
   useEffect(() => {
@@ -135,13 +127,9 @@ export const DatacentreOrder = <T extends OrderType>({
           contentAlignLeft
         />
         <div className="mt-10">
-          <OdsText preset="heading-3">
-            {t('managed_vcd_vdc_order_quantity_title')}
-          </OdsText>
+          <OdsText preset="heading-3">{t('managed_vcd_vdc_order_quantity_title')}</OdsText>
           <div className="flex flex-col items-start">
-            <OdsText class="my-2">
-              {t('managed_vcd_vdc_order_quantity_label')}
-            </OdsText>
+            <OdsText class="my-2">{t('managed_vcd_vdc_order_quantity_label')}</OdsText>
             <OdsQuantity
               name="order-quantity"
               min={minQuantity}

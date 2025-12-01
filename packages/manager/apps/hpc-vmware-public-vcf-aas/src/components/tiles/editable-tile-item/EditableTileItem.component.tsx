@@ -1,7 +1,11 @@
 import { Suspense } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+
 import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { ManagerButton } from '@ovh-ux/manager-react-components';
+
 import TEST_IDS from '@/utils/testIds.constants';
 
 type EditableTileItemProps = {

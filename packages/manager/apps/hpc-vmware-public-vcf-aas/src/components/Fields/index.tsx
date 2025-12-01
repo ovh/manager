@@ -1,14 +1,12 @@
 import React, { useId } from 'react';
+
+import { Control, FieldValues, UseControllerProps, useController } from 'react-hook-form';
+
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  Control,
-  FieldValues,
-  useController,
-  UseControllerProps,
-} from 'react-hook-form';
+
 import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
-import { RhfQuantity } from './RhfQuantity.component';
 import { RhfInput } from './RhfInput.component';
+import { RhfQuantity } from './RhfQuantity.component';
 
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
@@ -48,9 +46,7 @@ export const RhfField = ({
   );
 };
 
-export const RhfLabel = (
-  props: Readonly<React.LabelHTMLAttributes<HTMLLabelElement>>,
-) => {
+export const RhfLabel = (props: Readonly<React.LabelHTMLAttributes<HTMLLabelElement>>) => {
   const { id } = useRhfFieldContext();
 
   return <label htmlFor={id} slot="label" {...props} />;
@@ -88,9 +84,7 @@ export const RhfHelperAuto = ({
   const { helperMessage, controller } = useRhfFieldContext();
 
   if (!controller.fieldState.error) {
-    return (
-      <RhfHelper {...rest}>{customHelperMessage ?? helperMessage}</RhfHelper>
-    );
+    return <RhfHelper {...rest}>{customHelperMessage ?? helperMessage}</RhfHelper>;
   }
 
   return <></>;
@@ -99,9 +93,7 @@ export const RhfHelperAuto = ({
 export const RhfVisualHintCounter = ({
   max,
   ...rest
-}: Readonly<
-  React.ComponentProps<typeof OdsText> & { max: string | number }
->) => {
+}: Readonly<React.ComponentProps<typeof OdsText> & { max: string | number }>) => {
   const {
     controller: { field },
   } = useRhfFieldContext();

@@ -1,16 +1,17 @@
+import { screen } from '@testing-library/dom';
+import { act, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
 import {
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { screen } from '@testing-library/dom';
-import { act, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
-
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { ORDER_VCD_REDIRECTION_URL } from '../../../utils/orderVcdRedirection.constants';
+
 import { labels, renderTest } from '../../../test-utils';
+import { ORDER_VCD_REDIRECTION_URL } from '../../../utils/orderVcdRedirection.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 
 describe('Organizations Listing Page', () => {
