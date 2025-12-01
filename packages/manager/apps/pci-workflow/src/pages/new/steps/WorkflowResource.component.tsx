@@ -1,9 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { Spinner } from '@ovhcloud/ods-react';
+import { BUTTON_COLOR, BUTTON_SIZE, Button, Spinner } from '@ovhcloud/ods-react';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { TWorkflowSelectedResource, WorkflowType } from '@/api/hooks/workflows';
@@ -35,14 +32,14 @@ export function WorkflowResource({
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-8">
       {step.isLocked && !selectedResource && (
         <div className="text-center">
           <Spinner size={'md'} />
         </div>
       )}
       {step.isLocked && !!selectedResource && (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           <PciTile title={selectedResource.label} isChecked />
         </div>
       )}
@@ -53,16 +50,16 @@ export function WorkflowResource({
         />
       )}
       {!step.isLocked && (
-        <OsdsButton
-          className="w-fit mt-6"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...(selectedResource ? {} : { disabled: true })}
+        <Button
+          className="w-fit p-6"
+          size={BUTTON_SIZE.md}
+          color={BUTTON_COLOR.primary}
+          disabled={!selectedResource}
           onClick={onSubmit}
         >
           {t('common_stepper_next_button_label')}
-        </OsdsButton>
+        </Button>
       )}
-    </>
+    </div>
   );
 }
