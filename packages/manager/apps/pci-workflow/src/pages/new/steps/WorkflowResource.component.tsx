@@ -6,51 +6,58 @@ import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { Spinner } from '@ovhcloud/ods-react';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstance } from '@/api/hooks/instance/useAllInstances';
-import ResourceSelectorComponent from '@/components/new/ResourceSelector.component';
-import { useSafeParam } from '@/hooks/useSafeParam';
+import { TWorkflowSelectedResource, WorkflowType } from '@/api/hooks/workflows';
+import { InstanceSelectorComponent } from '@/components/new/InstanceSelectorComponent';
 import { StepState } from '@/pages/new/hooks/useStep';
+import { TWorkflowCreationForm } from '@/pages/new/hooks/useWorkflowStepper';
 
 import { PciTile } from '../components/PciTile.component';
 
 interface WorkflowResourceProps {
   step: StepState;
-  onUpdate: (instance: TInstance) => void;
-  instanceId: TInstance['id'] | null;
+  selectedWorkflowType: TWorkflowCreationForm['type'];
+  selectedResource: TWorkflowSelectedResource | null;
+  onUpdate: (newSelectedResource: TWorkflowSelectedResource) => void;
   onSubmit: () => void;
 }
 
 export function WorkflowResource({
-  onSubmit,
+  selectedWorkflowType,
   step,
+  selectedResource,
   onUpdate,
-  instanceId,
+  onSubmit,
 }: Readonly<WorkflowResourceProps>) {
   const { t } = useTranslation('pci-common');
-  const projectId = useSafeParam('projectId');
-  const { instance } = useInstance(projectId, instanceId);
+
+  const handleSelectedInstance = (instance: TInstance) => {
+    onUpdate({ ...instance.id, label: instance.label });
+  };
 
   return (
     <>
-      {step.isLocked && !instance && (
+      {step.isLocked && !selectedResource && (
         <div className="text-center">
           <Spinner size={'md'} />
         </div>
       )}
-      {step.isLocked && !!instance && (
+      {step.isLocked && !!selectedResource && (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-8">
-          <PciTile title={instance.label} isChecked />
+          <PciTile title={selectedResource.label} isChecked />
         </div>
       )}
-      {!step.isLocked && (
-        <ResourceSelectorComponent selectedInstance={instance} onSelectInstance={onUpdate} />
+      {!step.isLocked && selectedWorkflowType === WorkflowType.INSTANCE_BACKUP && (
+        <InstanceSelectorComponent
+          selectedInstance={selectedResource}
+          onSelectInstance={handleSelectedInstance}
+        />
       )}
       {!step.isLocked && (
         <OsdsButton
           className="w-fit mt-6"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          {...(instanceId ? {} : { disabled: true })}
+          {...(selectedResource ? {} : { disabled: true })}
           onClick={onSubmit}
         >
           {t('common_stepper_next_button_label')}

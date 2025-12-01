@@ -10,7 +10,7 @@ import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { paginateResults } from '@/helpers';
 
 import { TWorkflowExecution } from '../data/region-workflow';
-import { useWorkflows } from './workflows';
+import { useInstanceBackupWorkflows } from './workflows';
 
 export const defaultCompareFunction =
   (key: keyof TWorkflowExecution) => (a: TWorkflowExecution, b: TWorkflowExecution) => {
@@ -46,7 +46,7 @@ export const useWorkflowExecutions = (
   const { i18n } = useTranslation('pci-common');
   const userLocale = getDateFnsLocale(i18n.language);
 
-  const { data: workflows, isPending: isWorkflowPending } = useWorkflows(projectId);
+  const { data: workflows, isPending: isWorkflowPending } = useInstanceBackupWorkflows(projectId);
 
   return useMemo(() => {
     let mappedExecution: TWorkflowExecution[] = [];

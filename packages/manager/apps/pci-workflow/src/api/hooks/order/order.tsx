@@ -21,17 +21,24 @@ export type ContinentRegion = Pick<TProductAvailabilityRegion, 'enabled' | 'name
   price: number | null;
 };
 
-export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInstance['id']) => {
+export const useInstanceSnapshotPricing = (
+  enabled: boolean,
+  projectId: string,
+  instanceId: TInstance['id'],
+) => {
   const { me } = useMe();
   const { translateMicroRegion, translateContinent } = useRegionTranslation();
   const isDistantBackupAvailable = useIsDistantBackupAvailable();
 
   const [{ data: catalog }, { data: snapshotAvailabilities }] = useQueries({
     queries: [
-      getCatalogQuery(me.ovhSubsidiary),
-      getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
-        addonFamily: 'snapshot',
-      }),
+      { ...getCatalogQuery(me.ovhSubsidiary), enabled },
+      {
+        ...getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
+          addonFamily: 'snapshot',
+        }),
+        enabled,
+      },
     ],
   });
 

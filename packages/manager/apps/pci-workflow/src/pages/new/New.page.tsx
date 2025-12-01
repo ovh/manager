@@ -22,14 +22,14 @@ import {
 
 import { usePrefetchInstances } from '@/api/hooks/instance/useAllInstances';
 import { usePrefetchSnapshotPricing } from '@/api/hooks/order/order';
-import { useAddWorkflow } from '@/api/hooks/workflows';
+import { WorkflowType, useAddWorkflow } from '@/api/hooks/workflows';
 import { useSafeParam } from '@/hooks/useSafeParam';
 
 import { useWorkflowStepper } from './hooks/useWorkflowStepper';
 import { WorkflowName } from './steps/WorkflowName.component';
 import { WorkflowResource } from './steps/WorkflowResource.component';
 import { WorkflowScheduling, getCron } from './steps/WorkflowScheduling.component';
-import { WorkflowType } from './steps/WorkflowType.component';
+import { WorkflowTypeSelector } from './steps/WorkflowType.component';
 
 export default function NewPage() {
   const { t } = useTranslation('workflow-add');
@@ -110,7 +110,12 @@ export default function NewPage() {
           isDisabled: stepper.scheduling.step.isLocked,
         }}
       >
-        <WorkflowType step={stepper.type.step} onSubmit={stepper.type.submit} />
+        <WorkflowTypeSelector
+          step={stepper.type.step}
+          selectedWorkflowType={stepper.form.type}
+          onChange={stepper.type.update}
+          onSubmit={stepper.type.submit}
+        />
       </StepComponent>
       <div className="mt-8">
         <StepComponent
@@ -126,9 +131,10 @@ export default function NewPage() {
         >
           <WorkflowResource
             step={stepper.resource.step}
-            onSubmit={stepper.resource.submit}
-            instanceId={stepper.form.instanceId}
+            selectedWorkflowType={stepper.form.type}
+            selectedResource={stepper.form.resource}
             onUpdate={stepper.resource.update}
+            onSubmit={stepper.resource.submit}
           />
         </StepComponent>
       </div>
@@ -145,9 +151,10 @@ export default function NewPage() {
           title={t('pci_workflow_create_general-info_title')}
         >
           <WorkflowName
-            name={stepper.form.name}
-            instanceId={stepper.form.instanceId}
             step={stepper.naming.step}
+            selectedWorkflowType={stepper.form.type}
+            selectedResource={stepper.form.resource}
+            name={stepper.form.name}
             onNameChange={stepper.naming.update}
             onSubmit={stepper.naming.submit}
           />
@@ -163,13 +170,15 @@ export default function NewPage() {
           <>
             <Notifications />
             <WorkflowScheduling
-              instanceId={stepper.form.instanceId}
               step={stepper.scheduling.step}
+              selectedWorkflowType={stepper.form.type}
+              resource={stepper.form.resource}
               onSubmit={(scheduling, distantRegion) => {
                 stepper.scheduling.submit(scheduling, distantRegion);
                 addWorkflow({
+                  type: WorkflowType.INSTANCE_BACKUP,
                   cron: getCron(scheduling),
-                  instanceId: stepper.form.instanceId,
+                  resourceId: stepper.form.resource,
                   name: stepper.form.name,
                   rotation: scheduling.rotation,
                   maxExecutionCount: scheduling.maxExecutionCount,

@@ -1,12 +1,12 @@
 import { addMinutes, format, parseISO } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
 
-import { TRemoteWorkflow } from '@/api/data/region-workflow';
+import { TRemoteInstanceBackupWorkflow } from '@/api/data/region-workflow';
 import { TWorkflowLastExecution } from '@/api/hooks/workflows';
 
 export const addLastExecution =
   (userLocale: string) =>
-  <T extends TRemoteWorkflow>(w: T): T & TWorkflowLastExecution => {
+  <T extends TRemoteInstanceBackupWorkflow>(w: T): T & TWorkflowLastExecution => {
     if (!w.executions || !Array.isArray(w.executions) || w.executions.length === 0) {
       return {
         ...w,

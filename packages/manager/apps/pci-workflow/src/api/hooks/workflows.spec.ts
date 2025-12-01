@@ -6,7 +6,7 @@ import { ColumnSort } from '@ovh-ux/manager-react-components';
 import { deleteWorkflow } from '@/api/data/workflow';
 import { wrapper } from '@/wrapperRenders';
 
-import { TWorkflow, sortWorkflows, useDeleteWorkflow } from './workflows';
+import { TInstanceBackupWorkflow, sortWorkflows, useDeleteWorkflow } from './workflows';
 
 vi.mock('@/api/data/workflow');
 
@@ -67,68 +67,68 @@ describe('sortWorkflows', () => {
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
       sorting: undefined,
       expectedResults: [
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
     },
     {
       workflows: [
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
       sorting: { id: 'regions', desc: false } as ColumnSort,
       expectedResults: [
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '3', name: 'bb', region: 'GRA9' },
         { id: '2', name: 'aa', region: 'SBG5' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
     },
     {
       workflows: [
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
       sorting: { id: 'regions', desc: true } as ColumnSort,
       expectedResults: [
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
         { id: '1', name: 'zz', region: 'EU-WEST' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
     },
     {
       workflows: [
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
       sorting: { id: 'name', desc: false } as ColumnSort,
       expectedResults: [
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
         { id: '1', name: 'zz', region: 'EU-WEST' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
     },
     {
       workflows: [
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '2', name: 'aa', region: 'SBG5' },
         { id: '3', name: 'bb', region: 'GRA9' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
       sorting: { id: 'name', desc: true } as ColumnSort,
       expectedResults: [
         { id: '1', name: 'zz', region: 'EU-WEST' },
         { id: '3', name: 'bb', region: 'GRA9' },
         { id: '2', name: 'aa', region: 'SBG5' },
-      ] as TWorkflow[],
+      ] as TInstanceBackupWorkflow[],
     },
   ])('should sort workflows with $sorting', ({ workflows, sorting, expectedResults }) => {
-    const result = sortWorkflows(workflows, sorting, []);
+    const result = sortWorkflows(workflows)(sorting);
 
     expect(result).toEqual(expectedResults);
   });

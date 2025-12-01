@@ -3,6 +3,7 @@ import { pick } from 'lodash';
 
 import { TProductAvailability, TRegion } from '@ovh-ux/manager-pci-common';
 
+import { TWorkflowSelectedResource } from '@/api/hooks/workflows';
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 import { TEFlavor } from '@/types/flavor/entity';
 import { TEInstance } from '@/types/instance/entity';
@@ -119,9 +120,10 @@ export type TInstance = Readonly<{
 }>;
 
 export const buildInstanceId = (id: string, region: string) => ({ id, region }) as TInstance['id'];
-
-export const isSameInstanceId = (a: TInstance['id'], b: TInstance['id']): boolean =>
-  a.id === b.id && a.region === b.region;
+export const buildInstanceSelectedResource = (
+  id: string,
+  region: string,
+): TWorkflowSelectedResource => ({ id, region, label: id });
 
 export const mapInstance = (
   instances: TEInstance[],

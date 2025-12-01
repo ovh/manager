@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 
 import { addLastExecution } from '@/api/data/mapper/workflow.mapper';
-import { TRemoteWorkflow } from '@/api/data/region-workflow';
+import { TRemoteInstanceBackupWorkflow } from '@/api/data/region-workflow';
 import { TWorkflowLastExecution } from '@/api/hooks/workflows';
 
 describe('workflow mapper', () => {
@@ -9,17 +9,17 @@ describe('workflow mapper', () => {
     const workflowWithNoExecution = {
       id: '1',
       executions: null,
-    } as TRemoteWorkflow;
+    } as TRemoteInstanceBackupWorkflow;
 
     const workflowWithEmptyExecutions = {
       id: '2',
       executions: [],
-    } as TRemoteWorkflow;
+    } as TRemoteInstanceBackupWorkflow;
 
     const workflowWithOneExecution = {
       id: '3',
       executions: [{ id: 'e1', executedAt: '2025-11-26T22:50:35Z', state: 'SUCCESS' }],
-    } as TRemoteWorkflow;
+    } as TRemoteInstanceBackupWorkflow;
 
     const workflowWithMultipleExecutions = {
       id: '4',
@@ -29,7 +29,7 @@ describe('workflow mapper', () => {
         { id: 'e3', executedAt: '2025-11-25T22:50:35Z', state: 'SUCCESS' },
         { id: 'e4', executedAt: '2025-11-27T22:50:35Z', state: 'PAUSED' },
       ],
-    } as TRemoteWorkflow;
+    } as TRemoteInstanceBackupWorkflow;
 
     it.each`
       workflow                          | expectedAddedResult
@@ -43,7 +43,7 @@ describe('workflow mapper', () => {
         workflow,
         expectedAddedResult,
       }: {
-        workflow: TRemoteWorkflow;
+        workflow: TRemoteInstanceBackupWorkflow;
         expectedAddedResult: TWorkflowLastExecution;
       }) => {
         const result = addLastExecution('fr')(workflow);

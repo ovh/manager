@@ -6,11 +6,7 @@ import { getProductAvailabilityQuery, getProjectRegions } from '@ovh-ux/manager-
 
 import { getFlavor } from '@/api/data/flavor';
 import { getInstances } from '@/api/data/instance';
-import {
-  TInstance,
-  isSameInstanceId,
-  mapInstance,
-} from '@/api/hooks/instance/selector/instances.selector';
+import { TInstance, mapInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { useRegionTranslation } from '@/api/hooks/region';
 import { useMe } from '@/api/hooks/user';
 import { TEInstance } from '@/types/instance/entity';
@@ -101,16 +97,4 @@ export const usePrefetchInstances = (projectId: string) => {
   usePrefetchQuery(instancesQueryOption);
   usePrefetchQuery(productAvailabilityQueryOptions);
   usePrefetchQuery(projectRegionsQueryOptions);
-};
-
-export const useInstance = (projectId: string, instanceId: TInstance['id'] | null) => {
-  const { instances } = useAllInstances(projectId);
-
-  return {
-    instance: useMemo(
-      () =>
-        instanceId ? (instances.find((i) => isSameInstanceId(i.id, instanceId)) ?? null) : null,
-      [instances, instanceId],
-    ),
-  };
 };

@@ -6,6 +6,7 @@ import { Button } from '@ovhcloud/ods-react';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
+import { TWorkflowSelectedResource, WorkflowType } from '@/api/hooks/workflows';
 import { ButtonLink } from '@/components/button-link/ButtonLink.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
 import { CronInput } from '@/pages/new/components/CronInput.component';
@@ -13,15 +14,6 @@ import { DistantBackup } from '@/pages/new/components/DistantBackup.component';
 import { PciTile } from '@/pages/new/components/PciTile.component';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { TWorkflowCreationForm, TWorkflowScheduling } from '@/pages/new/hooks/useWorkflowStepper';
-
-interface SchedulingProps {
-  step: StepState;
-  onSubmit: (
-    scheduling: TWorkflowScheduling,
-    distantRegion: TWorkflowCreationForm['distantRegion'],
-  ) => void;
-  instanceId: TInstance['id'];
-}
 
 export const DEFAULT_HOURS = [0, 1, 2, 3, 4, 5, 22, 23];
 
@@ -57,10 +49,33 @@ const CUSTOM: TWorkflowScheduling = {
   maxExecutionCount: 0,
 };
 
-export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<SchedulingProps>) {
+interface SchedulingProps {
+  step: StepState;
+  selectedWorkflowType: TWorkflowCreationForm['type'];
+  resource: TWorkflowSelectedResource;
+  onSubmit: (
+    scheduling: TWorkflowScheduling,
+    distantRegion: TWorkflowCreationForm['distantRegion'],
+  ) => void;
+}
+
+export function WorkflowScheduling({
+  step,
+  selectedWorkflowType,
+  resource,
+  onSubmit,
+}: Readonly<SchedulingProps>) {
   const { t } = useTranslation(['workflow-add', 'pci-common', 'global']);
   const projectId = useSafeParam('projectId');
-  const { distantContinents } = useInstanceSnapshotPricing(projectId, instanceId);
+
+  const { distantContinents } = useInstanceSnapshotPricing(
+    selectedWorkflowType === WorkflowType.INSTANCE_BACKUP,
+    projectId,
+    {
+      id: resource.id,
+      region: resource.region,
+    } as TInstance['id'],
+  );
 
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
   const [distantRegion, setDistantRegion] = useState<string | null>(null);

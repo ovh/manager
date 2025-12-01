@@ -9,8 +9,11 @@ import { TProject } from '@ovh-ux/manager-pci-common';
 import { ResponseAPIError } from '@ovh-ux/manager-pci-public-ip-app/src/interface';
 import * as managerComponentsModule from '@ovh-ux/manager-react-components';
 
-import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
-import { DEFAULT_DATA } from '@/pages/list/data.mock';
+import { DEFAULT_DATA } from '@/__tests__/data.mock';
+import {
+  TInstanceBackupWorkflow,
+  usePaginatedInstanceBackupWorkflows,
+} from '@/api/hooks/workflows';
 import { wrapper } from '@/wrapperRenders';
 
 import ListingPage from './List.page';
@@ -28,7 +31,9 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 
 vi.mock('@/api/hooks/workflows');
 
-vi.mocked(usePaginatedWorkflows).mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows);
+vi.mocked(usePaginatedInstanceBackupWorkflows).mockReturnValue(
+  DEFAULT_DATA.emptyPaginatedWorkflows,
+);
 
 describe('ListPage', () => {
   vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
@@ -43,7 +48,9 @@ describe('ListPage', () => {
 
   describe('RedirectionGuard', () => {
     beforeAll(() => {
-      vi.mocked(usePaginatedWorkflows).mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows);
+      vi.mocked(usePaginatedInstanceBackupWorkflows).mockReturnValue(
+        DEFAULT_DATA.emptyPaginatedWorkflows,
+      );
       vi.spyOn(managerComponentsModule, 'RedirectionGuard').mockImplementation((props) => (
         <div data-testid="guard">
           {JSON.stringify({
@@ -89,8 +96,10 @@ describe('ListPage', () => {
         <div data-testid="breadcrumb">{JSON.stringify(props)}</div>
       ));
 
-      vi.mocked(usePaginatedWorkflows).mockReturnValue(
-        DEFAULT_DATA.fullPaginationWorkflows as ReturnType<typeof usePaginatedWorkflows>,
+      vi.mocked(usePaginatedInstanceBackupWorkflows).mockReturnValue(
+        DEFAULT_DATA.fullPaginationWorkflows as ReturnType<
+          typeof usePaginatedInstanceBackupWorkflows
+        >,
       );
     });
 
@@ -146,7 +155,7 @@ describe('ListPage', () => {
 
     describe('Data display', () => {
       it('should show spinner if data is not fetched yet', async () => {
-        vi.mocked(usePaginatedWorkflows).mockReturnValue({
+        vi.mocked(usePaginatedInstanceBackupWorkflows).mockReturnValue({
           isPending: true,
           data: {
             rows: undefined,
@@ -163,10 +172,10 @@ describe('ListPage', () => {
       });
 
       it('should show data if data is fetched', async () => {
-        vi.mocked(usePaginatedWorkflows).mockReturnValue({
+        vi.mocked(usePaginatedInstanceBackupWorkflows).mockReturnValue({
           isPending: false,
           data: {
-            rows: [DEFAULT_DATA.workflow as TWorkflow],
+            rows: [DEFAULT_DATA.workflow as TInstanceBackupWorkflow],
             totalRows: 1,
             pageCount: 1,
           },
