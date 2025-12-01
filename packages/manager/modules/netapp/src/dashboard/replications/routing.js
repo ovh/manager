@@ -58,6 +58,16 @@ export default /* @ngInject */ ($stateProvider) => {
                 }));
               }),
           ),
+      gotoApprouveReplication: /* @ngInject */ ($state) => ({
+        destinationServiceID,
+        replicationID,
+        sourceShareID,
+      }) =>
+        $state.go('netapp.dashboard.replications.approuve', {
+          destinationServiceID,
+          replicationID,
+          sourceShareID,
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_replications_breadcrumb'),
     },
