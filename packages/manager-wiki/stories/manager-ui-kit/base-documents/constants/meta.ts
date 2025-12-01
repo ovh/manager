@@ -14,7 +14,6 @@ enum SECTION {
 
 enum HOME_TITLE {
   accessibilityGuide = `${SECTION.home}/${SECTION.guides}/Accessibility`,
-  designTokens = `${SECTION.home}/${SECTION.design}/Design Tokens`,
   getStarted = `${SECTION.home}/Get Started`,
   handlingFormGuide = `${SECTION.home}/${SECTION.guides}/Handling Form`,
   i18nGuide = `${SECTION.home}/${SECTION.guides}/Internationalization`,
@@ -24,7 +23,6 @@ enum HOME_TITLE {
   migration15to16 = `${SECTION.home}/${SECTION.whatsNew}/${SECTION.migrationGuide}/15.x to 16.x`,
   migration16to17 = `${SECTION.home}/${SECTION.whatsNew}/${SECTION.migrationGuide}/16.x to 17.x`,
   migration17to18 = `${SECTION.home}/${SECTION.whatsNew}/${SECTION.migrationGuide}/17.x to 18.x`,
-  sandboxTool = `${SECTION.home}/${SECTION.tools}/Code Sandbox`,
   styleCustomization = `${SECTION.home}/${SECTION.design}/Style Customization`,
   welcome = `${SECTION.home}/Welcome`,
 }
