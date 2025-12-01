@@ -21,12 +21,16 @@ import {
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { TImageOption } from '../../view-models/imagesViewModel';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 type TDistributionvariants = {
   variants: TImageOption[];
 };
 
 const Distributionvariants = ({ variants }: TDistributionvariants) => {
+  const { t } = useTranslation('creation');
+  const { getTextPrice } = useCatalogPrice(4);
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const [selectedImageVariantId, distributionImageType] = useWatch({
     control,
@@ -124,7 +128,10 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
                           {label}
                           {windowsHourlyPrice && (
                             <Text className="text-sm font-medium text-[--ods-color-success-500]">
-                              {windowsHourlyPrice}
+                              {t(
+                                'creation:pci_instance_creation_windows_image_hourly_price',
+                                { price: getTextPrice(windowsHourlyPrice) },
+                              )}
                             </Text>
                           )}
                         </span>

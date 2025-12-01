@@ -12,7 +12,6 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import { Reader } from '@/types/utils.type';
 import { getRegionNameKey } from './localizationsViewModel';
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
-import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 import {
   getRegionalizedFlavorId,
   getRegionalizedFlavorOsTypePriceId,
@@ -319,16 +318,17 @@ type TFlavorMicroRegionsData = {
 const mapToAvailableRegionOption = (
   macroRegion: TMacroRegion,
   regionalizedFlavor: TRegionalizedFlavor,
-  messageProviderPort: MessageProviderPort,
 ) => {
   const regionName = getRegionNameKey(
     macroRegion.deploymentMode,
     macroRegion.name,
   );
 
-  const city = messageProviderPort.getMessage(
-    `regions:manager_components_region_${regionName}`,
-  );
+  const label =
+    macroRegion.microRegions.length > 1
+      ? regionalizedFlavor.regionId
+      : `regions:manager_components_region_${regionName}`;
+
   return {
     customRendererData: {
       countryCode: macroRegion.country,
@@ -336,8 +336,7 @@ const mapToAvailableRegionOption = (
       macroRegionId: macroRegion.name,
       regionalizedFlavorId: regionalizedFlavor.id,
     },
-    label:
-      macroRegion.microRegions.length > 1 ? regionalizedFlavor.regionId : city,
+    label,
     value: regionalizedFlavor.regionId,
   };
 };
@@ -349,7 +348,6 @@ export type TSelectFlavorMicroRegions = (
 const mapAvailableRegions = (
   regionalizedFlavorsWithStock: TRegionalizedFlavor[],
   data: TInstancesCatalog,
-  messageProviderPort: MessageProviderPort,
 ) => {
   const optionsGroupedByContinent = new Map<string, TFlavorMicroRegionsData>();
 
@@ -365,11 +363,7 @@ const mapAvailableRegions = (
     const continentId = macroRegion.continentIds[0];
     if (!continentId) return;
 
-    const option = mapToAvailableRegionOption(
-      macroRegion,
-      regionalizedFlavor,
-      messageProviderPort,
-    );
+    const option = mapToAvailableRegionOption(macroRegion, regionalizedFlavor);
 
     if (!optionsGroupedByContinent.has(continentId)) {
       optionsGroupedByContinent.set(continentId, {
@@ -390,7 +384,7 @@ export const selectAvailableFlavorMicroRegions: Reader<
 > = (deps) => {
   return ({ projectId, unavailableFlavor }) => {
     if (!unavailableFlavor) return [];
-    const { instancesCatalogPort, messageProviderPort } = deps;
+    const { instancesCatalogPort } = deps;
 
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
     if (!data) return [];
@@ -412,7 +406,6 @@ export const selectAvailableFlavorMicroRegions: Reader<
     const availableRegions = mapAvailableRegions(
       regionalizedFlavorsWithStock,
       data,
-      messageProviderPort,
     );
 
     return availableRegions;

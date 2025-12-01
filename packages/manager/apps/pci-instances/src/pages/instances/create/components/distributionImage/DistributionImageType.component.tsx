@@ -27,7 +27,7 @@ import { selectImagesTypes } from '../../view-models/imagesViewModel';
 
 const DistributionImageType = () => {
   const projectId = useProjectId();
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation(['common', 'creation']);
   const { trackClick } = useOvhTracking();
   const { control } = useFormContext<TInstanceCreationForm>();
   const selectedImageType = useWatch({
@@ -35,9 +35,14 @@ const DistributionImageType = () => {
     name: 'distributionImageType',
   });
 
-  const imageTypes = useMemo(() => selectImagesTypes(deps)(projectId), [
-    projectId,
-  ]);
+  const imageTypes = useMemo(
+    () =>
+      selectImagesTypes(deps)(projectId).map((typeOption) => ({
+        label: t(`common:${typeOption.labelKey}`),
+        value: typeOption.value,
+      })),
+    [projectId, t],
+  );
 
   const handleImageTypeChange = (
     field: ControllerRenderProps<

@@ -6,7 +6,7 @@ import { TFlavorPrices } from '@/domain/entities/instancesCatalog';
 import { TDistributionImageVersion } from '../CreateInstance.schema';
 
 type TSelectLocalizationDetails = {
-  city: string;
+  cityKey: string;
   datacenterDetails: string;
 };
 
@@ -23,7 +23,7 @@ export const selectLocalisationDetails: Reader<
 > = (deps) => (projectId, macroRegionId, microRegionId, availabilityZone) => {
   if (!macroRegionId || !microRegionId) return null;
 
-  const { instancesCatalogPort, messageProviderPort } = deps;
+  const { instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
   const macroRegion = data?.entities.macroRegions.byId.get(macroRegionId);
@@ -35,13 +35,11 @@ export const selectLocalisationDetails: Reader<
     macroRegion.name,
   );
 
-  const city = messageProviderPort.getMessage(
-    `regions:manager_components_region_${regionName}`,
-  );
+  const cityKey = `manager_components_region_${regionName}`;
 
   const datacenterDetails = availabilityZone ? availabilityZone : microRegionId;
 
-  return { city, datacenterDetails };
+  return { cityKey, datacenterDetails };
 };
 
 type TFlavorCartPrice = {

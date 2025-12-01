@@ -36,7 +36,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   withUnavailable,
 }) => {
   const projectId = useProjectId();
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation(['creation']);
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const [flavorCategory, flavorType, microRegion, flavorId] = useWatch({
     control,
@@ -176,7 +176,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
             <FlavorsTable
               columns={columns}
               rows={rows}
-              caption={t('pci_instance_creation_select_flavor_title')}
+              caption={t('creation:pci_instance_creation_select_flavor_title')}
               selectable
               selectedRowId={field.value}
               onRowClick={(flavorId) => handleSelect(field, flavorId)}
@@ -193,7 +193,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
         <Text preset="paragraph">
           <Trans
             t={t}
-            i18nKey="pci_instance_creation_select_new_region_for_flavor"
+            i18nKey="creation:pci_instance_creation_select_new_region_for_flavor"
             values={{ flavor: unavailableFlavor }}
             tOptions={{ interpolation: { escapeValue: true } }}
           />

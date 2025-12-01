@@ -8,27 +8,25 @@ import {
   TRegionalizedFlavorOsType,
   TRegionalizedImage,
 } from '@/domain/entities/instancesCatalog';
-import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 import { Reader } from '@/types/utils.type';
 import { SelectOptionItem } from '@ovhcloud/ods-react';
 
-export type TOption = { label: string; value: string };
+export type TOption = { labelKey: string; value: string };
 
 type TSelectImageTypesData = (projectId: string) => TOption[];
 
 type TSelectImageTypes = Reader<Deps, TSelectImageTypesData>;
 
 export const selectImagesTypes: TSelectImageTypes = (deps) => (projectId) => {
-  const { instancesCatalogPort, messageProviderPort } = deps;
+  const { instancesCatalogPort } = deps;
   const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
     ?.entities;
 
   if (!entities) return [];
 
   return entities.imageTypes.allIds.map((type) => ({
-    label: messageProviderPort.getMessage(
-      `pci_instances_common_${type}_image_type`,
-    ),
+    labelKey: `pci_instances_common_${type}_image_type`,
+
     value: type,
   }));
 };
@@ -38,7 +36,7 @@ export type TImageOption = {
   value: string;
   available: boolean;
   windowsId?: string;
-  windowsHourlyPrice?: string;
+  windowsHourlyPrice?: number;
 };
 
 export type TCustomData = { available: boolean };
@@ -208,7 +206,6 @@ const createWindowsImageVariant = (
     entities: TInstancesCatalog['entities'];
     imagesVersionIds: string[];
     microRegion: string;
-    messageProviderPort: MessageProviderPort;
   },
 ) => {
   const {
@@ -217,7 +214,6 @@ const createWindowsImageVariant = (
     entities,
     imagesVersionIds,
     microRegion,
-    messageProviderPort,
   } = args;
   const regionalizedFlavorWindowsId = `${regionalizedFlavorId}_${image.variant}`;
   const hasWindowsStock =
@@ -235,18 +231,12 @@ const createWindowsImageVariant = (
 
     if (!windowsVersionId || !windowsHourlyPrice) return acc;
 
-    // TODO: will be changed to use useTextPrice utils, and remove messageProviderPort
-    const formattedPrice = messageProviderPort.getMessage(
-      `creation:pci_instance_creation_windows_image_hourly_price`,
-      { price: windowsHourlyPrice.value.toString().replace('.', ',') },
-    );
-
     acc.set(imageId, {
       label: imageId,
       value: imageId,
       windowsId: windowsVersionId,
       available: hasWindowsStock,
-      windowsHourlyPrice: formattedPrice,
+      windowsHourlyPrice: windowsHourlyPrice.priceInUcents,
     });
   });
   return acc;
@@ -258,7 +248,7 @@ export const selectImages: TselectImages = (deps) => (
   microRegion,
   regionalizedFlavorId,
 ) => {
-  const { instancesCatalogPort, messageProviderPort } = deps;
+  const { instancesCatalogPort } = deps;
   const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
     ?.entities;
 
@@ -300,7 +290,6 @@ export const selectImages: TselectImages = (deps) => (
           entities,
           imagesVersionIds,
           microRegion,
-          messageProviderPort,
         });
       } else {
         acc.set(image.variant, {

@@ -11,19 +11,26 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { deps } from '@/deps/deps';
 import { selectContinent } from '../../view-models/continentsViewModel';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useProjectId } from '@/hooks/project/useProjectId';
 
 export const ContinentSelection = () => {
   const projectId = useProjectId();
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation(['common', 'creation']);
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const [deploymentModes, continent] = useWatch({
     control,
     name: ['deploymentModes', 'continent'],
   });
 
-  const continentOptions = selectContinent(deps)(projectId, deploymentModes);
+  const continentOptions = useMemo(
+    () =>
+      selectContinent(deps)(projectId, deploymentModes).map((option) => ({
+        label: t(`common:${option.labelKey}`),
+        value: option.value,
+      })),
+    [deploymentModes, projectId, t],
+  );
 
   useEffect(() => {
     const availablePreviousSelectedContinent = continentOptions.find(
@@ -46,11 +53,11 @@ export const ContinentSelection = () => {
         return (
           <FormField className="w-[32%]">
             <FormFieldLabel>
-              {t('pci_instance_creation_select_continent_label')}
+              {t('creation:pci_instance_creation_select_continent_label')}
             </FormFieldLabel>
             <Select
               items={continentOptions}
-              value={field.value ? [...field.value] : []}
+              value={field.value ? [field.value] : []}
               onValueChange={handleContinentChange}
             >
               <SelectControl />

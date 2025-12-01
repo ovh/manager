@@ -19,7 +19,12 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 export const CreationCart = () => {
-  const { t } = useTranslation(['common', 'creation', NAMESPACES.REGION]);
+  const { t } = useTranslation([
+    'common',
+    'regions',
+    'creation',
+    NAMESPACES.REGION,
+  ]);
   const { getTextPrice } = useCatalogPrice(4);
   const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
@@ -48,17 +53,21 @@ export const CreationCart = () => {
     ],
   });
 
-  const localizationDetails = selectLocalisationDetails(deps)(
-    projectId,
-    macroRegion,
-    microRegion,
-    availabilityZone,
+  const localizationDetails = useMemo(
+    () =>
+      selectLocalisationDetails(deps)(
+        projectId,
+        macroRegion,
+        microRegion,
+        availabilityZone,
+      ),
+    [availabilityZone, macroRegion, microRegion, projectId],
   );
 
-  const selectedFlavorDetails = selectFlavorDetails(deps)(
-    projectId,
-    flavorId,
-    distributionImageVersion,
+  const selectedFlavorDetails = useMemo(
+    () =>
+      selectFlavorDetails(deps)(projectId, flavorId, distributionImageVersion),
+    [distributionImageVersion, flavorId, projectId],
   );
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
@@ -68,7 +77,9 @@ export const CreationCart = () => {
             name: t(`${NAMESPACES.REGION}:localisation`),
             description: (
               <Text preset="heading-6" className="text-[--ods-color-heading]">
-                {`${localizationDetails.city} (${localizationDetails.datacenterDetails})`}
+                {`${t(`regions:${localizationDetails.cityKey}`)} (${
+                  localizationDetails.datacenterDetails
+                })`}
               </Text>
             ),
           },
