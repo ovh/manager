@@ -11,18 +11,20 @@ export const useCreateTenants = (
 ) => {
   const queryClient = useQueryClient();
 
+  const { onSuccess, onError, ...restOptions } = mutationOptions ?? {};
+
   return useMutation({
+    ...restOptions,
     mutationFn: (payload: CreateTenantsPayload) => createTenants(payload),
     onSuccess: (tenant, variables, context) => {
       // Invalidate and refetch tenants list for the specific resource
       void queryClient.invalidateQueries({
         queryKey: getTenantsQueryKey(variables.resourceName),
       });
-      mutationOptions?.onSuccess?.(tenant, variables, context);
+      onSuccess?.(tenant, variables, context);
     },
     onError: (error, variables, context) => {
-      mutationOptions?.onError?.(error, variables, context);
+      onError?.(error, variables, context);
     },
-    ...mutationOptions,
   });
 };
