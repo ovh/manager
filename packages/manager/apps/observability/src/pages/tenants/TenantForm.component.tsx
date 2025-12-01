@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Divider } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button } from '@ovh-ux/muk';
+import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button, useNotifications } from '@ovh-ux/muk';
 
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
 import RegionSelector from '@/components/infrastructures/region-selector/RegionSelector.component';
@@ -20,12 +20,13 @@ import { TenantFormLayout } from '@/pages/tenants/TenantForm.layout';
 import { urls } from '@/routes/Routes.constants';
 import type { TenantFormData } from '@/types/tenants.type';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
-import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
 export const TenantForm = () => {
-  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS, NAMESPACES.ERROR]);
   const { selectedService } = useObservabilityServiceContext();
   const navigate = useNavigate();
+  const { addError, addSuccess } = useNotifications();
+
   const { form } = useTenantsFormSchema();
 
   const goBack = () => {
@@ -33,15 +34,13 @@ export const TenantForm = () => {
   };
 
   const { mutate: createTenant, isPending } = useCreateTenants({
-    onSuccess: (tenant) => {
-      // TODO: Add notification
-      console.info('Tenant created:', tenant);
-      // Navigate back to tenants list on successful creation
+    onSuccess: () => {
+      addSuccess(t('tenants:creation.success'));
       goBack();
     },
     onError: (error) => {
-      // TODO: Handle error (show notification, etc.)
-      console.error('Failed to create tenant:', error);
+      const { message } = error;
+      addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
     },
   });
 
@@ -57,11 +56,9 @@ export const TenantForm = () => {
           id: data.infrastructureId,
         },
         limits: {
-          numberOfSeries: {
-            maximum: data.maxSeries ?? INGESTION_BOUNDS.DEFAULT,
-          },
-          retention: {
-            id: data.retentionId,
+          mimir: {
+            compactor_blocks_retention_period: `${data.retentionDuration}${data.retentionUnit}`,
+            max_global_series_per_user: data.maxSeries,
           },
         },
       },
@@ -70,7 +67,6 @@ export const TenantForm = () => {
     createTenant(formData);
   };
 
-  // FIXME: fix warning "React does not recognize the `isIamTrigger` prop on a DOM element."
   return (
     <TenantFormLayout>
       <FormProvider {...form}>

@@ -106,7 +106,7 @@ const TestWrapper: React.FC<TestWrapperProps> = ({
       title: '',
       description: '',
       infrastructureId: '',
-      retentionId: '',
+      retentionDuration: '',
       maxSeries: null,
       ...defaultValues,
     },

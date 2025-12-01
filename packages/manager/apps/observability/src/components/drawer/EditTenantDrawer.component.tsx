@@ -8,23 +8,23 @@ import { useTranslation } from 'react-i18next';
 import { Divider, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Drawer } from '@ovh-ux/muk';
+import { Drawer, useNotifications } from '@ovh-ux/muk';
 
 import { useEditTenant } from '@/data/hooks/tenants/useEditTenant.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
 import { TenantFormLayout } from '@/pages/tenants/TenantForm.layout';
 import { TenantFormData } from '@/types/tenants.type';
-import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
 import { InformationForm } from '../form/information-form/InformationForm.component';
 import { TenantConfigurationForm } from '../metrics/tenant-configuration-form/TenantConfigurationForm.component';
 import { EditTenantDrawerProps } from './EditTenant.props';
 
 const EditTenantDrawer = ({ tenantId, resourceName }: EditTenantDrawerProps) => {
-  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS, NAMESPACES.ERROR]);
 
   const navigate = useNavigate();
+  const { addError, addSuccess } = useNotifications();
 
   const { data: tenant, isLoading: isTenantLoading } = useTenant(resourceName, tenantId);
 
@@ -40,11 +40,9 @@ const EditTenantDrawer = ({ tenantId, resourceName }: EditTenantDrawerProps) => 
       title: tenantState?.title ?? '',
       description: tenantState?.description ?? '',
       infrastructureId: tenantState?.infrastructure?.id ?? '',
-      retentionId: limits?.retention?.id ?? '',
-      maxSeries:
-        limits?.numberOfSeries?.maximum ??
-        limits?.numberOfSeries?.current ??
-        INGESTION_BOUNDS.DEFAULT,
+      retentionDuration: limits?.mimir?.compactor_blocks_retention_period ?? '',
+      retentionUnit: '',
+      maxSeries: limits?.mimir?.max_global_series_per_user ?? null,
     };
   }, [tenant]);
 
@@ -57,14 +55,13 @@ const EditTenantDrawer = ({ tenantId, resourceName }: EditTenantDrawerProps) => 
   }, [tenant, tenant?.id, initialValues, form]);
 
   const { mutate: editTenant, isPending } = useEditTenant({
-    onSuccess: (updatedTenant) => {
-      // TODO: Add notification
-      console.info('Tenant updated:', updatedTenant);
+    onSuccess: () => {
+      addSuccess(t('tenants:edition.success'));
       handleDismiss();
     },
     onError: (error) => {
-      // TODO: Handle error (show notification, etc.)
-      console.error('Failed to update tenant:', error);
+      const { message } = error;
+      addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
     },
   });
 
@@ -75,15 +72,10 @@ const EditTenantDrawer = ({ tenantId, resourceName }: EditTenantDrawerProps) => 
       targetSpec: {
         title: data.title,
         description: data.description,
-        infrastructure: {
-          id: data.infrastructureId,
-        },
         limits: {
-          numberOfSeries: {
-            maximum: data.maxSeries ?? INGESTION_BOUNDS.DEFAULT,
-          },
-          retention: {
-            id: data.retentionId,
+          mimir: {
+            compactor_blocks_retention_period: `${data.retentionDuration}${data.retentionUnit}`,
+            max_global_series_per_user: data.maxSeries,
           },
         },
       },
