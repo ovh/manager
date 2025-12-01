@@ -5,7 +5,6 @@ import { act, renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
-import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
 // Mock react-i18next
 const mockT = vi.fn((key: string, options?: { value?: number }) => {
@@ -72,8 +71,9 @@ describe('useTenantsFormSchema', () => {
       title: '',
       description: '',
       infrastructureId: '',
-      retentionId: '',
-      maxSeries: INGESTION_BOUNDS.DEFAULT,
+      retentionDuration: '',
+      retentionUnit: '',
+      maxSeries: null,
     });
   });
 
@@ -97,14 +97,6 @@ describe('useTenantsFormSchema', () => {
     });
 
     expect(mockT).toHaveBeenCalledWith('@ovh-ux/manager-common-translations/form:required_field');
-    expect(mockT).toHaveBeenCalledWith(
-      '@ovh-ux/manager-common-translations/form:error_min_inclusive',
-      { value: INGESTION_BOUNDS.MIN },
-    );
-    expect(mockT).toHaveBeenCalledWith(
-      '@ovh-ux/manager-common-translations/form:error_max_inclusive',
-      { value: INGESTION_BOUNDS.MAX },
-    );
   });
 
   describe('form operations', () => {
@@ -119,7 +111,8 @@ describe('useTenantsFormSchema', () => {
         form.setValue('title', 'Test Title');
         form.setValue('description', 'Test description');
         form.setValue('infrastructureId', 'infra-123');
-        form.setValue('retentionId', 'retention-123');
+        form.setValue('retentionDuration', '30');
+        form.setValue('retentionUnit', 'd');
         form.setValue('maxSeries', 500);
       });
 
@@ -128,7 +121,8 @@ describe('useTenantsFormSchema', () => {
         title: 'Test Title',
         description: 'Test description',
         infrastructureId: 'infra-123',
-        retentionId: 'retention-123',
+        retentionDuration: '30',
+        retentionUnit: 'd',
         maxSeries: 500,
       });
     });
@@ -173,14 +167,15 @@ describe('useTenantsFormSchema', () => {
         title: '',
         description: '',
         infrastructureId: '',
-        retentionId: '',
-        maxSeries: INGESTION_BOUNDS.DEFAULT,
+        retentionDuration: '',
+        retentionUnit: '',
+        maxSeries: null,
       });
     });
   });
 
-  describe('schema validation bounds', () => {
-    it('should create schema with correct ingestion bounds', () => {
+  describe('schema validation', () => {
+    it('should create schema with correct structure', () => {
       const { result } = renderHook(() => useTenantsFormSchema(), {
         wrapper: createWrapper(),
       });
@@ -193,24 +188,9 @@ describe('useTenantsFormSchema', () => {
       expect(schema.shape.title).toBeDefined();
       expect(schema.shape.description).toBeDefined();
       expect(schema.shape.infrastructureId).toBeDefined();
-      expect(schema.shape.retentionId).toBeDefined();
+      expect(schema.shape.retentionDuration).toBeDefined();
+      expect(schema.shape.retentionUnit).toBeDefined();
       expect(schema.shape.maxSeries).toBeDefined();
-    });
-
-    it('should use correct constants for maxSeries validation', () => {
-      renderHook(() => useTenantsFormSchema(), {
-        wrapper: createWrapper(),
-      });
-
-      // Verify that the translation function was called with the correct bounds
-      expect(mockT).toHaveBeenCalledWith(
-        '@ovh-ux/manager-common-translations/form:error_min_inclusive',
-        { value: INGESTION_BOUNDS.MIN },
-      );
-      expect(mockT).toHaveBeenCalledWith(
-        '@ovh-ux/manager-common-translations/form:error_max_inclusive',
-        { value: INGESTION_BOUNDS.MAX },
-      );
     });
   });
 
@@ -269,11 +249,11 @@ describe('useTenantsFormSchema', () => {
       // Set multiple values and verify they persist
       act(() => {
         form.setValue('title', 'Consistent Title');
-        form.setValue('maxSeries', INGESTION_BOUNDS.MIN);
+        form.setValue('maxSeries', 100000);
       });
 
       expect(form.getValues('title')).toBe('Consistent Title');
-      expect(form.getValues('maxSeries')).toBe(INGESTION_BOUNDS.MIN);
+      expect(form.getValues('maxSeries')).toBe(100000);
     });
   });
 
@@ -294,8 +274,9 @@ describe('useTenantsFormSchema', () => {
       expect(typeof values.title).toBe('string');
       expect(typeof values.description).toBe('string');
       expect(typeof values.infrastructureId).toBe('string');
-      expect(typeof values.retentionId).toBe('string');
-      expect(typeof values.maxSeries).toBe('number');
+      expect(typeof values.retentionDuration).toBe('string');
+      expect(typeof values.retentionUnit).toBe('string');
+      expect(values.maxSeries).toBeNull();
     });
   });
 });
