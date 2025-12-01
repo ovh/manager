@@ -1,0 +1,10 @@
+{
+  "unblock_anti_hack_title": "Anti-hack",
+  "unblock_anti_hack_ip_action": "Unblock the IP",
+  "unblock_anti_hack_ip_success": "The {{ipBlocked}} IP address has been successfully unblocked",
+  "unblock_anti_hack_ip_error": "An error has occurred unblocking {{ipBlocked}}: {{error}}",
+  "anti_hack_status": "Status",
+  "anti_hack_blocked_since": "Blocked since",
+  "anti_hack_time": "Time remaining",
+  "anti_hack_no_log_available": "Log unavailable"
+}
