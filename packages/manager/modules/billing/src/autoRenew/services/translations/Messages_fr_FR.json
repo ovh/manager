@@ -8,7 +8,8 @@
   "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Résiliation demandée",
   "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Résiliation demandée",
   "billing_autorenew_service_modal_debt_warning_title": "Information importante",
-  "billing_autorenew_service_modal_debt_warning_subTitle-no-reason": "Nous sommes désolés mais cette action n’est pas disponible.",
-  "billing_autorenew_service_modal_debt_warning_subTitle-with-reason": "Nous sommes désolés mais cette action n’est pas disponible car ",
-  "billing_autorenew_service_modal_debt_warning_userHasBillingRights_reason": "Vous n'êtes pas le contact de facturation <b>{{contactBilling}}</b>"
+  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Nous sommes désolés mais cette action n’est pas disponible.",
+  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Nous sommes désolés mais cette action n’est pas disponible car ",
+  "reason_billing_right": "Vous n'êtes pas le contact de facturation <b>{{contactBilling}}</b>",
+  "reason_admin_right": "Vous n'êtes pas le contact administrateur <b>{{contactAdmin}}</b>"
 }

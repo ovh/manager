@@ -139,10 +139,8 @@
     <div data-ng-if="::$ctrl.canDisplayResiliationMenuEntries">
         <oui-action-menu-item
             ng-if="::$ctrl.canDisplayResiliationMenuEntry"
-            href="{{:: $ctrl.isCustomResiliationHandled === true ? undefined : $ctrl.resiliateLink }}"
             on-click="$ctrl.handleClickResiliate()"
             data-navi-id="go-to-resiliate"
-            top
         >
             <span
                 data-ng-if="::!$ctrl.service.hasEngagement()"
