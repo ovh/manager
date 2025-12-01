@@ -3504,11 +3504,6 @@
   dependencies:
     "@ovhcloud/ods-themes" "^18.4.1"
 
-"@datatr-ux/ovhcloud-types@1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.11.tgz#bac1d9b460cc969a191967cd2b1d0858de713d78"
-  integrity sha512-NSqgUoIXKHxVRY5fnp5hV2kNQJxbX9/Om0naInG1tnztBvdkRuuhfzga9+ReYVqkktaSg/kb3CGZzyWi2tpvCg==
-
 "@datatr-ux/ovhcloud-types@1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.8.tgz#0e6a8359cc8a52389f65c1aebfae57261ec8215a"
