@@ -1,3 +1,4 @@
+import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   isStatusTerminated,
@@ -12,6 +13,8 @@ export default function MessageSuspendedService({
   status: VCDResourceStatus;
 }) {
   const { t } = useTranslation(NAMESPACES.BILLING);
+  const [uid] = React.useState(() => Date.now());
+
 
   if (!isStatusTerminated(status)) return null;
 
@@ -19,7 +22,7 @@ export default function MessageSuspendedService({
     <div className="flex flex-col">
       <Message
         message={{
-          uid: Date.now(),
+          uid,
           isDismissible: false,
           type: 'warning',
           content: t('cancel_service_success'),

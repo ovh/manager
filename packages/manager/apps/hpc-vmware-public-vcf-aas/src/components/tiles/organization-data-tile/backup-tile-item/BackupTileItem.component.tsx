@@ -45,7 +45,7 @@ export default function BackupTileItem({
     shell.navigation
       .getURL(veeamBackupAppName, '', {})
       .then((url: string) => setVeeamHref(url));
-  }, []);
+  }, [shell.navigation]);
 
   return (
     <div className="flex flex-col items-start">

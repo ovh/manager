@@ -27,14 +27,14 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
     ) {
       clearMessage(uid);
     }
-  }, [uid, includedSubRoutes, excludedSubRoutes, pathname]);
+  }, [uid, includedSubRoutes, excludedSubRoutes, pathname, clearMessage]);
 
   useEffect(() => {
     if (!duration) return undefined;
     const durationTimeout = setTimeout(() => clearMessage(uid), duration);
 
     return () => clearTimeout(durationTimeout);
-  }, [duration]);
+  }, [clearMessage, duration, uid]);
 
   return (
     <OdsMessage

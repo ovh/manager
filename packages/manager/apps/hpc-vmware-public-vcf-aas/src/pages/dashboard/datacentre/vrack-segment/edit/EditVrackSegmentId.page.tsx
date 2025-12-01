@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
@@ -92,7 +92,7 @@ export default function EditVrackSegmentId() {
     },
   });
 
-  const { control, register, handleSubmit, watch, formState } = useForm<
+  const { control, register, handleSubmit, formState } = useForm<
     z.infer<typeof VLAN_ID_FORM_SCHEMA>
   >({
     mode: 'onChange',
@@ -101,6 +101,7 @@ export default function EditVrackSegmentId() {
       vlanId: vrackSegment?.vlanId,
     },
   });
+  const vlanId = useWatch({ control, name: 'vlanId' });
 
   const { isValid } = formState;
 
@@ -133,7 +134,7 @@ export default function EditVrackSegmentId() {
         isPrimaryButtonDisabled={
           isUpdatePending ||
           !isValid ||
-          watch('vlanId') === vrackSegment?.vlanId
+          vlanId === vrackSegment?.vlanId
         }
         onPrimaryButtonClick={handleSubmit(onSubmit)}
         secondaryLabel={tActions('cancel')}
@@ -151,7 +152,7 @@ export default function EditVrackSegmentId() {
           <OdsText>
             {t('managed_vcd_dashboard_vrack_form_vlan_id_description')}
           </OdsText>
-          {watch('vlanId') !== undefined && (
+          {vlanId !== undefined && (
             <RhfField
               control={control}
               controllerParams={register('vlanId')}

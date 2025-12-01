@@ -97,7 +97,7 @@ export const DatacentreOrder = <T extends OrderType>({
     if (pricedResources?.length && !selectedResource) {
       setSelectedResource(pricedResources[0].profile);
     }
-  }, [selectedResource, pricedResources]);
+  }, [selectedResource, pricedResources, setSelectedResource]);
 
   if (isLoadingResource || isLoadingCatalog) return <Loading />;
   if (isResourceError || isCatalogError || !pricedResources?.length) {
