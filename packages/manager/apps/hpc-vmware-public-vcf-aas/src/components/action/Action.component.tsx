@@ -87,14 +87,10 @@ const MenuItem = ({
     <></>
   );
 
-  if (item.href) {
+  if (item.href && !item.isDisabled) {
     return (
       <>
-        <a
-          href={!item.isDisabled ? item.href : undefined}
-          download={item.download}
-          target={item.target}
-        >
+        <a href={item.href} download={item.download} target={item.target}>
           <ButtonItem item={item} isTrigger={isTrigger} id={`tooltip-action-${tooltipId}`} />
         </a>
         {tooltip}
