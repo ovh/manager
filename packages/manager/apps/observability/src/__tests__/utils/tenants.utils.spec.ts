@@ -2,12 +2,12 @@ import { Locale } from 'date-fns';
 import { describe, expect, it, vi } from 'vitest';
 
 import { Tenant, TenantListing } from '@/types/tenants.type';
-import { formatDuration } from '@/utils/duration.utils';
+import { formatObservabilityDuration } from '@/utils/duration.utils';
 import { mapTenantsToListing } from '@/utils/tenants.utils';
 
-// Mock formatDuration to return a predictable value
+// Mock formatObservabilityDuration to return a predictable value
 vi.mock('@/utils/duration.utils', () => ({
-  formatDuration: vi.fn((duration: string) => `formatted-${duration}`),
+  formatObservabilityDuration: vi.fn((duration: string) => `formatted-${duration}`),
 }));
 
 describe('tenants.utils', () => {
@@ -45,24 +45,16 @@ describe('tenants.utils', () => {
           title: 'Tenant 1',
           description: 'Tenant 1 description',
           limits: {
-            numberOfSeries: {
-              current: 222,
-              maximum: 300,
-            },
-            retention: {
-              id: 'retention-1',
-              duration: 'P6M',
-              link: 'retention_link_1',
+            mimir: {
+              compactor_blocks_retention_period: '180d',
+              max_global_series_per_user: 222,
             },
           },
           infrastructure: {
             id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-            currentState: {
-              location: 'eu-west-sbg',
-              entryPoint: 'sbg1.metrics.ovh.com',
-              type: 'SHARED',
-              usage: 'METRICS',
-            },
+            location: 'eu-west-sbg',
+            entryPoint: 'sbg1.metrics.ovh.com',
+            type: 'SHARED',
           },
         },
         iam: {
@@ -107,15 +99,15 @@ describe('tenants.utils', () => {
           name: 'Tenant 1',
           infrastructure: mockTenant.currentState.infrastructure,
           endpoint: 'sbg1.metrics.ovh.com',
-          retention: 'formatted-P6M',
+          retention: 'formatted-180d',
           numberOfSeries: 222,
           tags: expectedTags,
-          search: `Tenant 1 sbg1.metrics.ovh.com formatted-P6M 222 ${expectedTagsStr}`,
+          search: `Tenant 1 sbg1.metrics.ovh.com formatted-180d 222 ${expectedTagsStr}`,
         },
       ]);
     });
 
-    it('should call formatDuration with correct parameters', () => {
+    it('should call formatObservabilityDuration with correct parameters', () => {
       const mockTenants: Tenant[] = [
         {
           id: 'tenant-1',
@@ -128,8 +120,10 @@ describe('tenants.utils', () => {
           currentState: {
             title: 'Test Tenant',
             limits: {
-              retention: { id: 'retention-1', duration: '30d' },
-              numberOfSeries: { current: 100, maximum: 200 },
+              mimir: {
+                compactor_blocks_retention_period: '30d',
+                max_global_series_per_user: 100,
+              },
             },
           },
         },
@@ -137,8 +131,8 @@ describe('tenants.utils', () => {
 
       mapTenantsToListing(mockTenants, mockDateFnsLocale);
 
-      expect(formatDuration).toHaveBeenCalledWith('30d', mockDateFnsLocale);
-      expect(formatDuration).toHaveBeenCalledTimes(1);
+      expect(formatObservabilityDuration).toHaveBeenCalledWith('30d', mockDateFnsLocale);
+      expect(formatObservabilityDuration).toHaveBeenCalledTimes(1);
     });
 
     it.each([
@@ -150,12 +144,9 @@ describe('tenants.utils', () => {
             title: 'Tenant Without Limits',
             infrastructure: {
               id: 'infra-2',
-              currentState: {
-                entryPoint: 'https://test.com',
-                location: 'GRA11',
-                type: 'SHARED',
-                usage: 'GRAFANA',
-              },
+              entryPoint: 'https://test.com',
+              location: 'GRA11',
+              type: 'SHARED',
             },
           },
         }),
@@ -171,8 +162,10 @@ describe('tenants.utils', () => {
           currentState: {
             title: 'Tenant Without Infrastructure',
             limits: {
-              retention: { id: 'retention-1', duration: '7d' },
-              numberOfSeries: { current: 50, maximum: 100 },
+              mimir: {
+                compactor_blocks_retention_period: '7d',
+                max_global_series_per_user: 50,
+              },
             },
           },
         }),
@@ -188,17 +181,16 @@ describe('tenants.utils', () => {
           currentState: {
             title: 'Tenant Without Tags',
             limits: {
-              retention: { id: 'retention-1', duration: '90d' },
-              numberOfSeries: { current: 200, maximum: 500 },
+              mimir: {
+                compactor_blocks_retention_period: '90d',
+                max_global_series_per_user: 200,
+              },
             },
             infrastructure: {
               id: 'infra-4',
-              currentState: {
-                entryPoint: 'https://no-tags.com',
-                location: 'GRA11',
-                type: 'SHARED',
-                usage: 'GRAFANA',
-              },
+              entryPoint: 'https://no-tags.com',
+              location: 'GRA11',
+              type: 'SHARED',
             },
           },
           iam: {
@@ -211,14 +203,16 @@ describe('tenants.utils', () => {
         },
       },
       {
-        description: 'tenant with retention but without duration',
+        description: 'tenant with empty retention duration',
         tenant: createTenant({
           id: 'tenant-5',
           currentState: {
-            title: 'Tenant With Partial Retention',
+            title: 'Tenant With Empty Retention',
             limits: {
-              numberOfSeries: { current: 150, maximum: 300 },
-              retention: { id: 'retention-2', duration: '' },
+              mimir: {
+                compactor_blocks_retention_period: '',
+                max_global_series_per_user: 150,
+              },
             },
           },
         }),
@@ -233,8 +227,10 @@ describe('tenants.utils', () => {
           currentState: {
             title: 'Tenant Without IAM',
             limits: {
-              retention: { id: 'retention-1', duration: '30d' },
-              numberOfSeries: { current: 100, maximum: 200 },
+              mimir: {
+                compactor_blocks_retention_period: '30d',
+                max_global_series_per_user: 100,
+              },
             },
           },
         }),
@@ -261,17 +257,16 @@ describe('tenants.utils', () => {
           currentState: {
             title: 'First Tenant',
             limits: {
-              retention: { id: 'retention-1', duration: '30d' },
-              numberOfSeries: { current: 100, maximum: 200 },
+              mimir: {
+                compactor_blocks_retention_period: '30d',
+                max_global_series_per_user: 100,
+              },
             },
             infrastructure: {
               id: 'infra-1',
-              currentState: {
-                entryPoint: 'https://first.com',
-                location: 'GRA11',
-                type: 'SHARED',
-                usage: 'GRAFANA',
-              },
+              entryPoint: 'https://first.com',
+              location: 'GRA11',
+              type: 'SHARED',
             },
           },
           iam: {
@@ -287,8 +282,10 @@ describe('tenants.utils', () => {
           currentState: {
             title: 'Second Tenant',
             limits: {
-              retention: { id: 'retention-2', duration: '7d' },
-              numberOfSeries: { current: 50, maximum: 100 },
+              mimir: {
+                compactor_blocks_retention_period: '7d',
+                max_global_series_per_user: 50,
+              },
             },
           },
           iam: {
@@ -313,12 +310,9 @@ describe('tenants.utils', () => {
           name: 'First Tenant',
           infrastructure: {
             id: 'infra-1',
-            currentState: {
-              entryPoint: 'https://first.com',
-              location: 'GRA11',
-              type: 'SHARED',
-              usage: 'GRAFANA',
-            },
+            entryPoint: 'https://first.com',
+            location: 'GRA11',
+            type: 'SHARED',
           },
           endpoint: 'https://first.com',
           retention: 'formatted-30d',
@@ -347,35 +341,41 @@ describe('tenants.utils', () => {
 
     it.each([
       {
-        description: 'zero current value',
+        description: 'zero value',
         numberOfSeries: 0,
         expected: 0,
       },
       {
-        description: 'positive current value',
+        description: 'positive value',
         numberOfSeries: 100,
         expected: 100,
       },
-    ])('should handle numberOfSeries with $description', ({ numberOfSeries, expected }) => {
-      const mockTenants: Tenant[] = [
-        createTenant({
-          id: 'tenant-series',
-          currentState: {
-            title: 'Tenant With Series',
-            limits: {
-              numberOfSeries: { current: numberOfSeries, maximum: 100 },
+    ])(
+      'should handle max_global_series_per_user with $description',
+      ({ numberOfSeries, expected }) => {
+        const mockTenants: Tenant[] = [
+          createTenant({
+            id: 'tenant-series',
+            currentState: {
+              title: 'Tenant With Series',
+              limits: {
+                mimir: {
+                  compactor_blocks_retention_period: '30d',
+                  max_global_series_per_user: numberOfSeries,
+                },
+              },
             },
-          },
-        }),
-      ];
+          }),
+        ];
 
-      const result = mapTenantsToListing(mockTenants, mockDateFnsLocale);
+        const result = mapTenantsToListing(mockTenants, mockDateFnsLocale);
 
-      expect(result).toHaveLength(1);
-      const firstResult = result[0];
-      expect(firstResult).toBeDefined();
-      expect(firstResult?.numberOfSeries).toBe(expected);
-    });
+        expect(result).toHaveLength(1);
+        const firstResult = result[0];
+        expect(firstResult).toBeDefined();
+        expect(firstResult?.numberOfSeries).toBe(expected);
+      },
+    );
 
     it.each([
       {
@@ -479,20 +479,17 @@ describe('tenants.utils', () => {
       ]);
     });
 
-    it('should handle tenant without infrastructure currentState', () => {
+    it('should handle tenant with infrastructure', () => {
       const mockTenants: Tenant[] = [
         createTenant({
-          id: 'tenant-no-infra-state',
+          id: 'tenant-with-infra',
           currentState: {
-            title: 'Tenant Without Infra State',
+            title: 'Tenant With Infrastructure',
             infrastructure: {
               id: 'infra-id',
-              currentState: {
-                entryPoint: 'test-endpoint.com',
-                location: 'GRA11',
-                type: 'SHARED',
-                usage: 'METRICS',
-              },
+              entryPoint: 'test-endpoint.com',
+              location: 'GRA11',
+              type: 'SHARED',
             },
           },
         }),
@@ -512,17 +509,16 @@ describe('tenants.utils', () => {
           currentState: {
             title: 'Search Test',
             limits: {
-              retention: { id: 'ret-1', duration: 'P1M' },
-              numberOfSeries: { current: 42, maximum: 100 },
+              mimir: {
+                compactor_blocks_retention_period: '30d',
+                max_global_series_per_user: 42,
+              },
             },
             infrastructure: {
               id: 'infra-search',
-              currentState: {
-                entryPoint: 'search.example.com',
-                location: 'GRA11',
-                type: 'SHARED',
-                usage: 'METRICS',
-              },
+              entryPoint: 'search.example.com',
+              location: 'GRA11',
+              type: 'SHARED',
             },
           },
           iam: {
@@ -539,7 +535,7 @@ describe('tenants.utils', () => {
       const result = mapTenantsToListing(mockTenants, mockDateFnsLocale);
 
       expect(result[0]?.search).toBe(
-        'Search Test search.example.com formatted-P1M 42 env:prod;team:backend',
+        'Search Test search.example.com formatted-30d 42 env:prod;team:backend',
       );
     });
   });

@@ -5,7 +5,7 @@ import baseConfig from '@ovh-ux/manager-tailwind-config';
 
 const require = createRequire(import.meta.url);
 const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
-const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
+const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx,mjs}`;
 
 const mukDir = pkgDir('@ovh-ux/muk');
 

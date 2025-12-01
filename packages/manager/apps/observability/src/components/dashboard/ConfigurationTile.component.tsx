@@ -5,7 +5,7 @@ import { Skeleton, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 import { Tile, useDateFnsLocale } from '@ovh-ux/muk';
 
 import { ConfigurationTileProps } from '@/components/dashboard/ConfigurationTile.props';
-import { formatDuration } from '@/utils/duration.utils';
+import { formatObservabilityDuration } from '@/utils/duration.utils';
 
 export const ConfigurationTile = ({
   retention,
@@ -26,7 +26,9 @@ export const ConfigurationTile = ({
             <Skeleton />
           ) : (
             retention && (
-              <Text preset={TEXT_PRESET.span}>{formatDuration(retention, dateFnsLocale)}</Text>
+              <Text preset={TEXT_PRESET.span}>
+                {formatObservabilityDuration(retention, dateFnsLocale)}
+              </Text>
             )
           )}
         </Tile.Item.Description>

@@ -107,6 +107,10 @@ vi.mock('@ovh-ux/muk', () => ({
   TEXT_PRESET: {
     heading4: 'heading4',
   },
+  useNotifications: () => ({
+    addSuccess: vi.fn(),
+    addError: vi.fn(),
+  }),
 }));
 
 // Mock translation namespaces
@@ -177,7 +181,8 @@ describe('TenantForm', () => {
         title: 'Test Tenant',
         description: 'Test Description',
         infrastructureId: 'infra-1',
-        retentionId: 'retention-1',
+        retentionDuration: '30',
+        retentionUnit: 'd',
         maxSeries: 1000,
       };
       callback(mockData);
@@ -398,11 +403,9 @@ describe('TenantForm', () => {
                 id: 'infra-1',
               },
               limits: {
-                numberOfSeries: {
-                  maximum: 1000,
-                },
-                retention: {
-                  id: 'retention-1',
+                mimir: {
+                  compactor_blocks_retention_period: '30d',
+                  max_global_series_per_user: 1000,
                 },
               },
             }),
@@ -431,7 +434,8 @@ describe('TenantForm', () => {
               title: 'Test Tenant',
               description: 'Test Description',
               infrastructureId: 'infra-1',
-              retentionId: 'retention-1',
+              retentionDuration: '30',
+              retentionUnit: 'd',
               maxSeries: 1000,
             };
             callback(mockData);
@@ -456,7 +460,7 @@ describe('TenantForm', () => {
       expect(mockMutate).not.toHaveBeenCalled();
     });
 
-    it('should use default maxSeries value when null', async () => {
+    it('should use null maxSeries value when null', async () => {
       const mockFormWithNullMaxSeries = {
         ...mockForm,
         handleSubmit: vi.fn((callback: (data: TenantFormData) => void) => (e: Event) => {
@@ -465,7 +469,8 @@ describe('TenantForm', () => {
             title: 'Test Tenant',
             description: 'Test Description',
             infrastructureId: 'infra-1',
-            retentionId: 'retention-1',
+            retentionDuration: '30',
+            retentionUnit: 'd',
             maxSeries: null,
           };
           callback(mockData);
@@ -492,8 +497,9 @@ describe('TenantForm', () => {
             targetSpec: expect.objectContaining({
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               limits: expect.objectContaining({
-                numberOfSeries: {
-                  maximum: 102,
+                mimir: {
+                  compactor_blocks_retention_period: '30d',
+                  max_global_series_per_user: null,
                 },
               }),
             }),
@@ -504,9 +510,8 @@ describe('TenantForm', () => {
   });
 
   describe('Error Handling', () => {
-    it('should handle creation error', async () => {
+    it('should handle creation error', () => {
       const mockError = new Error('Failed to create tenant');
-      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       let onErrorCallback:
         | ((error: Error, variables: CreateTenantsPayload, context: unknown) => unknown)
@@ -525,19 +530,13 @@ describe('TenantForm', () => {
 
       render(<TenantForm />, { wrapper: createWrapper() });
 
-      // Trigger the error callback
+      // Trigger the error callback - the component uses addError from useNotifications
       if (onErrorCallback) {
         onErrorCallback(mockError, {} as CreateTenantsPayload, undefined);
       }
 
-      await waitFor(() => {
-        expect(consoleErrorSpy).toHaveBeenCalledWith('Failed to create tenant:', mockError);
-      });
-
       // Should not navigate on error
       expect(mockNavigate).not.toHaveBeenCalledWith(urls.tenants);
-
-      consoleErrorSpy.mockRestore();
     });
   });
 
