@@ -58,13 +58,13 @@ export const OptionCard: React.FC<OptionCardProps> = ({
           preset={ODS_TEXT_PRESET.heading4}
         >
           <span className="h-full align-middle mr-3">
-            <OdsRadio name="" is-checked={isSelected}></OdsRadio>
+            <OdsRadio name="" isChecked={isSelected} />
           </span>
           <span>{title}</span>
         </OdsText>
       ) : (
         <OdsText
-          className="flex justify-center mb-2"
+          className="flex justify-center m-4"
           preset={ODS_TEXT_PRESET.heading4}
         >
           {title}
