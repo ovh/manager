@@ -66,7 +66,7 @@ const App = () => {
     { environment: Environment; error?: ApiError }
   >({
     queryKey: ['configuration'],
-    queryFn: () => fetchConfiguration('shell'),
+    queryFn: () => new Promise((resolve) => setTimeout(() => fetchConfiguration('shell').then(resolve), 10000)),
     staleTime: 0,
     retry: false,
     refetchInterval: error ? 60000 : false,
