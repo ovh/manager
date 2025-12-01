@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { VCDOrgInfoLink } from '../Links/VCDOrgInfoLink.component';
+import { serviceName } from '@/veeam-backup.config';
 
 export type NoOrganizationMessageProps = {
   organizationList: VCDOrganization[];
@@ -20,6 +21,9 @@ export const NoOrganizationMessage: React.FC<NoOrganizationMessageProps> = ({
           <Trans
             t={t}
             i18nKey="no_organization_message"
+            values={{
+              serviceName,
+            }}
             components={{
               ExternalLink: <VCDOrgInfoLink />,
             }}
