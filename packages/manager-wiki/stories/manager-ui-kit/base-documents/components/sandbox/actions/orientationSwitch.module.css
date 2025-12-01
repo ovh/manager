@@ -1,9 +1,0 @@
-.orientation-switch__horizontal,
-.orientation-switch__vertical {
-  display: flex;
-  align-items: center;
-}
-
-.orientation-switch__vertical__icon {
-  transform: rotate(90deg);
-}
