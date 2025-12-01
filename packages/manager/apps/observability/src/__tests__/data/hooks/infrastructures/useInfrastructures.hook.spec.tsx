@@ -50,6 +50,25 @@ const createWrapper = () => {
 };
 
 // Mock data
+const defaultExtraSettings = {
+  mimir: {
+    configurable: {
+      compactor_blocks_retention_period: {
+        default: '30d',
+        min: '7d',
+        max: '400d',
+        type: 'DURATION' as const,
+      },
+      max_global_series_per_user: {
+        default: 1000000,
+        min: 100000,
+        max: 10000000,
+        type: 'NUMERIC' as const,
+      },
+    },
+  },
+};
+
 const mockInfrastructures: Infrastructure[] = [
   {
     id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
@@ -58,6 +77,7 @@ const mockInfrastructures: Infrastructure[] = [
       type: 'SHARED',
       usage: 'METRICS',
       entryPoint: 'eee.metrics.ovh.com',
+      extraSettings: defaultExtraSettings,
     },
   },
   {
@@ -67,6 +87,7 @@ const mockInfrastructures: Infrastructure[] = [
       type: 'DEDICATED',
       usage: 'LOGS',
       entryPoint: 'aaa.metrics.ovh.com',
+      extraSettings: defaultExtraSettings,
     },
   },
 ];
