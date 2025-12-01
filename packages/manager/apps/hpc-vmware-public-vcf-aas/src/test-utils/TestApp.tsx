@@ -1,13 +1,12 @@
 import React, { Suspense } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import {
-  createMemoryRouter,
-  RouterProvider,
-  createRoutesFromElements,
-} from 'react-router-dom';
-import Routes from '@/routes/routes';
-import { MessageContextProvider } from '@/context/Message.context';
+
+import { RouterProvider, createMemoryRouter, createRoutesFromElements } from 'react-router-dom';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import Loading from '@/components/loading/Loading.component';
+import { MessageContextProvider } from '@/context/Message.context';
+import Routes from '@/routes/routes';
 
 export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
   const routes = createRoutesFromElements(Routes);

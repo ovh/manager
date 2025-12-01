@@ -1,14 +1,16 @@
+import { waitFor } from '@testing-library/dom';
 import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
+
 import {
-  organizationList,
   datacentreList,
   mockVrackSegmentList,
+  organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
-import { waitFor } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
-import { renderTest } from '../../../../../test-utils';
+
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
+import { renderTest } from '../../../../../test-utils';
 
 const queryModalTitle = () => {
   return screen.queryByText(
@@ -20,9 +22,7 @@ const queryModalTitle = () => {
 };
 
 const checkFormInputAndCta = (container: HTMLElement) => {
-  expect(
-    screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan),
-  ).toBeVisible();
+  expect(screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan)).toBeVisible();
   expect(container.querySelector('[label="modify"]')).toBeVisible();
   expect(container.querySelector('[label="cancel"]')).toBeVisible();
 
@@ -32,9 +32,7 @@ const checkFormInputAndCta = (container: HTMLElement) => {
 };
 
 const checkVlanValue = (container: HTMLElement, vlanId: string) => {
-  const input = container.querySelector(
-    `input[name="vlanId"][value="${vlanId}"]`,
-  );
+  const input = container.querySelector(`input[name="vlanId"][value="${vlanId}"]`);
 
   expect(input).toBeInTheDocument();
 };
@@ -43,15 +41,11 @@ const expectSubmitButton = (container: HTMLElement) =>
   expect(container.querySelector('ods-button[label="modify"]'));
 
 const submitForm = (container: HTMLElement) => {
-  return act(() =>
-    userEvent.click(
-      container.querySelector('ods-button[label="modify"]'),
-    ),
-  );
+  return act(() => userEvent.click(container.querySelector('ods-button[label="modify"]')));
 };
 
 const editVlanValue = (newValue: string | number) => {
-  const odsQuantity = document.querySelector<HTMLElement & {value: number}>(
+  const odsQuantity = document.querySelector<HTMLElement & { value: number }>(
     'ods-quantity[name="vlanId"]',
   );
 
@@ -77,9 +71,7 @@ const checkSuccessBannerIsVisible = () => {
 };
 
 const checkErrorBannerIsVisible = () => {
-  screen.queryByText(
-    fr_FR.managed_vcd_dashboard_vrack_edit_error.replace('{{errorApi}}', ''),
-  );
+  screen.queryByText(fr_FR.managed_vcd_dashboard_vrack_edit_error.replace('{{errorApi}}', ''));
 };
 
 // Check modal is closed and success message is shown

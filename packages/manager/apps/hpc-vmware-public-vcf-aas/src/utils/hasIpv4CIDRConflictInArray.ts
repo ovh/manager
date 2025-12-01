@@ -1,4 +1,5 @@
 import { Effect, Equal } from 'effect/index';
+
 import { hasIpv4CIDRConflict } from './hasIpv4CIDRConflict';
 
 const isTrueSuccess = (result: Effect.Effect<boolean, never, never>) => {

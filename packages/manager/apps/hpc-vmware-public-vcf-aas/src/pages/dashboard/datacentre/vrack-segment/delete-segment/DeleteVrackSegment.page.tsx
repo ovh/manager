@@ -1,13 +1,17 @@
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDeleteVcdVrackSegment } from '@ovh-ux/manager-module-vcd-api';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useDeleteVcdVrackSegment } from '@ovh-ux/manager-module-vcd-api';
+import { Modal } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { subRoutes } from '@/routes/routes.constant';
+
 import { useMessageContext } from '@/context/Message.context';
+import { subRoutes } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
 
 export default function DeleteVrackSegment() {
@@ -30,10 +34,7 @@ export default function DeleteVrackSegment() {
           errorApi: message,
         });
 
-  const {
-    mutate: deleteSegment,
-    isPending: isDeleting,
-  } = useDeleteVcdVrackSegment({
+  const { mutate: deleteSegment, isPending: isDeleting } = useDeleteVcdVrackSegment({
     id,
     vdcId,
     vrackSegmentId,
@@ -45,10 +46,7 @@ export default function DeleteVrackSegment() {
       addSuccess({
         content: t('managed_vcd_dashboard_vrack_delete_segment_success'),
         includedSubRoutes: [vdcId],
-        excludedSubRoutes: [
-          subRoutes.datacentreCompute,
-          subRoutes.datacentreStorage,
-        ],
+        excludedSubRoutes: [subRoutes.datacentreCompute, subRoutes.datacentreStorage],
       });
       closeModal();
     },
@@ -62,10 +60,7 @@ export default function DeleteVrackSegment() {
       addError({
         content: getDeleteErrorMessage(error.message),
         includedSubRoutes: [vdcId],
-        excludedSubRoutes: [
-          subRoutes.datacentreCompute,
-          subRoutes.datacentreStorage,
-        ],
+        excludedSubRoutes: [subRoutes.datacentreCompute, subRoutes.datacentreStorage],
       });
       closeModal();
     },
@@ -88,9 +83,7 @@ export default function DeleteVrackSegment() {
       type={ODS_MODAL_COLOR.critical}
     >
       <div className="flex flex-col gap-2">
-        <OdsText>
-          {t('managed_vcd_dashboard_vrack_delete_segment_content')}
-        </OdsText>
+        <OdsText>{t('managed_vcd_dashboard_vrack_delete_segment_content')}</OdsText>
       </div>
     </Modal>
   );

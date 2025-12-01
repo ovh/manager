@@ -1,19 +1,20 @@
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import {
-  useVcdOrganization,
-  useUpdateVcdOrganizationDetails,
   VCDOrganizationTargetSpec,
   isStatusTerminated,
+  useUpdateVcdOrganizationDetails,
+  useVcdOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
 import { RedirectionGuard } from '@ovh-ux/manager-react-components';
-import {
-  validateDescription,
-  validateOrganizationName,
-} from '@/utils/formValidation';
-import { EditDetailModal } from './EditDetailModal';
+
 import { useMessageContext } from '@/context/Message.context';
 import { subRoutes } from '@/routes/routes.constant';
+import { validateDescription, validateOrganizationName } from '@/utils/formValidation';
+
+import { EditDetailModal } from './EditDetailModal';
 
 type OrganizationDetailName = 'name' | 'description';
 type TValidationFunctions = {
@@ -34,12 +35,7 @@ export const UpdateDetailModalHandler = ({
   const { addSuccess } = useMessageContext();
   const { id } = useParams();
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const {
-    updateDetails,
-    error,
-    isError,
-    isPending,
-  } = useUpdateVcdOrganizationDetails({
+  const { updateDetails, error, isError, isPending } = useUpdateVcdOrganizationDetails({
     id,
     onSuccess: () => {
       addSuccess({
@@ -50,8 +46,7 @@ export const UpdateDetailModalHandler = ({
       closeModal();
     },
   });
-  const currentDetails: VCDOrganizationTargetSpec =
-    vcdOrganization.data.targetSpec;
+  const currentDetails: VCDOrganizationTargetSpec = vcdOrganization.data.targetSpec;
 
   const getOrganizationDetailKey = (key: OrganizationDetailName) => {
     const detailKeys: TOrganizationDetails = {
@@ -85,9 +80,7 @@ export const UpdateDetailModalHandler = ({
         detailValue={getOrganizationDetailValue(detailName)}
         headline={t(`managed_vcd_dashboard_edit_${detailName}_modal_title`)}
         inputLabel={t(`managed_vcd_dashboard_edit_${detailName}_modal_label`)}
-        errorHelper={t(
-          `managed_vcd_dashboard_edit_${detailName}_modal_helper_error`,
-        )}
+        errorHelper={t(`managed_vcd_dashboard_edit_${detailName}_modal_helper_error`)}
         validateDetail={getValidationFunction(detailName)}
         onEdit={(newValue: string) =>
           updateDetails({

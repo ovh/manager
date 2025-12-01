@@ -1,4 +1,5 @@
 import { describe } from 'vitest';
+
 import { decodeVrackNetwork, encodeVrackNetwork } from './encodeVrackNetwork';
 
 describe('encodeVrackNetwork function', () => {

@@ -1,22 +1,14 @@
+import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  useVcdOrganization,
-  VCDOrganization,
-} from '@ovh-ux/manager-module-vcd-api';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import OrganizationServiceManagementTile from './OrganizationServiceManagementTile.component';
+import { VCDOrganization, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { subRoutes, urls } from '../../../routes/routes.constant';
+import OrganizationServiceManagementTile from './OrganizationServiceManagementTile.component';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
@@ -50,9 +42,7 @@ const renderComponent = () => {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <OrganizationServiceManagementTile />
       </ShellContext.Provider>
     </QueryClientProvider>,

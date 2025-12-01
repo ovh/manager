@@ -3,7 +3,6 @@
 
 export default eslintSharedConfig;
 */
-
 // Progressive adoption
 /* import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 import {
@@ -43,7 +42,6 @@ export default [
     files: ['**\/*.css', '**\/*.scss'],
   },
 ]; */
-
 // Progressive and disable some rules
 /* import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
@@ -60,20 +58,21 @@ export default [
   },
 ];
 */
-
 // Progressive and disable full rules
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
+import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
   javascriptEslintConfig,
   typescriptEslintConfig,
   reactEslintConfig,
+  prettierEslintConfig,
   {
     rules: {
       '@typescript-eslint/no-misused-promises': 'off',
-      'react/no-multi-comp': 'off'
+      'react/no-multi-comp': 'off',
     },
   },
 ];

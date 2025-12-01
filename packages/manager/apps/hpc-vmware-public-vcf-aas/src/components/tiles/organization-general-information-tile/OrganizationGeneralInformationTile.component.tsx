@@ -1,32 +1,32 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { VCDOrganization, isStatusTerminated } from '@ovh-ux/manager-module-vcd-api';
 import {
-  LinkType,
-  Links,
   Clipboard,
   DashboardTile,
+  LinkType,
+  Links,
   Region,
 } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import {
-  isStatusTerminated,
-  VCDOrganization,
-} from '@ovh-ux/manager-module-vcd-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { subRoutes } from '@/routes/routes.constant';
+import { TRACKING } from '@/tracking.constants';
 import { iamActions } from '@/utils/iam.constants';
+import TEST_IDS from '@/utils/testIds.constants';
+
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
 import DatacentresCount from './DatacentresCount.component';
-import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constants';
 
 type TTileProps = {
   vcdOrganization: VCDOrganization;
 };
 
-export default function OrganizationGenerationInformationTile({
-  vcdOrganization,
-}: TTileProps) {
+export default function OrganizationGenerationInformationTile({ vcdOrganization }: TTileProps) {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
@@ -45,9 +45,7 @@ export default function OrganizationGenerationInformationTile({
               value={vcdOrganization.currentState?.fullName}
               name="vcdName"
               urn={vcdOrganization.iam?.urn}
-              iamActions={[
-                iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
-              ]}
+              iamActions={[iamActions.vmwareCloudDirectorApiovhOrganizationEdit]}
               isDisabled={isDisabled}
               onClickEdit={() => navigate(subRoutes.editName)}
             />
@@ -61,9 +59,7 @@ export default function OrganizationGenerationInformationTile({
               value={vcdOrganization.currentState?.description}
               name="vcdDescription"
               urn={vcdOrganization.iam.urn}
-              iamActions={[
-                iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
-              ]}
+              iamActions={[iamActions.vmwareCloudDirectorApiovhOrganizationEdit]}
               isDisabled={isDisabled}
               onClickEdit={() => navigate(subRoutes.editDescription)}
             />
@@ -74,21 +70,14 @@ export default function OrganizationGenerationInformationTile({
           label: t('managed_vcd_dashboard_location'),
           value: (
             <OdsText>
-              <Region
-                name={vcdOrganization.currentState?.region?.toLowerCase()}
-                mode="region"
-              />
+              <Region name={vcdOrganization.currentState?.region?.toLowerCase()} mode="region" />
             </OdsText>
           ),
         },
         {
           id: 'region',
           label: t('managed_vcd_dashboard_region'),
-          value: (
-            <OdsText>
-              {vcdOrganization?.currentState?.region?.toLowerCase()}
-            </OdsText>
-          ),
+          value: <OdsText>{vcdOrganization?.currentState?.region?.toLowerCase()}</OdsText>,
         },
         {
           id: 'datacentresCount',
@@ -112,12 +101,7 @@ export default function OrganizationGenerationInformationTile({
         {
           id: 'apiUrl',
           label: t('managed_vcd_dashboard_api_url'),
-          value: (
-            <Clipboard
-              value={vcdOrganization.currentState?.apiUrl}
-              className="w-full"
-            />
-          ),
+          value: <Clipboard value={vcdOrganization.currentState?.apiUrl} className="w-full" />,
         },
       ]}
     />

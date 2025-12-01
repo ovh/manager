@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { OdsMessage } from '@ovhcloud/ods-components/react';
+
 import { MessageType, useMessageContext } from '@/context/Message.context';
 
 type MessageProps = {

@@ -1,17 +1,16 @@
 import React, { useId } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
   ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
   ODS_POPOVER_POSITION,
 } from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsPopover,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { OdsButton, OdsPopover, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 
 export interface ActionMenuItem {
@@ -63,9 +62,7 @@ const ButtonItem = ({
     id,
   };
 
-  return !item?.iamActions ||
-    item?.iamActions?.length === 0 ||
-    item.isDisabled ? (
+  return !item?.iamActions || item?.iamActions?.length === 0 || item.isDisabled ? (
     <OdsButton {...buttonProps} />
   ) : (
     <ManagerButton isIamTrigger={isTrigger} {...buttonProps} />
@@ -83,11 +80,7 @@ const MenuItem = ({
   const tooltipId = useId();
 
   const tooltip = item.tooltipMessage ? (
-    <OdsTooltip
-      triggerId={`tooltip-action-${tooltipId}`}
-      position="left"
-      withArrow
-    >
+    <OdsTooltip triggerId={`tooltip-action-${tooltipId}`} position="left" withArrow>
       {item.tooltipMessage}
     </OdsTooltip>
   ) : (
@@ -102,11 +95,7 @@ const MenuItem = ({
           download={item.download}
           target={item.target}
         >
-          <ButtonItem
-            item={item}
-            isTrigger={isTrigger}
-            id={`tooltip-action-${tooltipId}`}
-          />
+          <ButtonItem item={item} isTrigger={isTrigger} id={`tooltip-action-${tooltipId}`} />
         </a>
         {tooltip}
       </>
@@ -115,11 +104,7 @@ const MenuItem = ({
 
   return (
     <>
-      <ButtonItem
-        item={item}
-        isTrigger={isTrigger}
-        id={`tooltip-action-${tooltipId}`}
-      />
+      <ButtonItem item={item} isTrigger={isTrigger} id={`tooltip-action-${tooltipId}`} />
       {tooltip}
     </>
   );
@@ -153,12 +138,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           size={ODS_BUTTON_SIZE.sm}
           onClick={() => setIsTrigger(true)}
           {...(!isCompact && { label: label || t('common_actions') })}
-          icon={
-            icon ||
-            (isCompact
-              ? ODS_ICON_NAME.ellipsisVertical
-              : ODS_ICON_NAME.chevronDown)
-          }
+          icon={icon || (isCompact ? ODS_ICON_NAME.ellipsisVertical : ODS_ICON_NAME.chevronDown)}
           aria-label={label || t('common_actions')}
         />
       </div>
@@ -171,12 +151,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       >
         <div className="flex flex-col">
           {items.map(({ id: itemId, ...item }) => (
-            <MenuItem
-              id={itemId}
-              key={itemId}
-              item={item}
-              isTrigger={isTrigger}
-            />
+            <MenuItem id={itemId} key={itemId} item={item} isTrigger={isTrigger} />
           ))}
         </div>
       </OdsPopover>

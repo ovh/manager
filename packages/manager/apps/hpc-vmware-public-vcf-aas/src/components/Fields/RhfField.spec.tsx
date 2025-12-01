@@ -1,10 +1,12 @@
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
+import 'element-internals-polyfill';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod/v3';
+
 import { RhfField } from '.';
 
 const SCHEMA = z.object({
@@ -50,17 +52,12 @@ describe('RhfField component unit test suite', () => {
   });
 
   it('should render field with correct error', async () => {
-    const { getByTestId, queryByText } = render(
-      <FieldRender defaultValue="too lonnnnnng chain" />,
-    );
+    const { getByTestId, queryByText } = render(<FieldRender defaultValue="too lonnnnnng chain" />);
 
     await waitFor(
       () => {
         expect(queryByText(HELPER_MESSAGE)).not.toBeInTheDocument();
-        expect(getByTestId('rhfField')).toHaveAttribute(
-          'error',
-          HELPER_MESSAGE,
-        );
+        expect(getByTestId('rhfField')).toHaveAttribute('error', HELPER_MESSAGE);
       },
       { timeout: 500 },
     );

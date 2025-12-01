@@ -1,14 +1,21 @@
 import React from 'react';
+
 import { useParams } from 'react-router-dom';
-import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-react-components';
+
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
-import { useCurrentUser } from '@/hooks/user/useCurrentUser';
+
 import { ApiResponse } from '@ovh-ux/manager-core-api';
+import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-react-components';
+
+import { useCurrentUser } from '@/hooks/user/useCurrentUser';
 
 export default function ServiceRenewTileItem() {
   const { id } = useParams();
-  const { data: serviceDetails, isLoading, isError } =
-  useServiceDetails({ resourceName: id }) as {
+  const {
+    data: serviceDetails,
+    isLoading,
+    isError,
+  } = useServiceDetails({ resourceName: id }) as {
     data?: ApiResponse<ServiceDetails>;
     isLoading: boolean;
     isError: boolean;

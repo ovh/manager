@@ -1,10 +1,14 @@
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useResetVcdPassword } from '@ovh-ux/manager-module-vcd-api';
+import { Modal } from '@ovh-ux/manager-react-components';
+
 import { useMessageContext } from '@/context/Message.context';
 import { subRoutes } from '@/routes/routes.constant';
 
