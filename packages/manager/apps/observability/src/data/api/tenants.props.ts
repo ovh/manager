@@ -5,10 +5,10 @@ import { ObservabilityServiceParams } from './observability.props';
 
 export type TTargetSpecPayload = Omit<TenantState, 'limits' | 'infrastructure'> & {
   limits: {
-    numberOfSeries: {
-      maximum: number;
+    mimir: {
+      compactor_blocks_retention_period: string;
+      max_global_series_per_user: number | null;
     };
-    retention: TIdentifier;
   };
   infrastructure?: TIdentifier;
 };

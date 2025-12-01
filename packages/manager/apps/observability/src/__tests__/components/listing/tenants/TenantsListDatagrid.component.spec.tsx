@@ -6,8 +6,8 @@ import { vi } from 'vitest';
 
 import TenantsListDatagrid from '@/components/listing/tenants/TenantsListDatagrid.component';
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
-import { Infrastructure } from '@/types/infrastructures.type';
-import { Tenant } from '@/types/tenants.type';
+import { InfrastructureSettings } from '@/types/infrastructures.type';
+import { Tenant, TenantInfrastructure } from '@/types/tenants.type';
 
 // Mock the hooks and components
 vi.mock('@/data/hooks/infrastructures/useLocations.hook', () => ({
@@ -25,7 +25,7 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('@/utils/duration.utils', () => ({
-  formatDuration: (duration: string) => {
+  formatObservabilityDuration: (duration: string) => {
     // Mock simple duration formatting
     return duration; // Just return the duration as-is (e.g., "30d")
   },
@@ -153,10 +153,8 @@ vi.mock('@/components/listing/tenants/top-bar/TenantsListTopbar.component', () =
 vi.mock(
   '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component',
   () => ({
-    default: ({ infrastructure }: { infrastructure: Infrastructure | undefined }) => (
-      <div data-testid="endpoint-cell">
-        {infrastructure?.currentState?.entryPoint || 'No endpoint'}
-      </div>
+    default: ({ infrastructure }: { infrastructure: InfrastructureSettings | undefined }) => (
+      <div data-testid="endpoint-cell">{infrastructure?.entryPoint || 'No endpoint'}</div>
     ),
   }),
 );
@@ -208,14 +206,11 @@ const createWrapper = () => {
 };
 
 // Mock data
-const mockInfrastructure: Infrastructure = {
+const mockInfrastructure: TenantInfrastructure = {
   id: 'infra-1',
-  currentState: {
-    entryPoint: 'https://example.com',
-    location: 'GRA11',
-    type: 'SHARED',
-    usage: 'GRAFANA',
-  },
+  entryPoint: 'https://example.com',
+  location: 'GRA11',
+  type: 'SHARED',
 };
 
 const mockTenants: Tenant[] = [
@@ -226,8 +221,10 @@ const mockTenants: Tenant[] = [
     currentState: {
       title: 'Tenant One',
       limits: {
-        retention: { id: 'retention-1', duration: '30d' },
-        numberOfSeries: { current: 100, maximum: 200 },
+        mimir: {
+          compactor_blocks_retention_period: '30d',
+          max_global_series_per_user: 100,
+        },
       },
       infrastructure: mockInfrastructure,
     },
@@ -247,8 +244,10 @@ const mockTenants: Tenant[] = [
     currentState: {
       title: 'Tenant Two',
       limits: {
-        retention: { id: 'retention-2', duration: '7d' },
-        numberOfSeries: { current: 50, maximum: 100 },
+        mimir: {
+          compactor_blocks_retention_period: '7d',
+          max_global_series_per_user: 50,
+        },
       },
       infrastructure: undefined,
     },
@@ -267,8 +266,10 @@ const mockTenants: Tenant[] = [
     currentState: {
       title: 'Tenant Three',
       limits: {
-        retention: { id: 'retention-3', duration: '90d' },
-        numberOfSeries: { current: 200, maximum: 500 },
+        mimir: {
+          compactor_blocks_retention_period: '90d',
+          max_global_series_per_user: 200,
+        },
       },
       infrastructure: mockInfrastructure,
     },
@@ -541,8 +542,10 @@ describe('TenantsListDatagrid', () => {
           currentState: {
             title: 'No Tags Tenant',
             limits: {
-              retention: { id: 'retention-4', duration: '30d' },
-              numberOfSeries: { current: 0, maximum: 100 },
+              mimir: {
+                compactor_blocks_retention_period: '30d',
+                max_global_series_per_user: 0,
+              },
             },
             infrastructure: undefined,
           },
@@ -569,8 +572,10 @@ describe('TenantsListDatagrid', () => {
           currentState: {
             title: 'Empty Tags Tenant',
             limits: {
-              retention: { id: 'retention-4', duration: '30d' },
-              numberOfSeries: { current: 0, maximum: 100 },
+              mimir: {
+                compactor_blocks_retention_period: '30d',
+                max_global_series_per_user: 0,
+              },
             },
             infrastructure: undefined,
           },
@@ -590,28 +595,25 @@ describe('TenantsListDatagrid', () => {
       expect(screen.getByTestId('tags-cell')).toBeInTheDocument();
     });
 
-    it('should handle tenants with missing retention', () => {
-      const tenantsWithMissingRetention: Tenant[] = [
+    it('should handle tenants with missing limits', () => {
+      const tenantsWithMissingLimits: Tenant[] = [
         {
-          id: 'tenant-no-retention',
+          id: 'tenant-no-limits',
           createdAt: '2024-01-01T00:00:00Z',
           updatedAt: null,
           currentState: {
-            title: 'No Retention Tenant',
-            limits: {
-              numberOfSeries: { current: 10, maximum: 100 },
-            },
+            title: 'No Limits Tenant',
             infrastructure: mockInfrastructure,
           },
           iam: {
-            id: 'tenant-no-retention',
-            urn: 'urn:ovh:tenant:tenant-no-retention',
+            id: 'tenant-no-limits',
+            urn: 'urn:ovh:tenant:tenant-no-limits',
             tags: { test: 'value' },
           },
         },
       ];
 
-      render(<TenantsListDatagrid {...defaultProps} tenantsList={tenantsWithMissingRetention} />, {
+      render(<TenantsListDatagrid {...defaultProps} tenantsList={tenantsWithMissingLimits} />, {
         wrapper: createWrapper(),
       });
 

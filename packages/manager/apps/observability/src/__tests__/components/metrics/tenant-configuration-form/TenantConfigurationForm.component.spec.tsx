@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { enGB } from 'date-fns/locale';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -8,9 +8,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TenantConfigurationForm } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { useRetentions } from '@/data/hooks/infrastructures/useRetentions.hook';
+import { useInfrastructureSettings } from '@/data/hooks/infrastructures/useInfrastructureSettings.hook';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
-import { Retention } from '@/types/infrastructures.type';
+import {
+  FormattedExtraSettingsDuration,
+  useFormattedDurationSetting,
+} from '@/hooks/useFormattedExtraSettings.hook';
+import { InfraStructureExtraSettings } from '@/types/infrastructures.type';
 import { TenantFormData } from '@/types/tenants.type';
 
 // Mock dependencies
@@ -18,25 +22,16 @@ vi.mock('@/contexts/ObservabilityService.context', () => ({
   useObservabilityServiceContext: vi.fn(),
 }));
 
-vi.mock('@/data/hooks/infrastructures/useRetentions.hook', () => ({
-  useRetentions: vi.fn(),
-  getRetentionsQueryKey: vi.fn(),
+vi.mock('@/data/hooks/infrastructures/useInfrastructureSettings.hook', () => ({
+  useInfrastructureSettings: vi.fn(),
+}));
+
+vi.mock('@/hooks/useFormattedExtraSettings.hook', () => ({
+  useFormattedDurationSetting: vi.fn(),
 }));
 
 vi.mock('@/hooks/useDateFnsLocale.hook', () => ({
   useDateFnsLocale: vi.fn(),
-}));
-
-vi.mock('@/utils/duration.utils', () => ({
-  formatDuration: vi.fn((duration: string) => {
-    const map: Record<string, string> = {
-      P1M: '1 month',
-      P3M: '3 months',
-      P6M: '6 months',
-      P1Y: '1 year',
-    };
-    return map[duration] || duration;
-  }),
 }));
 
 vi.mock('@/utils/form.utils', () => ({
@@ -56,6 +51,17 @@ vi.mock('@ovhcloud/ods-react', () => ({
   FormFieldLabel: ({ children }: { children: React.ReactNode }) => (
     <label data-testid="form-field-label">{children}</label>
   ),
+  Text: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
+    <span data-testid="ods-text" data-preset={preset}>
+      {children}
+    </span>
+  ),
+  TEXT_PRESET: {
+    heading2: 'heading2',
+    heading4: 'heading4',
+    paragraph: 'paragraph',
+    caption: 'caption',
+  },
   Quantity: ({
     children,
     name,
@@ -75,7 +81,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
     invalid?: boolean;
     disabled?: boolean;
   }) => (
-    <div data-testid="quantity" data-disabled={disabled}>
+    <div data-testid={`quantity-${name}`} data-disabled={disabled}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(
@@ -168,7 +174,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
     disabled?: boolean;
   }) => (
     <input
-      data-testid="quantity-input"
+      data-testid={`quantity-input-${name}`}
       type="number"
       name={name}
       min={min}
@@ -207,93 +213,32 @@ vi.mock('@ovh-ux/muk', () => ({
   },
 }));
 
-vi.mock('@/components/form/select-field/SelectField.component', () => ({
-  SelectField: ({
-    value,
-    name,
-    label,
-    onChange,
+// Mock BoundsFormFieldHelper
+vi.mock('@/components/form/bounds-form-field-helper/BoundsFormFieldHelper.component', () => ({
+  BoundsFormFieldHelper: ({
+    min,
+    max,
     error,
-    isDisabled,
-    className,
-    options,
   }: {
-    value?: string;
-    name: string;
-    label?: string;
-    placeholder?: string;
-    onChange?: (value: string | null) => void;
-    error?: string;
-    isDisabled?: boolean;
-    className?: string;
-    options?: Array<{ value: string; label: string }>;
-  }) => {
-    const [selectValue, setSelectValue] = React.useState(value || '');
-
-    React.useEffect(() => {
-      setSelectValue(value || '');
-    }, [value]);
-
-    return (
-      <div data-testid="select-field-wrapper">
-        {label && <label data-testid="select-label">{label}</label>}
-        <select
-          data-testid="select-retention"
-          name={name}
-          value={selectValue}
-          disabled={isDisabled}
-          className={className}
-          onChange={(e) => {
-            setSelectValue(e.target.value);
-            onChange?.(e.target.value);
-          }}
-        >
-          {options?.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        {error && <span data-testid="select-error">{error}</span>}
-      </div>
-    );
-  },
+    min?: string;
+    max?: string;
+    error?: { message?: string };
+  }) => (
+    <div data-testid="bounds-helper" data-min={min} data-max={max}>
+      {error?.message && <span data-testid="error-message">{error.message}</span>}
+      {min && max && (
+        <span>
+          Min: {min}, Max: {max}
+        </span>
+      )}
+    </div>
+  ),
 }));
 
 const mockUseObservabilityServiceContext = vi.mocked(useObservabilityServiceContext);
-const mockUseRetentions = vi.mocked(useRetentions);
+const mockUseInfrastructureSettings = vi.mocked(useInfrastructureSettings);
+const mockUseFormattedDurationSetting = vi.mocked(useFormattedDurationSetting);
 const mockUseDateFnsLocale = vi.mocked(useDateFnsLocale);
-
-// Helper to create mock query result
-const createMockRetentionsResult = (
-  overrides: Partial<UseQueryResult<Retention[], Error>> = {},
-): UseQueryResult<Retention[], Error> =>
-  ({
-    data: undefined,
-    isLoading: false,
-    isSuccess: false,
-    error: null,
-    isError: false,
-    isPending: false,
-    isRefetching: false,
-    refetch: vi.fn(),
-    status: 'idle',
-    fetchStatus: 'idle',
-    isLoadingError: false,
-    isRefetchError: false,
-    dataUpdatedAt: 0,
-    errorUpdatedAt: 0,
-    failureCount: 0,
-    failureReason: null,
-    errorUpdateCount: 0,
-    isFetched: false,
-    isFetchedAfterMount: false,
-    isFetching: false,
-    isInitialLoading: false,
-    isPlaceholderData: false,
-    isStale: false,
-    ...overrides,
-  }) as UseQueryResult<Retention[], Error>;
 
 // Test wrapper component
 interface TestWrapperProps {
@@ -321,7 +266,8 @@ const TestWrapper: React.FC<TestWrapperProps> = ({
       title: '',
       description: '',
       infrastructureId: '',
-      retentionId: '',
+      retentionDuration: '',
+      retentionUnit: '',
       maxSeries: null,
       ...defaultValues,
     },
@@ -357,12 +303,31 @@ const TestWrapper: React.FC<TestWrapperProps> = ({
 };
 
 describe('TenantConfigurationForm', () => {
-  const mockRetentions: Retention[] = [
-    { id: '1', duration: 'P1M', default: true, supported: true },
-    { id: '2', duration: 'P3M', default: false, supported: true },
-    { id: '3', duration: 'P6M', default: false, supported: true },
-    { id: '4', duration: 'P1Y', default: false, supported: true },
-  ];
+  const mockExtraSettings: InfraStructureExtraSettings = {
+    mimir: {
+      configurable: {
+        compactor_blocks_retention_period: {
+          default: '7d',
+          min: '7d',
+          max: '400d',
+          type: 'DURATION',
+        },
+        max_global_series_per_user: {
+          default: 100,
+          min: 1,
+          max: 1000,
+          type: 'NUMERIC',
+        },
+      },
+    },
+  };
+
+  const mockFormattedDurationSetting: FormattedExtraSettingsDuration = {
+    unit: 'd',
+    default: { value: 7, label: '7 days' },
+    min: { value: 7, label: '7 days' },
+    max: { value: 400, label: '400 days' },
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -384,14 +349,15 @@ describe('TenantConfigurationForm', () => {
 
     mockUseDateFnsLocale.mockReturnValue(enGB);
 
-    mockUseRetentions.mockReturnValue(
-      createMockRetentionsResult({
-        data: mockRetentions,
-        isSuccess: true,
-        isPending: false,
-        isFetched: true,
-      }),
-    );
+    mockUseInfrastructureSettings.mockReturnValue({
+      data: mockExtraSettings,
+      isLoading: false,
+      error: null,
+      isError: false,
+      isSuccess: true,
+    });
+
+    mockUseFormattedDurationSetting.mockReturnValue(mockFormattedDurationSetting);
   });
 
   describe('Rendering', () => {
@@ -405,226 +371,158 @@ describe('TenantConfigurationForm', () => {
       expect(screen.getByTestId('text-heading2')).toHaveTextContent('configuration.title');
     });
 
-    it('should render retention select field with proper label', () => {
+    it('should render retention quantity input', () => {
       render(
-        <TestWrapper>
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      expect(screen.getByTestId('select-label')).toHaveTextContent(
-        'tenants:configuration.retention - shared:mandatory',
-      );
+      const retentionQuantity = screen.getByTestId('quantity-retention-quantity');
+      expect(retentionQuantity).toBeInTheDocument();
     });
 
-    it('should render quantity input for maxSeries', () => {
+    it('should render maxSeries quantity input', () => {
       render(
-        <TestWrapper>
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      const quantityInput = screen.getByTestId('quantity-input');
-      expect(quantityInput).toBeInTheDocument();
-      expect(quantityInput).toHaveAttribute('name', 'limit-quantity');
-      expect(quantityInput).toHaveAttribute('min', '1');
-      expect(quantityInput).toHaveAttribute('max', '1000');
+      const limitQuantity = screen.getByTestId('quantity-limit-quantity');
+      expect(limitQuantity).toBeInTheDocument();
     });
 
-    it('should render limit title in form field label', () => {
+    it('should render form field labels', () => {
       render(
         <TestWrapper>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      const formFieldLabel = screen.getByTestId('form-field-label');
-      expect(formFieldLabel).toHaveTextContent('tenants:configuration.limit.title');
-    });
-
-    it('should render limit description in form field helper', () => {
-      render(
-        <TestWrapper>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      const formFieldHelper = screen.getByTestId('form-field-helper');
-      expect(formFieldHelper).toHaveTextContent('tenants:configuration.limit.description');
+      const formFieldLabels = screen.getAllByTestId('form-field-label');
+      expect(formFieldLabels).toHaveLength(2);
     });
   });
 
   describe('Retention Field Behavior', () => {
-    it('should render retention options when retentions are loaded', () => {
-      render(
-        <TestWrapper>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      const selectElement = screen.getByTestId('select-retention');
-      const options = selectElement.querySelectorAll('option');
-
-      expect(options).toHaveLength(4);
-      expect(options[0]).toHaveValue('1');
-      expect(options[0]).toHaveTextContent('1 month');
-      expect(options[1]).toHaveValue('2');
-      expect(options[1]).toHaveTextContent('3 months');
-      expect(options[2]).toHaveValue('3');
-      expect(options[2]).toHaveTextContent('6 months');
-      expect(options[3]).toHaveValue('4');
-      expect(options[3]).toHaveTextContent('1 year');
-    });
-
-    it('should disable retention select when no infrastructure is selected', () => {
+    it('should disable retention input when no infrastructure is selected', () => {
       render(
         <TestWrapper defaultValues={{ infrastructureId: '' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      const selectElement = screen.getByTestId('select-retention');
-      expect(selectElement).toBeDisabled();
+      const retentionQuantity = screen.getByTestId('quantity-retention-quantity');
+      expect(retentionQuantity).toHaveAttribute('data-disabled', 'true');
     });
 
-    it('should enable retention select when infrastructure is selected', () => {
+    it('should enable retention input when infrastructure is selected', () => {
       render(
         <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      const selectElement = screen.getByTestId('select-retention');
-      expect(selectElement).not.toBeDisabled();
+      const retentionQuantity = screen.getByTestId('quantity-retention-quantity');
+      expect(retentionQuantity).toHaveAttribute('data-disabled', 'false');
     });
 
-    it('should disable retention select when retentions are loading', () => {
-      mockUseRetentions.mockReturnValue(
-        createMockRetentionsResult({
-          isPending: true,
-          data: undefined,
-        }),
-      );
-
+    it('should handle retention value change', async () => {
       render(
-        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123', retentionDuration: '7' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      const selectElement = screen.getByTestId('select-retention');
-      expect(selectElement).toBeDisabled();
-    });
-
-    it('should handle retention selection change', async () => {
-      render(
-        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      const selectElement = screen.getByTestId('select-retention');
-
-      fireEvent.change(selectElement, { target: { value: '2' } });
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      fireEvent.change(retentionInput, { target: { value: '30' } });
 
       await waitFor(() => {
-        expect(selectElement).toHaveValue('2');
+        expect(retentionInput).toHaveValue(30);
       });
-    });
-
-    it('should display retention error when validation fails', () => {
-      render(
-        <TestWrapper
-          defaultValues={{ infrastructureId: 'infra-123' }}
-          withErrors={{ retentionId: 'Retention is required' }}
-        >
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      expect(screen.getByTestId('select-error')).toHaveTextContent('Retention is required');
     });
   });
 
   describe('MaxSeries Quantity Field Behavior', () => {
     it('should render with default value when provided', () => {
       render(
-        <TestWrapper defaultValues={{ maxSeries: 100 }}>
+        <TestWrapper defaultValues={{ maxSeries: 100, infrastructureId: 'infra-123' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      const quantityInput = screen.getByTestId('quantity-input');
+      const quantityInput = screen.getByTestId('quantity-input-limit-quantity');
       expect(quantityInput).toHaveValue(100);
     });
 
-    it('should handle quantity change', () => {
+    it('should handle quantity change', async () => {
       render(
-        <TestWrapper defaultValues={{ maxSeries: 100 }}>
+        <TestWrapper defaultValues={{ maxSeries: 100, infrastructureId: 'infra-123' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      const quantityInput = screen.getByTestId('quantity-input');
+      const quantityInput = screen.getByTestId('quantity-input-limit-quantity');
       fireEvent.change(quantityInput, { target: { value: '250' } });
 
-      expect(quantityInput).toHaveValue(250);
-    });
-
-    it('should display error when maxSeries validation fails', () => {
-      render(
-        <TestWrapper withErrors={{ maxSeries: 'Must be between 1 and 1000' }}>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      const quantityInput = screen.getByTestId('quantity-input');
-      expect(quantityInput).toHaveAttribute('data-has-error', 'true');
-
-      const errorHelper = screen.getByTestId('form-field-helper');
-      expect(errorHelper).toHaveTextContent('Must be between 1 and 1000');
-    });
-
-    it('should not display error when maxSeries is valid', () => {
-      render(
-        <TestWrapper defaultValues={{ maxSeries: 100 }}>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      const quantityInput = screen.getByTestId('quantity-input');
-      expect(quantityInput).toHaveAttribute('data-has-error', 'false');
-      // The description is always shown, but error message should not be present
-      const formFieldHelper = screen.getByTestId('form-field-helper');
-      expect(formFieldHelper).not.toHaveTextContent('Must be between');
-    });
-  });
-
-  describe('useRetentions Hook Integration', () => {
-    it('should call useRetentions with correct parameters', () => {
-      render(
-        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      expect(mockUseRetentions).toHaveBeenCalledWith({
-        resourceName: 'test-service-id',
-        infrastructureId: 'infra-123',
+      await waitFor(() => {
+        expect(quantityInput).toHaveValue(250);
       });
     });
 
-    it('should call useRetentions with empty infrastructure when not selected', () => {
+    it('should disable maxSeries input when no infrastructure is selected', () => {
       render(
         <TestWrapper defaultValues={{ infrastructureId: '' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      expect(mockUseRetentions).toHaveBeenCalledWith({
-        resourceName: 'test-service-id',
-        infrastructureId: '',
+      const limitQuantity = screen.getByTestId('quantity-limit-quantity');
+      expect(limitQuantity).toHaveAttribute('data-disabled', 'true');
+    });
+
+    it('should handle null maxSeries value when no settings available', () => {
+      // When no settings are available, the default value should not be set
+      mockUseInfrastructureSettings.mockReturnValue({
+        data: undefined,
+        isLoading: false,
+        error: null,
+        isError: false,
+        isSuccess: false,
       });
+      mockUseFormattedDurationSetting.mockReturnValue(undefined);
+
+      render(
+        <TestWrapper defaultValues={{ maxSeries: null, infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm />
+        </TestWrapper>,
+      );
+
+      const quantityInput = screen.getByTestId('quantity-input-limit-quantity');
+      expect(quantityInput).toHaveValue(null);
+    });
+  });
+
+  describe('useInfrastructureSettings Hook Integration', () => {
+    it('should call useInfrastructureSettings with correct parameters', () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm />
+        </TestWrapper>,
+      );
+
+      expect(mockUseInfrastructureSettings).toHaveBeenCalledWith('test-service-id', 'infra-123');
+    });
+
+    it('should call useInfrastructureSettings with empty infrastructure when not selected', () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: '' }}>
+          <TenantConfigurationForm />
+        </TestWrapper>,
+      );
+
+      expect(mockUseInfrastructureSettings).toHaveBeenCalledWith('test-service-id', '');
     });
 
     it('should use empty resourceName when no service is selected', () => {
@@ -643,10 +541,21 @@ describe('TenantConfigurationForm', () => {
         </TestWrapper>,
       );
 
-      expect(mockUseRetentions).toHaveBeenCalledWith({
-        resourceName: '',
-        infrastructureId: 'infra-123',
-      });
+      expect(mockUseInfrastructureSettings).toHaveBeenCalledWith('', 'infra-123');
+    });
+  });
+
+  describe('useFormattedDurationSetting Hook Integration', () => {
+    it('should call useFormattedDurationSetting with duration settings', () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm />
+        </TestWrapper>,
+      );
+
+      expect(mockUseFormattedDurationSetting).toHaveBeenCalledWith(
+        mockExtraSettings.mimir?.configurable?.compactor_blocks_retention_period,
+      );
     });
   });
 
@@ -672,70 +581,44 @@ describe('TenantConfigurationForm', () => {
         </TestWrapper>,
       );
 
-      expect(mockUseRetentions).toHaveBeenCalledWith({
-        resourceName: 'custom-service-id',
-        infrastructureId: 'infra-123',
-      });
+      expect(mockUseInfrastructureSettings).toHaveBeenCalledWith('custom-service-id', 'infra-123');
     });
+  });
 
-    it('should use dateFnsLocale for formatting durations', () => {
+  describe('Bounds Helper', () => {
+    it('should render bounds helper for retention field', () => {
       render(
         <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      expect(mockUseDateFnsLocale).toHaveBeenCalled();
+      const boundsHelpers = screen.getAllByTestId('bounds-helper');
+      expect(boundsHelpers.length).toBeGreaterThanOrEqual(1);
     });
-  });
 
-  describe('Infrastructure ID Watch', () => {
-    it('should watch infrastructure ID field changes', () => {
-      // Test that the component properly watches the infrastructureId field
+    it('should render bounds helper for maxSeries field', () => {
       render(
-        <TestWrapper defaultValues={{ infrastructureId: '' }}>
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
           <TenantConfigurationForm />
         </TestWrapper>,
       );
 
-      // When no infrastructure is selected, retention should be disabled
-      expect(screen.getByTestId('select-retention')).toBeDisabled();
-
-      // Verify that useRetentions was called with empty infrastructure
-      expect(mockUseRetentions).toHaveBeenCalledWith({
-        resourceName: 'test-service-id',
-        infrastructureId: '',
-      });
-    });
-
-    it('should enable retention select when infrastructure is provided', () => {
-      render(
-        <TestWrapper defaultValues={{ infrastructureId: 'infra-456' }}>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      // When infrastructure is selected, retention should be enabled
-      expect(screen.getByTestId('select-retention')).not.toBeDisabled();
-
-      // Verify that useRetentions was called with the infrastructure ID
-      expect(mockUseRetentions).toHaveBeenCalledWith({
-        resourceName: 'test-service-id',
-        infrastructureId: 'infra-456',
-      });
+      const boundsHelpers = screen.getAllByTestId('bounds-helper');
+      expect(boundsHelpers.length).toBe(2);
     });
   });
 
   describe('Edge Cases', () => {
-    it('should handle empty retentions array', () => {
-      mockUseRetentions.mockReturnValue(
-        createMockRetentionsResult({
-          data: [],
-          isSuccess: true,
-          isPending: false,
-          isFetched: true,
-        }),
-      );
+    it('should handle undefined extraSettings', () => {
+      mockUseInfrastructureSettings.mockReturnValue({
+        data: undefined,
+        isLoading: false,
+        error: null,
+        isError: false,
+        isSuccess: false,
+      });
+      mockUseFormattedDurationSetting.mockReturnValue(undefined);
 
       render(
         <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
@@ -743,20 +626,18 @@ describe('TenantConfigurationForm', () => {
         </TestWrapper>,
       );
 
-      const selectElement = screen.getByTestId('select-retention');
-      const options = selectElement.querySelectorAll('option');
-      expect(options).toHaveLength(0);
+      // Component should still render without crashing
+      expect(screen.getByTestId('text-heading2')).toBeInTheDocument();
     });
 
-    it('should handle undefined retentions data', () => {
-      mockUseRetentions.mockReturnValue(
-        createMockRetentionsResult({
-          data: undefined,
-          isSuccess: false,
-          isPending: false,
-          isFetched: true,
-        }),
-      );
+    it('should handle loading state for infrastructure settings', () => {
+      mockUseInfrastructureSettings.mockReturnValue({
+        data: undefined,
+        isLoading: true,
+        error: null,
+        isError: false,
+        isSuccess: false,
+      });
 
       render(
         <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
@@ -764,20 +645,8 @@ describe('TenantConfigurationForm', () => {
         </TestWrapper>,
       );
 
-      const selectElement = screen.getByTestId('select-retention');
-      const options = selectElement.querySelectorAll('option');
-      expect(options).toHaveLength(0);
-    });
-
-    it('should handle null maxSeries value', () => {
-      render(
-        <TestWrapper defaultValues={{ maxSeries: null }}>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      const quantityInput = screen.getByTestId('quantity-input');
-      expect(quantityInput).toHaveValue(null);
+      // Component should still render
+      expect(screen.getByTestId('text-heading2')).toBeInTheDocument();
     });
   });
 });

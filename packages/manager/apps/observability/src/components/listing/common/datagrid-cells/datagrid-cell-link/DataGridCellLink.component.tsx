@@ -1,22 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
-import { Link } from '@ovh-ux/muk';
+import { Link, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
+import { DataGridCellLinkProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.props';
 import { getTenantDashboardUrl } from '@/routes/Routes.utils';
 
-import { DataGridCellLinkProps } from './DataGridCellLink.props';
-
 export default function DatagridCellLink({ id, label }: DataGridCellLinkProps) {
-  const navigate = useNavigate();
+  const href = useHref(getTenantDashboardUrl(id));
 
   return (
-    <Link
-      onClick={() => {
-        navigate(`${getTenantDashboardUrl(id)}`);
-      }}
-      data-testid={`cell-link-${id}`}
-    >
-      {label}
-    </Link>
+    <div className="flex flex-col">
+      <Link data-testid={`cell-link-${id}`} href={href}>
+        {label}
+      </Link>
+      <Text preset={TEXT_PRESET.small}>{id}</Text>
+    </div>
   );
 }
