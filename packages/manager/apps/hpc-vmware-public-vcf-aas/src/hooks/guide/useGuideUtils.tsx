@@ -143,7 +143,7 @@ function useGuideUtils() {
       setList(guideList);
     };
     void getSubSidiary();
-  }, []);
+  }, [environment]);
   return list as GuideLinkProps;
 }
 

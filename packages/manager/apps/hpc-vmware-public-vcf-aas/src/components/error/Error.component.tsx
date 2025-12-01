@@ -22,7 +22,7 @@ function getTrackingTypology(error: ErrorMessage) {
   return TRACKING_LABELS.PAGE_LOAD;
 }
 
-const Errors: React.FC<ErrorObject> = ({ error }) => {
+const Errors: React.FC<ErrorObject> = ({ error }: { error: unknown }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { shell } = React.useContext(ShellContext);
@@ -40,7 +40,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
         page_category: location.pathname,
       });
     });
-  }, []);
+  }, [env, error, location.pathname, tracking]);
 
   return (
     <ErrorBanner

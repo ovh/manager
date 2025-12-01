@@ -83,7 +83,7 @@ export default function DatagridContainer({
     ) {
       navigate(onboarding);
     }
-  }, [data]);
+  }, [data, navigate, onboarding, status]);
 
   if (isError) {
     // return <ErrorBanner error={error} />;

@@ -1,4 +1,4 @@
-import React, { useId, useMemo } from 'react';
+import React, { useId } from 'react';
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
 import {
   Control,
@@ -28,14 +28,7 @@ export const RhfField = ({
   const id = useId();
   const controller = useController({ ...controllerParams, control });
 
-  const contextValues = useMemo(
-    () => ({
-      id,
-      helperMessage,
-      controller,
-    }),
-    [id, controller],
-  );
+  const contextValues = { id, helperMessage, controller };
 
   const hasError = !isHiddenError && !!controller.fieldState?.error;
   const errorMessage = helperMessage || controller.fieldState?.error?.message;

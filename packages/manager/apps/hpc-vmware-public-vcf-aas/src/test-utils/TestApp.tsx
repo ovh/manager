@@ -9,7 +9,7 @@ import Routes from '@/routes/routes';
 import { MessageContextProvider } from '@/context/Message.context';
 import Loading from '@/components/loading/Loading.component';
 
-export function TestApp({ initialRoute = '/' }) {
+export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
   const routes = createRoutesFromElements(Routes);
   const router = createMemoryRouter(routes, {
     initialEntries: [initialRoute],

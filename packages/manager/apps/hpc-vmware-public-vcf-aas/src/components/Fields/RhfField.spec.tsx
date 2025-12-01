@@ -13,7 +13,7 @@ const SCHEMA = z.object({
 
 const HELPER_MESSAGE = 'Do not write more 5 caracters';
 
-const FieldRender = ({ defaultValue = '' }) => {
+const FieldRender = ({ defaultValue = '' }: { defaultValue?: string }) => {
   const methods = useForm<z.infer<typeof SCHEMA>>({
     resolver: zodResolver(SCHEMA),
     mode: 'all',
