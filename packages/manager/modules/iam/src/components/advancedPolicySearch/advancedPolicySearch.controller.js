@@ -285,7 +285,42 @@ export default class AdvancedPolicySearchController {
     this.onModelChange();
   }
 
-  onResourceTypesConfirmRemove() {
-    return this.$q.when(true);
+  onResourceTypesConfirmRemove(resourceType) {
+    // Cascade deletion on resources
+    const resources = this.model.resources.selection;
+    const filteredResources = resources.filter(
+      (resource) => resource.type !== resourceType,
+    );
+    const hasImpactedResources = filteredResources.length < resources.length;
+    if (hasImpactedResources) {
+      this.model.resources = {
+        ...this.model.resources,
+        selection: filteredResources,
+      };
+      this.updateResourcesParametersList();
+    }
+
+    // Cascade deletion on actions
+    const actions = this.model.actions.selection;
+    const filteredActions = actions.filter(
+      (action) => action.resourceType !== resourceType,
+    );
+    const hasImpactedActions = filteredActions.length < actions.length;
+    if (hasImpactedActions) {
+      this.model.actions = {
+        ...this.model.actions,
+        selection: filteredActions,
+      };
+      this.updateActionsParametersList();
+    }
+
+    if (hasImpactedResources || hasImpactedActions) {
+      this.model.resources.types = this.model.resources.types.filter(
+        (type) => type !== resourceType,
+      );
+      this.onModelChange();
+    }
+
+    return this.$q.resolve(true);
   }
 }
