@@ -82,7 +82,7 @@ export default function RegionSelector() {
                   <RadioCard
                     id={infrastructure.id}
                     onChange={(event) => field.onChange(event.target.value)}
-                    selected={field.value}
+                    selected={field.value ?? ''}
                     key={infrastructure.id}
                     name="infrastructureId"
                     title={infrastructure.locationDetails.location}
