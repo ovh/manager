@@ -81,7 +81,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicAdmin}
             url={
-              props.nicAdmin === nichandleInformation.nichandle &&
+              props.nicAdmin === nichandleInformation?.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -96,7 +96,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicTechnical}
             url={
-              props.nicTechnical === nichandleInformation.nichandle &&
+              props.nicTechnical === nichandleInformation?.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -112,7 +112,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicBilling}
             url={
-              props.nicBilling === nichandleInformation.nichandle &&
+              props.nicBilling === nichandleInformation?.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />

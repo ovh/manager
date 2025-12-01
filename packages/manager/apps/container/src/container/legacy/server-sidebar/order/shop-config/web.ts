@@ -15,7 +15,7 @@ const webShopConfig = (
   sub: string,
   features: Record<string, boolean>,
 ): Array<ShopItem> => [
-  features['web:domains'] && ORDER_URLS[region].orderDomain
+  (features['web:domains:domains'] || features['web-domains:domains']) && ORDER_URLS[region].orderDomain
     ? {
         label: 'item_domains',
         icon: OdsIconWrapper({ name: ODS_ICON_NAME.WORLD_CONCEPT }),
