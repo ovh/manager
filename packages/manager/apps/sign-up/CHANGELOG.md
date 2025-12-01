@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.4.0...@ovh-ux/sign-up-app@4.5.0) (2025-12-01)
+
+
+### Features
+
+* update sign-up URLs ([1a76eb8](https://github.com/ovh/manager/commit/1a76eb88165b658cb4d1d420df320180a4fe817a)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
 # [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.14...@ovh-ux/sign-up-app@4.4.0) (2025-11-27)
 
 

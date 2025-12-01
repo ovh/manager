@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-sso",
-  "version": "0.4.9",
+  "version": "0.5.0",
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.15.1",
+    "@ovh-ux/manager-vite-config": "^0.15.2",
     "tsc-alias": "^1.8.16"
   }
 }
