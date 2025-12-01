@@ -44,7 +44,10 @@
         ></ovh-manager-auto-renew-tips>
     </div>
 
-    <debt-warning-modal service="$ctrl.service"></debt-warning-modal>
+    <reason-warning-modal
+        action="$ctrl.action"
+        service="$ctrl.service"
+    ></reason-warning-modal>
 
     <oui-datagrid
         id="services"
@@ -220,7 +223,7 @@
                 user="$ctrl.currentUser"
                 billing-management-availability="$ctrl.isAutorenewManagementAvailable"
                 delete-vrack-availability="$ctrl.canDeleteVrack"
-                advance-payment-call-back="$ctrl.openAnticipatePaymentWarningModal(service)"
+                advance-payment-call-back="$ctrl.openReasonModal(service, action)"
             >
             </billing-services-actions>
         </oui-datagrid-column>
