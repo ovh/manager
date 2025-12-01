@@ -8,6 +8,7 @@
   "pricing_option_replication_label": "Réplication",
   "total_monthly_label": "Total mensuel",
   "labelContainerName": "Nom du conteneur",
+  "nameInputInfo": "Le nom du conteneur doit comporter entre 3 et 63 caractères, doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : « . » et « - ».",
   "labelOffer": "Type de conteneur",
   "labelLocation": "Localisation",
   "labelContainerType": "Type de conteneur",
