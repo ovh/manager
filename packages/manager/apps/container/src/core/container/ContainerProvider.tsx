@@ -17,6 +17,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
+  const [isReady, setIsReady] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatbotReduced, setChatbotReduced] = useState(false);
@@ -122,7 +123,9 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
         return null;
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -146,10 +149,13 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   }, [application]);
 
   useEffect(() => {
-    shell.getPlugin('environment').onUniverseChange((universe: string) => {
-      setUniverse(universe);
-    });
-  }, []);
+    if (shell.getPlugin('environment')) {
+      setIsReady(true);
+      shell.getPlugin('environment').onUniverseChange((universe: string) => {
+        setUniverse(universe);
+      });
+    }
+  }, [shell.getPlugin('environment')]);
 
   const containerContext = {
     createBetaChoice,
@@ -157,6 +163,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     betaVersion,
     useBeta,
     isLivechatEnabled,
+    isReady,
     isLoading,
     updateBetaChoice,
     chatbotOpen,

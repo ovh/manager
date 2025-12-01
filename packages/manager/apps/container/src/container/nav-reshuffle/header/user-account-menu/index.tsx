@@ -1,12 +1,10 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 
-import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import useClickAway from 'react-use/lib/useClickAway';
 
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsIcon, OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE, ODS_SKELETON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Environment } from '@ovh-ux/manager-config';
 import UserAccountMenuButton from './Button';
 import UserAccountMenuContent from './Content';
 import useOnboarding from '@/core/onboarding';
@@ -17,8 +15,8 @@ import { useHeader } from '@/context/header';
 
 import style from './style.module.scss';
 import { tracking } from './constants';
-import { LEGAL_FORMS } from '@/container/common/constants';
-import useUser from '@/hooks/user/useUser';
+import { UserName } from '@/components/user-name/UserName.component';
+import useContainer from '@/core/container';
 
 type Props = {
   onToggle(show: boolean): void;
@@ -30,8 +28,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const trackingPlugin = shell.getPlugin('tracking');
   const { setIsNotificationsSidebarVisible } = useHeader();
 
-  const pluginEnvironement = shell.getPlugin('environment');
-  const user = useUser();
+  const { isReady } = useContainer();
 
   const {
     onboardingOpenedState,
@@ -41,32 +38,27 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   } = useProductNavReshuffle();
   const onboardingHelper = useOnboarding();
 
-  const ovhPaymentMethod = useOvhPaymentMethod();
-
-  const [isPaymentMethodLoading, setIsPaymentMethodLoading] = useState(true);
-  const [defaultPaymentMethod, setDefaultPaymentMethod] = useState(null);
   const handleRootClose = () => {
     if (!onboardingHelper.hasStarted(onboardingOpenedState)) {
       closeAccountSidebar();
     }
   };
 
+  const onUserAccountMenuButtonClick = useCallback((nextShow: boolean) => {
+    if (nextShow) {
+      openAccountSidebar();
+      setIsNotificationsSidebarVisible(false);
+      trackingPlugin.trackClick({
+        type: 'action',
+        name: tracking.open,
+      });
+    } else {
+      closeAccountSidebar();
+    }
+  }, [trackingPlugin]);
+
   useEffect(() => {
-    const loadPaymentMethods = async () => {
-      if (!defaultPaymentMethod && isAccountSidebarOpened && !user.enterprise) {
-        try {
-          setDefaultPaymentMethod(
-            await ovhPaymentMethod.getDefaultPaymentMethod(),
-          );
-        } finally {
-          setIsPaymentMethodLoading(false);
-        }
-      }
-
-      onToggle(isAccountSidebarOpened);
-    };
-
-    loadPaymentMethods();
+    onToggle(isAccountSidebarOpened);
   }, [isAccountSidebarOpened]);
 
   useClickAway(ref, handleRootClose);
@@ -75,18 +67,8 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
     <div className={`oui-navbar-dropdown ${style.selectable}`} ref={ref}>
       <UserAccountMenuButton
         show={isAccountSidebarOpened}
-        onClick={(nextShow) => {
-          if (nextShow) {
-            openAccountSidebar();
-            setIsNotificationsSidebarVisible(false);
-            trackingPlugin.trackClick({
-              type: 'action',
-              name: tracking.open,
-            });
-          } else {
-            closeAccountSidebar();
-          }
-        }}
+        onClick={onUserAccountMenuButtonClick}
+        disabled={!isReady}
       >
         <span slot="start" className={style.userIcon}>
           <OsdsIcon
@@ -96,16 +78,15 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
             aria-hidden="true"
           ></OsdsIcon>
         </span>
-        <span className={style.userInfos}>
-          {user.legalform === LEGAL_FORMS.CORPORATION
-            ? user.organisation
-            : `${user.firstname} ${user.name}`}
-        </span>
+        {isReady ? (
+          <UserName size={ODS_TEXT_SIZE._400}/>
+        ) : (
+          <OsdsSkeleton inline={true} size={ODS_SKELETON_SIZE.xs} />
+        )}
       </UserAccountMenuButton>
-      <UserAccountMenuContent
-        defaultPaymentMethod={defaultPaymentMethod}
-        isLoading={isPaymentMethodLoading}
-      />
+      {isAccountSidebarOpened && (
+        <UserAccountMenuContent />
+      )}
     </div>
   );
 };

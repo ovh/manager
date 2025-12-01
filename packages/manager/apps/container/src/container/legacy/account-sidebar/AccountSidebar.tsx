@@ -1,3 +1,4 @@
+import useContainer from '@/core/container';
 import PaymentMethod from './PaymentMethod/PaymentMethod';
 import Shortcuts from './Shortcuts';
 import UsefulLinks from './UsefulLinks';
@@ -10,6 +11,7 @@ const AccountSidebar = (): JSX.Element => {
     isAccountSidebarLargeScreenDisplayForced,
     isAccountSidebarVisible,
   } = useHeader();
+
   return (
     <div
       className={`manager-account-sidebar-wrapper${

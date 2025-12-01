@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from 'react-responsive';
 
@@ -9,17 +9,14 @@ import LanguageList from './List';
 
 import { useShell } from '@/context';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
+import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 
 export type Props = {
   onChange(show: boolean): void;
-  setUserLocale(locale: string): void;
-  userLocale?: string;
 };
 
 function LanguageMenu({
   onChange,
-  setUserLocale,
-  userLocale = '',
 }: Props): JSX.Element {
   const { i18n } = useTranslation('language');
   const ref = useRef();
@@ -29,6 +26,7 @@ function LanguageMenu({
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
+  const [userLocale, setUserLocale] = useState<string>(shell.getPlugin('i18n').getLocale());
 
   useEffect(() => {
     onChange(show);
@@ -36,8 +34,11 @@ function LanguageMenu({
 
   useClickAway(ref, handleRootClose);
 
-  const [currentLanguage, setCurrentLanguage] = useState(null);
-  const [availableLanguages, setAvailableLanguages] = useState([]);
+  const currentLanguage = useMemo(() => shell
+    .getPlugin('i18n')
+    .getAvailableLocales()
+    .find(({ key }: { key: string }) => key === userLocale),
+  [shell.getPlugin('i18n'), userLocale]);
 
   const onLocaleChange = (locale: string) => {
     shell.getPlugin('i18n').setLocale(locale);
@@ -45,26 +46,6 @@ function LanguageMenu({
     setUserLocale(locale);
     i18n.changeLanguage(locale);
   };
-
-  useEffect(() => {
-    setCurrentLanguage(
-      shell
-        .getPlugin('i18n')
-        .getAvailableLocales()
-        .find(({ key }: { key: string }) => key === userLocale),
-    );
-
-    setAvailableLanguages(
-      shell
-        .getPlugin('i18n')
-        .getAvailableLocales()
-        .filter(({ key }: { key: string }) => key !== userLocale),
-    );
-  }, [userLocale]);
-
-  if (!currentLanguage && availableLanguages.length === 0) {
-    return <div></div>;
-  }
 
   const getLanguageLabel = () => {
     if (currentLanguage) {
@@ -78,12 +59,14 @@ function LanguageMenu({
   return (
     <div className="oui-navbar-dropdown" ref={ref} data-testid="languageMenu">
       <LanguageButton show={show} onClick={(nextShow) => setShow(nextShow)}>
-        {getLanguageLabel()}
+        {currentLanguage ? getLanguageLabel() : <OsdsSkeleton />}
       </LanguageButton>
-      <LanguageList
-        languages={availableLanguages}
-        onSelect={onLocaleChange}
-      ></LanguageList>
+      {show && (
+        <LanguageList
+          userLocale={userLocale}
+          onSelect={onLocaleChange}
+        ></LanguageList>
+      )}
     </div>
   );
 }

@@ -53,15 +53,16 @@ export default function LiveChat({
     setChatbotReduced,
   } = useContainer();
 
+  // TODO: handle environment unavailability in MANAGER-19974
   const environment: Environment = useShell()
     .getPlugin('environment')
-    .getEnvironment();
+    ?.getEnvironment();
 
   const { t } = useTranslation('livechat');
 
-  const region = environment.getRegion();
-  const language = environment.getUserLanguage();
-  const { ovhSubsidiary, supportLevel } = environment.getUser();
+  const region = environment?.getRegion();
+  const language = environment?.getUserLanguage();
+  const { ovhSubsidiary, supportLevel } = environment?.getUser() ?? {};
   const chatIFrame = useRef<HTMLIFrameElement>(null);
 
   const [
