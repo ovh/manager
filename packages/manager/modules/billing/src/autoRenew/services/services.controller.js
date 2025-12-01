@@ -56,6 +56,7 @@ export default class ServicesCtrl {
       : null;
 
     this.service = null;
+    this.action = null;
     this.selectedServices = [];
 
     this.nicBillingFilter = this.nicBilling || this.$translate.instant(NIC_ALL);
@@ -352,7 +353,8 @@ export default class ServicesCtrl {
     );
   }
 
-  openAnticipatePaymentWarningModal(service) {
+  openReasonModal(service, action) {
     this.service = service;
+    this.action = action;
   }
 }
