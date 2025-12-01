@@ -190,7 +190,7 @@ function CommunicationsPage() {
           {tCommon('iam_display_content_message')}
         </OdsMessage>
       )}
-
+      <div id="communications-list">
       <Datagrid
         items={flattenData}
         columns={columns}
@@ -215,6 +215,7 @@ function CommunicationsPage() {
         onFetchNextPage={fetchNextPage}
         manualSorting={true}
       />
+      </div>
     </>
   );
 }

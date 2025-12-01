@@ -6,5 +6,5 @@ export const getAccountUrn = async (): Promise<string> => {
     '/iam/resource?resourceType=account',
   );
 
-  return data[0]?.urn;
+  return data[0]?.urn ?? '';
 };

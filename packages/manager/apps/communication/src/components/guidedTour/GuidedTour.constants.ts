@@ -1,0 +1,6 @@
+export const DEFAULT_POPOVER_WIDTH = 320;
+export const DEFAULT_POPOVER_HEIGHT = 150;
+export const STEP_ELEMENT_OFFSET = 10;
+export const POSITION_THRESHOLD = 1.5;
+export const DEFAULT_GAP = 12;
+export const VIEWPORT_PADDING = 16;
