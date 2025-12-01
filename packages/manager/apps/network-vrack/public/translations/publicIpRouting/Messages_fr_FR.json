@@ -1,0 +1,7 @@
+{
+  "publicIpRouting_purpose": "Utilisez le vRack pour exposer vos services à Internet lorsque cela est nécessaire.",
+  "publicIpRouting_explanation": "La page ci-dessous répertorie tous les emplacements où vos adresses IP publiques sont routées vers ce réseau vRack.",
+  "publicIpRouting_note_label": "Remarque :",
+  "publicIpRouting_note_value": "La bande passante publique affichée est spécifique à ce vRack et à la région, et représente le trafic sortant (du réseau OVHcloud vers Internet) utilisé par l’ensemble des adresses IP supplémentaires de cet emplacement."
+}
+

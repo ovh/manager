@@ -29,6 +29,8 @@
     "@ovh-ux/muk": "0.5.0",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^4.5.7",
+    "@ovhcloud/ods-react": "^19.1.0",
+    "@ovhcloud/ods-themes": "^19.1.0",
     "@tanstack/react-query": "5.51.21",
     "axios": "^1.13.2",
     "i18next": "23.8.2",
@@ -46,12 +48,12 @@
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/manager-tests-setup": "^0.5.0",
     "@ovh-ux/manager-vite-config": "*",
-    "@tanstack/react-query-devtools": "5.51.21",
     "@tailwindcss/postcss": "^4.1.17",
+    "@tanstack/react-query-devtools": "5.51.21",
+    "msw": "2.12.1",
     "typescript": "5.9.3",
     "vite": "7.2.2",
-    "vitest": "3.2.4",
-    "msw": "2.12.1"
+    "vitest": "3.2.4"
   },
   "regions": [
     "CA",
@@ -59,6 +61,6 @@
     "US"
   ],
   "universes": [
-    "Dedicated"
+    "@ovh-ux/manager-dedicated"
   ]
 }
