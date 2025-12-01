@@ -70,8 +70,9 @@
   "errorDestinationFetchingDetails": "Si è verificato un errore durante il recupero dei dettagli del container di destinazione",
   "errorDestinationObjectLockDisabled": "La replica richiede che l’object lock sia attivato sul container di destinazione",
   "prefixRegexError": "Il prefisso contiene caratteri non validi",
-  "noAvailableDestinationContainersAlert": "Per utilizzare la replica asincrona, è necessario un altro container con il versioning attivato.",
-  "replicationRequiresVersioningAlert": "Per utilizzare la replica asincrona, il versioning deve essere attivo.",
-  "destinationFieldLabel": "Container di destinazione",
-  "replicationButtonCancel": "Annullare"
+  "noAvailableDestinationContainersAlert": "Per utilizzare la replica asincrona, è necessario un altro contenitore con il versioning attivato.",
+  "replicationRequiresVersioningAlert": "Per utilizzare la replica asincrona, il versioning deve essere attivato.",
+  "destinationFieldLabel": "Contenitore di destinazione",
+  "replicationButtonCancel": "Annulla",
+  "disabledClassDestinationHelper": "Seleziona un contenitore di destinazione per attivare questa opzione"
 }

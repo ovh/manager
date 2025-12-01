@@ -38,6 +38,7 @@
   "storageClassStandard": "Standard",
   "storageClassStandardIA": "Standard - Accès peu fréquent",
   "storageClassHighPerf": "Haute performance",
+  "disabledClassDestinationHelper": "Sélectionnez un conteneur de destination pour activer cette option",
   "statusLabel": "Statut",
   "deleteMarkerReplication": "Réplication des marqueurs de suppression",
   "deleteMarkerReplicationLabel": "Réplication des marqueurs de suppression",
