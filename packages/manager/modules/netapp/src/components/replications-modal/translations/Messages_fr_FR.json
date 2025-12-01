@@ -1,0 +1,7 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Aucune réplication sélectionnée. Merci d'en sélectionner une.",
+  "netapp_replications_modal_title_approuve": "Accepter la réplication",
+  "netapp_replications_modal_description_approuve": "Attention! Vous allez accepter une réplication.",
+  "netapp_replications_modal_primary_label_approuve": "Synchroniser",
+  "netapp_replications_modal_secondary_label": "Fermer"
+}
