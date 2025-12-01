@@ -19,5 +19,6 @@
   "netapp_replications_status_accepted_synchronizating": "En cours de synchronisation",
   "netapp_replications_status_deletingg": "Suppression en cours",
   "netapp_replications_progress": "Réplication progression",
-  "netapp_replications_pending_help": "Ce volume est en attente d'une confirmation de la réplication. Pour approuver, vous devez accepter la réplication à partir du service de destination. Une fois confirmée la réplication commencera."
+  "netapp_replications_pending_help": "Ce volume est en attente d'une confirmation de la réplication. Pour approuver, vous devez accepter la réplication à partir du service de destination. Une fois confirmée la réplication commencera.",
+  "netapp_replications_button_approuve": "Accepter réplication"
 }
