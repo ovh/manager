@@ -22,7 +22,7 @@
     "test-ui": "manager-test --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "@datatr-ux/ovhcloud-types": "1.0.11",
+    "@datatr-ux/ovhcloud-types": "2.0.1",
     "@datatr-ux/uxlib": "1.0.0-alpha-34",
     "@hookform/resolvers": "^3.3.4",
     "@monaco-editor/react": "^4.7.0",
