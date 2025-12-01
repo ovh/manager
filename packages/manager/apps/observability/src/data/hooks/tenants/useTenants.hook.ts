@@ -5,8 +5,7 @@ import { Tenant } from '@/types/tenants.type';
 
 export const getTenantsQueryKey = (resourceName: string) => ['tenants', resourceName];
 export const getTenantQueryKey = (resourceName: string, tenantId: string) => [
-  'tenant',
-  resourceName,
+  ...getTenantsQueryKey(resourceName),
   'tenantId',
   tenantId,
 ];
