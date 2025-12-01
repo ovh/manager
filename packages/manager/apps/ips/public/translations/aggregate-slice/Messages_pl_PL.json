@@ -1,0 +1,12 @@
+{
+  "aggregateModalTitle": "Agregacja bloku {{ip}}",
+  "aggregateModalDescription": "Wskaż żądany blok nadrzędny",
+  "aggregateModalChildrenIpsDescription": "Operacja ta spowoduje agregację następujących podsieci:",
+  "aggregateSuccessMessage": "Twój blok IP zostanie zagregowany. Odśwież stronę za kilka minut.",
+  "noAggregateSliceAvailable": "Brak dostępnej konfiguracji segmentacji/agregacji. Aby uzyskać więcej informacji, sprawdź przewodnik: ",
+  "noAggregateLinkLabel": "tutaj",
+  "sliceModalTitle": "Podziel blok {{ip}} na segmenty",
+  "sliceModalDescription": "Podaj rozmiar bloków podrzędnych",
+  "sliceModalChildrenIpsDescription": "Ta konfiguracja spowoduje utworzenie następujących bloków:",
+  "sliceSuccessMessage": "Twój blok IP zostanie podzielony na segmenty. Odśwież stronę za kilka minut."
+}
