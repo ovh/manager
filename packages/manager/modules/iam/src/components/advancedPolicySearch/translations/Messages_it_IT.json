@@ -1,0 +1,16 @@
+{
+  "iam_advanced_policy_search_title": "Cercare le politiche",
+  "iam_advanced_policy_search_criteria_identities": "Identità",
+  "iam_advanced_policy_search_criteria_identities_local_users": "Selezionare utenti locali",
+  "iam_advanced_policy_search_criteria_identities_user_groups": "Selezionare gruppi di utenti",
+  "iam_advanced_policy_search_criteria_identities_urn_search": "Cercare un account cliente OVHcloud",
+  "iam_advanced_policy_search_criteria_identities_urn_search_label": "Cercare un account con il suo URN",
+  "iam_advanced_policy_search_criteria_ressources": "Risorse",
+  "iam_advanced_policy_search_criteria_ressources_product_search": "Cercare tipi di prodotto",
+  "iam_advanced_policy_search_criteria_ressources_ressource_search": "Cercare tipi di risorse",
+  "iam_advanced_policy_search_criteria_actions": "Azioni",
+  "iam_advanced_policy_search_criteria_actions_managed_permissions": "Cercare gruppi di permessi gestiti",
+  "iam_resource_type_custom": "Cercare azioni aggiunte manualmente",
+  "iam_advanced_search_url_limit_reached_warning": "Limite di parametri raggiunto, selezionare meno criteri.",
+  "iam_advanced_policy_search_button": "Cercare"
+}
