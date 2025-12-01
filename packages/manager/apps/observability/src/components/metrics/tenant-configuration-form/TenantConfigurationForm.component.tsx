@@ -1,75 +1,142 @@
-import React from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
   FormField,
-  FormFieldHelper,
   FormFieldLabel,
   Quantity,
   QuantityControl,
   QuantityInput,
 } from '@ovhcloud/ods-react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
-import { SelectField } from '@/components/form/select-field/SelectField.component';
+import { BoundsFormFieldHelper } from '@/components/form/bounds-form-field-helper/BoundsFormFieldHelper.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { useRetentions } from '@/data/hooks/infrastructures/useRetentions.hook';
-import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
+import { useInfrastructureSettings } from '@/data/hooks/infrastructures/useInfrastructureSettings.hook';
+import { useDynamicBoundsValidation } from '@/hooks/form/useDynamicBoundsValidation.hook';
+import { useFormattedDurationSetting } from '@/hooks/useFormattedExtraSettings.hook';
 import type { TenantFormData } from '@/types/tenants.type';
-import { formatDuration } from '@/utils/duration.utils';
 import { toRequiredLabel } from '@/utils/form.utils';
-import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
 export const TenantConfigurationForm = () => {
-  const { t } = useTranslation(['tenants', 'shared']);
+  const { t } = useTranslation(['tenants', 'shared', NAMESPACES.FORM]);
   const {
     control,
+    setValue,
     formState: { errors },
   } = useFormContext<TenantFormData>();
 
   const { selectedService } = useObservabilityServiceContext();
-  const dateFnsLocale = useDateFnsLocale();
 
   const infrastructureId = useWatch({
     control,
     name: 'infrastructureId',
   });
 
-  const {
-    data: retentions,
-    isPending,
-    isLoading,
-  } = useRetentions({
-    resourceName: selectedService?.id || '',
-    infrastructureId: infrastructureId || '',
+  const retentionDuration = useWatch({
+    control,
+    name: 'retentionDuration',
   });
+
+  const maxSeries = useWatch({
+    control,
+    name: 'maxSeries',
+  });
+
+  const { data: extraSettings } = useInfrastructureSettings(
+    selectedService?.id || '',
+    infrastructureId || '',
+  );
+
+  const retentionSetting = useFormattedDurationSetting(
+    extraSettings?.mimir?.configurable?.compactor_blocks_retention_period,
+  );
+
+  const maxSeriesSetting = extraSettings?.mimir?.configurable?.max_global_series_per_user;
+
+  const settingBounds = useMemo(
+    () => ({
+      retention: {
+        min: retentionSetting?.min,
+        max: retentionSetting?.max,
+      },
+      maxSeries: {
+        min: maxSeriesSetting?.min,
+        max: maxSeriesSetting?.max,
+      },
+    }),
+    [retentionSetting, maxSeriesSetting],
+  );
+
+  // Track if default value has been initialized for this infrastructure
+  const initializedForInfrastructureRef = useRef<string | null>(null);
+
+  // Set default values only once when setting becomes available
+  useEffect(() => {
+    if (
+      retentionSetting?.default.value &&
+      maxSeriesSetting?.default &&
+      infrastructureId &&
+      initializedForInfrastructureRef.current !== infrastructureId
+    ) {
+      setValue('retentionDuration', retentionSetting.default.value.toString());
+      setValue('retentionUnit', retentionSetting.unit);
+      setValue('maxSeries', maxSeriesSetting.default);
+      initializedForInfrastructureRef.current = infrastructureId;
+    }
+  }, [retentionSetting, maxSeriesSetting, infrastructureId, setValue]);
+
+  // Validate bounds dynamically (bounds depend on selected infrastructure)
+  const retentionValue = retentionDuration ? parseInt(retentionDuration, 10) : null;
+
+  useDynamicBoundsValidation<TenantFormData>('retentionDuration', retentionValue, {
+    min: settingBounds.retention.min?.value,
+    max: settingBounds.retention.max?.value,
+  });
+
+  useDynamicBoundsValidation<TenantFormData>('maxSeries', maxSeries, settingBounds.maxSeries);
 
   return (
     <>
       <Text preset={TEXT_PRESET.heading2}>{t('configuration.title')}</Text>
       <div className="space-y-4">
         <Controller
-          name="retentionId"
+          name="retentionDuration"
           control={control}
           render={({ field }) => (
-            <SelectField
-              key={infrastructureId || 'no-infrastructure'}
-              isDisabled={!infrastructureId || isPending}
-              isLoading={isLoading}
-              value={field.value}
-              name="select-retention"
-              label={toRequiredLabel(t('tenants:configuration.retention'), t('shared:mandatory'))}
-              placeholder={t('tenants:configuration.retentionPlaceholder')}
-              onChange={(value) => field.onChange(value ?? '')}
-              options={retentions?.map((option) => ({
-                value: option.id,
-                label: formatDuration(option.duration, dateFnsLocale),
-              }))}
-              error={errors.retentionId?.message}
-            />
+            <FormField className="block">
+              <FormFieldLabel>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {toRequiredLabel(
+                    t('tenants:configuration.retention.title'),
+                    t('shared:mandatory'),
+                  )}
+                </Text>
+              </FormFieldLabel>
+              <Quantity
+                name="retention-quantity"
+                min={settingBounds.retention.min?.value}
+                max={settingBounds.retention.max?.value}
+                value={field.value?.toString() || ''}
+                onValueChange={(detail) => field.onChange(detail.value ?? '')}
+                invalid={!!errors.retentionDuration}
+                disabled={!infrastructureId || !retentionSetting}
+              >
+                <QuantityControl>
+                  <QuantityInput className="w-24" />
+                </QuantityControl>
+              </Quantity>
+
+              <BoundsFormFieldHelper
+                min={settingBounds.retention?.min?.label}
+                max={settingBounds.retention?.max?.label}
+                error={errors.retentionDuration}
+              />
+            </FormField>
           )}
         />
 
@@ -79,12 +146,14 @@ export const TenantConfigurationForm = () => {
           render={({ field }) => (
             <FormField className="block">
               <FormFieldLabel>
-                <Text preset={TEXT_PRESET.paragraph}>{t('tenants:configuration.limit.title')}</Text>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {toRequiredLabel(t('tenants:configuration.limit.title'), t('shared:mandatory'))}
+                </Text>
               </FormFieldLabel>
               <Quantity
                 name="limit-quantity"
-                min={INGESTION_BOUNDS.MIN}
-                max={INGESTION_BOUNDS.MAX}
+                min={settingBounds.maxSeries?.min}
+                max={settingBounds.maxSeries?.max}
                 value={field.value?.toString() || ''}
                 onValueChange={(detail) =>
                   field.onChange(detail.value ? parseInt(detail.value, 10) : null)
@@ -96,16 +165,11 @@ export const TenantConfigurationForm = () => {
                   <QuantityInput className="w-24" />
                 </QuantityControl>
               </Quantity>
-              <FormFieldHelper>
-                <Text preset={TEXT_PRESET.caption}>
-                  {t('tenants:configuration.limit.description')}
-                </Text>
-                {errors.maxSeries && (
-                  <div>
-                    <Text preset={TEXT_PRESET.caption}>{errors.maxSeries.message}</Text>
-                  </div>
-                )}
-              </FormFieldHelper>
+              <BoundsFormFieldHelper
+                min={settingBounds.maxSeries?.min?.toString()}
+                max={settingBounds.maxSeries?.max?.toString()}
+                error={errors.maxSeries}
+              />
             </FormField>
           )}
         />
