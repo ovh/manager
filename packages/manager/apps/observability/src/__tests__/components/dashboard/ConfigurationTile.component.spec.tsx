@@ -3,8 +3,8 @@ import { vi } from 'vitest';
 
 import { ConfigurationTile } from '@/components/dashboard/ConfigurationTile.component';
 
-const { mockFormatDuration } = vi.hoisted(() => ({
-  mockFormatDuration: vi.fn(),
+const { mockFormatObservabilityDuration } = vi.hoisted(() => ({
+  mockFormatObservabilityDuration: vi.fn(),
 }));
 
 vi.mock('react-i18next', () => ({
@@ -43,7 +43,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
 }));
 
 vi.mock('@/utils/duration.utils', () => ({
-  formatDuration: mockFormatDuration,
+  formatObservabilityDuration: mockFormatObservabilityDuration,
 }));
 
 describe('ConfigurationTile.component', () => {
@@ -55,7 +55,7 @@ describe('ConfigurationTile.component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockFormatDuration.mockReturnValue('10 days');
+    mockFormatObservabilityDuration.mockReturnValue('10 days');
   });
 
   it('renders skeletons while data is loading', () => {
@@ -67,7 +67,10 @@ describe('ConfigurationTile.component', () => {
   it('renders formatted retention and metric limits when available', () => {
     render(<ConfigurationTile {...baseProps} isLoading={false} />);
 
-    expect(mockFormatDuration).toHaveBeenCalledWith(baseProps.retention, 'test-locale');
+    expect(mockFormatObservabilityDuration).toHaveBeenCalledWith(
+      baseProps.retention,
+      'test-locale',
+    );
     expect(screen.getByText('10 days')).toBeInTheDocument();
     expect(screen.getByText(String(baseProps.numberOfSeriesCurrent))).toBeInTheDocument();
     expect(screen.getByText(String(baseProps.numberOfSeriesMaximum))).toBeInTheDocument();
@@ -83,6 +86,6 @@ describe('ConfigurationTile.component', () => {
       />,
     );
 
-    expect(mockFormatDuration).not.toHaveBeenCalled();
+    expect(mockFormatObservabilityDuration).not.toHaveBeenCalled();
   });
 });
