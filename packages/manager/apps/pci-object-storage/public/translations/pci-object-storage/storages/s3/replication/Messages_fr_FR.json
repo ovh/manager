@@ -74,5 +74,7 @@
   "noAvailableDestinationContainersAlert": "Pour utiliser la réplication asynchrone, vous avez besoin d'un autre conteneur avec le versioning activé.",
   "replicationRequiresVersioningAlert": "Pour utiliser la réplication asynchrone, le versioning doit être activé.",
   "destinationFieldLabel": "Conteneur de destination",
-  "replicationButtonCancel": "Annuler"
+  "replicationButtonCancel": "Annuler",
+  "warning1AZTo3AZ": "La classe de stockage High Performance n’est pas disponible avec le mode de déploiement 3-AZ. Vos objets source stockés en High performance seront ainsi répliqués par défaut vers la classe de stockage standard qui est la classe de stockage la plus proche termes d'usage.",
+  "warning3AZTo1AZ": "La classe de stockage Cold Archive n'est disponible que sur le mode de déploiement 3-AZ et sur la region Paris. Vos objets source stockés en Cold Archive seront ainsi répliqués par défaut vers Infrequent Access qui est la classe de stockage la plus proche termes d'usage."
 }
