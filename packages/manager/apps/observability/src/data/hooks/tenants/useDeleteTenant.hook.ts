@@ -10,7 +10,10 @@ export const useDeleteTenant = (
 ) => {
   const queryClient = useQueryClient();
 
+  const { onSuccess, onError, ...restOptions } = mutationOptions ?? {};
+
   return useMutation({
+    ...restOptions,
     mutationFn: (payload: GetTenantPayload) => deleteTenant(payload),
     onSuccess: (deletedTenant, variables, context) => {
       void queryClient.invalidateQueries({
@@ -21,11 +24,10 @@ export const useDeleteTenant = (
         getTenantQueryKey(variables.resourceName, variables.tenantId),
         deletedTenant,
       );
-      mutationOptions?.onSuccess?.(deletedTenant, variables, context);
+      onSuccess?.(deletedTenant, variables, context);
     },
     onError: (error, variables, context) => {
-      mutationOptions?.onError?.(error, variables, context);
+      onError?.(error, variables, context);
     },
-    ...mutationOptions,
   });
 };

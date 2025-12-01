@@ -50,11 +50,9 @@ describe('useCreateTenants', () => {
       title: 'Test Tenant',
       description: 'Test tenant description',
       limits: {
-        numberOfSeries: {
-          maximum: 1000,
-        },
-        retention: {
-          id: 'retention-1',
+        mimir: {
+          compactor_blocks_retention_period: '30d',
+          max_global_series_per_user: 1000,
         },
       },
       infrastructure: {
@@ -71,13 +69,9 @@ describe('useCreateTenants', () => {
       title: 'Test Tenant',
       description: 'Test tenant description',
       limits: {
-        numberOfSeries: {
-          current: 0,
-          maximum: 1000,
-        },
-        retention: {
-          id: 'retention-1',
-          duration: '30d',
+        mimir: {
+          compactor_blocks_retention_period: '30d',
+          max_global_series_per_user: 1000,
         },
       },
     },

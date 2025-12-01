@@ -1,5 +1,5 @@
-import { Infrastructure } from '@/types/infrastructures.type';
+import { TenantInfrastructure } from '@/types/tenants.type';
 
 export interface DatagridCellEnpointProps {
-  infrastructure: Infrastructure | undefined;
+  infrastructure: TenantInfrastructure | undefined;
 }
