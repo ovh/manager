@@ -48,6 +48,7 @@ import { putSmsConsent } from '@/data/api/marketing';
 import { urls } from '@/routes/routes.constant';
 import {
   getSirenFromSiret,
+  isIndividualLegalForm,
   shouldAccessOrganizationSearch,
   shouldEnableSIRENDisplay,
 } from '@/helpers/flowHelper';
@@ -226,78 +227,84 @@ function AccountDetailsForm({
           <Controller
             control={control}
             name="firstname"
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField>
-                <label
-                  htmlFor={name}
-                  slot="label"
-                  aria-label={t('account_details_field_firstname')}
-                >
-                  <OdsText preset="caption">
-                    {t('account_details_field_firstname')}
-                    {rules?.firstname?.mandatory && ' *'}
-                  </OdsText>
-                </label>
-                <OdsInput
-                  isReadonly={!rules}
-                  name="firstname"
-                  value={value}
-                  maxlength={rules?.firstname.maxLength || undefined}
-                  hasError={!!errors[name]}
-                  onOdsChange={onChange}
-                  onBlur={onBlur}
-                />
-                {errors[name] && rules?.firstname && (
-                  <OdsText
-                    className="text-critical leading-[0.8]"
-                    preset="caption"
+            render={({ field: { name, value, onChange, onBlur } }) => {
+              const labelFirstName = !isIndividualLegalForm(legalForm)
+                ? t('account_details_field_corporation_firstname')
+                : t('account_details_field_firstname');
+              return (
+                <OdsFormField>
+                  <label
+                    htmlFor={name}
+                    slot="label"
+                    aria-label={labelFirstName}
                   >
-                    {renderTranslatedZodError(
-                      errors[name].message,
-                      rules?.firstname,
-                    )}
-                  </OdsText>
-                )}
-              </OdsFormField>
-            )}
+                    <OdsText preset="caption">
+                      {labelFirstName}
+                      {rules?.firstname?.mandatory && ' *'}
+                    </OdsText>
+                  </label>
+                  <OdsInput
+                    isReadonly={!rules}
+                    name={name}
+                    value={value}
+                    maxlength={rules?.firstname.maxLength || undefined}
+                    hasError={!!errors[name]}
+                    onOdsChange={onChange}
+                    onBlur={onBlur}
+                  />
+                  {errors[name] && rules?.firstname && (
+                    <OdsText
+                      className="text-critical leading-[0.8]"
+                      preset="caption"
+                    >
+                      {renderTranslatedZodError(
+                        errors[name].message,
+                        rules?.firstname,
+                      )}
+                    </OdsText>
+                  )}
+                </OdsFormField>
+              );
+            }}
           />
           <Controller
             control={control}
             name="name"
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField>
-                <label
-                  htmlFor={name}
-                  slot="label"
-                  aria-label={t('account_details_field_name')}
-                >
-                  <OdsText preset="caption">
-                    {t('account_details_field_name')}
-                    {rules?.name?.mandatory && ' *'}
-                  </OdsText>
-                </label>
-                <OdsInput
-                  isReadonly={!rules}
-                  name="name"
-                  value={value}
-                  maxlength={rules?.name.maxLength || undefined}
-                  hasError={!!errors[name]}
-                  onOdsChange={onChange}
-                  onOdsBlur={onBlur}
-                />
-                {errors[name] && rules?.name && (
-                  <OdsText
-                    className="text-critical leading-[0.8]"
-                    preset="caption"
-                  >
-                    {renderTranslatedZodError(
-                      errors[name].message,
-                      rules?.name,
-                    )}
-                  </OdsText>
-                )}
-              </OdsFormField>
-            )}
+            render={({ field: { name, value, onChange, onBlur } }) => {
+              const labelName = !isIndividualLegalForm(legalForm)
+                ? t('account_details_field_corporation_lastname')
+                : t('account_details_field_name');
+              return (
+                <OdsFormField>
+                  <label htmlFor={name} slot="label" aria-label={labelName}>
+                    <OdsText preset="caption">
+                      {labelName}
+                      {rules?.name?.mandatory && ' *'}
+                    </OdsText>
+                  </label>
+                  <OdsInput
+                    isReadonly={!rules}
+                    name={name}
+                    value={value}
+                    maxlength={rules?.name.maxLength || undefined}
+                    hasError={!!errors[name]}
+                    onOdsChange={onChange}
+                    onOdsBlur={onBlur}
+                  />
+                  {errors[name] && rules?.name && (
+                    <OdsText
+                      className="text-critical leading-[0.8]"
+                      preset="caption"
+                    >
+                      {renderTranslatedZodError(
+                        errors[name].message,
+                        rules?.name,
+                      )}
+                    </OdsText>
+                  )}
+                </OdsFormField>
+              );
+            }}
           />
         </div>
 
@@ -493,40 +500,41 @@ function AccountDetailsForm({
           <Controller
             control={control}
             name="address"
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField>
-                <label
-                  htmlFor={name}
-                  slot="label"
-                  aria-label={t('account_details_field_address')}
-                >
-                  <OdsText preset="caption">
-                    {t('account_details_field_address')}
-                    {rules?.address?.mandatory && ' *'}
-                  </OdsText>
-                </label>
-                <OdsInput
-                  isReadonly={Boolean(address)}
-                  name="address"
-                  value={value}
-                  maxlength={rules?.address.maxLength || undefined}
-                  hasError={!!errors[name]}
-                  onOdsChange={onChange}
-                  onOdsBlur={onBlur}
-                />
-                {errors[name] && rules?.address && (
-                  <OdsText
-                    className="text-critical leading-[0.8]"
-                    preset="caption"
-                  >
-                    {renderTranslatedZodError(
-                      errors[name].message,
-                      rules?.address,
-                    )}
-                  </OdsText>
-                )}
-              </OdsFormField>
-            )}
+            render={({ field: { name, value, onChange, onBlur } }) => {
+              const labeladress = isIndividualLegalForm(legalForm)
+                ? t('account_details_section_address_individual')
+                : t('account_details_field_address');
+              return (
+                <OdsFormField>
+                  <label htmlFor={name} slot="label" aria-label={labeladress}>
+                    <OdsText preset="caption">
+                      {labeladress}
+                      {rules?.address?.mandatory && ' *'}
+                    </OdsText>
+                  </label>
+                  <OdsInput
+                    isReadonly={Boolean(address)}
+                    name="address"
+                    value={value}
+                    maxlength={rules?.address.maxLength || undefined}
+                    hasError={!!errors[name]}
+                    onOdsChange={onChange}
+                    onOdsBlur={onBlur}
+                  />
+                  {errors[name] && rules?.address && (
+                    <OdsText
+                      className="text-critical leading-[0.8]"
+                      preset="caption"
+                    >
+                      {renderTranslatedZodError(
+                        errors[name].message,
+                        rules?.address,
+                      )}
+                    </OdsText>
+                  )}
+                </OdsFormField>
+              );
+            }}
           />
           {rules.area && (
             <Controller
