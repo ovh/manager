@@ -1,10 +1,12 @@
 export const appName = 'veeam-backup';
 
-export const productFullName = 'Managed Veeam for VMware Cloud Director';
+export const productFullName = 'Managed Veeam for Public VCF as-a-Service';
 export const VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME = 'Public VCF as-a-Service';
 export const productName = 'Managed Veeam for VCD';
 
 export const vcdOrganizationAppName = 'hpc-vmware-public-vcf-aas';
+
+export const serviceName = 'Public VMware Cloud Foundation as-a-Service';
 
 export const iamActions = {
   iamResourceEdit: 'account:apiovh:iam/resource/edit',
