@@ -1,10 +1,10 @@
 {
-  "region_1_az_description": "Despliegue resiliente y económico en 1 zona de disponibilidad.",
+  "region_1_az_description": "Implementación resiliente y económica en 1 zona de disponibilidad.",
   "region_3_az_description": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad.",
   "region_continent_AFRICA": "África",
   "region_continent_ASIA": "Asia-Pacífico",
   "region_continent_NORTH_AMERICA": "Norteamérica",
   "region_continent_EUROPE": "Europa",
   "region_continent_OTHERS": "Otras regiones",
-  "region_local_zone_description": "Despliegue de sus aplicaciones lo más cerca posible de sus usuarios para una baja latencia y la residencia de los datos."
+  "region_local_zone_description": "Despliegue sus aplicaciones más cerca de sus usuarios para disfrutar de una menor latencia y de residencia de datos."
 }

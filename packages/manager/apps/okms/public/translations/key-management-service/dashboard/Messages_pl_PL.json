@@ -64,12 +64,12 @@
   "key_management_service_dashboard_button_label_download_ca": "Pobierz CA",
   "key_management_service_dashboard_button_label_download_rsa_ca": "Pobierz CA RSA",
   "key_management_service_dashboard_error_download_ca": "Nie można pobrać certyfikatu",
-  "okms_secret_config": "Domyślne ustawienia sekretów",
-  "okms_services": "Usługi domeny OKMS",
-  "okms_secret_count": "Liczba sekretów",
-  "okms_secret_version_count": "Łączna liczba wersji",
-  "okms_service_key_count": "Liczba kluczy serwisowych",
+  "okms_secret_config": "Domyślne ustawienia danych poufnych",
+  "okms_services": "Elementy środowiska OKMS",
+  "okms_secret_count": "Liczba danych poufnych",
+  "okms_secret_version_count": "Całkowita liczba wersji",
+  "okms_service_key_count": "Liczba Service Keys",
   "okms_kmip_object_count": "Liczba obiektów KMIP",
-  "okms_kmip_object_count_tooltip": "Zniszczone obiekty nie są liczone",
+  "okms_kmip_object_count_tooltip": "Usunięte obiekty nie są liczone",
   "kmip_objects": "Obiekty KMIP"
 }
