@@ -1,17 +1,13 @@
 import { Skeleton } from '@ovhcloud/ods-react';
+import { Link, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { Link, TEXT_PRESET, Text } from '@ovh-ux/muk';
-
+import { DatagridCellEnpointProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.props';
 import { useLocation } from '@/data/hooks/infrastructures/useLocations.hook';
-
-import { DatagridCellEnpointProps } from './DataGridCellEndpoint.props';
 
 export default function DatagridCellEnpoint({
   infrastructure,
 }: DatagridCellEnpointProps): JSX.Element {
-  const { data: locationDetails, isLoading } = useLocation(
-    infrastructure?.currentState.location ?? '',
-  );
+  const { data: locationDetails, isLoading } = useLocation(infrastructure?.location ?? '');
 
   if (isLoading) {
     return <Skeleton />;
@@ -24,9 +20,9 @@ export default function DatagridCellEnpoint({
         href="#"
         data-testid={`tenant-cell-endpoint-link-${infrastructure.id}`}
       >
-        {infrastructure.currentState.entryPoint}
+        {infrastructure.entryPoint}
       </Link>
-      <Text preset={TEXT_PRESET.span}>{locationDetails?.location ?? '--'}</Text>
+      <Text preset={TEXT_PRESET.small}>{locationDetails?.location ?? '--'}</Text>
     </div>
   ) : (
     <></>

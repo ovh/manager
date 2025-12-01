@@ -1,6 +1,25 @@
 import { InfrastructuresParams, RetentionParams } from '@/data/api/infrastructures.props';
 import { Infrastructure, Retention } from '@/types/infrastructures.type';
 
+const defaultExtraSettings = {
+  mimir: {
+    configurable: {
+      compactor_blocks_retention_period: {
+        default: '30d',
+        min: '7d',
+        max: '400d',
+        type: 'DURATION' as const,
+      },
+      max_global_series_per_user: {
+        default: 1000000,
+        min: 100000,
+        max: 10000000,
+        type: 'NUMERIC' as const,
+      },
+    },
+  },
+};
+
 const infrastructures: Infrastructure[] = [
   {
     id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
@@ -9,6 +28,7 @@ const infrastructures: Infrastructure[] = [
       type: 'SHARED',
       usage: 'METRICS',
       entryPoint: 'eee.metrics.ovh.com',
+      extraSettings: defaultExtraSettings,
     },
   },
   {
@@ -18,6 +38,7 @@ const infrastructures: Infrastructure[] = [
       type: 'SHARED',
       usage: 'METRICS',
       entryPoint: 'aaa.metrics.ovh.com',
+      extraSettings: defaultExtraSettings,
     },
   },
   {
@@ -27,6 +48,7 @@ const infrastructures: Infrastructure[] = [
       type: 'SHARED',
       usage: 'METRICS',
       entryPoint: 'bbb.metrics.ovh.com',
+      extraSettings: defaultExtraSettings,
     },
   },
   {
@@ -36,6 +58,7 @@ const infrastructures: Infrastructure[] = [
       type: 'SHARED',
       usage: 'METRICS',
       entryPoint: 'ccc.metrics.ovh.com',
+      extraSettings: defaultExtraSettings,
     },
   },
   {
@@ -45,6 +68,7 @@ const infrastructures: Infrastructure[] = [
       type: 'SHARED',
       usage: 'METRICS',
       entryPoint: 'ddd.metrics.ovh.com',
+      extraSettings: defaultExtraSettings,
     },
   },
 ];

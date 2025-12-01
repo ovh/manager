@@ -7,7 +7,7 @@ import { vi } from 'vitest';
 import DataGridCellEndpoint from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component';
 import { DatagridCellEnpointProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.props';
 import { useLocation } from '@/data/hooks/infrastructures/useLocations.hook';
-import { Infrastructure } from '@/types/infrastructures.type';
+import { TenantInfrastructure } from '@/types/tenants.type';
 
 // Mock the useLocation hook
 vi.mock('@/data/hooks/infrastructures/useLocations.hook', () => ({
@@ -24,10 +24,6 @@ vi.mock('@ovhcloud/ods-react', () => ({
       Loading...
     </div>
   ),
-}));
-
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
   Text: ({ children, preset }: { children: React.ReactNode; preset?: string }) => (
     <span data-testid="text" data-preset={preset}>
       {children}
@@ -47,7 +43,7 @@ vi.mock('@ovh-ux/muk', () => ({
     </a>
   ),
   TEXT_PRESET: {
-    span: 'span',
+    small: 'small',
   },
 }));
 
@@ -70,14 +66,11 @@ const createWrapper = () => {
 };
 
 // Mock data
-const mockInfrastructure: Infrastructure = {
-  id: 'infra-1',
-  currentState: {
-    entryPoint: 'https://example.com',
-    location: 'GRA11',
-    type: 'SHARED',
-    usage: 'GRAFANA',
-  },
+const mockInfrastructure: TenantInfrastructure = {
+  id: 'infra-123',
+  entryPoint: 'https://example.com',
+  location: 'GRA11',
+  type: 'SHARED',
 };
 
 const mockLocationDetails = {
@@ -160,7 +153,7 @@ describe('DataGridCellEndpoint', () => {
         wrapper: createWrapper(),
       });
 
-      const link = screen.getByTestId('tenant-cell-endpoint-link-infra-1');
+      const link = screen.getByTestId('tenant-cell-endpoint-link-infra-123');
       expect(link).toBeInTheDocument();
       expect(link).toHaveTextContent('https://example.com');
     });
@@ -187,7 +180,7 @@ describe('DataGridCellEndpoint', () => {
         wrapper: createWrapper(),
       });
 
-      const link = screen.getByTestId('tenant-cell-endpoint-link-infra-1');
+      const link = screen.getByTestId('tenant-cell-endpoint-link-infra-123');
       expect(link).toHaveClass('leading-normal');
     });
 
@@ -197,7 +190,7 @@ describe('DataGridCellEndpoint', () => {
       });
 
       const text = screen.getByTestId('text');
-      expect(text).toHaveAttribute('data-preset', 'span');
+      expect(text).toHaveAttribute('data-preset', 'small');
     });
   });
 
@@ -212,7 +205,9 @@ describe('DataGridCellEndpoint', () => {
 
     it('should return empty fragment when infrastructure is null', () => {
       const { container } = render(
-        <DataGridCellEndpoint infrastructure={null as unknown as Infrastructure | undefined} />,
+        <DataGridCellEndpoint
+          infrastructure={null as unknown as TenantInfrastructure | undefined}
+        />,
         {
           wrapper: createWrapper(),
         },
@@ -290,14 +285,11 @@ describe('DataGridCellEndpoint', () => {
     });
 
     it('should handle empty location string', () => {
-      const infrastructureWithEmptyLocation: Infrastructure = {
-        id: 'infra-empty-location',
-        currentState: {
-          entryPoint: 'https://example.com',
-          location: '',
-          type: 'SHARED',
-          usage: 'GRAFANA',
-        },
+      const infrastructureWithEmptyLocation: TenantInfrastructure = {
+        id: 'infra-456',
+        entryPoint: 'https://example.com',
+        location: '',
+        type: 'SHARED',
       };
 
       mockUseLocation.mockReturnValue({
@@ -349,7 +341,7 @@ describe('DataGridCellEndpoint', () => {
       });
 
       // Check that link and text are both present
-      expect(screen.getByTestId('tenant-cell-endpoint-link-infra-1')).toBeInTheDocument();
+      expect(screen.getByTestId('tenant-cell-endpoint-link-infra-123')).toBeInTheDocument();
       expect(screen.getByTestId('text')).toBeInTheDocument();
     });
   });

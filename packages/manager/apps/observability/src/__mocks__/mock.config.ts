@@ -2,9 +2,9 @@ export type ApiConfigMode = 'mock' | 'api';
 export type ApiEndpoint = 'tenant' | 'service' | 'infrastructure' | 'grafana' | 'log' | 'metric';
 
 export const apiConfig: Record<ApiEndpoint, ApiConfigMode> = {
-  tenant: 'mock',
+  tenant: 'api',
   service: 'api',
-  infrastructure: 'mock', // FIXME : fix retentions first before unmocking
+  infrastructure: 'api',
   grafana: 'mock',
   log: 'mock',
   metric: 'mock',

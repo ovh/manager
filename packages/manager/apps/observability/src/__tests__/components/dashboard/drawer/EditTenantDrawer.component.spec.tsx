@@ -4,7 +4,6 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import EditTenantDrawer from '@/components/drawer/EditTenantDrawer.component';
-import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
 const { mockNavigate, mockUseTenant, mockUseEditTenant, mockUseTenantsFormSchema } = vi.hoisted(
   () => ({
@@ -82,6 +81,10 @@ vi.mock('@ovh-ux/muk', () => ({
       </footer>
     ),
   },
+  useNotifications: () => ({
+    addSuccess: vi.fn(),
+    addError: vi.fn(),
+  }),
 }));
 
 vi.mock('@ovhcloud/ods-react', () => ({
@@ -136,12 +139,9 @@ describe('EditTenantDrawer.component', () => {
         id: 'infra-1',
       },
       limits: {
-        retention: {
-          id: 'ret-30',
-        },
-        numberOfSeries: {
-          maximum: 1500,
-          current: 900,
+        mimir: {
+          compactor_blocks_retention_period: '30d',
+          max_global_series_per_user: 1500,
         },
       },
     },
@@ -188,11 +188,10 @@ describe('EditTenantDrawer.component', () => {
         title: tenant.currentState.title,
         description: tenant.currentState.description,
         infrastructureId: tenant.currentState.infrastructure?.id ?? '',
-        retentionId: tenant.currentState.limits?.retention?.id ?? '',
-        maxSeries:
-          tenant.currentState.limits?.numberOfSeries?.maximum ??
-          tenant.currentState.limits?.numberOfSeries?.current ??
-          INGESTION_BOUNDS.DEFAULT,
+        retentionDuration:
+          tenant.currentState.limits?.mimir?.compactor_blocks_retention_period ?? '',
+        retentionUnit: '',
+        maxSeries: tenant.currentState.limits?.mimir?.max_global_series_per_user ?? null,
       });
     });
   });
@@ -202,7 +201,8 @@ describe('EditTenantDrawer.component', () => {
       title: 'Updated tenant',
       description: 'Updated description',
       infrastructureId: 'infra-42',
-      retentionId: 'ret-60',
+      retentionDuration: '30',
+      retentionUnit: 'd',
       maxSeries: 5000,
     };
     mockForm.handleSubmit.mockImplementation(
@@ -220,15 +220,10 @@ describe('EditTenantDrawer.component', () => {
       targetSpec: {
         title: formValues.title,
         description: formValues.description,
-        infrastructure: {
-          id: formValues.infrastructureId,
-        },
         limits: {
-          numberOfSeries: {
-            maximum: formValues.maxSeries ?? INGESTION_BOUNDS.DEFAULT,
-          },
-          retention: {
-            id: formValues.retentionId,
+          mimir: {
+            compactor_blocks_retention_period: '30d',
+            max_global_series_per_user: formValues.maxSeries,
           },
         },
       },
