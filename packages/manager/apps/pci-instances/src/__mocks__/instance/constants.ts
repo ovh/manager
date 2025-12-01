@@ -40,8 +40,8 @@ export const mockedInstanceWithEmptyRegion: TAggregatedInstance = {
 
 export type TDeploymentModeCard = {
   id: TDeploymentMode;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
 };
 
 export const mockedProjectId = '8c8c4fd6d4414aa29fc777752b00005198664';
@@ -848,7 +848,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
 
 export const mockedLocalizationsData: TRegionData[] = [
   {
-    city: 'regions:manager_components_region_GRA',
+    cityKey: 'manager_components_region_GRA',
     macroRegion: 'GRA',
     microRegion: 'GRA11',
     datacenterDetails: 'GRA',
@@ -870,7 +870,7 @@ export const mockedLocalizationsData: TRegionData[] = [
     ],
   },
   {
-    city: 'regions:manager_components_region_PAR',
+    cityKey: 'manager_components_region_PAR',
     macroRegion: 'PAR',
     microRegion: 'EU-WEST-PAR',
     datacenterDetails: 'EU-WEST-PAR',
@@ -889,7 +889,7 @@ export const mockedLocalizationsData: TRegionData[] = [
 
 export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: TRegionData[] = [
   {
-    city: 'regions:manager_components_region_GRA',
+    cityKey: 'manager_components_region_GRA',
     macroRegion: 'GRA',
     microRegion: 'GRA11',
     datacenterDetails: 'GRA',
@@ -911,7 +911,7 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
     ],
   },
   {
-    city: 'regions:manager_components_region_BHS',
+    cityKey: 'manager_components_region_BHS',
     macroRegion: 'BHS',
     microRegion: 'BHS5',
     datacenterDetails: 'BHS5',
@@ -927,7 +927,7 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
     ],
   },
   {
-    city: 'regions:manager_components_region_PAR',
+    cityKey: 'manager_components_region_PAR',
     macroRegion: 'PAR',
     microRegion: 'EU-WEST-PAR',
     datacenterDetails: 'EU-WEST-PAR',
@@ -946,7 +946,7 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
 
 export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegionData[] = [
   {
-    city: 'regions:manager_components_region_GRA',
+    cityKey: 'manager_components_region_GRA',
     macroRegion: 'GRA',
     microRegion: 'GRA11',
     datacenterDetails: 'GRA',
@@ -968,7 +968,7 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
     ],
   },
   {
-    city: 'regions:manager_components_region_BHS',
+    cityKey: 'manager_components_region_BHS',
     macroRegion: 'BHS',
     microRegion: 'BHS5',
     datacenterDetails: 'BHS5',
@@ -984,7 +984,7 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
     ],
   },
   {
-    city: 'regions:manager_components_region_MIL',
+    cityKey: 'manager_components_region_MIL',
     macroRegion: 'EU-SOUTH-LZ-MIL',
     microRegion: 'EU-SOUTH-LZ-MIL-A',
     datacenterDetails: 'EU-SOUTH-LZ-MIL-A',
@@ -1004,7 +1004,7 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
     ],
   },
   {
-    city: 'regions:manager_components_region_PAR',
+    cityKey: 'manager_components_region_PAR',
     macroRegion: 'PAR',
     microRegion: 'EU-WEST-PAR',
     datacenterDetails: 'EU-WEST-PAR',
@@ -1023,34 +1023,34 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
 
 export const mockedContinentsSelectorData: TContinentData[] = [
   {
-    label: 'common:pci_instances_common_instance_continent_western_europe',
+    labelKey: 'pci_instances_common_instance_continent_western_europe',
     value: 'western_europe',
   },
   {
-    label: 'common:pci_instances_common_instance_continent_north_america',
+    labelKey: 'pci_instances_common_instance_continent_north_america',
     value: 'north_america',
   },
   {
-    label: 'common:pci_instances_common_instance_continent_all',
+    labelKey: 'pci_instances_common_instance_continent_all',
     value: 'all',
   },
 ];
 
 export const mockedAllContinentsSelectorData: TContinentData[] = [
   {
-    label: 'common:pci_instances_common_instance_continent_all',
+    labelKey: 'pci_instances_common_instance_continent_all',
     value: 'all',
   },
   {
-    label: 'common:pci_instances_common_instance_continent_north_america',
+    labelKey: 'pci_instances_common_instance_continent_north_america',
     value: 'north_america',
   },
   {
-    label: 'common:pci_instances_common_instance_continent_western_europe',
+    labelKey: 'pci_instances_common_instance_continent_western_europe',
     value: 'western_europe',
   },
   {
-    label: 'common:pci_instances_common_instance_continent_south_europe',
+    labelKey: 'pci_instances_common_instance_continent_south_europe',
     value: 'south_europe',
   },
 ];
@@ -1058,27 +1058,27 @@ export const mockedAllContinentsSelectorData: TContinentData[] = [
 export const mockedDeploymentModesSelectorData: TDeploymentModeDataForCard[] = [
   {
     mode: 'region',
-    title: 'common:pci_instances_common_instance_region_deployment_mode',
-    description:
-      'common:pci_instances_common_instance_region_deployment_mode_description',
+    titleKey: 'pci_instances_common_instance_region_deployment_mode',
+    descriptionKey:
+      'pci_instances_common_instance_region_deployment_mode_description',
     Image: (Region1azImage as unknown) as ComponentType<
       SVGProps<SVGSVGElement>
     >,
   },
   {
     mode: 'region-3-az',
-    title: 'common:pci_instances_common_instance_region-3-az_deployment_mode',
-    description:
-      'common:pci_instances_common_instance_region-3-az_deployment_mode_description',
+    titleKey: 'pci_instances_common_instance_region-3-az_deployment_mode',
+    descriptionKey:
+      'pci_instances_common_instance_region-3-az_deployment_mode_description',
     Image: (Region3azImage as unknown) as ComponentType<
       SVGProps<SVGSVGElement>
     >,
   },
   {
     mode: 'localzone',
-    title: 'common:pci_instances_common_instance_localzone_deployment_mode',
-    description:
-      'common:pci_instances_common_instance_localzone_deployment_mode_description',
+    titleKey: 'pci_instances_common_instance_localzone_deployment_mode',
+    descriptionKey:
+      'pci_instances_common_instance_localzone_deployment_mode_description',
     Image: (LZImage as unknown) as ComponentType<SVGProps<SVGSVGElement>>,
   },
 ];

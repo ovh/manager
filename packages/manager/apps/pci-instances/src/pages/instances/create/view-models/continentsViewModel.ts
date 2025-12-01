@@ -2,7 +2,7 @@ import { Deps } from '@/deps/deps';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { Reader } from '@/types/utils.type';
 
-export type TContinentData = { label: string; value: string };
+export type TContinentData = { labelKey: string; value: string };
 
 type TSelectContinentData = (
   projectId: string,
@@ -15,7 +15,7 @@ export const selectContinent: Reader<Deps, TSelectContinentData> = (
   projectId: string,
   deploymentModes: TDeploymentMode[],
 ): TContinentData[] => {
-  const { messageProviderPort, instancesCatalogPort } = deps;
+  const { instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
   if (!data) return [];
@@ -33,9 +33,7 @@ export const selectContinent: Reader<Deps, TSelectContinentData> = (
       ];
 
   return continentsIds.map((continent) => ({
-    label: messageProviderPort.getMessage(
-      `common:pci_instances_common_instance_continent_${continent}`,
-    ),
+    labelKey: `pci_instances_common_instance_continent_${continent}`,
     value: continent,
   }));
 };

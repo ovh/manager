@@ -28,7 +28,7 @@ export const LocalizationSelection = () => {
   const projectId = useProjectId();
   const { trackClick } = useOvhTracking();
   const [seeAll, setSeeAll] = useState(false);
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation(['creation', 'regions']);
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const [deploymentModes, selectedContinent, selectedMacroRegion] = useWatch({
@@ -52,6 +52,15 @@ export const LocalizationSelection = () => {
       selectedContinent,
       selectedMacroRegion,
     ],
+  );
+
+  const translatedLocalizations = useMemo(
+    () =>
+      localizations.map(({ cityKey, ...rest }) => ({
+        city: t(`regions:${cityKey}`),
+        ...rest,
+      })),
+    [localizations, t],
   );
 
   const macroRegionRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -141,7 +150,7 @@ export const LocalizationSelection = () => {
                   onValueChange={({ value }) => handleSelectRegion(value)}
                 >
                   <div className="grid grid-cols-3 gap-6">
-                    {localizations.map(
+                    {translatedLocalizations.map(
                       ({
                         city,
                         datacenterDetails,

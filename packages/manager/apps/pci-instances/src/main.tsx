@@ -30,7 +30,6 @@ const init = async (
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
   const context = await initShellContext(appName, trackingContext);
-
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);
@@ -38,7 +37,7 @@ const init = async (
     // nothing to do
   }
 
-  i18nInstance = await initI18n({
+  await initI18n({
     context,
     reloadOnLocaleChange,
     ns: [

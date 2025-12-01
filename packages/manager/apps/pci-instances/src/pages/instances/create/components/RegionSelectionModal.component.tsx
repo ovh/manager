@@ -45,7 +45,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
   onClose,
   onValidateSelect,
 }) => {
-  const { t } = useTranslation(['creation', 'common']);
+  const { t } = useTranslation(['creation', 'regions', 'common']);
   const [region, setRegion] = useState<TCustomRegionSelected | null>(null);
   const [selectRegionValue, setSelectRegionValue] = useState<string[]>([]);
   const { setValue } = useFormContext<TInstanceCreationForm>();
@@ -113,7 +113,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
                 <>
                   {selectedItems[0] && (
                     <Localization
-                      name={selectedItems[0].label}
+                      name={t(selectedItems[0].label)}
                       countryCode={
                         (selectedItems[0]
                           .customRendererData as TCustomRegionItemData)
@@ -141,7 +141,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
                 customData,
               }: SelectCustomOptionRendererArg) => (
                 <Localization
-                  name={label}
+                  name={t(label)}
                   countryCode={
                     (customData as TCustomRegionItemData).countryCode
                   }

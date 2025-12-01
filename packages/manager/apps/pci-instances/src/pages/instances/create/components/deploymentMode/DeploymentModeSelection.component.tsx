@@ -21,6 +21,8 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import { selectDeploymentModes } from '../../view-models/deploymentModeViewModel';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type TDeploymentModeSelection = {
   deploymentModes: TDeploymentMode[];
@@ -28,8 +30,12 @@ type TDeploymentModeSelection = {
 
 export const DeploymentModeSelection = () => {
   const projectId = useProjectId();
+  const { t } = useTranslation('common');
   const { control } = useFormContext<TDeploymentModeSelection>();
-  const deploymentModes = selectDeploymentModes(deps)(projectId);
+  const deploymentModes = useMemo(
+    () => selectDeploymentModes(deps)(projectId),
+    [projectId],
+  );
   const { trackClick } = useOvhTracking();
 
   const handleSelect = (
@@ -67,35 +73,37 @@ export const DeploymentModeSelection = () => {
               field.onChange(value);
             }}
           >
-            {deploymentModes.map(({ mode, title, description, Image }) => (
-              <PciCard
-                selectable
-                selected={(field.value ?? []).includes(mode)}
-                className="h-full"
-                key={mode}
-                onClick={handleSelect(field, mode)}
-              >
-                <PciCard.Header>
-                  <Checkbox
-                    className="w-full"
-                    checked={(field.value ?? []).includes(mode)}
-                  >
-                    <CheckboxControl />
-                    <CheckboxLabel className="font-bold text-lg text-[--ods-color-heading]">
-                      {title}
-                    </CheckboxLabel>
-                  </Checkbox>
-                  <DeploymentModeBadge mode={mode} />
-                </PciCard.Header>
+            {deploymentModes.map(
+              ({ mode, titleKey, descriptionKey, Image }) => (
+                <PciCard
+                  selectable
+                  selected={(field.value ?? []).includes(mode)}
+                  className="h-full"
+                  key={mode}
+                  onClick={handleSelect(field, mode)}
+                >
+                  <PciCard.Header>
+                    <Checkbox
+                      className="w-full"
+                      checked={(field.value ?? []).includes(mode)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel className="font-bold text-lg text-[--ods-color-heading]">
+                        {t(`common:${titleKey}`)}
+                      </CheckboxLabel>
+                    </Checkbox>
+                    <DeploymentModeBadge mode={mode} />
+                  </PciCard.Header>
 
-                <PciCard.Content className="justify-between">
-                  <Text>{description}</Text>
-                  <div className="flex justify-center mt-4">
-                    <Image />
-                  </div>
-                </PciCard.Content>
-              </PciCard>
-            ))}
+                  <PciCard.Content className="justify-between">
+                    <Text>{t(`common:${descriptionKey}`)}</Text>
+                    <div className="flex justify-center mt-4">
+                      <Image />
+                    </div>
+                  </PciCard.Content>
+                </PciCard>
+              ),
+            )}
           </CheckboxGroup>
         )}
       />

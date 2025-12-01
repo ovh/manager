@@ -4,7 +4,6 @@ import { TMicroRegion, TMacroRegion } from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { getLocalZoneTranslationKey } from '@/utils';
-import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 
 const MAX_DISPLAYED_LOCALIZATIONS = 12;
 
@@ -16,7 +15,7 @@ type TMicroRegionDataForCard = {
 };
 
 export type TRegionData = {
-  city: string;
+  cityKey: string;
   datacenterDetails: string | null;
   macroRegion: string | null;
   microRegion: string | null;
@@ -66,13 +65,11 @@ const getMicroRegions = (
 
 const mapRegionToLocalizationCard = (
   microRegionsById: Map<string, TMicroRegion>,
-
-  getMessageFn: MessageProviderPort['getMessage'],
 ) => (region: TMacroRegion): TRegionData => {
   const regionName = getRegionNameKey(region.deploymentMode, region.name);
 
   return {
-    city: getMessageFn(`regions:manager_components_region_${regionName}`),
+    cityKey: `manager_components_region_${regionName}`,
     datacenterDetails: getDatacenterDetails(region, microRegionsById),
     macroRegion: region.name,
     microRegion: getMicroRegionName(region, microRegionsById),
@@ -136,7 +133,7 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
   selectedMacroRegionId,
   // eslint-disable-next-line max-params
 ) => {
-  const { messageProviderPort, instancesCatalogPort } = deps;
+  const { instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
   if (!data) return emptyLocalizations;
@@ -165,10 +162,7 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
   );
 
   const localizations = matchingContinentAndDeploymentModeRegions.map(
-    mapRegionToLocalizationCard(
-      data.entities.microRegions.byId,
-      messageProviderPort.getMessage,
-    ),
+    mapRegionToLocalizationCard(data.entities.microRegions.byId),
   );
 
   return {
