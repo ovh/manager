@@ -18,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
       replications: /* @ngInject */ ($http, $q, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/shareReplication`)
+          .catch(() => [])
           .then(({ data = [] }) =>
             $q
               .all(
@@ -58,6 +59,16 @@ export default /* @ngInject */ ($stateProvider) => {
                 }));
               }),
           ),
+      gotoApprouveReplication: /* @ngInject */ ($state) => ({
+        destinationServiceID,
+        replicationID,
+        sourceShareID,
+      }) =>
+        $state.go('netapp.dashboard.replications.approuve', {
+          destinationServiceID,
+          replicationID,
+          sourceShareID,
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_replications_breadcrumb'),
     },
