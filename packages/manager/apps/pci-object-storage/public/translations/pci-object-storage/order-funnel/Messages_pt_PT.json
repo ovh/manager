@@ -84,5 +84,6 @@
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Implantação de alta resiliência/alta disponibilidade para suas aplicações críticas em 3 zonas de disponibilidade.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Implantação de suas aplicações o mais próximo possível dos seus usuários para baixa latência e residência de dados.",
   "selectGeographicalZone": "Selecione uma zona geográfica",
-  "showAllRegions": "Mostre todas as regiões"
+  "showAllRegions": "Mostre todas as regiões",
+  "nameInputInfo": "O nome do contêiner deve ter entre 3 e 63 caracteres, deve começar e terminar com caracteres alfanuméricos minúsculos (de a a z e de 0 a 9) e pode conter os seguintes sinais de pontuação: « . » e « - »."
 }

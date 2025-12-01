@@ -80,9 +80,10 @@
   "pci_instances_common_instance_region_deployment_mode": "Region 1-AZ",
   "pci_instances_common_instance_region-3-az_deployment_mode": "Region 3-AZ",
   "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
-  "pci_instances_common_instance_region_deployment_mode_description": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
-  "pci_instances_common_instance_region-3-az_deployment_mode_description": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności.",
-  "pci_instances_common_instance_localzone_deployment_mode_description": "Wdrażanie aplikacji blisko użytkowników w celu minimalizacji opóźnień i zapewnienia lokalnego przechowywania danych.",
-  "selectGeographicalZone": "Wybierz strefę",
-  "showAllRegions": "Wyświetl wszystkie regiony"
+  "pci_instances_common_instance_region_deployment_mode_description": "Odporne i ekonomiczne wdrożenie w 1 strefie dostępności.",
+  "pci_instances_common_instance_region-3-az_deployment_mode_description": "Wdrożenie o wysokiej odporności/wysokiej dostępności dla Twoich krytycznych aplikacji w 3 strefach dostępności.",
+  "pci_instances_common_instance_localzone_deployment_mode_description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników, aby zapewnić niską latencję i lokalizację danych.",
+  "selectGeographicalZone": "Wybierz strefę geograficzną",
+  "showAllRegions": "Wyświetl wszystkie regiony",
+  "nameInputInfo": "Nazwa kontenera musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małymi znakami alfanumerycznymi (od a do z i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „.” i „-”. "
 }
