@@ -116,12 +116,17 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
             </Alert>
 
             {/* Acknowledgement checkbox */}
-            <div className="flex items-start gap-3 p-3 border border-border rounded-md">
+            <div
+              className={`flex items-start gap-3 p-3 border rounded-md ${
+                acknowledgementError ? 'border-destructive' : 'border-border'
+              }`}
+            >
               <Checkbox
                 id="object-lock-acknowledgement"
                 checked={acknowledgement}
                 onCheckedChange={onAcknowledgementChange}
                 data-testid="object-lock-acknowledgement-checkbox"
+                className={acknowledgementError ? 'border-destructive' : ''}
               />
               <div className="flex flex-col gap-1">
                 <Label
