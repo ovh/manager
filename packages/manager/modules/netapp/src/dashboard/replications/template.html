@@ -11,7 +11,7 @@
             data-prevent-customization
         >
             <p
-                ng-if="$row.source.serviceID !== $row.description"
+                data-ng-if="$row.source.serviceID !== $row.description"
                 data-ng-bind="$ctrl.sourceEFSNames[$row.source.serviceID]"
             ></p>
             <a
@@ -34,15 +34,15 @@
             <p
                 data-ng-bind="$ctrl.sourceEFSNames[$row.destination.serviceID]"
             ></p>
-            <span ng-if="!$row.destination.shareID">-</span>
-            <br ng-if="!$row.destination.shareID" />
+            <span data-ng-if="!$row.destination.shareID">-</span>
+            <br data-ng-if="!$row.destination.shareID" />
             <a
-                ng-if="$row.destination.shareID"
+                data-ng-if="$row.destination.shareID"
                 data-translate="netapp_replications_efs_link_volume"
                 data-translate-value-shareid="{{$row.destination.shareID}}"
                 ui-sref="netapp.dashboard.volumes.dashboard({ serviceName: $row.destination.serviceID, volumeId: $row.destination.shareID })"
             ></a>
-            <br ng-if="$row.destination.shareID" />
+            <br data-ng-if="$row.destination.shareID" />
             <a
                 data-translate="netapp_replications_efs_link_service"
                 data-translate-value-shareid="{{$row.destination.serviceID}}"
@@ -78,9 +78,25 @@
                 ></div>
             </div>
         </oui-datagrid-column>
+        <oui-action-menu
+            data-ng-if="$ctrl.canApprouve($row.status, $row.destination.serviceID)"
+            data-compact="true"
+        >
+            <oui-action-menu-item
+                data-ng-if="$ctrl.canApprouve($row.status, $row.destination.serviceID)"
+                data-ng-click="$ctrl.gotoApprouveReplication({
+                    destinationServiceID: $row.destination.serviceID,
+                    replicationID: $row.id,
+                    sourceShareID: $row.source.shareID})"
+            >
+                <span
+                    data-translate="netapp_replications_button_approuve"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
     </oui-datagrid>
 </section>
-<section ng-if="!$ctrl.hasReplications">
+<section data-ng-if="!$ctrl.hasReplications">
     <h1
         class="oui-header__title mb-3"
         data-translate="netapp_replications_title_no_replication"

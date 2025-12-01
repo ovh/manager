@@ -11,6 +11,10 @@ export default class OvhManagerNetAppReplicationsCtrl {
     this.hasReplications = !!this.replications.length;
   }
 
+  canApprouve = (replicationStatus, destinationServiceID) =>
+    replicationStatus === 'pending' &&
+    this.serviceName === destinationServiceID;
+
   status = {
     pending: {
       color: 'warning',

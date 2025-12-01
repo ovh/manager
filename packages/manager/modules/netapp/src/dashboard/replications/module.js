@@ -7,10 +7,17 @@ import 'angular-translate';
 import component from './component';
 import routing from './routing';
 
+import approuveReplication from './approuve';
+
 const moduleName = 'ovhManagerNetAppReplications';
 
 angular
-  .module(moduleName, ['ovhManagerCore', 'pascalprecht.translate', 'ui.router'])
+  .module(moduleName, [
+    'ovhManagerCore',
+    'pascalprecht.translate',
+    'ui.router',
+    approuveReplication,
+  ])
   .component(moduleName, component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

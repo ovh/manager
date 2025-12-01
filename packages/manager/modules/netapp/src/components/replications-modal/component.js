@@ -3,10 +3,9 @@ import template from './template.html';
 
 export default {
   bindings: {
-    replications: '<',
-    sourceEFSNames: '<',
-    serviceName: '<',
-    gotoApprouveReplication: '<',
+    modalType: '<',
+    onPrimaryClick: '<',
+    isPrimaryDisabled: '<',
   },
   controller,
   template,
