@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import DataGridCellLink from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component';
@@ -12,26 +12,29 @@ vi.mock('@/routes/Routes.utils', () => ({
 }));
 
 // Mock react-router-dom
-const mockNavigate = vi.fn();
 vi.mock('react-router-dom', () => ({
-  useNavigate: () => mockNavigate,
+  useHref: (path: string) => path,
 }));
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   Link: ({
-    onClick,
+    href,
     children,
     'data-testid': testId,
   }: {
-    onClick: () => void;
+    href: string;
     children: React.ReactNode;
     'data-testid'?: string;
   }) => (
-    <button data-testid={testId} onClick={onClick} type="button">
+    <a data-testid={testId} href={href}>
       {children}
-    </button>
+    </a>
   ),
+  Text: ({ children }: { children: React.ReactNode }) => <span>{children}</span>,
+  TEXT_PRESET: {
+    small: 'small',
+  },
 }));
 
 describe('DataGridCellLink', () => {
@@ -77,18 +80,15 @@ describe('DataGridCellLink', () => {
   });
 
   describe('Navigation', () => {
-    it('should call navigate with tenant dashboard path when clicked', () => {
+    it('should have correct href for tenant dashboard path', () => {
       render(<DataGridCellLink {...defaultProps} />);
 
       const link = screen.getByTestId('cell-link-test-id');
-      fireEvent.click(link);
-
-      expect(mockNavigate).toHaveBeenCalledTimes(1);
+      expect(link).toHaveAttribute('href', '/mocked/test-id');
       expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith('test-id');
-      expect(mockNavigate).toHaveBeenCalledWith('/mocked/test-id');
     });
 
-    it('should navigate to unique tenant paths based on id', () => {
+    it('should have unique href based on id', () => {
       const customProps = {
         ...defaultProps,
         id: 'custom-id',
@@ -97,22 +97,8 @@ describe('DataGridCellLink', () => {
       render(<DataGridCellLink {...customProps} />);
 
       const link = screen.getByTestId('cell-link-custom-id');
-      fireEvent.click(link);
-
+      expect(link).toHaveAttribute('href', '/mocked/custom-id');
       expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith('custom-id');
-      expect(mockNavigate).toHaveBeenCalledWith('/mocked/custom-id');
-    });
-
-    it('should handle multiple clicks', () => {
-      render(<DataGridCellLink {...defaultProps} />);
-
-      const link = screen.getByTestId('cell-link-test-id');
-      fireEvent.click(link);
-      fireEvent.click(link);
-      fireEvent.click(link);
-
-      expect(mockNavigate).toHaveBeenCalledTimes(3);
-      expect(mockNavigate).toHaveBeenCalledWith('/mocked/test-id');
     });
   });
 
@@ -126,8 +112,8 @@ describe('DataGridCellLink', () => {
       render(<DataGridCellLink {...emptyProps} />);
 
       expect(screen.getByTestId('cell-link-')).toBeInTheDocument();
-      const button = screen.getByRole('button');
-      expect(button).toHaveTextContent('');
+      const link = screen.getByRole('link');
+      expect(link).toHaveTextContent('');
     });
 
     it('should handle special characters in props', () => {
@@ -210,17 +196,16 @@ describe('DataGridCellLink', () => {
       });
     });
 
-    it('should maintain button semantics', () => {
+    it('should render as a link element', () => {
       render(<DataGridCellLink {...defaultProps} />);
 
       const link = screen.getByTestId('cell-link-test-id');
-      expect(link.tagName).toBe('BUTTON');
-      expect(link).toHaveAttribute('type', 'button');
+      expect(link.tagName).toBe('A');
     });
   });
 
   describe('Accessibility', () => {
-    it('should be focusable and clickable', () => {
+    it('should be focusable', () => {
       render(<DataGridCellLink {...defaultProps} />);
 
       const link = screen.getByTestId('cell-link-test-id');
@@ -231,16 +216,11 @@ describe('DataGridCellLink', () => {
       expect(document.activeElement).toBe(link);
     });
 
-    it('should handle keyboard navigation', () => {
+    it('should have accessible href', () => {
       render(<DataGridCellLink {...defaultProps} />);
 
       const link = screen.getByTestId('cell-link-test-id');
-
-      // Test Enter key
-      fireEvent.keyDown(link, { key: 'Enter', code: 'Enter' });
-      // Note: The actual navigation is handled by the onClickReturn callback
-      // which is triggered by the click event, not keydown
-      expect(mockNavigate).not.toHaveBeenCalled();
+      expect(link).toHaveAttribute('href');
     });
   });
 
@@ -255,19 +235,6 @@ describe('DataGridCellLink', () => {
 
       const rerenderedLink = screen.getByTestId('cell-link-test-id');
       expect(rerenderedLink).toBe(initialLink);
-    });
-
-    it('should handle rapid clicks', () => {
-      render(<DataGridCellLink {...defaultProps} />);
-
-      const link = screen.getByTestId('cell-link-test-id');
-
-      // Simulate rapid clicks
-      for (let i = 0; i < 10; i++) {
-        fireEvent.click(link);
-      }
-
-      expect(mockNavigate).toHaveBeenCalledTimes(10);
     });
   });
 });

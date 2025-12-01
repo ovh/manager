@@ -17,7 +17,8 @@
   },
   "delete": {
     "delete_tenant_title": "Supprimer le Tenant",
-    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\""
+    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\"",
+    "success": "Le tenant a été supprimé avec succès"
   },
   "onboarding": {
     "description": "Créez votre nouveau tenant pour continuer à explorer tout le potentiel des métriques d'observabilité. Vous pourrez envoyer des données, créer des tableaux de bord et configurer des alertes adaptées à vos besoins spécifiques.",
@@ -25,6 +26,7 @@
   },
   "creation": {
     "title": "Créer un tenant",
+    "success": "Le tenant a été créé avec succès",
     "tenantInformation": "Saisir les informations du tenant",
     "namePlaceholder": "Nom du tenant", 
     "description":"Description (optionnelle)",
@@ -32,12 +34,14 @@
   },
   "edition": {
     "title": "Modifier le tenant",
-    "subtitle": "Vous créez un tenant dans votre service d'observabilité \"{{tenantName}}\""
+    "subtitle": "Vous créez un tenant dans votre service d'observabilité \"{{tenantName}}\"",
+    "success": "Le tenant a été modifié avec succès"
   },
   "configuration": {
     "title": "Configurez votre tenant",
-    "retention": "Rétention",
-    "retentionPlaceholder": "Sélectionnez la rétention des données",
+    "retention":{
+      "title": "Rétention"
+    },
     "limit": {
       "title": "Limite d'ingestion (métriques actives)",
       "description": "Définissez la limite maximale du nombre de métriques actives pour ce tenant."

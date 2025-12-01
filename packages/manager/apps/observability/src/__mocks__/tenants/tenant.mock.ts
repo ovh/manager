@@ -31,24 +31,16 @@ const tenantsDataset: Tenant[] = [
       title: 'Tenant 1',
       description: 'Tenant 1 description',
       limits: {
-        numberOfSeries: {
-          current: 222,
-          maximum: 300,
-        },
-        retention: {
-          id: '1',
-          duration: 'P1M',
-          link: 'retention_link_1',
+        mimir: {
+          compactor_blocks_retention_period: '30d',
+          max_global_series_per_user: 300,
         },
       },
       infrastructure: {
         id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        currentState: {
-          location: 'eu-west-sbg',
-          entryPoint: 'sbg1.metrics.ovh.com',
-          type: 'SHARED',
-          usage: 'METRICS',
-        },
+        location: 'eu-west-sbg',
+        entryPoint: 'sbg1.metrics.ovh.com',
+        type: 'SHARED',
       },
     },
   },
@@ -67,24 +59,16 @@ const tenantsDataset: Tenant[] = [
       title: 'Tenant 2',
       description: 'Tenant 2 description',
       limits: {
-        numberOfSeries: {
-          current: 36,
-          maximum: 50,
-        },
-        retention: {
-          id: '2',
-          duration: 'P3M',
-          link: 'retention_link_2',
+        mimir: {
+          compactor_blocks_retention_period: '90d',
+          max_global_series_per_user: 50,
         },
       },
       infrastructure: {
         id: '6ee8fb35-2621-4530-a288-84fc0e85dac1',
-        currentState: {
-          entryPoint: 'gra1.metrics.ovh.com',
-          location: 'eu-west-gra',
-          type: 'SHARED',
-          usage: 'METRICS',
-        },
+        entryPoint: 'gra1.metrics.ovh.com',
+        location: 'eu-west-gra',
+        type: 'SHARED',
       },
     },
   },
