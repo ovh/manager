@@ -6,6 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  FieldDescription,
   Separator,
   useToast,
 } from '@datatr-ux/uxlib';
@@ -151,6 +152,7 @@ const OrderFunnel = ({
             <FormField name="name" form={form}>
               {(field) => <NameInput {...field} />}
             </FormField>
+            <FieldDescription>{t('nameInputInfo')}</FieldDescription>
           </OrderSection>
 
           <OrderSection id="offer" title={t('labelOffer')}>
