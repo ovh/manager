@@ -15,7 +15,6 @@ import { Download, Loader2, MoreHorizontal, Trash } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ReactElement } from 'react';
-import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import useDownload from '@/hooks/useDownload';
@@ -24,12 +23,14 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useS3Data } from '../../S3.context';
 import storages from '@/types/Storages';
 import { cn } from '@/lib/utils';
+import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
 
 interface S3ObjectFileRendererProps {
   object: StorageObject;
 }
 const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
   const { projectId } = useParams();
+  const localeBytesConverter = useLocaleBytesConverter();
   const navigate = useNavigate();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const { t: tObj } = useTranslation(
@@ -124,7 +125,7 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
         {/* SIZE + DATE */}
         <div className="text-muted-foreground flex justify-end gap-2">
           {object.size !== undefined && (
-            <span>{octetConverter(object.size, true, 2)}</span>
+            <span>{localeBytesConverter(object.size, true, 2)}</span>
           )}
           {object.lastModified && (
             <FormattedDate
