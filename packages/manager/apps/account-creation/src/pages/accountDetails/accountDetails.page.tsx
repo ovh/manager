@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -885,6 +886,7 @@ export default function AccountDetailsPage() {
   const { t } = useTranslation('account-details');
   const { t: tCommon } = useTranslation('common');
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
+  const [ searchParams ] = useSearchParams();
   const { legalForm, organisation } = useUserContext();
   const { data: currentUser } = useMe();
   const wentThroughOrganizationSearch = shouldAccessOrganizationSearch(
@@ -934,7 +936,7 @@ export default function AccountDetailsPage() {
         iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
         href={`#${
           wentThroughOrganizationSearch ? urls.company : urls.accountType
-        }`}
+        }?${searchParams.toString()}`}
         label={tAction('back')}
         className="flex mb-6"
       />
