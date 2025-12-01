@@ -3504,15 +3504,15 @@
   dependencies:
     "@ovhcloud/ods-themes" "^18.4.1"
 
-"@datatr-ux/ovhcloud-types@1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.11.tgz#bac1d9b460cc969a191967cd2b1d0858de713d78"
-  integrity sha512-NSqgUoIXKHxVRY5fnp5hV2kNQJxbX9/Om0naInG1tnztBvdkRuuhfzga9+ReYVqkktaSg/kb3CGZzyWi2tpvCg==
-
 "@datatr-ux/ovhcloud-types@1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.8.tgz#0e6a8359cc8a52389f65c1aebfae57261ec8215a"
   integrity sha512-Fze56Qv4qkucB3/w5/bl1lNVCNKlOdSBKYDVLaHNCJhHs+JbHCtMR4Ki29dA+Lk8mti0r3g1fdMZ7Hb2YBZ8gA==
+
+"@datatr-ux/ovhcloud-types@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-2.0.1.tgz#d53e6d97066ca5ee6fb31af9fc03658610db995b"
+  integrity sha512-FIX94AXtvQRNWyXzGGcqVK1U+HeFirNqCv/zU46fWCLV8Wb9pIuI/Xes2ZlPCzBr/ri//CoN9rdIpFu9/o8w2A==
 
 "@datatr-ux/ovhcloud-types@2.0.3":
   version "2.0.3"
