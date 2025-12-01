@@ -83,14 +83,14 @@ export const ClusterConfigFileActions = ({
         <Button
           size="sm"
           variant="ghost"
-          data-testid="ClusterConfigFileActions-CopyKubeConfig"
+          data-testid="copy-kubeconfig"
           disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
           onClick={copyConfigFile}
         >
           <Icon name="file-copy" /> {t('kube_service_copy_kubeconfig')}
         </Button>
         {isKubeConfigPending && ongoingKubeConfigAction === 'copy' && (
-          <Spinner size="sm" data-testid="clusterConfigFileActions-spinnerCopyKubeConfig" />
+          <Spinner size="sm" data-testid="copy-kubeconfig-spinner" />
         )}
       </div>
 
@@ -98,14 +98,14 @@ export const ClusterConfigFileActions = ({
         <Button
           size="sm"
           variant="ghost"
-          data-testid="ClusterConfigFileActions-DownloadKubeConfig"
+          data-testid="download-kubeconfig"
           disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
           onClick={downloadConfigFile}
         >
           <Icon name="download" /> {t('kube_service_download_kubeconfig')}
         </Button>
         {isKubeConfigPending && ongoingKubeConfigAction === 'download' && (
-          <Spinner size="sm" data-testid="clusterConfigFileActions-spinnerDownloadKubeConfig" />
+          <Spinner size="sm" data-testid="download-kubeconfig-spinner" />
         )}
       </div>
     </div>
