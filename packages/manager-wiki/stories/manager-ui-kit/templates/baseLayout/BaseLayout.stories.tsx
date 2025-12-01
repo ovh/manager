@@ -8,18 +8,18 @@ import {
   GuideMenuItem,
   Tile,
   Badge,
+} from '@ovh-ux/muk';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
   Message,
   MESSAGE_COLOR,
   MessageIcon,
   Tab,
   TabList,
   Tabs,
-  Table,
-} from '@ovh-ux/muk';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
+  Table
 } from '@ovhcloud/ods-react';
 
 import { withRouter } from 'storybook-addon-react-router-v6';
