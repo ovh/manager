@@ -1,0 +1,10 @@
+{
+  "unblock_anti_hack_title": "Antihack",
+  "unblock_anti_hack_ip_action": "IP entsperren",
+  "unblock_anti_hack_ip_success": "Die IP-Adresse {{ipBlocked}} wurde erfolgreich entsperrt.",
+  "unblock_anti_hack_ip_error": "Beim Entsperren von {{ipBlocked}} ist ein Fehler aufgetreten: {{error}}",
+  "anti_hack_status": "Status",
+  "anti_hack_blocked_since": "Gesperrt seit",
+  "anti_hack_time": "Verbleibende Zeit (s)",
+  "anti_hack_no_log_available": "Log nicht verfügbar"
+}
