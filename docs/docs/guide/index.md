@@ -1,10 +1,10 @@
 # Introduction
 
-**Manager** is the control panel built on top of the [OVHcloud API](https://api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/ovh-ui-kit).
+**Manager** is the control panel built on top of the [OVHcloud API](https://eu.api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/design-system/).
 
 ![](/assets/img/control-panel.jpg)
 
-Visit [ovh.com/manager](https://ovh.com/manager) to manage your products or visit our [GitHub Discussions](https://github.com/ovh/manager/discussions) to send us feedback.
+Visit [ovh.com/manager](https://manager.eu.ovhcloud.com/) to manage your products or visit our [GitHub Discussions](https://github.com/ovh/manager/discussions) to send us feedback.
 
 Follow [@ovhcloud](https://twitter.com/ovhcloud) on Twitter for important
 announcements.
