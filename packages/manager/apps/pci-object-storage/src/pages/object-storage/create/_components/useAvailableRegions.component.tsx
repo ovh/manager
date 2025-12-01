@@ -1,5 +1,5 @@
-import { AvailabilityRegion } from '@datatr-ux/ovhcloud-types/cloud/capabilities/index';
-import { Region } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { AvailabilityRegion } from '@datatr-ux/ovhcloud-types/cloud/capabilities';
+import { Region } from '@datatr-ux/ovhcloud-types/cloud';
 import { useMemo } from 'react';
 import { ProductAvailability } from '@/types/Availability';
 
