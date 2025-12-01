@@ -1,31 +1,11 @@
-import { render, within } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { describe, vi } from 'vitest';
 import { userEvent } from '@testing-library/user-event';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { Retype } from '@/pages/retype/Retype.component';
-import { EncryptionType } from '@/api/select/volume';
-
-vi.mock('@/api/hooks/useCatalog', () => ({
-  useVolumeEncryptions: () => ({
-    data: [
-      {
-        type: null,
-        label: 'common:pci_projects_project_storages_blocks_status_NONE',
-      },
-      {
-        type: EncryptionType.OMK,
-        label: 'OVHcloud Managed Key',
-      },
-      {
-        type: EncryptionType.CMK,
-        label: 'Customer Managed Key',
-        comingSoon: true,
-      },
-    ],
-  }),
-}));
+import { capitalizeFirstLetter } from '@/utils';
 
 const getSelectedCatalogOption = (encrypted = false) =>
   ({
@@ -56,16 +36,24 @@ describe('Retype', () => {
     );
 
     expect(
-      getByRole('radio', { name: getSelectedCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+      }),
     ).toBeVisible();
     expect(
-      getByRole('radio', { name: getSelectedCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+      }),
     ).toBeChecked();
     expect(
-      getByRole('radio', { name: getOtherCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+      }),
     ).toBeVisible();
     expect(
-      getByRole('radio', { name: getOtherCatalogOption().displayName }),
+      getByRole('radio', {
+        name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+      }),
     ).not.toBeChecked();
   });
 
@@ -94,7 +82,9 @@ describe('Retype', () => {
       );
 
       await userEvent.click(
-        getByRole('radio', { name: getOtherCatalogOption().displayName }),
+        getByRole('radio', {
+          name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+        }),
       );
 
       expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).not.toBeDisabled();
@@ -111,10 +101,14 @@ describe('Retype', () => {
       );
 
       await userEvent.click(
-        getByRole('radio', { name: getOtherCatalogOption().displayName }),
+        getByRole('radio', {
+          name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+        }),
       );
       await userEvent.click(
-        getByRole('radio', { name: getSelectedCatalogOption().displayName }),
+        getByRole('radio', {
+          name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+        }),
       );
 
       expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
