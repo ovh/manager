@@ -25,6 +25,7 @@ webCloudUniverse.children = [
     features: [
       'web:domains',
       'web:domains:zone',
+      'web:domains:domains',
       'web-ongoing-operations',
       'web-domains:alldoms',
       'web-domain:domains',
@@ -51,7 +52,7 @@ webCloudUniverse.children = [
           application: 'web',
           hash: '#/domain',
         },
-        features: ['web:domains'],
+        features: ['web:domains:domains'],
       },
       {
         id: 'domains-list',
