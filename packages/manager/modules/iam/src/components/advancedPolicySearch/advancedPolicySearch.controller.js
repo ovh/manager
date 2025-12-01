@@ -41,7 +41,7 @@ export default class AdvancedPolicySearchController {
 
   $onInit() {
     this.initIdentitiesModel(this.identities);
-    this.initResourcesModel(this.resources);
+    this.initResourcesModel(this.resources, this.actions);
     this.initActionsModel(this.actions);
   }
 
@@ -221,12 +221,13 @@ export default class AdvancedPolicySearchController {
   // **********************************************************************************************
   // Resources
 
-  initResourcesModel(resourcesParam) {
-    if (!resourcesParam) {
+  initResourcesModel(resourcesParam, actionsParam) {
+    if (!resourcesParam && !actionsParam) {
       return;
     }
     this.model.resources.types = resourcesParam?.types || [];
     this.model.resources.selection = resourcesParam?.selection || [];
+    this.addMissingResourceTypesFromActions(actionsParam);
     this.updateResourcesParametersList();
   }
 
@@ -240,6 +241,23 @@ export default class AdvancedPolicySearchController {
   updateResourcesParametersList() {
     this.parameterList.resources = this.model.resources.selection;
     this.onModelChange();
+  }
+
+  addMissingResourceTypesFromActions(actionsParam) {
+    if (!actionsParam) {
+      return;
+    }
+    const currentResourceTypes = this.model.resources.types;
+    const newResourceTypes = actionsParam.selection
+      .map(({ action }) => action.split(':')[0])
+      .filter((resourceType) => !currentResourceTypes.includes(resourceType));
+
+    if (newResourceTypes.length) {
+      this.model.resources.types = [
+        ...currentResourceTypes,
+        ...newResourceTypes,
+      ];
+    }
   }
 
   // **********************************************************************************************
