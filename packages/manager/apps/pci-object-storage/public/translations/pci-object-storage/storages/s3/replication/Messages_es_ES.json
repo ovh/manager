@@ -74,5 +74,7 @@
   "replicationRequiresVersioningAlert": "Para utilizar la replicación asíncrona, el versionado debe estar activado.",
   "destinationFieldLabel": "Contenedor de destino",
   "replicationButtonCancel": "Cancelar",
-  "disabledClassDestinationHelper": "Seleccione un contenedor de destino para activar esta opción"
+  "disabledClassDestinationHelper": "Seleccione un contenedor de destino para activar esta opción",
+  "warning1AZTo3AZ": "La clase de almacenamiento de alto rendimiento no está disponible con el modo de despliegue 3-AZ. Sus objetos fuente almacenados en alto rendimiento se replicarán por defecto en la clase de almacenamiento estándar, que es la clase de almacenamiento más cercana en términos de uso.",
+  "warning3AZTo1AZ": "La clase de almacenamiento Cold Archive solo está disponible en el modo de despliegue 3-AZ y en la región de París. Sus objetos fuente almacenados en Cold Archive se replicarán por defecto en Infrequent Access, que es la clase de almacenamiento más cercana en términos de uso."
 }

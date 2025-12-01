@@ -1,7 +1,11 @@
-import React, { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useMemo } from 'react';
 import { UseFormReturn, FormProvider } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { ReplicationFormValues } from './useReplicationForm.hook';
 import { useAvailableStorageClasses } from '@/hooks/useAvailableStorageClasses.hook';
+import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
+import { useS3Data } from '../../../S3.context';
 import storages from '@/types/Storages';
 
 interface ReplicationFormContextProps {
@@ -13,6 +17,7 @@ interface ReplicationFormContextProps {
   isDeleteMarkerDisabled: boolean;
   isTagsDisabled: boolean;
   availableStorageClasses: storages.StorageClassEnum[];
+  replicationWarningMessage: string | null;
 }
 
 const ReplicationFormContext = createContext<ReplicationFormContextProps | null>(
@@ -42,6 +47,9 @@ export const ReplicationFormProvider = ({
   isEditMode = false,
   children,
 }: ReplicationFormProviderProps) => {
+  const { projectId } = useParams();
+  const { s3 } = useS3Data();
+  const regionsQuery = useGetRegions(projectId);
   const formValues = form.watch();
 
   const hasTags =
@@ -54,7 +62,22 @@ export const ReplicationFormProvider = ({
 
   const availableStorageClasses: storages.StorageClassEnum[] = useAvailableStorageClasses(
     formValues.destination.region,
-  ).filter((st) => st !== storages.StorageClassEnum.DEEP_ARCHIVE);
+  );
+
+  const replicationWarningMessage = useMemo(() => {
+    const regions = regionsQuery.data;
+    if (!regions || !s3?.region || !formValues.destination.region) return null;
+
+    const getType = (name: string) =>
+      regions.find((r) => r.name === name)?.type;
+    const srcType = getType(s3.region);
+    const destType = getType(formValues.destination.region);
+    const { region: AZ1, 'region-3-az': AZ3 } = RegionTypeEnum;
+
+    if (srcType === AZ1 && destType === AZ3) return 'warning1AZTo3AZ';
+    if (srcType === AZ3 && destType === AZ1) return 'warning3AZTo1AZ';
+    return null;
+  }, [regionsQuery.data, s3?.region, formValues.destination.region]);
 
   useEffect(() => {
     // if current class is no longer available, reset it
@@ -75,6 +98,7 @@ export const ReplicationFormProvider = ({
     availableStorageClasses,
     isDeleteMarkerDisabled: hasTags,
     isTagsDisabled: isDeleteMarkerEnabled,
+    replicationWarningMessage,
   };
   return (
     <ReplicationFormContext.Provider value={contextValue}>
