@@ -11,7 +11,10 @@ export const useEditTenant = (
 ) => {
   const queryClient = useQueryClient();
 
+  const { onSuccess, onError, ...restOptions } = mutationOptions ?? {};
+
   return useMutation({
+    ...restOptions,
     mutationFn: (payload: EditTenantPayload) => editTenant(payload),
     onSuccess: (updatedTenant, variables, context) => {
       void queryClient.invalidateQueries({
@@ -22,11 +25,10 @@ export const useEditTenant = (
         getTenantQueryKey(variables.resourceName, variables.tenantId),
         updatedTenant,
       );
-      mutationOptions?.onSuccess?.(updatedTenant, variables, context);
+      onSuccess?.(updatedTenant, variables, context);
     },
     onError: (error, variables, context) => {
-      mutationOptions?.onError?.(error, variables, context);
+      onError?.(error, variables, context);
     },
-    ...mutationOptions,
   });
 };

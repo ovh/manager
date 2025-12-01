@@ -17,6 +17,25 @@ const createMockLocationDetails = (
     type,
   }) as Infrastructure['locationDetails'];
 
+const defaultExtraSettings = {
+  mimir: {
+    configurable: {
+      compactor_blocks_retention_period: {
+        default: '30d',
+        min: '7d',
+        max: '400d',
+        type: 'DURATION' as const,
+      },
+      max_global_series_per_user: {
+        default: 1000000,
+        min: 100000,
+        max: 10000000,
+        type: 'NUMERIC' as const,
+      },
+    },
+  },
+};
+
 const createMockInfrastructure = (
   id: string,
   location: string,
@@ -30,6 +49,7 @@ const createMockInfrastructure = (
     type: 'SHARED',
     usage: 'METRICS',
     entryPoint: `xxx.metrics.ovh.com`,
+    extraSettings: defaultExtraSettings,
   },
   locationDetails: createMockLocationDetails(geographyCode, location, name, type),
 });
@@ -41,6 +61,7 @@ const createMockInfrastructureWithoutLocation = (id: string, location: string): 
     type: 'SHARED',
     usage: 'METRICS',
     entryPoint: `yyy.metrics.ovh.com`,
+    extraSettings: defaultExtraSettings,
   },
 });
 
