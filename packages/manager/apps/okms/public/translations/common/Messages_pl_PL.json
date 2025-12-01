@@ -6,5 +6,10 @@
   "region_continent_NORTH_AMERICA": "Ameryka Północna",
   "region_continent_EUROPE": "Europa",
   "region_continent_OTHERS": "Inne regiony",
-  "region_local_zone_description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników w celu zapewnienia niskiej latencji i lokalizacji danych."
+  "region_local_zone_description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników w celu zapewnienia niskiej latencji i lokalizacji danych.",
+  "error_fetching_data": "Wystąpił błąd podczas ładowania danych",
+  "okms_order_expired": "Aktywacja regionu zajmuje więcej czasu niż szacowano. Proszę spróbować ponownie za kilka minut.",
+  "okms_order_pending": "Twój domena OKMS jest w trakcie tworzenia. Zostaniesz powiadomiony, gdy będzie gotowy.",
+  "okms_order_success": "Twoja domena OKMS {{ okmsId }} jest gotowa. Możesz teraz z niej korzystać.",
+  "okms_order_blocked": "Domena OKMS jest już w trakcie tworzenia. Będziesz mógł aktywować nową domenę OKMS, gdy twoje pierwsze zgłoszenie zostanie przetworzone."
 }

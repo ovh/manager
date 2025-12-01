@@ -44,7 +44,7 @@
   "maximum_number_of_versions": "Maximum number of versions",
   "never_expire": "No expiration",
   "not_provided": "Not stated",
-  "okms_activation_in_progress": "Creating version...Please wait.",
+  "okms_activation_in_progress": "Please wait while the OKMS domain is being activated in the {{region}} region.",
   "okms_list": "OKMS domain list",
   "onboarding_description_1": "Secure your secrets",
   "onboarding_description_2": "Secret Manager, based on OKMS, is the fully managed centralised secret management service for your OVHcloud applications and services.",
@@ -72,5 +72,14 @@
   "key_value": "Key value",
   "okms_dashboard_title": "OKMS domain detail",
   "okms_manage_label": "Manage my OKMS domain",
-  "value": "Value"
+  "value": "Value",
+  "edit_okms_secret_config": "Change the default settings of secrets",
+  "guide_use_in_manager": "Using Secret Manager in the OVHcloud Control Panel",
+  "guide_use_in_manager_description": "Learn how to create, manage, and use your secrets across the graphical space.",
+  "guide_use_with_kv2_api": "Using Secret Manager with the Hashicorp Vault KV2 compatible API",
+  "guide_use_with_kv2_api_description": "Learn how to access your OKMS domain to create, manage, and use secrets using the HashiCorp Vault KV2 compatible API available to ensure compatibility with existing services.",
+  "guide_use_with_rest_api": "Using Secret Manager with the REST API",
+  "guide_use_with_rest_api_description": "Learn how to access your OKMS domain to create, manage, and use secrets using the common REST API with Key Services management.",
+  "secrets_pricing_subtitle": "Billing applies to each version of the secret.",
+  "secrets_pricing_title": "Secret Manager Pricing"
 }

@@ -44,7 +44,7 @@
   "maximum_number_of_versions": "Número máximo de versões",
   "never_expire": "Sem expiração",
   "not_provided": "Sem informação",
-  "okms_activation_in_progress": "Aguarde, por favor. A criação está em curso.",
+  "okms_activation_in_progress": "Por favor, aguarde enquanto o domínio OKMS é ativado na região {{region}}.",
   "okms_list": "Lista de domínios OKMS",
   "onboarding_description_1": "Proteja os seus segredos",
   "onboarding_description_2": "O Secret Manager é um serviço centralizado de gestão de segredos baseado em OKMS, totalmente gerido, para as aplicações e os serviços OVHcloud.",
@@ -72,5 +72,14 @@
   "key_value": "Chave valor",
   "okms_dashboard_title": "Detalhe do domínio OKMS",
   "okms_manage_label": "Gerir meu domínio OKMS",
-  "value": "Valor"
+  "value": "Valor",
+  "edit_okms_secret_config": "Modificar as definições padrão dos segredos",
+  "guide_use_in_manager": "Utilizar o Secret Manager a partir da Área de Cliente OVHcloud",
+  "guide_use_in_manager_description": "Descubra como criar, gerir e utilizar os seus segredos através do espaço gráfico.",
+  "guide_use_with_kv2_api": "Utilizar o Secret Manager com a API compatível com o Hashicorp Vault KV2",
+  "guide_use_with_kv2_api_description": "Descubra como aceder ao seu domínio OKMS para criar, gerir e utilizar segredos utilizando a API compatível com o HashiCorp Vault KV2 disponível para garantir a compatibilidade com serviços existentes.",
+  "guide_use_with_rest_api": "Utilizar o Secret Manager com a API REST",
+  "guide_use_with_rest_api_description": "Descubra como aceder ao seu domínio OKMS para criar, gerir e utilizar segredos utilizando a API REST comum com a gestão dos Serviços de Chaves.",
+  "secrets_pricing_subtitle": "A faturação aplica-se a cada versão do segredo.",
+  "secrets_pricing_title": "Preços do Secret Manager"
 }
