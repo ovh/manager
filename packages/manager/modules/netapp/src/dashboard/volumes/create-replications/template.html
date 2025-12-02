@@ -1,0 +1,58 @@
+<oui-modal
+    data-loading="$ctrl.onPostLoad"
+    data-on-dismiss="$ctrl.goToVolumes()"
+    data-heading="{{:: 'netapp_network_volumes_replications_title' | translate }}"
+    data-primary-label="{{:: $ctrl.hasAvailableReplicationsServices() ? 'netapp_network_volumes_replications_button_sync' : 'netapp_network_volumes_replications_button_buy' | translate }}"
+    data-primary-action="$ctrl.onPrimaryClick()"
+    data-secondary-label="{{:: 'netapp_network_volumes_replications_button_cancel' | translate }}"
+    data-secondary-action="$ctrl.goToVolumes()"
+    data-primary-disabled="$ctrl.isPrimaryButtonDisabled()"
+>
+    <div
+        ng-if="!$ctrl.replicationsSelectedVolumes.length && $ctrl.hasAvailableReplicationsServices()"
+    >
+        <p
+            class="bold"
+            data-translate="netapp_network_volumes_no_selected_volume_replications_subtitle"
+        ></p>
+        <p
+            data-translate="netapp_network_volumes_no_selected_volume_replications_description"
+        ></p>
+    </div>
+    <div ng-if="!$ctrl.hasAvailableReplicationsServices()">
+        <p
+            class="bold"
+            data-translate="{{ 'netapp_network_volumes_no_replications_subtitle' }}"
+        ></p>
+        <p
+            data-translate="netapp_network_volumes_not_replications_description"
+        ></p>
+    </div>
+    <div
+        ng-if="$ctrl.hasAvailableReplicationsServices() && $ctrl.replicationsSelectedVolumes.length"
+    >
+        <p data-translate="netapp_network_volumes_replications_description"></p>
+        <p
+            data-translate="netapp_network_volumes_replications_selected_volumes"
+        ></p>
+        <ul>
+            <li ng-repeat="volumeId in $ctrl.replicationsSelectedVolumes">
+                {{volumeId}}
+            </li>
+        </ul>
+        <oui-field
+            data-label="{{:: 'netapp_network_volumes_replications_form_label' | translate}}"
+        >
+            <oui-select
+                name="availableServices"
+                data-items="$ctrl.optionsReplicationsAvaibleServices"
+                data-match="displayName"
+                data-model="$ctrl.destinationServiceId"
+                data-value-property="id"
+                data-searchable="true"
+                data-placeholder="{{:: 'netapp_network_volumes_replications_form_placeholder' | translate }}"
+            >
+            </oui-select>
+        </oui-field>
+    </div>
+</oui-modal>
