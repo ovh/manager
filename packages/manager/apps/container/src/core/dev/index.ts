@@ -28,8 +28,8 @@ export function setupDevApplication(shell: Shell) {
     if (!containerApp) {
       const devConfig = {
         universe: 'dedicated',
-        url: `https://www.ovh.com/manager/${devApp}/`,
-        publicURL: `https://www.ovh.com/manager/#/${devApp}/`,
+        url: `https://manager.eu.ovhcloud.com/${devApp}/`,
+        publicURL: `https://manager.eu.ovhcloud.com/#/${devApp}/`,
         container: {
           enabled: true,
           isDefault: true,
