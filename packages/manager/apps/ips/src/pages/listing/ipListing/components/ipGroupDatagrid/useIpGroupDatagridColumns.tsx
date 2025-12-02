@@ -16,7 +16,6 @@ import {
   IpVmacFilterByIp,
 } from '../DatagridCells';
 import {
-  useGetIpGameFirewall,
   useGetIpMitigationWithoutIceberg,
   useGetIpVmacWithIp,
 } from '@/data/hooks';
@@ -43,14 +42,6 @@ export const useIpGroupDatagridColumns = ({
     isLoading: isMitigationLoading,
   } = useGetIpMitigationWithoutIceberg({
     ip: parentIp,
-  });
-
-  const {
-    ipGameFirewall,
-    isLoading: isGameFirewallLoading,
-  } = useGetIpGameFirewall({
-    ip: parentIp,
-    enabled: isGameFirewallEnabled && !isByoipSlice,
   });
 
   const { vmacsWithIp, isLoading: isVmacsLoading } = useGetIpVmacWithIp({
@@ -145,11 +136,9 @@ export const useIpGroupDatagridColumns = ({
       label: t('listingColumnsIpGameFirewall'),
       cell: (ip: string) => (
         <IpGameFirewallDisplay
-          ip={ip}
-          ipGameFirewall={ipGameFirewall?.find(
-            (firewall) => firewall.ipOnGame === ip,
-          )}
-          enabled={isGameFirewallEnabled}
+          ip={parentIp}
+          ipOnGame={ip}
+          enabled={isGameFirewallEnabled && !isByoipSlice}
         />
       ),
       size: parentHeaders.current['ip-game-firewall'].clientWidth,
@@ -170,6 +159,6 @@ export const useIpGroupDatagridColumns = ({
 
   return {
     columns,
-    isLoading: isMitigationLoading || isGameFirewallLoading || isVmacsLoading,
+    isLoading: isMitigationLoading || isVmacsLoading,
   };
 };

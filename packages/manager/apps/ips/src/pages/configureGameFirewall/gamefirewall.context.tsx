@@ -24,7 +24,7 @@ export type GameFirewallContextType = {
   isRulesLoading?: boolean;
   rules: IpGameFirewallRule[];
   ip: string;
-  ipOnGame?: string;
+  ipOnGame: string;
   isError?: boolean;
   error?: ApiError;
   isRulesError?: boolean;
@@ -58,6 +58,7 @@ export const GameFirewallContext = React.createContext<GameFirewallContextType>(
   {
     rules: [],
     ip: '',
+    ipOnGame: '',
     setNewEndPort: () => {},
     setNewStartPort: () => {},
     setNewGameProtocol: () => {},
@@ -87,8 +88,9 @@ export const GameFirewallContextProvider: React.FC<{
     TRANSLATION_NAMESPACES.gameFirewall,
     TRANSLATION_NAMESPACES.error,
   ]);
-  const { id } = useParams();
-  const { ipGroup } = ipFormatter(fromIdToIp(id));
+  const { parentId, id } = useParams();
+  const ip = fromIdToIp(parentId);
+  const ipOnGame = fromIdToIp(id);
   const [newGameProtocol, setNewGameProtocol] = React.useState<string>();
   const [newStartPort, setNewStartPort] = React.useState<string>();
   const [newEndPort, setNewEndPort] = React.useState<string>();
@@ -105,9 +107,9 @@ export const GameFirewallContextProvider: React.FC<{
     IpGameFirewallRule
   >(null);
   const { isLoading, ipGameFirewall, isError, error } = useGetIpGameFirewall({
-    ip: ipGroup,
+    ip,
+    ipOnGame,
   });
-  const ipOnGame = ipGameFirewall?.[0]?.ipOnGame;
 
   const hideNewRuleRow = React.useCallback(() => {
     setNewGameProtocol(undefined);
@@ -122,7 +124,7 @@ export const GameFirewallContextProvider: React.FC<{
     isError: isRulesError,
     error: rulesError,
   } = useIpGameFirewallRules({
-    ip: ipGroup,
+    ip,
     ipOnGame,
   });
 
@@ -161,7 +163,7 @@ export const GameFirewallContextProvider: React.FC<{
       return hasError
         ? Promise.reject()
         : addIpGameFirewallRule({
-            ip: ipGroup,
+            ip,
             ipOnGame,
             startPort,
             endPort,
@@ -171,7 +173,7 @@ export const GameFirewallContextProvider: React.FC<{
     onSuccess: () => {
       clearNotifications();
       qc.invalidateQueries({
-        queryKey: getGameFirewallRuleQueryKey({ ip: ipGroup, ipOnGame }),
+        queryKey: getGameFirewallRuleQueryKey({ ip, ipOnGame }),
       });
       addSuccess(t('add_rule_success_message'), true);
       trackPage({
@@ -238,7 +240,7 @@ export const GameFirewallContextProvider: React.FC<{
       isLoading,
       isRulesLoading,
       rules: rules || [],
-      ip: ipGroup,
+      ip,
       ipOnGame,
       isError,
       error,
@@ -260,10 +262,12 @@ export const GameFirewallContextProvider: React.FC<{
       setNewGameProtocol: setNewGameProtocolWithPorts,
       setNewStartPort,
       setNewEndPort,
-      maxRulesReached: ipGameFirewall?.[0]?.maxRules === rules?.length,
-      supportedProtocols: ipGameFirewall?.[0]?.supportedProtocols || [],
-      firewallModeEnabled: ipGameFirewall?.[0]?.firewallModeEnabled,
-      gameFirewallState: ipGameFirewall?.[0]?.state,
+      maxRulesReached: ipGameFirewall?.maxRules === rules?.length,
+      supportedProtocols:
+        ipGameFirewall?.supportedProtocols ||
+        Object.keys(IP_MITIGATION_RULE_PROTOCOL_PORT),
+      firewallModeEnabled: ipGameFirewall?.firewallModeEnabled,
+      gameFirewallState: ipGameFirewall?.state,
       tmpToggleState,
       setTmpToggleState,
       addRule,
@@ -272,7 +276,7 @@ export const GameFirewallContextProvider: React.FC<{
       isLoading,
       isRulesLoading,
       rules,
-      ipGroup,
+      ip,
       ipOnGame,
       isError,
       error,

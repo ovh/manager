@@ -156,7 +156,8 @@ export const IpActionsCell = ({
 
   // Get game firewall info
   const { ipGameFirewall } = useGetIpGameFirewall({
-    ip: parentIpGroup || ipAddress,
+    ip: parentIpGroup || ip,
+    ipOnGame: parentIpGroup ? ip : ipAddress,
     enabled: enabledGetGameFirewall && !isByoipSlice,
   });
 
@@ -201,16 +202,21 @@ export const IpActionsCell = ({
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasCloudServiceAttachedToIP &&
-      Boolean(ipGameFirewall?.length) && {
+      Boolean(ipGameFirewall?.ipOnGame) && {
         id: 2,
         label: t('listingActionManageGameFirewall'),
         trackingLabel: 'configure_game-firewall',
         onClick: () =>
           navigate(
-            `${urls.configureGameFirewall.replace(
-              urlDynamicParts.id,
-              id,
-            )}?${search.toString()}`,
+            `${urls.configureGameFirewall
+              .replace(
+                urlDynamicParts.parentId,
+                parentIpGroup ? fromIpToId(parentIpGroup) : id,
+              )
+              .replace(
+                urlDynamicParts.id,
+                parentIpGroup ? id : fromIpToId(ipAddress),
+              )}?${search.toString()}`,
           ),
       },
     !isGroup &&

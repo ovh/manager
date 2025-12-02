@@ -60,10 +60,12 @@ export const useIpEdgeNetworkFirewallRules = ({
           retry: false,
           refetchInterval: (query) => {
             if (query.state.error) {
-              queryClient.invalidateQueries({
-                queryKey: getIpEdgeNetworkFirewallRuleListQueryKey(ruleParams),
-                exact: true,
-              });
+              queryClient.setQueryData(
+                getIpEdgeNetworkFirewallRuleListQueryKey({ ip, ipOnFirewall }),
+                (oldData: ApiResponse<number[]> | undefined) => ({
+                  data: (oldData?.data || []).filter((seq) => seq !== sequence),
+                }),
+              );
               queryClient.removeQueries({
                 queryKey: getIpEdgeNetworkFirewallRuleDetailsQueryKey(
                   ruleParams,

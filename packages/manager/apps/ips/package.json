@@ -23,8 +23,8 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-module-common-api": "^0.5.11",
-    "@ovh-ux/manager-module-order": "^0.11.10",
+    "@ovh-ux/manager-module-common-api": "^0.6.0",
+    "@ovh-ux/manager-module-order": "^0.12.0",
     "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
@@ -48,7 +48,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.10.0",
+    "@ovh-ux/manager-core-test-utils": "^0.11.0",
     "@ovh-ux/manager-vite-config": "*",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",

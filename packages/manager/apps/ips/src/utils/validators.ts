@@ -1,15 +1,18 @@
 import ipaddr from 'ipaddr.js';
 import { toASCII } from 'punycode';
 
+export function isValidIpv4(ip: string) {
+  try {
+    return ip && ip.split('.').length === 4 && ipaddr.IPv4.isValid(ip);
+  } catch (e) {
+    return false;
+  }
+}
+
 export function isValidIpv4Block(block: string) {
   const split = block?.split('/');
   const range = parseInt(split[1], 10);
-  return (
-    split.length === 2 &&
-    ipaddr.IPv4.isValid(split[0]) &&
-    range > 0 &&
-    range < 33
-  );
+  return split.length === 2 && isValidIpv4(split[0]) && range > 0 && range < 33;
 }
 
 export function isValidIpv6Block(block?: string) {

@@ -58,10 +58,9 @@ describe('Configure game firewall page', () => {
 
   it('disable toggle when game firewall has an ongoing update', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.configureGameFirewall.replace(
-        urlDynamicParts.id,
-        fromIpToId('239.99.244.14'),
-      ),
+      initialRoute: urls.configureGameFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId('239.99.244.14/32'))
+        .replace(urlDynamicParts.id, fromIpToId('239.99.244.14')),
       nbIp: 6,
       gameFirewallConfig: {
         state: IpGameFirewallStateEnum.PENDING_DISABLE,
@@ -78,10 +77,9 @@ describe('Configure game firewall page', () => {
 
   it('display a success message when deny strategy is updated successfully', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.configureGameFirewall.replace(
-        urlDynamicParts.id,
-        fromIpToId('239.99.244.14'),
-      ),
+      initialRoute: urls.configureGameFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId('239.99.244.14/32'))
+        .replace(urlDynamicParts.id, fromIpToId('239.99.244.14')),
       nbIp: 6,
       gameFirewallConfig: {
         state: IpGameFirewallStateEnum.OK,
@@ -121,10 +119,9 @@ describe('Configure game firewall page', () => {
 
   it('display an error message when deny strategy is updated and api is KO', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.configureGameFirewall.replace(
-        urlDynamicParts.id,
-        fromIpToId('239.99.244.14'),
-      ),
+      initialRoute: urls.configureGameFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId('239.99.244.14/32'))
+        .replace(urlDynamicParts.id, fromIpToId('239.99.244.14')),
       nbIp: 6,
       gameFirewallConfig: {
         isUpdateKo: true,

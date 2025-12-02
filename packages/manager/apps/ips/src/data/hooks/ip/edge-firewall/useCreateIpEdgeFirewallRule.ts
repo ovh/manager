@@ -11,7 +11,7 @@ import {
   postIpEdgeFirewall,
   postIpEdgeNetworkFirewallRule,
 } from '@/data/api';
-import { isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
+import { isValidIpv4, isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
 
 export const IP_EDGE_FIREWALL_PORT_MIN = 0;
 export const IP_EDGE_FIREWALL_PORT_MAX = 65535;

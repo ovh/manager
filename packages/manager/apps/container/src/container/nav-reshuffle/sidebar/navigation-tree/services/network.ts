@@ -13,7 +13,6 @@ const networkUniverse: Node = {
     'vrack:bare-metal-cloud',
     'ip',
     'ips',
-    'veeam-cloud-connect',
     'ip-load-balancer',
     'dedicated-cdn',
     'network-security',

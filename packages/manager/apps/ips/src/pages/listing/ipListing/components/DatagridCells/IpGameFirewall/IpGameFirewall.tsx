@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useGetIpGameFirewall, useGetIpdetails } from '@/data/hooks/ip';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
@@ -9,6 +8,7 @@ import { isGameFirewallEnabled } from '../enableCellsUtils';
 
 export type IpGameFirewallProps = {
   ip: string;
+  ipOnGame?: string;
 };
 
 /**
@@ -20,18 +20,18 @@ export type IpGameFirewallProps = {
  * If ip is not routed to a dedicated server, we display nothing
  * If ip is routed to a dedicated server is /32 and additionnal or dedicated type we display Game firewall infos
  * @param ip the ip with mask
+ * @param ipOnGame the ip without mask
  * @returns React component
  */
-export const IpGameFirewall = ({ ip }: IpGameFirewallProps) => {
+export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
   const { expiredIps } = useContext(ListingContext);
 
   // Check if ip is not group
-  const { isGroup } = ipFormatter(ip);
+  const { isGroup, ipAddress } = ipFormatter(ip);
 
   // Check if ip is not cloud
   const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
-    ip,
-    enabled: !isGroup,
+    ip: isGroup && ipOnGame ? ipOnGame : ip,
   });
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
@@ -41,21 +41,22 @@ export const IpGameFirewall = ({ ip }: IpGameFirewallProps) => {
     isGameFirewallEnabled(ipDetails);
 
   // Get game firewall info
-  const { ipGameFirewall, isLoading, error } = useGetIpGameFirewall({
+  const { isLoading, error } = useGetIpGameFirewall({
     ip,
+    ipOnGame: ipOnGame || ipAddress,
     enabled,
   });
 
   return (
     <SkeletonCell
       isLoading={isIpDetailsLoading || isLoading}
-      enabled={!isGroup}
+      enabled={!isGroup || !!ipOnGame}
       error={error}
       ip={ip}
     >
       <IpGameFirewallDisplay
         ip={ip}
-        ipGameFirewall={ipGameFirewall?.[0]}
+        ipOnGame={ipOnGame || ipAddress}
         enabled={enabled}
       />
     </SkeletonCell>
