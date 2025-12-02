@@ -1,579 +1,773 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Delete Modal component > renders basic modal 1`] = `
-<body>
-  <div />
+<body
+>
+
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r0::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r0::positioner"
   >
+  </div
+  >
+
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
       data-scope="dialog"
-      data-state="open"
+      data-part="backdrop"
       dir="ltr"
-      id="dialog::r0::content"
-      role="alertdialog"
-      tabindex="-1"
+      id="dialog::r0::backdrop"
+      data-state="open"
+      class="_modal-backdrop_HASH_22"
     >
+    </div
+    >
+
       <div
-        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
+        data-scope="dialog"
+        data-part="positioner"
+        dir="ltr"
+        id="dialog::r0::positioner"
+        class="_modal-positioner_HASH_29"
       >
-        <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
+
+        <div
           data-scope="dialog"
+          data-part="content"
           dir="ltr"
-          id="dialog::r0::close"
-          type="button"
+          role="alertdialog"
+          id="dialog::r0::content"
+          tabindex="-1"
+          data-state="open"
+          aria-modal="true"
+          aria-labelledby=""
+          aria-describedby=""
+          class="_modal-content_HASH_35"
+          data-ods="modal-content"
         >
-          <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
-          >
-            Résilier serviceType ?
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
+
           <div
-            class="flex flex-col gap-4"
+            class="_modal-header--critical_HASH_14 _modal-header_HASH_2"
           >
-            <p
-              class="_text--paragraph_1aw48_54"
-              data-ods="text"
-              data-testid="manager-delete-modal-description"
-              id="delete-modal-description"
+
+            <button
+              class="_button--ghost_HASH_151 _button--neutral_HASH_83 _button--xs_HASH_25 _button_HASH_2 _modal-header__close_HASH_26"
+              data-ods="button"
+              aria-label="Close"
+              data-scope="dialog"
+              data-part="close-trigger"
+              dir="ltr"
+              id="dialog::r0::close"
+              type="button"
             >
-              La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-cancel"
-            type="button"
-          >
-            Non, refuser
-          </button>
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-confirm"
-            type="button"
-          >
-            Oui, résilier
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
+
+              <span
+                class="_icon--xmark_HASH_562 _icon_HASH_2"
+                data-ods="icon"
+                role="presentation"
+              >
+              </span
+              >
+              </button
+              >
+              </div
+              >
+
+                <div
+                  class="_modal-body_HASH_2 text-left"
+                  data-ods="modal-body"
+                >
+
+                  <div
+                    class="flex items-center mb-4"
+                  >
+
+                    <h4
+                      class="_text--heading-4_HASH_31 block flex-1 mr-3"
+                      data-ods="text"
+                    >Résilier serviceType ?
+                    </h4
+                    >
+                    </div
+                    >
+
+                      <div
+                        class="flex flex-col text-left"
+                      >
+
+                        <div
+                          class="flex flex-col gap-4"
+                        >
+
+                          <p
+                            class="_text--paragraph_HASH_54"
+                            data-ods="text"
+                            data-testid="manager-delete-modal-description"
+                            id="delete-modal-description"
+                          >La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+                          </p
+                          >
+                          </div
+                          >
+                          </div
+                          >
+
+                            <div
+                              class="flex flex-wrap gap-4 justify-end"
+                            >
+
+                              <button
+                                class="_button--critical_HASH_49 _button--ghost_HASH_151 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                data-ods="button"
+                                data-testid="manager-delete-modal-cancel"
+                                type="button"
+                              >Non, refuser
+                              </button
+                              >
+
+                                <button
+                                  class="_button--critical_HASH_49 _button--default_HASH_49 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                  data-ods="button"
+                                  data-testid="manager-delete-modal-confirm"
+                                  type="button"
+                                >Oui, résilier
+                                </button
+                                >
+                                </div
+                                >
+                                </div
+                                >
+                                </div
+                                >
+                                </div
+                                >
+                                </body
+                                >
 `;
 
 exports[`Delete Modal component > renders loading modal 1`] = `
-<body>
-  <div />
+<body
+>
+
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r1::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r1::positioner"
   >
+  </div
+  >
+
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
       data-scope="dialog"
-      data-state="open"
+      data-part="backdrop"
       dir="ltr"
-      id="dialog::r1::content"
-      role="alertdialog"
-      tabindex="-1"
+      id="dialog::r1::backdrop"
+      data-state="open"
+      class="_modal-backdrop_HASH_22"
     >
+    </div
+    >
+
       <div
-        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
+        data-scope="dialog"
+        data-part="positioner"
+        dir="ltr"
+        id="dialog::r1::positioner"
+        class="_modal-positioner_HASH_29"
       >
-        <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
+
+        <div
           data-scope="dialog"
+          data-part="content"
           dir="ltr"
-          id="dialog::r1::close"
-          type="button"
+          role="alertdialog"
+          id="dialog::r1::content"
+          tabindex="-1"
+          data-state="open"
+          aria-modal="true"
+          aria-labelledby=""
+          aria-describedby=""
+          class="_modal-content_HASH_35"
+          data-ods="modal-content"
         >
-          <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
+
+          <div
+            class="_modal-header--critical_HASH_14 _modal-header_HASH_2"
           >
-            Résilier serviceType ?
-          </h4>
-        </div>
-        <div
-          class="flex justify-center my-5"
-          data-testid="spinner"
-        >
-          <span
-            class="_spinner_o7c7y_10 _spinner--primary_o7c7y_29 _spinner--md_o7c7y_20"
-            data-ods="spinner"
-            role="progressbar"
-          >
-            <svg
-              aria-hidden="true"
-              class="_spinner__svg_o7c7y_32"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+
+            <button
+              class="_button--ghost_HASH_151 _button--neutral_HASH_83 _button--xs_HASH_25 _button_HASH_2 _modal-header__close_HASH_26"
+              data-ods="button"
+              aria-label="Close"
+              data-scope="dialog"
+              data-part="close-trigger"
+              dir="ltr"
+              id="dialog::r1::close"
+              type="button"
             >
-              <rect
-                fill="none"
-                height="24"
-                width="24"
-              />
-              <g
-                transform="translate(-237.694 -93.932)"
+
+              <span
+                class="_icon--xmark_HASH_562 _icon_HASH_2"
+                data-ods="icon"
+                role="presentation"
               >
-                <path
-                  d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-                  transform="translate(5486 4225)"
-                />
-                <circle
-                  cx="1"
-                  cy="1"
-                  r="1"
-                  transform="translate(248.694 114.932)"
-                />
-                <circle
-                  cx="1"
-                  cy="1"
-                  r="1"
-                  transform="translate(238.694 104.932)"
-                />
-              </g>
-            </svg>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
+              </span
+              >
+              </button
+              >
+              </div
+              >
+
+                <div
+                  class="_modal-body_HASH_2 text-left"
+                  data-ods="modal-body"
+                >
+
+                  <div
+                    class="flex items-center mb-4"
+                  >
+
+                    <h4
+                      class="_text--heading-4_HASH_31 block flex-1 mr-3"
+                      data-ods="text"
+                    >Résilier serviceType ?
+                    </h4
+                    >
+                    </div
+                    >
+
+                      <div
+                        data-testid="spinner"
+                        class="flex justify-center my-5"
+                      >
+
+                        <span
+                          class="_spinner--md_HASH_20 _spinner--primary_HASH_29 _spinner_HASH_10"
+                          data-ods="spinner"
+                          role="progressbar"
+                        >
+
+                          <svg
+                            aria-hidden="true"
+                            class="_spinner__svg_HASH_32"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+
+                            <rect
+                              fill="none"
+                              height="24"
+                              width="24"
+                            >
+                            </rect
+                            >
+
+                              <g
+                                transform="translate(-237.694 -93.932)"
+                              >
+
+                                <path
+                                  d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
+                                  transform="translate(5486 4225)"
+                                >
+                                </path
+                                >
+
+                                  <circle
+                                    cx="1"
+                                    cy="1"
+                                    r="1"
+                                    transform="translate(248.694 114.932)"
+                                  >
+                                  </circle
+                                  >
+
+                                    <circle
+                                      cx="1"
+                                      cy="1"
+                                      r="1"
+                                      transform="translate(238.694 104.932)"
+                                    >
+                                    </circle
+                                    >
+                                    </g
+                                    >
+                                    </svg
+                                    >
+                                    </span
+                                    >
+                                    </div
+                                    >
+                                    </div
+                                    >
+                                    </div
+                                    >
+                                    </div
+                                    >
+                                    </body
+                                    >
 `;
 
 exports[`Delete Modal component > renders modal with children content 1`] = `
-<body>
-  <div />
+<body
+>
+
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r4::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r4::positioner"
   >
+  </div
+  >
+
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
       data-scope="dialog"
-      data-state="open"
+      data-part="backdrop"
       dir="ltr"
-      id="dialog::r4::content"
-      role="alertdialog"
-      tabindex="-1"
+      id="dialog::r4::backdrop"
+      data-state="open"
+      class="_modal-backdrop_HASH_22"
     >
+    </div
+    >
+
       <div
-        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
+        data-scope="dialog"
+        data-part="positioner"
+        dir="ltr"
+        id="dialog::r4::positioner"
+        class="_modal-positioner_HASH_29"
       >
-        <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
+
+        <div
           data-scope="dialog"
+          data-part="content"
           dir="ltr"
-          id="dialog::r4::close"
-          type="button"
+          role="alertdialog"
+          id="dialog::r4::content"
+          tabindex="-1"
+          data-state="open"
+          aria-modal="true"
+          aria-labelledby=""
+          aria-describedby=""
+          class="_modal-content_HASH_35"
+          data-ods="modal-content"
         >
-          <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
-          >
-            Résilier serviceType ?
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
+
           <div
-            class="flex flex-col gap-4"
+            class="_modal-header--critical_HASH_14 _modal-header_HASH_2"
           >
-            <p
-              class="_text--paragraph_1aw48_54"
-              data-ods="text"
-              data-testid="manager-delete-modal-description"
-              id="delete-modal-description"
+
+            <button
+              class="_button--ghost_HASH_151 _button--neutral_HASH_83 _button--xs_HASH_25 _button_HASH_2 _modal-header__close_HASH_26"
+              data-ods="button"
+              aria-label="Close"
+              data-scope="dialog"
+              data-part="close-trigger"
+              dir="ltr"
+              id="dialog::r4::close"
+              type="button"
             >
-              La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
-            </p>
-            <div>
-              Additional content
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-cancel"
-            type="button"
-          >
-            Non, refuser
-          </button>
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-confirm"
-            type="button"
-          >
-            Oui, résilier
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
+
+              <span
+                class="_icon--xmark_HASH_562 _icon_HASH_2"
+                data-ods="icon"
+                role="presentation"
+              >
+              </span
+              >
+              </button
+              >
+              </div
+              >
+
+                <div
+                  class="_modal-body_HASH_2 text-left"
+                  data-ods="modal-body"
+                >
+
+                  <div
+                    class="flex items-center mb-4"
+                  >
+
+                    <h4
+                      class="_text--heading-4_HASH_31 block flex-1 mr-3"
+                      data-ods="text"
+                    >Résilier serviceType ?
+                    </h4
+                    >
+                    </div
+                    >
+
+                      <div
+                        class="flex flex-col text-left"
+                      >
+
+                        <div
+                          class="flex flex-col gap-4"
+                        >
+
+                          <p
+                            class="_text--paragraph_HASH_54"
+                            data-ods="text"
+                            data-testid="manager-delete-modal-description"
+                            id="delete-modal-description"
+                          >La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+                          </p
+                          >
+
+                            <div
+                            >Additional content
+                            </div
+                            >
+                            </div
+                            >
+                            </div
+                            >
+
+                              <div
+                                class="flex flex-wrap gap-4 justify-end"
+                              >
+
+                                <button
+                                  class="_button--critical_HASH_49 _button--ghost_HASH_151 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                  data-ods="button"
+                                  data-testid="manager-delete-modal-cancel"
+                                  type="button"
+                                >Non, refuser
+                                </button
+                                >
+
+                                  <button
+                                    class="_button--critical_HASH_49 _button--default_HASH_49 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                    data-ods="button"
+                                    data-testid="manager-delete-modal-confirm"
+                                    type="button"
+                                  >Oui, résilier
+                                  </button
+                                  >
+                                  </div
+                                  >
+                                  </div
+                                  >
+                                  </div
+                                  >
+                                  </div
+                                  >
+                                  </body
+                                  >
 `;
 
 exports[`Delete Modal component > renders modal with custom service type 1`] = `
-<body>
-  <div />
+<body
+>
+
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r3::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r3::positioner"
   >
+  </div
+  >
+
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
       data-scope="dialog"
-      data-state="open"
+      data-part="backdrop"
       dir="ltr"
-      id="dialog::r3::content"
-      role="alertdialog"
-      tabindex="-1"
+      id="dialog::r3::backdrop"
+      data-state="open"
+      class="_modal-backdrop_HASH_22"
     >
+    </div
+    >
+
       <div
-        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
+        data-scope="dialog"
+        data-part="positioner"
+        dir="ltr"
+        id="dialog::r3::positioner"
+        class="_modal-positioner_HASH_29"
       >
-        <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
+
+        <div
           data-scope="dialog"
+          data-part="content"
           dir="ltr"
-          id="dialog::r3::close"
-          type="button"
+          role="alertdialog"
+          id="dialog::r3::content"
+          tabindex="-1"
+          data-state="open"
+          aria-modal="true"
+          aria-labelledby=""
+          aria-describedby=""
+          class="_modal-content_HASH_35"
+          data-ods="modal-content"
         >
-          <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
-          >
-            Résilier Custom Service ?
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
+
           <div
-            class="flex flex-col gap-4"
+            class="_modal-header--critical_HASH_14 _modal-header_HASH_2"
           >
-            <p
-              class="_text--paragraph_1aw48_54"
-              data-ods="text"
-              data-testid="manager-delete-modal-description"
-              id="delete-modal-description"
+
+            <button
+              class="_button--ghost_HASH_151 _button--neutral_HASH_83 _button--xs_HASH_25 _button_HASH_2 _modal-header__close_HASH_26"
+              data-ods="button"
+              aria-label="Close"
+              data-scope="dialog"
+              data-part="close-trigger"
+              dir="ltr"
+              id="dialog::r3::close"
+              type="button"
             >
-              La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-cancel"
-            type="button"
-          >
-            Non, refuser
-          </button>
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-confirm"
-            type="button"
-          >
-            Oui, résilier
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
+
+              <span
+                class="_icon--xmark_HASH_562 _icon_HASH_2"
+                data-ods="icon"
+                role="presentation"
+              >
+              </span
+              >
+              </button
+              >
+              </div
+              >
+
+                <div
+                  class="_modal-body_HASH_2 text-left"
+                  data-ods="modal-body"
+                >
+
+                  <div
+                    class="flex items-center mb-4"
+                  >
+
+                    <h4
+                      class="_text--heading-4_HASH_31 block flex-1 mr-3"
+                      data-ods="text"
+                    >Résilier Custom Service ?
+                    </h4
+                    >
+                    </div
+                    >
+
+                      <div
+                        class="flex flex-col text-left"
+                      >
+
+                        <div
+                          class="flex flex-col gap-4"
+                        >
+
+                          <p
+                            class="_text--paragraph_HASH_54"
+                            data-ods="text"
+                            data-testid="manager-delete-modal-description"
+                            id="delete-modal-description"
+                          >La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+                          </p
+                          >
+                          </div
+                          >
+                          </div
+                          >
+
+                            <div
+                              class="flex flex-wrap gap-4 justify-end"
+                            >
+
+                              <button
+                                class="_button--critical_HASH_49 _button--ghost_HASH_151 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                data-ods="button"
+                                data-testid="manager-delete-modal-cancel"
+                                type="button"
+                              >Non, refuser
+                              </button
+                              >
+
+                                <button
+                                  class="_button--critical_HASH_49 _button--default_HASH_49 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                  data-ods="button"
+                                  data-testid="manager-delete-modal-confirm"
+                                  type="button"
+                                >Oui, résilier
+                                </button
+                                >
+                                </div
+                                >
+                                </div
+                                >
+                                </div
+                                >
+                                </div
+                                >
+                                </body
+                                >
 `;
 
 exports[`Delete Modal component > renders modal with error 1`] = `
-<body>
-  <div />
+<body
+>
+
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r2::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r2::positioner"
   >
+  </div
+  >
+
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
       data-scope="dialog"
-      data-state="open"
+      data-part="backdrop"
       dir="ltr"
-      id="dialog::r2::content"
-      role="alertdialog"
-      tabindex="-1"
+      id="dialog::r2::backdrop"
+      data-state="open"
+      class="_modal-backdrop_HASH_22"
     >
+    </div
+    >
+
       <div
-        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
+        data-scope="dialog"
+        data-part="positioner"
+        dir="ltr"
+        id="dialog::r2::positioner"
+        class="_modal-positioner_HASH_29"
       >
-        <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
+
+        <div
           data-scope="dialog"
+          data-part="content"
           dir="ltr"
-          id="dialog::r2::close"
-          type="button"
+          role="alertdialog"
+          id="dialog::r2::content"
+          tabindex="-1"
+          data-state="open"
+          aria-modal="true"
+          aria-labelledby=""
+          aria-describedby=""
+          class="_modal-content_HASH_35"
+          data-ods="modal-content"
         >
-          <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
-          >
-            Résilier serviceType ?
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
+
           <div
-            class="flex flex-col gap-4"
+            class="_modal-header--critical_HASH_14 _modal-header_HASH_2"
           >
-            <div
-              class="_message_1oosv_2 _message--warning_1oosv_32 _message--default_1oosv_9"
-              data-ods="message"
+
+            <button
+              class="_button--ghost_HASH_151 _button--neutral_HASH_83 _button--xs_HASH_25 _button_HASH_2 _modal-header__close_HASH_26"
+              data-ods="button"
+              aria-label="Close"
+              data-scope="dialog"
+              data-part="close-trigger"
+              dir="ltr"
+              id="dialog::r2::close"
+              type="button"
             >
+
               <span
-                class="_icon_10c23_2 _icon--triangle-exclamation_10c23_538 _message-icon_mpgx8_2"
-                data-ods="message-icon"
+                class="_icon--xmark_HASH_562 _icon_HASH_2"
+                data-ods="icon"
                 role="presentation"
-              />
-              <div
-                class="_message-body_fe7x3_2"
-                data-ods="message-body"
               >
-                L'erreur suivante est survenue : Test error message.
-              </div>
-              <button
-                aria-label="Close"
-                class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
-                data-ods="button"
-                type="button"
+              </span
               >
-                <span
-                  class="_icon_10c23_2 _icon--xmark_10c23_562"
-                  data-ods="icon"
-                  role="presentation"
-                />
-              </button>
-            </div>
-            <p
-              class="_text--paragraph_1aw48_54"
-              data-ods="text"
-              data-testid="manager-delete-modal-description"
-              id="delete-modal-description"
-            >
-              La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-cancel"
-            type="button"
-          >
-            Non, refuser
-          </button>
-          <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="manager-delete-modal-confirm"
-            type="button"
-          >
-            Oui, résilier
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
+              </button
+              >
+              </div
+              >
+
+                <div
+                  class="_modal-body_HASH_2 text-left"
+                  data-ods="modal-body"
+                >
+
+                  <div
+                    class="flex items-center mb-4"
+                  >
+
+                    <h4
+                      class="_text--heading-4_HASH_31 block flex-1 mr-3"
+                      data-ods="text"
+                    >Résilier serviceType ?
+                    </h4
+                    >
+                    </div
+                    >
+
+                      <div
+                        class="flex flex-col text-left"
+                      >
+
+                        <div
+                          class="flex flex-col gap-4"
+                        >
+
+                          <div
+                            class="_message--default_HASH_9 _message--warning_HASH_32 _message_HASH_2"
+                            data-ods="message"
+                          >
+
+                            <span
+                              class="_icon--triangle-exclamation_HASH_538 _icon_HASH_2 _message-icon_HASH_2"
+                              data-ods="message-icon"
+                              role="presentation"
+                            >
+                            </span
+                            >
+
+                              <div
+                                class="_message-body_HASH_2"
+                                data-ods="message-body"
+                              >L'erreur suivante est survenue : Test error message.
+                              </div
+                              >
+
+                                <button
+                                  class="_button--ghost_HASH_151 _button--neutral_HASH_83 _button--xs_HASH_25 _button_HASH_2 _message__close_HASH_25"
+                                  data-ods="button"
+                                  aria-label="Close"
+                                  type="button"
+                                >
+
+                                  <span
+                                    class="_icon--xmark_HASH_562 _icon_HASH_2"
+                                    data-ods="icon"
+                                    role="presentation"
+                                  >
+                                  </span
+                                  >
+                                  </button
+                                  >
+                                  </div
+                                  >
+
+                                    <p
+                                      class="_text--paragraph_HASH_54"
+                                      data-ods="text"
+                                      data-testid="manager-delete-modal-description"
+                                      id="delete-modal-description"
+                                    >La résiliation de votre service effacera définitivement toutes les données correspondantes. Souhaitez-vous procéder à la résiliation de votre service ?
+                                    </p
+                                    >
+                                    </div
+                                    >
+                                    </div
+                                    >
+
+                                      <div
+                                        class="flex flex-wrap gap-4 justify-end"
+                                      >
+
+                                        <button
+                                          class="_button--critical_HASH_49 _button--ghost_HASH_151 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                          data-ods="button"
+                                          data-testid="manager-delete-modal-cancel"
+                                          type="button"
+                                        >Non, refuser
+                                        </button
+                                        >
+
+                                          <button
+                                            class="_button--critical_HASH_49 _button--default_HASH_49 _button--md_HASH_42 _button_HASH_2 mt-4"
+                                            data-ods="button"
+                                            data-testid="manager-delete-modal-confirm"
+                                            type="button"
+                                          >Oui, résilier
+                                          </button
+                                          >
+                                          </div
+                                          >
+                                          </div
+                                          >
+                                          </div
+                                          >
+                                          </div
+                                          >
+                                          </body
+                                          >
 `;

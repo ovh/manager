@@ -2,46 +2,52 @@
 
 exports[`ErrorBoundary Tests > should render Error Boundary component when error occurs 1`] = `
 <section
-  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+  class="h-full max-w-[600px] mx-auto mx-autogrid overflow-hidden p-5 w-full"
 >
+
   <img
+    src="/public/assets/error-banner-oops.png"
     alt="OOPS"
     class="w-full"
-    src="/public/assets/error-banner-oops.png"
-  />
+  >
+
   <h1
-    class="_text--heading-1_1aw48_13 pt-2"
+    class="_text--heading-1_HASH_13 pt-2"
     data-ods="text"
+  > Oups ! Une erreur est survenue.
+  </h1
   >
-     
-    Oups ! Une erreur est survenue.
-  </h1>
-  <h2
-    class="_text--heading-2_1aw48_19 pt-1 pb-2"
-    data-ods="text"
-  >
-     
-    Une erreur s'est produite, veuillez réessayer plus tard.
-  </h2>
-  <div
-    class="overflow-hidden mt-5 py-2"
-  >
-    <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
-      data-ods="button"
-      data-testid="error-template-action-home"
-      type="button"
+
+    <h2
+      class="_text--heading-2_HASH_19 pb-2 pt-1"
+      data-ods="text"
+    > Une erreur s'est produite, veuillez réessayer plus tard.
+    </h2
     >
-      Retour à la page d'accueil
-    </button>
-    <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
-      data-ods="button"
-      data-testid="error-template-action-reload"
-      type="button"
-    >
-      Réessayer
-    </button>
-  </div>
-</section>
+
+      <div
+        class="mt-5 overflow-hidden py-2"
+      >
+
+        <button
+          class="_button--ghost_HASH_151 _button--md_HASH_42 _button--primary_HASH_100 _button_HASH_2 error-template-actions w-full"
+          data-ods="button"
+          data-testid="error-template-action-home"
+          type="button"
+        >Retour à la page d'accueil
+        </button
+        >
+
+          <button
+            class="_button--default_HASH_49 _button--md_HASH_42 _button--primary_HASH_100 _button_HASH_2 error-template-actions w-full"
+            data-ods="button"
+            data-testid="error-template-action-reload"
+            type="button"
+          >Réessayer
+          </button
+          >
+          </div
+          >
+          </section
+          >
 `;

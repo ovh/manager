@@ -1,64 +1,78 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Datepicker Snapshot tests > renders the component with default props and children 1`] = `
-<div>
+<div
+>
+
   <div
-    class="_datepicker_2mvgz_2"
-    data-ods="datepicker"
-    data-part="root"
     data-scope="date-picker"
-    data-state="closed"
+    data-part="root"
     dir="ltr"
     id="datepicker::r0:"
+    data-state="closed"
+    class="_datepicker_HASH_2"
+    data-ods="datepicker"
   >
+
     <div
-      class="_datepicker-control_1at68_2"
-      data-part="control"
       data-scope="date-picker"
+      data-part="control"
       dir="ltr"
       id="datepicker::r0::control"
+      class="_datepicker-control_HASH_2"
     >
+
       <div
-        class="_input_ff5b7_2 _datepicker-control__input_1at68_7"
+        class="_datepicker-control__input_HASH_7 _input_HASH_2"
       >
+
         <input
           aria-busy="false"
+          class="_input__field_HASH_41"
+          data-ods="datepicker-control"
+          id="datepicker::r0::input:0"
+          type="text"
+          data-scope="date-picker"
+          data-part="input"
           autocomplete="off"
           autocorrect="off"
-          class="_input__field_ff5b7_41"
-          data-index="0"
-          data-ods="datepicker-control"
-          data-part="input"
-          data-scope="date-picker"
-          data-state="closed"
-          dir="ltr"
-          id="datepicker::r0::input:0"
-          placeholder="mm/dd/yyyy"
           spellcheck="false"
-          type="text"
+          dir="ltr"
+          data-index="0"
+          data-state="closed"
+          placeholder="mm/dd/yyyy"
           value=""
-        />
-      </div>
-      <button
-        aria-controls="datepicker::r0::content"
-        aria-haspopup="grid"
-        aria-label="Open calendar"
-        class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _datepicker-control__trigger_1at68_18"
-        data-ods="button"
-        data-part="trigger"
-        data-scope="date-picker"
-        data-state="closed"
-        dir="ltr"
-        id="datepicker::r0::trigger"
-        type="button"
+        >
+      </div
       >
-        <span
-          class="_icon_10c23_2 _icon--calendar_10c23_70"
-          data-ods="icon"
-          role="presentation"
-        />
-      </button>
-    </div>
-  </div>
-</div>
+
+        <button
+          class="_button--outline_HASH_259 _button--primary_HASH_100 _button--sm_HASH_34 _button_HASH_2 _datepicker-control__trigger_HASH_18"
+          data-ods="button"
+          data-scope="date-picker"
+          data-part="trigger"
+          id="datepicker::r0::trigger"
+          dir="ltr"
+          type="button"
+          aria-label="Open calendar"
+          aria-controls="datepicker::r0::content"
+          data-state="closed"
+          aria-haspopup="grid"
+        >
+
+          <span
+            class="_icon--calendar_HASH_70 _icon_HASH_2"
+            data-ods="icon"
+            role="presentation"
+          >
+          </span
+          >
+          </button
+          >
+          </div
+          >
+          </div
+          >
+          </div
+          >
 `;

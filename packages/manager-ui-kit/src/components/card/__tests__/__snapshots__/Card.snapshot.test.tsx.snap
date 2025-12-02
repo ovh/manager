@@ -1,28 +1,36 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Card Snapshot tests > renders the component with default props 1`] = `
-<div>
+<div
+>
+
   <div
     role="list"
   >
+
     <div
-      class="_card_dzuf6_2 _card--primary_dzuf6_17"
+      class="_card--primary_HASH_17 _card_HASH_2"
       data-ods="card"
       role="listitem"
+    >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+      <br
+      >Interdum et malesuada fames ac ante ipsum primis in faucibus.
+    </div
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      <br />
-      Interdum et malesuada fames ac ante ipsum primis in faucibus.
-    </div>
-    <div
-      class="_card_dzuf6_2 _card--primary_dzuf6_17"
-      data-ods="card"
-      role="listitem"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      <br />
-      Interdum et malesuada fames ac ante ipsum primis in faucibus.
-    </div>
-  </div>
-</div>
+
+      <div
+        class="_card--primary_HASH_17 _card_HASH_2"
+        data-ods="card"
+        role="listitem"
+      >Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+        <br
+        >Interdum et malesuada fames ac ante ipsum primis in faucibus.
+      </div
+      >
+      </div
+      >
+      </div
+      >
 `;

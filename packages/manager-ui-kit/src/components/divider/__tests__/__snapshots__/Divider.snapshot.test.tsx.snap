@@ -1,62 +1,78 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Divider Snapshot tests > renders the component with default props 1`] = `
-<div>
+<div
+>
+
   <hr
-    class="_divider_10itd_2 _divider--neutral_10itd_7 _divider--2_10itd_17"
+    class="_divider--2_HASH_17 _divider--neutral_HASH_7 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--2_10itd_17"
+    class="_divider--2_HASH_17 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--0_10itd_13"
+    class="_divider--0_HASH_13 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--2_10itd_17"
+    class="_divider--2_HASH_17 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--4_10itd_21"
+    class="_divider--4_HASH_21 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10"
+    class="_divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--8_10itd_25"
+    class="_divider--8_HASH_25 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--12_10itd_29"
+    class="_divider--12_HASH_29 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--16_10itd_33"
+    class="_divider--16_HASH_33 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+    class="_divider--24_HASH_37 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--32_10itd_41"
+    class="_divider--32_HASH_41 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--40_10itd_45"
+    class="_divider--40_HASH_45 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--48_10itd_49"
+    class="_divider--48_HASH_49 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
+  >
+
   <hr
-    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--64_10itd_53"
+    class="_divider--64_HASH_53 _divider--primary_HASH_10 _divider_HASH_2"
     data-ods="divider"
-  />
-</div>
+  >
+</div
+>
 `;

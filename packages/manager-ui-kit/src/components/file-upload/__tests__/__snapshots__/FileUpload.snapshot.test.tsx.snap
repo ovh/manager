@@ -1,57 +1,71 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`FileUpload Snapshot tests > renders the component with default props and children 1`] = `
-<div>
+<div
+>
+
   <div
-    class="_file-upload_138iw_2"
-    data-ods="file-upload"
-    data-part="root"
     data-scope="file-upload"
+    data-part="root"
     dir="ltr"
     id="file::r0:"
+    class="_file-upload_HASH_2"
+    data-ods="file-upload"
   >
+
     <div
-      aria-disabled="false"
-      aria-label="dropzone"
-      data-part="dropzone"
       data-scope="file-upload"
+      data-part="dropzone"
       dir="ltr"
       id="file::r0::dropzone"
       role="application"
+      aria-label="dropzone"
+      aria-disabled="false"
     >
+
       <div
-        class="_file-upload-dropzone_faoyu_21 _file-upload-dropzone--empty_faoyu_34"
+        class="_file-upload-dropzone--empty_HASH_34 _file-upload-dropzone_HASH_21"
       >
+
         <span
-          class="_icon_10c23_2 _icon--file-plus_10c23_253 _file-upload-dropzone__icon_faoyu_28"
+          class="_file-upload-dropzone__icon_HASH_28 _icon--file-plus_HASH_253 _icon_HASH_2"
           data-ods="icon"
           role="presentation"
-        />
-        <span>
-          Drag & drop a file
-        </span>
-        <button
-          aria-describedby=""
-          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-          data-ods="button"
-          data-part="trigger"
-          data-scope="file-upload"
-          dir="ltr"
-          id="file::r0::trigger"
-          type="button"
         >
-          Browse files
-        </button>
-      </div>
-      Hello
-    </div>
-    <input
-      id="file::r0::input"
-      multiple=""
-      style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-      tabindex="-1"
-      type="file"
-    />
-  </div>
-</div>
+        </span
+        >
+
+          <span
+          >Drag &amp; drop a file
+          </span
+          >
+
+            <button
+              class="_button--ghost_HASH_151 _button--md_HASH_42 _button--primary_HASH_100 _button_HASH_2"
+              data-ods="button"
+              aria-describedby=""
+              data-scope="file-upload"
+              data-part="trigger"
+              dir="ltr"
+              id="file::r0::trigger"
+              type="button"
+            >Browse files
+            </button
+            >
+            </div
+            >Hello
+            </div
+            >
+
+              <input
+                id="file::r0::input"
+                tabindex="-1"
+                type="file"
+                multiple=""
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              >
+            </div
+            >
+            </div
+            >
 `;
