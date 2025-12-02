@@ -3,124 +3,124 @@
 exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many tags 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <div
-                class="w-full h-full flex flex-wrap min-w-[85px]"
+                class=w-full h-full flex flex-wrap min-w-[85px]
               >
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   env:production
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   team:frontend
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   version:1.0.0
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   region:eu-west-1
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   owner:john-doe
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   project:my-project
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   cost_center:engineering
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   department:IT
                 </span>
               </div>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Manager les tags
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -133,75 +133,75 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
 exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single tag 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <div
-                class="w-full h-full flex flex-wrap min-w-[85px]"
+                class=w-full h-full flex flex-wrap min-w-[85px]
               >
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   environment:staging
                 </span>
               </div>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Manager les tags
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -214,67 +214,67 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
 exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <span>
                 Aucun tag n'est associé
               </span>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Ajouter un tag
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -287,67 +287,67 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
 exports[`TagsTile Snapshot Tests > Empty State > should render with empty tags 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <span>
                 Aucun tag n'est associé
               </span>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Ajouter un tag
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -360,67 +360,67 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with empty tags 1
 exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTags callback 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <span>
                 Aucun tag n'est associé
               </span>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Ajouter un tag
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -433,89 +433,89 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
 exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <div
-                class="w-full h-full flex flex-wrap min-w-[85px]"
+                class=w-full h-full flex flex-wrap min-w-[85px]
               >
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   environment:production
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   team:frontend
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   version:1.0.0
                 </span>
               </div>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Manager les tags
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -528,89 +528,89 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
 exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNumber 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <div
-                class="w-full h-full flex flex-wrap min-w-[85px]"
+                class=w-full h-full flex flex-wrap min-w-[85px]
               >
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   environment:production
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   team:frontend
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   version:1.0.0
                 </span>
               </div>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Manager les tags
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -623,89 +623,89 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
 exports[`TagsTile Snapshot Tests > With Tags > should render with displayInternalTags enabled 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Tags
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Tags assignés
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <div
-              class="w-full min-w-[85px] h-[120px] overflow-auto"
+              class=w-full min-w-[85px] h-[120px] overflow-auto
             >
               <div
-                class="w-full h-full flex flex-wrap min-w-[85px]"
+                class=w-full h-full flex flex-wrap min-w-[85px]
               >
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   environment:production
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   team:frontend
                 </span>
                 <span
-                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-                  data-ods="badge"
-                  style="max-width: -32px;"
+                  class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+                  data-ods=badge
+                  style=max-width: -32px;
                 >
                   version:1.0.0
                 </span>
               </div>
             </div>
             <a
-              class="_link_1y3p4_2 mt-4"
-              data-ods="link"
-              href="#"
+              class=_link mt-4
+              data-ods=link
+              href=#
             >
               Manager les tags
               <span
-                class="_icon_10c23_2 _icon--external-link_10c23_232"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--external-link
+                data-ods=icon
+                role=presentation
               />
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
