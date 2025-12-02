@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.27.0...@ovh-ux/ovh-at-internet@0.28.0) (2025-12-01)
+
+
+### Features
+
+* **ovh-at-internet:** update mix-commander script for ovhcloud.com migration ([10fffe0](https://github.com/ovh/manager/commit/10fffe09d0415f786ca4519f1c8b9360577dae39)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
 # [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.26.0...@ovh-ux/ovh-at-internet@0.27.0) (2025-11-27)
 
 

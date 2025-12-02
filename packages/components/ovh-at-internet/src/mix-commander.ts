@@ -322,11 +322,11 @@ tC.trackPage = function(user_id, cty, page_name, additional_params) {
   }
   tC.msr.provided_social_networks = "".split(',');
   tC.msr.provided_brand_urls = "".split(',');
-  tC.msr.internal_subdmomains = "ovhtelecom.fr,www.ovhtelecom.fr,www.kimsufi.com,hubic.com,api.hubic.com,us.ovhcloud.com,docs.ovh.com,ca.soyoustart.com,eu.soyoustart.com,www.soyoustart.com,community.ovh.com,blog.ovh.com,labs.ovh.com,omm.ovh.net,forum.ovh.com,weathermap.ovh.net,www.nic.ovh".split(',') // has to be a string separated by , - can be domains only or domains and subdomains or everything between protocal and ? or "
+  tC.msr.internal_subdmomains = "ovhtelecom.fr,www.ovhtelecom.fr,www.kimsufi.com,order.eu.ovhcloud.com,order.ca.ovhcloud.com,order.us.ovhcloud.com,manager.eu.ovhcloud.com,manager.ca.ovhcloud.com,manager.us.ovhcloud.com,hubic.com,api.hubic.com,us.ovhcloud.com,docs.ovh.com,ca.soyoustart.com,eu.soyoustart.com,www.soyoustart.com,community.ovh.com,blog.ovh.com,labs.ovh.com,omm.ovh.net,forum.ovh.com,weathermap.ovh.net,www.nic.ovh".split(',') // has to be a string separated by , - can be domains only or domains and subdomains or everything between protocal and ? or "
   tC.msr.additional_params = "&user_id=" + user_id;
   tC.msr.additional_params += "&dev=" + tC.detectDevice();
   tC.msr.additional_params += "&cty=" + cty;
-  tC.msr.additional_params += "&site_domain=www.ovh.com/manager/";
+  tC.msr.additional_params += "&site_domain=manager.eu.ovhcloud.com,manager.ca.ovhcloud.com,manager.us.ovhcloud.com";
   Object.entries(additional_params ?? {}).forEach(([param, value]) => {
     tC.msr.additional_params += "&" + param + "=" + encodeURIComponent(value);
   })
@@ -353,7 +353,7 @@ if(tC.getParamURL("mix_redirect") === "true"){
   tC.msr.additional_params = "&user_id=" + "${clientId}";
   tC.msr.additional_params += "&dev=" + tC.detectDevice();
   tC.msr.additional_params += "&cty=" + "${region}";
-  tC.msr.additional_params += "&site_domain=www.ovh.com/manager/";
+  tC.msr.additional_params += "&site_domain=manager.eu.ovhcloud.com,manager.ca.ovhcloud.com,manager.us.ovhcloud.com";
   tC.msr.px = new Image();
   tC.msr.px.id = "tc_img__1";
   tC.msr.src = '';

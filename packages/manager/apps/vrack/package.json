@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "3.0.71",
+  "version": "3.0.72",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^1.9.2",
-    "@ovh-ux/manager-config": "^8.7.2",
-    "@ovh-ux/manager-core": "^13.2.21",
+    "@ovh-ux/manager-config": "^8.8.0",
+    "@ovh-ux/manager-core": "^13.3.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
     "@ovh-ux/manager-vrack": "^1.21.2",
-    "@ovh-ux/ng-at-internet": "^6.0.36",
+    "@ovh-ux/ng-at-internet": "^6.0.37",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.18.3",
     "@ovh-ux/ng-ovh-contracts": "^4.6.5",
@@ -29,7 +29,7 @@
     "@ovh-ux/ng-ovh-payment-method": "^9.18.1",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.6",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.14",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.9.1",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.10.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.6",
     "@ovh-ux/ng-ovh-toaster": "^2.1.6",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.6",
@@ -62,7 +62,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.2.0",
+    "@ovh-ux/manager-webpack-config": "^7.2.1",
     "lodash-es": "^4.17.15",
     "webpack-merge": "^4.2.2"
   },
