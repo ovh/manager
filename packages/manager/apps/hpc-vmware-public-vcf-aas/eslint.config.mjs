@@ -66,6 +66,7 @@ import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
+import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
@@ -97,4 +98,17 @@ export default [
     },
   },
   tanStackQueryEslintConfig,
+  vitestEslintConfig,
+  {
+    ...vitestEslintConfig,
+    rules: {
+      ...(vitestEslintConfig.rules ?? {}),
+      'vitest/expect-expect': [
+        'error',
+        {
+          assertFunctionNames: ['expect*', 'assert*', 'check*'],
+        },
+      ],
+    },
+  },
 ];
