@@ -11,7 +11,7 @@ import {
   postIpEdgeFirewall,
   postIpEdgeNetworkFirewallRule,
 } from '@/data/api';
-import { isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
+import { isValidIpv4, isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
 
 export const IP_EDGE_FIREWALL_PORT_MIN = 0;
 export const IP_EDGE_FIREWALL_PORT_MAX = 65535;
@@ -51,13 +51,12 @@ export const hasSourceError = (source?: string) => {
     return false;
   }
 
-  if (source.includes('0.0.0.0')) {
+  const sourceIp = /^(0+\.)+0+$/; // Test only here because it's a firewall specitic case
+  if (!isValidIpv4(source) || sourceIp.test(source)) {
     return true;
   }
 
-  return source.includes('/')
-    ? !isValidIpv4Block(source)
-    : !ipaddr.IPv4.isValid(source);
+  return !isValidIpv4Block(source);
 };
 
 export type CreateFirewallRuleParams = {
