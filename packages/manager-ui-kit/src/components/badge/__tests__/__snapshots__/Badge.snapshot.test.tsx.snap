@@ -3,7 +3,7 @@
 exports[`Badge Snapshot Tests > matches snapshot for default badge > default-badge 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--information _badge--md
+    class=_badge _badge--information _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -16,7 +16,7 @@ exports[`Badge Snapshot Tests > matches snapshot for loading badge > loading-bad
 <div>
   <div
     aria-hidden=true
-    class=e3p2_2
+    class=_skeleton
     data-ods=skeleton
     data-testid=badge
   />
@@ -26,7 +26,7 @@ exports[`Badge Snapshot Tests > matches snapshot for loading badge > loading-bad
 exports[`Badge Snapshot Tests > matches snapshot for success color and large size > success-lg-badge 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--success _badge--lg
+    class=_badge _badge--success _badge--lg
     data-ods=badge
     data-testid=badge
   >

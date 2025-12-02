@@ -11,7 +11,7 @@ exports[`Combobox Snapshot tests > renders the component with default props and 
       id=:r0:
     >
       <div
-        class=yl9_2 _combobox-control__input
+        class=_input _combobox-control__input
       >
         <input
           aria-activedescendant=
@@ -22,7 +22,7 @@ exports[`Combobox Snapshot tests > renders the component with default props and 
           autocapitalize=none
           autocomplete=off
           autocorrect=off
-          class=_input_yl9_41
+          class=_input__field
           data-ods=input
           id=:r1:
           role=combobox

@@ -39,7 +39,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
       >
         <button
           aria-label=Close
-          class=crpx_2 _button--neutral _button--xs _button--ghost _modal-header_pkdv_27
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -88,7 +88,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
           class=flex justify-end flex-wrap gap-4
         >
           <button
-            class=crpx_2 _button--critical _button--md _button--ghost mt-4
+            class=_button _button--critical _button--md _button--ghost mt-4
             data-ods=button
             data-testid=manager-delete-modal-cancel
             type=button
@@ -96,7 +96,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
             Non, refuser
           </button>
           <button
-            class=crpx_2 _button--critical _button--md _button--default mt-4
+            class=_button _button--critical _button--md _button--default mt-4
             data-ods=button
             data-testid=manager-delete-modal-confirm
             type=button
@@ -149,7 +149,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
       >
         <button
           aria-label=Close
-          class=crpx_2 _button--neutral _button--xs _button--ghost _modal-header_pkdv_27
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -183,7 +183,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
           data-testid=spinner
         >
           <span
-            class=z_10 _spinner--primary _spinner--md
+            class=_spinner _spinner--primary _spinner--md
             data-ods=spinner
             role=progressbar
           >
@@ -266,7 +266,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
       >
         <button
           aria-label=Close
-          class=crpx_2 _button--neutral _button--xs _button--ghost _modal-header_pkdv_27
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -318,7 +318,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
           class=flex justify-end flex-wrap gap-4
         >
           <button
-            class=crpx_2 _button--critical _button--md _button--ghost mt-4
+            class=_button _button--critical _button--md _button--ghost mt-4
             data-ods=button
             data-testid=manager-delete-modal-cancel
             type=button
@@ -326,7 +326,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
             Non, refuser
           </button>
           <button
-            class=crpx_2 _button--critical _button--md _button--default mt-4
+            class=_button _button--critical _button--md _button--default mt-4
             data-ods=button
             data-testid=manager-delete-modal-confirm
             type=button
@@ -379,7 +379,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
       >
         <button
           aria-label=Close
-          class=crpx_2 _button--neutral _button--xs _button--ghost _modal-header_pkdv_27
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -428,7 +428,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
           class=flex justify-end flex-wrap gap-4
         >
           <button
-            class=crpx_2 _button--critical _button--md _button--ghost mt-4
+            class=_button _button--critical _button--md _button--ghost mt-4
             data-ods=button
             data-testid=manager-delete-modal-cancel
             type=button
@@ -436,7 +436,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
             Non, refuser
           </button>
           <button
-            class=crpx_2 _button--critical _button--md _button--default mt-4
+            class=_button _button--critical _button--md _button--default mt-4
             data-ods=button
             data-testid=manager-delete-modal-confirm
             type=button
@@ -489,7 +489,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
       >
         <button
           aria-label=Close
-          class=crpx_2 _button--neutral _button--xs _button--ghost _modal-header_pkdv_27
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -541,7 +541,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
               </div>
               <button
                 aria-label=Close
-                class=crpx_2 _button--neutral _button--xs _button--ghost _message__close
+                class=_button _button--neutral _button--xs _button--ghost _message__close
                 data-ods=button
                 type=button
               >
@@ -566,7 +566,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
           class=flex justify-end flex-wrap gap-4
         >
           <button
-            class=crpx_2 _button--critical _button--md _button--ghost mt-4
+            class=_button _button--critical _button--md _button--ghost mt-4
             data-ods=button
             data-testid=manager-delete-modal-cancel
             type=button
@@ -574,7 +574,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
             Non, refuser
           </button>
           <button
-            class=crpx_2 _button--critical _button--md _button--default mt-4
+            class=_button _button--critical _button--md _button--default mt-4
             data-ods=button
             data-testid=manager-delete-modal-confirm
             type=button

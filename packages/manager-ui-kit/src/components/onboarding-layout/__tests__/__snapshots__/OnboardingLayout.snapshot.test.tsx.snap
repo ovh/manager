@@ -59,7 +59,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
         class=flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center
       >
         <button
-          class=crpx_2 _button--primary _button--md _button--default [&::part(button)]:w-full sm:w-auto
+          class=_button _button--primary _button--md _button--default [&::part(button)]:w-full sm:w-auto
           data-ods=button
           data-testid=manager-button
           type=button
@@ -67,7 +67,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
           Get Started
         </button>
         <button
-          class=crpx_2 _button--primary _button--md _button--outline [&::part(button)]:w-full sm:w-auto
+          class=_button _button--primary _button--md _button--outline [&::part(button)]:w-full sm:w-auto
           data-ods=button
           data-testid=manager-button
           type=button
@@ -153,7 +153,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
         class=flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center
       >
         <button
-          class=crpx_2 _button--primary _button--md _button--default [&::part(button)]:w-full sm:w-auto
+          class=_button _button--primary _button--md _button--default [&::part(button)]:w-full sm:w-auto
           data-ods=button
           data-testid=manager-button
           disabled=
@@ -162,7 +162,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
           Get Started
         </button>
         <button
-          class=crpx_2 _button--primary _button--md _button--outline [&::part(button)]:w-full sm:w-auto
+          class=_button _button--primary _button--md _button--outline [&::part(button)]:w-full sm:w-auto
           data-ods=button
           data-testid=manager-button
           disabled=
@@ -606,13 +606,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
                 class=ml-[10px]
               >
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   Popular
                 </span>
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   Recommended
@@ -682,7 +682,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
                 class=ml-[10px]
               >
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   New
@@ -756,7 +756,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
         class=flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center
       >
         <button
-          class=crpx_2 _button--primary _button--md _button--default [&::part(button)]:w-full sm:w-auto
+          class=_button _button--primary _button--md _button--default [&::part(button)]:w-full sm:w-auto
           data-ods=button
           data-testid=manager-button
           type=button
@@ -764,7 +764,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
           Get Started
         </button>
         <button
-          class=crpx_2 _button--primary _button--md _button--outline [&::part(button)]:w-full sm:w-auto
+          class=_button _button--primary _button--md _button--outline [&::part(button)]:w-full sm:w-auto
           data-ods=button
           data-testid=manager-button
           type=button
@@ -948,7 +948,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
                 class=ml-[10px]
               >
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   Popular
@@ -1069,13 +1069,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
                 class=ml-[10px]
               >
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   New
                 </span>
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   Beta
@@ -1257,7 +1257,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
                 class=ml-[10px]
               >
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   Popular
@@ -1371,7 +1371,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
                 class=ml-[10px]
               >
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   Popular
@@ -1485,7 +1485,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
                 class=ml-[10px]
               >
                 <span
-                  class=ftx_2 _badge--information _badge--md mr-1
+                  class=_badge _badge--information _badge--md mr-1
                   data-ods=badge
                 >
                   Popular

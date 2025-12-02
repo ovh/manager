@@ -3,7 +3,7 @@
 exports[`Checkbox Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <label
-    class=flio_2
+    class=_checkbox
     data-ods=checkbox
     data-part=root
     data-scope=checkbox
@@ -69,7 +69,7 @@ exports[`Checkbox Snapshot tests > renders the component with default props and 
     </span>
   </label>
   <label
-    class=flio_2
+    class=_checkbox
     data-ods=checkbox
     data-part=root
     data-scope=checkbox
@@ -135,7 +135,7 @@ exports[`Checkbox Snapshot tests > renders the component with default props and 
     </span>
   </label>
   <label
-    class=flio_2
+    class=_checkbox
     data-ods=checkbox
     data-part=root
     data-scope=checkbox

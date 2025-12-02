@@ -16,7 +16,7 @@ exports[`RadioGroup Snapshot tests > renders the component with default props an
     style=position: relative;
   >
     <label
-      class=c28j_2
+      class=_radio
       data-ods=radio
       data-orientation=vertical
       data-part=item
@@ -61,7 +61,7 @@ exports[`RadioGroup Snapshot tests > renders the component with default props an
       />
     </label>
     <label
-      class=c28j_2
+      class=_radio
       data-ods=radio
       data-orientation=vertical
       data-part=item
@@ -106,7 +106,7 @@ exports[`RadioGroup Snapshot tests > renders the component with default props an
       />
     </label>
     <label
-      class=c28j_2
+      class=_radio
       data-ods=radio
       data-orientation=vertical
       data-part=item

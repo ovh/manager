@@ -4,7 +4,7 @@ exports[`should display manager state with the good color > should display loadi
 <div>
   <div
     aria-hidden=true
-    class=e3p2_2
+    class=_skeleton
     data-ods=skeleton
     data-testid=badge
   />
@@ -14,7 +14,7 @@ exports[`should display manager state with the good color > should display loadi
 exports[`should display manager state with the good color > should display manager 'active' badge for 'success' 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--success _badge--md
+    class=_badge _badge--success _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -26,7 +26,7 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'deleted' badge for 'critical' 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--critical _badge--md
+    class=_badge _badge--critical _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -38,7 +38,7 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'deleted' badge for 'critical' 2`] = `
 <div>
   <span
-    class=ftx_2 _badge--critical _badge--md
+    class=_badge _badge--critical _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -50,7 +50,7 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'suspended' badge for 'warning' 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--warning _badge--md
+    class=_badge _badge--warning _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -62,7 +62,7 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'toActivate' badge for 'information' 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--information _badge--md
+    class=_badge _badge--information _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -74,7 +74,7 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'toDelete' badge for 'information' 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--information _badge--md
+    class=_badge _badge--information _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -86,7 +86,7 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'toSuspend' badge for 'information' 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--information _badge--md
+    class=_badge _badge--information _badge--md
     data-ods=badge
     data-testid=badge
   >
@@ -98,7 +98,7 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'unknown' badge for 'information' 1`] = `
 <div>
   <span
-    class=ftx_2 _badge--information _badge--md
+    class=_badge _badge--information _badge--md
     data-ods=badge
     data-testid=badge
   >

@@ -3,7 +3,7 @@
 exports[`Range Snapshot tests > renders the component with default props 1`] = `
 <div>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -14,7 +14,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -32,7 +32,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider
@@ -81,7 +81,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     </div>
   </div>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -92,7 +92,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(75% - 5px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 25%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -110,7 +110,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider
@@ -186,7 +186,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     </div>
   </div>
   <div
-    class=ppap_2
+    class=_range
     data-disabled=
     data-ods=range
     data-orientation=horizontal
@@ -198,7 +198,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(20% - -6px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 80%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-disabled=
       data-orientation=horizontal
       data-part=control
@@ -218,7 +218,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-disabled=
           data-orientation=horizontal
           data-part=range
@@ -270,7 +270,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     </div>
   </div>
   <div
-    class=ppap_2
+    class=_range
     data-disabled=
     data-ods=range
     data-orientation=horizontal
@@ -282,7 +282,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(75% - 5px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 25%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-disabled=
       data-orientation=horizontal
       data-part=control
@@ -302,7 +302,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-disabled=
           data-orientation=horizontal
           data-part=range
@@ -386,7 +386,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     Max 500
   </p>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -397,7 +397,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(10% - -8px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 90%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -415,7 +415,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider
@@ -464,7 +464,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     </div>
   </div>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -475,7 +475,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(10% - -8px); --slider-thumb-offset-1: calc(15% - -7px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 10%; --slider-range-end: 85%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -493,7 +493,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider
@@ -572,7 +572,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     Min 25
   </p>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -583,7 +583,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(33.33333333333333% - -3.33px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 66.66666666666667%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -601,7 +601,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider
@@ -650,7 +650,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     </div>
   </div>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -661,7 +661,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(33.33333333333333% - -3.33px); --slider-thumb-offset-1: calc(66.66666666666666% - 3.33px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 33.33333333333333%; --slider-range-end: 33.33333333333334%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -679,7 +679,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider
@@ -758,7 +758,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     Max 75 & Min 25
   </p>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -769,7 +769,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 50%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -787,7 +787,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider
@@ -836,7 +836,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     </div>
   </div>
   <div
-    class=ppap_2
+    class=_range
     data-ods=range
     data-orientation=horizontal
     data-part=root
@@ -847,7 +847,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(100% - 10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 0%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
   >
     <div
-      class=_range_ppap_8
+      class=_range__control
       data-orientation=horizontal
       data-part=control
       data-scope=slider
@@ -865,7 +865,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
         style=position: relative;
       >
         <div
-          class=_range-track_bwj_9
+          class=_range-track__filled
           data-orientation=horizontal
           data-part=range
           data-scope=slider

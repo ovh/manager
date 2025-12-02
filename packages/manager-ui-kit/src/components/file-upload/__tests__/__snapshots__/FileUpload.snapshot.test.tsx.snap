@@ -35,7 +35,7 @@ exports[`FileUpload Snapshot tests > renders the component with default props an
           </span>
           <button
             aria-describedby=
-            class=crpx_2 _button--primary _button--md _button--ghost
+            class=_button _button--primary _button--md _button--ghost
             data-ods=button
             data-part=trigger
             data-scope=file-upload

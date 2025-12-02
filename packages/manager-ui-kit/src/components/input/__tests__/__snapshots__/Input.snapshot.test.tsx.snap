@@ -3,11 +3,11 @@
 exports[`Input Snapshot tests > renders the component with default props 1`] = `
 <div>
   <div
-    class=yl9_2
+    class=_input
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r0:
       type=text
@@ -16,12 +16,12 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2
+    class=_input
     data-disabled=true
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       disabled=
       id=:r1:
@@ -31,12 +31,12 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2
+    class=_input
     data-readonly=true
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r2:
       readonly=
@@ -46,12 +46,12 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2 _input--with-actions
+    class=_input _input--with-actions
     role=group
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r3:
       type=text
@@ -63,7 +63,7 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
       <button
         aria-controls=:r3:
         aria-label=Clear input
-        class=crpx_2 _button--neutral _button--xs _button--ghost
+        class=_button _button--neutral _button--xs _button--ghost
         data-ods=button
         type=button
       >
@@ -76,11 +76,11 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
     </div>
   </div>
   <div
-    class=yl9_2
+    class=_input
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r4:
       placeholder=email
@@ -90,11 +90,11 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2
+    class=_input
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r5:
       placeholder=number
@@ -104,11 +104,11 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2
+    class=_input
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r6:
       placeholder=password
@@ -118,12 +118,12 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2 _input--with-actions
+    class=_input _input--with-actions
     role=group
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r7:
       placeholder=search
@@ -135,7 +135,7 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
     >
       <button
         aria-label=Search
-        class=crpx_2 _button--primary _button--xs _button--ghost
+        class=_button _button--primary _button--xs _button--ghost
         data-ods=button
         type=submit
       >
@@ -149,11 +149,11 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2
+    class=_input
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r8:
       placeholder=text
@@ -163,11 +163,11 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2
+    class=_input
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:r9:
       placeholder=time
@@ -177,11 +177,11 @@ exports[`Input Snapshot tests > renders the component with default props 1`] = `
   </div>
   <br />
   <div
-    class=yl9_2
+    class=_input
   >
     <input
       aria-busy=false
-      class=_input_yl9_41
+      class=_input__field
       data-ods=input
       id=:ra:
       placeholder=url

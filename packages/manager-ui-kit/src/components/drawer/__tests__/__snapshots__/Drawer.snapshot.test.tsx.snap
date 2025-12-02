@@ -16,7 +16,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with h
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -35,7 +35,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with h
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -105,7 +105,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] =
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -125,7 +125,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] =
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -187,7 +187,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -206,7 +206,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -259,7 +259,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
               class=p-6 space-x-2
             >
               <button
-                class=crpx_2 _button--primary _button--md _button--default
+                class=_button _button--primary _button--md _button--default
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -298,7 +298,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -317,7 +317,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -359,7 +359,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
               class=p-6 space-x-2
             >
               <button
-                class=crpx_2 _button--primary _button--md _button--ghost
+                class=_button _button--primary _button--md _button--ghost
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -367,7 +367,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
                 Cancel
               </button>
               <button
-                class=crpx_2 _button--primary _button--md _button--default
+                class=_button _button--primary _button--md _button--default
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -422,7 +422,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -441,7 +441,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -510,7 +510,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without crea
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -529,7 +529,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without crea
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -598,7 +598,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -617,7 +617,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -668,7 +668,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
         <div>
           <button
             aria-label=Replier
-            class=crpx_2 _button--primary _button--md _button--ghost
+            class=_button _button--primary _button--md _button--ghost
             data-ods=button
             data-testid=drawer-handle
             type=button
@@ -703,7 +703,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed c
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -723,7 +723,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed c
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -785,7 +785,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -804,7 +804,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -846,7 +846,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
               class=p-6 space-x-2
             >
               <button
-                class=crpx_2 _button--primary _button--md _button--ghost
+                class=_button _button--primary _button--md _button--ghost
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -854,7 +854,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
                 Reset
               </button>
               <button
-                class=crpx_2 _button--primary _button--md _button--default
+                class=_button _button--primary _button--md _button--default
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -875,7 +875,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
         <div>
           <button
             aria-label=Replier
-            class=crpx_2 _button--primary _button--md _button--ghost
+            class=_button _button--primary _button--md _button--ghost
             data-ods=button
             data-testid=drawer-handle
             type=button
@@ -909,7 +909,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner_px2j_2 _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -928,7 +928,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
           >
             <button
               aria-label=Fermer
-              class=crpx_2 _button--primary _button--md _button--ghost absolute top-7 right-4
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
               data-ods=button
               data-testid=drawer-dismiss-button
               type=button
@@ -988,7 +988,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
               class=p-6 space-x-2
             >
               <button
-                class=crpx_2 _button--primary _button--md _button--ghost
+                class=_button _button--primary _button--md _button--ghost
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -996,7 +996,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
                 Cancel
               </button>
               <button
-                class=crpx_2 _button--primary _button--md _button--default
+                class=_button _button--primary _button--md _button--default
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -1017,7 +1017,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
         <div>
           <button
             aria-label=Replier
-            class=crpx_2 _button--primary _button--md _button--ghost
+            class=_button _button--primary _button--md _button--ghost
             data-ods=button
             data-testid=drawer-handle
             type=button

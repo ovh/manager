@@ -3,7 +3,7 @@
 exports[`Datepicker Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    class=mvgz_2
+    class=_datepicker
     data-ods=datepicker
     data-part=root
     data-scope=date-picker
@@ -19,13 +19,13 @@ exports[`Datepicker Snapshot tests > renders the component with default props an
       id=datepicker::r0::control
     >
       <div
-        class=yl9_2 _datepicker-control_gyqk_7
+        class=_input _datepicker-control__input
       >
         <input
           aria-busy=false
           autocomplete=off
           autocorrect=off
-          class=_input_yl9_41
+          class=_input__field
           data-index=0
           data-ods=datepicker-control
           data-part=input
@@ -43,7 +43,7 @@ exports[`Datepicker Snapshot tests > renders the component with default props an
         aria-controls=datepicker::r0::content
         aria-haspopup=grid
         aria-label=Open calendar
-        class=crpx_2 _button--primary _button--sm _button--outline _datepicker-control_gyqk_18
+        class=_button _button--primary _button--sm _button--outline _datepicker-control__trigger
         data-ods=button
         data-part=trigger
         data-scope=date-picker

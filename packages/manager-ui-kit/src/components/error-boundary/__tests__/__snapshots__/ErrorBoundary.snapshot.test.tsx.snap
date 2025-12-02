@@ -27,7 +27,7 @@ exports[`ErrorBoundary Tests > should render Error Boundary component when error
     class=overflow-hidden mt-5 py-2
   >
     <button
-      class=crpx_2 _button--primary _button--md _button--ghost error-template-actions w-full
+      class=_button _button--primary _button--md _button--ghost error-template-actions w-full
       data-ods=button
       data-testid=error-template-action-home
       type=button
@@ -35,7 +35,7 @@ exports[`ErrorBoundary Tests > should render Error Boundary component when error
       Retour à la page d'accueil
     </button>
     <button
-      class=crpx_2 _button--primary _button--md _button--default error-template-actions w-full
+      class=_button _button--primary _button--md _button--default error-template-actions w-full
       data-ods=button
       data-testid=error-template-action-reload
       type=button

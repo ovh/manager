@@ -46,7 +46,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
         >
           <div
             aria-disabled=false
-            class=_tree-view-node-branch_yd47_2
+            class=_tree-view-node-branch__control
             data-depth=1
             data-focus=
             data-part=branch-control
@@ -61,7 +61,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
           >
             <div
               aria-hidden=true
-              class=_tree-view-node-branch__control_yd47_42
+              class=_tree-view-node-branch__control__chevron
               data-focus=
               data-part=branch-indicator
               data-scope=tree-view
@@ -83,7 +83,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
             </span>
           </div>
           <div
-            class=_tree-view-node-branch__control_yd47_54
+            class=_tree-view-node-branch__control__children
             data-collapsible=
             data-depth=1
             data-part=branch-content
@@ -174,7 +174,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
             >
               <div
                 aria-disabled=false
-                class=_tree-view-node-branch_yd47_2
+                class=_tree-view-node-branch__control
                 data-depth=2
                 data-part=branch-control
                 data-path=0/2
@@ -188,7 +188,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
               >
                 <div
                   aria-hidden=true
-                  class=_tree-view-node-branch__control_yd47_42
+                  class=_tree-view-node-branch__control__chevron
                   data-part=branch-indicator
                   data-scope=tree-view
                   data-state=closed
@@ -209,7 +209,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
                 </span>
               </div>
               <div
-                class=_tree-view-node-branch__control_yd47_54
+                class=_tree-view-node-branch__control__children
                 data-collapsible=
                 data-depth=2
                 data-part=branch-content

@@ -31,13 +31,13 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
             class=ml-[10px]
           >
             <span
-              class=ftx_2 _badge--information _badge--md mr-1
+              class=_badge _badge--information _badge--md mr-1
               data-ods=badge
             >
               Cloud computing
             </span>
             <span
-              class=ftx_2 _badge--information _badge--md mr-1
+              class=_badge _badge--information _badge--md mr-1
               data-ods=badge
             >
               Beta
@@ -104,13 +104,13 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
             class=ml-[10px]
           >
             <span
-              class=ftx_2 _badge--information _badge--md mr-1
+              class=_badge _badge--information _badge--md mr-1
               data-ods=badge
             >
               Cloud computing
             </span>
             <span
-              class=ftx_2 _badge--information _badge--md mr-1
+              class=_badge _badge--information _badge--md mr-1
               data-ods=badge
             >
               Beta

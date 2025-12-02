@@ -18,7 +18,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div
@@ -117,7 +117,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div
@@ -221,7 +221,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div
@@ -317,7 +317,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div
@@ -434,7 +434,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with defau
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div
@@ -533,7 +533,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with empty
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div
@@ -572,7 +572,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with singl
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div

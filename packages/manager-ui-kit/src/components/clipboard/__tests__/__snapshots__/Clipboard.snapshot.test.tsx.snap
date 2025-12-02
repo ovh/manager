@@ -3,7 +3,7 @@
 exports[`Clipboard Snapshot Tests > Displays Clipboard 1`] = `
 <div>
   <div
-    class=p5eo_2
+    class=_clipboard
     data-ods=clipboard
     data-part=root
     data-scope=clipboard
@@ -12,12 +12,12 @@ exports[`Clipboard Snapshot Tests > Displays Clipboard 1`] = `
     role=group
   >
     <div
-      class=yl9_2 _clipboard__input
+      class=_input _clipboard__input
       data-readonly=true
     >
       <input
         aria-busy=false
-        class=_input_yl9_41
+        class=_input__field
         data-ods=clipboard-control
         data-part=control
         data-scope=clipboard
@@ -29,7 +29,7 @@ exports[`Clipboard Snapshot Tests > Displays Clipboard 1`] = `
     </div>
     <button
       aria-label=Copier dans le presse-papier
-      class=crpx_2 _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
       data-ods=clipboard-trigger
       data-part=trigger
       data-scope=clipboard
@@ -53,7 +53,7 @@ exports[`Clipboard Snapshot Tests > Displays Clipboard 1`] = `
 exports[`Clipboard Snapshot Tests > Displays disabled Clipboard 1`] = `
 <div>
   <div
-    class=p5eo_2 _clipboard--disabled
+    class=_clipboard _clipboard--disabled
     data-ods=clipboard
     data-part=root
     data-scope=clipboard
@@ -62,13 +62,13 @@ exports[`Clipboard Snapshot Tests > Displays disabled Clipboard 1`] = `
     role=group
   >
     <div
-      class=yl9_2 _clipboard__input
+      class=_input _clipboard__input
       data-disabled=true
       data-readonly=true
     >
       <input
         aria-busy=false
-        class=_input_yl9_41
+        class=_input__field
         data-ods=clipboard-control
         data-part=control
         data-scope=clipboard
@@ -81,7 +81,7 @@ exports[`Clipboard Snapshot Tests > Displays disabled Clipboard 1`] = `
     </div>
     <button
       aria-label=Copier dans le presse-papier
-      class=crpx_2 _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
       data-ods=clipboard-trigger
       data-part=trigger
       data-scope=clipboard
@@ -106,7 +106,7 @@ exports[`Clipboard Snapshot Tests > Displays disabled Clipboard 1`] = `
 exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
 <div>
   <div
-    class=p5eo_2
+    class=_clipboard
     data-ods=clipboard
     data-part=root
     data-scope=clipboard
@@ -115,13 +115,13 @@ exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
     role=group
   >
     <div
-      class=yl9_2 _input--with-actions _clipboard__input
+      class=_input _input--with-actions _clipboard__input
       data-readonly=true
       role=group
     >
       <input
         aria-busy=true
-        class=_input_yl9_41
+        class=_input__field
         data-ods=clipboard-control
         data-part=control
         data-scope=clipboard
@@ -134,7 +134,7 @@ exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
         class=_input-actions
       >
         <span
-          class=z_10 _spinner--primary _spinner--xs _input-actions__loading
+          class=_spinner _spinner--primary _spinner--xs _input-actions__loading
           data-ods=spinner
           role=none
         >
@@ -175,7 +175,7 @@ exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
     </div>
     <button
       aria-label=Copier dans le presse-papier
-      class=crpx_2 _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
       data-ods=clipboard-trigger
       data-part=trigger
       data-scope=clipboard
@@ -199,7 +199,7 @@ exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
 exports[`Clipboard Snapshot Tests > Displays masked Clipboard 1`] = `
 <div>
   <div
-    class=p5eo_2
+    class=_clipboard
     data-ods=clipboard
     data-part=root
     data-scope=clipboard
@@ -208,13 +208,13 @@ exports[`Clipboard Snapshot Tests > Displays masked Clipboard 1`] = `
     role=group
   >
     <div
-      class=yl9_2 _input--with-actions _clipboard__input
+      class=_input _input--with-actions _clipboard__input
       data-readonly=true
       role=group
     >
       <input
         aria-busy=false
-        class=_input_yl9_41
+        class=_input__field
         data-ods=clipboard-control
         data-part=control
         data-scope=clipboard
@@ -229,7 +229,7 @@ exports[`Clipboard Snapshot Tests > Displays masked Clipboard 1`] = `
         <button
           aria-controls=:ra:
           aria-label=Show
-          class=crpx_2 _button--primary _button--xs _button--ghost
+          class=_button _button--primary _button--xs _button--ghost
           data-ods=button
           type=button
         >
@@ -243,7 +243,7 @@ exports[`Clipboard Snapshot Tests > Displays masked Clipboard 1`] = `
     </div>
     <button
       aria-label=Copier dans le presse-papier
-      class=crpx_2 _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
       data-ods=clipboard-trigger
       data-part=trigger
       data-scope=clipboard

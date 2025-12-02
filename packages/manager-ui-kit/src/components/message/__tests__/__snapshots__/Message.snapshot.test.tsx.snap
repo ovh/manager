@@ -9,7 +9,7 @@ exports[`Message Snapshot tests > renders the component with default props and c
     Hello
     <button
       aria-label=Close
-      class=crpx_2 _button--neutral _button--xs _button--ghost _message__close
+      class=_button _button--neutral _button--xs _button--ghost _message__close
       data-ods=button
       type=button
     >

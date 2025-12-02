@@ -15,7 +15,7 @@ exports[`Tabs Snapshot tests > renders the component with default props and chil
       data-ods=tab-list
     >
       <div
-        class=_tab-list_yohb_41
+        class=_tab-list__container
         tabindex=-1
       >
         <div

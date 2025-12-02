@@ -147,7 +147,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > t
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div
@@ -407,7 +407,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and
         data-ods=tab-list
       >
         <div
-          class=_tab-list_yohb_41
+          class=_tab-list__container
           tabindex=-1
         >
           <div

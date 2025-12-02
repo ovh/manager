@@ -6,7 +6,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -14,13 +14,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -106,7 +106,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -114,13 +114,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -206,7 +206,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
   style=max-height: 400px; height: 400px;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -214,13 +214,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -306,7 +306,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] =
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -314,13 +314,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -354,7 +354,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -362,13 +362,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -454,7 +454,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--lg table table-fixed w-full
+    class=_table _table--lg table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -462,13 +462,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -554,7 +554,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -562,13 +562,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -655,7 +655,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -669,39 +669,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class=h-[50px]
-      >
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -719,7 +687,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -733,39 +701,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class=h-[50px]
-      >
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -783,7 +719,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -797,39 +733,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class=h-[50px]
-      >
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -847,7 +751,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -861,39 +765,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class=h-[50px]
-      >
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
-              data-ods=skeleton
-            />
-          </div>
-        </td>
-        <td
-          class=overflow-hidden py-[8px]
-        >
-          <div
-            aria-busy=true
-            class=w-full
-          >
-            <div
-              aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -911,7 +783,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -925,7 +797,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -943,7 +815,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -957,7 +829,135 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
           >
             <div
               aria-hidden=true
-              class=e3p2_2
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class=h-[50px]
+      >
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class=h-[50px]
+      >
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class=h-[50px]
+      >
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class=h-[50px]
+      >
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
+              data-ods=skeleton
+            />
+          </div>
+        </td>
+        <td
+          class=overflow-hidden py-[8px]
+        >
+          <div
+            aria-busy=true
+            class=w-full
+          >
+            <div
+              aria-hidden=true
+              class=_skeleton
               data-ods=skeleton
             />
           </div>
@@ -974,7 +974,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -982,13 +982,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -1074,7 +1074,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1082,13 +1082,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -1174,7 +1174,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1182,11 +1182,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 30px; min-width: 30px; max-width: 30px;
         >
           <label
-            class=flio_2
+            class=_checkbox
             data-ods=checkbox
             data-part=root
             data-scope=checkbox
@@ -1244,13 +1244,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
           </label>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -1275,7 +1275,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
             style=line-height: 1;
           >
             <label
-              class=flio_2
+              class=_checkbox
               data-ods=checkbox
               data-part=root
               data-scope=checkbox
@@ -1374,7 +1374,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
             style=line-height: 1;
           >
             <label
-              class=flio_2
+              class=_checkbox
               data-ods=checkbox
               data-part=root
               data-scope=checkbox
@@ -1470,7 +1470,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1478,13 +1478,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -1570,7 +1570,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--sm table table-fixed w-full
+    class=_table _table--sm table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1578,13 +1578,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -1670,7 +1670,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1678,7 +1678,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
@@ -1700,7 +1700,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
@@ -1802,7 +1802,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
   style=max-height: 500px; height: 500px;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1810,11 +1810,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 30px; min-width: 30px; max-width: 30px;
         >
           <div
-            class= h-[20px]
+            class=h-[20px]
             data-testid=header-expander
           >
             <span />
@@ -1830,16 +1830,16 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 30px; min-width: 30px; max-width: 30px;
         >
           <div
-            class= h-[20px]
+            class=h-[20px]
             data-testid=header-select
           >
             <span>
               <label
-                class=flio_2
+                class=_checkbox
                 data-ods=checkbox
                 data-part=root
                 data-scope=checkbox
@@ -1908,7 +1908,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
@@ -1930,7 +1930,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
@@ -1974,7 +1974,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               style=padding-left: 0rem;
             >
               <button
-                class=crpx_2 _button--primary _button--sm _button--ghost m-0 p-0
+                class=_button _button--primary _button--sm _button--ghost m-0 p-0
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -1997,7 +1997,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
             style=line-height: 1;
           >
             <label
-              class=flio_2
+              class=_checkbox
               data-ods=checkbox
               data-part=root
               data-scope=checkbox
@@ -2099,7 +2099,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               style=padding-left: 0rem;
             >
               <button
-                class=crpx_2 _button--primary _button--sm _button--ghost m-0 p-0
+                class=_button _button--primary _button--sm _button--ghost m-0 p-0
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -2122,7 +2122,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
             style=line-height: 1;
           >
             <label
-              class=flio_2
+              class=_checkbox
               data-ods=checkbox
               data-part=root
               data-scope=checkbox
@@ -2218,7 +2218,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -2226,11 +2226,11 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 30px; min-width: 30px; max-width: 30px;
         >
           <label
-            class=flio_2
+            class=_checkbox
             data-ods=checkbox
             data-part=root
             data-scope=checkbox
@@ -2288,13 +2288,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
           </label>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -2319,7 +2319,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
             style=line-height: 1;
           >
             <label
-              class=flio_2
+              class=_checkbox
               data-disabled=
               data-ods=checkbox
               data-part=root
@@ -2423,7 +2423,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
             style=line-height: 1;
           >
             <label
-              class=flio_2
+              class=_checkbox
               data-ods=checkbox
               data-part=root
               data-scope=checkbox
@@ -2519,7 +2519,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -2527,17 +2527,17 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 30px; min-width: 30px; max-width: 30px;
         />
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
@@ -2565,7 +2565,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
               style=padding-left: 0rem;
             >
               <button
-                class=crpx_2 _button--primary _button--sm _button--ghost m-0 p-0
+                class=_button _button--primary _button--sm _button--ghost m-0 p-0
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -2623,7 +2623,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
               style=padding-left: 0rem;
             >
               <button
-                class=crpx_2 _button--primary _button--sm _button--ghost m-0 p-0
+                class=_button _button--primary _button--sm _button--ghost m-0 p-0
                 data-ods=button
                 data-testid=manager-button
                 type=button
@@ -2675,7 +2675,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with hideHeader enabled
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <tbody
@@ -2757,7 +2757,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`
   style=max-height: 100%; height: 100%;
 >
   <table
-    class=upov_2 _table--md _table--striped table table-fixed w-full
+    class=_table _table--md _table--striped table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -2765,13 +2765,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap 
+          class=text-left pl-4 whitespace-nowrap
           style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age

@@ -152,7 +152,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button dis
         class=flex items-center gap-6 mt-6
       >
         <button
-          class=crpx_2 _button--primary _button--md _button--default w-fit
+          class=_button _button--primary _button--md _button--default w-fit
           data-ods=button
           data-testid=next-cta
           disabled=
@@ -214,7 +214,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button ena
         class=flex items-center gap-6 mt-6
       >
         <button
-          class=crpx_2 _button--primary _button--md _button--default w-fit
+          class=_button _button--primary _button--md _button--default w-fit
           data-ods=button
           data-testid=next-cta
           type=button
@@ -281,7 +281,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button 1`]
         class=flex items-center gap-6 mt-6
       >
         <button
-          class=crpx_2 _button--primary _button--md _button--ghost w-fit
+          class=_button _button--primary _button--md _button--ghost w-fit
           data-ods=button
           type=button
         >
@@ -347,7 +347,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button dis
         class=flex items-center gap-6 mt-6
       >
         <button
-          class=crpx_2 _button--primary _button--md _button--ghost w-fit
+          class=_button _button--primary _button--md _button--ghost w-fit
           data-ods=button
           disabled=
           type=button

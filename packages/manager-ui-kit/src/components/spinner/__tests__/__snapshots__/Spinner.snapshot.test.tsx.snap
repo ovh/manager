@@ -3,7 +3,7 @@
 exports[`Spinner Snapshot tests > renders the component with default props 1`] = `
 <div>
   <span
-    class=z_10 _spinner--primary _spinner--md
+    class=_spinner _spinner--primary _spinner--md
     data-ods=spinner
     role=progressbar
   >
@@ -41,7 +41,7 @@ exports[`Spinner Snapshot tests > renders the component with default props 1`] =
     </svg>
   </span>
   <span
-    class=z_10 _spinner--neutral _spinner--md
+    class=_spinner _spinner--neutral _spinner--md
     data-ods=spinner
     role=progressbar
   >
@@ -79,7 +79,7 @@ exports[`Spinner Snapshot tests > renders the component with default props 1`] =
     </svg>
   </span>
   <span
-    class=z_10 _spinner--primary _spinner--md
+    class=_spinner _spinner--primary _spinner--md
     data-ods=spinner
     role=progressbar
   >
@@ -117,7 +117,7 @@ exports[`Spinner Snapshot tests > renders the component with default props 1`] =
     </svg>
   </span>
   <span
-    class=z_10 _spinner--primary _spinner--xs
+    class=_spinner _spinner--primary _spinner--xs
     data-ods=spinner
     role=progressbar
   >
@@ -155,7 +155,7 @@ exports[`Spinner Snapshot tests > renders the component with default props 1`] =
     </svg>
   </span>
   <span
-    class=z_10 _spinner--primary _spinner--sm
+    class=_spinner _spinner--primary _spinner--sm
     data-ods=spinner
     role=progressbar
   >
@@ -193,7 +193,7 @@ exports[`Spinner Snapshot tests > renders the component with default props 1`] =
     </svg>
   </span>
   <span
-    class=z_10 _spinner--primary _spinner--md
+    class=_spinner _spinner--primary _spinner--md
     data-ods=spinner
     role=progressbar
   >
@@ -231,7 +231,7 @@ exports[`Spinner Snapshot tests > renders the component with default props 1`] =
     </svg>
   </span>
   <span
-    class=z_10 _spinner--primary _spinner--lg
+    class=_spinner _spinner--primary _spinner--lg
     data-ods=spinner
     role=progressbar
   >

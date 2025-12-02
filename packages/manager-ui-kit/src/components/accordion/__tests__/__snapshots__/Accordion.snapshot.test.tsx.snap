@@ -3,7 +3,7 @@
 exports[`Accordion Snapshot tests > renders the component with default props 1`] = `
 <div>
   <div
-    class=phk8_2
+    class=_accordion
     data-ods=accordion
     data-orientation=vertical
     data-part=root
