@@ -2,6 +2,7 @@ import path from 'path';
 
 import {
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -22,16 +23,11 @@ export default mergeConfig(
           ...defaultExcludedFiles,
           // App-specific exclusions (not in shared config):
           'vite-*.ts',
-          'App.tsx',
-          'core/ShellRoutingSync.tsx',
-          'main.tsx',
-          'routes.tsx',
-          '__mocks__',
-          'queryClient.ts',
         ],
       },
     },
     resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
