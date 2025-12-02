@@ -7657,7 +7657,7 @@
     classnames "2.5.1"
     libphonenumber-js "1.12.8"
 
-"@ovhcloud/ods-react@^19.1.0":
+"@ovhcloud/ods-react@~19.1.0":
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.1.0.tgz#e0175a3761b8a2b075067a9337c9c898734d416f"
   integrity sha512-VuXFN0TbEqxcvHKzFSZ0UZ3edOkx8Ek158oxXl741re5difT2ecquS6k9jSXplY8hNukP7M1CHxukbiKbXTEHw==
@@ -7700,7 +7700,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
   integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
 
-"@ovhcloud/ods-themes@^19.1.0":
+"@ovhcloud/ods-themes@~19.1.0":
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.1.0.tgz#1dd59df4983fe1e368ad7f5b950fc57bbeca955f"
   integrity sha512-Wbz1iMvWQ6vcaXko1+cE3KSlTYiSN6r2qYMxNCCrqBlrw33RkVjDtrIyZKSCqcDrKLtLNIGJa044OrvrpMSbJA==
