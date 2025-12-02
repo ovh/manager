@@ -169,6 +169,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('netapp_volumes_breadcrumb'),
       totalVolumesStorage: /* @ngInject */ (volumes) =>
         volumes.reduce((sum, { size }) => sum + size, 0),
+      goToCreateReplications: /* @ngInject */ ($state) => () =>
+        $state.go('netapp.dashboard.volumes.create-replications'),
+      replicationsAvaibleServices: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(
+            `/storage/netapp/${serviceName}/shareReplicationServicesCompatibility?compatibleOnly=true`,
+          )
+          .then(({ data = [] }) => data)
+          .catch(() => null),
     },
     atInternet: {
       ignore: true,

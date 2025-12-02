@@ -16,6 +16,15 @@
     >
         <span data-translate="netapp_volumes_create_volume"></span>
     </oui-button>
+    <oui-button
+        aria-label="{{:: 'netapp_volumes_button_replications' | translate }}"
+        data-on-click="$ctrl.goToCreateReplications()"
+        data-icon-left="oui-icon oui-icon-arrow-transfer"
+        class="mr-2"
+        data-disabled="$ctrl.hasAvailableReplicationsServices() && !$ctrl.replicationsSelectedVolumes.length"
+    >
+        <span data-translate="netapp_volumes_button_replications"></span>
+    </oui-button>
 
     <oui-datagrid
         class="mt-2"
