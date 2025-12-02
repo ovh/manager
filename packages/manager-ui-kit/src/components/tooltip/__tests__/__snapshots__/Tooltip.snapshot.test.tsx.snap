@@ -1,19 +1,22 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Tooltip Snapshot tests > renders the component with default props and children 1`] = `
-<div>
+<div
+>
+
   <button
-    class="_tooltip-trigger_wxukn_2"
-    data-ods="tooltip-trigger"
-    data-part="trigger"
     data-scope="tooltip"
-    data-state="closed"
-    dir="ltr"
+    data-part="trigger"
     id="tooltip::r0::trigger"
+    dir="ltr"
+    data-state="closed"
+    class="_tooltip-trigger_HASH_2"
+    data-ods="tooltip-trigger"
     role="button"
     tabindex="0"
+  >Show tooltip
+  </button
   >
-    Show tooltip
-  </button>
-</div>
+  </div
+  >
 `;

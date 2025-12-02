@@ -1,121 +1,159 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`TagsList Component - Snapshot Tests > displays all tags 1`] = `
-<div>
+<div
+>
+
   <div
-    class="w-full h-full flex flex-wrap min-w-[85px]"
+    class="flex flex-wrap h-full min-w-[85px] w-full"
   >
+
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
       data-ods="badge"
       style="max-width: -32px;"
+    >tag1:tag1
+    </span
     >
-      tag1:tag1
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      tag2:tag2
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      tag3:tag3
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      tag4:tag4
-    </span>
-  </div>
-</div>
+
+      <span
+        class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
+        data-ods="badge"
+        style="max-width: -32px;"
+      >tag2:tag2
+      </span
+      >
+
+        <span
+          class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
+          data-ods="badge"
+          style="max-width: -32px;"
+        >tag3:tag3
+        </span
+        >
+
+          <span
+            class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
+            data-ods="badge"
+            style="max-width: -32px;"
+          >tag4:tag4
+          </span
+          >
+          </div
+          >
+          </div
+          >
 `;
 
 exports[`TagsList Component - Snapshot Tests > displays fewer tags along with Link 1`] = `
-<div>
+<div
+>
+
   <div
-    class="w-full h-full flex flex-wrap min-w-[85px]"
+    class="flex flex-wrap h-full min-w-[85px] w-full"
   >
+
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
       data-ods="badge"
       style="max-width: -32px;"
+    >tag1:tag1
+    </span
     >
-      tag1:tag1
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      tag2:tag2
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      tag3:tag3
-    </span>
-    <a
-      class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"
-      data-ods="link"
-      href="#"
-    >
-      <span>
-        ​
-      </span>
+
       <span
-        class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
-        data-ods="icon"
-        role="presentation"
-      />
-    </a>
-  </div>
-</div>
+        class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
+        data-ods="badge"
+        style="max-width: -32px;"
+      >tag2:tag2
+      </span
+      >
+
+        <span
+          class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
+          data-ods="badge"
+          style="max-width: -32px;"
+        >tag3:tag3
+        </span
+        >
+
+          <a
+            class="_link--no-text_HASH_40 _link_HASH_2 text-xs"
+            data-ods="link"
+            href="#"
+          >
+
+            <span
+            >​
+            </span
+            >
+
+              <span
+                class="_icon--chevron-double-right_HASH_82 _icon_HASH_2"
+                data-ods="icon"
+                role="presentation"
+              >
+              </span
+              >
+              </a
+              >
+              </div
+              >
+              </div
+              >
 `;
 
 exports[`TagsList Component - Snapshot Tests > displays modal on click of "More tags" link 1`] = `
-<body>
-  <div>
+<body
+>
+
+  <div
+  >
+
     <div
-      class="w-full h-full flex flex-wrap min-w-[85px]"
+      class="flex flex-wrap h-full min-w-[85px] w-full"
     >
+
       <span
-        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+        class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
         data-ods="badge"
         style="max-width: -32px;"
+      >tag1:tag1
+      </span
       >
-        tag1:tag1
-      </span>
-      <span
-        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-        data-ods="badge"
-        style="max-width: -32px;"
-      >
-        tag2:tag2
-      </span>
-      <a
-        class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"
-        data-ods="link"
-        href="#"
-      >
-        <span>
-          ​
-        </span>
+
         <span
-          class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
-          data-ods="icon"
-          role="presentation"
-        />
-      </a>
-    </div>
-  </div>
-</body>
+          class="_badge--md_HASH_56 _badge--neutral_HASH_27 _badge_HASH_2 inline-block mb-1 mr-1 truncate"
+          data-ods="badge"
+          style="max-width: -32px;"
+        >tag2:tag2
+        </span
+        >
+
+          <a
+            class="_link--no-text_HASH_40 _link_HASH_2 text-xs"
+            data-ods="link"
+            href="#"
+          >
+
+            <span
+            >​
+            </span
+            >
+
+              <span
+                class="_icon--chevron-double-right_HASH_82 _icon_HASH_2"
+                data-ods="icon"
+                role="presentation"
+              >
+              </span
+              >
+              </a
+              >
+              </div
+              >
+              </div
+              >
+              </body
+              >
 `;
