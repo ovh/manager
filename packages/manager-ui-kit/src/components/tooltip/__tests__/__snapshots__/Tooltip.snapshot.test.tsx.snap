@@ -3,15 +3,15 @@
 exports[`Tooltip Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <button
-    class="_tooltip-trigger_wxukn_2"
-    data-ods="tooltip-trigger"
-    data-part="trigger"
-    data-scope="tooltip"
-    data-state="closed"
-    dir="ltr"
-    id="tooltip::r0::trigger"
-    role="button"
-    tabindex="0"
+    class=_tooltip-trigger
+    data-ods=tooltip-trigger
+    data-part=trigger
+    data-scope=tooltip
+    data-state=closed
+    dir=ltr
+    id=tooltip::r0::trigger
+    role=button
+    tabindex=0
   >
     Show tooltip
   </button>

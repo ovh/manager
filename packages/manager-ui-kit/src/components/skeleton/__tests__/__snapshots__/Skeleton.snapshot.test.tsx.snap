@@ -3,9 +3,9 @@
 exports[`Skeleton Snapshot tests > renders the component with default props 1`] = `
 <div>
   <div
-    aria-hidden="true"
-    class="_skeleton_kauw8_2"
-    data-ods="skeleton"
+    aria-hidden=true
+    class=_skeleton
+    data-ods=skeleton
   />
 </div>
 `;
