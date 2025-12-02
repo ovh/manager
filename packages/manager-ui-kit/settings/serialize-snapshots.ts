@@ -1,5 +1,3 @@
-console.log(">>> LOADED SERIALIZER <<<");
-
 export default {
   test: (val: unknown) => typeof val === 'string',
 
