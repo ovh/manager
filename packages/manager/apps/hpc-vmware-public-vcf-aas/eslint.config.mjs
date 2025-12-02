@@ -64,6 +64,7 @@ import {
   complexityJsxTsxConfig,
   complexityTsJsConfig,
 } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
+import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
 import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
@@ -117,4 +118,12 @@ export default [
   },
   complexityJsxTsxConfig,
   complexityTsJsConfig,
+  cssEslintConfig,
+  {
+    rules: {
+      'css/no-invalid-at-rules': 'off',
+      'css/no-invalid-at-rule-placement': 'off',
+      'css/no-invalid-properties': 'off',
+    },
+  },
 ];
