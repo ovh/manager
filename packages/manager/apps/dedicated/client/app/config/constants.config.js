@@ -219,7 +219,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/fr/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
+          'https://manager.eu.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/fr/solutions/load-balancer/',
       },
       GB: {
@@ -1479,7 +1479,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/asia/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       IN: {
@@ -1517,7 +1517,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/en-in/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       AU: {
@@ -1555,7 +1555,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/en-au/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       CA: {
@@ -1594,7 +1594,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/en-ca/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/en/solutions/load-balancer/',
       },
       QC: {
@@ -1633,7 +1633,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/fr-ca/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/ca/fr/solutions/load-balancer/',
       },
       SG: {
@@ -1670,7 +1670,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/en-sg/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       WE: {
@@ -1707,7 +1707,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/en/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       WS: {
@@ -1744,7 +1744,7 @@ const constants = {
         threeAZClusterOrder:
           'https://www.ovhcloud.com/es/bare-metal/prices/?display=list&use_cases=multi-az',
         cloudProjectOrder:
-          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+          'https://manager.ca.ovhcloud.com/#/public-cloud/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/es/soluciones/load-balancer/',
       },
     },
@@ -2156,7 +2156,7 @@ const constants = {
   US: {
     RENEW_URL: '/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     statusUrl: 'https://status.us.ovhcloud.com/',
-    vrackUrl: 'https://us.ovhcloud.com/manager/cloud/index.html#/vrack',
+    vrackUrl: 'https://manager.us.ovhcloud.com/#/dedicated/vrack',
     UNIVERS: 'dedicated',
     SECTIONS_UNIVERSE_MAP: {
       sd: ['server'],
@@ -2208,7 +2208,7 @@ const constants = {
         vrackOrder:
           "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         cloudProjectOrder:
-          'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
+          'https://manager.us.ovhcloud.com/#/public-cloud/pci/project/new',
         veeamBackup:
           'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-backup-managed/',
         iplbOrder: 'https://www.ovh.com/ca/en/solutions/load-balancer/',

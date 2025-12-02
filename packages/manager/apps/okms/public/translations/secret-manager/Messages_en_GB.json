@@ -64,13 +64,13 @@
   "version_state_deleted": "Deleted",
   "version_state_reactivate": "Reactivate ",
   "versions": "Versions",
-  "add_row": "Add row",
+  "add_row": "Add a line",
   "error_duplicate_keys": "You cannot have two identical keys.",
   "error_empty_keys": "You cannot have an empty key.",
-  "error_key_value_conversion": "The value of the secret cannot be converted into key-value pairs.",
+  "error_key_value_conversion": "The secret value cannot be converted to key-value pairs.",
   "key": "Key",
-  "key_value": "Key value",
-  "okms_dashboard_title": "OKMS domain detail",
-  "okms_manage_label": "Manage my OKMS domain",
+  "key_value": "Value key",
+  "okms_dashboard_title": "OKMS domain details",
+  "okms_manage_label": "Manage your OKMS domain",
   "value": "Value"
 }
