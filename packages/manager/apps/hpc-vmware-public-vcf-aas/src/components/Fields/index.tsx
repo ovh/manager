@@ -1,5 +1,6 @@
 import React, { useId } from 'react';
 
+import clsx from 'clsx';
 import { Control, FieldValues, UseControllerProps, useController } from 'react-hook-form';
 
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
@@ -65,7 +66,7 @@ export const RhfHelper = ({
   return (
     <OdsText
       id={`helper-${id}`}
-      className={`ods-field-helper ${className ?? ''}`}
+      className={clsx('[&::part(text)]:w-full [&::part(text)]:text-start', className)}
       slot="helper"
       preset="caption"
       {...rest}

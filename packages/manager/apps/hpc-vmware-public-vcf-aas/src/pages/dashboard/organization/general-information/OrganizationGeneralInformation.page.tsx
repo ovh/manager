@@ -35,7 +35,7 @@ export default function GeneralInformation() {
   }
 
   return (
-    <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-10">
+    <div className="grid gap-8 px-10 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <OrganizationGenerationInformationTile vcdOrganization={vcdOrganization.data} />
       <div className="flex flex-col gap-8">
         <OrganizationOptionsTile

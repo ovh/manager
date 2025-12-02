@@ -111,7 +111,7 @@ export const DatacentreOrder = <T extends OrderType>({
       condition={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
       route={'..'}
     >
-      <div className="px-10 my-4 flex flex-col">
+      <div className="my-4 flex flex-col px-10">
         <OdsText preset="heading-3">{title}</OdsText>
         {subtitles && (
           <div className="my-6 flex flex-col">
@@ -140,7 +140,7 @@ export const DatacentreOrder = <T extends OrderType>({
             />
           </div>
         </div>
-        <div className="flex items-center gap-x-4 mt-10">
+        <div className="mt-10 flex items-center gap-x-4">
           <OdsButton
             label={t('managed_vcd_vdc_order_cancel_cta')}
             variant="ghost"

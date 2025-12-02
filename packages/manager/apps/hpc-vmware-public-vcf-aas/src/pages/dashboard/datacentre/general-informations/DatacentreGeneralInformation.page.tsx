@@ -37,7 +37,7 @@ export default function DatacentresGeneralInformationPage() {
 
   return (
     <React.Suspense fallback={<Loading />}>
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-10">
+      <div className="grid gap-8 px-10 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <DatacentreGenerationInformationTile
           vcdDatacentre={vcdDatacentre?.data}
           vcdOrganization={vcdOrganization?.data}
