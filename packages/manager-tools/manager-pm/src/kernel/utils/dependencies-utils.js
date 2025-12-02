@@ -2,13 +2,12 @@ import { execSync } from 'node:child_process';
 import { constants, existsSync, promises as fs, readFileSync } from 'node:fs';
 import path from 'node:path';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
-
 import {
   criticalDependenciesPath,
   ignoredDirectories,
   managerRootPath,
 } from '../../playbook/playbook-config.js';
+import { logger } from './log-manager.js';
 
 /**
  * Attempt to read the installed version of a dependency by checking its

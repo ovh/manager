@@ -1,9 +1,8 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
-
 import { managerRootPath, modulesBasePaths } from '../../playbook/playbook-config.js';
+import { logger } from '../utils/log-manager.js';
 import { stripRepositoryRoot, toPosix } from '../utils/path-utils.js';
 import { isWorkspaceRelativePath } from '../utils/workspace-utils.js';
 

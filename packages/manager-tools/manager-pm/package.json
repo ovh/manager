@@ -16,7 +16,6 @@
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs './bin/**/*.js' './src/**/*.js'"
   },
   "dependencies": {
-    "@ovh-ux/manager-cli-core": "^0.0.1",
     "commander": "^14.0.0",
     "concurrently": "^9.2.0",
     "execa": "^9.6.0",

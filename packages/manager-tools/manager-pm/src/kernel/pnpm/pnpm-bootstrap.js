@@ -14,14 +14,13 @@ import { existsSync, mkdirSync } from 'node:fs';
 import os from 'node:os';
 import process from 'node:process';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
-
 import {
   pnpmBinaryPath,
   pnpmExecutablePath,
   pnpmVersion,
   rootPackageJsonPath,
 } from '../../playbook/playbook-config.js';
+import { logger } from '../utils/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../utils/package-manager-utils.js';
 
 /**

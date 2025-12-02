@@ -1,7 +1,7 @@
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
+import { logger } from './log-manager.js';
 
 const execAsync = promisify(exec);
 

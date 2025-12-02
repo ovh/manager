@@ -9,7 +9,7 @@
 import { createRequire } from 'node:module';
 import process from 'node:process';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
+import { logger } from './kernel/utils/log-manager.js';
 
 const require = createRequire(import.meta.url);
 let shell;

@@ -3,8 +3,6 @@ import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
-
 import {
   managerRootPath,
   normalizedVersionsPath,
@@ -14,6 +12,7 @@ import {
 import { getCatalogsPaths, readCatalog } from '../utils/catalog-utils.js';
 import { getPnpmPrivateModules, getTurboPrivateFilters } from '../utils/dependencies-utils.js';
 import { loadJson } from '../utils/json-utils.js';
+import { logger } from '../utils/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../utils/package-manager-utils.js';
 import {
   clearRootWorkspaces,

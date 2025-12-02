@@ -2,10 +2,9 @@ import { execFile } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path, { basename } from 'node:path';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
-
 import { applicationsBasePath, managerRootPath } from '../../playbook/playbook-config.js';
 import { parseAppPackageJson } from '../utils/json-utils.js';
+import { logger } from '../utils/log-manager.js';
 import { stripRepositoryRoot, toPosix } from '../utils/path-utils.js';
 import { isWorkspaceRelativePath } from '../utils/workspace-utils.js';
 

@@ -21,7 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
+import { logger } from '../src/kernel/utils/log-manager.js';
 
 function runCommand(cmd) {
   return spawnSync(cmd, { stdio: 'pipe', shell: true, encoding: 'utf8' });

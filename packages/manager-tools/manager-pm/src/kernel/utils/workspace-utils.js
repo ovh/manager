@@ -1,11 +1,10 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
-
 import { cleanupDirectories, rootPackageJsonPath } from '../../playbook/playbook-config.js';
 import { getCatalogsPaths, readCatalog } from './catalog-utils.js';
 import { tryGitRestore } from './git-utils.js';
+import { logger } from './log-manager.js';
 import { toPosix } from './path-utils.js';
 
 /**

@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
+import { logger } from './log-manager.js';
 
 /**
  * Remove the `packageManager` field from root package.json.

@@ -2,9 +2,8 @@ import { promises as fs } from 'node:fs';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
-import { logger } from '@ovh-ux/manager-cli-core/logger';
-
 import { writeJson } from '../utils/json-utils.js';
+import { logger } from '../utils/log-manager.js';
 
 /**
  * Try to locate a Vitest config file in a given app directory.

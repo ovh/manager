@@ -10,8 +10,6 @@
  */
 import process from 'node:process';
 
-import { logger, setLoggerMode } from '@ovh-ux/manager-cli-core/logger';
-
 import {
   buildAll,
   buildApplication,
@@ -35,6 +33,7 @@ import {
   testModule,
 } from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
+import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
 import {
   attachCleanupSignals,
   handleProcessAbortSignals,
