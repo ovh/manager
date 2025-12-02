@@ -3,190 +3,190 @@
 exports[`Input Snapshot tests > renders the component with default props 1`] = `
 <div>
   <div
-    class="_input_ff5b7_2"
+    class=_input
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r0:"
-      type="text"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r0:
+      type=text
+      value=
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2"
-    data-disabled="true"
+    class=_input
+    data-disabled=true
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      disabled=""
-      id=":r1:"
-      type="text"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      disabled=
+      id=:r1:
+      type=text
+      value=
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2"
-    data-readonly="true"
+    class=_input
+    data-readonly=true
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r2:"
-      readonly=""
-      type="text"
-      value="Readonly"
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r2:
+      readonly=
+      type=text
+      value=Readonly
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2 _input--with-actions_ff5b7_38"
-    role="group"
+    class=_input _input--with-actions
+    role=group
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r3:"
-      type="text"
-      value="Clearable"
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r3:
+      type=text
+      value=Clearable
     />
     <div
-      class="_input-actions_ke1hx_2"
+      class=_input-actions
     >
       <button
-        aria-controls=":r3:"
-        aria-label="Clear input"
-        class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151"
-        data-ods="button"
-        type="button"
+        aria-controls=:r3:
+        aria-label=Clear input
+        class=_button _button--neutral _button--xs _button--ghost
+        data-ods=button
+        type=button
       >
         <span
-          class="_icon_10c23_2 _icon--xmark_10c23_562"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--xmark
+          data-ods=icon
+          role=presentation
         />
       </button>
     </div>
   </div>
   <div
-    class="_input_ff5b7_2"
+    class=_input
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r4:"
-      placeholder="email"
-      type="email"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r4:
+      placeholder=email
+      type=email
+      value=
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2"
+    class=_input
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r5:"
-      placeholder="number"
-      type="number"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r5:
+      placeholder=number
+      type=number
+      value=
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2"
+    class=_input
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r6:"
-      placeholder="password"
-      type="password"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r6:
+      placeholder=password
+      type=password
+      value=
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2 _input--with-actions_ff5b7_38"
-    role="group"
+    class=_input _input--with-actions
+    role=group
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r7:"
-      placeholder="search"
-      type="search"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r7:
+      placeholder=search
+      type=search
+      value=
     />
     <div
-      class="_input-actions_ke1hx_2"
+      class=_input-actions
     >
       <button
-        aria-label="Search"
-        class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
-        data-ods="button"
-        type="submit"
+        aria-label=Search
+        class=_button _button--primary _button--xs _button--ghost
+        data-ods=button
+        type=submit
       >
         <span
-          class="_icon_10c23_2 _icon--magnifying-glass_10c23_370"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--magnifying-glass
+          data-ods=icon
+          role=presentation
         />
       </button>
     </div>
   </div>
   <br />
   <div
-    class="_input_ff5b7_2"
+    class=_input
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r8:"
-      placeholder="text"
-      type="text"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r8:
+      placeholder=text
+      type=text
+      value=
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2"
+    class=_input
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":r9:"
-      placeholder="time"
-      type="time"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:r9:
+      placeholder=time
+      type=time
+      value=
     />
   </div>
   <br />
   <div
-    class="_input_ff5b7_2"
+    class=_input
   >
     <input
-      aria-busy="false"
-      class="_input__field_ff5b7_41"
-      data-ods="input"
-      id=":ra:"
-      placeholder="url"
-      type="url"
-      value=""
+      aria-busy=false
+      class=_input__field
+      data-ods=input
+      id=:ra:
+      placeholder=url
+      type=url
+      value=
     />
   </div>
   <br />

@@ -3,26 +3,26 @@
 exports[`Notifications component - Snapshot Testing > should list notifications 1`] = `
 <div>
   <div
-    class="_message_1oosv_2 _message--success_1oosv_28 _message--default_1oosv_9 mb-2 w-full"
-    data-ods="message"
+    class=_message _message--success _message--default mb-2 w-full
+    data-ods=message
   >
     Notification-1
   </div>
   <div
-    class="_message_1oosv_2 _message--warning_1oosv_32 _message--default_1oosv_9 mb-2 w-full"
-    data-ods="message"
+    class=_message _message--warning _message--default mb-2 w-full
+    data-ods=message
   >
     Notification-2
   </div>
   <div
-    class="_message_1oosv_2 _message--information_1oosv_13 _message--default_1oosv_9 mb-2 w-full"
-    data-ods="message"
+    class=_message _message--information _message--default mb-2 w-full
+    data-ods=message
   >
     Notification-3
   </div>
   <div
-    class="_message_1oosv_2 _message--critical_1oosv_9 _message--default_1oosv_9 mb-2 w-full"
-    data-ods="message"
+    class=_message _message--critical _message--default mb-2 w-full
+    data-ods=message
   >
     Notification-4
   </div>
