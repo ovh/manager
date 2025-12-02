@@ -33,7 +33,7 @@ describe('StatusComponent', () => {
     const badge = getByTestId('status_badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'success');
-    expect(badge).toHaveTextContent('pci_projects_status_ok');
+    expect(badge).toHaveTextContent('ok');
   });
 
   it('renders with deleted status', () => {
@@ -43,7 +43,7 @@ describe('StatusComponent', () => {
     const badge = getByTestId('status_badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'critical');
-    expect(badge).toHaveTextContent('pci_projects_status_deleted');
+    expect(badge).toHaveTextContent('service_state_deleted');
   });
 
   it('renders with suspended status', () => {
@@ -53,7 +53,7 @@ describe('StatusComponent', () => {
     const badge = getByTestId('status_badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'critical');
-    expect(badge).toHaveTextContent('pci_projects_status_suspended');
+    expect(badge).toHaveTextContent('suspended');
   });
 
   it('renders with deleting status', () => {
@@ -63,7 +63,7 @@ describe('StatusComponent', () => {
     const badge = getByTestId('status_badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'warning');
-    expect(badge).toHaveTextContent('pci_projects_status_deleting');
+    expect(badge).toHaveTextContent('deleting');
   });
 
   it('renders with unpaid status and shows pending debt', () => {
@@ -73,7 +73,7 @@ describe('StatusComponent', () => {
     const badge = getByTestId('status_badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'critical');
-    expect(badge).toHaveTextContent('pci_projects_status_pendingDebt');
+    expect(badge).toHaveTextContent('pendingDebt');
   });
 
   it('renders with unpaid and suspended statuses and shows suspeded status', () => {
@@ -83,7 +83,7 @@ describe('StatusComponent', () => {
     const badge = getByTestId('status_badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'critical');
-    expect(badge).toHaveTextContent('pci_projects_status_suspended');
+    expect(badge).toHaveTextContent('suspended');
   });
 
   it('renders with default information color for unknown status', () => {
@@ -93,6 +93,6 @@ describe('StatusComponent', () => {
     const badge = getByTestId('status_badge');
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'information');
-    expect(badge).toHaveTextContent('pci_projects_status_unknown_status');
+    expect(badge).toHaveTextContent('unknown_status');
   });
 });

@@ -49,12 +49,14 @@ describe('getDatagridColumns', () => {
       expect(descriptionColumn).toBeDefined();
 
       expect(descriptionColumn!.id).toBe('description');
-      expect(descriptionColumn!.label).toBe('pci_projects_description');
+      expect(descriptionColumn!.label).toBe('description');
       expect(descriptionColumn!.isSearchable).toBe(true);
       expect(descriptionColumn!.isSortable).toBe(true);
       expect(descriptionColumn!.isFilterable).toBe(true);
       expect(descriptionColumn!.type).toBe(FilterTypeCategories.String);
-      expect(mockTranslate).toHaveBeenCalledWith('pci_projects_description');
+      expect(mockTranslate).toHaveBeenCalledWith('description', {
+        ns: '@ovh-ux/manager-common-translations/dashboard',
+      });
     });
 
     it('should render description text in cell', async () => {
@@ -117,12 +119,14 @@ describe('getDatagridColumns', () => {
       expect(statusColumn).toBeDefined();
 
       expect(statusColumn!.id).toBe('aggregatedStatus');
-      expect(statusColumn!.label).toBe('pci_projects_status');
+      expect(statusColumn!.label).toBe('status');
       expect(statusColumn!.isSearchable).toBe(false);
       expect(statusColumn!.isSortable).toBe(true);
       expect(statusColumn!.isFilterable).toBe(false);
       expect(statusColumn!.type).toBe(FilterTypeCategories.String);
-      expect(mockTranslate).toHaveBeenCalledWith('pci_projects_status');
+      expect(mockTranslate).toHaveBeenCalledWith('status', {
+        ns: '@ovh-ux/manager-common-translations/status',
+      });
     });
 
     it('should render StatusComponent in cell', async () => {
