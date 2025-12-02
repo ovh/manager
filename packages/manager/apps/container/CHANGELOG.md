@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.166.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.165.0...@ovh-ux/manager-container-app@0.166.0) (2025-12-01)
+
+
+### Features
+
+* **config:** update Telecom domain ([960af71](https://github.com/ovh/manager/commit/960af718758143716f043346a297dd4143829764)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* **container:** replace old domain to new domain ([7cbc94d](https://github.com/ovh/manager/commit/7cbc94d8cbbf14e84b517ebfbad9006168f36400)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* **container:** update new development mode app config ([cdbfc35](https://github.com/ovh/manager/commit/cdbfc3574e337c5c1ea40927956e64cdb2d85c6b)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* migrate telecom to ovhcloud.com domain ([3da12e0](https://github.com/ovh/manager/commit/3da12e0adc0931bf9251d6df986090f9b756d176)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* skip labeu url update ([3a3d68b](https://github.com/ovh/manager/commit/3a3d68b9887e541040685f795a5989d63377f65d))
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [0.165.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.164.2...@ovh-ux/manager-container-app@0.165.0) (2025-11-27)
+
+
+### Features
+
+* replace account-emails with communication app ([0f6d4f0](https://github.com/ovh/manager/commit/0f6d4f0f6a56c37ed90992242edd3f4090becf08)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+* replace account-emails with communication app ([43a15f4](https://github.com/ovh/manager/commit/43a15f41b92c6990b0d725a66585bdcefaa37066)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+
+
+### Reverts
+
+* replace account-emails with communication app ([8463e83](https://github.com/ovh/manager/commit/8463e83ff542c2acacc5ab41e9c413c9eab2e99e)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+
+
+
+
+
+## [0.164.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.164.1...@ovh-ux/manager-container-app@0.164.2) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.164.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.164.0...@ovh-ux/manager-container-app@0.164.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.164.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.163.0...@ovh-ux/manager-container-app@0.164.0) (2025-11-18)
+
+
+### Features
+
+* **cloud-shell:** add cloud-shell app ([d4b9f7c](https://github.com/ovh/manager/commit/d4b9f7c735941b4979db8c497b636cbe42030c27)), closes [#MANAGER-20239](https://github.com/ovh/manager/issues/MANAGER-20239)
+
+
+
+
+
 # [0.163.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.162.1...@ovh-ux/manager-container-app@0.163.0) (2025-11-16)
 
 

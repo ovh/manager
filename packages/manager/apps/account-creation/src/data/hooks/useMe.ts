@@ -16,5 +16,6 @@ export const useMe = (
   useQuery({
     queryKey: [`me`],
     queryFn: getMe,
+    retry: 0,
     ...options,
   });

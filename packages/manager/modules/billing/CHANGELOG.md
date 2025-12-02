@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.55.0...@ovh-ux/manager-billing@0.56.0) (2025-12-01)
+
+
+### Features
+
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [0.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.54.0...@ovh-ux/manager-billing@0.55.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+* **billing:** disable cache in services ([6a7471f](https://github.com/ovh/manager/commit/6a7471f836ffa41b6a9520eae1d4405a80e8fbcc)), closes [#MANAGER-20010](https://github.com/ovh/manager/issues/MANAGER-20010)
+* **billing:** migrate configure enable disable automatic payment method to services ([6a790b9](https://github.com/ovh/manager/commit/6a790b98ec4cff099633b56db9cc004712a1b201)), closes [#MANAGER-20161](https://github.com/ovh/manager/issues/MANAGER-20161)
+* **billing:** replace serviceinfo call with services on cancel resillation ([db20d86](https://github.com/ovh/manager/commit/db20d86b793f83af2bb95fd64617d614ff5506c0)), closes [#MANAGER-20162](https://github.com/ovh/manager/issues/MANAGER-20162)
+
+
+
+
+
 # [0.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.53.0...@ovh-ux/manager-billing@0.54.0) (2025-11-17)
 
 

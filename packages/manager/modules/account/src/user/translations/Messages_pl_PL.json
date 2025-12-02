@@ -599,7 +599,7 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Ojej! Wystąpił błąd podczas usuwania kodów zapasowych:",
   "user_account_security_ip_restrictions_alt": "Ograniczenie dostępu przez IP",
   "user_account_title_infos": "Moje konto",
-  "user_account_description": "Zarządzaj kontem klienta. W tej sekcji możesz zarządzać swoim kontem, poziomem wsparcia oraz użytkownikami. Możesz również sprawdzić wiadomości e-mail dotyczące Twoich usług. ",
+  "user_account_description": "Zarządzaj kontem klienta. W tej sekcji możesz zarządzać swoim kontem, poziomem wsparcia oraz użytkownikami.",
   "user_account_title_subscriptions": "Moje abonamenty",
   "user_agreements_accepting": "Trwa zapisywanie",
   "user_account_emails_title": "Otrzymane e-maile",

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.19.0...@ovh-ux/manager-telecom@16.20.0) (2025-12-01)
+
+
+### Features
+
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [16.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.8...@ovh-ux/manager-telecom@16.19.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
+## [16.18.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.7...@ovh-ux/manager-telecom@16.18.8) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.6...@ovh-ux/manager-telecom@16.18.7) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.5...@ovh-ux/manager-telecom@16.18.6) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [16.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.4...@ovh-ux/manager-telecom@16.18.5) (2025-11-17)
 
 

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.9.1...@ovh-ux/shell@4.9.2) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.9.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.9.0...@ovh-ux/shell@4.9.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+# [4.9.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.8.2...@ovh-ux/shell@4.9.0) (2025-11-27)
+
+
+### Features
+
+* add new standard tracking property ([0c1ecd8](https://github.com/ovh/manager/commit/0c1ecd8ea963c053d285c812e63b3aeaf7b831f3)), closes [#MANAGER-19491](https://github.com/ovh/manager/issues/MANAGER-19491)
+
+
+
+
+
+## [4.8.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.8.1...@ovh-ux/shell@4.8.2) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
 ## [4.8.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.8.0...@ovh-ux/shell@4.8.1) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/shell

@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.9.1...@ovh-ux/logs-to-customer@1.9.2) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.9.0...@ovh-ux/logs-to-customer@1.9.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.8.1...@ovh-ux/logs-to-customer@1.9.0) (2025-11-19)
+
+
+### Bug Fixes
+
+* **logs-to-customer:** ts error in tests ([dc15b56](https://github.com/ovh/manager/commit/dc15b563677a3ec1da62743135bc368277f94a0b))
+
+
+### Features
+
+* pnpm hybrid improvements ([009017a](https://github.com/ovh/manager/commit/009017ac62577359d520a0c7da52d9988cef8c8e))
+
+
+
+
+
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.8.0...@ovh-ux/logs-to-customer@1.8.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* logs to custom ts issues ([dccfb01](https://github.com/ovh/manager/commit/dccfb01792d634c3b4079c658691b24bd6796037))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.19...@ovh-ux/logs-to-customer@1.8.0) (2025-11-16)
 
 

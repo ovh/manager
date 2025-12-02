@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.6...@ovh-ux/manager-pci-block-storage-app@0.21.7) (2025-12-01)
+
+
+### Bug Fixes
+
+* **pci-*:** fix ods19 versioning ([#20702](https://github.com/ovh/manager/issues/20702)) ([6f2b3e4](https://github.com/ovh/manager/commit/6f2b3e4a7505f43936a86204c5f0b97c8220e049))
+
+
+
+
+
+## [0.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.5...@ovh-ux/manager-pci-block-storage-app@0.21.6) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.4...@ovh-ux/manager-pci-block-storage-app@0.21.5) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.3...@ovh-ux/manager-pci-block-storage-app@0.21.4) (2025-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4469] ([3aad8ac](https://github.com/ovh/manager/commit/3aad8ac6c18de86f8dc8d76ac53b618b7b5f0ebd))
+* **i18n:** add missing translations [CDS 4473] ([0d10e26](https://github.com/ovh/manager/commit/0d10e2630ca81bf2451d668c342c3f820a60a5f6))
+
+
+
+
+
 ## [0.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.2...@ovh-ux/manager-pci-block-storage-app@0.21.3) (2025-11-16)
 
 

@@ -1,16 +1,16 @@
 {
   "title": "Object Storage",
-  "description1": "Sie haben noch keinen Object Storage-Dienst erstellt.",
-  "description2": "Profitieren Sie von unbegrenztem Speicher on demand, zugänglich über die API.",
-  "description3": "Object Storage bedeutet, Ihre Daten in einem unbegrenzten Raum zu speichern, der direkt über eine HTTP-API zugänglich ist. So können Sie den Zugriff auf diese Informationen von Ihren Anwendungen aus integrieren, dank der zahlreichen vorhandenen OpenStack Swift-Bibliotheken. Neben der Verwaltung der Zugriffsrechte integriert Object Storage Funktionen für \"intelligente Speicherung\" wie Versionsverwaltung und Ablaufdaten sowie die Synchronisierung zwischen verschiedenen Standorten.",
-  "description4": "Ihre Daten sind auf drei Replikate gesichert, um ihre Lebensdauer zu gewährleisten, und Sie profitieren von einer nutzungsabhängigen Abrechnung ab dem ersten GB.",
+  "description1": "Sie haben noch keinen Object Storage eingerichtet.",
+  "description2": "Profitieren Sie von unbegrenztem Speicherplatz on demand, mit Zugriff via API.",
+  "description3": "Object Storage überträgt Ihre Daten in einen unbegrenzten Speicherplatz, der direkt über eine HTTP-API erreichbar ist. Mit zahlreichen OpenStack-Swift-Bibliotheken können Sie den Zugang zu diesen Informationen über Ihre Anwendungen ermöglichen. Object Storage enthält neben der Verwaltung der Zugriffsrechte auch Funktionen für „intelligentes Storage“. Dies sind unter anderem die Verwaltung von Versionen und Ablaufdaten sowie die Synchronisation zwischen verschiedenen Standorten.",
+  "description4": "Ihre Daten werden mit dreifacher Replikation gesichert, sodass ihre Lebensdauer garantiert ist, und der Dienst wird ab dem ersten verbrauchten GB abgerechnet..",
   "createButtonLabel": "Objektcontainer erstellen",
-  "cardTopGuide": "Tutorial",
-  "cardFindOutMore": "Erfahren Sie mehr",
-  "cardLeftTitle": "Einen Object Storage-Container hinter einem Domainnamen platzieren",
-  "cardLeftDesc": "Erfahren Sie, wie Sie Ihren Objektcontainer mit Ihrer Domain konfigurieren.",
+  "cardTopGuide": "Anleitung",
+  "cardFindOutMore": "Mehr erfahren",
+  "cardLeftTitle": "Einen Object Storage Container hinter einem Domainnamen platzieren",
+  "cardLeftDesc": "Wie Sie Ihren Objektcontainer mit Ihrer Domain konfigurieren",
   "cardMiddleTitle": "Automatische Löschung von Objekten konfigurieren",
-  "cardMiddleDescription": "Erfahren Sie, wie Sie die automatische Löschung von Objekten in Ihrem Container aktivieren.",
-  "cardRightTitle": "Ein Objekt mit temporärer Adresse teilen ",
-  "cardRightDesc": "Erfahren Sie, wie Sie ein Objekt teilen, ohne Ihre persönlichen Informationen bereitzustellen."
+  "cardMiddleDescription": "Wie Sie das automatische Löschen von Objekten aus Ihrem Container aktivieren",
+  "cardRightTitle": "Ein Objekt mit temporärer Adresse teilen",
+  "cardRightDesc": "Hier erfahren Sie, wie Sie ein Objekt teilen, ohne dabei persönliche Informationen anzugeben."
 }

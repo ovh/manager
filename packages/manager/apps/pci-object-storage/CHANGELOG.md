@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.22.2...@ovh-ux/manager-pci-object-storage-app@0.22.3) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.22.1...@ovh-ux/manager-pci-object-storage-app@0.22.2) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.22.0...@ovh-ux/manager-pci-object-storage-app@0.22.1) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4492] ([2e92c0c](https://github.com/ovh/manager/commit/2e92c0cf80d4ef4d6e15b89f82ea38eed585c542))
+* **i18n:** add missing translations [CDS 4495] ([4dfee90](https://github.com/ovh/manager/commit/4dfee901280743ab4d2360aaf0d7309086febd26))
+* **i18n:** add missing translations [CDS 4497] ([d0b26cd](https://github.com/ovh/manager/commit/d0b26cdaeaecd1dea1f3c63cf20bd49857435e8f))
+* legacy lint app ([38a3f75](https://github.com/ovh/manager/commit/38a3f753483173f34a75748aa754adaea0b8c704)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+* legacy lint issues ([f33618e](https://github.com/ovh/manager/commit/f33618e8f349f85b4f72551f9f573787483a3d0a)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+
+
+
+
+
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.21.2...@ovh-ux/manager-pci-object-storage-app@0.22.0) (2025-11-26)
+
+
+### Features
+
+* **object-storage:** improve dashboard object ([fb6d3fe](https://github.com/ovh/manager/commit/fb6d3fe1cb771d4537349ebde1e9ceba4cd3e421)), closes [#DATATR-2681](https://github.com/ovh/manager/issues/DATATR-2681)
+
+
+
+
+
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.21.1...@ovh-ux/manager-pci-object-storage-app@0.21.2) (2025-11-25)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** fix build of the µ-app ([70d5842](https://github.com/ovh/manager/commit/70d5842f9ee840381b174460f932ea0452ce7aa4))
+
+
+
+
+
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.21.0...@ovh-ux/manager-pci-object-storage-app@0.21.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.20.1...@ovh-ux/manager-pci-object-storage-app@0.21.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **object-storage:** disable hub view for deleted object ([55c5e6b](https://github.com/ovh/manager/commit/55c5e6bb14c139b4462ef12cf93119122ccb1d81)), closes [#DATATR-2669](https://github.com/ovh/manager/issues/DATATR-2669)
+
+
+### Features
+
+* **pci.os:** add deep archive and fiew fixes ([cf6b9ad](https://github.com/ovh/manager/commit/cf6b9add910a922e7079d7c868edbdb18e734817)), closes [#DATATR-2628](https://github.com/ovh/manager/issues/DATATR-2628) [#DATATR-2665](https://github.com/ovh/manager/issues/DATATR-2665) [#DATATR-2668](https://github.com/ovh/manager/issues/DATATR-2668) [#DATATR-2670](https://github.com/ovh/manager/issues/DATATR-2670)
+
+
+
+
+
 ## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.20.0...@ovh-ux/manager-pci-object-storage-app@0.20.1) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

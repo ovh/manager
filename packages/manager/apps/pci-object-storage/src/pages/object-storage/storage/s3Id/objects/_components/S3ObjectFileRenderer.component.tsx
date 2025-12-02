@@ -2,159 +2,72 @@ import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
 import {
   Badge,
   Button,
-  ButtonProps,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuItemProps,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  useToast,
 } from '@datatr-ux/uxlib';
-import {
-  Download,
-  Files,
-  Loader2,
-  MoreHorizontal,
-  Pen,
-  Trash,
-} from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
-import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
-import Link from '@/components/links/Link.component';
-import useDownload from '@/hooks/useDownload';
-import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
-import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
-import { useS3Data } from '../../S3.context';
-import storages from '@/types/Storages';
+import ConditionalLink from '@/components/links/ConditionalLink.component';
 import { cn } from '@/lib/utils';
+import { useS3ObjectActions } from '../_hooks/useS3ObjectActions.hook';
+import { DeepArchiveBadge } from './DeepArchiveBadge.component';
 
 interface S3ObjectFileRendererProps {
   object: StorageObject;
+  showVersion?: boolean;
 }
-const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
-  const { projectId } = useParams();
-  const navigate = useNavigate();
+const S3ObjectFileRenderer = ({
+  object,
+  showVersion = false,
+}: S3ObjectFileRendererProps) => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
   );
-  const { download } = useDownload();
-  const { s3 } = useS3Data();
-  const toast = useToast();
-  const {
-    getPresignUrlS3,
-    isPending: pendingGetPresignUrl,
-  } = useGetPresignUrlS3({
-    onError: (err) => {
-      toast.toast({
-        title: t('objectToastErrorTitle'),
-        variant: 'critical',
-        description: getObjectStoreApiErrorMessage(err),
-      });
-    },
-    onSuccess: (presignUrl) => {
-      download({ type: 'url', url: presignUrl.url }, object.key);
-    },
+
+  const { actions } = useS3ObjectActions({
+    object,
+    showVersion,
   });
 
-  const onDetailsClicked = () =>
-    navigate(`./object?objectKey=${encodeURIComponent(object.key)}`);
-  const onVersionsClicked = () =>
-    navigate(`./object/versions?objectKey=${encodeURIComponent(object.key)}`);
-  const onDownloadClicked = () => {
-    return getPresignUrlS3({
-      projectId,
-      region: s3.region,
-      name: s3.name,
-      data: {
-        expire: 3600,
-        method: storages.PresignedURLMethodEnum.GET,
-        object: object.key,
-        storageClass: object.storageClass,
-        versionId: '',
-      },
-    });
-  };
-  const onDeleteClicked = () =>
-    navigate(`./delete-object?objectKey=${object.key}`);
-
-  const actions: {
-    id: string;
-    icon: ReactElement;
-    onClick: () => void;
-    disabled?: boolean;
-    label: string;
-    withSeparator?: boolean;
-    mobileOnly?: boolean;
-    hidden?: boolean;
-    variant?: ButtonProps['variant'] & DropdownMenuItemProps['variant'];
-  }[] = [
-    {
-      id: 'details',
-      icon: <Pen className="size-4" />,
-      mobileOnly: true,
-      onClick: () => onDetailsClicked(),
-      label: t('tableActionManage'),
-    },
-    {
-      id: 'download',
-      icon: pendingGetPresignUrl ? (
-        <Loader2 className="size-4 animate-spin" />
-      ) : (
-        <Download className="size-4" />
-      ),
-      onClick: () => onDownloadClicked(),
-      disabled: object.isDeleteMarker || pendingGetPresignUrl,
-      label: t('tableActionDownload'),
-    },
-    {
-      id: 'versions',
-      icon: <Files className="size-4" />,
-      onClick: () => onVersionsClicked(),
-      label: t('tableActionShowVersion'),
-      hidden: s3.versioning.status !== VersioningStatusEnum.enabled,
-    },
-    {
-      id: 'delete',
-      withSeparator: true,
-      icon: <Trash className="size-4" />,
-      onClick: () => onDeleteClicked(),
-      label: t('tableActionDelete'),
-      variant: 'critical',
-    },
-  ];
   return (
     <>
       <div
         className={cn(
           'py-2 px-3 grid grid-cols-[minmax(0,1fr)_auto_130px_auto] items-center gap-4 hover:bg-primary-50',
-          !object.isLatest && 'bg-neutral-50 pl-6',
+          object.isLatest === false && 'bg-neutral-50 pl-6',
         )}
       >
         {/* NAME */}
-        <Link
-          to={`./object?objectKey=${encodeURIComponent(object.key)}`}
-          className="flex items-center gap-2 min-w-0"
-        >
-          <FileIcon fileName={object.key} className="w-4 h-4 flex-shrink-0" />
-          <span className="truncate" title={object.key}>
-            {String(object.key)
-              .split('/')
-              .pop()}
-          </span>
+        <div className="flex items-center gap-2 min-w-0">
+          <ConditionalLink
+            condition={!object.isDeleteMarker}
+            to={`./object?objectKey=${encodeURIComponent(object.key)}`}
+            className="flex items-center gap-2 min-w-0"
+          >
+            <FileIcon fileName={object.key} className="w-4 h-4 flex-shrink-0" />
+            <span className="truncate" title={object.key}>
+              {String(object.key)
+                .split('/')
+                .pop()}
+            </span>
+          </ConditionalLink>
+
           {object.isDeleteMarker && (
             <Badge className="ml-2" variant="information">
               {t('tableSuppressionBadgeLabel')}
             </Badge>
           )}
-        </Link>
-
+          <div className="hidden lg:block">
+            <DeepArchiveBadge object={object} />
+          </div>
+        </div>
         {/* SIZE + DATE */}
         <div className="text-muted-foreground flex justify-end gap-2">
           {object.size !== undefined && (
@@ -218,19 +131,20 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               data-testid="storages-action-content"
               align="end"
             >
-              {actions.map((a) => (
-                <>
-                  {a.withSeparator && <DropdownMenuSeparator />}
-                  <DropdownMenuItem
-                    key={a.id}
-                    onClick={a.onClick}
-                    variant={a.variant}
-                    disabled={a.disabled}
-                  >
-                    {a.label}
-                  </DropdownMenuItem>
-                </>
-              ))}
+              {actions
+                .filter((a) => !a.hidden)
+                .map((a) => (
+                  <div key={a.id}>
+                    {a.withSeparator && <DropdownMenuSeparator />}
+                    <DropdownMenuItem
+                      onClick={a.onClick}
+                      variant={a.variant}
+                      disabled={a.disabled}
+                    >
+                      {a.label}
+                    </DropdownMenuItem>
+                  </div>
+                ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

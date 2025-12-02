@@ -2,7 +2,12 @@ export enum ContactMeanType {
   EMAIL = 'EMAIL',
   // PHONE = 'PHONE',
 }
-export type ContactMeanStatus = 'DISABLED' | 'ERROR' | 'VALID' | 'TO_VALIDATE';
+export enum ContactMeanStatus {
+  DISABLED = 'DISABLED',
+  ERROR = 'ERROR',
+  VALID = 'VALID',
+  TO_VALIDATE = 'TO_VALIDATE',
+}
 export type ContactMeanTaskStatus =
   | 'ERROR'
   | 'PENDING'

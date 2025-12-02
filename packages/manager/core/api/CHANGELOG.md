@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.19.3...@ovh-ux/manager-core-api@0.19.4) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-api
+
+
+
+
+
+## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.19.2...@ovh-ux/manager-core-api@0.19.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-api
+
+
+
+
+
 ## [0.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.19.1...@ovh-ux/manager-core-api@0.19.2) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-api

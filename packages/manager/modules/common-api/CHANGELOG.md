@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.5.14...@ovh-ux/manager-module-common-api@0.5.15) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-common-api
+
+
+
+
+
+## [0.5.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.5.13...@ovh-ux/manager-module-common-api@0.5.14) (2025-11-27)
+
+
+### Bug Fixes
+
+* **billing-informations:** manage renew=null case ([ca05cb9](https://github.com/ovh/manager/commit/ca05cb9aac1466ff6ba322313f75406aef32551a)), closes [#MANAGER-20352](https://github.com/ovh/manager/issues/MANAGER-20352)
+
+
+
+
+
 ## [0.5.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.5.12...@ovh-ux/manager-module-common-api@0.5.13) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-common-api

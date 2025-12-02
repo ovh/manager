@@ -12,12 +12,17 @@ import {
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ChangelogButton, BaseLayout } from '@ovh-ux/manager-react-components';
+import {
+  ChangelogButton,
+  BaseLayout,
+  GuideButton,
+} from '@ovh-ux/manager-react-components';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { CHANGELOG_LINKS } from '@/data/constants/changelogLinks';
 import { urls } from '@/routes/routes.constant';
 import { useCluster } from '@/hooks/useCluster';
+import useGuides from '@/hooks/useGuides';
 
 export default function Layout() {
   const { t } = useTranslation('dedicated-servers');
@@ -28,6 +33,7 @@ export default function Layout() {
   const { data, isSuccess: isSuccessCluster } = useCluster();
   const [activePanel, setActivePanel] = useState('');
   const navigate = useNavigate();
+  const guides = useGuides(t);
 
   useRouteSynchro();
 
@@ -66,6 +72,7 @@ export default function Layout() {
         header={{
           title: t('title'),
           changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+          headerButton: <GuideButton items={guides} />,
         }}
         tabs={
           <div>

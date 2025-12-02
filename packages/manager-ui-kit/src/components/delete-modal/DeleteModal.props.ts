@@ -8,4 +8,5 @@ export type DeleteModalProps = {
   error?: string;
   children?: React.ReactNode;
   open?: boolean;
+  onOpenChange?: () => void;
 };

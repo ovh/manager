@@ -12,5 +12,6 @@
   "server_ola_reset": "Unconfigure private aggregation",
   "server_ola_terminate": "Cancel OLA",
   "server_ola_mode_vrack_aggregation": "Private aggregation",
-  "server_ola_mode_default": "Default"
+  "server_ola_mode_default": "Default",
+  "server_ola_alert_new_lacp_rule": "OVHcloud is introducing an update to the LACP aggregation model starting from 25 November 2025. Switching to OLA mode or vice versa, or reconfiguring the aggregation, will apply the new behaviour. If necessary, review the LACP and MAC settings of your operating system to align with this update. Additional information is available in this documentation."
 }

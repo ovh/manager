@@ -1,7 +1,7 @@
 {
   "objectClassDefault": "Identisch mit der Quelle",
   "objectClass_STANDARD": "Standard",
-  "objectClass_HIGH_PERF": "Hohe Leistung",
-  "objectClass_DEEP_ARCHIVE": "Tiefes Archiv",
-  "objectClass_STANDARD_IA": "Seltenen Zugriff"
+  "objectClass_HIGH_PERF": "High Performance",
+  "objectClass_DEEP_ARCHIVE": "Deep Archive",
+  "objectClass_STANDARD_IA": "Infrequent Access"
 }

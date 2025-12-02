@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.4...@ovh-ux/manager-procedures-app@0.18.0) (2025-12-01)
+
+
+### Features
+
+* **procedures:** get auth URLs from core-sso package ([7bb0fec](https://github.com/ovh/manager/commit/7bb0fecd181fecabe94d1e16eb533953030de343)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.3...@ovh-ux/manager-procedures-app@0.17.4) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.2...@ovh-ux/manager-procedures-app@0.17.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.1...@ovh-ux/manager-procedures-app@0.17.2) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
 ## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.0...@ovh-ux/manager-procedures-app@0.17.1) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

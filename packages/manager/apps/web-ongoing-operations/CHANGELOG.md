@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.2...@ovh-ux/manager-web-ongoing-operations-app@1.16.3) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.1...@ovh-ux/manager-web-ongoing-operations-app@1.16.2) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.0...@ovh-ux/manager-web-ongoing-operations-app@1.16.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.15.1...@ovh-ux/manager-web-ongoing-operations-app@1.16.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** add missing translation ([e63a34f](https://github.com/ovh/manager/commit/e63a34f43084e5d7ef6beeefcf303023c62d6933)), closes [#DCE-99](https://github.com/ovh/manager/issues/DCE-99)
+* **web-ongoing-operations:** remove element-internals-polyfill usage ([cbb07d1](https://github.com/ovh/manager/commit/cbb07d108a87855805f796c7e28e2cce28d8dcc4)), closes [#DCE-12](https://github.com/ovh/manager/issues/DCE-12)
+
+
+### Features
+
+* **web-ongoing-operations:** tracking implementation ([fd3c0c3](https://github.com/ovh/manager/commit/fd3c0c383d7d8367675ba0011aedfc4b541cf34c)), closes [#DCE-57](https://github.com/ovh/manager/issues/DCE-57)
+
+
+
+
+
+## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.15.0...@ovh-ux/manager-web-ongoing-operations-app@1.15.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.14.1...@ovh-ux/manager-web-ongoing-operations-app@1.15.0) (2025-11-16)
 
 

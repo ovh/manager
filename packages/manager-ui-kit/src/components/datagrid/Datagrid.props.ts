@@ -10,6 +10,8 @@ import type {
   VisibilityState,
 } from '@tanstack/react-table';
 
+import { TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
+
 import {
   FilterTypeCategories as DatagridColumnTypes,
   FilterComparator,
@@ -18,6 +20,7 @@ import {
 import type { FilterOption, FilterProps } from '@/components/filters/Filter.props';
 
 export interface RowSelectionProps<T> {
+  enableRowSelection?: (row: Row<T>) => boolean;
   onRowSelectionChange?: (selectedRows: T[]) => void;
   rowSelection: RowSelectionState;
   setRowSelection: Dispatch<SetStateAction<RowSelectionState>>;
@@ -43,9 +46,10 @@ export interface SearchProps {
 
 export type ColumnSort = TanstackColumnSort;
 
-export interface ExpandedProps {
+export interface ExpandedProps<T> {
   expanded: ExpandedState;
   setExpanded: Dispatch<SetStateAction<ExpandedState>>;
+  getRowCanExpand?: (row: Row<T>) => boolean;
 }
 
 export interface ExpandableRow<T> {
@@ -60,18 +64,21 @@ export type DatagridProps<T extends ExpandableRow<T>> = {
   containerHeight?: number;
   contentAlignLeft?: boolean;
   data: T[];
-  expandable?: ExpandedProps;
+  expandable?: ExpandedProps<T>;
   filters?: FilterProps;
   hasNextPage?: boolean;
+  hideHeader?: boolean;
   isLoading?: boolean;
   maxRowHeight?: number;
   resourceType?: string;
   rowSelection?: RowSelectionProps<T>;
   search?: SearchProps;
   sorting?: SortingProps;
+  size?: TABLE_SIZE;
   subComponentHeight?: number;
   topbar?: ReactNode;
   totalCount?: number;
+  variant?: TABLE_VARIANT;
   onFetchAllPages?: () => void;
   onFetchNextPage?: () => void;
   renderSubComponent?: (
@@ -86,7 +93,24 @@ export enum ColumnMetaType {
   BADGE = 'badge',
 }
 
-// export type ManagerColumnDef<T> = ColumnDef<T> & {
+export enum RowHeight {
+  sm = 32.5,
+  md = 48.5,
+  lg = 64.5,
+}
+
+export enum ContainerHeight {
+  sm = 375,
+  md = 550,
+  lg = 725,
+}
+
+export enum ContainerWihtoutHeaderHeight {
+  sm = 340,
+  md = 500,
+  lg = 660,
+}
+
 export type DatagridColumn<T> = ColumnDef<T> & {
   /** set column comparator for the filter */
   comparator?: FilterComparator[];

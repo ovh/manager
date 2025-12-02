@@ -47,7 +47,7 @@ export const state = {
         }ovhSessionSuccess=true`;
       }
 
-      return '/auth/?action=gotomanager';
+      return `${window.location.origin}/`;
     },
 
     getStepByName: /* @ngInject */ (steps) => (name) =>

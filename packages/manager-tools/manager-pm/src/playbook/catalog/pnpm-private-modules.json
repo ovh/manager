@@ -16,10 +16,6 @@
     "pnpm": "packages/manager/modules/account"
   },
   {
-    "turbo": "--filter @ovh-ux/manager-account-migration",
-    "pnpm": "packages/manager/modules/account-migration"
-  },
-  {
     "turbo": "--filter @ovh-ux/manager-advices",
     "pnpm": "packages/manager/modules/advices"
   },
@@ -44,7 +40,7 @@
     "pnpm": "packages/manager/modules/billing-components"
   },
   {
-    "turbo": "--filter @ovh-ux/billing-informations",
+    "turbo": "--filter @ovh-ux/manager-billing-informations",
     "pnpm": "packages/manager/modules/billing-informations"
   },
   {

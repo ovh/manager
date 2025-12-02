@@ -11,7 +11,7 @@ import { NIC_STATE_ENUM } from './constants';
 export default function() {
   let loginUrl = 'https://www.ovh.com/auth/';
   let logoutUrl = 'https://www.ovh.com/auth/?action=disconnect';
-  let signUpUrl = 'https://www.ovh.com/auth/signup/new/';
+  let signUpUrl = 'https://manager.eu.ovhcloud.com/signup';
   let userUrl = '/engine/api/me';
   let rules = [];
   const urlPrefix = '';

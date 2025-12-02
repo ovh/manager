@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.6.0...@ovh-ux/manager-network-common@0.6.1) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.5.19...@ovh-ux/manager-network-common@0.6.0) (2025-11-27)
+
+
+### Features
+
+* automate pnpm migration via github action ([4a773f5](https://github.com/ovh/manager/commit/4a773f599d3284c2b5e05c1fe8b7d20901383a2a))
+* change folder structure for __mocks__ ([713ff72](https://github.com/ovh/manager/commit/713ff721a13f9c62376ea318bdc228a6776ce6a8)), closes [#MANAGER-18212](https://github.com/ovh/manager/issues/MANAGER-18212)
+
+
+
+
+
 ## [0.5.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.5.18...@ovh-ux/manager-network-common@0.5.19) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-network-common

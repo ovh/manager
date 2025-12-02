@@ -1,0 +1,9 @@
+{
+  "cloud_shell_welcome": "Benvenuto in OVHcloud Shell (versione beta)! OVHcloud Shell è un terminale online integrato che permette di gestire le proprie risorse cloud senza installazione locale. Puoi accedere ai tuoi progetti, eseguire comandi e gestire le tue risorse cloud in totale sicurezza. 🚧 Beta: le funzionalità possono cambiare o risultare temporaneamente non disponibili. Per cominciare, digita \"ovhcloud help\".",
+  "cloud_shell_loading_environment": "Caricamento dell’ambiente in corso...",
+  "cloud_shell_running_command": "Esecuzione del comando",
+  "cloud_shell_waiting": "Caricamento...",
+  "cloud_shell_loading": "Caricamento... Attendi il caricamento dell'ambiente.",
+  "cloud_shell_switch_theme_light": "Passa al tema chiaro",
+  "cloud_shell_switch_theme_dark": "Passa al tema scuro"
+}

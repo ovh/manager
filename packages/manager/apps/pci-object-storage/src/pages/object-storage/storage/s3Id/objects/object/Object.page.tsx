@@ -7,7 +7,7 @@ import {
   Skeleton,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import { Archive, ArrowLeft, Settings } from 'lucide-react';
+import { Archive, Settings } from 'lucide-react';
 import {
   Outlet,
   useNavigate,
@@ -18,7 +18,6 @@ import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVe
 import { useS3Data } from '../../S3.context';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
 import { octetConverter } from '@/lib/bytesHelper';
-import Link from '@/components/links/Link.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 
@@ -61,10 +60,6 @@ const Object = () => {
 
   return (
     <>
-      <h2>{objectQuery.data.key}</h2>
-      <Link to={'../'} className="flex items-center w-full">
-        <ArrowLeft className="w-4 h-4 mr-2" /> {t('objectsBackLink')}
-      </Link>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
@@ -104,39 +99,41 @@ const Object = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <h5>
-              <Archive className="size-4 inline mr-2" />
-              <span>{t('tableHeaderStorageClass')}</span>
-            </h5>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-row justify-between">
-              <Badge variant="outline">
-                {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-              </Badge>
+        {objectQuery.data.storageClass && (
+          <Card>
+            <CardHeader>
+              <h5>
+                <Archive className="size-4 inline mr-2" />
+                <span>{t('tableHeaderStorageClass')}</span>
+              </h5>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-row justify-between">
+                <Badge variant="outline">
+                  {tObj(`objectClass_${objectQuery.data.storageClass}`)}
+                </Badge>
 
-              <Button
-                className="h-6"
-                mode="outline"
-                size="sm"
-                onClick={() =>
-                  navigate(
-                    `./change-storage-class?objectKey=${encodeURIComponent(
-                      objectKey,
-                    )}`,
-                  )
-                }
-              >
-                <Settings className="size-4" />
-                <span className="font-semibold">
-                  {t('changeStorageClassLink')}
-                </span>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+                <Button
+                  className="h-6"
+                  mode="outline"
+                  size="sm"
+                  onClick={() =>
+                    navigate(
+                      `./change-storage-class?objectKey=${encodeURIComponent(
+                        objectKey,
+                      )}`,
+                    )
+                  }
+                >
+                  <Settings className="size-4" />
+                  <span className="font-semibold">
+                    {t('changeStorageClassLink')}
+                  </span>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       <Outlet />

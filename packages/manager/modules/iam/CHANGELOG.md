@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.23.0...@ovh-ux/manager-iam@1.24.0) (2025-12-01)
+
+
+### Features
+
+* **iam:** use auth URLs from core-sso package ([c73e251](https://github.com/ovh/manager/commit/c73e2510e0a7fdfa1e0435f462ca1e3c78bd52c6)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
 # [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.3...@ovh-ux/manager-iam@1.23.0) (2025-11-12)
 
 

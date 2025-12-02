@@ -1,12 +1,12 @@
 {
   "enableUserTitle": "Activar un usuario para S3",
-  "enableUSerDescription": "Esta acción le permite generar las credenciales S3 del usuario {{ name }}.",
+  "enableUSerDescription": "Esta acción permite generar las claves de conexión S3 del usuario {{ name }}.",
   "enableUserButtonCancel": "Cancelar",
   "enableUserButtonConfirm": "Confirmar",
   "enableUserToastErrorTitle": "Error",
-  "enableUserToastSuccessTitle": "Éxito",
+  "enableUserToastSuccessTitle": "Realizado",
   "accessKeyLabel": "Clave de acceso",
   "secretKeyLabel": "Clave secreta",
   "enableUserButtonClose": "Cerrar",
-  "enableUserToastSuccessDescription": "Las informaciones del usuario {{ name }} han sido generadas."
+  "enableUserToastSuccessDescription": "Se ha generado la información del usuario {{ name }}."
 }

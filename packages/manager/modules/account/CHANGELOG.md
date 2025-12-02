@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.18.0...@ovh-ux/manager-account@0.19.0) (2025-12-01)
+
+
+### Features
+
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.17.24...@ovh-ux/manager-account@0.18.0) (2025-11-27)
+
+
+### Features
+
+* replace account-emails with communication app ([0f6d4f0](https://github.com/ovh/manager/commit/0f6d4f0f6a56c37ed90992242edd3f4090becf08)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+* replace account-emails with communication app ([43a15f4](https://github.com/ovh/manager/commit/43a15f41b92c6990b0d725a66585bdcefaa37066)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+
+
+### Reverts
+
+* replace account-emails with communication app ([8463e83](https://github.com/ovh/manager/commit/8463e83ff542c2acacc5ab41e9c413c9eab2e99e)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+
+
+
+
+
+## [0.17.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.17.23...@ovh-ux/manager-account@0.17.24) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.17.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.17.22...@ovh-ux/manager-account@0.17.23) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.17.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.17.21...@ovh-ux/manager-account@0.17.22) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
 ## [0.17.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.17.20...@ovh-ux/manager-account@0.17.21) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

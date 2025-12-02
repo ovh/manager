@@ -68,7 +68,7 @@
   "region_MUM_micro": "Mumbai ({{ micro }})",
   "region_location_MUM": "Asia-Pacific (Mumbai)",
   "region_continent_MUM": "Asia-Pacific ",
-  "region_PAR": "Montreal",
+  "region_PAR": "Paris",
   "region_PAR_micro": "Paris ({{ micro }})",
   "region_location_PAR": "Western Europe (France)",
   "region_continent_PAR": "Western Europe",
@@ -78,7 +78,7 @@
   "region_US-WEST-OR_micro": "Oregon ({{ micro }})",
   "region_continent_US-EAST-VA": "North America",
   "region_continent_US-WEST-OR": "North America",
-  "region_EU-WEST-PAR": "Montreal",
+  "region_EU-WEST-PAR": "Paris",
   "region_EU-WEST-PAR_micro": "Paris ({{ micro }})",
   "region_location_EU-WEST-PAR": "Western Europe (France)",
   "region_continent_EU-WEST-PAR": "Western Europe",
@@ -88,5 +88,11 @@
   "region_TOR": "Toronto",
   "region_TOR_micro": "Toronto ({{ micro }})",
   "region_continent_TOR": "North America",
-  "region-description-localzone": "A Local Zone corresponds to a deployment mode of OVHcloud Public Cloud products in data centres located as close as possible to end users."
+  "region-description-localzone": "A Local Zone corresponds to a deployment mode of OVHcloud Public Cloud products in data centres located as close as possible to end users.",
+  "region_EU-SOUTH-MIL": "Milan",
+  "region_EU-SOUTH-MIL_micro": "Milan ({{ micro }})",
+  "region_MIL": "Milan",
+  "region_MIL_micro": "Milan ({{ micro }})",
+  "region_continent_MIL": "Southern Europe",
+  "region_location_MIL": "Southern Europe (Italy)"
 }

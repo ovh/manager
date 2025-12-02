@@ -1,18 +1,27 @@
 export const urls = {
   root: '/',
-  // Dashboard Layout
-  CommunicationsTab: '/',
-  CommunicationsDetail: '/:notificationId',
-  CommunicationsDetailTo: (notificationId: string) => `/${notificationId}`,
-  ContactsTab: '/contacts',
-  contactsAdd: '/contacts/create',
-  contactsEdit: '/contacts/:contactMeanId/edit',
-  contactsValidate: '/contacts/:contactMeanId/validate',
-  contactsDelete: '/contacts/:contactMeanId/delete',
-  ContactsEditTo: (contactMeanId: string) => `/contacts/${contactMeanId}/edit`,
-  ContactsDeleteTo: (contactMeanId: string) =>
-    `/contacts/${contactMeanId}/delete`,
-  ContactsValidateTo: (contactMeanId: string) =>
-    `/contacts/${contactMeanId}/validate`,
-  SettingsTab: '/settings',
+  communication: {
+    listing: '/',
+    detail: '/:notificationId',
+    detailTo: (notificationId: string) => `/${notificationId}`,
+  },
+  contact: {
+    listing: '/contacts',
+    create: '/contacts/create',
+    edit: '/contacts/:contactMeanId/edit',
+    editTo: (contactMeanId: string) => `/contacts/${contactMeanId}/edit`,
+    validate: '/contacts/:contactMeanId/validate',
+    validateTo: (contactMeanId: string) =>
+      `/contacts/${contactMeanId}/validate`,
+    delete: '/contacts/:contactMeanId/delete',
+    deleteTo: (contactMeanId: string) => `/contacts/${contactMeanId}/delete`,
+  },
+  routing: {
+    listing: '/routing',
+    create: '/routing/create',
+    edit: '/routing/:routingId/edit',
+    editTo: (routingId: string) => `/routing/${routingId}/edit`,
+    delete: '/routing/:routingId/delete',
+    deleteTo: (routingId: string) => `/routing/${routingId}/delete`,
+  },
 };

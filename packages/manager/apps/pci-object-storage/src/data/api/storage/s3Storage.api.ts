@@ -47,7 +47,7 @@ export interface UpdateS3Data extends S3Data {
   data: StorageContainerUpdate;
 }
 
-export const udpateS3Storage = async ({
+export const updateS3Storage = async ({
   projectId,
   region,
   name,
@@ -258,5 +258,25 @@ export const updateS3ObjectStorageClass = async ({
       storageClass,
       targetBucket: name,
       targetKey: key,
+    },
+  );
+
+export interface RestoreS3ObjectParams extends S3ObjectParams {
+  days: number;
+}
+
+export const restoreS3Object = async ({
+  projectId,
+  region,
+  name,
+  key,
+  days,
+}: RestoreS3ObjectParams) =>
+  apiClient.v6.post(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${encodeURIComponent(
+      key,
+    )}/restore`,
+    {
+      days,
     },
   );

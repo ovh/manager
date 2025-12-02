@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.65.0...@ovh-ux/manager-dedicated@20.66.0) (2025-12-01)
+
+
+### Features
+
+* **config:** ovhcom to ovhcloudcom migration ([8ca31c7](https://github.com/ovh/manager/commit/8ca31c78bab36ab952da31722f7ee7650450a683)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [20.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.10...@ovh-ux/manager-dedicated@20.65.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
+## [20.64.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.9...@ovh-ux/manager-dedicated@20.64.10) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4477] ([eda1923](https://github.com/ovh/manager/commit/eda19233693f22b1e6006e3c145d1458dbf25489))
+
+
+
+
+
+## [20.64.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.8...@ovh-ux/manager-dedicated@20.64.9) (2025-11-26)
+
+
+### Bug Fixes
+
+* **iplb:** add italy flag for order page ([cb1422f](https://github.com/ovh/manager/commit/cb1422f4b3790e3213d23b90733a92ec09ebbbf3)), closes [#MANAGER-20354](https://github.com/ovh/manager/issues/MANAGER-20354)
+
+
+
+
+
+## [20.64.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.7...@ovh-ux/manager-dedicated@20.64.8) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.64.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.6...@ovh-ux/manager-dedicated@20.64.7) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.64.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.5...@ovh-ux/manager-dedicated@20.64.6) (2025-11-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

@@ -1,14 +1,14 @@
 # Manager
 
-> The official [OVHcloud](https://ovhcloud.com) control panel also known as the **[Manager](https://ovh.com/manager)**.
+> The official [OVHcloud](https://ovhcloud.com) control panel also known as the **[Manager](https://manager.eu.ovhcloud.com/)**.
 
 ![Contributors](https://badgen.net/github/contributors/ovh/manager) ![Last commit](https://badgen.net/github/last-commit/ovh/manager) [![License](https://badgen.net/github/license/ovh/manager)](https://github.com/ovh/manager/blob/master/LICENSE)
 
-[![OVHcloud control panel UI](docs/docs/public/assets/img/control-panel.jpg)](https://ovh.com/manager)
+[![OVHcloud control panel UI](docs/docs/public/assets/img/control-panel.jpg)](https://manager.eu.ovhcloud.com/)
 
 ## Intro
 
-Manager is the control panel built on top of the [OVHcloud API](https://api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/ovh-ui-kit). It helps you to manage your products.
+Manager is the control panel built on top of the [OVHcloud API](https://eu.api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/design-system/). It helps you to manage your products.
 
 ## Prerequisites
 

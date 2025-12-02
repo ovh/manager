@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.24.1...@ovh-ux/manager-vrack-services-app@0.24.2) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.24.0...@ovh-ux/manager-vrack-services-app@0.24.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.23.30...@ovh-ux/manager-vrack-services-app@0.24.0) (2025-11-27)
+
+
+### Features
+
+* change folder structure for __mocks__ ([713ff72](https://github.com/ovh/manager/commit/713ff721a13f9c62376ea318bdc228a6776ce6a8)), closes [#MANAGER-18212](https://github.com/ovh/manager/issues/MANAGER-18212)
+
+
+
+
+
+## [0.23.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.23.29...@ovh-ux/manager-vrack-services-app@0.23.30) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
 ## [0.23.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.23.28...@ovh-ux/manager-vrack-services-app@0.23.29) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

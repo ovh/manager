@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.12...@ovh-ux/manager-exchange@4.16.0) (2025-11-27)
+
+
+### Features
+
+* **billing:** disable cache in services ([6a7471f](https://github.com/ovh/manager/commit/6a7471f836ffa41b6a9520eae1d4405a80e8fbcc)), closes [#MANAGER-20010](https://github.com/ovh/manager/issues/MANAGER-20010)
+
+
+
+
+
+## [4.15.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.11...@ovh-ux/manager-exchange@4.15.12) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 845] ([b7cf02f](https://github.com/ovh/manager/commit/b7cf02f422fdb4e6fbc6c881c52a019429ec170b))
+
+
+
+
+
+## [4.15.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.10...@ovh-ux/manager-exchange@4.15.11) (2025-11-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([d257ee8](https://github.com/ovh/manager/commit/d257ee855e2945b3243ec640ce2e42de64e598ed))
+
+
+
+
+
 ## [4.15.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.9...@ovh-ux/manager-exchange@4.15.10) (2025-11-17)
 
 
