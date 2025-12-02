@@ -70,7 +70,7 @@ describe('IncreaseQuota', () => {
 
     const secondaryButton = screen.getByTestId('secondary-button');
     expect(secondaryButton).toBeInTheDocument();
-    expect(secondaryButton).toHaveAttribute('label', 'pci_project_new_error_cancel');
+    expect(secondaryButton).toHaveAttribute('label', 'cancel');
   });
 
   it('should call navigate with ".." when close button is clicked', () => {
@@ -151,6 +151,6 @@ describe('IncreaseQuota', () => {
     expect(primaryButton).toBeInTheDocument();
     expect(secondaryButton).toBeInTheDocument();
     expect(primaryButton).toHaveAttribute('label', 'pci_project_new_error_contact_support');
-    expect(secondaryButton).toHaveAttribute('label', 'pci_project_new_error_cancel');
+    expect(secondaryButton).toHaveAttribute('label', 'cancel');
   });
 });

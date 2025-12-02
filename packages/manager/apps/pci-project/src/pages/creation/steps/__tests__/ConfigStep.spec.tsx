@@ -112,7 +112,7 @@ describe('ConfigStep', () => {
       expect(odsInput).toHaveAttribute('value', 'Test Project');
 
       // Look for the contracts component by checking for the actual label it renders
-      expect(screen.getByText('order_contracts_label')).toBeInTheDocument();
+      expect(screen.getByText('accept_terms')).toBeInTheDocument();
     });
 
     it('should render HDS section when shouldDisplayHdsSection is true', () => {
@@ -376,7 +376,7 @@ describe('ConfigStep', () => {
       render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
 
       // Check that contracts section still renders even without data using the actual label
-      expect(screen.getByText('order_contracts_label')).toBeInTheDocument();
+      expect(screen.getByText('accept_terms')).toBeInTheDocument();
     });
   });
 

@@ -1,5 +1,6 @@
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { ManagerTile, useFormatDate } from '@ovh-ux/manager-react-components';
 
@@ -8,7 +9,7 @@ import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 
 export default function BillingTile() {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation(['home', NAMESPACES.BILLING]);
 
   const projectId = useProjectIdFromParams();
   const formatDate = useFormatDate();
@@ -24,7 +25,7 @@ export default function BillingTile() {
 
   return (
     <ManagerTile>
-      <ManagerTile.Title>{t('pci_projects_home_billing')}</ManagerTile.Title>
+      <ManagerTile.Title>{t('billing', { ns: NAMESPACES.BILLING })}</ManagerTile.Title>
       <ManagerTile.Divider />
 
       {vouchersCreditDetails.slice(0, 3).map((item, itemIdx: number) => (

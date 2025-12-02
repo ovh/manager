@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { OdsBadgeColor } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { TProjectWithService } from '@/data/models/Project.type';
 
 type StatusComponentProps = {
@@ -12,7 +14,7 @@ type StatusComponentProps = {
 };
 
 export default function StatusComponent({ project }: Readonly<StatusComponentProps>) {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', NAMESPACES.STATUS, NAMESPACES.SERVICE]);
 
   const isUnpaidAndNotSuspended = project.isUnpaid && project.status !== 'suspended';
 
@@ -34,15 +36,15 @@ export default function StatusComponent({ project }: Readonly<StatusComponentPro
     }
   }, [project, isUnpaidAndNotSuspended]);
 
-  return (
-    <OdsBadge
-      color={badgeColor}
-      data-testid="status_badge"
-      label={t(
-        isUnpaidAndNotSuspended
-          ? `pci_projects_status_pendingDebt`
-          : `pci_projects_status_${project.status}`,
-      )}
-    />
-  );
+  const getStatusLabel = () => {
+    if (isUnpaidAndNotSuspended) {
+      return t('pendingDebt', { ns: NAMESPACES.STATUS });
+    }
+    if (project.status === 'deleted') {
+      return t('service_state_deleted', { ns: NAMESPACES.SERVICE });
+    }
+    return t(project.status, { ns: NAMESPACES.STATUS });
+  };
+
+  return <OdsBadge color={badgeColor} data-testid="status_badge" label={getStatusLabel()} />;
 }

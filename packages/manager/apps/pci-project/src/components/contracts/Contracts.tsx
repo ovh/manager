@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsCheckbox, OdsFormField, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { CartContract } from '@/data/models/Cart.type';
 
 import ContractsSkeleton from './ContractsSkeleton';
@@ -19,7 +21,7 @@ export default function Contracts({
   isChecked,
   onCheckChanged,
 }: ContractsProps) {
-  const { t } = useTranslation('contracts');
+  const { t } = useTranslation(NAMESPACES.ORDER);
 
   return (
     <OdsFormField className="flex flex-row items-start">
@@ -32,7 +34,7 @@ export default function Contracts({
         onOdsChange={(event) => onCheckChanged(event.detail.checked)}
       />
       <label className="ml-4 cursor-pointer" htmlFor="cart-contracts">
-        <OdsText preset="paragraph">{t('order_contracts_label')}</OdsText>
+        <OdsText preset="paragraph">{t('accept_terms', { ns: NAMESPACES.ORDER })}</OdsText>
         {isLoading ? (
           <ContractsSkeleton />
         ) : (

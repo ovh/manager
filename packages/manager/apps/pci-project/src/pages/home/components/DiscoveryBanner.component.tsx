@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_SIZE, ODS_MESSAGE_COLOR, ODS_MESSAGE_VARIANT } from '@ovhcloud/ods-components';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useDiscoveryVoucher } from '@/hooks/home/useDiscoveryVoucher';
@@ -12,7 +13,7 @@ import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 function DiscoveryBanner({ className }: { className?: string }) {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation(['home', NAMESPACES.ACTIONS]);
 
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
@@ -56,7 +57,7 @@ function DiscoveryBanner({ className }: { className?: string }) {
           <OdsButton
             size={ODS_BUTTON_SIZE.md}
             onClick={handleActivationClick}
-            label={t('pci_projects_home_banner_discovery_cta')}
+            label={t('activate', { ns: NAMESPACES.ACTIONS })}
             className="mr-4"
           />
         </div>

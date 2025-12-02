@@ -25,7 +25,7 @@ describe('Contracts', () => {
     const checkBox = getByTestId('contracts-checkbox');
 
     expect(checkBox).toBeVisible();
-    expect(screen.getByText('order_contracts_label')).toBeVisible();
+    expect(screen.getByText('accept_terms')).toBeVisible();
   });
 
   it('renders contracts list when contracts are provided', () => {

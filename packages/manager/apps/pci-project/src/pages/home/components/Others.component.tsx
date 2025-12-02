@@ -1,5 +1,6 @@
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { DASHBOARD_OTHER_ACTIONS_ITEMS } from '@/constants';
@@ -9,7 +10,7 @@ import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFiltered
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
 function Others() {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation(['home', NAMESPACES.BILLING]);
   const { trackClick } = useOvhTracking();
 
   // Filter items by feature flags first, then convert paths to absolute URLs

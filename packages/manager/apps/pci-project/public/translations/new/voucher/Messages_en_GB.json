@@ -19,9 +19,7 @@
   "pci_projects_new_voucher_form_field_error_voucher_new_customer": "Oops! The code you have entered is only valid for new customers.",
   "pci_projects_new_voucher_form_field_error_voucher_new_project": "Oops! You already have a project, this code is not valid.",
   "pci_projects_new_voucher_form_field_error_default": "An error has occurred checking the code.",
-  "pci_projects_new_voucher_form_add": "Add",
   "pci_projects_new_voucher_form_add_title": "Add a coupon or voucher",
-  "pci_projects_new_voucher_form_remove": "Remove ",
   "pci_projects_new_voucher_form_remove_title": "Remove coupon or voucher",
   "pci_projects_new_voucher_form_reset_error": "An error has occurred removing your voucher."
 }

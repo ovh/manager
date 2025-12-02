@@ -11,7 +11,7 @@ import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-compon
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export default function ProjectCreation() {
-  const { t } = useTranslation(['new/legacy', NAMESPACES.FORM]);
+  const { t } = useTranslation(['new/legacy', NAMESPACES.FORM, NAMESPACES.ACTIONS]);
 
   const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ export default function ProjectCreation() {
           <OdsButton
             size="sm"
             variant="outline"
-            label={t('pci_project_new_btn_cancel')}
+            label={t('cancel', { ns: NAMESPACES.ACTIONS })}
             onClick={handleCancel}
           />
           <OdsButton
