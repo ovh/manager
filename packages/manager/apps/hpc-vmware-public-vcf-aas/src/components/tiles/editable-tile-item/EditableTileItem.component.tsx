@@ -28,7 +28,7 @@ export default function EditableTileItem({
   const { t } = useTranslation('dashboard');
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex items-center justify-between">
       <OdsText>{value}</OdsText>
       <div className="min-w-fit">
         <Suspense>

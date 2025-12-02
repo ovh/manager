@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { AxiosResponse } from 'axios';
+import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -84,13 +85,16 @@ export const EditDetailModal = ({
         <OdsText
           slot="helper"
           preset="caption"
-          className={`ods-field-helper ${isValid ? 'block' : 'hidden'}`}
+          className={clsx(
+            '[&::part(text)]:w-full [&::part(text)]:text-start',
+            isValid ? 'block' : 'hidden',
+          )}
         >
           {errorHelper}
         </OdsText>
       </OdsFormField>
-      {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
-      <div className="flex gap-x-4 w-fit justify-self-center ml-auto mt-6">
+      {isLoading && <Loading slot="actions" className="mr-4 w-9" />}
+      <div className="ml-auto mt-6 flex w-fit gap-x-4 justify-self-center">
         <OdsButton
           label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
           variant="ghost"

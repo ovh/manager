@@ -64,19 +64,35 @@ import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/htm
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
+import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
   javascriptEslintConfig,
   typescriptEslintConfig,
   reactEslintConfig,
-  prettierEslintConfig,
-  a11yEslintConfig,
-  htmlEslintConfig,
   {
     rules: {
       '@typescript-eslint/no-misused-promises': 'off',
       'react/no-multi-comp': 'off',
+    },
+  },
+  prettierEslintConfig,
+  a11yEslintConfig,
+  htmlEslintConfig,
+  tailwindJsxConfig,
+  {
+    ...tailwindJsxConfig,
+    rules: {
+      ...(tailwindJsxConfig.rules ?? {}),
+      'tailwindcss/classnames-order': 'error',
+      'tailwindcss/enforces-negative-arbitrary-values': 'error',
+      'tailwindcss/enforces-shorthand': 'error',
+      'tailwindcss/migration-from-tailwind-2': 'error',
+      'tailwindcss/no-arbitrary-value': 'error',
+      'tailwindcss/no-custom-classname': 'error',
+      'tailwindcss/no-contradicting-classname': 'error',
+      'tailwindcss/no-unnecessary-arbitrary-value': 'error',
     },
   },
 ];

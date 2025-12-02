@@ -105,7 +105,7 @@ export default function DatagridContainer({
 
   return (
     <section className={layoutCss} aria-labelledby="datagrid-title">
-      <div className="flex items-center justify-between mt-4">
+      <div className="mt-4 flex items-center justify-between">
         <OdsText
           id="datagrid-title"
           preset={isEmbedded ? 'heading-3' : 'heading-1'}
@@ -120,7 +120,7 @@ export default function DatagridContainer({
           </div>
         )}
       </div>
-      {orderButton && <div className="w-fit mt-4 mb-8">{orderButton}</div>}
+      {orderButton && <div className="mb-8 mt-4 w-fit">{orderButton}</div>}
       <React.Suspense>
         {flattenData?.length && (
           <Datagrid

@@ -41,7 +41,7 @@ export default function OrganizationOptionsTile({
             value: isLicenseActive ? (
               <OdsText>{t('managed_vcd_dashboard_windows_license_active')}</OdsText>
             ) : (
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <OdsText>{t('managed_vcd_dashboard_windows_license_unactive')}</OdsText>
                 <ActionMenu
                   id="license_menu"
