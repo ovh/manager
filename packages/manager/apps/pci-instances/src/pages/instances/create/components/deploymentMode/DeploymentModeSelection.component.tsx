@@ -36,11 +36,12 @@ export const DeploymentModeSelection = () => {
     field: ControllerRenderProps<TDeploymentModeSelection, 'deploymentModes'>,
     selectedMode: TDeploymentMode,
   ) => () => {
-    const isSelected = field.value.includes(selectedMode);
+    const values = field.value ?? [];
+    const isSelected = values.includes(selectedMode);
 
     const selection = isSelected
-      ? field.value.filter((value) => value !== selectedMode)
-      : [...field.value, selectedMode];
+      ? values.filter((value) => value !== selectedMode)
+      : [...values, selectedMode];
 
     field.onChange(selection);
 
@@ -69,7 +70,7 @@ export const DeploymentModeSelection = () => {
             {deploymentModes.map(({ mode, title, description, Image }) => (
               <PciCard
                 selectable
-                selected={field.value.includes(mode)}
+                selected={(field.value ?? []).includes(mode)}
                 className="h-full"
                 key={mode}
                 onClick={handleSelect(field, mode)}
@@ -77,7 +78,7 @@ export const DeploymentModeSelection = () => {
                 <PciCard.Header>
                   <Checkbox
                     className="w-full"
-                    checked={field.value.includes(mode)}
+                    checked={(field.value ?? []).includes(mode)}
                   >
                     <CheckboxControl />
                     <CheckboxLabel className="font-bold text-lg text-[--ods-color-heading]">

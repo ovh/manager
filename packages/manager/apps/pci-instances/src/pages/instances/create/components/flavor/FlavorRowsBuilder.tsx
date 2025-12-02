@@ -3,36 +3,33 @@ import { TableRow } from '@/components/flavorsTable/FlavorsTable.component';
 import { DeploymentModeBadge } from '@/components/deploymentModeBadge/DeploymentModeBadge.component';
 import { TFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
 import { ReactNode } from 'react';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 type FlavorRenderers = {
   renderName: (flavor: TFlavorDataForTable) => ReactNode;
   renderRadio: (id: string, disabled?: boolean) => ReactNode;
+  renderHourlyPrice: (value: number | null) => ReactNode;
+  renderMonthlyPrice: (
+    realMinimumMonthlyPrice: number | null,
+    estimatedMinimumMonthlyPrice: number | null,
+  ) => ReactNode;
 };
 
-export function FlavorRowsBuilder(
+export const FlavorRowsBuilder = (
   flavors: TFlavorDataForTable[],
-  { renderName, renderRadio }: FlavorRenderers,
+  {
+    renderName,
+    renderRadio,
+    renderHourlyPrice,
+    renderMonthlyPrice,
+  }: FlavorRenderers,
   withUnavailable: boolean,
-): TableRow[] {
-  const { getTextPrice } = useCatalogPrice(4);
-
+): TableRow[] => {
   return flavors
     .filter(
       ({ unavailable, unavailableQuota }) =>
         withUnavailable || !(unavailable || unavailableQuota),
     )
     .map((flavor) => {
-      const minimumHourlyPrice = flavor.realMinimumHourlyPrice
-        ? getTextPrice(flavor.realMinimumHourlyPrice)
-        : '-';
-
-      const minimumMonthlyPrice = flavor.realMinimumMonthlyPrice
-        ? getTextPrice(flavor.realMinimumMonthlyPrice)
-        : flavor.estimatedMinimumMonthlyPrice
-        ? `~ ${getTextPrice(flavor.estimatedMinimumMonthlyPrice)}`
-        : '-';
-
       return {
         id: flavor.id,
         disabled: flavor.unavailableQuota,
@@ -48,16 +45,11 @@ export function FlavorRowsBuilder(
             -
           </Text>
         ),
-        hourlyPrice: (
-          <Text preset={TEXT_PRESET.span} className="font-semibold">
-            {minimumHourlyPrice}
-          </Text>
-        ),
-        monthlyPrice: (
-          <Text preset={TEXT_PRESET.span} className="font-semibold">
-            {minimumMonthlyPrice}
-          </Text>
+        hourlyPrice: renderHourlyPrice(flavor.realMinimumHourlyPrice),
+        monthlyPrice: renderMonthlyPrice(
+          flavor.realMinimumMonthlyPrice,
+          flavor.estimatedMinimumMonthlyPrice,
         ),
       };
     });
-}
+};

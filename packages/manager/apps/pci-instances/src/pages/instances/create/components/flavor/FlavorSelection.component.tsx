@@ -43,7 +43,12 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     name: ['flavorCategory', 'flavorType', 'microRegion', 'flavorId'],
   });
 
-  const { renderName, renderRadio } = useFlavorCommon();
+  const {
+    renderName,
+    renderRadio,
+    renderHourlyPrice,
+    renderMonthlyPrice,
+  } = useFlavorCommon();
   const [unavailableFlavor, setUnavailableFlavor] = useState<string | null>(
     null,
   );
@@ -78,11 +83,20 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       columns: FlavorColumnsBuilder(t),
       rows: FlavorRowsBuilder(
         flavors,
-        { renderName, renderRadio },
+        { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice },
         withUnavailable,
       ),
     };
-  }, [flavorCategory, flavors, renderName, renderRadio, t, withUnavailable]);
+  }, [
+    flavorCategory,
+    flavors,
+    renderName,
+    renderRadio,
+    renderHourlyPrice,
+    renderMonthlyPrice,
+    t,
+    withUnavailable,
+  ]);
 
   const availableRegions = useMemo(
     () =>
