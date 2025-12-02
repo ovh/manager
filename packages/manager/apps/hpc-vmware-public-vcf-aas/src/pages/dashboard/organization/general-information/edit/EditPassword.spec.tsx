@@ -55,13 +55,8 @@ describe('Delete Vrack Network Page', () => {
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    await waitFor(
-      async () => {
-        expect(submitCta).toBeEnabled();
-        await act(() => userEvent.click(submitCta));
-      },
-      { timeout: 10_000 },
-    );
+    expect(submitCta).toBeEnabled();
+    await act(() => userEvent.click(submitCta));
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), {

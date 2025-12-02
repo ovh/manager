@@ -97,8 +97,6 @@ describe('VrackSegmentDatagrid', () => {
     );
     expect(screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segment)[0]).toBeInTheDocument();
 
-    screen.debug(undefined, Infinity);
-
     await waitFor(
       () => {
         expect(
@@ -109,18 +107,18 @@ describe('VrackSegmentDatagrid', () => {
             ),
           )[0],
         ).toBeInTheDocument();
-        // Check if all VLAN IDs are rendered
-        mockVrackSegmentList.forEach((network) => {
-          const vlanId = screen.getByText(
-            fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
-              '{{ vlanId }}',
-              network.targetSpec.vlanId,
-            ),
-          );
-          expect(vlanId).toBeInTheDocument();
-        });
       },
       { timeout: 4_000 },
     );
+    // Check if all VLAN IDs are rendered
+    mockVrackSegmentList.forEach((network) => {
+      const vlanId = screen.getByText(
+        fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
+          '{{ vlanId }}',
+          network.targetSpec.vlanId,
+        ),
+      );
+      expect(vlanId).toBeInTheDocument();
+    });
   });
 });
