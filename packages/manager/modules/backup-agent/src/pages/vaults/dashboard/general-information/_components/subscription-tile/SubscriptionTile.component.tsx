@@ -23,7 +23,7 @@ export function SubscriptionTile({ vaultId }: SubscriptionTileProps) {
   const { isLoading } = useBackupVaultDetails({ vaultId });
 
   return (
-    <ManagerTile>
+    <ManagerTile className="h-fit">
       <ManagerTile.Title>{t(`${NAMESPACES.BILLING}:subscription`)}</ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>

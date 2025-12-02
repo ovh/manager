@@ -31,33 +31,35 @@ export default function DashboardPage() {
   };
 
   return (
-    <BaseLayout
-      header={{ title: tenantResource?.currentState.name ?? tenantId }}
-      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
-      onClickReturn={onNavigateBackClicked}
-      breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
-      tabs={
-        <OdsTabs>
-          {tabs.map((tab) => (
-            <NavLink
-              key={tab.name}
-              to={tab.to}
-              className="no-underline"
-              onClick={() => {
-                if (tab.trackingActions?.length) {
-                  trackClick({ actions: tab.trackingActions });
-                }
-              }}
-            >
-              <OdsTab isSelected={tab.isActive}>{t(tab.title)}</OdsTab>
-            </NavLink>
-          ))}
-        </OdsTabs>
-      }
-    >
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
-    </BaseLayout>
+    <>
+      <BaseLayout
+        header={{ title: tenantResource?.currentState.name ?? tenantId }}
+        backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
+        onClickReturn={onNavigateBackClicked}
+        breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
+        tabs={
+          <OdsTabs>
+            {tabs.map((tab) => (
+              <NavLink
+                key={tab.name}
+                to={tab.to}
+                className="no-underline"
+                onClick={() => {
+                  if (tab.trackingActions?.length) {
+                    trackClick({ actions: tab.trackingActions });
+                  }
+                }}
+              >
+                <OdsTab isSelected={tab.isActive}>{t(tab.title)}</OdsTab>
+              </NavLink>
+            ))}
+          </OdsTabs>
+        }
+      >
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+      </BaseLayout>
+    </>
   );
 }
