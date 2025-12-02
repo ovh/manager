@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import { RouterProvider, createMemoryRouter, createRoutesFromElements } from 'react-router-dom';
 
@@ -15,16 +15,19 @@ export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
     initialIndex: 0,
   });
 
-  const queryClient = new QueryClient({
-    defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
-  });
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
+      }),
+  );
 
   return (
     <QueryClientProvider client={queryClient}>
       <MessageContextProvider>
-        <Suspense fallback={<Loading />}>
+        <React.Suspense fallback={<Loading />}>
           <RouterProvider router={router} />
-        </Suspense>
+        </React.Suspense>
       </MessageContextProvider>
     </QueryClientProvider>
   );
