@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -30,13 +30,13 @@ export function GeneralInformationTile<T extends { name: string }>({
   );
 
   return (
-    <ManagerTile>
+    <ManagerTile className="h-fit">
       <ManagerTile.Title>{t(`${NAMESPACES.DASHBOARD}:general_information`)}</ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:name`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : resourceDetails!.currentState.name}
+          {isLoading ? <OdsSkeleton /> : <OdsText>{resourceDetails!.currentState.name}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
@@ -57,7 +57,7 @@ export function GeneralInformationTile<T extends { name: string }>({
           {isLoading || isLocationLoading ? (
             <OdsSkeleton />
           ) : (
-            (locationData?.location ?? resourceDetails!.currentState.region)
+            <OdsText>{locationData?.location ?? resourceDetails!.currentState.region}</OdsText>
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
@@ -68,7 +68,7 @@ export function GeneralInformationTile<T extends { name: string }>({
           {isLoading || isLocationLoading ? (
             <OdsSkeleton />
           ) : (
-            (locationData?.name ?? resourceDetails!.currentState.region)
+            <OdsText>{locationData?.name ?? resourceDetails!.currentState.region}</OdsText>
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>

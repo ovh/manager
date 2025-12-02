@@ -12,7 +12,7 @@ export default function GeneralInformationPage() {
   const { data: tenantResource } = useBackupTenantDetails({ tenantId: tenantId! });
 
   return (
-    <section className="max-w-6xl mx-auto px-12 grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8">
+    <section className="flex md:flex-row flex-col gap-8">
       <GeneralInformationTenantTile tenantId={tenantId!} />
       <SubscriptionTile tenantId={tenantResource?.id} />
       <BillingInformationsTileStandard resourceName={tenantResource?.id} />
