@@ -18,6 +18,7 @@ export const useRules = <T extends RuleField>(
   useQuery({
     queryKey: ['/newAccount/rules', ...generateQueryKey(params)],
     queryFn: () => getRules(params),
+    placeholderData: (prev) => prev,
     select: fields
       ? (data) => {
           const selectedData = {} as { [K in T]: Rule };
