@@ -3,33 +3,33 @@
 exports[`TagsList Component - Snapshot Tests > displays all tags 1`] = `
 <div>
   <div
-    class="w-full h-full flex flex-wrap min-w-[85px]"
+    class=w-full h-full flex flex-wrap min-w-[85px]
   >
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
+      class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+      data-ods=badge
+      style=max-width: -32px;
     >
       tag1:tag1
     </span>
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
+      class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+      data-ods=badge
+      style=max-width: -32px;
     >
       tag2:tag2
     </span>
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
+      class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+      data-ods=badge
+      style=max-width: -32px;
     >
       tag3:tag3
     </span>
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
+      class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+      data-ods=badge
+      style=max-width: -32px;
     >
       tag4:tag4
     </span>
@@ -40,41 +40,41 @@ exports[`TagsList Component - Snapshot Tests > displays all tags 1`] = `
 exports[`TagsList Component - Snapshot Tests > displays fewer tags along with Link 1`] = `
 <div>
   <div
-    class="w-full h-full flex flex-wrap min-w-[85px]"
+    class=w-full h-full flex flex-wrap min-w-[85px]
   >
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
+      class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+      data-ods=badge
+      style=max-width: -32px;
     >
       tag1:tag1
     </span>
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
+      class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+      data-ods=badge
+      style=max-width: -32px;
     >
       tag2:tag2
     </span>
     <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
+      class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+      data-ods=badge
+      style=max-width: -32px;
     >
       tag3:tag3
     </span>
     <a
-      class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"
-      data-ods="link"
-      href="#"
+      class=_link _link--no-text text-xs
+      data-ods=link
+      href=#
     >
       <span>
         ​
       </span>
       <span
-        class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-double-right
+        data-ods=icon
+        role=presentation
       />
     </a>
   </div>
@@ -85,34 +85,34 @@ exports[`TagsList Component - Snapshot Tests > displays modal on click of "More 
 <body>
   <div>
     <div
-      class="w-full h-full flex flex-wrap min-w-[85px]"
+      class=w-full h-full flex flex-wrap min-w-[85px]
     >
       <span
-        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-        data-ods="badge"
-        style="max-width: -32px;"
+        class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+        data-ods=badge
+        style=max-width: -32px;
       >
         tag1:tag1
       </span>
       <span
-        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-        data-ods="badge"
-        style="max-width: -32px;"
+        class=_badge _badge--neutral _badge--md mr-1 mb-1 truncate inline-block
+        data-ods=badge
+        style=max-width: -32px;
       >
         tag2:tag2
       </span>
       <a
-        class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"
-        data-ods="link"
-        href="#"
+        class=_link _link--no-text text-xs
+        data-ods=link
+        href=#
       >
         <span>
           ​
         </span>
         <span
-          class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--chevron-double-right
+          data-ods=icon
+          role=presentation
         />
       </a>
     </div>

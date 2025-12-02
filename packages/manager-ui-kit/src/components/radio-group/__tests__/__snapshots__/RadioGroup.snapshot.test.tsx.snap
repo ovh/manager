@@ -3,151 +3,151 @@
 exports[`RadioGroup Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    aria-labelledby=""
-    aria-orientation="vertical"
-    class="_radio-group_q9kfc_2"
-    data-ods="radio-group"
-    data-orientation="vertical"
-    data-part="root"
-    data-scope="radio-group"
-    dir="ltr"
-    id="radio-group::r0:"
-    role="radiogroup"
-    style="position: relative;"
+    aria-labelledby=
+    aria-orientation=vertical
+    class=_radio-group
+    data-ods=radio-group
+    data-orientation=vertical
+    data-part=root
+    data-scope=radio-group
+    dir=ltr
+    id=radio-group::r0:
+    role=radiogroup
+    style=position: relative;
   >
     <label
-      class="_radio_1q1zq_2"
-      data-ods="radio"
-      data-orientation="vertical"
-      data-part="item"
-      data-scope="radio-group"
-      data-ssr=""
-      data-state="unchecked"
-      dir="ltr"
-      for="radio-group::r0::radio:input:html"
-      id="radio-group::r0::radio:html"
+      class=_radio
+      data-ods=radio
+      data-orientation=vertical
+      data-part=item
+      data-scope=radio-group
+      data-ssr=
+      data-state=unchecked
+      dir=ltr
+      for=radio-group::r0::radio:input:html
+      id=radio-group::r0::radio:html
     >
       <div
-        aria-hidden="true"
-        class="_radio-control_126a2_2"
-        data-ods="radio-control"
-        data-orientation="vertical"
-        data-part="item-control"
-        data-scope="radio-group"
-        data-ssr=""
-        data-state="unchecked"
-        dir="ltr"
-        id="radio-group::r0::radio:control:html"
+        aria-hidden=true
+        class=_radio-control
+        data-ods=radio-control
+        data-orientation=vertical
+        data-part=item-control
+        data-scope=radio-group
+        data-ssr=
+        data-state=unchecked
+        dir=ltr
+        id=radio-group::r0::radio:control:html
       />
       <span
-        data-ods="radio-label"
-        data-orientation="vertical"
-        data-part="item-text"
-        data-scope="radio-group"
-        data-ssr=""
-        data-state="unchecked"
-        dir="ltr"
-        id="radio-group::r0::radio:label:html"
+        data-ods=radio-label
+        data-orientation=vertical
+        data-part=item-text
+        data-scope=radio-group
+        data-ssr=
+        data-state=unchecked
+        dir=ltr
+        id=radio-group::r0::radio:label:html
       >
         HTML
       </span>
       <input
-        data-ownedby="radio-group::r0:"
-        id="radio-group::r0::radio:input:html"
-        name=":r0:"
-        style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-        type="radio"
-        value="html"
+        data-ownedby=radio-group::r0:
+        id=radio-group::r0::radio:input:html
+        name=:r0:
+        style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
+        type=radio
+        value=html
       />
     </label>
     <label
-      class="_radio_1q1zq_2"
-      data-ods="radio"
-      data-orientation="vertical"
-      data-part="item"
-      data-scope="radio-group"
-      data-ssr=""
-      data-state="unchecked"
-      dir="ltr"
-      for="radio-group::r0::radio:input:css"
-      id="radio-group::r0::radio:css"
+      class=_radio
+      data-ods=radio
+      data-orientation=vertical
+      data-part=item
+      data-scope=radio-group
+      data-ssr=
+      data-state=unchecked
+      dir=ltr
+      for=radio-group::r0::radio:input:css
+      id=radio-group::r0::radio:css
     >
       <div
-        aria-hidden="true"
-        class="_radio-control_126a2_2"
-        data-ods="radio-control"
-        data-orientation="vertical"
-        data-part="item-control"
-        data-scope="radio-group"
-        data-ssr=""
-        data-state="unchecked"
-        dir="ltr"
-        id="radio-group::r0::radio:control:css"
+        aria-hidden=true
+        class=_radio-control
+        data-ods=radio-control
+        data-orientation=vertical
+        data-part=item-control
+        data-scope=radio-group
+        data-ssr=
+        data-state=unchecked
+        dir=ltr
+        id=radio-group::r0::radio:control:css
       />
       <span
-        data-ods="radio-label"
-        data-orientation="vertical"
-        data-part="item-text"
-        data-scope="radio-group"
-        data-ssr=""
-        data-state="unchecked"
-        dir="ltr"
-        id="radio-group::r0::radio:label:css"
+        data-ods=radio-label
+        data-orientation=vertical
+        data-part=item-text
+        data-scope=radio-group
+        data-ssr=
+        data-state=unchecked
+        dir=ltr
+        id=radio-group::r0::radio:label:css
       >
         CSS
       </span>
       <input
-        data-ownedby="radio-group::r0:"
-        id="radio-group::r0::radio:input:css"
-        name=":r0:"
-        style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-        type="radio"
-        value="css"
+        data-ownedby=radio-group::r0:
+        id=radio-group::r0::radio:input:css
+        name=:r0:
+        style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
+        type=radio
+        value=css
       />
     </label>
     <label
-      class="_radio_1q1zq_2"
-      data-ods="radio"
-      data-orientation="vertical"
-      data-part="item"
-      data-scope="radio-group"
-      data-ssr=""
-      data-state="unchecked"
-      dir="ltr"
-      for="radio-group::r0::radio:input:js"
-      id="radio-group::r0::radio:js"
+      class=_radio
+      data-ods=radio
+      data-orientation=vertical
+      data-part=item
+      data-scope=radio-group
+      data-ssr=
+      data-state=unchecked
+      dir=ltr
+      for=radio-group::r0::radio:input:js
+      id=radio-group::r0::radio:js
     >
       <div
-        aria-hidden="true"
-        class="_radio-control_126a2_2"
-        data-ods="radio-control"
-        data-orientation="vertical"
-        data-part="item-control"
-        data-scope="radio-group"
-        data-ssr=""
-        data-state="unchecked"
-        dir="ltr"
-        id="radio-group::r0::radio:control:js"
+        aria-hidden=true
+        class=_radio-control
+        data-ods=radio-control
+        data-orientation=vertical
+        data-part=item-control
+        data-scope=radio-group
+        data-ssr=
+        data-state=unchecked
+        dir=ltr
+        id=radio-group::r0::radio:control:js
       />
       <span
-        data-ods="radio-label"
-        data-orientation="vertical"
-        data-part="item-text"
-        data-scope="radio-group"
-        data-ssr=""
-        data-state="unchecked"
-        dir="ltr"
-        id="radio-group::r0::radio:label:js"
+        data-ods=radio-label
+        data-orientation=vertical
+        data-part=item-text
+        data-scope=radio-group
+        data-ssr=
+        data-state=unchecked
+        dir=ltr
+        id=radio-group::r0::radio:label:js
       >
         JavaScript
       </span>
       <input
-        data-ownedby="radio-group::r0:"
-        id="radio-group::r0::radio:input:js"
-        name=":r0:"
-        style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-        type="radio"
-        value="js"
+        data-ownedby=radio-group::r0:
+        id=radio-group::r0::radio:input:js
+        name=:r0:
+        style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
+        type=radio
+        value=js
       />
     </label>
   </div>

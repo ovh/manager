@@ -64,13 +64,13 @@
   "version_state_deleted": "Eliminato",
   "version_state_reactivate": "Riattivare",
   "versions": "Versioni",
-  "add_row": "Aggiungi una riga",
+  "add_row": "Aggiungi una linea",
   "error_duplicate_keys": "Non puoi avere due chiavi identiche.",
   "error_empty_keys": "Non puoi avere una chiave vuota.",
-  "error_key_value_conversion": "Il valore del segreto non può essere convertito in coppie chiave-valore.",
+  "error_key_value_conversion": "Il valore del secret non può essere convertito in coppie chiave-valore.",
   "key": "Chiave",
-  "key_value": "Chiave valore",
-  "okms_dashboard_title": "Dettaglio del dominio OKMS",
-  "okms_manage_label": "Gestisci il mio dominio OKMS",
+  "key_value": "Chiave-valore",
+  "okms_dashboard_title": "Dettagli del dominio OKMS",
+  "okms_manage_label": "Gestire il mio dominio OKMS",
   "value": "Valore"
 }

@@ -4,105 +4,105 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
 <body>
   <div />
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r3::backdrop"
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r3::backdrop
   />
   <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r3::positioner"
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r3::positioner
   >
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r3::content"
-      role="dialog"
-      tabindex="-1"
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r3::content
+      role=dialog
+      tabindex=-1
     >
       <div
-        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+        class=_modal-header _modal-header--information
       >
         <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r3::close"
-          type="button"
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r3::close
+          type=button
         >
           <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
           />
         </button>
       </div>
       <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
+        class=_modal-body text-left
+        data-ods=modal-body
       >
         <div
-          class="flex items-center mb-4"
+          class=flex items-center mb-4
         >
           <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
+            class=_text--heading-4 block mr-3 flex-1
+            data-ods=text
           >
             Example Heading
           </h4>
         </div>
         <div
-          class="flex flex-col text-left"
+          class=flex flex-col text-left
         >
           <div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
             <label
-              for="test-input"
+              for=test-input
             >
               Test Input
             </label>
             <input
-              data-testid="test-input"
-              id="test-input"
-              type="text"
+              data-testid=test-input
+              id=test-input
+              type=text
             />
           </div>
         </div>
         <div
-          class="flex justify-end flex-wrap gap-4"
+          class=flex justify-end flex-wrap gap-4
         >
           <button
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="secondary-button"
-            disabled=""
-            type="button"
+            class=_button _button--primary _button--md _button--ghost mt-4
+            data-ods=button
+            data-testid=secondary-button
+            disabled=
+            type=button
           >
             Cancel
           </button>
           <button
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="primary-button"
-            disabled=""
-            type="button"
+            class=_button _button--primary _button--md _button--default mt-4
+            data-ods=button
+            data-testid=primary-button
+            disabled=
+            type=button
           >
             Confirm
           </button>
@@ -117,106 +117,106 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
 <body>
   <div />
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r2::backdrop"
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r2::backdrop
   />
   <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r2::positioner"
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r2::positioner
   >
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r2::content"
-      role="dialog"
-      tabindex="-1"
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r2::content
+      role=dialog
+      tabindex=-1
     >
       <div
-        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+        class=_modal-header _modal-header--information
       >
         <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r2::close"
-          type="button"
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r2::close
+          type=button
         >
           <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
           />
         </button>
       </div>
       <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
+        class=_modal-body text-left
+        data-ods=modal-body
       >
         <div
-          class="flex items-center mb-4"
+          class=flex items-center mb-4
         >
           <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
+            class=_text--heading-4 block mr-3 flex-1
+            data-ods=text
           >
             Example Heading
           </h4>
         </div>
         <div
-          class="flex justify-center my-5"
-          data-testid="spinner"
+          class=flex justify-center my-5
+          data-testid=spinner
         >
           <span
-            class="_spinner_o7c7y_10 _spinner--primary_o7c7y_29 _spinner--md_o7c7y_20"
-            data-ods="spinner"
-            role="progressbar"
+            class=_spinner _spinner--primary _spinner--md
+            data-ods=spinner
+            role=progressbar
           >
             <svg
-              aria-hidden="true"
-              class="_spinner__svg_o7c7y_32"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden=true
+              class=_spinner__svg
+              viewBox=0 0 24 24
+              xmlns=http://www.w3.org/2000/svg
             >
               <rect
-                fill="none"
-                height="24"
-                width="24"
+                fill=none
+                height=24
+                width=24
               />
               <g
-                transform="translate(-237.694 -93.932)"
+                transform=translate(-237.694 -93.932)
               >
                 <path
-                  d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-                  transform="translate(5486 4225)"
+                  d=M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z
+                  transform=translate(5486 4225)
                 />
                 <circle
-                  cx="1"
-                  cy="1"
-                  r="1"
-                  transform="translate(248.694 114.932)"
+                  cx=1
+                  cy=1
+                  r=1
+                  transform=translate(248.694 114.932)
                 />
                 <circle
-                  cx="1"
-                  cy="1"
-                  r="1"
-                  transform="translate(238.694 104.932)"
+                  cx=1
+                  cy=1
+                  r=1
+                  transform=translate(238.694 104.932)
                 />
               </g>
             </svg>
@@ -232,133 +232,133 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
 <body>
   <div />
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r4::backdrop"
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r4::backdrop
   />
   <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r4::positioner"
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r4::positioner
   >
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r4::content"
-      role="dialog"
-      tabindex="-1"
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r4::content
+      role=dialog
+      tabindex=-1
     >
       <div
-        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+        class=_modal-header _modal-header--information
       >
         <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r4::close"
-          type="button"
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r4::close
+          type=button
         >
           <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
           />
         </button>
       </div>
       <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
+        class=_modal-body text-left
+        data-ods=modal-body
       >
         <div
-          class="flex items-center mb-4"
+          class=flex items-center mb-4
         >
           <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
+            class=_text--heading-4 block mr-3 flex-1
+            data-ods=text
           >
             Example Heading
           </h4>
         </div>
         <div
-          class="flex flex-col text-left"
+          class=flex flex-col text-left
         >
           <div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
             <label
-              for="test-input"
+              for=test-input
             >
               Test Input
             </label>
             <input
-              data-testid="test-input"
-              id="test-input"
-              type="text"
+              data-testid=test-input
+              id=test-input
+              type=text
             />
           </div>
         </div>
         <div
-          class="flex justify-end flex-wrap gap-4"
+          class=flex justify-end flex-wrap gap-4
         >
           <button
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="secondary-button"
-            type="button"
+            class=_button _button--primary _button--md _button--ghost mt-4
+            data-ods=button
+            data-testid=secondary-button
+            type=button
           >
             <span
-              class="_button__spinner_1koyw_373"
+              class=_button__spinner
             >
               <span
-                class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-                data-ods="spinner"
-                role="none"
+                class=_spinner _spinner--neutral _spinner--sm
+                data-ods=spinner
+                role=none
               >
                 <svg
-                  aria-hidden="true"
-                  class="_spinner__svg_o7c7y_32"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden=true
+                  class=_spinner__svg
+                  viewBox=0 0 24 24
+                  xmlns=http://www.w3.org/2000/svg
                 >
                   <rect
-                    fill="none"
-                    height="24"
-                    width="24"
+                    fill=none
+                    height=24
+                    width=24
                   />
                   <g
-                    transform="translate(-237.694 -93.932)"
+                    transform=translate(-237.694 -93.932)
                   >
                     <path
-                      d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-                      transform="translate(5486 4225)"
+                      d=M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z
+                      transform=translate(5486 4225)
                     />
                     <circle
-                      cx="1"
-                      cy="1"
-                      r="1"
-                      transform="translate(248.694 114.932)"
+                      cx=1
+                      cy=1
+                      r=1
+                      transform=translate(248.694 114.932)
                     />
                     <circle
-                      cx="1"
-                      cy="1"
-                      r="1"
-                      transform="translate(238.694 104.932)"
+                      cx=1
+                      cy=1
+                      r=1
+                      transform=translate(238.694 104.932)
                     />
                   </g>
                 </svg>
@@ -367,48 +367,48 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
             Cancel
           </button>
           <button
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="primary-button"
-            type="button"
+            class=_button _button--primary _button--md _button--default mt-4
+            data-ods=button
+            data-testid=primary-button
+            type=button
           >
             <span
-              class="_button__spinner_1koyw_373"
+              class=_button__spinner
             >
               <span
-                class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-                data-ods="spinner"
-                role="none"
+                class=_spinner _spinner--neutral _spinner--sm
+                data-ods=spinner
+                role=none
               >
                 <svg
-                  aria-hidden="true"
-                  class="_spinner__svg_o7c7y_32"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden=true
+                  class=_spinner__svg
+                  viewBox=0 0 24 24
+                  xmlns=http://www.w3.org/2000/svg
                 >
                   <rect
-                    fill="none"
-                    height="24"
-                    width="24"
+                    fill=none
+                    height=24
+                    width=24
                   />
                   <g
-                    transform="translate(-237.694 -93.932)"
+                    transform=translate(-237.694 -93.932)
                   >
                     <path
-                      d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-                      transform="translate(5486 4225)"
+                      d=M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z
+                      transform=translate(5486 4225)
                     />
                     <circle
-                      cx="1"
-                      cy="1"
-                      r="1"
-                      transform="translate(248.694 114.932)"
+                      cx=1
+                      cy=1
+                      r=1
+                      transform=translate(248.694 114.932)
                     />
                     <circle
-                      cx="1"
-                      cy="1"
-                      r="1"
-                      transform="translate(238.694 104.932)"
+                      cx=1
+                      cy=1
+                      r=1
+                      transform=translate(238.694 104.932)
                     />
                   </g>
                 </svg>
@@ -427,89 +427,89 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
 <body>
   <div />
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r0::backdrop"
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r0::backdrop
   />
   <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r0::positioner"
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r0::positioner
   >
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r0::content"
-      role="dialog"
-      tabindex="-1"
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r0::content
+      role=dialog
+      tabindex=-1
     >
       <div
-        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+        class=_modal-header _modal-header--information
       >
         <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r0::close"
-          type="button"
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r0::close
+          type=button
         >
           <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
           />
         </button>
       </div>
       <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
+        class=_modal-body text-left
+        data-ods=modal-body
       >
         <div
-          class="flex items-center mb-4"
+          class=flex items-center mb-4
         >
           <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
+            class=_text--heading-4 block mr-3 flex-1
+            data-ods=text
           >
             Example Heading
           </h4>
         </div>
         <div
-          class="flex flex-col text-left"
+          class=flex flex-col text-left
         >
           <div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
             <label
-              for="test-input"
+              for=test-input
             >
               Test Input
             </label>
             <input
-              data-testid="test-input"
-              id="test-input"
-              type="text"
+              data-testid=test-input
+              id=test-input
+              type=text
             />
           </div>
         </div>
         <div
-          class="flex justify-end flex-wrap gap-4"
+          class=flex justify-end flex-wrap gap-4
         />
       </div>
     </div>
@@ -521,103 +521,103 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
 <body>
   <div />
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r1::backdrop"
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r1::backdrop
   />
   <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r1::positioner"
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r1::positioner
   >
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r1::content"
-      role="dialog"
-      tabindex="-1"
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r1::content
+      role=dialog
+      tabindex=-1
     >
       <div
-        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+        class=_modal-header _modal-header--information
       >
         <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r1::close"
-          type="button"
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r1::close
+          type=button
         >
           <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
           />
         </button>
       </div>
       <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
+        class=_modal-body text-left
+        data-ods=modal-body
       >
         <div
-          class="flex items-center mb-4"
+          class=flex items-center mb-4
         >
           <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
+            class=_text--heading-4 block mr-3 flex-1
+            data-ods=text
           >
             Example Heading
           </h4>
         </div>
         <div
-          class="flex flex-col text-left"
+          class=flex flex-col text-left
         >
           <div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
             <label
-              for="test-input"
+              for=test-input
             >
               Test Input
             </label>
             <input
-              data-testid="test-input"
-              id="test-input"
-              type="text"
+              data-testid=test-input
+              id=test-input
+              type=text
             />
           </div>
         </div>
         <div
-          class="flex justify-end flex-wrap gap-4"
+          class=flex justify-end flex-wrap gap-4
         >
           <button
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="secondary-button"
-            type="button"
+            class=_button _button--primary _button--md _button--ghost mt-4
+            data-ods=button
+            data-testid=secondary-button
+            type=button
           >
             Cancel
           </button>
           <button
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="primary-button"
-            type="button"
+            class=_button _button--primary _button--md _button--default mt-4
+            data-ods=button
+            data-testid=primary-button
+            type=button
           >
             Confirm
           </button>
@@ -632,103 +632,103 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
 <body>
   <div />
   <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r5::backdrop"
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r5::backdrop
   />
   <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r5::positioner"
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r5::positioner
   >
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-ods="modal-content"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r5::content"
-      role="alertdialog"
-      tabindex="-1"
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r5::content
+      role=alertdialog
+      tabindex=-1
     >
       <div
-        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
+        class=_modal-header _modal-header--critical
       >
         <button
-          aria-label="Close"
-          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
-          data-ods="button"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r5::close"
-          type="button"
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r5::close
+          type=button
         >
           <span
-            class="_icon_10c23_2 _icon--xmark_10c23_562"
-            data-ods="icon"
-            role="presentation"
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
           />
         </button>
       </div>
       <div
-        class="_modal-body_3om6u_2 text-left"
-        data-ods="modal-body"
+        class=_modal-body text-left
+        data-ods=modal-body
       >
         <div
-          class="flex items-center mb-4"
+          class=flex items-center mb-4
         >
           <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-            data-ods="text"
+            class=_text--heading-4 block mr-3 flex-1
+            data-ods=text
           >
             Example Heading
           </h4>
         </div>
         <div
-          class="flex flex-col text-left"
+          class=flex flex-col text-left
         >
           <div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
             <label
-              for="test-input"
+              for=test-input
             >
               Test Input
             </label>
             <input
-              data-testid="test-input"
-              id="test-input"
-              type="text"
+              data-testid=test-input
+              id=test-input
+              type=text
             />
           </div>
         </div>
         <div
-          class="flex justify-end flex-wrap gap-4"
+          class=flex justify-end flex-wrap gap-4
         >
           <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
-            data-ods="button"
-            data-testid="secondary-button"
-            type="button"
+            class=_button _button--critical _button--md _button--ghost mt-4
+            data-ods=button
+            data-testid=secondary-button
+            type=button
           >
             Cancel
           </button>
           <button
-            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
-            data-ods="button"
-            data-testid="primary-button"
-            type="button"
+            class=_button _button--critical _button--md _button--default mt-4
+            data-ods=button
+            data-testid=primary-button
+            type=button
           >
             Confirm
           </button>

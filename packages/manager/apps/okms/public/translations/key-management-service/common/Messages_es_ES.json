@@ -4,5 +4,5 @@
   "key_management_service_cancel": "Cancelar",
   "key_management_service_modify": "Modificar",
   "manage_secrets_link": "Gestionar mis secretos",
-  "manage_service_keys_link": "Gestionar mis claves de servicio"
+  "manage_service_keys_link": "Gestionar mis Service Keys"
 }
