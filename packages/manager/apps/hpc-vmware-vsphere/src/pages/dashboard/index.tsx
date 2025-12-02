@@ -19,6 +19,7 @@ import {
   HeadersProps,
   GuideButton,
   ChangelogButton,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -197,6 +198,7 @@ export default function DashboardPage() {
 
   return (
     <BaseLayout
+      message={<Notifications />}
       breadcrumb={
         <OdsBreadcrumb data-testid="breadcrumb">
           {breadcrumbItems?.map((item) => (
