@@ -13,9 +13,11 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { ReactNode } from 'react';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 export function useFlavorCommon() {
   const { t } = useTranslation('creation');
+  const { getTextPrice } = useCatalogPrice(4);
 
   const renderName = (flavor: {
     name: string;
@@ -68,5 +70,31 @@ export function useFlavorCommon() {
     </Radio>
   );
 
-  return { renderName, renderRadio };
+  const renderHourlyPrice = (value: number | null) => {
+    const minimumHourlyPrice = value !== null ? getTextPrice(value) : '-';
+    return (
+      <Text preset={TEXT_PRESET.span} className="font-semibold">
+        {minimumHourlyPrice}
+      </Text>
+    );
+  };
+
+  const renderMonthlyPrice = (
+    realMinimumMonthlyPrice: number | null,
+    estimatedMinimumMonthlyPrice: number | null,
+  ) => {
+    const minimumMonthlyPrice =
+      realMinimumMonthlyPrice !== null
+        ? getTextPrice(realMinimumMonthlyPrice)
+        : estimatedMinimumMonthlyPrice !== null
+        ? `~ ${getTextPrice(estimatedMinimumMonthlyPrice)}`
+        : '-';
+    return (
+      <Text preset={TEXT_PRESET.span} className="font-semibold">
+        {minimumMonthlyPrice}
+      </Text>
+    );
+  };
+
+  return { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice };
 }

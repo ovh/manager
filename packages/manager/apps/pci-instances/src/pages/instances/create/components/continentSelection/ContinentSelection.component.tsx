@@ -50,7 +50,7 @@ export const ContinentSelection = () => {
             </FormFieldLabel>
             <Select
               items={continentOptions}
-              value={[field.value]}
+              value={field.value ? [...field.value] : []}
               onValueChange={handleContinentChange}
             >
               <SelectControl />
