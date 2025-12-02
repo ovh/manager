@@ -26,14 +26,14 @@
   "READY": "Pronto",
   "DISABLED": "Disattivato",
   "ENABLED": "Attivato",
-  "UPDATING": "Aggiornamento in corso",
+  "UPDATING": "Aggiornamento in corso.",
   "ERROR": "Errore",
-  "DELETING": "Cancellazione in corso",
-  "CREATING": "Creazione in corso",
+  "DELETING": "Eliminazione in corso...",
+  "CREATING": "Creazione in corso...",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard",
   "rancherStatusCreating": "Creazione del tuo Managed Rancher Service in corso... Ti chiediamo di attendere, l'operazione potrebbe richiedere alcuni minuti.",
   "iam": "Autenticazione IAM",
   "iam_authentication_status": "Autenticazione IAM",
-  "iam_authentication_infos_tooltip": "Consente a Harbor di utilizzare le identità gestite da OVHcloud IAM (Identity and Access Management) per controllare l'accesso al registro, evitando così la gestione manuale degli utenti."
+  "iam_authentication_infos_tooltip": "Permette a Rancher di utilizzare le identità gestite da OVHcloud IAM (Identity and Access Management) per controllare l'accesso al servizio, evitando così la gestione manuale degli utenti."
 }

@@ -24,10 +24,10 @@
   "editNameModaleHelperInput": "El nombre del servicio debe tener entre 3 y 63 caracteres; debe empezar y terminar por caracteres alfanuméricos en minúsculas (de la «a» a la «z» y de 0 a 9), y puede contener los siguientes signos de puntuación: guion bajo («_»), punto («.») y guion («-»).",
   "editNameRancherCta": "Modificar",
   "READY": "Listo",
-  "UPDATING": "Actualización en curso",
+  "UPDATING": "Actualización en progreso",
   "ERROR": "Error",
   "DELETING": "Eliminando...",
-  "CREATING": "Creación en curso",
+  "CREATING": "Creando...",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard",
   "DISABLED": "Desactivado",
@@ -35,5 +35,5 @@
   "rancherStatusCreating": "Creando su Managed Rancher Service... Por favor, espere. Esta operación puede tardar unos minutos.",
   "iam": "Autentificación IAM",
   "iam_authentication_status": "Autenticación IAM",
-  "iam_authentication_infos_tooltip": "Permite que Harbor utilice las identidades gestionadas por OVHcloud IAM (Gestión de Identidades y Accesos) para controlar el acceso al registro, evitando así la gestión manual de usuarios."
+  "iam_authentication_infos_tooltip": "Permite a Rancher utilizar las identidades gestionadas por OVHcloud IAM (Identity and Access Management) para controlar el acceso al servicio, evitando así la gestión manual de los usuarios."
 }
