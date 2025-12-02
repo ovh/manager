@@ -43,6 +43,7 @@ export const useObjectLockOptionsForm = ({
 
   // watchers
   const retention = form.watch('retention');
+  form.watch('rule.mode');
   form.watch('rule.durationValue');
   form.watch('rule.durationUnit');
 

@@ -229,7 +229,15 @@ const OrderFunnel = ({
                   <OrderSection
                     id="object-lock"
                     title={t('labelObjectLock')}
-                    description={t('descriptionObjectLock')}
+                    description={
+                      <Trans
+                        i18nKey="descriptionObjectLock"
+                        ns="pci-object-storage/order-funnel"
+                        components={[
+                          <A href={replicationLink} target="_blank" />,
+                        ]}
+                      />
+                    }
                   >
                     <FormField name="objectLock" form={form}>
                       {(field) => (
