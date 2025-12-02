@@ -28,6 +28,7 @@ export default [
     rules: {
       '@typescript-eslint/no-misused-promises': 'off',
       'react/no-multi-comp': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
     },
   },
   /* ------------------------------------------------------------------------ */
