@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { Datagrid } from '@ovh-ux/manager-react-components';

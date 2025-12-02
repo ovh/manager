@@ -7371,24 +7371,10 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
-"@ovh-ux/manager-core-api@^0.18.7":
-  version "0.18.7"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.18.7.tgz#212dad59f15252436bee7ca14c4ae37cbda695e1"
-  integrity sha512-jrbVfdRzc4KbVFcjoVYzAs1Pl+0kN20ZQ3u3YzMm7J9lYFEN7QaLNlFKnBoxLlOpvprtiarmpzm05odpJIFSaw==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.4.5"
-    "@ovh-ux/request-tagger" "^0.5.5"
-    axios "^1.1.2"
-
 "@ovh-ux/manager-core-sso@^0.3.0", "@ovh-ux/manager-core-sso@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
   integrity sha512-22M6BY5AkjzOFMATSg+EpoFXkxYKVbqI2hev7eD2EsfNRCnBINjXMWy9FDD0cXMuwkP7RwxbLuf8dAC4x+JZtA==
-
-"@ovh-ux/manager-core-sso@^0.4.5":
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.4.9.tgz#bc991e14a65bfe7f2bfe2749dfe0346ee12f448e"
-  integrity sha512-P7qCeOwlzGqsbfq7bCfnDfHSf48khF+S9YxCQDCZgaCg9pq8UxRqKsFmhShwVsBBbDAhStcUSvS1VX91TkYpcg==
 
 "@ovh-ux/manager-pci-common@^0.16.4":
   version "0.16.4"
@@ -7486,7 +7472,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.42.4", "@ovh-ux/manager-react-components@^2.43.1":
+"@ovh-ux/manager-react-components@^2.43.1":
   version "2.43.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
   integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
@@ -7516,10 +7502,18 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
-"@ovh-ux/manager-tests-setup@0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.6.0.tgz#6d0f148cdaaf5417de8c752c2ea351a14c252c2f"
-  integrity sha512-ABRjAPi6o8EJgbq4nyuFX5bVcUNwhAZ6nsA01OenbbSX4yKsm4anc7mBrCit3wmFa0Uazsl+aH4fdIOgYljANQ==
+"@ovh-ux/muk@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/muk/-/muk-0.9.0.tgz#873f3d0146c78dd06d20730b8291dcd85311f14d"
+  integrity sha512-6LT51Tj49MDaJ5FBxu/FrXKWWKi2suFquYD7yrdxHbAqJ/qIdMy8eVJNG7MI6yJdiJwZW3fjBrwD+dV5Xekf/w==
+  dependencies:
+    clsx "^2.1.1"
+    dompurify "^3.2.6"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    sass "1.93.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
 
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
@@ -7657,7 +7651,7 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-react@^19.0.2", "@ovhcloud/ods-react@^19.2.0", "@ovhcloud/ods-react@^19.2.1":
+"@ovhcloud/ods-react@19.2.1", "@ovhcloud/ods-react@^19.0.2", "@ovhcloud/ods-react@^19.2.0":
   version "19.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.1.tgz#babc8f579f4109b091f7fb208b49858ca49563b8"
   integrity sha512-xk7u7B/EsxyMrnW1n13PcNNj93SBxKcOzQH8/RNJ3gQYJO+TYcG7w858xlry+KUi+hO2q8aYDcBjS5iD/4x4Eg==
@@ -7694,7 +7688,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
 
-"@ovhcloud/ods-themes@19.2.1", "@ovhcloud/ods-themes@^19.0.2", "@ovhcloud/ods-themes@^19.2.0", "@ovhcloud/ods-themes@^19.2.1":
+"@ovhcloud/ods-themes@19.2.1", "@ovhcloud/ods-themes@^19.0.2", "@ovhcloud/ods-themes@^19.2.0":
   version "19.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"
   integrity sha512-zjtSoX2gaVMtpBVIGmg3HBNfjWeHRAHzTyTOxjeR47L+qo4iAj2pghL4riZpNvn9/YlVaIJT8GpO+Lw/IVAAnQ==
@@ -20453,7 +20447,7 @@ eslint@^8.56.0, eslint@^8.57.0:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
-eslint@^9.19.0, eslint@^9.39.1:
+eslint@^9.19.0, eslint@^9.29.0, eslint@^9.39.1:
   version "9.39.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-9.39.1.tgz#be8bf7c6de77dcc4252b5a8dcb31c2efff74a6e5"
   integrity sha512-BhHmn2yNOFA9H9JmmIVKJmd288g9hrVRDkdoIgRCRuSySRUHH7r/DI6aAXW9T1WwUuY3DFgrcaqB+deURBLR5g==
@@ -33518,7 +33512,7 @@ typescript@^5.5.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
   integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
 
-typescript@^5.9.2, typescript@^5.9.3:
+typescript@^5.8.3, typescript@^5.9.2, typescript@^5.9.3:
   version "5.9.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
   integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
