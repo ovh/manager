@@ -7417,23 +7417,6 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-react-components@2.43.1", "@ovh-ux/manager-react-components@^2.39.0", "@ovh-ux/manager-react-components@^2.43.1":
-  version "2.43.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
-  integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
-  dependencies:
-    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
-    "@tanstack/react-query" "^5.51.21"
-    "@tanstack/react-table" "^8.20.1"
-    clsx "^2.1.1"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    react-i18next "^14.0.5"
-    react-use "^17.5.0"
-    sass "1.56.1"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
-
 "@ovh-ux/manager-react-components@^1.46.0":
   version "1.46.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.46.0.tgz#8c868c4098e210918de90041dbffdc0dabea82d5"
@@ -7494,7 +7477,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.43.1":
+"@ovh-ux/manager-react-components@^2.39.0", "@ovh-ux/manager-react-components@^2.43.1":
   version "2.43.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
   integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
@@ -7521,19 +7504,27 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     "@ovh-ux/shell" "^4.7.1"
     "@ovh-ux/url-builder" "^2.0.4"
+    i18next "^23.8.2"
+    i18next-http-backend "^2.4.2"
+
+"@ovh-ux/manager-react-shell-client@^0.9.1":
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.3.tgz#4f6f40ae85076390ad1c54b5c3a24207d1fab158"
+  integrity sha512-i86lAEyYPY2iCoGCpm8DVF0IuyIxYO+Iccav0/cw0ItUEexsvNHbDWRu9DLlIIS3Vknrx/ualDg0cEbPEA5lZw==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.2.1"
+    "@ovh-ux/ovh-at-internet" "^0.24.1"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    "@ovh-ux/shell" "^4.7.1"
+    "@ovh-ux/url-builder" "^2.0.4"
     "@tanstack/react-query" "^5.64.1"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
-"@ovh-ux/manager-tests-setup@0.4.7", "@ovh-ux/manager-tests-setup@^0.4.7":
+"@ovh-ux/manager-tests-setup@0.4.7":
   version "0.4.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.4.7.tgz#78ad77338942c25da1f471952fb904d1e0d2ef8f"
   integrity sha512-QeHIMaVVDA9XL/XXWs1pWBwm3nWWo30vSiA1ezoAPr0WP5aEb68+D3A13spw1G0lVzBOeLKZc+uC68Dv+nhADA==
-
-"@ovh-ux/manager-tests-setup@^0.2.0", "@ovh-ux/manager-tests-setup@latest":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.2.0.tgz#63f3ec12e420e73072656d3cec5e7b2c4c7c15e5"
-  integrity sha512-VK04xo5oKo+3ge3iYkBUic/l5RTjkDAqdC7y3KGs40fo8iR7AhL6f2JVDdfoamTa3FtwsaLW8RcMjP5U/H8Lzw==
 
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
@@ -7645,10 +7636,10 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.6.2", "@ovhcloud/ods-components@^18.6.2":
-  version "18.6.2"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.2.tgz#eac36f664d0a5f7773dde14addd7db9db1346f7f"
-  integrity sha512-lLkTN+EwAhx/aqa50WwZ56ivhr1swpA+cgiTwtSwSWbXGoyPl0kwaWXtD6Sa5bh2Rrm8uw01tV4HawPM+dlScQ==
+"@ovhcloud/ods-components@18.6.4", "@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.3", "@ovhcloud/ods-components@^18.6.4":
+  version "18.6.4"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.4.tgz#7fc45c501f8ea6a7dda3be41ed1d7095b9c706c3"
+  integrity sha512-vC2qkHEutihuuI0gYo4fRB2Gc7m1X/tfVFzvQb6c2+DcmuzDefkz48otCvqvKX0cz+a0X7Il4yRHhgrqmsH3Tw==
   dependencies:
     "@floating-ui/dom" "1.6.11"
     "@stencil/core" "4.16.0"
@@ -7671,10 +7662,17 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
+"@ovhcloud/ods-react@^19.0.2", "@ovhcloud/ods-react@^19.2.0", "@ovhcloud/ods-react@^19.2.1":
+  version "19.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.1.tgz#babc8f579f4109b091f7fb208b49858ca49563b8"
+  integrity sha512-xk7u7B/EsxyMrnW1n13PcNNj93SBxKcOzQH8/RNJ3gQYJO+TYcG7w858xlry+KUi+hO2q8aYDcBjS5iD/4x4Eg==
+  dependencies:
+    "@ark-ui/react" "5.25.1"
     classnames "2.5.1"
     libphonenumber-js "1.12.8"
 
 "@ovhcloud/ods-react@^19.1.0":
+  version "19.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.1.0.tgz#e0175a3761b8a2b075067a9337c9c898734d416f"
   integrity sha512-VuXFN0TbEqxcvHKzFSZ0UZ3edOkx8Ek158oxXl741re5difT2ecquS6k9jSXplY8hNukP7M1CHxukbiKbXTEHw==
   dependencies:
@@ -7715,6 +7713,11 @@
   version "18.6.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
   integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
+
+"@ovhcloud/ods-themes@^19.1.0":
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.1.0.tgz#1dd59df4983fe1e368ad7f5b950fc57bbeca955f"
+  integrity sha512-Wbz1iMvWQ6vcaXko1+cE3KSlTYiSN6r2qYMxNCCrqBlrw33RkVjDtrIyZKSCqcDrKLtLNIGJa044OrvrpMSbJA==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -10788,13 +10791,6 @@
   integrity sha512-mi5ef8dvsS48GsG6/8M60O2EgrzPK1kNPngOcHBTlIUrB5dGkxP9fuHf05GQRxtSp5W5GlyeUpzOmtkKNpf9dQ==
   dependencies:
     "@tanstack/query-devtools" "5.51.16"
-
-"@tanstack/react-query-devtools@5.90.2":
-  version "5.90.2"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.90.2.tgz#248d6ae89ace7dc2da816fa95cdc2b4f63c9e4d2"
-  integrity sha512-vAXJzZuBXtCQtrY3F/yUNJCV4obT/A/n81kb3+YqLbro5Z2+phdAbceO+deU3ywPw8B42oyJlp4FhO0SoivDFQ==
-  dependencies:
-    "@tanstack/query-devtools" "5.90.1"
 
 "@tanstack/react-query-devtools@^5.50.1":
   version "5.66.0"
