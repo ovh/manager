@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { AlertCircle } from 'lucide-react';
 import {
   Button,
@@ -32,6 +32,11 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useObjectLockOptionsForm } from './ObjectLockOptions.hook';
 import { getMaxDurationValue } from './ObjectLockOptions.schema';
 import { toISO8601 } from '@/lib/iso8601DurationHelper';
+import A from '@/components/links/A.component';
+import {
+  STORAGE_OBJECT_LOCK_LINKS,
+  useLink,
+} from '@/pages/object-storage/create/_components/orderFunnel.const';
 
 export interface Label {
   key?: string;
@@ -40,6 +45,7 @@ export interface Label {
 
 const ObjectLockOptions = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
+  const objectLockDocLink = useLink(STORAGE_OBJECT_LOCK_LINKS);
   const navigate = useNavigate();
   const toast = useToast();
   const { projectId, region, s3Name } = useParams();
@@ -119,7 +125,7 @@ const ObjectLockOptions = () => {
       updateS3Storage(data);
     },
     (errors) => {
-      console.log('errors', errors, form.getValues());
+      console.log('errors', errors);
     },
   );
 
@@ -130,7 +136,13 @@ const ObjectLockOptions = () => {
           <SheetTitle data-testid="edit-object-lock-sheet">
             {t('editObjectLockTitle')}
           </SheetTitle>
-          <SheetDescription>{t('editObjectLockDescription')}</SheetDescription>
+          <SheetDescription>
+            <Trans
+              i18nKey="editObjectLockDescription"
+              ns="pci-object-storage/storages/s3/dashboard"
+              components={[<A href={objectLockDocLink} target="_blank" />]}
+            />
+          </SheetDescription>
         </SheetHeader>
         <form id="object-lock-options-form" onSubmit={onSubmit}>
           <div className="gap-6 flex flex-col">
@@ -215,7 +227,16 @@ const ObjectLockOptions = () => {
               <Alert variant="warning" className="rounded-md">
                 <AlertDescription className="flex gap-2 items-center">
                   <AlertCircle className="size-4" />
-                  {t('objectLockComplianceModeWarning')}
+                  <div>
+                    <Trans
+                      i18nKey="objectLockComplianceModeWarning"
+                      ns="pci-object-storage/storages/s3/dashboard"
+                      components={[
+                        <br />,
+                        <A href={objectLockDocLink} target="_blank" />,
+                      ]}
+                    ></Trans>
+                  </div>
                 </AlertDescription>
               </Alert>
             )}
@@ -226,48 +247,53 @@ const ObjectLockOptions = () => {
                 {t('objectLockDurationLabel')}
               </Label>
               <div className="flex gap-2">
-                <FormField name="rule.durationValue" form={form}>
-                  {(field) => (
-                    <Input
-                      id="duration-input"
-                      type="number"
-                      min="1"
-                      max={getMaxDurationValue(
-                        form.getValues('rule.durationUnit') || 'D',
-                      )}
-                      value={field.value}
-                      onChange={(value) => {
-                        // convert input to number
-                        const intValue = parseInt(value.target.value, 10);
-                        field.onChange(Number.isNaN(intValue) ? 1 : intValue);
-                      }}
-                      className="w-24 text-center"
-                      disabled={!form.getValues('retention')}
-                    />
-                  )}
-                </FormField>
-                <FormField name="rule.durationUnit" form={form}>
-                  {(field) => (
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                      disabled={!form.getValues('retention')}
-                    >
-                      <SelectTrigger className="flex-1">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {durationUnitOptions.map((option) => (
-                          <SelectItem key={option.id} value={option.id}>
-                            {t(option.label, {
-                              count: form.getValues('rule.durationValue') || 1,
-                            })}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                </FormField>
+                <div className="w-24">
+                  <FormField name="rule.durationValue" form={form}>
+                    {(field) => (
+                      <Input
+                        id="duration-input"
+                        type="number"
+                        min="1"
+                        max={getMaxDurationValue(
+                          form.getValues('rule.durationUnit') || 'D',
+                        )}
+                        value={field.value}
+                        onChange={(value) => {
+                          // convert input to number
+                          const intValue = parseInt(value.target.value, 10);
+                          field.onChange(Number.isNaN(intValue) ? 1 : intValue);
+                        }}
+                        className="w-full text-center"
+                        disabled={!form.getValues('retention')}
+                      />
+                    )}
+                  </FormField>
+                </div>
+                <div className="flex-1">
+                  <FormField name="rule.durationUnit" form={form}>
+                    {(field) => (
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        disabled={!form.getValues('retention')}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {durationUnitOptions.map((option) => (
+                            <SelectItem key={option.id} value={option.id}>
+                              {t(option.label, {
+                                count:
+                                  form.getValues('rule.durationValue') || 1,
+                              })}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  </FormField>
+                </div>
               </div>
             </div>
           </div>
