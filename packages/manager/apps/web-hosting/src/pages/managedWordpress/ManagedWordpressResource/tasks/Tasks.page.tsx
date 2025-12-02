@@ -51,7 +51,7 @@ export default function TasksPage() {
     () => [
       {
         id: 'defaultFqdn',
-        accessorFn: (row) => row.link ?? '',
+        accessorKey: 'link',
 
         cell: ({ row }) => {
           const id = row?.original?.link?.split('/').pop();
@@ -64,7 +64,7 @@ export default function TasksPage() {
       },
       {
         id: 'type',
-        accessorFn: (row) => row.type,
+        accessorKey: 'type',
         cell: ({ getValue }) => {
           return (
             <span>{t(`common:web_hosting_common_type_${getValue<string>().toLowerCase()}`)}</span>
@@ -74,7 +74,7 @@ export default function TasksPage() {
       },
       {
         id: 'status',
-        accessorFn: (row) => row.status,
+        accessorKey: 'status',
         cell: ({ getValue }) => {
           const statusColor = getStatusColor(getValue<Status>());
           return (
@@ -87,7 +87,7 @@ export default function TasksPage() {
       },
       {
         id: 'progress',
-        accessorFn: (row) => row?.message,
+        accessorKey: 'message',
         cell: ({ getValue }) => {
           let progress = parseInt(getValue<string>().replace(/\D/g, '') || '', 10) || 0;
 
@@ -105,7 +105,7 @@ export default function TasksPage() {
       },
       {
         id: 'comments',
-        accessorFn: (row) => row?.message,
+        accessorKey: 'message',
 
         cell: ({ getValue }) => <div>{getValue<string>().replace(/\d+%?/g, '').trim() || ''}</div>,
         header: t('web_hosting_header_comments'),
@@ -113,14 +113,14 @@ export default function TasksPage() {
       },
       {
         id: 'createdAt',
-        accessorFn: (row) => row.createdAt,
+        accessorKey: 'createdAt',
         cell: ({ getValue }) => <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>,
         header: t('web_hosting_common_creation_date'),
         isSortable: true,
       },
       {
         id: 'updatedAt',
-        accessorFn: (row) => row?.updatedAt,
+        accessorKey: 'updatedAt',
         cell: ({ getValue }) => <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>,
         header: t('web_hosting_common_update_date'),
         isSortable: true,
@@ -165,7 +165,7 @@ export default function TasksPage() {
           <Icon name={ICON_NAME.refresh}></Icon>
         </Button>
       </div>
-      <Datagrid columns={data ? columns : []} data={data || []} />
+      <Datagrid columns={data ? columns : []} data={data ?? []} />
     </>
   );
 }

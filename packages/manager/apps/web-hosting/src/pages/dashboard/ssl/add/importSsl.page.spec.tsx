@@ -50,50 +50,35 @@ describe('ImportModal', () => {
     render(<ImportModal />, { wrapper: Wrappers as ComponentType });
 
     const primaryBtn = screen.getByTestId('primary-button');
-    expect(primaryBtn.getAttribute('is-disabled')).toBe('true');
+    expect(primaryBtn).toBeDisabled();
 
-    fireEvent(
-      screen.getByTestId('ssl-manual-certif'),
-      new CustomEvent('odsChange', {
-        detail: { value: '---CERT---' },
-      }),
-    );
-    expect(primaryBtn.getAttribute('is-disabled')).toBe('true');
+    fireEvent.change(screen.getByTestId('ssl-manual-certif'), {
+      target: { value: '---CERT---' },
+    });
+    expect(primaryBtn).toBeDisabled();
 
-    fireEvent(
-      screen.getByTestId('ssl-mode-key'),
-      new CustomEvent('odsChange', {
-        detail: { value: '---KEY---' },
-      }),
-    );
+    fireEvent.change(screen.getByTestId('ssl-mode-key'), {
+      target: { value: '---KEY---' },
+    });
 
-    expect(primaryBtn.getAttribute('is-disabled')).toBe('false');
+    expect(primaryBtn).not.toBeDisabled();
   });
 
   it('call useCreateCertificate with wright data and close modal', () => {
     render(<ImportModal />, { wrapper: Wrappers as ComponentType });
 
-    fireEvent(
-      screen.getByTestId('ssl-manual-certif'),
-      new CustomEvent('odsChange', {
-        detail: { value: '---CERT---' },
-      }),
-    );
-    fireEvent(
-      screen.getByTestId('ssl-mode-key'),
-      new CustomEvent('odsChange', {
-        detail: { value: '---KEY---' },
-      }),
-    );
-    fireEvent(
-      screen.getByTestId('ssl-mode-chain'),
-      new CustomEvent('odsChange', {
-        detail: { value: '---CHAIN---' },
-      }),
-    );
+    fireEvent.change(screen.getByTestId('ssl-manual-certif'), {
+      target: { value: '---CERT---' },
+    });
+    fireEvent.change(screen.getByTestId('ssl-mode-key'), {
+      target: { value: '---KEY---' },
+    });
+    fireEvent.change(screen.getByTestId('ssl-mode-chain'), {
+      target: { value: '---CHAIN---' },
+    });
 
     const primaryBtn = screen.getByTestId('primary-button');
-    expect(primaryBtn.getAttribute('is-disabled')).toBe('false');
+    expect(primaryBtn).not.toBeDisabled();
     fireEvent.click(primaryBtn);
 
     expect(navigate).toHaveBeenCalled();

@@ -29,7 +29,6 @@ import {
 import {
   BaseLayout,
   Datagrid,
-  DatagridColumn,
   GuideMenu,
   GuideMenuItem,
   Link,
@@ -37,6 +36,7 @@ import {
   OvhSubsidiary,
   useNotifications,
 } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
 
 import { getAllWebHostingAttachedDomain } from '@/data/api/webHosting';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
@@ -65,11 +65,6 @@ export default function Websites() {
       domain: punycode.toASCII(debouncedSearchInput),
     });
   const { trackClick } = useOvhTracking();
-
-  const items = useMemo(() => {
-    if (!data) return [];
-    return data.map((website: WebsiteType) => website);
-  }, [data]);
 
   const displayColumns: DatagridColumn<WebsiteType>[] = useMemo(
     () => [
@@ -436,9 +431,9 @@ export default function Websites() {
     >
       <Datagrid
         data-testid="websites-page-datagrid"
-        columns={items ? displayColumns : []}
-        data={items}
-        isLoading={isLoading || isFetchingNextPage}
+        columns={data ? displayColumns : []}
+        data={data ?? []}
+        isLoading={isLoading}
         hasNextPage={!isFetchingNextPage && hasNextPage}
         onFetchNextPage={(): void => {
           void fetchNextPage();
@@ -458,7 +453,7 @@ export default function Websites() {
                 <Icon className="ml-2" name={ICON_NAME.externalLink}></Icon>
               </>
             </Button>
-            <div className="w-max px-0 py-[8px]">
+            <div className="w-max px-0 py-2">
               <Popover
                 aria-label="Export menu"
                 position={POPOVER_POSITION.bottomStart}
