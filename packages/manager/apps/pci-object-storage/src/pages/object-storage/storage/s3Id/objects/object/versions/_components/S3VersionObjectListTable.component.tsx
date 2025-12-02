@@ -13,13 +13,19 @@ import useDownload from '@/hooks/useDownload';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { useS3Data } from '../../../../S3.context';
-import Link from '@/components/links/Link.component';
+import RefreshButton from '@/components/refresh-button/RefreshButton.component';
 
 interface ObjectsListProps {
   objects: StorageObject[];
+  onRefreshClicked: () => void;
+  isLoading: boolean;
 }
 
-export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
+export default function S3ObjectVersionList({
+  objects,
+  onRefreshClicked,
+  isLoading,
+}: ObjectsListProps) {
   const { projectId } = useParams();
   const { s3 } = useS3Data();
   const [objectName, setObjectName] = useState<string>('');
@@ -78,10 +84,13 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
       pageSize={25}
       filtersDefinition={storagesFilters}
     >
-      <DataTable.Header>
-        <DataTable.SearchBar />
-        <DataTable.FiltersButton />
-      </DataTable.Header>
+      <div className="w-full flex flex-col sm:flex-row gap-2 pb-4">
+        <div className="flex ml-auto gap-2">
+          <RefreshButton onClick={onRefreshClicked} isLoading={isLoading} />
+          <DataTable.SearchBar />
+          <DataTable.FiltersButton />
+        </div>
+      </div>
       <DataTable.FiltersList />
       <DataTable.Table />
       <DataTable.Pagination />
