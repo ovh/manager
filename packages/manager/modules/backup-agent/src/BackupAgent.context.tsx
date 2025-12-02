@@ -8,6 +8,6 @@ export interface BackupAgentProviderProps {
 }
 
 export const BackupAgentContext = createContext<BackupAgentProviderProps>({
-  appName: 'Backup Agent',
+  appName: 'backup-agent',
   scope: 'Unknown',
 });
