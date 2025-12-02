@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,25 +15,37 @@ import RegionSelector from '@/components/infrastructures/region-selector/RegionS
 import { TenantConfigurationForm } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useCreateTenants } from '@/data/hooks/tenants/useCreateTenants.hook';
+import { useEditTenant } from '@/data/hooks/tenants/useEditTenant.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
 import { TenantFormLayout } from '@/pages/tenants/TenantForm.layout';
+import { TenantFormProps } from '@/pages/tenants/TenantForm.props';
 import { urls } from '@/routes/Routes.constants';
 import type { TenantFormData } from '@/types/tenants.type';
+import {
+  ObservabilityDurationParsed,
+  parseObservabilityDurationValue,
+} from '@/utils/duration.utils';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
-export const TenantForm = () => {
+export const TenantForm = ({ tenant }: TenantFormProps) => {
   const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS, NAMESPACES.ERROR]);
   const { selectedService } = useObservabilityServiceContext();
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
 
+  const isEditionMode = tenant !== undefined;
+
   const { form } = useTenantsFormSchema();
 
   const goBack = () => {
-    navigate(urls.tenants);
+    if (isEditionMode) {
+      navigate(-1);
+    } else {
+      navigate(urls.tenants);
+    }
   };
 
-  const { mutate: createTenant, isPending } = useCreateTenants({
+  const createMutation = useCreateTenants({
     onSuccess: () => {
       addSuccess(t('tenants:creation.success'));
       goBack();
@@ -44,28 +56,84 @@ export const TenantForm = () => {
     },
   });
 
-  const handleSubmit = (data: TenantFormData) => {
-    if (!selectedService) return;
+  const editMutation = useEditTenant({
+    onSuccess: () => {
+      addSuccess(t('tenants:edition.success'));
+      goBack();
+    },
+    onError: (error) => {
+      const { message } = error;
+      addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
+    },
+  });
 
-    const formData = {
-      resourceName: selectedService.id,
-      targetSpec: {
+  const { isPending } = isEditionMode ? editMutation : createMutation;
+
+  const handleSubmit = useCallback(
+    (data: TenantFormData) => {
+      if (!selectedService) return;
+
+      const targetSpec = {
         title: data.title,
         description: data.description,
-        infrastructure: {
-          id: data.infrastructureId,
-        },
+        ...(!isEditionMode && {
+          infrastructure: {
+            id: data.infrastructureId,
+          },
+        }),
         limits: {
           mimir: {
             compactor_blocks_retention_period: `${data.retentionDuration}${data.retentionUnit}`,
             max_global_series_per_user: data.maxSeries,
           },
         },
-      },
-    };
+      };
 
-    createTenant(formData);
-  };
+      if (isEditionMode && tenant?.id) {
+        editMutation.mutate({
+          resourceName: selectedService.id,
+          tenantId: tenant.id,
+          targetSpec,
+        });
+      } else {
+        createMutation.mutate({
+          resourceName: selectedService.id,
+          targetSpec,
+        });
+      }
+    },
+    [selectedService, isEditionMode, tenant, editMutation, createMutation],
+  );
+
+  const initialValues = useMemo<Partial<TenantFormData>>(() => {
+    if (!isEditionMode || !tenant) {
+      return {};
+    }
+
+    const tenantState = tenant.currentState;
+    const limits = tenantState?.limits;
+    const mimirLimits = limits?.mimir;
+    const compactorRetention = mimirLimits?.compactor_blocks_retention_period;
+
+    const parsedRetentionPeriod: ObservabilityDurationParsed | undefined = compactorRetention
+      ? parseObservabilityDurationValue(compactorRetention)
+      : undefined;
+
+    return {
+      title: tenantState?.title ?? '',
+      description: tenantState?.description ?? '',
+      infrastructureId: tenantState?.infrastructure?.id ?? '',
+      retentionDuration: parsedRetentionPeriod?.value?.toString(),
+      retentionUnit: parsedRetentionPeriod?.unit?.toString(),
+      maxSeries: mimirLimits?.max_global_series_per_user,
+    };
+  }, [isEditionMode, tenant]);
+
+  useEffect(() => {
+    if (isEditionMode && tenant && initialValues && Object.keys(initialValues).length > 0) {
+      form.reset(initialValues);
+    }
+  }, [isEditionMode, tenant, initialValues, form]);
 
   return (
     <TenantFormLayout>
@@ -76,9 +144,11 @@ export const TenantForm = () => {
             void form.handleSubmit(handleSubmit)(e);
           }}
         >
-          <section className="mt-6">
-            <RegionSelector />
-          </section>
+          {!isEditionMode && (
+            <section className="mt-6">
+              <RegionSelector />
+            </section>
+          )}
           <Divider spacing="24" />
           <section className="mt-6">
             <InformationForm
@@ -103,17 +173,17 @@ export const TenantForm = () => {
               {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </Button>
             <Button
-              id="create-tenant"
+              id={isEditionMode ? 'edit-tenant' : 'create-tenant'}
               type="submit"
               size={BUTTON_SIZE.sm}
               color={BUTTON_COLOR.primary}
               disabled={!selectedService || isPending || !form.formState.isValid}
               loading={isPending}
-              iamActions={IAM_ACTIONS.CREATE_TENANT}
+              iamActions={isEditionMode ? IAM_ACTIONS.EDIT_TENANT : IAM_ACTIONS.CREATE_TENANT}
               urn={selectedService?.iam?.urn}
               isIamTrigger={true}
             >
-              {t(`${NAMESPACES.ACTIONS}:create`)}
+              {t(`${NAMESPACES.ACTIONS}:${isEditionMode ? 'save' : 'create'}`)}
             </Button>
           </section>
         </form>
