@@ -98,6 +98,19 @@
                 ></div>
             </div>
         </oui-datagrid-column>
+        <oui-action-menu
+            ng-if="$ctrl.canApprouve($row.status, $row.destination.serviceID)"
+            compact="true"
+        >
+            <oui-action-menu-item
+                ng-if="$ctrl.canApprouve($row.status, $row.destination.serviceID)"
+                data-ng-click="$ctrl.postAcceptReplication($row.destination.serviceID, $row.id, $row.source.shareID)"
+            >
+                <span
+                    data-translate="netapp_replications_button_approuve"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
     </oui-datagrid>
 </section>
 <section ng-if="!$ctrl.hasReplications">

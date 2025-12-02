@@ -2,8 +2,9 @@ import { REPLICATIONS_STATUS, ACCEPTED_REPLICATION_STATE } from './constants';
 
 export default class OvhManagerNetAppReplicationsCtrl {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, $http) {
     this.$translate = $translate;
+    this.$http = $http;
     this.ongoingStatus = REPLICATIONS_STATUS.ONGOING;
     this.hasReplications = false;
   }
@@ -11,6 +12,40 @@ export default class OvhManagerNetAppReplicationsCtrl {
   $onInit() {
     this.hasReplications = !!Object.keys(this.replications).length;
   }
+
+  canApprouve = (replicationStatus, destinationServiceID) =>
+    replicationStatus === 'pending' &&
+    this.serviceName === destinationServiceID;
+
+  postAcceptReplication = (
+    destinationServiceID,
+    replicationID,
+    sourceShareID,
+  ) =>
+    this.$http
+      .get(`/storage/netapp/${destinationServiceID}/share/${sourceShareID}`)
+      .then(({ data: { size } }) =>
+        this.$http
+          .post(
+            `/storage/netapp/${destinationServiceID}/shareReplication/${replicationID}/accept`,
+            {
+              share: {
+                protocol: 'NFS',
+                size,
+              },
+            },
+          )
+          .then(({ data: { id } }) => {
+            this.replication[this.ongoingStatus] = this.replication[
+              this.ongoingStatus
+            ].map((replication) => ({
+              ...replication,
+              ...(id === replication.source.shareID && {
+                status: ACCEPTED_REPLICATION_STATE.IN_SYNC,
+              }),
+            }));
+          }),
+      );
 
   status = {
     pending: {
