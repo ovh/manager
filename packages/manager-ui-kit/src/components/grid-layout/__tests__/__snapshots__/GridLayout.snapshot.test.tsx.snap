@@ -3,10 +3,10 @@
 exports[`GridLayout Snapshot Tests > should render empty grid layout 1`] = `
 <div>
   <div
-    class="w-full block"
+    class=w-full block
   >
     <div
-      class="grid grid-cols-1 md:items-start md:grid-cols-3 gap-4 md:gap-6"
+      class=grid grid-cols-1 md:items-start md:grid-cols-3 gap-4 md:gap-6
     />
   </div>
 </div>
@@ -15,60 +15,60 @@ exports[`GridLayout Snapshot Tests > should render empty grid layout 1`] = `
 exports[`GridLayout Snapshot Tests > should render grid layout with children 1`] = `
 <div>
   <div
-    class="w-full block"
+    class=w-full block
   >
     <div
-      class="grid grid-cols-1 md:items-start md:grid-cols-3 gap-4 md:gap-6"
+      class=grid grid-cols-1 md:items-start md:grid-cols-3 gap-4 md:gap-6
     >
       <div
-        class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-        data-ods="card"
+        class=_card _card--neutral w-full flex-col p-[1rem]
+        data-ods=card
       >
         <section
-          class="flex flex-col w-full"
+          class=flex flex-col w-full
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             General Informations
           </h4>
           <hr
-            class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-            data-ods="divider"
+            class=_divider _divider--primary _divider--24 w-full
+            data-ods=divider
           />
           <dl
-            class="flex flex-col m-0"
+            class=flex flex-col m-0
           >
             <div
-              class="flex flex-col gap-1"
+              class=flex flex-col gap-1
             >
               <dt
-                class="flex justify-between"
+                class=flex justify-between
               >
                 <div
-                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                  class=flex items-center gap-1 text-[var(--ods-color-text)]
                 >
                   <span
-                    class="_text--span_1aw48_60 font-bold"
-                    data-ods="text"
+                    class=_text--span font-bold
+                    data-ods=text
                   >
                     Sample Term
                   </span>
                 </div>
               </dt>
               <dd
-                class="m-0"
+                class=m-0
               >
                 <p
-                  class="_text--paragraph_1aw48_54"
-                  data-ods="text"
+                  class=_text--paragraph
+                  data-ods=text
                 >
                   Sample Description
                 </p>
                 <hr
-                  class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-                  data-ods="divider"
+                  class=_divider _divider--primary _divider--24
+                  data-ods=divider
                 />
               </dd>
             </div>
@@ -76,54 +76,54 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
         </section>
       </div>
       <div
-        class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-        data-ods="card"
+        class=_card _card--neutral w-full flex-col p-[1rem]
+        data-ods=card
       >
         <section
-          class="flex flex-col w-full"
+          class=flex flex-col w-full
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Second child
           </h4>
           <hr
-            class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-            data-ods="divider"
+            class=_divider _divider--primary _divider--24 w-full
+            data-ods=divider
           />
           <dl
-            class="flex flex-col m-0"
+            class=flex flex-col m-0
           >
             <div
-              class="flex flex-col gap-1"
+              class=flex flex-col gap-1
             >
               <dt
-                class="flex justify-between"
+                class=flex justify-between
               >
                 <div
-                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                  class=flex items-center gap-1 text-[var(--ods-color-text)]
                 >
                   <span
-                    class="_text--span_1aw48_60 font-bold"
-                    data-ods="text"
+                    class=_text--span font-bold
+                    data-ods=text
                   >
                     Second child
                   </span>
                 </div>
               </dt>
               <dd
-                class="m-0"
+                class=m-0
               >
                 <p
-                  class="_text--paragraph_1aw48_54"
-                  data-ods="text"
+                  class=_text--paragraph
+                  data-ods=text
                 >
                   Sample Description
                 </p>
                 <hr
-                  class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-                  data-ods="divider"
+                  class=_divider _divider--primary _divider--24
+                  data-ods=divider
                 />
               </dd>
             </div>
@@ -131,54 +131,54 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
         </section>
       </div>
       <div
-        class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-        data-ods="card"
+        class=_card _card--neutral w-full flex-col p-[1rem]
+        data-ods=card
       >
         <section
-          class="flex flex-col w-full"
+          class=flex flex-col w-full
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Third child
           </h4>
           <hr
-            class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-            data-ods="divider"
+            class=_divider _divider--primary _divider--24 w-full
+            data-ods=divider
           />
           <dl
-            class="flex flex-col m-0"
+            class=flex flex-col m-0
           >
             <div
-              class="flex flex-col gap-1"
+              class=flex flex-col gap-1
             >
               <dt
-                class="flex justify-between"
+                class=flex justify-between
               >
                 <div
-                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                  class=flex items-center gap-1 text-[var(--ods-color-text)]
                 >
                   <span
-                    class="_text--span_1aw48_60 font-bold"
-                    data-ods="text"
+                    class=_text--span font-bold
+                    data-ods=text
                   >
                     Third child
                   </span>
                 </div>
               </dt>
               <dd
-                class="m-0"
+                class=m-0
               >
                 <p
-                  class="_text--paragraph_1aw48_54"
-                  data-ods="text"
+                  class=_text--paragraph
+                  data-ods=text
                 >
                   Sample Description
                 </p>
                 <hr
-                  class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-                  data-ods="divider"
+                  class=_divider _divider--primary _divider--24
+                  data-ods=divider
                 />
               </dd>
             </div>

@@ -3,16 +3,16 @@
 exports[`Icon Snapshot tests > renders the component with default props 1`] = `
 <div>
   <span
-    aria-label="home"
-    class="_icon_10c23_2 _icon--home_10c23_337"
-    data-ods="icon"
-    role="img"
+    aria-label=home
+    class=_icon _icon--home
+    data-ods=icon
+    role=img
   />
   <span
-    aria-label="Help"
-    class="_icon_10c23_2 _icon--circle-question_10c23_115"
-    data-ods="icon"
-    role="img"
+    aria-label=Help
+    class=_icon _icon--circle-question
+    data-ods=icon
+    role=img
   />
 </div>
 `;

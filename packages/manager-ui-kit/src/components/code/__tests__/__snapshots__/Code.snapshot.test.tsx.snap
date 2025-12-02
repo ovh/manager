@@ -3,44 +3,44 @@
 exports[`Code Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    class="_code_x2sq0_2"
-    data-ods="code"
-    role="group"
+    class=_code
+    data-ods=code
+    role=group
   >
     <pre
-      class="_code__preformat_x2sq0_14"
+      class=_code__preformat
     >
       <code
-        class="_code__preformat__code_x2sq0_20"
+        class=_code__preformat__code
       >
         import { Text } from '@ovhcloud/ods-react';
       </code>
     </pre>
     <div
-      class="_clipboard_15kq6_2 _code__clipboard_x2sq0_23"
-      data-ods="clipboard"
-      data-part="root"
-      data-scope="clipboard"
-      id="clip::r0:"
-      role="group"
+      class=_clipboard _code__clipboard
+      data-ods=clipboard
+      data-part=root
+      data-scope=clipboard
+      id=clip::r0:
+      role=group
     >
       <button
-        aria-label="Copy to clipboard"
-        class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _tooltip-trigger_wxukn_2 _clipboard-trigger__copy_4b6mw_2 _code__clipboard__trigger__button_x2sq0_27"
-        data-ods="clipboard-trigger"
-        data-part="trigger"
-        data-scope="clipboard"
-        data-state="closed"
-        dir="ltr"
-        id="tooltip::r1::trigger"
-        role="button"
-        tabindex="0"
-        type="button"
+        aria-label=Copy to clipboard
+        class=_button _button--primary _button--sm _button--ghost _tooltip-trigger _clipboard-trigger__copy _code__clipboard__trigger__button
+        data-ods=clipboard-trigger
+        data-part=trigger
+        data-scope=clipboard
+        data-state=closed
+        dir=ltr
+        id=tooltip::r1::trigger
+        role=button
+        tabindex=0
+        type=button
       >
         <span
-          class="_icon_10c23_2 _icon--file-copy_10c23_247"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--file-copy
+          data-ods=icon
+          role=presentation
         />
       </button>
     </div>
