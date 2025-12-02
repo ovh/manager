@@ -120,8 +120,8 @@ function AccountDetailsForm({
       phoneCountry: currentUser.phoneCountry || 'GB',
       organisation,
       companyNationalIdentificationNumber,
-      address: address || currentUser.address,
-      city: city || currentUser.city,
+      address: address || currentUser.address || '',
+      city: city || currentUser.city || '',
       legalform: legalForm,
       smsConsent: false,
     },
@@ -162,6 +162,7 @@ function AccountDetailsForm({
 
   const phoneCountry = watch('phoneCountry');
   const phoneType = watch('phoneType');
+  const country = watch('country');
 
   useEffect(() => {
     if (phoneType === 'landline' && isSMSConsentAvailable) {
@@ -173,7 +174,13 @@ function AccountDetailsForm({
     if (phoneCountry) {
       updateRulesParams('phoneCountry', phoneCountry);
     }
-  }, [phoneCountry]);
+    if (country) {
+      updateRulesParams('country', country);
+      if (country !== currentUser.country) {
+        setValue('language', '');
+      }
+    }
+  }, [phoneCountry, country]);
 
   const { mutate: addAccountDetails, isPending: isFormPending } = useMutation({
     mutationFn: async (payload: FormData) => {
@@ -560,6 +567,7 @@ function AccountDetailsForm({
                       isDisabled={!rules}
                       className="flex-1"
                       hasError={!!errors[name]}
+                      key={`areas_for_${country}_${rules?.area.in?.length || 0}`}
                     >
                       {rules?.area.in?.map((area: string) => (
                         <option key={area} value={area}>
@@ -693,68 +701,74 @@ function AccountDetailsForm({
               <OdsSkeleton className="w-full" />
             </div>
           )}
-          {
-            <OdsFormField>
-              <OdsText
-                preset="caption"
-                aria-label={t('account_details_field_phone')}
-              >
-                <label htmlFor="phone">
-                  {t('account_details_field_phone')}
-                  {rules?.phone?.mandatory && ' *'}
-                </label>
-              </OdsText>
-              <OdsPhoneNumber
-                name="phone"
-                countries={
-                  rules?.phoneCountry && rules?.phoneCountry.in
-                    ? [
-                        ...rules?.phoneCountry.in
-                          .filter(
-                            (countryCode: string) =>
-                              ODS_PHONE_NUMBER_COUNTRY_ISO_CODE[
-                                countryCode.toLowerCase() as keyof typeof ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
-                              ],
-                          )
-                          .map(
-                            (countryCode: string) =>
-                              countryCode.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
-                          ),
-                      ]
-                    : []
-                }
-                value={watch('phone')}
-                isoCode={
-                  watch(
-                    'phoneCountry',
-                  )?.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
-                }
-                onOdsChange={(
-                  e: OdsPhoneNumberCustomEvent<OdsPhoneNumberChangeEventDetail>,
-                ) => {
-                  switch (e.detail.name) {
-                    case 'iso-code':
-                      setValue('phoneCountry', e.detail.value?.toUpperCase());
-                      break;
-                    case 'phone':
-                      setValue('phone', e.detail.value || '');
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-                class="w-full flex flex-row"
-              />
-              {errors.phone && rules?.phone && (
+          <Controller
+            control={control}
+            name="phone"
+            render={({ field: { name, value, onBlur } }) => (
+              <OdsFormField>
                 <OdsText
-                  className="text-critical leading-[0.8]"
                   preset="caption"
+                  aria-label={t('account_details_field_phone')}
                 >
-                  {renderTranslatedZodError(errors.phone.message, rules?.phone)}
+                  <label htmlFor="phone">
+                    {t('account_details_field_phone')}
+                    {rules?.phone?.mandatory && ' *'}
+                  </label>
                 </OdsText>
-              )}
-            </OdsFormField>
-          }
+                <OdsPhoneNumber
+                  name={name}
+                  countries={
+                    rules?.phoneCountry && rules?.phoneCountry.in
+                      ? [
+                          ...rules?.phoneCountry.in
+                            .filter(
+                              (countryCode: string) =>
+                                ODS_PHONE_NUMBER_COUNTRY_ISO_CODE[
+                                  countryCode.toLowerCase() as keyof typeof ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
+                                ],
+                            )
+                            .map(
+                              (countryCode: string) =>
+                                countryCode.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
+                            ),
+                        ]
+                      : []
+                  }
+                  value={value}
+                  isoCode={
+                    watch(
+                      'phoneCountry',
+                    )?.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
+                  }
+                  onOdsChange={(
+                    e: OdsPhoneNumberCustomEvent<OdsPhoneNumberChangeEventDetail>,
+                  ) => {
+                    switch (e.detail.name) {
+                      case 'iso-code':
+                        setValue('phoneCountry', e.detail.value?.toUpperCase());
+                        break;
+                      case 'phone':
+                        setValue('phone', e.detail.value || '');
+                        break;
+                      default:
+                        break;
+                    }
+                  }}
+                  onOdsBlur={onBlur}
+                  hasError={!!errors.phone}
+                  className="w-full flex flex-row"
+                />
+                {errors.phone && rules?.phone && (
+                  <OdsText
+                    className="text-critical leading-[0.8]"
+                    preset="caption"
+                  >
+                    {renderTranslatedZodError(errors.phone.message, rules?.phone)}
+                  </OdsText>
+                )}
+              </OdsFormField>
+            )}
+            />
         </div>
 
         <div className="flex flex-col">
@@ -776,24 +790,35 @@ function AccountDetailsForm({
                   </label>
                 </OdsText>
                 {!isLoading && (
-                  <OdsSelect
-                    name={name}
-                    value={value}
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                    isDisabled={!rules}
-                    className="flex-1"
-                  >
-                    {rules?.language
-                      ? rules?.language.in?.map((lang: string) => (
-                          <option key={lang} value={lang}>
-                            {t(`language_${lang}`, {
-                              ns: NAMESPACES.LANGUAGE,
-                            })}
-                          </option>
-                        ))
-                      : null}
-                  </OdsSelect>
+                  <>
+                    <OdsSelect
+                      name={name}
+                      value={value}
+                      onOdsChange={onChange}
+                      onOdsBlur={onBlur}
+                      isDisabled={!rules}
+                      className="flex-1"
+                      key={`languages_for_${country}_${rules?.language.in?.length || 0}`}
+                    >
+                      {rules?.language
+                        ? rules?.language.in?.map((lang: string) => (
+                            <option key={lang} value={lang}>
+                              {t(`language_${lang}`, {
+                                ns: NAMESPACES.LANGUAGE,
+                              })}
+                            </option>
+                          ))
+                        : null}
+                    </OdsSelect>
+                    {errors[name] && rules?.[name] && (
+                      <OdsText
+                        className="text-critical leading-[0.8]"
+                        preset="caption"
+                      >
+                        {renderTranslatedZodError(errors[name].message, rules?.phone)}
+                      </OdsText>
+                    )}
+                  </>
                 )}
               </OdsFormField>
             )}
@@ -922,9 +947,6 @@ export default function AccountDetailsPage() {
 
   const updateRulesParams = useCallback(
     (key: keyof RulesParam, value: string) => {
-      if (rulesParams[key] === value) {
-        return;
-      }
       setRulesParams((prev) => ({
         ...prev,
         [key]: value,
@@ -961,7 +983,7 @@ export default function AccountDetailsPage() {
           <AccountDetailsForm
             rules={rules}
             isLoading={isLoading}
-            currentUser={{ ...(currentUser || {}), ...rulesParams }}
+            currentUser={{ ...(currentUser || {}) }}
             updateRulesParams={updateRulesParams}
           />
         )}
