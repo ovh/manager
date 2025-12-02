@@ -50,9 +50,7 @@ describe('Voucher component', () => {
   it('disables add button when voucher is empty', () => {
     render(<Voucher {...defaultProps} />);
 
-    const addVoucherButton = document.querySelector(
-      'ods-button[label="pci_projects_new_voucher_form_add"]',
-    ) as Element;
+    const addVoucherButton = document.querySelector('ods-button[label="add"]') as Element;
 
     expect(addVoucherButton).toHaveAttribute('is-disabled', 'true');
   });
@@ -71,9 +69,7 @@ describe('Voucher component', () => {
 
     const voucherInput = document.querySelector('ods-input[name="voucher"]') as Element;
 
-    const addVoucherButton = document.querySelector(
-      'ods-button[label="pci_projects_new_voucher_form_add"]',
-    ) as Element;
+    const addVoucherButton = document.querySelector('ods-button[label="add"]') as Element;
 
     expect(voucherInput).toHaveAttribute('is-disabled', 'true');
     expect(addVoucherButton).toHaveAttribute('is-disabled', 'true');
