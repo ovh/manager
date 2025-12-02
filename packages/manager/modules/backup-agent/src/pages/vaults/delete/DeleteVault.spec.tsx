@@ -32,13 +32,13 @@ describe('[INTEGRATION] - Delete Vault page', () => {
     // and modal content
     const modalElements = [
       labels.vaultDelete.delete_vault_modal_title,
-      labels.vaultDelete.delete_vault_modal_warning,
+      ...labels.vaultDelete.unable_to_delete_vault_feature_unavailable.split('\n'),
       labels.vaultDelete.delete_vault_modal_content.replace(
         '{{vaultName}}',
         config.vault?.currentState.resourceName,
       ),
     ];
-    modalElements.forEach((el) => expect(screen.getByText(el)).toBeVisible());
+    modalElements.forEach((el) => expect(screen.getByText(new RegExp(el))).toBeVisible());
 
     // and modal buttons
     const modalButtons = [
