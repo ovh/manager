@@ -23,7 +23,7 @@ export const InputCancellable: FC<TInputCancellableProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center w-full">
+    <form onSubmit={handleSubmit} className="flex w-full items-center">
       <Input className={clsx('mr-4 w-full', className)} {...props} />
       <Button
         aria-label={t('cancel')}

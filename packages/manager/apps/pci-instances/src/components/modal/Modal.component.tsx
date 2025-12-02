@@ -23,7 +23,7 @@ const Modal = ({
   dismissible = false,
   disabled,
   className,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   wrapper: Wrapper = Fragment,
 }: {
   title: string;
@@ -54,11 +54,11 @@ const Modal = ({
         className={className}
       >
         <Wrapper>
-          <section id={id} className="px-8 pt-6 pb-10">
+          <section id={id} className="px-8 pb-10 pt-6">
             <Text preset={TEXT_PRESET.heading4}>{title}</Text>
             {children}
           </section>
-          <div className="flex justify-end p-8 pt-0 gap-4">
+          <div className="flex justify-end gap-4 p-8 pt-0">
             <Button
               disabled={isPending}
               variant={BUTTON_VARIANT.ghost}

@@ -151,7 +151,7 @@ const InstanceGeneralInfoBlock: FC = () => {
       </DashboardTileBlock>
       {instance && (
         <DashboardTileBlock>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Text
               className="my-4 text-[var(--ods-color-primary-500)]"
               preset={TEXT_PRESET.label}

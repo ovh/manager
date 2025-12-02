@@ -6,7 +6,7 @@ import InstanceNetworkingBlock from './components/InstanceNetworkingBlock.compon
 import BackupBlock from './components/BackupBlock.component';
 
 const Dashboard: FC = () => (
-  <div className="grid grid-cols-1 md:items-start md:grid-cols-3 gap-4 md:gap-6">
+  <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:items-start md:gap-6">
     <InstanceGeneralInfoBlock />
     <article className="flex flex-col gap-y-4">
       <InstancePropertyBlock />

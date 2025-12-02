@@ -72,7 +72,7 @@ export const DistantSnapshotSection = ({
   if (!open) return null;
 
   return (
-    <div className="flex flex-col gap-6 mt-6">
+    <div className="mt-6 flex flex-col gap-6">
       <Controller
         render={({ field, fieldState: { error, invalid } }) => (
           <InputField

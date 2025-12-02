@@ -70,7 +70,7 @@ const RescueActionPage: FC<TRescueActionPageProps> = ({ section }) => {
           components={[
             <code
               key="0"
-              className="px-1 py-0.5 text-[90%] text-[#c7254e] bg-[#f9f2f4] rounded"
+              className="rounded bg-[#f9f2f4] px-1 py-0.5 text-[90%] text-[#c7254e]"
             />,
           ]}
         />,

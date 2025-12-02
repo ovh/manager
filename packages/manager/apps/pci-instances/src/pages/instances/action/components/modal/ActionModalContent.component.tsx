@@ -95,7 +95,7 @@ export const ActionModalContent: FC<TActionModalProps> = ({
   ) : (
     <>
       {labels.map((label) => (
-        <Text key={label} className="block mt-6">
+        <Text key={label} className="mt-6 block">
           {label}
         </Text>
       ))}

@@ -9,18 +9,20 @@ import {
 } from 'zod/v4';
 import * as core from 'zod/v4/core';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 
 /**
  * This string is required with good naming value
  */
-const string = (t: TFunction<[typeof NAMESPACES.FORM]>) => () =>
-  zString(t(`${NAMESPACES.FORM}:required_field`)).min(
+const string = (t: unknown) => () => {
+  const translate = t as (key: string) => string;
+
+  return zString(translate(`${NAMESPACES.FORM}:required_field`)).min(
     1,
-    t(`${NAMESPACES.FORM}:required_field`),
+    translate(`${NAMESPACES.FORM}:required_field`),
   );
+};
 
 const remove = <T extends ZodType>(schema: T) =>
   schema.nullable().transform(() => undefined);

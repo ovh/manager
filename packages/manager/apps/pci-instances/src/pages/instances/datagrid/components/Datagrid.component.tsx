@@ -272,7 +272,7 @@ const DatagridComponent = ({
   if (isError) return null;
 
   return (
-    <div className="overflow-x-auto mt-8">
+    <div className="mt-8 overflow-x-auto">
       <Datagrid
         columns={datagridColumns}
         hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
@@ -283,7 +283,7 @@ const DatagridComponent = ({
         onSortChange={onSortChange}
         manualSorting
         className={
-          '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050] [&_osds-table]:mb-8'
+          '[&_osds-table]:mb-8 [&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050]'
         }
       />
     </div>

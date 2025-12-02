@@ -25,7 +25,7 @@ export const Clipboard: FC<TClipboardProps> = ({
 }) => {
   const { t } = useTranslation(NAMESPACES.CLIPBOARD);
   return (
-    <OdsClipboard className="flex-grow" value={value}>
+    <OdsClipboard className="grow" value={value}>
       <ClipboardControl className="w-full" />
       <ClipboardTrigger
         labelCopy={t('clipboard_copy')}

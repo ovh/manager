@@ -108,22 +108,24 @@ const BackupActionPage = () => {
   const formSchema = useFormSchema();
 
   const { handleSubmit, formState, ...restForm } = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema) as any,
     values: {
       snapshotName: defaultSnapshotName,
       distantSnapshot: false,
       distantSnapshotName: defaultSnapshotName,
       distantRegion: null,
-    },
+    } as any,
     mode: 'onBlur',
-  });
+  } as any);
 
   const handleInstanceAction = useCallback(
-    (formValues: TSchemaOutput<typeof formSchema>) => {
+    (formValues: any) => {
+      const typedFormValues = formValues as TSchemaOutput<typeof formSchema>;
+
       if (instance)
         mutationHandler({
           instance,
-          ...formValues,
+          ...typedFormValues,
         });
     },
     [instance, mutationHandler],
@@ -141,7 +143,7 @@ const BackupActionPage = () => {
       section="backup"
       isLoading={isLoading}
       variant="primary"
-      className="max-h-[90vh] mt-[10vh] overflow-y-auto"
+      className="mt-[10vh] max-h-[90vh] overflow-y-auto"
       wrapper={({ children }: PropsWithChildren) => (
         <FormProvider
           formState={formState}
@@ -153,7 +155,7 @@ const BackupActionPage = () => {
         </FormProvider>
       )}
     >
-      <div className="flex flex-col gap-4 mt-6">
+      <div className="mt-6 flex flex-col gap-4">
         <Controller
           render={({ field, fieldState: { error, invalid } }) => (
             <InputField

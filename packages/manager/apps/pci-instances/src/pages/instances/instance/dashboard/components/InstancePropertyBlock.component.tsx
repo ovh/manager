@@ -43,7 +43,7 @@ const InstancePropertyBlock: FC = () => {
               <Link
                 key={id}
                 href={`${projectUrl}/storages/blocks/${id}/edit`}
-                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem] visited:text-[var(--ods-color-primary-500)]"
+                className="block max-w-52 truncate visited:text-[var(--ods-color-primary-500)]"
               >
                 {name}
               </Link>

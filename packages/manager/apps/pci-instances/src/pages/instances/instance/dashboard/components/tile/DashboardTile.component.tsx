@@ -14,7 +14,7 @@ export const DashboardTileBlock: FC<TDashboardTileProps> = ({
   withoutDivider = false,
   children,
 }) => (
-  <dl className="flex flex-col gap-1 m-0">
+  <dl className="m-0 flex flex-col gap-1">
     {!withoutDivider && <Divider spacing="6" className="w-full" />}
     <dt>
       {label && (

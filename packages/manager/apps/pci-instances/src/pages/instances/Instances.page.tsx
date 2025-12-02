@@ -69,14 +69,14 @@ const SearchBar = ({
 
   return (
     <form
-      className="flex justify-end items-center w-full relative"
+      className="relative flex w-full items-center justify-end"
       onSubmit={onSearchHandler}
     >
       <Input
         value={searchField}
         disabled={isDisabled}
         onChange={(e) => setSearchField(e.target.value)}
-        className="min-h-[40px] focus:bg-[#bef1ff] max-w-full sm:max-w-72  focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100 pr-8 mr-4"
+        className="focus-visible:bg-primary-300 text-primary-100 mr-4 min-h-[40px]  max-w-full pr-8 focus:bg-[#bef1ff] focus-visible:ring-transparent sm:max-w-72"
         clearable
       />
       <Button disabled={isDisabled}>
@@ -163,7 +163,7 @@ const Instances: FC = () => {
         <div className="header mb-6 mt-8">
           <div className="flex items-center justify-between">
             <Title>{t('common:pci_instances_common_instances_title')}</Title>
-            <div className="flex items-center flex-wrap">
+            <div className="flex flex-wrap items-center">
               <ChangelogButton links={CHANGELOG_LINKS} />
               <PciGuidesHeader category="instances" />
             </div>
@@ -174,7 +174,7 @@ const Instances: FC = () => {
           <Notifications />
           <SearchNotifications />
           <OsdsDivider />
-          <div className="sm:flex items-center justify-between mt-4 min-h-[40px]">
+          <div className="mt-4 min-h-[40px] items-center justify-between sm:flex">
             <OsdsButton
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.stroked}
@@ -192,7 +192,7 @@ const Instances: FC = () => {
                 <span>{t('common:pci_instances_common_create_instance')}</span>
               </span>
             </OsdsButton>
-            <div className="justify-between flex gap-5 min-h-[40px] items-center">
+            <div className="flex min-h-[40px] items-center justify-between gap-5">
               <div className="flex items-center">
                 {isRefetching ? (
                   <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
@@ -205,7 +205,7 @@ const Instances: FC = () => {
                     onClick={handleRefresh}
                     {...(isFetching && { disabled: true })}
                   >
-                    <span slot="start" className="flex items-center mr-0">
+                    <span slot="start" className="mr-0 flex items-center">
                       <OsdsIcon
                         name={ODS_ICON_NAME.REFRESH}
                         size={ODS_ICON_SIZE.sm}
@@ -229,7 +229,7 @@ const Instances: FC = () => {
                     disabled: true,
                   })}
                 >
-                  <span slot="start" className="flex items-center mr-0">
+                  <span slot="start" className="mr-0 flex items-center">
                     <OsdsIcon
                       name={ODS_ICON_NAME.FILTER}
                       size={ODS_ICON_SIZE.sm}
