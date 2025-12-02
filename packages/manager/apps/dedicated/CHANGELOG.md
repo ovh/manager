@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.65.0...@ovh-ux/manager-dedicated@20.66.0) (2025-12-01)
+
+
+### Features
+
+* **config:** ovhcom to ovhcloudcom migration ([8ca31c7](https://github.com/ovh/manager/commit/8ca31c78bab36ab952da31722f7ee7650450a683)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
 # [20.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.10...@ovh-ux/manager-dedicated@20.65.0) (2025-11-27)
 
 
