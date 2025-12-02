@@ -5,7 +5,6 @@
     "paths": {
       "@/public/*": ["./public/*"],
       "@/*": ["./src/*"],
-      "react": ["./node_modules/@types/react"]
     },
     "outDir": "dist",
     "allowJs": true,
