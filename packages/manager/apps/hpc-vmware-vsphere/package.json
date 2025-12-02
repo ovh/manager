@@ -45,6 +45,8 @@
     "@ovh-ux/manager-tests-setup": "^0.6.2",
     "@ovh-ux/manager-vite-config": "^0.15.3",
     "@tanstack/react-query-devtools": "^5.51.21",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "@vitest/coverage-v8": "^2.1.9",
     "element-internals-polyfill": "^3.0.2",
     "msw": "2.1.7",
