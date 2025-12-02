@@ -11,7 +11,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::r0:
     role=group
-    style=--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(0% - -10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 100%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -89,7 +89,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::r2:
     role=group
-    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(75% - 5px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 25%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(75% - 5px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 25%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -195,7 +195,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::r5:
     role=group
-    style=--slider-thumb-offset-0: calc(20% - -6px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 80%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(20% - -6px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 80%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -279,7 +279,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::r7:
     role=group
-    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(75% - 5px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 25%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(75% - 5px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 25%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -394,7 +394,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::ra:
     role=group
-    style=--slider-thumb-offset-0: calc(10% - -8px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 90%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(10% - -8px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 90%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -472,7 +472,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::rc:
     role=group
-    style=--slider-thumb-offset-0: calc(10% - -8px); --slider-thumb-offset-1: calc(15% - -7px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 10%; --slider-range-end: 85%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(10% - -8px); --slider-thumb-offset-1: calc(15% - -7px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 10%; --slider-range-end: 85%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -580,7 +580,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::rf:
     role=group
-    style=--slider-thumb-offset-0: calc(33.33333333333333% - -3.33px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 66.66666666666667%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(33.33333333333333% - -3.33px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 66.66666666666667%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -658,7 +658,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::rh:
     role=group
-    style=--slider-thumb-offset-0: calc(33.33333333333333% - -3.33px); --slider-thumb-offset-1: calc(66.66666666666666% - 3.33px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 33.33333333333333%; --slider-range-end: 33.33333333333334%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(33.33333333333333% - -3.33px); --slider-thumb-offset-1: calc(66.66666666666666% - 3.33px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 33.33333333333333%; --slider-range-end: 33.33333333333334%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -766,7 +766,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::rk:
     role=group
-    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 50%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 0%; --slider-range-end: 50%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control
@@ -844,7 +844,7 @@ exports[`Range Snapshot tests > renders the component with default props 1`] = `
     dir=ltr
     id=slider::rm:
     role=group
-    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(100% - 10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 0%; --range-padding-bottom: 0px; --range-padding-left: 0px; --range-padding-right: 0px;
+    style=--slider-thumb-offset-0: calc(50% - 0px); --slider-thumb-offset-1: calc(100% - 10px); --slider-thumb-width: 20px; --slider-thumb-height: 20px; --slider-thumb-transform: translateX(-50%); --slider-range-start: 50%; --slider-range-end: 0%; --ods-range-padding-bottom: 0px; --ods-range-padding-left: 0px; --ods-range-padding-right: 0px;
   >
     <div
       class=_range__control

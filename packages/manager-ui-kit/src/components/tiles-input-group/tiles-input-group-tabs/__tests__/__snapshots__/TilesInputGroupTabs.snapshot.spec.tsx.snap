@@ -14,22 +14,22 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       id=tabs::r2:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r2::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r2::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r2::content-tab1
@@ -113,22 +113,22 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       id=tabs::r4:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r4::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r4::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r4::content-tab1
@@ -217,22 +217,22 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       id=tabs::r6:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r6::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r6::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r6::content-[object Object]
@@ -313,22 +313,22 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       id=tabs::r3:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r3::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r3::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r3::content-tab1
@@ -430,22 +430,22 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with defau
       id=tabs::r0:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r0::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r0::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r0::content-tab1
@@ -529,22 +529,22 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with empty
       id=tabs::r1:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r1::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r1::list
-            role=tablist
           />
         </div>
       </div>
@@ -568,22 +568,22 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with singl
       id=tabs::r5:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r5::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r5::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r5::content-single-tab

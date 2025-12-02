@@ -143,22 +143,22 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > t
       id=tabs::r0:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r0::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r0::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r0::content-ALL
@@ -403,22 +403,22 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and
       id=tabs::r1:
     >
       <div
+        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r1::list
+        role=tablist
       >
         <div
           class=_tab-list__container
           tabindex=-1
         >
           <div
-            aria-orientation=horizontal
             class=_tab-list__container__tabs
-            data-orientation=horizontal
-            data-part=list
-            data-scope=tabs
-            dir=ltr
-            id=tabs::r1::list
-            role=tablist
           >
             <button
               aria-controls=tabs::r1::content-ALL

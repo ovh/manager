@@ -2479,7 +2479,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r1f:
         id=:r1g:
@@ -2569,7 +2569,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
           data-scope=select
           dir=ltr
           id=select::r1f::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
         >
           <div
             aria-labelledby=select::r1f::label
@@ -2656,7 +2656,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r1i:
         id=:r1j:
@@ -2743,7 +2743,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
             data-scope=select
             dir=ltr
             id=select::r1i::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
           >
             <div
               aria-labelledby=select::r1i::label
@@ -2812,7 +2812,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r1l:
         id=:r1m:
@@ -2863,7 +2863,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r9:
         id=:ra:
@@ -2943,7 +2943,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
           data-scope=select
           dir=ltr
           id=select::r9::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
         >
           <div
             aria-labelledby=select::r9::label
@@ -2992,7 +2992,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:rc:
         id=:rd:
@@ -3084,7 +3084,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
             data-scope=select
             dir=ltr
             id=select::rc::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
           >
             <div
               aria-labelledby=select::rc::label
@@ -3172,7 +3172,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:rf:
         id=:rg:
@@ -3224,7 +3224,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:ri:
         id=:rj:
@@ -3304,7 +3304,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
           data-scope=select
           dir=ltr
           id=select::ri::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
         >
           <div
             aria-labelledby=select::ri::label
@@ -3353,7 +3353,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:rl:
         id=:rm:
@@ -3440,7 +3440,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
             data-scope=select
             dir=ltr
             id=select::rl::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
           >
             <div
               aria-labelledby=select::rl::label
@@ -3509,7 +3509,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:ro:
         id=:rp:
@@ -3591,7 +3591,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
           data-scope=select
           dir=ltr
           id=select::ro::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
         >
           <div
             aria-labelledby=select::ro::label
@@ -3677,7 +3677,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r0:
         id=:r1:
@@ -3757,7 +3757,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
           data-scope=select
           dir=ltr
           id=select::r0::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
         >
           <div
             aria-labelledby=select::r0::label
@@ -3806,7 +3806,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r3:
         id=:r4:
@@ -3908,7 +3908,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
             data-scope=select
             dir=ltr
             id=select::r3::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
           >
             <div
               aria-labelledby=select::r3::label
@@ -4034,7 +4034,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r6:
         id=:r7:
@@ -4085,7 +4085,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:rr:
         id=:rs:
@@ -4165,7 +4165,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
           data-scope=select
           dir=ltr
           id=select::rr::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
         >
           <div
             aria-labelledby=select::rr::label
@@ -4214,7 +4214,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:ru:
         id=:rv:
@@ -4311,7 +4311,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
             data-scope=select
             dir=ltr
             id=select::ru::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--ods-theme-overlay-z-index);
+            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
           >
             <div
               aria-labelledby=select::ru::label
@@ -4467,7 +4467,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
       role=group
     >
       <label
-        class=_text _text--label _form-field-label
+        class=_text--label _form-field-label
         data-ods=form-field-label
         for=:r18:
         id=:r19:

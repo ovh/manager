@@ -29,7 +29,6 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
           aria-expanded=false
           aria-level=1
           aria-selected=false
-          class=_tree-view-node
           data-branch=src
           data-depth=1
           data-ods=tree-view-node-branch
@@ -106,7 +105,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
               aria-disabled=false
               aria-level=2
               aria-selected=false
-              class=_tree-view-node-item _tree-view-node
+              class=_tree-view-node-item
               data-depth=2
               data-ods=tree-view-node-item
               data-ownedby=tree::r0::tree
@@ -131,7 +130,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
               aria-disabled=false
               aria-level=2
               aria-selected=false
-              class=_tree-view-node-item _tree-view-node
+              class=_tree-view-node-item
               data-depth=2
               data-ods=tree-view-node-item
               data-ownedby=tree::r0::tree
@@ -157,7 +156,6 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
               aria-expanded=false
               aria-level=2
               aria-selected=false
-              class=_tree-view-node
               data-branch=components
               data-depth=2
               data-ods=tree-view-node-branch
@@ -232,7 +230,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
                   aria-disabled=false
                   aria-level=3
                   aria-selected=false
-                  class=_tree-view-node-item _tree-view-node
+                  class=_tree-view-node-item
                   data-depth=3
                   data-ods=tree-view-node-item
                   data-ownedby=tree::r0::tree
@@ -257,7 +255,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
                   aria-disabled=false
                   aria-level=3
                   aria-selected=false
-                  class=_tree-view-node-item _tree-view-node
+                  class=_tree-view-node-item
                   data-depth=3
                   data-ods=tree-view-node-item
                   data-ownedby=tree::r0::tree
@@ -286,7 +284,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
           aria-disabled=false
           aria-level=1
           aria-selected=false
-          class=_tree-view-node-item _tree-view-node
+          class=_tree-view-node-item
           data-depth=1
           data-ods=tree-view-node-item
           data-ownedby=tree::r0::tree
@@ -311,7 +309,7 @@ exports[`TreeView Snapshot tests > renders the component with default props and 
           aria-disabled=false
           aria-level=1
           aria-selected=false
-          class=_tree-view-node-item _tree-view-node
+          class=_tree-view-node-item
           data-depth=1
           data-ods=tree-view-node-item
           data-ownedby=tree::r0::tree

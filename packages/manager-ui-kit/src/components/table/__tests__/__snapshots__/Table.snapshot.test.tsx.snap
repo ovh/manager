@@ -3,7 +3,7 @@
 exports[`Table Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <table
-    class=_table _table--md
+    class=_table--md
     data-ods=table
   >
     <caption>
@@ -84,7 +84,7 @@ exports[`Table Snapshot tests > renders the component with default props and chi
     </tbody>
   </table>
   <table
-    class=_table _table--sm
+    class=_table--sm
     data-ods=table
   >
     <caption>
@@ -165,7 +165,7 @@ exports[`Table Snapshot tests > renders the component with default props and chi
     </tbody>
   </table>
   <table
-    class=_table _table--md
+    class=_table--md
     data-ods=table
   >
     <caption>
@@ -246,7 +246,7 @@ exports[`Table Snapshot tests > renders the component with default props and chi
     </tbody>
   </table>
   <table
-    class=_table _table--lg
+    class=_table--lg
     data-ods=table
   >
     <caption>

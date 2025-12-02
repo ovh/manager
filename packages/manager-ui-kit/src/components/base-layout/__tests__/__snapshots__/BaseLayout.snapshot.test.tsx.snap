@@ -38,7 +38,7 @@ exports[`BaseLayout - Snapshot Tests > renders complete layout with all props > 
         class=flex items-start justify-between
       >
         <h1
-          class=_text _text--heading-1
+          class=_text--heading-1
           data-ods=text
         >
           Title of the page
@@ -91,7 +91,7 @@ exports[`BaseLayout - Snapshot Tests > renders complete layout with all props > 
       </a>
     </div>
     <span
-      class=_text _text--span inline-block mb-[16px]
+      class=_text--span inline-block mb-[16px]
       data-ods=text
     >
       Sample description of the page.
@@ -100,7 +100,7 @@ exports[`BaseLayout - Snapshot Tests > renders complete layout with all props > 
       class=mb-5 max-w-[800px]
     />
     <h3
-      class=_text _text--heading-3 block mb-6
+      class=_text--heading-3 block mb-6
       data-ods=text
     >
       Sample Sub-title of the page
@@ -117,22 +117,22 @@ exports[`BaseLayout - Snapshot Tests > renders complete layout with all props > 
         id=tabs::r3:
       >
         <div
+          aria-orientation=horizontal
           class=_tab-list
           data-ods=tab-list
+          data-orientation=horizontal
+          data-part=list
+          data-scope=tabs
+          dir=ltr
+          id=tabs::r3::list
+          role=tablist
         >
           <div
             class=_tab-list__container
             tabindex=-1
           >
             <div
-              aria-orientation=horizontal
               class=_tab-list__container__tabs
-              data-orientation=horizontal
-              data-part=list
-              data-scope=tabs
-              dir=ltr
-              id=tabs::r3::list
-              role=tablist
             >
               <button
                 aria-selected=false

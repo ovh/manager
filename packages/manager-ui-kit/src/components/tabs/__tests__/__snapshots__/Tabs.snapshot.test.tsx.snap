@@ -11,22 +11,22 @@ exports[`Tabs Snapshot tests > renders the component with default props and chil
     id=tabs::r0:
   >
     <div
+      aria-orientation=horizontal
       class=_tab-list
       data-ods=tab-list
+      data-orientation=horizontal
+      data-part=list
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r0::list
+      role=tablist
     >
       <div
         class=_tab-list__container
         tabindex=-1
       >
         <div
-          aria-orientation=horizontal
           class=_tab-list__container__tabs
-          data-orientation=horizontal
-          data-part=list
-          data-scope=tabs
-          dir=ltr
-          id=tabs::r0::list
-          role=tablist
         >
           <button
             aria-selected=false

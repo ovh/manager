@@ -32,7 +32,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     <button
       aria-current=page
       aria-label=page 1
-      class=_button _button--primary _button--md _button--default _pagination-item
+      class=_button _button--primary _button--md _button--default _pagination__item
       data-index=1
       data-ods=button
       data-part=item
@@ -46,7 +46,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 2
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=2
       data-ods=button
       data-part=item
@@ -59,7 +59,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 3
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=3
       data-ods=button
       data-part=item
@@ -72,7 +72,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 4
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=4
       data-ods=button
       data-part=item
@@ -85,7 +85,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 5
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=5
       data-ods=button
       data-part=item
@@ -110,7 +110,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=last page, page 20
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=20
       data-ods=button
       data-part=item
@@ -165,7 +165,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 1
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=1
       data-ods=button
       data-part=item
@@ -190,7 +190,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 3
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=3
       data-ods=button
       data-part=item
@@ -203,7 +203,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 4
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=4
       data-ods=button
       data-part=item
@@ -217,7 +217,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     <button
       aria-current=page
       aria-label=page 5
-      class=_button _button--primary _button--md _button--default _pagination-item
+      class=_button _button--primary _button--md _button--default _pagination__item
       data-index=5
       data-ods=button
       data-part=item
@@ -231,7 +231,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 6
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=6
       data-ods=button
       data-part=item
@@ -244,7 +244,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 7
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=7
       data-ods=button
       data-part=item
@@ -269,7 +269,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=last page, page 50
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=50
       data-ods=button
       data-part=item
@@ -330,7 +330,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     <button
       aria-current=page
       aria-label=page 1
-      class=_button _button--primary _button--md _button--default _pagination-item
+      class=_button _button--primary _button--md _button--default _pagination__item
       data-index=1
       data-ods=button
       data-part=item
@@ -344,7 +344,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 2
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=2
       data-ods=button
       data-part=item
@@ -357,7 +357,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 3
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=3
       data-ods=button
       data-part=item
@@ -370,7 +370,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 4
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=4
       data-ods=button
       data-part=item
@@ -383,7 +383,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 5
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=5
       data-ods=button
       data-part=item
@@ -408,7 +408,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=last page, page 50
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=50
       data-ods=button
       data-part=item
@@ -565,7 +565,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     <button
       aria-current=page
       aria-label=page 1
-      class=_button _button--primary _button--md _button--default _pagination-item
+      class=_button _button--primary _button--md _button--default _pagination__item
       data-index=1
       data-ods=button
       data-part=item
@@ -579,7 +579,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 2
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=2
       data-ods=button
       data-part=item
@@ -592,7 +592,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 3
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=3
       data-ods=button
       data-part=item
@@ -605,7 +605,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 4
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=4
       data-ods=button
       data-part=item
@@ -618,7 +618,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=page 5
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=5
       data-ods=button
       data-part=item
@@ -643,7 +643,7 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
     </button>
     <button
       aria-label=last page, page 50
-      class=_button _button--primary _button--md _button--ghost _pagination-item
+      class=_button _button--primary _button--md _button--ghost _pagination__item
       data-index=50
       data-ods=button
       data-part=item

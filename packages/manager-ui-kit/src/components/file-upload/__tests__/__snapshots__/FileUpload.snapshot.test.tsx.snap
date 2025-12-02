@@ -20,38 +20,28 @@ exports[`FileUpload Snapshot tests > renders the component with default props an
       role=application
     >
       <div
-        class=_file-upload-dropzone
+        class=_file-upload-dropzone _file-upload-dropzone--empty
       >
-        <div
-          class=_file-upload-dropzone__zone
+        <span
+          class=_icon _icon--file-plus _file-upload-dropzone__icon
+          data-ods=icon
+          role=presentation
+        />
+        <span>
+          Drag & drop a file
+        </span>
+        <button
+          aria-describedby=
+          class=_button _button--primary _button--md _button--ghost
+          data-ods=button
+          data-part=trigger
+          data-scope=file-upload
+          dir=ltr
+          id=file::r0::trigger
+          type=button
         >
-          <span
-            class=_icon _icon--file-plus _file-upload-dropzone__zone__icon
-            data-ods=icon
-            role=presentation
-          />
-          <span>
-            Drag & drop a file
-          </span>
-          <button
-            aria-describedby=
-            class=_button _button--primary _button--md _button--ghost
-            data-ods=button
-            data-part=trigger
-            data-scope=file-upload
-            dir=ltr
-            id=file::r0::trigger
-            type=button
-          >
-            <span
-              class=_icon _icon--upload
-              data-ods=icon
-              role=presentation
-            />
-             
-            Browse files
-          </button>
-        </div>
+          Browse files
+        </button>
       </div>
       Hello
     </div>
