@@ -1,6 +1,4 @@
-import { DEFAULT_SSO_AUTH_URL } from './constants';
-
-const { loginUrl, logoutUrl, euLoginUrl, euLogoutUrl } = DEFAULT_SSO_AUTH_URL;
+import { DEFAULT_SSO_AUTH_URL, LOGOUT_ACTION, REGION } from './constants';
 
 const buildRedirectUrl = (url: string, params: string[]) => {
   return `${url}${url.indexOf('?') > -1 ? '&' : '?'}${params.join('&')}`;
@@ -10,22 +8,14 @@ const redirectTo = (url: string) => {
   return window.location.assign(url);
 };
 
-const isOvhTelecom = () => window.location.host === 'www.ovhtelecom.fr';
-
-export const redirectToLoginPage = (onsuccessUrl = '') => {
-  const params = [];
-
-  if (loginUrl.indexOf('onsuccess') === -1) {
-    params.push(`onsuccess=${encodeURIComponent(onsuccessUrl || window.location.href)}`);
-  }
-
-  // redirect to login url
-  redirectTo(buildRedirectUrl(isOvhTelecom() ? euLoginUrl : loginUrl, params));
+export const getAuthUrl = () => {
+  const [, region = ''] = window.location.host.split('.');
+  return DEFAULT_SSO_AUTH_URL[`${region.toUpperCase() as REGION}`] || `/auth/`; // /auth/ is required for localhost and LABEU
 };
 
-export const redirectToLogoutPage = (onsuccessUrl = '') => {
+export const getLogoutUrl = (onsuccessUrl = '') => {
   const params = [];
-
+  const logoutUrl = getAuthUrl();
   if (logoutUrl.indexOf('onsuccess') === -1) {
     params.push(`onsuccess=${encodeURIComponent(onsuccessUrl || window.location.href)}`);
   }
@@ -34,8 +24,22 @@ export const redirectToLogoutPage = (onsuccessUrl = '') => {
     params.push(`from=${encodeURIComponent(document.referrer)}`);
   }
 
+  return buildRedirectUrl(`${logoutUrl}${LOGOUT_ACTION}`, params);
+};
+
+export const redirectToLoginPage = (onsuccessUrl = '') => {
+  const params = [];
+  const loginUrl = getAuthUrl();
+  if (loginUrl.indexOf('onsuccess') === -1) {
+    params.push(`onsuccess=${encodeURIComponent(onsuccessUrl || window.location.href)}`);
+  }
+
   // redirect to login url
-  redirectTo(buildRedirectUrl(isOvhTelecom() ? euLogoutUrl : logoutUrl, params));
+  redirectTo(buildRedirectUrl(loginUrl, params));
+};
+
+export const redirectToLogoutPage = (onsuccessUrl = '') => {
+  redirectTo(getLogoutUrl(onsuccessUrl));
 };
 
 export * from './constants';

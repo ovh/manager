@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.6...@ovh-ux/manager-pci-block-storage-app@0.21.7) (2025-12-01)
+
+
+### Bug Fixes
+
+* **pci-*:** fix ods19 versioning ([#20702](https://github.com/ovh/manager/issues/20702)) ([6f2b3e4](https://github.com/ovh/manager/commit/6f2b3e4a7505f43936a86204c5f0b97c8220e049))
+
+
+
+
+
 ## [0.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.5...@ovh-ux/manager-pci-block-storage-app@0.21.6) (2025-11-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

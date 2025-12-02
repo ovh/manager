@@ -18,7 +18,7 @@ const serviceResiliated = new BillingService({
   serviceId: 'serviceResiliated',
   serviceType: 'HOSTING_WEB',
   status: 'TERMINATED',
-  url: 'https://www.ovh.com/manager/#/web/configuration/hosting/serviceResiliated',
+  url: 'https://manager.eu.ovhcloud.com/#/web/configuration/hosting/serviceResiliated',
 });
 const serviceWithManualRenewNotResiliatedWithoutDebt = new BillingService({
   canDeleteAtExpiration: false,
@@ -38,7 +38,7 @@ const serviceWithManualRenewNotResiliatedWithoutDebt = new BillingService({
   serviceId: 'serviceWithManualRenewNotResiliatedWithoutDebt',
   serviceType: 'DOMAIN',
   status: 'ACTIVE',
-  url: 'https://www.ovh.com/manager/#/web/configuration/domain/serviceWithManualRenewNotResiliatedWithoutDebt/information',
+  url: 'https://manager.eu.ovhcloud.com/#/web/configuration/domain/serviceWithManualRenewNotResiliatedWithoutDebt/information',
 });
 const serviceOneShotWithoutResiliation = new BillingService({
   canDeleteAtExpiration: false,
@@ -58,7 +58,7 @@ const serviceOneShotWithoutResiliation = new BillingService({
   serviceId: 'serviceOneShotWithoutResiliation',
   serviceType: 'DEDICATED_SERVER',
   status: 'ACTIVE',
-  url: 'https://www.ovh.com/manager/#/dedicated/server/serviceOneShotWithoutResiliation',
+  url: 'https://manager.eu.ovhcloud.com/#/dedicated/server/serviceOneShotWithoutResiliation',
 });
 const serviceWithoutUrlAndSuspendedBilling = new BillingService({
   canDeleteAtExpiration: false,
@@ -98,7 +98,7 @@ const serviceInDebt = new BillingService({
   serviceId: 'serviceOneShotWithoutResiliation',
   serviceType: 'DEDICATED_SERVER',
   status: 'PENDING_DEBT',
-  url: 'https://www.ovh.com/manager/#/dedicated/server/serviceOneShotWithoutResiliation',
+  url: 'https://manager.eu.ovhcloud.com/#/dedicated/server/serviceOneShotWithoutResiliation',
 });
 const serviceWithAutomaticRenewNotResiliated = new BillingService({
   canDeleteAtExpiration: false,
@@ -118,7 +118,7 @@ const serviceWithAutomaticRenewNotResiliated = new BillingService({
   serviceId: 'serviceWithAutomaticRenewNotResiliated',
   serviceType: 'HOSTING_WEB',
   status: 'ACTIVE',
-  url: 'https://www.ovh.com/manager/#/web/configuration/hosting/serviceWithAutomaticRenewNotResiliated',
+  url: 'https://manager.eu.ovhcloud.com/#/web/configuration/hosting/serviceWithAutomaticRenewNotResiliated',
 });
 
 export const NoServices: HubBillingServices = {
