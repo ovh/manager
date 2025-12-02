@@ -19,9 +19,7 @@
   "pci_projects_new_voucher_form_field_error_voucher_new_customer": "Il codice inserito è valido solo per i nuovi clienti.",
   "pci_projects_new_voucher_form_field_error_voucher_new_project": "Hai già creato un progetto, il codice non è disponibile.",
   "pci_projects_new_voucher_form_field_error_default": "Si è verificato un errore durante la verifica del codice.",
-  "pci_projects_new_voucher_form_add": "Aggiungi",
   "pci_projects_new_voucher_form_add_title": "Aggiungi un voucher",
-  "pci_projects_new_voucher_form_remove": "Cancella",
   "pci_projects_new_voucher_form_remove_title": "Rimuovi il voucher",
   "pci_projects_new_voucher_form_reset_error": "Si è verificato un errore durante la rimozione del voucher."
 }

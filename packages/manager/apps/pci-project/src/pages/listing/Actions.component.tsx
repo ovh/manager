@@ -24,7 +24,7 @@ type ActionsProps = {
 };
 
 export default function Actions({ projectWithService }: Readonly<ActionsProps>) {
-  const { t } = useTranslation(['listing', 'edit', NAMESPACES.ERROR]);
+  const { t } = useTranslation(['listing', 'edit', NAMESPACES.ERROR, NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const {
@@ -137,7 +137,7 @@ export default function Actions({ projectWithService }: Readonly<ActionsProps>) 
     if ((projectStatus.isCreating || projectStatus.isActive) && !projectStatus.hasPendingDebt) {
       items.push({
         id: 2,
-        label: t('pci_projects_project_delete'),
+        label: t('delete', { ns: NAMESPACES.ACTIONS }),
         ...(projectStatus.isCreating
           ? { onClick: handleDeleteProject }
           : { href: deleteHref, onClick: trackDeleteProjectClick }),

@@ -19,9 +19,7 @@
   "pci_projects_new_voucher_form_field_error_voucher_new_customer": "Kod, który wprowadziłeś jest ważny tylko dla nowych klientów.",
   "pci_projects_new_voucher_form_field_error_voucher_new_project": "Masz już utworzony projekt. Kod nie jest dostępny.",
   "pci_projects_new_voucher_form_field_error_default": "Wystąpił problem podczas weryfikacji kodu.",
-  "pci_projects_new_voucher_form_add": "Dodaj",
   "pci_projects_new_voucher_form_add_title": "Wprowadź kod vouchera",
-  "pci_projects_new_voucher_form_remove": "Usuń",
   "pci_projects_new_voucher_form_remove_title": "Usuń kod vouchera",
   "pci_projects_new_voucher_form_reset_error": "Wystąpił błąd podczas usuwania kodu vouchera."
 }
