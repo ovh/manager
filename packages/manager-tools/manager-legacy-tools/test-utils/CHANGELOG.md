@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.10.1...@ovh-ux/manager-core-test-utils@0.11.0) (2025-12-01)
+
+
+### Features
+
+* migrate telecom to ovhcloud.com domain ([3da12e0](https://github.com/ovh/manager/commit/3da12e0adc0931bf9251d6df986090f9b756d176)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
 ## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.10.0...@ovh-ux/manager-core-test-utils@0.10.1) (2025-11-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-test-utils
