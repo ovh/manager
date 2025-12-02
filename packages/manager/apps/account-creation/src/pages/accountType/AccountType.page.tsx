@@ -33,7 +33,8 @@ export default function AccountType() {
   const [legalFormError, setLegalFormError] = useState<boolean>(false);
 
   const validateStep = useCallback(() => {
-    if (!legalForm) {
+    // Account are created with the "other" legal form which is not available anymore
+    if (!legalForm || legalForm === 'other') {
       setLegalFormError(true);
     } else if (shouldAccessOrganizationSearch(country, legalForm)) {
       navigate(`${urls.company}?${searchParams.toString()}`);
