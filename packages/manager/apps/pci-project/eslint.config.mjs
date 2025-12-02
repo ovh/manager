@@ -64,6 +64,8 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/require-await': 'off',
+      'tailwindcss/no-custom-classname': 'off',
+      'tailwindcss/no-arbitrary-value': 'off',
     },
   },
   {
