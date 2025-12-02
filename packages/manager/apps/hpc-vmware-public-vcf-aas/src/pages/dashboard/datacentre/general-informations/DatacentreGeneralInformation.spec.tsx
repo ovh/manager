@@ -23,7 +23,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-describe('Datacentre General Information Page Updates', () => {
+describe('Datacentre General Information Page Display', () => {
   it('display the datacentre dashboard general page', async () => {
     await renderTest({
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,

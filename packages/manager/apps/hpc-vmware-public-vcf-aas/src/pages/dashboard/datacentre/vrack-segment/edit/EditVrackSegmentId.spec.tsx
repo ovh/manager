@@ -37,8 +37,8 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const expectSubmitButton = (container: HTMLElement) =>
-  expect(container.querySelector('ods-button[label="modify"]'));
+const getSubmitButton = (container: HTMLElement): HTMLElement =>
+  container.querySelector('ods-button[label="modify"]');
 
 const submitForm = (container: HTMLElement) => {
   return act(() => userEvent.click(container.querySelector('ods-button[label="modify"]')));
@@ -96,11 +96,11 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    expectSubmitButton(container).toBeDisabled();
+    expect(getSubmitButton(container)).toBeDisabled();
 
     editVlanValue(430);
 
-    await waitFor(() => expectSubmitButton(container).not.toBeDisabled(), {
+    await waitFor(() => expect(getSubmitButton(container)).not.toBeDisabled(), {
       timeout: 2000,
     });
 

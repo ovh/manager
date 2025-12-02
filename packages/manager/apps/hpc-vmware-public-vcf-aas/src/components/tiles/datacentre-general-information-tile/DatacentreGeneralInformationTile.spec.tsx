@@ -161,7 +161,7 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
   });
 });
 
-describe('DatacentreGeneralInformationTile component unit test suite', () => {
+describe('DatacentreGeneralInformationTile component vrack-related unit test suite', () => {
   it.each([
     {
       scenario: 'without vRack',
