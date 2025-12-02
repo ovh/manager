@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-cli-core",
   "version": "0.0.1",
+  "private": true,
   "description": "",
   "repository": {
     "type": "git",
