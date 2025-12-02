@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-forge-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
     "@ovh-ux/manager-tests-setup": "^0.6.1",
-    "@ovh-ux/manager-vite-config": "^0.15.1",
+    "@ovh-ux/manager-vite-config": "^0.15.2",
     "@types/figlet": "^1.7.0",
     "@types/node": "^24.10.0",
     "boxen": "^8.0.1",

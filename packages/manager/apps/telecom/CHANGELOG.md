@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.19.0...@ovh-ux/manager-telecom@16.20.0) (2025-12-01)
+
+
+### Features
+
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
 # [16.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.18.8...@ovh-ux/manager-telecom@16.19.0) (2025-11-27)
 
 
