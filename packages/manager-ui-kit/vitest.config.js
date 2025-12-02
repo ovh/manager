@@ -29,6 +29,8 @@ export default mergeConfig(createConfig(), {
     },
     // Ignore unhandled errors from ODS Modal async cleanup
     dangerouslyIgnoreUnhandledErrors: true,
+    // Make vitest snapshot stable without dynamic hash
+    snapshotSerializers: ['./settings/serialize-snapshots.ts'],
   },
   resolve: {
     alias: {

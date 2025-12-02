@@ -3,9 +3,9 @@
 exports[`FormField Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    class="_form-field_112eg_2"
-    data-ods="form-field"
-    role="group"
+    class=_form-field
+    data-ods=form-field
+    role=group
   >
     Hello
   </div>
