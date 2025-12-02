@@ -100,7 +100,7 @@ export default function MyWebsitesPage() {
     () => [
       {
         id: 'defaultFQDN',
-        accessorFn: (row) => row.currentState?.defaultFQDN ?? '',
+        accessorKey: 'currentState.defaultFQDN',
         cell: ({ getValue }) => {
           const defaultFQDN = getValue<string>();
           return (
@@ -111,7 +111,7 @@ export default function MyWebsitesPage() {
       },
       {
         id: 'resourceStatus',
-        accessorFn: (row) => row.resourceStatus,
+        accessorKey: 'resourceStatus',
         cell: ({ getValue }) => {
           const status = getValue<ResourceStatus>();
           const statusColor = getStatusColor(status);
@@ -159,7 +159,7 @@ export default function MyWebsitesPage() {
             return isRowSelectable(row.original);
           },
         }}
-        data={data || []}
+        data={data ?? []}
         hasNextPage={!isFetchingNextPage && hasNextPage}
         onFetchNextPage={(): void => {
           void fetchNextPage();

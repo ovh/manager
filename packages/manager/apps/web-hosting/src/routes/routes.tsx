@@ -595,18 +595,6 @@ export default (
           }}
         />
       </Route>
-
-      <Route
-        id={ORDER_DOMAIN}
-        path={urls.orderDomain}
-        Component={OrderDomainPage}
-        handle={{
-          tracking: {
-            pageName: ORDER_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
     </Route>
     <Route path={'*'} element={<NotFound />} />
   </Route>

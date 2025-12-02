@@ -97,13 +97,13 @@ export default function useDatagridColumn() {
     return [
       {
         id: 'name',
-        accessorFn: (row: LocalSeoType) => row.name, // Assurez-vous que `accessorFn` est présent et typé correctement
+        accessorKey: 'name',
         cell: ({ row }) => <div>{row.original.name}</div>,
         header: t('hosting_tab_LOCAL_SEO_table_header_name'),
       },
       {
         id: 'address',
-        accessorFn: (row: LocalSeoType) => row.address,
+        accessorKey: 'address',
         cell: ({ row }) => (
           <div>
             {row.original.address ? (
@@ -119,7 +119,7 @@ export default function useDatagridColumn() {
       },
       {
         id: 'email',
-        accessorFn: (row: LocalSeoType) => row.accountId,
+        accessorKey: 'accountId',
         cell: ({ row }) => (
           <EmailCell
             serviceName={serviceName}
@@ -130,7 +130,7 @@ export default function useDatagridColumn() {
       },
       {
         id: 'status',
-        accessorFn: (row: LocalSeoType) => row.status,
+        accessorKey: 'status',
         cell: ({ row }) => (
           <div className="w-10">
             <Badge className="my-3" color={StatusColor[row.original.status]}>
