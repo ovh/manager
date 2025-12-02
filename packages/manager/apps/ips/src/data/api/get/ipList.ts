@@ -57,12 +57,12 @@ export const getIcebergIpList = (params: GetIpListParams) => {
         value,
         comparator: FilterComparator.IsEqual,
       })),
-    {
+    params.type === IpTypeEnum.ADDITIONAL && {
       key: 'isAdditionalIp',
       value: params.type === IpTypeEnum.ADDITIONAL,
       comparator: FilterComparator.IsEqual,
     },
-  ] as Filter[];
+  ].filter(Boolean) as Filter[];
 
   return fetchIcebergV6<IpObject>({
     route: '/ip',

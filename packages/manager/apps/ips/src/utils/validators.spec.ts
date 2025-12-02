@@ -11,7 +11,7 @@ describe('isValidIpv4Block', () => {
     { ip: '192.168.0.2/32', isValid: true },
     { ip: '192.168.0.2/33', isValid: false },
     { ip: '192.168.0.2/0', isValid: false },
-    { ip: '192.168.1/20', isValid: true },
+    { ip: '192.168.1/20', isValid: false },
     { ip: '1924.168.1.1/19', isValid: false },
     { ip: '', isValid: false },
   ])(`$ip => $isValid`, ({ ip, isValid }) => {
