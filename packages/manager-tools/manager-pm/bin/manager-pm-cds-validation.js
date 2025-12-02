@@ -21,7 +21,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-import { logger } from '../src/kernel/utils/log-manager.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { VALIDATION_MANUAL_CASES } from './manager-pm-validation-config.js';
 
 const config = {

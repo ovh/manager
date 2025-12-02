@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { promises as fs } from 'node:fs';
 
-import { logger } from './log-manager.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
 
 /**
  * Load and parse a JSON file into a typed object.

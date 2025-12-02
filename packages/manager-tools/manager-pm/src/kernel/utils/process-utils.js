@@ -2,7 +2,8 @@ import process from 'node:process';
 import { setImmediate } from 'node:timers';
 import { setTimeout } from 'node:timers/promises';
 
-import { logger } from './log-manager.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { clearRootWorkspaces } from './workspace-utils.js';
 
 /**

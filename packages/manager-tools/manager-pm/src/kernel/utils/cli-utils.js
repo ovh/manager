@@ -1,6 +1,6 @@
 import process from 'node:process';
 
-import { logger } from './log-manager.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
 
 /**
  * Print usage information and terminate the process with exit code 1.

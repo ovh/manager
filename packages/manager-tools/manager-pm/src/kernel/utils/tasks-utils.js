@@ -2,6 +2,8 @@ import { execSync } from 'node:child_process';
 import { spawn } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { managerRootPath, rootPackageJsonPath } from '../../playbook/playbook-config.js';
 import {
   buildApplicationWorkspacePath,
@@ -11,7 +13,6 @@ import {
   buildModuleWorkspacePath,
   getPackageNameFromModule,
 } from '../helpers/modules-workspace-helper.js';
-import { logger } from './log-manager.js';
 import { clearRootWorkspaces } from './workspace-utils.js';
 
 /**

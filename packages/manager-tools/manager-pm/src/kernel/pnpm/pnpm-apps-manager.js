@@ -1,3 +1,5 @@
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import {
   displayAddHelpBanner,
   displayFinalInstructionsHelpBanner,
@@ -6,7 +8,6 @@ import {
 import { buildApplicationWorkspacePath } from '../helpers/apps-workspace-helper.js';
 import { getCatalogsPaths, isTargetInCatalog, updateCatalogs } from '../utils/catalog-utils.js';
 import { normalizeCriticalDependencies } from '../utils/dependencies-utils.js';
-import { logger } from '../utils/log-manager.js';
 import { runYarnInstall } from '../utils/tasks-utils.js';
 import { cleanArtifactDirectories } from '../utils/workspace-utils.js';
 import { patchVitestConfig } from './pnpm-config-manager.js';

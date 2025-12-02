@@ -1,4 +1,4 @@
-import { logger } from '../utils/log-manager.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
 
 /**
  * Display a banner describing the migration process when adding

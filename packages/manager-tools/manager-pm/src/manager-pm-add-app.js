@@ -7,9 +7,10 @@
  */
 import process from 'node:process';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { addApplicationToPnpm } from './kernel/pnpm/pnpm-apps-manager.js';
 import { runApplicationCli } from './kernel/utils/cli-utils.js';
-import { logger } from './kernel/utils/log-manager.js';
 import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
 
 attachCleanupSignals(handleProcessAbortSignals);

@@ -7,7 +7,8 @@
  */
 import process from 'node:process';
 
-import { logger } from './kernel/utils/log-manager.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
 import { runIsolatedModulesInstall } from './kernel/utils/tasks-utils.js';
 

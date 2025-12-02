@@ -3,9 +3,10 @@ import inquirer from 'inquirer';
 import inquirerSearchList from 'inquirer-search-list';
 import process from 'node:process';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { containerPackageName, managerRootPath } from '../../playbook/playbook-config.js';
 import { getApplicationId, getApplications } from '../helpers/apps-workspace-helper.js';
-import { logger } from '../utils/log-manager.js';
 import { resolveApplicationBuildFilter } from '../utils/tasks-utils.js';
 import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/workspace-utils.js';
 

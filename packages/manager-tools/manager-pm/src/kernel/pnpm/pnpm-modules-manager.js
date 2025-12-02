@@ -1,3 +1,5 @@
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import {
   displayAddHelpBanner,
   displayFinalInstructionsHelpBanner,
@@ -15,7 +17,6 @@ import {
   updateCatalogs,
 } from '../utils/catalog-utils.js';
 import { normalizeCriticalDependencies } from '../utils/dependencies-utils.js';
-import { logger } from '../utils/log-manager.js';
 import { runYarnInstall } from '../utils/tasks-utils.js';
 import { cleanArtifactDirectories } from '../utils/workspace-utils.js';
 
