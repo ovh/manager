@@ -102,7 +102,7 @@ export default function OnboardingPage() {
         >
           <img className="onboarding-us-img invisible md:visible" src={onboardingUsImage} alt="" />
 
-          <div className="box-border flex w-[100%] flex-col gap-[1em] p-[1em] md:w-[50%]">
+          <div className="box-border flex w-full flex-col gap-[1em] p-[1em] md:w-1/2">
             {/* Public cloud description */}
             <OdsText preset="heading-1">{t('pci_projects_onboarding_us_title')}</OdsText>
             <OdsText preset="paragraph">{t('pci_projects_onboarding_us_description1')}</OdsText>
@@ -127,10 +127,10 @@ export default function OnboardingPage() {
         className="pci_projects_onboarding w-100 h-100 overflow-auto"
         data-testid="discovery-page"
       >
-        <div className="w-100 flex flex-col gap-[1em] px-[1em] text-center md:ml-[25%] md:w-[50%]">
+        <div className="w-100 flex flex-col gap-[1em] px-[1em] text-center md:ml-[25%] md:w-1/2">
           {/* KYC verification message (Indian accounts) */}
           {needKycValidation && (
-            <OdsMessage className="w-[100%]" color="information" isDismissible={false}>
+            <OdsMessage className="w-full" color="information" isDismissible={false}>
               <div data-testid="kyc-message">
                 <OdsText preset="span" className="inline">
                   {t(
