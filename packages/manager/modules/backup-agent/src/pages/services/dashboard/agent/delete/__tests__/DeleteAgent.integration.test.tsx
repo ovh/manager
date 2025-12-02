@@ -1,7 +1,4 @@
-import React from 'react';
-
 import { screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
