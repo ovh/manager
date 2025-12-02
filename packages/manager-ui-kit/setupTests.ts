@@ -2,7 +2,8 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { vi } from 'vitest';
+import { expect, vi } from 'vitest';
+import prettyFormat from "pretty-format";
 
 import '@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup';
 import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
@@ -147,3 +148,77 @@ if (typeof window !== 'undefined') {
     }
   });
 }
+
+// Custom snapshot serializer to normalize class names
+// This prevents snapshot failures when class names change order or are generated dynamically
+expect.addSnapshotSerializer({
+  test: (val: unknown): boolean => {
+    // Check if it's a string (HTML)
+    if (typeof val === 'string') {
+      return true;
+    }
+    // Check if it's an HTMLElement or Element
+    if (
+      val &&
+      typeof val === 'object' &&
+      (val instanceof HTMLElement ||
+        val instanceof Element ||
+        ('outerHTML' in val && typeof (val as { outerHTML: unknown }).outerHTML === 'string') ||
+        ('innerHTML' in val && typeof (val as { innerHTML: unknown }).innerHTML === 'string'))
+    ) {
+      return true;
+    }
+    return false;
+  },
+  print: (val: unknown): string => {
+    let htmlString = '';
+
+    // Handle HTMLElement or Element objects directly (container, baseElement, etc.)
+    if (val instanceof HTMLElement || val instanceof Element) {
+      htmlString = val.outerHTML || val.innerHTML || '';
+    }
+    // Handle objects with outerHTML property
+    else if (val && typeof val === 'object' && 'outerHTML' in val) {
+      htmlString = String((val as { outerHTML: string }).outerHTML);
+    }
+    // Handle objects with innerHTML property
+    else if (val && typeof val === 'object' && 'innerHTML' in val) {
+      htmlString = String((val as { innerHTML: string }).innerHTML);
+    }
+    // Handle string directly
+    else if (typeof val === 'string') {
+      htmlString = val;
+    } else {
+      return String(val);
+    }
+
+    // Normalize class attributes by:
+    // 1. Normalizing CSS module class names (replacing hash with placeholder)
+    // 2. Sorting classes alphabetically
+    const normalizedHtml = htmlString.replace(
+      /(class|className)=["']([^"']+)["']/gi,
+      (_match, attr, classes) => {
+        // Split classes, normalize CSS module hashes, sort, and rejoin
+        const normalizedClasses = classes
+          .split(/\s+/)
+          .map((c: string) => {
+            const trimmed = c.trim();
+            if (!trimmed) return '';
+            
+            // Normalize CSS module class names: _baseName_hash_moduleId -> _baseName_HASH
+            // Pattern: _className_abc123_1 (base can contain hyphens, underscores, double hyphens)
+            // Examples: _form-field_112eg_2 -> _form-field_HASH
+            //           _text--label_1aw48_49 -> _text--label_HASH
+            // We normalize both the hash AND the module ID to make snapshots stable across builds
+            return trimmed.replace(/^(_[a-zA-Z0-9_-]+)_[a-zA-Z0-9]+_\d+$/, '$1_HASH');
+          })
+          .filter((c: string) => c.length > 0)
+          .sort()
+          .join(' ');
+        return `${attr}="${normalizedClasses}"`;
+      },
+    );
+
+    return normalizedHtml;
+  },
+});
