@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -61,13 +62,13 @@ const ProjectLink: React.FC<{
 };
 
 export const getDatagridColumns = (
-  t: (key: string) => string,
+  t: (key: string, options?: { ns?: string }) => string,
   getProjectUrl: (projectId: string) => Promise<string>,
   isRedirectExternal: boolean,
 ): DatagridColumn<TProjectWithService>[] => [
   {
     id: 'description',
-    label: t('pci_projects_description'),
+    label: t('description', { ns: NAMESPACES.DASHBOARD }),
     cell: (props: TProjectWithService) => (
       <DataGridTextCell>
         <ProjectLink
@@ -94,7 +95,7 @@ export const getDatagridColumns = (
   },
   {
     id: 'aggregatedStatus',
-    label: t('pci_projects_status'),
+    label: t('status', { ns: NAMESPACES.STATUS }),
     cell: (props: TProjectWithService) => (
       <DataGridTextCell>
         <StatusComponent project={props} />

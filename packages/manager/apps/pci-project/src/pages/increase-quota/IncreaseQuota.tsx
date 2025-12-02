@@ -7,13 +7,14 @@ import { useTranslation } from 'react-i18next';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { SUPPORT_URL } from '@/constants';
 
 export default function IncreaseQuota() {
-  const { t } = useTranslation('increase-quota');
+  const { t } = useTranslation(['increase-quota', NAMESPACES.ACTIONS]);
 
   const navigate = useNavigate();
 
@@ -29,7 +30,7 @@ export default function IncreaseQuota() {
       type={ODS_MODAL_COLOR.critical}
       primaryLabel={t('pci_project_new_error_contact_support')}
       onPrimaryButtonClick={handleContactSupport}
-      secondaryLabel={t('pci_project_new_error_cancel')}
+      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={handleClose}
       onDismiss={handleClose}
       isOpen={true}

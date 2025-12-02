@@ -19,9 +19,7 @@
   "pci_projects_new_voucher_form_field_error_voucher_new_customer": "Der von Ihnen angegebene Code ist nur für Neukunden gültig.",
   "pci_projects_new_voucher_form_field_error_voucher_new_project": "Hoppla! Sie haben bereits ein Projekt; der Code ist daher nicht für Sie verfügbar.",
   "pci_projects_new_voucher_form_field_error_default": "Bei der Überprüfung des Codes ist ein Fehler aufgetreten.",
-  "pci_projects_new_voucher_form_add": "Hinzufügen",
   "pci_projects_new_voucher_form_add_title": "Einen Gutschein hinzufügen",
-  "pci_projects_new_voucher_form_remove": "Entfernen",
   "pci_projects_new_voucher_form_remove_title": "Gutschein entfernen",
   "pci_projects_new_voucher_form_reset_error": "Beim Entfernen Ihres Gutscheins ist ein Fehler aufgetreten."
 }

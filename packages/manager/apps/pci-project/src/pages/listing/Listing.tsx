@@ -12,6 +12,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { PciTrustedZoneBanner, useTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
@@ -43,7 +44,8 @@ type ErrorResponse = {
 
 export default function Listing() {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', NAMESPACES.DASHBOARD, NAMESPACES.STATUS]);
+
   const projectPath = useHref(`${urls.root}/${urls.project}`);
   const navigate = useNavigate();
 
