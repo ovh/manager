@@ -72,7 +72,7 @@ function formatMessage(color: ColorCode, symbol: LogSymbol, msg: string, args: u
 /**
  * Dispatch the log depending on the current mode.
  */
-// eslint-disable-next-line max-params
+
 function output(
   stream: (msg: string) => void,
   color: ColorCode,

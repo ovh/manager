@@ -35,13 +35,13 @@ packages/manager/modules/gcj
 packages/manager/modules/logs-to-customer
 packages/manager/modules/network-common
 packages/manager/modules/order
-packages/manager-tools/manager-cli
+packages/manager-tools/manager-migration-cli
 packages/manager-tools/manager-static-analysis-kit
 packages/manager-tools/manager-tailwind-config
 packages/manager-tools/manager-tests-setup
 packages/manager-tools/manager-vite-config
 packages/manager-tools/manager-pm
-packages/manager-tools/manager-muk-cli
+packages/manager-tools/manager-cli-core
 packages/manager/apps/cloud-shell/src/wasm_exec.js
 packages/manager/apps/pci-instances
 packages/manager/apps/pci-kubernetes

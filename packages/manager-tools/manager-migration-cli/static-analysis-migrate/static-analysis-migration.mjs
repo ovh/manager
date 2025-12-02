@@ -7,7 +7,7 @@ const isDryRun = args.includes('--dry-run');
 
 if (!appName || appName.startsWith('--')) {
   console.error(
-    '❌ Missing required <app-name> argument.\nUsage: yarn manager-cli static-analysis-migrate --app <name> [--dry-run]',
+    '❌ Missing required <app-name> argument.\nUsage: yarn manager-migration-cli static-analysis-migrate --app <name> [--dry-run]',
   );
   process.exit(1);
 }
