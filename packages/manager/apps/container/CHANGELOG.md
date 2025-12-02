@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.166.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.166.0...@ovh-ux/manager-container-app@0.166.1) (2025-12-02)
+
+
+### Bug Fixes
+
+* **container:** update live-chat URLs to load on ovhcloud.com ([6db6c0a](https://github.com/ovh/manager/commit/6db6c0abe63e2750cfb375aff8179f79a937279e))
+
+
+
+
+
 # [0.166.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.165.0...@ovh-ux/manager-container-app@0.166.0) (2025-12-01)
 
 
