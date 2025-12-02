@@ -10,6 +10,8 @@ import {
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 
+import { BackupAgentContext, BackupAgentProviderProps } from '@/BackupAgent.context';
+
 import { initTestI18n } from './i18ntest.utils';
 
 export type TestProvider = (props: React.PropsWithChildren) => React.ReactNode;
@@ -44,5 +46,16 @@ export const addShellContextProvider = async (providers: TestProvider[]) => {
   }
   providers.push(({ children }) => (
     <ShellContext.Provider value={context}>{children}</ShellContext.Provider>
+  ));
+};
+
+export const addAppContextProvider = (
+  providers: TestProvider[],
+  appContext?: BackupAgentProviderProps,
+) => {
+  const backupAgentContext = appContext ?? { appName: 'backup-agent', scope: 'Enterprise' };
+
+  providers.push(({ children }) => (
+    <BackupAgentContext.Provider value={backupAgentContext}>{children}</BackupAgentContext.Provider>
   ));
 };
