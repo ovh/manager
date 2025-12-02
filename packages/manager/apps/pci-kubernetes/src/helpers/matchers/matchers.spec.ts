@@ -103,7 +103,24 @@ describe(`Clusters and Node pool names should follow strict rules`, () => {
   );
 });
 
-const VALID_KUBE_URL = '3izocz.c1.gra9.k8s.ovh.net';
+const VALID_KUBE_URLS = [
+  {
+    url: '3izocz.c1.gra9.k8s.ovh.net',
+    expected: { shortId: '3izocz', subRegion: 'c1', region: 'gra9' },
+  },
+  {
+    url: 'oie9v.b8.eu-west-eee.k8s.ovh.net',
+    expected: { shortId: 'oie9v', subRegion: 'b8', region: 'eu-west-eee' },
+  },
+  {
+    url: 'kl54.9p.vv1.k8s.ovh.us',
+    expected: { shortId: 'kl54', subRegion: '9p', region: 'vv1' },
+  },
+  {
+    url: 'https://5rrr4.6y.ca1-eee.k8s.ovh.ca',
+    expected: { shortId: '5rrr4', subRegion: '6y', region: 'ca1-eee' },
+  },
+];
 const INVALID_KUBE_URLS = [
   'gra9.k8s.ovh.net',
   'c1.gra9.k8s.ovh.net',
@@ -113,12 +130,12 @@ const INVALID_KUBE_URLS = [
 ];
 
 describe(`getClusterUrlFragments`, () => {
-  it('should parse well formated kubernetes URLs', () => {
-    const parsed = getClusterUrlFragments(VALID_KUBE_URL);
-
-    expect(parsed?.shortId).toBe('3izocz');
-    expect(parsed?.subRegion).toBe('c1');
-    expect(parsed?.region).toBe('gra9');
+  test.each(VALID_KUBE_URLS)('should parse valid kubenertes URL', ({ url, expected }) => {
+    const match = getClusterUrlFragments(url);
+    expect(match).not.toBe(null);
+    expect(match!.shortId).toBe(expected.shortId);
+    expect(match!.subRegion).toBe(expected.subRegion);
+    expect(match!.region).toBe(expected.region);
   });
 
   test.each(INVALID_KUBE_URLS)('should not parse invalid kubenertes URL', (url) => {

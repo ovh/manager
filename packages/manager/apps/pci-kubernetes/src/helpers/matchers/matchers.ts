@@ -14,7 +14,7 @@ export const isNodePoolNameValid = (input: string) =>
 export const isClusterNameValid = (input: string) => CLUSTER_NAME_CONSTRAINTS.PATTERN.test(input);
 
 const CLUSTER_API_URL_REGEX =
-  /^(?<shortId>[\da-z]+)\.(?<subRegion>[\da-z]+)\.(?<region>[\da-z]+)\.k8s\.ovh\.net$/;
+  /^(?:https?:\/\/)?(?<shortId>[\da-z]+)\.(?<subRegion>[\da-z]+)\.(?<region>[\da-z-]+)\.k8s\.ovh\.[a-z]+$/;
 
 export const getClusterUrlFragments = (url: string) => {
   const match = url.match(CLUSTER_API_URL_REGEX);
