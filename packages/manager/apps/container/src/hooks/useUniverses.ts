@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLogoutUrl } from '@ovh-ux/manager-core-sso';
 
 export type Universe = {
   isPrimary: boolean;
@@ -28,7 +27,7 @@ export async function fetchUniverses(): Promise<Universe[]> {
       universes.map((universe: Universe) => ({
         isPrimary: true, //! SECONDARY_UNIVERSES.includes(universe.universe),
         universe: universe.universe,
-        url: universe.universe === 'sunrise' || window.location.pathname?.includes('/manager/') ? universe.url : universe.url.replace(oldDomains.EU, 'manager.eu.ovhcloud.com').replace(oldDomains.CA, 'manager.ca.ovhcloud.com').replace(oldDomains.US, 'manager.us.ovhcloud.com').replace(oldDomains.TELECOM, 'manager.eu.ovhcloud.com'),
+        url: universe.universe === 'sunrise' ? universe.url : universe.url.replace(oldDomains.EU, 'manager.eu.ovhcloud.com').replace(oldDomains.CA, 'manager.ca.ovhcloud.com').replace(oldDomains.US, 'manager.us.ovhcloud.com').replace(oldDomains.TELECOM, 'manager.eu.ovhcloud.com'),
       })),
     );
 }
