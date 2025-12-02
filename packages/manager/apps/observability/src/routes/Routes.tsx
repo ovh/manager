@@ -106,17 +106,8 @@ export default (
                 },
               }}
             />
-            <Route
-              path={`${subroutes.edit}`}
-              Component={EditTenantPage}
-              handle={{
-                tracking: {
-                  pageName: 'tenant-edit',
-                  pageType: PageType.popup,
-                },
-              }}
-            />
           </Route>
+
           <Route
             path={subroutes.onboarding}
             Component={OnboardingTenantPage}
@@ -127,7 +118,6 @@ export default (
             }}
           />
         </Route>
-
         {/* Tenant layout */}
         <Route path={subroutes.tenants} Component={TenantLayout}>
           <Route
@@ -137,6 +127,16 @@ export default (
               titleKey: 'creation.title',
               tracking: {
                 pageName: 'tenants-creation',
+              },
+            }}
+          />
+          <Route
+            path={`${subroutes.edit}`}
+            Component={EditTenantPage}
+            handle={{
+              titleKey: 'edition.title',
+              tracking: {
+                pageName: 'tenant-edit',
               },
             }}
           />

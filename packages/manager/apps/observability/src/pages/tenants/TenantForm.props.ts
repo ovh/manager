@@ -1,6 +1,5 @@
-import { ReactNode } from 'react';
+import { Tenant } from '@/types/tenants.type';
 
-export interface TenantFormLayoutProps {
-  children: ReactNode;
-  className?: string;
+export interface TenantFormProps {
+  tenant?: Tenant;
 }
