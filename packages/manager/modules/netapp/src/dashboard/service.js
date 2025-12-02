@@ -32,6 +32,8 @@ export default class NetAppDashboardService {
     ];
     this.coreConfig = coreConfig;
     this.activesNFS = [];
+    //  mock - will be updated with checkboxes implmentation.
+    this.replicationsSelectedVolumes = ['92ae0729-123b-4321-81a2-0cef3b0a8607'];
   }
 
   /**
@@ -378,5 +380,10 @@ export default class NetAppDashboardService {
             activesNFS: [],
           }));
       });
+  }
+
+  // will be used to disable/enable checkboxes in volumes' list too.
+  hasAvailableReplicationsServices() {
+    return !!this.replicationsAvaibleServices.length;
   }
 }
