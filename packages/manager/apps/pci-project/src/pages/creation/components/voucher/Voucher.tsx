@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { CartConfiguration } from '@/data/models/Cart.type';
@@ -30,7 +31,7 @@ export default function Voucher({
   setVoucherConfiguration,
   initialVoucher,
 }: VoucherProps) {
-  const { t } = useTranslation('new/voucher');
+  const { t } = useTranslation(['new/voucher', NAMESPACES.ACTIONS]);
 
   const { trackClick } = useOvhTracking();
 
@@ -69,7 +70,7 @@ export default function Voucher({
           isDisabled={!voucher}
           isLoading={isPending}
           size="sm"
-          label={t('pci_projects_new_voucher_form_add')}
+          label={t('add', { ns: NAMESPACES.ACTIONS })}
         />
       </div>
 

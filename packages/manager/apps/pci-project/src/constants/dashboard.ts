@@ -1,5 +1,7 @@
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { DashboardItem } from '../data/models/Dashboard.type';
 import { DOC_BASE_URL, FEATURE_AVAILABILITY } from './base';
 import { PCI_FEATURES_STATES } from './features';
@@ -42,14 +44,14 @@ export const DASHBOARD_DOCUMENTATION_LINKS = [
     trackingName: 'go-to-get-started-with-instances',
   },
   {
-    term: 'pci_projects_home_documentation_billing_term',
+    term: `${NAMESPACES.BILLING}:billing`,
     description: 'pci_projects_home_documentation_billing_description',
     href: 'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
     feature: FEATURE_AVAILABILITY.CLOUD_BILLING_OPTIONS,
     trackingName: 'go-to-billing',
   },
   {
-    term: 'pci_projects_home_documentation_guides_term',
+    term: `${NAMESPACES.ONBOARDING}:guides`,
     description: 'pci_projects_home_documentation_guides_description',
     href: 'https://docs.ovh.com/gb/en/',
     feature: FEATURE_AVAILABILITY.ALL_GUIDES,
@@ -127,7 +129,7 @@ export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
   },
   {
     iconODS: ODS_ICON_NAME.bill,
-    labelTranslationKey: 'pci_projects_home_billing',
+    labelTranslationKey: `${NAMESPACES.BILLING}:billing`,
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT!.BILLING_CONTROL!.url,
     featureFlag: FEATURE_AVAILABILITY.BILLING,
     trackingName: 'detail_billing',

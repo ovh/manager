@@ -40,7 +40,9 @@ describe('Others', () => {
     // Check that all expected items are rendered
     expect(screen.getByText('pci_projects_home_create_ai_notebook')).toBeInTheDocument();
     expect(screen.getByText('pci_projects_home_create_load_balancer')).toBeInTheDocument();
-    expect(screen.getByText('pci_projects_home_billing')).toBeInTheDocument();
+    expect(
+      screen.getByText('@ovh-ux/manager-common-translations/billing:billing'),
+    ).toBeInTheDocument();
     expect(screen.getByText('pci_projects_home_quotas')).toBeInTheDocument();
   });
 
@@ -62,7 +64,9 @@ describe('Others', () => {
 
     // Check that available items are rendered
     expect(screen.getByText('pci_projects_home_create_ai_notebook')).toBeInTheDocument();
-    expect(screen.getByText('pci_projects_home_billing')).toBeInTheDocument();
+    expect(
+      screen.getByText('@ovh-ux/manager-common-translations/billing:billing'),
+    ).toBeInTheDocument();
 
     // Check that disabled items are not rendered
     expect(screen.queryByText('pci_projects_home_create_load_balancer')).not.toBeInTheDocument();
@@ -88,7 +92,9 @@ describe('Others', () => {
     // Check that no items are rendered
     expect(screen.queryByText('pci_projects_home_create_ai_notebook')).not.toBeInTheDocument();
     expect(screen.queryByText('pci_projects_home_create_load_balancer')).not.toBeInTheDocument();
-    expect(screen.queryByText('pci_projects_home_billing')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('@ovh-ux/manager-common-translations/billing:billing'),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText('pci_projects_home_quotas')).not.toBeInTheDocument();
   });
 
@@ -106,7 +112,9 @@ describe('Others', () => {
     // When data is undefined, no items should be rendered (all features considered unavailable)
     expect(screen.queryByText('pci_projects_home_create_ai_notebook')).not.toBeInTheDocument();
     expect(screen.queryByText('pci_projects_home_create_load_balancer')).not.toBeInTheDocument();
-    expect(screen.queryByText('pci_projects_home_billing')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('@ovh-ux/manager-common-translations/billing:billing'),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText('pci_projects_home_quotas')).not.toBeInTheDocument();
   });
 
@@ -144,7 +152,9 @@ describe('Others', () => {
 
     // Check that other items are not rendered
     expect(screen.queryByText('pci_projects_home_create_load_balancer')).not.toBeInTheDocument();
-    expect(screen.queryByText('pci_projects_home_billing')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('@ovh-ux/manager-common-translations/billing:billing'),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText('pci_projects_home_quotas')).not.toBeInTheDocument();
   });
 
@@ -165,7 +175,9 @@ describe('Others', () => {
     });
 
     // Check that billing and quota are rendered
-    expect(screen.getByText('pci_projects_home_billing')).toBeInTheDocument();
+    expect(
+      screen.getByText('@ovh-ux/manager-common-translations/billing:billing'),
+    ).toBeInTheDocument();
     expect(screen.getByText('pci_projects_home_quotas')).toBeInTheDocument();
 
     // Check that other items are not rendered
