@@ -1,6 +1,8 @@
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import * as ManagerReactComponents from '@ovh-ux/manager-react-components';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import ListPage from '@/pages/list/List.page';
 import { TClusterPlan, TClusterPlanEnum, TKube } from '@/types';
@@ -15,18 +17,15 @@ type TKubesPaginated = {
 
 const clusterPlans: TClusterPlan[] = [TClusterPlanEnum.FREE, TClusterPlanEnum.STANDARD];
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    ChangelogButton: vi.fn().mockReturnValue(<div></div>),
-    Notifications: vi.fn().mockReturnValue(<div></div>),
-    useNotifications: vi.fn(() => ({
-      clearNotifications: vi.fn(),
-    })),
-    useProjectUrl: vi.fn(),
-  };
-});
+vi.spyOn(ManagerReactComponents, 'useNotifications').mockImplementation(() => ({
+  clearNotifications: vi.fn(),
+}));
+vi.spyOn(ManagerReactComponents, 'ChangelogButton').mockImplementation(
+  vi.fn().mockReturnValue(<div></div>),
+);
+vi.spyOn(ManagerReactComponents, 'Notifications').mockImplementation(
+  vi.fn().mockReturnValue(<div></div>),
+);
 
 describe('ListPage', () => {
   it.skip('renders page correctly', () => {
@@ -44,7 +43,10 @@ describe('ListPage', () => {
   it.skip('displays loading spinner when data is pending', () => {
     vi.spyOn(useKubernetesModule, 'useKubes').mockReturnValue({
       isPending: true,
-      data: [{ id: 1, name: 'Kube1' }],
+      data: {
+        rows: [{ id: 1, name: 'Kube1' }],
+        totalRows: 1,
+      },
     } as unknown as TKubesPaginated);
     const { getByTestId } = render(<ListPage />, { wrapper });
     expect(getByTestId('List-spinner')).toBeVisible();
@@ -53,6 +55,8 @@ describe('ListPage', () => {
   it('renders datagrid with items when data is available', () => {
     vi.spyOn(useKubernetesModule, 'useKubes').mockReturnValue({
       isPending: false,
+      isLoading: false,
+      error: null,
       data: {
         rows: [{ id: 1, name: 'Kube1' }],
         totalRows: 1,
