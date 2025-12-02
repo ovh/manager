@@ -64,12 +64,12 @@
   "key_management_service_dashboard_button_label_download_ca": "CA herunterladen",
   "key_management_service_dashboard_button_label_download_rsa_ca": "CA RSA herunterladen",
   "key_management_service_dashboard_error_download_ca": "Das Zertifikat konnte nicht heruntergeladen werden.",
-  "okms_secret_config": "Standardwerte der Geheimnisse",
+  "okms_secret_config": "Standardeinstellungen für Secrets",
   "okms_services": "Dienste der OKMS-Domain",
-  "okms_secret_count": "Anzahl der Geheimnisse",
-  "okms_secret_version_count": "Gesamtanzahl der Versionen",
-  "okms_service_key_count": "Anzahl der Dienstschlüssel",
-  "okms_kmip_object_count": "Anzahl der KMIP-Objekte",
-  "okms_kmip_object_count_tooltip": "Die zerstörten Objekte werden nicht gezählt",
+  "okms_secret_count": "Anzahl der Secrets",
+  "okms_secret_version_count": "Gesamtanzahl an Versionen",
+  "okms_service_key_count": "Anzahl der Service Keys",
+  "okms_kmip_object_count": "Anzahl KMIP-Objekte",
+  "okms_kmip_object_count_tooltip": "Zerstörte Objekte werden nicht gezählt.",
   "kmip_objects": "KMIP-Objekte"
 }

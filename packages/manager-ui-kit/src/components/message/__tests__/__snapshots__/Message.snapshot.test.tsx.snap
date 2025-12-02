@@ -3,20 +3,20 @@
 exports[`Message Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    class="_message_1oosv_2 _message--information_1oosv_13 _message--default_1oosv_9"
-    data-ods="message"
+    class=_message _message--information _message--default
+    data-ods=message
   >
     Hello
     <button
-      aria-label="Close"
-      class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
-      data-ods="button"
-      type="button"
+      aria-label=Close
+      class=_button _button--neutral _button--xs _button--ghost _message__close
+      data-ods=button
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--xmark_10c23_562"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--xmark
+        data-ods=icon
+        role=presentation
       />
     </button>
   </div>

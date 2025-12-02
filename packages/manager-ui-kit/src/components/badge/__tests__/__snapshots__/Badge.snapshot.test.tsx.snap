@@ -3,9 +3,9 @@
 exports[`Badge Snapshot Tests > matches snapshot for default badge > default-badge 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--information _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     Active
   </span>
@@ -15,10 +15,10 @@ exports[`Badge Snapshot Tests > matches snapshot for default badge > default-bad
 exports[`Badge Snapshot Tests > matches snapshot for loading badge > loading-badge 1`] = `
 <div>
   <div
-    aria-hidden="true"
-    class="_skeleton_kauw8_2"
-    data-ods="skeleton"
-    data-testid="badge"
+    aria-hidden=true
+    class=_skeleton
+    data-ods=skeleton
+    data-testid=badge
   />
 </div>
 `;
@@ -26,9 +26,9 @@ exports[`Badge Snapshot Tests > matches snapshot for loading badge > loading-bad
 exports[`Badge Snapshot Tests > matches snapshot for success color and large size > success-lg-badge 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--success_vpjtq_43 _badge--lg_vpjtq_61"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--success _badge--lg
+    data-ods=badge
+    data-testid=badge
   >
     Success
   </span>
