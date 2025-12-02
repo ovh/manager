@@ -2,178 +2,60 @@
 
 exports[`Link component > renders a back link correctly 1`] = `
 <DocumentFragment>
-  <a
-    class="_link_1y3p4_2"
-    data-ods="link"
-    href="https://www.example.com"
-  >
-    <span
-      class="_icon_10c23_2 _icon--arrow-left_10c23_28"
-      data-ods="icon"
-      role="presentation"
-    />
-    Back to the list
-  </a>
+  <a class="_link_HASH" data-ods="link" href="https://www.example.com"><span class="_icon--arrow-left_HASH _icon_HASH" data-ods="icon" role="presentation"></span>Back to the list</a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a disabled link with urn and iamActions correctly 1`] = `
 <DocumentFragment>
-  <a
-    aria-disabled="true"
-    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
-    data-ods="tooltip-trigger"
-    data-part="trigger"
-    data-scope="tooltip"
-    data-state="closed"
-    dir="ltr"
-    href="https://www.example.com"
-    id="tooltip::r1::trigger"
-    role="button"
-    tabindex="-1"
-  >
-    Disabled Protected Link
-  </a>
+  <a aria-disabled="true" class="_link--disabled_HASH _link_HASH _tooltip-trigger_HASH" data-ods="tooltip-trigger" href="https://www.example.com" data-scope="tooltip" data-part="trigger" id="tooltip::r1::trigger" dir="ltr" data-state="closed" role="button" tabindex="-1">Disabled Protected Link</a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a external link correctly with label as prop 1`] = `
 <DocumentFragment>
-  <a
-    class="_link_1y3p4_2"
-    data-ods="link"
-    href="https://www.ovhcloud.com/"
-    target="_blank"
-  >
-    External Page
-    <span
-      class="_icon_10c23_2 _icon--external-link_10c23_232"
-      data-ods="icon"
-      role="presentation"
-    />
-  </a>
+  <a class="_link_HASH" data-ods="link" href="https://www.ovhcloud.com/" target="_blank">External Page<span class="_icon--external-link_HASH _icon_HASH" data-ods="icon" role="presentation"></span></a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a link with custom className and IAM props 1`] = `
 <DocumentFragment>
-  <a
-    aria-disabled="true"
-    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2 custom-link-class"
-    data-ods="tooltip-trigger"
-    data-part="trigger"
-    data-scope="tooltip"
-    data-state="closed"
-    dir="ltr"
-    href="https://www.example.com"
-    id="tooltip::r4::trigger"
-    role="button"
-    tabindex="-1"
-  >
-    Custom Styled Protected Link
-  </a>
+  <a aria-disabled="true" class="_link--disabled_HASH _link_HASH _tooltip-trigger_HASH custom-link-class" data-ods="tooltip-trigger" href="https://www.example.com" data-scope="tooltip" data-part="trigger" id="tooltip::r4::trigger" dir="ltr" data-state="closed" role="button" tabindex="-1">Custom Styled Protected Link</a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a link with disabled IAM check 1`] = `
 <DocumentFragment>
-  <a
-    aria-disabled="true"
-    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
-    data-ods="tooltip-trigger"
-    data-part="trigger"
-    data-scope="tooltip"
-    data-state="closed"
-    dir="ltr"
-    href="https://www.example.com"
-    id="tooltip::r2::trigger"
-    role="button"
-    tabindex="-1"
-  >
-    Link with Disabled IAM Check
-  </a>
+  <a aria-disabled="true" class="_link--disabled_HASH _link_HASH _tooltip-trigger_HASH" data-ods="tooltip-trigger" href="https://www.example.com" data-scope="tooltip" data-part="trigger" id="tooltip::r2::trigger" dir="ltr" data-state="closed" role="button" tabindex="-1">Link with Disabled IAM Check</a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a link with multiple iamActions 1`] = `
 <DocumentFragment>
-  <a
-    aria-disabled="true"
-    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
-    data-ods="tooltip-trigger"
-    data-part="trigger"
-    data-scope="tooltip"
-    data-state="closed"
-    dir="ltr"
-    href="https://www.example.com"
-    id="tooltip::r3::trigger"
-    role="button"
-    tabindex="-1"
-  >
-    Link with Multiple IAM Actions
-  </a>
+  <a aria-disabled="true" class="_link--disabled_HASH _link_HASH _tooltip-trigger_HASH" data-ods="tooltip-trigger" href="https://www.example.com" data-scope="tooltip" data-part="trigger" id="tooltip::r3::trigger" dir="ltr" data-state="closed" role="button" tabindex="-1">Link with Multiple IAM Actions</a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a link with urn and iamActions correctly 1`] = `
 <DocumentFragment>
-  <a
-    aria-disabled="true"
-    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
-    data-ods="tooltip-trigger"
-    data-part="trigger"
-    data-scope="tooltip"
-    data-state="closed"
-    dir="ltr"
-    href="https://www.example.com"
-    id="tooltip::r0::trigger"
-    role="button"
-    tabindex="-1"
-  >
-    Protected Link
-  </a>
+  <a aria-disabled="true" class="_link--disabled_HASH _link_HASH _tooltip-trigger_HASH" data-ods="tooltip-trigger" href="https://www.example.com" data-scope="tooltip" data-part="trigger" id="tooltip::r0::trigger" dir="ltr" data-state="closed" role="button" tabindex="-1">Protected Link</a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a link with urn and iamActions without tooltip 1`] = `
 <DocumentFragment>
-  <a
-    aria-disabled="true"
-    class="_link_1y3p4_2 _link--disabled_1y3p4_43"
-    data-ods="link"
-    href="https://www.example.com"
-    tabindex="-1"
-  >
-    Protected Link No Tooltip
-  </a>
+  <a aria-disabled="true" class="_link--disabled_HASH _link_HASH" data-ods="link" href="https://www.example.com" tabindex="-1">Protected Link No Tooltip</a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a next link correctly 1`] = `
 <DocumentFragment>
-  <a
-    class="_link_1y3p4_2"
-    data-ods="link"
-    href="https://www.example.com"
-  >
-    Next Page
-    <span
-      class="_icon_10c23_2 _icon--arrow-right_10c23_34"
-      data-ods="icon"
-      role="presentation"
-    />
-  </a>
+  <a class="_link_HASH" data-ods="link" href="https://www.example.com">Next Page<span class="_icon--arrow-right_HASH _icon_HASH" data-ods="icon" role="presentation"></span></a>
 </DocumentFragment>
 `;
 
 exports[`Link component > renders a simple link correctly 1`] = `
 <DocumentFragment>
-  <a
-    class="_link_1y3p4_2"
-    data-ods="link"
-    href="https://www.example.com"
-  >
-    test link
-  </a>
+  <a class="_link_HASH" data-ods="link" href="https://www.example.com">test link</a>
 </DocumentFragment>
 `;
