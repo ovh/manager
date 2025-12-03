@@ -32,5 +32,9 @@
   "ERROR": "Erro",
   "DELETING": "Eliminação em curso",
   "CREATING": "Criação em curso",
-  "ENABLED": "Ativado"
+  "ENABLED": "Ativado",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Impact tarifário",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "A ativação dos IPs Flutuantes implica um custo adicional. Cada instância atual e futura deste pool de nós receberá um IP Flutuante cobrado {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Atenção: Ação irreversível",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "A desativação resultará na desvinculação imediata dos IPs Flutuantes. Esses endereços serão liberados definitivamente e não poderão ser recuperados."
 }
