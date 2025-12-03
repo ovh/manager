@@ -4,9 +4,9 @@
   "deleteReplicationButtonConfirm": "Usuń",
   "deleteReplicationButtonCancel": "Anuluj",
   "deleteReplicationToastSuccessTitle": "Reguła usunięta",
-  "deleteReplicationToastSuccessMessage": "Reguła replikacji została usunięta.",
-  "deleteReplicationToastErrorTitle": "Błąd podczas usuwania",
+  "deleteReplicationToastSuccessMessage": "Usunięcie reguły replikacji powiodło się.",
+  "deleteReplicationToastErrorTitle": "Błąd usuwania",
   "deleteReplicationToastErrorMessage": "Wystąpił błąd podczas usuwania reguły replikacji: {{message}}.",
-  "replicationRuleNotFound": "Brak reguł replikacji",
+  "replicationRuleNotFound": "Nie znaleziono reguły replikacji.",
   "close": "Zamknij"
 }

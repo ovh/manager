@@ -21,7 +21,7 @@ import { useGetAvailableDestinationsContainers } from './useGetDestinationContai
 
 export const ReplicationRuleDestination = () => {
   const { form, isPending } = useReplicationFormContext();
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
 
   const {
     availableDestinations,
