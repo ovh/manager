@@ -23,10 +23,6 @@ export default function GeneralInformation() {
     refetchInterval: 60 * 1000,
   });
 
-  if (isError || isRefetchError) {
-    return <Errors error={error?.response} />;
-  }
-
   if (isLoading) {
     return (
       <div>
@@ -35,13 +31,16 @@ export default function GeneralInformation() {
     );
   }
 
+  if (isError || isRefetchError) return <Errors error={error?.response} />;
+  if (!vcdOrganization?.data) return <Errors />;
+
   return (
     <div className="grid gap-8 px-10 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <OrganizationGenerationInformationTile vcdOrganization={vcdOrganization.data} />
       <div className="flex flex-col gap-8">
         <OrganizationOptionsTile
-          isLicenseActive={!!vcdOrganization.data?.currentState?.spla}
-          isDisabled={isStatusTerminated(vcdOrganization.data?.resourceStatus)}
+          isLicenseActive={!!vcdOrganization.data.currentState.spla}
+          isDisabled={isStatusTerminated(vcdOrganization.data.resourceStatus)}
         />
         <OrganizationDataProtectionTile vcdOrganization={vcdOrganization.data} />
       </div>

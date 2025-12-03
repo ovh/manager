@@ -24,10 +24,6 @@ export default function DatacentresGeneralInformationPage() {
     error: datacentreError,
   } = useVcdDatacentre(id, vdcId);
 
-  if (vcdError || datacentreError) {
-    return <Errors error={vcdError?.response || datacentreError?.response} />;
-  }
-
   if (isLoadingVcd || isLoadingDatacentre) {
     return (
       <div>
@@ -36,12 +32,18 @@ export default function DatacentresGeneralInformationPage() {
     );
   }
 
+  if (vcdError || datacentreError) {
+    return <Errors error={vcdError?.response || datacentreError?.response} />;
+  }
+
+  if (!vcdDatacentre?.data || !vcdOrganization?.data) return <Errors />;
+
   return (
     <React.Suspense fallback={<Loading />}>
       <div className="grid gap-8 px-10 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <DatacentreGenerationInformationTile
-          vcdDatacentre={vcdDatacentre?.data}
-          vcdOrganization={vcdOrganization?.data}
+          vcdDatacentre={vcdDatacentre.data}
+          vcdOrganization={vcdOrganization.data}
         />
       </div>
       <Outlet />
