@@ -32,5 +32,9 @@
   "ERROR": "Błąd",
   "DELETING": "Trwa usuwanie",
   "CREATING": "Tworzenie w toku",
-  "ENABLED": "Aktywowano"
+  "ENABLED": "Aktywowano",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Wpływ taryfowy",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "Aktywacja Floating IP wiąże się z dodatkowymi kosztami. Każda obecna i przyszła instancja tego puli węzłów otrzyma Floating IP obciążony kwotą {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Uwaga: Nieodwracalna akcja",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "Dezaktywacja spowoduje natychmiastowe odłączenie Floating IP. Te adresy zostaną na stałe zwolnione i nie będą mogły być odzyskane."
 }
