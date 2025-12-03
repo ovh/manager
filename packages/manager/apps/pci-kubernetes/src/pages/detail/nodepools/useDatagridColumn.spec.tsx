@@ -3,47 +3,56 @@ import { renderHook } from '@testing-library/react';
 import { useDatagridColumns } from './useDatagridColumn';
 
 describe('useDatagridColumn', () => {
-  it('should return the correct columns', () => {
+  const baseColumns = [
+    { id: 'name', label: 'kube_node_pool_name' },
+    { id: 'location', label: 'kube_common_node_pool_localisation' },
+    { id: 'flavor', label: 'kube_nodes_flavor' },
+    { id: 'numberOfNodes', label: 'kube_node_pool_node_count' },
+    { id: 'autoscale', label: 'Autoscaling' },
+    { id: 'antiAffinity', label: 'kube_node_pool_anti_affinity' },
+    { id: 'monthlyBilled', label: 'kube-nodes:kube_nodes_billing_type' },
+    { id: 'createdAt', label: 'kube_node_pool_creation_date' },
+    { id: 'status', label: 'kube_service_cluster_status' },
+    { id: 'actions', label: '' },
+  ];
+
+  it.each(baseColumns)('should have column $id with label "$label"', ({ id, label }) => {
     const { result } = renderHook(() => useDatagridColumns());
 
-    const columns = result.current;
+    const column = result.current.find((col) => col.id === id);
 
-    expect(columns).toHaveLength(10);
-
-    const nameColumn = columns.find((col) => col.id === 'name');
-    expect(nameColumn).toBeDefined();
-    expect(nameColumn?.label).toBe('kube_node_pool_name');
-
-    const flavorColumn = columns.find((col) => col.id === 'flavor');
-    expect(flavorColumn).toBeDefined();
-    expect(flavorColumn?.label).toBe('kube_nodes_flavor');
-
-    const antiAffinityColumn = columns.find((col) => col.id === 'antiAffinity');
-    expect(antiAffinityColumn).toBeDefined();
-    expect(antiAffinityColumn?.label).toBe('kube_node_pool_anti_affinity');
-
-    const numberOfNodesColumn = columns.find((col) => col.id === 'numberOfNodes');
-    expect(numberOfNodesColumn).toBeDefined();
-    expect(numberOfNodesColumn?.label).toBe('kube_node_pool_node_count');
-
-    const autoscaleColumn = columns.find((col) => col.id === 'autoscale');
-    expect(autoscaleColumn).toBeDefined();
-    expect(autoscaleColumn?.label).toBe('Autoscaling');
-
-    const monthlyBilledColumn = columns.find((col) => col.id === 'monthlyBilled');
-    expect(monthlyBilledColumn).toBeDefined();
-    expect(monthlyBilledColumn?.label).toBe('kube-nodes:kube_nodes_billing_type');
-
-    const createdAtColumn = columns.find((col) => col.id === 'createdAt');
-    expect(createdAtColumn).toBeDefined();
-    expect(createdAtColumn?.label).toBe('kube_node_pool_creation_date');
-
-    const statusColumn = columns.find((col) => col.id === 'status');
-    expect(statusColumn).toBeDefined();
-    expect(statusColumn?.label).toBe('kube_service_cluster_status');
-
-    const actionsColumn = columns.find((col) => col.id === 'actions');
-    expect(actionsColumn).toBeDefined();
-    expect(actionsColumn?.label).toBe('');
+    expect(column).toBeDefined();
+    expect(column?.label).toBe(label);
   });
+
+  it.each([
+    {
+      showFloatingIp: false,
+      expectedLength: 10,
+      shouldHaveFloatingIp: false,
+    },
+    {
+      showFloatingIp: true,
+      expectedLength: 11,
+      shouldHaveFloatingIp: true,
+    },
+  ])(
+    'should return $expectedLength columns when showFloatingIp is $showFloatingIp',
+    ({ showFloatingIp, expectedLength, shouldHaveFloatingIp }) => {
+      const { result } = renderHook(() => useDatagridColumns({ showFloatingIp }));
+
+      const columns = result.current;
+
+      expect(columns).toHaveLength(expectedLength);
+
+      const floatingIpColumn = columns.find((col) => col.id === 'floating-ip');
+
+      if (shouldHaveFloatingIp) {
+        expect(floatingIpColumn).toBeDefined();
+        expect(floatingIpColumn?.label).toBe('Floating IPs');
+      } else {
+        expect(floatingIpColumn).toBeUndefined();
+      }
+    },
+  );
 });
