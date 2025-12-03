@@ -4,7 +4,7 @@
   "sms_options_response_information_text_1": "Alla ricezione di un SMS in seguito all'invio di un SMS che consente la risposta, sono disponibili tre opzioni:",
   "sms_options_response_information_list_item_1": "Non fare nulla",
   "sms_options_response_information_list_item_2": "Eseguire uno dei tuoi script",
-  "sms_options_response_information_list_item_3": "Rispondi automaticamente con un messaggio predefinito <em>(costo: 1 SMS)</em>",
+  "sms_options_response_information_list_item_3": "Rispondi automaticamente con un messaggio predefinito <em>(costo: 1 SMS minimo in base al testo predefinito richiesto)</em>",
   "sms_options_response_information_text_2": "Parallelamente è possibile ricevere notifiche sulla ricezione di un SMS tramite email <em>(gratis)</em> o SMS <em>(costo: 1 SMS)</em>.",
   "sms_options_response_information_text_3": "Il cliente avrà la possibilità di rispondere entro 48 ore. Trascorso questo periodo, la risposta non verrà trasmessa.",
   "sms_options_response_sr_only_actions": "Azioni",

@@ -4,7 +4,7 @@
   "sms_options_response_information_text_1": "W przypadku odebrania wiadomości po wysłaniu SMS-a umożliwiającego odpowiedź, masz do wyboru trzy opcje:",
   "sms_options_response_information_list_item_1": "Nie wykonujesz żadnego działania",
   "sms_options_response_information_list_item_2": "Wywołujesz hostowany przez Ciebie skrypt ",
-  "sms_options_response_information_list_item_3": "Wysyłasz automatyczną odpowiedź, wykorzystując przygotowany wcześniej tekst <em>(koszt: 1 SMS)</em>",
+  "sms_options_response_information_list_item_3": "Automatyczna odpowiedź z gotowym tekstem <em>(koszt: minimum 1 SMS, w zależności od wybranego gotowego tekstu).</em>",
   "sms_options_response_information_text_2": "Możesz również, równolegle, zostać powiadomiony o otrzymaniu SMS-a w e-mailu <em>(bez opłat)</em> lub SMS <em>(koszt): 1 SMS)</em>.",
   "sms_options_response_information_text_3": "Pamiętaj, że klient ma tylko 48 godzin na przesłanie odpowiedzi. Po upływie tego czasu odpowiedź do Ciebie nie dotrze.",
   "sms_options_response_sr_only_actions": "Operacje",
