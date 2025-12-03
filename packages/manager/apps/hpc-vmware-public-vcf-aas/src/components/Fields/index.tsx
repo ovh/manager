@@ -1,33 +1,42 @@
 import React, { useId } from 'react';
 
 import clsx from 'clsx';
-import { Control, FieldValues, UseControllerProps, useController } from 'react-hook-form';
+import {
+  Control,
+  FieldPath,
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from 'react-hook-form';
 
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
 
-import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
+import { RhfFieldContext, RhfFieldContextParams, useRhfFieldContext } from './RhfField.context';
 import { RhfInput } from './RhfInput.component';
 import { RhfQuantity } from './RhfQuantity.component';
 
-type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
-  controllerParams: UseControllerProps<FieldValues, string>;
+type RhfFieldProps<
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>,
+> = React.ComponentProps<typeof OdsFormField> & {
+  controllerParams: UseControllerProps<TFieldValues, TName>;
   helperMessage?: string;
   isHiddenError?: boolean;
-  control?: Control;
+  control?: Control<TFieldValues>;
 };
 
-export const RhfField = ({
+export const RhfField = <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({
   controllerParams,
   className,
   helperMessage,
   isHiddenError,
   control,
   ...rest
-}: Readonly<RhfFieldProps>) => {
+}: Readonly<RhfFieldProps<TFieldValues, TName>>) => {
   const id = useId();
   const controller = useController({ ...controllerParams, control });
 
-  const contextValues = { id, helperMessage, controller };
+  const contextValues = { id, helperMessage, controller } as RhfFieldContextParams;
 
   const hasError = !isHiddenError && !!controller.fieldState?.error;
   const errorMessage = helperMessage || controller.fieldState?.error?.message;

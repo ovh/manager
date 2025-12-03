@@ -17,9 +17,8 @@ export const getPricedVdcResources = ({
   resources: VCDOrderableResource[];
   catalog: VCDCatalog;
 }): VCDOrderableResourcePriced[] => {
-  if (!resources || !catalog) {
-    return [];
-  }
+  if (!resources || !catalog) return [];
+
   return resources
     .reduce((list: VCDOrderableResourcePriced[], resource) => {
       const prices = catalog.find(({ planCode }) => planCode === resource.profile)?.prices;

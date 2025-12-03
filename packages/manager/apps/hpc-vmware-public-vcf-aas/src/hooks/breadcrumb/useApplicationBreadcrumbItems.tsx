@@ -11,6 +11,7 @@ import { STORAGE_LABEL } from '@/pages/dashboard/datacentre/datacentreDashboard.
 import { VIRTUAL_DATACENTERS_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import { subRoutes } from '@/routes/routes.constant';
 
+import { useOrganisationParams } from '../params/useSafeParams';
 import { BreadcrumbItem } from './useBreadcrumb';
 
 export const useApplicationBreadcrumbItems = () => {
@@ -21,9 +22,10 @@ export const useApplicationBreadcrumbItems = () => {
     'datacentres/vrack-segment',
     NAMESPACES.ACTIONS,
   ]);
-  const { id, vdcId } = useParams();
+  const { id } = useOrganisationParams();
+  const { vdcId } = useParams();
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId ?? '');
 
   const orgServiceName = vcdOrganization?.data?.currentState?.fullName ?? id;
   const vdcServiceName = vcdDatacentre?.data?.currentState?.description ?? vdcId;
@@ -34,7 +36,7 @@ export const useApplicationBreadcrumbItems = () => {
     [subRoutes.editDescription]: t('managed_vcd_dashboard_edit_description_modal_title'),
     [subRoutes.terminate]: t(`${NAMESPACES.ACTIONS}:terminate`),
     [subRoutes.virtualDatacenters]: VIRTUAL_DATACENTERS_LABEL,
-    [vdcId]: vdcServiceName,
+    ...(vdcId ? { [vdcId]: vdcServiceName } : {}),
     [subRoutes.datacentreCompute]: VHOSTS_LABEL,
     [subRoutes.datacentreComputeOrder]: t('datacentres/compute:managed_vcd_vdc_compute_order_cta'),
     [subRoutes.datacentreStorage]: STORAGE_LABEL,

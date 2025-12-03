@@ -10,8 +10,10 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { VeeamBackup, organizationList, useVeeamBackup } from '@ovh-ux/manager-module-vcd-api';
+import { VeeamBackup, useVeeamBackup } from '@ovh-ux/manager-module-vcd-api';
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import {
   DATA_PROTECTION_BACKUP_LABEL,
@@ -55,7 +57,7 @@ const renderComponent = () => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
-        <OrganizationDataProtectionTile vcdOrganization={organizationList[0]} />
+        <OrganizationDataProtectionTile vcdOrganization={SAFE_MOCK_DATA.orgStandard} />
       </ShellContext.Provider>
     </QueryClientProvider>,
   );
