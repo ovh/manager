@@ -18,7 +18,14 @@ export const unescapeDescription = (description) =>
 export const ACCOUNT_PROPERTIES_WITH_UNIT = ['totalQuota', 'usedQuota'];
 export const ACCOUNT_PROPERTIES_WITH_STATUS = ['mfa'];
 
-export const OVH_MAIL_MIGRATOR_URL = 'https://omm.ovh.net/';
+export const OVH_MAIL_MIGRATOR_URL = {
+  FR: 'https://omm.ovhcloud.com/fr/',
+  MA: 'https://omm.ovhcloud.com/fr/',
+  TN: 'https://omm.ovhcloud.com/fr/',
+  SN: 'https://omm.ovhcloud.com/fr/',
+  QC: 'https://omm.ovhcloud.com/fr/',
+  DEFAULT: 'https://omm.ovhcloud.com/en/',
+};
 
 export const TICKET_SUPPORT_URL =
   'https://help.ovhcloud.com/csm?table=sn_customerservice_case&view=csp';

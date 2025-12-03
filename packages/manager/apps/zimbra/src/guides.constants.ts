@@ -40,8 +40,13 @@ const WEBMAIL = {
   DEFAULT: 'https://webmail.mail.ovh.net/',
 };
 
-const OVH_MAIL_MIGRATOR = {
-  DEFAULT: 'https://omm.ovh.net/',
+const OVH_MAIL_MIGRATOR: GuideLinks = {
+  FR: 'https://omm.ovhcloud.com/fr/',
+  MA: 'https://omm.ovhcloud.com/fr/',
+  TN: 'https://omm.ovhcloud.com/fr/',
+  SN: 'https://omm.ovhcloud.com/fr/',
+  QC: 'https://omm.ovhcloud.com/fr/',
+  DEFAULT: 'https://omm.ovhcloud.com/en/',
 };
 
 export const ZIMBRA_USER_GUIDE: GuideLinks = {
