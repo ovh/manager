@@ -12,7 +12,7 @@
   "labelLocation": "Standort",
   "labelContainerType": "Containertyp",
   "labelOffsiteReplication": "Offsite-Replikation",
-  "descriptionOffsiteReplication": "Automatische Replikation Ihrer Daten auf einer entfernten Site in einer Klasse für seltenen Zugriff. &lt;0>Mehr erfahren&lt;/0>",
+  "descriptionOffsiteReplication": "Automatische Replikation Ihrer Daten auf einer entfernten Site in einer Klasse für seltenen Zugriff. <0>Mehr erfahren</0>",
   "labelVersioning": "Versionsverwaltung",
   "descriptionVersioning": "Automatisiert die Erstellung von Objektversionen, um versehentliches Löschen zu vermeiden, oder wenn ein neues Objekt hochgeladen wird.",
   "labelUser": "Nutzer",
