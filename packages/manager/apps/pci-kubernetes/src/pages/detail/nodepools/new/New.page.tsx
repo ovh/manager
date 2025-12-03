@@ -104,7 +104,7 @@ export default function NewPage(): ReactElement {
         ...(store.selectedAvailabilityZones && {
           selectedAvailabilityZones: store.selectedAvailabilityZones,
         }),
-        ...(store.attachFloatingIPs && { attachFloatingIPs: store.attachFloatingIPs }),
+        ...(store.attachFloatingIps && { attachFloatingIps: store.attachFloatingIps }),
         isMonthlyBilling: store.isMonthlyBilling,
         scaling: store.scaling,
       },
@@ -204,7 +204,7 @@ export default function NewPage(): ReactElement {
             regionInformations={regionInformations}
             selectedAvailabilityZones={store.selectedAvailabilityZones}
             antiAffinity={billingState.antiAffinity.isChecked}
-            onAttachFloatingIPs={(enabled) => store.set.attachFloatingIPs({ enabled })}
+            onAttachFloatingIPs={(enabled) => store.set.attachFloatingIps({ enabled })}
             onAntiAffinityChange={billingState.antiAffinity.onChange}
           />
         ),

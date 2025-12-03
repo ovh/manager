@@ -110,8 +110,8 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
       autoscale: nodePoolState.scaling.isAutoscale,
       ...(zone && { availabilityZones: [zone] }),
       localisation: zone ?? name ?? null,
-      ...(nodePoolState.attachFloatingIPs && {
-        attachFloatingIPs: nodePoolState.attachFloatingIPs,
+      ...(nodePoolState.attachFloatingIps && {
+        attachFloatingIps: nodePoolState.attachFloatingIps,
       }),
       desiredNodes: nodePoolState.scaling.quantity.desired,
       ...(nodePoolState.scaling.isAutoscale && {
@@ -174,7 +174,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     if (regionInformations?.availabilityZones.length) {
       setNodePoolState((state) => ({
         ...state,
-        attachFloatingIPs: { enabled: false },
+        attachFloatingIps: { enabled: false },
       }));
     }
   }, [regionInformations?.availabilityZones]);

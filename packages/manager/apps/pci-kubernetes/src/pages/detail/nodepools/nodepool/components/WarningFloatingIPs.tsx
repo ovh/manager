@@ -29,7 +29,7 @@ export const FloatingIPEnableWarning = ({ price, getFormattedPrice }: FloatingIP
 export const FloatingIPDisableWarning = () => {
   const { t } = useTranslation('listing');
   return (
-    <Message color="critical" dismissible={false} className="mb-6">
+    <Message color="warning" dismissible={false} className="mb-6">
       <MessageIcon name={'triangle-exclamation'} />
       <MessageBody>
         <>

@@ -216,7 +216,7 @@ export type NodePoolState = {
   isTouched: boolean;
   scaling: TScalingState;
   antiAffinity: boolean;
-  attachFloatingIPs?: TAttachFloatingIPs;
+  attachFloatingIps?: TAttachFloatingIPs;
   selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
 };
 
@@ -229,7 +229,7 @@ export type TCreateNodePoolParam = {
   autoscale: boolean;
   minNodes?: number;
   desiredNodes: number;
-  attachFloatingIPs?: TAttachFloatingIPs;
+  attachFloatingIps?: TAttachFloatingIPs;
   maxNodes?: number;
 };
 
@@ -255,7 +255,7 @@ export type NodePool = {
   flavorName: string;
   maxNodes?: number;
   monthlyBilled: boolean;
-  attachFloatingIPs?: TAttachFloatingIPs;
+  attachFloatingIps?: TAttachFloatingIPs;
 };
 
 export type NodePoolPrice = NodePool & { monthlyPrice: number };

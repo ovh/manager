@@ -35,6 +35,6 @@
   "ENABLED": "Aktiviert",
   "kube_list_node_pools_floating_ip_warning_enable_title": "Tarifimpact",
   "kube_list_node_pools_floating_ip_warning_enable_description": "Die Aktivierung der Floating-IPs verursacht zusätzliche Kosten. Jede aktuelle und zukünftige Instanz dieses Knotenspeichers erhält eine Floating-IP, die mit {{price}} berechnet wird.",
-  "kube_list_node_pools_floating_ip_warning_disable_title": "Achtung: Irreversible Aktion",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Achtung: Verlust der Floating-IPs",
   "kube_list_node_pools_floating_ip_warning_disable_description": "Die Deaktivierung führt zur sofortigen Trennung der Floating-IPs. Diese Adressen werden dauerhaft freigegeben und können nicht wiederhergestellt werden."
 }
