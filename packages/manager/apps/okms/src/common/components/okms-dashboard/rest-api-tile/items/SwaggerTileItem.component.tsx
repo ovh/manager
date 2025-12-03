@@ -1,11 +1,8 @@
-import React from 'react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { ManagerTile, Links, LinkType } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
+
+import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { SWAGGER_UI_LABEL } from '@/constants';
 
 type SwaggerTileItemProps = {

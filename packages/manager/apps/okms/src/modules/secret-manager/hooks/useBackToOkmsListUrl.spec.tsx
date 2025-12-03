@@ -1,19 +1,18 @@
-import { waitFor } from '@testing-library/react';
-import { describe, it, vi, beforeEach } from 'vitest';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { getOkmsList } from '@key-management-service/data/api/okms';
-import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import {
   okmsRoubaix1Mock,
   okmsRoubaix2Mock,
   okmsStrasbourg1Mock,
 } from '@key-management-service/mocks/kms/okms.mock';
 import { OKMS } from '@key-management-service/types/okms.type';
-import {
-  promiseWithDelayMock,
-  renderHookWithClient,
-} from '@/common/utils/tests/testUtils';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { waitFor } from '@testing-library/react';
+import { beforeEach, describe, it, vi } from 'vitest';
+
+import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { ErrorResponse } from '@/common/types/api.type';
+import { promiseWithDelayMock, renderHookWithClient } from '@/common/utils/tests/testUtils';
+
 import { useBackToOkmsListUrl } from './useBackToOkmsListUrl';
 
 // mocks
@@ -42,11 +41,9 @@ describe('useBackToOkmsListUrl tests suite', () => {
   });
 
   describe('when data is loading', () => {
-    it('should return null when API call are pending', async () => {
+    it('should return null when API call are pending', () => {
       // GIVEN
-      mockGetOkmsList.mockImplementation(() =>
-        promiseWithDelayMock<OKMS[]>({} as OKMS[], 2000),
-      );
+      mockGetOkmsList.mockImplementation(() => promiseWithDelayMock<OKMS[]>({} as OKMS[], 2000));
 
       // WHEN
       const { result } = renderHookWithClient(() => useBackToOkmsListUrl());
@@ -55,7 +52,7 @@ describe('useBackToOkmsListUrl tests suite', () => {
       expect(result.current).toBeNull();
     });
 
-    it('should return null when error on API call', async () => {
+    it('should return null when error on API call', () => {
       // GIVEN
       const mockError: ErrorResponse = {
         response: { data: { message: 'errorOkmsList' }, status: 500 },
@@ -81,7 +78,7 @@ describe('useBackToOkmsListUrl tests suite', () => {
       expect(result.current).toBeNull();
     });
 
-    it('should return the okms List url when there is more than one kms on a region ', async () => {
+    it('should return the okms List url when there is more than one kms on a region', async () => {
       // GIVEN
       const mockedUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(REGION_EU_WEST_RBX);
       mockGetOkmsList.mockResolvedValue([okmsRoubaix1Mock, okmsRoubaix2Mock]);

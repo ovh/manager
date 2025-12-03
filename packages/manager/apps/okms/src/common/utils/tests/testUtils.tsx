@@ -1,21 +1,18 @@
 import React from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  render,
-  renderHook,
-  RenderHookOptions,
-  RenderHookResult,
-} from '@testing-library/react';
+import { RenderHookOptions, RenderHookResult, render, renderHook } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+
 import { ErrorResponse } from '@/common/types/api.type';
+
 import { initTestI18n } from './init.i18n';
 
 /**
  * Wait for x miliseconds
  */
-export const wait = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+export const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Create a promise mock with a delay
@@ -41,9 +38,7 @@ const createTestQueryClient = () =>
 /**
  * Render a component with a test query client
  */
-export function renderWithClient(
-  ui: React.ReactElement,
-): ReturnType<typeof render> & {
+export function renderWithClient(ui: React.ReactElement): ReturnType<typeof render> & {
   rerender: (rerenderUi: React.ReactElement) => void;
 } {
   const queryClient = createTestQueryClient();
@@ -52,12 +47,8 @@ export function renderWithClient(
   );
   return {
     ...result,
-    rerender: (rerenderUi: React.ReactElement) =>
-      rerender(
-        <QueryClientProvider client={queryClient}>
-          {rerenderUi}
-        </QueryClientProvider>,
-      ),
+    rerender: (rerenderUi: React.ReactNode) =>
+      rerender(<QueryClientProvider client={queryClient}>{rerenderUi}</QueryClientProvider>),
   };
 }
 
@@ -66,8 +57,10 @@ export function renderWithClient(
  */
 export const createHookWrapper = () => {
   const queryClient = createTestQueryClient();
-  return ({ children }: { children: React.ReactNode }) =>
+  const Wrapper = ({ children }: { children: React.ReactNode }) =>
     React.createElement(QueryClientProvider, { client: queryClient }, children);
+  Wrapper.displayName = 'QueryClientWrapper';
+  return Wrapper;
 };
 
 /**
@@ -98,6 +91,28 @@ export const renderWithI18n = async (ui: React.ReactElement) => {
     <I18nextProvider i18n={i18nValue}>{children}</I18nextProvider>
   );
   return render(ui, { wrapper: Wrappers });
+};
+
+/**
+ * Renders a hook with i18n provider wrapper
+ * @param callback - The hook function to test
+ * @param options - Additional render options (excluding wrapper since we provide it)
+ * @returns RenderHookResult with the hook's return value and utilities
+ */
+export const renderHookWithI18n = async <TProps, TResult>(
+  callback: (props: TProps) => TResult,
+  options?: Omit<RenderHookOptions<TProps>, 'wrapper'>,
+): Promise<RenderHookResult<TResult, TProps>> => {
+  if (!i18nValue) {
+    i18nValue = await initTestI18n();
+  }
+  const Wrappers = ({ children }: { children: React.ReactNode }) => (
+    <I18nextProvider i18n={i18nValue}>{children}</I18nextProvider>
+  );
+  return renderHook(callback, {
+    wrapper: Wrappers,
+    ...options,
+  });
 };
 
 /**

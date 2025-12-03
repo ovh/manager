@@ -1,26 +1,26 @@
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import React from 'react';
-import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { labels } from '@/common/utils/tests/init.i18n';
+
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
+import { OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS } from '@/common/components/okms-dashboard/okms-domain-dashboard-tiles/OkmsDomainDashboardTiles.constants';
 import { PAGE_SPINNER_TEST_ID } from '@/common/components/page-spinner/PageSpinner.constants';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsMock[0].id);
+const mockOkms = okmsRoubaix1Mock;
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsDashboard(mockOkms.id);
 
-vi.mock(
-  '@/common/components/okms-dashboard/OkmsDomainDashboardTiles.component',
-  async (original) => ({
-    ...(await original()),
-    OkmsDomainDashboardTiles: vi.fn(() => (
-      <div data-testid={OKMS_DASHBOARD_TEST_IDS.okmsDashboardTiles} />
-    )),
-  }),
-);
+// We mock @ovh-ux/manager-billing-informations module because it takes 3 secondes to load
+// And make the test suite slow
+vi.mock('@ovh-ux/manager-billing-informations', () => ({
+  BillingInformationsTileStandard: vi.fn(() => <div>BillingInformationsTileStandard</div>),
+}));
 
 describe('OkmsDashboard page test suite', () => {
   it('should display a PageSpinner while the data is fetched', async () => {
@@ -30,10 +30,7 @@ describe('OkmsDashboard page test suite', () => {
     await renderTestApp(mockPageUrl);
 
     // THEN
-    await waitFor(
-      () => expect(screen.getByTestId(PAGE_SPINNER_TEST_ID)).toBeVisible(),
-      { timeout: 5000 },
-    );
+    await waitFor(() => expect(screen.getByTestId(PAGE_SPINNER_TEST_ID)).toBeVisible());
   });
 
   it('should display an error when there is an API error', async () => {
@@ -44,10 +41,7 @@ describe('OkmsDashboard page test suite', () => {
 
     // THEN
     await waitFor(
-      () =>
-        expect(
-          screen.getByTestId(OKMS_DASHBOARD_TEST_IDS.errorBanner),
-        ).toBeVisible(),
+      () => expect(screen.getByTestId(OKMS_DASHBOARD_TEST_IDS.errorBanner)).toBeVisible(),
       {
         timeout: 5000,
       },
@@ -70,7 +64,7 @@ describe('OkmsDashboard page test suite', () => {
     ]);
 
     expect(
-      screen.getByTestId(OKMS_DASHBOARD_TEST_IDS.okmsDashboardTiles),
+      screen.getByTestId(OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS.okmsDashboardTiles),
     ).toBeInTheDocument();
   });
 });

@@ -15,6 +15,7 @@
   "pci_workflow_execution_status_SUCCESS": "Êxito",
   "pci_workflow_execution_status_ERROR": "Erro",
   "pci_workflow_execution_status_PAUSED": "Pausa",
+  "pci_workflow_execution_status_CANCELED": "Anulado",
   "pci_workflow_executions_title": "Execução do fluxo de trabalho '{{ workflowName }}'",
   "pci_workflow_executions_empty": "Não foi encontrada nenhuma execução",
   "pci_workflow_executions_ececution_date": "Data (UTC)",
@@ -22,5 +23,9 @@
   "pci_workflow_executions_status": "Estado",
   "pci_workflow_add": "Criar um planeamento",
   "pci_workflow_executions": "Execuções",
-  "pci_workflow_id": "ID"
+  "pci_workflow_id": "ID",
+  "pci_workflow_backup": "Backup",
+  "pci_workflow_backup_local": "Local",
+  "pci_workflow_backup_local_and_distant": "Local, remoto",
+  "pci_workflow_localisation": "Localização"
 }

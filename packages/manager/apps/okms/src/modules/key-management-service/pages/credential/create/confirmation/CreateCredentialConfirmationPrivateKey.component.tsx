@@ -1,5 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Subtitle } from '@ovh-ux/manager-react-components';
+import { Dispatch, SetStateAction } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_ICON_NAME,
   ODS_LINK_COLOR,
@@ -7,14 +9,15 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
-  OdsLink,
+  OdsCard,
   OdsCheckbox,
+  OdsFormField,
+  OdsLink,
   OdsMessage,
   OdsText,
-  OdsCard,
-  OdsFormField,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
+import { Subtitle } from '@ovh-ux/manager-react-components';
 
 type CreateCredentialConfirmationPrivateKeyProps = {
   privateKey?: string;
@@ -37,16 +40,12 @@ const CreateCredentialConfirmationPrivateKey = ({
 
   return (
     <OdsCard className="p-4">
-      <div className="flex flex-col w-full gap-4 md:gap-5">
+      <div className="flex w-full flex-col gap-4 md:gap-5">
         <Subtitle>
-          {t(
-            'key_management_service_credential_create_confirmation_private-key_title',
-          )}
+          {t('key_management_service_credential_create_confirmation_private-key_title')}
         </Subtitle>
         <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
-          {t(
-            'key_management_service_credential_create_confirmation_private-key_warn',
-          )}
+          {t('key_management_service_credential_create_confirmation_private-key_warn')}
         </OdsMessage>
         <OdsLink
           icon={ODS_ICON_NAME.download}

@@ -1,5 +1,6 @@
-import apiClient from '@ovh-ux/manager-core-api';
 import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
+
+import apiClient from '@ovh-ux/manager-core-api';
 
 export const getServiceKeyReference = async (
   okmsRegion: string,

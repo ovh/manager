@@ -3,6 +3,6 @@
   "clipboard_copy_error": "Błąd kopiowania.",
   "key_management_service_cancel": "Anuluj",
   "key_management_service_modify": "Zmodyfikuj",
-  "manage_secrets_link": "Zarządzaj moimi sekretami",
-  "manage_service_keys_link": "Zarządzaj moimi kluczami serwisowymi"
+  "manage_secrets_link": "Zarządzaj danymi poufnymi",
+  "manage_service_keys_link": "Zarządzaj Service Keys"
 }

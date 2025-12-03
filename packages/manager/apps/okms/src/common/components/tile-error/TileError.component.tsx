@@ -1,7 +1,9 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ErrorResponse } from '@/common/types/api.type';
 
 type TileErrorProps = {
