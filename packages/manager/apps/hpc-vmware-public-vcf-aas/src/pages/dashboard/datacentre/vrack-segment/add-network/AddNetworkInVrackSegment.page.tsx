@@ -115,7 +115,7 @@ function AddNetworkVrackSegmentLoaded() {
     onError: (error) => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: `add_network_error::${error.message.replaceAll(' ', '-').toLowerCase()}`,
+        pageName: `add_network_error::${error.message.replace(/ /g, '-').toLowerCase()}`,
       });
     },
   });

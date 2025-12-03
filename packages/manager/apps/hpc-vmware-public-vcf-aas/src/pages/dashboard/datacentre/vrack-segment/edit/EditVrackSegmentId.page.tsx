@@ -84,7 +84,7 @@ export default function EditVrackSegmentId() {
     onError: (error) => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: `modify_id-vlan_error::${error.message.replaceAll(' ', '-').toLowerCase()}`,
+        pageName: `modify_id-vlan_error::${error.message.replace(/ /g, '-').toLowerCase()}`,
       });
     },
   });
