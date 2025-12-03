@@ -1,15 +1,14 @@
 import React from 'react';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 
-export const PriceCell = (server: DedicatedServer) => {
+export const PriceCell = ({ row: { original: server }}: any) => {
   return (
     <DSBilling server={server.name}>
       {(billingInfo) => (
-        <DataGridTextCell>
+        <div>
           {billingInfo?.billing?.pricing?.price?.text}
-        </DataGridTextCell>
+        </div>
       )}
     </DSBilling>
   );

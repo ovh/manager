@@ -1,7 +1,7 @@
 import '@/test-utils/setupTests';
 import '@testing-library/jest-dom';
 import { describe, it, vi } from 'vitest';
-import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { useDataApi } from '@ovh-ux/muk';
 import { useNavigate } from 'react-router-dom';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { screen, waitFor } from '@testing-library/react';
@@ -11,7 +11,7 @@ import clustersFixture from '@/data/fixtures/clusters.json';
 
 describe('cluster listing page', () => {
   it('should redirect to the onboarding page when the list is empty', async () => {
-    (useResourcesIcebergV6 as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useDataApi as ReturnType<typeof vi.fn>).mockReturnValue({
       flattenData: [],
       isLoading: false,
       isSuccess: true,
@@ -33,7 +33,7 @@ describe('cluster listing page', () => {
   });
 
   it('should render datagrid with result', async () => {
-    (useResourcesIcebergV6 as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useDataApi as ReturnType<typeof vi.fn>).mockReturnValue({
       flattenData: clustersFixture,
       isLoading: false,
       isSuccess: true,
@@ -61,7 +61,7 @@ describe('cluster listing page', () => {
   });
 
   it('should display an error banner when the API returns an error response', async () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useDataApi as jest.Mock).mockReturnValue({
       flattenData: undefined,
       isLoading: false,
       isSuccess: false,

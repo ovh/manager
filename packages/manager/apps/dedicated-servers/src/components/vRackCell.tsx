@@ -5,8 +5,8 @@ import { useGetVrack } from '@/hooks/useGetVrack';
 import { useVrackUrl } from '@/hooks/useVrackUrl';
 import type { DedicatedServer } from '@/data/types/server.type';
 
-export const DSVrack = ({name}: DedicatedServer) => {
-  const { vrack = [], isLoading, error } = useGetVrack({ server: name });
+export const DSVrack = ({ row: { original: server }}: any) => {
+  const { vrack = [], isLoading, error } = useGetVrack({ server: server.name });
   const vrackUrl = useVrackUrl(vrack[0]);
   return (
     <SkeletonCell isLoading={isLoading} error={error}>

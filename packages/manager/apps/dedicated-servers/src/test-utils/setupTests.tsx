@@ -28,11 +28,11 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/muk', async () => {
+  const mod = await vi.importActual('@ovh-ux/muk');
   return {
     ...mod,
-    useResourcesIcebergV6: vi.fn(),
+    useDataApi: vi.fn(),
     v6: {
       get: vi.fn(),
       post: vi.fn(),

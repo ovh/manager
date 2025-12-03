@@ -21,7 +21,7 @@ const getMonitoringStatusColor = (
   return ODS_BADGE_COLOR.success;
 };
 
-export const MonitoringStatusChip = (server: DedicatedServer) => {
+export const MonitoringStatusChip = ({ row: { original: server }}: any) => {
   const { t } = useTranslation('dedicated-servers');
 
   return (

@@ -1,4 +1,4 @@
-import { IamObject } from "@ovh-ux/manager-react-components";
+import { IamObject } from "@ovh-ux/muk";
 
 type Datacenter =
   | "bhs1" | "bhs2" | "bhs3" | "bhs4" | "bhs5" | "bhs6" | "bhs7" | "bhs8"
@@ -19,7 +19,7 @@ interface Tags {
   [key: string]: string;
 }
 
-export interface DedicatedServer {
+export interface DedicatedServer extends Record<string, unknown>{
   availabilityZone: string;
   bootId?: number | null;
   bootScript?: string | null;

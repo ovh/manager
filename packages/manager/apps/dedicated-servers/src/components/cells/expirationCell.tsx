@@ -1,10 +1,9 @@
 import React from 'react';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 import useDateFormat from '@/hooks/useDateFormat';
 
-export const ExpirationCell = (server: DedicatedServer) => {
+export const ExpirationCell = ({ row: { original: server }}: any) => {
   const { format } = useDateFormat({
     options: {
       hourCycle: 'h23',
@@ -14,9 +13,9 @@ export const ExpirationCell = (server: DedicatedServer) => {
   return (
     <DSBilling server={server.name}>
       {(billingInfo) => (
-        <DataGridTextCell>
+        <div>
           {format(new Date(billingInfo?.billing?.expirationDate))}
-        </DataGridTextCell>
+        </div>
       )}
     </DSBilling>
   );

@@ -5,14 +5,10 @@ import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   Datagrid,
-  DataGridTextCell,
-  ErrorBanner,
-  useResourcesIcebergV6,
+  useDataApi,
   DatagridColumn,
-  ColumnSort,
-  useDataGrid,
   RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -21,6 +17,9 @@ import { orderLinks } from '@/data/constants/orderLinks';
 import { Cluster } from '@/data/types/cluster.type';
 import { urls } from '@/routes/routes.constant';
 import { ErrorComponent } from '@/components/errorComponent';
+import type {
+  SortingState
+} from '@tanstack/react-table';
 
 export default function Listing() {
   const [columns] = useState([]);
@@ -28,10 +27,13 @@ export default function Listing() {
   const { t } = useTranslation('cluster');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const links = useLinkUtils<UrlEntry>(orderLinks);
-  const { sorting, setSorting } = useDataGrid({
-    id: 'iam.displayName',
-    desc: false,
-  });
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: columns[0]?.iam?.displayName || '',
+      desc: false,
+    },
+  ]);
+
   const {
     flattenData,
     isError,
@@ -43,14 +45,17 @@ export default function Listing() {
     isSuccess,
     search,
     filters,
-  } = useResourcesIcebergV6<Cluster[]>({
+  } = useDataApi<Cluster[]>({
+    version: 'v6',
+    iceberg: true,
+    enabled: true,
     columns,
     route: `/dedicated/cluster`,
-    queryKey: ['dedicated-servers', `/dedicated/cluster`],
+    cacheKey: ['dedicated-servers', `/dedicated/cluster`],
   });
 
   const sortClusterListing = (
-    cluSorting: ColumnSort,
+    cluSorting: any,
     originalList: Cluster[] = [],
   ) => {
     const clusterList = [...originalList];
@@ -78,8 +83,9 @@ export default function Listing() {
       enableHiding: false,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_name'),
-      cell: (item: Cluster) => (
-        <DataGridTextCell>
+      header: t('dedicated_clusters_name'),
+      cell: ({ row: { original: item }}: any) => (
+        <div>
           <OdsLink
             color="primary"
             href={`#/cluster/${item.id}`}
@@ -92,7 +98,7 @@ export default function Listing() {
             }}
             label={t(item.iam.displayName)}
           ></OdsLink>
-        </DataGridTextCell>
+        </div>
       ),
     },
     {
@@ -102,8 +108,9 @@ export default function Listing() {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_model'),
-      cell: (item: Cluster) => (
-        <DataGridTextCell>{t(item.model)}</DataGridTextCell>
+      header: t('dedicated_clusters_model'),
+      cell: ({ row: { original: item }}: any) => (
+        <div>{t(item.model)}</div>
       ),
     },
     {
@@ -113,8 +120,9 @@ export default function Listing() {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_region'),
-      cell: (item: Cluster) => (
-        <DataGridTextCell>{t(item.region)}</DataGridTextCell>
+      header: t('dedicated_clusters_region'),
+      cell: ({ row: { original: item }}: any) => (
+        <div>{t(item.region)}</div>
       ),
     },
   ];
@@ -126,7 +134,7 @@ export default function Listing() {
       headers: response.headers,
       status: response.status,
     };
-    return <ErrorBanner error={errorObj} />;
+    return <ErrorComponent error={errorObj} />;
   }
 
   const TopbarCTA = () => (
@@ -156,15 +164,14 @@ export default function Listing() {
             {columns && (
               <Datagrid
                 columns={clusterColumns}
-                items={sortClusterListing(
+                data={sortClusterListing(
                   sorting,
                   (flattenData as unknown) as Cluster[],
                 )}
-                totalItems={totalCount || 0}
+                totalCount={totalCount || 0}
                 hasNextPage={hasNextPage && !isLoading}
                 onFetchNextPage={fetchNextPage}
-                sorting={sorting}
-                onSortChange={setSorting}
+                sorting={{sorting, setSorting}}
                 isLoading={isLoading}
                 filters={filters}
                 search={search}

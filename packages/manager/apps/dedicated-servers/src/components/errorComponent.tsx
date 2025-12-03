@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { Error } from '@ovh-ux/muk';
 import { ApiError } from '@ovh-ux/manager-core-api';
 
 export type ErrorBannerProps = {
@@ -11,9 +11,21 @@ export type ErrorBannerProps = {
 export type ErrorProps = { error: ApiError } | { error: ErrorBannerProps };
 
 export const ErrorComponent = ({ error }: ErrorProps) => {
-  return (
-    <ErrorBanner
-      error={'response' in error ? { ...error.response, data: error } : error}
-    />
-  );
+  if ("response" in error) {
+    const { status, headers } = error.response;
+
+    return (
+      <Error
+        error={{
+          status,
+          data: error,
+          headers: Object.fromEntries(
+            Object.entries(headers ?? {}).map(([k, v]) => [k, String(v)])
+          ),
+        }}
+      />
+    );
+  }
+
+  return <Error error={error} />;
 };

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from '../billingCell';
 
-export const EngagementCell = (server: DedicatedServer) => {
+export const EngagementCell = ({ row: { original: server }}: any) => {
   const { t } = useTranslation('dedicated-servers');
   return (
     <DSBilling server={server.name}>
