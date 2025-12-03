@@ -19,7 +19,7 @@ import { useReplicationForm } from '../_components/form/useReplicationForm.hook'
 import RouteModal from '@/components/route-modal/RouteModal';
 
 const CreateReplication = () => {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
   const { s3, s3Query } = useS3Data();
   const toast = useToast();
   const navigate = useNavigate();

@@ -32,7 +32,7 @@ interface UseReplicationFormParams {
 export const useReplicationForm = ({
   existingRule,
 }: UseReplicationFormParams) => {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
   const { projectId } = useParams();
   const queryClient = useQueryClient();
   const { s3: currentS3 } = useS3Data();

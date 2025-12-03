@@ -18,7 +18,7 @@ export const TagInput = ({
   disabled = false,
   validationErrors = {},
 }: TagInputProps) => {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
 
   const removeTag = (id: number) => {
     const nextTags = { ...tags };
