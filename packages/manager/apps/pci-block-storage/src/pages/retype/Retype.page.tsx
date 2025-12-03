@@ -99,11 +99,7 @@ const RetypePage = () => {
 
     if (snapshots?.length > 0) {
       return (
-        <RetypeDeleteSnapshots
-          snapshots={snapshots}
-          projectId={projectId}
-          volumeId={volumeId}
-        />
+        <RetypeDeleteSnapshots projectId={projectId} volumeId={volumeId} />
       );
     }
 

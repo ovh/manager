@@ -1,22 +1,19 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Link } from '@ovhcloud/ods-react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import { TVolumeSnapshot } from '@/api/data/snapshot';
 import { useDeleteVolumeSnapshots } from '@/api/hooks/useSnapshot';
 import { RetypeConfirmActionForm } from '@/pages/retype/RetypeConfirmActionForm.component';
 
 type RetypeDeleteSnapshotsProps = {
-  snapshots: TVolumeSnapshot[];
   projectId: string;
   volumeId: string;
 };
 
 export const RetypeDeleteSnapshots: FC<RetypeDeleteSnapshotsProps> = ({
-  snapshots,
   projectId,
   volumeId,
 }) => {
@@ -25,10 +22,6 @@ export const RetypeDeleteSnapshots: FC<RetypeDeleteSnapshotsProps> = ({
   const projectUrl = useProjectUrl('public-cloud');
   const hrefCreateBackup = `${projectUrl}/storages/volume-snapshots`;
 
-  const snapshotsIds = useMemo(() => snapshots.map((snap) => snap.id), [
-    snapshots,
-  ]);
-
   const {
     deleteVolumeSnapshots,
     isPending: isDeleteSnapshotsPending,
@@ -36,7 +29,6 @@ export const RetypeDeleteSnapshots: FC<RetypeDeleteSnapshotsProps> = ({
   } = useDeleteVolumeSnapshots({
     projectId,
     volumeId,
-    snapshotsIds,
   });
 
   const handleOnClose = () => {
