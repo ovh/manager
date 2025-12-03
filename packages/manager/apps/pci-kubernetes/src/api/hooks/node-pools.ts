@@ -100,18 +100,13 @@ export const usePaginatedClusterNodePools = (
       (pools || []).map((pool) => {
         const flavor = (flavors || []).find((f) => f.name === pool.flavor);
 
-        const formattedFlavor = t('kube_flavor', {
-          name: flavor?.name?.toUpperCase(),
-          cpuNumber: flavor?.vcpus,
-          ramCapacity: flavor?.ram / 1000,
-          diskCapacity: flavor?.disk,
-        });
-
+        const formattedFlavor = flavor?.name?.toUpperCase();
         return {
           ...pool,
           formattedFlavor,
           location: pool.availabilityZones?.[0] || cluster?.region,
           search: `${pool.name} ${formattedFlavor}`,
+          plan: cluster?.plan,
         };
       }),
     [pools, flavors, t],
