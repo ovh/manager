@@ -10,13 +10,16 @@ export function useAvailableStorageClasses(region: string) {
   const regions = regionQuery.data;
 
   if (!regions) {
-    return [];
+    return {
+      availableStorageClasses: [],
+      isPending: regionQuery.isPending,
+    };
   }
 
   const s3Region = regions.find((r) => r.name === region);
   const regionType = s3Region?.type;
 
-  return Object.values(storages.StorageClassEnum).filter((st) => {
+  const availableStorageClasses = Object.values(storages.StorageClassEnum).filter((st) => {
     if (!regionType) return false;
 
     switch (st) {
@@ -33,4 +36,9 @@ export function useAvailableStorageClasses(region: string) {
         return true;
     }
   });
+
+  return {
+    availableStorageClasses,
+    isPending: regionQuery.isPending,
+  }
 }
