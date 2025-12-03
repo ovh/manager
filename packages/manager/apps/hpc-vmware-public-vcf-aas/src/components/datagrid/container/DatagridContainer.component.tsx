@@ -10,13 +10,12 @@ import {
   ChangelogButton,
   Datagrid,
   DatagridColumn,
-  ErrorBanner,
   useColumnFilters,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 
 import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
-import Loading from '@/components/loading/Loading.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import TDatagridRoute from '@/types/datagrid-route.type';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
@@ -57,7 +56,7 @@ export default function DatagridContainer({
     flattenData,
     fetchNextPage,
     hasNextPage,
-    isError,
+    error,
     isLoading,
     status,
     sorting,
@@ -75,31 +74,20 @@ export default function DatagridContainer({
   });
 
   useEffect(() => {
-    if (status === 'success' && data?.pages[0].data.length === 0 && onboarding) {
+    if (status === 'success' && data?.pages[0]?.data.length === 0 && onboarding) {
       navigate(onboarding);
     }
   }, [data, navigate, onboarding, status]);
 
-  if (isError) {
-    // return <ErrorBanner error={error} />;
-    // TODO temporary fix
+  if (isLoading) return <DisplayStatus variant="loading" />;
+  if (error || !flattenData?.length)
     return (
-      <ErrorBanner
-        error={{
-          status: 500,
-          data: { message: 'An error occured while fetching data' },
-        }}
+      <DisplayStatus
+        // TODO: Replace with a proper error message
+        variant="customError"
+        error={{ status: 500, data: { message: 'An error occured while fetching data' } }}
       />
     );
-  }
-
-  if (isLoading && !flattenData?.length) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
 
   const layoutCss = `px-10 pt-${isEmbedded ? '0' : '5'}`;
 
@@ -122,7 +110,7 @@ export default function DatagridContainer({
       </div>
       {orderButton && <div className="mb-8 mt-4 w-fit">{orderButton}</div>}
       <React.Suspense>
-        {flattenData?.length && (
+        {flattenData.length && (
           <Datagrid
             columns={columns}
             items={applyFilters(
@@ -131,7 +119,7 @@ export default function DatagridContainer({
                 ? filters
                 : [
                     {
-                      key: columnsSearchable,
+                      key: columnsSearchable || '',
                       value: searchInput,
                       comparator: FilterComparator.Includes,
                     },

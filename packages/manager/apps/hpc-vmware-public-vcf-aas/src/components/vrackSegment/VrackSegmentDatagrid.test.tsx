@@ -3,7 +3,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { ApiResponse } from '@ovh-ux/manager-core-api';
-import { VCDVrackSegment, mockVrackSegmentList } from '@ovh-ux/manager-module-vcd-api';
+import { VCDVrackSegment } from '@ovh-ux/manager-module-vcd-api';
+
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import fr_FR from '../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 import { VrackSegmentDatagrid } from './VrackSegmentDatagrid.component';
@@ -15,7 +17,7 @@ vi.mock('react-i18next', () => ({
         fr_FR[translationKey.split(':')[1] as keyof typeof fr_FR] ?? translationKey;
       if (params) {
         Object.keys(params).forEach((key) => {
-          translatedKey = translatedKey.replace(`{{ ${key} }}`, params[key]);
+          translatedKey = translatedKey.replace(`{{ ${key} }}`, params[key] ?? '');
         });
       }
       return translatedKey;
@@ -32,6 +34,10 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
+const config = {
+  vrackSegment: SAFE_MOCK_DATA.vrackSegmentStandard,
+};
+
 vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
   const actual = await importOriginal();
   return {
@@ -40,7 +46,7 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
       queryKey: ['vrackSegment'],
       queryFn: () =>
         Promise.resolve({
-          data: mockVrackSegmentList,
+          data: [config.vrackSegment],
           status: 200,
           statusText: 'OK',
           headers: {},
@@ -103,7 +109,7 @@ describe('VrackSegmentDatagrid', () => {
           screen.getAllByText(
             fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
               '{{ vlanId }}',
-              mockVrackSegmentList[0].targetSpec.vlanId,
+              config.vrackSegment.targetSpec.vlanId,
             ),
           )[0],
         ).toBeInTheDocument();
@@ -111,7 +117,7 @@ describe('VrackSegmentDatagrid', () => {
       { timeout: 4_000 },
     );
     // Check if all VLAN IDs are rendered
-    mockVrackSegmentList.forEach((network) => {
+    [config.vrackSegment].forEach((network) => {
       const vlanId = screen.getByText(
         fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
           '{{ vlanId }}',

@@ -227,7 +227,10 @@ export default function AddEditNetworkAcl() {
             )}
 
             {/* Description */}
-            <OdsFormField className="block w-full" error={tZodError(errors?.description?.message)}>
+            <OdsFormField
+              className="block w-full"
+              error={errors?.description?.message && tZodError(errors.description.message)}
+            >
               <label slot="label" htmlFor="description">
                 {tDashboard('description')}
               </label>

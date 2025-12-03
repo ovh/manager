@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -16,11 +16,12 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 
 import { useMessageContext } from '@/context/Message.context';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { APP_NAME_TRACKING, TRACKING } from '@/tracking.constants';
 
 export default function TerminateOrganization() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('terminate');
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -49,9 +50,9 @@ export default function TerminateOrganization() {
   const onError = (error: ApiError) => {
     trackPage({
       pageType: PageType.bannerError,
-      pageName: `delete_${APP_NAME_TRACKING}_error::${error.response.data.message
+      pageName: `delete_${APP_NAME_TRACKING}_error::${error.response?.data.message
         .toLowerCase()
-        .replaceAll(' ', '-')}`,
+        .replace(/ /g, '-')}`,
     });
   };
   const { terminateService, isPending, error, isError } = useDeleteService({
@@ -79,7 +80,7 @@ export default function TerminateOrganization() {
       isOpen
       closeModal={closeHandler}
       isLoading={isPending}
-      error={isError ? error?.message : null}
+      error={isError ? error?.message : undefined}
       onConfirmDelete={confirmHandler}
     ></DeleteModal>
   );

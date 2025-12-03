@@ -43,7 +43,7 @@ export default function BackupTileItem({ vcdOrganization }: Readonly<TTileProps>
   );
 
   React.useEffect(() => {
-    shell.navigation.getURL(veeamBackupAppName, '', {}).then((url: string) => setVeeamHref(url));
+    shell.navigation.getURL(veeamBackupAppName, '', {}).then((url) => setVeeamHref(String(url)));
   }, [shell.navigation]);
 
   return (

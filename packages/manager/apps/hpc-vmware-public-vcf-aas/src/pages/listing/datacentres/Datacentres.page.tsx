@@ -1,4 +1,4 @@
-import { useHref, useParams } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,13 +8,19 @@ import {
   getVcdDatacentreListQueryKey,
   getVcdDatacentresRoute,
 } from '@ovh-ux/manager-module-vcd-api';
-import { DataGridTextCell, LinkType, Links } from '@ovh-ux/manager-react-components';
+import {
+  DataGridTextCell,
+  DatagridColumn,
+  LinkType,
+  Links,
+} from '@ovh-ux/manager-react-components';
 import { useNavigationGetUrl, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { FEATURE_FLAGS } from '@/app.constants';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
@@ -26,7 +32,7 @@ import { DEDICATED_PATH, VRACK_PATH } from './Datacentres.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const datacentreDashboardHref = useHref(
     urls.datacentreDashboard
       .replace(subRoutes.dashboard, id)
@@ -110,7 +116,7 @@ const DatagridVrackCell = (vcdDatacentre: VCDDatacentre) => {
 export default function DatacentresListing() {
   const { t } = useTranslation('listing');
   const { t: tVdc } = useTranslation('datacentres');
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { data: featuresAvailable } = useFeatureAvailability([FEATURE_FLAGS.VRACK]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
 
@@ -145,12 +151,16 @@ export default function DatacentresListing() {
       cell: DatagridCpuSpeedCell,
       label: tVdc('managed_vcd_vdc_vcpu_speed'),
     },
-    isVrackFeatureAvailable && {
-      id: 'vRack',
-      cell: DatagridVrackCell,
-      label: VRACK_LABEL,
-    },
-  ].filter(Boolean);
+    ...(!isVrackFeatureAvailable
+      ? []
+      : [
+          {
+            id: 'vRack',
+            cell: DatagridVrackCell,
+            label: VRACK_LABEL,
+          },
+        ]),
+  ] as DatagridColumn<unknown>[];
 
   const datagridProps: TDatagridContainerProps = {
     title: VIRTUAL_DATACENTERS_LABEL,
