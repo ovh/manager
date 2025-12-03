@@ -1,29 +1,24 @@
 import React from 'react';
-import { Subtitle } from '@ovh-ux/manager-react-components';
-import {
-  ODS_TEXT_PRESET,
-  OdsSelectChangeEventDetail,
-  OdsSelectCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { ServiceKeyTypeRadioButton } from '@key-management-service/components/service-key/create/serviceKeyTypeRadioButton';
 import { useOkmsServiceKeyReference } from '@key-management-service/data/hooks/useOkmsReferenceServiceKey';
-import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
   OkmsServiceKeyCurve,
   OkmsServiceKeySize,
 } from '@key-management-service/types/okmsServiceKey.type';
+import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_TEXT_PRESET,
+  OdsSelectChangeEventDetail,
+  OdsSelectCustomEvent,
+} from '@ovhcloud/ods-components';
+import { OdsFormField, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+
+import { Subtitle } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 export type KeyTypeSectionProps = {
   region: string;
@@ -68,10 +63,8 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
     setKeyCurve(preselectedCurve?.value || undefined);
   };
 
-  const handleSelectKeySize = (
-    event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
-  ) => {
-    const newKeySize = (event.detail.value as unknown) as OkmsServiceKeySize;
+  const handleSelectKeySize = (event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => {
+    const newKeySize = event.detail.value as unknown as OkmsServiceKeySize;
     if (newKeySize) {
       setKeySize(newKeySize);
     }
@@ -80,32 +73,22 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
   return (
     <>
       <div className="flex flex-col gap-3 md:gap-4">
-        <Subtitle>
-          {t('key_management_service_service-keys_create_crypto_title')}
-        </Subtitle>
+        <Subtitle>{t('key_management_service_service-keys_create_crypto_title')}</Subtitle>
         <div className="space-y-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-            {t(
-              'key_management_service_service-keys_create_crypto_origin_title',
-            )}
+            {t('key_management_service_service-keys_create_crypto_origin_title')}
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t(
-              'key_management_service_service-keys_create_crypto_origin_subtitle',
-            )}
+            {t('key_management_service_service-keys_create_crypto_origin_subtitle')}
           </OdsText>
         </div>
         <OdsFormField>
-          <div slot="label" className="space-y-2 mb-2">
+          <div slot="label" className="mb-2 space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_type_title',
-              )}
+              {t('key_management_service_service-keys_create_crypto_field_type_title')}
             </OdsText>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_type_subtitle',
-              )}
+              {t('key_management_service_service-keys_create_crypto_field_type_subtitle')}
             </OdsText>
           </div>
           <div className="grid gap-3">
@@ -123,53 +106,39 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
         </OdsFormField>
       </div>
 
-      {serviceKey &&
-        [OkmsKeyTypes.oct, OkmsKeyTypes.RSA].includes(serviceKey.type) && (
-          <OdsFormField key={serviceKey.type}>
-            <div slot="label" className="space-y-2 mb-2">
-              <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-                {t(
-                  'key_management_service_service-keys_create_crypto_field_size_title',
-                )}
-              </OdsText>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t(
-                  'key_management_service_service-keys_create_crypto_field_size_subtitle',
-                )}
-              </OdsText>
-            </div>
-            <OdsSelect
-              name="keySize"
-              value={keySize?.toString()}
-              onOdsChange={handleSelectKeySize}
-            >
-              {serviceKey?.sizes.map((size) => (
-                <option key={size.value} value={size.value}>
-                  {t(
-                    'key_management_service_service-keys_create_crypto_field_size_unit',
-                    { size: size.value },
-                  )}{' '}
-                  {size.default &&
-                    t(
-                      'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
-                    )}
-                </option>
-              ))}
-            </OdsSelect>
-          </OdsFormField>
-        )}
-      {serviceKey?.type === OkmsKeyTypes.EC && (
-        <OdsFormField>
-          <div slot="label" className="space-y-2 mb-2">
+      {serviceKey && [OkmsKeyTypes.oct, OkmsKeyTypes.RSA].includes(serviceKey.type) && (
+        <OdsFormField key={serviceKey.type}>
+          <div slot="label" className="mb-2 space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_curve_title',
-              )}
+              {t('key_management_service_service-keys_create_crypto_field_size_title')}
             </OdsText>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(
-                'key_management_service_service-keys_create_crypto_field_curve_subtitle',
-              )}
+              {t('key_management_service_service-keys_create_crypto_field_size_subtitle')}
+            </OdsText>
+          </div>
+          <OdsSelect name="keySize" value={keySize?.toString()} onOdsChange={handleSelectKeySize}>
+            {serviceKey?.sizes.map((size) => (
+              <option key={size.value} value={size.value}>
+                {t('key_management_service_service-keys_create_crypto_field_size_unit', {
+                  size: size.value,
+                })}{' '}
+                {size.default &&
+                  t(
+                    'key_management_service_service-keys_create_crypto_field_size_curve_suffix_default',
+                  )}
+              </option>
+            ))}
+          </OdsSelect>
+        </OdsFormField>
+      )}
+      {serviceKey?.type === OkmsKeyTypes.EC && (
+        <OdsFormField>
+          <div slot="label" className="mb-2 space-y-2">
+            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+              {t('key_management_service_service-keys_create_crypto_field_curve_title')}
+            </OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              {t('key_management_service_service-keys_create_crypto_field_curve_subtitle')}
             </OdsText>
           </div>
           <OdsSelect

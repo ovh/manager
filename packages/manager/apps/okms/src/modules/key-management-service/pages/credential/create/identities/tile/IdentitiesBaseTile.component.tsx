@@ -1,4 +1,5 @@
-import React, { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsCard, OdsText } from '@ovhcloud/ods-components/react';
 
@@ -18,7 +19,7 @@ const IdentitiesBaseTile = ({
   children,
 }: IdentitiesBaseTileProps) => (
   <OdsCard
-    className="p-3 cursor-pointer hover:bg-[var(--ods-color-primary-200)]"
+    className="cursor-pointer p-3 hover:bg-[var(--ods-color-primary-200)]"
     color={isChecked ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
     onClick={() => {
       setIsChecked(!isChecked);

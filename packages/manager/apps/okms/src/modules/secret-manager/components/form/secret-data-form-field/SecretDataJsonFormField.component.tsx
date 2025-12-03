@@ -1,7 +1,8 @@
-import React from 'react';
-import { useController, UseControllerProps } from 'react-hook-form';
-import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
+import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
+
 import { SECRET_FORM_FIELD_TEST_IDS } from '../form.constants';
 
 type FormFieldInput = {

@@ -1,7 +1,8 @@
 import { describe, expect } from 'vitest';
+
 import {
-  serviceKeyMaxCharacters,
   ServiceKeyNameErrors,
+  serviceKeyMaxCharacters,
   validateServiceKeyName,
 } from './validateServiceKeyName';
 
@@ -23,8 +24,7 @@ describe('Service key name validation test suite', () => {
     },
     {
       name: '§',
-      usecase:
-        'should return the right error message when name contains invalid characters.',
+      usecase: 'should return the right error message when name contains invalid characters.',
       error: ServiceKeyNameErrors.invalidCharacters,
     },
   ];

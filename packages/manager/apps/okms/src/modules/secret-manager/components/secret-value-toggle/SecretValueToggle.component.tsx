@@ -1,6 +1,7 @@
-import React from 'react';
-import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+
+import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
+
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from './secretValueToggle.constants';
 
 export type SecretValueToggleState = 'key-value' | 'json';
@@ -12,18 +13,12 @@ type SecretValueToggleProps = {
   onChange: (state: SecretValueToggleState) => void;
 };
 
-export const SecretValueToggle = ({
-  state,
-  onChange,
-}: SecretValueToggleProps) => {
+export const SecretValueToggle = ({ state, onChange }: SecretValueToggleProps) => {
   const { t } = useTranslation(['secret-manager']);
 
   return (
     <div>
-      <OdsSwitch
-        data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.toggle}
-        name="secretValueType"
-      >
+      <OdsSwitch data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.toggle} name="secretValueType">
         <OdsSwitchItem
           data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.keyValueToggle}
           isChecked={state === 'key-value'}

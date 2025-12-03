@@ -1,24 +1,19 @@
-import React from 'react';
-import { useController, UseControllerProps } from 'react-hook-form';
-import {
-  OdsText,
-  OdsFormField,
-  OdsQuantity,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import {
   MAX_VERSIONS_MAX_VALUE,
   MAX_VERSIONS_MIN_VALUE,
-} from '@secret-manager/validation/metadata/metadataSchema';
+} from '@secret-manager/validation/secret-config/secretConfigSchema';
+import { UseControllerProps, useController } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { OdsFormField, OdsQuantity, OdsText } from '@ovhcloud/ods-components/react';
+
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type FormFieldInput = {
   maxVersions: number;
 };
 
-type SecretMaxVersionsFormFieldProps<
-  T extends FormFieldInput
-> = UseControllerProps<T> & {
+type SecretMaxVersionsFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
   defaultMaxVersions: number;
 };
 

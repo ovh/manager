@@ -1,13 +1,13 @@
-import React from 'react';
+import { SecretVersionState } from '@secret-manager/types/secret.type';
+import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
 import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BADGE_COLOR,
   ODS_BADGE_SIZE,
   OdsBadge as OdsBadgeType,
 } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { SecretVersionState } from '@secret-manager/types/secret.type';
-import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
 
 type StateVariant = {
   translationKey: string;
@@ -29,10 +29,7 @@ const variants: Record<SecretVersionState, StateVariant> = {
   },
 };
 
-export type VersionStatusParams = Omit<
-  OdsBadgeType,
-  'render' | 'color' | 'label' | 'size'
-> & {
+export type VersionStatusParams = Omit<OdsBadgeType, 'render' | 'color' | 'label' | 'size'> & {
   state: SecretVersionState;
   size?: ODS_BADGE_SIZE;
   'data-testid'?: string;

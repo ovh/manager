@@ -1,14 +1,12 @@
-import React from 'react';
-import {
-  OdsCode,
-  OdsMessage,
-  OdsSpinner,
-} from '@ovhcloud/ods-components/react';
 import { useSecretVersionWithData } from '@secret-manager/data/hooks/useSecretVersion';
 import { SecretVersion } from '@secret-manager/types/secret.type';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useTranslation } from 'react-i18next';
+
+import { OdsCode, OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
 
 type SecretValueParams = {
@@ -17,19 +15,15 @@ type SecretValueParams = {
   version: SecretVersion;
 };
 
-export const SecretRawValue = ({
-  okmsId,
-  secretPath,
-  version,
-}: SecretValueParams) => {
+export const SecretRawValue = ({ okmsId, secretPath, version }: SecretValueParams) => {
   const secretPathDecoded = decodeSecretPath(secretPath);
 
   const { t } = useTranslation([NAMESPACES.ERROR]);
-  const { data: secretVersion, isPending, error } = useSecretVersionWithData(
-    okmsId,
-    secretPathDecoded,
-    version.id,
-  );
+  const {
+    data: secretVersion,
+    isPending,
+    error,
+  } = useSecretVersionWithData(okmsId, secretPathDecoded, version.id);
 
   if (isPending)
     return (
