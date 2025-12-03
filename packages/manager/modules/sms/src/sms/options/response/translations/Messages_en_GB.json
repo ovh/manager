@@ -4,7 +4,7 @@
   "sms_options_response_information_text_1": "When you receive a reply to an SMS that allows for responses, you can do three things:",
   "sms_options_response_information_list_item_1": "Do nothing",
   "sms_options_response_information_list_item_2": "Call a script hosted by you",
-  "sms_options_response_information_list_item_3": "Reply automatically with a pre-defined text <em>(cost: 1 SMS)</em>",
+  "sms_options_response_information_list_item_3": "Reply automatically with a pre-defined text <em>(cost: 1 SMS minimum depending on the pre-defined text requested)</em>",
   "sms_options_response_information_text_2": "You can also be receive notifications for receiving an SMS message via email <em>(free)</em> or text <em>(cost: 1 SMS)</em>.",
   "sms_options_response_information_text_3": "Please note that the customer can only reply within 48 hours. After this period, the reply will not reach you.",
   "sms_options_response_sr_only_actions": "Actions",
