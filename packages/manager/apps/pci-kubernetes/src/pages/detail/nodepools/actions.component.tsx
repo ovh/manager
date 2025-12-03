@@ -21,7 +21,7 @@ export default function ActionsComponent({ pool }: Readonly<ActionsComponentProp
     {
       id: 0,
       href: scaleHref,
-      label: t('kube_node_pool_scale'),
+      label: t('kube_node_pool'),
       disabled: pool.status !== 'READY',
     },
     {

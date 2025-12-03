@@ -98,7 +98,7 @@ export const getDatagridColumns = ({
               <TextCell>
                 <StatusChip
                   label={
-                    props.attachFloatingIPs?.enabled
+                    props.attachFloatingIps?.enabled
                       ? ResourceStatus.ENABLED
                       : ResourceStatus.DISABLED
                   }

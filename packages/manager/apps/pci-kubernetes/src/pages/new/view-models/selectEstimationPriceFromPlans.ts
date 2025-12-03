@@ -39,14 +39,14 @@ const selectEstimationPriceFromPlans =
     const floatingIpPrices =
       options?.priceFloatingIp && nodePools
         ? nodePools.reduce((total, item) => {
-            if (item.attachFloatingIPs?.enabled) {
+            if (item.attachFloatingIps?.enabled) {
               return total + (options.priceFloatingIp ?? 0) * item.desiredNodes;
             }
             return total;
           }, 0)
         : null;
     const clusterPrice = getClusterPlan();
-    const totalPrice = clusterPrice + nodePoolsPrice;
+    const totalPrice = clusterPrice + nodePoolsPrice + (floatingIpPrices ?? 0);
 
     const estimations: [string, boolean, string?][] = [
       [t('kube_common_node_pool_estimation_text'), options?.showSavingPlan ?? false],
