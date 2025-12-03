@@ -7,3 +7,9 @@ export const FEATURE_AVAILABILITY = Object.freeze({
   DELETE_TENANT: 'deleteTenant',
   DELETE_VAULT: 'deleteVault',
 });
+
+export const OS_LABELS = {
+  LINUX: 'Linux',
+  WINDOWS: 'Windows',
+  MAC: 'Mac',
+};

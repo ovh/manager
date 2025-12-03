@@ -28,6 +28,9 @@ const AgentAddConfigurationPage = React.lazy(
 const AgentEditConfigurationPage = React.lazy(
   () => import('../pages/services/dashboard/agent/edit-configuration/EditConfiguration.page'),
 );
+const AgentDownloadLinkPage = React.lazy(
+  () => import('../pages/services/dashboard/agent/download/AgentDownload.page'),
+);
 const DeleteTenantPage = React.lazy(
   () => import('../pages/services/listing/delete/DeleteTenant.page'),
 );
@@ -105,6 +108,7 @@ export default (
             Component={AgentDeletePage}
             handle={{ tracking: { pageName: 'delete-agent', pageType: PageType.popup } }}
           />
+          <Route path={subRoutes.download} Component={AgentDownloadLinkPage} />
         </Route>
       </Route>
     </Route>
