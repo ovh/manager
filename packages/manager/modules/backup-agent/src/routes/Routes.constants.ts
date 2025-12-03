@@ -13,6 +13,7 @@ export const subRoutes = Object.freeze({
   buckets: 'buckets',
   add: 'add',
   configure: 'configure',
+  download: 'download',
 });
 
 export const urlParams = {
@@ -33,6 +34,7 @@ export const urls = {
   addAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.add}`,
   dashboardTenantAgentDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.delete}/${urlParams.agentId}`,
   editAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.configure}/${urlParams.agentId}`,
+  downloadAgentBackup: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.download}`,
   listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
   dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,
   listingBilling: `/${subRoutes.billing}`,
