@@ -23,17 +23,17 @@
   "editNameModalInfo": "Nazwa usługi",
   "editNameModaleHelperInput": "Nazwa usługi musi zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki interpunkcyjne: „_”, „.” oraz „-”.",
   "editNameRancherCta": "Zmień",
-  "READY": "Gotowy",
-  "DISABLED": "Wyłączona",
+  "READY": "Gotowe",
+  "DISABLED": "Wyłączony",
   "ENABLED": "Włączony",
-  "UPDATING": "Aktualizacja w toku",
+  "UPDATING": "Trwa aktualizacja",
   "ERROR": "Błąd",
   "DELETING": "Trwa usuwanie",
-  "CREATING": "Tworzenie w toku",
+  "CREATING": "Trwa tworzenie",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard",
   "rancherStatusCreating": "Trwa tworzenie usługi Managed Rancher Service. Może to potrwać kilka minut.",
   "iam": "Uwierzytelnianie IAM",
   "iam_authentication_status": "Uwierzytelnianie IAM",
-  "iam_authentication_infos_tooltip": "Pozwala Harbor na korzystanie z tożsamości zarządzanych przez OVHcloud IAM (Zarządzanie Tożsamością i Dostępem) w celu kontrolowania dostępu do rejestru, unikając w ten sposób ręcznego zarządzania użytkownikami."
+  "iam_authentication_infos_tooltip": "Umożliwia Rancherowi używanie tożsamości zarządzanych przez OVHcloud IAM (Identity and Access Management) do kontrolowania dostępu do usługi, co eliminuje konieczność ręcznego zarządzania użytkownikami."
 }

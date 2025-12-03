@@ -1,8 +1,9 @@
-import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   OkmsCredential,
   OkmsCredentialCreation,
 } from '@key-management-service/types/okmsCredential.type';
+
+import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
 
 /**
  *  Get okms Credential list
@@ -39,17 +40,12 @@ export const createOkmsCredential = async ({
   okmsId: string;
   data: OkmsCredentialCreation;
 }) => {
-  return apiClient.v2.post<OkmsCredential>(
-    `okms/resource/${okmsId}/credential`,
-    data,
-  );
+  return apiClient.v2.post<OkmsCredential>(`okms/resource/${okmsId}/credential`, data);
 };
 
-export const createOkmsCredentialQueryKey = ({
-  okmsId,
-}: {
-  okmsId: string;
-}) => [`post/okms/resource/${okmsId}/credential/create`];
+export const createOkmsCredentialQueryKey = ({ okmsId }: { okmsId: string }) => [
+  `post/okms/resource/${okmsId}/credential/create`,
+];
 
 /**
  *  delete okms Credential
@@ -62,9 +58,7 @@ export const deleteOkmsCredential = async ({
   okmsId: string;
   credentialId: string;
 }) => {
-  return apiClient.v2.delete(
-    `okms/resource/${okmsId}/credential/${credentialId}`,
-  );
+  return apiClient.v2.delete(`okms/resource/${okmsId}/credential/${credentialId}`);
 };
 
 export const deleteOkmsCredentialQueryKey = ({

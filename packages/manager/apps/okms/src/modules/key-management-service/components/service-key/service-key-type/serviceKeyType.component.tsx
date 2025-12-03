@@ -1,4 +1,3 @@
-import React from 'react';
 import { TileValue } from '@key-management-service/components/dashboard/tile-value/tileValue.component';
 import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
 import { OkmsKeyTypes } from '@key-management-service/types/okmsServiceKey.type';

@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-export type TExecutionState = 'SUCCESS' | 'PAUSED' | 'ERROR';
+export type TExecutionState = 'SUCCESS' | 'PAUSED' | 'ERROR' | 'CANCELED';
 
 export type TWorkflowExecution = {
   id: string;
@@ -17,6 +17,7 @@ export type TRemoteWorkflow = {
   instanceId: string;
   cron: string;
   executions: TWorkflowExecution[] | null;
+  distantRegion?: string;
 };
 
 export const getRegionsWorkflows = async (projectId: string, regionName: string) => {
@@ -26,19 +27,23 @@ export const getRegionsWorkflows = async (projectId: string, regionName: string)
   return data;
 };
 
+export type TAddWorkflow = {
+  name: string;
+  cron: string;
+  rotation: number;
+  imageName: string;
+  distantImageName: string | null;
+  distantRegionName: string | null;
+};
+
 export const addWorkflow = async (
   projectId: string,
   regionName: string,
-  type: {
-    cron: string;
-    instanceId: string;
-    name: string;
-    rotation: number;
-    maxExecutionCount: number;
-  },
+  instanceId: string,
+  type: TAddWorkflow,
 ) => {
   const { data } = await v6.post<TRemoteWorkflow[]>(
-    `/cloud/project/${projectId}/region/${regionName}/workflow/backup`,
+    `/cloud/project/${projectId}/region/${regionName}/instance/${instanceId}/autobackup`,
     { ...type },
   );
   return data;

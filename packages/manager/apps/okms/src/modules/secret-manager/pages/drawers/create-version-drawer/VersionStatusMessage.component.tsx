@@ -1,13 +1,9 @@
-import React from 'react';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { SecretVersionState } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-export const VersionStatusMessage = ({
-  state,
-}: {
-  state: SecretVersionState;
-}) => {
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+export const VersionStatusMessage = ({ state }: { state: SecretVersionState }) => {
   const { t } = useTranslation('secret-manager');
 
   if (state === 'ACTIVE') return null;

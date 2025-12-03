@@ -1,4 +1,3 @@
-import React from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 

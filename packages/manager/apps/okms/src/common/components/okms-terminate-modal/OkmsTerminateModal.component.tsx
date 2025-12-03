@@ -1,35 +1,29 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { okmsQueryKeys } from '@key-management-service/data/api/okms';
+import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useDeleteService } from '@ovh-ux/manager-module-common-api';
+import { DeleteModal, useNotifications } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useDeleteService } from '@ovh-ux/manager-module-common-api';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import {
-  DeleteModal,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { okmsQueryKeys } from '@key-management-service/data/api/okms';
+
 import { useShellContext } from '@/common/hooks/useShellContext';
 
 type OkmsTerminateModalProps = {
   okmsId: string;
 };
 
-export default function OkmsTerminateModal({
-  okmsId,
-}: OkmsTerminateModalProps) {
+export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) {
   const navigate = useNavigate();
-  const { t } = useTranslation([
-    'key-management-service/terminate',
-    NAMESPACES.ERROR,
-  ]);
+  const { t } = useTranslation(['key-management-service/terminate', NAMESPACES.ERROR]);
   const { trackPage, trackClick } = useOvhTracking();
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { ovhSubsidiary } = useShellContext().environment.getUser();

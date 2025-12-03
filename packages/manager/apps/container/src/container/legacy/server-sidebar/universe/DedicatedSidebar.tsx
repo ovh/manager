@@ -51,6 +51,7 @@ export const features = [
   'okms',
   'okms:key-management-service',
   'okms:secret-manager',
+  'okms:secret-manager:beta-badge',
 ];
 
 export default function DedicatedSidebar() {
@@ -429,7 +430,7 @@ export default function DedicatedSidebar() {
           feature['okms:secret-manager'] && {
             id: 'secret-manager',
             label: 'Secret Manager',
-            badge: 'beta',
+            badge: feature['okms:secret-manager:beta-badge'] ? 'beta' : undefined,
             icon: <OsdsIcon
               name={ODS_ICON_NAME.SHIELD_CONCEPT}
               size={ODS_ICON_SIZE.xxs}

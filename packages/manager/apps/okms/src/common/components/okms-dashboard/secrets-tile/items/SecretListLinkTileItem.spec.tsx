@@ -1,15 +1,17 @@
-import { screen } from '@testing-library/react';
-import React from 'react';
-import { vi } from 'vitest';
-import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { vi } from 'vitest';
+
+import { LinkType, LinksProps } from '@ovh-ux/manager-react-components';
+
 import { labels } from '@/common/utils/tests/init.i18n';
-import { SecretListLinkTileItem } from './SecretListLinkTileItem.component';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
-const okmsMocked = okmsMock[0];
+import { SecretListLinkTileItem } from './SecretListLinkTileItem.component';
+
+const okmsMocked = okmsRoubaix1Mock;
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -21,9 +23,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return {
     ...actual,
     Links: ({ onClickReturn, ...rest }: LinksProps) => (
@@ -33,9 +33,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
 
   return {
     ...mod,
@@ -55,15 +53,12 @@ describe('OKMS Secret List link Tile Item test suite', () => {
     const secretListLink = screen.getByTestId('secret-list-link');
 
     expect(secretListLink).toBeVisible();
-    expect(secretListLink).toHaveAttribute(
-      'label',
-      labels.kmsCommon.manage_secrets_link,
-    );
+    expect(secretListLink).toHaveAttribute('label', labels.kmsCommon.manage_secrets_link);
     expect(secretListLink).toHaveAttribute('type', LinkType.next);
 
-    await user.click(secretListLink);
-    expect(mockNavigate).toHaveBeenCalledWith(
-      SECRET_MANAGER_ROUTES_URLS.secretList(okmsMocked.id),
-    );
+    await act(async () => {
+      await user.click(secretListLink);
+    });
+    expect(mockNavigate).toHaveBeenCalledWith(SECRET_MANAGER_ROUTES_URLS.secretList(okmsMocked.id));
   });
 });

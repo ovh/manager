@@ -1,52 +1,48 @@
 import React, { Suspense, useEffect, useState } from 'react';
+
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
+import { useCreateOkmsServiceKey } from '@key-management-service/data/hooks/useCreateOkmsServiceKey';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
+import { useOkmsServiceKeyReference } from '@key-management-service/data/hooks/useOkmsReferenceServiceKey';
+import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import {
-  BaseLayout,
-  ErrorBanner,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+  OkmsKeyTypes,
+  OkmsServiceKeyCurve,
+  OkmsServiceKeyOperations,
+  OkmsServiceKeySize,
+} from '@key-management-service/types/okmsServiceKey.type';
+import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
+import { ServiceKeyNameErrors } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
-import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
-import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
-import { useOkmsServiceKeyReference } from '@key-management-service/data/hooks/useOkmsReferenceServiceKey';
-import { useCreateOkmsServiceKey } from '@key-management-service/data/hooks/useCreateOkmsServiceKey';
-import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
-import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
-import {
-  OkmsKeyTypes,
-  OkmsServiceKeyOperations,
-  OkmsServiceKeyCurve,
-  OkmsServiceKeySize,
-} from '@key-management-service/types/okmsServiceKey.type';
-import {
-  KMS_ROUTES_URIS,
-  KMS_ROUTES_URLS,
-} from '@key-management-service/routes/routes.constants';
-import { ServiceKeyNameErrors } from '@key-management-service/utils/service-key/validateServiceKeyName';
+
 import Loading from '@/common/components/loading/Loading';
-import { ProtectionLevelSection } from './ProtectionLevelSection.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { SERVICE_KEYS_LABEL } from '@/constants';
+
+import { CREATE_KEY_TEST_IDS } from './CreateKey.constants';
 import { GeneralInformationSection } from './GeneralInformationSection.component';
 import { KeyTypeSection } from './KeyTypeSection.component';
 import { KeyUsageSection } from './KeyUsageSection.component';
-import { CREATE_KEY_TEST_IDS } from './CreateKey.constants';
-import { SERVICE_KEYS_LABEL } from '@/constants';
+import { ProtectionLevelSection } from './ProtectionLevelSection.component';
 
 export default function CreateKey() {
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/serviceKeys');
 
@@ -64,14 +60,12 @@ export default function CreateKey() {
     refetch: refetchServiceKeyReference,
   } = useOkmsServiceKeyReference(okms?.data?.region || '');
 
-  const [key, setKey] = useState<OkmsServiceKeyReference | undefined>();
-  const [keyType, setKeyType] = useState<OkmsKeyTypes | undefined>();
-  const [keySize, setKeySize] = useState<OkmsServiceKeySize | undefined>();
-  const [keyCurve, setKeyCurve] = useState<OkmsServiceKeyCurve | undefined>();
-  const [keyOperations, setKeyOperations] = useState<
-    OkmsServiceKeyOperations[][]
-  >([[]]);
-  const [keyDisplayName, setKeyDisplayName] = useState<string | undefined>();
+  const [key, setKey] = React.useState<OkmsServiceKeyReference | undefined>();
+  const [keyType, setKeyType] = React.useState<OkmsKeyTypes | undefined>();
+  const [keySize, setKeySize] = React.useState<OkmsServiceKeySize | undefined>();
+  const [keyCurve, setKeyCurve] = React.useState<OkmsServiceKeyCurve | undefined>();
+  const [keyOperations, setKeyOperations] = useState<OkmsServiceKeyOperations[][]>([[]]);
+  const [keyDisplayName, setKeyDisplayName] = React.useState<string | undefined>();
   const [serviceKeyNameError, setServiceKeyNameError] = useState<
     ServiceKeyNameErrors | undefined
   >();
@@ -87,16 +81,12 @@ export default function CreateKey() {
         if (reference.default) {
           setKey(reference);
           setKeyType(reference.type);
-          setKeySize(
-            reference.sizes.find((size) => size.default)?.value || undefined,
-          );
-          setKeyCurve(
-            reference.curves.find((curve) => curve.default)?.value || undefined,
-          );
+          setKeySize(reference.sizes.find((size) => size.default)?.value || undefined);
+          setKeyCurve(reference.curves.find((curve) => curve.default)?.value || undefined);
         }
       });
     }
-  }, [servicekeyReference, serviceKeyReferenceIsLoading]);
+  }, [servicekeyReference, serviceKeyReferenceIsLoading, key]);
 
   // Submit form
   const handleSubmit = async () => {
@@ -126,7 +116,7 @@ export default function CreateKey() {
         pageType: PageType.bannerSuccess,
         pageName: 'create_encryption_key',
       });
-    } catch (error) {
+    } catch {
       trackPage({
         pageType: PageType.bannerError,
         pageName: 'create_encryption_key',
@@ -188,7 +178,7 @@ export default function CreateKey() {
         }}
         message={<Notifications />}
       >
-        <div className="w-full block">
+        <div className="block w-full">
           <div className="max-w-lg gap-4 lg:gap-6">
             <div className="flex flex-col gap-4 md:gap-8">
               <ProtectionLevelSection />
@@ -229,9 +219,7 @@ export default function CreateKey() {
                     });
                     navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
                   }}
-                  label={t(
-                    'key_management_service_service-keys_create_cta_cancel',
-                  )}
+                  label={t('key_management_service_service-keys_create_cta_cancel')}
                 />
                 <OdsButton
                   size={ODS_BUTTON_SIZE.md}
@@ -240,13 +228,9 @@ export default function CreateKey() {
                   onClick={handleSubmit}
                   isLoading={isPending}
                   isDisabled={
-                    !keyDisplayName ||
-                    !!serviceKeyNameError ||
-                    keyOperations?.length === 0
+                    !keyDisplayName || !!serviceKeyNameError || keyOperations?.length === 0
                   }
-                  label={t(
-                    'key_management_service_service-keys_create_cta_submit',
-                  )}
+                  label={t('key_management_service_service-keys_create_cta_submit')}
                 />
               </div>
             </div>

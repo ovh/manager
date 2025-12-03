@@ -1,18 +1,16 @@
-import apiClient from '@ovh-ux/manager-core-api';
 import {
   Secret,
-  SecretWithData,
   SecretMetadata,
   SecretVersionDataField,
+  SecretWithData,
 } from '@secret-manager/types/secret.type';
 import { buildQueryString } from '@secret-manager/utils/queryStrings';
 
+import apiClient from '@ovh-ux/manager-core-api';
+
 export const secretQueryKeys = {
   list: (okmsId: string) => ['secret', okmsId],
-  detail: (okmsId: string, secretPath: string) => [
-    ...secretQueryKeys.list(okmsId),
-    secretPath,
-  ],
+  detail: (okmsId: string, secretPath: string) => [...secretQueryKeys.list(okmsId), secretPath],
   detailWithData: (okmsId: string, secretPath: string) => [
     ...secretQueryKeys.detail(okmsId, secretPath),
     'with-data',
@@ -20,10 +18,7 @@ export const secretQueryKeys = {
 };
 
 // GET Secret
-export const getSecret = async (
-  okmsId: string,
-  secretPath: string,
-): Promise<Secret> => {
+export const getSecret = async (okmsId: string, secretPath: string): Promise<Secret> => {
   const { data } = await apiClient.v2.get<Secret>(
     `okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}`,
   );
@@ -35,9 +30,7 @@ export const getSecretWithData = async (
   secretPath: string,
 ): Promise<SecretWithData> => {
   const { data } = await apiClient.v2.get<SecretWithData>(
-    `okms/resource/${okmsId}/secret/${encodeURIComponent(
-      secretPath,
-    )}?includeData=true`,
+    `okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}?includeData=true`,
   );
   return data;
 };
@@ -58,10 +51,7 @@ export type CreateSecretParams = {
   data: CreateSecretBody;
 };
 
-export const createSecret = async ({
-  okmsId,
-  data: postData,
-}: CreateSecretParams) => {
+export const createSecret = async ({ okmsId, data: postData }: CreateSecretParams) => {
   const { data } = await apiClient.v2.post<CreateSecretResponse>(
     `okms/resource/${okmsId}/secret`,
     postData,
@@ -82,24 +72,16 @@ export type UpdateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
 export type UpdateSecretParams = {
   okmsId: string;
   path: string;
-  cas: number;
+  cas?: number;
   data: UpdateSecretBody;
 };
 
-export const updateSecret = async ({
-  okmsId,
-  path,
-  cas,
-  data: updateData,
-}: UpdateSecretParams) => {
+export const updateSecret = async ({ okmsId, path, cas, data: updateData }: UpdateSecretParams) => {
   const url = `okms/resource/${okmsId}/secret/${encodeURIComponent(
     path,
   )}${buildQueryString({ cas })}`;
 
-  const { data } = await apiClient.v2.put<UpdateSecretResponse>(
-    url,
-    updateData,
-  );
+  const { data } = await apiClient.v2.put<UpdateSecretResponse>(url, updateData);
   return data;
 };
 
@@ -109,12 +91,6 @@ export type DeleteSecretParams = {
   secretPath: string;
 };
 
-export const deleteSecret = async ({
-  okmsId,
-  secretPath,
-}: DeleteSecretParams) => {
-  const { data } = await apiClient.v2.delete(
-    `okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}`,
-  );
-  return data;
+export const deleteSecret = async ({ okmsId, secretPath }: DeleteSecretParams) => {
+  await apiClient.v2.delete(`okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}`);
 };

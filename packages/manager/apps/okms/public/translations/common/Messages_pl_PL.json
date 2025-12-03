@@ -1,10 +1,15 @@
 {
-  "region_1_az_description": "Odporne i ekonomiczne wdrożenie w 1 strefie dostępności.",
-  "region_3_az_description": "Wdrożenie o wysokiej odporności/wysokiej dostępności dla Twoich krytycznych aplikacji w 3 strefach dostępności",
+  "error_fetching_data": "Wystąpił błąd podczas ładowania danych",
+  "okms_order_blocked": "Domena OKMS jest już w trakcie tworzenia. Będziesz mógł aktywować nową domenę OKMS, gdy twoje pierwsze zgłoszenie zostanie przetworzone.",
+  "okms_order_expired": "Aktywacja regionu zajmuje więcej czasu niż szacowano. Proszę spróbować ponownie za kilka minut.",
+  "okms_order_pending": "Twój domena OKMS jest w trakcie tworzenia. Zostaniesz powiadomiony, gdy będzie gotowy.",
+  "okms_order_success": "Twoja domena OKMS {{ okmsId }} jest gotowa. Możesz teraz z niej korzystać.",
+  "region_1_az_description": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
+  "region_3_az_description": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności.",
   "region_continent_AFRICA": "Afryka",
   "region_continent_ASIA": "Azja-Pacyfik",
-  "region_continent_NORTH_AMERICA": "Ameryka Północna",
   "region_continent_EUROPE": "Europa",
+  "region_continent_NORTH_AMERICA": "Ameryka Północna",
   "region_continent_OTHERS": "Inne regiony",
-  "region_local_zone_description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników w celu zapewnienia niskiej latencji i lokalizacji danych."
+  "region_local_zone_description": "Wdrażanie aplikacji jak najbliżej użytkowników w celu minimalizacji opóźnień i zapewnienia lokalizacji danych spełniającej wymogi regulacyjne obowiązujące na określonym terytorium."
 }
