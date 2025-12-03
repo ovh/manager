@@ -54,9 +54,7 @@ export default function DeleteVrackSegment() {
     onError: (error) => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: `delete_vcfaas-segment_error::${error.message
-          .replaceAll(' ', '-')
-          .toLowerCase()}`,
+        pageName: `delete_vcfaas-segment_error::${error.message.replace(/ /g, '-').toLowerCase()}`,
       });
       addError({
         content: getDeleteErrorMessage(error.message),

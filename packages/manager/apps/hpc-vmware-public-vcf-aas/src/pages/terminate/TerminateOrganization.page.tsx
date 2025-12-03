@@ -50,9 +50,9 @@ export default function TerminateOrganization() {
   const onError = (error: ApiError) => {
     trackPage({
       pageType: PageType.bannerError,
-      pageName: `delete_${APP_NAME_TRACKING}_error::${error.response.data.message
+      pageName: `delete_${APP_NAME_TRACKING}_error::${error.response?.data.message
         .toLowerCase()
-        .replaceAll(' ', '-')}`,
+        .replace(/ /g, '-')}`,
     });
   };
   const { terminateService, isPending, error, isError } = useDeleteService({
