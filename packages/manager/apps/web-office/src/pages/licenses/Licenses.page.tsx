@@ -112,6 +112,8 @@ export default function Licenses() {
     [t, trackClick],
   );
 
+  console.log('licensesData', licensesData);
+
   return (
     <BaseLayout
       header={{

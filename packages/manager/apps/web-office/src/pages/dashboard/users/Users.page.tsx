@@ -132,7 +132,7 @@ export default function Users() {
     ],
     [dataLicenceDetail, t],
   );
-
+  console.log('dataUsers', dataUsers);
   return (
     <>
       <Outlet />
