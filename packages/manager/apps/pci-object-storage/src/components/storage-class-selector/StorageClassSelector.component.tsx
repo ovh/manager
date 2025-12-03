@@ -6,6 +6,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Skeleton,
 } from '@datatr-ux/uxlib';
 import { ExternalLink, HelpCircle } from 'lucide-react';
 import storages from '@/types/Storages';
@@ -18,6 +19,7 @@ interface StorageClassSelectorProps {
   onStorageClassChange: (storageClass: storages.StorageClassEnum) => void;
   availableStorageClasses: storages.StorageClassEnum[];
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
 const StorageClassSelector = ({
@@ -25,6 +27,7 @@ const StorageClassSelector = ({
   onStorageClassChange,
   availableStorageClasses,
   disabled = false,
+  isLoading = false,
 }: StorageClassSelectorProps) => {
   const { t } = useTranslation('components/file-uploader');
   const locale = useLocale();
@@ -75,24 +78,32 @@ const StorageClassSelector = ({
           </PopoverContent>
         </Popover>
       </div>
-      <RadioGroup
-        className="px-2"
-        aria-labelledby="storage-class-radio"
-        value={storageClass}
-        onValueChange={onStorageClassChange}
-        disabled={disabled}
-      >
-        {availableStorageClasses.map(
-          (storeClass: storages.StorageClassEnum) => (
-            <div key={storeClass} className="flex items-center gap-3">
-              <RadioGroupItem value={storeClass} id={storeClass} />
-              <Label htmlFor={storeClass}>
-                {tObj(`objectClass_${storeClass}`)}
-              </Label>
-            </div>
-          ),
-        )}
-      </RadioGroup>
+      {isLoading ? (
+        <div className="flex flex-col gap-2 px-2">
+          <Skeleton className="h-6 w-full" />
+          <Skeleton className="h-6 w-full" />
+          <Skeleton className="h-6 w-full" />
+        </div>
+      ) : (
+        <RadioGroup
+          className="px-2"
+          aria-labelledby="storage-class-radio"
+          value={storageClass}
+          onValueChange={onStorageClassChange}
+          disabled={disabled}
+        >
+          {availableStorageClasses.map(
+            (storeClass: storages.StorageClassEnum) => (
+              <div key={storeClass} className="flex items-center gap-3">
+                <RadioGroupItem value={storeClass} id={storeClass} />
+                <Label htmlFor={storeClass}>
+                  {tObj(`objectClass_${storeClass}`)}
+                </Label>
+              </div>
+            ),
+          )}
+        </RadioGroup>
+      )}
     </div>
   );
 };

@@ -10,16 +10,18 @@ export function useAvailableStorageClasses(region: string) {
 
   const regions = regionQuery.data;
 
-  return useMemo(() => {
-    if (!regions) {
-      return [];
-    }
+  if (!regions) {
+    return {
+      availableStorageClasses: [],
+      isPending: regionQuery.isPending,
+    };
+  }
 
     const s3Region = regions.find((r) => r.name === region);
     const regionType = s3Region?.type;
 
-    return Object.values(storages.StorageClassEnum).filter((st) => {
-      if (!regionType) return false;
+  const availableStorageClasses = Object.values(storages.StorageClassEnum).filter((st) => {
+    if (!regionType) return false;
 
     switch (st) {
       case storages.StorageClassEnum.DEEP_ARCHIVE:
@@ -32,9 +34,13 @@ export function useAvailableStorageClasses(region: string) {
         case storages.StorageClassEnum.STANDARD_IA:
           return regionType !== RegionTypeEnum.localzone;
 
-        default:
-          return true;
-      }
-    });
-  }, [regions, region]);
+      default:
+        return true;
+    }
+  });
+
+  return {
+    availableStorageClasses,
+    isPending: regionQuery.isPending,
+  }
 }
