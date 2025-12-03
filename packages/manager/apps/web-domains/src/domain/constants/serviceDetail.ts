@@ -377,3 +377,10 @@ export const DOMAIN_PENDING_ACTIONS: Record<string, StatusDetails> = {
     statusColor: BADGE_COLOR.critical,
   },
 };
+
+export const contactTypeTranslationKeys: Record<string, string> = {
+  contactOwner: 'domain_tab_contact_management_owner_title',
+  contactAdministrator: 'domain_tab_contact_management_admin_title',
+  contactTechnical: 'domain_tab_contact_management_tech_title',
+  contactBilling: 'domain_tab_contact_management_billing_title',
+};

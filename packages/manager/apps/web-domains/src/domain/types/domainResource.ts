@@ -87,6 +87,18 @@ export interface TDomainResource {
   };
 }
 
+export interface TContactDisclosurePolicy {
+  disclosureConfiguration: DisclosureConfigurationEnum;
+  forceDisclosure: boolean;
+  disclosedFields: string[];
+  visibleViaRdds: boolean;
+}
+
+export interface TContactDetails {
+  id: string;
+  disclosurePolicy?: TContactDisclosurePolicy;
+}
+
 export interface TContactsConfiguration {
   contactOwner: TContactDetails;
   contactAdministrator: TContactDetails;
@@ -94,9 +106,14 @@ export interface TContactsConfiguration {
   contactBilling: TContactDetails;
 }
 
-export interface TContactDetails {
-  id: string;
-}
+export type TContactsConfigurationAPI = {
+  [key: string]: {
+    disclosurePolicy?: {
+      disclosureConfiguration: DisclosureConfigurationEnum;
+    };
+    id?: string;
+  };
+};
 
 export interface TDomainOption {
   option: OptionEnum;
@@ -197,6 +214,31 @@ export enum TransferLockStatusEnum {
   UNAVAILABLE = 'unavailable',
   UNLOCKED = 'unlocked',
   UNLOCKING = 'unlocking',
+}
+
+export enum DisclosureConfigurationEnum {
+  REDACTED = 'REDACTED',
+  DISCLOSED = 'DISCLOSED',
+}
+
+export enum DataProtectionStatus {
+  ACTIVE = 'active',
+  PARTIAL = 'partial',
+  NONE = 'none',
+  DISABLED = 'disabled',
+}
+
+export enum DataProtectionFieldEnum {
+  ADDRESS = 'ADDRESS',
+  CITY = 'CITY',
+  COUNTRY = 'COUNTRY',
+  EMAIL = 'EMAIL',
+  FAX = 'FAX',
+  NAME = 'NAME',
+  ORGANISATION = 'ORGANISATION',
+  PHONE = 'PHONE',
+  PROVINCE = 'PROVINCE',
+  ZIP = 'ZIP',
 }
 
 export interface ContactData {

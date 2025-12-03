@@ -18,9 +18,11 @@ import {
   transferTag,
 } from '@/domain/data/api/domainResources';
 import {
+  DisclosureConfigurationEnum,
   ServiceType,
   TDomainOption,
   TDomainResource,
+  TContactsConfigurationAPI,
 } from '@/domain/types/domainResource';
 import {
   activateServiceDnssec,
@@ -165,6 +167,7 @@ export const useUpdateDomainResource = (serviceName: string) => {
       nameServers,
       hosts,
       protectionState,
+      contactsConfiguration,
     }: {
       checksum: string;
       nameServers: {
@@ -174,6 +177,7 @@ export const useUpdateDomainResource = (serviceName: string) => {
       }[];
       hosts: THost[];
       protectionState: ProtectionStateEnum;
+      contactsConfiguration?: TContactsConfigurationAPI;
     }) =>
       updateDomainResource(serviceName, {
         checksum,
@@ -185,6 +189,7 @@ export const useUpdateDomainResource = (serviceName: string) => {
             hosts,
           },
           protectionState,
+          ...(contactsConfiguration && { contactsConfiguration }),
         },
       }),
     onSuccess: () => {

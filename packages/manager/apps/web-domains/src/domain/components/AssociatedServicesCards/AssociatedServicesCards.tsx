@@ -22,7 +22,9 @@ export default function AssociatedServicesCards({
       </ManagerTile.Title>
       <ManagerTile.Divider />
       <Hosting serviceName={serviceName} />
+      <ManagerTile.Divider />
       <SubDomainMultiSite serviceNames={associatedHosting} />
+      <ManagerTile.Divider />
       <Emails serviceName={serviceName} />
     </ManagerTile>
   );

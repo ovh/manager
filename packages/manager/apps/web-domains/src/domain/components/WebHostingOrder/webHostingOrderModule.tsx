@@ -4,7 +4,7 @@ import { Subsidiary } from '@ovh-ux/manager-config';
 import { LangCode } from '@/domain/constants/guideLinks';
 export interface WebHostingOptions {
   subsidiary: Subsidiary;
-  language?: LangCode;
+  language?: string;
   hostAppName?: string;
 }
 

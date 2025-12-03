@@ -314,8 +314,12 @@ describe('ExportDrawer', () => {
         (btn) => btn.getAttribute('data-variant') === 'default',
       );
 
-      expect(cancelButton).toHaveTextContent('Annuler');
-      expect(validateButton).toHaveTextContent('Valider');
+      expect(cancelButton).toHaveTextContent(
+        '@ovh-ux/manager-common-translations/actions:cancel',
+      );
+      expect(validateButton).toHaveTextContent(
+        '@ovh-ux/manager-common-translations/actions:validate',
+      );
     });
 
     it('should call onClose when cancel button is clicked', () => {
