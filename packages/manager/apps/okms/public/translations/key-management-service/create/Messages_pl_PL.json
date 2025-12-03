@@ -30,5 +30,5 @@
   "key_management_service_create_region_labeu_west_1_dev_1": "LABEU (Francja - Croix) (DEV-1)",
   "key_management_service_create_region_labeu_west_1_dev_2": "LABEU (Francja - Croix) (DEV-2)",
   "region_selection": "Wybór regionu",
-  "region_selection_description": "Proszę wskazać region, w którym będzie wdrażany. Następnie będziesz mógł tworzyć i zarządzać własnymi kluczami serwisowymi oraz certyfikatami dostępu w tym KMS. Obiekty kryptograficzne tego KMS będą przechowywane w wskazanym regionie. Będą mogły być używane we wszystkich produktach OVHcloud bez względu na region."
+  "region_selection_description": "Wskaż region, w którym zostanie wdrożony. Następnie będziesz mógł tworzyć i zarządzać własnymi Service Keys i certyfikatami dostępu w tym KMS. Kryptograficzne obiekty tego KMS będą przechowywane we wskazanym regionie. Będzie można je wykorzystać we wszystkich produktach OVHcloud bez względu na region."
 }

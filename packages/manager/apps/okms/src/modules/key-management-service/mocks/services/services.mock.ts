@@ -1,5 +1,6 @@
 import { CurrencyCode, ServiceDetails } from '@ovh-ux/manager-react-components';
-import { okmsMock } from '../kms/okms.mock';
+
+import { okmsRoubaix1Mock } from '../kms/okms.mock';
 
 export const kmsServicesMock: ServiceDetails = {
   route: {
@@ -69,7 +70,7 @@ export const kmsServicesMock: ServiceDetails = {
     engagementRequest: { pricingMode: '', requestDate: '' },
   },
   resource: {
-    displayName: okmsMock[0].iam.displayName,
+    displayName: okmsRoubaix1Mock.iam.displayName,
     name: '7f3a82ac-a8d8-4c2a-ab0c-f6e86ddf6a7c',
     state: 'active',
     product: {

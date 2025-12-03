@@ -1,5 +1,7 @@
 import { waitFor } from '@testing-library/react';
+
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
+
 import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
 
 export const assertRegionSelectorIsVisible = async (container: HTMLElement) => {
@@ -17,9 +19,6 @@ export const assertRegionSelectorIsVisible = async (container: HTMLElement) => {
       iconName: 'chevron-down',
     });
     expect(regionSelector).toHaveAttribute('is-loading', 'false');
-    expect(regionSelector).toHaveAttribute(
-      'label',
-      'Europe (France - Roubaix)',
-    );
+    expect(regionSelector).toHaveAttribute('label', 'Europe (France - Roubaix)');
   }, WAIT_FOR_DEFAULT_OPTIONS);
 };

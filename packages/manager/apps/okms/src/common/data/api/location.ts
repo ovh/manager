@@ -1,4 +1,5 @@
 import apiClient from '@ovh-ux/manager-core-api';
+
 import { Location } from '@/common/types/location.type';
 
 export const locationQueryKeys = {

@@ -1,12 +1,7 @@
+import { SecretVersion, SecretVersionWithData } from '@secret-manager/types/secret.type';
 import { PathParams } from 'msw';
-import {
-  SecretVersion,
-  SecretVersionWithData,
-} from '@secret-manager/types/secret.type';
 
-export const getVersionMockWithData = (
-  version: SecretVersion,
-): SecretVersionWithData => ({
+export const getVersionMockWithData = (version: SecretVersion): SecretVersionWithData => ({
   ...version,
   data: version.state === 'ACTIVE' ? { a: 'json' } : undefined,
 });
@@ -21,8 +16,6 @@ export const findVersionMockById = (
 ) => {
   const url = new URL(request.url);
   const includeData = url.searchParams.get('includeData');
-  const mockList = includeData
-    ? getVersionListMockWithData(versionMockList)
-    : versionMockList;
+  const mockList = includeData ? getVersionListMockWithData(versionMockList) : versionMockList;
   return mockList.find(({ id }) => id.toString() === params.versionId);
 };

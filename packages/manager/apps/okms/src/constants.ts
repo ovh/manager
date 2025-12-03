@@ -1,4 +1,3 @@
-export const KMS_LABEL = 'KMS';
 export const SERVICE_KEYS_LABEL = 'Service Keys';
 export const ID_LABEL = 'ID';
 export const KMIP_LABEL = 'KMIP';

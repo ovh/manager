@@ -1,36 +1,31 @@
-import React, { Suspense, useState } from 'react';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import {
-  BaseLayout,
-  ErrorBanner,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import CreateGeneralInformations from '@key-management-service/pages/credential/create/CreateGeneralInformations.component';
-import CreateAddIdentities from '@key-management-service/pages/credential/create/CreateAddIdentities.component';
-import CreateCredentialConfirmation from '@key-management-service/pages/credential/create/confirmation/CreateCredentialConfirmation.component';
+import { Suspense, useState } from 'react';
+
+import { Outlet, useNavigate } from 'react-router-dom';
+
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
-import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useCreateOkmsCredential } from '@key-management-service/data/hooks/useCreateOkmsCredential';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { IdentityDataProvider } from '@key-management-service/hooks/credential/useIdentityData';
-import {
-  CertificateType,
-  OkmsCredential,
-} from '@key-management-service/types/okmsCredential.type';
-import {
-  KMS_ROUTES_URIS,
-  KMS_ROUTES_URLS,
-} from '@key-management-service/routes/routes.constants';
+import CreateAddIdentities from '@key-management-service/pages/credential/create/CreateAddIdentities.component';
+import CreateGeneralInformations from '@key-management-service/pages/credential/create/CreateGeneralInformations.component';
+import CreateCredentialConfirmation from '@key-management-service/pages/credential/create/confirmation/CreateCredentialConfirmation.component';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { CertificateType, OkmsCredential } from '@key-management-service/types/okmsCredential.type';
+import { useTranslation } from 'react-i18next';
+
+import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
   const { trackPage } = useOvhTracking();
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const { data: okms, isLoading, error } = useOkmsById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
   const [step, setStep] = useState<number>(1);
@@ -38,10 +33,7 @@ const CreateCredential = () => {
   const [validity, setValidity] = useState<number>(30);
   const [description, setDescription] = useState<string | null>(null);
   const [csr, setCsr] = useState<string | null>(null);
-  const [
-    certificateType,
-    setCertificateType,
-  ] = useState<CertificateType | null>(null);
+  const [certificateType, setCertificateType] = useState<CertificateType | null>(null);
   const [identityURNs, setIdentityURNs] = useState<string[]>([]);
   const [okmsCredential, setOkmsCredential] = useState<OkmsCredential>();
   const [isCustomCsr, setIsCustomCsr] = useState<boolean>(false);
@@ -87,15 +79,28 @@ const CreateCredential = () => {
     },
   ];
 
+  const handleCreateCredential = () => {
+    if (!name) {
+      return;
+    }
+
+    createKmsCredential({
+      name,
+      identityURNs,
+      description,
+      validity,
+      ...(certificateType && { certificateType }),
+      ...(csr && { csr }),
+    });
+  };
+
   if (isLoading) return <Loading />;
 
   if (error)
     return (
       <ErrorBanner
         error={error.response}
-        onRedirectHome={() =>
-          navigate(KMS_ROUTES_URLS.credentialListing(okmsId))
-        }
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.credentialListing(okmsId))}
       />
     );
 
@@ -112,7 +117,7 @@ const CreateCredential = () => {
         message={<Notifications />}
       >
         <IdentityDataProvider>
-          <div className="w-full block">
+          <div className="block w-full">
             {step === 1 && (
               <CreateGeneralInformations
                 name={name}
@@ -135,16 +140,7 @@ const CreateCredential = () => {
                 identityURNs={identityURNs}
                 setIdentityURNs={setIdentityURNs}
                 prevStep={() => setStep(1)}
-                nextStep={() =>
-                  createKmsCredential({
-                    name,
-                    identityURNs,
-                    description,
-                    validity,
-                    ...(csr && { csr }),
-                    ...(certificateType && { certificateType }),
-                  })
-                }
+                nextStep={handleCreateCredential}
               />
             )}
             {step === 3 && okmsCredential && (

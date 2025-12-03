@@ -39,6 +39,7 @@ angular.module('services').service(
         NAPTR_service: /^(?:(?:[a-zA-Z0-9]+|[a-zA-Z0-9]+\+[a-zA-Z0-9]+(?!\+))(?::(?!$)|(?=$)))+$/,
         NAPTR_regex: /^[^"\s]+$/,
         NAPTR_replace: /^((?:[^.\s](?:\.(?!$))?)+)\.?$/,
+        RP: /^(\S+)\s+(\S+)$/,
         SPF: /^v=spf1\s*.*/,
         SPF_sender: {
           A: /^a(?:|(?::.+)|(?:\/\d+))$/,
@@ -57,6 +58,8 @@ angular.module('services').service(
         SSHFP: /^(1|2|3|4)\s+(1|2)\s+([a-zA-Z0-9]+)$/,
         SSHFP_fp1: /^(?:[a-zA-Z0-9]){40}$/,
         SSHFP_fp2: /^(?:[a-zA-Z0-9]){64}$/,
+        SVCB_params: /^[a-z0-9-]{1,63}(?:=[^ \t]*)?$/,
+        SVCB: /^(\d+)\s+(\S+)(?:\s+\S+)*$/,
         TXT: /^"?([^"]+)"?$/,
         TLSA: /^(\d) (\d) (\d) ([a-z0-9]+)$/,
         CAA: /^(\d+)\s+(issue|issuewild|iodef)\s+"(\S+)"$/,
@@ -337,8 +340,17 @@ angular.module('services').service(
      * @returns {boolean}
      */
     isValidMXTarget(value) {
+      return this.isValidFqdn(value);
+    }
+
+    /**
+     * Check if value is a valid FQDN
+     * @param {string} value
+     * @returns {boolean}
+     */
+    isValidFqdn(value) {
       if (value === '.') {
-        // allow MX null
+        // . is a valid fqdn
         return true;
       }
       if (/\s+\.$/.test(value)) {
@@ -712,6 +724,20 @@ angular.module('services').service(
     }
 
     /**
+     * append full stop to given value
+     * @param {string} value
+     * @returns {string}
+     */
+    static appendDotToValue(value) {
+      if (value) {
+        return /\.$/.test(value)
+          ? punycode.toASCII(value)
+          : `${punycode.toASCII(value)}.`;
+      }
+      return '';
+    }
+
+    /**
      * Transform DKIM target to expected value
      * @param {object} target
      * @returns {string}
@@ -953,6 +979,37 @@ angular.module('services').service(
         return `${flags} ${tag} "${caaTarget}"`;
       }
       return '';
+    }
+
+    /**
+     * Transform RP target to expected value
+     * @param {object} target
+     * @returns {string}
+     */
+    static transformRPTarget(target) {
+      return [
+        DomainValidator.appendDotToValue(target.mbox),
+        DomainValidator.appendDotToValue(target.txt),
+      ]
+        .join(' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    }
+
+    /**
+     * Transform SVCB target to expected value
+     * @param {object} target
+     * @returns {string}
+     */
+    static transformSVCBTarget(target) {
+      return [
+        target.priority != null ? target.priority.toString() : '',
+        DomainValidator.appendDotToTarget(target),
+        target.params != null ? target.params : '',
+      ]
+        .join(' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
     }
 
     /**

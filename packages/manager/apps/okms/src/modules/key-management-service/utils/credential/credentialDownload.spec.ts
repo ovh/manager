@@ -1,4 +1,5 @@
 import { OkmsCredentialStatus } from '@key-management-service/types/okmsCredential.type';
+
 import { isDownloadCredentialDisabled } from './credentialDownload';
 
 describe('isDownloadCertificateDisabled test suite', () => {
@@ -25,16 +26,13 @@ describe('isDownloadCertificateDisabled test suite', () => {
     },
   ];
 
-  test.each(useCases)(
-    'sould return $isDisabled for $state',
-    ({ state, isDisabled }) => {
-      // given state
+  test.each(useCases)('sould return $isDisabled for $state', ({ state, isDisabled }) => {
+    // given state
 
-      // when
-      const result = isDownloadCredentialDisabled(state);
+    // when
+    const result = isDownloadCredentialDisabled(state);
 
-      // then
-      expect(result).toBe(isDisabled);
-    },
-  );
+    // then
+    expect(result).toBe(isDisabled);
+  });
 });

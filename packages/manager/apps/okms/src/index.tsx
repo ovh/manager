@@ -1,14 +1,12 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  ShellContext,
-  initShellContext,
-  initI18n,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import App from './App';
 import './index.scss';
-
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -34,11 +32,10 @@ const init = async (appName: string) => {
 
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
@@ -48,4 +45,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('okms');
+void init('okms');

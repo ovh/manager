@@ -1,8 +1,8 @@
-import React from 'react';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
 import { IdentityStatus } from '@key-management-service/types/identity.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 
 const chipPropsByStatus: {
   [key in IdentityStatus]: {
@@ -11,13 +11,11 @@ const chipPropsByStatus: {
   };
 } = {
   [IdentityStatus.password_change_required]: {
-    translationKey:
-      'key_management_service_credential_identity_status_password_change_required',
+    translationKey: 'key_management_service_credential_identity_status_password_change_required',
     color: ODS_BADGE_COLOR.warning,
   },
   [IdentityStatus.disabled]: {
-    translationKey:
-      'key_management_service_credential_identity_status_disabled',
+    translationKey: 'key_management_service_credential_identity_status_disabled',
     color: ODS_BADGE_COLOR.critical,
   },
   [IdentityStatus.ok]: {
