@@ -72,7 +72,6 @@ import {
   AddDomainPage,
   DetacheDomainModal,
   ModifyDomainModal,
-  OrderDomainPage,
 } from './pages/domain';
 import {
   AssociateGitPage,
@@ -92,9 +91,18 @@ import {
   ManagedWordpressServiceTasksPage,
 } from './pages/managedWordpress';
 import { AddModuleModal, DeleteModuleModal } from './pages/module';
-import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
+import {
+  DisableSslPage,
+  ImportSslPage,
+  OrderSectigoPage,
+  SanSslPage,
+  SslPage,
+} from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
-import { AddWebsitePage, UpdateDisplayNameModalComponent } from './pages/website';
+import {
+  AddWebsitePage,
+  UpdateDisplayNameModalComponent,
+} from './pages/website';
 import { urls } from './routes.constants';
 
 export type RouteHandle = {

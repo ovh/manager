@@ -40,7 +40,7 @@ export const Error = ({
 
   useEffect(() => {
     const env = shell?.environment?.getEnvironment();
-    env?.then((response) => {
+    env?.then((response: { applicationName: string }) => {
       const { applicationName } = response;
       const safeError = error ?? { status: 0 };
       const name = `errors::${getTrackingTypology(safeError)}::${applicationName}`;

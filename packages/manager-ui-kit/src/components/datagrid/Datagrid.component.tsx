@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 
 import { TABLE_SIZE, TABLE_VARIANT, Table } from '@ovhcloud/ods-react';
 
@@ -71,7 +71,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
   const rowModel = getRowModel();
   const { rows } = rowModel;
   const headerGroups = getHeaderGroups();
-  const tableContainerRef = useRef<HTMLDivElement>(null);
+  const [containerNode, setContainerNode] = useState<HTMLDivElement | null>(null);
   const visibleColumns = getAllLeafColumns();
   const containerSize = data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
   const containerStyle = {
@@ -100,7 +100,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
           setColumnVisibility={columnVisibility?.setColumnVisibility}
         />
       )}
-      <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
+      <div className="overflow-auto relative w-full" style={containerStyle} ref={setContainerNode}>
         <Table className="table table-fixed w-full" size={size} variant={variant}>
           {!hideHeader && (
             <TableHeaderContent<T>
@@ -116,7 +116,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
             autoScroll={autoScroll}
             expanded={expandable?.expanded ?? {}}
             rowModel={rowModel}
-            tableContainerRef={tableContainerRef}
+            tableContainerRef={containerNode}
             isLoading={isLoading ?? false}
             renderSubComponent={renderSubComponent}
             subComponentHeight={subComponentHeight}

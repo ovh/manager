@@ -37,7 +37,7 @@ import { websiteFormSchema } from '@/utils/formSchemas.utils';
 type FormData = z.infer<typeof websiteFormSchema>;
 
 interface DomainAdvancedConfigurationProps {
-  control: Control<FormData, unknown, FormData>;
+  control: Control<FormData>;
   controlValues: FormData;
 }
 
@@ -47,7 +47,11 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
 }: DomainAdvancedConfigurationProps) => {
   const { serviceName } = useParams();
 
-  const { t } = useTranslation(['multisite', 'dashboard', NAMESPACES.COUNTRIES]);
+  const { t } = useTranslation([
+    'multisite',
+    'dashboard',
+    NAMESPACES.COUNTRIES,
+  ]);
   const hostingService = useGetHostingService(serviceName);
 
   return (
@@ -57,9 +61,15 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
         control={control}
         render={({ field }) => (
           <div className="flex flex-col">
-            <Text>{t('dashboard:hosting_multisite_domain_configuration_home')}</Text>
+            <Text>
+              {t('dashboard:hosting_multisite_domain_configuration_home')}
+            </Text>
             <div className="flex w-1/3 items-center space-x-2">
-              <Button size="sm" variant={BUTTON_VARIANT.outline} disabled={true}>
+              <Button
+                size="sm"
+                variant={BUTTON_VARIANT.outline}
+                disabled={true}
+              >
                 ./
               </Button>
               <Input
@@ -72,7 +82,9 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
             </div>
 
             <Text preset={TEXT_PRESET.caption}>
-              {t('multisite:multisite_add_website_configure_domain_advanced_path_message')}
+              {t(
+                'multisite:multisite_add_website_configure_domain_advanced_path_message',
+              )}
             </Text>
           </div>
         )}
@@ -99,7 +111,9 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                   <CheckboxControl />
                   <CheckboxLabel>
                     <Text preset={TEXT_PRESET.heading6}>
-                      {t('dashboard:hosting_multisite_domain_configuration_countriesIp')}
+                      {t(
+                        'dashboard:hosting_multisite_domain_configuration_countriesIp',
+                      )}
                     </Text>
                   </CheckboxLabel>
                 </Checkbox>
@@ -132,7 +146,9 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                   ],
                 }))}
                 onValueChange={(detail: { value?: string[] }) =>
-                  field.onChange(Array.isArray(detail.value) ? (detail.value[0] ?? '') : '')
+                  field.onChange(
+                    Array.isArray(detail.value) ? detail.value[0] ?? '' : '',
+                  )
                 }
               >
                 <SelectControl />
@@ -143,7 +159,9 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
         </Card>
         <Card
           className="w-1/3 p-4"
-          color={controlValues.firewall ? CARD_COLOR.primary : CARD_COLOR.neutral}
+          color={
+            controlValues.firewall ? CARD_COLOR.primary : CARD_COLOR.neutral
+          }
         >
           <div className="flew-row flex">
             <Controller
@@ -189,7 +207,9 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                   <CheckboxControl />
                   <CheckboxLabel>
                     <Text preset={TEXT_PRESET.heading6}>
-                      {t('dashboard:hosting_multisite_domain_configuration_cdn')}
+                      {t(
+                        'dashboard:hosting_multisite_domain_configuration_cdn',
+                      )}
                     </Text>
                   </CheckboxLabel>
                 </Checkbox>
@@ -220,14 +240,20 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
             <div className="flex flex-row space-x-4">
               <Card
                 className="w-1/2 p-4"
-                color={controlValues.autoConfigureDns ? CARD_COLOR.primary : CARD_COLOR.neutral}
+                color={
+                  controlValues.autoConfigureDns
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
+                }
               >
                 <div className="flex items-center gap-4">
                   <Radio value="auto">
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_advanced_options_dns_auto')}
+                        {t(
+                          'multisite:multisite_add_website_advanced_options_dns_auto',
+                        )}
                         <Badge size={BADGE_SIZE.sm} className="ml-5">
                           <Text preset={TEXT_PRESET.caption}>
                             {t(
@@ -240,25 +266,35 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                   </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
-                  {t('multisite:multisite_add_website_advanced_options_dns_auto_text')}
+                  {t(
+                    'multisite:multisite_add_website_advanced_options_dns_auto_text',
+                  )}
                 </Text>
               </Card>
               <Card
                 className="w-1/2 p-4"
-                color={!controlValues.autoConfigureDns ? CARD_COLOR.primary : CARD_COLOR.neutral}
+                color={
+                  !controlValues.autoConfigureDns
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
+                }
               >
                 <div className="flex items-center gap-4">
                   <Radio value="manual">
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_advanced_options_dns_manual')}
+                        {t(
+                          'multisite:multisite_add_website_advanced_options_dns_manual',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
-                  {t('multisite:multisite_add_website_advanced_options_dns_manual_text')}
+                  {t(
+                    'multisite:multisite_add_website_advanced_options_dns_manual_text',
+                  )}
                 </Text>
               </Card>
             </div>

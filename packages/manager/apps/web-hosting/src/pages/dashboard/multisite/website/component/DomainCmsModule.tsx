@@ -20,7 +20,7 @@ import { websiteFormSchema } from '@/utils/formSchemas.utils';
 type FormData = z.infer<typeof websiteFormSchema>;
 
 interface DomainCmsModuleProps {
-  control: Control<FormData, unknown, FormData>;
+  control: Control<FormData>;
   controlValues: FormData;
 }
 
@@ -44,7 +44,11 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
             <div className="flex flex-row space-x-4">
               <Card
                 className="w-1/3 p-4"
-                color={!controlValues.module ? CARD_COLOR.primary : CARD_COLOR.neutral}
+                color={
+                  !controlValues.module
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
+                }
               >
                 <div className="flex items-center gap-4">
                   <Radio value={CmsType.NONE}>
@@ -74,19 +78,25 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/wordpress.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_module_cms_choice_wordpress')}
+                        {t(
+                          'multisite:multisite_add_website_module_cms_choice_wordpress',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
-                  {t('multisite:multisite_add_website_module_cms_choice_wordpress_text')}
+                  {t(
+                    'multisite:multisite_add_website_module_cms_choice_wordpress_text',
+                  )}
                 </Text>
               </Card>
               <Card
                 className="w-1/3 p-4"
                 color={
-                  controlValues.module === CmsType.DRUPAL ? CARD_COLOR.primary : CARD_COLOR.neutral
+                  controlValues.module === CmsType.DRUPAL
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
                 }
               >
                 <div className="flex items-center gap-4">
@@ -95,13 +105,17 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/drupal.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_module_cms_choice_drupal')}
+                        {t(
+                          'multisite:multisite_add_website_module_cms_choice_drupal',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
-                  {t('multisite:multisite_add_website_module_cms_choice_drupal_text')}
+                  {t(
+                    'multisite:multisite_add_website_module_cms_choice_drupal_text',
+                  )}
                 </Text>
               </Card>
             </div>
@@ -120,19 +134,25 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/prestashop.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_module_cms_choice_prestashop')}
+                        {t(
+                          'multisite:multisite_add_website_module_cms_choice_prestashop',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
-                  {t('multisite:multisite_add_website_module_cms_choice_prestashop_text')}
+                  {t(
+                    'multisite:multisite_add_website_module_cms_choice_prestashop_text',
+                  )}
                 </Text>
               </Card>
               <Card
                 className="w-1/3 p-4"
                 color={
-                  controlValues.module === CmsType.JOOMLA ? CARD_COLOR.primary : CARD_COLOR.neutral
+                  controlValues.module === CmsType.JOOMLA
+                    ? CARD_COLOR.primary
+                    : CARD_COLOR.neutral
                 }
               >
                 <div className="flex items-center gap-4">
@@ -141,13 +161,17 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
                     <RadioLabel className="flex cursor-pointer items-center space-x-5">
                       <Medium src="cms/joomla.svg" />
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_module_cms_choice_joomla')}
+                        {t(
+                          'multisite:multisite_add_website_module_cms_choice_joomla',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <Text preset={TEXT_PRESET.caption} className="m-4 ml-8">
-                  {t('multisite:multisite_add_website_module_cms_choice_joomla_text')}
+                  {t(
+                    'multisite:multisite_add_website_module_cms_choice_joomla_text',
+                  )}
                 </Text>
               </Card>
             </div>

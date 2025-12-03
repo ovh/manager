@@ -1,20 +1,11 @@
-//@todo to analyse for step 2 for import when the customer quit the page before the step 2
-import { /* useCallback, */ useMemo } from 'react';
-
-import { /* useNavigate, */ useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_VARIANT, Button, ICON_NAME, Icon, ProgressBar } from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Badge,
-  // ActionMenu,
-  Datagrid,
-  DatagridColumn,
-  useFormatDate,
-} from '@ovh-ux/muk';
+import { Badge, Datagrid, DatagridColumn, useFormatDate } from '@ovh-ux/muk';
 
 import { useManagedWordpressResourceTasks } from '@/data/hooks/managedWordpress/managedWordpressResourceTasks/useManagedWordpressResourceTasks';
 import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpress/managedWordpressWebsites/useManagedWordpressWebsites';
@@ -27,7 +18,12 @@ export default function TasksPage() {
   const { serviceName } = useParams();
   const { t } = useTranslation(['common', NAMESPACES.DASHBOARD]);
 
-  const { data, refetch, isFetching } = useManagedWordpressResourceTasks(serviceName);
+  const {
+    data,
+    refetch,
+    isFetching,
+    isLoading,
+  } = useManagedWordpressResourceTasks(serviceName);
   const formatDate = useFormatDate();
   const { data: websitesList } = useManagedWordpressWebsites({
     disableRefetchInterval: true,
@@ -47,85 +43,92 @@ export default function TasksPage() {
     [navigate, goToStep2],
   ); */
 
-  const columns: DatagridColumn<ManagedWordpressResourceTask>[] = useMemo(
-    () => [
-      {
-        id: 'defaultFqdn',
-        accessorKey: 'link',
+  const columns: DatagridColumn<ManagedWordpressResourceTask>[] = [
+    // {
+    //   id: 'defaultFqdn',
+    //   accessorKey: 'link',
 
-        cell: ({ row }) => {
-          const id = row?.original?.link?.split('/').pop();
+    //   cell: ({ row }) => {
+    //     const id = row?.original?.link?.split('/').pop();
 
-          const matchingItem = websitesList?.find((website) => website.id === id);
+    //     const matchingItem = websitesList?.find(
+    //       (website) => website.id === id,
+    //     );
 
-          return <>{matchingItem?.currentState?.defaultFQDN}</>;
-        },
-        header: t('web_hosting_status_header_fqdn'),
+    //     return <>{matchingItem?.currentState?.defaultFQDN}</>;
+    //   },
+    //   header: t('web_hosting_status_header_fqdn'),
+    // },
+    {
+      id: 'type',
+      accessorKey: 'type',
+      cell: ({ getValue }) => {
+        return (
+          <span>
+            {t(
+              `common:web_hosting_common_type_${getValue<
+                string
+              >()?.toLowerCase()}`,
+            )}
+          </span>
+        );
       },
-      {
-        id: 'type',
-        accessorKey: 'type',
-        cell: ({ getValue }) => {
-          return (
-            <span>{t(`common:web_hosting_common_type_${getValue<string>().toLowerCase()}`)}</span>
-          );
-        },
-        header: t(`${NAMESPACES.DASHBOARD}:type`),
+      header: t(`${NAMESPACES.DASHBOARD}:type`),
+    },
+    {
+      id: 'status',
+      accessorKey: 'status',
+      cell: ({ getValue }) => {
+        const statusColor = getStatusColor(getValue<Status>());
+        return (
+          <Badge color={statusColor}>
+            {t(`web_hosting_status_${getValue<Status>()?.toLocaleLowerCase()}`)}
+          </Badge>
+        );
       },
-      {
-        id: 'status',
-        accessorKey: 'status',
-        cell: ({ getValue }) => {
-          const statusColor = getStatusColor(getValue<Status>());
-          return (
-            <Badge color={statusColor}>
-              {t(`web_hosting_status_${getValue<Status>().toLocaleLowerCase()}`)}
-            </Badge>
-          );
-        },
-        header: t('web_hosting_header_status'),
+      header: t('web_hosting_header_status'),
+    },
+    {
+      id: 'progress',
+      accessorKey: 'progress',
+      cell: ({ getValue }) => {
+        console.info('progress getValue()', getValue()?.[0]?.status);
+        return getValue()?.[0]?.status || 'undefined';
       },
-      {
-        id: 'progress',
-        accessorKey: 'message',
-        cell: ({ getValue }) => {
-          let progress = parseInt(getValue<string>().replace(/\D/g, '') || '', 10) || 0;
-
-          if (getValue<Status>() === Status.DONE) {
-            progress = 100;
-          }
-          return (
-            <div>
-              <ProgressBar max={100} value={progress} className="mr-4" />
-              {progress}%
-            </div>
-          );
-        },
-        header: t('web_hosting_header_progress'),
-      },
-      {
-        id: 'comments',
-        accessorKey: 'message',
-
-        cell: ({ getValue }) => <div>{getValue<string>().replace(/\d+%?/g, '').trim() || ''}</div>,
-        header: t('web_hosting_header_comments'),
-        isSortable: true,
-      },
-      {
-        id: 'createdAt',
-        accessorKey: 'createdAt',
-        cell: ({ getValue }) => <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>,
-        header: t('web_hosting_common_creation_date'),
-        isSortable: true,
-      },
-      {
-        id: 'updatedAt',
-        accessorKey: 'updatedAt',
-        cell: ({ getValue }) => <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>,
-        header: t('web_hosting_common_update_date'),
-        isSortable: true,
-      },
-      /*  {
+      header: t('web_hosting_header_progress'),
+    },
+    // {
+    //   id: 'message',
+    //   accessorKey: 'message',
+    //   cell: ({ getValue }) => (
+    //     <div>
+    //       {getValue<string>()
+    //         ?.replace(/\d+%?/g, '')
+    //         ?.trim() || ''}
+    //     </div>
+    //   ),
+    //   header: t('web_hosting_header_comments'),
+    //   isSortable: true,
+    // },
+    // {
+    //   id: 'createdAt',
+    //   accessorKey: 'createdAt',
+    //   cell: ({ getValue }) => (
+    //     <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>
+    //   ),
+    //   header: t('web_hosting_common_creation_date'),
+    //   isSortable: true,
+    // },
+    // {
+    //   id: 'updatedAt',
+    //   accessorKey: 'updatedAt',
+    //   cell: ({ getValue }) => (
+    //     <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>
+    //   ),
+    //   header: t('web_hosting_common_update_date'),
+    //   isSortable: true,
+    // },
+    /*  {
         id: 'actions',
         cell: ({ row }) => {
           if (getResource(row).status === Status.WAITING_USER_INPUT) {
@@ -147,15 +150,16 @@ export default function TasksPage() {
         },
         label: '',
       }, */
-    ],
-    [t, formatDate, websitesList /* , handleResumeImport */],
-  );
+  ];
+  //   [t, formatDate, websitesList /* , handleResumeImport */],
+  // );
   const handleRefreshClick = () => {
     void refetch();
   };
+
   return (
     <>
-      <div className="my-4 flex justify-end">
+      <div className="my-4 flex items-center justify-between">
         <Button
           onClick={() => handleRefreshClick()}
           data-testid="refresh"
@@ -165,7 +169,14 @@ export default function TasksPage() {
           <Icon name={ICON_NAME.refresh}></Icon>
         </Button>
       </div>
-      <Datagrid columns={data ? columns : []} data={data ?? []} />
+      <div>
+        Datagrid 1
+        <Datagrid
+          columns={columns}
+          data={data?.length > 0 ? data : []}
+          isLoading={isLoading}
+        />
+      </div>
     </>
   );
 }

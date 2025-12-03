@@ -27,7 +27,7 @@ import { websiteFormSchema } from '@/utils/formSchemas.utils';
 type FormData = z.infer<typeof websiteFormSchema>;
 
 interface DomainAssociationProps {
-  control: Control<FormData, unknown, FormData>;
+  control: Control<FormData>;
   controlValues: FormData;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isNextButtonVisible: boolean;
@@ -51,7 +51,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
   const { ovhSubsidiary } = context.environment.getUser();
   const rawOrderFormURL =
     DOMAIN_ORDER_URL?.[region as keyof typeof DOMAIN_ORDER_URL]?.[
-      ovhSubsidiary as keyof (typeof DOMAIN_ORDER_URL)[REGION]
+      ovhSubsidiary as keyof typeof DOMAIN_ORDER_URL[REGION]
     ];
 
   const onContinue = () => {
@@ -95,14 +95,18 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_existing_domain_card_title')}
+                        {t(
+                          'multisite:multisite_add_website_existing_domain_card_title',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <div className="ml-8 mt-4">
                   <Text preset={TEXT_PRESET.caption}>
-                    {t('multisite:multisite_add_website_existing_domain_card_text')}
+                    {t(
+                      'multisite:multisite_add_website_existing_domain_card_text',
+                    )}
                   </Text>
                 </div>
               </Card>
@@ -129,14 +133,18 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('multisite:multisite_add_website_external_domain_card_title')}
+                        {t(
+                          'multisite:multisite_add_website_external_domain_card_title',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <div className="ml-8 mt-4">
                   <Text preset={TEXT_PRESET.caption}>
-                    {t('multisite:multisite_add_website_external_domain_card_text')}
+                    {t(
+                      'multisite:multisite_add_website_external_domain_card_text',
+                    )}
                   </Text>
                 </div>
               </Card>
@@ -159,14 +167,18 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
-                        {t('dashboard:hosting_dashboard_add_or_order_step1_order')}
+                        {t(
+                          'dashboard:hosting_dashboard_add_or_order_step1_order',
+                        )}
                       </Text>
                     </RadioLabel>
                   </Radio>
                 </div>
                 <div className="ml-8 mt-4">
                   <Text preset={TEXT_PRESET.caption}>
-                    {t('multisite:multisite_add_website_order_domain_card_text')}
+                    {t(
+                      'multisite:multisite_add_website_order_domain_card_text',
+                    )}
                   </Text>
                 </div>
               </Card>
@@ -176,7 +188,10 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
       />
       {isNextButtonVisible && (
         <div>
-          <Button disabled={!controlValues.associationType} onClick={onContinue}>
+          <Button
+            disabled={!controlValues.associationType}
+            onClick={onContinue}
+          >
             {t('common:web_hosting_common_action_continue')}
           </Button>
         </div>
