@@ -1,27 +1,22 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { ErrorResponse } from '@/common/types/api.type';
+
 import {
-  secretVersionsQueryKeys,
-  updateSecretVersion,
   UpdateSecretVersionParams,
   UpdateSecretVersionResponse,
+  secretVersionsQueryKeys,
+  updateSecretVersion,
 } from '../api/secretVersions';
 
 export const useUpdateSecretVersion = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<
-    UpdateSecretVersionResponse,
-    ErrorResponse,
-    UpdateSecretVersionParams
-  >({
+  return useMutation<UpdateSecretVersionResponse, ErrorResponse, UpdateSecretVersionParams>({
     mutationFn: updateSecretVersion,
-    onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: secretVersionsQueryKeys.list(
-          variables.okmsId,
-          variables.path,
-        ),
+    onSuccess: async (_, variables) => {
+      await queryClient.invalidateQueries({
+        queryKey: secretVersionsQueryKeys.list(variables.okmsId, variables.path),
       });
     },
   });

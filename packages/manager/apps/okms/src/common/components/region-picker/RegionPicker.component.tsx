@@ -1,28 +1,23 @@
-import React from 'react';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { useOrderCatalogOkms } from '@key-management-service/data/hooks/useOrderCatalogOkms';
-import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
+import { useRegionName } from '@key-management-service/hooks/useRegionName';
+
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { RegionTypeBadge } from '@/common/components/region-type-badge/RegionTypeBadge.component';
 import { useLocations } from '@/common/data/hooks/useLocation';
+import { useOrderCatalogOkms } from '@/common/data/hooks/useOrderCatalogOkms';
+
 import { RadioCard } from '../radio-card/RadioCard.component';
 import { REGION_PICKER_TEST_IDS } from './regionPicker.constants';
 
 type RegionPickerProps = {
-  selectedRegion: string;
-  setSelectedRegion: (region: string) => void;
+  selectedRegion: string | undefined;
+  setSelectedRegion: (region: string | undefined) => void;
 };
 
-export const RegionPicker = ({
-  selectedRegion,
-  setSelectedRegion,
-}: RegionPickerProps) => {
+export const RegionPicker = ({ selectedRegion, setSelectedRegion }: RegionPickerProps) => {
   const { translateRegionName } = useRegionName();
-  const {
-    data: locations,
-    isPending: isPendingLocations,
-    error: errorLocations,
-  } = useLocations();
+  const { data: locations, isPending: isPendingLocations, error: errorLocations } = useLocations();
 
   const {
     data: catalogOkms,
@@ -47,9 +42,7 @@ export const RegionPicker = ({
   }
 
   const regions = catalogOkms?.plans[0]?.configurations[0]?.values;
-  const filteredLocations = locations?.filter((location) =>
-    regions?.includes(location.name),
-  );
+  const filteredLocations = locations?.filter((location) => regions?.includes(location.name));
 
   return (
     <div className="space-y-3">

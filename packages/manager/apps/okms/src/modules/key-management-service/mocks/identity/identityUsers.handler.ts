@@ -1,9 +1,11 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { identityUsers } from './identityUsers.mock';
+
+import { identityUserListMock } from './identityUsers.mock';
 
 const findIdentityUserById = (params: PathParams) =>
-  identityUsers.find((user) => user.login === params.userId);
+  identityUserListMock.find((user) => user.login === params.userId);
 
 export const getIdentityUsers = (): Handler[] => [
   {

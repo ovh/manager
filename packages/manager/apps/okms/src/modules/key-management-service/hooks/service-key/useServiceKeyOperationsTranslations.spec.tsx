@@ -1,5 +1,6 @@
-import { describe, expect, it, test, vi } from 'vitest';
 import { OkmsServiceKeyOperations } from '@key-management-service/types/okmsServiceKey.type';
+import { describe, expect, it, test, vi } from 'vitest';
+
 import { useServiceKeyOperationsTranslations } from './useServiceKeyOperationsTranslations';
 
 vi.mock('react-i18next', () => ({
@@ -11,40 +12,34 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('get service key operations translation ', () => {
+describe('get service key operations translation', () => {
   const useCases: {
     operation: OkmsServiceKeyOperations;
     translationKey: string;
   }[] = [
     {
       operation: OkmsServiceKeyOperations.sign,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_sign',
+      translationKey: 'key_management_service_service-keys_dashboard_field_operations_sign',
     },
     {
       operation: OkmsServiceKeyOperations.verify,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_verify',
+      translationKey: 'key_management_service_service-keys_dashboard_field_operations_verify',
     },
     {
       operation: OkmsServiceKeyOperations.encrypt,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_encrypt',
+      translationKey: 'key_management_service_service-keys_dashboard_field_operations_encrypt',
     },
     {
       operation: OkmsServiceKeyOperations.decrypt,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_decrypt',
+      translationKey: 'key_management_service_service-keys_dashboard_field_operations_decrypt',
     },
     {
       operation: OkmsServiceKeyOperations.wrapKey,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_wrapKey',
+      translationKey: 'key_management_service_service-keys_dashboard_field_operations_wrapKey',
     },
     {
       operation: OkmsServiceKeyOperations.unwrapKey,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_operations_unwrapKey',
+      translationKey: 'key_management_service_service-keys_dashboard_field_operations_unwrapKey',
     },
   ];
 

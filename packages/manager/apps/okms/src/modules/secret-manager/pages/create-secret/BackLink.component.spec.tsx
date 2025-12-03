@@ -1,17 +1,20 @@
-import React from 'react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi } from 'vitest';
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
-import { waitFor } from '@testing-library/dom';
-import { render } from '@testing-library/react';
+
 import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { waitFor } from '@testing-library/dom';
+import { render } from '@testing-library/react';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { vi } from 'vitest';
+
+import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+
 import { SecretFormBackLink } from './BackLink.component';
 
 let i18nValue: i18n;
@@ -21,7 +24,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
     useSearchParams: vi.fn(),
   };
 });

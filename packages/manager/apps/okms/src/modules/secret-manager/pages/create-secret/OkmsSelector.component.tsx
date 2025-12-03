@@ -1,35 +1,37 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { TagsList, useServiceDetails } from '@ovh-ux/manager-react-components';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { TagsList } from '@ovh-ux/manager-react-components';
+
 import { RadioCard } from '@/common/components/radio-card/RadioCard.component';
+
 import { ActivateRegion } from './ActivateRegion.component';
 
 const OkmsStatus = ({ id }: { id: string }) => {
-  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
+  const {
+    data: OkmsServiceInfos,
+    isPending,
+    isError,
+  } = useServiceDetails({
     resourceName: id,
   });
 
-  if (isLoading) return <OdsSkeleton />;
+  if (isPending) return <OdsSkeleton />;
 
   if (isError) return null;
 
-  return (
-    <OkmsServiceState
-      state={OkmsServiceInfos.data.resource.state}
-      size={ODS_BADGE_SIZE.sm}
-    />
-  );
+  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} size={ODS_BADGE_SIZE.sm} />;
 };
 
 type OkmsSelectorProps = {
   okmsList: OKMS[];
-  selectedOkms: string;
-  selectedRegion: string;
-  isOkmsOrderProcessing: boolean;
+  selectedOkms: string | undefined;
+  selectedRegion: string | undefined;
   onOkmsSelection: (okmsId: string) => void;
 };
 
@@ -37,29 +39,23 @@ export const OkmsSelector = ({
   okmsList,
   selectedOkms,
   selectedRegion,
-  isOkmsOrderProcessing,
   onOkmsSelection,
 }: OkmsSelectorProps) => {
   const { t } = useTranslation('secret-manager');
 
+  // If no region is selected, do not display the selector
+  // If there is only one OKMS, do not display the selector
   if (!selectedRegion || okmsList.length === 1) {
     return null;
   }
 
   if (okmsList.length === 0) {
-    return (
-      <ActivateRegion
-        isOkmsOrderProcessing={isOkmsOrderProcessing}
-        selectedRegion={selectedRegion}
-      />
-    );
+    return <ActivateRegion selectedRegion={selectedRegion} />;
   }
 
   return (
     <div className="flex flex-col gap-3">
-      <OdsText preset="heading-4">
-        {t('create_secret_form_okms_selector_title')}
-      </OdsText>
+      <OdsText preset="heading-4">{t('create_secret_form_okms_selector_title')}</OdsText>
       <div className="space-y-3">
         {okmsList.map((okms) => (
           <RadioCard

@@ -1,26 +1,24 @@
-import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, render } from '@testing-library/react';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { Secret } from '@secret-manager/types/secret.type';
-import { i18n } from 'i18next';
 import {
-  SecretSmartConfig,
   NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
+  SecretSmartConfig,
 } from '@secret-manager/utils/secretSmartConfig';
+import { render, screen } from '@testing-library/react';
+import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { labels as allLabels, initTestI18n } from '@/common/utils/tests/init.i18n';
+
 import { SettingsTile } from './SettingsTile.component';
-import {
-  labels as allLabels,
-  initTestI18n,
-} from '@/common/utils/tests/init.i18n';
 
 const labels = allLabels.secretManager;
 
 // Mock the useSecretSmartConfig hook
 const mockUseSecretSmartConfig = vi.fn();
 vi.mock('@secret-manager/hooks/useSecretSmartConfig', () => ({
-  useSecretSmartConfig: (secret: Secret) => mockUseSecretSmartConfig(secret),
+  useSecretSmartConfig: (secret: Secret): unknown => mockUseSecretSmartConfig(secret),
 }));
 
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -28,7 +26,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
+    useParams: () => ({ okmsId: 'mockedOkmsId' }),
   };
 });
 
@@ -95,9 +94,7 @@ describe('Secrets Settings Tile component tests suite', () => {
 
       // Check CAS with description
       expect(screen.getByText(labels.cas_with_description)).toBeVisible();
-      expect(
-        screen.getByText(`${labels.activated} (${labels.setting_domain})`),
-      ).toBeVisible();
+      expect(screen.getByText(`${labels.activated} (${labels.setting_domain})`)).toBeVisible();
     });
 
     it('should display SECRET origin label when origin is SECRET', async () => {
@@ -119,12 +116,8 @@ describe('Secrets Settings Tile component tests suite', () => {
 
       expect(screen.getByText('10')).toBeVisible();
       // SECRET origin should not display any label
-      expect(
-        screen.queryByText(`(${labels.setting_domain})`),
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByText(`(${labels.setting_default})`),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText(`(${labels.setting_domain})`)).not.toBeInTheDocument();
+      expect(screen.queryByText(`(${labels.setting_default})`)).not.toBeInTheDocument();
     });
 
     it('should display DEFAULT origin label when origin is DEFAULT', async () => {
@@ -164,9 +157,7 @@ describe('Secrets Settings Tile component tests suite', () => {
 
       await renderComponent(mockSecret);
 
-      expect(
-        screen.getByText(`${labels.never_expire} (${labels.setting_default})`),
-      ).toBeVisible();
+      expect(screen.getByText(`${labels.never_expire} (${labels.setting_default})`)).toBeVisible();
     });
 
     it('should display "Disabled" when CAS is not required', async () => {
@@ -187,9 +178,7 @@ describe('Secrets Settings Tile component tests suite', () => {
       await renderComponent(mockSecret);
 
       expect(
-        screen.getByText(
-          `${allLabels.common.status.disabled} (${labels.setting_default})`,
-        ),
+        screen.getByText(`${allLabels.common.status.disabled} (${labels.setting_default})`),
       ).toBeVisible();
     });
   });

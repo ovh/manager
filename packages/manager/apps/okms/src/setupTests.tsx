@@ -1,24 +1,17 @@
-import { vi } from 'vitest';
-import React from 'react';
-import { SetupServer, setupServer } from 'msw/node';
-import {
-  toMswHandlers,
-  getAuthenticationMocks,
-} from '@ovh-ux/manager-core-test-utils';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+import { SetupServer, setupServer } from 'msw/node';
+import { vi } from 'vitest';
+
+import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
 declare global {
-  // eslint-disable-next-line vars-on-top, no-var
   var server: SetupServer;
-  // eslint-disable-next-line vars-on-top, no-var, @typescript-eslint/naming-convention
   var __VERSION__: string;
 }
 
 const server = setupServer(
-  ...toMswHandlers([
-    ...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' }),
-  ]),
+  ...toMswHandlers([...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' })]),
 );
 
 beforeAll(() => {
@@ -30,8 +23,6 @@ beforeAll(() => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   global.__VERSION__ = null;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   global.server = server;
 });
 
@@ -47,12 +38,20 @@ afterEach(() => {
   server.resetHandlers();
 });
 
+type DrawerProps = {
+  children?: React.ReactNode;
+  className?: string;
+  'data-testid'?: string;
+  heading?: React.ReactNode;
+  isLoading?: boolean;
+};
+
 // Mocking ODS Drawer component
 vi.mock('@ovh-ux/manager-react-components', async () => {
   const original = await vi.importActual('@ovh-ux/manager-react-components');
   return {
     ...original,
-    Drawer: vi.fn(({ children, className, ...props }) => (
+    Drawer: vi.fn(({ children, className, ...props }: DrawerProps) => (
       <div data-testid={props['data-testid']} className={className}>
         <header>{props.heading}</header>
         {!props.isLoading && children}

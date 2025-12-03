@@ -1,22 +1,24 @@
-import { describe, expect, it, vi } from 'vitest';
-import { renderHook } from '@testing-library/react';
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import {
-  OkmsServiceKey,
   OkmsKeyTypes,
+  OkmsServiceKey,
   OkmsServiceKeyState,
 } from '@key-management-service/types/okmsServiceKey.type';
+import { renderHook } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+
 import useServiceKeyActionsList from './useServiceKeyActionsList';
 
+const okmsItemMock = okmsRoubaix1Mock;
+
 vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(() => ({ t: vi.fn((key) => key) })),
+  useTranslation: vi.fn(() => ({ t: vi.fn((key: string) => key) })),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
+  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
 
   return {
     ...mod,
@@ -32,9 +34,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
 
   return {
     ...mod,
@@ -65,8 +65,7 @@ describe('useServiceKeyActionsList', () => {
     operations: [],
     iam: {
       id: '8f8a75b0-3bde-4b8d-a8c0-928basvced',
-      urn:
-        'urn:v1:eu:resource:okms:8f8a75b0-b57d-45fc-8d4f-256664DFE/serviceKey/dqd63-5688-409c-234-125e24538f34',
+      urn: 'urn:v1:eu:resource:okms:8f8a75b0-b57d-45fc-8d4f-256664DFE/serviceKey/dqd63-5688-409c-234-125e24538f34',
       displayName: 'ServiceKeyTest',
     },
   };
@@ -85,9 +84,7 @@ describe('useServiceKeyActionsList', () => {
           label: 'key_management_service_service-keys_link_download_key',
           color: ODS_BUTTON_COLOR.primary,
           isDisabled: false,
-          href: `data:text/json;charset=utf-8,${encodeURIComponent(
-            JSON.stringify([]),
-          )}`,
+          href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify([]))}`,
           download: 'testKeyName.jwk',
         },
         {
@@ -116,9 +113,7 @@ describe('useServiceKeyActionsList', () => {
           label: 'key_management_service_service-keys_link_download_key',
           color: ODS_BUTTON_COLOR.primary,
           isDisabled: true,
-          href: `data:text/json;charset=utf-8,${encodeURIComponent(
-            JSON.stringify([]),
-          )}`,
+          href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify([]))}`,
           download: 'testKeyName.jwk',
         },
         {
@@ -147,9 +142,7 @@ describe('useServiceKeyActionsList', () => {
           label: 'key_management_service_service-keys_link_download_key',
           color: ODS_BUTTON_COLOR.primary,
           isDisabled: true,
-          href: `data:text/json;charset=utf-8,${encodeURIComponent(
-            JSON.stringify([]),
-          )}`,
+          href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify([]))}`,
           download: 'testKeyName.jwk',
         },
         {
@@ -199,12 +192,10 @@ describe('useServiceKeyActionsList', () => {
 
   useCases.forEach(({ description, okmsKey, expectedActions }) => {
     it(description, () => {
-      const { result } = renderHook(() =>
-        useServiceKeyActionsList(okmsMock[0], okmsKey),
-      );
+      const { result } = renderHook(() => useServiceKeyActionsList(okmsItemMock, okmsKey));
       expect(result.current).toEqual(
         expect.arrayContaining(
-          expectedActions.map((action) => expect.objectContaining(action)),
+          expectedActions.map((action) => expect.objectContaining(action) as unknown),
         ),
       );
     });

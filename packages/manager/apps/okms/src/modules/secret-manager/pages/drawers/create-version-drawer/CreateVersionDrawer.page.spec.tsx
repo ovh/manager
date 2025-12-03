@@ -1,20 +1,23 @@
-import { vi } from 'vitest';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { screen, act, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { getSecretMockWithData } from '@secret-manager/mocks/secrets/secretsMock.utils';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
 import {
+  WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
   getOdsButtonByLabel,
-  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
-import { getSecretMockWithData } from '@secret-manager/mocks/secrets/secretsMock.utils';
-import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
+
 import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -26,12 +29,9 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
 
 // Mocking ODS components
 vi.mock('@ovhcloud/ods-components/react', async () => {
-  const {
-    odsInputMock,
-    odsTextareaMock,
-    odsSwitchMock,
-    odsSwitchItemMock,
-  } = await import('@/common/utils/tests/odsMocks');
+  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock } = await import(
+    '@/common/utils/tests/odsMocks'
+  );
   const original = await vi.importActual('@ovhcloud/ods-components/react');
   return {
     ...original,
@@ -51,11 +51,7 @@ const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
 
   // Check if the drawer is open
   expect(
-    await screen.findByTestId(
-      CREATE_VERSION_DRAWER_TEST_IDS.drawer,
-      {},
-      WAIT_FOR_DEFAULT_OPTIONS,
-    ),
+    await screen.findByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer, {}, WAIT_FOR_DEFAULT_OPTIONS),
   ).toBeInTheDocument();
 
   // wait for the content to be displayed
@@ -70,11 +66,12 @@ describe('Secret create version drawer page test suite', () => {
     const { container } = await renderPage();
 
     // Check disabled sumbit button
-    await getOdsButtonByLabel({
+    const button = await getOdsButtonByLabel({
       container,
       label: labels.common.actions.add,
       disabled: true,
     });
+    expect(button).toBeInTheDocument();
   });
 
   it('should display the current secret value', async () => {
@@ -86,9 +83,7 @@ describe('Secret create version drawer page test suite', () => {
     // Check if the data input contains the secret value
     const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(dataInput).toBeInTheDocument();
-    expect(dataInput).toHaveValue(
-      JSON.stringify(getSecretMockWithData(mockedSecret).version.data),
-    );
+    expect(dataInput).toHaveValue(JSON.stringify(getSecretMockWithData(mockedSecret).version.data));
   });
 
   it('should add cas to the createSecretVersion request and close the drawer after submission', async () => {
@@ -102,9 +97,7 @@ describe('Secret create version drawer page test suite', () => {
 
     const MOCK_NEW_DATA = '{"key1":"value1","key2":"value2"}';
     // Change the data input value
-    const input = await screen.findByTestId(
-      SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
-    );
+    const input = await screen.findByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
 
     // clean first the input
     await act(() => user.clear(input));
@@ -127,16 +120,14 @@ describe('Secret create version drawer page test suite', () => {
       expect(secretVersionsApi.createSecretVersion).toHaveBeenCalledWith({
         okmsId: mockOkmsId,
         path: mockedSecret.path,
-        data: JSON.parse(MOCK_NEW_DATA),
+        data: JSON.parse(MOCK_NEW_DATA) as Record<string, unknown>,
         cas: mockedSecret.metadata.currentVersion,
       });
     });
 
     // Wait for the drawer to close
     await waitFor(() => {
-      expect(
-        screen.queryByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer)).not.toBeInTheDocument();
     });
   });
 });

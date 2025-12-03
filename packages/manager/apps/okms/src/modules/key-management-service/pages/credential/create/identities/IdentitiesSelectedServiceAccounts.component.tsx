@@ -1,14 +1,16 @@
-import { DatagridColumn } from '@ovh-ux/manager-react-components';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
 import { useIdentityData } from '@key-management-service/hooks/credential/useIdentityData';
-import { IdentityOauthClient } from '@key-management-service/types/identity.type';
 import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
+import { IdentityOauthClient } from '@key-management-service/types/identity.type';
+import { useTranslation } from 'react-i18next';
+
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import IdentitiesSelectedBase from './IdentitiesSelectedBase.component';
+import IdentityServiceAccountDeleteActionCell from './cell/service-account/IdentityServiceAccountDeleteActionCell';
 import IdentityServiceAccountIdentityCell from './cell/service-account/IdentityServiceAccountIdentityCell.component';
 import IdentityServiceAccountNameCell from './cell/service-account/IdentityServiceAccountNameCell.component';
-import IdentityServiceAccountDeleteActionCell from './cell/service-account/IdentityServiceAccountDeleteActionCell';
 
 type IdentitiesSelectedServiceAccountsProps = {
   identityURNs: string[];
@@ -45,12 +47,8 @@ const IdentitiesSelectedServiceAccounts = ({
   ];
   return (
     <IdentitiesSelectedBase
-      title={t(
-        'key_management_service_credential_create_identities_service_accounts_title',
-      )}
-      addCallback={() =>
-        navigate(KMS_ROUTES_URIS.credentialCreateAddServiceAccountModal)
-      }
+      title={t('key_management_service_credential_create_identities_service_accounts_title')}
+      addCallback={() => navigate(KMS_ROUTES_URIS.credentialCreateAddServiceAccountModal)}
       addButtonLabel={t(
         'key_management_service_credential_create_identities_service_accounts_button_add_label',
       )}
