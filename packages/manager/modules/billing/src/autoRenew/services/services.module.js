@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import component from './services.component';
-import deptWarningModule from './debt-warning-modal';
+import reasonWarningModule from './reason-warning-modal';
 import routing from './services.routing';
 
 import resiliateModule from './resiliate';
@@ -9,7 +9,7 @@ import resiliateModule from './resiliate';
 const moduleName = 'ovhManagerBillingAutorenewServices';
 
 angular
-  .module(moduleName, [resiliateModule, deptWarningModule])
+  .module(moduleName, [resiliateModule, reasonWarningModule])
   .config(routing)
   .component('services', component)
   .run(/* @ngTranslationsInject:json ./translations */);
