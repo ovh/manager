@@ -16,9 +16,10 @@ export const state = {
   url: '/?lang&ovhSubsidiary&ovhCompany&callback&onsuccess',
   component: signupFormComponent.name,
   resolve: {
-    getRedirectLocation: /* @ngInject */ ($location) => (nic) => {
-      const { callback, onsuccess } = $location.search();
-
+    queryParams: /* @ngInject */ ($location) => $location.search(),
+    callback: /* @ngInject */ (queryParams) => queryParams.callback,
+    onsuccess: /* @ngInject */ (queryParams) => queryParams.onsuccess,
+    getRedirectLocation: /* @ngInject */ (callback, onsuccess) => (nic) => {
       if (
         callback &&
         SANITIZATION.regex.test(window.location.href) &&
@@ -65,8 +66,8 @@ export const state = {
         .getSsoAuthPendingPromise()
         .then(() => ssoAuthentication.user),
 
-    cancelStep: /* @ngInject */ ($location, ssoAuthentication) => () => {
-      ssoAuthentication.logout($location.search().onsuccess);
+    cancelStep: /* @ngInject */ (ssoAuthentication, onsuccess) => () => {
+      ssoAuthentication.logout(onsuccess);
     },
 
     featureAvailability: /* @ngInject */ ($http) => {
@@ -83,17 +84,6 @@ export const state = {
 
     isNewAccountCreateAvailable: /* @ngInject */ (featureAvailability) =>
       featureAvailability.data['account-creation'],
-
-    onEnter: /* @ngInject */ (
-      $window,
-      isNewAccountCreateAvailable,
-      coreURLBuilder,
-    ) => {
-      if (isNewAccountCreateAvailable) {
-        const url = coreURLBuilder.buildURL('account-creation', '/#/');
-        $window.location.assign(url);
-      }
-    },
 
     kycStatus: /* @ngInject */ ($http, isKycFeatureAvailable) => {
       if (isKycFeatureAvailable) {
@@ -230,6 +220,19 @@ export const state = {
   },
   atInternet: {
     ignore: true,
+  },
+  onEnter: /* @ngInject */ (
+    $window,
+    isNewAccountCreateAvailable,
+    coreURLBuilder,
+    onsuccess,
+  ) => {
+    if (isNewAccountCreateAvailable) {
+      const url = coreURLBuilder.buildURL('account-creation', '/#/');
+      $window.location.assign(
+        `${url}?onsuccess=${encodeURIComponent(onsuccess)}`,
+      );
+    }
   },
 };
 
