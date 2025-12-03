@@ -22,7 +22,7 @@ type TRawClusterNodePool = {
   updatedAt: string;
   location?: string;
   availabilityZones?: string[];
-  attachFloatingIPs?: TAttachFloatingIPs;
+  attachFloatingIps?: TAttachFloatingIPs;
   autoscaling: {
     scaleDownUtilizationThreshold: number;
     scaleDownUnneededTimeSeconds: number;
@@ -50,7 +50,7 @@ export type TClusterNodePool = Pick<
   | 'desiredNodes'
   | 'autoscale'
   | 'availabilityZones'
-  | 'attachFloatingIPs'
+  | 'attachFloatingIps'
   | 'monthlyBilled'
   | 'createdAt'
   | 'status'
@@ -59,7 +59,7 @@ export type TClusterNodePool = Pick<
   | 'maxNodes'
   | 'location'
 > & {
-  formattedFlavor: string;
+  formattedFlavor?: string;
   search?: string;
 };
 
@@ -71,29 +71,26 @@ export const getClusterNodePools = async (
     `/cloud/project/${projectId}/kube/${clusterId}/nodepool`,
   );
 
-  return items.map(
-    (item) =>
-      ({
-        id: item.id,
-        name: item.name,
-        antiAffinity: item.antiAffinity,
-        availableNodes: item.availableNodes,
-        desiredNodes: item.desiredNodes,
-        autoscale: item.autoscale,
-        monthlyBilled: item.monthlyBilled,
-        createdAt: item.createdAt,
-        status: item.status,
-        flavor: item.flavor,
-        minNodes: item.minNodes,
-        maxNodes: item.maxNodes,
-        ...(item.availabilityZones && {
-          availabilityZones: item.availabilityZones,
-        }),
-        ...(item.attachFloatingIPs && {
-          attachFloatingIPs: item.attachFloatingIPs,
-        }),
-      }) as TClusterNodePool,
-  );
+  return items.map((item) => ({
+    id: item.id,
+    name: item.name,
+    antiAffinity: item.antiAffinity,
+    availableNodes: item.availableNodes,
+    desiredNodes: item.desiredNodes,
+    autoscale: item.autoscale,
+    monthlyBilled: item.monthlyBilled,
+    createdAt: item.createdAt,
+    status: item.status,
+    flavor: item.flavor,
+    minNodes: item.minNodes,
+    maxNodes: item.maxNodes,
+    ...(item.availabilityZones && {
+      availabilityZones: item.availabilityZones,
+    }),
+    ...(item.attachFloatingIps && {
+      attachFloatingIps: item.attachFloatingIps,
+    }),
+  }));
 };
 
 export const deleteNodePool = async (projectId: string, clusterId: string, poolId: string) =>
@@ -104,7 +101,7 @@ export type TUpdateNodePoolParam = {
   minNodes?: number;
   maxNodes?: number;
   autoscale: boolean;
-  attachFloatingIPs?: TAttachFloatingIPs;
+  attachFloatingIps?: TAttachFloatingIPs;
 };
 
 export const updateNodePool = async (

@@ -26,7 +26,7 @@ export type TFormStore = {
   scaling: TScalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
-  attachFloatingIPs: TAttachFloatingIPs | null;
+  attachFloatingIps: TAttachFloatingIPs | null;
   steps: Map<StepsEnum, TStep>;
   set: {
     name: (val: string) => void;
@@ -35,7 +35,7 @@ export type TFormStore = {
     scaling: (val: TScalingState) => void;
     antiAffinity: (val: boolean) => void;
     isMonthlyBilling: (val: boolean) => void;
-    attachFloatingIPs: (val: TAttachFloatingIPs) => void;
+    attachFloatingIps: (val: TAttachFloatingIPs) => void;
   };
   open: (step: StepsEnum) => void;
   close: (step: StepsEnum) => void;
@@ -108,7 +108,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   scaling: initScale,
   antiAffinity: false,
   isMonthlyBilling: false,
-  attachFloatingIPs: null,
+  attachFloatingIps: null,
   selectedAvailabilityZones: null,
   steps: initialSteps(),
   set: {
@@ -133,7 +133,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
     scaling: (val: TScalingState) => set({ scaling: val }),
     antiAffinity: (val: boolean) => set({ antiAffinity: val }),
     isMonthlyBilling: (val: boolean) => set({ isMonthlyBilling: val }),
-    attachFloatingIPs: (val: TAttachFloatingIPs) => set({ attachFloatingIPs: val }),
+    attachFloatingIps: (val: TAttachFloatingIPs) => set({ attachFloatingIps: val }),
   },
   open: (id: StepsEnum) => {
     set((state) => {
@@ -261,7 +261,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       antiAffinity: false,
       selectedAvailabilityZones: null,
       isMonthlyBilling: false,
-      attachFloatingIPs: null,
+      attachFloatingIps: null,
       steps: initialSteps(),
     }));
   },

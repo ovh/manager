@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useMemo, useState } from 'react';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { flow, isEqual, set } from 'lodash/fp';
+import { isEqual } from 'lodash/fp';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -32,7 +32,7 @@ import { FloatingIPDisableWarning, FloatingIPEnableWarning } from './components/
 
 type TScalePageState = {
   scale: TScalingState;
-  attachFloatingIPs?: TAttachFloatingIPs;
+  attachFloatingIps?: TAttachFloatingIPs;
 };
 
 const hasStateChanged = (currentState: unknown, initialState: unknown): boolean => {
@@ -61,7 +61,10 @@ export default function ScalePage(): ReactElement {
   const { trackClick } = useTrack();
 
   const { data: cluster } = useKubernetesCluster(projectId, clusterId);
-  const { data: regionInformations } = useRegionInformations(projectId, cluster?.region ?? null);
+  const { data: regionInformations, isLoading: isLoadingRegionInfo } = useRegionInformations(
+    projectId,
+    cluster?.region ?? null,
+  );
   const floatingIpPriceData = useFloatingIpsPrice(true, regionInformations?.type ?? null);
   const floatingIpPrice = floatingIpPriceData.price;
 
@@ -75,33 +78,35 @@ export default function ScalePage(): ReactElement {
     },
   );
 
+  const has3AZFeature = use3AZPlanAvailable();
+
   const initialState = useMemo(
     () =>
-      pool
+      pool && !isLoadingRegionInfo
         ? {
-          scale: {
-            quantity: {
-              desired: pool.desiredNodes,
-              min: pool.minNodes,
-              max: pool.maxNodes,
+            scale: {
+              quantity: {
+                desired: pool.desiredNodes,
+                min: pool.minNodes,
+                max: pool.maxNodes,
+              },
+              isAutoscale: pool.autoscale,
             },
-            isAutoscale: pool.autoscale,
-          },
-          ...(has3AZFeature && isStandardPlan
-            ? { attachFloatingIPs: pool.attachFloatingIPs ?? { enabled: false } }
-            : {}),
-        }
+            ...(isStandardPlan
+              ? { attachFloatingIps: pool.attachFloatingIps ?? { enabled: false } }
+              : {}),
+          }
         : null,
-    [pool],
+    [pool, isLoadingRegionInfo],
   );
 
   const [state, setState] = useState<TScalePageState | null>(null);
 
   const hasFloatingIPChanged =
-    !!initialState?.attachFloatingIPs?.enabled !== !!state?.attachFloatingIPs?.enabled;
-  const showEnabledFloatingIp = hasFloatingIPChanged && state?.attachFloatingIPs?.enabled;
+    !!initialState?.attachFloatingIps?.enabled !== !!state?.attachFloatingIps?.enabled;
+  const showEnabledFloatingIp = hasFloatingIPChanged && state?.attachFloatingIps?.enabled;
   const showDisabledFloatingIp =
-    hasFloatingIPChanged && state?.attachFloatingIPs?.enabled === false;
+    hasFloatingIPChanged && state?.attachFloatingIps?.enabled === false;
 
   const hasChanges = useMemo(() => hasStateChanged(state, initialState), [state, initialState]);
 
@@ -130,21 +135,26 @@ export default function ScalePage(): ReactElement {
     poolId,
   });
 
-  const resetMaxMin = (actualState: TScalePageState | null) => {
-    if (!initialState || !actualState) {
-      return actualState;
-    }
-    return flow(
-      set('scale.quantity.min', initialState.scale.quantity.min),
-      set('scale.quantity.max', initialState.scale.quantity.max),
-    )(actualState) as TScalePageState;
-  };
+  const resetMinMax = (
+    actualState: TScalePageState,
+    initialState: TScalePageState,
+  ): TScalePageState => ({
+    ...actualState,
+    scale: {
+      ...actualState.scale,
+      quantity: {
+        ...actualState.scale.quantity,
+        min: initialState.scale.quantity.min,
+        max: initialState.scale.quantity.max,
+      },
+    },
+  });
 
   useEffect(() => {
-    if (pool) {
+    if (pool && !isLoadingRegionInfo) {
       setState(initialState);
     }
-  }, [pool, initialState]);
+  }, [pool, initialState, isLoadingRegionInfo]);
 
   useEffect(() => {
     if (!state || !initialState || state.scale.isAutoscale) {
@@ -152,9 +162,9 @@ export default function ScalePage(): ReactElement {
     }
 
     if (hasQuantityChanged(state.scale.quantity, initialState.scale.quantity)) {
-      if (state) {
-        setState((state) => state && resetMaxMin(state));
-      }
+      setState((currentState) =>
+        currentState ? resetMinMax(currentState, initialState) : currentState,
+      );
     }
   }, [state?.scale.quantity, initialState?.scale.quantity, state?.scale.isAutoscale]);
 
@@ -166,8 +176,6 @@ export default function ScalePage(): ReactElement {
 
   const { price: priceFloatingIp } = useFloatingIpsPrice(true, regionInformations?.type ?? null);
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
-
-  const has3AZFeature = use3AZPlanAvailable();
 
   const scaleObject = useMemo(() => {
     const { desired, min, max } = state?.scale.quantity || {};
@@ -195,7 +203,7 @@ export default function ScalePage(): ReactElement {
     if (state) {
       setState({
         ...state,
-        attachFloatingIPs: { enabled: status },
+        attachFloatingIps: { enabled: status },
       });
     }
   };
@@ -211,14 +219,14 @@ export default function ScalePage(): ReactElement {
       <ModalContent className="max-h-[90vh] w-[900px] max-w-[90vw] overflow-auto">
         <ModalBody className="">
           <Text preset="heading-3" className="text-[--ods-color-primary-500]">
-            {t('listing:kube_common_node_pool_autoscaling_title')}
+            {t('node-pool:kube_node_pool')}
           </Text>
           {!isPoolsPending && !isPendingScaling && state && pool ? (
             <>
               {has3AZFeature && isStandardPlan && (
                 <>
                   <PublicConnectivity
-                    checked={Boolean(state.attachFloatingIPs?.enabled)}
+                    checked={Boolean(state.attachFloatingIps?.enabled)}
                     onChange={handleChangeFloatingIp}
                     price={floatingIpPrice}
                   />
@@ -274,8 +282,8 @@ export default function ScalePage(): ReactElement {
                 updateNodePool({
                   autoscale: state?.scale.isAutoscale ?? false,
                   desiredNodes: state?.scale.quantity.desired ?? NODE_RANGE.MIN,
-                  ...(state?.attachFloatingIPs
-                    ? { attachFloatingIPs: state?.attachFloatingIPs }
+                  ...(state?.attachFloatingIps
+                    ? { attachFloatingIps: state?.attachFloatingIps }
                     : {}),
                   ...scaleObject,
                 });
