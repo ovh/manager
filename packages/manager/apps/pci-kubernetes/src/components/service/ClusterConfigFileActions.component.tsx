@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Translation, useTranslation } from 'react-i18next';
 
-import { Button, Icon, Spinner } from '@ovhcloud/ods-react';
+import { Button, Icon, Spinner, toast } from '@ovhcloud/ods-react';
 
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -57,11 +57,21 @@ export const ClusterConfigFileActions = ({
           ? `${CONFIG_FILENAME}-${clusterShortId}.yml`
           : `${CONFIG_FILENAME}.yml`;
 
-        downloadContent({
-          fileContent: configFile.content,
-          fileName,
-        });
+        try {
+          downloadContent({
+            fileContent: configFile.content,
+            fileName,
+          });
 
+          toast(t('kube_service_download_kubeconfig_success'), { color: 'success' });
+        } catch {
+          toast(t('kube_service_download_kubeconfig_error'), {
+            color: 'warning',
+            duration: Infinity,
+          });
+        }
+      },
+      onSettled: () => {
         setOngoingKubeConfigAction(null);
       },
     });
@@ -71,42 +81,49 @@ export const ClusterConfigFileActions = ({
     setOngoingKubeConfigAction('copy');
     postKubeConfig(undefined, {
       onSuccess: async (configFile) => {
-        await navigator.clipboard.writeText(configFile.content);
+        try {
+          await navigator.clipboard.writeText(configFile.content);
+
+          toast(t('kube_service_copy_kubeconfig_success'), {
+            color: 'success',
+          });
+        } catch {
+          toast(t('kube_service_copy_kubeconfig_error'), { color: 'warning', duration: Infinity });
+        }
+      },
+      onSettled: () => {
         setOngoingKubeConfigAction(null);
       },
     });
   };
 
+  const isCopyLoading = isKubeConfigPending && ongoingKubeConfigAction === 'copy';
+  const isDownloadLoading = isKubeConfigPending && ongoingKubeConfigAction === 'download';
+
   return (
     <div className="flex flex-col items-start gap-3">
-      <div className="flex items-center">
+      <div className="flex items-center" aria-busy={isCopyLoading}>
         <Button
           size="sm"
           variant="ghost"
-          data-testid="copy-kubeconfig"
           disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
           onClick={copyConfigFile}
         >
           <Icon name="file-copy" /> {t('kube_service_copy_kubeconfig')}
         </Button>
-        {isKubeConfigPending && ongoingKubeConfigAction === 'copy' && (
-          <Spinner size="sm" data-testid="copy-kubeconfig-spinner" />
-        )}
+        {isCopyLoading && <Spinner size="sm" data-testid="copy-kubeconfig-spinner" />}
       </div>
 
-      <div className="flex items-center">
+      <div className="flex items-center" aria-busy={isDownloadLoading}>
         <Button
           size="sm"
           variant="ghost"
-          data-testid="download-kubeconfig"
           disabled={isKubeConfigPending || kubeDetail.status === KUBE_INSTALLING_STATUS}
           onClick={downloadConfigFile}
         >
           <Icon name="download" /> {t('kube_service_download_kubeconfig')}
         </Button>
-        {isKubeConfigPending && ongoingKubeConfigAction === 'download' && (
-          <Spinner size="sm" data-testid="download-kubeconfig-spinner" />
-        )}
+        {isDownloadLoading && <Spinner size="sm" data-testid="download-kubeconfig-spinner" />}
       </div>
     </div>
   );
