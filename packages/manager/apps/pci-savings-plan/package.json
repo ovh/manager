@@ -14,7 +14,7 @@
     "build": "tsc && vite build",
     "lint": "eslint ./src",
     "start": "vite",
-    "test": "vitest run"
+    "test": "vitest --config vitest.config.mjs run"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "1.0.3",
@@ -52,7 +52,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.4.7",
+    "@ovh-ux/manager-tests-setup": "0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.2",
     "@testing-library/jest-dom": "^6.4.6",
     "@vitejs/plugin-react": "^4.2.1",
