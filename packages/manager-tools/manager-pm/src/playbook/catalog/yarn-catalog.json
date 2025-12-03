@@ -42,7 +42,6 @@
   "packages/manager/apps/pci-databases-analytics",
   "packages/manager/apps/pci-dataplatform",
   "packages/manager/apps/pci-object-storage",
-  "packages/manager/apps/pci-private-registry",
   "packages/manager/apps/pci-public-ip",
   "packages/manager/apps/pci-quota",
   "packages/manager/apps/pci-rancher",
