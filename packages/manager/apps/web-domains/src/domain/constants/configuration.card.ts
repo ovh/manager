@@ -1,6 +1,7 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BADGE_COLOR } from '@ovhcloud/ods-react';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { DataProtectionStatus } from '../types/domainResource';
 
 export const ConfigurationDnssecBadgeColorAndContent = {
   not_supported: {
@@ -90,3 +91,33 @@ export const ConfigurationTransferBadgeColorAndContent = [
     },
   },
 ];
+
+export const ConfigurationDataProtectionBadgeColorAndContent = {
+  [DataProtectionStatus.ACTIVE]: {
+    color: BADGE_COLOR.success,
+    buttonStatus: false,
+    i18nkeyContent: 'domain_tab_general_information_status_enabled',
+    i18nkeySubContent:
+      'domain_tab_general_information_data_protection_activated',
+  },
+  [DataProtectionStatus.DISABLED]: {
+    color: BADGE_COLOR.success,
+    buttonStatus: true,
+    i18nkeyContent: 'domain_tab_general_information_status_enabled',
+    i18nkeySubContent:
+      'domain_tab_general_information_data_protection_activated',
+  },
+  [DataProtectionStatus.NONE]: {
+    color: BADGE_COLOR.critical,
+    buttonStatus: false,
+    i18nkeyContent: 'domain_tab_general_information_status_disabled',
+    i18nkeySubContent:
+      'domain_tab_general_information_data_protection_desactivated',
+  },
+  [DataProtectionStatus.PARTIAL]: {
+    color: BADGE_COLOR.warning,
+    buttonStatus: false,
+    i18nkeyContent: 'domain_tab_general_information_status_partial',
+    i18nkeySubContent: 'domain_tab_general_information_data_protection_partial',
+  },
+};
