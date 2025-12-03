@@ -32,7 +32,7 @@ import { ToggleCard } from './CdnToogleCard';
 
 interface OptionSecurityProps {
   controlValues: CdnFormValues;
-  control: Control<CdnFormValues, unknown, CdnFormValues>;
+  control: Control<CdnFormValues>;
   optionsData: CdnOption[];
 }
 
@@ -48,7 +48,9 @@ export const OptionSecurity: React.FC<OptionSecurityProps> = ({
   if (!hasSecurityOption(optionsData)) return null;
   return (
     <div className="flex flex-col space-y-6">
-      <Text preset={TEXT_PRESET.heading3}>{t('cdn_shared_option_category_security')}</Text>
+      <Text preset={TEXT_PRESET.heading3}>
+        {t('cdn_shared_option_category_security')}
+      </Text>
 
       <Controller
         name="cors"
@@ -90,7 +92,11 @@ export const OptionSecurity: React.FC<OptionSecurityProps> = ({
             onToggle={(detail) => field.onChange(detail.checked)}
           >
             {field.value && (
-              <Message color={MESSAGE_COLOR.warning} dismissible={false} className="w-full">
+              <Message
+                color={MESSAGE_COLOR.warning}
+                dismissible={false}
+                className="w-full"
+              >
                 {t('cdn_ssl_required_warning')}
               </Message>
             )}
@@ -138,7 +144,11 @@ export const OptionSecurity: React.FC<OptionSecurityProps> = ({
             onToggle={(detail) => field.onChange(detail.checked)}
           >
             {field.value && (
-              <Message color={MESSAGE_COLOR.warning} dismissible={false} className="w-full">
+              <Message
+                color={MESSAGE_COLOR.warning}
+                dismissible={false}
+                className="w-full"
+              >
                 {t('cdn_ssl_required_warning')}
               </Message>
             )}

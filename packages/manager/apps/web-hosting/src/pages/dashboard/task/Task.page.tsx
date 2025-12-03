@@ -4,7 +4,13 @@ import { useParams } from 'react-router-dom';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { BUTTON_COLOR, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
+import {
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+} from '@ovhcloud/ods-react';
 
 import { Datagrid, DatagridColumn, useDataApi } from '@ovh-ux/muk';
 
@@ -43,15 +49,17 @@ export default function Multisite() {
           <Icon name={ICON_NAME.refresh}></Icon>
         </Button>
       </div>
-      <Datagrid
-        columns={columns as DatagridColumn<Record<string, unknown>>[]}
-        data={flattenData ?? []}
-        hasNextPage={hasNextPage && !isLoading}
-        onFetchNextPage={(): void => {
-          void fetchNextPage();
-        }}
-        isLoading={isLoading}
-      />
+      {flattenData?.length > 0 && (
+        <Datagrid
+          columns={columns as DatagridColumn<Record<string, unknown>>[]}
+          data={flattenData}
+          hasNextPage={hasNextPage && !isLoading}
+          onFetchNextPage={(): void => {
+            void fetchNextPage();
+          }}
+          isLoading={isLoading}
+        />
+      )}
     </React.Suspense>
   );
 }

@@ -36,7 +36,7 @@ import {
   OvhSubsidiary,
   useNotifications,
 } from '@ovh-ux/muk';
-import type { DatagridColumn } from '@ovh-ux/muk';
+import { DatagridColumn } from '@ovh-ux/muk';
 
 import { getAllWebHostingAttachedDomain } from '@/data/api/webHosting';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
@@ -54,16 +54,28 @@ export default function Websites() {
   const { t } = useTranslation('common');
   const [isExportPopoverOpen, setIsExportPopoverOpen] = useState(false);
   const [isCSVLoading, setIsCSVLoading] = useState(false);
-  const csvPopoverRef = useRef<{ hide?: () => void | Promise<void> } | null>(null);
+  const csvPopoverRef = useRef<{ hide?: () => void | Promise<void> } | null>(
+    null,
+  );
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const { notifications, addSuccess } = useNotifications();
-  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
-    useDebouncedValue('');
+  const [
+    searchInput,
+    setSearchInput,
+    debouncedSearchInput,
+    setDebouncedSearchInput,
+  ] = useDebouncedValue('');
 
-  const { data, isLoading, hasNextPage, fetchAllPages, fetchNextPage, isFetchingNextPage } =
-    useWebHostingAttachedDomain({
-      domain: punycode.toASCII(debouncedSearchInput),
-    });
+  const {
+    data,
+    isLoading,
+    hasNextPage,
+    fetchAllPages,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useWebHostingAttachedDomain({
+    domain: punycode.toASCII(debouncedSearchInput),
+  });
   const { trackClick } = useOvhTracking();
 
   const displayColumns: DatagridColumn<WebsiteType>[] = useMemo(
@@ -74,7 +86,9 @@ export default function Websites() {
         header: t('web_hosting_status_header_fqdn'),
         cell: ({ getValue, row }) => {
           const fqdn = getValue<string>();
-          const containsPunycode = fqdn.split('.').some((part) => part.startsWith('xn--'));
+          const containsPunycode = fqdn
+            .split('.')
+            .some((part) => part.startsWith('xn--'));
           const decodedFqdn = punycode.toUnicode(fqdn);
 
           return (
@@ -135,7 +149,11 @@ export default function Websites() {
         accessorFn: (row) => row.currentState?.hosting?.serviceName ?? '',
         header: t('web_hosting_status_header_serviceName'),
         cell: ({ getValue, row }) => (
-          <LinkCell webSiteItem={row.original} label={getValue<string>()} tracking="serviceName" />
+          <LinkCell
+            webSiteItem={row.original}
+            label={getValue<string>()}
+            tracking="serviceName"
+          />
         ),
       },
       {
@@ -143,7 +161,11 @@ export default function Websites() {
         accessorFn: (row) => row.currentState?.hosting?.displayName ?? '',
         header: t('web_hosting_status_header_displayName'),
         cell: ({ getValue, row }) => (
-          <LinkCell webSiteItem={row.original} label={getValue<string>()} tracking="displayName" />
+          <LinkCell
+            webSiteItem={row.original}
+            label={getValue<string>()}
+            tracking="displayName"
+          />
         ),
       },
       {
@@ -176,7 +198,8 @@ export default function Websites() {
       },
       {
         id: 'ownLog',
-        accessorFn: (row) => (row.currentState?.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE),
+        accessorFn: (row) =>
+          row.currentState?.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
         header: t('web_hosting_status_header_ownlog'),
         cell: ({ getValue, row }) => (
           <BadgeStatusCell
@@ -229,7 +252,9 @@ export default function Websites() {
       {
         id: 'boostOffer',
         accessorFn: (row) =>
-          row.currentState?.hosting?.boostOffer ? ServiceStatus.ACTIVE : ServiceStatus.NONE,
+          row.currentState?.hosting?.boostOffer
+            ? ServiceStatus.ACTIVE
+            : ServiceStatus.NONE,
         header: t('web_hosting_status_header_boostOffer'),
         cell: ({ getValue, row }) => (
           <BadgeStatusCell
@@ -243,7 +268,9 @@ export default function Websites() {
       {
         id: 'actions',
         header: '',
-        cell: ({ row }) => <ActionButtonStatistics webSiteItem={row.original} />,
+        cell: ({ row }) => (
+          <ActionButtonStatistics webSiteItem={row.original} />
+        ),
         enableHiding: false,
       },
     ],
@@ -289,7 +316,8 @@ export default function Websites() {
     {
       id: 'git',
       label: t('web_hosting_status_header_git'),
-      getValue: (item) => t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
     },
     {
       id: 'ownLog',
@@ -305,18 +333,22 @@ export default function Websites() {
     {
       id: 'CDN',
       label: t('web_hosting_status_header_cdn'),
-      getValue: (item) => t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
     },
     {
       id: 'ssl',
       label: t('web_hosting_status_header_ssl'),
-      getValue: (item) => t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
+      getValue: (item) =>
+        t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
     },
     {
       id: 'firewall',
       label: t('web_hosting_status_header_firewall'),
       getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`),
+        t(
+          `web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`,
+        ),
     },
     {
       id: 'boostOffer',
@@ -358,7 +390,7 @@ export default function Websites() {
     );
 
     const csv = generateCsv(csvConfig)(csvData);
-    const csvString = csv as unknown as string;
+    const csvString = (csv as unknown) as string;
     const blob = new Blob([csvString], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
 
@@ -431,78 +463,84 @@ export default function Websites() {
       }}
       message={notifications.length ? <Notifications /> : null}
     >
-      <Datagrid
-        data-testid="websites-page-datagrid"
-        columns={data ? displayColumns : []}
-        data={data ?? []}
-        isLoading={isLoading}
-        hasNextPage={!isFetchingNextPage && hasNextPage}
-        onFetchNextPage={(): void => {
-          void fetchNextPage();
-        }}
-        onFetchAllPages={fetchAllPages}
-        columnVisibility={{ columnVisibility, setColumnVisibility }}
-        topbar={
-          <div className="flex items-center gap-4">
-            <Button
-              variant={BUTTON_VARIANT.default}
-              color={BUTTON_COLOR.primary}
-              onClick={goToOrder}
-              data-testid="websites-page-order-button"
-            >
-              <>
-                {t('web_hosting_header_order')}
-                <Icon className="ml-2" name={ICON_NAME.externalLink}></Icon>
-              </>
-            </Button>
-            <div className="w-max px-0 py-2">
-              <Popover
-                aria-label="Export menu"
-                position={POPOVER_POSITION.bottomStart}
-                open={isExportPopoverOpen}
-                onOpenChange={({ open }) => setIsExportPopoverOpen(open)}
+      {data?.length > 0 && (
+        <Datagrid
+          data-testid="websites-page-datagrid"
+          columns={displayColumns}
+          data={data}
+          isLoading={isLoading}
+          hasNextPage={!isFetchingNextPage && hasNextPage}
+          onFetchNextPage={(): void => {
+            void fetchNextPage();
+          }}
+          onFetchAllPages={fetchAllPages}
+          columnVisibility={{ columnVisibility, setColumnVisibility }}
+          topbar={
+            <div className="flex items-center gap-4">
+              <Button
+                variant={BUTTON_VARIANT.default}
+                color={BUTTON_COLOR.primary}
+                onClick={goToOrder}
+                data-testid="websites-page-order-button"
               >
-                <PopoverTrigger aria-haspopup="menu" asChild>
-                  <Button
-                    id="export-popover-trigger"
-                    variant={BUTTON_VARIANT.outline}
-                    data-testid="websites-page-export-button"
-                    loading={isCSVLoading}
-                  >
-                    <>
-                      <Icon
-                        className="mr-2"
-                        name={isExportPopoverOpen ? ICON_NAME.chevronUp : ICON_NAME.chevronDown}
-                      />
-                      {t('web_hosting_export_label')}
-                    </>
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent aria-label="Export menu" withArrow>
-                  <div className="flex w-full flex-col p-2">
-                    {actionItems.map((action) => (
-                      <Button
-                        key={action.id}
-                        onClick={action.onClick}
-                        variant={BUTTON_VARIANT.ghost}
-                        role="menuitem"
-                        className="w-full justify-start"
-                      >
-                        {action.label}
-                      </Button>
-                    ))}
-                  </div>
-                </PopoverContent>
-              </Popover>
+                <>
+                  {t('web_hosting_header_order')}
+                  <Icon className="ml-2" name={ICON_NAME.externalLink}></Icon>
+                </>
+              </Button>
+              <div className="w-max px-0 py-2">
+                <Popover
+                  aria-label="Export menu"
+                  position={POPOVER_POSITION.bottomStart}
+                  open={isExportPopoverOpen}
+                  onOpenChange={({ open }) => setIsExportPopoverOpen(open)}
+                >
+                  <PopoverTrigger aria-haspopup="menu" asChild>
+                    <Button
+                      id="export-popover-trigger"
+                      variant={BUTTON_VARIANT.outline}
+                      data-testid="websites-page-export-button"
+                      loading={isCSVLoading}
+                    >
+                      <>
+                        <Icon
+                          className="mr-2"
+                          name={
+                            isExportPopoverOpen
+                              ? ICON_NAME.chevronUp
+                              : ICON_NAME.chevronDown
+                          }
+                        />
+                        {t('web_hosting_export_label')}
+                      </>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent aria-label="Export menu" withArrow>
+                    <div className="flex w-full flex-col p-2">
+                      {actionItems.map((action) => (
+                        <Button
+                          key={action.id}
+                          onClick={action.onClick}
+                          variant={BUTTON_VARIANT.ghost}
+                          role="menuitem"
+                          className="w-full justify-start"
+                        >
+                          {action.label}
+                        </Button>
+                      ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </div>
             </div>
-          </div>
-        }
-        search={{
-          searchInput,
-          setSearchInput,
-          onSearch: (search) => setDebouncedSearchInput(search),
-        }}
-      />
+          }
+          search={{
+            searchInput,
+            setSearchInput,
+            onSearch: (search) => setDebouncedSearchInput(search),
+          }}
+        />
+      )}
     </BaseLayout>
   );
 }

@@ -16,14 +16,18 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Link, LinkType } from '@ovh-ux/muk';
 
 import { SHARED_CDN_OPTIONS } from '@/constants';
-import { CdnFormValues, CdnOption, CdnOptionType } from '@/data/types/product/cdn';
+import {
+  CdnFormValues,
+  CdnOption,
+  CdnOptionType,
+} from '@/data/types/product/cdn';
 import { hasOption } from '@/utils/cdn';
 
 import { ToggleCard } from './CdnToogleCard';
 
 interface OptionPerformanceProps {
   controlValues: CdnFormValues;
-  control: Control<CdnFormValues, unknown, CdnFormValues>;
+  control: Control<CdnFormValues>;
   optionsData: CdnOption[];
 }
 
@@ -44,7 +48,9 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
 
   return (
     <>
-      <Text preset={TEXT_PRESET.heading3}>{t('cdn_shared_option_category_performance')}</Text>
+      <Text preset={TEXT_PRESET.heading3}>
+        {t('cdn_shared_option_category_performance')}
+      </Text>
       <ToggleCard
         title={t('cdn_shared_option_always_online_title')}
         info={t('cdn_shared_option_always_online_info')}
@@ -99,7 +105,11 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
               toggleValue={!!field.value}
               onToggle={(detail) => field.onChange(detail.checked)}
             >
-              <Link href={sharedOptionUrl} target="_blank" type={LinkType.external}>
+              <Link
+                href={sharedOptionUrl}
+                target="_blank"
+                type={LinkType.external}
+              >
                 {t('cdn_shared_option_prefetch_info_link')}
               </Link>
             </ToggleCard>
@@ -134,7 +144,9 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
                 onValueChange={(detail) => field.onChange(detail.value[0])}
                 items={[
                   {
-                    label: t('cdn_shared_option_mobile_redirect_strategy_still'),
+                    label: t(
+                      'cdn_shared_option_mobile_redirect_strategy_still',
+                    ),
                     value: SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL,
                   },
                   {

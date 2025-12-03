@@ -34,7 +34,7 @@ import { DomainAdvancedConfiguration } from './DomainAdvancedConfiguration';
 type FormData = z.infer<typeof websiteFormSchema>;
 
 interface DomainConfigurationProps {
-  control: Control<FormData, unknown, FormData>;
+  control: Control<FormData>;
   controlValues: FormData;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isNextButtonVisible: boolean;
@@ -63,7 +63,9 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             control={control}
             render={({ field }) => (
               <div className="flex flex-col">
-                <Text>{t('multisite_add_website_configure_domain_display_name')}</Text>
+                <Text>
+                  {t('multisite_add_website_configure_domain_display_name')}
+                </Text>
                 <Input
                   className="w-1/3"
                   type={INPUT_TYPE.text}
@@ -94,10 +96,16 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                     label: item,
                   }))}
                   value={
-                    Array.isArray(field.value) ? field.value : field.value ? [field.value] : []
+                    Array.isArray(field.value)
+                      ? field.value
+                      : field.value
+                      ? [field.value]
+                      : []
                   }
                   onValueChange={(detail: { value?: string[] }) =>
-                    field.onChange(Array.isArray(detail.value) ? (detail.value[0] ?? '') : '')
+                    field.onChange(
+                      Array.isArray(detail.value) ? detail.value[0] ?? '' : '',
+                    )
                   }
                 >
                   <SelectControl />
@@ -119,7 +127,9 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                   <CheckboxControl />
                   <CheckboxLabel>
                     <Text>
-                      {t('dashboard:hosting_add_step2_mode_OVH_domain_name_subdomain_question')}
+                      {t(
+                        'dashboard:hosting_add_step2_mode_OVH_domain_name_subdomain_question',
+                      )}
                     </Text>
                   </CheckboxLabel>
                 </Checkbox>
@@ -136,7 +146,9 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                     type={INPUT_TYPE.text}
                     name="subdomain"
                     className="w-1/3"
-                    placeholder={t('dashboard:hosting_add_step2_mode_OVH_domain_name_placeholder')}
+                    placeholder={t(
+                      'dashboard:hosting_add_step2_mode_OVH_domain_name_placeholder',
+                    )}
                     value={field.value}
                     onChange={(e) => field.onChange(e.target.value)}
                   />
@@ -166,14 +178,19 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                 >
                   <ToggleControl />
                   <ToggleLabel>
-                    <Text>{t('multisite_add_website_configure_domain_advanced')}</Text>
+                    <Text>
+                      {t('multisite_add_website_configure_domain_advanced')}
+                    </Text>
                   </ToggleLabel>
                 </Toggle>
               </div>
             )}
           />
           {controlValues?.advancedConfiguration ? (
-            <DomainAdvancedConfiguration control={control} controlValues={controlValues} />
+            <DomainAdvancedConfiguration
+              control={control}
+              controlValues={controlValues}
+            />
           ) : (
             <Message color={MESSAGE_COLOR.information} dismissible={false}>
               {t('multisite_add_website_configure_domain_advanced_message')}
@@ -187,7 +204,9 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
             control={control}
             render={({ field }) => (
               <div className="flex flex-col">
-                <Text>{t('multisite_add_website_configure_domain_display_name')}</Text>
+                <Text>
+                  {t('multisite_add_website_configure_domain_display_name')}
+                </Text>
                 <Input
                   className="w-1/3"
                   type={INPUT_TYPE.text}
@@ -231,10 +250,16 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
               (isAddingDomain && !isValidDomain(controlValues.fqdn)) ||
               (controlValues.hasSubdomain &&
                 (!controlValues.subdomain ||
-                  !isValidDomain(`${controlValues.subdomain}.${controlValues.fqdn}`)))
+                  !isValidDomain(
+                    `${controlValues.subdomain}.${controlValues.fqdn}`,
+                  )))
             }
             onClick={() =>
-              setStep(controlValues?.associationType === AssociationType.EXISTING ? 4 : 3)
+              setStep(
+                controlValues?.associationType === AssociationType.EXISTING
+                  ? 4
+                  : 3,
+              )
             }
           >
             {t('common:web_hosting_common_action_continue')}
