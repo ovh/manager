@@ -1,8 +1,11 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { OdsInput } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { Dispatch, SetStateAction, useState } from 'react';
+
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';
 import identityListSortAndFilter from '@key-management-service/utils/credential/identityListSortAndFilter';
+import { useTranslation } from 'react-i18next';
+
+import { OdsInput } from '@ovhcloud/ods-components/react';
+
 import IdentitiesServiceAccountTile from '../tile/IdentitiesServiceAccountTile.component';
 
 type IdentitiesServiceAccountProps = {
@@ -17,21 +20,16 @@ const IdentitiesServiceAccountList = ({
   setSelectedServiceAccounts,
 }: IdentitiesServiceAccountProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const [
-    sortedFilteredServiceAccount,
-    setSortedFilteredServiceAccount,
-  ] = useState<IdentityOauthClient[]>(
-    identityListSortAndFilter<IdentityOauthClient>(serviceAccountList, 'name'),
-  );
+  const [sortedFilteredServiceAccount, setSortedFilteredServiceAccount] = useState<
+    IdentityOauthClient[]
+  >(identityListSortAndFilter<IdentityOauthClient>(serviceAccountList, 'name'));
 
   const filterTerms = (searchTerm: string) => {
     setSortedFilteredServiceAccount(
-      identityListSortAndFilter<IdentityOauthClient>(
-        serviceAccountList,
+      identityListSortAndFilter<IdentityOauthClient>(serviceAccountList, 'name', searchTerm, [
         'name',
-        searchTerm,
-        ['name', 'description'],
-      ),
+        'description',
+      ]),
     );
   };
   return (
@@ -45,7 +43,7 @@ const IdentitiesServiceAccountList = ({
         onOdsChange={(event) => filterTerms(event.detail.value as string)}
         type="search"
       />
-      <div className="grid gap-3 mb-4">
+      <div className="mb-4 grid gap-3">
         {sortedFilteredServiceAccount.map((serviceAccount) => (
           <IdentitiesServiceAccountTile
             serviceAccount={serviceAccount}

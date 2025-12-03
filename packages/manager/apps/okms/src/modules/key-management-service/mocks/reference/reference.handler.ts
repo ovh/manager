@@ -1,13 +1,12 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { referenceServiceKeyMock } from './reference.mock';
 
 export type GetReferenceMockParams = {
   isReferenceKO?: boolean;
 };
 
-export const getReferenceMock = ({
-  isReferenceKO,
-}: GetReferenceMockParams): Handler[] => [
+export const getReferenceMock = ({ isReferenceKO }: GetReferenceMockParams): Handler[] => [
   {
     url: '/okms/reference/serviceKey',
     response: isReferenceKO

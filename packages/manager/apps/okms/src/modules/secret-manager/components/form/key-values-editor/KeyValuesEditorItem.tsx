@@ -1,16 +1,11 @@
-import React from 'react';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsButton,
-} from '@ovhcloud/ods-components/react';
-import {
-  OdsInputChangeEventDetail,
-  OdsInputCustomEvent,
-} from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { OdsInputChangeEventDetail, OdsInputCustomEvent } from '@ovhcloud/ods-components';
+import { OdsButton, OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
 export type KeyValuePair = {
@@ -27,9 +22,7 @@ type KeyValuesEditorItemProps = {
   isDeletable: boolean;
 };
 
-type OdsInputChangeEventHandler = (
-  event: OdsInputCustomEvent<OdsInputChangeEventDetail>,
-) => void;
+type OdsInputChangeEventHandler = (event: OdsInputCustomEvent<OdsInputChangeEventDetail>) => void;
 
 export const KeyValuesEditorItem = ({
   index,
@@ -44,17 +37,21 @@ export const KeyValuesEditorItem = ({
   const valueInputName = KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(index);
 
   const handleKeyChange: OdsInputChangeEventHandler = (event) => {
-    const newKey = event.target.value.toString();
-    onChange({ key: newKey, value: item.value });
+    const newKey = event.target.value?.toString();
+    if (newKey) {
+      onChange({ key: newKey, value: item.value });
+    }
   };
 
   const handleValueChange: OdsInputChangeEventHandler = (event) => {
-    const newValue = event.target.value.toString();
-    onChange({ key: item.key, value: newValue });
+    const newValue = event.target.value?.toString();
+    if (newValue) {
+      onChange({ key: item.key, value: newValue });
+    }
   };
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex items-center gap-2">
       <OdsFormField className="w-full">
         <label slot="label">{t('key')}</label>
         <OdsInput

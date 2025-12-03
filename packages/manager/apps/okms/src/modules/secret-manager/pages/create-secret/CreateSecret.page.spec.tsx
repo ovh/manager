@@ -1,26 +1,29 @@
-import {
-  assertTextVisibility,
-  WAIT_FOR_DEFAULT_OPTIONS,
-} from '@ovh-ux/manager-core-test-utils';
-import { waitFor } from '@testing-library/dom';
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import { createSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
+import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import {
   MOCK_DATA_VALID_JSON,
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
-import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
-import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
-import { fireEvent, act, screen } from '@testing-library/react';
+import { waitFor } from '@testing-library/dom';
+import { act, fireEvent, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
-import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { createSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
+import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
+import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
 
 /* TEST UTILS */
-const firstRegion = catalogMock.plans[0].configurations[0].values[0];
+const firstRegion = catalogMock?.plans[0]?.configurations[0]?.values?.[0];
+
+if (!firstRegion) {
+  throw new Error('No region found in catalog');
+}
 
 /**
  * Selects the first region
@@ -57,12 +60,15 @@ describe('Create secret page test suite', () => {
     await assertBreadcrumbItems(['RootBreadcrumbItem']);
 
     await assertTextVisibility(labels.secretManager.create_a_secret);
-    await assertTextVisibility(
-      labels.secretManager.create_secret_form_region_section_title,
-    );
-    await assertTextVisibility(
-      labels.secretManager.create_secret_form_secret_section_title,
-    );
+    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
+    await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
+  });
+
+  it('should display the price tile', async () => {
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.createSecret);
+
+    await assertTextVisibility(labels.secretManager.secrets_pricing_title);
+    await assertTextVisibility(labels.secretManager.secrets_pricing_subtitle);
   });
 
   it('should navigate to the created secret page on submit', async () => {
@@ -118,10 +124,7 @@ describe('Create secret page test suite', () => {
 
     // THEN
     await assertTextVisibility(
-      labels.common.error.error_message.replace(
-        '{{message}}',
-        createSecretErrorMessage,
-      ),
+      labels.common.error.error_message.replace('{{message}}', createSecretErrorMessage),
     );
   });
 });

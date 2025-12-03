@@ -1,12 +1,14 @@
-import React from 'react';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { OdsText, OdsClipboard } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { Secret } from '@secret-manager/types/secret.type';
 import { SECRET_TEST_IDS } from '@secret-manager/pages/secret/general-information/GeneralInformation.constants';
+import { Secret } from '@secret-manager/types/secret.type';
+import { useTranslation } from 'react-i18next';
+
+import { OdsClipboard, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { useFormatDate } from '@/common/hooks/useFormatDate';
-import { URN_LABEL, PATH_LABEL } from '@/constants';
+import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 type InformationTileProps = {
   secret: Secret;
@@ -25,7 +27,12 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{PATH_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span" data-testid={SECRET_TEST_IDS.PATH}>
+          <OdsText
+            preset="span"
+            data-testid={SECRET_TEST_IDS.PATH}
+            // Temporary fix: wrap text without whitespace
+            style={{ overflowWrap: 'anywhere' }}
+          >
             {secret.path}
           </OdsText>
         </ManagerTile.Item.Description>
@@ -60,7 +67,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
         <ManagerTile.Item.Label>{t('last_update')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span" data-testid={SECRET_TEST_IDS.UPDATED_AT}>
-            {formatDate(secret.metadata.updatedAt)}
+            {formatDate(secret?.metadata?.updatedAt ?? '')}
           </OdsText>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>

@@ -1,26 +1,27 @@
-import React from 'react';
-import { i18n } from 'i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
-import { vi, describe, it } from 'vitest';
-import {
-  getOdsButtonByLabel,
-  toMswHandlers,
-} from '@ovh-ux/manager-core-test-utils';
-import { SecretVersion } from '@secret-manager/types/secret.type';
+
+import { getIamMocks } from '@key-management-service/mocks/iam/iam.handler';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import {
   versionActiveMock,
   versionDeactivatedMock,
   versionDeletedMock,
 } from '@secret-manager/mocks/versions/versions.mock';
-import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { SecretVersion } from '@secret-manager/types/secret.type';
+import { screen } from '@testing-library/react';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { describe, it, vi } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { getIamMocks } from '@key-management-service/mocks/iam/iam.handler';
-import { renderWithClient } from '@/common/utils/tests/testUtils';
-import { removeHandlersDelay } from '@/common/utils/tests/msw';
-import { VersionIdCell } from './VersionCells.component';
+
+import { getOdsButtonByLabel, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
+
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { removeHandlersDelay } from '@/common/utils/tests/msw';
+import { renderWithClient } from '@/common/utils/tests/testUtils';
+
+import { VersionIdCell } from './VersionCells.component';
 import { VERSION_LIST_CELL_TEST_IDS } from './VersionCells.constants';
 
 let i18nValue: i18n;
@@ -34,9 +35,7 @@ vi.mock('react-router-dom', () => ({
 
 const renderVersionLink = async (versionMock: SecretVersion) => {
   // use global server to mock iam response
-  global.server?.resetHandlers(
-    ...toMswHandlers(removeHandlersDelay([...getIamMocks({})])),
-  );
+  global.server?.resetHandlers(...toMswHandlers(removeHandlersDelay([...getIamMocks({})])));
 
   if (!i18nValue) {
     i18nValue = await initTestI18n();
@@ -80,12 +79,13 @@ describe('VersionCellId test suite', () => {
         const { container } = await renderVersionLink(version);
 
         // THEN
-        await getOdsButtonByLabel({
+        const link = await getOdsButtonByLabel({
           container,
           label: version.id.toString(),
           isLink: true,
           disabled: isLinkDisabled,
         });
+        expect(link).toBeInTheDocument();
       },
     );
   });
@@ -108,14 +108,9 @@ describe('VersionCellId test suite', () => {
       await renderVersionLink(currentVersionMocked);
 
       // THEN
-      const badge = screen.getByTestId(
-        VERSION_LIST_CELL_TEST_IDS.currentVersionBadge,
-      );
+      const badge = screen.getByTestId(VERSION_LIST_CELL_TEST_IDS.currentVersionBadge);
       expect(badge).toBeInTheDocument();
-      expect(badge).toHaveAttribute(
-        'label',
-        labels.secretManager.current_version,
-      );
+      expect(badge).toHaveAttribute('label', labels.secretManager.current_version);
       expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
     });
 
@@ -126,9 +121,7 @@ describe('VersionCellId test suite', () => {
       await renderVersionLink(versionDeactivatedMock);
 
       // THEN
-      const badge = screen.queryByTestId(
-        VERSION_LIST_CELL_TEST_IDS.currentVersionBadge,
-      );
+      const badge = screen.queryByTestId(VERSION_LIST_CELL_TEST_IDS.currentVersionBadge);
       expect(badge).toBeNull();
     });
   });

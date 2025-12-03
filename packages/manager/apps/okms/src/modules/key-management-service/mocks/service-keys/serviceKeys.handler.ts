@@ -1,6 +1,8 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { serviceKeyMock } from './serviceKeys.mock';
+
+import { serviceKeyListMock } from './serviceKeys.mock';
 
 export type GetServiceKeysMockParams = {
   isServiceKeyKO?: boolean;
@@ -8,11 +10,11 @@ export type GetServiceKeysMockParams = {
 };
 
 const findServiceKeyById = (params: PathParams) =>
-  serviceKeyMock.find(({ id }) => id === params.serviceKeyId);
+  serviceKeyListMock.find(({ id }) => id === params.serviceKeyId);
 
 export const getServiceKeysMock = ({
   isServiceKeyKO,
-  nbServiceKey = serviceKeyMock.length,
+  nbServiceKey = serviceKeyListMock.length,
 }: GetServiceKeysMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/serviceKey',
@@ -23,7 +25,7 @@ export const getServiceKeysMock = ({
             message: 'serviceKeys error',
           },
         }
-      : serviceKeyMock.slice(0, nbServiceKey),
+      : serviceKeyListMock.slice(0, nbServiceKey),
     status: isServiceKeyKO ? 500 : 200,
     api: 'v2',
   },

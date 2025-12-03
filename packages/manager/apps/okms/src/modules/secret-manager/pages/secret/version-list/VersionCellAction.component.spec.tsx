@@ -1,28 +1,25 @@
-import React from 'react';
-import { i18n } from 'i18next';
 import { useNavigate } from 'react-router-dom';
-import { I18nextProvider } from 'react-i18next';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { waitFor, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+
 import { useUpdateSecretVersion } from '@secret-manager/data/hooks/useUpdateSecretVersion';
-import { SecretVersion } from '@secret-manager/types/secret.type';
 import {
   versionActiveMock,
   versionDeactivatedMock,
   versionDeletedMock,
 } from '@secret-manager/mocks/versions/versions.mock';
-import {
-  getOdsButtonByLabel,
-  getOdsButtonByIcon,
-} from '@/common/utils/tests/uiTestHelpers';
-import {
-  createErrorResponseMock,
-  renderWithClient,
-} from '@/common/utils/tests/testUtils';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { SecretVersion } from '@secret-manager/types/secret.type';
+import { act, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { createErrorResponseMock, renderWithClient } from '@/common/utils/tests/testUtils';
+import { getOdsButtonByIcon, getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
+
 import { VersionCellAction } from './VersionCellAction.component';
 
 let i18nValue: i18n;
@@ -74,11 +71,12 @@ const renderAndOpenMenu = async (versionMock: SecretVersion) => {
 
   const actionButton = await getOdsButtonByIcon({
     container,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     iconName: 'ellipsis-vertical',
   });
 
-  await act(() => user.click(actionButton));
+  await act(async () => {
+    await user.click(actionButton);
+  });
 
   return { container, user };
 };
@@ -95,10 +93,10 @@ describe('VersionCellAction test suite', () => {
     vi.mocked(useNotifications).mockReturnValue({
       addError: mockAddError,
     });
-    vi.mocked(useUpdateSecretVersion).mockReturnValue(({
+    vi.mocked(useUpdateSecretVersion).mockReturnValue({
       mutateAsync: mockUpdateSecretVersion,
       isPending: false,
-    } as unknown) as ReturnType<typeof useUpdateSecretVersion>);
+    } as unknown as ReturnType<typeof useUpdateSecretVersion>);
   });
 
   describe('Rendering', () => {
@@ -191,9 +189,9 @@ describe('VersionCellAction test suite', () => {
         label: labels.secretManager.version_state_deactivate,
       });
 
-      user.click(deactivateButton);
+      await user.click(deactivateButton);
 
-      waitFor(() =>
+      await waitFor(() =>
         expect(mockUpdateSecretVersion).toHaveBeenCalledWith({
           okmsId: mockOkmsId,
           path: mockSecretPath,
@@ -204,38 +202,34 @@ describe('VersionCellAction test suite', () => {
     });
 
     it('should call updateSecretVersion with ACTIVE state when activate button is clicked', async () => {
-      const { container, user } = await renderAndOpenMenu(
-        versionDeactivatedMock,
-      );
+      const { container, user } = await renderAndOpenMenu(versionDeactivatedMock);
 
       const reactivateButton = await getOdsButtonByLabel({
         container,
         label: labels.secretManager.version_state_reactivate,
       });
 
-      user.click(reactivateButton);
+      await user.click(reactivateButton);
 
-      waitFor(() =>
+      await waitFor(() =>
         expect(mockUpdateSecretVersion).toHaveBeenCalledWith({
           okmsId: mockOkmsId,
           path: mockSecretPath,
-          version: versionActiveMock.id,
+          version: versionDeactivatedMock.id,
           state: 'ACTIVE',
         }),
       );
     });
 
     it('should navigate to delete modal when delete button is clicked', async () => {
-      const { container, user } = await renderAndOpenMenu(
-        versionDeactivatedMock,
-      );
+      const { container, user } = await renderAndOpenMenu(versionDeactivatedMock);
 
       const deleteButton = await getOdsButtonByLabel({
         container,
         label: labels.secretManager.version_state_delete,
       });
 
-      user.click(deleteButton);
+      await user.click(deleteButton);
 
       const modalUrl = SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(
         mockOkmsId,
@@ -243,7 +237,7 @@ describe('VersionCellAction test suite', () => {
         versionDeactivatedMock.id,
       );
 
-      waitFor(() => {
+      await waitFor(() => {
         expect(mockNavigate).toHaveBeenCalledWith(modalUrl);
       });
     });
@@ -262,7 +256,7 @@ describe('VersionCellAction test suite', () => {
         label: labels.secretManager.version_state_deactivate,
       });
 
-      user.click(deactivateButton);
+      await user.click(deactivateButton);
 
       await waitFor(() => {
         expect(mockAddError).toHaveBeenCalledWith('Update Failed');

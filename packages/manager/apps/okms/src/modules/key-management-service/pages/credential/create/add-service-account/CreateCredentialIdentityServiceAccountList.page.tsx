@@ -1,48 +1,39 @@
-import React, { useState } from 'react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_BUTTON_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  OdsButton,
-  OdsModal,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import IdentitiesServiceAccountList from '@key-management-service/pages/credential/create/identities/list/IdentitiesServiceAccountList.component';
+
 import { useIdentityServiceAccountList } from '@key-management-service/data/hooks/useIdentity';
 import { useIdentityData } from '@key-management-service/hooks/credential/useIdentityData';
+import IdentitiesServiceAccountList from '@key-management-service/pages/credential/create/identities/list/IdentitiesServiceAccountList.component';
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_VARIANT,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import { OdsButton, OdsModal, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
 import '../CreateCommonModal.scss';
 
 const CreateCredentialIdentityServiceAccountList = () => {
   const { t } = useTranslation('key-management-service/credential');
   const { combinedData, isLoading } = useIdentityServiceAccountList();
   const { serviceAccountList, setServiceAccountList } = useIdentityData();
-  const [selectedServiceAccountList, setSelectedServiceAccountList] = useState<
-    IdentityOauthClient[]
-  >(serviceAccountList);
+  const [selectedServiceAccountList, setSelectedServiceAccountList] =
+    useState<IdentityOauthClient[]>(serviceAccountList);
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');
 
   return (
-    <OdsModal
-      isOpen
-      isDismissible
-      onOdsClose={closeModal}
-      className="ods-identity-modal"
-    >
+    <OdsModal isOpen isDismissible onOdsClose={closeModal} className="ods-identity-modal">
       <OdsText preset={ODS_TEXT_PRESET.heading3}>
-        {t(
-          'key_management_service_credentials_identity_modal_user_list_headline',
-        )}
+        {t('key_management_service_credentials_identity_modal_user_list_headline')}
       </OdsText>
-      <div className="mt-4 max-h-[400px] h-full overflow-y-auto">
+      <div className="mt-4 h-full max-h-[400px] overflow-y-auto">
         {isLoading ? (
           <div className="flex justify-center">
             <OdsSpinner size={ODS_SPINNER_SIZE.md} />
@@ -61,9 +52,7 @@ const CreateCredentialIdentityServiceAccountList = () => {
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_BUTTON_COLOR.primary}
         onClick={closeModal}
-        label={t(
-          'key_management_service_credentials_identity_modal_user_list_cancel',
-        )}
+        label={t('key_management_service_credentials_identity_modal_user_list_cancel')}
       />
       <OdsButton
         isLoading={isLoading}
@@ -74,9 +63,7 @@ const CreateCredentialIdentityServiceAccountList = () => {
           setServiceAccountList(selectedServiceAccountList);
           closeModal();
         }}
-        label={t(
-          'key_management_service_credentials_identity_modal_user_list_add',
-        )}
+        label={t('key_management_service_credentials_identity_modal_user_list_add')}
       />
     </OdsModal>
   );

@@ -1,5 +1,7 @@
 import { SecretVersion } from '@secret-manager/types/secret.type';
+
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+
 import { secretVersionsQueryKeys } from '../api/secretVersions';
 
 export const useSecretVersionList = ({

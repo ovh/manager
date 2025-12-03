@@ -3,7 +3,8 @@ export const ValidityPeriodErrors = {
   maxPeriod: 'MAX_PERIOD',
 } as const;
 
-export type ValidityPeriodErrorsType = typeof ValidityPeriodErrors[keyof typeof ValidityPeriodErrors];
+export type ValidityPeriodErrorsType =
+  (typeof ValidityPeriodErrors)[keyof typeof ValidityPeriodErrors];
 
 const ValidityMaxPeriod = 365;
 const ValidityMinPeriod = 1;

@@ -1,26 +1,25 @@
-import { vi } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {
-  getOdsButtonByLabel,
-  assertOdsModalVisibility,
-  WAIT_FOR_DEFAULT_OPTIONS,
-} from '@ovh-ux/manager-core-test-utils';
 import * as router from 'react-router-dom';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { labels } from '@/common/utils/tests/init.i18n';
 
-const mockCredentialItem = credentialMock[0];
-const mockPageUrl = KMS_ROUTES_URLS.credentialDashboardDelete(
-  okmsMock[0].id,
-  mockCredentialItem.id,
-);
-const mockCredentialListPageUrl = KMS_ROUTES_URLS.credentialListing(
-  okmsMock[0].id,
-);
+import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  assertOdsModalVisibility,
+  getOdsButtonByLabel,
+} from '@ovh-ux/manager-core-test-utils';
+
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
+const mockOkms = okmsRoubaix1Mock;
+const mockCredentialItem = credentialMock1;
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboardDelete(mockOkms.id, mockCredentialItem.id);
+const mockCredentialListPageUrl = KMS_ROUTES_URLS.credentialListing(mockOkms.id);
 
 describe('Credential delete modal test suite', () => {
   const mockNavigate = vi.fn();
@@ -34,8 +33,8 @@ describe('Credential delete modal test suite', () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     // Check modal is opened
-    await waitFor(() => {
-      assertOdsModalVisibility({ container, isVisible: true });
+    await waitFor(async () => {
+      await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 
@@ -44,8 +43,8 @@ describe('Credential delete modal test suite', () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     // Wait for modal to open
-    await waitFor(() => {
-      assertOdsModalVisibility({ container, isVisible: true });
+    await waitFor(async () => {
+      await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     const submitButton = await getOdsButtonByLabel({
@@ -54,7 +53,9 @@ describe('Credential delete modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Check navigation
     await waitFor(() => {
@@ -66,9 +67,7 @@ describe('Credential delete modal test suite', () => {
     // Check notification
     await waitFor(() => {
       expect(
-        screen.getByText(
-          labels.credentials.key_management_service_credential_delete_success,
-        ),
+        screen.getByText(labels.credentials.key_management_service_credential_delete_success),
       ).toBeVisible();
     });
   });
@@ -80,8 +79,8 @@ describe('Credential delete modal test suite', () => {
     });
 
     // Wait for modal to open
-    await waitFor(() => {
-      assertOdsModalVisibility({ container, isVisible: true });
+    await waitFor(async () => {
+      await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     const submitButton = await getOdsButtonByLabel({
@@ -91,23 +90,18 @@ describe('Credential delete modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Check navigation
-    await waitFor(
-      () => expect(mockNavigate).toHaveBeenCalledWith('..'),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('..'), WAIT_FOR_DEFAULT_OPTIONS);
 
     // Check notification
     await waitFor(() => {
-      const notificationLabel = labels.credentials.key_management_service_credential_delete_error.replace(
-        ' {{error}}',
-        '',
-      );
-      expect(
-        screen.getByText((content) => content.includes(notificationLabel)),
-      ).toBeVisible();
+      const notificationLabel =
+        labels.credentials.key_management_service_credential_delete_error.replace(' {{error}}', '');
+      expect(screen.getByText((content) => content.includes(notificationLabel))).toBeVisible();
     });
   });
 });

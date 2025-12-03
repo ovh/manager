@@ -1,7 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
-import { renderHook } from '@testing-library/react';
 import { useLocation } from 'react-router-dom';
+
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { renderHook } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { BreadcrumbItem, useBreadcrumb } from './useBreadcrumb';
 
 const useNavigateMock = vi.fn();
@@ -22,12 +24,12 @@ const locationPathname = '/'.concat(locationPaths.join('/'));
 
 const items: BreadcrumbItem[] = [
   {
-    id: locationPaths[0],
+    id: locationPaths[0] ?? '',
     label: 'a name from api result',
     navigateTo: `/${locationPaths[0]}`,
   },
   {
-    id: locationPaths[1],
+    id: locationPaths[1] ?? '',
     label: 'a translated value',
     navigateTo: `/${locationPaths[0]}/${locationPaths[1]}`,
   },
@@ -47,9 +49,7 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[0].label).toEqual(
-      'key_management_service_listing_title',
-    );
+    expect(result.current[0]?.label).toEqual('key_management_service_listing_title');
   });
 
   it('should redirect to root path on root item onClick call', () => {
@@ -57,7 +57,7 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[0].navigateTo).toEqual(KMS_ROUTES_URLS.kmsListing);
+    expect(result.current[0]?.navigateTo).toEqual(KMS_ROUTES_URLS.kmsListing);
   });
 
   it('should replace url path value with given item label', () => {
@@ -65,7 +65,7 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[1].label).toEqual(items[1].label);
+    expect(result.current[1]?.label).toEqual(items[1]?.label);
   });
 
   it('should fallback to display url path value when no corresponding given item is found', () => {
@@ -73,7 +73,7 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[2].label).toEqual(locationPaths[2]);
+    expect(result.current[2]?.label).toEqual(locationPaths[2]);
   });
 
   it('should navigate to specified location item onClick call', () => {
@@ -81,14 +81,14 @@ describe('useBreadcumb test suite', () => {
     const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[1].navigateTo).toEqual(items[1].navigateTo);
+    expect(result.current[1]?.navigateTo).toEqual(items[1]?.navigateTo);
   });
 
-  it('should not have a navigateTo url when no corresponding given item is found ', () => {
+  it('should not have a navigateTo url when no corresponding given item is found', () => {
     // given
     const { result } = renderHook(() => useBreadcrumb({ items }));
 
     // then
-    expect(result.current[2].navigateTo).not.toBeDefined();
+    expect(result.current[2]?.navigateTo).not.toBeDefined();
   });
 });
