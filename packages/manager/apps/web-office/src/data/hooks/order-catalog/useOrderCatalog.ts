@@ -1,6 +1,6 @@
 import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
 
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 
 import { getOrderCatalog } from '@/data/api/order/api';
 import { getOrderCatalogQueryKey } from '@/data/api/order/key';

@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import {
   DELETE_ACCOUNT,

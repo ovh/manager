@@ -3,12 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import type { ApiError } from '@ovh-ux/manager-core-api';
-import { UpdateNameModal, useNotifications } from '@ovh-ux/manager-react-components';
+import { UpdateNameModal, useNotifications } from '@ovh-ux/muk';
 
 import { putOfficeLicenseDetails } from '@/data/api/license/api';
 import { getOfficeLicenseDetailsQueryKey } from '@/data/api/license/key';
@@ -60,11 +59,11 @@ export default function UpdateDisplayNameModal() {
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(`${NAMESPACES.STATUS}:errorMessage`, {
             error: error.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -81,7 +80,7 @@ export default function UpdateDisplayNameModal() {
     <UpdateNameModal
       isOpen={true}
       isLoading={isPending}
-      closeModal={closeModal}
+      onClose={closeModal}
       headline={t('dashboard_modal_update_headline')}
       description={t('dashboard_modal_update_description')}
       inputLabel={t('dashboard_modal_update_input_label')}
