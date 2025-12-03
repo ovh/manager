@@ -1,0 +1,30 @@
+{
+  "title": "Partitions",
+  "metrics": "General metrics",
+  "create": "Create a partition",
+  "columns": {
+    "partition_name": "Partition name",
+    "protocol": "Protocol",
+    "use": "Size",
+    "description": "Description"
+  },
+  "actions": {
+    "show": "Edit / View",
+    "snapshots": "Manage snapshots",
+    "access": "Manage accesses",
+    "edit_size": "Edit size",
+    "zfs_options": "Configure usage (ZFS)",
+    "delete": "Delete"
+  },
+  "delete": {
+    "title": "Delete a partition",
+    "content": "Are you sure you want to delete the {{ partitionName }} partition?",
+    "submit": "Delete partition",
+    "cancel": "Close",
+    "success": "The {{ partitionName }} partition has been deleted",
+    "error": "Unable to delete the {{ partitionName }} partition: {{ error }}"
+  }
+}
+
+
+

@@ -1,0 +1,124 @@
+{
+  "edit": "Modifier",
+  "tabs": {
+    "general_information": "Informations générales",
+    "snapshots": "Snapshots",
+    "accesses": "Accès"
+  },
+  "information": {
+    "title": "Informations",
+    "name": "Nom",
+    "description": "Description",
+    "description_none": "Aucune description",
+    "protocol": "Protocole",
+    "size": "Taille",
+    "quota": "Quota"
+  },
+  "edit_description": {
+    "title": "Modifier la description",
+    "label": "Description",
+    "helper": "Maximum 50 caractères",
+    "max_length": "La description ne peut pas dépasser 50 caractères",
+    "success": "La description a été modifiée avec succès",
+    "error": "Une erreur est survenue",
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
+  },
+  "edit_size": {
+    "title": "Modifier la taille",
+    "label": "Taille de la partition",
+    "helper": "Taille autorisée : min {{ min }}GB, max {{ max }}GB",
+    "boundaries_error": "La taille doit être entre {{ min }} GB et {{ max }} GB",
+    "success": "La taille a été modifiée avec succès",
+    "error": "Une erreur est survenue",
+    "confirm": "Confirmer",
+    "cancel": "Annuler"
+  },
+  "accesses": {
+    "title": "Contrôle d'accès (ACL)",
+    "description": "Gérer les accès IP à cette partition",
+    "create": "Créer un accès",
+    "columns": {
+      "type": "Type",
+      "description": "Description"
+    },
+    "actions": {
+      "delete": "Supprimer"
+    },
+    "create": {
+      "title": "Ajouter un nouvel accès",
+      "description": "Ajouter une adresse IP ou une plage autorisée à accéder à cette partition",
+      "ip_label": "IP ou bloc IP",
+      "ip_placeholder": "Sélectionner une IP ou un bloc IP",
+      "type_label": "Type",
+      "description_label": "Description (optionnel)",
+      "submit": "Ajouter l'accès",
+      "cancel": "Annuler",
+      "success": "L'accès {{ ip }} a été ajouté avec succès",
+      "error": "L'accès {{ ip }} n'a pas pu être ajouté : {{ error }}",
+      "errors": {
+        "ip_required": "L'IP est requise",
+        "type_required": "Le type est requis",
+        "submit_failed": "Échec de l'ajout de l'accès"
+      }
+    },
+    "delete": {
+      "title": "Supprimer un contrôle d'accès (ACL)",
+      "content": "Êtes-vous certain(e) de vouloir supprimer l'accès {{ ip }} de la partition {{ partitionName }} ?",
+      "submit": "Supprimer l'accès",
+      "cancel": "Fermer",
+      "success": "L'accès {{ ip }} a été supprimé avec succès",
+      "error": "L'accès {{ ip }} n'a pas pu être supprimé : {{ error }}"
+    }
+  },
+  "snapshots": {
+    "title": "Snapshot policies",
+    "description": "Gérer les politiques de snapshot pour cette partition",
+    "create": "Créer un snapshot",
+    "count_title": "Nombre de snapshots personnalisés",
+    "count_max": "max",
+    "types": "Types de snapshot",
+    "custom": "Snapshot personnalisé",
+    "no_types": "Aucun",
+    "types_title": "Types de snapshots automatiques",
+    "edit_types": "Modifier",
+    "save_types": "Enregistrer",
+    "types_description": "Sélectionnez les types de snapshots automatiques qui doivent être actifs pour cette partition",
+    "types_updated_success": "Types de snapshots mis à jour avec succès",
+    "types_updated_error": "Échec de la mise à jour des types de snapshots",
+    "columns": {
+      "type": "Type",
+      "name": "Nom"
+    },
+    "actions": {
+      "delete": "Supprimer"
+    },
+    "create": {
+      "title": "Créer un snapshot",
+      "description": "Créer un snapshot personnalisé pour cette partition",
+      "name_label": "Nom du snapshot",
+      "name_helper": "Seuls les caractères alphanumériques, points, deux-points et tirets sont autorisés",
+      "prefix_info": "Le préfixe {{ prefix }}{{ separator }} sera ajouté automatiquement au nom",
+      "count_info": "Snapshots actuels : {{ current }}/{{ max }}",
+      "submit": "Créer le snapshot",
+      "cancel": "Annuler",
+      "success": "Le snapshot {{ name }} a été créé avec succès",
+      "error": "Le snapshot {{ name }} n'a pas pu être créé : {{ error }}",
+      "errors": {
+        "name_required": "Le nom est requis",
+        "name_invalid": "Le nom contient des caractères invalides",
+        "max_reached": "Le nombre maximum de snapshots ({{ max }}) a été atteint",
+        "submit_failed": "Échec de la création du snapshot"
+      }
+    },
+    "delete": {
+      "title": "Supprimer un Snapshot",
+      "content": "Êtes-vous certain(e) de vouloir supprimer le Snapshot {{ name }} de la partition {{ partitionName }} ?",
+      "submit": "Supprimer le Snapshot",
+      "cancel": "Fermer",
+      "success": "Le snapshot {{ name }} a été supprimé avec succès",
+      "error": "Le snapshot {{ name }} n'a pas pu être supprimé : {{ error }}"
+    }
+  }
+}
+

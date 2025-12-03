@@ -1,0 +1,30 @@
+{
+  "title": "Partitions",
+  "metrics": "Métriques générales",
+  "create": "Créer une partition",
+  "columns": {
+    "partition_name": "Nom de la partition",
+    "protocol": "Protocole",
+    "use": "Taille",
+    "description": "Description"
+  },
+  "actions": {
+    "show": "Éditer / Voir",
+    "snapshots": "Gérer les snapshots",
+    "access": "Gérer les accès",
+    "edit_size": "Modifier la taille",
+    "zfs_options": "Paramétrer l'usage (ZFS)",
+    "delete": "Supprimer"
+  },
+  "delete": {
+    "title": "Supprimer une partition",
+    "content": "Êtes-vous certain(e) de vouloir supprimer la partition {{ partitionName }} ?",
+    "submit": "Supprimer la partition",
+    "cancel": "Fermer",
+    "success": "La partition {{ partitionName }} a été supprimée avec succès",
+    "error": "La partition {{ partitionName }} n'a pas pu être supprimée : {{ error }}"
+  }
+}
+
+
+

@@ -1,0 +1,124 @@
+{
+  "edit": "Edit",
+  "tabs": {
+    "general_information": "General information",
+    "snapshots": "Snapshots",
+    "accesses": "Accesses"
+  },
+  "information": {
+    "title": "Information",
+    "name": "Name",
+    "description": "Description",
+    "description_none": "No description",
+    "protocol": "Protocol",
+    "size": "Size",
+    "quota": "Quota"
+  },
+  "edit_description": {
+    "title": "Edit description",
+    "label": "Description",
+    "helper": "Maximum 50 characters",
+    "max_length": "Description cannot exceed 50 characters",
+    "success": "Description updated successfully",
+    "error": "An error occurred",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "edit_size": {
+    "title": "Edit size",
+    "label": "Partition size",
+    "helper": "Allowed size: min {{ min }}GB, max {{ max }}GB",
+    "boundaries_error": "Size must be between {{ min }} GB and {{ max }} GB",
+    "success": "Size updated successfully",
+    "error": "An error occurred",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "accesses": {
+    "title": "Access control (ACL)",
+    "description": "Manage IP access to this partition",
+    "create": "Create access",
+    "columns": {
+      "type": "Type",
+      "description": "Description"
+    },
+    "actions": {
+      "delete": "Delete"
+    },
+    "create": {
+      "title": "Add a new access",
+      "description": "Add an IP address or range authorized to access this partition",
+      "ip_label": "IP or IP block",
+      "ip_placeholder": "Select an IP or IP block",
+      "type_label": "Type",
+      "description_label": "Description (optional)",
+      "submit": "Add access",
+      "cancel": "Cancel",
+      "success": "Access {{ ip }} has been added successfully",
+      "error": "Access {{ ip }} could not be added: {{ error }}",
+      "errors": {
+        "ip_required": "IP is required",
+        "type_required": "Type is required",
+        "submit_failed": "Failed to add access"
+      }
+    },
+    "delete": {
+      "title": "Delete an access control (ACL)",
+      "content": "Are you sure you want to delete the access {{ ip }} from the {{ partitionName }} partition?",
+      "submit": "Delete access",
+      "cancel": "Close",
+      "success": "Access {{ ip }} has been deleted successfully",
+      "error": "Access {{ ip }} could not be deleted: {{ error }}"
+    }
+  },
+  "snapshots": {
+    "title": "Snapshot policies",
+    "description": "Manage snapshot policies for this partition",
+    "create": "Create snapshot",
+    "count_title": "Custom snapshots count",
+    "count_max": "max",
+    "types": "Snapshot types",
+    "custom": "Custom snapshot",
+    "no_types": "None",
+    "types_title": "Automatic Snapshot Types",
+    "edit_types": "Edit",
+    "save_types": "Save",
+    "types_description": "Select which automatic snapshot types should be active for this partition",
+    "types_updated_success": "Snapshot types updated successfully",
+    "types_updated_error": "Failed to update snapshot types",
+    "columns": {
+      "type": "Type",
+      "name": "Name"
+    },
+    "actions": {
+      "delete": "Delete"
+    },
+    "create": {
+      "title": "Create a snapshot",
+      "description": "Create a custom snapshot for this partition",
+      "name_label": "Snapshot name",
+      "name_helper": "Only alphanumeric characters, dots, colons and hyphens are allowed",
+      "prefix_info": "The prefix {{ prefix }}{{ separator }} will be automatically added to the name",
+      "count_info": "Current snapshots: {{ current }}/{{ max }}",
+      "submit": "Create snapshot",
+      "cancel": "Cancel",
+      "success": "Snapshot {{ name }} has been created successfully",
+      "error": "Snapshot {{ name }} could not be created: {{ error }}",
+      "errors": {
+        "name_required": "Name is required",
+        "name_invalid": "Name contains invalid characters",
+        "max_reached": "Maximum number of snapshots ({{ max }}) has been reached",
+        "submit_failed": "Failed to create snapshot"
+      }
+    },
+    "delete": {
+      "title": "Delete a snapshot",
+      "content": "Are you sure you want to delete the {{ name }} snapshot from the {{ partitionName }} partition?",
+      "submit": "Delete snapshot",
+      "cancel": "Close",
+      "success": "Snapshot {{ name }} has been deleted successfully",
+      "error": "Snapshot {{ name }} could not be deleted: {{ error }}"
+    }
+  }
+}
+
