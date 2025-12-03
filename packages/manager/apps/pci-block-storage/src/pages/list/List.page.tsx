@@ -1,6 +1,21 @@
 import { Suspense, useRef, useState } from 'react';
-import { Navigate, Outlet, useParams } from 'react-router-dom';
+
+import { Navigate, Outlet } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  OsdsBreadcrumb,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsSearchBar,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { PciAnnouncementBanner, useParam, useProject } from '@ovh-ux/manager-pci-common';
 import {
   ChangelogButton,
   Datagrid,
@@ -13,41 +28,36 @@ import {
   useDataGrid,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import {
-  OsdsBreadcrumb,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSearchBar,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDatagridColumn } from '@/hooks/useDatagridColumn';
-import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
-import { CHANGELOG_LINKS } from '@/constants';
+import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
+import { FileStorageAlphaBanner } from '@/components/banner/FileStorageAlphaBanner.component';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { Button } from '@/components/button/Button';
+import { CHANGELOG_LINKS } from '@/constants';
+import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import { StorageGuidesHeader } from '@/pages/list/StorageGuidesHeader.component';
-import { FileStorageAlphaBanner } from '@/components/banner/FileStorageAlphaBanner.component';
 
 export const ListingPage = () => {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const projectUrl = useProjectUrl('public-cloud');
 
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 
   const { data: allVolumes } = useAllVolumes(projectId);
-  const { data: volumes, error, isFetching, isPending, refetch } = useVolumes(
+  const {
+    data: volumes,
+    error,
+    isFetching,
+    isPending,
+    refetch,
+  } = useVolumes(
     projectId,
     {
       pagination,
@@ -56,8 +66,7 @@ export const ListingPage = () => {
     filters,
   );
 
-  if (allVolumes && !allVolumes.length && !isFetching)
-    return <Navigate to="./onboarding" />;
+  if (allVolumes && !allVolumes.length && !isFetching) return <Navigate to="./onboarding" />;
 
   return (
     <PageLayout>
@@ -106,7 +115,7 @@ export const ListingPage = () => {
                 size="sm"
                 color="primary"
                 variant="outline"
-                onClick={() => refetch()}
+                onClick={() => void refetch()}
                 icon="refresh"
                 aria-label={t('refresh', { ns: NAMESPACES.ACTIONS })}
               />
@@ -153,9 +162,7 @@ export const ListingPage = () => {
                   },
                   {
                     id: 'regionName',
-                    label: t(
-                      'pci_projects_project_storages_blocks_region_label',
-                    ),
+                    label: t('pci_projects_project_storages_blocks_region_label'),
                     comparators: FilterCategories.String,
                   },
                   {
@@ -165,9 +172,7 @@ export const ListingPage = () => {
                   },
                   {
                     id: 'status',
-                    label: t(
-                      'pci_projects_project_storages_blocks_status_label',
-                    ),
+                    label: t('pci_projects_project_storages_blocks_status_label'),
                     comparators: FilterCategories.String,
                   },
                 ]}
@@ -180,7 +185,7 @@ export const ListingPage = () => {
                     ...addedFilter,
                     label: column.label,
                   });
-                  filterPopoverRef.current?.closeSurface();
+                  void filterPopoverRef.current?.closeSurface();
                 }}
               />
             </OsdsPopoverContent>

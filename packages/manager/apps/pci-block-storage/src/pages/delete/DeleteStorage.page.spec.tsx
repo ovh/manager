@@ -1,18 +1,20 @@
+import { useParams } from 'react-router-dom';
+
 import { act, fireEvent } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { useParams } from 'react-router-dom';
-import DeleteStorage from './DeleteStorage.page';
-import {
-  useDeleteVolume,
-  useVolume,
-  useVolumeSnapshot,
-} from '@/api/hooks/useVolume';
+
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+import { useDeleteVolume, useVolume, useVolumeSnapshot } from '@/api/hooks/useVolume';
+
+import DeleteStorage from './DeleteStorage.page';
 
 const deleteVolume = vi.fn();
 
 vi.mock('react-router-dom');
-vi.mocked(useParams).mockReturnValue({ volumeId: 'testVolume' });
+vi.mocked(useParams).mockReturnValue({
+  volumeId: 'testVolume',
+  projectId: 'testProject',
+});
 
 vi.mock('@/api/hooks/useVolume');
 
@@ -21,7 +23,7 @@ const mockedVolume = {
     attachedTo: [],
   },
   isPending: false,
-} as ReturnType<typeof useVolume>;
+} as unknown as ReturnType<typeof useVolume>;
 
 const mockedVolumePending = {
   data: {},
@@ -29,9 +31,7 @@ const mockedVolumePending = {
 } as ReturnType<typeof useVolume>;
 
 vi.mocked(useDeleteVolume).mockReturnValue({
-  deleteVolume: deleteVolume as ReturnType<
-    typeof useDeleteVolume
-  >['deleteVolume'],
+  deleteVolume: deleteVolume as ReturnType<typeof useDeleteVolume>['deleteVolume'],
 } as ReturnType<typeof useDeleteVolume>);
 
 const mockedSnapshots = {
@@ -42,7 +42,7 @@ const mockedSnapshots = {
 const mockedSnapshotsEmpty = {
   data: [],
   isPending: false,
-} as ReturnType<typeof useVolumeSnapshot>;
+} as unknown as ReturnType<typeof useVolumeSnapshot>;
 
 describe('DeleteStorage', () => {
   it('renders without crashing', () => {
@@ -66,9 +66,7 @@ describe('DeleteStorage', () => {
     vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshots);
 
     const { getByTestId } = renderWithMockedWrappers(<DeleteStorage />);
-    expect(
-      getByTestId('deleteConstraintWarningMessage-content'),
-    ).toBeInTheDocument();
+    expect(getByTestId('deleteConstraintWarningMessage-content')).toBeInTheDocument();
   });
 
   it('renders DeleteWarningMessage when canDelete is true', () => {
@@ -82,18 +80,12 @@ describe('DeleteStorage', () => {
   });
 
   it('calls deleteVolume when delete button is clicked and canDelete is true', () => {
-    vi.mocked(useVolume).mockReturnValue(
-      mockedVolume as ReturnType<typeof useVolume>,
-    );
+    vi.mocked(useVolume).mockReturnValue(mockedVolume);
     vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshotsEmpty);
 
     const { getByText } = renderWithMockedWrappers(<DeleteStorage />);
     act(() => {
-      fireEvent.click(
-        getByText(
-          'pci_projects_project_storages_blocks_block_delete_submit_label',
-        ),
-      );
+      fireEvent.click(getByText('pci_projects_project_storages_blocks_block_delete_submit_label'));
     });
     expect(deleteVolume).toHaveBeenCalled();
   });

@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { useGeneralBannerContext } from '@/contexts/GeneralBanner.context';
+
+import { useIsFileStorageAlphaBannerAvailable } from '@/api/feature';
 import { Banner } from '@/components/banner/Banner.component';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
-import { useIsFileStorageAlphaBannerAvailable } from '@/api/feature';
+import { useGeneralBannerContext } from '@/contexts/GeneralBanner.context';
 
 export const FileStorageAlphaBanner = () => {
   const { t } = useTranslation(['general-banners']);
@@ -15,16 +17,9 @@ export const FileStorageAlphaBanner = () => {
     if (!isFileStorageAlphaBannerAvailable) return;
 
     addBanner('alpha_file_storage', ({ onRemove }) => (
-      <Banner
-        iconName="circle-info"
-        dismissible
-        onRemove={onRemove}
-        className="w-full"
-      >
+      <Banner iconName="circle-info" dismissible onRemove={onRemove} className="w-full">
         <div className="w-full flex flex-col gap-4 items-start">
-          <h4 className="m-0">
-            {t('pci_project_file_storage_alpha_banner_message_title')}
-          </h4>
+          <h4 className="m-0">{t('pci_project_file_storage_alpha_banner_message_title')}</h4>
           <div>{t('pci_project_file_storage_alpha_banner_message')}</div>
           <ButtonLink
             isExternal

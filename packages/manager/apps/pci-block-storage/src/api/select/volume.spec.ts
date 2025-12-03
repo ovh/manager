@@ -1,72 +1,63 @@
-import { paginateResults, sortResults } from './volume';
 import { TVolume } from '@/api/hooks/useVolume';
 import { BlockStorageListColumn } from '@/hooks/useDatagridColumn';
 
+import { paginateResults, sortResults } from './volume';
+
 describe('volume', () => {
   describe('sortResults', () => {
-    it.each(['ascending', 'descending'])(
-      'should sort results by name %s',
-      (direction: string) => {
-        const isDescending = direction === 'descending';
-        const rawVolumes = [
-          { id: '1', name: 'Aaa' },
-          { id: '2', name: 'zzz' },
-          { id: '3', name: 'Bbb' },
-          { id: '4', name: 'bba' },
-        ] as TVolume[];
-        const sortedVolumesDescending = [
-          { id: '2', name: 'zzz' },
-          { id: '3', name: 'Bbb' },
-          { id: '4', name: 'bba' },
-          { id: '1', name: 'Aaa' },
-        ] as TVolume[];
+    it.each(['ascending', 'descending'])('should sort results by name %s', (direction: string) => {
+      const isDescending = direction === 'descending';
+      const rawVolumes = [
+        { id: '1', name: 'Aaa' },
+        { id: '2', name: 'zzz' },
+        { id: '3', name: 'Bbb' },
+        { id: '4', name: 'bba' },
+      ] as TVolume[];
+      const sortedVolumesDescending = [
+        { id: '2', name: 'zzz' },
+        { id: '3', name: 'Bbb' },
+        { id: '4', name: 'bba' },
+        { id: '1', name: 'Aaa' },
+      ] as TVolume[];
 
-        const sorting = {
-          id: BlockStorageListColumn.NAME,
-          desc: isDescending,
-        };
+      const sorting = {
+        id: BlockStorageListColumn.NAME,
+        desc: isDescending,
+      };
 
-        const sortedResults = sortResults(rawVolumes, sorting);
+      const sortedResults = sortResults(rawVolumes, sorting);
 
-        expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
-        );
-      },
-    );
+      expect(sortedResults).toEqual(
+        isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
+      );
+    });
 
-    it.each(['ascending', 'descending'])(
-      'should sort results by id %s',
-      (direction: string) => {
-        const isDescending = direction === 'descending';
-        const rawVolumes = [
-          { id: '1', name: 'Aaa' },
-          { id: '4', name: 'bba' },
-          { id: '3', name: 'Bbb' },
-          { id: '2', name: 'zzz' },
-        ] as TVolume[];
-        const sortedVolumesDescending = [
-          { id: '4', name: 'bba' },
-          { id: '3', name: 'Bbb' },
-          { id: '2', name: 'zzz' },
-          { id: '1', name: 'Aaa' },
-        ] as TVolume[];
+    it.each(['ascending', 'descending'])('should sort results by id %s', (direction: string) => {
+      const isDescending = direction === 'descending';
+      const rawVolumes = [
+        { id: '1', name: 'Aaa' },
+        { id: '4', name: 'bba' },
+        { id: '3', name: 'Bbb' },
+        { id: '2', name: 'zzz' },
+      ] as TVolume[];
+      const sortedVolumesDescending = [
+        { id: '4', name: 'bba' },
+        { id: '3', name: 'Bbb' },
+        { id: '2', name: 'zzz' },
+        { id: '1', name: 'Aaa' },
+      ] as TVolume[];
 
-        const sorting = {
-          id: BlockStorageListColumn.ID,
-          desc: isDescending,
-        };
+      const sorting = {
+        id: BlockStorageListColumn.ID,
+        desc: isDescending,
+      };
 
-        const sortedResults = sortResults(rawVolumes, sorting);
+      const sortedResults = sortResults(rawVolumes, sorting);
 
-        expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
-        );
-      },
-    );
+      expect(sortedResults).toEqual(
+        isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
+      );
+    });
 
     it.each(['ascending', 'descending'])(
       'should sort results by regionName %s',
@@ -93,76 +84,64 @@ describe('volume', () => {
         const sortedResults = sortResults(rawVolumes, sorting);
 
         expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
+          isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
         );
       },
     );
 
-    it.each(['ascending', 'descending'])(
-      'should sort results by type %s',
-      (direction: string) => {
-        const isDescending = direction === 'descending';
-        const rawVolumes = [
-          { id: '1', type: 'classic' },
-          { id: '2', type: 'classic-luks' },
-          { id: '3', type: 'classic-multiattach' },
-          { id: '4', type: 'classic-luks' },
-        ] as TVolume[];
-        const sortedVolumesDescending = [
-          { id: '3', type: 'classic-multiattach' },
-          { id: '2', type: 'classic-luks' },
-          { id: '4', type: 'classic-luks' },
-          { id: '1', type: 'classic' },
-        ] as TVolume[];
+    it.each(['ascending', 'descending'])('should sort results by type %s', (direction: string) => {
+      const isDescending = direction === 'descending';
+      const rawVolumes = [
+        { id: '1', type: 'classic' },
+        { id: '2', type: 'classic-luks' },
+        { id: '3', type: 'classic-multiattach' },
+        { id: '4', type: 'classic-luks' },
+      ] as TVolume[];
+      const sortedVolumesDescending = [
+        { id: '3', type: 'classic-multiattach' },
+        { id: '2', type: 'classic-luks' },
+        { id: '4', type: 'classic-luks' },
+        { id: '1', type: 'classic' },
+      ] as TVolume[];
 
-        const sorting = {
-          id: BlockStorageListColumn.TYPE,
-          desc: isDescending,
-        };
+      const sorting = {
+        id: BlockStorageListColumn.TYPE,
+        desc: isDescending,
+      };
 
-        const sortedResults = sortResults(rawVolumes, sorting);
+      const sortedResults = sortResults(rawVolumes, sorting);
 
-        expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
-        );
-      },
-    );
+      expect(sortedResults).toEqual(
+        isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
+      );
+    });
 
-    it.each(['ascending', 'descending'])(
-      'should sort results by size %s',
-      (direction: string) => {
-        const isDescending = direction === 'descending';
-        const rawVolumes = [
-          { id: '1', size: 10 },
-          { id: '2', size: 100 },
-          { id: '3', size: 50 },
-          { id: '4', size: 10 },
-        ] as TVolume[];
-        const sortedVolumesDescending = [
-          { id: '2', size: 100 },
-          { id: '3', size: 50 },
-          { id: '1', size: 10 },
-          { id: '4', size: 10 },
-        ] as TVolume[];
+    it.each(['ascending', 'descending'])('should sort results by size %s', (direction: string) => {
+      const isDescending = direction === 'descending';
+      const rawVolumes = [
+        { id: '1', size: 10 },
+        { id: '2', size: 100 },
+        { id: '3', size: 50 },
+        { id: '4', size: 10 },
+      ] as TVolume[];
+      const sortedVolumesDescending = [
+        { id: '2', size: 100 },
+        { id: '3', size: 50 },
+        { id: '1', size: 10 },
+        { id: '4', size: 10 },
+      ] as TVolume[];
 
-        const sorting = {
-          id: BlockStorageListColumn.SIZE,
-          desc: isDescending,
-        };
+      const sorting = {
+        id: BlockStorageListColumn.SIZE,
+        desc: isDescending,
+      };
 
-        const sortedResults = sortResults(rawVolumes, sorting);
+      const sortedResults = sortResults(rawVolumes, sorting);
 
-        expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
-        );
-      },
-    );
+      expect(sortedResults).toEqual(
+        isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
+      );
+    });
 
     it.each(['ascending', 'descending'])(
       'should sort results by attachedTo %s',
@@ -191,9 +170,7 @@ describe('volume', () => {
         const sortedResults = sortResults(rawVolumes, sorting);
 
         expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
+          isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
         );
       },
     );
@@ -223,9 +200,7 @@ describe('volume', () => {
         const sortedResults = sortResults(rawVolumes, sorting);
 
         expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
+          isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
         );
       },
     );
@@ -255,9 +230,7 @@ describe('volume', () => {
         const sortedResults = sortResults(rawVolumes, sorting);
 
         expect(sortedResults).toEqual(
-          isDescending
-            ? sortedVolumesDescending
-            : sortedVolumesDescending.reverse(),
+          isDescending ? sortedVolumesDescending : sortedVolumesDescending.reverse(),
         );
       },
     );

@@ -1,5 +1,6 @@
-import { TAddon } from '@ovh-ux/manager-pci-common';
 import { v6 } from '@ovh-ux/manager-core-api';
+import { TAddon } from '@ovh-ux/manager-pci-common';
+
 import { TRegion } from '@/api/data/regions';
 
 export type TCatalogGroup = {
@@ -60,8 +61,5 @@ export type TVolumeCatalog = {
   models: TVolumeAddon[];
 };
 
-export const getVolumeCatalog = async (
-  projectId: string,
-): Promise<TVolumeCatalog> =>
-  (await v6.get<TVolumeCatalog>(`/cloud/project/${projectId}/catalog/volume`))
-    .data;
+export const getVolumeCatalog = async (projectId: string): Promise<TVolumeCatalog> =>
+  (await v6.get<TVolumeCatalog>(`/cloud/project/${projectId}/catalog/volume`)).data;

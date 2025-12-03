@@ -1,36 +1,24 @@
-import {
-  ColumnSort,
-  getMacroRegion,
-  PaginationState,
-} from '@ovh-ux/manager-react-components';
 import { TFunction } from 'i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ColumnSort, PaginationState, getMacroRegion } from '@ovh-ux/manager-react-components';
+
+import { TVolumeCatalog } from '@/api/data/catalog';
+import { AddVolumeProps, TAPIVolume, TUpdateVolumeProps } from '@/api/data/volume';
 import { TVolume } from '@/api/hooks/useVolume';
 import {
-  AddVolumeProps,
-  TAPIVolume,
-  TUpdateVolumeProps,
-} from '@/api/data/volume';
-import { TVolumeCatalog } from '@/api/data/catalog';
-import {
+  TModelPrice,
   getPricingSpecsFromModelPricings,
   getVolumeModelPricings,
-  TModelPrice,
 } from '@/api/select/catalog';
-import {
-  BlockStorageListColumn,
-  isBlockStorageListColumn,
-} from '@/hooks/useDatagridColumn';
+import { BlockStorageListColumn, isBlockStorageListColumn } from '@/hooks/useDatagridColumn';
 
-const volumeComparator = <T>(extractor: (_: TVolume) => T) => (
-  t1: TVolume,
-  t2: TVolume,
-) => (extractor(t1) > extractor(t2) ? 1 : -1);
+const volumeComparator =
+  <T>(extractor: (_: TVolume) => T) =>
+  (t1: TVolume, t2: TVolume) =>
+    extractor(t1) > extractor(t2) ? 1 : -1;
 
-export const sortResults = (
-  items: TVolume[],
-  sorting: ColumnSort | undefined,
-) => {
+export const sortResults = (items: TVolume[], sorting: ColumnSort | undefined) => {
   if (!sorting || items.length === 0) return items;
   const sortingColumn = sorting.id;
   if (!isBlockStorageListColumn(sortingColumn)) return items;
@@ -40,17 +28,13 @@ export const sortResults = (
       case BlockStorageListColumn.STATUS:
         return volumeComparator((t: TVolume) => t.statusGroup);
       case BlockStorageListColumn.ATTACHED:
-        return volumeComparator(
-          (t: TVolume) => t.attachedTo[0]?.toLocaleLowerCase() || '',
-        );
+        return volumeComparator((t: TVolume) => t.attachedTo[0]?.toLocaleLowerCase() || '');
       case BlockStorageListColumn.ID:
       case BlockStorageListColumn.NAME:
       case BlockStorageListColumn.REGION:
       case BlockStorageListColumn.TYPE:
       case BlockStorageListColumn.ENCRYPTION:
-        return volumeComparator((t: TVolume) =>
-          (t[sortingColumn] as string).toLocaleLowerCase(),
-        );
+        return volumeComparator((t: TVolume) => t[sortingColumn].toLocaleLowerCase());
       case BlockStorageListColumn.SIZE:
         return volumeComparator((t: TVolume) => t[sortingColumn]);
       default:
@@ -78,71 +62,62 @@ export const paginateResults = <T>(
 });
 
 export type TVolumeRegion = { regionName: string };
-export const mapVolumeRegion = <V extends TAPIVolume>(
-  t: TFunction<['region']>,
-) => (volume: V): V & TVolumeRegion => ({
-  ...volume,
-  regionName: t(
-    `region:manager_components_region_${getMacroRegion(volume.region)}_micro`,
-    {
+export const mapVolumeRegion =
+  <V extends TAPIVolume>(t: TFunction<['region']>) =>
+  (volume: V): V & TVolumeRegion => ({
+    ...volume,
+    regionName: t(`region:manager_components_region_${getMacroRegion(volume.region)}_micro`, {
       micro:
         volume.availabilityZone && volume.availabilityZone !== 'any'
           ? volume.availabilityZone
           : volume.region,
-    },
-  ),
-});
+    }),
+  });
 
 export type TVolumeStatus = {
   statusGroup: string;
   statusLabel: string;
 };
-export const mapVolumeStatus = <V extends TAPIVolume>(
-  t: TFunction<['common']>,
-) => (volume: V): V & TVolumeStatus => {
-  let statusGroup = '';
-  if (['available', 'in-use'].includes(volume.status)) {
-    statusGroup = 'ACTIVE';
-  }
-  if (
-    [
-      'creating',
-      'attaching',
-      'detaching',
-      'deleting',
-      'backing-up',
-      'restoring-backup',
-      'snapshotting',
-      'awaiting-transfer',
-    ].includes(volume.status)
-  ) {
-    statusGroup = 'PENDING';
-  }
-  if (
-    ['error', 'error_deleting', 'error_restoring', 'error_extending'].includes(
-      volume.status,
-    )
-  ) {
-    statusGroup = 'ERROR';
-  }
+export const mapVolumeStatus =
+  <V extends TAPIVolume>(t: TFunction<['common']>) =>
+  (volume: V): V & TVolumeStatus => {
+    let statusGroup = '';
+    if (['available', 'in-use'].includes(volume.status)) {
+      statusGroup = 'ACTIVE';
+    }
+    if (
+      [
+        'creating',
+        'attaching',
+        'detaching',
+        'deleting',
+        'backing-up',
+        'restoring-backup',
+        'snapshotting',
+        'awaiting-transfer',
+      ].includes(volume.status)
+    ) {
+      statusGroup = 'PENDING';
+    }
+    if (['error', 'error_deleting', 'error_restoring', 'error_extending'].includes(volume.status)) {
+      statusGroup = 'ERROR';
+    }
 
-  return {
-    ...volume,
-    statusGroup,
-    statusLabel: t('common:pci_projects_project_storages_blocks_status', {
-      context: statusGroup,
-      defaultValue: volume.status,
-    }),
+    return {
+      ...volume,
+      statusGroup,
+      statusLabel: t('common:pci_projects_project_storages_blocks_status', {
+        context: statusGroup,
+        defaultValue: volume.status,
+      }),
+    };
   };
-};
 
 const getVolumePricing = (catalog?: TVolumeCatalog) => {
   const catalogPricing = catalog?.models.flatMap((m) => m.pricings) ?? [];
 
   return (volume: Pick<TAPIVolume, 'type' | 'region'>) =>
-    catalogPricing.find(
-      (p) => p.specs.name === volume.type && p.regions.includes(volume.region),
-    );
+    catalogPricing.find((p) => p.specs.name === volume.type && p.regions.includes(volume.region));
 };
 
 export type TVolumeAttach = {
@@ -151,9 +126,7 @@ export type TVolumeAttach = {
   maxAttachedInstances: number;
 };
 
-export const mapVolumeAttach = <V extends TAPIVolume>(
-  catalog?: TVolumeCatalog,
-) => {
+export const mapVolumeAttach = <V extends TAPIVolume>(catalog?: TVolumeCatalog) => {
   const getPricing = getVolumePricing(catalog);
 
   return (volume: V): V & TVolumeAttach => {
@@ -196,13 +169,10 @@ export const mapVolumeEncryption = <V extends TAPIVolume>(
 
     return {
       ...volume,
-      encryptionStatus: t(
-        'common:pci_projects_project_storages_blocks_status',
-        {
-          context: encryptionStatusContext,
-          defaultValue: encryptionStatusContext,
-        },
-      ),
+      encryptionStatus: t('common:pci_projects_project_storages_blocks_status', {
+        context: encryptionStatusContext,
+        defaultValue: encryptionStatusContext,
+      }),
       encryptionType: encrypted ? EncryptionType.OMK : null,
       encrypted,
     };
@@ -251,30 +221,33 @@ export type TVolumeToAdd = {
   availabilityZone: string | null;
 };
 
-export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
-  name,
-  region,
-  size,
-  type,
-  availabilityZone,
-  encryptionType,
-}: TVolumeToAdd): AddVolumeProps => {
-  const pricing = catalog.models
-    .find((m) => m.name === type)
-    .pricings.find(
-      (p) =>
-        p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
-    );
-
-  return {
-    projectId,
+export const mapVolumeToAdd =
+  (projectId: string, catalog: TVolumeCatalog) =>
+  ({
     name,
     region,
     size,
-    type: pricing.specs.name,
+    type,
     availabilityZone,
+    encryptionType,
+  }: TVolumeToAdd): AddVolumeProps => {
+    const pricing = catalog.models
+      .find((m) => m.name === type)
+      ?.pricings.find((p) => p.regions.includes(region) && p.specs.encrypted === !!encryptionType);
+
+    if (!pricing) {
+      throw new Error('Unable to find relevant pricing');
+    }
+
+    return {
+      projectId,
+      name,
+      region,
+      size,
+      type: pricing.specs.name,
+      availabilityZone,
+    };
   };
-};
 
 export type TVolumeToEdit = {
   projectId: string;

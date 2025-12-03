@@ -1,11 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+
 import { getInstancesByRegion } from '@/api/data/instance';
 import { useVolume } from '@/api/hooks/useVolume';
-import {
-  selectAttachableInstances,
-  selectAttachedInstances,
-} from '@/api/select/instances';
+import { selectAttachableInstances, selectAttachedInstances } from '@/api/select/instances';
 
 const getInstancesQueryKey = (projectId: string, region?: string) => [
   'instances',
@@ -18,15 +17,13 @@ export const useAttachableInstances = (projectId: string, volumeId: string) => {
 
   const select = useMemo(
     () =>
-      volume
-        ? selectAttachableInstances(volume.availabilityZone, volume.attachedTo)
-        : undefined,
+      volume ? selectAttachableInstances(volume.availabilityZone, volume.attachedTo) : undefined,
     [volume],
   );
 
   return useQuery({
     queryKey: getInstancesQueryKey(projectId, volume?.region),
-    queryFn: () => getInstancesByRegion(projectId, volume.region),
+    queryFn: () => getInstancesByRegion(projectId, volume?.region ?? ''),
     enabled: !!volume,
     select,
   });
@@ -42,7 +39,7 @@ export const useAttachedInstances = (projectId: string, volumeId: string) => {
 
   return useQuery({
     queryKey: getInstancesQueryKey(projectId, volume?.region),
-    queryFn: () => getInstancesByRegion(projectId, volume.region),
+    queryFn: () => getInstancesByRegion(projectId, volume?.region ?? ''),
     enabled: !!volume,
     select,
   });

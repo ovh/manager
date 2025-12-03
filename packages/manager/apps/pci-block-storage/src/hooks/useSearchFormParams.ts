@@ -1,24 +1,14 @@
-import { useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
-import {
-  FieldValues,
-  Path,
-  PathValue,
-  UseFormReturn,
-  useWatch,
-} from 'react-hook-form';
-import { z, ZodRawShape } from 'zod';
+
+import { useSearchParams } from 'react-router-dom';
+
+import { FieldValues, Path, PathValue, UseFormReturn, useWatch } from 'react-hook-form';
+import { ZodRawShape, z } from 'zod';
 
 export function useSearchFormParams<
   S extends z.ZodObject<ZodRawShape>,
-  FormReturn extends FieldValues
->(
-  schema: S,
-  {
-    control,
-    setValue,
-  }: Pick<UseFormReturn<FormReturn>, 'control' | 'setValue'>,
-) {
+  FormReturn extends FieldValues,
+>(schema: S, { control, setValue }: Pick<UseFormReturn<FormReturn>, 'control' | 'setValue'>) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const form = useWatch({ control });
@@ -30,12 +20,9 @@ export function useSearchFormParams<
     try {
       const searchData = partialSchema.parse(Object.fromEntries(searchParams));
       Object.entries(searchData).forEach(
-        ([name, value]: [
-          Path<FormReturn>,
-          PathValue<FormReturn, Path<FormReturn>>,
-        ]) => {
+        ([name, value]: [string, PathValue<FormReturn, Path<FormReturn>>]) => {
           if (value !== undefined && value !== null && form[name] !== value) {
-            setValue(name, value);
+            setValue(name as Path<FormReturn>, value);
           }
         },
       );
@@ -49,9 +36,7 @@ export function useSearchFormParams<
     setSearchParams((oldParams) =>
       Object.fromEntries([
         ...oldParams.entries(),
-        ...Object.entries(form).filter(
-          ([, val]) => val !== undefined && val !== null,
-        ),
+        ...Object.entries(form).filter(([, val]) => val !== undefined && val !== null),
       ]),
     );
   }, [form]);

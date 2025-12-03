@@ -3,7 +3,7 @@ import 'element-internals-polyfill';
 import { vi } from 'vitest';
 
 vi.mock('react-i18next', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, unknown>;
+  const actual: typeof import('react-i18next') = await importOriginal();
   return {
     ...actual,
     useTranslation: () => ({

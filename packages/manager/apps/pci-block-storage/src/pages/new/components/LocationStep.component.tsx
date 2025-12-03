@@ -1,7 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import {
   DeploymentTilesInput,
   PCICommonContext,
@@ -13,12 +16,13 @@ import {
   usePCICommonContextFactory,
 } from '@ovh-ux/manager-pci-common';
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import { StepState } from '@/pages/new/hooks/useStep';
+
+import { TRegion } from '@/api/data/regions';
 import { useVolumeRegions } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
-import { TRegion } from '@/api/data/regions';
-import { useTrackAction } from '@/hooks/useTrackAction';
 import { Button } from '@/components/button/Button';
+import { useTrackAction } from '@/hooks/useTrackAction';
+import { StepState } from '@/pages/new/hooks/useStep';
 
 interface LocationProps {
   projectId: string;
@@ -26,29 +30,19 @@ interface LocationProps {
   onSubmit: (region: TRegion) => void;
 }
 
-export function LocationStep({
-  projectId,
-  step,
-  onSubmit: parentSubmit,
-}: Readonly<LocationProps>) {
+export function LocationStep({ projectId, step, onSubmit: parentSubmit }: Readonly<LocationProps>) {
   const { t } = useTranslation(['stepper', 'add']);
   const {
     data: { deployments, regions },
     isPending,
   } = useVolumeRegions(projectId);
 
-  const [
-    selectedRegionGroup,
-    setSelectedRegionGroup,
-  ] = useState<TDeployment | null>(null);
-  const [selectedLocalisation, setSelectedLocalisation] = useState<
-    TLocalisation
-  >(undefined);
+  const [selectedRegionGroup, setSelectedRegionGroup] = useState<TDeployment | null>(null);
+  const [selectedLocalisation, setSelectedLocalisation] = useState<TLocalisation | undefined>(
+    undefined,
+  );
   const selectedRegion = useMemo(
-    () =>
-      selectedLocalisation
-        ? regions.find((r) => r.name === selectedLocalisation.name)
-        : null,
+    () => (selectedLocalisation ? regions.find((r) => r.name === selectedLocalisation.name) : null),
     [regions, selectedLocalisation],
   );
 
@@ -60,9 +54,7 @@ export function LocationStep({
   const selectedDeploymentRegions = useMemo(
     () =>
       selectedRegionGroup
-        ? regions?.filter((r) =>
-            r.filters.deployment.includes(selectedRegionGroup.name),
-          )
+        ? regions?.filter((r) => r.filters.deployment?.includes(selectedRegionGroup.name))
         : regions,
     [regions, selectedRegionGroup],
   );
@@ -77,10 +69,10 @@ export function LocationStep({
   );
 
   const onSubmit = useCallback(() => {
+    if (!selectedRegion) return;
+
     setSelectedRegionGroup(
-      deploymentsWithPrice.find(
-        (g) => g.name === selectedRegion.filters.deployment[0],
-      ),
+      deploymentsWithPrice.find((g) => g.name === selectedRegion.filters.deployment?.[0]) ?? null,
     );
     parentSubmit(selectedRegion);
   }, [deploymentsWithPrice, selectedRegion, parentSubmit]);
@@ -98,7 +90,7 @@ export function LocationStep({
     (localisation) => ({
       buttonType: 'tile',
       actionName: 'select_location',
-      actionValues: [localisation.name],
+      actionValues: localisation ? [localisation.name] : undefined,
     }),
     setSelectedLocalisation,
   );
@@ -123,12 +115,12 @@ export function LocationStep({
         />
 
         <div className="mb-6">
-          <Subtitle>
-            {t('add:pci_projects_project_storages_blocks_add_region_title')}
-          </Subtitle>
+          <Subtitle>{t('add:pci_projects_project_storages_blocks_add_region_title')}</Subtitle>
         </div>
         {step.isLocked ? (
-          <RegionSummary region={selectedLocalisation} />
+          selectedLocalisation ? (
+            <RegionSummary region={selectedLocalisation} />
+          ) : null
         ) : (
           <div>
             <RegionSelector
@@ -136,8 +128,7 @@ export function LocationStep({
               onSelectRegion={onTrackingSelectRegion}
               onSelectContinent={onTrackingSelectContinent}
               regionFilter={(r) =>
-                r.isMacro ||
-                selectedDeploymentRegions.some((r2) => r2.name === r.name)
+                r.isMacro || selectedDeploymentRegions.some((r2) => r2.name === r.name)
               }
             />
           </div>

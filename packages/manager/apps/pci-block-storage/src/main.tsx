@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  initI18n,
-  initShellContext,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import { TRACKING_CONTEXT } from '@/tracking.constants';
-import App from './App';
 
+import ReactDOM from 'react-dom/client';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { TRACKING_CONTEXT } from '@/tracking.constants';
 import '@/vite-hmr.ts';
+
+import App from './App';
 
 const init = async (
   appName: string,
@@ -19,7 +18,7 @@ const init = async (
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
@@ -30,7 +29,11 @@ const init = async (
     defaultNS: 'common',
   });
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  const root = document.getElementById('root');
+  if (!root) {
+    throw new Error('Root element not found');
+  }
+  ReactDOM.createRoot(root).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
         <App />
@@ -39,4 +42,4 @@ const init = async (
   );
 };
 
-init('pci-block-storage');
+void init('pci-block-storage');

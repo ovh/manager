@@ -2,6 +2,7 @@ packages/manager/apps/dedicated/client/app/account/user/components/directives/ch
 packages/manager/apps/dedicated/client/app/account/user/components/directives/checkboxSwitch/checkboxSwitch-2.css
 packages/manager/apps/dedicated/client/app/css/less/common/buttonIcons.less
 packages/manager/apps/pci-contacts
+packages/manager/apps/pci-block-storage
 **/dist/
 **/node_modules/
 **/coverage/

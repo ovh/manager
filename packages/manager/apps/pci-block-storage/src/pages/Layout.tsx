@@ -1,13 +1,12 @@
-import { Outlet, useRouteError } from 'react-router-dom';
-import {
-  ShellContext,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
 import { Suspense, useContext } from 'react';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import HidePreloader from '@/core/HidePreloader';
 
+import { Outlet, useRouteError } from 'react-router-dom';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+
+import HidePreloader from '@/core/HidePreloader';
 import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
@@ -43,7 +42,7 @@ export const ErrorBoundary = () => {
       <ErrorBanner
         onReloadPage={reloadPage}
         onRedirectHome={navigateToHomePage}
-        error={error.response}
+        error={error.response ?? {}}
       />
       <HidePreloader />
     </Suspense>
