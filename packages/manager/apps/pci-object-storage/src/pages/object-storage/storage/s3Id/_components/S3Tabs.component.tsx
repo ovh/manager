@@ -17,7 +17,6 @@ const S3Tabs = ({ s3 }: S3TabsProps) => {
     {
       href: 'objects',
       label: t('objectsTab'),
-      count: s3.objects.length || 0,
     },
     !isLocaleZone && {
       href: 'replication',
