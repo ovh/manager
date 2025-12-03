@@ -1,24 +1,22 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import {
-  ActionMenu,
-  ActionMenuItem,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
+import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { Link } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
+
 import { SECRET_LIST_CELL_TEST_IDS } from './ListingCells.constant';
 
 export const DatagridCellPath = (secret: Secret) => {
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
   const url = SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secret.path);
 
   return (
@@ -33,9 +31,7 @@ export const DatagridCellPath = (secret: Secret) => {
 
 export const DatagridCellVersion = (secret: Secret) => {
   return (
-    <DataGridTextCell
-      data-testid={SECRET_LIST_CELL_TEST_IDS.version(secret.path)}
-    >
+    <DataGridTextCell data-testid={SECRET_LIST_CELL_TEST_IDS.version(secret.path)}>
       {secret.version.id}
     </DataGridTextCell>
   );
@@ -44,16 +40,14 @@ export const DatagridCellVersion = (secret: Secret) => {
 export const DatagridCreationDate = (secret: Secret) => {
   const { formatDate } = useFormatDate();
   return (
-    <DataGridTextCell
-      data-testid={SECRET_LIST_CELL_TEST_IDS.createdAt(secret.path)}
-    >
+    <DataGridTextCell data-testid={SECRET_LIST_CELL_TEST_IDS.createdAt(secret.path)}>
       {formatDate(secret.metadata.createdAt)}
     </DataGridTextCell>
   );
 };
 
 export const DatagridAction = (secret: Secret) => {
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 
@@ -62,12 +56,7 @@ export const DatagridAction = (secret: Secret) => {
       id: 1,
       label: t('reveal_secret'),
       onClick: () => {
-        navigate(
-          SECRET_MANAGER_ROUTES_URLS.secretListSecretValueDrawer(
-            okmsId,
-            secret.path,
-          ),
-        );
+        navigate(SECRET_MANAGER_ROUTES_URLS.secretListSecretValueDrawer(okmsId, secret.path));
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretGet, kmsIamActions.secretVersionGetData],
@@ -76,12 +65,7 @@ export const DatagridAction = (secret: Secret) => {
       id: 2,
       label: t('add_new_version'),
       onClick: () => {
-        navigate(
-          SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(
-            okmsId,
-            secret.path,
-          ),
-        );
+        navigate(SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(okmsId, secret.path));
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretVersionCreate],
@@ -97,12 +81,7 @@ export const DatagridAction = (secret: Secret) => {
       id: 4,
       label: t('delete_secret'),
       onClick: () => {
-        navigate(
-          SECRET_MANAGER_ROUTES_URLS.secretListDeleteSecretModal(
-            okmsId,
-            secret.path,
-          ),
-        );
+        navigate(SECRET_MANAGER_ROUTES_URLS.secretListDeleteSecretModal(okmsId, secret.path));
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretDelete],

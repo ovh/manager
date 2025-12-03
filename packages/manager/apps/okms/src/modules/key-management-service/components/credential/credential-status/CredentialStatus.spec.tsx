@@ -1,11 +1,9 @@
-import React from 'react';
-import {
-  ODS_BADGE_COLOR,
-  OdsBadge as OdsBadgeType,
-} from '@ovhcloud/ods-components';
+import { OkmsCredentialStatus } from '@key-management-service/types/okmsCredential.type';
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
-import { OkmsCredentialStatus } from '@key-management-service/types/okmsCredential.type';
+
+import { ODS_BADGE_COLOR, OdsBadge as OdsBadgeType } from '@ovhcloud/ods-components';
+
 import { CredentialStatus } from './CredentialStatus.component';
 
 describe('CredentialStatus component test suite', () => {
@@ -47,9 +45,7 @@ describe('CredentialStatus component test suite', () => {
       // given state, colorValue and label
 
       // when
-      const { getByTestId } = render(
-        <CredentialStatus state={state} data-testid="test" />,
-      );
+      const { getByTestId } = render(<CredentialStatus state={state} data-testid="test" />);
       const component = getByTestId('test');
 
       // then
@@ -63,9 +59,7 @@ describe('CredentialStatus component test suite', () => {
     const serviceKeyState = 'AAA' as OkmsCredentialStatus;
 
     // when
-    const { getByTestId } = render(
-      <CredentialStatus state={serviceKeyState} data-testid="test" />,
-    );
+    const { getByTestId } = render(<CredentialStatus state={serviceKeyState} data-testid="test" />);
     const component = getByTestId('test');
 
     // then

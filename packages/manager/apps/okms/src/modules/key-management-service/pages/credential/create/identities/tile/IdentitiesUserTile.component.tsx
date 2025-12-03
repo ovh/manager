@@ -1,11 +1,14 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+
 import { IdentityUser } from '@key-management-service/types/identity.type';
-import IdentitiesTileText from './IdentitiesTileText.component';
-import IdentitiesBaseTile from './IdentitiesBaseTile.component';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import IdentitiesStatusBadge from '../badge/IdentitiesStatusBadge.component';
+import IdentitiesBaseTile from './IdentitiesBaseTile.component';
+import IdentitiesTileText from './IdentitiesTileText.component';
 
 type IdentitiesUserTileProps = {
   user: IdentityUser;
@@ -23,6 +26,8 @@ const IdentitiesUserTile = ({
 
   useEffect(() => {
     if (selectedUserList.find((userInList) => userInList.urn === user.urn)) {
+      // TODO: This is freaking bad and should be fixed someday
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsChecked(true);
     }
   }, [selectedUserList, user]);
@@ -46,28 +51,19 @@ const IdentitiesUserTile = ({
     >
       <div>
         <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(
-            'key_management_service_credential_create_identities_user_tile_email_label',
-          )}
-          :
+          {t('key_management_service_credential_create_identities_user_tile_email_label')}:
         </OdsText>
         <IdentitiesTileText>{user.email}</IdentitiesTileText>
       </div>
       <div>
         <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(
-            'key_management_service_credential_create_identities_user_tile_group_label',
-          )}
-          :
+          {t('key_management_service_credential_create_identities_user_tile_group_label')}:
         </OdsText>
         <IdentitiesTileText>{user.group} </IdentitiesTileText>
       </div>
       <div>
         <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(
-            'key_management_service_credential_create_identities_user_tile_identity_label',
-          )}
-          :
+          {t('key_management_service_credential_create_identities_user_tile_identity_label')}:
         </OdsText>
         <IdentitiesTileText>{user.urn}</IdentitiesTileText>
       </div>

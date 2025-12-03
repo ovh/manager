@@ -1,19 +1,19 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNavigate, useParams } from 'react-router-dom';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useNavigate } from 'react-router-dom';
+
 import { useDeleteSecret } from '@secret-manager/data/hooks/useDeleteSecret';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ConfirmationModal } from '@/common/components/confirmation-modal/ConfirmationModal';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const DeleteSecretModal = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
-  const { okmsId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
 
   const secretPathDecoded = decodeSecretPath(secretPath);
 

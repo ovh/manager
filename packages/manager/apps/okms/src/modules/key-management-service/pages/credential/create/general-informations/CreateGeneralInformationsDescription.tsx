@@ -1,19 +1,15 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import {
-  OdsFormField,
-  OdsText,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   CredentialDescriptionErrorsType,
   CredentialDescriptionMaxCharacters,
 } from '@key-management-service/utils/credential/validateCredentialDescription';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsText, OdsTextarea } from '@ovhcloud/ods-components/react';
 
 type CreateGeneralInformationsDescriptionProps = {
   description: string | null;
-  setDescription: Dispatch<SetStateAction<string | null>>;
+  setDescription: (description: string | null) => void;
   credentialDescriptionError: CredentialDescriptionErrorsType | undefined;
 };
 
@@ -24,31 +20,21 @@ const CreateGeneralInformationsDescription = ({
 }: CreateGeneralInformationsDescriptionProps) => {
   const { t } = useTranslation('key-management-service/credential');
 
-  const getDescriptionErrorMessage = (
-    error: CredentialDescriptionErrorsType | undefined,
-  ) => {
+  const getDescriptionErrorMessage = (error: CredentialDescriptionErrorsType | undefined) => {
     switch (error) {
       case 'INVALID_CHARACTERS':
-        return t(
-          'key_management_service_credential_update_description_error_invalid_characters',
-        );
+        return t('key_management_service_credential_update_description_error_invalid_characters');
       case 'TOO_MANY_CHARACTERS':
-        return t(
-          'key_management_service_credential_update_description_error_max',
-        );
+        return t('key_management_service_credential_update_description_error_max');
       default:
         return undefined;
     }
   };
 
   return (
-    <OdsFormField
-      error={getDescriptionErrorMessage(credentialDescriptionError)}
-    >
+    <OdsFormField error={getDescriptionErrorMessage(credentialDescriptionError)}>
       <OdsText slot="label" preset={ODS_TEXT_PRESET.heading5} className="mb-2">
-        {t(
-          'key_management_service_credential_create_general_information_description_title',
-        )}
+        {t('key_management_service_credential_create_general_information_description_title')}
       </OdsText>
       <OdsTextarea
         name="description"

@@ -1,12 +1,5 @@
-import {
-  Datagrid,
-  DatagridColumn,
-  ErrorBanner,
-} from '@ovh-ux/manager-react-components';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import {
   DatagridCredentialCellActions,
   DatagridCredentialCellCreationDate,
@@ -20,9 +13,14 @@ import {
   getOkmsCredentialsQueryKey,
   useOkmsCredentials,
 } from '@key-management-service/data/hooks/useOkmsCredential';
-import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
-import { OKMS } from '@key-management-service/types/okms.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
+import { useTranslation } from 'react-i18next';
+
+import { Datagrid, DatagridColumn, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+
 import Loading from '@/common/components/loading/Loading';
 
 type CredentialDatagridProps = {
@@ -32,7 +30,7 @@ type CredentialDatagridProps = {
 const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const { state } = useLocation() as { state: { deletingCredentialId?: string } };
 
   const {
     data: credentials,
@@ -43,6 +41,14 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
     deletingCredentialId: state?.deletingCredentialId,
   });
 
+  const handleReloadPage = () => {
+    queryClient
+      .refetchQueries({
+        queryKey: getOkmsCredentialsQueryKey(okms.id),
+      })
+      .catch((error) => console.error(error));
+  };
+
   if (isLoadingCredentials) return <Loading />;
 
   if (credentialsError)
@@ -50,11 +56,7 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
       <ErrorBanner
         error={credentialsError}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: getOkmsCredentialsQueryKey(okms.id),
-          })
-        }
+        onReloadPage={handleReloadPage}
       />
     );
 
@@ -97,8 +99,7 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
     },
     {
       id: 'actions',
-      cell: (credential: OkmsCredential) =>
-        DatagridCredentialCellActions(credential, okms),
+      cell: (credential: OkmsCredential) => DatagridCredentialCellActions(credential, okms),
       label: '',
       isSortable: false,
     },

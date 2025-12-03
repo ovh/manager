@@ -1,8 +1,10 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { OkmsServiceKeyPutPayload } from '@key-management-service/types/okmsServiceKey.type';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import {
   getOkmsServiceKeyResourceListQueryKey,
   getOkmsServiceKeyResourceQueryKey,
