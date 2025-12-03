@@ -93,5 +93,6 @@
   "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Bitte wählen Sie einen anderen Namen, dieser ist bereits vergeben.",
   "pci_instance_creation_select_image_distribution_version_label": "Bildversion",
   "pci_instance_creation_select_image_distribution_version_unavailable": "Version nicht verfügbar",
-  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} inkl. MwSt./vCore/Stunde"
+  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} inkl. MwSt./vCore/Stunde",
+  "pci_instance_creation_image_available_on_other_models": "Dieses Bild ist in anderen Modellen verfügbar."
 }
