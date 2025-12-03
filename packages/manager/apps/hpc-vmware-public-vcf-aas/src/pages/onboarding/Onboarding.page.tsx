@@ -101,15 +101,17 @@ export default function Onboarding() {
           );
         }}
       >
-        {tileList.map((tile) => (
-          <Card
-            key={tile.id}
-            href={tile.href}
-            texts={tile.texts}
-            hrefLabel={tile.hrefLabel}
-            onClick={() => trackClick(TRACKING.onboarding.guideClick(tile.tracking))}
-          />
-        ))}
+        {tileList.map((tile) =>
+          tile.href ? (
+            <Card
+              key={tile.id}
+              href={tile.href}
+              texts={tile.texts}
+              hrefLabel={tile.hrefLabel}
+              onClick={() => trackClick(TRACKING.onboarding.guideClick(tile.tracking))}
+            />
+          ) : null,
+        )}
       </OnboardingLayout>
     </div>
   );

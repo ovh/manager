@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
 import { describe, vi } from 'vitest';
@@ -81,7 +79,7 @@ describe('DatagridContainer component unit test suite', () => {
         columns: [
           {
             id: 'id',
-            cell: ({ id }) => <DataGridTextCell>{id}</DataGridTextCell>,
+            cell: (props) => <DataGridTextCell>{(props as { id: string }).id}</DataGridTextCell>,
             label: 'title for id',
           },
         ],

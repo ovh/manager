@@ -44,7 +44,9 @@ export const VrackSegmentDatagrid = ({ id, vdcId }: VrackSegmentDatagridProps) =
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const isVcdTerminated = isStatusTerminated(vcdOrganization?.data?.resourceStatus);
+  const isVcdTerminated = vcdOrganization?.data?.resourceStatus
+    ? isStatusTerminated(vcdOrganization.data.resourceStatus)
+    : false;
 
   const vcdVrackNetworkOptions = useVcdVrackSegmentListOptions(id, vdcId);
   const { data: vrackSegments, isLoading } = useQuery({
@@ -77,10 +79,11 @@ export const VrackSegmentDatagrid = ({ id, vdcId }: VrackSegmentDatagridProps) =
   );
 
   const hasExtraSegments = (vrackSegments?.length ?? 0) > VRACK_SEGMENTS_MIN_LENGTH;
+  const firstColumnId = 'searchableValue';
 
   const columns = [
     {
-      id: 'searchableValue',
+      id: firstColumnId,
       label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment'),
       cell: (item: VCDVrackSegment) => {
         return (
@@ -136,11 +139,11 @@ export const VrackSegmentDatagrid = ({ id, vdcId }: VrackSegmentDatagridProps) =
                   href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
                   label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan'),
                   isDisabled: isNotEditable,
-                  tooltipMessage:
-                    isNotEditable &&
-                    t(
-                      'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan_not_available',
-                    ),
+                  tooltipMessage: isNotEditable
+                    ? t(
+                        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan_not_available',
+                      )
+                    : undefined,
                 },
                 {
                   id: 2,
@@ -189,7 +192,7 @@ export const VrackSegmentDatagrid = ({ id, vdcId }: VrackSegmentDatagridProps) =
               ? filters
               : [
                   {
-                    key: columns[0].id,
+                    key: firstColumnId,
                     value: searchInput,
                     comparator: FilterComparator.Includes,
                   },

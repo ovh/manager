@@ -2,25 +2,25 @@ import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
 
-import {
-  datacentreList,
-  mockVrackSegmentList,
-  organizationList,
-} from '@ovh-ux/manager-module-vcd-api';
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import { subRoutes, urls } from '../../../../../routes/routes.constant';
 import { labels, renderTest } from '../../../../../test-utils';
 import { encodeVrackNetwork } from '../../../../../utils/encodeVrackNetwork';
 
-const testVrack = mockVrackSegmentList[0];
-
 const varRegex = (key: string) => new RegExp(`\\{\\{\\s*${key}\\s*\\}\\}`, 'g');
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vrackSegment: SAFE_MOCK_DATA.vrackSegmentStandard,
+  network: SAFE_MOCK_DATA.vrackSegmentStandard.targetSpec.networks[0] ?? '',
+};
 
 const initialRoute = urls.vrackSegmentDeleteNetwork
-  .replace(subRoutes.dashboard, organizationList[0].id)
-  .replace(subRoutes.vdcId, datacentreList[0].id)
-  .replace(subRoutes.vrackSegmentId, testVrack.id)
-  .replace(subRoutes.vrackNetworkId, encodeVrackNetwork(testVrack.targetSpec.networks[0]));
+  .replace(subRoutes.dashboard, config.org.id)
+  .replace(subRoutes.vdcId, config.vdc.id)
+  .replace(subRoutes.vrackSegmentId, config.vrackSegment.id)
+  .replace(subRoutes.vrackNetworkId, encodeVrackNetwork(config.network));
 
 const {
   managed_vcd_dashboard_vrack_delete_network: title,
@@ -73,10 +73,10 @@ describe('Delete Vrack Network Page', () => {
     expect(
       screen.getByText(
         success
-          .replace(varRegex('subnet'), testVrack.targetSpec.networks[0])
+          .replace(varRegex('subnet'), config.network)
           .replace(
             varRegex('vrack'),
-            labelVrack.replace(varRegex('vlanId'), testVrack.currentState.vlanId),
+            labelVrack.replace(varRegex('vlanId'), config.vrackSegment.currentState.vlanId),
           ),
       ),
     ).toBeVisible();

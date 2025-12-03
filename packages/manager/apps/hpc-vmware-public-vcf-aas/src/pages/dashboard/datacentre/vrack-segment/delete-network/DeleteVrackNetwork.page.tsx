@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -14,11 +14,12 @@ import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
 
 import { DeleteModal } from '@/components/deleteModal/DeleteModal.component';
 import { useMessageContext } from '@/context/Message.context';
+import { useVrackNetworkParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { decodeVrackNetwork } from '@/utils/encodeVrackNetwork';
 
 export default function DeleteVrackNetwork() {
-  const { id, vdcId, vrackSegmentId, vrackNetworkId } = useParams();
+  const { id, vdcId, vrackSegmentId, vrackNetworkId } = useVrackNetworkParams();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ export default function DeleteVrackNetwork() {
   }
 
   const handleSubmit = () => {
+    if (!vrackSegment) return;
     const filtered = vrackSegment.targetSpec.networks.filter(
       (network) => network !== decodeVrackNetwork(vrackNetworkId),
     );

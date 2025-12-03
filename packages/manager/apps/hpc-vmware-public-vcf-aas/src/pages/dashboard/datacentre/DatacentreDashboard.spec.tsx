@@ -7,7 +7,8 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import { labels, mockEditInputValue, renderTest } from '../../../test-utils';
 import TEST_IDS from '../../../utils/testIds.constants';
@@ -23,15 +24,22 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vdcSuspended: SAFE_MOCK_DATA.vdcSuspended,
+};
+const initialRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}`;
+const editDescriptionRoute = `${initialRoute}/edit-description`;
+const editSuspendedDescriptionRoute = `/${config.org.id}/virtual-datacenters/${config.vdcSuspended.id}`;
+
 describe('Datacentre Dashboard Page', () => {
   it('display the datacentre dashboard page', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
-    });
+    await renderTest({ initialRoute });
 
     const layoutElements = [
-      datacentreList[0].id,
-      datacentreList[0].currentState.description,
+      config.vdc.id,
+      config.vdc.currentState.description,
       labels.commun.dashboard.general_information,
       COMPUTE_LABEL,
       STORAGE_LABEL,
@@ -41,18 +49,13 @@ describe('Datacentre Dashboard Page', () => {
   });
 
   it('display an error is datacentre service is KO', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
-      isDatacentresKo: true,
-    });
+    await renderTest({ initialRoute, isDatacentresKo: true });
 
     await assertTextVisibility('Datacentre error');
   });
 
   it('successfully updates description: closes modal and display success banner', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
-    });
+    const { container } = await renderTest({ initialRoute: editDescriptionRoute });
     const value = 'description toto';
     const successMessage = labels.dashboard.managed_vcd_dashboard_edit_description_modal_success;
     await assertOdsModalVisibility({
@@ -72,9 +75,7 @@ describe('Datacentre Dashboard Page', () => {
 
   it('Display helper message when the input is invalid', async () => {
     const error = labels.dashboard.managed_vcd_dashboard_edit_description_modal_helper_error;
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
-    });
+    const { container } = await renderTest({ initialRoute: editDescriptionRoute });
     await assertOdsModalVisibility({
       container,
       isVisible: true,
@@ -91,7 +92,7 @@ describe('Datacentre Dashboard Page', () => {
 
   it('keeps modal open and display error message if api return error', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
+      initialRoute: editDescriptionRoute,
       isDatacentreUpdateKo: true,
     });
 
@@ -110,10 +111,8 @@ describe('Datacentre Dashboard Page', () => {
     });
   });
 
-  it('display a warning message when the service is suspended', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}`,
-    });
+  it('display a warning message when the datacentre service is suspended', async () => {
+    await renderTest({ initialRoute: editSuspendedDescriptionRoute });
 
     await assertTextVisibility('cancel_service_success');
   });

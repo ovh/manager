@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { Outlet, useHref } from 'react-router-dom';
 
@@ -33,11 +33,13 @@ import TEST_IDS from '@/utils/testIds.constants';
 import OrganizationActions from './OrganizationActions.component';
 
 const organizationMapper = (vdcOrgs?: VCDOrganization[]) => {
-  return vdcOrgs?.map(({ id, currentState, resourceStatus }) => ({
-    ...currentState,
-    id,
-    resourceStatus,
-  }));
+  return (
+    vdcOrgs?.map(({ id, currentState, resourceStatus }) => ({
+      ...currentState,
+      id,
+      resourceStatus,
+    })) ?? []
+  );
 };
 
 /* ========= datagrid cells ========== */
@@ -155,7 +157,7 @@ export default function Listing() {
         }}
         columns={columns}
         columnsSearchable="fullName"
-        mapper={organizationMapper}
+        mapper={organizationMapper as (args: unknown[]) => unknown[]}
         withFilter
         orderButton={
           <OdsButton

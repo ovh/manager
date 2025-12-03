@@ -7,11 +7,15 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { urls } from '@/routes/routes.constant';
 
-interface ErrorObject {
-  [key: string]: unknown;
-}
+// TODO: refactor this component, or use something from MRC
+// ErrorType expected by ErrorBanner and getTrackingTypology don't overlap
+type ErrorObject = {
+  status?: number | undefined;
+  data?: { [key: string]: unknown };
+  headers?: { [key: string]: unknown };
+};
 
-function getTrackingTypology(error: ErrorMessage) {
+function getTrackingTypology(error?: ErrorMessage) {
   const status = (error?.detail as { status: number } | undefined)?.status;
   if (status && typeof status === 'number' && Math.floor(status / 100) === 4) {
     return [401, 403].includes(status)
@@ -21,7 +25,7 @@ function getTrackingTypology(error: ErrorMessage) {
   return TRACKING_LABELS.PAGE_LOAD;
 }
 
-const Errors: React.FC<ErrorObject> = ({ error }: { error: unknown }) => {
+const Errors = ({ error }: { error?: ErrorObject }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { shell } = React.useContext(ShellContext);
@@ -43,7 +47,7 @@ const Errors: React.FC<ErrorObject> = ({ error }: { error: unknown }) => {
 
   return (
     <ErrorBanner
-      error={error}
+      error={error || {}}
       onReloadPage={() => navigate(location.pathname, { replace: true })}
       onRedirectHome={() => navigate(urls.root, { replace: true })}
     />

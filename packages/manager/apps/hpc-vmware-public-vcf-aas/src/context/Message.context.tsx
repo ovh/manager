@@ -39,11 +39,11 @@ export type MessageContextType = {
 
 const MessageContext = createContext<MessageContextType>({
   messages: [],
-  addSuccess: () => null,
-  addError: () => null,
-  addWarning: () => null,
-  addInfo: () => null,
-  addCritical: () => null,
+  addSuccess: () => -1,
+  addError: () => -1,
+  addWarning: () => -1,
+  addInfo: () => -1,
+  addCritical: () => -1,
   clearMessage: () => null,
   clearMessages: () => null,
 });

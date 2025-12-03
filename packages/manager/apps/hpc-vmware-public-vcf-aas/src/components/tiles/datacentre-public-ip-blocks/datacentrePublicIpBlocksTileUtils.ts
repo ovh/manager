@@ -7,6 +7,9 @@ import { VCDVrackSegment } from '@ovh-ux/manager-module-vcd-api';
  */
 export function isPrivateNetwork(cidr: string): boolean {
   const [ip] = cidr.split('/');
+  if (!ip) {
+    throw new Error('Invalid CIDR');
+  }
   return ipaddr.parse(ip).range() === 'private';
 }
 

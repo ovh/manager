@@ -6,14 +6,19 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import { labels, mockEditInputValue, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
 
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+};
+
 describe('Organization General Information Page', () => {
   it('display the VCD dashboard general page', async () => {
-    await renderTest({ initialRoute: `/${organizationList[0].id}` });
+    await renderTest({ initialRoute: `/${config.org.id}` });
 
     const texts = [
       labels.dashboard.managed_vcd_dashboard_options,
@@ -26,8 +31,8 @@ describe('Organization General Information Page', () => {
 });
 
 describe('Organization General Information Page Updates', () => {
-  const editNameRoute = `/${organizationList[1].id}/edit-name`;
-  const editDescriptionRoute = `/${organizationList[1].id}/edit-description`;
+  const editNameRoute = `/${config.org.id}/edit-name`;
+  const editDescriptionRoute = `/${config.org.id}/edit-description`;
 
   it.each([
     {

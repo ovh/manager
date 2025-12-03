@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
@@ -20,6 +20,7 @@ import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { RhfField } from '@/components/Fields';
 import { useMessageContext } from '@/context/Message.context';
+import { useVrackSegmentParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
 
@@ -31,7 +32,7 @@ const VLAN_ID_FORM_SCHEMA = z.object({
 });
 
 export default function EditVrackSegmentId() {
-  const { id, vdcId, vrackSegmentId } = useParams();
+  const { id, vdcId, vrackSegmentId } = useVrackSegmentParams();
   const { trackPage, trackClick } = useOvhTracking();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
@@ -58,7 +59,12 @@ export default function EditVrackSegmentId() {
     refetchOnReconnect: false,
   };
 
-  const { data: vrackSegment, isLoading, isError } = useQuery(options);
+  const {
+    data: vrackSegment,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({ ...options, staleTime: 5000 });
 
   const {
     mutate: updateVrackSegment,
@@ -83,7 +89,7 @@ export default function EditVrackSegmentId() {
     onError: (error) => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: `modify_id-vlan_error::${error.message.replaceAll(' ', '-').toLowerCase()}`,
+        pageName: `modify_id-vlan_error::${error.message.replace(/ /g, '-').toLowerCase()}`,
       });
     },
   });
@@ -93,8 +99,11 @@ export default function EditVrackSegmentId() {
   >({
     mode: 'onChange',
     resolver: zodResolver(VLAN_ID_FORM_SCHEMA),
-    values: {
-      vlanId: vrackSegment?.vlanId,
+    defaultValues: async () => {
+      const data = await refetch();
+      const vlanId = data.data?.vlanId;
+
+      return { vlanId: vlanId ?? VLAN_MIN };
     },
   });
   const vlanId = useWatch({ control, name: 'vlanId' });
@@ -111,6 +120,8 @@ export default function EditVrackSegmentId() {
 
   const onSubmit: SubmitHandler<z.infer<typeof VLAN_ID_FORM_SCHEMA>> = ({ vlanId }) => {
     trackClick(TRACKING.vrackModifyVlanId.confirm);
+    if (!vrackSegment) return;
+
     updateVrackSegment({
       ...vrackSegment,
       vlanId: vlanId.toString(),

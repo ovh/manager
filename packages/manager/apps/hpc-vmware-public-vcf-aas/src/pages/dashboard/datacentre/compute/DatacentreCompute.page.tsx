@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -22,6 +22,8 @@ import {
   DatagridVHostProfilCell,
 } from '@/components/datagrid/compute/ComputeCells.component';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
 import { FEATURES } from '@/utils/features.constants';
@@ -32,13 +34,13 @@ import { ID_LABEL } from '../../dashboard.constants';
 import { VHOSTS_LABEL, VHOST_LABEL } from './datacentreCompute.constants';
 
 export default function ComputeListingPage() {
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const { t } = useTranslation('datacentres/compute');
   const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
   const { data: features } = useFeatureAvailability([FEATURES.COMPUTE_SPECIAL_OFFER_BANNER]);
   const { trackClick } = useOvhTracking();
-  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const { data: vcdDatacentre, isPending, error } = useVcdDatacentre(id, vdcId);
 
   const columns = [
     {
@@ -78,6 +80,9 @@ export default function ComputeListingPage() {
     },
   ] as DatagridColumn<unknown>[];
 
+  if (isPending) return <DisplayStatus variant="loading" />;
+  if (error) return <DisplayStatus variant="error" error={error} />;
+
   return (
     <>
       {features?.[FEATURES.COMPUTE_SPECIAL_OFFER_BANNER] && (
@@ -111,7 +116,7 @@ export default function ComputeListingPage() {
           <OdsButton
             label={t('managed_vcd_vdc_compute_order_cta')}
             variant="outline"
-            isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+            isDisabled={isStatusTerminated(vcdDatacentre.data.resourceStatus)}
             onClick={() => {
               trackClick(TRACKING.compute.addVirtualHost);
               navigate(subRoutes.datacentreComputeOrder);

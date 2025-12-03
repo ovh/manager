@@ -50,7 +50,7 @@ export default function NetworkAclListContent() {
   const msgUidActiveTaskRef = useRef<number | null>(null);
   const errorShownRef = useRef<boolean | null>(null);
 
-  const isDefaultAcl = networks.length === 1 && networks[0].network === DEFAULT_ACL_NETWORK;
+  const isDefaultAcl = networks.length === 1 && networks[0]?.network === DEFAULT_ACL_NETWORK;
   const hasDisabledActions =
     hasActiveTasks || !isActiveOrganisation || isError || resourceStatus === 'ERROR';
 
@@ -156,7 +156,7 @@ export default function NetworkAclListContent() {
   }, [isError, resourceStatus, error, addCritical, tError, id]);
 
   const onCtaClicked = () => {
-    if (isDefaultAcl) {
+    if (isDefaultAcl && networks[0]) {
       const params = new URLSearchParams({
         network: networks[0].network,
         description: networks[0].name,

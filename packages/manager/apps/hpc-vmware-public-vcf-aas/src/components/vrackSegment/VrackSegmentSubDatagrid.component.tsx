@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +13,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { encodeVrackNetwork } from '@/utils/encodeVrackNetwork';
 
@@ -51,9 +52,11 @@ export const VrackSegmentSubDatagrid = ({
 }) => {
   const { t } = useTranslation('datacentres/vrack-segment');
   const navigate = useNavigate();
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const isVcdTerminated = isStatusTerminated(vcdOrganization?.data?.resourceStatus);
+  const isVcdTerminated = vcdOrganization?.data?.resourceStatus
+    ? isStatusTerminated(vcdOrganization.data.resourceStatus)
+    : false;
   const {
     id: vrackSegmentId,
     resourceStatus: vrackSegmentStatus,

@@ -51,7 +51,7 @@ const formatSafePath = (url: string) =>
   url && url.startsWith(urls.root) ? url : `${urls.root}${url ?? ''}`;
 
 export const renderTest = async ({
-  initialRoute,
+  initialRoute = '',
   ...mockParams
 }: {
   initialRoute?: string;

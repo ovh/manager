@@ -4,21 +4,26 @@ import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import { labels, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
 
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+};
+
 describe('Network ACL Add new acl', () => {
   beforeAll(() => {
-    // TODO: fix these "as any" to remove eslint-disable
+    // TODO [POST-MIG-ESLINT]: fix these "as any" to remove eslint-disable
     if (!(HTMLElement.prototype as any).close) {
       (HTMLElement.prototype as any).close = vi.fn();
     }
   });
   it('Display  the drawer and his elements', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/network-acl/add-network-acl`,
+      initialRoute: `/${config.org.id}/network-acl/add-network-acl`,
     });
 
     // Drawer
@@ -59,14 +64,14 @@ describe('Network ACL Add new acl', () => {
 
 describe('Network ACL modify existing acl', () => {
   beforeAll(() => {
-    // TODO: fix these "as any" to remove eslint-disable
+    // TODO [POST-MIG-ESLINT]: fix these "as any" to remove eslint-disable
     if (!(HTMLElement.prototype as any).close) {
       (HTMLElement.prototype as any).close = vi.fn();
     }
   });
   it('Display  the drawer and his elements', async () => {
     await renderTest({
-      initialRoute: `/${organizationList[0].id}/network-acl/edit-network-acl?network=0.0.0.0%2F0&description=Network+ACLs+disabled`,
+      initialRoute: `/${config.org.id}/network-acl/edit-network-acl?network=0.0.0.0%2F0&description=Network+ACLs+disabled`,
     });
 
     await assertTextVisibility(labels.networkAcl.managed_vcd_network_acl_drawer_header_edit_ip);

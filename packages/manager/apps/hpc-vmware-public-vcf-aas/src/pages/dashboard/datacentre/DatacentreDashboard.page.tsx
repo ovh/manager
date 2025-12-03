@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +13,7 @@ import VcdDashboardLayout, {
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
@@ -22,7 +23,7 @@ import { VRACK_LABEL } from '../dashboard.constants';
 import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 
 function DatacentreDashboardPage() {
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
@@ -82,7 +83,11 @@ function DatacentreDashboardPage() {
     <VcdDashboardLayout
       tabs={tabsList}
       header={header}
-      message={<MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />}
+      message={
+        vcdDatacentre?.data.resourceStatus && (
+          <MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />
+        )
+      }
       backLinkLabel={tActions('back_to_list')}
       onClickReturn={() => navigate(urls.datacentres.replace(subRoutes.dashboard, id))}
     />

@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -23,6 +23,7 @@ import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { RhfField } from '@/components/Fields';
 import { useMessageContext } from '@/context/Message.context';
+import { useVrackSegmentParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
 import { hasIpv4CIDRConflictInArray } from '@/utils/hasIpv4CIDRConflictInArray';
@@ -30,7 +31,7 @@ import { isGatewayCidr } from '@/utils/isGatewayCidr';
 
 function AddNetworkVrackSegmentLoaded() {
   const { trackClick, trackPage } = useOvhTracking();
-  const { id, vdcId, vrackSegmentId } = useParams();
+  const { id, vdcId, vrackSegmentId } = useVrackSegmentParams();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
@@ -129,7 +130,7 @@ function AddNetworkVrackSegmentLoaded() {
     onError: (error) => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: `add_network_error::${error.message.replaceAll(' ', '-').toLowerCase()}`,
+        pageName: `add_network_error::${error.message.replace(/ /g, '-').toLowerCase()}`,
       });
     },
   });

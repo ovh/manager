@@ -22,7 +22,7 @@ export const SUB_UNIVERSE = 'HostedPrivatedCloud';
 export const APP_NAME_TRACKING = 'vcfaas';
 export const APP_NAME = 'hpc-vmware-public-vcf-aas';
 
-type GetTrackingParams = (param: string | string[]) => TrackingClickParams;
+type GetTrackingParams = (param: string) => TrackingClickParams;
 type AppTracking = Record<string, Record<string, TrackingClickParams | GetTrackingParams>>;
 
 const defineTrackingConfig = <T extends AppTracking>(config: T) => config;

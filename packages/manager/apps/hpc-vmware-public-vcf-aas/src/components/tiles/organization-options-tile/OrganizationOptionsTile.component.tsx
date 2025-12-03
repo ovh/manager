@@ -1,7 +1,3 @@
-import React from 'react';
-
-import { useParams } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
@@ -12,6 +8,7 @@ import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
 import { ActionMenu, DashboardTile } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { TRACKING } from '@/tracking.constants';
 import { WINDOWS_LICENSE_PLANCODE } from '@/utils/planCode.constants';
 import TEST_IDS from '@/utils/testIds.constants';
@@ -25,7 +22,7 @@ export default function OrganizationOptionsTile({
 }>) {
   const { t } = useTranslation('dashboard');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { trackClick } = useOvhTracking();
   const { redirectToOrder } = useVcdOrder({
     serviceName: id,

@@ -1,6 +1,6 @@
 import { Suspense, useMemo, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -18,13 +18,14 @@ import { ErrorBoundary, LinkType, Links, Modal } from '@ovh-ux/manager-react-com
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
 import { useMessageContext } from '@/context/Message.context';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { DEDICATED_PATH, VRACK_PATH } from '@/pages/listing/datacentres/Datacentres.constants';
 import { subRoutes } from '@/routes/routes.constant';
 import { getGatewayFromCIDR } from '@/utils/ipaddrUtilities';
 import TEST_IDS from '@/utils/testIds.constants';
 
 function AddPublicIpBlockLoaded() {
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const { t } = useTranslation('dashboard');
   const { t: tVrackSegment } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
@@ -34,7 +35,7 @@ function AddPublicIpBlockLoaded() {
 
   const { addSuccess } = useMessageContext();
 
-  const [selectedBlockIp, setSelectedBlockIp] = useState<string>(null);
+  const [selectedBlockIp, setSelectedBlockIp] = useState<string>('');
 
   const {
     data: vdcData,
@@ -81,7 +82,7 @@ function AddPublicIpBlockLoaded() {
   } = useUpdateVcdVrackSegment({
     id,
     vdcId,
-    vrackSegmentId,
+    vrackSegmentId: vrackSegmentId ?? '',
     onSuccess: () => {
       addSuccess({
         content: t('managed_vcd_dashboard_add_ip_public_block_message_success', {
@@ -117,7 +118,7 @@ function AddPublicIpBlockLoaded() {
       <Modal
         isOpen
         heading={t('managed_vcd_dashboard_add_ip_public_block_modal_heading')}
-        primaryLabel={ipVrackList && ipVrackList.length > 0 ? tActions('add') : null}
+        primaryLabel={ipVrackList && ipVrackList.length > 0 ? tActions('add') : undefined}
         isPrimaryButtonLoading={isUpdatePending}
         isPrimaryButtonDisabled={
           isUpdatePending || !selectedBlockIp || doesBlockIpExistInVrackSegment
@@ -161,7 +162,7 @@ function AddPublicIpBlockLoaded() {
               <OdsSelect
                 name="ip list "
                 onOdsChange={(e) => {
-                  setSelectedBlockIp(e.detail.value);
+                  setSelectedBlockIp(e.detail.value ?? '');
                 }}
               >
                 {(ipVrackList || []).map((item) => (
