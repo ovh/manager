@@ -9,11 +9,7 @@ export function getDaysFromDate(date: Date): number {
   const oneDay = 24 * 60 * 60 * 1000;
   const diffInTime =
     Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-    Date.UTC(
-      referenceDate.getFullYear(),
-      referenceDate.getMonth(),
-      referenceDate.getDate(),
-    );
+    Date.UTC(referenceDate.getFullYear(), referenceDate.getMonth(), referenceDate.getDate());
   return Math.floor(diffInTime / oneDay);
 }
 

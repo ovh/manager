@@ -1,60 +1,51 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { TileValueDate } from '@key-management-service/components/dashboard/tile-value-date/tileValueDate.component';
+import ServiceKeyStateActions from '@key-management-service/components/service-key/service-key-state-actions/ServiceKeyStateActions.component';
+import { ServiceKeyStatus } from '@key-management-service/components/service-key/service-key-status/serviceKeyStatus.component';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import {
-  ODS_TEXT_PRESET,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useNavigate } from 'react-router-dom';
-import {
-  Clipboard,
-  DashboardTile,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { TileValueDate } from '@key-management-service/components/dashboard/tile-value-date/tileValueDate.component';
-import { ServiceKeyStatus } from '@key-management-service/components/service-key/service-key-status/serviceKeyStatus.component';
-import ServiceKeyStateActions from '@key-management-service/components/service-key/service-key-state-actions/ServiceKeyStateActions.component';
-import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
-import { OKMS } from '@key-management-service/types/okms.type';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { URN_LABEL } from '@/constants';
-import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { Clipboard, DashboardTile, ManagerButton } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
+import { URN_LABEL } from '@/constants';
+
+import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
 
 type GeneralInformationTileProps = {
   kms: OKMS;
   serviceKey: OkmsServiceKey;
 };
 
-export const GeneralInformationTile = ({
-  kms,
-  serviceKey,
-}: GeneralInformationTileProps) => {
+export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTileProps) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
   return (
     <DashboardTile
-      title={t(
-        'key_management_service_service-keys_dashboard_tile_general_informations',
-      )}
+      title={t('key_management_service_service-keys_dashboard_tile_general_informations')}
       items={[
         {
           id: 'name',
           label: t('key_management_service_service-keys_dashboard_field_name'),
           value: (
-            <div className="flex justify-between items-center gap-2">
+            <div className="flex items-center justify-between gap-2">
               <OdsText
-                className="max-w-1/2 text-ellipsis overflow-hidden"
+                className="max-w-1/2 overflow-hidden text-ellipsis"
                 preset={ODS_TEXT_PRESET.paragraph}
                 data-testid="truc"
               >
@@ -76,9 +67,7 @@ export const GeneralInformationTile = ({
                     actionType: 'action',
                     actions: ['rename_encryption_key'],
                   });
-                  navigate(
-                    KMS_ROUTES_URLS.serviceKeyEditName(kms.id, serviceKey.id),
-                  );
+                  navigate(KMS_ROUTES_URLS.serviceKeyEditName(kms.id, serviceKey.id));
                 }}
                 icon={ODS_ICON_NAME.pen}
               />
@@ -107,9 +96,7 @@ export const GeneralInformationTile = ({
         },
         {
           id: 'createdAt',
-          label: t(
-            'key_management_service_service-keys_dashboard_field_created_at',
-          ),
+          label: t('key_management_service_service-keys_dashboard_field_created_at'),
           value: (
             <TileValueDate
               value={serviceKey.createdAt}

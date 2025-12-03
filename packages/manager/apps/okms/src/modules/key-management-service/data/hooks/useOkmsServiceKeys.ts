@@ -1,16 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-
-import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   OkmsServiceKey,
   OkmsServiceKeyOptions,
 } from '@key-management-service/types/okmsServiceKey.type';
+import { useQuery } from '@tanstack/react-query';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { ErrorResponse } from '@/common/types/api.type';
+
 import {
-  getOkmsServiceKeyResource,
-  getOkmsServiceKeyResourceQueryKey,
-  getOkmsServiceKeyResourceListQueryKey,
   getListingOkmsServiceKey,
+  getOkmsServiceKeyResource,
+  getOkmsServiceKeyResourceListQueryKey,
+  getOkmsServiceKeyResourceQueryKey,
   sortOkmsServiceKey,
 } from '../api/okmsServiceKey';
 
@@ -27,10 +29,7 @@ export const useAllOkmsServiceKeys = (okmsId: string) => {
   });
 };
 
-export const useOkmsServiceKeys = ({
-  sorting,
-  okmsId,
-}: OkmsServiceKeyOptions) => {
+export const useOkmsServiceKeys = ({ sorting, okmsId }: OkmsServiceKeyOptions) => {
   const {
     data: okms,
     error: allOKMSError,
@@ -46,13 +45,7 @@ export const useOkmsServiceKeys = ({
 
 /* Service Key */
 
-export const useOkmsServiceKeyById = ({
-  okmsId,
-  keyId,
-}: {
-  okmsId: string;
-  keyId: string;
-}) => {
+export const useOkmsServiceKeyById = ({ okmsId, keyId }: { okmsId: string; keyId: string }) => {
   return useQuery<{ data: OkmsServiceKey }, ErrorResponse>({
     queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
     queryFn: () => getOkmsServiceKeyResource({ okmsId, keyId }),

@@ -1,11 +1,13 @@
-import React, { ChangeEventHandler, ReactElement, ReactNode } from 'react';
+import { ChangeEventHandler, ReactElement, ReactNode } from 'react';
+
 import clsx from 'clsx';
+
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 type RadioCardProps = {
   id: string;
   name: string;
-  selected: string;
+  selected?: string;
   isDisabled?: boolean;
   title: string | ReactElement;
   subTitle?: string | ReactElement;
@@ -32,22 +34,20 @@ export const RadioCard = ({
       key={id}
       htmlFor={id}
       className={clsx(
-        'flex border-solid rounded-md border px-3 py-4',
+        'flex rounded-md border border-solid px-3 py-4',
         !isDisabled && 'cursor-pointer',
         !isChecked && 'border-[--ods-color-form-element-border-default]',
-        !isChecked &&
-          !isDisabled &&
-          'hover:border-[--ods-color-form-element-border-hover-default]',
+        !isChecked && !isDisabled && 'hover:border-[--ods-color-form-element-border-hover-default]',
         isChecked &&
           !isDisabled &&
           'border-[--ods-color-primary-500] bg-[--ods-color-primary-050] outline outline-1 outline-[--ods-color-primary-500]',
         isDisabled &&
-          'cursor-not-allowed grayscale opacity-70 bg-[--ods-color-background-disabled-default] border-[--ods-color-border-disabled-default]',
+          'cursor-not-allowed border-[--ods-color-border-disabled-default] bg-[--ods-color-background-disabled-default] opacity-70 grayscale',
       )}
     >
       <div className="flex flex-col gap-3">
         {/* HEADER */}
-        <div className="flex gap-3 items-center">
+        <div className="flex items-center gap-3">
           <input
             type="radio"
             data-testid={id}

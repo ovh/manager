@@ -1,8 +1,4 @@
-import {
-  Secret,
-  SecretConfig,
-  SecretConfigReference,
-} from '@secret-manager/types/secret.type';
+import { Secret, SecretConfig, SecretConfigReference } from '@secret-manager/types/secret.type';
 
 export const NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER = '0s';
 export const NOT_SET_VALUE_MAX_VERSIONS = 0;
@@ -90,8 +86,7 @@ export const buildSecretSmartConfig = (
       NOT_SET_VALUE_MAX_VERSIONS,
       secretConfigReference.maxVersions,
     ),
-    isCasRequiredSetOnOkms:
-      secretConfigOkms.casRequired !== NOT_SET_VALUE_CAS_REQUIRED,
+    isCasRequiredSetOnOkms: secretConfigOkms.casRequired !== NOT_SET_VALUE_CAS_REQUIRED,
     maxVersionsDefault: secretConfigReference.maxVersions,
   };
 };

@@ -1,7 +1,6 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { TileValue } from '@key-management-service/components/dashboard/tile-value/tileValue.component';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
+import { useTranslation } from 'react-i18next';
 
 type TCredentialCreationMethod = Pick<OkmsCredential, 'fromCSR'>;
 

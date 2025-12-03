@@ -1,23 +1,15 @@
-import React from 'react';
-import {
-  ActionMenu,
-  ActionMenuItem,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_BUTTON_COLOR,
-} from '@ovhcloud/ods-components';
-import {
-  SecretVersion,
-  SecretVersionState,
-} from '@secret-manager/types/secret.type';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import { useUpdateSecretVersion } from '@secret-manager/data/hooks/useUpdateSecretVersion';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { SecretVersion, SecretVersionState } from '@secret-manager/types/secret.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ActionMenu, ActionMenuItem, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 type ButtonState = 'hidden' | 'enabled' | 'disabled';
@@ -64,10 +56,7 @@ export const VersionCellAction = ({
   const navigate = useNavigate();
   const { addError } = useNotifications();
 
-  const {
-    mutateAsync: updateSecretVersion,
-    isPending,
-  } = useUpdateSecretVersion();
+  const { mutateAsync: updateSecretVersion, isPending } = useUpdateSecretVersion();
 
   const buttonGroupState = buttonsStateRecord[version.state];
 
@@ -87,11 +76,7 @@ export const VersionCellAction = ({
 
   const handleDeleteVersion = () => {
     navigate(
-      SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(
-        okmsId,
-        secretPath,
-        version.id,
-      ),
+      SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(okmsId, secretPath, version.id),
     );
   };
 
@@ -123,10 +108,7 @@ export const VersionCellAction = ({
       isLoading: isPending,
       onClick: () => handleUpdateVersion('DEACTIVATED'),
       urn,
-      iamActions: [
-        kmsIamActions.secretVersionUpdate,
-        kmsIamActions.secretVersionDeactivate,
-      ],
+      iamActions: [kmsIamActions.secretVersionUpdate, kmsIamActions.secretVersionDeactivate],
     },
     {
       id: 3,
@@ -136,10 +118,7 @@ export const VersionCellAction = ({
       isDisabled: buttonGroupState.activate === 'disabled',
       onClick: () => handleUpdateVersion('ACTIVE'),
       urn,
-      iamActions: [
-        kmsIamActions.secretVersionUpdate,
-        kmsIamActions.secretVersionActivate,
-      ],
+      iamActions: [kmsIamActions.secretVersionUpdate, kmsIamActions.secretVersionActivate],
     },
     {
       id: 4,
@@ -149,10 +128,7 @@ export const VersionCellAction = ({
       color: ODS_BUTTON_COLOR.critical,
       onClick: handleDeleteVersion,
       urn,
-      iamActions: [
-        kmsIamActions.secretVersionUpdate,
-        kmsIamActions.secretVersionDelete,
-      ],
+      iamActions: [kmsIamActions.secretVersionUpdate, kmsIamActions.secretVersionDelete],
     },
   ];
 

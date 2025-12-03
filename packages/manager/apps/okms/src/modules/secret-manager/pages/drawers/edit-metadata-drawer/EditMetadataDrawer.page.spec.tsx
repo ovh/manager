@@ -1,21 +1,20 @@
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
-import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
-import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockSecret = mockSecret1;
 const mockSecretPath = mockSecret.path;
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(
-  mockOkmsId,
-  mockSecretPath,
-);
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(mockOkmsId, mockSecretPath);
 
 const renderPage = async (mockParams = {}) => {
   const user = userEvent.setup();
@@ -32,9 +31,7 @@ describe('Edit Metadata Drawer page test suite', () => {
     await renderPage();
 
     // Should show the drawer title
-    expect(
-      screen.getByText(labels.secretManager.edit_metadata),
-    ).toBeInTheDocument();
+    expect(screen.getByText(labels.secretManager.edit_metadata)).toBeInTheDocument();
   });
 
   it('should display error message when secret smart config fetch fails', async () => {
@@ -42,9 +39,7 @@ describe('Edit Metadata Drawer page test suite', () => {
 
     // Should display and error message
     await waitFor(() => {
-      expect(
-        screen.getAllByText('get-secret-config-error-message')[0],
-      ).toBeInTheDocument();
+      expect(screen.getAllByText('get-secret-config-error-message')[0]).toBeInTheDocument();
     });
 
     // Should NOT display the form when there's an error
@@ -92,9 +87,7 @@ describe('Edit Metadata Drawer page test suite', () => {
 
     // Wait for drawer to close (navigation)
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('edit-metadata-drawer'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('edit-metadata-drawer')).not.toBeInTheDocument();
     });
   });
 
@@ -113,9 +106,7 @@ describe('Edit Metadata Drawer page test suite', () => {
     await act(() => user.click(submitButton));
 
     // Verify error is displayed
-    expect(
-      await screen.findByText('update-secret-error-message'),
-    ).toBeInTheDocument();
+    expect(await screen.findByText('update-secret-error-message')).toBeInTheDocument();
 
     // Drawer should still be open
     expect(screen.getByTestId('edit-metadata-drawer')).toBeInTheDocument();

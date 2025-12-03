@@ -1,7 +1,8 @@
-import React from 'react';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { useTranslation } from 'react-i18next';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { KmipObjectCountTileItem } from './items/KmipObjectCountTileItem.component';
 
 type KmipObjectsTileProps = {

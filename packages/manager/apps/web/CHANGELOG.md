@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.29.0...@ovh-ux/manager-web@19.30.0) (2025-12-03)
+
+
+### Features
+
+* **web-domain-zone:** add dns rp, https and svcb field ([38d704a](https://github.com/ovh/manager/commit/38d704a3cef93372c84a421c11450b96bfd14da5))
+
+
+
+
+
 # [19.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.28.0...@ovh-ux/manager-web@19.29.0) (2025-12-01)
 
 

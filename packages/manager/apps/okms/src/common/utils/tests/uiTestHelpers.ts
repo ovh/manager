@@ -1,13 +1,8 @@
-import { OdsIcon } from '@ovhcloud/ods-components/react';
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value-toggle/secretValueToggle.constants';
-import {
-  waitFor,
-  waitForOptions,
-  screen,
-  fireEvent,
-  act,
-} from '@testing-library/react';
+import { act, fireEvent, screen, waitFor, waitForOptions } from '@testing-library/react';
 import { UserEvent } from '@testing-library/user-event';
+
+import { OdsIcon } from '@ovhcloud/ods-components/react';
 
 const WAIT_FOR_DEFAULT_OPTIONS = { timeout: 3000 };
 
@@ -33,7 +28,7 @@ const getOdsButton = async ({
   nth = 0,
   ...options
 }: GetOdsButtonParams) => {
-  let button: HTMLElement;
+  let button: HTMLOdsLinkElement | HTMLOdsButtonElement | undefined;
   await waitFor(
     () => {
       const htmlTag = isLink ? 'ods-link' : 'ods-button';
@@ -41,13 +36,11 @@ const getOdsButton = async ({
 
       if (iconName) {
         // filter by icon
-        button = Array.from(buttonList).filter(
-          (btn) => btn.getAttribute('icon') === iconName,
-        )[nth];
+        button = Array.from(buttonList).filter((btn) => btn.getAttribute('icon') === iconName)[nth];
       } else {
         // filter by label or altLabel
         button = Array.from(buttonList).filter((btn) =>
-          [label, altLabel].includes(btn.getAttribute('label')),
+          [label, altLabel].includes(btn.getAttribute('label') ?? ''),
         )[nth];
       }
 
@@ -67,6 +60,9 @@ const getOdsButton = async ({
     },
     { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
   );
+  if (!button) {
+    throw new Error(`Button ${label ?? altLabel ?? iconName ?? ''} not found`);
+  }
   return button;
 };
 
@@ -121,11 +117,8 @@ type GetOdsLinkByTestIdParams = {
   disabled?: boolean;
 };
 
-export const getOdsLinkByTestId = async ({
-  testId,
-  disabled,
-}: GetOdsLinkByTestIdParams) => {
-  let link: HTMLElement;
+export const getOdsLinkByTestId = async ({ testId, disabled }: GetOdsLinkByTestIdParams) => {
+  let link: HTMLElement | undefined;
   await waitFor(() => {
     link = screen.getByTestId(testId);
     expect(link).toBeInTheDocument();
@@ -138,10 +131,7 @@ export const getOdsLinkByTestId = async ({
   return link;
 };
 
-export const changeOdsInputValueByTestId = async (
-  inputTestId: string,
-  value: string,
-) => {
+export const changeOdsInputValueByTestId = async (inputTestId: string, value: string) => {
   // First try to get the input directly
   let input = screen.queryByTestId(inputTestId);
 
@@ -152,7 +142,7 @@ export const changeOdsInputValueByTestId = async (
     input = await screen.findByTestId(inputTestId);
   }
 
-  await act(() => {
+  act(() => {
     fireEvent.change(input, {
       target: { value },
     });
@@ -169,10 +159,7 @@ type GetOdsClipboardByValueParams = {
   value: string;
 };
 
-export const getOdsClipboardByValue = ({
-  container,
-  value,
-}: GetOdsClipboardByValueParams) => {
+export const getOdsClipboardByValue = ({ container, value }: GetOdsClipboardByValueParams) => {
   return container.querySelector(`ods-clipboard[value="${value}"]`);
 };
 
@@ -180,8 +167,6 @@ export const getOdsClipboardByValue = ({
  * Clicks on the JSON toggle
  */
 export const clickJsonEditorToggle = async (user: UserEvent) => {
-  const jsonToggle = screen.getByTestId(
-    SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle,
-  );
+  const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
   await act(() => user.click(jsonToggle));
 };

@@ -1,10 +1,11 @@
-import React from 'react';
-import { UpdateNameModal } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useUpdateOkmsName } from '@key-management-service/data/hooks/useUpdateOkmsName';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { UpdateNameModal } from '@ovh-ux/manager-react-components';
 
 type OkmsUpdateNameModalProps = {
   okms: OKMS;
@@ -14,7 +15,11 @@ const OkmsUpdateNameModal = ({ okms }: OkmsUpdateNameModalProps) => {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
-  const { updateOkmsName, isPending, error: updateError } = useUpdateOkmsName({
+  const {
+    updateOkmsName,
+    isPending,
+    error: updateError,
+  } = useUpdateOkmsName({
     okms,
     onSuccess: () => {
       navigate('..');
