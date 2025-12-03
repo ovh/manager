@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.167.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.166.1...@ovh-ux/manager-container-app@0.167.0) (2025-12-03)
+
+
+### Features
+
+* **okms:** feature flipping on beta badge ([3e31adc](https://github.com/ovh/manager/commit/3e31adcc34e92276b85c5ae710f79310f5e20dab)), closes [#MANAGER-20139](https://github.com/ovh/manager/issues/MANAGER-20139)
+
+
+
+
+
 ## [0.166.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.166.0...@ovh-ux/manager-container-app@0.166.1) (2025-12-02)
 
 
