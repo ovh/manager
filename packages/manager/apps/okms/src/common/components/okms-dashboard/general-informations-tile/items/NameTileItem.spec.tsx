@@ -1,17 +1,18 @@
-import { screen } from '@testing-library/react';
-import React from 'react';
-import { vi } from 'vitest';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import userEvent from '@testing-library/user-event';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { NameTileItem } from './NameTileItem.component';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
-import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
 
-const okmsMocked = okmsMock[0];
+import { NameTileItem } from './NameTileItem.component';
+
+const okmsMocked = okmsRoubaix1Mock;
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -37,9 +38,7 @@ describe('OKMS Name Tile Item test suite', () => {
     const { container } = await renderTileItem();
 
     // THEN
-    expect(
-      screen.getByText(labels.common.dashboard.display_name),
-    ).toBeVisible();
+    expect(screen.getByText(labels.common.dashboard.display_name)).toBeVisible();
     expect(screen.getByText(okmsMocked.iam.displayName)).toBeVisible();
     const editNameButton = await getOdsButtonByIcon({
       container,
@@ -61,9 +60,7 @@ describe('OKMS Name Tile Item test suite', () => {
     },
     {
       productType: 'secret-manager',
-      expectedLink: SECRET_MANAGER_ROUTES_URLS.okmsUpdateNameModal(
-        okmsMocked.id,
-      ),
+      expectedLink: SECRET_MANAGER_ROUTES_URLS.okmsUpdateNameModal(okmsMocked.id),
     },
   ];
 
@@ -85,7 +82,10 @@ describe('OKMS Name Tile Item test suite', () => {
 
       expect(editNameButton).toBeVisible();
 
-      await user.click(editNameButton);
+      await act(async () => {
+        await user.click(editNameButton);
+      });
+
       expect(mockNavigate).toHaveBeenCalledWith(expectedLink);
     },
   );

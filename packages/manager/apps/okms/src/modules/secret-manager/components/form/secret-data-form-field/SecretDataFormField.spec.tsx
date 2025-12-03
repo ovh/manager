@@ -1,12 +1,13 @@
-import React from 'react';
-import { describe, expect, test, vi, beforeEach } from 'vitest';
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import { KEY_VALUES_EDITOR_TEST_IDS } from '@secret-manager/components/form/key-values-editor/keyValuesEditor.constants';
+import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value-toggle/secretValueToggle.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useForm, FormProvider } from 'react-hook-form';
-import { KEY_VALUES_EDITOR_TEST_IDS } from '@secret-manager/components/form/key-values-editor/keyValuesEditor.constants';
-import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
-import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value-toggle/secretValueToggle.constants';
+import { FormProvider, useForm } from 'react-hook-form';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
+
 import { SecretDataFormField } from './SecretDataFormField.component';
 
 type FormFieldInput = {
@@ -27,12 +28,9 @@ const mockDefaultValues = {
 
 // Mocking ODS components
 vi.mock('@ovhcloud/ods-components/react', async () => {
-  const {
-    odsInputMock,
-    odsTextareaMock,
-    odsSwitchMock,
-    odsSwitchItemMock,
-  } = await import('@/common/utils/tests/odsMocks');
+  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock } = await import(
+    '@/common/utils/tests/odsMocks'
+  );
   const original = await vi.importActual('@ovhcloud/ods-components/react');
   return {
     ...original,
@@ -86,9 +84,7 @@ describe('SecretDataFormField', () => {
       await renderTest(mockDefaultValues.invalidKeyValue);
 
       // Then
-      expect(
-        screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA)).toBeInTheDocument();
     });
 
     test('should render key-value editor when input is empty', async () => {
@@ -111,9 +107,7 @@ describe('SecretDataFormField', () => {
       await renderTest(mockDefaultValues.validKeyValue);
 
       // Then
-      expect(
-        screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.toggle),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.toggle)).toBeInTheDocument();
     });
 
     test('should show key-value as active when rendering key-value editor', async () => {
@@ -121,9 +115,7 @@ describe('SecretDataFormField', () => {
       await renderTest(mockDefaultValues.validKeyValue);
 
       // Then
-      const keyValueToggle = screen.getByTestId(
-        SECRET_VALUE_TOGGLE_TEST_IDS.keyValueToggle,
-      );
+      const keyValueToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.keyValueToggle);
       expect(keyValueToggle).toHaveAttribute('data-checked', 'true');
     });
 
@@ -132,9 +124,7 @@ describe('SecretDataFormField', () => {
       await renderTest(mockDefaultValues.invalidKeyValue);
 
       // Then
-      const jsonToggle = screen.getByTestId(
-        SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle,
-      );
+      const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
       expect(jsonToggle).toHaveAttribute('data-checked', 'true');
     });
   });
@@ -151,18 +141,14 @@ describe('SecretDataFormField', () => {
       ).toBeInTheDocument();
 
       // When
-      const jsonToggle = screen.getByTestId(
-        SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle,
-      );
+      const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
       await act(async () => {
         await user.click(jsonToggle);
       });
 
       // Then
       await waitFor(() => {
-        expect(
-          screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA),
-        ).toBeInTheDocument();
+        expect(screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA)).toBeInTheDocument();
       });
       expect(
         screen.queryByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0)),

@@ -1,14 +1,9 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useMemo,
-} from 'react';
+import React, { ReactNode, createContext, useContext, useMemo, useState } from 'react';
+
 import {
-  IdentityUser,
   IdentityGroup,
   IdentityOauthClient,
+  IdentityUser,
 } from '@key-management-service/types/identity.type';
 
 interface IdentityDataContextType {
@@ -17,9 +12,7 @@ interface IdentityDataContextType {
   groupList: IdentityGroup[];
   setGroupList: React.Dispatch<React.SetStateAction<IdentityGroup[]>>;
   serviceAccountList: IdentityOauthClient[];
-  setServiceAccountList: React.Dispatch<
-    React.SetStateAction<IdentityOauthClient[]>
-  >;
+  setServiceAccountList: React.Dispatch<React.SetStateAction<IdentityOauthClient[]>>;
 }
 
 const IdentityDataContext = createContext<IdentityDataContextType | null>(null);
@@ -35,9 +28,7 @@ export const useIdentityData = () => {
 export const IdentityDataProvider = ({ children }: { children: ReactNode }) => {
   const [userList, setUserList] = useState<IdentityUser[]>([]);
   const [groupList, setGroupList] = useState<IdentityGroup[]>([]);
-  const [serviceAccountList, setServiceAccountList] = useState<
-    IdentityOauthClient[]
-  >([]);
+  const [serviceAccountList, setServiceAccountList] = useState<IdentityOauthClient[]>([]);
 
   return (
     <IdentityDataContext.Provider

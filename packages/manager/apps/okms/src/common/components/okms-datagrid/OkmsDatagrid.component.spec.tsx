@@ -1,19 +1,13 @@
 import React from 'react';
+
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import {
-  ServiceDetails,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { OkmsDatagrid } from './OkmsDatagrid.component';
+
 import { SERVICE_KEYS_LABEL } from '@/constants';
+
+import { OkmsDatagrid } from './OkmsDatagrid.component';
 import { OkmsDatagridType } from './okmsDatagrid.type';
 
 vi.mock('react-i18next', () => ({
@@ -27,22 +21,20 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
     useSearchParams: vi.fn(),
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const module: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
+vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
+  const module: typeof import('@ovh-ux/manager-module-common-api') = await importOriginal();
   return {
     ...module,
-    useServiceDetails: vi.fn(),
+    useServiceDetails: vi.fn(() => ({
+      data: { data: { resource: { state: 'mockedState' } } },
+    })),
   };
 });
-
-vi.mocked(useServiceDetails).mockReturnValue({
-  data: { data: { resource: { state: 'mockedState' } } },
-} as UseQueryResult<ApiResponse<ServiceDetails>, ApiError>);
 
 const environment = {
   getUser: vi.fn().mockReturnValue({ ovhSubsidiary: 'FR' }),

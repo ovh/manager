@@ -1,34 +1,35 @@
-import React from 'react';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { SecretConfig } from '@secret-manager/types/secret.type';
+import { UseQueryResult } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
+import { ErrorResponse } from '@/common/types/api.type';
+
 import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
 
-type MaxVersionTileItemProps = {
-  secretConfig: SecretConfig;
-  isPending: boolean;
-};
+export type MaxVersionTileItemProps = UseQueryResult<SecretConfig, ErrorResponse>;
 
-export const MaxVersionTileItem = ({
-  secretConfig,
-  isPending,
-}: MaxVersionTileItemProps) => {
+export const MaxVersionTileItem = ({ data, isPending, isError }: MaxVersionTileItemProps) => {
   const { t } = useTranslation('secret-manager');
+
+  if (isError) {
+    return null;
+  }
 
   return (
     <ManagerTile.Item>
-      <ManagerTile.Item.Label>
-        {t('maximum_number_of_versions')}
-      </ManagerTile.Item.Label>
+      <ManagerTile.Item.Label>{t('maximum_number_of_versions')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
         {isPending ? (
           <OdsSkeleton
             data-testid={SECRET_CONFIG_TILE_TEST_IDS.skeleton}
-            className="block content-center h-5"
+            className="block h-5 content-center"
           />
         ) : (
-          <OdsText preset="span">{secretConfig.maxVersions}</OdsText>
+          <OdsText preset="span">{data.maxVersions}</OdsText>
         )}
       </ManagerTile.Item.Description>
     </ManagerTile.Item>

@@ -1,22 +1,16 @@
-import React from 'react';
-import {
-  ActionMenu,
-  Clipboard,
-  DataGridTextCell,
-  Links,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
+
 import useServiceKeyActionsList from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
+import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
 import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
+
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
+import { ActionMenu, Clipboard, DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { ServiceKeyStatus } from '../service-key/service-key-status/serviceKeyStatus.component';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
@@ -72,10 +66,7 @@ export const DatagridStatus = (props: OkmsServiceKey) => {
   return <ServiceKeyStatus state={props.state} />;
 };
 
-export const DatagridServiceKeyActionMenu = (
-  serviceKey: OkmsServiceKey,
-  okms: OKMS,
-) => {
+export const DatagridServiceKeyActionMenu = (serviceKey: OkmsServiceKey, okms: OKMS) => {
   const actionList = useServiceKeyActionsList(okms, serviceKey, true);
   return (
     <ActionMenu

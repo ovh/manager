@@ -1,14 +1,18 @@
-import React from 'react';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { secretConfigOkmsQueryKey } from '@secret-manager/data/api/secretConfigOkms';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { MaxVersionTileItem } from './items/MaxVersionTileItem.component';
-import { DeactivateVersionAfterTileItem } from './items/DeactivateVersionAfterTileItem.component';
-import { CasTileItem } from './items/CasTileItem.component';
+import { secretConfigOkmsQueryKey } from '@secret-manager/data/api/secretConfigOkms';
+import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
+import { useTranslation } from 'react-i18next';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+
 import { TileError } from '@/common/components/tile-error/TileError.component';
+import { useProductType } from '@/common/hooks/useProductType';
+
+import { CasTileItem } from './items/CasTileItem.component';
+import { DeactivateVersionAfterTileItem } from './items/DeactivateVersionAfterTileItem.component';
+import { EditSecretConfigLinkTileItem } from './items/EditSecretConfigLinkTileItem.component';
+import { MaxVersionTileItem } from './items/MaxVersionTileItem.component';
 
 type SecretConfigTileProps = {
   okms: OKMS;
@@ -16,38 +20,38 @@ type SecretConfigTileProps = {
 
 export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
+  const productType = useProductType();
 
-  const { data: secretConfig, isPending, error } = useSecretConfigOkms(okms.id);
+  const secretConfigOkmsQuery = useSecretConfigOkms(okms.id);
+
+  const handleRetry = () => {
+    void queryClient.refetchQueries({
+      queryKey: secretConfigOkmsQueryKey(okms.id),
+    });
+  };
 
   return (
     <ManagerTile>
       <ManagerTile.Title>{t('okms_secret_config')}</ManagerTile.Title>
-      {error ? (
+      {secretConfigOkmsQuery.error ? (
         <>
           <ManagerTile.Divider />
-          <TileError
-            error={error}
-            onRetry={() =>
-              queryClient.refetchQueries({
-                queryKey: secretConfigOkmsQueryKey(okms.id),
-              })
-            }
-          />
+          <TileError error={secretConfigOkmsQuery.error} onRetry={handleRetry} />
         </>
       ) : (
         <>
           <ManagerTile.Divider />
-          <MaxVersionTileItem
-            secretConfig={secretConfig}
-            isPending={isPending}
-          />
+          <MaxVersionTileItem {...secretConfigOkmsQuery} />
           <ManagerTile.Divider />
-          <DeactivateVersionAfterTileItem
-            secretConfig={secretConfig}
-            isPending={isPending}
-          />
+          <DeactivateVersionAfterTileItem {...secretConfigOkmsQuery} />
           <ManagerTile.Divider />
-          <CasTileItem secretConfig={secretConfig} isPending={isPending} />
+          <CasTileItem {...secretConfigOkmsQuery} />
+          {productType === 'secret-manager' && (
+            <>
+              <ManagerTile.Divider />
+              <EditSecretConfigLinkTileItem okms={okms} />
+            </>
+          )}
         </>
       )}
     </ManagerTile>
