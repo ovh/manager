@@ -9,6 +9,8 @@ import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
 import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { TClusterNodePool } from '@/api/data/node-pools';
+import StatusChip from '@/components/StatusChip';
+import { ResourceStatus } from '@/types';
 
 import ActionsComponent from './actions.component';
 
@@ -21,7 +23,7 @@ export const MonthlyBilled = ({ monthlyBilled }: { monthlyBilled: boolean }) => 
   );
 };
 
-export const useDatagridColumns = () => {
+export const useDatagridColumns = ({ showFloatingIp }: { showFloatingIp?: boolean } = {}) => {
   const { t } = useTranslation([
     'node-pool',
     'add',
@@ -80,11 +82,7 @@ export const useDatagridColumns = () => {
           </DataGridTextCell>
         ) : (
           <DataGridTextCell>
-            <span className="whitespace-nowrap">
-              <OsdsChip color={ODS_THEME_COLOR_INTENT.error} inline size={ODS_CHIP_SIZE.sm}>
-                {t(`kube_node_pool_autoscale_${pool.autoscale}`)}
-              </OsdsChip>
-            </span>
+            <StatusChip label={pool.autoscale ? ResourceStatus.ENABLED : ResourceStatus.DISABLED} />
           </DataGridTextCell>
         ),
       label: 'Autoscaling',
@@ -93,21 +91,32 @@ export const useDatagridColumns = () => {
       id: 'antiAffinity',
       cell: (props) => (
         <DataGridTextCell>
-          <span className="whitespace-nowrap">
-            <OsdsChip
-              color={
-                props.antiAffinity ? ODS_THEME_COLOR_INTENT.success : ODS_THEME_COLOR_INTENT.error
-              }
-              inline
-              size={ODS_CHIP_SIZE.sm}
-            >
-              {t(`kube_node_pool_autoscale_${props.antiAffinity}`)}
-            </OsdsChip>
-          </span>
+          <StatusChip
+            label={props.antiAffinity ? ResourceStatus.ENABLED : ResourceStatus.DISABLED}
+          />
         </DataGridTextCell>
       ),
       label: t('kube_node_pool_anti_affinity'),
     },
+    ...(showFloatingIp
+      ? [
+          {
+            id: 'floating-ip',
+            cell: (props: TClusterNodePool) => (
+              <DataGridTextCell>
+                <StatusChip
+                  label={
+                    props.attachFloatingIps?.enabled
+                      ? ResourceStatus.ENABLED
+                      : ResourceStatus.DISABLED
+                  }
+                />
+              </DataGridTextCell>
+            ),
+            label: 'Floating IPs',
+          },
+        ]
+      : []),
     {
       id: 'monthlyBilled',
       cell: MonthlyBilled,

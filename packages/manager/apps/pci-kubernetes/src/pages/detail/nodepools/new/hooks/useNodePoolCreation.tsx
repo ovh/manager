@@ -23,7 +23,7 @@ interface NodePoolFormData {
   selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
-  attachFloatingIPs?: TAttachFloatingIPs | null;
+  attachFloatingIps?: TAttachFloatingIPs | null;
   scaling?: TScalingState;
 }
 
@@ -51,7 +51,7 @@ export function useNodePoolCreation(
       name: formData.name,
       antiAffinity: formData.antiAffinity,
       monthlyBilled: formData.isMonthlyBilling,
-      ...(formData.attachFloatingIPs && { attachFloatingIPs: formData.attachFloatingIPs }),
+      ...(formData.attachFloatingIps && { attachFloatingIps: formData.attachFloatingIps }),
       autoscale: Boolean(formData.scaling?.isAutoscale),
       ...(Boolean(formData.scaling?.isAutoscale) && {
         minNodes: formData.scaling?.quantity.min ?? 0,

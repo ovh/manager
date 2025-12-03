@@ -16,11 +16,11 @@ vi.mock('../store', () => ({
       quantity: { desired: 3, min: 0, max: 100 },
     },
     selectedAvailabilityZones: [{ zone: 'zone-1', checked: true }],
-    attachFloatingIPs: null,
+    attachFloatingIps: null,
     isMonthlyBilling: false,
     set: {
       selectAvailabilityZones: vi.fn(),
-      attachFloatingIPs: vi.fn(),
+      attachFloatingIps: vi.fn(),
       scaling: vi.fn(),
     },
   })),

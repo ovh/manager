@@ -103,12 +103,12 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
           )}
           {has3AZFeature && isStandardPlan && (
             <PublicConnectivity
-              checked={Boolean(state.nodePoolState.attachFloatingIPs?.enabled)}
+              checked={Boolean(state.nodePoolState.attachFloatingIps?.enabled)}
               price={state.priceFloatingIp}
               onChange={(value) => {
                 actions.setNodePoolState((prevState) => ({
                   ...prevState,
-                  attachFloatingIPs: { enabled: value },
+                  attachFloatingIps: { enabled: value },
                 }));
               }}
             />
@@ -147,7 +147,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               }
               price={state.price?.hour ?? null}
               priceFloatingIp={
-                state.nodePoolState.attachFloatingIPs?.enabled && state.selectedFlavor
+                state.nodePoolState.attachFloatingIps?.enabled && state.selectedFlavor
                   ? state.priceFloatingIp
                   : null
               }
