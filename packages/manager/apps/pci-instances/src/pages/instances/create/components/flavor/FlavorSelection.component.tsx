@@ -109,6 +109,8 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
 
   const handleCloseSelectRegion = () => setUnavailableFlavor(null);
 
+  const resetQuantity = () => setValue('quantity', 1);
+
   const handleSelect = (
     field: ControllerRenderProps<TInstanceCreationForm, 'flavorId'>,
     flavorId: string | null,
@@ -116,7 +118,6 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     if (!flavorId) return;
 
     const flavor = flavors.find(({ id }) => id === flavorId);
-
     field.onChange(flavorId);
 
     if (flavor?.unavailable) {
@@ -135,6 +136,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
         ],
       });
     }
+    resetQuantity();
   };
 
   const handleSelectFlavorNewRegion = ({
