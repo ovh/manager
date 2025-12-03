@@ -1,10 +1,10 @@
-import { Suspense, startTransition } from 'react';
+import { Suspense } from 'react';
 
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -18,15 +18,21 @@ import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.h
 
 export default function AgentsListingPage() {
   const { tenantId } = useParams<{ tenantId: string }>();
-  const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_LISTING, NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([
+    BACKUP_AGENT_NAMESPACES.SERVICE_LISTING,
+    BACKUP_AGENT_NAMESPACES.AGENT,
+    NAMESPACES.ACTIONS,
+  ]);
   const navigate = useNavigate();
   const columns = useAgentsListingColumnsHooks();
   const { flattenData, isLoading } = useBackupAgentList(); // TODO: unmock (useVSPCTenants)
 
-  const onNavigateToDashboardClicked = () => {
-    startTransition(() =>
-      navigate(urls.dashboardTenants.replace(urlParams.tenantId, tenantId ?? '')),
-    );
+  const handleDownloadButton = () => {
+    navigate(urls.downloadAgentBackup.replace(urlParams.tenantId, tenantId ?? ''));
+  };
+
+  const handleAddConfiguration = () => {
+    navigate(urls.addAgentConfiguration.replace(urlParams.tenantId, tenantId ?? ''));
   };
 
   return (
@@ -35,12 +41,19 @@ export default function AgentsListingPage() {
         {columns && (
           <Datagrid
             topbar={
-              <OdsButton
-                icon={ODS_ICON_NAME.network}
-                size={ODS_BUTTON_SIZE.md}
-                label={t(`${NAMESPACES.ACTIONS}:download`)}
-                onClick={onNavigateToDashboardClicked}
-              />
+              <div className="flex flex-row gap-4">
+                <OdsButton
+                  size={ODS_BUTTON_SIZE.md}
+                  label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_configuration`)}
+                  onClick={handleAddConfiguration}
+                />
+                <OdsButton
+                  variant="outline"
+                  size={ODS_BUTTON_SIZE.md}
+                  label={t(`${NAMESPACES.ACTIONS}:download`)}
+                  onClick={handleDownloadButton}
+                />
+              </div>
             }
             columns={columns}
             items={flattenData || []}
