@@ -7443,6 +7443,11 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
 
+"@ovhcloud/ods-themes@19.2.0":
+  version "19.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.0.tgz#8e2851579245907a4d0506bfd8cf9f68b66d4d22"
+  integrity sha512-X4n1o+RzAN35FlJpeE+HtNcLOqCZf26SSl6pzNbGw2Ig+wkozoPcl1YiJrMZJ0T/pR+OSYZZdLI3wjjKzQaqew==
+
 "@ovhcloud/ods-themes@19.2.1", "@ovhcloud/ods-themes@^19.2.0":
   version "19.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"

@@ -59,5 +59,6 @@
   "available": "Available until",
   "restoreAvailableUntil": "Item will be available until",
   "seeVersionsSwitchLabel": "See versions",
-  "searchPlaceholder": "Searching...."
+  "searchPlaceholder": "Search...",
+  "changeStorageClassWarningInfrequentAccess": "Important: The Infrequent Access and Cold Archive classes impose a minimum retention period. <0>Learn more</0>"
 }
