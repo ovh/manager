@@ -58,9 +58,9 @@ const DistributionImageType = () => {
 
     trackClick({
       location: PageLocation.funnel,
-      buttonType: ButtonType.tab,
+      buttonType: ButtonType.tile,
       actionType: 'action',
-      actions: ['add_instance', 'select_image', imageType],
+      actions: ['add_instance', 'select_image_type', imageType],
     });
   };
 

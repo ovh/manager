@@ -18,6 +18,11 @@ import {
   TAvailableOption,
   TCustomData,
 } from '../../view-models/imagesViewModel';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 type TDistributionVersionList = {
   versions: SelectOptionItem<TCustomData>[];
@@ -25,6 +30,7 @@ type TDistributionVersionList = {
 
 const DistributionVersionList = ({ versions }: TDistributionVersionList) => {
   const { t } = useTranslation('creation');
+  const { trackClick } = useOvhTracking();
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const selectedVersion = useWatch({
     control,
@@ -43,6 +49,13 @@ const DistributionVersionList = ({ versions }: TDistributionVersionList) => {
 
   const handleSelectVersion = ({ items }: SelectValueChangeDetail) => {
     const version = (items as TAvailableOption[])[0];
+    if (version)
+      trackClick({
+        location: PageLocation.funnel,
+        buttonType: ButtonType.tile,
+        actionType: 'action',
+        actions: ['add_instance', 'select_image', version.label],
+      });
     updateImageVersionFields(version ?? null);
   };
 

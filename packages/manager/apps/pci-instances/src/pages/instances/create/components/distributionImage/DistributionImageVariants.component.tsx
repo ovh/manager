@@ -5,6 +5,9 @@ import {
   RadioGroup,
   RadioLabel,
   Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import {
   ButtonType,
@@ -20,7 +23,7 @@ import {
 } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { TImageOption } from '../../view-models/imagesViewModel';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
@@ -108,39 +111,68 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
           onValueChange={handleSelectImage(field)}
         >
           {variants.map(
-            ({ label, available, value, windowsHourlyPrice, windowsId }) => (
-              <PciCard
-                key={value}
-                selectable
-                disabled={!available}
-                className="justify-center p-5"
-                selected={selectedImageVariantId === value}
-                onClick={handleSelectImage(field, value, windowsId)}
-              >
-                <PciCard.Header>
-                  <Radio disabled={!available} value={value}>
-                    <RadioControl />
-                    <RadioLabel className={imageLabelClassname}>
-                      <DistributionImageLabel
-                        name={getImageLabelForIcon(value)}
-                      >
-                        <span className="flex-1 max-w-full pr-8">
-                          {label}
-                          {windowsHourlyPrice && (
-                            <Text className="text-sm font-medium text-[--ods-color-success-500]">
-                              {t(
-                                'creation:pci_instance_creation_windows_image_hourly_price',
-                                { price: getTextPrice(windowsHourlyPrice) },
-                              )}
-                            </Text>
-                          )}
-                        </span>
-                      </DistributionImageLabel>
-                    </RadioLabel>
-                  </Radio>
-                </PciCard.Header>
-              </PciCard>
-            ),
+            ({ label, available, value, windowsHourlyPrice, windowsId }) => {
+              // eslint-disable-next-line react/no-multi-comp
+              const Card = React.forwardRef<
+                HTMLDivElement,
+                React.ComponentProps<typeof PciCard>
+              >((props, ref) => (
+                <PciCard
+                  ref={ref}
+                  selectable
+                  disabled={!available}
+                  className="justify-center p-5"
+                  selected={selectedImageVariantId === value}
+                  onClick={handleSelectImage(field, value, windowsId)}
+                  {...props}
+                >
+                  <PciCard.Header>
+                    <Radio disabled={!available} value={value}>
+                      <RadioControl />
+                      <RadioLabel className={imageLabelClassname}>
+                        <DistributionImageLabel
+                          name={getImageLabelForIcon(value)}
+                        >
+                          <span className="flex-1 max-w-full pr-8">
+                            {label}
+                            {windowsHourlyPrice && (
+                              <Text className="text-sm font-medium text-[--ods-color-success-500]">
+                                {t(
+                                  'creation:pci_instance_creation_windows_image_hourly_price',
+                                  { price: getTextPrice(windowsHourlyPrice) },
+                                )}
+                              </Text>
+                            )}
+                          </span>
+                        </DistributionImageLabel>
+                      </RadioLabel>
+                    </Radio>
+                  </PciCard.Header>
+                </PciCard>
+              ));
+
+              Card.displayName = `DistributionVariantCard_${value}`;
+
+              if (available) return <Card key={value} />;
+
+              return (
+                <Tooltip key={value}>
+                  <TooltipTrigger asChild>
+                    <Card />
+                  </TooltipTrigger>
+                  <TooltipContent
+                    withArrow
+                    className="px-6 max-w-[220px] text-center"
+                  >
+                    <Text>
+                      {t(
+                        'creation:pci_instance_creation_image_available_on_other_models',
+                      )}
+                    </Text>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            },
           )}
         </RadioGroup>
       )}
