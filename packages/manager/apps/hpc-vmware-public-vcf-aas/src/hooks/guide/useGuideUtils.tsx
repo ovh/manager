@@ -77,13 +77,13 @@ type GetGuideLinkProps = {
 };
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
-  const list: { [guideName: string]: string } = {};
-  const keys = Object.entries(GUIDE_LIST);
-  keys.forEach((key) => {
-    list[key[0]] =
-      GUIDE_LIST[key[0]][subsidiary as CountryCode] ?? GUIDE_LIST[key[0]][CountryCode.GB];
-  });
-  return list;
+  return Object.entries(GUIDE_LIST).reduce(
+    (acc, [guideName, guideLinks]) => {
+      acc[guideName] = guideLinks[subsidiary as CountryCode] ?? guideLinks[CountryCode.GB] ?? '';
+      return acc;
+    },
+    {} as { [guideName: string]: string },
+  );
 }
 
 interface GuideLinkProps {

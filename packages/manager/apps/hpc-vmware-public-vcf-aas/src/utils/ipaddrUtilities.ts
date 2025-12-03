@@ -7,8 +7,9 @@ export function getGatewayFromCIDR(cidr: string): string {
   const octets = broadcast.octets.slice();
 
   for (let i = 3; i >= 0; i -= 1) {
-    if (octets[i] > 0) {
-      octets[i] -= 1;
+    const currentOctet = octets[i];
+    if (currentOctet !== undefined && currentOctet > 0) {
+      octets[i] = currentOctet - 1;
       break;
     }
     octets[i] = 255;

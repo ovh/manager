@@ -2,14 +2,17 @@ import { waitFor } from '@testing-library/dom';
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  datacentreList,
-  mockVrackSegmentList,
-  organizationList,
-} from '@ovh-ux/manager-module-vcd-api';
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 import { labels, renderTest } from '../../../../../test-utils';
+
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vrackSegment: SAFE_MOCK_DATA.vrackSegmentStandard,
+};
+const initialRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}/vrack-segments/${config.vrackSegment.id}/add-network`;
 
 const checkTitleIsVisible = () =>
   expect(screen.queryAllByText(fr_FR.managed_vcd_dashboard_vrack_add_network)[0]).toBeVisible();
@@ -32,12 +35,14 @@ const checkNetworkValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const submitForm = (container: HTMLElement) => {
-  return act(() =>
-    userEvent.click(
-      container.querySelector(`[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`),
-    ),
+const submitForm = (container: HTMLElement | null) => {
+  const submitCta = container?.querySelector(
+    `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
   );
+  if (!submitCta) {
+    throw new Error('Submit button not found');
+  }
+  return act(() => userEvent.click(submitCta));
 };
 
 const checkErrorBannerIsVisible = () => {
@@ -49,9 +54,7 @@ const checkErrorBannerIsVisible = () => {
 // Check modal is closed and success message is shown
 describe('Edit Vrack Segment Id Page', () => {
   it('The form is displayed and can be submitted', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/add-network`,
-    });
+    const { container } = await renderTest({ initialRoute });
 
     await waitFor(
       () => {
@@ -72,10 +75,7 @@ describe('Edit Vrack Segment Id Page', () => {
   });
 
   it('The form is displayed and can be submitted and we show error', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/add-network`,
-      isVrackSegmentUpdateKo: true,
-    });
+    const { container } = await renderTest({ initialRoute, isVrackSegmentUpdateKo: true });
 
     await waitFor(() => {
       checkTitleIsVisible();
@@ -102,10 +102,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
   // TODO : unskip when page is unmocked
   it.skip('The form is not visible and we see error', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/add-network`,
-      isVrackSegmentKO: true,
-    });
+    await renderTest({ initialRoute, isVrackSegmentKO: true });
 
     await waitFor(() => {
       checkTitleIsVisible();

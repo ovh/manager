@@ -1,7 +1,5 @@
 import { ReactNode, createContext, useContext, useMemo } from 'react';
 
-import { useParams } from 'react-router-dom';
-
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   VCDNetworkAcl,
@@ -14,6 +12,8 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
+
 const INTERVAL_POLLING = 2 * 1000; // 2s
 const ACTIVE_TASK_STATUS = ['PENDING', 'RUNNING'];
 const RUNNING_RSSOURCE_STATUS = ['CREATING', 'UPDATING', 'DELETING'];
@@ -21,7 +21,7 @@ const RUNNING_RSSOURCE_STATUS = ['CREATING', 'UPDATING', 'DELETING'];
 export const checkHasActiveTasks = (data: VCDNetworkAcl[] | undefined): boolean => {
   return (
     data?.some((item) =>
-      item.currentTasks?.some((task) => ACTIVE_TASK_STATUS.includes(task.status)),
+      item.currentTasks?.some((task) => task.status && ACTIVE_TASK_STATUS.includes(task.status)),
     ) ?? false
   );
 };
@@ -52,7 +52,7 @@ interface NetworkAclContextValue {
 const NetworkAclContext = createContext<NetworkAclContextValue | null>(null);
 
 export function NetworkAclProvider({ children }: { children: ReactNode }) {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const { flattenData, isPending, isError, error } = useResourcesIcebergV2<VCDNetworkAcl>({
     route: getVcdOrganisationNetworkAclList(id),
@@ -113,12 +113,14 @@ export function NetworkAclProvider({ children }: { children: ReactNode }) {
         currentNetworks,
         targetNetworks,
         organisationId: id,
-        isActiveOrganisation: !isStatusTerminated(vcdOrganisation?.data?.resourceStatus),
+        isActiveOrganisation: vcdOrganisation?.data?.resourceStatus
+          ? !isStatusTerminated(vcdOrganisation.data.resourceStatus)
+          : false,
         aclId,
         hasActiveTasks,
         isPending,
         isError,
-        resourceStatus: acl?.resourceStatus,
+        resourceStatus: acl?.resourceStatus ?? 'ERROR',
         error: error as ApiError,
       }}
     >

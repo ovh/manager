@@ -9,18 +9,25 @@ import {
   getElementByTestId,
   getNthElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import { DEFAULT_LISTING_ERROR, labels, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vdcSuspended: SAFE_MOCK_DATA.vdcSuspended,
+};
+const initialRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}`;
+const storageRoute = `${initialRoute}/storage`;
+const suspendedStorageRoute = `/${config.org.id}/virtual-datacenters/${config.vdcSuspended.id}/storage`;
+
 describe('Datacentre Storage Listing Page', () => {
   it('access and display storage listing page', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
-      nbStorage: 2,
-    });
+    await renderTest({ initialRoute, nbStorage: 2 });
 
     // access storage tab
     await assertTextVisibility(STORAGE_LABEL);
@@ -52,17 +59,14 @@ describe('Datacentre Storage Listing Page', () => {
   });
 
   it('display an error', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage`,
-      isStorageKO: true,
-    });
+    await renderTest({ initialRoute: storageRoute, isStorageKO: true });
 
     await assertTextVisibility(DEFAULT_LISTING_ERROR);
   });
 
-  it('should disable remove button when status is suspended', async () => {
+  it('should disable remove button when datacentre status is suspended', async () => {
     const { queryByTestId } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}/storage`,
+      initialRoute: suspendedStorageRoute,
       storageResourceId: 'b683b2d1-2387-46da-8e1b-76ebbee0dbae5',
     });
 
