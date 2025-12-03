@@ -7,6 +7,16 @@ import Guides from '@/components/guides/Guides.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import SwiftObjectBrowser from './_components/SwiftObjectBrowser.component';
 import RefreshButton from '@/components/refresh-button/RefreshButton.component';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="objectsTab"
+      namespace="pci-object-storage/storages/header-tabs"
+    />
+  );
+}
 
 const SwiftObjectsPage = () => {
   const { t } = useTranslation('pci-object-storage/storages/swift/objects');
