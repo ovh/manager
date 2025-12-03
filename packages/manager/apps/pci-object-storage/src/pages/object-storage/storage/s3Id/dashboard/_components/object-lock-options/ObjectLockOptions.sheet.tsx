@@ -102,7 +102,6 @@ const ObjectLockOptions = () => {
   // Handle form submission
   const onSubmit = form.handleSubmit(
     (values) => {
-      console.log('values', values);
       const data = {
         projectId,
         region,
