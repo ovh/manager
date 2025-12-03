@@ -1,7 +1,7 @@
 import path from 'path';
 
 import {
-  createConfig,
+  createConfig, 	defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -31,7 +31,7 @@ export default mergeConfig(
         ],
       },
     },
-    resolve: {
+    resolve: { dedupe: [...defaultDedupedDependencies], 
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
