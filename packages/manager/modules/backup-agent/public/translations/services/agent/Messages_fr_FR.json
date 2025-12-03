@@ -13,5 +13,7 @@
   "delete_agent_banner_success": "Votre Agent {{agentName}} a correctement été supprimé",
   "delete_agent_banner_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer.",
   "delete_agent_modal_title": "Supprimer l'agent",
-  "delete_agent_modal_content": "Souhaitez-vous vraiment supprimer l'agent {{agentName}} ?"
+  "delete_agent_modal_content": "Souhaitez-vous vraiment supprimer l'agent {{agentName}} ?",
+  "download_agent_with_executable": "Installer via executable",
+  "download_agent_with_command_line": "Installer l'agent via terminal"
 }

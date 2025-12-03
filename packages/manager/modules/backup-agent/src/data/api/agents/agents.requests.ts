@@ -1,5 +1,7 @@
 import { ApiResponse, v2 } from '@ovh-ux/manager-core-api';
 
+import { AgentDownloadLinks } from '@/types/AgentDownloadLinks';
+
 export const getBackupAgentsListRoute = (vspcTenantId: string) =>
   `/backup/tenant/vspc/${vspcTenantId}/backupAgent`;
 
@@ -13,6 +15,9 @@ export const getEditConfigurationBackupAgentsRoute = (
 
 export const getDeleteBackupAgentsRoute = (vspcTenantId: string, backupAgentId: string) =>
   `/backup/tenant/vspc/${vspcTenantId}/backupAgent/${backupAgentId}`;
+
+export const getDownloadLinkBackupAgentsRoute = (vspcTenantId: string) =>
+  `/backupServices/tenant/vspc/${vspcTenantId}/managementAgent`;
 
 export type EditConfigurationBackupAgentsParams = {
   vspcTenantId: string;
@@ -34,3 +39,6 @@ export const deleteBackupAgent = async (
   agentId: string,
 ): Promise<ApiResponse<string>> =>
   v2.delete(`${getDeleteBackupAgentsRoute(vspcTenantId, agentId)}`);
+
+export const downloadLinkBackupAgent = async (vspcTenantId: string) =>
+  (await v2.get<AgentDownloadLinks>(getDownloadLinkBackupAgentsRoute(vspcTenantId))).data;

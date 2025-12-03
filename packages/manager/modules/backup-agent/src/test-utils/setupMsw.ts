@@ -3,6 +3,10 @@ import { SetupServer } from 'msw/node';
 import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
 
+import {
+  TAgentDownloadLinkMockParams,
+  getAgentDownloadLinksMocks,
+} from '@/mocks/agents/agentDownloadLinks.handler';
 import { TAgentMockParams, getAgentMocks } from '@/mocks/agents/agents.handler';
 import { TLocationMockParams, getLocationMocks } from '@/mocks/location/locations.handler';
 import {
@@ -19,7 +23,8 @@ export type MockParams = TVaultMockParams &
   TAgentMockParams &
   TVSPCTenantMockParams &
   GetServicesMocksParams &
-  TTenantBackupPolicieMockParams;
+  TTenantBackupPolicieMockParams &
+  TAgentDownloadLinkMockParams;
 
 export const setupMswMock = (mockParams: MockParams = {}) => {
   (global as unknown as { server: SetupServer }).server?.resetHandlers(
@@ -32,6 +37,7 @@ export const setupMswMock = (mockParams: MockParams = {}) => {
       ...getAgentMocks(mockParams),
       ...getVSPCTenantMocks(mockParams),
       ...getTenantBackupPolicieMocks(mockParams),
+      ...getAgentDownloadLinksMocks(mockParams),
     ]),
   );
 };
