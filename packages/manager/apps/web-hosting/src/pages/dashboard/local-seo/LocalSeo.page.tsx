@@ -35,7 +35,8 @@ export default function LocalSeo() {
     enabled: !!serviceName,
     iceberg: true,
   });
-
+  console.log('flattenData', flattenData);
+  console.log('columns', columns);
   return (
     <React.Suspense fallback={<Loading />}>
       <Notifications />

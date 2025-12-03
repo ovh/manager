@@ -148,6 +148,8 @@ export default function MyWebsitesPage() {
     [handleDeleteItemClick, t],
   );
 
+  console.log('data', data);
+  console.log('columns', columns);
   return (
     <>
       <Datagrid

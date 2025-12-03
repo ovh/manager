@@ -95,7 +95,8 @@ export default function ManagedWordpressPage() {
   if (shouldRedirect) {
     return null;
   }
-
+  console.log('data', data);
+  console.log('columns', columns);
   return (
     <>
       <BaseLayout

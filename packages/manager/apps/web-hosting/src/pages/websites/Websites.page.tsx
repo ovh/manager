@@ -421,6 +421,8 @@ export default function Websites() {
       label: t('web_hosting_export_label_all'),
     },
   ];
+  console.log('data', data);
+  console.log('columns', displayColumns);
   return (
     <BaseLayout
       header={{

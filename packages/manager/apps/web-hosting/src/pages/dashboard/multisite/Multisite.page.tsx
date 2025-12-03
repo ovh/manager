@@ -288,7 +288,8 @@ export default function MultisitePage() {
 
     [t, navigate, serviceName, domainsData, domainsAttached],
   );
-
+  console.log('combinedData', combinedData);
+  console.log('columns', columns);
   return (
     <>
       {!isOverridedPage && (

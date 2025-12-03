@@ -153,6 +153,8 @@ export default function TasksPage() {
   const handleRefreshClick = () => {
     void refetch();
   };
+  console.log('data', data);
+  console.log('columns', columns);
   return (
     <>
       <div className="my-4 flex justify-end">

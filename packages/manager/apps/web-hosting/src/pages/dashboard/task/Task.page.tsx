@@ -24,6 +24,8 @@ export default function Multisite() {
     enabled: !!serviceName,
     iceberg: true,
   });
+  console.log('flattenData', flattenData);
+  console.log('columns', columns);
   return (
     <React.Suspense fallback={<Loading />}>
       <div className="mb-6 flex flex-wrap justify-end">

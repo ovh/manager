@@ -113,6 +113,8 @@ export default function Ssl() {
     accessorFn: (row: Record<string, unknown>) => row[col.id],
   }));
 
+  console.log('flattenData', flattenData);
+  console.log('columns', columns);
   return (
     <React.Suspense fallback={<Loading />}>
       <Notifications />

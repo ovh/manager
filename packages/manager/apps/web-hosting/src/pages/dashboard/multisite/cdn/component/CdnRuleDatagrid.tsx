@@ -197,7 +197,8 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
       cell: ({ row }) => <DatagridActionCell {...row.original} />,
     },
   ];
-
+  console.log('rulesData', rulesData);
+  console.log('columns', columns);
   return (
     <React.Suspense fallback={<Loading />}>
       <Text preset={TEXT_PRESET.heading5}>{t('cdn_shared_option_cache_rule_title')}</Text>
