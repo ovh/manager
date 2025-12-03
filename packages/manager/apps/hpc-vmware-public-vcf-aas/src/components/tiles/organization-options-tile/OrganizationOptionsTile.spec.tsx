@@ -10,14 +10,18 @@ import { TRACKING } from '../../../tracking.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 import OrganizationOptionsTile from './OrganizationOptionsTile.component';
 
-vi.stubGlobal('open', vi.fn());
-
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
+
+vi.mock('@/hooks/params/useSafeParams', () => {
+  return {
+    useOrganisationParams: () => vi.fn(),
   };
 });
 

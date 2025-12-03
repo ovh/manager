@@ -9,7 +9,6 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { MessageList } from '@/components/message/MessageList.component';
-import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { getTabTrackingParams } from '@/tracking.constants';
 
 export type DashboardTab = {

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -23,6 +23,7 @@ import {
   DatagridProfileCell,
   DatagridTypeCell,
 } from '@/components/datagrid/storage/StorageCells.component';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
 import TEST_IDS from '@/utils/testIds.constants';
@@ -31,12 +32,15 @@ import { ID_LABEL } from '../../dashboard.constants';
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
 
 export default function StorageListingPage() {
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const { t } = useTranslation('datacentres/storage');
   const { t: tCompute } = useTranslation('datacentres/compute');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const isServiceTerminated: boolean = vcdDatacentre?.data.resourceStatus
+    ? isStatusTerminated(vcdDatacentre?.data?.resourceStatus)
+    : false;
 
   const columns = [
     {
@@ -99,7 +103,7 @@ export default function StorageListingPage() {
         <OdsButton
           label={t('managed_vcd_vdc_storage_order_cta')}
           variant="outline"
-          isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+          isDisabled={isServiceTerminated}
           onClick={() => {
             trackClick(TRACKING.storage.addStorage);
             navigate(subRoutes.datacentreStorageOrder);
