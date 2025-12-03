@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { TOperation } from '@/api/data/operation';
 
 export type TVolumeSnapshot = {
   id: string;
@@ -25,12 +26,12 @@ export const getSnapshotsByRegion = async (
 export const deleteSnapshots = async (
   projectId: string,
   volumeId: string,
-  snapshotsIds: string[],
+  region: string,
 ) => {
-  const { data } = await v6.post(
-    `/cloud/project/${projectId}/volume/${volumeId}/bulkDeleteSnapshots`,
+  const { data } = await v6.post<TOperation>(
+    `/cloud/project/${projectId}/region/${region}/volume/${volumeId}/bulkDeleteSnapshots`,
     {
-      snapshotsIds,
+      deleteAll: true,
     },
   );
   return data;
