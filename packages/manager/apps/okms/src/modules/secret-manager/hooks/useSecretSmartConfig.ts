@@ -1,15 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
-import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
-import { useSecretConfigReference } from '@secret-manager/data/hooks/useSecretConfigReference';
-import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
-import { Secret } from '@secret-manager/types/secret.type';
-import {
-  buildSecretSmartConfig,
-  SecretSmartConfig,
-} from '@secret-manager/utils/secretSmartConfig';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
+import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
+import { useSecretConfigReference } from '@secret-manager/data/hooks/useSecretConfigReference';
+import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
+import { Secret } from '@secret-manager/types/secret.type';
+import { SecretSmartConfig, buildSecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { ErrorResponse } from '@/common/types/api.type';
 
 export type UseSecretSmartConfigResult =
@@ -32,16 +29,10 @@ export type UseSecretSmartConfigResult =
       secretConfig: SecretSmartConfig;
     };
 
-export const useSecretSmartConfig = (
-  secret: Secret | undefined,
-): UseSecretSmartConfigResult => {
-  const { okmsId } = useParams() as LocationPathParams;
+export const useSecretSmartConfig = (secret: Secret | undefined): UseSecretSmartConfigResult => {
+  const { okmsId } = useRequiredParams('okmsId');
 
-  const {
-    data: okms,
-    isPending: isOkmsPending,
-    error: okmsError,
-  } = useOkmsById(okmsId);
+  const { data: okms, isPending: isOkmsPending, error: okmsError } = useOkmsById(okmsId);
   const region = useCurrentRegion(okms?.data ? [okms.data] : []);
 
   const {
@@ -55,8 +46,7 @@ export const useSecretSmartConfig = (
     error: secretReferenceError,
   } = useSecretConfigReference(region);
 
-  const isPending =
-    isOkmsPending || isSecretConfigOkmsPending || isSecretReferencePending;
+  const isPending = isOkmsPending || isSecretConfigOkmsPending || isSecretReferencePending;
   const error = okmsError || secretConfigOkmsError || secretReferenceError;
 
   useNotificationAddErrorOnce(error);
@@ -75,11 +65,7 @@ export const useSecretSmartConfig = (
   }
 
   // Get the secret config from all sources
-  const secretConfig = buildSecretSmartConfig(
-    secret,
-    secretConfigOkms,
-    secretReference,
-  );
+  const secretConfig = buildSecretSmartConfig(secret, secretConfigOkms, secretReference);
 
   return {
     isPending: false,

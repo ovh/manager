@@ -1,4 +1,5 @@
 import { IdentityObject } from '@key-management-service/types/identity.type';
+
 import { decodeIdentity } from './decodeIdentities';
 
 describe('decodeIdentities test suite', () => {
@@ -53,16 +54,13 @@ describe('decodeIdentities test suite', () => {
     },
   ];
 
-  test.each(useCases)(
-    'should return $identityObject for $urn',
-    ({ urn, identityObject }) => {
-      // given urn and identityObject
+  test.each(useCases)('should return $identityObject for $urn', ({ urn, identityObject }) => {
+    // given urn and identityObject
 
-      // when
-      const decodedIdentity = decodeIdentity(urn);
+    // when
+    const decodedIdentity = decodeIdentity(urn);
 
-      // then
-      expect(decodedIdentity).toStrictEqual(identityObject);
-    },
-  );
+    // then
+    expect(decodedIdentity).toStrictEqual(identityObject);
+  });
 });

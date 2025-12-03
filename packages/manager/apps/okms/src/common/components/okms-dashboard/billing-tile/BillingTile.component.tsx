@@ -1,15 +1,13 @@
-import React from 'react';
-import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
 import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { OKMS } from '@key-management-service/types/okms.type';
+
 import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+
+import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
 
 const useResiliateLink = (okms: OKMS) => {
   const productType = useProductType();

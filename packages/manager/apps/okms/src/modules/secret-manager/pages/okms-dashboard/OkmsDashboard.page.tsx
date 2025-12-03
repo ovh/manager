@@ -1,36 +1,36 @@
-import React from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import { okmsQueryKeys } from '@key-management-service/data/api/okms';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
+import { OkmsBreadcrumbItem, RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
+import { OkmsDashboardBreadcrumbItem } from '@secret-manager/components/breadcrumb/items/OkmsDashboardBreadcrumbItem.component';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+
 import {
   BaseLayout,
   ErrorBanner,
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import {
-  OkmsBreadcrumbItem,
-  RootBreadcrumbItem,
-} from '@secret-manager/components/breadcrumb';
-import { OkmsDashboardBreadcrumbItem } from '@secret-manager/components/breadcrumb/items/OkmsDashboardBreadcrumbItem.component';
-import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
-import { okmsQueryKeys } from '@key-management-service/data/api/okms';
+
+import { OkmsDomainDashboardTiles } from '@/common/components/okms-dashboard/okms-domain-dashboard-tiles/OkmsDomainDashboardTiles.component';
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
-import { OkmsDomainDashboardTiles } from '@/common/components/okms-dashboard/OkmsDomainDashboardTiles.component';
-import { OkmsDashboardOutletContext } from './OkmsDashboard.type';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
+import { OkmsDashboardOutletContext } from './OkmsDashboard.type';
 
 export default function OkmsDashboardPage() {
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
   const { notifications } = useNotifications();
-  const { okmsId } = useParams<LocationPathParams>();
+  const { okmsId } = useRequiredParams('okmsId');
 
   const { data: okms, isPending, error } = useOkmsById(okmsId);
 
@@ -62,6 +62,7 @@ export default function OkmsDashboardPage() {
       header={{
         title: t('okms_dashboard_title'),
         changelogButton: <SecretManagerChangelogButton />,
+        headerButton: <SecretManagerGuidesButton />,
       }}
       backLinkLabel={t('back_to_secret_list')}
       onClickReturn={() => navigate('..')}
@@ -72,7 +73,7 @@ export default function OkmsDashboardPage() {
           <OkmsDashboardBreadcrumbItem />
         </OdsBreadcrumb>
       }
-      message={notifications.length > 0 && <Notifications />}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <OkmsDomainDashboardTiles okms={okms.data} />
       <Outlet context={contextValue} />

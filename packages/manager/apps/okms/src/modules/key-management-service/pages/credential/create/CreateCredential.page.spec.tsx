@@ -1,31 +1,29 @@
-import { describe, it } from 'vitest';
-import { act, screen, waitFor, fireEvent } from '@testing-library/react';
-import {
-  getOdsButtonByLabel,
-  assertOdsModalVisibility,
-} from '@ovh-ux/manager-core-test-utils';
-import userEvent, { UserEvent } from '@testing-library/user-event';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { identityUsers } from '@key-management-service/mocks/identity/identityUsers.mock';
+import { credentialMock2 } from '@key-management-service/mocks/credentials/credentials.mock';
+import { identityUserMock1 } from '@key-management-service/mocks/identity/identityUsers.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { kmsServicesMock } from '@key-management-service/mocks/services/services.mock';
-import { OKMS } from '@key-management-service/types/okms.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
+import { describe, it } from 'vitest';
+
+import { assertOdsModalVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 const WAIT_TIMEOUT = { timeout: 5000 };
 const mockOkmsItem: OKMS = {
-  ...okmsMock[0],
+  ...okmsRoubaix1Mock,
   iam: {
-    ...okmsMock[0].iam,
+    ...okmsRoubaix1Mock.iam,
     displayName: kmsServicesMock.resource.displayName,
   },
 };
-const mockCreatedCredentials = credentialMock[1];
-const mockCredentialsCreatePageUrl = KMS_ROUTES_URLS.credentialCreate(
-  mockOkmsItem.id,
-);
+const mockCreatedCredentials = credentialMock2;
+const mockCredentialsCreatePageUrl = KMS_ROUTES_URLS.credentialCreate(mockOkmsItem.id);
+const mockIdentityUser = identityUserMock1;
 
 /* HELPERS */
 
@@ -52,12 +50,8 @@ const testContentStep1 = async (container: HTMLElement) => {
   const inputValidity = screen.getByTestId('input-validity-period');
   const inputMethodKey = screen.getByTestId('radio-method-key');
   const inputMethodNoKey = screen.getByTestId('radio-method-no-key');
-  const inputCertificateTypeEC = screen.getByTestId(
-    'radio-certificate-type-ec',
-  );
-  const inputCertificateTypeRSA = screen.getByTestId(
-    'radio-certificate-type-rsa',
-  );
+  const inputCertificateTypeEC = screen.getByTestId('radio-certificate-type-ec');
+  const inputCertificateTypeRSA = screen.getByTestId('radio-certificate-type-rsa');
 
   expect(inputName).toBeInTheDocument();
   expect(inputDescription).toBeInTheDocument();
@@ -74,9 +68,7 @@ const testContentStep1 = async (container: HTMLElement) => {
   const buttonNextStep = await getOdsButtonByLabel({
     container,
     disabled: true,
-    label:
-      labels.credentials
-        .key_management_service_credential_create_cta_add_identities,
+    label: labels.credentials.key_management_service_credential_create_cta_add_identities,
   });
   expect(buttonNextStep).toBeDisabled();
 
@@ -96,8 +88,7 @@ const testContentStep2 = async (container: HTMLElement) => {
   // Check title
   expect(
     await screen.findByText(
-      labels.credentials
-        .key_management_service_credential_create_identities_title,
+      labels.credentials.key_management_service_credential_create_identities_title,
     ),
   ).toBeVisible();
 
@@ -114,8 +105,7 @@ const testContentStep2 = async (container: HTMLElement) => {
     container,
     disabled: true,
     label:
-      labels.credentials
-        .key_management_service_credential_create_identities_button_create_label,
+      labels.credentials.key_management_service_credential_create_identities_button_create_label,
   });
   expect(buttonCreateCredentials).toBeDisabled();
 
@@ -127,15 +117,14 @@ const testContentStep2 = async (container: HTMLElement) => {
 
 const testContentStep2AddUsersModal = async (container: HTMLElement) => {
   // Wait for modal to open
-  await waitFor(() => {
-    assertOdsModalVisibility({ container, isVisible: true });
+  await waitFor(async () => {
+    await assertOdsModalVisibility({ container, isVisible: true });
   }, WAIT_TIMEOUT);
 
   // Check modal title
   expect(
     await screen.findByText(
-      labels.credentials
-        .key_management_service_credentials_identity_modal_user_list_headline,
+      labels.credentials.key_management_service_credentials_identity_modal_user_list_headline,
     ),
   ).toBeVisible();
 
@@ -150,14 +139,12 @@ const testContentStep2AddUsersModal = async (container: HTMLElement) => {
   }, WAIT_TIMEOUT);
 
   // Get user 1 card
-  const user1Card = screen.getByText(identityUsers[0].email);
+  const user1Card = screen.getByText(mockIdentityUser.email);
 
   // Get submit button
   const buttonAddUsers = await getOdsButtonByLabel({
     container,
-    label:
-      labels.credentials
-        .key_management_service_credentials_identity_modal_user_list_add,
+    label: labels.credentials.key_management_service_credentials_identity_modal_user_list_add,
   });
 
   return {
@@ -182,9 +169,7 @@ const testContentStep3 = async (container: HTMLElement) => {
 
   // Check for success notification
   expect(
-    await screen.findByText(
-      labels.credentials.key_management_service_credential_create_success,
-    ),
+    await screen.findByText(labels.credentials.key_management_service_credential_create_success),
   ).toBeVisible();
 
   // Get submit button
@@ -192,14 +177,11 @@ const testContentStep3 = async (container: HTMLElement) => {
     container,
     disabled: true,
     label:
-      labels.credentials
-        .key_management_service_credential_create_confirmation_button_done_label,
+      labels.credentials.key_management_service_credential_create_confirmation_button_done_label,
   });
 
   // Get confirmation checkbox
-  const checkboxConfirm = await screen.findByTestId(
-    'confirmation-private-key-label',
-  );
+  const checkboxConfirm = await screen.findByTestId('confirmation-private-key-label');
   expect(checkboxConfirm).toBeInTheDocument();
 
   return {
@@ -210,15 +192,11 @@ const testContentStep3 = async (container: HTMLElement) => {
 
 const assertCredentialListPageVisibility = async () => {
   // Check kms display name
-  expect(
-    await screen.findByText(mockOkmsItem.iam.displayName, {}, WAIT_TIMEOUT),
-  ).toBeVisible();
+  expect(await screen.findByText(mockOkmsItem.iam.displayName, {}, WAIT_TIMEOUT)).toBeVisible();
 
   // Check headline on credentials list page
   expect(
-    await screen.findByText(
-      labels.credentials.key_management_service_credential_headline,
-    ),
+    await screen.findByText(labels.credentials.key_management_service_credential_headline),
   ).toBeVisible();
 };
 
@@ -235,7 +213,9 @@ const testStep1 = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Submit step 1
-  await act(() => user.click(buttonNextStep));
+  await act(async () => {
+    await user.click(buttonNextStep);
+  });
 };
 
 const testStep1CustomCsr = async (container: HTMLElement, user: UserEvent) => {
@@ -257,7 +237,9 @@ const testStep1CustomCsr = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // choose the custom csr option
-  await act(() => user.click(inputMethodKey));
+  await act(async () => {
+    await user.click(inputMethodKey);
+  });
 
   // check that the form has updated properly
   const inputCsr = screen.getByTestId('textarea-csr');
@@ -277,39 +259,40 @@ const testStep1CustomCsr = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Submit step 1
-  await act(() => user.click(buttonNextStep));
+  await act(async () => {
+    await user.click(buttonNextStep);
+  });
 };
 
 const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   // Check and get content of step 2
-  const {
-    buttonAddUsersModal,
-    buttonCreateCredentials,
-  } = await testContentStep2(container);
+  const { buttonAddUsersModal, buttonCreateCredentials } = await testContentStep2(container);
 
   // Open user selection modal
-  await act(() => user.click(buttonAddUsersModal));
+  await act(async () => {
+    await user.click(buttonAddUsersModal);
+  });
 
   // Check modal title
-  const { user1Card, buttonAddUsers } = await testContentStep2AddUsersModal(
-    container,
-  );
+  const { user1Card, buttonAddUsers } = await testContentStep2AddUsersModal(container);
 
   // Select user 1
-  await act(() => user.click(user1Card));
+  await act(async () => {
+    await user.click(user1Card);
+  });
 
   // Close modal
-  await act(() => user.click(buttonAddUsers));
+  await act(async () => {
+    await user.click(buttonAddUsers);
+  });
 
   // Wait for modal to close
-  await waitFor(() => {
-    assertOdsModalVisibility({ container, isVisible: false });
+  await waitFor(async () => {
+    await assertOdsModalVisibility({ container, isVisible: false });
   }, WAIT_TIMEOUT);
 
   // Check user1 is added to the list
-  expect(
-    await screen.findByText(identityUsers[0].login, {}, WAIT_TIMEOUT),
-  ).toBeInTheDocument();
+  expect(await screen.findByText(mockIdentityUser.login, {}, WAIT_TIMEOUT)).toBeInTheDocument();
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -317,7 +300,9 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   }, WAIT_TIMEOUT);
 
   // Submit step 2
-  await act(() => user.click(buttonCreateCredentials));
+  await act(async () => {
+    await user.click(buttonCreateCredentials);
+  });
 };
 
 const testStep3 = async (container: HTMLElement, user: UserEvent) => {
@@ -334,7 +319,9 @@ const testStep3 = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Submit step 3
-  await act(() => user.click(buttonFinish));
+  await act(async () => {
+    await user.click(buttonFinish);
+  });
 };
 
 /* TESTS */
@@ -351,7 +338,9 @@ describe('Create Credentials Page test suite', () => {
     const { container } = await renderPage({ fromCSR: false });
 
     await testStep1(container, user);
+
     await testStep2(container, user);
+
     await testStep3(container, user);
 
     await assertCredentialListPageVisibility();

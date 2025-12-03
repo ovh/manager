@@ -1,4 +1,5 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { featuresAvailabilityMock } from './feature-availability.mock';
 
 export type GetFeatureAvailabilityMocksParams = {

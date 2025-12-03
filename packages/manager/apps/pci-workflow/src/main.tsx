@@ -8,7 +8,7 @@ import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-
 import '@/vite-hmr';
 
 import App from './App';
-import './index.css';
+import './index.scss';
 
 const init = async (
   appName: string,

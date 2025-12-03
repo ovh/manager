@@ -1,22 +1,22 @@
-import { DatagridColumn } from '@ovh-ux/manager-react-components';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
 import { useIdentityData } from '@key-management-service/hooks/credential/useIdentityData';
-import { IdentityGroup } from '@key-management-service/types/identity.type';
 import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
+import { IdentityGroup } from '@key-management-service/types/identity.type';
+import { useTranslation } from 'react-i18next';
+
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import IdentitiesSelectedBase from './IdentitiesSelectedBase.component';
-import IdentityGroupNameCell from './cell/group/IdentityGroupNameCell.component';
-import IdentityGroupDescriptionCell from './cell/group/IdentityGroupDescriptionCell.component';
 import IdentityGroupDeleteActionCell from './cell/group/IdentityGroupDeleteActionCell';
+import IdentityGroupDescriptionCell from './cell/group/IdentityGroupDescriptionCell.component';
+import IdentityGroupNameCell from './cell/group/IdentityGroupNameCell.component';
 
 type IdentitiesSelectedGroupsProps = {
   identityURNs: string[];
 };
 
-const IdentitiesSelectedGroups = ({
-  identityURNs,
-}: IdentitiesSelectedGroupsProps) => {
+const IdentitiesSelectedGroups = ({ identityURNs }: IdentitiesSelectedGroupsProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { groupList, setGroupList } = useIdentityData();
@@ -31,9 +31,7 @@ const IdentitiesSelectedGroups = ({
     {
       id: 'description',
       cell: IdentityGroupDescriptionCell,
-      label: t(
-        'key_management_service_credential_user_list_column_description',
-      ),
+      label: t('key_management_service_credential_user_list_column_description'),
       isSortable: false,
     },
     {
@@ -46,12 +44,8 @@ const IdentitiesSelectedGroups = ({
 
   return (
     <IdentitiesSelectedBase
-      title={t(
-        'key_management_service_credential_create_identities_users_groups_title',
-      )}
-      addCallback={() =>
-        navigate(KMS_ROUTES_URIS.credentialCreateAddGroupModal)
-      }
+      title={t('key_management_service_credential_create_identities_users_groups_title')}
+      addCallback={() => navigate(KMS_ROUTES_URIS.credentialCreateAddGroupModal)}
       addButtonLabel={t(
         'key_management_service_credential_create_identities_users_groups_button_add_label',
       )}

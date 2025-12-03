@@ -1,25 +1,20 @@
-import React from 'react';
-import {
-  Clipboard,
-  DataGridTextCell,
-  Region,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
+import { useRegionName } from '@key-management-service/hooks/useRegionName';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
-import { OKMS } from '@key-management-service/types/okms.type';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { useRegionName } from '@key-management-service/hooks/useRegionName';
-import { OkmsDatagridType } from './okmsDatagrid.type';
+
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { Link } from '@/common/components/link/Link.component';
+
 import { OKMS_LIST_CELL_TEST_IDS } from './ListingCells.constants';
+import { OkmsDatagridType } from './okmsDatagrid.type';
 
 export const DatagridCellId = (okms: OKMS) => {
   return (
@@ -31,10 +26,7 @@ export const DatagridCellId = (okms: OKMS) => {
   );
 };
 
-export const DatagridCellName = (
-  okms: OKMS,
-  type: OkmsDatagridType = 'kms',
-) => {
+export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => {
   const { trackClick } = useOvhTracking();
 
   const urls: Record<OkmsDatagridType, string> = {
@@ -76,10 +68,14 @@ export const DatagridCellRegion = (okms: OKMS) => {
 };
 
 export const DatagridCellStatus = (okms: OKMS) => {
-  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
+  const {
+    data: OkmsServiceInfos,
+    isPending,
+    isError,
+  } = useServiceDetails({
     resourceName: okms.id,
   });
-  if (isLoading) {
+  if (isPending) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
   }
   if (isError) {
@@ -103,9 +99,7 @@ export const DatagridCellKmipCount = (okms: OKMS) => {
 
 export const DatagridCellServiceKeyCount = (okms: OKMS) => {
   return (
-    <DataGridTextCell
-      data-testid={OKMS_LIST_CELL_TEST_IDS.serviceKeyCount(okms.id)}
-    >
+    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.serviceKeyCount(okms.id)}>
       {okms.serviceKeyCount}
     </DataGridTextCell>
   );
@@ -113,9 +107,7 @@ export const DatagridCellServiceKeyCount = (okms: OKMS) => {
 
 export const DatagridCellSecretCount = (okms: OKMS) => {
   return (
-    <DataGridTextCell
-      data-testid={OKMS_LIST_CELL_TEST_IDS.secretCount(okms.id)}
-    >
+    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.secretCount(okms.id)}>
       {okms.secretCount}
     </DataGridTextCell>
   );

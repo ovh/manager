@@ -1,9 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import {
-  getDaysFromDate,
-  addDaysToDate,
-  getDateFromDays,
-} from './validityDateUtils';
+import { describe, expect, it } from 'vitest';
+
+import { addDaysToDate, getDateFromDays, getDaysFromDate } from './validityDateUtils';
 
 describe('getDaysFromDate', () => {
   it('should return the correct number of days from today', () => {

@@ -12,10 +12,7 @@ const DEFAULT_FORMAT: FormatDateType = 'long';
 export const useFormatDate = () => {
   const formatDateMrc = useFormatDateMrc();
 
-  const formatDate = (
-    date: string,
-    format: FormatDateType = DEFAULT_FORMAT,
-  ) => {
+  const formatDate = (date: string, format: FormatDateType = DEFAULT_FORMAT) => {
     return formatDateMrc({ date, format: formatDateTable[format] });
   };
 
