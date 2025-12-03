@@ -26,7 +26,7 @@ export type NodePool = {
   antiAffinity: boolean;
   autoscale: boolean;
   availabilityZones?: string[];
-  attachFloatingIPs?: TAttachFloatingIPs;
+  attachFloatingIps?: TAttachFloatingIPs;
   desiredNodes: number;
   minNodes?: number;
   localisation: string | null;

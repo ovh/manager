@@ -40,7 +40,7 @@ describe('getDatagridColumns', () => {
     maxNodes: 5,
     autoscale: true,
     antiAffinity: true,
-    attachFloatingIPs: {
+    attachFloatingIps: {
       enabled: true,
     },
   } as NodePool;
@@ -142,7 +142,7 @@ describe('getDatagridColumns', () => {
     (enabled, expectedStatus) => {
       const nodePool = {
         ...mockNodePool,
-        attachFloatingIPs: { enabled },
+        attachFloatingIps: { enabled },
       };
       const columns = getDatagridColumns({
         onDelete: mockOnDelete,

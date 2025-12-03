@@ -19,8 +19,8 @@ describe('selectEstimationPriceFromPlans', () => {
     { monthlyPrice: 200, desiredNodes: 3 },
   ] as NodePoolPrice[];
   const nodePoolsWithFloatingIp = [
-    { monthlyPrice: 100, attachFloatingIPs: { enabled: true }, desiredNodes: 1 },
-    { monthlyPrice: 200, attachFloatingIPs: { enabled: false }, desiredNodes: 2 },
+    { monthlyPrice: 100, attachFloatingIps: { enabled: true }, desiredNodes: 1 },
+    { monthlyPrice: 200, attachFloatingIps: { enabled: false }, desiredNodes: 2 },
   ] as NodePoolPrice[];
 
   it.each([
@@ -157,7 +157,7 @@ describe('selectEstimationPriceFromPlans', () => {
         floatingIpShow: true,
         floatingIp: '10 €/mo',
         totalShow: true,
-        total: '1020 €/mo',
+        total: '1030 €/mo',
       },
     },
   ])(

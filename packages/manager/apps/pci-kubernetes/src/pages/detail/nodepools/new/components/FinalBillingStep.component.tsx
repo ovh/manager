@@ -43,7 +43,7 @@ export default function FinalBillingStep({
       <BillingStep
         price={price}
         numberOfNodes={store.scaling?.quantity.desired}
-        priceFloatingIp={store.attachFloatingIPs?.enabled && store.flavor ? floatingIpPrice : null}
+        priceFloatingIp={store.attachFloatingIps?.enabled && store.flavor ? floatingIpPrice : null}
         monthlyPrice={monthlyPrice}
         monthlyBilling={monthlyBilling}
         warn={warn}

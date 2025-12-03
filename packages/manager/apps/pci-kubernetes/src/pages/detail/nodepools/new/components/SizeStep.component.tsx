@@ -55,8 +55,8 @@ export default function SizeStep({
       )}
       {has3AZFeature && isStandardPlan && (
         <PublicConnectivity
-          checked={!!store.attachFloatingIPs?.enabled}
-          onChange={(enabled: boolean) => store.set.attachFloatingIPs({ enabled })}
+          checked={!!store.attachFloatingIps?.enabled}
+          onChange={(enabled: boolean) => store.set.attachFloatingIps({ enabled })}
           price={floatingIpPrice}
         />
       )}
