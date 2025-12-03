@@ -3,16 +3,20 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-  ODS_TOOLTIP_POSITION,
-} from '@ovhcloud/ods-components';
-import { OdsBadge, OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Badge,
+  Button,
+  ICON_NAME,
+  Icon,
+  TOOLTIP_POSITION,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
-import { Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Link } from '@ovh-ux/muk';
 
 import { BadgeStatus, getStatusColor } from '@/components/badgeStatus/BadgeStatus.component';
 import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
@@ -106,15 +110,18 @@ export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticC
 
   if (isError) {
     return (
-      <OdsButton
-        label={t('web_hosting_status_diagnostic_error')}
-        icon={ODS_ICON_NAME.refresh}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_BUTTON_COLOR.critical}
+      <Button
+        variant={BUTTON_VARIANT.ghost}
+        color={BUTTON_COLOR.critical}
         onClick={() => {
           refetch().catch(console.error);
         }}
-      />
+      >
+        <>
+          {t('web_hosting_status_diagnostic_error')}
+          <Icon className="ml-2" name={ICON_NAME.refresh}></Icon>
+        </>
+      </Button>
     );
   }
 
@@ -139,20 +146,18 @@ export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticC
 
     return (
       <React.Fragment key={type}>
-        <OdsBadge
-          className="mr-4"
-          id={`diagnostic-status-${type}-${fqdn}`}
-          label={type}
-          color={getStatusColor(status)}
-        />
-        <OdsTooltip
-          triggerId={`diagnostic-status-${type}-${fqdn}`}
-          position={ODS_TOOLTIP_POSITION.topStart}
-        >
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t(tooltipKey, { domainName: fqdn, ip })}
-          </OdsText>
-        </OdsTooltip>
+        <Tooltip position={TOOLTIP_POSITION.top}>
+          <TooltipTrigger asChild>
+            <Badge
+              className="mr-4"
+              id={`diagnostic-status-${type}-${fqdn}`}
+              color={getStatusColor(status)}
+            >
+              {type}
+            </Badge>
+          </TooltipTrigger>
+          <TooltipContent>{t(tooltipKey, { domainName: fqdn, ip })}</TooltipContent>
+        </Tooltip>
       </React.Fragment>
     );
   });
@@ -207,10 +212,9 @@ export const LinkCell = ({
   );
 
   return (
-    <Links
-      label={label}
+    <Link
       href={hostingUrl}
-      onClickReturn={() =>
+      onClick={() =>
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
@@ -219,6 +223,8 @@ export const LinkCell = ({
         })
       }
       target="_blank"
-    />
+    >
+      {label}
+    </Link>
   );
 };

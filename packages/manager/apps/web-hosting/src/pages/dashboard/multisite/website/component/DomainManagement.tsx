@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsClipboard, OdsDivider, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { Clipboard, Divider, MESSAGE_COLOR, Message, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import {
   useGetAddDomainExisting,
@@ -28,34 +27,34 @@ export const DomainManagement: React.FC<DomainManagementProps> = ({
 
   return (
     <div className="flex flex-col space-y-5">
-      <OdsDivider />
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Divider />
+      <Text preset={TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_domain_management')}
-      </OdsText>
-      <OdsText>{t('multisite:multisite_add_website_domain_management_info')}</OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.heading6}>
+      </Text>
+      <Text>{t('multisite:multisite_add_website_domain_management_info')}</Text>
+      <Text preset={TEXT_PRESET.heading6}>
         {t('multisite:multisite_add_website_domain_management_insert_field', {
           domain: `ovhcontrol.${controlValues?.fqdn}`,
         })}
-      </OdsText>
-      <OdsClipboard value={existingDomain?.data?.token} />
-      <OdsText preset={ODS_TEXT_PRESET.heading6}>
+      </Text>
+      <Clipboard value={existingDomain?.data?.token} />
+      <Text preset={TEXT_PRESET.heading6}>
         {t('multisite:multisite_add_website_domain_management_point_field', {
           field: 'A',
           domain: controlValues?.fqdn,
         })}
-      </OdsText>
-      <OdsClipboard value={hostingService?.data?.hostingIp} />
-      <OdsText preset={ODS_TEXT_PRESET.heading6}>
+      </Text>
+      <Clipboard value={hostingService?.data?.hostingIp} />
+      <Text preset={TEXT_PRESET.heading6}>
         {t('multisite:multisite_add_website_domain_management_point_field', {
           field: 'AAAA',
           domain: controlValues?.fqdn,
         })}
-      </OdsText>
-      <OdsClipboard value={hostingService?.data?.hostingIpv6} />
-      <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
+      </Text>
+      <Clipboard value={hostingService?.data?.hostingIpv6} />
+      <Message color={MESSAGE_COLOR.warning} dismissible={false}>
         {t('multisite:multisite_add_website_domain_management_propagation')}
-      </OdsMessage>
+      </Message>
     </div>
   );
 };

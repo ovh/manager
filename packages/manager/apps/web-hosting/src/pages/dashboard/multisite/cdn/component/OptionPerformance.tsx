@@ -3,21 +3,31 @@ import React, { useContext } from 'react';
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  Input,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { IconLinkAlignmentType, Links } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Link, LinkType } from '@ovh-ux/muk';
 
 import { SHARED_CDN_OPTIONS } from '@/constants';
-import { CdnFormValues, CdnOption, CdnOptionType } from '@/data/types/product/cdn';
+import {
+  CdnFormValues,
+  CdnOption,
+  CdnOptionType,
+} from '@/data/types/product/cdn';
 import { hasOption } from '@/utils/cdn';
 
 import { ToggleCard } from './CdnToogleCard';
 
 interface OptionPerformanceProps {
   controlValues: CdnFormValues;
-  control: Control<CdnFormValues, unknown, CdnFormValues>;
+  control: Control<CdnFormValues>;
   optionsData: CdnOption[];
 }
 
@@ -38,19 +48,19 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
 
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+      <Text preset={TEXT_PRESET.heading3}>
         {t('cdn_shared_option_category_performance')}
-      </OdsText>
+      </Text>
       <ToggleCard
         title={t('cdn_shared_option_always_online_title')}
         info={t('cdn_shared_option_always_online_info')}
-        isDisabled={true}
+        disabled={true}
         toggleValue={true}
       />
       <ToggleCard
         title={t('cdn_shared_option_http_https_title')}
         info={t('cdn_shared_option_http_https_info')}
-        isDisabled={true}
+        disabled={true}
         toggleValue={true}
       />
       {hasOption(optionsData, CdnOptionType.BROTLI) && (
@@ -59,10 +69,11 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
           control={control}
           render={({ field }) => (
             <ToggleCard
+              name={field.name}
               title={t('cdn_shared_option_brotli_title')}
               info={t('cdn_shared_option_brotli_info')}
               toggleValue={!!field.value}
-              onToggle={field.onChange}
+              onToggle={(detail) => field.onChange(detail.checked)}
             />
           )}
         />
@@ -73,10 +84,11 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
           control={control}
           render={({ field }) => (
             <ToggleCard
+              name={field.name}
               title={t('cdn_shared_option_http_geolocation_title')}
               info={t('cdn_shared_option_http_geolocation_info')}
               toggleValue={!!field.value}
-              onToggle={field.onChange}
+              onToggle={(detail) => field.onChange(detail.checked)}
             />
           )}
         />
@@ -87,17 +99,19 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
           control={control}
           render={({ field }) => (
             <ToggleCard
+              name={field.name}
               title={t('cdn_shared_option_prefetch_title')}
               info={t('cdn_shared_option_prefetch_info')}
               toggleValue={!!field.value}
-              onToggle={field.onChange}
+              onToggle={(detail) => field.onChange(detail.checked)}
             >
-              <Links
-                label={t('cdn_shared_option_prefetch_info_link')}
+              <Link
                 href={sharedOptionUrl}
                 target="_blank"
-                iconAlignment={IconLinkAlignmentType.right}
-              />
+                type={LinkType.external}
+              >
+                {t('cdn_shared_option_prefetch_info_link')}
+              </Link>
             </ToggleCard>
           )}
         />
@@ -108,10 +122,11 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
           control={control}
           render={({ field }) => (
             <ToggleCard
+              name={field.name}
               title={t('cdn_shared_option_mobile_redirect_title')}
               info={t('cdn_shared_option_mobile_redirect_info')}
               toggleValue={!!field.value}
-              onToggle={field.onChange}
+              onToggle={(detail) => field.onChange(detail.checked)}
             />
           )}
         />
@@ -122,31 +137,39 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
             name="mobileRedirectType"
             control={control}
             render={({ field }) => (
-              <OdsSelect
+              <Select
                 className="w-2/6"
                 name="mobileRedirectType"
-                value={field.value}
-                onOdsChange={(e) => field.onChange(e.target.value)}
+                value={field.value ? [field.value] : []}
+                onValueChange={(detail) => field.onChange(detail.value[0])}
+                items={[
+                  {
+                    label: t(
+                      'cdn_shared_option_mobile_redirect_strategy_still',
+                    ),
+                    value: SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL,
+                  },
+                  {
+                    label: t('cdn_shared_option_mobile_redirect_strategy_keep'),
+                    value: SHARED_CDN_OPTIONS.MOBILE_REDIRECT.KEEP_URL,
+                  },
+                ]}
               >
-                <option key="redirect_still" value={SHARED_CDN_OPTIONS.MOBILE_REDIRECT.STILL_URL}>
-                  {t('cdn_shared_option_mobile_redirect_strategy_still')}
-                </option>
-                <option key="redirect_keep" value={SHARED_CDN_OPTIONS.MOBILE_REDIRECT.KEEP_URL}>
-                  {t('cdn_shared_option_mobile_redirect_strategy_keep')}
-                </option>
-              </OdsSelect>
+                <SelectControl />
+                <SelectContent />
+              </Select>
             )}
           />
           <Controller
             name="mobileRedirectUrl"
             control={control}
             render={({ field }) => (
-              <OdsInput
+              <Input
                 name="mobileRedirectUrl"
                 className="w-2/6"
                 type="text"
                 value={field.value}
-                onOdsChange={(e) => field.onChange(e.target.value)}
+                onChange={(e) => field.onChange(e.target.value)}
               />
             )}
           />

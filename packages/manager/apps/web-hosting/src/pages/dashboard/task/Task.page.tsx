@@ -4,10 +4,15 @@ import { useParams } from 'react-router-dom';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import {
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+} from '@ovhcloud/ods-react';
 
-import { Datagrid, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn, useDataApi } from '@ovh-ux/muk';
 
 import Loading from '@/components/loading/Loading.component';
 import useDatagridColumn from '@/hooks/task/useDatagridColumn';
@@ -18,18 +23,21 @@ export default function Multisite() {
 
   const columns = useDatagridColumn();
 
-  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useResourcesIcebergV6({
+  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useDataApi({
+    version: 'v6',
     route: `/hosting/web/${serviceName}/tasks`,
-    queryKey: ['hosting', 'web', serviceName, 'tasks'],
+    cacheKey: ['hosting', 'web', serviceName, 'tasks'],
+    enabled: !!serviceName,
+    iceberg: true,
   });
+  console.log('flattenData', flattenData);
+  console.log('columns', columns);
   return (
     <React.Suspense fallback={<Loading />}>
-      <div className="flex flex-wrap justify-end mb-6">
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          color={ODS_BUTTON_COLOR.primary}
-          label=""
-          icon={ODS_ICON_NAME.refresh}
+      <div className="mb-6 flex flex-wrap justify-end">
+        <Button
+          variant={BUTTON_VARIANT.outline}
+          color={BUTTON_COLOR.primary}
           onClick={() => {
             queryClient
               .invalidateQueries({
@@ -37,15 +45,18 @@ export default function Multisite() {
               })
               .catch(console.error);
           }}
-        />
+        >
+          <Icon name={ICON_NAME.refresh}></Icon>
+        </Button>
       </div>
-      {columns && (
+      {flattenData?.length > 0 && (
         <Datagrid
-          columns={columns}
-          items={flattenData || []}
-          totalItems={flattenData?.length || 0}
+          columns={columns as DatagridColumn<Record<string, unknown>>[]}
+          data={flattenData}
           hasNextPage={hasNextPage && !isLoading}
-          onFetchNextPage={fetchNextPage}
+          onFetchNextPage={(): void => {
+            void fetchNextPage();
+          }}
           isLoading={isLoading}
         />
       )}
