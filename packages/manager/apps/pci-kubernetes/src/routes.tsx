@@ -133,7 +133,9 @@ export default [
               },
               {
                 path: 'scale',
-                ...lazyRouteConfig(() => import('@/pages/detail/nodepools/Scale.page')),
+                ...lazyRouteConfig(
+                  () => import('@/pages/detail/nodepools/nodepool/ConfigureNode.page'),
+                ),
               },
             ],
           },

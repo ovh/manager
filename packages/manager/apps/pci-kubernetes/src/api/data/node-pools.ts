@@ -99,18 +99,19 @@ export const getClusterNodePools = async (
 export const deleteNodePool = async (projectId: string, clusterId: string, poolId: string) =>
   v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`);
 
-export type TUpdateNodePoolSizeParam = {
+export type TUpdateNodePoolParam = {
   desiredNodes: number;
   minNodes?: number;
   maxNodes?: number;
   autoscale: boolean;
+  attachFloatingIPs?: TAttachFloatingIPs;
 };
 
-export const updateNodePoolSize = async (
+export const updateNodePool = async (
   projectId: string,
   clusterId: string,
   poolId: string,
-  param: TUpdateNodePoolSizeParam,
+  param: TUpdateNodePoolParam,
 ) => v6.put(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`, param);
 
 export const createNodePool = (projectId: string, clusterId: string, param: TCreateNodePoolParam) =>
