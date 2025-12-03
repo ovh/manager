@@ -2,7 +2,7 @@ import { PropsWithChildren, ReactElement } from 'react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { RenderOptions, render } from '@testing-library/react';
+import { RenderOptions, RenderResult, render } from '@testing-library/react';
 
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
@@ -21,4 +21,4 @@ const AllTheProviders = ({ children }: PropsWithChildren) => (
 export const renderWithMockedWrappers = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>,
-) => render(ui, { wrapper: AllTheProviders, ...options });
+): RenderResult => render(ui, { wrapper: AllTheProviders, ...options });
