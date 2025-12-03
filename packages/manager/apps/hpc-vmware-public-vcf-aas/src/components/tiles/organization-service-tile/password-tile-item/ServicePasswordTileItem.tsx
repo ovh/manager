@@ -1,13 +1,14 @@
-import { useHref, useParams } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import { Links } from '@ovh-ux/manager-react-components';
 
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 
 export default function ServicePasswordTileItem({ isDisabled }: { isDisabled: boolean }) {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { t } = useTranslation('dashboard');
   const passwordHref = useHref(urls.resetPassword.replace(subRoutes.dashboard, id));
 

@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -14,6 +12,7 @@ import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
 import { useMessageContext } from '@/context/Message.context';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { validateDescription } from '@/utils/formValidation';
 
@@ -22,7 +21,7 @@ export default function EditVdcDescription() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { updateDetails, error, isError, isPending } = useUpdateVdcDetails({
     id,

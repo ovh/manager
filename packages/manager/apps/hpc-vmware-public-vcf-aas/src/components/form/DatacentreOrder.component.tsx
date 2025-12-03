@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -24,6 +24,7 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { TRACKING } from '@/tracking.constants';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
@@ -56,7 +57,7 @@ export const DatacentreOrder = <T extends OrderType>({
 }: DatacentreOrderProps<T>) => {
   const { t } = useTranslation('datacentres/order');
   const navigate = useNavigate();
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const { trackClick } = useOvhTracking();
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { selectedResource, setSelectedResource, selectedQuantity, setSelectedQuantity } =

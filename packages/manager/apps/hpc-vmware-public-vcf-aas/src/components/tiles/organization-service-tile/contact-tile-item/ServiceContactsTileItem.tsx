@@ -1,7 +1,3 @@
-import React from 'react';
-
-import { useParams } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
@@ -10,9 +6,11 @@ import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { CustomerContact } from '@ovh-ux/manager-module-common-api';
 import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-react-components';
 
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
+
 export default function ServiceContactsTileItem() {
   const { t } = useTranslation('dashboard');
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const {
     data: serviceDetails,
     isLoading,

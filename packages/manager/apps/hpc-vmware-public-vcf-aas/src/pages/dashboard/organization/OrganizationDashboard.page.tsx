@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,6 +12,7 @@ import VcdDashboardLayout, {
 import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
@@ -19,7 +20,7 @@ import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 
 export default function DashboardPage() {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();

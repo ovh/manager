@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { isStatusTerminated, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 
@@ -8,9 +8,10 @@ import OrganizationDataProtectionTile from '@/components/tiles/organization-data
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
 import OrganizationServiceManagementTile from '@/components/tiles/organization-service-tile/OrganizationServiceManagementTile.component';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 
 export default function GeneralInformation() {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const {
     data: vcdOrganization,
     isError,

@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { useVcdDatacentre, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 
 import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
 import DatacentreGenerationInformationTile from '@/components/tiles/datacentre-general-information-tile/DatacentreGeneralInformationTile.component';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 
 export default function DatacentresGeneralInformationPage() {
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
   const {
     data: vcdOrganization,
     isLoading: isLoadingVcd,

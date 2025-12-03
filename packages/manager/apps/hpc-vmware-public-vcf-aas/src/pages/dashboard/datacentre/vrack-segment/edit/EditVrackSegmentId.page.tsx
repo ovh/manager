@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
@@ -20,6 +20,7 @@ import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { RhfField } from '@/components/Fields';
 import { useMessageContext } from '@/context/Message.context';
+import { useVrackSegmentParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
 
@@ -31,7 +32,7 @@ const VLAN_ID_FORM_SCHEMA = z.object({
 });
 
 export default function EditVrackSegmentId() {
-  const { id, vdcId, vrackSegmentId } = useParams();
+  const { id, vdcId, vrackSegmentId } = useVrackSegmentParams();
   const { trackPage, trackClick } = useOvhTracking();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
