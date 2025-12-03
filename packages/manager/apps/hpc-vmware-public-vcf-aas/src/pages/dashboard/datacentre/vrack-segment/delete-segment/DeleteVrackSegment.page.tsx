@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -11,11 +11,12 @@ import { Modal } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useMessageContext } from '@/context/Message.context';
+import { useVrackSegmentParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
 
 export default function DeleteVrackSegment() {
-  const { id, vdcId, vrackSegmentId } = useParams();
+  const { id, vdcId, vrackSegmentId } = useVrackSegmentParams();
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);

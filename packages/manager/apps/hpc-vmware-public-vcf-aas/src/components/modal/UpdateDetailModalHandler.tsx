@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -11,6 +11,7 @@ import {
 import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 
 import { useMessageContext } from '@/context/Message.context';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { validateDescription, validateOrganizationName } from '@/utils/formValidation';
 
@@ -33,7 +34,7 @@ export const UpdateDetailModalHandler = ({
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const { updateDetails, error, isError, isPending } = useUpdateVcdOrganizationDetails({
     id,

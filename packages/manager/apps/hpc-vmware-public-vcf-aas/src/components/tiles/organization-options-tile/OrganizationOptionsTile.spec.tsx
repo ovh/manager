@@ -21,6 +21,12 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
+vi.mock('@/hooks/params/useSafeParams', () => {
+  return {
+    useOrganisationParams: () => vi.fn(),
+  };
+});
+
 const shellContext = {
   environment: {
     getRegion: vi.fn(),
