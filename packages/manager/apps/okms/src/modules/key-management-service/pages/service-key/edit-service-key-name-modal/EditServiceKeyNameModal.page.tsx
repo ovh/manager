@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
+import { useUpdateOkmsServiceKey } from '@key-management-service/data/hooks/useUpdateOkmsServiceKey';
 import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsSpinner,
-  OdsModal,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  ServiceKeyNameErrors,
+  validateServiceKeyName,
+} from '@key-management-service/utils/service-key/validateServiceKeyName';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -17,21 +17,25 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useUpdateOkmsServiceKey } from '@key-management-service/data/hooks/useUpdateOkmsServiceKey';
-import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
 import {
-  ServiceKeyNameErrors,
-  validateServiceKeyName,
-} from '@key-management-service/utils/service-key/validateServiceKeyName';
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsModal,
+  OdsSpinner,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants';
 
 export const EditServiceKeyNameModal = () => {
-  const { okmsId, keyId } = useParams() as {
-    okmsId: string;
-    keyId: string;
-  };
+  const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
   const { data, isLoading, error } = useOkmsServiceKeyById({ okmsId, keyId });
   const [serviceKeyName, setServiceKeyName] = useState(data?.data?.name || '');
   const serviceKeyNameError = validateServiceKeyName(serviceKeyName);
@@ -48,10 +52,7 @@ export const EditServiceKeyNameModal = () => {
     keyId,
     onSuccess: () => {
       clearNotifications();
-      addSuccess(
-        t('key_management_service_service-keys_update_name_success'),
-        true,
-      );
+      addSuccess(t('key_management_service_service-keys_update_name_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'rename_encryption_key',
@@ -70,13 +71,9 @@ export const EditServiceKeyNameModal = () => {
   const getErrorMessage = (err: ServiceKeyNameErrors | undefined) => {
     switch (err) {
       case 'REQUIRED':
-        return t(
-          'key_management_service_service-keys_update_name_error_required',
-        );
+        return t('key_management_service_service-keys_update_name_error_required');
       case 'INVALID_CHARACTERS':
-        return t(
-          'key_management_service_service-keys_update_name_error_invalid_characters',
-        );
+        return t('key_management_service_service-keys_update_name_error_invalid_characters');
       case 'TOO_MANY_CHARACTERS':
         return t('key_management_service_service-keys_update_name_error_max');
 
@@ -101,12 +98,9 @@ export const EditServiceKeyNameModal = () => {
         {t('key_management_service_service-keys_dashboard_field_name')}
       </OdsText>
       {isPending ? (
-        <OdsSpinner className="block my-3" size={ODS_SPINNER_SIZE.md} />
+        <OdsSpinner className="my-3 block" size={ODS_SPINNER_SIZE.md} />
       ) : (
-        <OdsFormField
-          className="block my-3"
-          error={getErrorMessage(serviceKeyNameError)}
-        >
+        <OdsFormField className="my-3 block" error={getErrorMessage(serviceKeyNameError)}>
           <OdsInput
             className="w-full"
             name="input-edit-service-key-name"
@@ -130,9 +124,7 @@ export const EditServiceKeyNameModal = () => {
       />
       <OdsButton
         isLoading={isPending}
-        isDisabled={
-          !!serviceKeyNameError || serviceKeyName === data?.data?.name
-        }
+        isDisabled={!!serviceKeyNameError || serviceKeyName === data?.data?.name}
         slot="actions"
         data-testid={SERVICE_KEY_TEST_IDS.modifyNameButton}
         color={ODS_BUTTON_COLOR.primary}

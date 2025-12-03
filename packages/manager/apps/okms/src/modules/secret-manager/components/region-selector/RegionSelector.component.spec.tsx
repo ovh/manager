@@ -1,33 +1,31 @@
-import React from 'react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import { BrowserRouter } from 'react-router-dom';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, waitFor } from '@testing-library/react';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import {
+  LOCATION_CA_EAST_BHS,
   LOCATION_EU_WEST_GRA,
   LOCATION_EU_WEST_LIM,
-  LOCATION_CA_EAST_BHS,
 } from '@/common/mocks/locations/locations.mock';
-import {
-  getOdsButtonByLabel,
-  getOdsButtonByIcon,
-} from '@/common/utils/tests/uiTestHelpers';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { getOdsButtonByIcon, getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
 import {
   GeographyGroup,
-  RegionOption,
+  useRegionSelector,
 } from '@/modules/secret-manager/hooks/useRegionSelector';
+
 import { RegionSelector } from './RegionSelector.component';
 
 let i18nValue: i18n;
 
 // Mock the useRegionSelector hook
-const mockUseRegionSelector = vi.fn();
 vi.mock('@/modules/secret-manager/hooks/useRegionSelector', () => ({
-  useRegionSelector: () => mockUseRegionSelector(),
+  useRegionSelector: vi.fn(),
 }));
 
 // Mock react-router-dom
@@ -36,7 +34,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
   };
 });
 
@@ -103,9 +101,9 @@ const mockGeographyGroups: GeographyGroup[] = [
   },
 ];
 
-const mockCurrentRegion = mockGeographyGroups[0].regions.find(
+const mockCurrentRegion = mockGeographyGroups[0]?.regions?.find(
   (region) => region.region === LOCATION_EU_WEST_GRA.name,
-) as RegionOption;
+);
 
 describe('RegionSelector Component', () => {
   beforeEach(() => {
@@ -115,7 +113,7 @@ describe('RegionSelector Component', () => {
   describe('Loading state', () => {
     it('should display loading state when isLoading is true', async () => {
       // Given
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: [],
         currentRegion: undefined,
         isLoading: true,
@@ -138,7 +136,7 @@ describe('RegionSelector Component', () => {
   describe('Error state', () => {
     it('should render nothing when isError is true', async () => {
       // Given
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: [],
         currentRegion: undefined,
         isLoading: false,
@@ -155,7 +153,7 @@ describe('RegionSelector Component', () => {
 
   describe('Normal state', () => {
     beforeEach(() => {
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: mockGeographyGroups,
         currentRegion: mockCurrentRegion,
         isLoading: false,
@@ -211,18 +209,14 @@ describe('RegionSelector Component', () => {
         label: mockRegionLabels.GRA,
         isLink: true,
       });
-      expect(current).toHaveClass(
-        '[&::part(link)]:text-[var(--ods-color-heading)]',
-      );
+      expect(current).toHaveClass('[&::part(link)]:text-[var(--ods-color-heading)]');
 
       const notCurrent = await getOdsButtonByLabel({
         container,
         label: mockRegionLabels.DE,
         isLink: true,
       });
-      expect(notCurrent).toHaveClass(
-        '[&::part(link)]:text-[var(--ods-color-primary-500)]',
-      );
+      expect(notCurrent).toHaveClass('[&::part(link)]:text-[var(--ods-color-primary-500)]');
     });
 
     it('should display dividers between geography groups', async () => {
@@ -241,7 +235,7 @@ describe('RegionSelector Component', () => {
   describe('Edge cases', () => {
     it('should handle empty geography groups', async () => {
       // Given
-      mockUseRegionSelector.mockReturnValue({
+      vi.mocked(useRegionSelector).mockReturnValue({
         geographyGroups: [],
         currentRegion: undefined,
         isLoading: false,

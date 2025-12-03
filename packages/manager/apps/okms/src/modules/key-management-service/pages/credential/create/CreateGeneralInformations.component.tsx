@@ -1,29 +1,27 @@
-import React, { useEffect } from 'react';
-import { Subtitle } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { CertificateType } from '@key-management-service/types/okmsCredential.type';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { validateCredentialName } from '@key-management-service/utils/credential/validateCredentialName';
-import { validateCredentialDescription } from '@key-management-service/utils/credential/validateCredentialDescription';
+import { useEffect } from 'react';
 
-import { validateValidityDate } from '@key-management-service/utils/credential/validateValidityDate';
+import { useNavigate } from 'react-router-dom';
+
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { CertificateType } from '@key-management-service/types/okmsCredential.type';
 import { validateCredentialCreationMethod } from '@key-management-service/utils/credential/validateCredentialCreationMethod';
-import CreateGeneralInformationsName from './general-informations/CreateGeneralInformationsName.component';
-import CreateGeneralInformationsDescription from './general-informations/CreateGeneralInformationsDescription';
-import CreateGeneralInformationsValidity from './general-informations/CreateGeneralInformationsValidity';
+import { validateCredentialDescription } from '@key-management-service/utils/credential/validateCredentialDescription';
+import { validateCredentialName } from '@key-management-service/utils/credential/validateCredentialName';
+import { validateValidityDate } from '@key-management-service/utils/credential/validateValidityDate';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { Subtitle } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 import CreateGeneralInformationsCreationMethod from './general-informations/CreateGeneralInformationsCreationMethod.component';
+import CreateGeneralInformationsDescription from './general-informations/CreateGeneralInformationsDescription';
+import CreateGeneralInformationsName from './general-informations/CreateGeneralInformationsName.component';
+import CreateGeneralInformationsValidity from './general-informations/CreateGeneralInformationsValidity';
 
 type CreateGeneralInformationsProps = {
   name: string | null;
@@ -57,7 +55,7 @@ const CreateGeneralInformations = ({
   nextStep,
 }: CreateGeneralInformationsProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const { okmsId } = useParams() as { okmsId: string };
+  const { okmsId } = useRequiredParams('okmsId');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
@@ -73,16 +71,14 @@ const CreateGeneralInformations = ({
     } else {
       setCertificateType(null);
     }
-  }, [isCustomCsr]);
+  }, [isCustomCsr, setCsr, setCertificateType]);
 
   return (
     <div className="max-w-lg gap-4 lg:gap-6">
       <div className="flex flex-col gap-7 md:gap-9">
         <div className="flex flex-col gap-3 md:gap-4">
           <Subtitle>
-            {t(
-              'key_management_service_credential_create_general_information_title',
-            )}
+            {t('key_management_service_credential_create_general_information_title')}
           </Subtitle>
           <CreateGeneralInformationsName
             name={name}
@@ -148,9 +144,7 @@ const CreateGeneralInformations = ({
               !!credentialValidityError ||
               (isCustomCsr && !csr)
             }
-            label={t(
-              'key_management_service_credential_create_cta_add_identities',
-            )}
+            label={t('key_management_service_credential_create_cta_add_identities')}
           />
         </div>
       </div>
