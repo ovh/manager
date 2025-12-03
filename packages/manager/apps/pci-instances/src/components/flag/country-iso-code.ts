@@ -73,7 +73,7 @@ export const CountryIsoCode = {
   fo: 'fo', // Faroe Islands
   fr: 'fr', // France
   ga: 'ga', // Gabon
-  gb: 'gb', // United Kingdom of Great Britain and Northern Ireland
+  uk: 'uk', // United Kingdom of Great Britain and Northern Ireland
   gd: 'gd', // Grenada
   ge: 'ge', // Georgia
   gf: 'gf', // French Guiana
