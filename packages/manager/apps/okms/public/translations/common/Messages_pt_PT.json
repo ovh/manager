@@ -1,10 +1,15 @@
 {
-  "region_1_az_description": "Desdobramento resiliente e económico em 1 zona de disponibilidade.",
-  "region_3_az_description": "Desdobramento de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade",
+  "error_fetching_data": "Ocorreu um erro durante o carregamento dos dados",
+  "okms_order_blocked": "Um domínio OKMS já está a ser criado. Você poderá ativar um novo domínio OKMS quando o seu primeiro pedido for processado.",
+  "okms_order_expired": "A ativação da região demora mais do que o estimado. Por favor, tente novamente em alguns minutos.",
+  "okms_order_pending": "O seu domínio OKMS está a ser criado. Você será notificado quando estiver pronto.",
+  "okms_order_success": "O seu domínio OKMS {{ okmsId }} está pronto. Você pode agora utilizá-lo.",
+  "region_1_az_description": "Implementação resiliente e económica em 1 zona de disponibilidade.",
+  "region_3_az_description": "Implementação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade.",
   "region_continent_AFRICA": "África",
   "region_continent_ASIA": "Ásia-Pacífico",
-  "region_continent_NORTH_AMERICA": "América do Norte",
   "region_continent_EUROPE": "Europa",
+  "region_continent_NORTH_AMERICA": "América do Norte",
   "region_continent_OTHERS": "Outras regiões",
-  "region_local_zone_description": "Desdobramento das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e a residência dos dados."
+  "region_local_zone_description": "Implementação das suas aplicações mais próxima dos seus utilizadores para uma baixa latência e residência dos dados."
 }

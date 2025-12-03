@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { encodeSecretPath, decodeSecretPath } from './secretPath';
+import { describe, expect, it } from 'vitest';
+
+import { decodeSecretPath, encodeSecretPath } from './secretPath';
 
 describe('secretPath', () => {
   describe('encodeSecretPath', () => {

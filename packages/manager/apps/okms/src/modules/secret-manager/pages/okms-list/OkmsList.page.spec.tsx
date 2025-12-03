@@ -1,32 +1,29 @@
-import { screen, waitFor } from '@testing-library/react';
-import {
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import userEvent from '@testing-library/user-event';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import {
   regionWithMultipleOkms,
   regionWithoutOkms,
 } from '@key-management-service/mocks/kms/okms.mock';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+
+import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okms-datagrid/ListingCells.constants';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
-import { labels } from '@/common/utils/tests/init.i18n';
-import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okms-datagrid/ListingCells.constants';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(
-  regionWithMultipleOkms.region,
-);
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithMultipleOkms.region);
 
-const checkOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
+const expectOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
 
   // Check the page title
   await assertTextVisibility(labels.secretManager.okms_list);
 
   // Check there is clipboard components displayed in the datagrid
-  const firstOkmsId = regionWithMultipleOkms.okmsMock[0].id;
+  const firstOkmsId = regionWithMultipleOkms?.okmsMock?.[0]?.id ?? '';
   const firstClipboardTestId = OKMS_LIST_CELL_TEST_IDS.id(firstOkmsId);
   await waitFor(() => {
     expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
@@ -35,7 +32,7 @@ const checkOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   // Check the first okms link on the datagrid
   const okmsNameLink = await getOdsButtonByLabel({
     container,
-    label: regionWithMultipleOkms.okmsMock[0].iam.displayName,
+    label: regionWithMultipleOkms?.okmsMock?.[0]?.iam?.displayName ?? '',
     isLink: true,
   });
   expect(okmsNameLink).toBeEnabled();
@@ -47,7 +44,7 @@ describe('Okms List page test suite', () => {
   it('should display the okms listing page', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    await checkOkmsListPageToBeDisplayed(container);
+    await expectOkmsListPageToBeDisplayed(container);
   });
 
   it('should display the breadcrumb', async () => {
@@ -65,7 +62,7 @@ describe('Okms List page test suite', () => {
   it('should display the listing table with all columns', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    await checkOkmsListPageToBeDisplayed(container);
+    await expectOkmsListPageToBeDisplayed(container);
 
     const name = labels.listing.key_management_service_listing_name_cell;
     const id = labels.listing.key_management_service_listing_id_cell;
@@ -81,33 +78,33 @@ describe('Okms List page test suite', () => {
   it(`should navigate to the secret creation page on click on create a secret button`, async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    const { user } = await checkOkmsListPageToBeDisplayed(container);
+    const { user } = await expectOkmsListPageToBeDisplayed(container);
 
     const button = await getOdsButtonByLabel({
       container,
       label: labels.secretManager.create_a_secret,
     });
 
-    user.click(button);
+    await act(async () => {
+      await user.click(button);
+    });
 
-    await assertTextVisibility(
-      labels.secretManager.create_secret_form_region_section_title,
-    );
+    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
   });
 
   it('should navigate to the secrets listing page on click on okms name', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    const { user, okmsNameLink } = await checkOkmsListPageToBeDisplayed(
-      container,
-    );
+    const { user, okmsNameLink } = await expectOkmsListPageToBeDisplayed(container);
 
-    user.click(okmsNameLink);
+    await act(async () => {
+      await user.click(okmsNameLink);
+    });
 
     await assertTextVisibility(labels.secretManager.secret_manager);
   });
 
-  describe('should redirect to the default region page', async () => {
+  describe('should redirect to the default region page', () => {
     it('when the kms list is empty', async () => {
       const { container } = await renderTestApp(
         SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithoutOkms.region),
@@ -115,7 +112,7 @@ describe('Okms List page test suite', () => {
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await checkOkmsListPageToBeDisplayed(container);
+      await expectOkmsListPageToBeDisplayed(container);
     });
 
     it('when the region is not valid', async () => {
@@ -125,7 +122,7 @@ describe('Okms List page test suite', () => {
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await checkOkmsListPageToBeDisplayed(container);
+      await expectOkmsListPageToBeDisplayed(container);
     });
   });
 

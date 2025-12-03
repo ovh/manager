@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-okms-app",
-  "version": "0.38.5",
+  "version": "0.39.0",
   "private": true,
   "description": "ovh okms",
   "repository": {
@@ -12,10 +12,13 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "lint:check": "eslint --ext .ts,.tsx . && tsc --noEmit",
+    "build:strict": "tsc --project tsconfig.json && vite build",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "tsc && vite",
     "test": "manager-test run --reporter=verbose",
-    "test:coverage": "manager-test run --coverage"
+    "test:coverage": "manager-test run --coverage",
+    "ts:check": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.1",
@@ -45,14 +48,15 @@
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
     "tailwindcss": "^3.4.4",
-    "zod": "^4.0.5"
+    "zod": "^4.0.5",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.11.0",
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.2",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@testing-library/react": "^16.0.1",
     "@types/file-saver": "^2.0.7",
     "element-internals-polyfill": "^3.0.2",
     "msw": "2.1.7",

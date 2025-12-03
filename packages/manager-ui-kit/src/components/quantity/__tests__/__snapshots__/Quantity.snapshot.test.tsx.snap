@@ -3,64 +3,64 @@
 exports[`Quantity Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    data-ods="quantity"
-    data-part="root"
-    data-scope="number-input"
-    dir="ltr"
-    id="number-input::r0:"
+    data-ods=quantity
+    data-part=root
+    data-scope=number-input
+    dir=ltr
+    id=number-input::r0:
   >
     <div
-      aria-disabled="false"
-      class="_quantity-control_7aeg8_2"
-      data-ods="quantity-control"
-      data-part="control"
-      data-scope="number-input"
-      dir="ltr"
-      role="group"
+      aria-disabled=false
+      class=_quantity-control
+      data-ods=quantity-control
+      data-part=control
+      data-scope=number-input
+      dir=ltr
+      role=group
     >
       <button
-        aria-hidden="true"
-        class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _quantity-control__decrement_7aeg8_8"
-        data-ods="button"
-        tabindex="-1"
-        type="button"
+        aria-hidden=true
+        class=_button _button--primary _button--sm _button--outline _quantity-control__decrement
+        data-ods=button
+        tabindex=-1
+        type=button
       >
         <span
-          class="_icon_10c23_2 _icon--minus_10c23_376"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--minus
+          data-ods=icon
+          role=presentation
         />
       </button>
       <input
-        aria-roledescription="numberfield"
-        aria-valuemax="10"
-        aria-valuemin="-9007199254740991"
-        autocomplete="off"
-        autocorrect="off"
-        class="_quantity-input_cpyn3_2"
-        data-ods="quantity-input"
-        data-part="input"
-        data-scope="number-input"
-        dir="ltr"
-        id="number-input::r0::input"
-        inputmode="decimal"
-        pattern="-?[0-9]*(.[0-9]+)?"
-        role="spinbutton"
-        spellcheck="false"
-        type="text"
-        value=""
+        aria-roledescription=numberfield
+        aria-valuemax=10
+        aria-valuemin=-9007199254740991
+        autocomplete=off
+        autocorrect=off
+        class=_quantity-input
+        data-ods=quantity-input
+        data-part=input
+        data-scope=number-input
+        dir=ltr
+        id=number-input::r0::input
+        inputmode=decimal
+        pattern=-?[0-9]*(.[0-9]+)?
+        role=spinbutton
+        spellcheck=false
+        type=text
+        value=
       />
       <button
-        aria-hidden="true"
-        class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _quantity-control__increment_7aeg8_15"
-        data-ods="button"
-        tabindex="-1"
-        type="button"
+        aria-hidden=true
+        class=_button _button--primary _button--sm _button--outline _quantity-control__increment
+        data-ods=button
+        tabindex=-1
+        type=button
       >
         <span
-          class="_icon_10c23_2 _icon--plus_10c23_409"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--plus
+          data-ods=icon
+          role=presentation
         />
       </button>
     </div>

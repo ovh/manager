@@ -1,11 +1,10 @@
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import {
-  deleteOkmsCredential,
-  deleteOkmsCredentialQueryKey,
-} from '../api/okmsCredential';
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { deleteOkmsCredential, deleteOkmsCredentialQueryKey } from '../api/okmsCredential';
 import { getOkmsCredentialsQueryKey } from './useOkmsCredential';
 
 export interface IUseDeleteOkmsCredential {

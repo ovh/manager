@@ -3,9 +3,7 @@ import {
   OkmsCredentialStatus,
 } from '@key-management-service/types/okmsCredential.type';
 
-export const isDownloadCredentialDisabled = (
-  credentialStatus: OkmsCredential['status'],
-) => {
+export const isDownloadCredentialDisabled = (credentialStatus: OkmsCredential['status']) => {
   return (
     credentialStatus === OkmsCredentialStatus.creating ||
     credentialStatus === OkmsCredentialStatus.deleting

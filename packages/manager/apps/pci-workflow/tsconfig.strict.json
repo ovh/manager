@@ -1,16 +1,6 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "react": ["./node_modules/@types/react"]
-    },
-    "outDir": "dist",
-    "useDefineForClassFields": true,
-    "allowImportingTsExtensions": false,
-    "resolveJsonModule": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "types"]
+    "strict": true
+  }
 }

@@ -1,24 +1,16 @@
-import React from 'react';
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import {
-  ManagerButton,
-  useAuthorizationIam,
-} from '@ovh-ux/manager-react-components';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { KmsDashboardOutletContext } from '@key-management-service/pages/dashboard/KmsDashboard.type';
+
 import CredentialDatagrid from '@key-management-service/components/credential/credential-datagrid/CredentialDatagrid';
+import { KmsDashboardOutletContext } from '@key-management-service/pages/dashboard/KmsDashboard.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { ManagerButton, useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 const CredentialList = () => {

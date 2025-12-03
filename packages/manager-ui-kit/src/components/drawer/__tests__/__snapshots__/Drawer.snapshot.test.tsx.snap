@@ -3,69 +3,69 @@
 exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with header and content 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r0::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r0::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r0::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r0::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Basic Drawer
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Basic Drawer
               </h3>
@@ -78,11 +78,11 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with h
       </div>
     </div>
     <button
-      aria-label="Fermer"
-      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
-      data-testid="drawer-backdrop"
-      tabindex="0"
-      type="button"
+      aria-label=Fermer
+      class=fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in
+      data-testid=drawer-backdrop
+      tabindex=0
+      type=button
     />
   </div>
 </div>
@@ -91,71 +91,71 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with h
 exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r2::positioner"
-      style="pointer-events: none;"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r2::positioner
+      style=pointer-events: none;
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="closed"
-        data-testid="drawer"
-        dir="ltr"
-        hidden=""
-        id="dialog::r2::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=closed
+        data-testid=drawer
+        dir=ltr
+        hidden=
+        id=dialog::r2::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Closed Drawer
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Closed Drawer
               </h3>
@@ -174,69 +174,69 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] =
 exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex content 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r5::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r5::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r5::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r5::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Complex Content Drawer
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Complex Content Drawer
               </h3>
@@ -256,13 +256,13 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
               </ul>
             </section>
             <footer
-              class="p-6 space-x-2"
+              class=p-6 space-x-2
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-                data-ods="button"
-                data-testid="manager-button"
-                type="button"
+                class=_button _button--primary _button--md _button--default
+                data-ods=button
+                data-testid=manager-button
+                type=button
               >
                 Save
               </button>
@@ -272,11 +272,11 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
       </div>
     </div>
     <button
-      aria-label="Fermer"
-      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
-      data-testid="drawer-backdrop"
-      tabindex="0"
-      type="button"
+      aria-label=Fermer
+      class=fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in
+      data-testid=drawer-backdrop
+      tabindex=0
+      type=button
     />
   </div>
 </div>
@@ -285,69 +285,69 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
 exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header, content and footer 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r1::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r1::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r1::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r1::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Complete Drawer
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Drawer with all components
               </h3>
@@ -356,21 +356,21 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
               </p>
             </section>
             <footer
-              class="p-6 space-x-2"
+              class=p-6 space-x-2
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-                data-ods="button"
-                data-testid="manager-button"
-                type="button"
+                class=_button _button--primary _button--md _button--ghost
+                data-ods=button
+                data-testid=manager-button
+                type=button
               >
                 Cancel
               </button>
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-                data-ods="button"
-                data-testid="manager-button"
-                type="button"
+                class=_button _button--primary _button--md _button--default
+                data-ods=button
+                data-testid=manager-button
+                type=button
               >
                 Confirm
               </button>
@@ -380,11 +380,11 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
       </div>
     </div>
     <button
-      aria-label="Fermer"
-      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
-      data-testid="drawer-backdrop"
-      tabindex="0"
-      type="button"
+      aria-label=Fermer
+      class=fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in
+      data-testid=drawer-backdrop
+      tabindex=0
+      type=button
     />
   </div>
 </div>
@@ -393,85 +393,85 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
 exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger element 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <button
-      aria-controls="dialog::r4::content"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-      data-ods="drawer-trigger"
-      data-part="trigger"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r4::trigger"
-      type="button"
+      aria-controls=dialog::r4::content
+      aria-expanded=true
+      aria-haspopup=dialog
+      data-ods=drawer-trigger
+      data-part=trigger
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r4::trigger
+      type=button
     >
       <button>
         Open Drawer
       </button>
     </button>
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r4::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r4::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r4::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r4::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Drawer with Trigger
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Drawer with trigger button
               </h3>
@@ -484,11 +484,11 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger
       </div>
     </div>
     <button
-      aria-label="Fermer"
-      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
-      data-testid="drawer-backdrop"
-      tabindex="0"
-      type="button"
+      aria-label=Fermer
+      class=fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in
+      data-testid=drawer-backdrop
+      tabindex=0
+      type=button
     />
   </div>
 </div>
@@ -497,69 +497,69 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger
 exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without createPortal 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r3::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r3::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r3::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r3::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   No Portal Drawer
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Rendered without portal
               </h3>
@@ -572,11 +572,11 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without crea
       </div>
     </div>
     <button
-      aria-label="Fermer"
-      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
-      data-testid="drawer-backdrop"
-      tabindex="0"
-      type="button"
+      aria-label=Fermer
+      class=fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in
+      data-testid=drawer-backdrop
+      tabindex=0
+      type=button
     />
   </div>
 </div>
@@ -585,69 +585,69 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without crea
 exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic collapsible drawer 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r6::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r6::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r6::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r6::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Collapsible Drawer
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Collapsible Drawer
               </h3>
@@ -660,23 +660,23 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
       </div>
     </div>
     <div
-      class="fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+      class=fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
     >
       <div
-        class="w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex"
+        class=w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex
       >
         <div>
           <button
-            aria-label="Replier"
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-            data-ods="button"
-            data-testid="drawer-handle"
-            type="button"
+            aria-label=Replier
+            class=_button _button--primary _button--md _button--ghost
+            data-ods=button
+            data-testid=drawer-handle
+            type=button
           >
             <span
-              class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
-              data-ods="icon"
-              role="presentation"
+              class=_icon _icon--chevron-double-right
+              data-ods=icon
+              role=presentation
             />
           </button>
         </div>
@@ -689,71 +689,71 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
 exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed collapsible drawer 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r8::positioner"
-      style="pointer-events: none;"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r8::positioner
+      style=pointer-events: none;
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="closed"
-        data-testid="drawer"
-        dir="ltr"
-        hidden=""
-        id="dialog::r8::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=closed
+        data-testid=drawer
+        dir=ltr
+        hidden=
+        id=dialog::r8::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Closed Collapsible
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Closed Collapsible Drawer
               </h3>
@@ -772,69 +772,69 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed c
 exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsible drawer with all components 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r7::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r7::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r7::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r7::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Full Collapsible Drawer
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Complete Collapsible Drawer
               </h3>
@@ -843,21 +843,21 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
               </p>
             </section>
             <footer
-              class="p-6 space-x-2"
+              class=p-6 space-x-2
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-                data-ods="button"
-                data-testid="manager-button"
-                type="button"
+                class=_button _button--primary _button--md _button--ghost
+                data-ods=button
+                data-testid=manager-button
+                type=button
               >
                 Reset
               </button>
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-                data-ods="button"
-                data-testid="manager-button"
-                type="button"
+                class=_button _button--primary _button--md _button--default
+                data-ods=button
+                data-testid=manager-button
+                type=button
               >
                 Apply
               </button>
@@ -867,23 +867,23 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
       </div>
     </div>
     <div
-      class="fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+      class=fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
     >
       <div
-        class="w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex"
+        class=w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex
       >
         <div>
           <button
-            aria-label="Replier"
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-            data-ods="button"
-            data-testid="drawer-handle"
-            type="button"
+            aria-label=Replier
+            class=_button _button--primary _button--md _button--ghost
+            data-ods=button
+            data-testid=drawer-handle
+            type=button
           >
             <span
-              class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
-              data-ods="icon"
-              role="presentation"
+              class=_icon _icon--chevron-double-right
+              data-ods=icon
+              role=presentation
             />
           </button>
         </div>
@@ -896,110 +896,110 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
 exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsible drawer with complex content 1`] = `
 <div>
   <div
-    class="relative"
-    id="mrc-drawer"
+    class=relative
+    id=mrc-drawer
   >
     <div
-      data-part="positioner"
-      data-scope="dialog"
-      dir="ltr"
-      id="dialog::r9::positioner"
+      data-part=positioner
+      data-scope=dialog
+      dir=ltr
+      id=dialog::r9::positioner
     >
       <div
-        aria-describedby=""
-        aria-labelledby=""
-        aria-modal="true"
-        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
-        data-ods="drawer-content"
-        data-part="content"
-        data-scope="dialog"
-        data-state="open"
-        data-testid="drawer"
-        dir="ltr"
-        id="dialog::r9::content"
-        role="dialog"
-        tabindex="-1"
+        aria-describedby=
+        aria-labelledby=
+        aria-modal=true
+        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        data-ods=drawer-content
+        data-part=content
+        data-scope=dialog
+        data-state=open
+        data-testid=drawer
+        dir=ltr
+        id=dialog::r9::content
+        role=dialog
+        tabindex=-1
       >
         <div
-          data-ods="drawer-body"
+          data-ods=drawer-body
         >
           <div
-            class="h-screen overflow-hidden flex flex-col justify-between"
+            class=h-screen overflow-hidden flex flex-col justify-between
           >
             <button
-              aria-label="Fermer"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 absolute top-7 right-4"
-              data-ods="button"
-              data-testid="drawer-dismiss-button"
-              type="button"
+              aria-label=Fermer
+              class=_button _button--primary _button--md _button--ghost absolute top-7 right-4
+              data-ods=button
+              data-testid=drawer-dismiss-button
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--xmark_10c23_562"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--xmark
+                data-ods=icon
+                role=presentation
               />
             </button>
             <header
-              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+              class=min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center
             >
               <div
-                class="flex items-center w-full py-6 space-x-2"
+                class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class="_text--heading-2_1aw48_19"
-                  data-ods="text"
+                  class=_text--heading-2
+                  data-ods=text
                 >
                   Complex Collapsible
                 </h2>
               </div>
             </header>
             <section
-              class="px-6 flex-1 overflow-y-auto outline-none"
+              class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class="_text--heading-3_1aw48_25"
-                data-ods="text"
+                class=_text--heading-3
+                data-ods=text
               >
                 Complex Collapsible Drawer
               </h3>
               <form>
                 <label
-                  for="setting1"
+                  for=setting1
                 >
                   Setting 1
                 </label>
                 <input
-                  id="setting1"
-                  type="text"
-                  value="value1"
+                  id=setting1
+                  type=text
+                  value=value1
                 />
                 <label
-                  for="setting2"
+                  for=setting2
                 >
                   Setting 2
                 </label>
                 <input
-                  id="setting2"
-                  type="checkbox"
+                  id=setting2
+                  type=checkbox
                 />
               </form>
             </section>
             <footer
-              class="p-6 space-x-2"
+              class=p-6 space-x-2
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-                data-ods="button"
-                data-testid="manager-button"
-                type="button"
+                class=_button _button--primary _button--md _button--ghost
+                data-ods=button
+                data-testid=manager-button
+                type=button
               >
                 Cancel
               </button>
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-                data-ods="button"
-                data-testid="manager-button"
-                type="button"
+                class=_button _button--primary _button--md _button--default
+                data-ods=button
+                data-testid=manager-button
+                type=button
               >
                 Save Settings
               </button>
@@ -1009,23 +1009,23 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
       </div>
     </div>
     <div
-      class="fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+      class=fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
     >
       <div
-        class="w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex"
+        class=w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex
       >
         <div>
           <button
-            aria-label="Replier"
-            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-            data-ods="button"
-            data-testid="drawer-handle"
-            type="button"
+            aria-label=Replier
+            class=_button _button--primary _button--md _button--ghost
+            data-ods=button
+            data-testid=drawer-handle
+            type=button
           >
             <span
-              class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
-              data-ods="icon"
-              role="presentation"
+              class=_icon _icon--chevron-double-right
+              data-ods=icon
+              role=presentation
             />
           </button>
         </div>

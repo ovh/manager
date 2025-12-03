@@ -1,4 +1,5 @@
 import { IdentityType } from '@key-management-service/types/identity.type';
+
 import { decodeIdentity } from './decodeIdentities';
 
 interface IfilterIdentities {
