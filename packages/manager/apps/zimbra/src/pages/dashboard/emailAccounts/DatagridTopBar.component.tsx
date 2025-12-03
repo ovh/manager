@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,12 @@ import {
 import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 import { ManagerButton } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { useDomains, usePlatform } from '@/data/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -40,15 +45,20 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
   const { t } = useTranslation(['accounts', 'common']);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+  const context = useContext(ShellContext);
 
   const { platformUrn } = usePlatform();
   const { accountsStatistics } = useAccountsStatistics();
+
+  const { data: domains, isLoading: isLoadingDomains } = useDomains();
+  const { ovhSubsidiary } = context.environment.getUser();
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'path');
   const hrefOrderEmailAccount = useGenerateUrl('./order', 'path');
   const hrefDeleteSelectedEmailAccounts = useGenerateUrl('./delete_all', 'path');
 
-  const { data: domains, isLoading: isLoadingDomains } = useDomains();
+  const hrefEmailMigratorUrl = () =>
+    GUIDES_LIST.ovh_mail_migrator.url?.[ovhSubsidiary] || GUIDES_LIST.ovh_mail_migrator.url.DEFAULT;
 
   const hasAvailableAccounts = useMemo(() => {
     return accountsStatistics
@@ -85,7 +95,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
       actionType: 'navigation',
       actions: [GUIDE_OVH_MAIL_MIGRATOR],
     });
-    window.open(GUIDES_LIST.ovh_mail_migrator.url.DEFAULT, '_blank');
+    window.open(hrefEmailMigratorUrl(), '_blank');
   };
   const handleSelectEmailAccounts = () => {
     navigate(hrefDeleteSelectedEmailAccounts, {
