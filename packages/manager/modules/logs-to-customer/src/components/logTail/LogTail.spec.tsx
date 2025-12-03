@@ -5,6 +5,27 @@ import { describe, expect, it, vi } from 'vitest';
 import { logMessagesMock } from '../../data/mocks/logMessage.mock';
 import { renderTest } from '../../test-utils';
 
+vi.mock('@tanstack/react-virtual', () => {
+  return {
+    useVirtualizer: (opts: { count?: number }) => {
+      const count = opts.count ?? 0;
+
+      const items = Array.from({ length: count }).map((_, index) => ({
+        index,
+        size: 20,
+        start: index * 20,
+      }));
+
+      return {
+        getVirtualItems: () => items,
+        getTotalSize: () => count * 20,
+        measureElement: () => 20,
+        scrollToIndex: () => {},
+      };
+    },
+  };
+});
+
 const IntersectionObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
   observe: vi.fn(),
