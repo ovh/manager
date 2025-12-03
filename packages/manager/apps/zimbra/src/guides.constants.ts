@@ -41,7 +41,7 @@ const WEBMAIL = {
 };
 
 const OVH_MAIL_MIGRATOR = {
-  DEFAULT: 'https://omm.ovh.net/',
+  DEFAULT: 'https://omm.ovhcloud.com/',
 };
 
 export const ZIMBRA_USER_GUIDE: GuideLinks = {

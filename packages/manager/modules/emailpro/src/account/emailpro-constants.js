@@ -7,7 +7,7 @@ export const FILTER_TYPE = 'ALL';
 
 export const rootSupportUrl = 'https://help.ovhcloud.com/';
 
-export const OVH_MAIL_MIGRATOR_URL = 'https://omm.ovh.net/';
+export const OVH_MAIL_MIGRATOR_URL = 'https://omm.ovhcloud.com/';
 
 export const SUPPORT_URL_VIEW_TICKETS = `${rootSupportUrl}csm?id=csm_cases_requests&ovhSubsidiary=`;
 

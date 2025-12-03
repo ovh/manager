@@ -18,7 +18,7 @@ export const unescapeDescription = (description) =>
 export const ACCOUNT_PROPERTIES_WITH_UNIT = ['totalQuota', 'usedQuota'];
 export const ACCOUNT_PROPERTIES_WITH_STATUS = ['mfa'];
 
-export const OVH_MAIL_MIGRATOR_URL = 'https://omm.ovh.net/';
+export const OVH_MAIL_MIGRATOR_URL = 'https://omm.ovhcloud.com/';
 
 export default {
   DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
