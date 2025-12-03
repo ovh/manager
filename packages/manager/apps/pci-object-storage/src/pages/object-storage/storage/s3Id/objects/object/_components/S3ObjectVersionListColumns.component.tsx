@@ -42,14 +42,12 @@ export const getColumns = ({
       ),
       accessorFn: (row) => row.key,
       cell: ({ row }) => (
-        <div>
-          <div className="flex gap-1 items-center">
-            <FileIcon
-              fileName={row.original.key}
-              className="w-4 h-4 text-muted-foreground"
-            />
-            {row.original.key}
-          </div>
+        <div className="flex gap-1 items-center">
+          <FileIcon
+            fileName={row.original.key}
+            className="w-4 h-4 text-muted-foreground"
+          />
+          {row.original.key}
         </div>
       ),
     },

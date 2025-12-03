@@ -15,7 +15,7 @@ import {
 } from '@datatr-ux/uxlib';
 import { PERMANENT_DELETE_CONFIRMATION } from '@/configuration/polling.constants';
 import RouteModal from '@/components/route-modal/RouteModal';
-import { useS3Data } from '../../../../S3.context';
+import { useS3Data } from '../../../S3.context';
 import { useGetS3ObjectVersion } from '@/data/hooks/s3-storage/useGetS3ObjectVersion.hook';
 import { useDeleteS3ObjectVersion } from '@/data/hooks/s3-storage/useDeleteS3ObjectVersion.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';

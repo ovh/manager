@@ -5,9 +5,20 @@ import {
   CardContent,
   CardHeader,
   Skeleton,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import { Archive, Settings } from 'lucide-react';
+import {
+  Archive,
+  ArrowLeft,
+  ArrowRight,
+  Download,
+  DownloadIcon,
+  Settings,
+} from 'lucide-react';
 import {
   Outlet,
   useNavigate,
@@ -20,6 +31,17 @@ import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
 import { octetConverter } from '@/lib/bytesHelper';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import DataTable from '@/components/data-table';
+import S3ObjectVersionList from './_components/S3VersionObjectListTable.component';
+import { useS3ObjectActions } from '../_hooks/useS3ObjectActions.hook';
+import NavLink from '@/components/links/NavLink.component';
+import { ObjectDownloadButton } from './_components/ObjectDownloadButton.component';
+import { DeepArchiveBadge } from '../_components/DeepArchiveBadge.component';
+import storages from '@/types/Storages';
+import { isDeepArchive } from '@/lib/s3ObjectHelper';
+import { is } from 'date-fns/locale';
+import { splitObjectKey } from '@/lib/fileNameHelper';
+import Link from '@/components/links/Link.component';
 
 const Object = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
@@ -47,95 +69,136 @@ const Object = () => {
     options: { retry: false },
   });
 
-  if (objectQuery.isLoading || objectVersionQuery.isLoading) {
-    return (
-      <>
-        <div className="flex space-x-4">
-          <Skeleton className="w-1/2 h-[200px]" />
-          <Skeleton className="w-1/2 h-[200px]" />
-        </div>
-      </>
-    );
-  }
+  const {
+    needsRestore,
+    isDownloadActionDisabled,
+    onDownloadClicked,
+    onRestoreClicked,
+    pendingGetPresignUrl,
+  } = useS3ObjectActions({
+    object: objectQuery.data,
+    showVersion: false,
+  });
 
+  const { path, file } = splitObjectKey(objectKey);
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <Link to="../" className="flex items-center">
+        <ArrowLeft className="w-4 h-4 mr-2" /> {t('backLink')}
+      </Link>
+      <div className="flex flex-col gap-2">
         <Card>
           <CardHeader>
-            <h5>
-              <FileIcon
-                fileName={objectQuery.data.key}
-                className="size-4 inline mr-2"
-              />
-              <span>{t('objectInfoTitle')}</span>
-            </h5>
+            <h4 className="flex flex-row gap-2 items-center">
+              <FileIcon fileName={objectKey} className="size-6" />
+              <span>{file}</span>
+            </h4>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 gap-4 items-center">
-              <p className="font-semibold">{t('tableHeaderSize')}</p>
-              <div className="flex flex-row items-center justify-end gap-4">
-                <p>{octetConverter(objectQuery.data.size, true, 2)}</p>
-              </div>
-            </div>
+            <table className="border-b border-gray-200 border-collapse my-4 w-full">
+              <tbody>
+                {path && (
+                  <tr className="border-b border-gray-200">
+                    <td className="font-semibold py-2">Prefix</td>
+                    <td className="text-right">{path}</td>
+                    <td />
+                  </tr>
+                )}
 
-            <div className="grid grid-cols-2 gap-4 items-center mt-2">
-              <p className="font-semibold">{t('tableHeaderUpdateDate')}</p>
-              <div className="flex flex-row items-center justify-end gap-4">
-                <FormattedDate
-                  options={{
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false,
-                  }}
-                  date={new Date(objectQuery.data.lastModified)}
-                />
-              </div>
-            </div>
+                <tr className="border-b border-gray-200">
+                  <td className="font-semibold py-2">{t('tableHeaderSize')}</td>
+                  <td className="text-right">
+                    {octetConverter(objectQuery.data.size, true, 2)}
+                  </td>
+                  <td />
+                </tr>
+                <tr className="border-b border-gray-200">
+                  <td className="font-semibold py-2">
+                    {t('tableHeaderUpdateDate')}
+                  </td>
+                  <td className="text-right">
+                    <FormattedDate
+                      options={{
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false,
+                      }}
+                      date={new Date(objectQuery.data.lastModified)}
+                    />
+                  </td>
+                  <td className="text-right">
+                    <Button
+                      mode='outline'
+                      className="h-6"
+                      disabled={isDownloadActionDisabled || needsRestore}
+                      onClick={() => onDownloadClicked()}
+                    >
+                      Telecharger
+                      <DownloadIcon className="size-4" />
+                    </Button>
+                  </td>
+                </tr>
+                {objectQuery.data.storageClass && (
+                  <tr className="border-b border-gray-200">
+                    <td className="font-semibold py-2">
+                      {t('tableHeaderStorageClass')}
+                    </td>
+                    <td className="text-right">
+                      <Badge variant="outline">
+                        {tObj(`objectClass_${objectQuery.data.storageClass}`)}
+                      </Badge>
+                    </td>
+                    <td className="text-right">
+                      <NavLink
+                        className="py-0 ml-2"
+                        to={`./change-storage-class?objectKey=${encodeURIComponent(
+                          objectKey,
+                        )}`}
+                      >
+                        {t('Modifier')}
+                      </NavLink>
+                    </td>
+                  </tr>
+                )}
+                {isDeepArchive(objectQuery.data) && (
+                  <tr className="border-b border-gray-200">
+                    <td className="font-semibold py-2">Status</td>
+                    <td className="text-right">
+                      <DeepArchiveBadge object={objectQuery.data} />
+                    </td>
+                    <td className="text-right">
+                      <>
+                        {!objectQuery.data.restoreStatus?.inProgress && (
+                          <NavLink
+                            className="py-0 ml-2"
+                            to={`./restore-object?objectKey=${encodeURIComponent(
+                              objectKey,
+                            )}`}
+                          >
+                            {t('tableRestoreButton')}
+                          </NavLink>
+                        )}
+                      </>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </CardContent>
         </Card>
-
-        {objectQuery.data.storageClass && (
-          <Card>
-            <CardHeader>
-              <h5>
-                <Archive className="size-4 inline mr-2" />
-                <span>{t('tableHeaderStorageClass')}</span>
-              </h5>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-row justify-between">
-                <Badge variant="outline">
-                  {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-                </Badge>
-
-                <Button
-                  className="h-6"
-                  mode="outline"
-                  size="sm"
-                  onClick={() =>
-                    navigate(
-                      `./change-storage-class?objectKey=${encodeURIComponent(
-                        objectKey,
-                      )}`,
-                    )
-                  }
-                >
-                  <Settings className="size-4" />
-                  <span className="font-semibold">
-                    {t('changeStorageClassLink')}
-                  </span>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
+        <Card>
+          <CardHeader>
+            <h4>{t('versionsTitle')}</h4>
+          </CardHeader>
+          <CardContent>
+            <S3ObjectVersionList objects={objectVersionQuery.data} />
+          </CardContent>
+        </Card>
       </div>
-
       <Outlet />
     </>
   );

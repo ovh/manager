@@ -29,31 +29,16 @@ export const ObjectDownloadButton = ({ object }: ObjectDownloadButtonProps) => {
   });
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            className="h-8"
-            mode="default"
-            size="sm"
-            onClick={needsRestore ? onRestoreClicked : onDownloadClicked}
-            disabled={isDownloadActionDisabled}
-            aria-label={
-              needsRestore ? t('tableActionRestore') : t('tableActionDownload')
-            }
-          >
-            <DownloadIcon
-              pendingGetPresignUrl={pendingGetPresignUrl}
-              needsRestore={needsRestore}
-            />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>
-            {needsRestore ? t('tableActionRestore') : t('tableActionDownload')}
-          </p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Button
+      mode="default"
+      onClick={needsRestore ? onRestoreClicked : onDownloadClicked}
+      disabled={isDownloadActionDisabled}
+    >
+      {needsRestore ? t('tableActionRestore') : t('tableActionDownload')}
+      <DownloadIcon
+        pendingGetPresignUrl={pendingGetPresignUrl}
+        needsRestore={needsRestore}
+      />
+    </Button>
   );
 };

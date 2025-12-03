@@ -256,7 +256,7 @@ export default [
                     id: 's3.object.version.delete',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/object/versions/delete/DeleteObjectVersion.modal'
+                        '@/pages/object-storage/storage/s3Id/objects/object/delete/DeleteObjectVersion.modal'
                       ),
                     ),
                   },
@@ -289,40 +289,29 @@ export default [
                         ),
                       },
                       {
-                        path: 'delete-object',
-                        id: 's3.object.delete',
+                        path: 'delete-version/:versionId',
+                        id: 'versions.delete',
                         ...lazyLoadRoute(() =>
                           import(
-                            '@/pages/object-storage/storage/s3Id/objects/delete/DeleteObject.modal'
+                            '@/pages/object-storage/storage/s3Id/objects/object/delete/DeleteObjectVersion.modal'
                           ),
                         ),
                       },
+                      // {
+                      //   path: 'delete-object',
+                      //   id: 's3.object.delete',
+                      //   ...lazyLoadRoute(() =>
+                      //     import(
+                      //       '@/pages/object-storage/storage/s3Id/objects/delete/DeleteObject.modal'
+                      //     ),
+                      //   ),
+                      // },
                       {
                         path: 'restore-object',
                         id: 's3.object.restore',
                         ...lazyLoadRoute(() =>
                           import(
                             '@/pages/object-storage/storage/s3Id/objects/object/restore/Restore.modal'
-                          ),
-                        ),
-                      },
-                    ],
-                  },
-                  {
-                    path: 'versions',
-                    id: 's3.object.versions',
-                    ...lazyLoadRoute(() =>
-                      import(
-                        '@/pages/object-storage/storage/s3Id/objects/object/versions/Versions.page'
-                      ),
-                    ),
-                    children: [
-                      {
-                        path: 'delete-version/:versionId',
-                        id: 'versions.delete',
-                        ...lazyLoadRoute(() =>
-                          import(
-                            '@/pages/object-storage/storage/s3Id/objects/object/versions/delete/DeleteObjectVersion.modal'
                           ),
                         ),
                       },

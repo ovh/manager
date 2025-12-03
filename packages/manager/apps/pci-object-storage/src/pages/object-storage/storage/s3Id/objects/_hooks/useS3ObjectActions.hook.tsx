@@ -59,8 +59,6 @@ export const useS3ObjectActions = ({
   const onDetailsClicked = () =>
     navigate(`./object?objectKey=${encodeURIComponent(object.key)}`);
 
-  const onVersionsClicked = () =>
-    navigate(`./object/versions?objectKey=${encodeURIComponent(object.key)}`);
 
   const onDownloadClicked = () => {
     return getPresignUrlS3({
@@ -131,13 +129,6 @@ export const useS3ObjectActions = ({
       label: t('tableActionExtendRestore'),
       hidden: !isRestored,
       mobileOnly: true,
-    },
-    {
-      id: 'versions',
-      icon: <Files className="size-4" />,
-      onClick: onVersionsClicked,
-      label: t('tableActionShowVersion'),
-      hidden: s3.versioning.status !== VersioningStatusEnum.enabled,
     },
     {
       id: 'delete',

@@ -12,8 +12,7 @@ import storages from '@/types/Storages';
 import useDownload from '@/hooks/useDownload';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
-import { useS3Data } from '../../../../S3.context';
-import Link from '@/components/links/Link.component';
+import { useS3Data } from '../../../S3.context';
 
 interface ObjectsListProps {
   objects: StorageObject[];
@@ -70,7 +69,7 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
     },
   });
   const storagesFilters = getFilters();
-
+  console.log(objects);
   return (
     <DataTable.Provider
       columns={columns}

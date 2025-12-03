@@ -40,16 +40,16 @@ export function breadcrumb() {
   return <S3Name />;
 }
 
-const HIDE_HEADER_ROUTE_PATTERNS = ['s3.object.'];
-const HIDE_TABS_ROUTE_PATTERNS = ['s3.object.'];
+// const HIDE_HEADER_ROUTE_PATTERNS = ['s3.object.'];
+// const HIDE_TABS_ROUTE_PATTERNS = ['s3.object.'];
 
-const shouldHideS3Header = (
-  matches: ReturnType<typeof useMatches>,
-): boolean => {
-  return matches.some((match) =>
-    HIDE_HEADER_ROUTE_PATTERNS.some((pattern) => match.id?.startsWith(pattern)),
-  );
-};
+// const shouldHideS3Header = (
+//   matches: ReturnType<typeof useMatches>,
+// ): boolean => {
+//   return matches.some((match) =>
+//     HIDE_HEADER_ROUTE_PATTERNS.some((pattern) => match.id?.startsWith(pattern)),
+//   );
+// };
 
 export default function S3Layout() {
   const { isUserActive } = useUserActivityContext();
@@ -65,9 +65,9 @@ export default function S3Layout() {
     },
   });
 
-  const isOnObjectView = shouldHideS3Header(matches);
-  const shouldHideHeader = isOnObjectView;
-  const shouldHideTabs = isOnObjectView;
+  // const isOnObjectView = shouldHideS3Header(matches);
+  // const shouldHideHeader = isOnObjectView;
+  // const shouldHideTabs = isOnObjectView;
 
   const s3 = s3Query.data;
   if (!s3) {
@@ -86,8 +86,8 @@ export default function S3Layout() {
 
   return (
     <>
-      {!shouldHideHeader && <S3Header s3={s3} />}
-      {!shouldHideTabs && <S3Tabs s3={s3} />}
+      <S3Header s3={s3} />
+      <S3Tabs s3={s3} />
       <div className="space-y-2">
         <Outlet context={s3LayoutContext} />
       </div>
