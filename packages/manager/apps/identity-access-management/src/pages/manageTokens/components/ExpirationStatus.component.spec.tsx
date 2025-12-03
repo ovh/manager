@@ -24,16 +24,16 @@ describe('ExpirationStatus', () => {
   });
 
   it('should display an \'active\' badge when token is not yet expired', () => {
-    const expiredToken = mockUserToken('2100-12-25T00:00:00+02:00');
-    const { container } = render(<ExpirationStatus token={expiredToken} />);
+    const activeToken = mockUserToken('2100-12-25T00:00:00+02:00');
+    const { container } = render(<ExpirationStatus token={activeToken} />);
     const badgeElement = container.querySelector('ods-badge');
     expect(badgeElement).toHaveAttribute('color', 'success');
     expect(badgeElement).toHaveAttribute('label', 'iam_user_token_expiration_badge_active');
   });
 
   it('should display an \'active\' badge when expiresAt is not present', () => {
-    const expiredToken = mockUserToken('');
-    const { container } = render(<ExpirationStatus token={expiredToken} />);
+    const nonExpiringToken = mockUserToken('');
+    const { container } = render(<ExpirationStatus token={nonExpiringToken} />);
     const badgeElement = container.querySelector('ods-badge');
     expect(badgeElement).toHaveAttribute('color', 'success');
     expect(badgeElement).toHaveAttribute('label', 'iam_user_token_expiration_badge_active');

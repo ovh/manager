@@ -11,8 +11,8 @@
   "iam_user_tokens_datagrid_column_description": "Description",
   "iam_user_tokens_datagrid_column_creation": "Creation",
   "iam_user_tokens_datagrid_column_expiration": "Expiration",
-  "iam_user_tokens_datagrid_column_expiration_status": "Expiration Status",
-  "iam_user_tokens_datagrid_column_last_usage": "Last usage",
+  "iam_user_tokens_datagrid_column_expiration_status": "Status",
+  "iam_user_tokens_datagrid_column_last_usage": "Dernière utilisation",
   "iam_user_token_expiration_badge_active": "Actif",
   "iam_user_token_expiration_badge_expired": "Expiré"
 }
