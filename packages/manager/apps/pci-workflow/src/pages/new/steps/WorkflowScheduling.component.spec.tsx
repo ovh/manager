@@ -129,11 +129,14 @@ describe('WorkflowScheduling Component', () => {
     });
 
     // ODS 19 combobox labels are broken so we get by role hidden instead
-    const distantRegion = getByRole('combobox');
-    expect(distantRegion).toBeVisible();
+    const distantRegionToggle = getByRole('combobox');
+    expect(distantRegionToggle).toBeVisible();
+
+    const nextStepButton = getByRole('button', { name: 'pci_workflow_create' });
+    expect(nextStepButton).toBeDisabled();
 
     await act(async () => {
-      await user.click(distantRegion);
+      await user.click(distantRegionToggle);
     });
 
     // We only test if the option is here because ODS a11y doesn't work and doesn't trigger a value change
@@ -144,5 +147,6 @@ describe('WorkflowScheduling Component', () => {
     act(() => region1Option.click());
 
     expect(await findByText('pci_workflow_create_price_monthly')).toBeVisible();
+    expect(nextStepButton).toBeEnabled();
   });
 });

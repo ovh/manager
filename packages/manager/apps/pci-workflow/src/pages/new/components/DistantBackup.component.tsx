@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -31,16 +31,18 @@ interface DistantBackupProps {
   distantContinents: Map<string, ContinentRegion[]>;
   distantRegion: string;
   onChange: (distantRegion: string | null) => void;
+  isDistantBackup: boolean;
+  onChangeIsDistantBackup: (newValue: boolean) => void;
 }
 
 export const DistantBackup: FC<DistantBackupProps> = ({
   distantContinents,
   distantRegion,
   onChange,
+  isDistantBackup,
+  onChangeIsDistantBackup,
 }) => {
   const { t } = useTranslation(['workflow-add', 'pci-common', 'global']);
-
-  const [distantBackup, setDistantBackup] = useState(false);
 
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
@@ -103,7 +105,7 @@ export const DistantBackup: FC<DistantBackupProps> = ({
   return (
     <div className="mt-8">
       <Text preset="label">
-        <Toggle onCheckedChange={(e) => setDistantBackup(e.checked)}>
+        <Toggle onCheckedChange={(e) => onChangeIsDistantBackup(e.checked)}>
           <ToggleControl />
           <ToggleLabel>
             <span>{t('pci_workflow_create_distant_label')}</span>
@@ -117,7 +119,7 @@ export const DistantBackup: FC<DistantBackupProps> = ({
         </Toggle>
       </Text>
 
-      {distantBackup && (
+      {isDistantBackup && (
         <div className="mt-5">
           <FormField>
             <FormFieldLabel>{t('pci_workflow_create_distant_region_label')}</FormFieldLabel>
@@ -129,6 +131,7 @@ export const DistantBackup: FC<DistantBackupProps> = ({
               onValueChange={handleDistantRegionChange}
               className="max-w-80"
               allowCustomValue={false}
+              required
             >
               <ComboboxControl clearable />
               <ComboboxContent className="max-h-52 overflow-y-scroll" />
