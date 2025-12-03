@@ -3,6 +3,7 @@ import {
   TDomainOption,
   TDomainResource,
   DomainService,
+  TContactsConfigurationAPI,
 } from '@/domain/types/domainResource';
 import { OptionEnum } from '@/common/enum/option.enum';
 import { THost } from '@/domain/types/host';
@@ -53,6 +54,7 @@ export const updateDomainResource = async (
         hosts: THost[];
       };
       protectionState: ProtectionStateEnum;
+      contactsConfiguration?: TContactsConfigurationAPI;
     };
   },
 ): Promise<void> => {

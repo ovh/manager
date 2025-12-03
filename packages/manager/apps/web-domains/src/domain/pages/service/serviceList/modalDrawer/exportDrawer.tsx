@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DomainTreeView from '../treeViews/domainTreeView';
 import ContactTreeView from '../treeViews/contactTreeView';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 interface ExportDrawerProps {
   readonly isDrawerOpen: boolean;
@@ -32,7 +33,7 @@ export default function ExportDrawer({
   serviceNames,
   onExport,
 }: ExportDrawerProps) {
-  const { t } = useTranslation('domain');
+  const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
 
   const [selection, setSelection] = useState<ExportSelection>({
     domainColumns: ['domain', 'domain-utf8', 'expiration', 'dns-server'],
@@ -108,10 +109,10 @@ export default function ExportDrawer({
           </div>
           <div className="flex gap-4 p-6 border-t flex-shrink-0 mb-6">
             <Button variant="ghost" onClick={onClose}>
-              Annuler
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </Button>
             <Button variant="default" onClick={handleValidate}>
-              Valider
+              {t(`${NAMESPACES.ACTIONS}:validate`)}
             </Button>
           </div>
         </DrawerBody>

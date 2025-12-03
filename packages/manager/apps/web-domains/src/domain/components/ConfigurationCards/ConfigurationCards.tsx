@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
@@ -19,6 +19,12 @@ import TransferAuthInfoModal from './TransferAuthInfoModal';
 import { TUpdateDNSConfigError } from '@/domain/types/error';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import TransferTagModal from './TagModal';
+import DataProtection from './DataProtection';
+import DataProtectionDrawer from './DataProtectionDrawer';
+import {
+  DisclosureConfigurationEnum,
+  TContactsConfigurationAPI,
+} from '@/domain/types/domainResource';
 
 interface ConfigurationCardsProps {
   readonly serviceName: string;
@@ -37,6 +43,10 @@ export default function ConfigurationCards({
     false,
   );
   const [tagModalOpened, setTagModalOpened] = React.useState<boolean>(false);
+  const [
+    dataProtectionDrawerOpened,
+    setDataProtectionDrawerOpened,
+  ] = React.useState<boolean>(false);
   const [tag, setTag] = React.useState<string>('');
   const [
     transferAuthInfoModalOpened,
@@ -59,6 +69,50 @@ export default function ConfigurationCards({
     isTransferTagPending,
     transferTagError,
   } = useTransferTag(serviceName, tag);
+
+  const visibleContacts = useMemo(() => {
+    const contacts = domainResource?.currentState?.contactsConfiguration;
+    if (!contacts) return [];
+
+    return Object.entries(contacts)
+      .filter(([_, contact]) => contact.disclosurePolicy?.visibleViaRdds)
+      .map(([key, contact]) => ({
+        key,
+        id: contact.id,
+        label: key.replace('contact', ''),
+        disclosedFields: contact.disclosurePolicy?.disclosedFields || [],
+      }));
+  }, [domainResource]);
+
+  const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
+
+  React.useEffect(() => {
+    const contacts = domainResource?.currentState?.contactsConfiguration;
+    if (!contacts) return;
+
+    const redactedContacts = Object.entries(contacts)
+      .filter(
+        ([_, contact]) =>
+          contact.disclosurePolicy?.visibleViaRdds &&
+          contact.disclosurePolicy?.disclosureConfiguration ===
+            DisclosureConfigurationEnum.DISCLOSED,
+      )
+      .map(([key]) => key);
+    setSelectedContacts(redactedContacts);
+  }, [domainResource]);
+
+  const handleCheckboxChange = (
+    contactKey: string,
+    checked: boolean | 'indeterminate',
+  ) => {
+    if (checked === 'indeterminate') return;
+
+    setSelectedContacts((prev) =>
+      checked
+        ? [...prev, contactKey]
+        : prev.filter((key) => key !== contactKey),
+    );
+  };
 
   const handleTag = () => {
     setTag(tag);
@@ -99,6 +153,56 @@ export default function ConfigurationCards({
     );
   };
 
+  const handleUpdateDataProtection = () => {
+    const checksum = domainResource?.checksum;
+    if (!checksum) return;
+    const cleanedNameServers = domainResource?.currentState?.dnsConfiguration?.nameServers.map(
+      ({ nameServer, ipv4, ipv6 }) => ({
+        nameServer,
+        ...(ipv4 ? { ipv4 } : {}),
+        ...(ipv6 ? { ipv6 } : {}),
+      }),
+    );
+
+    const contacts = domainResource?.currentState?.contactsConfiguration;
+    if (!contacts) return;
+
+    const contactsConfiguration = Object.entries(contacts).reduce(
+      (acc, [key, contact]) => {
+        if (contact.disclosurePolicy?.visibleViaRdds) {
+          acc[key] = {
+            disclosurePolicy: {
+              disclosureConfiguration: selectedContacts.includes(key)
+                ? DisclosureConfigurationEnum.DISCLOSED
+                : DisclosureConfigurationEnum.REDACTED,
+            },
+          };
+        }
+        return acc;
+      },
+      {} as TContactsConfigurationAPI,
+    );
+
+    updateDomain(
+      {
+        checksum,
+        nameServers: cleanedNameServers,
+        protectionState: domainResource?.targetSpec?.protectionState,
+        hosts: domainResource?.targetSpec?.hostsConfiguration?.hosts,
+        contactsConfiguration: contactsConfiguration,
+      },
+      {
+        onSuccess: () => {
+          setTransferModalOpened(false);
+        },
+        onError: (error: TUpdateDNSConfigError) => {
+          setTransferModalOpened(false);
+          console.log(error);
+        },
+      },
+    );
+  };
+
   const updateDnssec = () => {
     updateServiceDnssec();
     setDnssecModalOpened(!dnssecModalOpened);
@@ -109,69 +213,93 @@ export default function ConfigurationCards({
   }
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>
-        {t('domain_tab_general_information_configuration')}
-      </ManagerTile.Title>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>Serveur DNS</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
-          <Badge color={BADGE_COLOR.success} className="mt-4">
-            Enregistré
-          </Badge>
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <DnssecToggleStatus
-        dnssecModalOpened={dnssecModalOpened}
-        dnssecStatus={dnssecStatus}
-        domainResource={domainResource}
-        isDnssecStatusLoading={isDnssecStatusLoading}
-        setDnssecModalOpened={setDnssecModalOpened}
-      />
-      <ManagerTile.Divider />
-      <TransferToggleStatus
-        domainResource={domainResource}
-        transferModalOpened={transferModalOpened}
-        setTransferModalOpened={setTransferModalOpened}
-        setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
-        setTagModalOpened={setTagModalOpened}
-      />
-      <DnssecModal
-        action={dnssecStatus?.status}
-        open={dnssecModalOpened}
-        updateDnssec={updateDnssec}
-        onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
-      />
-      <TransferModal
-        serviceName={serviceName}
-        action={domainResource?.currentState.protectionState}
-        open={transferModalOpened}
-        updateDomain={() => handleUpdateProtectionState()}
-        onClose={() => setTransferModalOpened(!transferModalOpened)}
-      />
-      <TransferAuthInfoModal
-        authInfo={authInfo}
-        authInfoManagedByOVH={
-          domainResource?.currentState?.authInfoManagedByOVHcloud
-        }
-        isAuthInfoLoading={isAuthInfoLoading}
-        onClose={() =>
-          setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
-        }
-        open={transferAuthInfoModalOpened}
-      />
-      <TransferTagModal
-        tag={tag}
-        setTag={setTag}
-        handleTag={handleTag}
-        serviceName={serviceName}
-        isTransferTagPending={isTransferTagPending}
-        transferTagError={transferTagError}
-        open={tagModalOpened}
-        onClose={() => setTagModalOpened(!tagModalOpened)}
-      />
-    </ManagerTile>
+    <>
+      {dataProtectionDrawerOpened && (
+        <div
+          className="fixed inset-0 bg-[--ods-color-primary-500] opacity-75 z-40"
+          onClick={() => setDataProtectionDrawerOpened(false)}
+        />
+      )}
+      <ManagerTile>
+        <ManagerTile.Title>
+          {t('domain_tab_general_information_configuration')}
+        </ManagerTile.Title>
+        <ManagerTile.Divider />
+        <ManagerTile.Item>
+          <ManagerTile.Item.Label>Serveur DNS</ManagerTile.Item.Label>
+          <ManagerTile.Item.Description>
+            <Badge color={BADGE_COLOR.success} className="mt-4">
+              Enregistré
+            </Badge>
+          </ManagerTile.Item.Description>
+        </ManagerTile.Item>
+        <ManagerTile.Divider />
+        <DnssecToggleStatus
+          dnssecModalOpened={dnssecModalOpened}
+          dnssecStatus={dnssecStatus}
+          domainResource={domainResource}
+          isDnssecStatusLoading={isDnssecStatusLoading}
+          setDnssecModalOpened={setDnssecModalOpened}
+        />
+        <ManagerTile.Divider />
+        <TransferToggleStatus
+          domainResource={domainResource}
+          transferModalOpened={transferModalOpened}
+          setTransferModalOpened={setTransferModalOpened}
+          setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
+          setTagModalOpened={setTagModalOpened}
+        />
+        <ManagerTile.Divider />
+        <DataProtection
+          domainResource={domainResource}
+          setDataProtectionDrawerOpened={setDataProtectionDrawerOpened}
+        />
+        <DnssecModal
+          action={dnssecStatus?.status}
+          open={dnssecModalOpened}
+          updateDnssec={updateDnssec}
+          onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
+        />
+        <TransferModal
+          serviceName={serviceName}
+          action={domainResource?.currentState.protectionState}
+          open={transferModalOpened}
+          updateDomain={() => handleUpdateProtectionState()}
+          onClose={() => setTransferModalOpened(!transferModalOpened)}
+        />
+        <TransferAuthInfoModal
+          authInfo={authInfo}
+          authInfoManagedByOVH={
+            domainResource?.currentState?.authInfoManagedByOVHcloud
+          }
+          isAuthInfoLoading={isAuthInfoLoading}
+          onClose={() =>
+            setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
+          }
+          open={transferAuthInfoModalOpened}
+        />
+        <TransferTagModal
+          tag={tag}
+          setTag={setTag}
+          handleTag={handleTag}
+          serviceName={serviceName}
+          isTransferTagPending={isTransferTagPending}
+          transferTagError={transferTagError}
+          open={tagModalOpened}
+          onClose={() => setTagModalOpened(!tagModalOpened)}
+        />
+        <DataProtectionDrawer
+          isDrawerOpen={dataProtectionDrawerOpened}
+          onClose={() => setDataProtectionDrawerOpened(false)}
+          domainResource={domainResource}
+          visibleContacts={visibleContacts}
+          selectedContacts={selectedContacts}
+          onCheckboxChange={handleCheckboxChange}
+          onClick={() => {
+            handleUpdateDataProtection();
+          }}
+        />
+      </ManagerTile>
+    </>
   );
 }
