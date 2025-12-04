@@ -59,7 +59,12 @@ export default function EditVrackSegmentId() {
     refetchOnReconnect: false,
   };
 
-  const { data: vrackSegment, isLoading, isError } = useQuery(options);
+  const {
+    data: vrackSegment,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({ ...options, staleTime: 5000 });
 
   const {
     mutate: updateVrackSegment,
@@ -94,8 +99,11 @@ export default function EditVrackSegmentId() {
   >({
     mode: 'onChange',
     resolver: zodResolver(VLAN_ID_FORM_SCHEMA),
-    values: {
-      vlanId: vrackSegment?.vlanId,
+    defaultValues: async () => {
+      const data = await refetch();
+      const vlanId = data.data?.vlanId;
+
+      return { vlanId: vlanId ?? VLAN_MIN };
     },
   });
   const vlanId = useWatch({ control, name: 'vlanId' });
@@ -112,6 +120,8 @@ export default function EditVrackSegmentId() {
 
   const onSubmit: SubmitHandler<z.infer<typeof VLAN_ID_FORM_SCHEMA>> = ({ vlanId }) => {
     trackClick(TRACKING.vrackModifyVlanId.confirm);
+    if (!vrackSegment) return;
+
     updateVrackSegment({
       ...vrackSegment,
       vlanId: vlanId.toString(),
