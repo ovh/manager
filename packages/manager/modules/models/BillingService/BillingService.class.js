@@ -16,7 +16,10 @@ export default class BillingService {
   constructor(service) {
     Object.assign(this, service);
 
-    this.serviceIdUnicode = punycode.toUnicode(service.serviceId);
+    this.serviceIdUnicode =
+      typeof service.serviceId === 'string'
+        ? punycode.toUnicode(service.serviceId)
+        : service.serviceId;
     this.id = service.id || service.serviceId;
     this.expirationDate = moment(this.expiration);
     this.creationDate = moment(this.creation);
