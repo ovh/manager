@@ -4,7 +4,7 @@ import {
   DOMAIN_PREFIX_PAGE_BUTTON_GO_TO_ORDER,
 } from '../domains/domains.constant';
 
-export default /* @ngInject */ ($stateProvider) => {
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.domain.index', {
     url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
@@ -85,4 +85,23 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: DOMAIN_PREFIX_LISTING_MANAGE_DOMAINS,
     },
   });
+
+  $urlRouterProvider.when(
+    /^\/domain\/?(?:\?.*)?$/,
+    /* @ngInject */ (ovhFeatureFlipping, coreURLBuilder, $state) => {
+      ovhFeatureFlipping
+        .checkFeatureAvailability('web-domains:domains')
+        .then((featureAvailability) => {
+          return featureAvailability.isFeatureAvailable('web-domains:domains');
+        })
+        .then((isFeatureAvailable) => {
+          if (isFeatureAvailable) {
+            const url = coreURLBuilder.buildURL('web-domains', '/domain');
+            return window.location.replace(url);
+          }
+          $state.go('app.domain.index');
+          return false;
+        });
+    },
+  );
 };
