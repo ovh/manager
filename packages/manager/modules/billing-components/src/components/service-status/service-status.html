@@ -1,24 +1,22 @@
-<p>
-    <span
-        class="oui-badge text-wrap"
-        data-ng-if="::$ctrl.statusBadge.className"
-        data-ng-class="::$ctrl.statusBadge.className"
-        data-ng-bind="::$ctrl.statusBadge.label"
-    ></span>
-    <span
-        data-ng-if="::($ctrl.statusBadge && !$ctrl.statusBadge.className)"
-        data-ng-bind="::$ctrl.statusBadge.label"
-    ></span>
-    <span
-        data-ng-if="::$ctrl.service.isRestorable"
-        class="oui-badge text-wrap oui-badge_warning"
-        data-translate="{{:: 'manager_billing_service_status_restorable' | translate }}"
-    ></span>
-    <button
-        type="button"
-        class="oui-popover-button"
-        data-ng-if="::$ctrl.service.statusHelp"
-        data-oui-popover="{{ $ctrl.service.statusHelp }}"
-        data-oui-popover-placement="bottom"
-    ></button>
-</p>
+<span
+    class="oui-badge text-wrap"
+    data-ng-if="::$ctrl.statusBadge.className"
+    data-ng-class="::$ctrl.statusBadge.className"
+    data-ng-bind="::$ctrl.statusBadge.label"
+></span>
+<span
+    data-ng-if="::($ctrl.statusBadge && !$ctrl.statusBadge.className)"
+    data-ng-bind="::$ctrl.statusBadge.label"
+></span>
+<span
+    data-ng-if="::$ctrl.service.isRestorable"
+    class="oui-badge text-wrap oui-badge_warning"
+    data-translate="{{:: 'manager_billing_service_status_restorable' | translate }}"
+></span>
+<button
+    type="button"
+    class="oui-popover-button"
+    data-ng-if="::$ctrl.service.statusHelp"
+    data-oui-popover="{{ $ctrl.service.statusHelp }}"
+    data-oui-popover-placement="bottom"
+></button>
