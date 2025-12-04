@@ -1,0 +1,22 @@
+{
+  "addVirtualMacTitle": "Dodaj wirtualny adres MAC",
+  "addVirtualMacNew": "Utwórz nowy wirtualny adres MAC",
+  "addVirtualMacNewInfo": "Wirtualne adresy MAC ułatwiają zarządzanie adresami IP, ponieważ przypisują unikalny adres MAC każdej maszynie wirtualnej.",
+  "addVirtualMacNewInfoGuide": "Sprawdź przewodnik dotyczący wirtualnych adresów MAC",
+  "addVirtualMacExisting": "Skorzystaj z istniejącego wirtualnego adresu MAC",
+  "virtualMacIpAddress": "Adres IP",
+  "virtualMacType": "Typ",
+  "virtualMacField": "Wirtualny MAC",
+  "virtualMacMachinename": "Nazwa wirtualnej maszyny",
+  "viewVirtualMacTitle": "Informacje na temat wirtualnego adresu MAC",
+  "viewVirtualMacQuestion": "Informacje dotyczące wirtualnego adresu MAC:",
+  "addVirtualMacAddNewSuccess": "Nowy wirtualny adres MAC został utworzony i będzie dostępny dla IP {{t0}} w ciągu kilku minut.",
+  "addVirtualMacAddNewFailure": "Wystąpił błąd podczas generowania nowego wirtualnego adresu MAC dla IP {{t0}}. {{error}} request_id: {{ovhQueryId}}",
+  "addVirtualMacAddExistingSuccess": "IP {{t0}} zostanie przypisane do istniejącego wirtualnego adresu MAC w ciągu kilku minut.",
+  "addVirtualMacAddExistingFailure": "Wystąpił błąd podczas przypisywania istniejącego wirtualnego adresu MAC do IP {{t0}}. {{error}} request_id: {{ovhQueryId}}",
+  "deleteVirtualMacTitle": "Usuń wirtualny adres MAC",
+  "deleteVirtualMacInfo": "Usunięcie tego wirtualnego adresu MAC anuluje przypisanie adresu IP do maszyny wirtualnej, co może zakłócić działanie usług lub konfiguracji zależnych od tego adresu. Operacja ta jest nieodwracalna.",
+  "deleteVirtualMacConfirmation": "Czy na pewno chcesz trwale usunąć wirtualny adres MAC?",
+  "deleteVirtualMacSuccess": "Wirtualny adres MAC {{vmac}} zostanie usunięty z IP {{ip}} w ciągu kilku minut.",
+  "deleteVirtualMacError": "Wystąpił błąd podczas usuwania wirtualnego adresu MAC: {{error}}"
+}

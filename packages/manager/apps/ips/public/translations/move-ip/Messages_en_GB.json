@@ -1,0 +1,20 @@
+{
+  "step1Description": "Select the destination service for the <b>{{ip}}</b> IP:",
+  "step1CurrentServiceLabel": "From",
+  "step1EmptyCurrentServiceValue": "Parking IPs",
+  "step1DestinationServiceLabel": "To",
+  "step1NextHopLabel": "On",
+  "step2DescriptionWithNextHop": "Are you sure you want to move the <b>{{ip}}</b> IP to <b>{{destinationService}}</b> on <b>{{nextHop}}</b>?",
+  "step2DescriptionWithoutNextHop": "Are you sure you want to move the <b>{{ip}}</b> IP to <b>{{destinationService}}</b>?",
+  "moveIpOnGoingTaskMessage": "This IP is already being moved.",
+  "moveIpSuccessMessage": "The {{ip}} IP will be available in “{{destinationService}}” in a few minutes.",
+  "moveIpDoneMessage": "The {{ip}} IP has been moved.",
+  "service_destination_ipLoadbalancing_option_group_label": "Load balancing IP",
+  "service_destination_dedicatedServer_option_group_label": "Dedicated server",
+  "service_destination_dedicatedCloud_option_group_label": "Dedicated Cloud",
+  "service_destination_vps_option_group_label": "VPS",
+  "service_destination_cloudProject_option_group_label": "Cloud Project ",
+  "service_destination_hostingReseller_option_group_label": "Web hosting reseller",
+  "service_selection_select_ip_parking_option_group_label": "Parking IP",
+  "service_selection_select_ip_parking_option_label": "Parking IP"
+}
