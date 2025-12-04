@@ -51,12 +51,13 @@ export const hasSourceError = (source?: string) => {
     return false;
   }
 
-  const sourceIp = /^(0+\.)+0+$/; // Test only here because it's a firewall specitic case
-  if (!isValidIpv4(source) || sourceIp.test(source)) {
+  if (source.includes('0.0.0.0')) {
     return true;
   }
 
-  return !isValidIpv4Block(source);
+  return source.includes('/')
+    ? !isValidIpv4Block(source)
+    : !ipaddr.IPv4.isValid(source);
 };
 
 export type CreateFirewallRuleParams = {
