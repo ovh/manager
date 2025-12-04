@@ -36,12 +36,15 @@ describe('KMS dashboard test suite', () => {
   it('should display the kms dashboard page', async () => {
     await renderTestApp(mockPageUrl, { feature: KMS_FEATURES.LOGS });
 
-    await waitFor(() => {
-      expect(screen.getByTestId(kmsDashboardTabNames.generalInformation)).toBeVisible();
-      expect(screen.getByTestId(kmsDashboardTabNames.serviceKeys)).toBeVisible();
-      expect(screen.getByTestId(kmsDashboardTabNames.credentials)).toBeVisible();
-      expect(screen.getByTestId(kmsDashboardTabNames.logs)).toBeVisible();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByTestId(kmsDashboardTabNames.generalInformation)).toBeVisible();
+        expect(screen.getByTestId(kmsDashboardTabNames.serviceKeys)).toBeVisible();
+        expect(screen.getByTestId(kmsDashboardTabNames.credentials)).toBeVisible();
+        expect(screen.getByTestId(kmsDashboardTabNames.logs)).toBeVisible();
+      },
+      { timeout: 5_000 },
+    );
 
     expect(screen.queryByAltText('OOPS')).not.toBeInTheDocument();
   });

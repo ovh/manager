@@ -1,7 +1,7 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
 import {
-  REGION_CA_EAST_BHS,
+  REGION_EU_WEST_GRA,
   REGION_EU_WEST_RBX,
   REGION_EU_WEST_SBG,
 } from '@/common/mocks/catalog/catalog.mock';
@@ -75,6 +75,6 @@ export const regionWithOneOkms: OkmsByRegion = {
   okmsMock: [okmsStrasbourg1Mock],
 };
 
-export const regionWithoutOkms: OkmsByRegion = { region: REGION_CA_EAST_BHS };
+export const regionWithoutOkms: OkmsByRegion = { region: REGION_EU_WEST_GRA };
 
 export const okmsMock: OKMS[] = [okmsRoubaix1Mock, okmsRoubaix2Mock, okmsStrasbourg1Mock];
