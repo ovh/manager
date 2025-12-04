@@ -103,7 +103,9 @@ describe('HostDelete', () => {
 
     expect(updateDomain).toHaveBeenCalledTimes(1);
     const call = updateDomain.mock.calls[0][0];
-    expect(call.hosts).toEqual([{ host: 'ns2.foobar', ips: ['2.2.2.2'] }]);
+    expect(call.updatedSpec).toEqual({
+      hostsConfiguration: { hosts: [{ host: 'ns2.foobar', ips: ['2.2.2.2'] }] },
+    });
     expect(call.checksum).toBe('xyz');
   });
 

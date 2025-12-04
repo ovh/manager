@@ -14,6 +14,7 @@ import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
 import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
 import { THost, THostsconfiguration } from './host';
+import contact from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/contact/Messages_fr_FR.json';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -76,15 +77,18 @@ export interface TDomainResource {
   iam: IAMResource | null;
   id: string;
   resourceStatus: ResourceStatusEnum;
-  targetSpec?: {
-    dnsConfiguration?: {
-      nameServers: TNameServer[];
-    };
-    hostsConfiguration?: {
-      hosts: THost[];
-    };
-    protectionState: ProtectionStateEnum;
+  targetSpec?: TTargetSpec;
+}
+
+export interface TTargetSpec {
+  dnsConfiguration?: {
+    nameServers: TNameServer[];
   };
+  hostsConfiguration?: {
+    hosts: THost[];
+  };
+  protectionState: ProtectionStateEnum;
+  contactsConfiguration?: TContactsConfigurationTargetSpec;
 }
 
 export interface TContactDisclosurePolicy {
@@ -106,7 +110,7 @@ export interface TContactsConfiguration {
   contactBilling: TContactDetails;
 }
 
-export type TContactsConfigurationAPI = {
+export type TContactsConfigurationTargetSpec = {
   [key: string]: {
     disclosurePolicy?: {
       disclosureConfiguration: DisclosureConfigurationEnum;
