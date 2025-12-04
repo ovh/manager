@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,12 +15,7 @@ import {
   useVcdOrder,
   useVdcOrderableResource,
 } from '@ovh-ux/manager-module-vcd-api';
-import {
-  Datagrid,
-  DatagridColumn,
-  ErrorBanner,
-  RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn, RedirectionGuard } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useDatacentreOrderContext } from '@/context/DatacentreOrder.context';
@@ -29,12 +24,13 @@ import { TRACKING } from '@/tracking.constants';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
 
-import Loading from '../loading/Loading.component';
+import { AsyncFallback } from '../query/AsyncFallback.component';
 
 type OrderType = 'compute' | 'storage';
-type OrderColumns<T extends OrderType> = T extends 'compute'
-  ? DatagridColumn<VCDOrderableVhostPriced>[]
-  : DatagridColumn<VCDOrderableStoragePriced>[];
+type PricedResource<T extends OrderType> = T extends 'compute'
+  ? VCDOrderableVhostPriced
+  : VCDOrderableStoragePriced;
+type OrderColumns<T extends OrderType> = DatagridColumn<PricedResource<T>>[];
 
 interface DatacentreOrderProps<T extends OrderType> {
   orderType: T;
@@ -80,36 +76,41 @@ export const DatacentreOrder = <T extends OrderType>({
     min: minQuantity,
     max: maxQuantity,
   });
-  const pricedResources = getPricedVdcResources({
-    catalog: catalog?.data,
-    resources:
-      orderType === 'compute' ? orderableResource?.data?.compute : orderableResource?.data?.storage,
-  });
+
+  const pricedResources: PricedResource<T>[] = useMemo(() => {
+    if (!catalog?.data || !orderableResource?.data) return [];
+
+    return getPricedVdcResources({
+      catalog: catalog.data,
+      resources:
+        orderType === 'compute' ? orderableResource.data.compute : orderableResource.data.storage,
+    });
+  }, [catalog, orderableResource, orderType]) as PricedResource<T>[];
 
   useEffect(() => {
-    if (pricedResources?.length && !selectedResource) {
+    if (pricedResources?.[0] && !selectedResource) {
       setSelectedResource(pricedResources[0].profile);
     }
   }, [selectedResource, pricedResources, setSelectedResource]);
 
-  if (isLoadingResource || isLoadingCatalog) return <Loading />;
-  if (isResourceError || isCatalogError || !pricedResources?.length) {
+  if (isLoadingResource || isLoadingCatalog) return <AsyncFallback state="loading" />;
+  if (isResourceError || isCatalogError || !pricedResources.length)
     return (
-      <ErrorBanner
-        error={{
-          status: 500,
-          data: {
-            message: t('managed_vcd_vdc_order_unavailable'),
-          },
-        }}
+      <AsyncFallback
+        state="customError"
+        // TODO: Replace with a proper error message
+        error={{ status: 500, data: { message: t('managed_vcd_vdc_order_unavailable') } }}
       />
     );
-  }
 
   return (
     <RedirectionGuard
-      isLoading={isLoadingResource || isLoadingCatalog}
-      condition={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+      isLoading={false}
+      condition={
+        vcdDatacentre?.data?.resourceStatus
+          ? isStatusTerminated(vcdDatacentre.data.resourceStatus)
+          : false
+      }
       route={'..'}
     >
       <div className="my-4 flex flex-col px-10">
@@ -137,7 +138,7 @@ export const DatacentreOrder = <T extends OrderType>({
               max={maxQuantity}
               hasError={!isValidQuantity}
               value={selectedQuantity}
-              onOdsChange={(e) => setSelectedQuantity(e.detail.value)}
+              onOdsChange={(e) => e.detail.value && setSelectedQuantity(e.detail.value)}
             />
           </div>
         </div>
