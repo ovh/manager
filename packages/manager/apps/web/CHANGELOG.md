@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.30.1...@ovh-ux/manager-web@19.31.0) (2025-12-04)
+
+
+### Features
+
+* **web-hosting:** change password min char policy ([4b3330c](https://github.com/ovh/manager/commit/4b3330cac4cb4951a5dded92c53f4318979b83be)), closes [#PUWEBPT-124](https://github.com/ovh/manager/issues/PUWEBPT-124)
+* **web.zone:** update dnssec on datagrid ([5aee11c](https://github.com/ovh/manager/commit/5aee11cecb29c4c08b8efddf5f51ca4400195c83)), closes [#PUWEBPT-9](https://github.com/ovh/manager/issues/PUWEBPT-9)
+
+
+
+
+
 ## [19.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.30.0...@ovh-ux/manager-web@19.30.1) (2025-12-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
