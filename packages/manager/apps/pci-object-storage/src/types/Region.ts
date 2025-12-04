@@ -1,4 +1,4 @@
-import * as region from '@datatr-ux/ovhcloud-types/cloud/region/index';
+import * as region from '@datatr-ux/ovhcloud-types/cloud/region';
 
 export default region;
 
