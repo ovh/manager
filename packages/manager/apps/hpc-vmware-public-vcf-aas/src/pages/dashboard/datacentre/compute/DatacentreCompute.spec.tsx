@@ -13,7 +13,8 @@ import {
   getElementByTestId,
   getNthElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
+
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import { DEFAULT_LISTING_ERROR, labels, renderTest } from '../../../../test-utils';
 import { TRACKING } from '../../../../tracking.constants';
@@ -33,8 +34,15 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-const vdcRoute = `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`;
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vdcSuspended: SAFE_MOCK_DATA.vdcSuspended,
+};
+
+const vdcRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}`;
 const computeRoute = `${vdcRoute}/compute`;
+const suspendedComputeRoute = `/${config.org.id}/virtual-datacenters/${config.vdcSuspended.id}/compute`;
 
 describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page without banner info for special offer', async () => {
@@ -119,7 +127,7 @@ describe('Datacentre Compute Listing Page', () => {
 
   it('should disable remove button when status is suspended', async () => {
     const { queryByTestId } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}/compute`,
+      initialRoute: suspendedComputeRoute,
       computeResourceId: '6873cbc3-d158-4cdc-8d37-b2d8dded1c45',
     });
 

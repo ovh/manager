@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom';
 import { act, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+import { MockInstance, vi } from 'vitest';
 
 import {
   assertElementLabel,
@@ -64,7 +64,7 @@ describe('Organizations Listing Page', () => {
 });
 
 describe('VCD Order CTA redirection', () => {
-  let windowOpenSpy: ReturnType<typeof vi.spyOn>;
+  let windowOpenSpy: MockInstance;
 
   beforeEach(() => {
     windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
