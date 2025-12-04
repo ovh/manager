@@ -3,14 +3,17 @@ import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
 
-import {
-  datacentreList,
-  mockVrackSegmentList,
-  organizationList,
-} from '@ovh-ux/manager-module-vcd-api';
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 import { renderTest } from '../../../../../test-utils';
+
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vrackSegment: SAFE_MOCK_DATA.vrackSegmentStandard,
+};
+const initialRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}/vrack-segments/${config.vrackSegment.id}/edit`;
 
 const queryModalTitle = () => {
   return screen.queryByText(
@@ -37,11 +40,15 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const getSubmitButton = (container: HTMLElement): HTMLElement =>
+const getSubmitButton = (container: HTMLElement): HTMLElement | null =>
   container.querySelector('ods-button[label="modify"]');
 
 const submitForm = (container: HTMLElement) => {
-  return act(() => userEvent.click(container.querySelector('ods-button[label="modify"]')));
+  const submitButton = getSubmitButton(container);
+  if (!submitButton) {
+    throw new Error('Submit button not found');
+  }
+  return act(() => userEvent.click(submitButton));
 };
 
 const editVlanValue = (newValue: string | number) => {
@@ -77,9 +84,7 @@ const checkErrorBannerIsVisible = () => {
 // Check modal is closed and success message is shown
 describe('Edit Vrack Segment Id Page', () => {
   it('The form is displayed and can be submitted', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/edit`,
-    });
+    const { container } = await renderTest({ initialRoute });
 
     await waitFor(
       () => {
@@ -91,16 +96,18 @@ describe('Edit Vrack Segment Id Page', () => {
     await waitFor(
       () => {
         checkFormInputAndCta(container);
-        checkVlanValue(container, mockVrackSegmentList[0].targetSpec.vlanId);
+        checkVlanValue(container, config.vrackSegment.targetSpec.vlanId);
       },
       { timeout: 2000 },
     );
 
-    expect(getSubmitButton(container)).toBeDisabled();
+    const submitButton = getSubmitButton(container);
+    expect(submitButton).toBeDefined();
+    expect(submitButton).toBeDisabled();
 
     editVlanValue(430);
 
-    await waitFor(() => expect(getSubmitButton(container)).not.toBeDisabled(), {
+    await waitFor(() => expect(submitButton).not.toBeDisabled(), {
       timeout: 2000,
     });
 
@@ -116,10 +123,7 @@ describe('Edit Vrack Segment Id Page', () => {
   });
 
   it('The form is displayed and can be submitted and we show error', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/edit`,
-      isVrackSegmentUpdateKo: true,
-    });
+    const { container } = await renderTest({ initialRoute, isVrackSegmentUpdateKo: true });
 
     await waitFor(() => {
       expect(queryModalTitle()).toBeInTheDocument();
@@ -128,7 +132,7 @@ describe('Edit Vrack Segment Id Page', () => {
     await waitFor(
       () => {
         checkFormInputAndCta(container);
-        checkVlanValue(container, mockVrackSegmentList[0].targetSpec.vlanId);
+        checkVlanValue(container, config.vrackSegment.targetSpec.vlanId);
       },
       { timeout: 2000 },
     );
@@ -146,10 +150,7 @@ describe('Edit Vrack Segment Id Page', () => {
 
   // TODO : unskip when page is unmocked
   it.skip('The form is not visible and we see error', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/edit`,
-      isVrackSegmentKO: true,
-    });
+    await renderTest({ initialRoute, isVrackSegmentKO: true });
 
     await waitFor(() => {
       expect(queryModalTitle()).toBeInTheDocument();
