@@ -8,11 +8,16 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+import { VCDOrganization, organizationList } from '@ovh-ux/manager-module-vcd-api';
 
 import { labels, renderTest } from '../../../test-utils';
 import { ORDER_VCD_REDIRECTION_URL } from '../../../utils/orderVcdRedirection.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
+
+const config = {
+  org: organizationList[0] as VCDOrganization,
+  orgSuspended: organizationList[2] as VCDOrganization,
+};
 
 describe('Organizations Listing Page', () => {
   it('display the listing page if there is at least one organization', async () => {
@@ -31,7 +36,7 @@ describe('Organizations Listing Page', () => {
     await Promise.all(texts.map((text) => assertTextVisibility(text)));
 
     // and
-    const vcdDetails = organizationList[0].currentState;
+    const vcdDetails = config.org.currentState;
     const vcdNameLink = await getElementByTestId(TEST_IDS.listingVcdNameLink);
 
     await assertTextVisibility(vcdDetails.description);
@@ -48,7 +53,7 @@ describe('Organizations Listing Page', () => {
     const {
       id,
       currentState: { description },
-    } = organizationList[2];
+    } = config.orgSuspended;
 
     await assertTextVisibility(description);
     const terminateButton = screen.queryByTestId(`terminate-cta-${id}`);

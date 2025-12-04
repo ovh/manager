@@ -80,7 +80,7 @@ export default function TerminateOrganization() {
       isOpen
       closeModal={closeHandler}
       isLoading={isPending}
-      error={isError ? error?.message : null}
+      error={isError ? error?.message : undefined}
       onConfirmDelete={confirmHandler}
     ></DeleteModal>
   );
