@@ -13,7 +13,7 @@ import { AppPricing, Scaling } from '@/types/orderFunnel';
 import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
-import { AutoScalingForm } from './AutoScalingForm.component';
+import { AutoScalingForm } from './AutoScalingForm/AutoScalingForm.component';
 import Price from '@/components/price/Price.component';
 
 interface ScalingStrategyProps {
