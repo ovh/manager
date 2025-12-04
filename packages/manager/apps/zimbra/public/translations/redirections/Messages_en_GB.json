@@ -17,5 +17,7 @@
   "zimbra_redirections_edit_success_message": "Your redirection edit request has been submitted. It will be processed in a few moments.",
   "zimbra_redirections_edit_error_message": "Your request to edit your redirection could not be completed. {{ error }}",
   "zimbra_redirections_delete_success_message": "Your redirection deletion request has been submitted. It will be processed in a few moments.",
-  "zimbra_redirections_delete_error_message": "Your redirection deletion request could not be completed. {{ error }}"
+  "zimbra_redirections_delete_error_message": "Your redirection deletion request could not be completed. {{ error }}",
+  "zimbra_redirections_account_quota": "Quota (redirects)",
+  "zimbra_redirections_delete_selected_modal_content": "Do you want to delete the redirects?"
 }

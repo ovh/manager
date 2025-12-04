@@ -227,7 +227,7 @@ export const AddAutoReply = () => {
   return (
     <form
       onSubmit={handleSubmit(handleSavelick)}
-      className="w-full md:w-3/4 flex flex-col space-y-5"
+      className="flex w-full flex-col space-y-5 md:w-3/4"
     >
       <Links
         type={LinkType.back}
@@ -328,7 +328,7 @@ export const AddAutoReply = () => {
               {t('zimbra_auto_replies_add_duration_label')} *
             </label>
             {durationChoices.map(({ value, key }) => (
-              <div key={value} className="flex leading-none gap-4">
+              <div key={value} className="flex gap-4 leading-none">
                 <OdsRadio
                   id={value}
                   name={value}
@@ -402,7 +402,7 @@ export const AddAutoReply = () => {
         name="sendCopy"
         render={({ field: { name, value, onChange } }) => (
           <OdsFormField error={errors?.[name]?.message}>
-            <div className="flex leading-none gap-4">
+            <div className="flex gap-4 leading-none">
               <OdsCheckbox
                 inputId={name}
                 id={name}
