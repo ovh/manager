@@ -16,7 +16,7 @@ import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
 import { useReplicationFormContext } from './ReplicationForm.context';
 
 export const ReplicationRuleScope = () => {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
   const {
     form,
     isPending,

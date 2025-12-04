@@ -11,6 +11,16 @@ import ObjectLock from './_components/ObjectLock.component';
 import { useS3Data } from '../S3.context';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="dashboardTab"
+      namespace="pci-object-storage/storages/header-tabs"
+    />
+  );
+}
 
 const Dashboard = () => {
   const { s3 } = useS3Data();
