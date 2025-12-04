@@ -47,9 +47,9 @@ export const VolumeModelTilesInput = ({
       );
 
       if (horizontal) {
-        const zoneDescription = zoneText ? `${zoneText}.\n` : '';
-        const bandwidth = model.bandwidth ? `${model.bandwidth}, ` : '';
-        return `${zoneDescription}${model.iops}, ${bandwidth}${capacityMax}`;
+        return [zoneText, model.iops, model.bandwidth, capacityMax]
+          .filter(Boolean)
+          .join('.\n');
       }
 
       return zoneText;
