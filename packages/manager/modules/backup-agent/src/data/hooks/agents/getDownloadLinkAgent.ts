@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
-import { mockAgentDownloadLinks } from '@/mocks/agents/agentDownloadLinks';
-import { OS } from '@/module.constants';
+import { mockAgentDownloadLinks } from '@/mocks/agents/agentDownloadLinks'
 import { AgentDownloadLinks } from '@/types/AgentDownloadLinks';
+import {OS} from "@/types/Os.type";
 
 export const BACKUP_VSPC_TENANT_AGENT_DOWNLOAD_LINK_QUERY_KEY = (vspcTenantId: string) => [
   ...BACKUP_TENANT_DETAILS_QUERY_KEY(vspcTenantId),
@@ -16,7 +16,7 @@ export const useBackupVSPCTenantAgentDownloadLink = ({
   ...options
 }: {
   tenantId?: string;
-  os?: keyof typeof OS;
+  os?: OS;
 }) =>
   useQuery({
     queryFn: () =>
