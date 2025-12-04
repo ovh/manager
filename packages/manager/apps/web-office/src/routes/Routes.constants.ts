@@ -4,6 +4,7 @@ export const urls = {
   listing: '/license',
   dashboard: '/license/:serviceName',
   generalInformation: '/license/:serviceName',
+  mca: '/license/:serviceName/agreement',
   license: '/license/:serviceName/license',
   users: '/license/:serviceName/users',
   users_edit: '/license/:serviceName/users/edit',
