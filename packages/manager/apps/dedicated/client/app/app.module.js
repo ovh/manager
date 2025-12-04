@@ -414,7 +414,8 @@ export default async (containerEl, shellClient) => {
               'error',
               {
                 detail: {
-                  message: get(error.detail, 'data.message'),
+                  message:
+                    get(error.detail, 'data.message') || error.detail?.message,
                   status: error.detail.status,
                   code: has(error.detail, 'headers')
                     ? error.detail.headers('x-ovh-queryId')
