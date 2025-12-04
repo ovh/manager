@@ -2,6 +2,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BADGE_COLOR } from '@ovhcloud/ods-react';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { DataProtectionStatus } from '../types/domainResource';
+import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
 
 export const ConfigurationDnssecBadgeColorAndContent = {
   not_supported: {
@@ -121,3 +122,52 @@ export const ConfigurationDataProtectionBadgeColorAndContent = {
     i18nkeySubContent: 'domain_tab_general_information_data_protection_partial',
   },
 };
+export const ConfigurationDnsStateAndContent = [
+  {
+    dnsTypes: [
+      DnsConfigurationTypeEnum.HOSTING,
+      DnsConfigurationTypeEnum.HOLD,
+      DnsConfigurationTypeEnum.PARKING,
+    ],
+    result: {
+      label: 'domain_tab_general_information_dns_standard',
+      notes: 'domain_tab_general_information_note_anycast',
+      anycastSupported: true,
+    },
+  },
+  {
+    dnsTypes: [DnsConfigurationTypeEnum.ANYCAST],
+    result: {
+      label: 'domain_tab_general_information_dns_anycast',
+      notes: '',
+      anycastSupported: true,
+    },
+  },
+  {
+    dnsTypes: [
+      DnsConfigurationTypeEnum.EXTERNAL,
+      DnsConfigurationTypeEnum.MIXED,
+    ],
+    result: {
+      label: 'domain_tab_general_information_dns_personnalised',
+      notes: '',
+      anycastSupported: false,
+    },
+  },
+  {
+    dnsTypes: [DnsConfigurationTypeEnum.DEDICATED],
+    result: {
+      label: 'domain_tab_general_information_dns_dedicated',
+      notes: '',
+      anycastSupported: false,
+    },
+  },
+  {
+    dnsTypes: [DnsConfigurationTypeEnum.EMPTY],
+    result: {
+      label: 'domain_tab_general_information_dns_empty',
+      notes: '',
+      anycastSupported: false,
+    },
+  },
+];
