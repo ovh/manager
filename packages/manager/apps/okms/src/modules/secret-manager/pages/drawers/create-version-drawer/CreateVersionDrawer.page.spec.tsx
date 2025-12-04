@@ -83,13 +83,15 @@ describe('Secret create version drawer page test suite', () => {
     // Check if the data input contains the secret value
     const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(dataInput).toBeInTheDocument();
-    expect(dataInput).toHaveValue(JSON.stringify(getSecretMockWithData(mockedSecret).version.data));
+    expect(dataInput).toHaveValue(
+      JSON.stringify(getSecretMockWithData(mockedSecret).version?.data),
+    );
   });
 
   it('should add cas to the createSecretVersion request and close the drawer after submission', async () => {
     const { container, user } = await renderPage();
     vi.spyOn(secretVersionsApi, 'createSecretVersion').mockResolvedValue(
-      getSecretMockWithData(mockedSecret).version,
+      getSecretMockWithData(mockedSecret).version!,
     );
 
     // Click on the JSON toggle to switch to the JSON editor

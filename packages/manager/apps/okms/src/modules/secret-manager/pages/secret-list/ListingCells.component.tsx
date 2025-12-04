@@ -32,7 +32,7 @@ export const DatagridCellPath = (secret: Secret) => {
 export const DatagridCellVersion = (secret: Secret) => {
   return (
     <DataGridTextCell data-testid={SECRET_LIST_CELL_TEST_IDS.version(secret.path)}>
-      {secret.version.id}
+      {secret.version?.id ?? '-'}
     </DataGridTextCell>
   );
 };

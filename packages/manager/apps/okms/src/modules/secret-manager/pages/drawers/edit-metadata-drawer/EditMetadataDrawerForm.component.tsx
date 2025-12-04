@@ -66,7 +66,7 @@ export const EditMetadataDrawerForm = ({
         okmsId,
         path: decodeSecretPath(secretPath),
         cas: addCurrentVersionToCas(
-          secret?.metadata?.currentVersion,
+          secret?.metadata?.currentVersion ?? 0,
           secretConfig.casRequired.value,
           formValueToCasRequired(data.casRequired),
         ),

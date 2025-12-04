@@ -70,7 +70,7 @@ export const CreateVersionDrawerForm = ({
         path: decodeSecretPath(secretPath),
         data: JSON.parse(data.data) as SecretVersionDataField,
         cas: addCurrentVersionToCas(
-          secret?.metadata?.currentVersion,
+          secret?.metadata?.currentVersion ?? 0,
           secretConfig.casRequired.value,
         ),
       });
@@ -92,7 +92,7 @@ export const CreateVersionDrawerForm = ({
                 {createError?.response?.data?.message || t('add_new_version_error')}
               </OdsMessage>
             )}
-            <VersionStatusMessage state={secret.version.state} />
+            {secret.version && <VersionStatusMessage state={secret.version.state} />}
             <SecretDataFormField name="data" control={control} />
           </form>
         </FormProvider>
