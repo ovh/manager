@@ -68,6 +68,6 @@ describe('MultisitePage component', () => {
       expect(getByTestId('add-website-button')).toBeInTheDocument();
     });
     const button = getByTestId('add-website-button');
-    expect(button).toHaveAttribute('label', commonTranslation.add_website);
+    expect(button).toHaveTextContent(commonTranslation.add_website);
   });
 });

@@ -145,7 +145,7 @@ export default function Ssl() {
       </div>
       <Datagrid
         columns={flattenData ? columns : []}
-        data={flattenData || []}
+        data={flattenData ?? []}
         isLoading={isLoading}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {

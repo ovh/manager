@@ -293,7 +293,7 @@ export default function MultisitePage() {
     <>
       {!isOverridedPage && (
         <Datagrid
-          columns={combinedData ? columns : []}
+          columns={columns}
           data={combinedData || []}
           isLoading={isLoading}
           autoScroll={false}
@@ -309,7 +309,13 @@ export default function MultisitePage() {
           expandable={{
             expanded,
             setExpanded,
-            //   getRowCanExpand: () => {},
+            getRowCanExpand: (row) => {
+              if (isDomain(row.original)) {
+                return false;
+              }
+              const website = row.original as WebHostingWebsiteType;
+              return (website.currentState?.linkedDomains ?? 0) > 0;
+            },
           }}
         />
       )}
