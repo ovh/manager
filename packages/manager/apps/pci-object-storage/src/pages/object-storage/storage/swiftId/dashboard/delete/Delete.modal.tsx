@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import DeleteStorage from '../../../_components/DeleteStorage.component';
+import DeleteStorage from '../../../_components/DeleteSwift.component';
 import { useSwiftData } from '../../Swift.context';
-import { ObjectStorageTypeEnum } from '@/types/Storages';
 
 const DeleteSwiftModal = () => {
   const { swiftId } = useParams();
@@ -11,9 +10,8 @@ const DeleteSwiftModal = () => {
   return (
     <DeleteStorage
       onSuccess={() => navigate('../../')}
-      storage={swift}
-      storageId={swiftId}
-      type={ObjectStorageTypeEnum.swift}
+      swift={swift}
+      swiftId={swiftId}
     />
   );
 };

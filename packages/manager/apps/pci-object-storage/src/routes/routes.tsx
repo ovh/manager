@@ -59,10 +59,21 @@ export default [
                 ),
               },
               {
-                path: 'delete/:storageType/:storageId/:region',
-                id: 'storages.delete',
+                path: 'delete/:storageId/:region',
+                id: 's3.delete',
                 ...lazyLoadRoute(() =>
-                  import('@/pages/object-storage/storage/delete/Delete.modal'),
+                  import(
+                    '@/pages/object-storage/storage/deleteS3/DeleteS3.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'delete/:swiftId',
+                id: 'swift.delete',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/deleteSwift/DeleteSwift.modal'
+                  ),
                 ),
               },
             ],

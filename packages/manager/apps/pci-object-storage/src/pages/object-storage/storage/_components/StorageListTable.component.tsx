@@ -21,12 +21,8 @@ export default function StoragesList({ storages }: StoragesListProps) {
     },
     onDeleteClicked: (storage: FormattedStorage) => {
       return storage.storageType === ObjectStorageTypeEnum.s3
-        ? navigate(
-            `./delete/${storage.storageType}/${storage.name}/${storage.region}`,
-          )
-        : navigate(
-            `./delete/${storage.storageType}/${storage.id}/${storage.region}`,
-          );
+        ? navigate(`./delete/${storage.name}/${storage.region}`)
+        : navigate(`./delete/${storage.id}`);
     },
     onAddUserClicked: (storage: FormattedStorage) => {
       navigate(
