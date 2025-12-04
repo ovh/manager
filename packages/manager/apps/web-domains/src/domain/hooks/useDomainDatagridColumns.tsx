@@ -46,6 +46,16 @@ export const useDomainDatagridColumns = ({
       isSearchable: true,
     },
     {
+      id: 'iam.tags',
+      cell: (props: DomainService) => (
+        <DatagridColumnTags tags={props.iam.tags} />
+      ),
+      type: FilterTypeCategories.Tags,
+      label: t('domain_table_header_tags'),
+      isFilterable: true,
+      enableHiding: true,
+    },
+    {
       id: 'state',
       cell: (props: DomainService) => (
         <DatagridColumnStatus state={props.state} mapping={DOMAIN_STATE} />
@@ -105,16 +115,6 @@ export const useDomainDatagridColumns = ({
       label: t('domain_table_header_expiration'),
       isFilterable: false,
       enableHiding: false,
-    },
-    {
-      id: 'iam.tags',
-      cell: (props: DomainService) => (
-        <DatagridColumnTags tags={props.iam.tags} />
-      ),
-      type: FilterTypeCategories.Tags,
-      label: t('domain_table_header_tags'),
-      isFilterable: true,
-      enableHiding: true,
     },
     {
       id: 'dnssec',
