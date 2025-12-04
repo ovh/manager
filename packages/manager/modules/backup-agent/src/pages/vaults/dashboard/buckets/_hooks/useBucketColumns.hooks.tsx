@@ -18,7 +18,7 @@ export const useBucketColumns = () => {
   return [
     {
       id: 'name',
-      cell: (bucket: Bucket) => <BucketNameCell id={bucket.id} name={bucket.name} />,
+      cell: (bucket: Bucket) => <BucketNameCell name={bucket.name} />,
       label: t(`${NAMESPACES.DASHBOARD}:name`),
     },
     {
