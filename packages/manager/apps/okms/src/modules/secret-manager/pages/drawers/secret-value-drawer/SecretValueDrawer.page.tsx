@@ -46,7 +46,7 @@ const SecretValueDrawerPage = () => {
             <VersionSelector
               okmsId={okmsId}
               secretPath={secretPath}
-              versionId={versionId}
+              defaultVersionId={versionId}
               selectedVersion={selectedVersion}
               setSelectedVersion={setSelectedVersion}
             />
