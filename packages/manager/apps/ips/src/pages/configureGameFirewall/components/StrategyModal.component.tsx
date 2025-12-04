@@ -46,7 +46,7 @@ export const StrategyModal: React.FC = () => {
         pageName: 'apply_default-refusal-strategy_success',
       });
       queryClient.invalidateQueries({
-        queryKey: getIpGameFirewallQueryKey({ ip }),
+        queryKey: getIpGameFirewallQueryKey({ ip, ipOnGame }),
       });
     },
     onError: (err) => {

@@ -33,7 +33,7 @@ export const useUpdateIpGameFirewall = ({
     onSuccess: async (_, variables) => {
       clearNotifications();
       await queryClient.invalidateQueries({
-        queryKey: getIpGameFirewallQueryKey({ ip }),
+        queryKey: getIpGameFirewallQueryKey({ ip, ipOnGame }),
       });
       onSuccess?.(variables);
     },
