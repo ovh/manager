@@ -2,7 +2,18 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { BADGE_COLOR, BADGE_SIZE, Badge } from '@ovhcloud/ods-react';
+import {
+  BADGE_COLOR,
+  BADGE_SIZE,
+  Badge,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -15,7 +26,7 @@ export type OfficeStateProps = {
 } & Record<string, string>;
 
 export const OfficeServiceState: React.FC<OfficeStateProps> = ({ state, ...props }) => {
-  const { t } = useTranslation(NAMESPACES.STATUS);
+  const { t } = useTranslation([NAMESPACES.STATUS, 'common']);
 
   const { size, ...otherProps } = props;
 
@@ -65,13 +76,38 @@ export const OfficeServiceState: React.FC<OfficeStateProps> = ({ state, ...props
       label = t('pendingDebt');
       color = BADGE_COLOR.information;
       break;
+    case StateEnum.AWAITING_SIGNATURE:
+      label = t('awaiting_signature');
+      color = BADGE_COLOR.warning;
+      break;
     default:
       label = state;
       color = BADGE_COLOR.neutral;
       break;
   }
 
-  return (
+  const OFFICE_STATE_TOOLTIP: Record<string, string> = {
+    [StateEnum.AWAITING_SIGNATURE]: 'common:contract_signature_tooltip',
+  };
+
+  return OFFICE_STATE_TOOLTIP[state] ? (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Badge
+          data-testid="badge-status"
+          size={size || BADGE_SIZE.md}
+          color={color}
+          {...otherProps}
+        >
+          {label}
+          <Icon name={ICON_NAME.circleInfo} />
+        </Badge>
+      </TooltipTrigger>
+      <TooltipContent>
+        <Text preset={TEXT_PRESET.paragraph}>{t(OFFICE_STATE_TOOLTIP[state])}</Text>
+      </TooltipContent>
+    </Tooltip>
+  ) : (
     <Badge data-testid="badge-status" size={size || BADGE_SIZE.md} color={color} {...otherProps}>
       {label}
     </Badge>
