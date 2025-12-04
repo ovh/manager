@@ -54,7 +54,9 @@ export const VrackSegmentSubDatagrid = ({
   const navigate = useNavigate();
   const { id, vdcId } = useDatacentreParams();
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const isVcdTerminated = isStatusTerminated(vcdOrganization?.data?.resourceStatus);
+  const isVcdTerminated = vcdOrganization?.data?.resourceStatus
+    ? isStatusTerminated(vcdOrganization.data.resourceStatus)
+    : false;
   const {
     id: vrackSegmentId,
     resourceStatus: vrackSegmentStatus,

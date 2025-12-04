@@ -21,7 +21,7 @@ export default function ServiceContactsTileItem() {
     isLoading: boolean;
     isError: boolean;
   };
-  const contactList: CustomerContact[] = serviceDetails?.data?.customer?.contacts;
+  const contactList: CustomerContact[] = serviceDetails?.data?.customer?.contacts || [];
 
   if (isLoading) return <AsyncFallback state="skeletonLoading" count={3} />;
   if (isError || !contactList?.length) {

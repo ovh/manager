@@ -14,7 +14,9 @@ export default function OrganizationServiceManagementTile() {
   const { t } = useTranslation('dashboard');
   const { id } = useOrganisationParams();
   const { data: vcdOrganisation } = useVcdOrganization({ id });
-  const isDisabled = isStatusTerminated(vcdOrganisation?.data?.resourceStatus);
+  const isDisabled = vcdOrganisation?.data?.resourceStatus
+    ? isStatusTerminated(vcdOrganisation.data.resourceStatus)
+    : false;
 
   return (
     <div className="h-fit">
