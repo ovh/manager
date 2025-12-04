@@ -3,7 +3,7 @@ import React, { PropsWithChildren, useId } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsLink, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 import placeholderImg from '@/../public/assets/img.png';
 
@@ -58,13 +58,16 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
       {tooltipContent && <OdsTooltip triggerId={tooltipId}>{tooltipContent}</OdsTooltip>}
 
       {moreInfoButtonLabel && moreInfoHref && (
-        <OdsLink
-          onClick={onMoreInfoButtonClick}
-          {...(isActionDisabled && { disabled: true })}
-          href={moreInfoHref}
-          label={moreInfoButtonLabel}
-          icon={ODS_ICON_NAME.externalLink}
-        />
+        <a href={moreInfoHref} rel="noopener noreferrer" target="_blank">
+          <OdsButton
+            variant="outline"
+            size={ODS_BUTTON_SIZE.md}
+            onClick={onMoreInfoButtonClick}
+            label={moreInfoButtonLabel}
+            isDisabled={isActionDisabled}
+            icon={ODS_ICON_NAME.externalLink}
+          />
+        </a>
       )}
     </div>
   );
@@ -94,7 +97,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
       {!hideHeadingSection && (
         <section className="flex flex-col items-center">
           {(img?.src || placeholderImg) && (
-            <div className="flex max-h-28 w-full justify-center pt-8">
+            <div className="flex max-h-48 w-full justify-center pt-8">
               <img
                 {...imgProps}
                 src={img?.src ?? placeholderImg}
