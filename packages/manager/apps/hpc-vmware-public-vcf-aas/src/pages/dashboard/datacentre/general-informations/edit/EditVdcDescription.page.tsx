@@ -11,6 +11,7 @@ import {
 import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
+import { AsyncFallback } from '@/components/query/AsyncFallback.component';
 import { useMessageContext } from '@/context/Message.context';
 import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
@@ -22,8 +23,12 @@ export default function EditVdcDescription() {
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
   const { id, vdcId } = useDatacentreParams();
-  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
-  const { updateDetails, error, isError, isPending } = useUpdateVdcDetails({
+  const { data: vcdDatacentre, isLoading, error } = useVcdDatacentre(id, vdcId);
+  const {
+    updateDetails,
+    error: updateError,
+    isPending: isUpdating,
+  } = useUpdateVdcDetails({
     id,
     vdcId,
     onSuccess: () => {
@@ -36,16 +41,20 @@ export default function EditVdcDescription() {
     },
   });
 
+  if (isLoading) return <AsyncFallback state="loading" />;
+  if (error) return <AsyncFallback state="error" error={error} />;
+  if (!vcdDatacentre?.data) return <AsyncFallback state="emptyError" />;
+
   const currentVdcDetails: VCDDatacentreTargetSpec = vcdDatacentre.data.targetSpec;
 
   return (
     <RedirectionGuard
-      isLoading={isPending}
-      condition={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+      isLoading={false}
+      condition={isStatusTerminated(vcdDatacentre.data.resourceStatus)}
       route={'..'}
     >
       <EditDetailModal
-        detailValue={vcdDatacentre?.data?.currentState?.description}
+        detailValue={vcdDatacentre.data.currentState.description}
         headline={t('managed_vcd_dashboard_edit_description_modal_title')}
         inputLabel={t('managed_vcd_dashboard_edit_description_modal_label')}
         errorHelper={t('managed_vcd_dashboard_edit_description_modal_helper_error')}
@@ -58,8 +67,8 @@ export default function EditVdcDescription() {
             details: { ...currentVdcDetails, description },
           })
         }
-        error={isError ? error : null}
-        isLoading={isPending}
+        error={updateError}
+        isLoading={isUpdating}
       />
     </RedirectionGuard>
   );
