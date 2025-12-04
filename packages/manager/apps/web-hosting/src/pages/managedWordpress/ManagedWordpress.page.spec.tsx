@@ -3,8 +3,9 @@ import React, { ComponentType } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
-import { describe, expect } from 'vitest';
+import { describe, expect, vi } from 'vitest';
 
+import { managedWordpressResourceMock } from '@/data/__mocks__/managedWordpress/ressource';
 import ManagedWordpressTranslations from '@/public/translations/common/Messages_fr_FR.json';
 import { createWrapper, i18n } from '@/utils/test.provider';
 
@@ -20,6 +21,16 @@ const testQueryClient = new QueryClient({
     },
   },
 });
+
+vi.mock(
+  '@/data/hooks/managedWordpress/managedWordpressResource/useManagedWordpressResource',
+  () => ({
+    useManagedWordpressResource: vi.fn(() => ({
+      data: managedWordpressResourceMock,
+      isLoading: false,
+    })),
+  }),
+);
 
 const RouterWrapper = createWrapper();
 

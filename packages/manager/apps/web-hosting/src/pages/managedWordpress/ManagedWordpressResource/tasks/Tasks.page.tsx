@@ -1,5 +1,5 @@
 //@todo to analyse for step 2 for import when the customer quit the page before the step 2
-import { /* useCallback, */ useMemo } from 'react';
+import { /* useCallback, */ useCallback, useMemo } from 'react';
 
 import { /* useNavigate, */ useParams } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ export default function TasksPage() {
   const { serviceName } = useParams();
   const { t } = useTranslation(['common', NAMESPACES.DASHBOARD]);
 
-  const { data, refetch, isFetching } = useManagedWordpressResourceTasks(serviceName);
+  const { data, refetch, isFetching, isLoading } = useManagedWordpressResourceTasks(serviceName);
   const formatDate = useFormatDate();
   const { data: websitesList } = useManagedWordpressWebsites({
     disableRefetchInterval: true,
@@ -47,24 +47,23 @@ export default function TasksPage() {
     [navigate, goToStep2],
   ); */
 
+  console.log(data);
+
   const columns: DatagridColumn<ManagedWordpressResourceTask>[] = useMemo(
     () => [
       {
         id: 'defaultFqdn',
-        accessorFn: (row) => row.link ?? '',
-
+        accessorKey: 'link',
         cell: ({ row }) => {
           const id = row?.original?.link?.split('/').pop();
-
           const matchingItem = websitesList?.find((website) => website.id === id);
-
           return <>{matchingItem?.currentState?.defaultFQDN}</>;
         },
         header: t('web_hosting_status_header_fqdn'),
       },
       {
         id: 'type',
-        accessorFn: (row) => row.type,
+        accessorKey: 'type',
         cell: ({ getValue }) => {
           return (
             <span>{t(`common:web_hosting_common_type_${getValue<string>().toLowerCase()}`)}</span>
@@ -74,7 +73,7 @@ export default function TasksPage() {
       },
       {
         id: 'status',
-        accessorFn: (row) => row.status,
+        accessorKey: 'status',
         cell: ({ getValue }) => {
           const statusColor = getStatusColor(getValue<Status>());
           return (
@@ -87,11 +86,11 @@ export default function TasksPage() {
       },
       {
         id: 'progress',
-        accessorFn: (row) => row?.message,
-        cell: ({ getValue }) => {
-          let progress = parseInt(getValue<string>().replace(/\D/g, '') || '', 10) || 0;
+        cell: ({ row }) => {
+          const raw = row.original.message;
+          let progress = parseInt(raw.replace(/\D/g, '') || '', 10) || 0;
 
-          if (getValue<Status>() === Status.DONE) {
+          if (row.original.status === Status.DONE) {
             progress = 100;
           }
           return (
@@ -104,26 +103,22 @@ export default function TasksPage() {
         header: t('web_hosting_header_progress'),
       },
       {
-        id: 'comments',
-        accessorFn: (row) => row?.message,
-
+        id: 'message',
+        accessorKey: 'message',
         cell: ({ getValue }) => <div>{getValue<string>().replace(/\d+%?/g, '').trim() || ''}</div>,
         header: t('web_hosting_header_comments'),
-        isSortable: true,
       },
       {
         id: 'createdAt',
-        accessorFn: (row) => row.createdAt,
+        accessorKey: 'createdAt',
         cell: ({ getValue }) => <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>,
         header: t('web_hosting_common_creation_date'),
-        isSortable: true,
       },
       {
         id: 'updatedAt',
-        accessorFn: (row) => row?.updatedAt,
+        accessorKey: 'updatedAt',
         cell: ({ getValue }) => <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>,
         header: t('web_hosting_common_update_date'),
-        isSortable: true,
       },
       /*  {
         id: 'actions',
@@ -148,11 +143,11 @@ export default function TasksPage() {
         label: '',
       }, */
     ],
-    [t, formatDate, websitesList /* , handleResumeImport */],
+    [formatDate, t, websitesList],
   );
-  const handleRefreshClick = () => {
+  const handleRefreshClick = useCallback(() => {
     void refetch();
-  };
+  }, [refetch]);
   return (
     <>
       <div className="my-4 flex justify-end">
@@ -165,7 +160,7 @@ export default function TasksPage() {
           <Icon name={ICON_NAME.refresh}></Icon>
         </Button>
       </div>
-      <Datagrid columns={data ? columns : []} data={data || []} />
+      <Datagrid columns={data ? columns : []} data={data ?? []} isLoading={isLoading} />
     </>
   );
 }

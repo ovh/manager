@@ -100,9 +100,10 @@ export default function MyWebsitesPage() {
     () => [
       {
         id: 'defaultFQDN',
-        accessorFn: (row) => row.currentState?.defaultFQDN ?? '',
+        accessorKey: 'currentState.defaultFQDN',
         cell: ({ getValue }) => {
           const defaultFQDN = getValue<string>();
+          console.log(defaultFQDN);
           return (
             <div>{!defaultFQDN ? t('common:web_hosting_status_creating_label') : defaultFQDN}</div>
           );
@@ -111,7 +112,7 @@ export default function MyWebsitesPage() {
       },
       {
         id: 'resourceStatus',
-        accessorFn: (row) => row.resourceStatus,
+        accessorKey: 'resourceStatus',
         cell: ({ getValue }) => {
           const status = getValue<ResourceStatus>();
           const statusColor = getStatusColor(status);
@@ -125,7 +126,6 @@ export default function MyWebsitesPage() {
       },
       {
         id: 'actions',
-
         cell: ({ row }) => (
           <ActionMenu
             items={[
@@ -159,7 +159,7 @@ export default function MyWebsitesPage() {
             return isRowSelectable(row.original);
           },
         }}
-        data={data || []}
+        data={data ?? []}
         hasNextPage={!isFetchingNextPage && hasNextPage}
         onFetchNextPage={(): void => {
           void fetchNextPage();
