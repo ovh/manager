@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud';
 import { useState } from 'react';
 import {
   Button,
@@ -16,73 +15,52 @@ import {
 } from '@datatr-ux/uxlib';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 import RouteModal from '@/components/route-modal/RouteModal';
-import storages, { ObjectStorageTypeEnum } from '@/types/Storages';
-import { useDeleteStorage } from '@/data/hooks/storage/useDeleteStorage.hook';
+import storages from '@/types/Storages';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
+import { useDeleteSwift } from '@/data/hooks/swift-storage/useDeleteSwift.hook';
 
-interface DeleteStorageModalProps {
-  storage: storages.ContainerDetail | StorageContainer;
-  type: ObjectStorageTypeEnum;
-  storageId: string;
-  onSuccess?: (storage: storages.ContainerDetail | StorageContainer) => void;
-  onError?: (err: Error) => void;
+interface DeleteSwiftModalProps {
+  swift: storages.ContainerDetail;
+  swiftId: string;
+  onSuccess?: (storage: storages.ContainerDetail) => void;
 }
 
-const DeleteStorage = ({
-  storage,
-  type,
-  storageId,
-  onError,
-  onSuccess,
-}: DeleteStorageModalProps) => {
+const DeleteSwift = ({ swift, swiftId, onSuccess }: DeleteSwiftModalProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-object-storage/storages/delete');
   const toast = useToast();
   const [confirmationInput, setConfirmationInput] = useState('');
 
-  const { deleteStorage, isPending } = useDeleteStorage({
-    storageType: type,
+  const { deleteSwift, isPending } = useDeleteSwift({
     onError: (err) => {
       toast.toast({
         title: t('deleteStorageToastErrorTitle'),
         variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
-      if (onError) {
-        onError(err);
-      }
     },
     onDeleteSuccess: () => {
       toast.toast({
         title: t('deleteStorageToastSuccessTitle'),
         description: t('deleteStorageToastSuccessDescription', {
-          name: storage.name,
+          name: swift.name,
         }),
       });
       if (onSuccess) {
-        onSuccess(storage);
+        onSuccess(swift);
       }
     },
   });
 
   const handleDelete = () => {
-    const payload =
-      type === ObjectStorageTypeEnum.s3
-        ? {
-            projectId,
-            name: storageId,
-            region: storage.region,
-          }
-        : {
-            projectId,
-            containerId: storageId,
-          };
-
-    deleteStorage(payload);
+    deleteSwift({
+      projectId,
+      containerId: swiftId,
+    });
   };
 
   return (
-    <RouteModal isLoading={!storage}>
+    <RouteModal isLoading={!swift}>
       <DialogContent className="p-0" variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-storage-modal">
@@ -92,7 +70,7 @@ const DeleteStorage = ({
         <DialogBody>
           <p className="mt-2">
             {t('deleteStorageDescription', {
-              name: storage?.name,
+              name: swift?.name,
             })}
           </p>
           <div className="flex flex-col gap-2 mt-2">
@@ -134,4 +112,4 @@ const DeleteStorage = ({
   );
 };
 
-export default DeleteStorage;
+export default DeleteSwift;
