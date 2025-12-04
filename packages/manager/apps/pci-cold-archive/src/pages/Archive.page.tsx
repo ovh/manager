@@ -1,4 +1,4 @@
-import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
+import { TabsPanel, usePciUrl, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
   ChangelogButton,
@@ -10,6 +10,7 @@ import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
   OdsLink,
+  OdsMessage,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { Suspense, useContext } from 'react';
@@ -33,7 +34,10 @@ export default function ColdArchivePage() {
 
   const priceLink =
     CHECK_PRICES_DOC_LINK[ovhSubsidiary] || CHECK_PRICES_DOC_LINK.DEFAULT;
+    const pciUrl = usePciUrl();
 
+
+  
   return (
     <RedirectionGuard
       isLoading={isPending}
@@ -70,6 +74,7 @@ export default function ColdArchivePage() {
         description={
           ((
             <>
+
               <OdsText preset="paragraph" className="mr-4">
                 {t('pci_projects_project_storages_cold_archive_description')}
               </OdsText>
@@ -81,6 +86,46 @@ export default function ColdArchivePage() {
                 icon="external-link"
                 href={priceLink}
               />
+              <OdsMessage color="information" isDismissible className='my-4 bg-gray-200'>
+                <div className="flex flex-col gap-2">
+                  <OdsText preset="span" className="font-bold">
+                    {t(
+                      'pci_projects_project_storages_cold_archive_banner_title',
+                    )}
+                  </OdsText>
+                  <OdsText preset="span">
+                    {t(
+                      'pci_projects_project_storages_cold_archive_banner_description',
+                    )}{' '}
+                    {t(
+                      'pci_projects_project_storages_cold_archive_banner_feature_intro',
+                    )}
+                  </OdsText>
+                  <ul className="list-disc ">
+                    <li>
+                      <OdsText>
+                      {t(
+                        'pci_projects_project_storages_cold_archive_banner_feature_1',
+                      )}
+                      </OdsText>
+                    </li>
+                    <li>
+                    <OdsText>
+                      {t(
+                        'pci_projects_project_storages_cold_archive_banner_feature_2',
+                      )}
+                      </OdsText>
+                    </li>
+                  </ul>
+                  <OdsLink
+                    label={t(
+                      'pci_projects_project_storages_cold_archive_banner_cta',
+                    )}
+                    href={`${pciUrl}/storages/objects`}
+                    icon="arrow-right"
+                  />
+                </div>
+              </OdsMessage>
             </>
           ) as unknown) as string
         }

@@ -20,6 +20,11 @@ export const ACCOUNT_PROPERTIES_WITH_STATUS = ['mfa'];
 
 export const OVH_MAIL_MIGRATOR_URL = 'https://omm.ovh.net/';
 
+export const TICKET_SUPPORT_URL =
+  'https://help.ovhcloud.com/csm?table=sn_customerservice_case&view=csp';
+export const TICKET_SUPPORT_PROPS_WITH_TICKET = '&id=csm_ticket&number=CS';
+export const TICKET_SUPPORT_PROPS_WITHOUT_TICKET = '&id=csm_cases_requests';
+
 export default {
   DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
   ACCOUNT_PHONE_RULE_NAME,
@@ -29,4 +34,7 @@ export default {
   ACCOUNT_PROPERTIES_WITH_STATUS,
   unescapeDescription,
   OVH_MAIL_MIGRATOR_URL,
+  TICKET_SUPPORT_URL,
+  TICKET_SUPPORT_PROPS_WITH_TICKET,
+  TICKET_SUPPORT_PROPS_WITHOUT_TICKET,
 };

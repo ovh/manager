@@ -63,7 +63,7 @@ export const SlotsDatagrid = () => {
         id: 'renewal_date',
         cell: (item) => {
           if (!item.service) {
-            return <OdsSkeleton className="[&::part(skeleton)]:max-w-[5rem]" />;
+            return <OdsSkeleton className="[&::part(skeleton)]:max-w-20" />;
           }
           return <span>{format({ date: item.service?.nextBillingDate, format: 'P' })}</span>;
         },

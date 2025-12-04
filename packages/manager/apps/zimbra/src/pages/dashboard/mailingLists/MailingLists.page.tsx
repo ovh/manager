@@ -124,7 +124,7 @@ export const MailingLists = () => {
       <Outlet />
       {!isOverridedPage && (
         <>
-          <div className="flex flex-col items-start mb-6">
+          <div className="mb-6 flex flex-col items-start">
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
                 {t('zimbra_mailinglists_quota_label')}

@@ -94,7 +94,7 @@ const SRVTabContent = ({
               }}
             />
           ) : (
-            <table className="table-auto dns-fields">
+            <table className="dns-fields table-auto">
               <tbody>
                 <tr key="type">
                   <td>

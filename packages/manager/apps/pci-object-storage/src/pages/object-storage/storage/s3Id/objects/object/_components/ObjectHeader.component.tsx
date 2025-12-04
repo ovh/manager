@@ -1,10 +1,10 @@
 import { Badge, Skeleton } from '@datatr-ux/uxlib';
 import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
 import FileIcon from '@/components/file-icon/FileIcon.component';
-import { octetConverter } from '@/lib/bytesHelper';
 import { ObjectDownloadButton } from './ObjectDownloadButton.component';
 import { DeepArchiveBadge } from '../../_components/DeepArchiveBadge.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
 
 interface ObjectHeaderProps {
   objectKey: string;
@@ -12,6 +12,7 @@ interface ObjectHeaderProps {
 }
 
 export const ObjectHeader = ({ objectKey, object }: ObjectHeaderProps) => {
+  const localeBytesConverter = useLocaleBytesConverter();
   return (
     <div
       data-testid="object-header-container"
@@ -28,7 +29,7 @@ export const ObjectHeader = ({ objectKey, object }: ObjectHeaderProps) => {
           </div>
           <div className="flex gap-2 flex-wrap mt-2">
             <Badge variant="outline">
-              {octetConverter(object.size, true, 2)}
+              {localeBytesConverter(object.size, true, 2)}
             </Badge>
             <DeepArchiveBadge object={object} />
           </div>

@@ -101,15 +101,15 @@ export const OnboardingWelcome = () => {
           <OdsText className="text-center" id="welcome-description">
             {t('welcome_description')}
           </OdsText>
-          <div className="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center">
+          <div className="flex w-full flex-col gap-3 sm:w-fit sm:flex-row sm:items-center sm:justify-center sm:gap-4">
             <OdsButton
-              className="[&::part(button)]:w-full sm:w-auto"
+              className="sm:w-auto [&::part(button)]:w-full"
               size={ODS_BUTTON_SIZE.md}
               label={t('common:configure_now')}
               onClick={onPrimaryClick}
             />
             <OdsButton
-              className="[&::part(button)]:w-full sm:w-auto"
+              className="sm:w-auto [&::part(button)]:w-full"
               size={ODS_BUTTON_SIZE.md}
               variant={ODS_BUTTON_VARIANT.outline}
               label={t('common:configure_later')}

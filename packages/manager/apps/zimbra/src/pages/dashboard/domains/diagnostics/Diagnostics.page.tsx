@@ -183,7 +183,7 @@ export const DomainDiagnostics = () => {
   };
 
   return (
-    <div className="flex flex-col w-full gap-4" data-testid="domain-diagnostic-page">
+    <div className="flex w-full flex-col gap-4" data-testid="domain-diagnostic-page">
       <Links
         iconAlignment={IconLinkAlignmentType.left}
         type={LinkType.back}
@@ -214,7 +214,7 @@ export const DomainDiagnostics = () => {
           onClick={handleRefreshClick}
         ></OdsButton>
       </div>
-      <div className="mt-5 mb-8">
+      <div className="mb-8 mt-5">
         <TabsPanel tabs={tabsList} />
       </div>
       {isFetching && !isError && <Loading />}

@@ -31,7 +31,7 @@ export const LabelChip: React.FC<LabelChipProps> = ({ id, children }) => {
       onClick={handleLinkClick}
       role="button"
       aria-hidden="true"
-      className="cursor-pointer inline-block"
+      className="inline-block cursor-pointer"
     >
       <OdsBadge id={id} label={children} size={ODS_BADGE_SIZE.lg} />
     </div>

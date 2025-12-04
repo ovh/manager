@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.5.4...@ovh-ux/manager-web-office-app@0.5.5) (2025-12-04)
+
+
+### Bug Fixes
+
+* **web-office:** fix password issue and add password generator ([3668f13](https://github.com/ovh/manager/commit/3668f1384522c1a166dbce89cf59541405ccab3f)), closes [#PRDCOL-100](https://github.com/ovh/manager/issues/PRDCOL-100)
+
+
+
+
+
 ## [0.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.5.3...@ovh-ux/manager-web-office-app@0.5.4) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app

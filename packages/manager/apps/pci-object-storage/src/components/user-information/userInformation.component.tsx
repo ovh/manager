@@ -7,9 +7,10 @@ import useDownload from '@/hooks/useDownload';
 
 interface UserInformationProps {
   newUser: user.User;
-  pwd: string;
+  access: string;
+  secret: string;
 }
-const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
+const UserInformation = ({ newUser, access = "", secret = "" }: UserInformationProps) => {
   const { t } = useTranslation('pci-object-storage/users/create');
   const toast = useToast();
   const { download } = useDownload();
@@ -30,8 +31,8 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
     const userData = {
       userName: newUser.username,
       description: newUser.description,
-      accessKey: newUser.openstackId,
-      password: pwd,
+      accessKey: access,
+      secretKey: secret,
     };
     download(
       { type: 'raw', data: JSON.stringify(userData) },
@@ -65,11 +66,11 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
       <span className="text-sm font-medium leading-none">
         {t('newUserAccessKeyLabel')}
       </span>
-      <Clipboard value={newUser.openstackId} onCopy={onCopy} secret />
+      <Clipboard value={access} onCopy={onCopy} secret />
       <span className="text-sm font-medium leading-none">
-        {t('newUserPwdLabel')}
+        {t('newUserSecretKeyLabel')}
       </span>
-      <Clipboard value={pwd} onCopy={onCopy} secret />
+      <Clipboard value={secret} onCopy={onCopy} secret />
     </div>
   );
 };

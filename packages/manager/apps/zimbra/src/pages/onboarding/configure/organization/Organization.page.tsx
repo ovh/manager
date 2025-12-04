@@ -103,7 +103,7 @@ export const ConfigureOrganization: React.FC = () => {
 
   return (
     <form
-      className="flex flex-col gap-4 w-full md:w-1/2"
+      className="flex w-full flex-col gap-4 md:w-1/2"
       onSubmit={handleSubmit(handleConfirmClick)}
     >
       <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('common:add_organization')}</OdsText>

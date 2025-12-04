@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
-import { deleteZimbraPlatformAccount, domainMock } from '@/data/api';
+import { deleteZimbraPlatformAccount } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { act, fireEvent, render } from '@/utils/test.provider';
 
@@ -14,12 +14,12 @@ import DeleteEmailAccountModal from './Delete.modal';
 
 vi.mocked(useSearchParams).mockReturnValue([
   new URLSearchParams({
-    deleteDomainId: domainMock.id,
+    accountId: '1',
   }),
   vi.fn(),
 ]);
 
-describe('Domains delete modal', () => {
+describe('Email Account delete modal', () => {
   it('check if it is displayed', async () => {
     const { findByText } = render(<DeleteEmailAccountModal />);
     expect(await findByText(commonTranslation.delete_email_account)).toBeVisible();

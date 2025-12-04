@@ -240,7 +240,7 @@ export const MailingListForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleSavelick)}
-      className="w-full md:w-3/4 flex flex-col space-y-5"
+      className="flex w-full flex-col space-y-5 md:w-3/4"
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {!mailingListId ? t('zimbra_mailinglist_add_header') : t('zimbra_mailinglist_edit_header')}
@@ -354,7 +354,7 @@ export const MailingListForm = () => {
             </label>
             <div className="flex flex-col gap-4">
               {replyToChoices.map((choice) => (
-                <div key={choice.value} className="flex leading-none gap-4">
+                <div key={choice.value} className="flex gap-4 leading-none">
                   <OdsRadio
                     id={choice.value}
                     name={choice.value}
@@ -363,7 +363,7 @@ export const MailingListForm = () => {
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-reply-to-${choice.value}`}
                   ></OdsRadio>
-                  <label htmlFor={choice.value} className="flex flex-col cursor-pointer">
+                  <label htmlFor={choice.value} className="flex cursor-pointer flex-col">
                     <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
                   </label>
                 </div>
@@ -410,7 +410,7 @@ export const MailingListForm = () => {
             </label>
             <div className="flex flex-col gap-4">
               {moderationChoices.map((choice) => (
-                <div key={choice.value} className="flex leading-none gap-4">
+                <div key={choice.value} className="flex gap-4 leading-none">
                   <OdsRadio
                     id={choice.value}
                     name={choice.value}
@@ -419,7 +419,7 @@ export const MailingListForm = () => {
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-moderation-option-${choice.value}`}
                   ></OdsRadio>
-                  <label htmlFor={choice.value} className="flex flex-col cursor-pointer">
+                  <label htmlFor={choice.value} className="flex cursor-pointer flex-col">
                     <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
                   </label>
                 </div>
@@ -436,7 +436,7 @@ export const MailingListForm = () => {
                       withLabel
                       name={field.name}
                     ></OdsToggle>
-                    <div className="flex flex-col ml-4 w-full">
+                    <div className="ml-4 flex w-full flex-col">
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                         {t('zimbra_mailinglist_add_subscriber_moderation')}
                         <OdsIcon

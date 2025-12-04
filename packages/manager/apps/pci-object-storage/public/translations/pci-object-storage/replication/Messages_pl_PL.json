@@ -73,5 +73,6 @@
   "noAvailableDestinationContainersAlert": "Aby wykonać replikację asynchroniczną, potrzebujesz drugiego kontenera z włączonym wersjonowaniem.",
   "replicationRequiresVersioningAlert": "Aby można było używać replikacji asynchronicznej, należy włączyć wersjonowanie.",
   "destinationFieldLabel": "Kontener docelowy",
-  "replicationButtonCancel": "Anuluj"
+  "replicationButtonCancel": "Anuluj",
+  "disabledClassDestinationHelper": "Wybierz kontener docelowy, aby aktywować tę opcję"
 }

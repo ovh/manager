@@ -17,11 +17,12 @@ import {
 import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVersions.hook';
 import { useS3Data } from '../../S3.context';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
-import { octetConverter } from '@/lib/bytesHelper';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
 
 const Object = () => {
+  const localeBytesConverter = useLocaleBytesConverter();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
@@ -75,7 +76,7 @@ const Object = () => {
             <div className="grid grid-cols-2 gap-4 items-center">
               <p className="font-semibold">{t('tableHeaderSize')}</p>
               <div className="flex flex-row items-center justify-end gap-4">
-                <p>{octetConverter(objectQuery.data.size, true, 2)}</p>
+                <p>{localeBytesConverter(objectQuery.data.size, true, 2)}</p>
               </div>
             </div>
 

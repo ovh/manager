@@ -42,8 +42,13 @@ export const ReplicationRuleAdvanced = () => {
               <Switch
                 checked={field.value}
                 onCheckedChange={field.onChange}
-                disabled={isPending}
+                disabled={isPending || !form.getValues('destination.region')}
               />
+              {!form.getValues('destination.region') && (
+                <p className="text-xs italic">
+                  {t('disabledClassDestinationHelper')}
+                </p>
+              )}
             </>
           )}
         </FormField>

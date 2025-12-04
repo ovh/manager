@@ -86,7 +86,6 @@ export const EmailAccountSettingsLayout = () => {
       title: t('common:redirection'),
       to: hrefRedirections,
       pathMatchers: pathMatcherRedirectionsTabs,
-      hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
     {
       name: 'auto_reply',
@@ -109,7 +108,7 @@ export const EmailAccountSettingsLayout = () => {
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          <div className="flex flex-col items-start space-y-4 mb-6" data-testid="page-title">
+          <div className="mb-6 flex flex-col items-start space-y-4" data-testid="page-title">
             <Links
               iconAlignment={IconLinkAlignmentType.left}
               type={LinkType.back}
@@ -130,7 +129,7 @@ export const EmailAccountSettingsLayout = () => {
               })}
             </Subtitle>
           </div>
-          <div className="mt-5 mb-8">
+          <div className="mb-8 mt-5">
             <TabsPanel tabs={tabsList} />
           </div>
           <Outlet />

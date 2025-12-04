@@ -33,7 +33,7 @@ export const InlineEmailAccountFormItem = ({
 
   return (
     <div key={`account-${index}`} className="flex gap-4">
-      <div className="w-full flex space-x-3">
+      <div className="flex w-full space-x-3">
         <Controller
           control={control}
           name={`accounts.${index}.firstName`}
@@ -114,7 +114,7 @@ export const InlineEmailAccountFormItem = ({
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_password_label')} *
               </label>
-              <div className="flex flex-1 gap-4 min-w-[240px]">
+              <div className="flex min-w-[240px] flex-1 gap-4">
                 <OdsPassword
                   data-testid="input-password"
                   isMasked

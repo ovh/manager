@@ -17,7 +17,7 @@ export const AddEmailAccount = () => {
 
   return (
     <>
-      <div className="flex flex-col items-start space-y-4 mb-6" data-testid="page-title">
+      <div className="mb-6 flex flex-col items-start space-y-4" data-testid="page-title">
         <Links
           iconAlignment={IconLinkAlignmentType.left}
           type={LinkType.back}

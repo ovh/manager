@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.8...@ovh-ux/manager-emailpro@3.17.9) (2025-12-04)
+
+
+### Bug Fixes
+
+* **web.mxplan:** fix issue on auto config MX ([c2eb138](https://github.com/ovh/manager/commit/c2eb13803023fe5ca396cb24d9771303491590ad)), closes [#PRDCOL-242](https://github.com/ovh/manager/issues/PRDCOL-242)
+
+
+
+
+
 ## [3.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.7...@ovh-ux/manager-emailpro@3.17.8) (2025-11-17)
 
 

@@ -88,7 +88,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
           'flex flex-col gap-4 p-6 border-0 border-b border-solid border-gray-300 min-h-16',
         )}
       >
-        <div className="flex gap-4 items-center">
+        <div className="flex items-center gap-4">
           <OdsRadio name={planCode} isChecked={isSelected} onClick={() => false} />
           <OdsText preset="heading-4" className={cn(isDisabled && '[&::part(text)]:text-gray-500')}>
             {capitalize(planCode)}
@@ -104,7 +104,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
           ))}
         </div>
       </div>
-      <div className="flex flex-col p-6 flex-1 gap-4">
+      <div className="flex flex-1 flex-col gap-4 p-6">
         {features.map((feature, index) => (
           <div className="flex items-center gap-8" key={index}>
             <OdsIcon name="check" className={cn(isDisabled ? 'text-gray-400' : 'text-green-600')} />
