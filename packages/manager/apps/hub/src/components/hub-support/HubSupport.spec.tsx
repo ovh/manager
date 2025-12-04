@@ -142,4 +142,11 @@ describe('HubSupport Component', () => {
     const helpHubSupport = screen.getByTestId('tile-error');
     expect(helpHubSupport).toBeInTheDocument();
   });
+
+  it('should have a valid html', () => {
+    const { container } = render(<HubSupport />);
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

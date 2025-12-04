@@ -60,9 +60,9 @@
   "iam_resource_type_nas": "NAS",
   "iam_resource_type_nasHA": "NAS-HA",
   "iam_resource_type_nutanix": "Nutanix on OVHcloud",
-  "iam_resource_type_okms": "Key Management System (KMS)",
-  "iam_resource_type_okms/kmip": "Key Management System (KMS) / KMIP",
-  "iam_resource_type_okms/serviceKey": "Key Management System (KMS) / Klucz",
+  "iam_resource_type_okms": "Usługa zarządzania kluczami i Menedżer sekretów (OKMS)",
+  "iam_resource_type_okms/kmip": "Usługa zarządzania kluczami (OKMS) / KMIP",
+  "iam_resource_type_okms/serviceKey": "Usługa zarządzania kluczami (OKMS) / Klucze serwisowe",
   "iam_resource_type_overTheBox": "OverTheBox",
   "iam_resource_type_overTheBoxHardware": "Sprzęt OverTheBox",
   "iam_resource_type_ovhCloudConnect": "OVHcloud Connect",
@@ -111,5 +111,6 @@
   "iam_resource_type_ldp/osd": "Logs Data Platform: OpenSearch Dashboards",
   "iam_resource_type_ldp/stream": "Logs Data Platform: Strumień danych",
   "iam_resource_type_ldp/tenant": "Logs Data Platform: Metrics tenant",
-  "iam_resource_type_publicCloudProject/managedRancher": "Projekt Public Cloud / Managed Rancher Service (MRS)"
+  "iam_resource_type_publicCloudProject/managedRancher": "Projekt Public Cloud / Managed Rancher Service (MRS)",
+  "iam_resource_type_okms/secret": "Menedżer sekretów (OKMS) / Sekret"
 }
