@@ -2,6 +2,7 @@
   "common_office_title": "Mes comptes Microsoft 365",
   "consumption": "Consommation",
   "licences": "Licences",
+  "agreement": "Signature du contrat",
   "common_guides_header": "Consulter nos guides en ligne",
   "users": "Utilisateurs",
   "users_order_licenses": "Commander plus de licences",
@@ -19,5 +20,7 @@
   "payAsYouGo": "Paiement à l'utilisation",
   "prepaid": "Prépayé",
   "noAccountOffer": "Vous ne possedez actuellement aucune licence.",
-  "manage_contacts": "Gérer les contacts"
+  "manage_contacts": "Gérer les contacts",
+  "contract_signature": "Signature du contrat",
+  "contract_signature_tooltip": "Pour accéder à votre service, sous devez accepter le contrat utilisateur Microsoft"
 }

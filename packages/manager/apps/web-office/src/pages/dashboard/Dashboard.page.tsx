@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Outlet, useResolvedPath } from 'react-router-dom';
+import { Outlet, useNavigate, useResolvedPath } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -36,7 +36,7 @@ export default function DashboardPage() {
   const { trackClick } = useOvhTracking();
   const { data } = useParentTenant();
   const serviceName = data?.serviceName;
-  const { t } = useTranslation(['common', NAMESPACES.DASHBOARD]);
+  const { t } = useTranslation(['common', NAMESPACES.DASHBOARD, NAMESPACES.ACTIONS]);
   const { notifications } = useNotifications();
   const basePath = useResolvedPath('').pathname;
   const context = useContext(ShellContext);
@@ -44,6 +44,7 @@ export default function DashboardPage() {
   function computePathMatchers(routes: string[]) {
     return routes.map((path) => new RegExp(path.replace(':serviceName', serviceName)));
   }
+  const navigate = useNavigate();
   const tabsList: DashboardTabItemProps[] = [
     {
       name: 'general-information',
@@ -85,11 +86,19 @@ export default function DashboardPage() {
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}
+      backLink={
+        data?.mcaAgreed
+          ? null
+          : {
+              label: t(`${NAMESPACES.ACTIONS}:back_to`, { value: t('common_office_title') }),
+              onClick: () => navigate(urls.listing),
+            }
+      }
       header={{
-        title: data?.serviceName,
+        title: data?.mcaAgreed ? data?.serviceName : t('contract_signature'),
         guideMenu: <GuideMenu items={guideItems} />,
       }}
-      tabs={<TabsPanel tabs={tabsList} />}
+      tabs={data?.mcaAgreed ? <TabsPanel tabs={tabsList} /> : null}
       message={
         // temporary fix margin even if empty
         notifications.length ? <Notifications /> : null

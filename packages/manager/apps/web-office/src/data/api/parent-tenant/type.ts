@@ -10,6 +10,7 @@ export type ParentTenantType = {
   phone: string;
   serviceName: string;
   serviceType: string;
+  mcaAgreed: boolean;
   status: UserStateEnum;
   zipCode: string;
 };
