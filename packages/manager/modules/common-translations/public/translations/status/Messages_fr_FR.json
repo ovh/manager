@@ -22,5 +22,6 @@
   "updating": "Mise à jour",
   "unconfigured": "Non configuré",
   "error": "Erreur",
-  "ready": "Actif"
+  "ready": "Actif",
+  "awaiting_signature": "Attente de signature"
 }
