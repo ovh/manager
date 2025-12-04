@@ -11,6 +11,7 @@ export type LicenseType = {
   serviceName: string;
   tenantServiceName: string;
   serviceType: string;
+  mcaAgreed: boolean;
   status: UserStateEnum;
   zipCode: string;
   iam: {
@@ -54,6 +55,7 @@ export type OfficeServiceListType = {
   firstName: string;
   lastName: string;
   phone: string;
+  mcaAgreed: boolean;
   serviceType: string;
   status: UserStateEnum;
   tenantServiceName: string;
