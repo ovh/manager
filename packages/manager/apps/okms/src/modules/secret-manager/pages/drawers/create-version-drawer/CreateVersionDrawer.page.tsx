@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useSecretWithData } from '@secret-manager/data/hooks/useSecret';
+import { useSecret, useSecretWithData } from '@secret-manager/data/hooks/useSecret';
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +46,7 @@ export default function CreateVersionDrawerPage() {
       isOpen
       heading={t('add_new_version')}
       onDismiss={handleDismiss}
-      isLoading={isPending}
+      isLoading={isPending && !error}
       data-testid={CREATE_VERSION_DRAWER_TEST_IDS.drawer}
     >
       <Suspense>
