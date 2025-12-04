@@ -12,6 +12,7 @@ import {
   LOCATION_EU_WEST_GRA,
   LOCATION_EU_WEST_LIM,
 } from '@/common/mocks/locations/locations.mock';
+import { CONTINENT_CODES } from '@/common/utils/location/continents';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { getOdsButtonByIcon, getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
 import {
@@ -75,26 +76,26 @@ const mockGeographyNames = {
 
 const mockGeographyGroups: GeographyGroup[] = [
   {
-    continentCode: 'EUROPE',
+    continentCode: CONTINENT_CODES.EUROPE,
     regions: [
       {
         region: LOCATION_EU_WEST_GRA.name,
-        continentCode: 'EUROPE',
+        continentCode: CONTINENT_CODES.EUROPE,
         href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
       },
       {
         region: LOCATION_EU_WEST_LIM.name,
-        continentCode: 'EUROPE',
+        continentCode: CONTINENT_CODES.EUROPE,
         href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name),
       },
     ],
   },
   {
-    continentCode: 'NORTH_AMERICA',
+    continentCode: CONTINENT_CODES.NORTH_AMERICA,
     regions: [
       {
         region: LOCATION_CA_EAST_BHS.name,
-        continentCode: 'NORTH_AMERICA',
+        continentCode: CONTINENT_CODES.NORTH_AMERICA,
         href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name),
       },
     ],
