@@ -36,7 +36,7 @@
   "pci_instance_creation_select_new_region_for_flavor": "Questo modello <strong>({{ flavor }})</strong> non è disponibile nella tua <strong>regione selezionata</strong>. Tuttavia, puoi selezionarlo, ma dovrai scegliere un'altra regione disponibile per questo modello.",
   "pci_instance_creation_select_new_region": "Seleziona una regione",
   "pci_instance_creation_select_image_title": "Seleziona un'immagine",
-  "pci_instance_creation_select_image_help_title": "ISO",
+  "pci_instance_creation_select_image_help_title": "Immagine",
   "pci_instance_creation_select_image_help_text": "Le immagini disponibili in questa fase dipendono dalle scelte effettuate nelle fasi precedenti, cioè dalla compatibilità con il modello di istanza e dalla disponibilità regionale. Ad esempio, se desideri selezionare un sistema operativo Windows e non ci sono distribuzioni Windows disponibili, devi modificare le tue scelte delle fasi precedenti.",
   "pci_instance_creation_select_image_life_cycle_help_label": "Ciclo di vita di una distribuzione presso OVH",
   "pci_instance_creation_select_image_distribution_type_label": "Tipo di distribuzione",
@@ -93,10 +93,10 @@
   "pci_instance_creation_select_sshKey_add_name_unavailable_error": "Grazie per aver scelto un nome diverso, questo è già in uso.",
   "pci_instance_creation_select_image_distribution_version_label": "Versione dell'immagine",
   "pci_instance_creation_select_image_distribution_version_unavailable": "Versione non disponibile",
-  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} +IVA/vCore/ora",
-  "pci_instance_creation_image_available_on_other_models": "Questa immagine è disponibile su altri modelli.",
   "pci_instance_creation_network_setting_title": "Impostazioni di rete",
   "pci_instance_creation_network_private_network_setting_title": "Rete privata",
   "pci_instance_creation_network_private_network_setting_description": "Le istanze sono collegate in rete privata. Per l'accesso a Internet o SSH è necessario un Floating IP, un Gateway o un SSH-Proxy.",
-  "pci_instance_creation_network_setting_help_title": "Comprendere i parametri di rete"
+  "pci_instance_creation_network_setting_help_title": "Comprendere i parametri di rete",
+  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} +IVA/ora",
+  "pci_instance_creation_image_available_on_other_models": "Questa immagine è disponibile su altri modelli."
 }
