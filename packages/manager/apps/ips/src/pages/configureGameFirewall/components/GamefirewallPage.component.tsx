@@ -26,6 +26,7 @@ import { DeleteRuleModal } from './DeleteRuleModal.component';
 
 export default function GameFirewallPage() {
   const {
+    ip,
     ipOnGame,
     isError,
     isRulesError,
@@ -44,13 +45,20 @@ export default function GameFirewallPage() {
   const { links } = useGuideUtils();
   const { trackClick } = useOvhTracking();
 
-  const breadcrumbMapper = (_: BreadcrumbItem, index: number) =>
-    index === 0
+  const breadcrumbMapper = (_: BreadcrumbItem, index: number) => {
+    if (index === 0) {
+      return {
+        label: ip,
+        onClick: () => navigate(`${urls.listing}?ip=${ip}`),
+      };
+    }
+    return index === 1
       ? {
           label: ipOnGame,
           onClick: () => navigate(`${urls.listing}?ip=${ipOnGame}`),
         }
       : { label: t('title') };
+  };
 
   if (isError || isRulesError) {
     return (

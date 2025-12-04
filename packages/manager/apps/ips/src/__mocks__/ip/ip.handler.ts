@@ -217,10 +217,10 @@ export const getIpsMocks = ({
     method: 'put',
   },
   {
-    url: '/ip/:ip/game',
-    response: (_: unknown, params: PathParams): IpGameFirewallType[] =>
+    url: '/ip/:ip/game/:ipOnGame',
+    response: (_: unknown, params: PathParams): IpGameFirewallType =>
       getIpGameFirewallResponse({
-        ipOnGame: params.ip as string,
+        ipOnGame: params.ipOnGame as string,
         firewallModeEnabled: gameFirewallConfig?.firewallModeEnabled,
         state: gameFirewallConfig?.state,
       }),

@@ -1,12 +1,8 @@
-import {
-  ApiResponse,
-  IcebergFetchResultV6,
-  fetchIcebergV6,
-  v6,
-} from '@ovh-ux/manager-core-api';
+import { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpGameFirewallParams = {
   ip: string;
+  ipOnGame: string;
 };
 
 export enum IpGameFirewallStateEnum {
@@ -25,17 +21,19 @@ export type IpGameFirewallType = {
 };
 
 export const getIpGameFirewallQueryKey = (params: GetIpGameFirewallParams) => [
-  `get/ip/${encodeURIComponent(params.ip)}/game`,
+  `get/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
+    params.ipOnGame,
+  )}`,
 ];
 
 export const getIpGameFirewall = async (
   params: GetIpGameFirewallParams,
-): Promise<IcebergFetchResultV6<IpGameFirewallType>> =>
-  fetchIcebergV6<IpGameFirewallType>({
-    route: `/ip/${encodeURIComponent(params.ip)}/game`,
-    page: 1,
-    disableCache: true,
-  });
+): Promise<ApiResponse<IpGameFirewallType>> =>
+  v6.get<IpGameFirewallType>(
+    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
+      params.ipOnGame,
+    )}`,
+  );
 
 export type GetGameFirewallRuleParams = {
   ip: string;

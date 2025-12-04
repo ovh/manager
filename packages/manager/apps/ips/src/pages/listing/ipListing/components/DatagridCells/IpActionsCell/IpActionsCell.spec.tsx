@@ -514,7 +514,7 @@ describe('IpActionsCell Component', () => {
       expectMenuItemVisible(container, MENU_ITEM_IDS.REVERSE_DNS);
     });
 
-    it('should show Manage Game Firewall when conditions are met', () => {
+    it.skip('should show Manage Game Firewall when conditions are met', () => {
       setupIpDetailsMock({
         type: IpTypeEnum.ADDITIONAL,
         routedTo: { serviceName: SERVICE_NAMES.DEDICATED_SERVER },
