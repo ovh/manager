@@ -27,7 +27,7 @@ describe('useOnboardingHeroImage', () => {
         productName: 'MyTestApp',
         heroImage: { src: '/hero.png', alt: 'Hero' },
       },
-      expected: { src: '/hero.png', alt: 'Hero', height: '100px', width: '100px' },
+      expected: { src: '/hero.png', alt: 'Hero' },
     },
     {
       description:
@@ -39,8 +39,6 @@ describe('useOnboardingHeroImage', () => {
       expected: {
         src: '/hero.png',
         alt: 'translated_onboarding:hero_alt_MyTestApp',
-        height: '100px',
-        width: '100px',
       },
     },
     {
