@@ -45,7 +45,6 @@
   "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/procedures",
-  "packages/manager/apps/public-cloud",
   "packages/manager/apps/restricted",
   "packages/manager/apps/sap-features-hub",
   "packages/manager/apps/sign-up",
