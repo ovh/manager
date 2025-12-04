@@ -1,5 +1,5 @@
 import { act, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+import { MockInstance, vi } from 'vitest';
 
 import {
   assertElementVisibility,
@@ -25,7 +25,7 @@ describe('Onboarding Page', () => {
 });
 
 describe('VCD Order CTA redirection', () => {
-  let windowOpenSpy: ReturnType<typeof vi.spyOn>;
+  let windowOpenSpy: MockInstance;
 
   beforeEach(() => {
     windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
