@@ -25,12 +25,12 @@ exports[`QuotaPage > should render 1`] = `
         quotas:pci_projects_project_quota_protect_explain
       </ods-text>
       <div
-        class="mt-6"
+        class="mt-4"
       >
         <ods-text
           preset="paragraph"
         >
-          pci_projects_project_quota_protect_more
+          pci_projects_project_quota_limit_warning
         </ods-text>
       </div>
     </div>

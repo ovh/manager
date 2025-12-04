@@ -50,4 +50,11 @@ describe('HubSupportHelp Component', () => {
       actions: ['activity', 'assistance', 'guide-welcome', 'go-to-docs'],
     });
   });
+
+  it('should have a valid html', () => {
+    const { container } = render(<HubSupportHelp />);
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

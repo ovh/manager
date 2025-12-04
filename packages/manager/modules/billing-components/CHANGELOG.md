@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.30.1...@ovh-ux/manager-billing-components@4.31.0) (2025-12-03)
+
+
+### Features
+
+* **billing-components:** fix design status column in table services ([b16d042](https://github.com/ovh/manager/commit/b16d042a4ed81af8fcd833e1255fd579bbe65adf)), closes [#MANAGER-20011](https://github.com/ovh/manager/issues/MANAGER-20011)
+
+
+
+
+
 ## [4.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.30.0...@ovh-ux/manager-billing-components@4.30.1) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

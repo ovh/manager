@@ -10,6 +10,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
+      environment: 'jsdom',
       setupFiles: './src/setupTests.ts',
       coverage: {
         exclude: [
