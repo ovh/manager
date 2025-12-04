@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
@@ -8,7 +8,6 @@ import DataProtection from './DataProtection';
 import {
   TDomainResource,
   DisclosureConfigurationEnum,
-  DataProtectionStatus,
 } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { DomainStateEnum } from '@/domain/enum/domainState.enum';

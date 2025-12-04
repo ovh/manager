@@ -41,11 +41,35 @@ describe('DnsState component', () => {
         ],
         dnssecSupported: true,
       },
+      hostsConfiguration: {
+        ipv4Supported: true,
+        ipv6Supported: true,
+        multipleIPsSupported: true,
+        hostSupported: true,
+        hosts: [],
+      },
+      contactsConfiguration: {
+        contactAdministrator: {
+          id: 'contact-admin-id',
+        },
+        contactBilling: {
+          id: 'contact-billing-id',
+        },
+        contactTechnical: {
+          id: 'contact-tech-id',
+        },
+        contactOwner: {
+          id: 'contact-owner-id',
+        },
+      },
       extension: '.com',
       mainState: DomainStateEnum.OK,
       name: 'example.com',
       protectionState: ProtectionStateEnum.UNPROTECTED,
       suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
+      authInfoManagedByOVHcloud: true,
+      authInfoSupported: true,
+      createdAt: '2024-01-01T00:00:00Z',
     },
     currentTasks: [],
     iam: null,
@@ -85,7 +109,7 @@ describe('DnsState component', () => {
   });
 
   it('renders tooltip with anycast label when anycast is subscribed', () => {
-    render(
+    const { container } = render(
       <DnsState
         domainResource={mockDomainResource}
         serviceName="example-service"
@@ -102,9 +126,10 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_dns_tab_button_cancel_terminate_anycast'),
-    ).toBeInTheDocument();
+    const button = container.querySelector(
+      'ods-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
+    );
+    expect(button).toBeInTheDocument();
   });
 
   it('renders tooltip with anycast label when anycast is released', () => {
@@ -113,7 +138,7 @@ describe('DnsState component', () => {
       state: OptionStateEnum.RELEASED,
     };
 
-    render(
+    const { container } = render(
       <DnsState
         serviceName="example-service"
         domainResource={mockDomainResource}
@@ -130,13 +155,14 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_dns_tab_button_cancel_terminate_anycast'),
-    ).toBeInTheDocument();
+    const button = container.querySelector(
+      'ods-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
+    );
+    expect(button).toBeInTheDocument();
   });
 
   it('renders tooltip with anycast label when anycast is not set', () => {
-    render(
+    const { container } = render(
       <DnsState
         domainResource={mockDomainResource}
         serviceName="example-service"
@@ -150,8 +176,9 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_dns_tab_button_order_anycast'),
-    ).toBeInTheDocument();
+    const button = container.querySelector(
+      'ods-button[label="domain_tab_DNS_anycast_order"]',
+    );
+    expect(button).toBeInTheDocument();
   });
 });
