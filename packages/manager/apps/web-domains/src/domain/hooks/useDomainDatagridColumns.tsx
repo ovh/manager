@@ -2,12 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
   FilterCategories,
+  FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
 import DatagridColumnServiceName from '@/domain/components/DatagridColumns/Domain/DatagridColumnServiceName';
 import {
   DomainService,
   NameServerTypeEnum,
+  StatusDetails,
 } from '@/domain/types/domainResource';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/Domain/DatagridColumnStatus';
 import {
@@ -32,6 +34,15 @@ export const useDomainDatagridColumns = ({
   openModal,
 }: DomainDatagridColumnsProps): DatagridColumn<DomainService>[] => {
   const { t } = useTranslation('domain');
+
+  const deduplicatedRecord = Object.entries(DOMAIN_STATE).reduce<
+    Record<string, StatusDetails>
+  >((acc, [key, item]) => {
+    if (!Object.values(acc).some((v) => v.i18nKey === item.i18nKey)) {
+      acc[key] = item;
+    }
+    return acc;
+  }, {});
 
   const columns: DatagridColumn<DomainService>[] = [
     {
@@ -60,10 +71,17 @@ export const useDomainDatagridColumns = ({
       cell: (props: DomainService) => (
         <DatagridColumnStatus state={props.state} mapping={DOMAIN_STATE} />
       ),
-      comparator: FilterCategories.String,
       label: t('domain_table_header_status'),
       isFilterable: true,
       enableHiding: false,
+      type: FilterTypeCategories.Options,
+      comparator: [FilterComparator.IsEqual],
+      filterOptions: Object.entries(deduplicatedRecord).map(
+        ([state, statusDetails]) => ({
+          label: t(statusDetails.i18nKey),
+          value: statusDetails.value ?? state,
+        }),
+      ),
     },
     {
       id: 'suspensionState',

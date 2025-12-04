@@ -176,7 +176,7 @@
   "domain_tab_general_information_associated_subdomains_multisite_content": "Aucun sous-domaine ou multisite",
   "domain_tab_general_not_suspended": "Actif",
   "domain_tab_general_suspended": "Suspendu",
-  "domain_status_technical_suspended": "Procédure en cours",
+  "domain_status_ongoing_proceedings": "Procédure en cours",
   "domain_status_pending_installation": "En cours d'installation",
   "domain_status_auto_renew_in_progress": "Renouvellement en cours",
   "domain_tab_general_information_status_enabled": "Activé",
