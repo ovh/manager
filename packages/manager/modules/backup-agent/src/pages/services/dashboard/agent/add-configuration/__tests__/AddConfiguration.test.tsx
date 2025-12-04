@@ -8,7 +8,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DrawerProps } from '@ovh-ux/manager-react-components';
 
 import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
-import { mockTenantBackupPolicies } from '@/mocks/tenant/backupPolicies.mock';
+import { OS_LABELS } from '@/module.constants';
 
 import AddConfigurationPage from '../AddConfiguration.page';
 
@@ -119,24 +119,15 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     ),
 }));
 
-const { useBaremetalsListMock, useBackupTenantPoliciesMock } = vi.hoisted(() => ({
+const { useBaremetalsListMock } = vi.hoisted(() => ({
   useBaremetalsListMock: vi
     .fn()
     .mockReturnValue({ flattenData: undefined, isLoading: true, isError: false }),
-  useBackupTenantPoliciesMock: vi
-    .fn()
-    .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
 }));
 
 vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => {
   return {
     useBaremetalsList: useBaremetalsListMock,
-  };
-});
-
-vi.mock('@/data/hooks/tenants/useVspcTenantBackupPolicies', () => {
-  return {
-    useBackupTenantPolicies: useBackupTenantPoliciesMock,
   };
 });
 
@@ -152,19 +143,11 @@ describe('FirstOrderFormComponent', () => {
         isLoading: isLoadingMock,
         isError: false,
       });
-      useBackupTenantPoliciesMock.mockReturnValue({
-        data: mockTenantBackupPolicies,
-        isLoading: isLoadingMock,
-      });
 
       render(<AddConfigurationPage />);
 
       await waitFor(
         () => expect(getSelectServer()).toHaveAttribute('data-disabled', `${isLoadingMock}`),
-        { timeout: 1000 },
-      );
-      await waitFor(
-        () => expect(getSelectOs()).toHaveAttribute('data-disabled', `${isLoadingMock}`),
         { timeout: 1000 },
       );
     },
@@ -181,9 +164,7 @@ describe('FirstOrderFormComponent', () => {
     render(<AddConfigurationPage />);
 
     await waitFor(() => expect(getSelectServer().children.length).toBe(BAREMETAL_MOCK.length));
-    await waitFor(() =>
-      expect(getSelectOs().children.length).toBe(mockTenantBackupPolicies.length),
-    );
+    await waitFor(() => expect(getSelectOs().children.length).toBe(Object.keys(OS_LABELS).length));
 
     await user.click(screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:add` }));
 
@@ -195,7 +176,7 @@ describe('FirstOrderFormComponent', () => {
       timeout: 1000,
     });
     await user.selectOptions(getSelectServer(), ['baremetal-server-1']);
-    await user.selectOptions(getSelectOs(), ['windows']);
+    await user.selectOptions(getSelectOs(), ['WINDOWS']);
 
     await waitFor(
       () =>
