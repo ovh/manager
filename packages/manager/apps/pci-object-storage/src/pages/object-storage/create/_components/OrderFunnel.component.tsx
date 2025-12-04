@@ -6,6 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  FieldDescription,
   Separator,
   useToast,
 } from '@datatr-ux/uxlib';
@@ -39,6 +40,7 @@ import { PlanCode } from '@/configuration/project';
 import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
 import A from '@/components/links/A.component';
 import user from '@/types/User';
+import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 
 interface OrderFunnelProps {
   regions: Region[];
@@ -73,7 +75,7 @@ const OrderFunnel = ({
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'critical',
-        description: err.message,
+        description: getObjectStoreApiErrorMessage(err),
       });
       setIsSubmitting(false);
     },
@@ -89,7 +91,7 @@ const OrderFunnel = ({
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'critical',
-        description: err.message,
+        description: getObjectStoreApiErrorMessage(err),
       });
       setIsSubmitting(false);
     },
@@ -150,6 +152,7 @@ const OrderFunnel = ({
             <FormField name="name" form={form}>
               {(field) => <NameInput {...field} />}
             </FormField>
+            <FieldDescription>{t('nameInputInfo')}</FieldDescription>
           </OrderSection>
 
           <OrderSection id="offer" title={t('labelOffer')}>
