@@ -60,8 +60,8 @@ export const getBackupBadgeStatus = ({
   errorStatus,
   backupStatus,
 }: {
-  errorStatus: number;
-  backupStatus: BackupResourceStatus;
+  errorStatus?: number;
+  backupStatus?: BackupResourceStatus;
 }): BadgeStatus => {
   if (backupStatus) return backupStatus;
   return errorStatus === 404 ? 'none' : 'error';
