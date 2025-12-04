@@ -24,7 +24,7 @@ import DataProtection from './DataProtection';
 import DataProtectionDrawer from './DataProtectionDrawer';
 import {
   DisclosureConfigurationEnum,
-  TContactsConfigurationAPI,
+  TContactsConfigurationTargetSpec,
 } from '@/domain/types/domainResource';
 import DnsState from './DnsState';
 import AnycastTerminateModal from '../AnycastOrder/AnycastTerminateModal';
@@ -101,7 +101,7 @@ export default function ConfigurationCards({
     const contacts = domainResource?.currentState?.contactsConfiguration;
     if (!contacts) return;
 
-    const redactedContacts = Object.entries(contacts)
+    const disclosedContacts = Object.entries(contacts)
       .filter(
         ([_, contact]) =>
           contact.disclosurePolicy?.visibleViaRdds &&
@@ -109,7 +109,7 @@ export default function ConfigurationCards({
             DisclosureConfigurationEnum.DISCLOSED,
       )
       .map(([key]) => key);
-    setSelectedContacts(redactedContacts);
+    setSelectedContacts(disclosedContacts);
   }, [domainResource]);
 
   const handleCheckboxChange = (
@@ -131,26 +131,21 @@ export default function ConfigurationCards({
   };
 
   const handleUpdateProtectionState = () => {
-    const checksum = domainResource?.checksum;
-    if (!checksum) return;
-    const cleanedNameServers = domainResource?.currentState?.dnsConfiguration?.nameServers.map(
-      ({ nameServer, ipv4, ipv6 }) => ({
-        nameServer,
-        ...(ipv4 ? { ipv4 } : {}),
-        ...(ipv6 ? { ipv6 } : {}),
-      }),
-    );
+    if (!domainResource?.checksum || !domainResource?.targetSpec) return;
+
     const newProtectionState =
       domainResource?.currentState?.protectionState ===
       ProtectionStateEnum.UNPROTECTED
         ? ProtectionStateEnum.PROTECTED
         : ProtectionStateEnum.UNPROTECTED;
+
     updateDomain(
       {
-        checksum,
-        nameServers: cleanedNameServers,
-        protectionState: newProtectionState,
-        hosts: domainResource?.targetSpec?.hostsConfiguration?.hosts,
+        checksum: domainResource.checksum,
+        currentTargetSpec: domainResource.targetSpec,
+        updatedSpec: {
+          protectionState: newProtectionState,
+        },
       },
       {
         onSuccess: () => {
@@ -165,15 +160,7 @@ export default function ConfigurationCards({
   };
 
   const handleUpdateDataProtection = () => {
-    const checksum = domainResource?.checksum;
-    if (!checksum) return;
-    const cleanedNameServers = domainResource?.currentState?.dnsConfiguration?.nameServers.map(
-      ({ nameServer, ipv4, ipv6 }) => ({
-        nameServer,
-        ...(ipv4 ? { ipv4 } : {}),
-        ...(ipv6 ? { ipv6 } : {}),
-      }),
-    );
+    if (!domainResource?.checksum || !domainResource?.targetSpec) return;
 
     const contacts = domainResource?.currentState?.contactsConfiguration;
     if (!contacts) return;
@@ -191,24 +178,23 @@ export default function ConfigurationCards({
         }
         return acc;
       },
-      {} as TContactsConfigurationAPI,
+      {} as TContactsConfigurationTargetSpec,
     );
 
     updateDomain(
       {
-        checksum,
-        nameServers: cleanedNameServers,
-        protectionState: domainResource?.targetSpec?.protectionState,
-        hosts: domainResource?.targetSpec?.hostsConfiguration?.hosts,
-        contactsConfiguration: contactsConfiguration,
+        checksum: domainResource.checksum,
+        currentTargetSpec: domainResource.targetSpec,
+        updatedSpec: {
+          contactsConfiguration,
+        },
       },
       {
         onSuccess: () => {
-          setTransferModalOpened(false);
+          setDataProtectionDrawerOpened(false);
         },
-        onError: (error: TUpdateDNSConfigError) => {
-          setTransferModalOpened(false);
-          console.log(error);
+        onError: (_: TUpdateDNSConfigError) => {
+          setDataProtectionDrawerOpened(false);
         },
       },
     );
