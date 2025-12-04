@@ -38,6 +38,7 @@ export default function VaultBucketsPage() {
               color="primary"
               onClick={void reloadDatagrid}
               isLoading={isLoading}
+              variant="outline"
               data-arialabel={t(`${NAMESPACES.ACTIONS}:refresh`)}
               label=""
             />
