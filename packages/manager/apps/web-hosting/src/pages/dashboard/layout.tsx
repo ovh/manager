@@ -22,7 +22,6 @@ import {
 
 import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import {
-  ActionMenu,
   BaseLayout,
   ChangelogMenu,
   GuideMenu,
@@ -41,7 +40,6 @@ import { EmailOptionType } from '@/data/types/product/service';
 import { DashboardTab } from '@/data/types/product/ssl';
 import { useEmailsUrl, useHostingUrl } from '@/hooks';
 import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
-import { subRoutes, urls } from '@/routes/routes.constants';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
 import { GUIDE_URL } from '../websites/websites.constants';
@@ -52,7 +50,6 @@ export default function Layout() {
   const { t } = useTranslation('dashboard');
   const isOverridedPage = useOverridePage();
   const { data } = useGetHostingService(serviceName);
-  const navigate = useNavigate();
 
   const { flattenData } = useDataApi<EmailOptionType>({
     version: 'v6',
@@ -251,19 +248,6 @@ export default function Layout() {
         <>
           <div className="mb-7 flex items-center justify-between">
             <Text>{data?.serviceName}</Text>
-            <div className="flex flex-wrap justify-end">
-              <ActionMenu
-                id="add_domain"
-                items={[
-                  {
-                    id: 1,
-                    label: t('hosting_action_add_domain'),
-                    onClick: () =>
-                      navigate(urls.orderDomain.replace(subRoutes.serviceName, serviceName)),
-                  },
-                ]}
-              />
-            </div>
           </div>
           <ExpirationDate />
           {onUpdateError && (

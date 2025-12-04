@@ -90,7 +90,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
   const columns: DatagridColumn<CdnOption>[] = [
     {
       id: 'priority',
-      accessorFn: (row) => row?.config?.priority,
+      accessorKey: 'config.priority',
       header: t('cdn_shared_option_cache_rule_table_header_order_by'),
       label: t('cdn_shared_option_cache_rule_table_header_order_by'),
       isSortable: true,
@@ -100,7 +100,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     },
     {
       id: 'rule',
-      accessorFn: (row) => row?.name,
+      accessorKey: 'name',
       header: t('cdn_shared_option_cache_rule_table_header_rule_name'),
       label: t('cdn_shared_option_cache_rule_table_header_rule_name'),
       isSortable: true,
@@ -111,7 +111,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     },
     {
       id: 'type',
-      accessorFn: (row) => row?.config?.patternType,
+      accessorKey: 'config.patternType',
       header: t(`${NAMESPACES.DASHBOARD}:type`),
       label: t(`${NAMESPACES.DASHBOARD}:type`),
       isSortable: true,
@@ -125,7 +125,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     },
     {
       id: 'resource',
-      accessorFn: (row) => row?.pattern,
+      accessorKey: 'pattern',
       header: t('cdn_shared_option_cache_rule_table_header_resource'),
       label: t('cdn_shared_option_cache_rule_table_header_resource'),
       isSortable: true,
@@ -135,7 +135,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     },
     {
       id: 'time',
-      accessorFn: (row) => row?.config?.ttl,
+      accessorKey: 'config.ttl',
       header: t('cdn_shared_option_cache_rule_table_time_to_live'),
       label: t('cdn_shared_option_cache_rule_table_time_to_live'),
       isSortable: true,
@@ -148,7 +148,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     },
     {
       id: 'status',
-      accessorFn: (row) => row?.enabled,
+      accessorKey: 'enabled',
       header: t(`${NAMESPACES.STATUS}:status`),
       label: t(`${NAMESPACES.STATUS}:status`),
       isSortable: true,
@@ -210,7 +210,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
 
       <Datagrid
         columns={rulesData ? columns : []}
-        data={rulesData || []}
+        data={rulesData ?? []}
         sorting={sorting}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {
