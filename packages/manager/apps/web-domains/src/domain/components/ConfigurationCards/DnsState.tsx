@@ -1,22 +1,13 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { ManagerTile, useFormatDate } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  Button,
-  BUTTON_VARIANT,
-  Icon,
-  ICON_NAME,
-  Link,
-  Text,
-  TEXT_PRESET,
-  Tooltip,
-  TOOLTIP_POSITION,
-  TooltipContent,
-  TooltipTrigger,
-} from '@ovhcloud/ods-react';
-import { useGetDomainResource } from '@/domain/hooks/data/query';
+  ActionMenu,
+  ManagerTile,
+  useFormatDate,
+} from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { getDnsStateDetails } from '@/domain/utils/dnsUtils';
 import { OptionStateEnum } from '@/domain/enum/optionState.enum';
 import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
@@ -46,7 +37,6 @@ export default function DnsState({
   setRestoreAnycast,
 }: DnsStateProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
-  const [btnOpenned, setBtnOpenned] = React.useState(false);
 
   const formatDate = useFormatDate();
 
@@ -76,7 +66,7 @@ export default function DnsState({
 
   const handleAnycastLabel = () => {
     if (!anycastOption) {
-      return t('domain_dns_tab_button_order_anycast');
+      return t('domain_tab_DNS_anycast_order');
     }
 
     if (anycastOption && restoreAnycast) {
@@ -112,22 +102,18 @@ export default function DnsState({
         <div className="flex items-center justify-between">
           <Text preset={TEXT_PRESET.label}>{t(dnsState.label)}</Text>
           {dnsState.anycastSupported && (
-            <Tooltip open={btnOpenned} position={TOOLTIP_POSITION.bottom}>
-              <TooltipTrigger asChild>
-                <Button
-                  variant={BUTTON_VARIANT.outline}
-                  onClick={() => setBtnOpenned(!btnOpenned)}
-                  loading={isFetchingAnycastOption}
-                >
-                  <Icon name={ICON_NAME.ellipsisVertical} />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent withArrow={true}>
-                <Link onClick={() => handleBtnClick()}>
-                  {handleAnycastLabel()}
-                </Link>
-              </TooltipContent>
-            </Tooltip>
+            <ActionMenu
+              id="anycast-service"
+              isCompact
+              isLoading={isFetchingAnycastOption}
+              items={[
+                {
+                  id: 1,
+                  label: handleAnycastLabel(),
+                  onClick: () => handleBtnClick(),
+                },
+              ]}
+            />
           )}
         </div>
         <Text preset={TEXT_PRESET.paragraph}>

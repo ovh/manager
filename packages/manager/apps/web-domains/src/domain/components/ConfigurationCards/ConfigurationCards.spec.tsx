@@ -7,8 +7,10 @@ import { wrapper } from '@/common/utils/test.provider';
 import ConfigurationCards from './ConfigurationCards';
 import {
   useGetDnssecStatus,
+  useGetDomainAnycastOption,
   useGetDomainAuthInfo,
   useGetDomainResource,
+  useTerminateAnycastMutation,
   useTransferTag,
   useUpdateDnssecService,
   useUpdateDomainResource,
@@ -22,7 +24,6 @@ import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 
-vi.mock('@/domain/hooks/data/query');
 vi.mock('@ovh-ux/manager-react-components', async () => {
   const actual = await vi.importActual('@ovh-ux/manager-react-components');
   return {
@@ -30,6 +31,17 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     useAuthorizationIam: vi.fn(),
   };
 });
+
+vi.mock('@/domain/hooks/data/query', () => ({
+  useGetDomainAnycastOption: vi.fn(),
+  useGetDomainResource: vi.fn(),
+  useGetDomainAuthInfo: vi.fn(),
+  useGetDnssecStatus: vi.fn(),
+  useUpdateDnssecService: vi.fn(),
+  useUpdateDomainResource: vi.fn(),
+  useTransferTag: vi.fn(),
+  useTerminateAnycastMutation: vi.fn(),
+}));
 
 describe('ConfigurationCards component', () => {
   const mockUpdateServiceDnssec = vi.fn();
@@ -115,6 +127,14 @@ describe('ConfigurationCards component', () => {
       dnssecStatus: mockDnssecStatus,
       isDnssecStatusLoading: false,
     });
+    (useGetDomainAnycastOption as jest.Mock).mockReturnValue({
+      anycastOption: null,
+      isFetchingAnycastOption: false,
+    });
+    (useTerminateAnycastMutation as jest.Mock).mockReturnValue({
+      terminateAnycast: vi.fn(),
+      isTerminateAnycastPending: false,
+    });
     (useUpdateDnssecService as jest.Mock).mockReturnValue({
       updateServiceDnssec: mockUpdateServiceDnssec,
       isUpdateIsPending: false,
@@ -145,8 +165,12 @@ describe('ConfigurationCards component', () => {
   it('renders DNS server badge', () => {
     render(<ConfigurationCards serviceName="example.com" />, { wrapper });
 
-    expect(screen.getByText('Serveur DNS')).toBeInTheDocument();
-    expect(screen.getByText('Enregistré')).toBeInTheDocument();
+    expect(
+      screen.getByText('domain_tab_general_information_dns_title'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('domain_tab_general_information_dns_standard'),
+    ).toBeInTheDocument();
   });
 
   it('renders DnssecToggleStatus component', () => {
