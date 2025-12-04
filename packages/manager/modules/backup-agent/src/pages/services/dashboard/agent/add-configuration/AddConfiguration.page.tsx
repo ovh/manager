@@ -1,9 +1,8 @@
 import { useRef } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import capitalize from 'lodash.capitalize';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
@@ -17,7 +16,8 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { BaremetalOption } from '@/components/CommonFields/BaremetalOption/BaremetalOption.component';
 import { RhfField } from '@/components/Fields/RhfField.component';
 import { useBaremetalsList } from '@/data/hooks/baremetal/useBaremetalsList';
-import { useBackupTenantPolicies } from '@/data/hooks/tenants/useVspcTenantBackupPolicies';
+import { OS_LABELS } from '@/module.constants';
+import { OS } from '@/types/Os.type';
 
 const FORM_ID = 'form-link-agent-title' as const;
 
@@ -27,7 +27,6 @@ const ADD_CONFIGURATION_SCHEMA = z.object({
 });
 
 const AddConfigurationPage = () => {
-  const { tenantId } = useParams<{ tenantId: string }>();
   const { t } = useTranslation([
     BACKUP_AGENT_NAMESPACES.AGENT,
     NAMESPACES.FORM,
@@ -38,9 +37,6 @@ const AddConfigurationPage = () => {
   const goBack = () => navigate('..');
 
   const { flattenData, isLoading } = useBaremetalsList();
-  const { data: policies, isLoading: isPoliciesLoading } = useBackupTenantPolicies({
-    tenantId: tenantId,
-  });
 
   const {
     register,
@@ -108,15 +104,10 @@ const AddConfigurationPage = () => {
           className="w-full"
         >
           <RhfField.Label>{t('select_os')}</RhfField.Label>
-          <RhfField.Combobox
-            placeholder={t('select_os')}
-            isRequired
-            isDisabled={isPoliciesLoading}
-            allowNewElement={false}
-          >
-            {policies?.map((policy) => (
-              <RhfField.ComboboxItem key={policy} value={policy}>
-                {capitalize(policy)}
+          <RhfField.Combobox placeholder={t('select_os')} isRequired allowNewElement={false}>
+            {Object.keys(OS_LABELS).map((osKey) => (
+              <RhfField.ComboboxItem key={osKey} value={osKey}>
+                {OS_LABELS[osKey as OS]}
               </RhfField.ComboboxItem>
             ))}
           </RhfField.Combobox>
