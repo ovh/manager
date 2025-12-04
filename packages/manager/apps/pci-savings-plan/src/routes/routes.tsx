@@ -65,6 +65,12 @@ export const Routes = [
               },
             },
           },
+          {
+            path: ':savingsPlanId/cancel',
+            ...lazyRouteConfig(() =>
+              import('@/pages/listing/cancel/CancelSavingsPlan.page'),
+            ),
+          },
         ],
       },
       {

@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import {
   ODS_BUTTON_SIZE,
@@ -14,6 +13,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { useHref, useSearchParams } from 'react-router-dom';
 import {
   SavingsPlanPlanedChangeStatus,
   SavingsPlanStatus,
@@ -47,8 +47,15 @@ const MenuItems = ({
   periodEndAction: SavingsPlanPlanedChangeStatus;
   pciUrl: string;
 }) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', 'actions']);
   const { trackClick } = useOvhTracking();
+  const cancelSavingsPlanPath = useHref(`./${id}/cancel`);
+  const [urlSearchParams] = useSearchParams();
+  const search = urlSearchParams.toString();
+
+  const cancelSavingsPlanUrl = search
+    ? `${cancelSavingsPlanPath}?${search}`
+    : cancelSavingsPlanPath;
 
   const isInstance = useMemo(() => isInstanceFlavor(flavor), [flavor]);
 
@@ -61,6 +68,8 @@ const MenuItems = ({
           variant={ODS_BUTTON_VARIANT.ghost}
           text-align="start"
           onClick={onClickEdit}
+          role="button"
+          aria-label={t('edit')}
         />
         {status !== SavingsPlanStatus.TERMINATED && (
           <OdsButton
@@ -73,9 +82,14 @@ const MenuItems = ({
             variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
             onClick={onClickRenew}
+            role="button"
+            aria-label={
+              periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE
+                ? t('enableAutoRenew')
+                : t('disableAutoRenew')
+            }
           />
         )}
-
         <OdsLink
           href={
             isInstance ? `${pciUrl}/instances/new` : `${pciUrl}/rancher/new`
@@ -90,7 +104,18 @@ const MenuItems = ({
               actions: [`add_instance_${flavor}`],
             });
           }}
+          role="link"
+          aria-label={t(isInstance ? 'order_instance' : 'order_rancher')}
         />
+        {status === SavingsPlanStatus.PENDING && (
+          <OdsLink
+            href={cancelSavingsPlanUrl}
+            className="menu-item-link cancel-action"
+            label={t('actions:cancel')}
+            role="link"
+            aria-label={t('actions:cancel')}
+          />
+        )}
       </div>
     </OdsPopover>
   );
