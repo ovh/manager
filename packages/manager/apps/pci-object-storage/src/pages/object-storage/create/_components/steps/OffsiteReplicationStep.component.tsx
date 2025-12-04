@@ -16,7 +16,7 @@ import {
   ComboboxItem,
 } from '@datatr-ux/uxlib';
 import React from 'react';
-import { Region } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region } from '@datatr-ux/ovhcloud-types/cloud';
 import { useTranslation } from 'react-i18next';
 import { Info } from 'lucide-react';
 import { MappedRegions } from './RegionStep.component';

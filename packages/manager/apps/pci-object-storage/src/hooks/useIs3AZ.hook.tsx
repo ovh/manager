@@ -2,7 +2,7 @@ import {
   Region,
   RegionTypeEnum,
   StorageContainer,
-} from '@datatr-ux/ovhcloud-types/cloud/index';
+} from '@datatr-ux/ovhcloud-types/cloud';
 
 export function useIs3AZ(s3: StorageContainer, regions: Region[]) {
   if (!regions) return true;
