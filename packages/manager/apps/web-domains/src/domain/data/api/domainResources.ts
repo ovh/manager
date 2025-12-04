@@ -3,7 +3,7 @@ import {
   TDomainOption,
   TDomainResource,
   DomainService,
-  TContactsConfigurationAPI,
+  TTargetSpec,
 } from '@/domain/types/domainResource';
 import { OptionEnum } from '@/common/enum/option.enum';
 import { THost } from '@/domain/types/host';
@@ -42,20 +42,7 @@ export const updateDomainResource = async (
   serviceName: string,
   payload: {
     checksum: string;
-    targetSpec: {
-      dnsConfiguration: {
-        nameServers: {
-          nameServer: string;
-          ipv4?: string;
-          ipv6?: string;
-        }[];
-      };
-      hostsConfiguration: {
-        hosts: THost[];
-      };
-      protectionState: ProtectionStateEnum;
-      contactsConfiguration?: TContactsConfigurationAPI;
-    };
+    targetSpec: TTargetSpec;
   },
 ): Promise<void> => {
   const { data } = await v2.put(`/domain/name/${serviceName}`, payload);

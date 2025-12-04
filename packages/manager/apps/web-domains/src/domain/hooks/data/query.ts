@@ -18,11 +18,10 @@ import {
   transferTag,
 } from '@/domain/data/api/domainResources';
 import {
-  DisclosureConfigurationEnum,
   ServiceType,
   TDomainOption,
   TDomainResource,
-  TContactsConfigurationAPI,
+  TTargetSpec,
 } from '@/domain/types/domainResource';
 import {
   activateServiceDnssec,
@@ -164,34 +163,23 @@ export const useUpdateDomainResource = (serviceName: string) => {
     mutationKey: ['domain', 'resource', 'update', serviceName],
     mutationFn: ({
       checksum,
-      nameServers,
-      hosts,
-      protectionState,
-      contactsConfiguration,
+      currentTargetSpec,
+      updatedSpec,
     }: {
       checksum: string;
-      nameServers: {
-        nameServer: string;
-        ipv4?: string;
-        ipv6?: string;
-      }[];
-      hosts: THost[];
-      protectionState: ProtectionStateEnum;
-      contactsConfiguration?: TContactsConfigurationAPI;
-    }) =>
-      updateDomainResource(serviceName, {
+      currentTargetSpec: TTargetSpec;
+      updatedSpec: Partial<TTargetSpec>;
+    }) => {
+      const newTargetSpec: TTargetSpec = {
+        ...currentTargetSpec,
+        ...updatedSpec,
+      };
+
+      return updateDomainResource(serviceName, {
         checksum,
-        targetSpec: {
-          dnsConfiguration: {
-            nameServers,
-          },
-          hostsConfiguration: {
-            hosts,
-          },
-          protectionState,
-          ...(contactsConfiguration && { contactsConfiguration }),
-        },
-      }),
+        targetSpec: newTargetSpec,
+      });
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['domain', 'resource', serviceName],
