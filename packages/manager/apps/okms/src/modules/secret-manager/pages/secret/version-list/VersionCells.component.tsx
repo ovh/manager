@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import { VersionState } from '@secret-manager/components/version-state/VersionState.component';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
@@ -22,9 +22,11 @@ const isVersionIdCellDisabled: Record<SecretVersionState, boolean> = {
 };
 
 export const VersionIdCell = ({ version, secret }: { version: SecretVersion; secret: Secret }) => {
-  const navigate = useNavigate();
   const { t } = useTranslation('secret-manager');
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
+  const href = useHref(
+    SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(okmsId, secretPath, version.id),
+  );
 
   const isCurrentVersion = version.id === secret?.metadata?.currentVersion;
 
@@ -32,13 +34,8 @@ export const VersionIdCell = ({ version, secret }: { version: SecretVersion; sec
     <div className="flex items-center gap-2">
       <ManagerLink
         label={version.id.toString()}
-        href=""
+        href={href}
         isDisabled={isVersionIdCellDisabled[version.state]}
-        onClick={() => {
-          navigate(
-            SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(okmsId, secretPath, version.id),
-          );
-        }}
         urn={secret?.iam?.urn}
         iamActions={[kmsIamActions.secretGet, kmsIamActions.secretVersionGetData]}
         isDisplayTooltip
