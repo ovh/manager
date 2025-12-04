@@ -1183,7 +1183,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
       <tr>
         <th
           class=text-left pl-4 whitespace-nowrap
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <label
             class=_checkbox
@@ -1268,7 +1268,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -1367,7 +1367,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -1811,7 +1811,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
       <tr>
         <th
           class=text-left pl-4 whitespace-nowrap
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=h-[20px]
@@ -1831,7 +1831,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
         </th>
         <th
           class=text-left pl-4 whitespace-nowrap
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=h-[20px]
@@ -1964,7 +1964,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -1990,7 +1990,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
         </td>
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -2089,7 +2089,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -2115,7 +2115,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
         </td>
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -2227,7 +2227,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
       <tr>
         <th
           class=text-left pl-4 whitespace-nowrap
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <label
             class=_checkbox
@@ -2312,7 +2312,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -2416,7 +2416,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -2528,7 +2528,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       <tr>
         <th
           class=text-left pl-4 whitespace-nowrap
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         />
         <th
           class=text-left pl-4 whitespace-nowrap
@@ -2555,7 +2555,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
@@ -2613,7 +2613,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       >
         <td
           class=pl-4
-          style=width: 30px; min-width: 30px; max-width: 30px;
+          style=width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
             class=overflow-hidden text-ellipsis flex items-center w-full
