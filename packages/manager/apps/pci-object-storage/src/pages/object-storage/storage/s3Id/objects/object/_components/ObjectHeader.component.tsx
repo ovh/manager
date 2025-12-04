@@ -1,5 +1,5 @@
 import { Badge, Skeleton } from '@datatr-ux/uxlib';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import { ObjectDownloadButton } from './ObjectDownloadButton.component';
 import { DeepArchiveBadge } from '../../_components/DeepArchiveBadge.component';
