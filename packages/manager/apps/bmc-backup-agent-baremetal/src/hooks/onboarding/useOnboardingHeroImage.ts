@@ -10,8 +10,6 @@ export const useOnboardingHeroImage = () => {
     ? {
         src: heroImage.src,
         alt: heroImage.alt ?? t('onboarding:hero_alt', { productName }),
-        width: '100px',
-        height: '100px',
       }
     : undefined;
 };
