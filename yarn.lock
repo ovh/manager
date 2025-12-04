@@ -5069,7 +5069,7 @@
   dependencies:
     "@standard-schema/utils" "^0.3.0"
 
-"@hookform/resolvers@^3.10.0", "@hookform/resolvers@^3.9.1":
+"@hookform/resolvers@^3.10.0":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
   integrity sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==
