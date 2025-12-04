@@ -28,7 +28,7 @@ export function useAgentsListingColumnsHooks() {
       {
         id: 'currentState.name',
         cell: (agentResource: Resource<Agent>) => (
-          <AgentNameCell id={agentResource.id} name={agentResource.currentState.name} />
+          <AgentNameCell name={agentResource.currentState.name} />
         ),
         label: t(`${NAMESPACES.DASHBOARD}:name`),
       },

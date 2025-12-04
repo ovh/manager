@@ -3,9 +3,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { mockAgents } from '@/mocks/agents/agents';
+import { mockVaults } from '@/mocks/vaults/vaults';
 
-import { AgentNameCell } from '../AgentNameCell.component';
+import { BucketNameCell } from '../BucketNameCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
@@ -13,13 +13,13 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ),
 }));
 
-describe('AgentNameCell', () => {
+describe('BucketNameCell', () => {
   it('renders link with targetSpec.name as label and default href', () => {
-    const agent = mockAgents[0]!.currentState;
+    const bucket = mockVaults[0]!.currentState.buckets[0]!;
 
-    render(<AgentNameCell name={agent.name} />);
+    render(<BucketNameCell name={bucket.name} />);
 
     const cell = screen.getByTestId('cell');
-    expect(cell).toHaveTextContent(agent.name);
+    expect(cell).toHaveTextContent(bucket.name);
   });
 });
