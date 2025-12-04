@@ -2,7 +2,7 @@ import { useHref } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {OdsSkeleton, OdsText} from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
@@ -48,7 +48,7 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
           {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:connected_vaults`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{connectedVaultsText}</OdsText> }
+          {isLoading ? <OdsSkeleton /> : <OdsText>{connectedVaultsText}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
