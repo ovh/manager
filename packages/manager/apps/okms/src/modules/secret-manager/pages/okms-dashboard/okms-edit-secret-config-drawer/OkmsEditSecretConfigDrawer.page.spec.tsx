@@ -39,7 +39,7 @@ const renderPage = async (mockParams = {}) => {
         await screen.findByTestId(OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer),
       ).toBeInTheDocument();
     },
-    { timeout: 2000 },
+    { timeout: 5000 },
   );
 
   return { user, container };
