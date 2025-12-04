@@ -1,4 +1,4 @@
-import { OvhSubsidiaryEnum } from '@datatr-ux/ovhcloud-types/nichandle/index';
+import { OvhSubsidiaryEnum } from '@datatr-ux/ovhcloud-types/nichandle';
 import { PCIData } from '..';
 import { apiClient } from '../api.client';
 import { ProductAvailability } from '@/types/Availability';

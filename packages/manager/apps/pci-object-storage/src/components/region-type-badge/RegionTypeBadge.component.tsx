@@ -6,7 +6,7 @@ import {
   PopoverContent,
 } from '@datatr-ux/uxlib';
 import { ExternalLink, HelpCircle } from 'lucide-react';
-import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 
 import A from '@/components/links/A.component';
 import { cn } from '@/lib/utils';
