@@ -252,7 +252,7 @@
   "domain_tab_general_information_note_anycast": "Mettez à niveau vers une offre Anycast pour de meilleures performances.",
   "domain_tab_general_information_dns_anycast": "Anycast",
   "domain_tab_general_information_dns_personnalised": "Personnalisé",
-  "domain_tab_general_information_dns_dedicad": "Dedié",
+  "domain_tab_general_information_dns_dedicated": "Dédié",
   "domain_tab_general_information_dns_empty": "Aucun",
   "domain_tab_DNS_modification_form_dns_number": "Veuillez renseigner entre {{min}} et {{max}} DNS.",
   "domain_tab_DNS_modification_form_server_field": "Serveur DNS",

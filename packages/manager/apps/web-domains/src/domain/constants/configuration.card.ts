@@ -2,11 +2,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BADGE_COLOR } from '@ovhcloud/ods-react';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { DataProtectionStatus } from '../types/domainResource';
-import {
-  ActiveConfigurationTypeEnum,
-  DnsConfigurationTypeEnum,
-} from '../enum/dnsConfigurationType.enum';
-import { PublicNameServerTypeEnum } from '../enum/publicNameServerType.enum';
+import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
 
 export const ConfigurationDnssecBadgeColorAndContent = {
   not_supported: {
@@ -161,7 +157,7 @@ export const ConfigurationDnsStateAndContent = [
   {
     dnsTypes: [DnsConfigurationTypeEnum.DEDICATED],
     result: {
-      label: 'domain_tab_general_information_dns_dedicad',
+      label: 'domain_tab_general_information_dns_dedicated',
       notes: '',
       anycastSupported: false,
     },
