@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
-  Breadcrumb,
   Datagrid,
   BaseLayout,
   ErrorBanner,
@@ -9,6 +8,7 @@ import {
   Notifications,
   useResourcesIcebergV6,
   ChangelogButton,
+  useColumnFilters,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 import {
@@ -22,20 +22,27 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { toASCII } from 'punycode';
-import appConfig from '@/web-domains.config';
-import { DomainService } from '@/domain/types/domainResource';
+import { FilterWithLabel } from '@ovh-ux/manager-react-components/dist/types/src/components/filters/interface';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  DomainService,
+  DomainServiceStateEnum,
+} from '@/domain/types/domainResource';
 import { useDomainDatagridColumns } from '@/domain/hooks/useDomainDatagridColumns';
 import RenewRestoreModal from '@/domain/pages/service/serviceList/modalDrawer/RenewRestoreModal';
 import { useDomainExportHandler } from '@/domain/hooks/useDomainExportHandler';
 import TopBarCTA from './topBarCTA';
 import ExportDrawer from './modalDrawer/exportDrawer';
-import { changelogLinks } from '@/domain/constants/serviceDetail';
+import {
+  changelogLinks,
+  ONGOING_PROCEEDINGS,
+} from '@/domain/constants/serviceDetail';
 import DomainGuideButton from './guideButton';
 
 export default function ServiceList() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { notifications } = useNotifications();
-  const [isModalOpenned, setIsModalOpenned] = useState(false);
+  const [isModalOpenned, setIsModalOpened] = useState(false);
   const [rowSelection, setRowSelection] = useState({});
   const [searchInput, setSearchInput] = useState('');
   const [isDrawerExportOpen, setIsDrawerExportOpen] = useState(false);
@@ -54,12 +61,12 @@ export default function ServiceList() {
   const selectedServiceNames = Object.keys(rowSelection);
 
   const onOpenChange = ({ open }: ModalOpenChangeDetail) => {
-    setIsModalOpenned(open);
+    setIsModalOpened(open);
   };
 
   const openModal = (serviceNames?: string[]) => {
     setModalServiceNames(serviceNames || selectedServiceNames);
-    setIsModalOpenned(true);
+    setIsModalOpened(true);
   };
 
   const openDrawer = (serviceNames?: string[]) => {
@@ -76,8 +83,8 @@ export default function ServiceList() {
     isLoading,
     isFetching,
     isError,
-    filters,
     error,
+    filters,
     totalCount,
     hasNextPage,
     fetchNextPage,
@@ -234,7 +241,28 @@ export default function ServiceList() {
             setSearchInput,
             onSearch: () => null,
           }}
-          filters={filters}
+          filters={{
+            filters: filters.filters,
+            add: (filter: FilterWithLabel) => {
+              if (
+                filter.key === 'state' &&
+                filter.value === ONGOING_PROCEEDINGS
+              ) {
+                filters.add({
+                  ...filter,
+                  comparator: FilterComparator.IsIn,
+                  value: [
+                    DomainServiceStateEnum.REGISTRY_SUSPENDED,
+                    DomainServiceStateEnum.DISPUTE,
+                    DomainServiceStateEnum.TECHNICAL_SUSPENDED,
+                  ],
+                });
+                return;
+              }
+              filters.add(filter);
+            },
+            remove: filters.remove,
+          }}
         />
         <RenewRestoreModal
           isModalOpenned={isModalOpenned}

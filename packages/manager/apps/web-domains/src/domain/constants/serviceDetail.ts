@@ -245,6 +245,8 @@ export const SUSPENSION_STATUS: Record<string, StatusDetails> = {
   },
 };
 
+export const ONGOING_PROCEEDINGS = 'ongoing_proceedings';
+
 export const DOMAIN_STATE: Record<string, StatusDetails> = {
   [DomainServiceStateEnum.AUTORENEW_IN_PROGRESS]: {
     i18nKey: 'domain_status_auto_renew_in_progress',
@@ -257,10 +259,6 @@ export const DOMAIN_STATE: Record<string, StatusDetails> = {
   [DomainServiceStateEnum.DELETED]: {
     i18nKey: 'domain_tab_general_information_deleted',
     statusColor: BADGE_COLOR.critical,
-  },
-  [DomainServiceStateEnum.DISPUTE]: {
-    i18nKey: 'domain_tab_general_information_dispute',
-    statusColor: BADGE_COLOR.warning,
   },
   [DomainServiceStateEnum.EXPIRED]: {
     i18nKey: 'domain_tab_general_information_expired',
@@ -290,16 +288,24 @@ export const DOMAIN_STATE: Record<string, StatusDetails> = {
     i18nKey: 'domain_status_pending_installation',
     statusColor: BADGE_COLOR.information,
   },
-  [DomainServiceStateEnum.REGISTRY_SUSPENDED]: {
-    i18nKey: 'domain_status_registry_suspended',
-    statusColor: BADGE_COLOR.critical,
-  },
   [DomainServiceStateEnum.RESTORABLE]: {
     i18nKey: 'domain_tab_general_information_restorable',
     statusColor: BADGE_COLOR.warning,
   },
+  // dispute, registry_suspended and technical_suspended statuses/flags are handled all at once as "Procédure en cours" status
+  [DomainServiceStateEnum.DISPUTE]: {
+    value: ONGOING_PROCEEDINGS,
+    i18nKey: 'domain_status_ongoing_proceedings',
+    statusColor: BADGE_COLOR.warning,
+  },
+  [DomainServiceStateEnum.REGISTRY_SUSPENDED]: {
+    value: ONGOING_PROCEEDINGS,
+    i18nKey: 'domain_status_ongoing_proceedings',
+    statusColor: BADGE_COLOR.critical,
+  },
   [DomainServiceStateEnum.TECHNICAL_SUSPENDED]: {
-    i18nKey: 'domain_status_technical_suspended',
+    value: ONGOING_PROCEEDINGS,
+    i18nKey: 'domain_status_ongoing_proceedings',
     statusColor: BADGE_COLOR.critical,
   },
 };
