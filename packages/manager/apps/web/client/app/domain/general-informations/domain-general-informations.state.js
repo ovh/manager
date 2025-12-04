@@ -36,7 +36,7 @@ const commonResolves = {
   breadcrumb: () => null,
 };
 
-export default /* @ngInject */ ($stateProvider) => {
+export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.domain.product.information', {
     url: '/information',
     views: {
@@ -87,6 +87,31 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
     },
   });
+
+  $urlRouterProvider.when(
+    /^\/domain\/[^/]+\/information/,
+    /* @ngInject */ (ovhFeatureFlipping, coreURLBuilder, $state, $location) => {
+      ovhFeatureFlipping
+        .checkFeatureAvailability('web-domains:domains')
+        .then((featureAvailability) => {
+          return featureAvailability.isFeatureAvailable('web-domains:domains');
+        })
+        .then((isFeatureAvailable) => {
+          if (isFeatureAvailable) {
+            const path = $location.path();
+            const productId = path.split('/')[2];
+            const url = coreURLBuilder.buildURL(
+              'web-domains',
+              '#/domain/:serviceName/information',
+              { serviceName: productId },
+            );
+            return window.location.replace(url);
+          }
+          $state.go('app.domain.product.information');
+          return false;
+        });
+    },
+  );
 
   $stateProvider.state('app.alldom.domain.information', {
     url: '/information',
