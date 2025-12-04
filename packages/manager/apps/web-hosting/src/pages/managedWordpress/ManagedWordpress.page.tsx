@@ -44,20 +44,20 @@ export default function ManagedWordpressPage() {
     () => [
       {
         id: 'id',
-        accessorFn: (row) => row.id,
+        accessorKey: 'id',
         cell: ({ getValue }) => <ResourceLink id={getValue<string>()} />,
         header: t('common:web_hosting_status_header_resource'),
       },
       {
         id: 'plan',
-        accessorFn: (row) => row.currentState?.plan,
+        accessorKey: 'currentState.plan',
         cell: ({ getValue }) => {
           const plan = getValue<string>() || '';
           const match = plan.match(/managed-cms-alpha-(\d+)/);
           const numberOfSites = match ? match[1] : '?';
           return <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>;
         },
-        label: t('common:web_hosting_status_header_offer'),
+        header: t('common:web_hosting_status_header_offer'),
       },
       {
         id: 'resourceStatus',
@@ -104,7 +104,7 @@ export default function ManagedWordpressPage() {
           title: t('common:managed_wordpress'),
         }}
       >
-        <Datagrid isLoading={isLoading} columns={data ? columns : []} data={data || []} />
+        <Datagrid isLoading={isLoading} columns={data ? columns : []} data={data ?? []} />
       </BaseLayout>
       <Outlet />
     </>

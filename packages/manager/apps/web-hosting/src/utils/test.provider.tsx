@@ -66,6 +66,10 @@ export function createMockNavigation(
 export function createMockShell(overrides?: Partial<ShellClientApi>): ShellClientApi {
   return {
     navigation: createMockNavigation(),
+    ux: {
+      hidePreloader: vi.fn(),
+      ...(overrides?.ux ?? {}),
+    },
     ...(overrides ?? {}),
   } as ShellClientApi;
 }
