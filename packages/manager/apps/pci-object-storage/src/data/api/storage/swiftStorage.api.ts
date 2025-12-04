@@ -1,4 +1,4 @@
-import { ProjectStoragePublicUrlCreation } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { ProjectStoragePublicUrlCreation } from '@datatr-ux/ovhcloud-types/cloud';
 import cloud from '@/types/Cloud';
 import storages from '@/types/Storages';
 import { HeaderXAuthToken, HeadersNoCache, PCIData } from '..';

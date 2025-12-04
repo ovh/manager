@@ -1,6 +1,5 @@
-import { AccessTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/AccessTypeEnum';
-import { Project } from '@datatr-ux/ovhcloud-types/cloud/Project';
-import { ProjectStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/project/ProjectStatusEnum';
+import { AccessTypeEnum, Project } from '@datatr-ux/ovhcloud-types/cloud';
+import { ProjectStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/project';
 
 export const mockedPciProject: Project = {
   access: AccessTypeEnum.full,

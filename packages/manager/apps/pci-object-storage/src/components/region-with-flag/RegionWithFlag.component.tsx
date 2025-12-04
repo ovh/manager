@@ -1,4 +1,4 @@
-import { Region } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region } from '@datatr-ux/ovhcloud-types/cloud';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import Flag from '../flag/Flag.component';
 
