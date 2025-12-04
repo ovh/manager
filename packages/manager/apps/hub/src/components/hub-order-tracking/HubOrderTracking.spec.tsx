@@ -151,4 +151,11 @@ describe('HubOrderTracking Component', async () => {
       expect(screen.getByText('order_tracking_history_custom_payment_waiting')).toBeInTheDocument();
     });
   });
+
+  it('should have a valid html', () => {
+    const { container } = renderComponent(<HubOrderTracking />);
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

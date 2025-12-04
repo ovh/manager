@@ -10,6 +10,7 @@ import {
 import { getSavingsPlansListingUrl } from '@/utils/routes';
 import { useParam, useProjectId } from './useProject';
 import { toIsoDate } from '@/utils/formatter/date';
+import { cancelSavingsPlan } from '@/data/api/services';
 
 const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -218,3 +219,17 @@ export const useSavingsPlanContract = () => {
 };
 
 export const useSavingsPlanId = (): string => useParam('savingsPlanId');
+
+type TUseMutationCancelSavingsPlanParams = {
+  serviceId: number;
+  savingsPlanId: string;
+};
+
+export const useCancelSavingsPlan = () =>
+  useMutation({
+    mutationFn: ({
+      serviceId,
+      savingsPlanId,
+    }: TUseMutationCancelSavingsPlanParams) =>
+      cancelSavingsPlan(serviceId, savingsPlanId),
+  });
