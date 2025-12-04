@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.22.3...@ovh-ux/manager-pci-object-storage-app@0.23.0) (2025-12-04)
+
+
+### Bug Fixes
+
+* **object-storage:** display good access and secret for user ([67bbf68](https://github.com/ovh/manager/commit/67bbf68f6c1836a2a6cd97b7d98328972aa5739a)), closes [#DATATR-2720](https://github.com/ovh/manager/issues/DATATR-2720)
+* **pci-os:** empty storage in replication ([e43cfec](https://github.com/ovh/manager/commit/e43cfec5e29f93c7d5a794095ffe6401ad3ce3b1)), closes [#DATATR-2677](https://github.com/ovh/manager/issues/DATATR-2677)
+* **pci-os:** unit measure are not link to locale ([d078f5c](https://github.com/ovh/manager/commit/d078f5cf4af948271efbdd418d69394b441e2154)), closes [#DATATR-2660](https://github.com/ovh/manager/issues/DATATR-2660)
+* **pci.os:** cold archive should only be available in paris ([709980e](https://github.com/ovh/manager/commit/709980e3c3c4cdc0ab833f0e91216d9cda33dc1e)), closes [#DATATR-2700](https://github.com/ovh/manager/issues/DATATR-2700)
+
+
+### Features
+
+* **pci-os:** add naming convention in order funnel ([0931477](https://github.com/ovh/manager/commit/09314777a0e40ac7065a740e8b4294b4f87aa11a)), closes [#DATATR-2706](https://github.com/ovh/manager/issues/DATATR-2706)
+* **pci-os:** improve error message at bucket creation ([67e49ab](https://github.com/ovh/manager/commit/67e49abfda5acdc76d42669544593555fd6083a4)), closes [#DATATR-2693](https://github.com/ovh/manager/issues/DATATR-2693)
+* **pci-os:** improve text in order funnel ([d7f5e09](https://github.com/ovh/manager/commit/d7f5e09271adf5547df64d4effd50c2dd9b02e7d)), closes [#DATATR-2643](https://github.com/ovh/manager/issues/DATATR-2643)
+
+
+
+
+
 ## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.22.2...@ovh-ux/manager-pci-object-storage-app@0.22.3) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

@@ -21,7 +21,8 @@ export function useAvailableStorageClasses(region: string) {
 
     switch (st) {
       case storages.StorageClassEnum.DEEP_ARCHIVE:
-        return regionType === RegionTypeEnum['region-3-az'];
+        return s3Region.name === "EU-WEST-PAR" 
+        // Cold archive is only available in EU-WEST-PAR
 
       case storages.StorageClassEnum.HIGH_PERF:
         return regionType !== RegionTypeEnum['region-3-az'];

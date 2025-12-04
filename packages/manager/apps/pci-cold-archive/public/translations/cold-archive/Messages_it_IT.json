@@ -39,5 +39,11 @@
   "pci_projects_project_storages_cold_archive_container_manage_description_2": "Per scaricare dati come foto, video e altri documenti, per esempio, è necessario utilizzare la CLI, il SDK o l'API compatibile con S3.",
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
-  "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Chiudere"
+  "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Chiudere",
+  "pci_projects_project_storages_cold_archive_banner_title": "Nuovo: archivia oggetti singolarmente dal tuo cruscotto Object Storage!",
+  "pci_projects_project_storages_cold_archive_banner_description": "Ora è possibile archiviare oggetti uno per uno per ottimizzare i costi di archiviazione e gestire meglio i dati, senza dover archiviare l'intero contenitore.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Questa funzionalità è accessibile direttamente dal tuo cruscotto Object Storage, a partire dai tuoi contenitori esistenti:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "carica i tuoi oggetti classificandoli direttamente in Cold Archive;",
+  "pci_projects_project_storages_cold_archive_banner_feature_2": "oppure utilizza regole di ciclo di vita per trasferire i dati nella classe Cold Archive.",
+  "pci_projects_project_storages_cold_archive_banner_cta": "Prova subito!"
 }

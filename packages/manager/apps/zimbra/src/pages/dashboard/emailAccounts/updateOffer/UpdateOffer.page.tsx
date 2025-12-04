@@ -151,7 +151,7 @@ export const UpdateOffer = () => {
   }
 
   return (
-    <div className="flex flex-col items-start mb-6" data-testid="update-offer-account-page">
+    <div className="mb-6 flex flex-col items-start" data-testid="update-offer-account-page">
       <Links
         iconAlignment={IconLinkAlignmentType.left}
         type={LinkType.back}
@@ -170,7 +170,7 @@ export const UpdateOffer = () => {
         {t('common:update_offer_title')}
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>{slotWithService?.email}</OdsText>
-      <div className="flex justify-between w-full gap-8 my-8">
+      <div className="my-8 flex w-full justify-between gap-8">
         <div className="grid grid-cols-3 gap-4">
           {Object.values(ZimbraOffer).map((planCode) => (
             <PriceCard

@@ -15,7 +15,6 @@ import { useTranslation } from 'react-i18next';
 import { ContainerObject } from '@datatr-ux/ovhcloud-types/cloud/storage/index';
 import { add, formatRFC3339 } from 'date-fns';
 import { ReactElement } from 'react';
-import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import useDownload from '@/hooks/useDownload';
@@ -23,12 +22,14 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import storages from '@/types/Storages';
 import { cn } from '@/lib/utils';
 import { useDownloadSwiftObject } from '@/data/hooks/swift-storage/useDownloadObject.hook';
+import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
 
 interface SwiftObjectFileRendererProps {
   object: ContainerObject;
 }
 const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
   const { projectId, swiftId } = useParams();
+  const localeBytesConverter = useLocaleBytesConverter();
   const navigate = useNavigate();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const { download } = useDownload();
@@ -123,7 +124,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
         {/* SIZE + DATE */}
         <div className="text-muted-foreground flex justify-end gap-2">
           {object.size !== undefined && (
-            <span>{octetConverter(object.size, true, 2)}</span>
+            <span>{localeBytesConverter(object.size, true, 2)}</span>
           )}
           {object.lastModified && (
             <FormattedDate
