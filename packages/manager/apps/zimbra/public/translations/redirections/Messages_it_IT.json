@@ -17,5 +17,7 @@
   "zimbra_redirections_edit_success_message": "La richiesta di modifica del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
   "zimbra_redirections_edit_error_message": "La richiesta di modifica del reindirizzamento non è andata a buon fine: {{ error }}",
   "zimbra_redirections_delete_success_message": "La tua richiesta di eliminazione del reindirizzamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
-  "zimbra_redirections_delete_error_message": "La tua richiesta di eliminazione del reindirizzamento non è andata a buon fine: {{ error }}"
+  "zimbra_redirections_delete_error_message": "La tua richiesta di eliminazione del reindirizzamento non è andata a buon fine: {{ error }}",
+  "zimbra_redirections_account_quota": "Quota di reindirizzamento",
+  "zimbra_redirections_delete_selected_modal_content": "Vuoi davvero eliminare i reindirizzamenti?"
 }

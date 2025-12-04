@@ -18,9 +18,9 @@ import storages, {
   FormattedStorage,
   ObjectStorageTypeEnum,
 } from '@/types/Storages';
-import { octetConverter } from '@/lib/bytesHelper';
 import { RegionTypeBadge } from '@/components/region-type-badge/RegionTypeBadge.component';
 import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
+import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
 
 interface StoragesListColumnsProps {
   onSwitchClicked: (storage: FormattedStorage) => void;
@@ -33,6 +33,7 @@ export const useGetColumns = ({
   onAddUserClicked,
 }: StoragesListColumnsProps) => {
   const navigate = useNavigate();
+  const localeBytesConverter = useLocaleBytesConverter();
   const { t } = useTranslation('pci-object-storage/storages');
   const columns: ColumnDef<FormattedStorage>[] = [
     {
@@ -135,14 +136,14 @@ export const useGetColumns = ({
           {row.original?.storageType === ObjectStorageTypeEnum.s3 && (
             <span>
               {row.original?.objectsSize
-                ? octetConverter(row.original?.objectsSize, false, 2)
+                ? localeBytesConverter(row.original?.objectsSize, false, 2)
                 : '-'}
             </span>
           )}
           {row.original?.storageType === ObjectStorageTypeEnum.swift && (
             <span>
               {row.original?.storedBytes
-                ? octetConverter(row.original?.storedBytes, false, 2)
+                ? localeBytesConverter(row.original?.storedBytes, false, 2)
                 : '-'}
             </span>
           )}

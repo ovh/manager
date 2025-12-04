@@ -13,13 +13,7 @@ import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import {
-  DELETE_REDIRECTION,
-  EDIT_REDIRECTION,
-  EMAIL_ACCOUNT_DELETE_REDIRECTION,
-  EMAIL_ACCOUNT_EDIT_REDIRECTION,
-} from '@/tracking.constants';
-import { FEATURE_FLAGS } from '@/utils';
+import { DELETE_REDIRECTION, EMAIL_ACCOUNT_DELETE_REDIRECTION } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 import { RedirectionItem } from './Redirections.types';
@@ -37,18 +31,6 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
   const navigate = useNavigate();
   const { accountId } = useParams();
 
-  const hrefEditRedirections = useGenerateUrl(`./${item.id}/edit`, 'path');
-
-  const handleEditRedirectionsClick = () => {
-    trackClick({
-      location: PageLocation.datagrid,
-      buttonType: ButtonType.button,
-      actionType: 'navigation',
-      actions: [accountId ? EMAIL_ACCOUNT_EDIT_REDIRECTION : EDIT_REDIRECTION],
-    });
-    navigate(hrefEditRedirections);
-  };
-
   const hrefDeleteRedirections = useGenerateUrl(`./${item.id}/delete`, 'path');
   const handleDeleteRedirectionsClick = () => {
     trackClick({
@@ -62,14 +44,6 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
   const actionItems = [
     {
       id: 1,
-      onClick: handleEditRedirectionsClick,
-      urn: platformUrn,
-      iamActions: [IAM_ACTIONS.redirection.edit],
-      label: t(`${NAMESPACES.ACTIONS}:modify`),
-      hidden: !FEATURE_FLAGS.REDIRECTIONS_EDIT,
-    },
-    {
-      id: 2,
       onClick: handleDeleteRedirectionsClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.redirection.delete],
@@ -81,7 +55,7 @@ export const ActionButtonRedirection: React.FC<ActionButtonRedirectionAccountPro
     <ActionMenu
       id={item.id}
       isDisabled={item.status !== ResourceStatus.READY}
-      items={actionItems.filter((i) => !i.hidden)}
+      items={actionItems}
       variant={ODS_BUTTON_VARIANT.ghost}
       isCompact
     />
