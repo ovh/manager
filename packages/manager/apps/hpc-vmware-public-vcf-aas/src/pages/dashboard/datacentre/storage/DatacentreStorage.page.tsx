@@ -38,6 +38,9 @@ export default function StorageListingPage() {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const isServiceTerminated: boolean = vcdDatacentre?.data.resourceStatus
+    ? isStatusTerminated(vcdDatacentre?.data?.resourceStatus)
+    : false;
 
   const columns = [
     {
@@ -100,7 +103,7 @@ export default function StorageListingPage() {
         <OdsButton
           label={t('managed_vcd_vdc_storage_order_cta')}
           variant="outline"
-          isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+          isDisabled={isServiceTerminated}
           onClick={() => {
             trackClick(TRACKING.storage.addStorage);
             navigate(subRoutes.order);

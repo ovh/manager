@@ -72,6 +72,7 @@ export default function DeleteVrackNetwork() {
   }
 
   const handleSubmit = () => {
+    if (!vrackSegment) return;
     const filtered = vrackSegment.targetSpec.networks.filter(
       (network) => network !== decodeVrackNetwork(vrackNetworkId),
     );

@@ -8,7 +8,12 @@ import {
   getVcdDatacentreListQueryKey,
   getVcdDatacentresRoute,
 } from '@ovh-ux/manager-module-vcd-api';
-import { DataGridTextCell, LinkType, Links } from '@ovh-ux/manager-react-components';
+import {
+  DataGridTextCell,
+  DatagridColumn,
+  LinkType,
+  Links,
+} from '@ovh-ux/manager-react-components';
 import { useNavigationGetUrl, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { FEATURE_FLAGS } from '@/app.constants';
@@ -146,12 +151,16 @@ export default function DatacentresListing() {
       cell: DatagridCpuSpeedCell,
       label: tVdc('managed_vcd_vdc_vcpu_speed'),
     },
-    isVrackFeatureAvailable && {
-      id: 'vRack',
-      cell: DatagridVrackCell,
-      label: VRACK_LABEL,
-    },
-  ].filter(Boolean);
+    ...(!isVrackFeatureAvailable
+      ? []
+      : [
+          {
+            id: 'vRack',
+            cell: DatagridVrackCell,
+            label: VRACK_LABEL,
+          },
+        ]),
+  ] as DatagridColumn<unknown>[];
 
   const datagridProps: TDatagridContainerProps = {
     title: VIRTUAL_DATACENTERS_LABEL,
