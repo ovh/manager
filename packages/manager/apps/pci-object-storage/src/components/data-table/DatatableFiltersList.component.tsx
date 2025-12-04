@@ -76,6 +76,7 @@ export function DatatableFiltersList() {
         <Badge variant="information" className="py-0.5" key={key}>
           <span>{getFilterContent(filter)}</span>
           <Button
+            data-testid="remove-btn"
             mode="ghost"
             className="ml-2 p-0 size-4"
             onClick={() => columnFilters.removeFilter(filter)}

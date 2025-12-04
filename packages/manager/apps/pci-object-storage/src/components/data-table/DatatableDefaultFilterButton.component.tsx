@@ -87,7 +87,11 @@ const DataTableDefaultFilterButton = ({
   return (
     <DropdownMenu open={filtersOpen} onOpenChange={setFiltersOpen}>
       <DropdownMenuTrigger asChild>
-        <Button mode="outline" className="h-10 px-4">
+        <Button
+          mode="outline"
+          className="h-10 px-4"
+          data-testid="open-filter-menu-button"
+        >
           <FilterIcon className="size-4" />
           <span className="hidden md:block">
             {t('common_criteria_adder_filter_label')}
@@ -104,7 +108,7 @@ const DataTableDefaultFilterButton = ({
               setSelectedId(column);
             }}
           >
-            <SelectTrigger>
+            <SelectTrigger data-testid="select-operator-trigger">
               <SelectValue placeholder="Select a criteria" />
             </SelectTrigger>
             <SelectContent>
@@ -176,7 +180,7 @@ const DataTableDefaultFilterButton = ({
                 setValue(option);
               }}
             >
-              <SelectTrigger>
+              <SelectTrigger data-testid="input-select-trigger">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
