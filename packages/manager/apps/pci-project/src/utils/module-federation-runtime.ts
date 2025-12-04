@@ -1,18 +1,8 @@
 import { init } from '@module-federation/runtime';
 
-const isLabeuEnvironment = /\.labeu\./.test(window.location.hostname);
-
-const isStagingEnvironment = /\.dtci\./.test(window.location.hostname);
-
-const getWillPaymentUrl = () => {
-  if (isLabeuEnvironment) {
-    return 'https://www.build-ovh.com/order/payment/assets/remoteEntry.js';
-  }
-  if (isStagingEnvironment) {
-    return 'https://ovhcloudcomdev.static.ovh.net/order/payment/assets/remoteEntry.js';
-  }
-  return 'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
-};
+const getWillPaymentUrl = () =>
+  import.meta.env.VITE_WP_ENTRY_POINT ||
+  'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
 
 /**
  * Initialize Module Federation runtime
