@@ -486,7 +486,7 @@ export const Datagrid = <T,>({
                           onSortChange && header.column.getCanSort()
                             ? 'cursor-pointer'
                             : ''
-                        }`}
+                        } !min-w-0`}
                         {...{
                           ...(onSortChange && {
                             onClick: header.column.getToggleSortingHandler(),
@@ -539,6 +539,7 @@ export const Datagrid = <T,>({
                           {
                             'w-[2.5rem]': cell.id.indexOf('expander') !== -1,
                           },
+                          '!min-w-0',
                         )}
                         style={{
                           width: tableLayoutFixed
@@ -556,7 +557,10 @@ export const Datagrid = <T,>({
                   {row.getIsExpanded() && !!renderSubComponent && (
                     <tr className="sub-row">
                       {/* 2nd row is a custom 1 cell row */}
-                      <td colSpan={row.getVisibleCells().length}>
+                      <td
+                        className="!min-w-0"
+                        colSpan={row.getVisibleCells().length}
+                      >
                         {renderSubComponent(row, headerRefs)}
                       </td>
                     </tr>
