@@ -7,8 +7,8 @@ import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
 import { useLocations } from '@/common/data/hooks/useLocation';
-import { ContinentCode } from '@/common/types/continents.type';
 import { Location } from '@/common/types/location.type';
+import { ContinentCode } from '@/common/utils/location/continents';
 import { getContinentCodeFromGeographyCode } from '@/common/utils/location/continents';
 import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
 
