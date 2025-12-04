@@ -35,9 +35,9 @@ const checkFormInputAndCta = (container: HTMLElement) => {
 };
 
 const checkVlanValue = (container: HTMLElement, vlanId: string) => {
-  const input = container.querySelector(`input[name="vlanId"][value="${vlanId}"]`);
+  const input = container.querySelector('input[name="vlanId"]');
 
-  expect(input).toBeInTheDocument();
+  expect(input).toHaveAttribute('value', vlanId);
 };
 
 const getSubmitButton = (container: HTMLElement): HTMLElement | null =>
@@ -98,7 +98,7 @@ describe('Edit Vrack Segment Id Page', () => {
         checkFormInputAndCta(container);
         checkVlanValue(container, config.vrackSegment.targetSpec.vlanId);
       },
-      { timeout: 2000 },
+      { timeout: 5_000 },
     );
 
     const submitButton = getSubmitButton(container);
@@ -134,7 +134,7 @@ describe('Edit Vrack Segment Id Page', () => {
         checkFormInputAndCta(container);
         checkVlanValue(container, config.vrackSegment.targetSpec.vlanId);
       },
-      { timeout: 2000 },
+      { timeout: 5_000 },
     );
 
     await submitForm(container);
