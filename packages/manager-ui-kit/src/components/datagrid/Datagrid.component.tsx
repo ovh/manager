@@ -100,7 +100,11 @@ export const Datagrid = <T extends Record<string, unknown>>({
           setColumnVisibility={columnVisibility?.setColumnVisibility}
         />
       )}
-      <div className="overflow-auto relative w-full" ref={setTableContainerRef} style={containerStyle}>
+      <div
+        className="overflow-auto relative w-full"
+        ref={setTableContainerRef}
+        style={containerStyle}
+      >
         <Table className="table table-fixed w-full" size={size} variant={variant}>
           {!hideHeader && (
             <TableHeaderContent<T>

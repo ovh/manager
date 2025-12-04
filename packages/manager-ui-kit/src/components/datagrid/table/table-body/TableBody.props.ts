@@ -1,4 +1,4 @@
-import { JSX, MutableRefObject, RefObject } from 'react';
+import { JSX, MutableRefObject } from 'react';
 
 import type { Column, ExpandedState, Row, RowModel } from '@tanstack/react-table';
 
