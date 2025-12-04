@@ -20,11 +20,12 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { DownloadCode } from '@/components/DownloadCode/DownloadCode.component';
 import { useBackupVSPCTenantAgentDownloadLink } from '@/data/hooks/agents/getDownloadLinkAgent';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { OS } from '@/module.constants';
+import { OS_LABELS } from '@/module.constants';
+import { OS } from '@/types/Os.type';
 
 export default function DownloadAgentPage() {
   const selectOsId = useId();
-  const [osSelected, setOsSelected] = useState<keyof typeof OS>('LINUX');
+  const [osSelected, setOsSelected] = useState<OS>('LINUX');
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.AGENT, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
@@ -35,7 +36,7 @@ export default function DownloadAgentPage() {
     os: osSelected,
   });
 
-  const handleChangeDownloadLink = (osKey: keyof typeof OS) => {
+  const handleChangeDownloadLink = (osKey: OS) => {
     setOsSelected(osKey);
   };
 
@@ -55,11 +56,11 @@ export default function DownloadAgentPage() {
             id={selectOsId}
             name="os"
             value={osSelected}
-            onOdsChange={(e) => handleChangeDownloadLink(e.target.value as keyof typeof OS)}
+            onOdsChange={(e) => handleChangeDownloadLink(e.target.value as OS)}
           >
-            {Object.keys(OS).map((osKey) => (
+            {Object.keys(OS_LABELS).map((osKey) => (
               <option key={osKey} value={osKey}>
-                {OS[osKey as keyof typeof OS]}
+                {OS_LABELS[osKey as OS]}
               </option>
             ))}
           </OdsSelect>
