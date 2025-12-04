@@ -9,7 +9,7 @@ export const mockAgents: Resource<Agent>[] = [
       id: 'a1b2c3d4-1234-4000-85b0-badd52fc7a01',
       ip: ['192.168.1.10', '10.0.0.15'],
       name: 'prod-web-server-01',
-      policy: 'daily-backup-retention-30d',
+      policy: '14d-windows',
       type: 'BAREMETAL',
     },
     currentTasks: [],
