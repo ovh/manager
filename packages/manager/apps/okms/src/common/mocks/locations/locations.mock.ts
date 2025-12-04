@@ -133,6 +133,25 @@ export const LOCATION_CA_EAST_TOR: Location = {
   availabilityZones: ['ca-east-tor-a'],
 };
 
+export const LOCATION_US_WEST_LAX: Location = {
+  code: 'lax',
+  name: 'us-west-lz-lax',
+  location: 'North America (US - West - Los Angeles) (lz)',
+  type: 'LOCAL-ZONE',
+  specificType: 'LZ',
+  cardinalPoint: 'WEST',
+  openingYear: 2024,
+  cityName: 'Los Angeles',
+  cityCode: 'LAX',
+  cityLatitude: 34.05,
+  cityLongitude: -118.233333333333,
+  countryName: 'United States',
+  countryCode: 'US',
+  geographyName: 'North america',
+  geographyCode: 'us',
+  availabilityZones: ['us-west-lz-lax-a'],
+};
+
 export const LOCATION_AP_SOUTH_MUM: Location = {
   code: 'mum',
   name: 'ap-south-mum',
@@ -171,6 +190,25 @@ export const LOCATION_AP_SOUTHEAST_SGP: Location = {
   availabilityZones: ['ap-southeast-sgp-a'],
 };
 
+export const LOCATION_AF_NORTH_RBA: Location = {
+  code: 'rba',
+  name: 'af-north-lz-rba',
+  location: 'Africa (Morocco - Rabat) (lz)',
+  type: 'LOCAL-ZONE',
+  specificType: 'LZ',
+  cardinalPoint: 'NORTH',
+  openingYear: 2025,
+  cityName: 'Rabat',
+  cityCode: 'RBA',
+  cityLatitude: 19.4166666666667,
+  cityLongitude: -99.1166666666667,
+  countryName: 'Morocco',
+  countryCode: 'MA',
+  geographyName: 'Africa',
+  geographyCode: 'af',
+  availabilityZones: ['af-north-lz-rba-a'],
+};
+
 export const locationsMock: Location[] = [
   LOCATION_EU_WEST_GRA,
   LOCATION_EU_WEST_RBX,
@@ -179,6 +217,8 @@ export const locationsMock: Location[] = [
   LOCATION_EU_WEST_LIM,
   LOCATION_CA_EAST_BHS,
   LOCATION_CA_EAST_TOR,
+  LOCATION_US_WEST_LAX,
   LOCATION_AP_SOUTHEAST_SGP,
   LOCATION_AP_SOUTH_MUM,
+  LOCATION_AF_NORTH_RBA,
 ];

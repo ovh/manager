@@ -17,6 +17,7 @@ import {
   LOCATION_EU_WEST_SBG,
   locationsMock,
 } from '@/common/mocks/locations/locations.mock';
+import { CONTINENT_CODES } from '@/common/utils/location/continents';
 import { createErrorResponseMock, renderHookWithClient } from '@/common/utils/tests/testUtils';
 
 import { RegionOption, useRegionSelector } from './useRegionSelector';
@@ -86,14 +87,14 @@ const renderCustomHook = async (state: 'success' | 'error') => {
 
 const rbxRegionOptionMock: RegionOption = {
   region: LOCATION_EU_WEST_RBX.name,
-  continentCode: 'EUROPE',
+  continentCode: CONTINENT_CODES.EUROPE,
   // 2 OKMS in Roubaix, so redirect to the OKMS list page
   href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_RBX.name),
 };
 
 const sbgRegionOptionMock: RegionOption = {
   region: LOCATION_EU_WEST_SBG.name,
-  continentCode: 'EUROPE',
+  continentCode: CONTINENT_CODES.EUROPE,
   // 1 OKMS in Strasbourg, so redirect to the secrets listing page
   href: SECRET_MANAGER_ROUTES_URLS.secretList(okmsStrasbourg1Mock.id),
 };
@@ -136,7 +137,7 @@ describe('useRegionSelector tests suite', () => {
       expect(result.current.geographyGroups).toHaveLength(1);
 
       const europeGroup = result.current.geographyGroups[0];
-      expect(europeGroup?.continentCode).toBe('EUROPE');
+      expect(europeGroup?.continentCode).toBe(CONTINENT_CODES.EUROPE);
       expect(europeGroup?.regions).toHaveLength(2);
 
       // Check if regions are properly formatted
@@ -170,7 +171,7 @@ describe('useRegionSelector tests suite', () => {
       const { result } = await renderCustomHook('success');
 
       const europeGroup = result.current.geographyGroups.find(
-        (group) => group.continentCode === 'EUROPE',
+        (group) => group.continentCode === CONTINENT_CODES.EUROPE,
       );
       expect(europeGroup?.regions).toHaveLength(2); // Should still be 2, not 3
     });
