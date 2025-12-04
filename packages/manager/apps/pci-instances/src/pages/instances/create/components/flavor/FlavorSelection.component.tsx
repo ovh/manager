@@ -153,7 +153,6 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   };
 
   useEffect(() => {
-    if (!flavorId) return;
     const availablePreviousSelectedFlavor = flavors.find(
       (flavor) => flavor.id === flavorId,
     );
