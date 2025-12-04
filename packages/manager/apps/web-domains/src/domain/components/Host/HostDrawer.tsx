@@ -96,15 +96,18 @@ export default function HostDrawer({
         updateDomain(
           {
             checksum,
-            nameServers: dnsConfiguration.nameServers,
-            protectionState: targetSpec.protectionState,
-            hosts: [
-              ...hostsConfiguration.hosts,
-              {
-                host: `${values.host}.${serviceName}`,
-                ips: tranformIpsStringToArray(values.ips),
+            currentTargetSpec: targetSpec,
+            updatedSpec: {
+              hostsConfiguration: {
+                hosts: [
+                  ...hostsConfiguration.hosts,
+                  {
+                    host: `${values.host}.${serviceName}`,
+                    ips: tranformIpsStringToArray(values.ips),
+                  },
+                ],
               },
-            ],
+            },
           },
           {
             onSuccess: () => {
