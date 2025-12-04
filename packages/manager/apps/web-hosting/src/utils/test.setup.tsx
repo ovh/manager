@@ -114,12 +114,12 @@ vi.mock('@ovh-ux/muk', () => {
       ...props
     }: React.PropsWithChildren<{
       id?: string;
-      items?: Array<{ id: number; label: string }>;
+      items?: Array<{ id: number; label: string; onClick?: () => void }>;
       [key: string]: unknown;
     }>) => (
       <div data-testid="action-menu" data-id={id} {...props}>
         {items?.map((item) => (
-          <button key={item.id} data-testid={`action-item-${item.id}`}>
+          <button key={item.id} data-testid={`action-item-${item.id}`} onClick={item.onClick}>
             {item.label}
           </button>
         ))}
@@ -131,12 +131,30 @@ vi.mock('@ovh-ux/muk', () => {
       ...props
     }: React.PropsWithChildren<{
       id?: string;
-      links?: Array<{ id: number; label: string }>;
+      links?: Record<string, string>;
       [key: string]: unknown;
     }>) => (
       <div data-testid="action-menu" data-id={id} {...props}>
-        {links?.map((item) => (
-          <button key={item.id} data-testid={`action-item-${item.id}`}>
+        {links &&
+          Object.entries(links).map(([key, value]) => (
+            <a key={key} data-testid={`changelog-link-${key}`} href={value}>
+              {key}
+            </a>
+          ))}
+      </div>
+    ),
+    GuideMenu: ({
+      id,
+      items,
+      ...props
+    }: React.PropsWithChildren<{
+      id?: string;
+      items?: Array<{ id: number; label: string; href?: string; onClick?: () => void }>;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="guide-menu" data-id={id} {...props}>
+        {items?.map((item) => (
+          <button key={item.id} data-testid={`guide-item-${item.id}`} onClick={item.onClick}>
             {item.label}
           </button>
         ))}
@@ -195,33 +213,52 @@ vi.mock('@ovh-ux/muk', () => {
       title,
       description,
       children,
+      orderButtonLabel,
+      onOrderButtonClick,
     }: React.PropsWithChildren<{
       title: string;
       children: React.ReactNode;
       description: string;
+      orderButtonLabel?: string;
+      onOrderButtonClick?: () => void;
     }>) => (
       <main>
         <section aria-labelledby="onboarding-title">
           {title}
           {description}
         </section>
+        {orderButtonLabel && onOrderButtonClick && (
+          <button onClick={onOrderButtonClick} data-testid="onboarding-order-button">
+            {orderButtonLabel}
+          </button>
+        )}
         {children && <div>{children}</div>}
       </main>
     ),
     Badge: ({
       children,
-      itemStatus,
-      statusColor,
+      'data-testid': dataTestId,
+      color,
+      onClick,
+      ...props
     }: React.PropsWithChildren<{
       children: React.ReactNode;
-      itemStatus: string;
-      statusColor: string;
+      'data-testid'?: string;
+      color?: string;
+      onClick?: () => void;
+      [key: string]: unknown;
     }>) => (
-      <div>
-        <span data-testid={`badge-status-${itemStatus}`} color={statusColor}>
-          {children}
-        </span>
-      </div>
+      <span
+        data-testid={dataTestId}
+        color={color}
+        onClick={onClick}
+        onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        {...props}
+      >
+        {children}
+      </span>
     ),
     LinkCard: ({
       href,
@@ -275,7 +312,12 @@ vi.mock('@ovh-ux/muk', () => {
       filters: {},
       sorting: {},
     })),
-    useFormatDate: vi.fn((date: string) => `formatted-${date}`),
+    useFormatDate: vi.fn(() => (params: { date?: string; format?: string }) => {
+      if (params.date) {
+        return `formatted-${params.date}`;
+      }
+      return 'formatted-date';
+    }),
   };
 });
 /* eslint-enable react/no-multi-comp */

@@ -63,7 +63,7 @@ export default function LocalSeo() {
       </Button>
 
       <Datagrid
-        columns={flattenData?.length ? columns : []}
+        columns={flattenData ? columns : []}
         data={flattenData || []}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {

@@ -6,10 +6,9 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import { BUTTON_COLOR, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { Datagrid, useDataApi } from '@ovh-ux/muk';
+import { Datagrid, DatagridColumn, useDataApi } from '@ovh-ux/muk';
 
 import Loading from '@/components/loading/Loading.component';
-import { TaskDetailsType } from '@/data/types/product/webHosting';
 import useDatagridColumn from '@/hooks/task/useDatagridColumn';
 
 export default function Multisite() {
@@ -43,8 +42,8 @@ export default function Multisite() {
         </Button>
       </div>
       <Datagrid
-        columns={flattenData ? columns : []}
-        data={flattenData?.map((item) => item as TaskDetailsType) || []}
+        columns={columns as DatagridColumn<Record<string, unknown>>[]}
+        data={flattenData ?? []}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {
           void fetchNextPage();
