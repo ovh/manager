@@ -58,7 +58,6 @@
   "packages/manager/apps/pci-vouchers",
   "packages/manager/apps/pci-workflow",
   "packages/manager/apps/procedures",
-  "packages/manager/apps/public-cloud",
   "packages/manager/apps/restricted",
   "packages/manager/apps/sap-features-hub",
   "packages/manager/apps/sign-up",
