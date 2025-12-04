@@ -32,9 +32,13 @@ const renderPage = async (mockParams = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
-  await screen.findByTestId(
-    OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer,
-    {},
+  // Check if the drawer is open
+  await waitFor(
+    async () => {
+      expect(
+        await screen.findByTestId(OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer),
+      ).toBeInTheDocument();
+    },
     { timeout: 10_000 },
   );
 
