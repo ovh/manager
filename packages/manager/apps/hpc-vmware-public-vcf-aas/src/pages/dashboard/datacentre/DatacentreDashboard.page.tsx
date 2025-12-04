@@ -140,7 +140,11 @@ function DatacentreDashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
-      message={<MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />}
+      message={
+        vcdDatacentre?.data.resourceStatus && (
+          <MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />
+        )
+      }
       backLinkLabel={t('dashboard:managed_vcd_dashboard_back_link')}
       onClickReturn={() => navigate(urls.datacentres.replace(subRoutes.dashboard, id))}
     />

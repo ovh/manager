@@ -10,7 +10,7 @@ const openTerminateModal = async () => {
   expect(vcdActionMenu).toBeVisible();
   act(() => vcdActionMenu.click());
 
-  const terminateCta = await screen.findByTestId(`terminate-cta-${organizationList[0].id}`);
+  const terminateCta = await screen.findByTestId(`terminate-cta-${organizationList[0]?.id}`);
   expect(terminateCta).toBeVisible();
 
   act(() => {
