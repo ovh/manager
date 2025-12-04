@@ -72,7 +72,7 @@ angular.module('App').controller(
       );
       this.hostLink = coreURLBuilder.buildURL(
         'web-domains',
-        '#/domain/:serviceName/host',
+        '#/domain/:serviceName/hosts',
         { serviceName: this.$stateParams.productId },
       );
       this.dnssecLink = coreURLBuilder.buildURL(
