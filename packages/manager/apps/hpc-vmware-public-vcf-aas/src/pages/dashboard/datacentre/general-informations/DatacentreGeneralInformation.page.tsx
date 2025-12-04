@@ -4,8 +4,8 @@ import { Outlet } from 'react-router-dom';
 
 import { useVcdDatacentre, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 
-import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
+import { AsyncFallback } from '@/components/query/AsyncFallback.component';
 import DatacentreGenerationInformationTile from '@/components/tiles/datacentre-general-information-tile/DatacentreGeneralInformationTile.component';
 import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 
@@ -24,19 +24,12 @@ export default function DatacentresGeneralInformationPage() {
     error: datacentreError,
   } = useVcdDatacentre(id, vdcId);
 
-  if (isLoadingVcd || isLoadingDatacentre) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
+  const queryError = vcdError || datacentreError;
+  const emptyData = !vcdDatacentre?.data || !vcdOrganization?.data;
 
-  if (vcdError || datacentreError) {
-    return <Errors error={vcdError?.response || datacentreError?.response} />;
-  }
-
-  if (!vcdDatacentre?.data || !vcdOrganization?.data) return <Errors />;
+  if (isLoadingVcd || isLoadingDatacentre) return <AsyncFallback state="loading" />;
+  if (queryError) return <AsyncFallback state="error" error={queryError} />;
+  if (emptyData) return <AsyncFallback state="emptyError" />;
 
   return (
     <React.Suspense fallback={<Loading />}>

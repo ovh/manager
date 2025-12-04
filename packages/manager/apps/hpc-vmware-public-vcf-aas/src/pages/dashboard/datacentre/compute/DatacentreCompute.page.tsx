@@ -22,6 +22,7 @@ import {
   DatagridVHostProfilCell,
 } from '@/components/datagrid/compute/ComputeCells.component';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
+import { AsyncFallback } from '@/components/query/AsyncFallback.component';
 import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
@@ -39,7 +40,7 @@ export default function ComputeListingPage() {
   const navigate = useNavigate();
   const { data: features } = useFeatureAvailability([FEATURES.COMPUTE_SPECIAL_OFFER_BANNER]);
   const { trackClick } = useOvhTracking();
-  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const { data: vcdDatacentre, isLoading, error } = useVcdDatacentre(id, vdcId);
 
   const columns = [
     {
@@ -79,6 +80,10 @@ export default function ComputeListingPage() {
     },
   ] as DatagridColumn<unknown>[];
 
+  if (isLoading) return <AsyncFallback state="loading" />;
+  if (error) return <AsyncFallback state="error" error={error} />;
+  if (!vcdDatacentre?.data) return <AsyncFallback state="emptyError" />;
+
   return (
     <>
       {features?.[FEATURES.COMPUTE_SPECIAL_OFFER_BANNER] && (
@@ -112,7 +117,7 @@ export default function ComputeListingPage() {
           <OdsButton
             label={t('managed_vcd_vdc_compute_order_cta')}
             variant="outline"
-            isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+            isDisabled={isStatusTerminated(vcdDatacentre.data.resourceStatus)}
             onClick={() => {
               trackClick(TRACKING.compute.addVirtualHost);
               navigate(subRoutes.order);

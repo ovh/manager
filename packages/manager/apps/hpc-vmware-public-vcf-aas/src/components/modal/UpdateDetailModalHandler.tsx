@@ -15,6 +15,7 @@ import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 import { validateDescription, validateOrganizationName } from '@/utils/formValidation';
 
+import { AsyncFallback } from '../query/AsyncFallback.component';
 import { EditDetailModal } from './EditDetailModal';
 
 type OrganizationDetailName = 'name' | 'description';
@@ -35,8 +36,13 @@ export const UpdateDetailModalHandler = ({
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
   const { id } = useOrganisationParams();
-  const { data: vcdOrganization } = useVcdOrganization({ id });
-  const { updateDetails, error, isError, isPending } = useUpdateVcdOrganizationDetails({
+  const { data: vcdOrganization, isLoading, error } = useVcdOrganization({ id });
+  const {
+    updateDetails,
+    error: updateError,
+    isError: isUpdateError,
+    isPending,
+  } = useUpdateVcdOrganizationDetails({
     id,
     onSuccess: () => {
       addSuccess({
@@ -47,6 +53,11 @@ export const UpdateDetailModalHandler = ({
       closeModal();
     },
   });
+
+  if (isLoading) return <AsyncFallback state="loading" />;
+  if (error) return <AsyncFallback state="error" error={error} />;
+  if (!vcdOrganization?.data) return <AsyncFallback state="emptyError" />;
+
   const currentDetails: VCDOrganizationTargetSpec = vcdOrganization.data.targetSpec;
 
   const getOrganizationDetailKey = (key: OrganizationDetailName) => {
@@ -58,8 +69,8 @@ export const UpdateDetailModalHandler = ({
   };
   const getOrganizationDetailValue = (key: OrganizationDetailName) => {
     const details: TOrganizationDetails = {
-      name: vcdOrganization?.data?.currentState?.fullName,
-      description: vcdOrganization?.data?.currentState?.description,
+      name: vcdOrganization.data.currentState.fullName,
+      description: vcdOrganization.data.currentState.description,
     };
     return details[key];
   };
@@ -74,7 +85,7 @@ export const UpdateDetailModalHandler = ({
   return (
     <RedirectionGuard
       isLoading={isPending}
-      condition={isStatusTerminated(vcdOrganization?.data?.resourceStatus)}
+      condition={isStatusTerminated(vcdOrganization.data.resourceStatus)}
       route={'..'}
     >
       <EditDetailModal
@@ -93,7 +104,7 @@ export const UpdateDetailModalHandler = ({
           })
         }
         onCloseModal={closeModal}
-        error={isError ? error : null}
+        error={isUpdateError ? updateError : null}
         isLoading={isPending}
       />
     </RedirectionGuard>

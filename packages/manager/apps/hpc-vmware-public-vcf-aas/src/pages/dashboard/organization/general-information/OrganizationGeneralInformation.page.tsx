@@ -2,8 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import { isStatusTerminated, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 
-import Errors from '@/components/error/Error.component';
-import Loading from '@/components/loading/Loading.component';
+import { AsyncFallback } from '@/components/query/AsyncFallback.component';
 import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
@@ -14,8 +13,6 @@ export default function GeneralInformation() {
   const { id } = useOrganisationParams();
   const {
     data: vcdOrganization,
-    isError,
-    isRefetchError,
     error,
     isLoading,
   } = useVcdOrganization({
@@ -23,16 +20,9 @@ export default function GeneralInformation() {
     refetchInterval: 60 * 1000,
   });
 
-  if (isLoading) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
-
-  if (isError || isRefetchError) return <Errors error={error?.response} />;
-  if (!vcdOrganization?.data) return <Errors />;
+  if (isLoading) return <AsyncFallback state="loading" />;
+  if (error) return <AsyncFallback state="error" error={error} />;
+  if (!vcdOrganization?.data) return <AsyncFallback state="emptyError" />;
 
   return (
     <div className="grid gap-8 px-10 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">

@@ -1,8 +1,9 @@
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-react-components';
 
+import { AsyncFallback } from '@/components/query/AsyncFallback.component';
 import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { useCurrentUser } from '@/hooks/user/useCurrentUser';
 
@@ -20,7 +21,7 @@ export default function ServiceRenewTileItem() {
   const { dateTimeFormat } = useCurrentUser();
   const nextBillingDate = serviceDetails?.data?.billing?.nextBillingDate;
 
-  if (isLoading) return <OdsSkeleton />;
+  if (isLoading) return <AsyncFallback state="skeletonLoading" />;
   if (isError || !nextBillingDate) return <OdsText>-</OdsText>;
 
   return <OdsText>{dateTimeFormat?.format(new Date(nextBillingDate))}</OdsText>;
