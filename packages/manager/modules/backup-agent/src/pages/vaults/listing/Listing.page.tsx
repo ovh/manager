@@ -1,7 +1,5 @@
 import React, { Suspense } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
@@ -28,17 +26,13 @@ export default function ListingPage() {
     <Suspense>
       <Datagrid
         topbar={
-          <div className="flex justify-between" role="toolbar" aria-label={t('more_action')}>
-            <Link className="block" to="/#/">
-              <OdsButton
-                label={t(`${BACKUP_AGENT_NAMESPACES.VAULT_LISTING}:order_vault`)}
-              ></OdsButton>
-            </Link>
+          <div className="flex justify-end" role="toolbar" aria-label={t('more_action')}>
             <OdsButton
               icon="refresh"
               color="primary"
               onClick={void reloadDatagrid}
               isLoading={isLoading}
+              variant="outline"
               data-arialabel={t(`${NAMESPACES.ACTIONS}:refresh`)}
               label=""
             />

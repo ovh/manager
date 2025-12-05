@@ -1,6 +1,6 @@
-import React, { Suspense, startTransition, useContext, useMemo } from 'react';
+import React, { Suspense, useContext, useMemo } from 'react';
 
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,6 @@ import { useDashboardTabs } from './_hooks/useDashboardTabs';
 export default function MainLayout() {
   const { appName } = useContext(BackupAgentContext);
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.COMMON, NAMESPACES.ACTIONS]);
-  const navigate = useNavigate();
 
   const location = useLocation();
   const { trackClick } = useOvhTracking();
@@ -31,16 +30,10 @@ export default function MainLayout() {
     [tabs, location.pathname],
   );
 
-  const onNavigateBackClicked = () => {
-    startTransition(() => navigate(`../}`));
-  };
-
   return (
     <BaseLayout
       header={{ title: LABELS.BACKUP_AGENT }}
       message={<Notifications />}
-      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
-      onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
       tabs={
         <OdsTabs>

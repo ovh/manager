@@ -4,7 +4,7 @@ import { useHref } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
@@ -45,7 +45,7 @@ export const AgentActionsCell = ({ tenantId, agentId }: AgentActionsCellProps) =
 
   return (
     <DataGridTextCell>
-      <ActionMenu id={id} items={actions} isCompact />
+      <ActionMenu id={id} items={actions} isCompact variant={ODS_BUTTON_VARIANT.ghost} />
     </DataGridTextCell>
   );
 };

@@ -2,7 +2,7 @@ import { useHref } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
@@ -31,7 +31,7 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
   });
 
   return (
-    <ManagerTile>
+    <ManagerTile className="h-fit">
       <ManagerTile.Title>{t(`${NAMESPACES.BILLING}:subscription`)}</ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
@@ -39,7 +39,7 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
           {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:installed_agents`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : installedAgentsText}
+          {isLoading ? <OdsSkeleton /> : <OdsText>{installedAgentsText}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
@@ -48,7 +48,7 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
           {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:connected_vaults`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : connectedVaultsText}
+          {isLoading ? <OdsSkeleton /> : <OdsText>{connectedVaultsText}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />

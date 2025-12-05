@@ -148,7 +148,7 @@ export const EditConfigurationPage = () => {
               className="w-full"
             >
               <RhfField.Label>{t(`${NAMESPACES.DASHBOARD}:name`)}</RhfField.Label>
-              <RhfField.Input />
+              <RhfField.Input isReadonly />
             </RhfField>
             <RhfField
               controllerParams={register('serviceName')}
@@ -156,11 +156,11 @@ export const EditConfigurationPage = () => {
               className="w-full"
             >
               <RhfField.Label>{t('service')}</RhfField.Label>
-              <RhfField.Input isReadonly={true} />
+              <RhfField.Input isReadonly />
             </RhfField>
             <RhfField controllerParams={register('ip')} control={control} className="w-full">
               <RhfField.Label>{t(`${NAMESPACES.SYSTEM}:address_ip`)}</RhfField.Label>
-              <RhfField.Input isReadonly={true} />
+              <RhfField.Input isReadonly />
             </RhfField>
 
             <RhfField
