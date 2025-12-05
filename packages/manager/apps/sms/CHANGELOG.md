@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.72](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@9.0.71...@ovh-ux/manager-sms-app@9.0.72) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms-app
+
+
+
+
+
 ## [9.0.71](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@9.0.70...@ovh-ux/manager-sms-app@9.0.71) (2025-12-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms-app

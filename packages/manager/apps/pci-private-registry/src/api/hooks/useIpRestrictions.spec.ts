@@ -158,8 +158,14 @@ describe('useUpdateIpRestriction Hook Tests', () => {
       );
 
       if (onSuccessCalled) expect(onSuccess).toHaveBeenCalled();
-      if (onErrorCalled)
-        expect(onError).toHaveBeenCalledWith(mockResponse, params, undefined);
+      if (onErrorCalled) {
+        expect(onError).toHaveBeenCalledWith(
+          mockResponse,
+          params,
+          undefined,
+          expect.any(Object),
+        );
+      }
     },
   );
 });
