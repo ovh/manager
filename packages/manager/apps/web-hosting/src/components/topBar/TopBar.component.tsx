@@ -7,12 +7,13 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsButton, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications, useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 
 import { useCreateDomainCertificates } from '@/data/hooks/ssl/useSsl';
-import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { WebsiteType } from '@/data/types/product/website';
 import { ServiceStatus } from '@/data/types/status';
 import { subRoutes, urls } from '@/routes/routes.constants';
+import { APIV2_MAX_PAGESIZE } from '@/utils';
 
 export default function Topbar() {
   const navigate = useNavigate();
@@ -20,7 +21,11 @@ export default function Topbar() {
   const { addSuccess, addWarning } = useNotifications();
 
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
-  const { data } = useWebHostingAttachedDomain({ shouldFetchAll: true });
+  const { flattenData } = useResourcesIcebergV2<WebsiteType>({
+    route: `/webhosting/resource/${serviceName}/attachedDomain`,
+    queryKey: ['webhosting', 'resource', serviceName, 'attachedDomain'],
+    pageSize: APIV2_MAX_PAGESIZE,
+  });
 
   const { t } = useTranslation('ssl');
 
@@ -44,7 +49,7 @@ export default function Topbar() {
   };
 
   return (
-    <div className="flex flex-col space-y-10 mb-10">
+    <div className="mb-10 flex flex-col space-y-10">
       <div className="flex space-x-4">
         <OdsButton
           size={ODS_BUTTON_SIZE.sm}
@@ -74,11 +79,10 @@ export default function Topbar() {
               setSelectedDomains(v.detail.value?.toString()?.split(','));
             }}
           >
-            {data
+            {flattenData
               ?.filter(
                 (item) =>
                   item?.currentState?.ssl?.status !== ServiceStatus.ACTIVE &&
-                  item?.currentState?.hosting?.serviceName === serviceName &&
                   !item?.currentState?.isDefault,
               )
               ?.map((it) => (
