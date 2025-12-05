@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -20,6 +20,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import {
   Datagrid,
   FilterAdd,
@@ -30,19 +31,21 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { usePaginatedClusterNodePools } from '@/api/hooks/node-pools';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { useDatagridColumns } from '@/pages/detail/nodepools/useDatagridColumn';
 import queryClient from '@/queryClient';
 
 export default function NodePoolsPage() {
-  const { projectId, kubeId } = useParams();
+  const { projectId, kubeId } = useParam('projectId', 'kubeId');
   const [searchField, setSearchField] = useState('');
   const { t } = useTranslation(['node-pool', 'filter', 'kube-nodes']);
-  const filterPopoverRef = useRef(undefined);
+
   const navigate = useNavigate();
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
-  const columns = useDatagridColumns();
+
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const { data: pools, isPending: isPoolsPending } = usePaginatedClusterNodePools(
@@ -53,15 +56,21 @@ export default function NodePoolsPage() {
     sorting,
   );
 
+  const { data: cluster } = useKubernetesCluster(projectId, kubeId);
+
   const refresh = async () =>
     queryClient.invalidateQueries({
       queryKey: ['project', projectId, 'kubernetes', kubeId, 'nodePools'],
     });
+  const isStandardPlan = cluster?.plan === 'standard';
+  const has3AZFeature = use3AZPlanAvailable();
+
+  const columns = useDatagridColumns({ showFloatingIp: has3AZFeature && isStandardPlan });
 
   return (
     <>
       <Notifications />
-      <div className="sm:flex items-center justify-between mt-4">
+      <div className="mt-4 items-center justify-between sm:flex">
         <div className="flex flex-row">
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
@@ -79,7 +88,7 @@ export default function NodePoolsPage() {
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
-            className="xs:mb-0.5 sm:mb-0 ml-0.5"
+            className="ml-0.5 xs:mb-0.5 sm:mb-0"
             onClick={() => {
               refresh();
             }}
@@ -93,7 +102,7 @@ export default function NodePoolsPage() {
           </OsdsButton>
         </div>
 
-        <div className="justify-between flex">
+        <div className="flex justify-between">
           <OsdsSearchBar
             className="w-[70%]"
             value={searchField}
@@ -111,7 +120,7 @@ export default function NodePoolsPage() {
               setSearchField('');
             }}
           />
-          <OsdsPopover ref={filterPopoverRef}>
+          <OsdsPopover>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}
@@ -169,7 +178,6 @@ export default function NodePoolsPage() {
                     ...addedFilter,
                     label: column.label,
                   });
-                  filterPopoverRef.current?.closeSurface();
                 }}
               />
             </OsdsPopoverContent>

@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { TCreateNodePoolParam } from '@/types';
+import { TAttachFloatingIPs, TCreateNodePoolParam } from '@/types';
 
 type TRawClusterNodePool = {
   id: string;
@@ -22,6 +22,7 @@ type TRawClusterNodePool = {
   updatedAt: string;
   location?: string;
   availabilityZones?: string[];
+  attachFloatingIPs?: TAttachFloatingIPs;
   autoscaling: {
     scaleDownUtilizationThreshold: number;
     scaleDownUnneededTimeSeconds: number;
@@ -49,6 +50,7 @@ export type TClusterNodePool = Pick<
   | 'desiredNodes'
   | 'autoscale'
   | 'availabilityZones'
+  | 'attachFloatingIPs'
   | 'monthlyBilled'
   | 'createdAt'
   | 'status'
@@ -87,6 +89,9 @@ export const getClusterNodePools = async (
         ...(item.availabilityZones && {
           availabilityZones: item.availabilityZones,
         }),
+        ...(item.attachFloatingIPs && {
+          attachFloatingIPs: item.attachFloatingIPs,
+        }),
       }) as TClusterNodePool,
   );
 };
@@ -94,18 +99,19 @@ export const getClusterNodePools = async (
 export const deleteNodePool = async (projectId: string, clusterId: string, poolId: string) =>
   v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`);
 
-export type TUpdateNodePoolSizeParam = {
+export type TUpdateNodePoolParam = {
   desiredNodes: number;
   minNodes?: number;
   maxNodes?: number;
   autoscale: boolean;
+  attachFloatingIPs?: TAttachFloatingIPs;
 };
 
-export const updateNodePoolSize = async (
+export const updateNodePool = async (
   projectId: string,
   clusterId: string,
   poolId: string,
-  param: TUpdateNodePoolSizeParam,
+  param: TUpdateNodePoolParam,
 ) => v6.put(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`, param);
 
 export const createNodePool = (projectId: string, clusterId: string, param: TCreateNodePoolParam) =>

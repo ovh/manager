@@ -10,5 +10,7 @@
   "pci_project_flavors_billing_price_monthly_floatingip_price_label": "IP flutuante:",
   "pci_projects_project_instances_add_total_price_label": "Total:",
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} /hora + IVA",
-  "pci_projects_project_instances_configure_billing_type": "Configure o tipo de faturação"
+  "pci_projects_project_instances_configure_billing_type": "Configure o tipo de faturação",
+  "pci_projects_project_instances_configure_billing_type_description": "Você pode mudar da cobrança horária para a tarifa mensal para cada nó, na vista de edição do pool de nós.",
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Preço incluindo o custo das Floating IPs"
 }

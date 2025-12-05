@@ -97,7 +97,7 @@ export default function DeletePage(): ReactElement {
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._400}
-              className="block mt-6"
+              className="mt-6 block"
             >
               {tKubeNodes('kube_nodes_delete_confirmation', {
                 node: node?.name,
@@ -107,7 +107,7 @@ export default function DeletePage(): ReactElement {
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._400}
-              className="block mt-6"
+              className="mt-6 block"
             >
               {tKubeNodes('kube_nodes_delete_warning')}
             </OsdsText>

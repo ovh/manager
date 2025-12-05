@@ -101,7 +101,7 @@ export function RegionSelector({
           )}
           {selectedRegionIsDisabled && (
             <OsdsText
-              className="font-bold p-6 flex pt-0"
+              className="flex p-6 pt-0 font-bold"
               color={ODS_THEME_COLOR_INTENT.error}
               level={ODS_TEXT_LEVEL.body}
               size={ODS_TEXT_SIZE._400}

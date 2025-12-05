@@ -59,7 +59,7 @@ export const GatewayModeSelector = ({ initialValue, onSelect }: Readonly<Gateway
   return (
     <>
       <OsdsRadioGroup
-        className="block mt-4 ml-[1.5rem]"
+        className="ml-8 mt-4 block"
         name="mode"
         value={gatewayMode || ModeEnum.AUTO}
         onOdsValueChange={({ detail }) => {
@@ -85,7 +85,7 @@ export const GatewayModeSelector = ({ initialValue, onSelect }: Readonly<Gateway
       </OsdsRadioGroup>
       {gatewayMode === 'custom' && (
         <OsdsFormField
-          className="mt-4 ml-[3rem]"
+          className="ml-[3rem] mt-4"
           error={
             gatewayIp.hasError
               ? tAdd('kubernetes_network_form_gateway_vrack_field_ip_error_pattern')

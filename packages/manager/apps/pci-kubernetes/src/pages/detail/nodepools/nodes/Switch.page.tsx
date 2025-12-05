@@ -65,7 +65,7 @@ export default function SwitchPage(): ReactElement {
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._400}
-              className="block mt-6"
+              className="mt-6 block"
             >
               {tKubeNodes('kube_nodes_switch_to_monthly_billing_desc', {
                 instanceName: node?.name,
@@ -75,7 +75,7 @@ export default function SwitchPage(): ReactElement {
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._400}
-              className="block mt-6"
+              className="mt-6 block"
             >
               {tKubeNodes('kube_nodes_switch_to_monthly_billing_info')}
             </OsdsText>

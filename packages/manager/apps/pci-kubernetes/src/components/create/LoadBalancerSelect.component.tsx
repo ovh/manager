@@ -38,7 +38,7 @@ export default function LoadBalancerSelect({
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
-        className="block my-8 flex items-center"
+        className="my-8 block flex items-center"
         onClick={() => setIsExpanded((e) => !e)}
       >
         <>
@@ -58,7 +58,7 @@ export default function LoadBalancerSelect({
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.heading}
           size={ODS_TEXT_SIZE._300}
-          className="block mb-5"
+          className="mb-5 block"
         >
           {t('kubernetes_network_form_load_balancers_subnet')}
         </OsdsText>

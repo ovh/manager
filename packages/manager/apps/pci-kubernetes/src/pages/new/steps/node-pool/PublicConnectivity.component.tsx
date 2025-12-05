@@ -1,0 +1,145 @@
+import { useContext } from 'react';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import {
+  Icon,
+  Link,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  TEXT_PRESET,
+  Text,
+  Toggle,
+  ToggleControl,
+  ToggleLabel,
+} from '@ovhcloud/ods-react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { IAM_AUTHENTICATION_INFOS, IAM_AUTHENTICATION_INFOS_PRICE } from '@/constants';
+
+type PublicConnectivityProps = {
+  disabled?: boolean;
+  checked: boolean;
+  onChange: (enabled: boolean) => void;
+  price: { hourFormatted: string | null; monthFormatted: string | null } | null;
+};
+
+const PublicConnectivity = ({
+  disabled = false,
+  checked,
+  onChange,
+  price,
+}: PublicConnectivityProps) => {
+  const { t } = useTranslation('node-pool');
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const priceDoc =
+    IAM_AUTHENTICATION_INFOS_PRICE[ovhSubsidiary as keyof typeof IAM_AUTHENTICATION_INFOS_PRICE] ??
+    IAM_AUTHENTICATION_INFOS_PRICE.DEFAULT;
+
+  const ipDoc =
+    IAM_AUTHENTICATION_INFOS[ovhSubsidiary as keyof typeof IAM_AUTHENTICATION_INFOS] ??
+    IAM_AUTHENTICATION_INFOS.DEFAULT;
+
+  return (
+    <div className="max-w-3xl">
+      <Text className="my-6 font-bold text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
+        {t('kube_common_node_pool_public_connetivity_title')}
+      </Text>
+      <div className="mb-6">
+        <div className="flex gap-4">
+          <Popover>
+            <Toggle
+              withLabels
+              disabled={disabled}
+              checked={checked}
+              onCheckedChange={(detail) => onChange(detail.checked)}
+            >
+              <ToggleControl />
+              <ToggleLabel className=" text-[--ods-color-text]" color="text">
+                <span className="font-semibold">
+                  {t('kube_common_node_pool_public_connetivity_toggle')}
+                </span>
+                {price && (
+                  <span> {` (${price?.hourFormatted} / ${t('kube_common_node_pool_node')})`}</span>
+                )}
+              </ToggleLabel>
+            </Toggle>
+            <PopoverTrigger asChild>
+              <Icon
+                className="cursor-help text-[1.3rem] text-[--ods-color-primary-500]"
+                name="circle-question"
+              />
+            </PopoverTrigger>
+            <PopoverContent className="max-w-[500px] p-4">
+              <div className="p-6">
+                <Text className="ml-4" color="text">
+                  <Trans
+                    ns="node-pool"
+                    components={{
+                      strong: <strong />,
+                    }}
+                    i18nKey="kube_common_node_pool_deploy_floating_ip_content1"
+                  />
+                </Text>
+                <ul>
+                  <li>
+                    <Trans
+                      ns="node-pool"
+                      components={{
+                        strong: <strong />,
+                      }}
+                      i18nKey="kube_common_node_pool_deploy_floating_ip_content2"
+                    />
+                  </li>
+                  <li>
+                    <Trans
+                      ns="node-pool"
+                      components={{
+                        a: <Link target="_blank" href={priceDoc} />,
+                      }}
+                      i18nKey="kube_common_node_pool_deploy_floating_ip_content3"
+                    />
+                  </li>
+                  <li>{t('kube_common_node_pool_deploy_floating_ip_content4')}</li>
+                </ul>
+                <Text className="font-bold">
+                  <Icon name="triangle-exclamation" className="mr-2 inline-block" />
+                  {t('kube_common_node_pool_public_connectivity_warning_title')}
+                </Text>
+                <Text color="text">
+                  <Trans
+                    ns="node-pool"
+                    components={{ strong: <strong /> }}
+                    i18nKey="kube_common_node_pool_public_connectivity_warning_description_rolling"
+                  />
+                </Text>
+                <Text color="text">
+                  <Trans
+                    ns="node-pool"
+                    i18nKey="kube_common_node_pool_public_connectivity_warning_description_in_place"
+                    components={{ strong: <strong /> }}
+                  />
+
+                  <Trans
+                    ns="node-pool"
+                    i18nKey={'kube_common_node_pool_public_connectivity_warning_description_more'}
+                    components={{
+                      strong: <strong />,
+                      a: <Link target="_blank" href={ipDoc} />,
+                    }}
+                  />
+                  {'.'}
+                </Text>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PublicConnectivity;

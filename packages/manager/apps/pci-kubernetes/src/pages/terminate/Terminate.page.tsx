@@ -148,7 +148,7 @@ export default function TerminatePage() {
                 onOdsValueChange={handleInputDeleteChange}
                 className={
                   formState.hasError
-                    ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
+                    ? 'border-red-500 bg-red-100 text-red-500 focus:text-red-500'
                     : 'border-color-[var(--ods-color-default-200)] bg-white'
                 }
                 onOdsInputBlur={() => {

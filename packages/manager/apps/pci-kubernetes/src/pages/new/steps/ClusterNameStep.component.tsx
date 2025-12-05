@@ -72,7 +72,7 @@ export function ClusterNameStep({ onNameChange, onSubmit, step }: Readonly<Clust
     </>
   ) : (
     <OsdsText
-      className="block w-[20rem]"
+      className="block w-80"
       level={ODS_TEXT_LEVEL.heading}
       size={ODS_TEXT_SIZE._200}
       color={ODS_THEME_COLOR_INTENT.text}

@@ -7,5 +7,5 @@ type TPciCardFooterProps = PropsWithChildren<{
 }>;
 
 export const PciCardFooter = ({ children, className }: TPciCardFooterProps) => (
-  <div className={clsx('flex gap-4 justify-between', className)}>{children}</div>
+  <div className={clsx('flex justify-between gap-4', className)}>{children}</div>
 );

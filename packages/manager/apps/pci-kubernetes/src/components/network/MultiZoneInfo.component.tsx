@@ -22,7 +22,7 @@ const MultiZoneInfo = () => {
     <OsdsMessage
       type={ODS_MESSAGE_TYPE.info}
       color={ODS_TEXT_COLOR_INTENT.info}
-      className="flex my-2"
+      className="my-2 flex"
     >
       <div>
         <OsdsText

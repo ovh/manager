@@ -92,13 +92,13 @@ function ClusterEtcd() {
   }, [percentage]);
 
   return (
-    <div className="w-full p-3 my-4">
+    <div className="my-4 w-full p-3">
       <OsdsProgressBar color={getColorByPercentage(percentage)} value={percentage} max={100} />
       <OsdsText
         size={ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}
         color={ODS_TEXT_COLOR_INTENT.text}
-        className="mt-4 float-right"
+        className="float-right mt-4"
       >
         {formatBytes(used, 2, 1024)} / {formatBytes(total, 2, 1024)}
       </OsdsText>

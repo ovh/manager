@@ -96,7 +96,7 @@ export default function DeletePage(): ReactElement {
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._400}
-              className="block mt-6"
+              className="mt-6 block"
             >
               {tNodePoolDelete('kube_node_pool_delete_confirmation', {
                 node: pool?.name,
@@ -106,7 +106,7 @@ export default function DeletePage(): ReactElement {
               level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._400}
-              className="block mt-6"
+              className="mt-6 block"
             >
               {tNodePoolDelete('kube_node_pool_delete_warning')}
             </OsdsText>

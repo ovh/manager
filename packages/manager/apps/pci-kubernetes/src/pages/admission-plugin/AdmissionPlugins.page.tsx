@@ -113,7 +113,7 @@ const AdmissionPluginsModal = () => {
       onOdsModalClose={onClose}
     >
       {isPending || isMutationUpdating ? (
-        <div className="text-center my-10" data-testid="wrapper">
+        <div className="my-10 text-center" data-testid="wrapper">
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
         </div>
       ) : (
@@ -141,8 +141,8 @@ const AdmissionPluginsModal = () => {
           <div className="my-10">
             {!isPending &&
               pluginData?.map((plugin, index) => (
-                <div key={plugin.name} className="my-8 mx-4">
-                  <div className="flex flex-col items-baseline md:flex-row  my-3, justify-between">
+                <div key={plugin.name} className="mx-4 my-8">
+                  <div className="my-3, flex flex-col items-baseline  justify-between md:flex-row">
                     <OsdsPopover>
                       <span slot="popover-trigger">
                         <OsdsText
@@ -211,7 +211,7 @@ const AdmissionPluginsModal = () => {
           </div>
         </>
       )}
-      <div className="flex space-x-5 justify-end">
+      <div className="flex justify-end space-x-5">
         <OsdsButton
           slot="actions"
           inline

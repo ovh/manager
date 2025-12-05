@@ -90,7 +90,7 @@ export default function ListPage() {
           title={t('kube_list_title')}
           headerButton={
             <>
-              <div className="min-w-[7rem]">
+              <div className="min-w-28">
                 <PciGuidesHeader category="kubernetes" />
               </div>
             </>
@@ -106,7 +106,7 @@ export default function ListPage() {
         <FileStorageAlert onRemove={() => setShowStorageModal(false)} />
       )}
 
-      <div className="sm:flex items-center justify-between mt-4">
+      <div className="mt-4 items-center justify-between sm:flex">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.flat}
@@ -126,7 +126,7 @@ export default function ListPage() {
           {t('kube_list_cluster_create')}
         </OsdsButton>
 
-        <div className="justify-between flex">
+        <div className="flex justify-between">
           <OsdsSearchBar
             className="w-[70%]"
             value={searchField}

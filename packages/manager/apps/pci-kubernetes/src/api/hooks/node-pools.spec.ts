@@ -5,7 +5,7 @@ import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 import * as ApiNodePoolsModule from '@/api/data/node-pools';
 import { TClusterNodePool } from '@/api/data/node-pools';
-import { useClusterNodePools, useUpdateNodePoolSize } from '@/api/hooks/node-pools';
+import { useClusterNodePools, useUpdateNodePool } from '@/api/hooks/node-pools';
 import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@ovh-ux/manager-core-utils');
@@ -47,7 +47,7 @@ describe('useClusterNodePools', () => {
   });
 });
 
-describe('useUpdateNodePoolSize', () => {
+describe('useUpdateNodePool', () => {
   it('updates node pool size successfully', async () => {
     const mockSuccess = vi.fn();
     const mockError = vi.fn();
@@ -57,10 +57,10 @@ describe('useUpdateNodePoolSize', () => {
       maxNodes: 5,
       autoscale: true,
     };
-    vi.spyOn(ApiNodePoolsModule, 'updateNodePoolSize').mockResolvedValue({} as never);
+    vi.spyOn(ApiNodePoolsModule, 'updateNodePool').mockResolvedValue({} as never);
     const { result } = renderHook(
       () =>
-        useUpdateNodePoolSize({
+        useUpdateNodePool({
           projectId: 'project1',
           clusterId: 'cluster1',
           poolId: 'pool1',
@@ -70,7 +70,7 @@ describe('useUpdateNodePoolSize', () => {
       { wrapper },
     );
     act(() => {
-      result.current.updateSize(param);
+      result.current.update(param);
     });
     await waitFor(() => expect(mockSuccess).toHaveBeenCalled());
     expect(mockError).not.toHaveBeenCalled();

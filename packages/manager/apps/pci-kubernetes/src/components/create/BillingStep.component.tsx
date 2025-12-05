@@ -3,27 +3,16 @@ import { ReactElement } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsIcon,
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+  Card,
+  ICON_NAME,
+  Icon,
+  Link,
+  Message,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import {
   convertHourlyPriceToMonthly,
@@ -42,13 +31,21 @@ const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 export type TBillingStepProps = {
   price: number | null;
   monthlyPrice?: number;
-  selectedAvailabilityZonesNumber?: number | null;
+  selectedAvailabilityZonesNumber?: number;
+  numberOfNodes?: number | null;
+  priceFloatingIp?: { hour: number | null; month: number | null } | null;
   monthlyBilling: {
     isComingSoon: boolean;
     isChecked: boolean;
     check: (val: boolean) => void;
   };
   warn: boolean;
+};
+
+const calculatePrice = (basePrice: number | null, zonesNumber = 1, optionalPrice = 0): number => {
+  const price = Number(basePrice);
+
+  return zonesNumber * (price + optionalPrice);
 };
 
 export default function BillingStep(props: TBillingStepProps): ReactElement {
@@ -66,173 +63,123 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
   const savingsPlanUrl = `${projectURL}/savings-plan`;
   const showSavingPlan = useSavingsPlanAvailable();
 
-  const calculatePrice = (basePrice: number | null, zonesNumber?: number | null): number => {
-    const price = Number(basePrice);
-    return zonesNumber ? zonesNumber * price : price;
-  };
-  const computedPrice = calculatePrice(props.price, props.selectedAvailabilityZonesNumber);
+  const computedPrice = calculatePrice(
+    props.price,
+    props.selectedAvailabilityZonesNumber,
+    (props.priceFloatingIp?.hour ?? 0) * (props.numberOfNodes ?? 0),
+  );
   const hourlyPrice = getFormattedHourlyCatalogPrice(computedPrice);
   const monthlyPrice = getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(computedPrice));
+  const monthlyLegacyPrice = getFormattedMonthlyCatalogPrice(
+    (props.monthlyPrice ?? 0) + (props.priceFloatingIp?.month ?? 0),
+  );
   return (
-    <>
+    <div className="max-w-3xl">
       <div className="my-6">
-        <OsdsText
-          className="mb-4 font-bold block"
-          color={ODS_TEXT_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._400}
-        >
+        <Text className="my-6 text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
           {t('flavor-billing:pci_projects_project_instances_configure_billing_type')}
-        </OsdsText>
+        </Text>
         {props.monthlyBilling.isComingSoon && showSavingPlan ? (
-          <OsdsMessage
-            data-testid="coming_soon_message"
-            type={ODS_MESSAGE_TYPE.info}
-            color={ODS_THEME_COLOR_INTENT.info}
-          >
-            <div className="flex flex-col">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('kubernetes_add_billing_savings_plan_banner')}
-              </OsdsText>
-              <OsdsLink
-                className="mt-2 flex items-center"
-                target={OdsHTMLAnchorElementTarget._blank}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                href={savingsPlanUrl}
-              >
-                {t('kubernetes_add_billing_savings_plan_cta')}
-                <OsdsIcon
-                  className="ml-5"
-                  aria-hidden="true"
-                  name={ODS_ICON_NAME.ARROW_RIGHT}
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-              </OsdsLink>
-            </div>
-          </OsdsMessage>
+          <div className="max-w-3xl">
+            <Message data-testid="coming_soon_message" color="information" dismissible={false}>
+              <MessageIcon name={ICON_NAME.circleInfo} />
+              <div className="flex flex-col">
+                <Text>{t('kubernetes_add_billing_savings_plan_banner')}</Text>
+                <Link className="mt-2 flex items-baseline" target="_blank" href={savingsPlanUrl}>
+                  {t('kubernetes_add_billing_savings_plan_cta')}
+                  <Icon className="size-3" aria-hidden="true" name="arrow-right" />
+                </Link>
+              </div>
+            </Message>
+          </div>
         ) : (
-          <OsdsText
-            data-testid="billing_description"
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-          >
+          <Text data-testid="billing_description">
             {t('add:kube_add_billing_type_description')}{' '}
             {props.monthlyPrice &&
               props.monthlyPrice > 0 &&
               t('add:kubernetes_add_billing_type_description_monthly')}
-          </OsdsText>
+          </Text>
         )}
       </div>
 
-      <div className="flex gap-10 my-8">
-        <OsdsTile
+      <div className="my-8 flex gap-10">
+        <Card
           data-testid="hourly_tile"
-          className={clsx(!props.monthlyBilling.isChecked ? checkedClass : uncheckedClass, 'w-1/2')}
+          className={clsx(
+            !props.monthlyBilling.isChecked ? checkedClass : uncheckedClass,
+            'w-1/2 p-[--ods-size-tile-md-padding]',
+          )}
           onClick={() => {
             props.monthlyBilling.check(false);
           }}
         >
-          <div className="w-full">
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('flavor-billing:pci_project_flavors_billing_hourly')}
-            </OsdsText>
+          <div className="w-full ">
+            <Text>{t('flavor-billing:pci_project_flavors_billing_hourly')}</Text>
             <hr className={separatorClass} />
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="block"
-            >
-              <strong>
+            <Text className="block">
+              <span className="font-bold">
                 {t('flavor-billing:pci_project_flavors_billing_price_hourly_price_label')}
-              </strong>
+              </span>
               {hourlyPrice}
-            </OsdsText>
-            <OsdsText
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              <strong>{t('node-pool:kube_common_node_pool_estimation_cost_tile')}:</strong>
+            </Text>
+            <Text>
+              <span className="font-bold">
+                {t('node-pool:kube_common_node_pool_estimation_cost_tile')}:{' '}
+              </span>
               {monthlyPrice}
-            </OsdsText>
+            </Text>
+            {props.priceFloatingIp && (
+              <Text className="block italic">
+                {t(
+                  'flavor-billing:pci_projects_project_instances_configure_billing_type_floating_ip_cost',
+                )}
+              </Text>
+            )}
           </div>
-        </OsdsTile>
+        </Card>
 
         {!props.monthlyBilling.isComingSoon && (
-          <OsdsTile
+          <Card
             data-testid="monthly_tile"
             className={clsx(
               props.monthlyBilling.isChecked ? checkedClass : uncheckedClass,
-              'w-1/2',
+              'w-1/2 p-[--ods-size-tile-md-padding]',
             )}
-            checked={props.monthlyBilling.isChecked}
             onClick={() => {
               props.monthlyBilling.check(true);
             }}
           >
             <div className="w-full">
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('flavor-billing:pci_project_flavors_billing_monthly')}
-              </OsdsText>
+              <Text>{t('flavor-billing:pci_project_flavors_billing_monthly')}</Text>
               <hr className={separatorClass} />
-              <OsdsText
-                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                className="block"
-              >
-                <strong>
+              <Text className="block">
+                <span className="font-bold">
                   {t(
                     'flavor-billing:pci_project_flavors_billing_price_monthly_instance_price_label',
                   )}
-                </strong>
-                {` ${getFormattedMonthlyCatalogPrice(props.monthlyPrice ?? 0)}`}
-              </OsdsText>
+                </span>
+                {monthlyLegacyPrice}
+              </Text>
+              {props.priceFloatingIp && (
+                <Text className="block italic">
+                  {t(
+                    'flavor-billing:pci_projects_project_instances_configure_billing_type_floating_ip_cost',
+                  )}
+                </Text>
+              )}
             </div>
-          </OsdsTile>
+          </Card>
         )}
       </div>
 
       {props.warn && (
-        <OsdsMessage
-          data-testid="warn_message"
-          type={ODS_MESSAGE_TYPE.warning}
-          color={ODS_THEME_COLOR_INTENT.warning}
-          className="my-6"
-        >
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {t('kubernetes_add_billing_auto_scaling_monthly_warning')}
-          </OsdsText>
-        </OsdsMessage>
+        <Message data-testid="warn_message" color="warning" className="my-6" dismissible={false}>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <Text>{t('kubernetes_add_billing_auto_scaling_monthly_warning')}</Text>
+        </Message>
       )}
 
-      <OsdsText
-        level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-        className="block"
-      >
-        {t('kubernetes_add_billing_type_payment_method')}
-      </OsdsText>
-    </>
+      <Text className="block">{t('kubernetes_add_billing_type_payment_method')}</Text>
+    </div>
   );
 }

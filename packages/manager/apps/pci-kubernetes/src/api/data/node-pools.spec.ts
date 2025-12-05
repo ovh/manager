@@ -2,7 +2,7 @@ import { describe, it, vi } from 'vitest';
 
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { deleteNodePool, getClusterNodePools, updateNodePoolSize } from '@/api/data/node-pools';
+import { deleteNodePool, getClusterNodePools, updateNodePool } from '@/api/data/node-pools';
 
 describe('getClusterNodePools', () => {
   it('fetches cluster node pools successfully', async () => {
@@ -89,7 +89,7 @@ describe('deleteNodePool', () => {
   });
 });
 
-describe('updateNodePoolSize', () => {
+describe('updateNodePool', () => {
   it('updates node pool size successfully', async () => {
     const param = {
       desiredNodes: 3,
@@ -98,7 +98,7 @@ describe('updateNodePoolSize', () => {
       autoscale: true,
     };
     vi.mocked(v6.put).mockResolvedValue({});
-    await updateNodePoolSize('project1', 'cluster1', 'pool1', param);
+    await updateNodePool('project1', 'cluster1', 'pool1', param);
     expect(v6.put).toHaveBeenCalledWith(
       '/cloud/project/project1/kube/cluster1/nodepool/pool1',
       param,
@@ -113,7 +113,7 @@ describe('updateNodePoolSize', () => {
       autoscale: true,
     };
     vi.mocked(v6.put).mockRejectedValue(new Error('Network Error'));
-    await expect(updateNodePoolSize('project1', 'cluster1', 'pool1', param)).rejects.toThrow(
+    await expect(updateNodePool('project1', 'cluster1', 'pool1', param)).rejects.toThrow(
       'Network Error',
     );
   });

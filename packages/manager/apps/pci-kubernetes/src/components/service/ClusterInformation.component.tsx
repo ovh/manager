@@ -64,8 +64,8 @@ export default function ClusterInformation({ kubeDetail }: Readonly<ClusterInfor
   useEffect(() => () => clearNotifications(), [clearNotifications]);
 
   return (
-    <OsdsTile className="flex-col w-full shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
-      <div className="flex flex-col w-full">
+    <OsdsTile className="w-full flex-col shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
+      <div className="flex w-full flex-col">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.heading}
@@ -165,7 +165,7 @@ export default function ClusterInformation({ kubeDetail }: Readonly<ClusterInfor
             </OsdsText>
 
             {has3AZ && (
-              <div className="ml-2 mb-4">
+              <div className="mb-4 ml-2">
                 <RegionChipByType
                   data-testId={regionInformations?.type}
                   showTooltip={false}

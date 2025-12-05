@@ -80,7 +80,7 @@ const PlanTile = ({
           (isPendingPlans ? (
             <Spinner size="md" />
           ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 my-6">
+            <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {sortedPlans.map((plan) => (
                 <RadioTile
                   disabled={planIsDisabled(plan.value)}
@@ -106,7 +106,7 @@ const PlanTile = ({
                     <Divider />
                   </div>
 
-                  <div className="text-sm flex flex-col px-6 py-4 gap-3">
+                  <div className="flex flex-col gap-3 px-6 py-4 text-sm">
                     <PlanTile.Content
                       disabled={planIsDisabled(plan.value)}
                       contents={plan.content}
@@ -180,10 +180,10 @@ PlanTile.LockedView = function PlanTileLockedView({ value }: { value: TClusterPl
 
   return (
     <RadioTile labelClassName="border-[--ods-color-primary-200] border">
-      <div className="p-6 flex-col w-full ">
+      <div className="w-full flex-col p-6 ">
         <h5
           data-testid="plan-header-locked"
-          className="capitalize m-0 font-bold text-[--ods-color-text-500] text-base"
+          className="m-0 text-base font-bold capitalize text-[--ods-color-text-500]"
         >
           {t(plan.title)}
         </h5>
@@ -217,7 +217,7 @@ PlanTile.Header = function PlanTileHeader({
       <div className="flex flex-wrap gap-4">
         <h5
           data-testid="plan-header"
-          className="capitalize font-bold  text-lg text-[--ods-color-element-background-selected] mb-0 mt-0"
+          className="my-0 text-lg  font-bold capitalize text-[--ods-color-element-background-selected]"
         >
           {t(title)}
         </h5>
@@ -279,7 +279,7 @@ PlanTile.Footer = function PlanTileFooter({
     : null;
 
   if (isDisabled)
-    return <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100 min-h-10" />;
+    return <div className=" mt-auto min-h-10 w-full rounded-b-md border-none bg-neutral-100" />;
 
   return (
     <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
