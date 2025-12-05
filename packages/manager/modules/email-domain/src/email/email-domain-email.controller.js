@@ -99,7 +99,7 @@ export default class EmailDomainEmailCtrl {
           ? 'https://mail.ovh.net/'
           : null;
         this.webOMMUrl = this.coreConfig.isRegion('EU')
-          ? 'https://omm.ovh.net/'
+          ? 'https://omm.ovhcloud.com/'
           : null;
         this.domains = allDomains;
         this.quotas = quotas;

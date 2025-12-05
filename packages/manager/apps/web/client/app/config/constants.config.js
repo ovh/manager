@@ -410,7 +410,7 @@ module.exports = {
         domainOrderTrade:
           "https://www.ovh.com/fr/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         domainWebmailUrl: 'https://mail.ovh.net/',
-        domainOMMUrl: 'https://omm.ovh.net/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
         bulkChangeOwner:
