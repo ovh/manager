@@ -26,6 +26,7 @@ import DatagridColumnContact from '@/domain/components/DatagridColumns/Domain/Da
 import DatagridColumnDnsType from '@/domain/components/DatagridColumns/Domain/DatagridColumnDnsType';
 import DatagridColumnDns from '@/domain/components/DatagridColumns/Domain/DatagridColumnDns';
 import DatagridColumnActions from '@/domain/components/DatagridColumns/Domain/DatagridColumnActions';
+import { capitalize } from '@/domain/utils/helpers';
 
 interface DomainDatagridColumnsProps {
   readonly openModal: (serviceNames: string[]) => void;
@@ -215,35 +216,35 @@ export const useDomainDatagridColumns = ({
       filterOptions: [
         {
           value: NameServerTypeEnum.ANYCAST,
-          label: NameServerTypeEnum.ANYCAST,
+          label: capitalize(NameServerTypeEnum.ANYCAST),
         },
         {
           value: NameServerTypeEnum.MIXED,
-          label: NameServerTypeEnum.MIXED,
+          label: capitalize(NameServerTypeEnum.MIXED),
         },
         {
           value: NameServerTypeEnum.HOSTING,
-          label: NameServerTypeEnum.HOSTING,
+          label: capitalize(NameServerTypeEnum.HOSTING),
         },
         {
           value: NameServerTypeEnum.EMPTY,
-          label: NameServerTypeEnum.EMPTY,
+          label: capitalize(NameServerTypeEnum.EMPTY),
         },
         {
           value: NameServerTypeEnum.EXTERNAL,
-          label: NameServerTypeEnum.EXTERNAL,
+          label: capitalize(NameServerTypeEnum.EXTERNAL),
         },
         {
           value: NameServerTypeEnum.HOLD,
-          label: NameServerTypeEnum.HOLD,
+          label: capitalize(NameServerTypeEnum.HOLD),
         },
         {
           value: NameServerTypeEnum.HOSTED,
-          label: NameServerTypeEnum.HOSTED,
+          label: capitalize(NameServerTypeEnum.HOSTED),
         },
         {
           value: NameServerTypeEnum.PARKING,
-          label: NameServerTypeEnum.PARKING,
+          label: capitalize(NameServerTypeEnum.PARKING),
         },
       ],
       enableHiding: true,
