@@ -2,10 +2,10 @@ import { Location, useLocation, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCode, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { Code, SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { Modal } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Modal } from '@ovh-ux/muk';
 
 import {
   useGetDeploymentLogs,
@@ -70,42 +70,43 @@ export default function LastDeploymentGitModal() {
   return (
     <Modal
       heading={t('last_deployment_git')}
-      onDismiss={onClose}
-      isOpen
-      onPrimaryButtonClick={() => {
-        void handleRefresh();
+      onOpenChange={onClose}
+      open={true}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: () => {
+          void handleRefresh();
+        },
       }}
-      onSecondaryButtonClick={onClose}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: onClose,
+      }}
     >
       {isFetching ? (
-        <div className="flex justify-center items-center h-48">
-          <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
+        <div className="flex h-48 items-center justify-center">
+          <Spinner size={SPINNER_SIZE.lg} />
         </div>
       ) : isError ? (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {String(error?.message ?? t('common:unknown'))}
-        </OdsText>
+        <Text preset={TEXT_PRESET.paragraph}>{String(error?.message ?? t('common:unknown'))}</Text>
       ) : logs?.length ? (
-        <OdsCode className="whitespace-pre-wrap break-words text-sm text-white">
-          {logs?.map((log) => {
-            const rawDate = log.date;
-            const formattedDate =
-              rawDate instanceof Date
-                ? rawDate.toLocaleString()
-                : rawDate
-                  ? new Date(rawDate).toLocaleString()
-                  : t('common:unknown');
+        <Code className="whitespace-pre-wrap break-words text-sm text-white">
+          {logs
+            ?.map((log) => {
+              const rawDate = log.date;
+              const formattedDate =
+                rawDate instanceof Date
+                  ? rawDate.toLocaleString()
+                  : rawDate
+                    ? new Date(rawDate).toLocaleString()
+                    : t('common:unknown');
 
-            return (
-              <span key={`${formattedDate}-${log.message ?? ''}`}>
-                {`${formattedDate}: ${log.message ?? ''}`}
-                <br />
-              </span>
-            );
-          })}
-        </OdsCode>
+              return `${formattedDate}: ${log.message ?? ''}`;
+            })
+            .join('\n')}
+        </Code>
       ) : (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:no_data')}</OdsText>
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:no_data')}</Text>
       )}
     </Modal>
   );

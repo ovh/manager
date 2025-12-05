@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 
@@ -7,7 +7,10 @@ import {
   getWebHostingWebsiteDomainQueryKey,
   postWebHostingWebsites,
 } from '@/data/api/webHosting';
-import { PostWebHostingWebsitePayload } from '@/data/types/product/webHosting';
+import {
+  PostWebHostingWebsitePayload,
+  WebHostingWebsiteType,
+} from '@/data/types/product/webHosting';
 import queryClient from '@/utils/queryClient';
 
 export const useWebHostingWebsiteDomain = (serviceName: string, id: string) => {
@@ -15,6 +18,20 @@ export const useWebHostingWebsiteDomain = (serviceName: string, id: string) => {
     queryKey: getWebHostingWebsiteDomainQueryKey(serviceName, id),
     queryFn: () => getWebHostingWebsiteDomain(serviceName, id),
     enabled: false,
+  });
+};
+
+export const useWebHostingWebsiteDomains = (
+  serviceName: string,
+  websites: WebHostingWebsiteType[] | undefined,
+) => {
+  return useQueries({
+    queries:
+      websites?.map((website) => ({
+        queryKey: getWebHostingWebsiteDomainQueryKey(serviceName, website.id),
+        queryFn: () => getWebHostingWebsiteDomain(serviceName, website.id),
+        enabled: !!website.id,
+      })) ?? [],
   });
 };
 

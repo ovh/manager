@@ -5,27 +5,33 @@ import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsInput, OdsMessage, OdsTab, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  INPUT_TYPE,
+  Icon,
+  Input,
+  MESSAGE_COLOR,
+  Message,
+  TEXT_PRESET,
+  Tab,
+  TabList,
+  Tabs,
+  Text,
+} from '@ovhcloud/ods-react';
 
+import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,
-  ChangelogButton,
-  GuideButton,
-  GuideItem,
+  ChangelogMenu,
+  GuideMenu,
   Notifications,
   OvhSubsidiary,
-  useResourcesIcebergV6,
-} from '@ovh-ux/manager-react-components';
-import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+  useDataApi,
+} from '@ovh-ux/muk';
 
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import ExpirationDate from '@/components/expirationDate/ExpirationDate.component';
-import Tabs from '@/components/tabs/Tabs.component';
 import {
   useGetHostingService,
   useUpdateHostingService,
@@ -44,10 +50,13 @@ export default function Layout() {
   const { t } = useTranslation('dashboard');
   const isOverridedPage = useOverridePage();
   const { data } = useGetHostingService(serviceName);
-  const { flattenData } = useResourcesIcebergV6<EmailOptionType>({
+
+  const { flattenData } = useDataApi<EmailOptionType>({
+    version: 'v6',
     route: `/hosting/web/${serviceName}/emailOption`,
-    queryKey: ['hosting', 'web', serviceName, 'emailOption'],
+    cacheKey: ['hosting', 'web', serviceName, 'emailOption'],
   });
+
   const [newDisplayName, setNewDisplayName] = useState<string>('');
   const [editDisplayName, setEditDisplayName] = useState<boolean>(false);
   const [onUpdateError, setOnUpdateError] = useState<boolean>(false);
@@ -187,87 +196,88 @@ export default function Layout() {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
 
-  const guideItems: GuideItem[] = [
+  const guideItems = [
     {
       id: 1,
       href: GUIDE_URL[ovhSubsidiary as OvhSubsidiary] || GUIDE_URL.DEFAULT,
       target: '_blank',
-      label: t('web_hosting_header_guide_general_informations'),
+      children: t('web_hosting_header_guide_general_informations'),
     },
   ];
 
   return (
     <BaseLayout breadcrumb={<Breadcrumb />}>
-      <div className="flex items-center justify-between mt-10">
+      <div className="mt-10 flex items-center justify-between">
         {editDisplayName ? (
-          <div className="w-2/3 mb-4">
-            <OdsInput
+          <div className="mb-4 w-2/3">
+            <Input
               className="w-2/3"
               name="edit-detail"
-              type="text"
+              type={INPUT_TYPE.text}
               defaultValue={data?.displayName || data?.serviceName}
-              onOdsChange={(e) => setNewDisplayName(e.target.value as string)}
-              ariaLabel="edit-input"
+              onChange={(e) => setNewDisplayName(e.target.value)}
+              aria-label="edit-input"
             />
-            <OdsButton
-              variant={ODS_BUTTON_VARIANT.ghost}
-              icon={ODS_ICON_NAME.check}
-              onClick={onConfirm}
-              label=""
-            ></OdsButton>
-            <OdsButton
-              variant={ODS_BUTTON_VARIANT.ghost}
-              icon={ODS_ICON_NAME.xmark}
-              label=""
+            <Button variant={BUTTON_VARIANT.ghost} onClick={onConfirm}>
+              <Icon name={ICON_NAME.check} aria-hidden="true" />
+            </Button>
+            <Button
+              variant={BUTTON_VARIANT.ghost}
               onClick={() => setEditDisplayName(!editDisplayName)}
-            ></OdsButton>
+            >
+              <Icon name={ICON_NAME.xmark} aria-hidden="true" />
+            </Button>
           </div>
         ) : (
-          <div>
-            <OdsText preset={ODS_TEXT_PRESET.heading1}>
-              {data?.displayName || data?.serviceName}
-            </OdsText>
-            <OdsButton
-              variant={ODS_BUTTON_VARIANT.ghost}
-              icon={ODS_ICON_NAME.pen}
-              label=""
+          <div className="flex items-center gap-2">
+            <Text preset={TEXT_PRESET.heading1}>{data?.displayName || data?.serviceName}</Text>
+            <Button
+              variant={BUTTON_VARIANT.ghost}
               onClick={() => setEditDisplayName(!editDisplayName)}
-            ></OdsButton>
+            >
+              <Icon name={ICON_NAME.pen} aria-hidden="true" />
+            </Button>
           </div>
         )}
-        <div className="flex flex-wrap gap-5 justify-end">
-          <ChangelogButton links={CHANGELOG_LINKS} />
-          <GuideButton items={guideItems} />
+        <div className="flex flex-wrap justify-end gap-5">
+          <ChangelogMenu links={CHANGELOG_LINKS} />
+          <GuideMenu items={guideItems} />
         </div>
       </div>
       {!isOverridedPage && (
         <>
-          <div className="flex items-center justify-between mb-7">
-            <OdsText>{data?.serviceName}</OdsText>
+          <div className="mb-7 flex items-center justify-between">
+            <Text>{data?.serviceName}</Text>
           </div>
           <ExpirationDate />
           {onUpdateError && (
-            <OdsMessage
+            <Message
               className="mb-10 w-full"
-              color={ODS_MESSAGE_COLOR.warning}
-              isDismissible
-              onOdsRemove={() => {
+              color={MESSAGE_COLOR.warning}
+              dismissible
+              onRemove={() => {
                 setOnUpdateError(false);
               }}
             >
               {t('hosting_dashboard_loading_error')}
-            </OdsMessage>
+            </Message>
           )}
           <Notifications />
-          <div className=" mt-8 mb-6">
-            <Tabs>
-              {tabs.map((tab: DashboardTab) => (
-                <a href={tab.to} className="no-underline" key={tab.name}>
-                  <OdsTab isSelected={tab.name === activeTab?.name} role="tab">
-                    {tab.title}
-                  </OdsTab>
-                </a>
-              ))}
+          <div className=" mb-6 mt-8">
+            <Tabs withArrows defaultValue={tabs[0].name}>
+              <TabList>
+                {tabs.map((tab: DashboardTab) => (
+                  <a href={tab.to} className="no-underline" key={tab.name}>
+                    <Tab
+                      key={tab.name}
+                      value={tab.title}
+                      aria-selected={tab.name === activeTab?.name}
+                    >
+                      {tab.title}
+                    </Tab>
+                  </a>
+                ))}
+              </TabList>
             </Tabs>
           </div>
         </>

@@ -5,17 +5,24 @@ import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsInput,
-  OdsQuantity,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  Input,
+  Quantity,
+  QuantityControl,
+  QuantityInput,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 
 import { CDN_ADVANCED } from '@/constants';
 import {
@@ -59,7 +66,7 @@ export default function CdnCacheRuleModal() {
       ruleName: modifiedOption?.name || '',
       patternType: modifiedOption?.config?.patternType || 'extension',
       pattern: modifiedOption?.pattern || '',
-      ttl: unitTime?.timeValue || null,
+      ttl: unitTime?.timeValue || 0,
       ttlUnit: unitTime?.timeUnit || null,
       priority: modifiedOption?.config?.priority || null,
     },
@@ -112,198 +119,188 @@ export default function CdnCacheRuleModal() {
   };
 
   return (
-    <form>
-      <Modal
-        heading={
-          modifiedOption
-            ? t('cdn_shared_modal_set_rule_title', {
-                ruleName: modifiedOption?.name,
-              })
-            : t('cdn_shared_modal_add_rule_title')
-        }
-        onDismiss={onClose}
-        isOpen
-        primaryLabel={t(
-          `cdn_shared_modal_add_rule_btn_${modifiedOption ? 'set_rule' : 'validate_rule'}`,
-        )}
-        secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-        onSecondaryButtonClick={onClose}
-        onPrimaryButtonClick={() => void handleSubmit(onSubmit)()}
-        isPrimaryButtonDisabled={!canValidate}
-      >
-        <div className="flex flex-col space-y-3">
-          <OdsText>{t('cdn_shared_modal_add_rule_info')}</OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-6">
-            {t('cdn_shared_option_cache_rule_table_header_rule_name')}
-          </OdsText>
-          <Controller
-            name="ruleName"
-            control={control}
-            render={({ field }) => (
-              <OdsInput
-                name="ruleName"
-                type="text"
-                isDisabled={Boolean(modifiedOption)}
-                value={field.value}
-                onOdsChange={(e) => field.onChange(e.target.value)}
-              />
-            )}
-          />
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-6">
-            {t('cdn_shared_modal_add_rule_field_resource_type')}
-          </OdsText>
-          <OdsText>
-            {t(`cdn_shared_modal_add_rule_${enableOnlyExtension ? 'resource_info' : 'info'}`)}
-          </OdsText>
-          <Controller
-            name="patternType"
-            control={control}
-            render={({ field }) => (
-              <>
-                <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    {...field}
-                    value="extension"
-                    isChecked={field.value === 'extension'}
-                    isDisabled={Boolean(modifiedOption)}
-                    onOdsChange={() => field.onChange('extension')}
-                  />
-                  <label>
-                    <OdsText preset={ODS_TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_extension')}
-                    </OdsText>
-                  </label>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    {...field}
-                    value="folder"
-                    isChecked={field.value === 'folder'}
-                    isDisabled={enableOnlyExtension}
-                    onOdsChange={() => field.onChange('folder')}
-                  />
-                  <label>
-                    <OdsText preset={ODS_TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_folder')}
-                    </OdsText>
-                  </label>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    {...field}
-                    value="regex"
-                    isChecked={field.value === 'regex'}
-                    isDisabled={enableOnlyExtension}
-                    onOdsChange={() => field.onChange('regex')}
-                  />
-                  <label>
-                    <OdsText preset={ODS_TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_regex')}
-                    </OdsText>
-                  </label>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <OdsRadio
-                    {...field}
-                    value="uri"
-                    isChecked={field.value === 'uri'}
-                    isDisabled={enableOnlyExtension}
-                    onOdsChange={() => field.onChange('uri')}
-                  />
-                  <label>
-                    <OdsText preset={ODS_TEXT_PRESET.span}>
-                      {t('cdn_shared_modal_add_rule_field_resource_uri')}
-                    </OdsText>
-                  </label>
-                </div>
-              </>
-            )}
-          />
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-6">
-            {t('cdn_shared_modal_add_rule_field_resource')}
-          </OdsText>
-          <OdsText>{t('cdn_shared_modal_add_rule_field_resource_extension_info')}</OdsText>
-          <Controller
-            name="pattern"
-            control={control}
-            render={({ field }) => (
-              <OdsInput
-                name="pattern"
-                type="text"
-                value={field.value}
-                isDisabled={Boolean(modifiedOption)}
-                onOdsChange={(e) => field.onChange(e.target.value)}
-              />
-            )}
-          />
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-6">
-            {t('cdn_shared_modal_add_rule_field_time_to_live')}
-          </OdsText>
-          <OdsText>{t('cdn_shared_modal_add_rule_field_time_to_live_info')}</OdsText>
-          <div className="flex flex-row">
-            <Controller
-              name="ttl"
-              control={control}
-              render={({ field }) => (
-                <OdsInput
-                  name="ttl"
-                  type="number"
-                  value={field.value}
-                  onOdsChange={(e) => field.onChange(e.target.value)}
-                />
-              )}
+    <Modal
+      heading={
+        modifiedOption
+          ? t('cdn_shared_modal_set_rule_title', {
+              ruleName: modifiedOption?.name,
+            })
+          : t('cdn_shared_modal_add_rule_title')
+      }
+      dismissible={true}
+      open={true}
+      onOpenChange={onClose}
+      primaryButton={{
+        label: t(`cdn_shared_modal_add_rule_btn_${modifiedOption ? 'set_rule' : 'validate_rule'}`),
+        onClick: () => void handleSubmit(onSubmit)(),
+        disabled: !canValidate,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: onClose,
+      }}
+    >
+      <div className="flex flex-col space-y-3">
+        <Text>{t('cdn_shared_modal_add_rule_info')}</Text>
+        <Text preset={TEXT_PRESET.caption} className="mt-6">
+          {t('cdn_shared_option_cache_rule_table_header_rule_name')}
+        </Text>
+        <Controller
+          name="ruleName"
+          control={control}
+          render={({ field }) => (
+            <Input
+              name="ruleName"
+              type="text"
+              disabled={Boolean(modifiedOption)}
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
             />
-            <Controller
-              name="ttlUnit"
-              control={control}
-              render={({ field }) => (
-                <OdsSelect
-                  className="w-2/6"
-                  name="ttlUnit"
-                  value={field.value}
-                  onOdsChange={(e) => field.onChange(e.target.value)}
-                >
-                  <option
-                    key="unit_minutes"
-                    value={t('cdn_shared_modal_add_rule_field_time_to_live_unit_minutes')}
-                  >
-                    {t('cdn_shared_modal_add_rule_field_time_to_live_unit_minutes')}
-                  </option>
-                  <option
-                    key="unit_hours"
-                    value={t('cdn_shared_modal_add_rule_field_time_to_live_unit_hours')}
-                  >
-                    {t('cdn_shared_modal_add_rule_field_time_to_live_unit_hours')}
-                  </option>
-                  <option
-                    key="unit_days"
-                    value={t('cdn_shared_modal_add_rule_field_time_to_live_unit_days')}
-                  >
-                    {t('cdn_shared_modal_add_rule_field_time_to_live_unit_days')}
-                  </option>
-                </OdsSelect>
-              )}
+          )}
+        />
+        <Text preset={TEXT_PRESET.caption} className="mt-6">
+          {t('cdn_shared_modal_add_rule_field_resource_type')}
+        </Text>
+        <Text>
+          {t(`cdn_shared_modal_add_rule_${enableOnlyExtension ? 'resource_info' : 'info'}`)}
+        </Text>
+        <Controller
+          name="patternType"
+          control={control}
+          render={({ field }) => (
+            <>
+              <RadioGroup value={field.value} onChange={field.onChange}>
+                <div className="flex items-center gap-4">
+                  <Radio {...field} value="extension" disabled={Boolean(modifiedOption)}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_extension')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Radio {...field} value="folder" disabled={enableOnlyExtension}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_folder')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Radio {...field} value="regex" disabled={enableOnlyExtension}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_regex')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Radio {...field} value="uri" disabled={enableOnlyExtension}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.span}>
+                        {t('cdn_shared_modal_add_rule_field_resource_uri')}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+              </RadioGroup>
+            </>
+          )}
+        />
+        <Text preset={TEXT_PRESET.caption} className="mt-6">
+          {t('cdn_shared_modal_add_rule_field_resource')}
+        </Text>
+        <Text>{t('cdn_shared_modal_add_rule_field_resource_extension_info')}</Text>
+        <Controller
+          name="pattern"
+          control={control}
+          render={({ field }) => (
+            <Input
+              name="pattern"
+              type="text"
+              value={field.value}
+              disabled={Boolean(modifiedOption)}
+              onChange={(e) => field.onChange(e.target.value)}
             />
-          </div>
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-6">
-            {t('cdn_shared_modal_add_rule_field_order_by')}
-          </OdsText>
-          <OdsText>{t('cdn_shared_modal_add_rule_field_order_by_info')}</OdsText>
+          )}
+        />
+        <Text preset={TEXT_PRESET.caption} className="mt-6">
+          {t('cdn_shared_modal_add_rule_field_time_to_live')}
+        </Text>
+        <Text>{t('cdn_shared_modal_add_rule_field_time_to_live_info')}</Text>
+        <div className="flex flex-row">
           <Controller
-            name="priority"
+            name="ttl"
             control={control}
             render={({ field }) => (
-              <OdsQuantity
-                min={1}
+              <Input
+                name="ttl"
+                type="number"
                 value={field.value}
-                name="priority"
-                className="mt-2 block"
-                onOdsChange={(e) => field.onChange(e.detail.value)}
+                onChange={(e) => field.onChange(e.target.value)}
               />
+            )}
+          />
+          <Controller
+            name="ttlUnit"
+            control={control}
+            render={({ field }) => (
+              <Select
+                className="w-2/6"
+                id="ttlUnit"
+                data-testid="ttlUnit"
+                name="ttlUnit"
+                value={field.value ? [field.value] : []}
+                onValueChange={(detail) => field.onChange(detail.value[0])}
+                items={[
+                  {
+                    label: t('cdn_shared_modal_add_rule_field_time_to_live_unit_minutes'),
+                    value: t('cdn_shared_modal_add_rule_field_time_to_live_unit_minutes'),
+                  },
+                  {
+                    label: t('cdn_shared_modal_add_rule_field_time_to_live_unit_hours'),
+                    value: t('cdn_shared_modal_add_rule_field_time_to_live_unit_hours'),
+                  },
+                  {
+                    label: t('cdn_shared_modal_add_rule_field_time_to_live_unit_days'),
+                    value: t('cdn_shared_modal_add_rule_field_time_to_live_unit_days'),
+                  },
+                ]}
+              >
+                <SelectControl />
+                <SelectContent />
+              </Select>
             )}
           />
         </div>
-      </Modal>
-    </form>
+        <Text preset={TEXT_PRESET.caption} className="mt-6">
+          {t('cdn_shared_modal_add_rule_field_order_by')}
+        </Text>
+        <Text>{t('cdn_shared_modal_add_rule_field_order_by_info')}</Text>
+        <Controller
+          name="priority"
+          control={control}
+          render={({ field }) => (
+            <Quantity
+              min={1}
+              name="priority"
+              className="mt-2 block"
+              onValueChange={(detail) => field.onChange(detail.value[0])}
+            >
+              <QuantityControl>
+                <QuantityInput />
+              </QuantityControl>
+            </Quantity>
+          )}
+        />
+      </div>
+    </Modal>
   );
 }

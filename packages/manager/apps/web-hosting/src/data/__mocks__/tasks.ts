@@ -3,7 +3,7 @@ import { OngoingTaskStatus } from '../types/status';
 
 export const tasksMocks: TaskDetailsType[] = [
   {
-    id: '474990512',
+    id: 'a47dd264-a9ac-41bc-99b7-54b879afc54a',
     status: OngoingTaskStatus.DOING,
     function: 'attachedDomain/create',
     objectId: '30533272',
@@ -13,7 +13,7 @@ export const tasksMocks: TaskDetailsType[] = [
     objectType: 'AttachedDomain',
   },
   {
-    id: '474990511',
+    id: 'a47dd264-a9ac-41bc-99b7-54b879afc54a',
     status: OngoingTaskStatus.DOING,
     doneDate: null,
     function: 'attachedDomain/create',

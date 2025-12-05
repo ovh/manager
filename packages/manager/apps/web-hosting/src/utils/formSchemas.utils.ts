@@ -48,7 +48,7 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
 
     cmsSpecific: z.object({
       wordpress: z.object({
-        language: z.string(),
+        language: z.string().optional(),
       }),
     }),
     phpVersion: z.string().min(1, t(`${NAMESPACES.FORM}:required_field`)),
@@ -74,8 +74,10 @@ export const websiteFormSchema = z.object({
   ip: z.boolean().optional(),
   selectedIp: z.string().optional(),
   module: z
-    .enum([CmsType.PRESTASHOP, CmsType.WORDPRESS, CmsType.DRUPAL, CmsType.JOOMLA])
+    .enum([CmsType.PRESTASHOP, CmsType.WORDPRESS, CmsType.DRUPAL, CmsType.JOOMLA, CmsType.NONE])
     .optional(),
   advancedConfiguration: z.boolean().optional(),
   wwwNeeded: z.boolean().optional(),
+  hasSubdomain: z.boolean().optional(),
+  subdomain: z.string().optional(),
 });

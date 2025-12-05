@@ -5,17 +5,23 @@ import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsInput,
-  OdsPassword,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  Password,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { LinkType, Links, ManagerButton, useNotifications } from '@ovh-ux/manager-react-components';
+import { Link, LinkType, useNotifications } from '@ovh-ux/muk';
 
 import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
 import { useManagedWordpressReferenceAvailableLanguages } from '@/data/hooks/managedWordpress/managedWordpressReferenceAvailableLanguages/useManagedWordpressReferenceAvailableLanguages';
@@ -54,7 +60,7 @@ export default function CreatePage() {
       adminPassword: '',
       cmsSpecific: {
         wordpress: {
-          language: 'en_GB',
+          language: '',
         },
       },
       phpVersion: '',
@@ -75,19 +81,24 @@ export default function CreatePage() {
       adminLogin: string;
       adminPassword: string;
       cmsSpecific: {
-        wordpress: { language: string };
+        wordpress: { language?: string };
       };
       phpVersion: string;
     }) => {
+      const cmsSpecificPayload =
+        language && language.trim()
+          ? {
+              wordpress: { language: language.trim() },
+            }
+          : undefined;
+
       return postManagedCmsResourceWebsite(serviceName, {
         targetSpec: {
           creation: {
             adminLogin,
             adminPassword,
             cms: CmsType.WORDPRESS,
-            cmsSpecific: {
-              wordpress: { language },
-            },
+            ...(cmsSpecificPayload && { cmsSpecific: cmsSpecificPayload }),
             phpVersion,
           },
         },
@@ -95,17 +106,15 @@ export default function CreatePage() {
     },
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_success')}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
     onError: () => {
       addError(
-        <OdsText>
-          {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_error')}
-        </OdsText>,
+        <Text>{t('managedWordpress:web_hosting_managed_wordpress_create_webiste_error')}</Text>,
         true,
       );
     },
@@ -119,7 +128,7 @@ export default function CreatePage() {
     adminLogin: string;
     adminPassword: string;
     cmsSpecific: {
-      wordpress: { language: string };
+      wordpress: { language?: string };
     };
     phpVersion: string;
   }> = ({
@@ -134,123 +143,134 @@ export default function CreatePage() {
       adminLogin,
       adminPassword,
       cmsSpecific: {
-        wordpress: { language: language || 'en_GB' },
+        wordpress: { language: language || undefined },
       },
       phpVersion,
     });
   };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    void handleSubmit(onCreateSubmit)(e);
-  };
+
   return (
-    <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
-      <OdsText preset={ODS_TEXT_PRESET.heading1} className="mb-4">
+    <div className="mt-4 flex w-full flex-col items-start gap-4 md:w-1/2">
+      <Text preset={TEXT_PRESET.heading1} className="mb-4">
         {t('common:create_website')}
-      </OdsText>
-      <Links
-        type={LinkType.back}
-        href={goBackUrl}
-        label={t('common:web_hosting_common_sites_backlink')}
-        className="mb-4"
-      />
-      <OdsText preset={ODS_TEXT_PRESET.span}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
-      <form onSubmit={onSubmit}>
-        <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+      </Text>
+      <Link type={LinkType.back} href={goBackUrl} className="mb-4">
+        {t('common:web_hosting_common_sites_backlink')}
+      </Link>
+      <Text preset={TEXT_PRESET.span}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          void handleSubmit(onCreateSubmit)(e);
+        }}
+      >
+        <Text preset={TEXT_PRESET.heading3} className="mb-4">
           {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_create_login')}
-        </OdsText>
+        </Text>
         <Controller
           name="cmsSpecific.wordpress.language"
           control={control}
           render={({ field }) => (
-            <OdsFormField className="w-full mb-4">
-              <label slot="label">
+            <FormField className="mb-4 w-full">
+              <FormFieldLabel>
                 {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin')}
-              </label>
-              <OdsSelect
+              </FormFieldLabel>
+              <Select
                 name={field.name}
+                id="input-language"
                 data-testid="input-language"
-                value={field.value}
-                defaultValue={'en_gb'}
-                placeholder={t(
-                  'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_language',
-                )}
-                onOdsChange={(e) => field.onChange(e.target?.value)}
+                value={field.value ? [field.value] : []}
+                items={
+                  data
+                    ? data.map((option: LanguageOption) => ({
+                        value: option.code,
+                        label: option.name,
+                      }))
+                    : []
+                }
+                onValueChange={(detail) => field.onChange(detail.value[0] ?? '')}
+                onBlur={() => field.onBlur?.()}
               >
-                {data?.map((option: LanguageOption) => (
-                  <option key={option.code} value={option.code}>
-                    {option.name}
-                  </option>
-                ))}
-              </OdsSelect>
-            </OdsFormField>
+                <SelectControl
+                  placeholder={t(
+                    'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_language',
+                  )}
+                />
+                <SelectContent />
+              </Select>
+            </FormField>
           )}
         />
         <Controller
           name="phpVersion"
           control={control}
           render={({ field }) => (
-            <OdsFormField className="w-full mb-4">
-              <label slot="label">
+            <FormField className="mb-4 w-full">
+              <FormFieldLabel>
                 {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_php_version')}*
-              </label>
-              <OdsSelect
+              </FormFieldLabel>
+              <Select
                 name={field.name}
                 data-testid="input-phpVersion"
-                value={field.value}
-                placeholder={t(
-                  'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_version',
-                )}
-                onOdsChange={(e) => field.onChange(e.target?.value)}
+                id="input-phpVersion"
+                value={field.value ? [field.value] : []}
+                items={
+                  phpVersion
+                    ? phpVersion.map((version) => ({ value: version, label: version }))
+                    : []
+                }
+                onValueChange={(detail) => field.onChange(detail.value[0] ?? '')}
+                onBlur={() => field.onBlur?.()}
               >
-                {phpVersion?.map((version) => (
-                  <option key={version} value={version}>
-                    {version}
-                  </option>
-                ))}
-              </OdsSelect>
-            </OdsFormField>
+                <SelectControl
+                  placeholder={t(
+                    'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_version',
+                  )}
+                />
+                <SelectContent />
+              </Select>
+            </FormField>
           )}
         />
         <Controller
           name="adminLogin"
           control={control}
-          render={({ field }) => (
-            <OdsFormField className="w-full mb-4" error={errors?.adminLogin?.message}>
-              <label slot="label">{t('common:web_hosting_common_admin_email')}*</label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+          render={({ field, fieldState: { error, invalid } }) => (
+            <FormField className="mb-4 w-full" invalid={!!error && invalid}>
+              <FormFieldLabel>{t('common:web_hosting_common_admin_email')}*</FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 name={field.name}
                 value={field.value}
                 data-testid="input-admin-login"
-                hasError={!!errors.adminLogin}
-                onOdsBlur={field.onBlur}
-                onOdsChange={(e) => {
-                  field.onChange(e.target?.value);
+                invalid={!!errors.adminLogin}
+                onBlur={field.onBlur}
+                onChange={(e) => {
+                  return field.onChange(e.target.value);
                 }}
-                isClearable
+                clearable
               />
-            </OdsFormField>
+              <FormFieldError>{errors?.adminLogin?.message}</FormFieldError>
+            </FormField>
           )}
         />
-
         <Controller
           name="adminPassword"
           control={control}
-          render={({ field }) => (
-            <OdsFormField className="w-full mb-4" error={errors?.adminPassword?.message}>
-              <label slot="label">{t('common:web_hosting_common_admin_password')}*</label>
-              <OdsPassword
+          render={({ field, fieldState: { error, invalid } }) => (
+            <FormField className="mb-4 w-full" invalid={!!error && invalid}>
+              <FormFieldLabel>{t('common:web_hosting_common_admin_password')}*</FormFieldLabel>
+              <Password
                 name={field.name}
                 value={field.value}
                 data-testid="input-admin-password"
-                hasError={!!errors.adminPassword}
-                onOdsBlur={field.onBlur}
-                onOdsChange={(e) => field.onChange(e.target?.value)}
+                invalid={!!errors.adminPassword}
+                onBlur={field.onBlur}
+                onChange={(e) => field.onChange(e.target?.value)}
                 className="w-full"
-                isClearable
-                isMasked
+                clearable
               />
-              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-6">
+              <Text preset={TEXT_PRESET.paragraph} className="mt-6">
                 <div>{t(`${NAMESPACES.FORM}:change_password_helper1`)}</div>
                 <ul className="mt-0">
                   <li>
@@ -265,20 +285,16 @@ export default function CreatePage() {
                   </li>
                   <li>{t(`${NAMESPACES.FORM}:change_password_helper2`)}</li>
                 </ul>
-              </OdsText>
-            </OdsFormField>
+              </Text>
+              <FormFieldError>{errors?.adminPassword?.message}</FormFieldError>
+            </FormField>
           )}
         />
-
-        <OdsFormField>
-          <ManagerButton
-            type="submit"
-            label={t('common:web_hosting_common_action_continue')}
-            id="create"
-            isDisabled={!isDirty || !isValid}
-            isLoading={isPending}
-          />
-        </OdsFormField>
+        <FormField>
+          <Button type="submit" id="create" disabled={!isDirty || !isValid} loading={isPending}>
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
+        </FormField>
       </form>
     </div>
   );

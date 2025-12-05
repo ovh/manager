@@ -176,3 +176,7 @@ export const putAttachedDomain = async (
     payload,
   );
 };
+
+export const getAttachedDomainDetails = async (serviceName: string, domain: string) => {
+  await v6.get<void>(`/hosting/web/${serviceName}/attachedDomain/${domain}`);
+};

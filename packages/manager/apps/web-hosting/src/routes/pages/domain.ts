@@ -9,4 +9,3 @@ export const DetacheDomainModal = React.lazy(
 export const ModifyDomainModal = React.lazy(
   () => import('@/pages/dashboard/multisite/domain/ModifyDomain.modal'),
 );
-export const OrderDomainPage = React.lazy(() => import('@/pages/dashboard/OrderDomain.page'));

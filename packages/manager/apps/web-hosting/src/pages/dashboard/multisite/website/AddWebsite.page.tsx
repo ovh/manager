@@ -7,17 +7,19 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsButton,
-  OdsDivider,
-  OdsIcon,
-  OdsLink,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  Divider,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
-import { LinkType, Links, useNotifications } from '@ovh-ux/manager-react-components';
+import { Link, LinkType, useNotifications } from '@ovh-ux/muk';
 
 import { usePostWebHostingWebsites } from '@/data/hooks/webHosting/webHostingWebsiteDomain/webHostingWebsiteDomain';
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
@@ -54,11 +56,10 @@ export default function AddWebsitePage() {
     () => {
       addSuccess(
         <>
-          <OdsText className="mr-3">{t('multisite:multisite_add_website_success')}</OdsText>
-          <OdsLink
-            href={`#/${serviceName}/task`}
-            label={t('multisite:multisite_add_website_in_progress')}
-          />
+          <Text className="mr-3">{t('multisite:multisite_add_website_success')}</Text>
+          <Link href={`#/${serviceName}/task`}>
+            {t('multisite:multisite_add_website_in_progress')}
+          </Link>
         </>,
         true,
       );
@@ -78,8 +79,10 @@ export default function AddWebsitePage() {
       const payload = {
         targetSpec: {
           name: data.name,
-          fqdn: data.fqdn,
-          ...(data.module ? { module: { name: data.module as CmsType } } : {}),
+          fqdn: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
+          ...(data.module && data.module !== CmsType.NONE
+            ? { module: { name: data.module as CmsType } }
+            : {}),
           bypassDNSConfiguration: !data.autoConfigureDns,
           ...(data.advancedConfiguration
             ? {
@@ -101,6 +104,7 @@ export default function AddWebsitePage() {
         targetSpec: {
           name: data.name,
           fqdn: data.fqdn,
+          path: data.path ?? null,
         },
       };
       postWebHostingWebsites([payload, data.wwwNeeded ?? false]);
@@ -110,22 +114,19 @@ export default function AddWebsitePage() {
 
   return (
     <form className="flex flex-col space-y-6">
-      <Links
-        type={LinkType.back}
-        onClickReturn={() => navigate(-1)}
-        label={t('common:web_hosting_common_sites_backlink')}
-        className="mb-4"
-      />
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
-        {t('multisite:multisite_add_website_title')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Link type={LinkType.back} onClick={() => navigate(-1)} className="mb-4">
+        {t('common:web_hosting_common_sites_backlink')}
+      </Link>
+      <Text preset={TEXT_PRESET.heading3}>{t('multisite:multisite_add_website_title')}</Text>
+      <Text preset={TEXT_PRESET.heading4}>
         {t('multisite:multisite_add_website_choose_domain_title')}
-        <OdsIcon id="cdn-tooltip" name={ODS_ICON_NAME.circleInfo} className="cursor-pointer ml-4" />
-        <OdsTooltip triggerId="cdn-tooltip">
-          <OdsText>{t('multisite:multisite_add_website_domain_info')}</OdsText>
-        </OdsTooltip>
-      </OdsText>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Icon id="cdn-tooltip" name={ICON_NAME.circleInfo} className="ml-4 cursor-pointer" />
+          </TooltipTrigger>
+          <TooltipContent>{t('multisite:multisite_add_website_domain_info')}</TooltipContent>
+        </Tooltip>
+      </Text>
       <DomainAssociation
         control={control}
         controlValues={controlValues}
@@ -135,7 +136,7 @@ export default function AddWebsitePage() {
       />
       {step >= 2 && (
         <>
-          <OdsDivider />
+          <Divider />
           <DomainConfiguration
             control={control}
             controlValues={controlValues}
@@ -145,25 +146,29 @@ export default function AddWebsitePage() {
         </>
       )}
       {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
-        <>
+        <div>
           <DomainManagement controlValues={controlValues} />
-          <OdsButton
-            label={t('common:web_hosting_common_action_continue')}
+          <Button
             onClick={() => void handleSubmit(onSubmit)()}
-            isDisabled={!controlValues.fqdn}
-          />
-        </>
+            disabled={!controlValues.fqdn}
+            className="mt-4"
+          >
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
+        </div>
       )}
       {step === 4 && (
-        <>
-          <OdsDivider />
+        <div>
+          <Divider />
           <DomainCmsModule control={control} controlValues={controlValues} />
-          <OdsButton
-            label={t('common:web_hosting_common_action_continue')}
+          <Button
             onClick={() => void handleSubmit(onSubmit)()}
-            isDisabled={!controlValues.fqdn}
-          />
-        </>
+            disabled={!controlValues.fqdn}
+            className="mt-4"
+          >
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
+        </div>
       )}
     </form>
   );

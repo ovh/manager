@@ -1,88 +1,118 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 import { useMatches } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME, ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import {
+  BreadcrumbItem as BreadcrumbItemMuk,
+  BreadcrumbLink,
+  Breadcrumb as BreadcrumbMuk,
+  ICON_NAME,
+} from '@ovhcloud/ods-react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-export type BreadcrumbItem = {
-  label?: string;
-  icon?: ODS_ICON_NAME;
-  href: string;
+type BreadcrumbHandle = {
+  breadcrumb?: {
+    label: string;
+    icon?: ICON_NAME;
+  };
 };
 
-export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
-  { namespace } = { namespace: 'common' },
-) => {
+type BreadcrumbItem = {
+  label: string;
+  href: string;
+  icon?: ICON_NAME;
+};
+
+type BreadcrumbProps = {
+  namespace?: string | string[];
+  appName?: string;
+  hideRootLabel?: boolean;
+  rootLabel?: string;
+  rootPath?: string;
+};
+
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({
+  namespace = 'common',
+  appName,
+  hideRootLabel = false,
+  rootLabel,
+  rootPath = '/hosting',
+}) => {
   const { t } = useTranslation(namespace);
   const matches = useMatches();
   const { shell } = useContext(ShellContext);
-  const [href, setHref] = React.useState('#');
+  const [rootHref, setRootHref] = useState('#');
 
   useEffect(() => {
-    const fetchUrl = async () => {
+    const fetchRootUrl = async () => {
       try {
-        const response = await shell.navigation.getURL('web', '/hosting', {});
-        setHref(response as string);
-      } catch {
-        setHref('#');
+        const response = await shell.navigation.getURL('web', rootPath, {});
+        setRootHref(response as string);
+      } catch (err) {
+        console.error('Failed to fetch root URL:', err);
+        setRootHref('#');
       }
     };
-    void fetchUrl();
-  }, [shell.navigation]);
+    void fetchRootUrl();
+  }, [shell.navigation, rootPath]);
 
-  const rootItem = {
-    label: t('hosting'),
-    href,
-  };
-
-  const items = useMemo(() => {
-    let crumbs = matches.reduce((acc, match) => {
-      const handle = match.handle as Record<string, string>;
+  const routeItems = useMemo<BreadcrumbItem[]>(() => {
+    return matches.reduce<BreadcrumbItem[]>((acc, match) => {
+      const handle = match.handle as BreadcrumbHandle;
       if (handle?.breadcrumb) {
-        const breadcrumb = handle.breadcrumb as unknown as Record<string, string>;
-        const label = breadcrumb?.label?.startsWith(':')
-          ? match.params[breadcrumb?.label?.slice(1)]
-          : t(breadcrumb?.label);
+        const { label, icon } = handle.breadcrumb;
+        const resolvedLabel = label.startsWith(':') ? match.params[label.slice(1)] : t(label);
         acc.push({
+          label: resolvedLabel,
           href: `#${match.pathname}`,
-          ...breadcrumb,
-          label,
+          icon,
         });
       }
       return acc;
-    }, [] as BreadcrumbItem[]);
-
-    if (
-      window.location.hash.match(/^#\/?managed-hosting-for-wordpress\/[^/]+/) &&
-      !crumbs.some((c) => c.label === t('managed_wordpress'))
-    ) {
-      crumbs = [
-        {
-          label: t('managed_wordpress'),
-          href: '#/managed-hosting-for-wordpress',
-        },
-        ...crumbs,
-      ];
-    }
-    return crumbs;
+    }, []);
   }, [matches, t]);
 
+  const itemsWithWordPress = useMemo(() => {
+    const items = [...routeItems];
+    if (
+      window.location.hash.match(/^#\/?managed-hosting-for-wordpress\/[^/]+/) &&
+      !items.some((c) => c.label === t('managed_wordpress'))
+    ) {
+      items.unshift({
+        label: t('managed_wordpress'),
+        href: '#/managed-hosting-for-wordpress',
+      });
+    }
+    return items;
+  }, [routeItems, t]);
+
+  const breadcrumbItems = useMemo(() => {
+    if (appName && !hideRootLabel) {
+      return [
+        {
+          label: rootLabel || appName,
+          href: rootHref,
+        },
+        ...itemsWithWordPress,
+      ];
+    }
+    return itemsWithWordPress;
+  }, [appName, hideRootLabel, rootLabel, rootHref, itemsWithWordPress]);
+
   return (
-    <OdsBreadcrumb data-testid="breadcrumb">
-      {[rootItem, ...items].map((item, index) => (
-        <OdsBreadcrumbItem
-          {...item}
-          color={ODS_LINK_COLOR.primary}
-          target="_self"
-          key={`${item.label}-${index}`}
-        />
+    <BreadcrumbMuk data-testid="breadcrumb">
+      {breadcrumbItems.map((item, index) => (
+        <BreadcrumbItemMuk key={`${item.label}-${index}`}>
+          <BreadcrumbLink href={item.href}>
+            {item.icon && <span className="breadcrumb-icon">{item.icon}</span>}
+            {item.label}
+          </BreadcrumbLink>
+        </BreadcrumbItemMuk>
       ))}
-    </OdsBreadcrumb>
+    </BreadcrumbMuk>
   );
 };
 

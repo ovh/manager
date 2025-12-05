@@ -3,10 +3,10 @@ import React from 'react';
 
 import { Route, UIMatch } from 'react-router-dom';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import NotFound from '@/pages/404';
 
@@ -39,7 +39,6 @@ import {
   MODIFY_DOMAIN,
   MULTISITE,
   ONBOARDING,
-  ORDER_DOMAIN,
   ORDER_SECTIGO,
   PURGE_CDN,
   REMOVE_SEO_SUBSCIPTION,
@@ -68,12 +67,7 @@ import {
   RootPage,
   WebsitesPage,
 } from './pages/default';
-import {
-  AddDomainPage,
-  DetacheDomainModal,
-  ModifyDomainModal,
-  OrderDomainPage,
-} from './pages/domain';
+import { AddDomainPage, DetacheDomainModal, ModifyDomainModal } from './pages/domain';
 import {
   AssociateGitPage,
   ConfigureGitPage,
@@ -105,7 +99,7 @@ export type RouteHandle = {
   };
   breadcrumb?: {
     label: string;
-    icon?: ODS_ICON_NAME;
+    icon?: ICON_NAME;
   };
 };
 export type RouteMatch = UIMatch<unknown, RouteHandle>;
@@ -260,7 +254,7 @@ export default (
             label: 'ssl',
           },
         }}
-      />
+      ></Route>
       <Route
         id={TASK}
         path={urls.task}
@@ -271,7 +265,7 @@ export default (
             pageType: PageType.listing,
           },
           breadcrumb: {
-            label: 'task',
+            label: 'common:web_hosting_header_tasks',
           },
         }}
       />
@@ -595,18 +589,6 @@ export default (
           }}
         />
       </Route>
-
-      <Route
-        id={ORDER_DOMAIN}
-        path={urls.orderDomain}
-        Component={OrderDomainPage}
-        handle={{
-          tracking: {
-            pageName: ORDER_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
     </Route>
     <Route path={'*'} element={<NotFound />} />
   </Route>
