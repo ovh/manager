@@ -53,8 +53,9 @@ function CommunicationsPage() {
       label: t('table_column_subject'),
       cell: (notification) => (
         <DataGridTextCell>
-          <Link
-            to={urls.communication.detailTo(notification.id)}
+          <OdsLink
+            label={notification.title}
+            href={`#${urls.communication.detailTo(notification.id)}`}
             onClick={() =>
               trackClick({
                 location: PageLocation.datagrid,
@@ -64,9 +65,7 @@ function CommunicationsPage() {
                 subApp: TrackingSubApps.Communications,
               })
             }
-          >
-            <OdsLink label={notification.title} href="#" />
-          </Link>
+          />
         </DataGridTextCell>
       ),
     },

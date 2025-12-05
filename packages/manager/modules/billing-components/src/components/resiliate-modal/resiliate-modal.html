@@ -9,7 +9,12 @@
     data-is-open-modal="true"
 >
     <div>
-        <div data-ng-transclude="additional-description"></div>
+        <div data-ng-transclude="additional-description">
+            <ovh-manager-billing-vps-outperform-banner
+                data-service-name="$ctrl.service.domain"
+                data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.VPS"
+            ></ovh-manager-billing-vps-outperform-banner>
+        </div>
         <div data-ng-if="$ctrl.capabilities.length > 0">
             <form class="mt-4" name="$ctrl.resiliateForm" novalidate>
                 <oui-field

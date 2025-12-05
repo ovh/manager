@@ -7,6 +7,7 @@ vi.mock('react-i18next', () => ({
     t: (translationKey: string) => translationKey,
     i18n: {
       changeLanguage: () => new Promise(() => {}),
+      language: 'fr_FR',
     },
   }),
   Trans: ({ children }: { children: React.ReactNode }) => children,
@@ -18,6 +19,10 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
+    usePageTracking: () => ({
+      pageType: 'page',
+      pageName: 'page-name',
+    }),
   };
 });
 

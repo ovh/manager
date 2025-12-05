@@ -50,6 +50,7 @@ packages/manager/apps/pci-workflow
 packages/manager/apps/web-domains
 packages/manager/apps/web-hosting
 packages/manager/apps/web-office
+packages/manager/apps/communication
 packages/manager/apps/zimbra
 packages/manager-tools/manager-static-analysis-kit
 packages/manager-tools/manager-forge-cli
