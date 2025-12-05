@@ -89,10 +89,10 @@ export default class LogsHomeService {
       );
   }
 
-  enableIam(serviceName, service) {
+  enableIam({ serviceName, displayName }) {
     return this.$http
       .put(`/dbaas/logs/${serviceName}`, {
-        displayName: service.displayName,
+        displayName,
         enableIam: true,
       })
       .then((operation) => {

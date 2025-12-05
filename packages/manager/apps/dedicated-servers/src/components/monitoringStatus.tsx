@@ -4,14 +4,8 @@ import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { DedicatedServer } from '@/data/types/server.type';
 
-const getMonitoringStatusLabel = (
-  isMonitoring: boolean,
-  hasNoIntervention: boolean,
-) => {
-  if (!isMonitoring) return 'disabled';
-  if (hasNoIntervention) return 'no-proactive';
-  return 'proactive';
-};
+import { monitoringStatusWording } from './commonCellsWording';
+
 const getMonitoringStatusColor = (
   isMonitoring: boolean,
   hasNoIntervention: boolean,
@@ -27,10 +21,7 @@ export const MonitoringStatusChip = (server: DedicatedServer) => {
   return (
     <OdsBadge
       label={t(
-        `server_configuration_monitoring_status_${getMonitoringStatusLabel(
-          server.monitoring,
-          server.noIntervention,
-        )}`,
+        monitoringStatusWording(server.monitoring, server.noIntervention),
       )}
       color={getMonitoringStatusColor(server.monitoring, server.noIntervention)}
       className="mt-3"

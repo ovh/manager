@@ -35,5 +35,15 @@
   "server_display_vrack": "vRack",
   "guide_first_step_label": "Getting started with a dedicated server",
   "guide_secure_label": "Secure my dedicated server",
-  "guide_ssh_connections_label": "How to get started with SSH connections"
+  "guide_ssh_connections_label": "How to get started with SSH connections",
+  "server_export_csv_title": "CSV download",
+  "server_export_csv_button_import": "Export CSV",
+  "server_export_csv_button_cancel": "Cancel",
+  "server_export_csv_button_export": "Download",
+  "server_export_csv_button_close": "Close",
+  "server_export_csv_on_load_disclaimer": "Generating CSV file",
+  "server_export_csv_consent_disclaimer": "Export the full list of your servers and their metadata in CSV format.",
+  "server_export_csv_export_completed_title": "Download complete",
+  "server_export_csv_export_completed_content": "Remember to store this file in a secure space, as it contains technical details about your servers.",
+  "server_display_actions": "Actions"
 }
