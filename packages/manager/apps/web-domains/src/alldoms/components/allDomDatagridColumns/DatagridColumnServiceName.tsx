@@ -3,7 +3,8 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { toUnicode } from 'punycode';
 import config from '@/web-domains.config';
-import { Link } from '@ovhcloud/ods-react';
+import { Link as OdsLink } from '@ovhcloud/ods-react';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface DatagridColumnServiceNameProps {
   readonly allDomName: string;
@@ -12,17 +13,19 @@ interface DatagridColumnServiceNameProps {
 export default function DatagridColumnServiceName({
   allDomName,
 }: DatagridColumnServiceNameProps) {
-  const { data: url } = useNavigationGetUrl([
-    config.rootLabel,
-    `/alldoms/${allDomName}`,
-    {},
-  ]);
+  const path = `/alldoms/${allDomName}`;
+  const { data: url } = useNavigationGetUrl([config.rootLabel, path, {}]);
 
   return (
     <DataGridTextCell>
-      <Link href={url as string} data-testid={allDomName}>
+      <OdsLink
+        data-testid={allDomName}
+        href={url as string}
+        as={RouterLink}
+        to={path}
+      >
         {toUnicode(allDomName)}
-      </Link>
+      </OdsLink>
     </DataGridTextCell>
   );
 }
