@@ -48,7 +48,7 @@ import { buildURLSearchParams } from '@/utils/url';
 
 import ActionButtonStatistics from './ActionButtonStatistics.component';
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
-import { GUIDE_URL, ORDER_URL } from './websites.constants';
+import { GUIDE_URL, ORDER_URL } from './constant/websites.constants';
 
 export default function Websites() {
   const { t } = useTranslation('common');

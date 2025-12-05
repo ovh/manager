@@ -9,7 +9,8 @@ import TabsPanel, {
   TabItemProps,
   useComputePathMatchers,
 } from '@/components/tabsPanel/TabsPanel.component';
-import { useGenerateUrl, useOverridePage } from '@/hooks';
+import { useGenerateUrl } from '@/hooks';
+import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
 import { urls } from '@/routes/routes.constants';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { GENERAL_INFORMATION, TASKS } from '@/utils/tracking.constants';

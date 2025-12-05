@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable max-lines */
 import { Path, To } from 'react-router-dom';
 
 import { vi } from 'vitest';
@@ -159,6 +161,29 @@ vi.mock('@ovh-ux/muk', () => {
           </button>
         ))}
       </div>
+    ),
+    Link: ({
+      href,
+      externalHref,
+      children,
+      'data-testid': dataTestId,
+      ...props
+    }: React.PropsWithChildren<{
+      href?: string;
+      externalHref?: string;
+      children: React.ReactNode;
+      'data-testid'?: string;
+      [key: string]: unknown;
+    }>) => (
+      <a
+        href={href}
+        target={externalHref ? '_blank' : undefined}
+        rel={externalHref ? 'noreferrer' : undefined}
+        data-testid={dataTestId || 'link'}
+        {...props}
+      >
+        {children}
+      </a>
     ),
     Modal: ({
       children,
@@ -389,6 +414,10 @@ vi.mock('@/data/api/git', () => ({
 }));
 
 vi.mock('@/data/api/cdn', () => ({
+  createCdnOption: vi.fn().mockResolvedValue(undefined),
+  updateCdnOption: vi.fn().mockResolvedValue(undefined),
+  updateCdnOptions: vi.fn().mockResolvedValue(undefined),
+  deleteCdnOption: vi.fn().mockResolvedValue(undefined),
   getCDNProperties: vi.fn(() => Promise.resolve(cdnPropertiesMock)),
 }));
 
