@@ -53,7 +53,7 @@ export default function ServicesList({ services }: ServicesListProps) {
               navigate('./new');
             }}
           >
-            <Plus className="size-6 mr-2 text-primary-foreground" />
+            <Plus className="size-6 text-primary-foreground" />
             {t('createNewService')}
           </Button>
         </DataTable.Action>

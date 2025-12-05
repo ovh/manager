@@ -230,7 +230,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
           )}
           <Button
             ref={addRoleBtnRef}
-            mode={'ghost'}
+            mode="ghost"
             type="button"
             onClick={form.handleSubmit(handleAddRole)}
             data-testid="roles-select-submit-button"
@@ -252,7 +252,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
         <div>
           <label>{t('formUserRoleDatabaseConfiguredRoles')}</label>
           <ScrollArea className="h-40 rounded-md border">
-            <ul ref={scrollListRef}>
+            <ul className="px-2" ref={scrollListRef}>
               {value.map((role, index) => (
                 <li
                   key={role}
@@ -260,8 +260,9 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
                   data-testid="roles-select-list-roles"
                 >
                   <Button
-                    className="text-destructive rounded-full p-2 ml-2 hover:text-destructive h-8 w-8"
-                    mode={'ghost'}
+                    className="rounded-full p-2 ml-2 h-8 w-8"
+                    mode="ghost"
+                    variant="critical"
                     type="button"
                     onClick={() => handleRemoveRole(index)}
                   >

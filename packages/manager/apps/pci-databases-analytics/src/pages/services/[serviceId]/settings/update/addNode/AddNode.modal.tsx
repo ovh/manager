@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -34,7 +35,7 @@ const AddNode = () => {
     onError: (err) => {
       toast.toast({
         title: t('addNodeToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -76,45 +77,52 @@ const AddNode = () => {
 
   return (
     <RouteModal isLoading={!price}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-node-modal">
             {t('addNodeTitle')}
           </DialogTitle>
         </DialogHeader>
-        <Label>{t('priceUnitSwitchLabel')}</Label>
-        <PriceUnitSwitch showMonthly={showMonthly} onChange={setShowMonthly} />
-        <p>
-          {price && (
-            <Trans
-              t={t}
-              i18nKey={'addNodeDescription'}
-              values={{
-                nbNodes: service.nodes.length,
-                unit: showMonthly
-                  ? t('addNodeDescriptionUnitMonth')
-                  : t('addNodeDescriptionUnitHour'),
-              }}
-              components={{
-                price: (
-                  <Price
-                    priceInUcents={
-                      price[showMonthly ? 'monthly' : 'hourly'].price
-                    }
-                    taxInUcents={price[showMonthly ? 'monthly' : 'hourly'].tax}
-                    decimals={showMonthly ? 2 : 3}
-                  />
-                ),
-              }}
-            ></Trans>
-          )}
-        </p>
-        <DialogFooter className="flex justify-end">
+        <DialogBody>
+          <Label>{t('priceUnitSwitchLabel')}</Label>
+          <PriceUnitSwitch
+            showMonthly={showMonthly}
+            onChange={setShowMonthly}
+          />
+          <p>
+            {price && (
+              <Trans
+                t={t}
+                i18nKey={'addNodeDescription'}
+                values={{
+                  nbNodes: service.nodes.length,
+                  unit: showMonthly
+                    ? t('addNodeDescriptionUnitMonth')
+                    : t('addNodeDescriptionUnitHour'),
+                }}
+                components={{
+                  price: (
+                    <Price
+                      priceInUcents={
+                        price[showMonthly ? 'monthly' : 'hourly'].price
+                      }
+                      taxInUcents={
+                        price[showMonthly ? 'monthly' : 'hourly'].tax
+                      }
+                      decimals={showMonthly ? 2 : 3}
+                    />
+                  ),
+                }}
+              ></Trans>
+            )}
+          </p>
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="add-node-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('addNodeCancelButton')}
             </Button>

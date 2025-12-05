@@ -88,7 +88,7 @@ describe('Settings delete modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'updateServiceToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

@@ -102,28 +102,34 @@ const Pools = () => {
         <Guides section={GuideSections.pools} engine={service.engine} />
       </div>
       <p>{t('description')}</p>
-      {service.capabilities.connectionPools?.create && (
-        <Button
-          data-testid="pools-add-button"
-          mode={'outline'}
-          size="sm"
-          className="text-base"
-          onClick={() => navigate('./add')}
-          disabled={
-            service.capabilities.connectionPools.create ===
-            database.service.capability.StateEnum.disabled
-          }
-        >
-          <Plus className="size-4 mr-2" />
-          {t('addButtonLabel')}
-        </Button>
-      )}
+
       {connectionPoolsQuery.isSuccess && connectionPoolListWithData ? (
         <DataTable.Provider
           columns={columns}
           data={connectionPoolListWithData}
           pageSize={25}
-        />
+        >
+          <DataTable.Header>
+            {service.capabilities.connectionPools?.create && (
+              <DataTable.Action>
+                <Button
+                  data-testid="pools-add-button"
+                  mode="outline"
+                  onClick={() => navigate('./add')}
+                  disabled={
+                    service.capabilities.connectionPools.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                >
+                  <Plus className="size-4" />
+                  {t('addButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="connectionPools-table-skeleton">
           <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />

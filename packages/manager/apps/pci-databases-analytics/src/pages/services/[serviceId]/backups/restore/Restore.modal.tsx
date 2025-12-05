@@ -33,6 +33,8 @@ import {
   PopoverTrigger,
   Calendar,
   TimePicker,
+  DialogBody,
+  DialogClose,
 } from '@datatr-ux/uxlib';
 import { ForkSourceType } from '@/types/orderFunnel';
 import { useServiceData } from '../../Service.context';
@@ -65,7 +67,7 @@ const RestoreServiceModal = () => {
     onError: (err) => {
       toast.toast({
         title: t('restoreBackupToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -151,190 +153,197 @@ const RestoreServiceModal = () => {
   const selectedType = form.watch('type');
   return (
     <RouteModal isLoading={!backups}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="restore-modal">
             {t('restoreModalTitle')}
           </DialogTitle>
           <DialogDescription>{t('restoreModalDescription')}</DialogDescription>
         </DialogHeader>
-
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="grid gap-4">
-            <FormField
-              control={form.control}
-              name="type"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('inputSourceTypeLabel')}</FormLabel>
-                  <FormDescription>
-                    {t('inputSourceTypeDescription')}
-                  </FormDescription>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="grid grid-cols-3 gap-2"
-                    >
-                      <FormItem className="flex items-end gap-2">
-                        <FormControl>
-                          <RadioGroupItem
-                            data-testid="restore-modal-radio-now"
-                            value={ForkSourceType.now}
-                            disabled={!canUsePointInTime}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className={cn(
-                            'font-normal',
-                            !canUsePointInTime &&
-                              'opacity-70 cursor-not-allowed',
-                          )}
-                        >
-                          {t('inputTypeValueNow')}
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-end gap-2">
-                        <FormControl>
-                          <RadioGroupItem
-                            data-testid="restore-modal-radio-pitr"
-                            value={ForkSourceType.pit}
-                            disabled={!canUsePointInTime}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className={cn(
-                            'font-normal',
-                            !canUsePointInTime &&
-                              'opacity-70 cursor-not-allowed',
-                          )}
-                        >
-                          {t('inputTypeValuePIT')}
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-end gap-2">
-                        <FormControl>
-                          <RadioGroupItem value={ForkSourceType.backup} />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {t('inputTypeValueBackup')}
-                        </FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {selectedType === ForkSourceType.backup && (
+        <DialogBody>
+          <Form {...form}>
+            <form onSubmit={onSubmit} className="grid gap-4" id="restore-form">
               <FormField
                 control={form.control}
-                name="backupId"
+                name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('inputSourceBackupLabel')}</FormLabel>
+                    <FormLabel>{t('inputSourceTypeLabel')}</FormLabel>
+                    <FormDescription>
+                      {t('inputSourceTypeDescription')}
+                    </FormDescription>
                     <FormControl>
-                      <Select
+                      <RadioGroup
                         onValueChange={field.onChange}
                         value={field.value}
+                        className="grid grid-cols-3 gap-2"
                       >
-                        <SelectTrigger ref={field.ref}>
-                          <SelectValue
-                            placeholder={t('inputSourceBackupPlaceholder')}
-                          />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            {backups.map((b) => (
-                              <SelectItem key={b.id} value={b.id}>
+                        <FormItem className="flex items-end gap-2">
+                          <FormControl>
+                            <RadioGroupItem
+                              data-testid="restore-modal-radio-now"
+                              value={ForkSourceType.now}
+                              disabled={!canUsePointInTime}
+                            />
+                          </FormControl>
+                          <FormLabel
+                            className={cn(
+                              'font-normal',
+                              !canUsePointInTime &&
+                                'opacity-70 cursor-not-allowed',
+                            )}
+                          >
+                            {t('inputTypeValueNow')}
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-end gap-2">
+                          <FormControl>
+                            <RadioGroupItem
+                              data-testid="restore-modal-radio-pitr"
+                              value={ForkSourceType.pit}
+                              disabled={!canUsePointInTime}
+                            />
+                          </FormControl>
+                          <FormLabel
+                            className={cn(
+                              'font-normal',
+                              !canUsePointInTime &&
+                                'opacity-70 cursor-not-allowed',
+                            )}
+                          >
+                            {t('inputTypeValuePIT')}
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-end gap-2">
+                          <FormControl>
+                            <RadioGroupItem value={ForkSourceType.backup} />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            {t('inputTypeValueBackup')}
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {selectedType === ForkSourceType.backup && (
+                <FormField
+                  control={form.control}
+                  name="backupId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('inputSourceBackupLabel')}</FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value}
+                        >
+                          <SelectTrigger ref={field.ref}>
+                            <SelectValue
+                              placeholder={t('inputSourceBackupPlaceholder')}
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              {backups.map((b) => (
+                                <SelectItem key={b.id} value={b.id}>
+                                  <FormattedDate
+                                    date={new Date(b.createdAt)}
+                                    options={{
+                                      dateStyle: 'medium',
+                                      timeStyle: 'medium',
+                                    }}
+                                  />{' '}
+                                  ({formatStorage(b.size)})
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {selectedType === ForkSourceType.pit && (
+                <FormField
+                  control={form.control}
+                  name="pointInTime"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('inputSourcePITPlaceholder')}</FormLabel>
+                      <FormControl>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              ref={field.ref}
+                              mode="ghost"
+                              className={cn(
+                                'text-left justify-start flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+                                !field.value && 'text-muted-foreground',
+                              )}
+                            >
+                              <CalendarIcon className="mr-2 h-4 w-4" />
+                              {field.value ? (
                                 <FormattedDate
-                                  date={new Date(b.createdAt)}
+                                  date={field.value}
                                   options={{
                                     dateStyle: 'medium',
                                     timeStyle: 'medium',
                                   }}
-                                />{' '}
-                                ({formatStorage(b.size)})
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {selectedType === ForkSourceType.pit && (
-              <FormField
-                control={form.control}
-                name="pointInTime"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('inputSourcePITPlaceholder')}</FormLabel>
-                    <FormControl>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            ref={field.ref}
-                            mode={'ghost'}
-                            className={cn(
-                              'text-left justify-start flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-                              !field.value && 'text-muted-foreground',
-                            )}
-                          >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
-                            {field.value ? (
-                              <FormattedDate
-                                date={field.value}
-                                options={{
-                                  dateStyle: 'medium',
-                                  timeStyle: 'medium',
-                                }}
-                              />
-                            ) : (
-                              <span>{t('inputSourcePITPlaceholder')}</span>
-                            )}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            locale={dateLocale}
-                            disabled={(date) =>
-                              date > new Date() ||
-                              date < new Date(service.backups?.pitr)
-                            }
-                            initialFocus
-                          />
-                          <div className="p-3 border-t border-border">
-                            <TimePicker
-                              setDate={field.onChange}
-                              date={field.value}
+                                />
+                              ) : (
+                                <span>{t('inputSourcePITPlaceholder')}</span>
+                              )}
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0">
+                            <Calendar
+                              mode="single"
+                              selected={field.value}
+                              onSelect={field.onChange}
+                              locale={dateLocale}
+                              disabled={(date) =>
+                                date > new Date() ||
+                                date < new Date(service.backups?.pitr)
+                              }
+                              initialFocus
                             />
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            <DialogFooter className="flex justify-end">
-              <Button
-                data-testid="restore-submit-button"
-                type="submit"
-                disabled={isPending}
-              >
-                {t('restoreButtonValidate')}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+                            <div className="p-3 border-t border-border">
+                              <TimePicker
+                                setDate={field.onChange}
+                                date={field.value}
+                              />
+                            </div>
+                          </PopoverContent>
+                        </Popover>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button" mode="ghost">
+              {t('restoreButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            form="restore-form"
+            data-testid="restore-submit-button"
+            type="submit"
+            disabled={isPending}
+          >
+            {t('restoreButtonValidate')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

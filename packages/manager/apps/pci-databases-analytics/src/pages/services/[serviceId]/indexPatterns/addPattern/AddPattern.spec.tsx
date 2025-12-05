@@ -97,7 +97,7 @@ describe('Add Pattern modal', () => {
     const errorMsg = {
       description: 'api error message',
       title: 'addPatternToastErrorTitle',
-      variant: 'destructive',
+      variant: 'critical',
     };
     vi.mocked(patternApi.addPattern).mockImplementationOnce(() => {
       throw apiErrorMock;

@@ -88,7 +88,7 @@ describe('PrometheusEnabled', () => {
       { wrapper: RouterWithQueryClientWrapper },
     );
 
-    expect(screen.getByText('srvDomainLabel')).toBeInTheDocument();
+    expect(screen.getByText('srvDomain')).toBeInTheDocument();
   });
 
   it('should disable reset password button if capability is not enabled or pending', () => {

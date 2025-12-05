@@ -36,7 +36,7 @@ const DeleteIndexModal = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteIndexToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -65,7 +65,7 @@ const DeleteIndexModal = () => {
   };
   return (
     <RouteModal isLoading={!indexes || !deletedIndex}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-indexes-modal">
             {t('deleteIndexTitle')}
@@ -76,12 +76,12 @@ const DeleteIndexModal = () => {
             })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-indexes-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteIndexButtonCancel')}
             </Button>

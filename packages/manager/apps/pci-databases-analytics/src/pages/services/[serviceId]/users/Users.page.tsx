@@ -121,18 +121,19 @@ const Users = () => {
               <DataTable.Action>
                 <Button
                   data-testid="users-add-button"
-                  mode={'outline'}
+                  mode="outline"
                   disabled={
                     service.capabilities.users?.create ===
                     database.service.capability.StateEnum.disabled
                   }
                   onClick={() => navigate('./add')}
                 >
-                  <Plus className="size-4 mr-2" />
+                  <Plus className="size-4" />
                   {t('addButtonLabel')}
                 </Button>
               </DataTable.Action>
             )}
+            
             <DataTable.SearchBar />
             <DataTable.FiltersButton />
           </DataTable.Header>
