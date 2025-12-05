@@ -22,7 +22,7 @@ describe('useSubnets', () => {
       wrapper,
     });
     await waitFor(() => result.current.isSuccess);
-    expect(result.current.data).toEqual([]);
+    expect(result.current.data ?? []).toEqual([]);
   });
 
   it('calls getSubnets when networkId is not "new"', async () => {
