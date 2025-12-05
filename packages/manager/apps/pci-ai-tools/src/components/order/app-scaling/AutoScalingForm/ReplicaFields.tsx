@@ -1,6 +1,5 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Control } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
 import {
   FormControl,
@@ -13,17 +12,10 @@ import {
   PopoverTrigger,
 } from '@datatr-ux/uxlib';
 
-import { ScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from './AutoScaling.schema';
 
-interface ReplicaFieldsProps {
-  control: Control<ScalingFormValues>;
-  onFieldChange: () => void;
-}
-
-export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
-  control,
-  onFieldChange,
-}) => {
+export const ReplicaFields = () => {
+  const { control } = useFormContext<ScalingStrategySchema>();
   const { t } = useTranslation('ai-tools/components/scaling');
 
   return (
@@ -31,7 +23,7 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
       <div className="xl:col-start-1 xl:row-start-1 w-full">
         <FormField
           control={control}
-          name="minRep"
+          name="scaling.replicasMin"
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
@@ -52,10 +44,6 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
                   type="number"
                   max={100}
                   min={1}
-                  onChange={(e) => {
-                    field.onChange(Number(e.target.value));
-                    onFieldChange();
-                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -66,7 +54,7 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
       <div className="xl:col-start-1 xl:row-start-2 w-full">
         <FormField
           control={control}
-          name="maxRep"
+          name="scaling.replicasMax"
           render={({ field }) => (
             <FormItem>
               <p className="text-sm">{t('replicasMaxInputLabel')}</p>
@@ -79,7 +67,6 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
                   min={1}
                   onChange={(e) => {
                     field.onChange(Number(e.target.value));
-                    onFieldChange();
                   }}
                 />
               </FormControl>

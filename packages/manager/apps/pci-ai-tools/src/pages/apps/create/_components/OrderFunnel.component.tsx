@@ -445,14 +445,7 @@ const OrderFunnel = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <ScalingStrategy
-                          {...field}
-                          scaling={field.value}
-                          onChange={(newScaling) =>
-                            model.form.setValue('scaling', newScaling)
-                          }
-                          onNonValidForm={(val) => setInvalidScalingInput(val)}
-                        />
+                        <ScalingStrategy {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

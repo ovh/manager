@@ -26,6 +26,7 @@ import {
 } from '@/data/hooks/ai/data/useGetDatastoresWithContainers.hook';
 import { useGetAppImages } from '@/data/hooks/ai/capabilities/useGetAppImage.hook';
 import { useGetPartner } from '@/data/hooks/ai/partner/useGetPartner.hook';
+import { buildScalingSchema } from '@/components/order/app-scaling/AutoScalingForm/AutoScaling.schema';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -34,6 +35,7 @@ export function useOrderFunnel(
 ) {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/apps/create');
+  const { t: tScaling } = useTranslation('ai-tools/components/scaling');
 
   const orderSchema = z.object({
     region: z.string(),
@@ -56,28 +58,7 @@ export function useOrderFunnel(
       .trim()
       .min(1),
     privacy: z.nativeEnum(PrivacyEnum),
-    scaling: z
-      .object({
-        autoScaling: z.boolean(),
-        replicas: z.number().optional(),
-        averageUsageTarget: z.number().optional(),
-        replicasMax: z.number().optional(),
-        replicasMin: z.number().optional(),
-        resourceType: z
-          .union([
-            z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-            z.literal('CUSTOM'),
-          ])
-          .optional(),
-        metricUrl: z.string().optional(),
-        dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
-        dataLocation: z.string().optional(),
-        targetMetricValue: z.number().optional(),
-        aggregationType: z
-          .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
-          .optional(),
-      })
-      .optional(),
+    scaling: buildScalingSchema(tScaling).shape.scaling,
     labels: z
       .array(
         z.object({

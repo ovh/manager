@@ -258,7 +258,7 @@ const ScalingStrategy = ({ order, onSectionClicked }: OrderSummaryProps) => {
           <div className="flex items-center pl-4 gap-2">
             <span>
               {t('summaryReplicas', {
-                count: order.scaling.replicas,
+                count: +order.scaling.replicas,
               })}
             </span>
           </div>

@@ -12,10 +12,6 @@ import {
   DialogHeader,
   DialogTitle,
   Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
   useToast,
   ScrollBar,
   ScrollArea,
@@ -29,14 +25,18 @@ import { AppPricing } from '@/types/orderFunnel';
 import { getFlavorPricing } from '@/lib/priceFlavorHelper';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useScalingStrategy } from '@/data/hooks/ai/app/scaling-strategy/useScalingStrategy.hook';
+import {
+  buildScalingSchema,
+  ScalingStrategySchema,
+} from '@/components/order/app-scaling/AutoScalingForm/AutoScaling.schema';
 
 const UpdateScaling = () => {
   const { app, projectId } = useAppData();
   const catalogQuery = useGetCatalog({ refetchOnWindowFocus: false });
-  const [invalidForm, setInvalidForm] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
   const { t } = useTranslation('ai-tools/apps/app/dashboard/update-scaling');
+  const { t: tScaling } = useTranslation('ai-tools/components/scaling');
 
   const pricingResource: AppPricing = useMemo(() => {
     if (!catalogQuery.isSuccess) return { price: 0, tax: 0 };
@@ -47,32 +47,7 @@ const UpdateScaling = () => {
     );
   }, [app, catalogQuery.isSuccess]);
 
-  const schema = z.object({
-    scaling: z.object({
-      autoScaling: z.boolean(),
-      replicas: z.coerce.number(),
-      averageUsageTarget: z.coerce.number(),
-      replicasMax: z.coerce.number(),
-      replicasMin: z.coerce.number(),
-      resourceType: z
-        .union([
-          z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-          z.literal('CUSTOM'),
-        ])
-        .optional(),
-      metricUrl: z.string().optional(),
-      dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
-      dataLocation: z.string().optional(),
-      targetMetricValue: z.number().optional(),
-      aggregationType: z
-        .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
-        .optional(),
-    }),
-  });
-
-  type ValidationSchema = z.infer<typeof schema>;
-
-  const defaultValues: ValidationSchema = {
+  const defaultValues: ScalingStrategySchema = {
     scaling: {
       autoScaling: !!app.spec.scalingStrategy?.automatic,
       averageUsageTarget:
@@ -101,8 +76,8 @@ const UpdateScaling = () => {
     },
   };
 
-  const form = useForm<ValidationSchema>({
-    resolver: zodResolver(schema),
+  const form = useForm<ScalingStrategySchema>({
+    resolver: zodResolver(buildScalingSchema(tScaling)),
     defaultValues,
   });
 
@@ -141,12 +116,10 @@ const UpdateScaling = () => {
             ...(isCustom && {
               customMetrics: {
                 apiUrl: formValues.scaling.metricUrl,
-                format: formValues.scaling
-                  .dataFormat as ai.app.CustomMetricsFormatEnum,
+                format: formValues.scaling.dataFormat,
                 targetValue: formValues.scaling.targetMetricValue,
                 valueLocation: formValues.scaling.dataLocation,
-                aggregationType: formValues.scaling
-                  .aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
+                aggregationType: formValues.scaling.aggregationType,
               },
             }),
           },
@@ -169,39 +142,8 @@ const UpdateScaling = () => {
         </DialogHeader>
         <ScrollArea className="max-h-[80vh]">
           <Form {...form}>
-            <form onSubmit={onSubmit} className="flex flex-col gap-2">
-              <FormField
-                control={form.control}
-                name="scaling"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <ScalingStrategy
-                        {...field}
-                        scaling={{
-                          autoScaling: field.value.autoScaling,
-                          averageUsageTarget: field.value.averageUsageTarget,
-                          replicas: field.value.replicas,
-                          replicasMax: field.value.replicasMax,
-                          replicasMin: field.value.replicasMin,
-                          resourceType: field.value.resourceType,
-                          metricUrl: field.value.metricUrl,
-                          dataFormat: field.value.dataFormat,
-                          dataLocation: field.value.dataLocation,
-                          targetMetricValue: field.value.targetMetricValue,
-                          aggregationType: field.value.aggregationType,
-                        }}
-                        onChange={(newScaling) =>
-                          form.setValue('scaling', newScaling)
-                        }
-                        pricingFlavor={pricingResource}
-                        onNonValidForm={(val) => setInvalidForm(val)}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <form onSubmit={onSubmit} className="flex flex-col gap-2 px-2">
+              <ScalingStrategy pricingFlavor={pricingResource} />
               <DialogFooter className="flex justify-end mr-4">
                 <DialogClose asChild>
                   <Button
@@ -215,7 +157,7 @@ const UpdateScaling = () => {
                 <Button
                   data-testid="update-scaling-submit-button"
                   type="submit"
-                  disabled={isPending || invalidForm}
+                  disabled={isPending}
                 >
                   {t('updateScalingButtonConfirm')}
                 </Button>

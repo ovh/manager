@@ -1,6 +1,5 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Control, UseFormSetValue } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
 import {
   FormField,
@@ -14,26 +13,18 @@ import {
 } from '@datatr-ux/uxlib';
 
 import ai from '@/types/AI';
-import { SCALING_DEFAULTS, ScalingFormValues } from '@/lib/scalingHelper';
+import { SCALING_DEFAULTS } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from './AutoScaling.schema';
 
-interface ResourceTypeSelectorProps {
-  control: Control<ScalingFormValues>;
-  setValue: UseFormSetValue<ScalingFormValues>;
-  onFieldChange: () => void;
-}
-
-export const ResourceTypeSelector: React.FC<ResourceTypeSelectorProps> = ({
-  control,
-  setValue,
-  onFieldChange,
-}) => {
+export const ResourceTypeSelector = () => {
+  const { control, setValue } = useFormContext<ScalingStrategySchema>();
   const { t } = useTranslation('ai-tools/components/scaling');
 
   return (
     <div className="xl:col-start-2 xl:row-start-1 w-full">
       <FormField
         control={control}
-        name="resType"
+        name="scaling.resourceType"
         render={({ field }) => (
           <FormItem>
             <div className="flex items-center space-x-2 mb-2">
@@ -52,10 +43,12 @@ export const ResourceTypeSelector: React.FC<ResourceTypeSelectorProps> = ({
               onValueChange={(value) => {
                 field.onChange(value);
                 if (value === 'CUSTOM') {
-                  setValue('dataFormat', SCALING_DEFAULTS.DATA_FORMAT);
-                  setValue('aggregationType', SCALING_DEFAULTS.AGGREGATION_TYPE);
+                  setValue('scaling.dataFormat', SCALING_DEFAULTS.DATA_FORMAT);
+                  setValue(
+                    'scaling.aggregationType',
+                    SCALING_DEFAULTS.AGGREGATION_TYPE,
+                  );
                 }
-                onFieldChange();
               }}
               className="mb-2"
             >

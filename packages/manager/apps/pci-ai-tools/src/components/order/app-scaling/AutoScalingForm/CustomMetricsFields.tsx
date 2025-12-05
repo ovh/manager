@@ -1,6 +1,5 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Control } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
 import {
   FormControl,
@@ -19,17 +18,10 @@ import {
 } from '@datatr-ux/uxlib';
 
 import ai from '@/types/AI';
-import { ScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from './AutoScaling.schema';
 
-interface CustomMetricsFieldsProps {
-  control: Control<ScalingFormValues>;
-  onFieldChange: () => void;
-}
-
-export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
-  control,
-  onFieldChange,
-}) => {
+export const CustomMetricsFields = () => {
+  const { control } = useFormContext<ScalingStrategySchema>();
   const { t } = useTranslation('ai-tools/components/scaling');
 
   return (
@@ -37,13 +29,8 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
       <div className="w-full xl:col-start-2 xl:row-start-2">
         <FormField
           control={control}
-          name="metricUrl"
-          render={({ field, fieldState }) => {
-            const isEmpty = !field.value || !field.value.trim();
-            const errorMessage =
-              fieldState.error?.message ??
-              (isEmpty ? t('metricUrlRequired') : undefined);
-
+          name="scaling.metricUrl"
+          render={({ field }) => {
             return (
               <FormItem>
                 <div className="flex items-center space-x-2 mb-2">
@@ -62,13 +49,9 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                     data-testid="metric-url-input"
                     {...field}
                     placeholder={t('metricUrlPlaceholder')}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      onFieldChange();
-                    }}
                   />
                 </FormControl>
-                <FormMessage>{errorMessage}</FormMessage>
+                <FormMessage />
               </FormItem>
             );
           }}
@@ -77,7 +60,7 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
       <div className="w-full xl:col-start-2 xl:row-start-3">
         <FormField
           control={control}
-          name="dataFormat"
+          name="scaling.dataFormat"
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
@@ -92,13 +75,7 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                 </Popover>
               </div>
 
-              <Select
-                value={field.value}
-                onValueChange={(value) => {
-                  field.onChange(value);
-                  onFieldChange();
-                }}
-              >
+              <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger data-testid="data-format-select">
                     <SelectValue />
@@ -129,13 +106,8 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
       <div className="w-full xl:col-start-1 xl:row-start-3">
         <FormField
           control={control}
-          name="dataLocation"
-          render={({ field, fieldState }) => {
-            const isEmpty = !field.value || !field.value.trim();
-            const errorMessage =
-              fieldState.error?.message ??
-              (isEmpty ? t('dataLocationRequired') : undefined);
-
+          name="scaling.dataLocation"
+          render={({ field }) => {
             return (
               <FormItem>
                 <div className="flex items-center space-x-2 mb-2">
@@ -156,11 +128,10 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                     placeholder={t('dataLocationPlaceholder')}
                     onChange={(e) => {
                       field.onChange(e);
-                      onFieldChange();
                     }}
                   />
                 </FormControl>
-                <FormMessage>{errorMessage}</FormMessage>
+                <FormMessage />
               </FormItem>
             );
           }}
@@ -169,7 +140,7 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
       <div className="w-full xl:col-start-2 xl:row-start-4">
         <FormField
           control={control}
-          name="targetMetricValue"
+          name="scaling.targetMetricValue"
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
@@ -192,7 +163,6 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                   step="0.5"
                   onChange={(e) => {
                     field.onChange(Number(e.target.value));
-                    onFieldChange();
                   }}
                 />
               </FormControl>
@@ -204,7 +174,7 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
       <div className="w-full xl:col-start-1 xl:row-start-4">
         <FormField
           control={control}
-          name="aggregationType"
+          name="scaling.aggregationType"
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
@@ -223,7 +193,6 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                   value={field.value}
                   onValueChange={(value) => {
                     field.onChange(value);
-                    onFieldChange();
                   }}
                 >
                   <SelectTrigger data-testid="aggregation-type-select">

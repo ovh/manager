@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExternalLink, HelpCircle } from 'lucide-react';
 import {
+  FormField,
   Input,
   Label,
   Popover,
@@ -9,30 +10,29 @@ import {
   PopoverTrigger,
   Switch,
 } from '@datatr-ux/uxlib';
-import { AppPricing, Scaling } from '@/types/orderFunnel';
+import { useFormContext } from 'react-hook-form';
+import { AppPricing } from '@/types/orderFunnel';
 import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
-import { AutoScalingForm } from './AutoScalingForm/AutoScalingForm.component';
+import { AutoScalingInputs } from './AutoScalingForm/AutoScalingForm.component';
 import Price from '@/components/price/Price.component';
+import { ScalingStrategySchema } from './AutoScalingForm/AutoScaling.schema';
 
 interface ScalingStrategyProps {
-  scaling: Scaling;
-  onChange: (scalingStrat: Scaling) => void;
-  onNonValidForm?: (isPending: boolean) => void;
   pricingFlavor?: AppPricing;
 }
 
 const ScalingStrategy = React.forwardRef<
   HTMLInputElement,
   ScalingStrategyProps
->(({ scaling, onChange, pricingFlavor, onNonValidForm }, ref) => {
+>(({ pricingFlavor }, ref) => {
+  const form = useFormContext<ScalingStrategySchema>();
   const { t } = useTranslation('ai-tools/components/scaling');
   const locale = useLocale();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange({ ...scaling, replicas: Number(e.target.value) });
-  };
+  const autoscaling: boolean = form.watch('scaling.autoScaling');
+  const replicas: number = form.watch('scaling.replicas');
 
   return (
     <div
@@ -53,30 +53,30 @@ const ScalingStrategy = React.forwardRef<
         </A>
       </div>
       <div className="flex items-center space-x-2">
-        <Switch
-          data-testid="switch-scaling-button"
-          type="button"
-          className="rounded-xl"
-          id="scaling-strat"
-          checked={scaling.autoScaling}
-          onCheckedChange={(checked: boolean) =>
-            onChange({ ...scaling, autoScaling: checked })
-          }
+        <FormField
+          control={form.control}
+          name="scaling.autoScaling"
+          render={({ field }) => (
+            <>
+              <Switch
+                data-testid="switch-scaling-button"
+                type="button"
+                className="rounded-xl"
+                id="scaling-strat"
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+              <Label className="font-semibold text-lg">
+                {field.value
+                  ? t('scalingStratActiveLabel')
+                  : t('noScalingStratActiveLabel')}
+              </Label>
+            </>
+          )}
         />
-        <Label className="font-semibold text-lg">
-          {scaling.autoScaling
-            ? t('scalingStratActiveLabel')
-            : t('noScalingStratActiveLabel')}
-        </Label>
       </div>
-      {scaling.autoScaling ? (
-        <AutoScalingForm
-          onChange={onChange}
-          scaling={scaling}
-          ref={ref}
-          pricingFlavor={pricingFlavor}
-          onNonValidForm={onNonValidForm}
-        />
+      {autoscaling ? (
+        <AutoScalingInputs pricingFlavor={pricingFlavor} />
       ) : (
         <div>
           <div
@@ -93,22 +93,26 @@ const ScalingStrategy = React.forwardRef<
               </PopoverContent>
             </Popover>
           </div>
-          <Input
-            data-testid="replicas-input"
-            ref={ref}
-            type="number"
-            max={10}
-            min={1}
-            value={scaling.replicas}
-            onChange={handleChange}
+          <FormField
+            control={form.control}
+            name="scaling.replicas"
+            render={({ field }) => (
+              <Input
+                data-testid="replicas-input"
+                type="number"
+                max={10}
+                min={1}
+                {...field}
+              />
+            )}
           />
           {pricingFlavor && (
             <div className="mt-2">
               <Price
                 decimals={2}
                 displayInHour={true}
-                priceInUcents={scaling.replicas * 60 * pricingFlavor.price}
-                taxInUcents={scaling.replicas * 60 * pricingFlavor.tax}
+                priceInUcents={replicas * 60 * pricingFlavor.price}
+                taxInUcents={replicas * 60 * pricingFlavor.tax}
               />
             </div>
           )}
@@ -117,5 +121,7 @@ const ScalingStrategy = React.forwardRef<
     </div>
   );
 });
+
+ScalingStrategy.displayName = 'ScalingStrategy';
 
 export default ScalingStrategy;
