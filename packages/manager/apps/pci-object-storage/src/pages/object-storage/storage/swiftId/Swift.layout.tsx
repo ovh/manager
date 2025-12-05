@@ -82,7 +82,7 @@ export default function SwiftLayout() {
   return (
     <>
       <SwiftHeader swift={swift} />
-      <S3Tabs swift={swift} />
+      <S3Tabs />
       <div className="space-y-2">
         <Outlet context={swiftLayoutContext} />
       </div>
