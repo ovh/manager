@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { z } from 'zod';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
