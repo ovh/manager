@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -7,9 +7,10 @@ import {
   ChangelogButton,
   HeadersProps,
   Notifications,
+  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 
-import { CHANGELOG_CHAPTERS, CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_CHAPTERS, CHANGELOG_LINKS, IAM_FEATURES } from '@/constants';
 import { useGetIamUser } from '@/data/hooks/useGetIamUser';
 import { useParam } from '@/hooks/useParam';
 import { useIamUserTokenList } from '@/data/hooks/useGetIamUserTokens';
@@ -22,6 +23,19 @@ export default function PermanentTokensListing() {
   const { t } = useTranslation('permanent-tokens');
   const { shell } = useContext(ShellContext);
   const userId = useParam('userId');
+
+  // Check feature-availability for permanent token, and redirect if needed.
+  const {
+    data: featureAvailability,
+    isLoading: isFeatureAvailabilityLoading,
+  } = useFeatureAvailability([IAM_FEATURES.PERMANENT_TOKENS]);
+  const isPermanentTokenEnabled =
+    featureAvailability && featureAvailability[IAM_FEATURES.PERMANENT_TOKENS];
+  useEffect(() => {
+    if (!isFeatureAvailabilityLoading && !isPermanentTokenEnabled) {
+      shell?.navigation.navigateTo('', '/iam/identities/users', {});
+    }
+  }, [shell, isFeatureAvailabilityLoading, isPermanentTokenEnabled]);
 
   const header: HeadersProps = {
     title: t('iam_user_tokens_title'),
