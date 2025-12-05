@@ -1,0 +1,20 @@
+$icons: 'almalinux', 'centos', 'cpanel', 'cloudlinux', 'dataiku', 'datascience',
+  'debian', 'docker', 'fedora', 'freebsd', 'linux', 'minikube', 'n8n',
+  'nvidia_ngc', 'plesk', 'rockylinux', 'rstudio', 'ubuntu', 'windows';
+
+.distributionImage {
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  background-position: center;
+  margin-top: 2px;
+  margin-right: 8px;
+
+  @each $icon in $icons {
+    &--#{$icon} {
+      background-image: url('/assets/distribution/#{$icon}.png');
+    }
+  }
+}

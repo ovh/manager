@@ -1,10 +1,10 @@
 import { describe, test, vi, expect, afterEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import BackupBlock from '../BackupBlock.component';
 import { TInstance } from '@/types/instance/entity.type';
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { getInstance } from '@/data/api/instance';
-import { QueryClientWrapper } from '@/__tests__/wrapperRenders';
+import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
 
 const fakeInstance = {
   id: 'fake-instance-id',
@@ -59,9 +59,6 @@ vi.mock('@/hooks/url/useDedicatedUrl');
 vi.mocked(getInstance).mockImplementation(getInstanceMock);
 vi.mocked(useDedicatedUrl).mockResolvedValue('');
 
-const renderBackupBlock = () =>
-  render(<BackupBlock />, { wrapper: QueryClientWrapper });
-
 describe('Considering BackupBlock component', () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -70,7 +67,7 @@ describe('Considering BackupBlock component', () => {
   test('when there is no backup then display a message', async () => {
     getInstanceMock.mockResolvedValue(fakeInstance);
 
-    renderBackupBlock();
+    renderWithMockedWrappers(<BackupBlock />);
 
     await waitFor(() =>
       expect(
@@ -96,7 +93,7 @@ describe('Considering BackupBlock component', () => {
       ],
     });
 
-    renderBackupBlock();
+    renderWithMockedWrappers(<BackupBlock />);
 
     await waitFor(() => {
       expect(screen.getByText('2')).toBeInTheDocument();
@@ -111,7 +108,7 @@ describe('Considering BackupBlock component', () => {
       status: 'ERROR',
     });
 
-    renderBackupBlock();
+    renderWithMockedWrappers(<BackupBlock />);
 
     await waitFor(() =>
       expect(
@@ -123,7 +120,7 @@ describe('Considering BackupBlock component', () => {
   test('display create a backup when action is available', async () => {
     getInstanceMock.mockResolvedValue(fakeInstance);
 
-    renderBackupBlock();
+    renderWithMockedWrappers(<BackupBlock />);
 
     await waitFor(() =>
       expect(
