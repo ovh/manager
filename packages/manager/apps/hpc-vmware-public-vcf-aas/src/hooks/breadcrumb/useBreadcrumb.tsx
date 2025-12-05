@@ -1,6 +1,7 @@
 import { useLocation, useHref } from 'react-router-dom';
 import { JSX } from '@ovhcloud/ods-components';
 import { urls } from '@/routes/routes.constant';
+import { useApplicationBreadcrumbItems } from './useApplicationBreadcrumbItems';
 
 export type BreadcrumbItem = {
   id: string;
@@ -10,12 +11,13 @@ export type BreadcrumbItem = {
 
 export interface BreadcrumbProps {
   rootLabel?: string;
-  items?: BreadcrumbItem[];
 }
 
-export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
+export const useBreadcrumb = ({ rootLabel }: BreadcrumbProps) => {
   const location = useLocation();
   const rootHref = useHref(`${urls.root}/`);
+  const { items } = useApplicationBreadcrumbItems();
+
   const isRootPath = (path: string) => path === urls.root.replace('/', '');
 
   const rootItem = {
