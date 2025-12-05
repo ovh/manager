@@ -7,11 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 
+import { getProject } from '@ovh-ux/manager-pci-common';
 import { PageType, ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import ImageSlider from '@/components/image-slider/ImageSlider';
 import LargeSpinner from '@/components/large-spinner/LargeSpinner';
-import { CREATING_GUIDE_URLS } from '@/constants';
+import { CREATING_GUIDE_URLS, DISCOVERY_PROJECT_PLANCODE } from '@/constants';
 import { useDeliveredProjectId, useOrderFollowUpPolling } from '@/data/hooks/useOrder';
 import { useParam } from '@/hooks/useParam';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
@@ -28,7 +29,7 @@ export default function CreatingPage() {
 
   const navigate = useNavigate();
 
-  const { environment } = useContext(ShellContext);
+  const { environment, shell } = useContext(ShellContext);
   const user = environment.getUser();
 
   const pciProjectsHref = useHref('..');
@@ -53,7 +54,13 @@ export default function CreatingPage() {
   useDeliveredProjectId({
     orderId: Number(orderId),
     enabled: isDelivered,
-    onProjectIdDelivered: (projectId: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    onProjectIdDelivered: async (projectId: string) => {
+      const project = await getProject(projectId);
+      shell.tracking.setPciProjectMode({
+        projectId: projectId,
+        isDiscoveryProject: project?.planCode === DISCOVERY_PROJECT_PLANCODE,
+      });
       trackPage({
         pageType: PageType.bannerInfo,
         pageName: PROJECTS_TRACKING.CREATING.PROJECT_DELIVERED,
