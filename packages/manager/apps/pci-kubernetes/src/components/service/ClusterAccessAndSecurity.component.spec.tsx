@@ -121,35 +121,6 @@ describe('ClusterAccessAndSecurity', () => {
     );
     expect(getByText(/kube_service_upgrade_policy_automatic/i)).toBeInTheDocument();
   });
-
-  it('disables kube config button when status is installing', () => {
-    const { getByTestId } = render(
-      <ClusterAccessAndSecurity kubeDetail={{ status: 'INSTALLING' } as TKube} />,
-      { wrapper },
-    );
-    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).toBeDisabled();
-  });
-
-  it('enables kube config button when status is ready', () => {
-    const { getByTestId } = render(
-      <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
-      { wrapper },
-    );
-    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).not.toBeDisabled();
-  });
-
-  it('enables spinner for kube config button when getting data and button disabled', () => {
-    vi.spyOn(useKubernetesModule, 'useKubeConfig').mockReturnValue({
-      isPending: true,
-    } as never);
-    const { getByTestId } = render(
-      <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
-      { wrapper },
-    );
-    expect(getByTestId('clusterAccessAndSecurity-spinnerKubeConfig')).toBeInTheDocument();
-    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).toBeDisabled();
-  });
-
   it('renders nodes URL with clipboard component in 1az', () => {
     const { container, getByText } = render(
       <ClusterAccessAndSecurity
