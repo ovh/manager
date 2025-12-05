@@ -1,20 +1,19 @@
-import React from 'react';
-
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_ICON_ALIGNMENT,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { MODAL_COLOR, Modal } from '@ovh-ux/muk';
 
 import { subRoutes, urls } from '@/routes/routes.constants';
 
@@ -30,44 +29,47 @@ export default function SanModal() {
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
   return (
-    <OdsModal
+    <Modal
       data-testid="san-modal"
-      color={ODS_MODAL_COLOR.information}
-      isDismissible
-      onOdsClose={closeModal}
-      isOpen
+      type={MODAL_COLOR.information}
+      dismissible
+      onOpenChange={closeModal}
+      open
     >
-      <div className="flex flex-col space-y-4 mb-4">
-        <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
+      <div className="mb-4 flex flex-col space-y-4">
+        <Text className="mb-4" preset={TEXT_PRESET.heading4}>
           {t('san_ssl_title')}
-        </OdsText>
-        <OdsText>{t('san_ssl_message', { n, domain })}</OdsText>
-        <OdsText>{san}</OdsText>
+        </Text>
+        <Text>{t('san_ssl_message', { n, domain })}</Text>
+        <Text>{san}</Text>
       </div>
-      <div className="flex space-x-4 justify-end">
-        <OdsButton
-          color={ODS_BUTTON_COLOR.primary}
-          icon={ODS_ICON_NAME.fileCopy}
-          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+      <div className="flex justify-end space-x-4">
+        <Button
+          color={BUTTON_COLOR.primary}
           onClick={() => {
             navigator.clipboard.writeText(san).catch(console.error);
           }}
-          variant={ODS_BUTTON_VARIANT.outline}
+          variant={BUTTON_VARIANT.outline}
           data-testid="secondary-button"
-          label={t('san_ssl_copy')}
           className="mt-4"
           type="button"
-        />
-        <OdsButton
-          color={ODS_BUTTON_COLOR.primary}
+        >
+          <>
+            <Icon name={ICON_NAME.fileCopy} />
+            {t('san_ssl_copy')}
+          </>
+        </Button>
+        <Button
+          color={BUTTON_COLOR.primary}
           onClick={closeModal}
-          variant={ODS_BUTTON_VARIANT.default}
+          variant={BUTTON_VARIANT.default}
           data-testid="primary-button"
-          label={tActions('close')}
           className="mt-4"
           type="button"
-        />
+        >
+          {tActions('close')}
+        </Button>
       </div>
-    </OdsModal>
+    </Modal>
   );
 }

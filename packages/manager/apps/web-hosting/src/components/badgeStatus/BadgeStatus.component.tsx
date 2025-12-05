@@ -2,10 +2,8 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-
-import { Badge } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BADGE_COLOR, Badge } from '@ovh-ux/muk';
 
 import { DnsStatus, GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
 import { DATAGRID_LINK, WEBSITE } from '@/utils/tracking.constants';
@@ -21,29 +19,29 @@ export type BadgeStatusProps = {
   label?: string;
 };
 
-const getStatusColor = (status: Status) => {
+export const getStatusColor = (status: Status) => {
   switch (status) {
     case GitStatus.CREATED:
     case ResourceStatus.READY:
     case ServiceStatus.ACTIVE:
     case DnsStatus.CONFIGURED:
-      return ODS_BADGE_COLOR.success;
+      return BADGE_COLOR.success;
     case GitStatus.CREATING:
     case GitStatus.DELETING:
     case GitStatus.DEPLOYING:
-    case GitStatus.INITIALERROR:
     case DnsStatus.EXTERNAL:
-      return ODS_BADGE_COLOR.warning;
-    case GitStatus.DISABLED:
+      return BADGE_COLOR.warning;
+    case GitStatus.INITIALERROR:
     case GitStatus.ERROR:
     case ResourceStatus.ERROR:
     case ResourceStatus.SUSPENDED:
-    case ServiceStatus.NONE:
-      return ODS_BADGE_COLOR.critical;
+      return BADGE_COLOR.critical;
     case DnsStatus.NOT_CONFIGURED:
-      return ODS_BADGE_COLOR.neutral;
+    case GitStatus.DISABLED:
+    case ServiceStatus.NONE:
+      return BADGE_COLOR.neutral;
     default:
-      return ODS_BADGE_COLOR.information;
+      return BADGE_COLOR.information;
   }
 };
 
@@ -72,9 +70,10 @@ export const BadgeStatus: React.FC<BadgeStatusProps> = ({
       }}
       data-testid={`badge-status-${itemStatus}`}
       color={statusColor}
-      label={label || t(`web_hosting_status_${itemStatus.toLowerCase()}`)}
-      className="mr-4 cursor-pointer inline-block"
+      className="mr-4 inline-block cursor-pointer"
       isLoading={isLoading}
-    />
+    >
+      {label || t(`web_hosting_status_${itemStatus.toLowerCase()}`)}
+    </Badge>
   );
 };

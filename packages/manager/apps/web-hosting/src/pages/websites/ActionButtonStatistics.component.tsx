@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
-import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu } from '@ovh-ux/muk';
 
 import { WebsiteType } from '@/data/types/product/website';
 import { useHostingUrl } from '@/hooks';
@@ -38,12 +38,7 @@ const ActionButtonStatistics: React.FC<ActionButtonStatisticsProps> = ({ webSite
   ];
 
   return (
-    <ActionMenu
-      id={webSiteItem.id}
-      items={actionItems}
-      variant={ODS_BUTTON_VARIANT.ghost}
-      isCompact
-    />
+    <ActionMenu id={webSiteItem.id} items={actionItems} variant={BUTTON_VARIANT.ghost} isCompact />
   );
 };
 

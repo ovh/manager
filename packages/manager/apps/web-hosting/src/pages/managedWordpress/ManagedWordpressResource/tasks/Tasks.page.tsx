@@ -1,20 +1,11 @@
-//@todo to analyse for step 2 for import when the customer quit the page before the step 2
-import { /* useCallback, */ useMemo } from 'react';
-
-import { /* useNavigate, */ useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsButton, OdsProgressBar } from '@ovhcloud/ods-components/react';
+import { BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  // ActionMenu,
-  Datagrid,
-  DatagridColumn,
-  useFormatDate,
-} from '@ovh-ux/manager-react-components';
+import { Badge, Datagrid, DatagridColumn, useFormatDate } from '@ovh-ux/muk';
 
 import { useManagedWordpressResourceTasks } from '@/data/hooks/managedWordpress/managedWordpressResourceTasks/useManagedWordpressResourceTasks';
 import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpress/managedWordpressWebsites/useManagedWordpressWebsites';
@@ -27,7 +18,12 @@ export default function TasksPage() {
   const { serviceName } = useParams();
   const { t } = useTranslation(['common', NAMESPACES.DASHBOARD]);
 
-  const { data, refetch, isFetching } = useManagedWordpressResourceTasks(serviceName);
+  const {
+    data,
+    refetch,
+    isFetching,
+    isLoading,
+  } = useManagedWordpressResourceTasks(serviceName);
   const formatDate = useFormatDate();
   const { data: websitesList } = useManagedWordpressWebsites({
     disableRefetchInterval: true,
@@ -47,116 +43,140 @@ export default function TasksPage() {
     [navigate, goToStep2],
   ); */
 
-  const columns: DatagridColumn<ManagedWordpressResourceTask>[] = useMemo(
-    () => [
-      {
-        id: 'defaultFqdn',
-        cell: (item) => {
-          const id = item?.link?.split('/').pop();
+  const columns: DatagridColumn<ManagedWordpressResourceTask>[] = [
+    // {
+    //   id: 'defaultFqdn',
+    //   accessorKey: 'link',
 
-          const matchingItem = websitesList?.find((website) => website.id === id);
+    //   cell: ({ row }) => {
+    //     const id = row?.original?.link?.split('/').pop();
 
-          return <>{matchingItem?.currentState.defaultFQDN}</>;
-        },
-        label: t('web_hosting_status_header_fqdn'),
-      },
-      {
-        id: 'type',
-        cell: (item) => {
-          return <span>{t(`common:web_hosting_common_type_${item.type.toLowerCase()}`)}</span>;
-        },
-        label: t(`${NAMESPACES.DASHBOARD}:type`),
-      },
-      {
-        id: 'status',
-        cell: (item) => {
-          const statusColor = getStatusColor(item.status);
-          return (
-            <OdsBadge
-              color={statusColor}
-              label={t(`web_hosting_status_${item.status.toLocaleLowerCase()}`)}
-            />
-          );
-        },
-        label: t('web_hosting_header_status'),
-      },
-      {
-        id: 'progress',
-        cell: (item) => {
-          let progress = parseInt(item.message?.replace(/\D/g, '') || '', 10) || 0;
+    //     const matchingItem = websitesList?.find(
+    //       (website) => website.id === id,
+    //     );
 
-          if (item.status === Status.DONE) {
-            progress = 100;
-          }
-
-          return (
-            <div>
-              <OdsProgressBar max={100} value={progress} className="mr-4" />
-              {progress}%
-            </div>
-          );
-        },
-        label: t('web_hosting_header_progress'),
+    //     return <>{matchingItem?.currentState?.defaultFQDN}</>;
+    //   },
+    //   header: t('web_hosting_status_header_fqdn'),
+    // },
+    {
+      id: 'type',
+      accessorKey: 'type',
+      cell: ({ getValue }) => {
+        return (
+          <span>
+            {t(
+              `common:web_hosting_common_type_${getValue<
+                string
+              >()?.toLowerCase()}`,
+            )}
+          </span>
+        );
       },
-      {
-        id: 'comments',
-        cell: (item) => <div>{item.message?.replace(/\d+%?/g, '').trim() || ''}</div>,
-        label: t('web_hosting_header_comments'),
-        isSortable: true,
+      header: t(`${NAMESPACES.DASHBOARD}:type`),
+    },
+    {
+      id: 'status',
+      accessorKey: 'status',
+      cell: ({ getValue }) => {
+        const statusColor = getStatusColor(getValue<Status>());
+        return (
+          <Badge color={statusColor}>
+            {t(`web_hosting_status_${getValue<Status>()?.toLocaleLowerCase()}`)}
+          </Badge>
+        );
       },
-      {
-        id: 'createdAt',
-        cell: (item) => <div>{formatDate({ date: item.createdAt, format: 'Pp' })}</div>,
-        label: t('web_hosting_common_creation_date'),
-        isSortable: true,
+      header: t('web_hosting_header_status'),
+    },
+    {
+      id: 'progress',
+      accessorKey: 'progress',
+      cell: ({ getValue }) => {
+        console.info('progress getValue()', getValue()?.[0]?.status);
+        return getValue()?.[0]?.status || 'undefined';
       },
-      {
-        id: 'updatedAt',
-        cell: (item) => <div>{formatDate({ date: item.updatedAt, format: 'Pp' })}</div>,
-        label: t('web_hosting_common_update_date'),
-        isSortable: true,
-      },
-      /*  {
+      header: t('web_hosting_header_progress'),
+    },
+    // {
+    //   id: 'message',
+    //   accessorKey: 'message',
+    //   cell: ({ getValue }) => (
+    //     <div>
+    //       {getValue<string>()
+    //         ?.replace(/\d+%?/g, '')
+    //         ?.trim() || ''}
+    //     </div>
+    //   ),
+    //   header: t('web_hosting_header_comments'),
+    //   isSortable: true,
+    // },
+    // {
+    //   id: 'createdAt',
+    //   accessorKey: 'createdAt',
+    //   cell: ({ getValue }) => (
+    //     <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>
+    //   ),
+    //   header: t('web_hosting_common_creation_date'),
+    //   isSortable: true,
+    // },
+    // {
+    //   id: 'updatedAt',
+    //   accessorKey: 'updatedAt',
+    //   cell: ({ getValue }) => (
+    //     <div>{formatDate({ date: getValue<string>(), format: 'Pp' })}</div>
+    //   ),
+    //   header: t('web_hosting_common_update_date'),
+    //   isSortable: true,
+    // },
+    /*  {
         id: 'actions',
-        cell: (item) => {
-          if (item.status === Status.WAITING_USER_INPUT) {
+        cell: ({ row }) => {
+          if (getResource(row).status === Status.WAITING_USER_INPUT) {
             return (
               <ActionMenu
                 items={[
                   {
                     id: 1,
                     label: t('common:action_user_import'),
-                    onClick: () => handleResumeImport(item),
+                    onClick: () => handleResumeImport(getResource(row)),
                   },
                 ]}
                 isCompact
-                variant={ODS_BUTTON_VARIANT.ghost}
-                id={item.id}
+                variant={BUTTON_VARIANT.ghost}
+                id={getResource(row).id}
               />
             );
           }
         },
         label: '',
       }, */
-    ],
-    [t, formatDate, websitesList /* , handleResumeImport */],
-  );
+  ];
+  //   [t, formatDate, websitesList /* , handleResumeImport */],
+  // );
   const handleRefreshClick = () => {
     void refetch();
   };
+
   return (
     <>
-      <div className="mb-4 mt-4 flex justify-end">
-        <OdsButton
+      <div className="my-4 flex items-center justify-between">
+        <Button
           onClick={() => handleRefreshClick()}
           data-testid="refresh"
-          label={''}
-          icon={ODS_ICON_NAME.refresh}
-          variant={ODS_BUTTON_VARIANT.outline}
-          isLoading={isFetching}
-        ></OdsButton>
+          variant={BUTTON_VARIANT.outline}
+          loading={isFetching}
+        >
+          <Icon name={ICON_NAME.refresh}></Icon>
+        </Button>
       </div>
-      <Datagrid columns={columns} items={data || []} totalItems={data?.length || 0} />
+      <div>
+        Datagrid 1
+        <Datagrid
+          columns={columns}
+          data={data?.length > 0 ? data : []}
+          isLoading={isLoading}
+        />
+      </div>
     </>
   );
 }

@@ -14,7 +14,7 @@ export type TableBodyProps<T> = {
   ) => JSX.Element;
   rowModel: RowModel<T>;
   subComponentHeight?: number;
-  tableContainerRef: RefObject<HTMLDivElement>;
+  tableContainerRef: HTMLDivElement | null;
   contentAlignLeft?: boolean;
   expanded?: ExpandedState;
   columns: Column<T>[];
