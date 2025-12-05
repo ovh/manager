@@ -317,5 +317,11 @@
   "domain_dsrecords_table_header_keyTag": "Key tag",
   "domain_dsrecords_table_header_flags": "Flag",
   "domain_dsrecords_table_header_algo": "Algorithme",
-  "domain_dsrecords_table_header_publicKey": "Clé publique (encodée base64)"
+  "domain_dsrecords_table_header_publicKey": "Clé publique (encodée base64)",
+  "domain_tab_dsrecords_drawer_add_title": "Ajouter une nouvelle entrée",
+  "domain_tab_dsrecords_drawer_form_publicKey_error": "La clé publique renseignée n'est pas au bon format",
+  "domain_tab_dsrecords_drawer_add_success": "Le DS Record {{ keyTag }} a été ajouté avec succès",
+  "domain_tab_dsrecords_drawer_add_error": "Une erreur a été detectée lors de l'ajout du DS Record : {{ error }}",
+  "domain_tab_dsrecords_drawer_form_error_empty": "Champ vide",
+  "domain_tab_dsrecords_add_disabled": "La configuration DNS actuelle ne permet l'ajout de DS Record"
 }
