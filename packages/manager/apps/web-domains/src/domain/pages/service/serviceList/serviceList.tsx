@@ -95,6 +95,7 @@ export default function ServiceList() {
     route: '/domain',
     queryKey: ['/domain'],
     disableCache: true,
+    defaultSorting: { id: 'domain', desc: false },
   });
 
   const { handleExport } = useDomainExportHandler({
