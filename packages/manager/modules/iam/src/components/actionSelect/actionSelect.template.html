@@ -1,6 +1,6 @@
 <div>
     <!-- <Wildcard> -->
-    <div class="d-flex mt-4">
+    <div class="d-flex mt-4" ng-if="$ctrl.showActionWildcard">
         <p
             class="mr-3 mb-1"
             data-translate="iam_action_select_all_actions_label"
@@ -13,6 +13,7 @@
         ></oui-switch>
     </div>
     <small
+        ng-if="$ctrl.showActionWildcard"
         class="d-block mb-4"
         data-translate="iam_action_select_all_actions_description"
     ></small>
@@ -30,8 +31,9 @@
 
     <!-- <MANAGED PERMISSIONS> -->
     <oui-collapsible
-        data-heading="{{ :: 'iam_managed_permissions_heading' | translate }}"
-        data-expanded="true"
+        data-ng-if="$ctrl.showPermissionsGroup"
+        data-heading="{{ :: $ctrl.managedPermissionsLabel | translate }}"
+        data-expanded="$ctrl.expandByDefault"
     >
         <div
             class="oui-checkbox ml-4"
@@ -62,7 +64,7 @@
     <oui-collapsible
         data-ng-repeat="actionTree in $ctrl.actionTrees track by actionTree.value"
         data-heading="{{ actionTree.value  | iamResourceType }}"
-        data-expanded="actionTree.expanded"
+        data-expanded="actionTree.expanded && $ctrl.expandByDefault"
     >
         <!-- <CustomAction> -->
         <ng-form
@@ -166,6 +168,7 @@
             <div class="d-flex justify-content-start">
                 <!-- <CategoryCheckbox> -->
                 <oui-checkbox
+                    ng-if="$ctrl.allowGroupSelection"
                     class="mb-3"
                     data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
                     data-model="category.selected"
@@ -184,6 +187,17 @@
                     </oui-checkbox-label>
                 </oui-checkbox>
                 <!-- </CategoryCheckbox> -->
+                <span class="mb-3" ng-if="!$ctrl.allowGroupSelection">
+                    <strong data-ng-bind="category.value"></strong>
+                    <span
+                        data-translate="{{ $ctrl.getCategoryLabel(category, actionTree.searchQuery) }}"
+                        data-translate-values="{
+                             selected: $ctrl.constructor.countSelectedActions(category.actions),
+                             result: $ctrl.constructor.countActionsMatchingSearch(category.actions, actionTree.searchQuery),
+                             total: category.actions.length,
+                        }"
+                    ></span>
+                </span>
 
                 <!-- <CategoryToggler> -->
                 <span

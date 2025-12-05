@@ -1,0 +1,12 @@
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
+iam-advanced-policy-search {
+  .search-section-checkbox {
+    margin-bottom: 0.8em;
+  }
+
+  .identity-search-input {
+    padding-top: $base-spacing-small;
+    margin-bottom: $base-spacing-small;
+  }
+}
