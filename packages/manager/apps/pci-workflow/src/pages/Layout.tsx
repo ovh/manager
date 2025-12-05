@@ -15,7 +15,7 @@ export default function Layout() {
   useRouteSynchro();
   usePageTracking();
   return (
-    <div className="md:mx-11 mt-8">
+    <div className="mt-8 md:mx-11">
       <Suspense>
         {isSuccess && (
           <>

@@ -203,7 +203,7 @@ export default function ListingPage() {
       <div className="mb-5">
         <PciDiscoveryBanner data-testid="discoveryBanner" project={project} />
       </div>
-      <div className="sm:flex items-center justify-between mt-4">
+      <div className="mt-4 items-center justify-between sm:flex">
         <OsdsButton
           data-testid="add-button"
           size={ODS_BUTTON_SIZE.sm}
@@ -220,7 +220,7 @@ export default function ListingPage() {
           />
           {t('pci_workflow_add')}
         </OsdsButton>
-        <div className="justify-between flex">
+        <div className="flex justify-between">
           <OsdsSearchBar
             data-testid="search-bar"
             className="w-[70%]"
@@ -308,7 +308,7 @@ export default function ListingPage() {
       </div>
 
       {searchQueries?.length > 0 && (
-        <div className="flex mt-8">
+        <div className="mt-8 flex">
           {searchQueries.map((query, index) => (
             <OsdsChip
               key={index}

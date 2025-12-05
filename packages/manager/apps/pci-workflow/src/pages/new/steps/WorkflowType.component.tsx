@@ -33,7 +33,7 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
       >
         {t('pci_workflow_create_type_description')}
       </OsdsText>
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3">
         <PciTile
           title={tListing(`pci_workflow_type_${WorkflowTypeEnum.INSTANCE_BACKUP}_title`)}
           isChecked
@@ -44,7 +44,7 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
       </div>
       {!step.isLocked && (
         <OsdsButton
-          className="w-fit mt-6"
+          className="mt-6 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => onSubmit(WorkflowTypeEnum.INSTANCE_BACKUP)}
