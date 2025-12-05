@@ -13,6 +13,7 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { Environment } from '@ovh-ux/manager-config';
 import { PageType, ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { ErrorProps } from '@/components/error/Error.props';
@@ -40,7 +41,7 @@ export const Error = ({
 
   useEffect(() => {
     const env = shell?.environment?.getEnvironment();
-    env?.then((response) => {
+    env?.then((response: Environment) => {
       const { applicationName } = response;
       const safeError = error ?? { status: 0 };
       const name = `errors::${getTrackingTypology(safeError)}::${applicationName}`;
