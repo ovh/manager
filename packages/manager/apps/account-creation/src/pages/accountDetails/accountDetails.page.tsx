@@ -17,12 +17,18 @@ import {
   OdsCheckbox,
   OdsFormField,
   OdsInput,
-  OdsPhoneNumber,
   OdsRadio,
   OdsSelect,
   OdsSkeleton,
   OdsText,
 } from '@ovhcloud/ods-components/react';
+import {
+  PhoneNumber,
+  PhoneNumberControl,
+  PhoneNumberCountryChangeDetail,
+  PhoneNumberCountryList,
+  PhoneNumberValueChangeDetail,
+} from '@ovhcloud/ods-react';
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -145,6 +151,7 @@ function AccountDetailsForm({
     resolver: zodResolver(zodSchema),
   });
 
+  const [phoneNumberLocale] = i18n.language.split('_');
   const shouldDisplaySIREN = useMemo(
     () => shouldEnableSIRENDisplay(currentUser.country, legalForm),
     [currentUser.country, legalForm],
@@ -739,18 +746,18 @@ function AccountDetailsForm({
           <Controller
             control={control}
             name="phone"
-            render={({ field: { name, value, onBlur } }) => (
+            render={({ field: { name, onBlur } }) => (
               <OdsFormField>
                 <OdsText
                   preset="caption"
                   aria-label={t('account_details_field_phone')}
                 >
-                  <label htmlFor="phone">
+                  <label htmlFor={name}>
                     {t('account_details_field_phone')}
                     {rules?.phone?.mandatory && ' *'}
                   </label>
                 </OdsText>
-                <OdsPhoneNumber
+                <PhoneNumber
                   name={name}
                   countries={
                     rules?.phoneCountry && rules?.phoneCountry.in
@@ -769,30 +776,24 @@ function AccountDetailsForm({
                         ]
                       : []
                   }
-                  value={value}
-                  isoCode={
-                    watch(
-                      'phoneCountry',
-                    )?.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
-                  }
-                  onOdsChange={(
-                    e: OdsPhoneNumberCustomEvent<OdsPhoneNumberChangeEventDetail>,
+                  locale={phoneNumberLocale}
+                  invalid={!!errors[name]}
+                  onCountryChange={(
+                    e: PhoneNumberCountryChangeDetail,
                   ) => {
-                    switch (e.detail.name) {
-                      case 'iso-code':
-                        setValue('phoneCountry', e.detail.value?.toUpperCase());
-                        break;
-                      case 'phone':
-                        setValue('phone', e.detail.value || '');
-                        break;
-                      default:
-                        break;
-                    }
+                    setValue('phoneCountry', e.value?.toUpperCase());
                   }}
-                  onOdsBlur={onBlur}
-                  hasError={!!errors.phone}
+                  onValueChange={(
+                    e: PhoneNumberValueChangeDetail,
+                  ) => {
+                    setValue('phone', e.value || '');
+                  }}
+                  onBlur={onBlur}
                   className="w-full flex flex-row"
-                />
+                >
+                  <PhoneNumberCountryList />
+                  <PhoneNumberControl loading={isLoading}/>
+                </PhoneNumber>
                 {errors.phone && rules?.phone && (
                   <OdsText
                     className="text-critical leading-[0.8]"
