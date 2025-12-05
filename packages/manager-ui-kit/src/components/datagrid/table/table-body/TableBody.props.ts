@@ -1,4 +1,4 @@
-import { JSX, MutableRefObject, RefObject } from 'react';
+import { JSX, MutableRefObject } from 'react';
 
 import type { Column, ExpandedState, Row, RowModel } from '@tanstack/react-table';
 
@@ -14,7 +14,7 @@ export type TableBodyProps<T> = {
   ) => JSX.Element;
   rowModel: RowModel<T>;
   subComponentHeight?: number;
-  tableContainerRef: RefObject<HTMLDivElement>;
+  tableContainerRef: HTMLDivElement | null;
   contentAlignLeft?: boolean;
   expanded?: ExpandedState;
   columns: Column<T>[];
