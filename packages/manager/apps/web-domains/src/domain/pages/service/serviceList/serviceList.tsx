@@ -8,7 +8,6 @@ import {
   Notifications,
   useResourcesIcebergV6,
   ChangelogButton,
-  useColumnFilters,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 import {
