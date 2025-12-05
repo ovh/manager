@@ -3,7 +3,6 @@ import type { ApiError } from '@ovh-ux/manager-core-api';
 import { getLogoutUrl } from '@ovh-ux/manager-core-sso';
 import { getHeaders } from '@ovh-ux/request-tagger';
 
-import { Application } from './application';
 import Environment from './environment';
 import { Region } from './environment/region.enum';
 
@@ -121,48 +120,6 @@ const handleErrorResponse = (
   return environment;
 };
 
-const getNewUrl = (appName = '', currentValue = '', region: 'EU' | 'CA' | 'US') => {
-  if (appName === 'sunrise') {
-    return currentValue;
-  }
-
-  const telecomApps = ['telecom', 'telephony', 'freefax', 'overthebox', 'pack-xdsl', 'sms'];
-
-  if (telecomApps.indexOf(appName) !== -1) {
-    return currentValue.replace('www.ovhtelecom.fr/manager', 'manager.eu.ovhcloud.com');
-  }
-
-  const oldDomains = {
-    EU: 'www.ovh.com/manager',
-    CA: 'ca.ovh.com/manager',
-    US: 'us.ovhcloud.com/manager',
-  };
-
-  return currentValue.replace(oldDomains[region], `manager.${region.toLowerCase()}.ovhcloud.com`);
-};
-
-// TODO: Temporarily update the domains of µ-app URLs as they are still pointing to the old ones from BFF. To clean this method after BFF deployment
-const updateDomain = (configObj: Environment) => {
-  if (window.location.pathname?.includes('/manager/')) {
-    // fix to skip updating URLs for LABEU
-    return;
-  }
-  const { region } = configObj;
-  Object.entries(configObj.applicationURLs).forEach(([key, value]) => {
-    configObj.applicationURLs[key] = getNewUrl(key, value, region);
-  });
-  Object.entries(configObj.applications).forEach(([key, value]) => {
-    (configObj.applications[key] as Application).url = getNewUrl(key, value.url, region);
-    if ((configObj.applications[key] as Application).publicURL) {
-      (configObj.applications[key] as Application).publicURL = getNewUrl(
-        key,
-        value.publicURL,
-        region,
-      );
-    }
-  });
-};
-
 export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
   const environment = new Environment();
   let configurationURL = '/configuration';
@@ -180,7 +137,6 @@ export const fetchConfiguration = async (applicationName: string): Promise<Envir
       },
     })
     .then(({ data }: { data: Environment }) => {
-      updateDomain(data);
       return updateEnvironment(environment, data);
     })
     .catch((err: ApiError & { response: { data: ConfigurationApiResponse } }) => {
