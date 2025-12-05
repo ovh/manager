@@ -14,12 +14,12 @@ import { useGetIamUser } from '@/data/hooks/useGetIamUser';
 import { useParam } from '@/hooks/useParam';
 import { useIamUserTokenList } from '@/data/hooks/useGetIamUserTokens';
 import { Datagrid } from '@ovh-ux/manager-react-components';
-import { useDatagridColumn } from '@/pages/manageTokens/listing/useDatagridColumn';
+import { useDatagridColumn } from '@/pages/permanentTokens/listing/useDatagridColumn';
 
-import { ManageTokensBreadcrumb } from '@/pages/manageTokens/components/ManageTokenBreadcrumb.component';
+import { PermanentTokensBreadcrumb } from '@/pages/permanentTokens/components/PermanentTokenBreadcrumb.component';
 
-export default function ManageTokensListing() {
-  const { t } = useTranslation('manage-tokens');
+export default function PermanentTokensListing() {
+  const { t } = useTranslation('permanent-tokens');
   const { shell } = useContext(ShellContext);
   const userId = useParam('userId');
 
@@ -64,7 +64,7 @@ export default function ManageTokensListing() {
       header={header}
       backLinkLabel={t('iam_user_tokens_return_to_identity_list')}
       onClickReturn={handleReturnLink}
-      breadcrumb={<ManageTokensBreadcrumb />}
+      breadcrumb={<PermanentTokensBreadcrumb />}
       message={<Notifications />}
     >
       {!isUserLoading && (
