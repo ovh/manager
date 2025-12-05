@@ -23,6 +23,9 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
     onStartClicked: (notebook: ai.notebook.Notebook) => {
       navigate(`./start/${notebook.id}`);
     },
+    onRestartClicked: (notebook: ai.notebook.Notebook) => {
+      navigate(`./restart/${notebook.id}`);
+    },
     onStopClicked: (notebook: ai.notebook.Notebook) => {
       navigate(`./stop/${notebook.id}`);
     },
