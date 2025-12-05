@@ -6,7 +6,7 @@
   "pci_workflow_create_select_instance": "Select an instance",
   "pci_workflow_create_schedule_title": "Define scheduling",
   "pci_workflow_create_schedule_rotate7_title": "Rotation 7",
-  "pci_workflow_create_schedule_rotate_description": "A backup is taken every day between 22:00 and 06:00, and the rotation maintains a log of the {{ numEntries }} latest entries. When the new backup is taken, the previous one is deleted.",
+  "pci_workflow_create_schedule_rotate_description": "A backup is taken every day between 22:00 and 06:00 (UTC), and the rotation maintains a log of the {{ numEntries }} latest entries. When the new backup is taken, the previous one is deleted.",
   "pci_workflow_create_schedule_rotate14_title": "Rotation 14",
   "pci_workflow_create_schedule_custom_title": "Custom",
   "pci_workflow_create_schedule_custom_description": "Choose the scheduling yourself (in UNIX Cron format), the number of rotations, and the maximum executions you want.",

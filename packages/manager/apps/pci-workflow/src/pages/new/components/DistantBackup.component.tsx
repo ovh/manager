@@ -69,7 +69,7 @@ export const DistantBackup: FC<DistantBackupProps> = ({
       'options' in item ? (
         <span>{item.label}</span>
       ) : (
-        <div className={'flex flex-row justify-between w-full'}>
+        <div className={'flex w-full flex-row justify-between'}>
           <span>{item.label}</span>
           {regionsById.has(item.value) && (
             <RegionTypeBadge type={regionsById.get(item.value).type} />

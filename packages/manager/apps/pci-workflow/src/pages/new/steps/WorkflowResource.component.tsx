@@ -38,7 +38,7 @@ export function WorkflowResource({
         </div>
       )}
       {step.isLocked && !!instance && (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-8">
+        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
           <PciTile title={instance.label} isChecked />
         </div>
       )}
@@ -47,7 +47,7 @@ export function WorkflowResource({
       )}
       {!step.isLocked && (
         <OsdsButton
-          className="w-fit mt-6"
+          className="mt-6 w-fit"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
           {...(instanceId ? {} : { disabled: true })}

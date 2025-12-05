@@ -114,7 +114,7 @@ export function WorkflowName({
       {!step.isLocked && (
         <div className="flex flex-row">
           <OsdsButton
-            className="w-fit mt-6 mr-4"
+            className="mr-4 mt-6 w-fit"
             size={ODS_BUTTON_SIZE.md}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => !hasError && onSubmit()}

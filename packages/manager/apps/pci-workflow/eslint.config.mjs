@@ -43,7 +43,14 @@ export default [
   },
   a11yEslintConfig,
   htmlEslintConfig,
-  tailwindJsxConfig,
+  {
+    ...tailwindJsxConfig,
+    rules: {
+      ...tailwindJsxConfig.rules,
+      'tailwindcss/no-custom-classname': 'off',
+      'tailwindcss/no-arbitrary-value': 'off',
+    },
+  },
   tanStackQueryEslintConfig,
   vitestEslintConfig,
   prettierEslintConfig,

@@ -131,8 +131,8 @@ export default function ResourceSelectorComponent({
   return (
     <>
       {!isPending && (
-        <div className="sm:flex items-center justify-end mt-4">
-          <div className="justify-between flex">
+        <div className="mt-4 items-center justify-end sm:flex">
+          <div className="flex justify-between">
             <OsdsSearchBar
               className="w-[70%]"
               value={searchField}

@@ -18,7 +18,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router}></RouterProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore */}
+      <ReactQueryDevtools client={queryClient} />
     </QueryClientProvider>
   );
 }

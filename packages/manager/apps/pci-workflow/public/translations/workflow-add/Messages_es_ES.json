@@ -1,5 +1,5 @@
 {
-  "pci_workflow_create_schedule_rotate_description": "Todos los días se realiza una copia de seguridad entre las 22:00 y las 6:00 y la rotación garantiza un registro de las {{ numEntries }} últimas entradas. Cuando finaliza el nuevo backup, se elimina el más antiguo.",
+  "pci_workflow_create_schedule_rotate_description": "Todos los días se realiza una copia de seguridad entre las 22:00 y las 6:00 (UTC) y la rotación garantiza un registro de las {{ numEntries }} últimas entradas. Cuando finaliza el nuevo backup, se elimina el más antiguo.",
   "pci_workflow_create_type_title": "Seleccione un flujo de trabajo",
   "pci_workflow_create_type_description": "Un flujo de trabajo describe una o más acciones.",
   "pci_workflow_create_type_instance_backup_description": "Este flujo de trabajo genera backups de las instancias, que podrán utilizarse para iniciar nuevas instancias.",
