@@ -1,7 +1,7 @@
 import {
   ProjectStorageCreation,
   StorageContainerCreation,
-} from '@datatr-ux/ovhcloud-types/cloud/index';
+} from '@datatr-ux/ovhcloud-types/cloud';
 import { Button, Separator, Skeleton } from '@datatr-ux/uxlib';
 import {
   Copy,
