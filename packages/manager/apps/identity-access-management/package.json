@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-identity-access-management-app",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "private": true,
   "description": "manage iam policies users tags etc",
   "repository": {

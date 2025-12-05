@@ -41,6 +41,10 @@ export interface TServiceInfo {
         pendingActions: LifecycleCapacitiesEnum[];
       };
     } | null;
+    plan?: {
+      code: string;
+      invoiceName: string;
+    } | null;
     pricing?: {
       capacities: BillingCapacitiesEnum;
       description: string;
@@ -345,3 +349,4 @@ export interface TMxPlan {
   offer: string | null;
   status: 'close' | 'ok' | 'readOnly' | 'unknown';
 }
+

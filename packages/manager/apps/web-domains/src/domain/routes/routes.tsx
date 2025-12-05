@@ -3,6 +3,7 @@ import { Navigate, Outlet, Route, useParams } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/domain/routes/routes.constant';
+import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
 
 const LayoutPage = React.lazy(() => import('@/domain/pages/layout'));
 const DomainListingPage = React.lazy(() =>
@@ -27,6 +28,14 @@ const DnsModifyPage = React.lazy(() =>
 
 const GeneralInformationsPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/generalInformations/generalInformations'),
+);
+
+const HostsListingTab = React.lazy(() =>
+  import('@/domain/pages/domainTabs/hosts/hostsListing'),
+);
+
+const HostConfigurationDeletePage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/hosts/hostDelete'),
 );
 
 const ContactManagementPage = React.lazy(() =>
@@ -90,7 +99,13 @@ export default (
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
         <Route path={urls.domainTabDynHost} Component={Outlet} />
-        <Route path={urls.domainTabHost} Component={Outlet} />
+
+        <Route path={urls.domainTabHost} Component={HostsListingTab}>
+          <Route
+            path={urls.domainTabHostDelete}
+            Component={HostConfigurationDeletePage}
+          />
+        </Route>
         <Route path={urls.domainTabDnssec} Component={Outlet} />
         <Route
           path={urls.domainTabContactManagement}
@@ -98,6 +113,10 @@ export default (
         />
       </Route>
       <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
+      <Route
+        path={urls.domainTabWebHostingOrder}
+        Component={WebHostingOrderPage}
+      />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route
         path={urls.domainOnboarding}

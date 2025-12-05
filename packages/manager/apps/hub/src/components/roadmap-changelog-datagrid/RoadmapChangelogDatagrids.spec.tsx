@@ -90,4 +90,11 @@ describe('Roadmap Changelog Datagrids', () => {
 
     expect(screen.getByText('Jan 15, 2025')).toBeInTheDocument();
   });
+
+  it('should have a valid html', () => {
+    const { container } = renderComponent();
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

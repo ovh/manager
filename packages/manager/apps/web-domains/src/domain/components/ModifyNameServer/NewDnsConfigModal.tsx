@@ -1,6 +1,5 @@
 import { Text } from '@ovhcloud/ods-react';
 import { Modal } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TNameServer } from '@/domain/types/domainResource';
@@ -48,7 +47,15 @@ export default function NewDnsConfigModal({
     );
 
     updateDomain(
-      { checksum, nameServers: cleanedNameServers },
+      {
+        checksum,
+        currentTargetSpec: domainResource?.targetSpec,
+        updatedSpec: {
+          dnsConfiguration: {
+            nameServers: cleanedNameServers,
+          },
+        },
+      },
       {
         onSuccess: () => {
           onClose();

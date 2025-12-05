@@ -1,20 +1,34 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useQueries,
+} from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import {
   OvhSubsidiary,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { Subsidiary } from '@ovh-ux/manager-config';
 import {
   getDomainAnycastOption,
   getDomainResource,
   updateDomainResource,
+  getDomainAuthInfo,
+  transferTag,
 } from '@/domain/data/api/domainResources';
 import {
   ServiceType,
   TDomainOption,
   TDomainResource,
+  TTargetSpec,
 } from '@/domain/types/domainResource';
-import { getDomainZone } from '@/domain/data/api/domainZone';
+import {
+  activateServiceDnssec,
+  deactivateServiceDnssec,
+  getDomainZone,
+  getServiceDnssec,
+} from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
@@ -28,6 +42,17 @@ import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TDomainContact, TServiceInfo } from '@/common/types/common.types';
 import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.enum';
 import { emailOfferRedirect } from '@/domain/constants/susbcriptions';
+import {
+  getAssociatedHosting,
+  getAssociatedSubDomainsMultiSite,
+  getFreeHostingService,
+  initialOrderFreeHosting,
+  orderFreeHosting,
+} from '@/domain/data/api/hosting';
+import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
+import { THost } from '@/domain/types/host';
+import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -135,25 +160,26 @@ export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
+    mutationKey: ['domain', 'resource', 'update', serviceName],
     mutationFn: ({
       checksum,
-      nameServers,
+      currentTargetSpec,
+      updatedSpec,
     }: {
       checksum: string;
-      nameServers: {
-        nameServer: string;
-        ipv4?: string;
-        ipv6?: string;
-      }[];
-    }) =>
-      updateDomainResource(serviceName, {
+      currentTargetSpec: TTargetSpec;
+      updatedSpec: Partial<TTargetSpec>;
+    }) => {
+      const newTargetSpec: TTargetSpec = {
+        ...currentTargetSpec,
+        ...updatedSpec,
+      };
+
+      return updateDomainResource(serviceName, {
         checksum,
-        targetSpec: {
-          dnsConfiguration: {
-            nameServers,
-          },
-        },
-      }),
+        targetSpec: newTargetSpec,
+      });
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['domain', 'resource', serviceName],
@@ -168,14 +194,21 @@ export const useUpdateDomainResource = (serviceName: string) => {
   };
 };
 
-export const useGetDomainContact = (contactID: string) => {
-  const { data, isLoading, error } = useQuery<TDomainContact>({
+export const useGetDomainContact = (
+  contactID: string,
+  options?: { enabled?: boolean },
+) => {
+  const { data, isFetching, error } = useQuery<TDomainContact>({
     queryKey: ['domain', 'contact', contactID],
     queryFn: () => getDomainContact(contactID),
+    enabled: options?.enabled ?? false,
+    retry: false,
+    retryOnMount: false,
+    refetchOnMount: false,
   });
   return {
     domainContact: data,
-    isFetchingDomainContact: isLoading,
+    isFetchingDomainContact: isFetching,
     domainContactError: error,
   };
 };
@@ -222,3 +255,180 @@ export function useEmailService(serviceName: string) {
     staleTime: 60_000,
   });
 }
+
+export function useGetAssociatedHosting(serviceName: string) {
+  return useQuery<string[]>({
+    queryKey: ['associated-hosting', serviceName],
+    queryFn: () => getAssociatedHosting(serviceName),
+  });
+}
+
+export function useOrderFreeHosting() {
+  const queryClient = useQueryClient();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+  const { addSuccess, addError } = useNotifications();
+
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationFn: ({
+      cartId,
+      itemId,
+      options,
+    }: {
+      cartId: string;
+      itemId: number;
+      options: FreeHostingOptions;
+    }) => orderFreeHosting(cartId, itemId, options),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['associated-hosting'],
+      });
+      addSuccess(
+        t(
+          'domain_tab_general_information_associated_services_hosting_free_order_success',
+        ),
+      );
+    },
+    onError: (error: Error) => {
+      addError(
+        t(
+          'domain_tab_general_information_associated_services_hosting_free_order_error',
+          { error },
+        ),
+      );
+    },
+  });
+
+  return {
+    orderFreeHosting: mutate,
+    isOrderFreeHostingPending: isPending,
+    orderCompleted: isSuccess,
+  };
+}
+
+export function useInitialOrderFreeHosting(
+  serviceName: string,
+  subsidiary: Subsidiary,
+) {
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['initial-order-free-hosting', serviceName, subsidiary],
+    queryFn: () => initialOrderFreeHosting(serviceName, subsidiary),
+    enabled: false,
+  });
+
+  return {
+    getInitialOrder: refetch,
+    orderCartDetails: data,
+    isInitialOrderFreeHostingPending: isLoading,
+    orderCartError: error,
+  };
+}
+
+// Multi-hosting variant: fetch free hosting service info for each provided hosting name.
+// Returns an array of UseQueryResult<TServiceInfo> matching the input order.
+export function useGetFreeHostingServices(serviceNames: string[]) {
+  return useQueries({
+    queries: serviceNames.map((name) => ({
+      queryKey: ['free-hosting-service', name],
+      queryFn: () => getFreeHostingService(name),
+      enabled: !!name,
+    })),
+  });
+}
+
+export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
+  return useQueries({
+    queries: serviceNames.map((serviceName) => ({
+      queryKey: ['domain', 'subdomain-multisite', serviceName],
+      queryFn: async () => {
+        const data = await getAssociatedSubDomainsMultiSite(serviceName);
+        return data.filter((item) => item !== serviceName);
+      },
+      enabled: !!serviceName,
+      retry: false,
+    })),
+  });
+}
+
+export const useGetDnssecStatus = (serviceName: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['domain', 'zone', 'dnssec', serviceName],
+    queryFn: () => getServiceDnssec(serviceName),
+    retry: false,
+  });
+
+  return {
+    dnssecStatus: data,
+    isDnssecStatusLoading: isLoading,
+  };
+};
+
+export const useUpdateDnssecService = (
+  serviceName: string,
+  action: DnssecStatusEnum,
+) => {
+  const queryClient = useQueryClient();
+  const { addSuccess, addError } = useNotifications();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: () => {
+      if (action === DnssecStatusEnum.ENABLED) {
+        return activateServiceDnssec(serviceName);
+      }
+
+      return deactivateServiceDnssec(serviceName);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['domain', 'zone', 'dnssec', serviceName],
+      });
+      addSuccess(t('domain_tab_general_information_dnssec_result'));
+    },
+    onError: (error: Error) => {
+      addError(
+        t('domain_tab_general_information_dnssec_error', {
+          error: error.message,
+        }),
+      );
+    },
+  });
+
+  return {
+    updateServiceDnssec: mutate,
+    isUpdateIsPending: isPending,
+  };
+};
+
+export const useGetDomainAuthInfo = (serviceName: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['domain', 'service', serviceName, 'authInfo'],
+    queryFn: () => getDomainAuthInfo(serviceName),
+  });
+
+  return {
+    authInfo: data,
+    isAuthInfoLoading: isLoading,
+  };
+};
+
+export const useTransferTag = (serviceName: string, tag: string) => {
+  const queryClient = useQueryClient();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+  const { addSuccess, addError } = useNotifications();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: () => transferTag(tag, serviceName),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['domain', 'service', serviceName, 'authInfo'],
+      });
+      addSuccess(t('domain_tab_general_information_transfer_tag_success'));
+    },
+  });
+
+  return {
+    transferTag: mutate,
+    transferTagError: error,
+    isTransferTagPending: isPending,
+  };
+};

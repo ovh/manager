@@ -1,15 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
+  Icon,
+  ICON_NAME,
   Tab,
   TabContent,
   TabList,
   Tabs,
   TabsValueChangeEvent,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ServiceDetailTabsProps } from '@/domain/constants/serviceDetail';
+import {
+  ServiceDetailTabsProps,
+  legacyTabs,
+} from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
 
@@ -22,12 +31,25 @@ export default function ServiceDetailsTabs({
 }: ServiceDetailsTabsProps) {
   const { t } = useTranslation(['domain']);
   const location = useLocation();
+  const { shell } = useContext(ShellContext);
+  const { serviceName } = useParams<{ serviceName: string }>();
+
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
-  const handleValueChange = (event: TabsValueChangeEvent) => {
-    navigate(`${event.value}`, { replace: true });
-    setValue(event.value);
+
+  const handleValueChange = async (event: TabsValueChangeEvent) => {
+    if (legacyTabs.includes(event.value)) {
+      const fetchedUrl = (await shell.navigation?.getURL(
+        'web',
+        `/domain/${serviceName}/${event.value}`,
+        {},
+      )) as string;
+      window.location.href = fetchedUrl;
+    } else {
+      navigate(`${event.value}`, { replace: true });
+      setValue(event.value);
+    }
   };
 
   useEffect(() => {
@@ -44,13 +66,44 @@ export default function ServiceDetailsTabs({
     }
   }, [location.pathname]);
 
+  const isDisabled = (value: string, name: string, bool: boolean) => {
+    if (value.includes(name) && bool) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
         {ServiceDetailTabsProps.map((tab) => {
           return (
-            <Tab key={tab.id} value={tab.value} data-testid={tab.id}>
+            <Tab
+              key={tab.id}
+              value={tab.value}
+              data-testid={tab.id}
+              disabled={isDisabled(
+                tab.value,
+                'hosts',
+                !domainResource.currentState.hostsConfiguration.hostSupported,
+              )}
+              className="flex items-center gap-x-4"
+            >
               {t(tab.name)}
+              {isDisabled(
+                tab.value,
+                'hosts',
+                !domainResource.currentState.hostsConfiguration.hostSupported,
+              ) && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon name={ICON_NAME.circleInfo} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {t('domain_tab_name_not_supported')}
+                  </TooltipContent>
+                </Tooltip>
+              )}
             </Tab>
           );
         })}

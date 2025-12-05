@@ -6,10 +6,12 @@ export const urls = {
   domainTabZone: '/domain/:serviceName/zone',
   domainTabDns: '/domain/:serviceName/dns',
   domainTabOrderAnycast: '/domain/:serviceName/anycast/order',
+  domainTabWebHostingOrder: '/domain/:serviceName/webhosting/order',
   domainTabDnsModify: '/domain/:serviceName/dns-modify',
   domainTabRedirection: '/domain/:serviceName/redirection',
   domainTabDynHost: '/domain/:serviceName/dynhost',
-  domainTabHost: '/domain/:serviceName/host',
+  domainTabHost: '/domain/:serviceName/hosts',
+  domainTabHostDelete: '/domain/:serviceName/hosts/:hostname/delete',
   domainTabDnssec: '/domain/:serviceName/dnssec',
   domainTabContactManagement: '/domain/:serviceName/contact-management',
 };

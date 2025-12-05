@@ -5,6 +5,7 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { AdditionalDomainStateEnum } from '../enum/domainState.enum';
+import { StatusEnum } from '@/domain/enum/Status.enum';
 
 export const domainResourceOK: TDomainResource = {
   checksum: 'example-checksum',
@@ -28,6 +29,21 @@ export const domainResourceOK: TDomainResource = {
       ],
       dnssecSupported: true,
     },
+    hostsConfiguration: {
+      ipv4Supported: true,
+      ipv6Supported: true,
+      multipleIPsSupported: true,
+      hostSupported: true,
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
+        },
+      ],
+    },
+    authInfoManagedByOVHcloud: true,
+    authInfoSupported: true,
     extension: '.com',
     mainState: DomainStateEnum.OK,
     protectionState: ProtectionStateEnum.PROTECTED,
@@ -58,6 +74,8 @@ export const serviceInfoDetail: TDomainResource = {
     protectionState: ProtectionStateEnum.PROTECTED,
     suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
     additionalStates: [],
+    authInfoManagedByOVHcloud: true,
+    authInfoSupported: true,
     dnsConfiguration: {
       minDNS: 2,
       maxDNS: 8,
@@ -75,6 +93,19 @@ export const serviceInfoDetail: TDomainResource = {
         },
       ],
       configurationType: DnsConfigurationTypeEnum.HOSTING,
+    },
+    hostsConfiguration: {
+      ipv4Supported: true,
+      ipv6Supported: true,
+      multipleIPsSupported: true,
+      hostSupported: true,
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
+        },
+      ],
     },
     contactsConfiguration: {
       contactOwner: { id: 'owner-id' },
@@ -95,6 +126,16 @@ export const serviceInfoDetail: TDomainResource = {
         },
       ],
     },
+    hostsConfiguration: {
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
+        },
+      ],
+    },
+    protectionState: ProtectionStateEnum.PROTECTED,
   },
   currentTasks: [],
   iam: {

@@ -122,7 +122,7 @@
 
         <!-- Columns -->
         <oui-datagrid-column
-            data-property="serviceId"
+            data-property="serviceIdUnicode"
             data-title="::'billing_autorenew_service_name' | translate"
             data-type="string"
             data-searchable
@@ -131,8 +131,8 @@
             <span
                 class="font-weight-bold"
                 data-ng-if="$row.url && !$row.isByoipService()"
-                data-ng-bind=":: $row.serviceId | limitTo:80"
-                title="{{:: $row.serviceId }}"
+                data-ng-bind=":: $row.serviceIdUnicode | limitTo:80"
+                title="{{:: $row.serviceIdUnicode }}"
             >
             </span>
             <small
@@ -142,7 +142,7 @@
             </small>
             <span
                 data-ng-if="!$row.url || $row.isByoipService()"
-                data-ng-bind="::$row.serviceId | limitTo:80"
+                data-ng-bind="::$row.serviceIdUnicode | limitTo:80"
             ></span>
             <small
                 class="d-block"
@@ -150,7 +150,7 @@
                 data-ng-bind="$row.alternativeId"
             >
             </small>
-            <span data-ng-if="$row.serviceId.length > 80">…</span>
+            <span data-ng-if="$row.serviceIdUnicode.length > 80">…</span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-property="serviceType"

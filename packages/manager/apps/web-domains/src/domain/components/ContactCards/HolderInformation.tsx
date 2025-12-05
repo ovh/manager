@@ -9,7 +9,9 @@ interface HolderInformationProps {
 export default function HolderInformation({
   contactID,
 }: HolderInformationProps) {
-  const { domainContact } = useGetDomainContact(contactID);
+  const { domainContact } = useGetDomainContact(contactID, {
+    enabled: true,
+  });
 
   if (!domainContact) {
     return <Spinner size={SPINNER_SIZE.xs} />;
@@ -30,12 +32,6 @@ export default function HolderInformation({
         </li>,
         <li key={'email'}>{domainContact.email}</li>,
         <li key={'phone'}>{domainContact.phone}</li>,
-        domainContact.legalForm !== LegalFormEnum.Individual && [
-          <li key={'organisation'}>
-            {domainContact.nationalIdentificationNumber}
-          </li>,
-          <li key={'vat'}>{domainContact.vat}</li>,
-        ],
       ]}
     </ul>
   );
