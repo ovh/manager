@@ -14,6 +14,7 @@ import {
 import { selectFlavors } from '../view-models/flavorsViewModel';
 import { selectImages } from '../view-models/imagesViewModel';
 import { useMemo } from 'react';
+import { mockedPrivateNetworks } from '@/__mocks__/instance/constants';
 
 const preselectedOs = 'linux';
 // eslint-disable-next-line max-lines-per-function
@@ -74,6 +75,10 @@ export const useForm = (projectId: string) => {
 
   const newSshPublicKeyDefaultValue = null;
 
+  const defaultNetwork = mockedPrivateNetworks[0];
+
+  const defaultNetworkId = defaultNetwork?.value ?? null;
+
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     values: {
@@ -99,6 +104,7 @@ export const useForm = (projectId: string) => {
       distributionImageOsType: preselectedOs,
       sshKeyId: sshKeyIdDefaultValue,
       newSshPublicKey: newSshPublicKeyDefaultValue,
+      networkId: defaultNetworkId,
     },
     mode: 'onChange',
   });

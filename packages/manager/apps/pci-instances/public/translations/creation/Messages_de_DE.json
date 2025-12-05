@@ -98,5 +98,7 @@
   "pci_instance_creation_network_private_network_setting_description": "Die Instanzen sind in einem privaten Netzwerk. Ein Internet- oder SSH-Zugriff erfordert eine Floating IP, ein Gateway oder einen SSH-Proxy.",
   "pci_instance_creation_network_setting_help_title": "Verständnis der Netzwerkparameter",
   "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} inkl. MwSt./Stunde",
-  "pci_instance_creation_image_available_on_other_models": "Dieses Bild ist in anderen Modellen verfügbar."
+  "pci_instance_creation_image_available_on_other_models": "Dieses Bild ist in anderen Modellen verfügbar.",
+  "pci_instance_creation_select_network_dropdown_label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
+  "pci_instance_creation_network_add_new": "Ein privates Netzwerk erstellen"
 }

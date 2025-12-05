@@ -18,6 +18,7 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { selectPrivateNetworks } from '../view-models/networksViewModel';
 
 export const CreationCart = () => {
   const { t } = useTranslation([
@@ -40,6 +41,7 @@ export const CreationCart = () => {
     distributionImageVersion,
     distributionImageOsType,
     sshKeyId,
+    networkId,
   ] = useWatch({
     control,
     name: [
@@ -53,6 +55,7 @@ export const CreationCart = () => {
       'distributionImageVersion',
       'distributionImageOsType',
       'sshKeyId',
+      'networkId',
     ],
   });
 
@@ -190,17 +193,37 @@ export const CreationCart = () => {
     [sshKeyId, t],
   );
 
+  const networkDetail = useMemo(() => {
+    const networks = selectPrivateNetworks();
+    const network = networks.find(({ value }) => networkId === value);
+
+    return network
+      ? [
+          {
+            name: t(
+              'creation:pci_instance_creation_network_private_network_setting_title',
+            ),
+            description: (
+              <Text preset="heading-6" className="text-[--ods-color-heading]">
+                {network.label}
+              </Text>
+            ),
+          },
+        ]
+      : [];
+  }, [networkId, t]);
+
   const cartItems: TCartItem[] = useMemo(
     () => [
       {
         id: '0',
         title: t('pci_instances_common_instance_title'),
         name,
-        details: [...itemDetails, ...sshKeyDetails],
+        details: [...itemDetails, ...sshKeyDetails, ...networkDetail],
         expanded: true,
       },
     ],
-    [name, itemDetails, t, sshKeyDetails],
+    [name, itemDetails, t, sshKeyDetails, networkDetail],
   );
 
   return <Cart items={cartItems} />;
