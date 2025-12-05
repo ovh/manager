@@ -71,7 +71,6 @@ const OrderFunnel = ({
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
-  const [invalidScalingInput, setInvalidScalingInput] = useState(false);
   const [activeTab, setActiveTab] = useState<'customerImage' | 'partnerImage'>(
     'customerImage',
   );
@@ -439,24 +438,9 @@ const OrderFunnel = ({
                 <CardTitle>{t('fielddScalingLabel')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <FormField
+                <ScalingStrategy
                   control={model.form.control}
-                  name="scaling"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <ScalingStrategy
-                          {...field}
-                          scaling={field.value}
-                          onChange={(newScaling) =>
-                            model.form.setValue('scaling', newScaling)
-                          }
-                          onNonValidForm={(val) => setInvalidScalingInput(val)}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  pricingFlavor={model.result.pricing?.resourcePricing}
                 />
               </CardContent>
             </Card>
@@ -780,7 +764,7 @@ const OrderFunnel = ({
                 type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                disabled={isPendingAddApp || invalidScalingInput}
+                disabled={isPendingAddApp}
               >
                 {t('orderButton')}
               </Button>

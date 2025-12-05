@@ -1,29 +1,24 @@
-import React from 'react';
+import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Control } from 'react-hook-form';
-import { HelpCircle } from 'lucide-react';
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
   Input,
+  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@datatr-ux/uxlib';
-
 import { ScalingFormValues } from '@/lib/scalingHelper';
 
 interface ReplicaFieldsProps {
   control: Control<ScalingFormValues>;
-  onFieldChange: () => void;
 }
 
-export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
-  control,
-  onFieldChange,
-}) => {
+export function ReplicaFields({ control }: ReplicaFieldsProps) {
   const { t } = useTranslation('ai-tools/components/scaling');
 
   return (
@@ -31,14 +26,16 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
       <div className="xl:col-start-1 xl:row-start-1 w-full">
         <FormField
           control={control}
-          name="minRep"
+          name="replicasMin"
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
                 <p className="text-sm">{t('replicasMinInputLabel')}</p>
                 <Popover>
-                  <PopoverTrigger>
-                    <HelpCircle className="size-4" />
+                  <PopoverTrigger asChild>
+                    <button type="button">
+                      <HelpCircle className="size-4" />
+                    </button>
                   </PopoverTrigger>
                   <PopoverContent className="text-sm">
                     <p>{t('haInfoHelper')}</p>
@@ -52,10 +49,6 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
                   type="number"
                   max={100}
                   min={1}
-                  onChange={(e) => {
-                    field.onChange(Number(e.target.value));
-                    onFieldChange();
-                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -66,10 +59,10 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
       <div className="xl:col-start-1 xl:row-start-2 w-full">
         <FormField
           control={control}
-          name="maxRep"
+          name="replicasMax"
           render={({ field }) => (
             <FormItem>
-              <p className="text-sm">{t('replicasMaxInputLabel')}</p>
+              <Label className="text-sm">{t('replicasMaxInputLabel')}</Label>
               <FormControl>
                 <Input
                   data-testid="max-rep-input"
@@ -77,10 +70,6 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
                   type="number"
                   max={100}
                   min={1}
-                  onChange={(e) => {
-                    field.onChange(Number(e.target.value));
-                    onFieldChange();
-                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -90,4 +79,4 @@ export const ReplicaFields: React.FC<ReplicaFieldsProps> = ({
       </div>
     </>
   );
-};
+}

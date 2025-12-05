@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Control, UseFormSetValue } from 'react-hook-form';
+import { Control } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
 import {
   FormField,
@@ -18,29 +18,25 @@ import { SCALING_DEFAULTS, ScalingFormValues } from '@/lib/scalingHelper';
 
 interface ResourceTypeSelectorProps {
   control: Control<ScalingFormValues>;
-  setValue: UseFormSetValue<ScalingFormValues>;
-  onFieldChange: () => void;
 }
 
-export const ResourceTypeSelector: React.FC<ResourceTypeSelectorProps> = ({
-  control,
-  setValue,
-  onFieldChange,
-}) => {
+export function ResourceTypeSelector({ control }: ResourceTypeSelectorProps) {
   const { t } = useTranslation('ai-tools/components/scaling');
 
   return (
     <div className="xl:col-start-2 xl:row-start-1 w-full">
       <FormField
         control={control}
-        name="resType"
+        name="resourceType"
         render={({ field }) => (
           <FormItem>
             <div className="flex items-center space-x-2 mb-2">
               <p className="text-sm">{t('resourceTypeLabel')}</p>
               <Popover>
-                <PopoverTrigger>
-                  <HelpCircle className="size-4" />
+                <PopoverTrigger asChild>
+                  <button type="button">
+                    <HelpCircle className="size-4" />
+                  </button>
                 </PopoverTrigger>
                 <PopoverContent className="text-sm">
                   <p>{t('resourceTypeInfo')}</p>
@@ -48,16 +44,9 @@ export const ResourceTypeSelector: React.FC<ResourceTypeSelectorProps> = ({
               </Popover>
             </div>
             <RadioGroup
-              value={field.value}
-              onValueChange={(value) => {
-                field.onChange(value);
-                if (value === 'CUSTOM') {
-                  setValue('dataFormat', SCALING_DEFAULTS.DATA_FORMAT);
-                  setValue('aggregationType', SCALING_DEFAULTS.AGGREGATION_TYPE);
-                }
-                onFieldChange();
-              }}
+              {...field}
               className="mb-2"
+              onValueChange={field.onChange}
             >
               <div className="flex flex-row gap-8">
                 <div className="flex items-center space-x-2">
@@ -95,4 +84,4 @@ export const ResourceTypeSelector: React.FC<ResourceTypeSelectorProps> = ({
       />
     </div>
   );
-};
+}

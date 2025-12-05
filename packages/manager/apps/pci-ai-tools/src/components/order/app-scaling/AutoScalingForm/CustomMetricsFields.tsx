@@ -1,7 +1,6 @@
-import React from 'react';
+import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Control } from 'react-hook-form';
-import { HelpCircle } from 'lucide-react';
 import {
   FormControl,
   FormField,
@@ -23,13 +22,9 @@ import { ScalingFormValues } from '@/lib/scalingHelper';
 
 interface CustomMetricsFieldsProps {
   control: Control<ScalingFormValues>;
-  onFieldChange: () => void;
 }
 
-export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
-  control,
-  onFieldChange,
-}) => {
+export function CustomMetricsFields({ control }: CustomMetricsFieldsProps) {
   const { t } = useTranslation('ai-tools/components/scaling');
 
   return (
@@ -49,8 +44,10 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                 <div className="flex items-center space-x-2 mb-2">
                   <p className="text-sm">{t('metricUrlLabel')}</p>
                   <Popover>
-                    <PopoverTrigger>
-                      <HelpCircle className="size-4" />
+                    <PopoverTrigger asChild>
+                      <button type="button">
+                        <HelpCircle className="size-4" />
+                      </button>
                     </PopoverTrigger>
                     <PopoverContent className="text-sm">
                       <p>{t('metricUrlInfo')}</p>
@@ -62,13 +59,13 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                     data-testid="metric-url-input"
                     {...field}
                     placeholder={t('metricUrlPlaceholder')}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      onFieldChange();
-                    }}
                   />
                 </FormControl>
-                <FormMessage>{errorMessage}</FormMessage>
+                {errorMessage && (
+                  <FormMessage className="text-destructive">
+                    {errorMessage}
+                  </FormMessage>
+                )}
               </FormItem>
             );
           }}
@@ -91,20 +88,14 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                   </PopoverContent>
                 </Popover>
               </div>
-
-              <Select
-                value={field.value}
-                onValueChange={(value) => {
-                  field.onChange(value);
-                  onFieldChange();
-                }}
-              >
+              <Select {...field} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger data-testid="data-format-select">
-                    <SelectValue />
+                    <SelectValue
+                      placeholder={ai.app.CustomMetricsFormatEnum.JSON}
+                    />
                   </SelectTrigger>
                 </FormControl>
-
                 <SelectContent>
                   <SelectItem value={ai.app.CustomMetricsFormatEnum.JSON}>
                     {ai.app.CustomMetricsFormatEnum.JSON}
@@ -141,8 +132,10 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                 <div className="flex items-center space-x-2 mb-2">
                   <p className="text-sm">{t('dataLocationLabel')}</p>
                   <Popover>
-                    <PopoverTrigger>
-                      <HelpCircle className="size-4" />
+                    <PopoverTrigger asChild>
+                      <button type="button">
+                        <HelpCircle className="size-4" />
+                      </button>
                     </PopoverTrigger>
                     <PopoverContent className="text-sm">
                       <p>{t('dataLocationInfo')}</p>
@@ -154,13 +147,13 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                     data-testid="data-location-input"
                     {...field}
                     placeholder={t('dataLocationPlaceholder')}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      onFieldChange();
-                    }}
                   />
                 </FormControl>
-                <FormMessage>{errorMessage}</FormMessage>
+                {errorMessage && (
+                  <FormMessage className="text-destructive">
+                    {errorMessage}
+                  </FormMessage>
+                )}
               </FormItem>
             );
           }}
@@ -190,10 +183,6 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                   type="number"
                   min={0}
                   step="0.5"
-                  onChange={(e) => {
-                    field.onChange(Number(e.target.value));
-                    onFieldChange();
-                  }}
                 />
               </FormControl>
               <FormMessage />
@@ -219,17 +208,14 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
                 </Popover>
               </div>
               <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => {
-                    field.onChange(value);
-                    onFieldChange();
-                  }}
-                >
+                <Select {...field} onValueChange={field.onChange}>
                   <SelectTrigger data-testid="aggregation-type-select">
-                    <SelectValue />
+                    <SelectValue
+                      placeholder={
+                        ai.app.CustomMetricsAggregationTypeEnum.AVERAGE
+                      }
+                    />
                   </SelectTrigger>
-
                   <SelectContent>
                     <SelectItem
                       value={ai.app.CustomMetricsAggregationTypeEnum.AVERAGE}
@@ -261,4 +247,4 @@ export const CustomMetricsFields: React.FC<CustomMetricsFieldsProps> = ({
       </div>
     </>
   );
-};
+}

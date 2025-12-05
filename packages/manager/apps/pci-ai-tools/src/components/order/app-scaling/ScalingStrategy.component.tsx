@@ -1,7 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Control, useWatch } from 'react-hook-form';
 import { ExternalLink, HelpCircle } from 'lucide-react';
 import {
+  FormControl,
+  FormField,
+  FormItem,
   Input,
   Label,
   Popover,
@@ -9,113 +13,123 @@ import {
   PopoverTrigger,
   Switch,
 } from '@datatr-ux/uxlib';
-import { AppPricing, Scaling } from '@/types/orderFunnel';
+import { AppPricing } from '@/types/orderFunnel';
 import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { AutoScalingForm } from './AutoScalingForm/AutoScalingForm.component';
 import Price from '@/components/price/Price.component';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 
 interface ScalingStrategyProps {
-  scaling: Scaling;
-  onChange: (scalingStrat: Scaling) => void;
-  onNonValidForm?: (isPending: boolean) => void;
+  control: Control<FullScalingFormValues>;
   pricingFlavor?: AppPricing;
 }
 
-const ScalingStrategy = React.forwardRef<
-  HTMLInputElement,
-  ScalingStrategyProps
->(({ scaling, onChange, pricingFlavor, onNonValidForm }, ref) => {
-  const { t } = useTranslation('ai-tools/components/scaling');
-  const locale = useLocale();
+const ScalingStrategy = React.forwardRef<HTMLInputElement, ScalingStrategyProps>(
+  function ScalingStrategy({ control, pricingFlavor }, ref) {
+    const { t } = useTranslation('ai-tools/components/scaling');
+    const locale = useLocale();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange({ ...scaling, replicas: Number(e.target.value) });
-  };
+    const autoScaling = useWatch({ control, name: 'autoScaling' });
+    const replicas = useWatch({ control, name: 'replicas' });
 
-  return (
-    <div
-      data-testid="scaling-strat-container"
-      className="flex flex-col gap-4 mb-2"
-    >
-      <div className="mx-2 text-sm">
-        <p>{t('fieldScalingDesc1')}</p>
-        <A
-          href={getGuideUrl(GUIDES.HOW_TO_MANAGE_SCALING, locale)}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className="inline-flex items-center gap-2">
-            <span>{t('scalingLink')}</span>
-            <ExternalLink className="size-4" />
-          </div>
-        </A>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Switch
-          data-testid="switch-scaling-button"
-          type="button"
-          className="rounded-xl"
-          id="scaling-strat"
-          checked={scaling.autoScaling}
-          onCheckedChange={(checked: boolean) =>
-            onChange({ ...scaling, autoScaling: checked })
-          }
-        />
-        <Label className="font-semibold text-lg">
-          {scaling.autoScaling
-            ? t('scalingStratActiveLabel')
-            : t('noScalingStratActiveLabel')}
-        </Label>
-      </div>
-      {scaling.autoScaling ? (
-        <AutoScalingForm
-          onChange={onChange}
-          scaling={scaling}
-          ref={ref}
-          pricingFlavor={pricingFlavor}
-          onNonValidForm={onNonValidForm}
-        />
-      ) : (
-        <div>
-          <div
-            data-testid="fixed-scaling-container"
-            className="flex items-center space-x-2 mb-2"
+    return (
+      <div
+        data-testid="scaling-strat-container"
+        className="flex flex-col gap-4 mb-2"
+      >
+        <div className="mx-2 text-sm">
+          <p>{t('fieldScalingDesc1')}</p>
+          <A
+            href={getGuideUrl(GUIDES.HOW_TO_MANAGE_SCALING, locale)}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <p className="text-sm">{t('replicasInputLabel')}</p>
-            <Popover>
-              <PopoverTrigger>
-                <HelpCircle className="size-4" />
-              </PopoverTrigger>
-              <PopoverContent className="text-sm">
-                <p>{t('haInfoHelper')}</p>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <Input
-            data-testid="replicas-input"
-            ref={ref}
-            type="number"
-            max={10}
-            min={1}
-            value={scaling.replicas}
-            onChange={handleChange}
-          />
-          {pricingFlavor && (
-            <div className="mt-2">
-              <Price
-                decimals={2}
-                displayInHour={true}
-                priceInUcents={scaling.replicas * 60 * pricingFlavor.price}
-                taxInUcents={scaling.replicas * 60 * pricingFlavor.tax}
-              />
+            <div className="inline-flex items-center gap-2">
+              <span>{t('scalingLink')}</span>
+              <ExternalLink className="size-4" />
             </div>
-          )}
+          </A>
         </div>
-      )}
-    </div>
-  );
-});
+
+        <FormField
+          control={control}
+          name="autoScaling"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex items-center space-x-2">
+                <FormControl>
+                  <Switch
+                    data-testid="switch-scaling-button"
+                    className="rounded-xl"
+                    id="scaling-strat"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <Label className="font-semibold text-lg">
+                  {field.value
+                    ? t('scalingStratActiveLabel')
+                    : t('noScalingStratActiveLabel')}
+                </Label>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        {autoScaling ? (
+          <AutoScalingForm control={control as any} pricingFlavor={pricingFlavor} />
+        ) : (
+          <div>
+            <FormField
+              control={control}
+              name="replicas"
+              render={({ field }) => (
+                <FormItem>
+                  <div
+                    data-testid="fixed-scaling-container"
+                    className="flex items-center space-x-2 mb-2"
+                  >
+                    <p className="text-sm">{t('replicasInputLabel')}</p>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <button type="button">
+                          <HelpCircle className="size-4" />
+                        </button>
+                      </PopoverTrigger>
+                      <PopoverContent className="text-sm">
+                        <p>{t('haInfoHelper')}</p>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  <FormControl>
+                    <Input
+                      data-testid="replicas-input"
+                      {...field}
+                      type="number"
+                      max={10}
+                      min={1}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            {pricingFlavor && (
+              <div className="mt-2">
+                <Price
+                  decimals={2}
+                  displayInHour={true}
+                  priceInUcents={(replicas ?? 1) * 60 * pricingFlavor.price}
+                  taxInUcents={(replicas ?? 1) * 60 * pricingFlavor.tax}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  },
+);
 
 export default ScalingStrategy;

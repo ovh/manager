@@ -2,8 +2,6 @@ import { z } from 'zod';
 import { Scaling } from '@/types/orderFunnel';
 import ai from '@/types/AI';
 
-export type ScalingFormValues = z.infer<ReturnType<typeof createScalingSchema>>;
-
 export const SCALING_DEFAULTS = {
   MIN_REPLICAS: 1,
   MAX_REPLICAS: 1,
@@ -15,14 +13,14 @@ export const SCALING_DEFAULTS = {
 
 export const createScalingSchema = (t: (key: string) => string) => {
   const replicaFields = {
-    minRep: z.coerce.number().int().min(1).max(100),
-    maxRep: z.coerce.number().int().min(1).max(100),
+    replicasMin: z.coerce.number().int().min(1).max(100),
+    replicasMax: z.coerce.number().int().min(1).max(100),
   };
 
   const cpuRamSchema = z.object({
     ...replicaFields,
-    resType: z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-    averageUsage: z.coerce.number().int().min(0).max(100),
+    resourceType: z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+    averageUsageTarget: z.coerce.number().int().min(0).max(100),
     metricUrl: z.string().optional(),
     dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
     dataLocation: z.string().optional(),
@@ -34,8 +32,8 @@ export const createScalingSchema = (t: (key: string) => string) => {
 
   const customSchema = z.object({
     ...replicaFields,
-    resType: z.literal('CUSTOM'),
-    averageUsage: z.coerce.number().optional(),
+    resourceType: z.literal('CUSTOM'),
+    averageUsageTarget: z.coerce.number().optional(),
     metricUrl: z.string().min(1, t('metricUrlRequired')),
     dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum, {
       required_error: t('dataFormatRequired'),
@@ -50,37 +48,68 @@ export const createScalingSchema = (t: (key: string) => string) => {
   });
 
   return z
-    .discriminatedUnion('resType', [cpuRamSchema, customSchema])
-    .refine(({ minRep, maxRep }) => maxRep >= minRep, {
+    .discriminatedUnion('resourceType', [cpuRamSchema, customSchema])
+    .refine(({ replicasMin, replicasMax }) => replicasMax >= replicasMin, {
       message: t('errorFormMinMaxRepField'),
-      path: ['maxRep'],
+      path: ['replicasMax'],
     });
 };
+
+export type ScalingFormValues = z.infer<ReturnType<typeof createScalingSchema>>;
+
+export const baseScalingSchema = z.object({
+  autoScaling: z.boolean(),
+  replicas: z.coerce.number(),
+  replicasMin: z.coerce.number(),
+  replicasMax: z.coerce.number(),
+  resourceType: z.union([
+    z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+    z.literal('CUSTOM'),
+  ]),
+  averageUsageTarget: z.coerce.number().optional(),
+  metricUrl: z.string().optional(),
+  dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
+  dataLocation: z.string().optional(),
+  targetMetricValue: z.coerce.number().optional(),
+  aggregationType: z
+    .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
+    .optional(),
+});
+
+export type FullScalingFormValues = z.infer<typeof baseScalingSchema>;
 
 export const toScaling = (
   base: Scaling,
   values: ScalingFormValues,
-): Scaling => ({
-  ...base,
-  replicasMin: values.minRep,
-  replicasMax: values.maxRep,
-  averageUsageTarget: values.averageUsage,
-  resourceType: values.resType,
-  metricUrl: values.metricUrl,
-  dataFormat: values.dataFormat,
-  dataLocation: values.dataLocation,
-  targetMetricValue: values.targetMetricValue,
-  aggregationType: values.aggregationType,
-});
+): Scaling => {
+  const result: Scaling = {
+    ...base,
+    replicasMin: values.replicasMin,
+    replicasMax: values.replicasMax,
+    resourceType: values.resourceType,
+  };
+
+  if (values.resourceType === 'CUSTOM') {
+    result.metricUrl = values.metricUrl;
+    result.dataFormat = values.dataFormat;
+    result.dataLocation = values.dataLocation;
+    result.targetMetricValue = values.targetMetricValue;
+    result.aggregationType = values.aggregationType;
+  } else {
+    result.averageUsageTarget = values.averageUsageTarget;
+  }
+
+  return result;
+};
 
 export const getInitialValues = (scaling: Scaling): ScalingFormValues => ({
-  minRep: scaling.replicasMin ?? SCALING_DEFAULTS.MIN_REPLICAS,
-  maxRep: scaling.replicasMax ?? SCALING_DEFAULTS.MAX_REPLICAS,
-  resType: scaling.resourceType ?? SCALING_DEFAULTS.RESOURCE_TYPE,
-  averageUsage: scaling.averageUsageTarget ?? SCALING_DEFAULTS.AVERAGE_USAGE,
+  replicasMin: scaling.replicasMin ?? SCALING_DEFAULTS.MIN_REPLICAS,
+  replicasMax: scaling.replicasMax ?? SCALING_DEFAULTS.MAX_REPLICAS,
+  resourceType: scaling.resourceType ?? SCALING_DEFAULTS.RESOURCE_TYPE,
+  averageUsageTarget: scaling.averageUsageTarget ?? SCALING_DEFAULTS.AVERAGE_USAGE,
   metricUrl: scaling.metricUrl ?? '',
   dataFormat: scaling.dataFormat ?? SCALING_DEFAULTS.DATA_FORMAT,
   dataLocation: scaling.dataLocation ?? '',
-  targetMetricValue: scaling.targetMetricValue,
+  targetMetricValue: scaling.targetMetricValue ?? 0,
   aggregationType: scaling.aggregationType ?? SCALING_DEFAULTS.AGGREGATION_TYPE,
 });

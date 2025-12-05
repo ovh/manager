@@ -1,7 +1,6 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Control } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Control, useWatch } from 'react-hook-form';
 import {
   FormField,
   FormItem,
@@ -10,32 +9,30 @@ import {
   PopoverTrigger,
   Slider,
 } from '@datatr-ux/uxlib';
-
 import { ScalingFormValues } from '@/lib/scalingHelper';
 
 interface CpuRamFieldsProps {
   control: Control<ScalingFormValues>;
-  onFieldChange: () => void;
 }
 
-export const CpuRamFields: React.FC<CpuRamFieldsProps> = ({
-  control,
-  onFieldChange,
-}) => {
+export function CpuRamFields({ control }: CpuRamFieldsProps) {
   const { t } = useTranslation('ai-tools/components/scaling');
+  const averageUsageTarget = useWatch({ control, name: 'averageUsageTarget' });
 
   return (
     <div className="xl:col-start-2 xl:row-start-2 w-full">
       <FormField
         control={control}
-        name="averageUsage"
+        name="averageUsageTarget"
         render={({ field }) => (
           <FormItem>
             <div className="flex items-center space-x-2 mb-2">
               <p className="text-sm">{t('treshholderTargetLabel')}</p>
               <Popover>
-                <PopoverTrigger>
-                  <HelpCircle className="size-4" />
+                <PopoverTrigger asChild>
+                  <button type="button">
+                    <HelpCircle className="size-4" />
+                  </button>
                 </PopoverTrigger>
                 <PopoverContent className="text-sm">
                   <p>{t('treshholderTargetInfo')}</p>
@@ -48,13 +45,11 @@ export const CpuRamFields: React.FC<CpuRamFieldsProps> = ({
                 <span className="text-sm">100</span>
               </div>
               <Slider
-                value={[field.value ?? 75]}
-                onValueChange={([value]) => {
-                  field.onChange(value);
-                  onFieldChange();
-                }}
+                {...field}
                 data-testid="resource-usage-slider"
+                onValueChange={([newValue]) => field.onChange(newValue)}
                 id="resource-usage-select"
+                value={[averageUsageTarget ?? 75]}
                 min={0}
                 max={100}
                 step={1}
@@ -63,7 +58,7 @@ export const CpuRamFields: React.FC<CpuRamFieldsProps> = ({
                 data-testid="storage-unit-value-container"
                 className="flex w-full justify-center mt-2"
               >
-                <span className="font-bold">{field.value ?? 75} %</span>
+                <span className="font-bold">{averageUsageTarget ?? 75} %</span>
               </div>
             </div>
           </FormItem>
@@ -71,4 +66,4 @@ export const CpuRamFields: React.FC<CpuRamFieldsProps> = ({
       />
     </div>
   );
-};
+}

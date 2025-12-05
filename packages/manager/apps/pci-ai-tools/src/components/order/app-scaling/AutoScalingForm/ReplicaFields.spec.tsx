@@ -2,55 +2,42 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { useForm, FormProvider } from 'react-hook-form';
 import { ReplicaFields } from './ReplicaFields';
-import { ScalingFormValues } from '@/lib/scalingHelper';
 
-const TestWrapper = ({ onFieldChange }: { onFieldChange: () => void }) => {
-  const methods = useForm<ScalingFormValues>({
+const TestWrapper = () => {
+  const methods = useForm({
     defaultValues: {
-      minRep: 1,
-      maxRep: 3,
+      replicasMin: 1,
+      replicasMax: 3,
     },
   });
 
   return (
     <FormProvider {...methods}>
-      <ReplicaFields control={methods.control} onFieldChange={onFieldChange} />
+      <ReplicaFields />
     </FormProvider>
   );
 };
 
 describe('ReplicaFields', () => {
   it('should render min and max replica fields', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+    render(<TestWrapper />);
 
     expect(screen.getByTestId('min-rep-input')).toBeTruthy();
     expect(screen.getByTestId('max-rep-input')).toBeTruthy();
   });
 
-  it('should call onFieldChange when min replicas changes', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+  it('should display correct initial values', () => {
+    render(<TestWrapper />);
 
-    const minInput = screen.getByTestId('min-rep-input');
-    fireEvent.change(minInput, { target: { value: '2' } });
+    const minInput = screen.getByTestId('min-rep-input') as HTMLInputElement;
+    const maxInput = screen.getByTestId('max-rep-input') as HTMLInputElement;
 
-    expect(onFieldChange).toHaveBeenCalled();
-  });
-
-  it('should call onFieldChange when max replicas changes', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
-
-    const maxInput = screen.getByTestId('max-rep-input');
-    fireEvent.change(maxInput, { target: { value: '5' } });
-
-    expect(onFieldChange).toHaveBeenCalled();
+    expect(minInput.value).toBe('1');
+    expect(maxInput.value).toBe('3');
   });
 
   it('should accept numeric input within range', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+    render(<TestWrapper />);
 
     const minInput = screen.getByTestId('min-rep-input') as HTMLInputElement;
     fireEvent.change(minInput, { target: { value: '50' } });

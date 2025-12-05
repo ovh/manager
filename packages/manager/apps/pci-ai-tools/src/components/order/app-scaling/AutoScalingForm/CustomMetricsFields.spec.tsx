@@ -1,23 +1,20 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { useForm, FormProvider } from 'react-hook-form';
 import { CustomMetricsFields } from './CustomMetricsFields';
-import { ScalingFormValues } from '@/lib/scalingHelper';
 import ai from '@/types/AI';
 
 const TestWrapper = ({
-  onFieldChange,
   defaultValues,
 }: {
-  onFieldChange: () => void;
-  defaultValues?: Partial<ScalingFormValues>;
+  defaultValues?: Record<string, any>;
 }) => {
-  const methods = useForm<ScalingFormValues>({
+  const methods = useForm({
     defaultValues: {
       metricUrl: '',
       dataFormat: ai.app.CustomMetricsFormatEnum.JSON,
       dataLocation: '',
-      targetMetricValue: undefined,
+      targetMetricValue: 0,
       aggregationType: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
       ...defaultValues,
     },
@@ -25,18 +22,14 @@ const TestWrapper = ({
 
   return (
     <FormProvider {...methods}>
-      <CustomMetricsFields
-        control={methods.control}
-        onFieldChange={onFieldChange}
-      />
+      <CustomMetricsFields />
     </FormProvider>
   );
 };
 
 describe('CustomMetricsFields', () => {
   it('should render all custom metrics fields', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+    render(<TestWrapper />);
 
     expect(screen.getByTestId('metric-url-input')).toBeTruthy();
     expect(screen.getByTestId('data-format-select')).toBeTruthy();
@@ -46,8 +39,7 @@ describe('CustomMetricsFields', () => {
   });
 
   it('should display error message when metricUrl is empty', async () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+    render(<TestWrapper />);
 
     await waitFor(() => {
       const errorMessages = screen.queryAllByText(/metricUrlRequired/i);
@@ -56,8 +48,7 @@ describe('CustomMetricsFields', () => {
   });
 
   it('should display error message when dataLocation is empty', async () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+    render(<TestWrapper />);
 
     await waitFor(() => {
       const errorMessages = screen.queryAllByText(/dataLocationRequired/i);
@@ -65,41 +56,38 @@ describe('CustomMetricsFields', () => {
     });
   });
 
-  it('should call onFieldChange when metricUrl changes', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+  it('should update metricUrl value', () => {
+    render(<TestWrapper />);
 
-    const input = screen.getByTestId('metric-url-input');
+    const input = screen.getByTestId('metric-url-input') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'http://example.com/metrics' } });
 
-    expect(onFieldChange).toHaveBeenCalled();
+    expect(input.value).toBe('http://example.com/metrics');
   });
 
-  it('should call onFieldChange when dataLocation changes', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+  it('should update dataLocation value', () => {
+    render(<TestWrapper />);
 
-    const input = screen.getByTestId('data-location-input');
+    const input = screen.getByTestId('data-location-input') as HTMLInputElement;
     fireEvent.change(input, { target: { value: '$.metrics.cpu' } });
 
-    expect(onFieldChange).toHaveBeenCalled();
+    expect(input.value).toBe('$.metrics.cpu');
   });
 
-  it('should call onFieldChange when targetMetricValue changes', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+  it('should update targetMetricValue', () => {
+    render(<TestWrapper />);
 
-    const input = screen.getByTestId('target-metric-value-input');
+    const input = screen.getByTestId(
+      'target-metric-value-input',
+    ) as HTMLInputElement;
     fireEvent.change(input, { target: { value: '80' } });
 
-    expect(onFieldChange).toHaveBeenCalled();
+    expect(input.value).toBe('80');
   });
 
   it('should not display error when metricUrl has valid value', () => {
-    const onFieldChange = vi.fn();
     render(
       <TestWrapper
-        onFieldChange={onFieldChange}
         defaultValues={{ metricUrl: 'http://example.com' }}
       />,
     );
@@ -109,10 +97,8 @@ describe('CustomMetricsFields', () => {
   });
 
   it('should not display error when dataLocation has valid value', () => {
-    const onFieldChange = vi.fn();
     render(
       <TestWrapper
-        onFieldChange={onFieldChange}
         defaultValues={{ dataLocation: '$.data' }}
       />,
     );
@@ -122,8 +108,7 @@ describe('CustomMetricsFields', () => {
   });
 
   it('should have correct input attributes for targetMetricValue', () => {
-    const onFieldChange = vi.fn();
-    render(<TestWrapper onFieldChange={onFieldChange} />);
+    render(<TestWrapper />);
 
     const input = screen.getByTestId(
       'target-metric-value-input',

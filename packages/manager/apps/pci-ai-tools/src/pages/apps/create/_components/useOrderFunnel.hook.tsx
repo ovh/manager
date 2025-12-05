@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { generateName } from '@/lib/nameGenerator';
 import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
+import { baseScalingSchema } from '@/lib/scalingHelper';
 import ai from '@/types/AI';
 import {
   AppGlobalPricing,
@@ -56,27 +57,23 @@ export function useOrderFunnel(
       .trim()
       .min(1),
     privacy: z.nativeEnum(PrivacyEnum),
-    scaling: z
-      .object({
-        autoScaling: z.boolean(),
-        replicas: z.number().optional(),
-        averageUsageTarget: z.number().optional(),
-        replicasMax: z.number().optional(),
-        replicasMin: z.number().optional(),
-        resourceType: z
-          .union([
-            z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-            z.literal('CUSTOM'),
-          ])
-          .optional(),
-        metricUrl: z.string().optional(),
-        dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
-        dataLocation: z.string().optional(),
-        targetMetricValue: z.number().optional(),
-        aggregationType: z
-          .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
-          .optional(),
-      })
+    autoScaling: z.boolean(),
+    replicas: z.coerce.number().optional(),
+    replicasMin: z.coerce.number().optional(),
+    replicasMax: z.coerce.number().optional(),
+    resourceType: z
+      .union([
+        z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+        z.literal('CUSTOM'),
+      ])
+      .optional(),
+    averageUsageTarget: z.coerce.number().optional(),
+    metricUrl: z.string().optional(),
+    dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
+    dataLocation: z.string().optional(),
+    targetMetricValue: z.coerce.number().optional(),
+    aggregationType: z
+      .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
       .optional(),
     labels: z
       .array(
@@ -132,19 +129,17 @@ export function useOrderFunnel(
       ).unsecureHttp
         ? PrivacyEnum.private
         : PrivacyEnum.public,
-      scaling: {
-        autoScaling: false,
-        replicas: 1,
-        averageUsageTarget: 75,
-        replicasMax: 1,
-        replicasMin: 1,
-        resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
-        metricUrl: '',
-        dataFormat: ai.app.CustomMetricsFormatEnum.JSON,
-        dataLocation: '',
-        targetMetricValue: 0,
-        aggregationType: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
-      },
+      autoScaling: false,
+      replicas: 1,
+      replicasMin: 1,
+      replicasMax: 1,
+      resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+      averageUsageTarget: 75,
+      metricUrl: '',
+      dataFormat: ai.app.CustomMetricsFormatEnum.JSON,
+      dataLocation: '',
+      targetMetricValue: 0,
+      aggregationType: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
       httpPort: 8080,
       labels: [],
       dockerCommand: [],
@@ -153,17 +148,47 @@ export function useOrderFunnel(
     },
   });
 
-  const region = form.watch('region');
-  const flavorWithQuantity = form.watch('flavorWithQuantity');
-  const imageWithVersion = form.watch('image');
-  const appName = form.watch('appName');
-  const unsecureHttp = form.watch('privacy');
-  const scaling = form.watch('scaling');
-  const httpPort = form.watch('httpPort');
-  const labels = form.watch('labels');
-  const volumes = form.watch('volumes');
-  const dockerCommand = form.watch('dockerCommand');
-  const probe = form.watch('probe');
+  const formValues = form.watch();
+  
+  const region = formValues.region;
+  const flavorWithQuantity = formValues.flavorWithQuantity;
+  const imageWithVersion = formValues.image;
+  const appName = formValues.appName;
+  const unsecureHttp = formValues.privacy;
+  const httpPort = formValues.httpPort;
+  const labels = formValues.labels;
+  const volumes = formValues.volumes;
+  const dockerCommand = formValues.dockerCommand;
+  const probe = formValues.probe;
+
+  const scaling = useMemo(() => {
+    const parsed = baseScalingSchema.safeParse({
+      autoScaling: formValues.autoScaling,
+      replicas: formValues.replicas,
+      replicasMin: formValues.replicasMin,
+      replicasMax: formValues.replicasMax,
+      resourceType: formValues.resourceType,
+      averageUsageTarget: formValues.averageUsageTarget,
+      metricUrl: formValues.metricUrl,
+      dataFormat: formValues.dataFormat,
+      dataLocation: formValues.dataLocation,
+      targetMetricValue: formValues.targetMetricValue,
+      aggregationType: formValues.aggregationType,
+    });
+    return parsed.success ? parsed.data : {
+      autoScaling: formValues.autoScaling,
+      replicas: formValues.replicas,
+      replicasMin: formValues.replicasMin,
+      replicasMax: formValues.replicasMax,
+      resourceType: formValues.resourceType,
+      averageUsageTarget: formValues.averageUsageTarget,
+      metricUrl: formValues.metricUrl,
+      dataFormat: formValues.dataFormat,
+      dataLocation: formValues.dataLocation,
+      targetMetricValue: formValues.targetMetricValue,
+      aggregationType: formValues.aggregationType,
+    };
+  }, [formValues]);
 
   const flavorQuery = useGetFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
@@ -231,7 +256,6 @@ export function useOrderFunnel(
       .contract.signedAt;
   }, [imageWithVersion.name, imageWithVersion.version]);
 
-  // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
       suggestions.suggestions.find((sug) => sug.region === regionObject.id)
@@ -243,7 +267,6 @@ export function useOrderFunnel(
     form.setValue('flavorWithQuantity.quantity', suggestedQuantity);
   }, [regionObject, region, flavorQuery.isSuccess]);
 
-  // Pricing Object
   const pricingObject: AppGlobalPricing = useMemo(() => {
     if (!flavorObject || !flavorWithQuantity.quantity) return {};
     return createAppPriceObject(

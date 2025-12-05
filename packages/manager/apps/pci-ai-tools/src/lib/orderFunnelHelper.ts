@@ -220,7 +220,7 @@ export function getAppSpec(
   } else {
     appInfos.scalingStrategy = {
       fixed: {
-        replicas: formResult.scaling.replicas,
+        replicas: formResult.scaling.replicas || 1,
       },
     };
   }
