@@ -1,7 +1,9 @@
 import { init } from '@module-federation/runtime';
 
+const isLabeuEnvironment = /\.labeu\./.test(window.location.hostname);
+
 const getWillPaymentUrl = () =>
-  import.meta.env.VITE_WP_ENTRY_POINT ||
+  (isLabeuEnvironment && import.meta.env.VITE_WP_LABEU_ENTRY_POINT) ||
   'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
 
 /**
