@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { IamUserToken } from '@/data/api/iam-users';
-import { ExpirationStatus } from '@/pages/manageTokens/components/ExpirationStatus.component';
+import { ExpirationStatus } from '@/pages/permanentTokens/components/ExpirationStatus.component';
 
 
 function mockUserToken(expiresAt: string): IamUserToken {

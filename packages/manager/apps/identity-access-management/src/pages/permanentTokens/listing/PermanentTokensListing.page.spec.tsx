@@ -5,7 +5,7 @@ import { describe, it, vi } from 'vitest';
 import ReactRouterDom, { useParams } from 'react-router-dom';
 import { createWrapper } from '@/test-utils/wrapperRender';
 
-import Listing from './ManageTokensListing.page';
+import Listing from './PermanentTokensListing.page';
 import { useGetIamUser } from '@/data/hooks/useGetIamUser';
 import { useIamUserTokenList } from '@/data/hooks/useGetIamUserTokens';
 

@@ -5,8 +5,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
-export function ManageTokensBreadcrumb() {
-  const { t } = useTranslation('manage-tokens');
+export function PermanentTokensBreadcrumb() {
+  const { t } = useTranslation('permanent-tokens');
   const { data: iamHref } = useNavigationGetUrl(['', '/iam', {}]);
   const identitiesHref  = `${iamHref}/identities`;
   const localUserHref = `${identitiesHref}/users`

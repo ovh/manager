@@ -4,7 +4,7 @@ import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { IamUserToken } from '@/data/api/iam-users';
 
 export function ExpirationStatus({ token }: { token: IamUserToken }) {
-  const { t } = useTranslation('manage-tokens');
+  const { t } = useTranslation('permanent-tokens');
   const isExpired = useMemo(() => {
     // NOTE: if expireAt is an invalid Date, we consider isExpired to be false.
     const expireAt = new Date(token.expiresAt);
