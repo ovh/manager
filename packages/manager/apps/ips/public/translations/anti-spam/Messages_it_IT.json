@@ -1,0 +1,14 @@
+{
+  "unblock_anti_spam_title": "Sblocco dell'anti-spam per l'IP {{ipBlocked}}",
+  "unblock_anti_spam_ip_success": "L'indirizzo IP {{ipBlocked}} è stato sbloccato correttamente",
+  "unblock_anti_spam_ip_error": "Si è verificato un errore durante lo sblocco di {{ipBlocked}}: {{error}}",
+  "unblock_anti_spam_ip_action": "Sblocca l'IP",
+  "anti_spam_status": "Stato",
+  "anti_spam_status_BLOCKED": "Bloccato",
+  "anti_spam_blocked_since": "Bloccato da",
+  "anti_spam_estimation_unblocking_date": "Data possibile di sblocco",
+  "anti_spam_stat_date": "Data",
+  "anti_spam_stat_score": "Score",
+  "anti_spam_stat_total": "Totale",
+  "anti_spam_stat_nb_emails": "Numero di email in spam"
+}

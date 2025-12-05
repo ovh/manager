@@ -1,0 +1,12 @@
+{
+  "ipBlockInformationTitle": "IP block details",
+  "ipBlockInformationSubtitle": "In this section, you can customise the public information on your IP block (information on the WHOIS database).",
+  "ipBlockInformationNetNameLabel": "Network name (Netname)",
+  "ipBlockInformationDescriptionLabel": "Description",
+  "ipBlockInformationOrganisationLabel": "Organisation",
+  "ipBlockInformationOrganisationOnGoingChange": "Reassigning the IP block organisation... Please wait a few moments.",
+  "ipBlockInformationUpdateSuccessMessage": "The {{ip}} IP block details have been updated.",
+  "ipBlockInformationUpdateErrorMessage": "An error occurred while updating the {{ip}} IP block details: {{error}}",
+  "ipBlockInformationOrgUpdateSuccessMessage": "Assigning the {{ip}} IP block to the {{organisation}} organisation... This may take a few minutes",
+  "ipBlockInformationOrgUpdateErrorMessage": "An error occurred while assigning the {{ip}} IP block to the {{organisation}} organisation: {{error}}"
+}

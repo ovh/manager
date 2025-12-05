@@ -13,6 +13,96 @@ import {
 const allowByoipFeatureName = 'ip:byoip';
 const allowDeleteByoipService = 'ip:deleteByoipService';
 
+export const subRoutes = {
+  root: 'ip',
+  onboarding: 'onboarding',
+  order: 'order',
+  byoip: 'byoip',
+  configureReverseDns: 'configure-reverse-dns',
+  manageOrganisations: 'manage-organisations',
+  openOrganisations: 'open',
+  byoipOrder: 'byoip-order',
+  terminateIp: 'terminate',
+  terminateByoip: 'terminate-byoip',
+  upsertDescription: 'upsert-description',
+  configureGameFirewall: 'game-firewall',
+  configureEdgeNetworkFirewall: 'edge-network-firewall',
+  addVirtualMac: 'add-virtual-mac',
+  service: 'service',
+  viewVirtualMac: 'view-virtual-mac',
+  deleteVirtualMac: 'delete-virtual-mac',
+  importIpFromSys: 'import-ip-from-sys',
+  moveIp: 'move-ip',
+  unblockAntiHack: 'unblock-anti-hack',
+  exportIpToCsv: 'export-ip-to-csv',
+  failOver: '?type=failover',
+};
+
+export const urlDynamicParts = {
+  parentId: ':parentId',
+  id: ':id',
+  optionalId: ':id?',
+  organisationId: ':organisationId',
+  service: ':service',
+};
+
+const targetQueryParams = {
+  serviceName: 'routedTo.serviceName',
+};
+
+export const targetRedirectUrls = {
+  root: subRoutes.root,
+  listing: subRoutes.root,
+  listingWithFailOver: `${subRoutes.root}${subRoutes.failOver}`,
+  listingIpTerminate: `${subRoutes.root}/${subRoutes.terminateIp}/${urlDynamicParts.id}`,
+  configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
+  configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
+  order: `${subRoutes.root}/${subRoutes.order}`,
+  byoip: `${subRoutes.root}/${subRoutes.byoip}`,
+  manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
+};
+
+// -----------------------------------------------------------------------------
+// 1️⃣  Add a tiny utility that converts an AngularJS state → React route
+export function mapAngularStateToReactUrl(stateName, params) {
+  // Basic mapping (adjust as needed)
+  const baseReactPath = targetRedirectUrls.listing;
+  const encodeParam = (paramId) =>
+    params[paramId] ? encodeURIComponent(params[paramId]) : '';
+  const serviceNameQueryParam = params.serviceName
+    ? `?${targetQueryParams.serviceName}=${encodeParam('serviceName')}`
+    : '';
+  const stateMap = {
+    'app.ip.dashboard': `${baseReactPath}${serviceNameQueryParam}`,
+    'app.ip.dashboard.terminate': targetRedirectUrls.listingIpTerminate.replace(
+      urlDynamicParts.id,
+      encodeParam('id'),
+    ),
+    'app.ip.dashboard.ip.firewall': targetRedirectUrls.configureEdgeNetworkFirewall.replace(
+      urlDynamicParts.id,
+      encodeParam('ip'),
+    ),
+    'app.ip.dashboard.ip.game-firewall': targetRedirectUrls.configureGameFirewall.replace(
+      urlDynamicParts.id,
+      encodeParam('ip'),
+    ),
+    'app.ip.agora-order': targetRedirectUrls.order,
+    'app.ip.byoip': targetRedirectUrls.byoip,
+    'app.ip.byoip.disclaimer': targetRedirectUrls.byoip,
+    'app.ip.organisation': targetRedirectUrls.manageOrganisations,
+    'app.ip.failover': targetRedirectUrls.listingWithFailOver,
+    'app.ip.failover.terminate': targetRedirectUrls.listingIpTerminate.replace(
+      urlDynamicParts.id,
+      encodeParam('id'),
+    ),
+  };
+
+  // Fallback – just send the user to the React root
+  return stateName === 'app.ip.dashboard' && params.action === 'toggleFirewall'
+    ? stateMap['app.ip.dashboard.ip.firewall']
+    : stateMap[stateName] || baseReactPath;
+}
+
 export const listRouting = {
   reloadOnSearch: false,
   resolve: {

@@ -1,0 +1,7 @@
+{
+  "ip_reverse_update_failure_title": "Die Aktualisierung des Reverse DNS ist fehlgeschlagen.",
+  "ip_reverse_update_failure_hint": "Vergewissern Sie sich, dass der A-Eintrag für einen bestimmten Hostnamen korrekt konfiguriert ist. Weitere Informationen finden Sie in ",
+  "ip_reverse_update_failure_hint_link": "unserem Guide",
+  "ip_reverse_update_failure_api_error": "API-Fehler:",
+  "ip_reverse_update_failure_request_id": "Request-ID:"
+}

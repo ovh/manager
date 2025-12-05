@@ -1,0 +1,24 @@
+@import '@ovhcloud/ods-themes/default';
+
+.option_card {
+  border-color: var(--ods-color-primary-100);
+  .card-children {
+    background-color: var(--ods-color-neutral-050);
+  }
+}
+
+.option_card_selected {
+  border: 2px solid var(--ods-color-information-500);
+  background-color: #f3fdff;
+  margin: 0;
+
+  .card-children {
+    background-color: var(--ods-color-primary-050);
+  }
+}
+
+.free-price {
+  color: var(--ods-color-promotion);
+  font-weight: 700;
+  font-size: 16px;
+}

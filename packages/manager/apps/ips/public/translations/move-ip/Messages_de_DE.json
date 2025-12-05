@@ -1,0 +1,20 @@
+{
+  "step1Description": "Wählen Sie den Zieldienst für die IP <b>{{ip}}</b> aus:",
+  "step1CurrentServiceLabel": "Von",
+  "step1EmptyCurrentServiceValue": "IP-Parkplatz",
+  "step1DestinationServiceLabel": "Nach",
+  "step1NextHopLabel": "Auf",
+  "step2DescriptionWithNextHop": "Möchten Sie die IP <b>{{ip}}</b> wirklich nach <b>{{destinationService}}</b> auf <b>{{nextHop}}</b> verschieben?",
+  "step2DescriptionWithoutNextHop": "Möchten Sie die IP <b>{{ip}}</b> wirklich nach <b>{{destinationService}}</b> verschieben?",
+  "moveIpOnGoingTaskMessage": "Diese IP wird bereits verschoben.",
+  "moveIpSuccessMessage": "Die IP {{ip}} wird in den nächsten Minuten in „{{destinationService}}“ verfügbar sein.",
+  "moveIpDoneMessage": "Die IP {{ip}} wurde erfolgreich verschoben.",
+  "service_destination_ipLoadbalancing_option_group_label": "Loadbalancing-IP",
+  "service_destination_dedicatedServer_option_group_label": "Dedicated Server",
+  "service_destination_dedicatedCloud_option_group_label": "Dedizierte Cloud",
+  "service_destination_vps_option_group_label": "VPS",
+  "service_destination_cloudProject_option_group_label": "Cloud Projekt",
+  "service_destination_hostingReseller_option_group_label": "Hosting-Reseller",
+  "service_selection_select_ip_parking_option_group_label": "IP Parking",
+  "service_selection_select_ip_parking_option_label": "IP Parking"
+}

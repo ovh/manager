@@ -1,0 +1,14 @@
+{
+  "exportIpToCsvTitle": "Exportar os meus endereços IP para um ficheiro CSV",
+  "exportIpToCsvExplanation": "A exportação dos seus endereços IP demora alguns segundos (i.e. duração depende do número de endereços IP a exportar)",
+  "exportIpToCsvConfirm": "Quer mesmo exportar a lista de endereços IP no formato CSV?",
+  "exportIpToCsvSuccess": "A exportação da lista de endereços IP foi concluída.",
+  "exportIpToCsvError": "Erro ao processar exportação.",
+  "exportIpToCsvDownloadingFile": "O ficheiro está a ser criado, aguarde",
+  "exportIpToCsvHeaderIpBlock": "Bloqueio de IP",
+  "exportIpToCsvHeaderVersion": "Versão",
+  "exportIpToCsvHeaderType": "Tipo",
+  "exportIpToCsvHeaderCountry": "País",
+  "exportIpToCsvHeaderServiceName": "Serviço associado",
+  "exportIpToCsvHeaderDescription": "Descrição"
+}

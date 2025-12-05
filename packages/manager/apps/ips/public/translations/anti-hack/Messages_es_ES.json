@@ -1,0 +1,10 @@
+{
+  "unblock_anti_hack_title": "Anti-hack",
+  "unblock_anti_hack_ip_action": "Desbloquear la IP",
+  "unblock_anti_hack_ip_success": "La dirección IP {{ipBlocked}} se ha desbloqueado correctamente",
+  "unblock_anti_hack_ip_error": "Se ha producido un error al desbloquear {{ipBlocked}}: {{error}}",
+  "anti_hack_status": "Estado",
+  "anti_hack_blocked_since": "Bloqueada desde",
+  "anti_hack_time": "Tiempo restante (s)",
+  "anti_hack_no_log_available": "Registro no disponible"
+}
