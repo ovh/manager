@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
@@ -50,16 +52,34 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   };
 });
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-      exists: () => true,
-    },
-  }),
-  Trans: ({ children }: { children: string }) => children,
-}));
+vi.mock('react-i18next', () => {
+  const useTranslation = () => {
+    const t = (key: string) => key;
+
+    const i18n = {
+      changeLanguage: vi.fn(),
+      exists: vi.fn(() => true),
+    };
+
+    const res: any = { t, i18n, ready: true };
+
+    // Support: const [t] = useTranslation(); inside MRC
+    res[Symbol.iterator] = function* () {
+      yield t;
+      yield i18n;
+      yield true;
+    };
+
+    return res;
+  };
+
+  const Trans = ({ children }: { children: ReactNode }) => <>{children}</>;
+
+  return {
+    useTranslation,
+    Trans,
+  };
+});
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
