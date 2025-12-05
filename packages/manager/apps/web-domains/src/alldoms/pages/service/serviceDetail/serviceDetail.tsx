@@ -36,7 +36,6 @@ import appConfig from '@/web-domains.config';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { DomainRegistrationStateEnum } from '@/alldoms/enum/service.enum';
 import { ServiceRoutes } from '@/common/enum/common.enum';
-import NotFound from '@/pages/404';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -52,7 +51,7 @@ export default function ServiceDetail() {
     title: serviceName,
   };
 
-  const { data: alldom, isLoading, isError } = useGetAllDom({
+  const { data: alldom, isLoading } = useGetAllDom({
     serviceName,
   });
 
@@ -68,10 +67,6 @@ export default function ServiceDetail() {
       .map((domain) => domain.name),
     serviceRoute: ServiceRoutes.Domain,
   });
-
-  if (isError) {
-    return <NotFound />;
-  }
 
   const alldomService = alldom;
   if (

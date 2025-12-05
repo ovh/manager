@@ -16,11 +16,14 @@ export default function DatagridColumnServiceName({
 
   return (
     <DataGridTextCell>
-      <Link to={path}>
-        <OdsLink href={url as string} data-testid={domainName}>
-          {domainName}
-        </OdsLink>
-      </Link>
+      <OdsLink
+        href={url as string}
+        data-testid={domainName}
+        as={Link}
+        to={path}
+      >
+        {domainName}
+      </OdsLink>
     </DataGridTextCell>
   );
 }
