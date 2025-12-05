@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import type { Mock } from 'vitest';
 import { renderHook, waitFor, render } from '@testing-library/react';
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 import * as reactQuery from '@tanstack/react-query';
@@ -249,7 +250,8 @@ describe('useSnapshots hooks', () => {
       const volumeError = new Error('Failed to fetch volume');
 
       // Mock useQueries with an error
-      vi.spyOn(reactQuery, 'useQueries').mockReturnValueOnce(({
+      const useQueriesSpy = vi.spyOn(reactQuery, "useQueries") as unknown as Mock;
+      useQueriesSpy.mockReturnValueOnce(({
         isPending: false,
         isLoading: false,
         error: volumeError,
@@ -272,7 +274,7 @@ describe('useSnapshots hooks', () => {
       } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
 
       // We want to check uniqueVolumeIds here, so override useQueries to spy on queries parameter
-      const queriesSpyOn = vi.spyOn(reactQuery, 'useQueries');
+      const queriesSpyOn = vi.spyOn(reactQuery, 'useQueries') as unknown as Mock;
       queriesSpyOn.mockReturnValueOnce(({
         isPending: false,
         isLoading: false,
@@ -289,7 +291,7 @@ describe('useSnapshots hooks', () => {
       const queriesArg = queriesSpyOn.mock.calls[0][0].queries;
 
       // Extract volumeIds from the queries
-      const volumeIds = queriesArg.map((query) => {
+      const volumeIds = queriesArg.map((query: { queryKey: string[] }) => {
         const { queryKey } = query;
         return queryKey[3]; // The fourth element in the queryKey should be the volumeId
       });
@@ -425,13 +427,15 @@ describe('useSnapshots hooks', () => {
     it('should pass loading and error states from useVolumeSnapshots', async () => {
       // Mock useVolumeSnapshots in loading state with error
       const testError = new Error('Test error');
-      vi.spyOn(reactQuery, 'useQuery').mockReturnValueOnce(({
+      const useQuerySpy = vi.spyOn(reactQuery, "useQuery") as unknown as Mock;
+      const useQueriesSpy = vi.spyOn(reactQuery, "useQueries") as unknown as Mock;
+      useQuerySpy.mockReturnValueOnce(({
         isPending: false,
         isLoading: false,
         error: undefined,
         data: mockSnapshots,
       } as unknown) as reactQuery.QueryObserverLoadingErrorResult<unknown, unknown>);
-      vi.spyOn(reactQuery, 'useQueries').mockReturnValueOnce(({
+      useQueriesSpy.mockReturnValueOnce(({
         isPending: true,
         isLoading: true,
         error: testError,
