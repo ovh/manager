@@ -31,10 +31,13 @@ export const selectImagesTypes: TSelectImageTypes = (deps) => (projectId) => {
   }));
 };
 
+export type TImageOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
+
 export type TImageOption = {
   label: string;
   value: string;
   available: boolean;
+  osType: TImageOsType;
   windowsId?: string;
   windowsHourlyPrice?: number;
 };
@@ -237,6 +240,7 @@ const createWindowsImageVariant = (
       windowsId: windowsVersionId,
       available: hasWindowsStock,
       windowsHourlyPrice: windowsHourlyPrice.priceInUcents,
+      osType: image.osType,
     });
   });
   return acc;
@@ -273,13 +277,14 @@ export const selectImages: TselectImages = (deps) => (
     const variantInMap = acc.get(image.variant);
 
     if (!variantInMap) {
-      if (image.variant === 'windows') {
+      if (image.osType === 'windows') {
         if (!selectedFlavorAcceptsOsImage) {
           acc.set(imageId, {
             label: imageId,
             value: imageId,
             // `available` will be updated according to image versions availability
             available: false,
+            osType: image.osType,
           });
           return acc;
         }
@@ -296,6 +301,7 @@ export const selectImages: TselectImages = (deps) => (
           label: image.variant,
           value: image.variant,
           available: false,
+          osType: image.osType,
         });
         if (!selectedFlavorAcceptsOsImage) return acc;
       }

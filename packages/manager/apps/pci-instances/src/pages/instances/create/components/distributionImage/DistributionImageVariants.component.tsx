@@ -22,13 +22,23 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
-import { TImageOption } from '../../view-models/imagesViewModel';
-import React, { useEffect } from 'react';
+import { TImageOption, TImageOsType } from '../../view-models/imagesViewModel';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 type TDistributionvariants = {
   variants: TImageOption[];
+};
+
+type TSelectImageArgs = {
+  field: ControllerRenderProps<
+    TInstanceCreationForm,
+    'distributionImageVariantId'
+  >;
+  osType: TImageOsType;
+  value?: string;
+  windowsId?: string;
 };
 
 const Distributionvariants = ({ variants }: TDistributionvariants) => {
@@ -41,17 +51,16 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
   });
   const { trackClick } = useOvhTracking();
 
-  const handleSelectImage = (
-    field: ControllerRenderProps<
-      TInstanceCreationForm,
-      'distributionImageVariantId'
-    >,
-    value?: string,
-    windowsId?: string,
-  ) => () => {
+  const handleSelectImage = ({
+    field,
+    osType,
+    value,
+    windowsId,
+  }: TSelectImageArgs) => () => {
     if (!value) return;
 
     field.onChange(value);
+    setValue('distributionImageOsType', osType);
 
     if (windowsId)
       setValue('distributionImageVersion', {
@@ -67,27 +76,55 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
     });
   };
 
-  useEffect(() => {
-    const foundVariant = variants.find(
-      (variant) =>
-        variant.value === selectedImageVariantId && variant.available,
-    );
-    if (!foundVariant) {
-      const firstAvailableVariant = variants.find(
-        (variant) => variant.available,
-      );
+  const updateVersionAndSshKey = useCallback(
+    (firstAvailableVariant?: TImageOption) => {
+      setValue('distributionImageVersion', {
+        distributionImageVersionId: firstAvailableVariant?.windowsId ?? null,
+        distributionImageVersionName: firstAvailableVariant?.label ?? null,
+      });
+      setValue('sshKeyId', null);
+    },
+    [setValue],
+  );
+
+  const selectFirstAvailableVariant = useCallback(
+    (firstAvailableVariant?: TImageOption) => {
       setValue(
         'distributionImageVariantId',
         firstAvailableVariant?.value ?? null,
       );
+      setValue(
+        'distributionImageOsType',
+        firstAvailableVariant?.osType ?? null,
+      );
+    },
+    [setValue],
+  );
 
-      if (distributionImageType === 'windows')
-        setValue('distributionImageVersion', {
-          distributionImageVersionId: firstAvailableVariant?.windowsId ?? null,
-          distributionImageVersionName: firstAvailableVariant?.label ?? null,
-        });
-    }
-  }, [distributionImageType, selectedImageVariantId, setValue, variants]);
+  useEffect(() => {
+    const previousSelectedVariantAvailable = variants.find(
+      (variant) =>
+        variant.value === selectedImageVariantId && variant.available,
+    );
+
+    const firstAvailableVariant = variants.find((variant) => variant.available);
+
+    if (!previousSelectedVariantAvailable)
+      selectFirstAvailableVariant(firstAvailableVariant);
+
+    if (
+      !previousSelectedVariantAvailable &&
+      distributionImageType === 'windows'
+    )
+      updateVersionAndSshKey(firstAvailableVariant);
+  }, [
+    distributionImageType,
+    updateVersionAndSshKey,
+    selectFirstAvailableVariant,
+    selectedImageVariantId,
+    setValue,
+    variants,
+  ]);
 
   const getImageLabelForIcon = (value: string) =>
     value.toLowerCase().includes('windows') ? 'windows' : value;
@@ -108,10 +145,16 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
         <RadioGroup
           className={cardsContainerClassname}
           {...(selectedImageVariantId && { value: selectedImageVariantId })}
-          onValueChange={handleSelectImage(field)}
         >
           {variants.map(
-            ({ label, available, value, windowsHourlyPrice, windowsId }) => {
+            ({
+              label,
+              available,
+              value,
+              osType,
+              windowsHourlyPrice,
+              windowsId,
+            }) => {
               // eslint-disable-next-line react/no-multi-comp
               const Card = React.forwardRef<
                 HTMLDivElement,
@@ -123,7 +166,12 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
                   disabled={!available}
                   className="justify-center p-5"
                   selected={selectedImageVariantId === value}
-                  onClick={handleSelectImage(field, value, windowsId)}
+                  onClick={handleSelectImage({
+                    field,
+                    osType,
+                    value,
+                    windowsId,
+                  })}
                   {...props}
                 >
                   <PciCard.Header>
@@ -133,7 +181,7 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
                         <DistributionImageLabel
                           name={getImageLabelForIcon(value)}
                         >
-                          <span className="flex-1 max-w-full pr-8">
+                          <span className="max-w-full flex-1 pr-8">
                             {label}
                             {windowsHourlyPrice && (
                               <Text className="text-sm font-medium text-[--ods-color-success-500]">
@@ -162,7 +210,7 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
                   </TooltipTrigger>
                   <TooltipContent
                     withArrow
-                    className="px-6 max-w-[220px] text-center"
+                    className="max-w-[220px] px-6 text-center"
                   >
                     <Text>
                       {t(

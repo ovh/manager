@@ -34,12 +34,18 @@ export const CreateInstanceForm = () => {
   const formMethods = useForm(projectId);
   const macroRegion = formMethods.watch('macroRegion');
   const microRegion = formMethods.watch('microRegion');
-  const osType = formMethods.watch('distributionImageOsType');
+  const [osType, distributionImageType] = formMethods.watch([
+    'distributionImageOsType',
+    'distributionImageType',
+  ]);
   const microRegions = selectMicroRegions(deps)(projectId, macroRegion);
   const availabilityZones = selectAvailabilityZones(deps)(
     projectId,
     microRegions?.[0]?.value ?? null,
   );
+
+  const isWindowsSelected =
+    osType === 'windows' || distributionImageType === 'windows';
 
   const hasMultiMicroRegions = microRegions ? microRegions.length > 1 : false;
   return (
@@ -76,7 +82,7 @@ export const CreateInstanceForm = () => {
           <Divider spacing="64" />
           <FlavorBlock />
           <DistributionImage />
-          {microRegion && osType !== 'windows' && (
+          {microRegion && !isWindowsSelected && (
             <SshKey microRegion={microRegion} />
           )}
           <Divider spacing="64" />
@@ -84,7 +90,7 @@ export const CreateInstanceForm = () => {
           <AdvancedParameters />
           <PciCardShowcaseComponent />
         </section>
-        <aside className="min-w-[280px] w-1/3 max-w-[640px]">
+        <aside className="w-1/3 min-w-[280px] max-w-[640px]">
           <CreationCart />
         </aside>
       </div>
