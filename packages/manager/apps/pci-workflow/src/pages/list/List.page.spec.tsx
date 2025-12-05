@@ -5,8 +5,7 @@ import { describe, vi } from 'vitest';
 import * as osdsComponents from '@ovhcloud/ods-components/react';
 
 import * as pciCommonModule from '@ovh-ux/manager-pci-common';
-import { TProject } from '@ovh-ux/manager-pci-common';
-import { ResponseAPIError } from '@ovh-ux/manager-pci-public-ip-app/src/interface';
+import { ResponseAPIError, TProject } from '@ovh-ux/manager-pci-common';
 import * as managerComponentsModule from '@ovh-ux/manager-react-components';
 
 import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';

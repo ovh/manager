@@ -1,3 +1,4 @@
+import { defaultDedupedDependencies } from '@ovh-ux/manager-tests-setup';
 import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -26,6 +27,7 @@ export default defineConfig({
     },
   },
   resolve: {
+    dedupe: [...defaultDedupedDependencies],
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
