@@ -179,5 +179,10 @@ export interface Scaling {
   averageUsageTarget?: number;
   replicasMax?: number;
   replicasMin?: number;
-  resourceType?: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
+  resourceType?: ai.app.ScalingAutomaticStrategyResourceTypeEnum | 'CUSTOM';
+  metricUrl?: string;
+  dataFormat?: ai.app.CustomMetricsFormatEnum;
+  dataLocation?: string;
+  targetMetricValue?: number;
+  aggregationType?: ai.app.CustomMetricsAggregationTypeEnum;
 }

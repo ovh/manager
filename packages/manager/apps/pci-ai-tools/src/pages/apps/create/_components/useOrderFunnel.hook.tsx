@@ -56,18 +56,6 @@ export function useOrderFunnel(
       .trim()
       .min(1),
     privacy: z.nativeEnum(PrivacyEnum),
-    scaling: z
-      .object({
-        autoScaling: z.boolean(),
-        replicas: z.number().optional(),
-        averageUsageTarget: z.number().optional(),
-        replicasMax: z.number().optional(),
-        replicasMin: z.number().optional(),
-        resourceType: z
-          .nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum)
-          .optional(),
-      })
-      .optional(),
     labels: z
       .array(
         z.object({
@@ -108,6 +96,24 @@ export function useOrderFunnel(
         port: z.coerce.number().optional(),
       })
       .optional(),
+    autoScaling: z.boolean().optional(),
+    replicas: z.coerce.number().optional(),
+    averageUsageTarget: z.coerce.number().optional(),
+    replicasMax: z.coerce.number().optional(),
+    replicasMin: z.coerce.number().optional(),
+    resourceType: z
+      .union([
+        z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+        z.literal('CUSTOM'),
+      ])
+      .optional(),
+    metricUrl: z.string().optional(),
+    dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
+    dataLocation: z.string().optional(),
+    targetMetricValue: z.coerce.number().optional(),
+    aggregationType: z
+      .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
+      .optional(),
   });
 
   const form = useForm({
@@ -122,14 +128,17 @@ export function useOrderFunnel(
       ).unsecureHttp
         ? PrivacyEnum.private
         : PrivacyEnum.public,
-      scaling: {
-        autoScaling: false,
-        replicas: 1,
-        averageUsageTarget: 75,
-        replicasMax: 1,
-        replicasMin: 1,
-        resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
-      },
+      autoScaling: false,
+      replicas: 1,
+      averageUsageTarget: 75,
+      replicasMax: 1,
+      replicasMin: 1,
+      resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+      metricUrl: '',
+      dataFormat: ai.app.CustomMetricsFormatEnum.JSON,
+      dataLocation: '',
+      targetMetricValue: 0,
+      aggregationType: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
       httpPort: 8080,
       labels: [],
       dockerCommand: [],
@@ -143,12 +152,24 @@ export function useOrderFunnel(
   const imageWithVersion = form.watch('image');
   const appName = form.watch('appName');
   const unsecureHttp = form.watch('privacy');
-  const scaling = form.watch('scaling');
   const httpPort = form.watch('httpPort');
   const labels = form.watch('labels');
   const volumes = form.watch('volumes');
   const dockerCommand = form.watch('dockerCommand');
   const probe = form.watch('probe');
+  const scaling = {
+    autoScaling: form.watch('autoScaling'),
+    replicas: form.watch('replicas'),
+    averageUsageTarget: form.watch('averageUsageTarget'),
+    replicasMax: form.watch('replicasMax'),
+    replicasMin: form.watch('replicasMin'),
+    resourceType: form.watch('resourceType'),
+    metricUrl: form.watch('metricUrl'),
+    dataFormat: form.watch('dataFormat'),
+    dataLocation: form.watch('dataLocation'),
+    targetMetricValue: form.watch('targetMetricValue'),
+    aggregationType: form.watch('aggregationType'),
+  };
 
   const flavorQuery = useGetFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
@@ -204,7 +225,7 @@ export function useOrderFunnel(
 
   const labelsObject: { [key: string]: string } = useMemo(() => {
     if (labels.length === 0) return {};
-    return labels.reduce((acc, label) => {
+    return labels.reduce((acc: { [key: string]: string }, label: any) => {
       acc[label.name] = label.value;
       return acc;
     }, {} as { [key: string]: string });
@@ -216,7 +237,6 @@ export function useOrderFunnel(
       .contract.signedAt;
   }, [imageWithVersion.name, imageWithVersion.version]);
 
-  // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
       suggestions.suggestions.find((sug) => sug.region === regionObject.id)
@@ -228,7 +248,6 @@ export function useOrderFunnel(
     form.setValue('flavorWithQuantity.quantity', suggestedQuantity);
   }, [regionObject, region, flavorQuery.isSuccess]);
 
-  // Pricing Object
   const pricingObject: AppGlobalPricing = useMemo(() => {
     if (!flavorObject || !flavorWithQuantity.quantity) return {};
     return createAppPriceObject(
