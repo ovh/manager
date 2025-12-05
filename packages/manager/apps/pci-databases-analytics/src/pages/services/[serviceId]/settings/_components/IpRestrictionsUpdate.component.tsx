@@ -84,8 +84,8 @@ const IpsRestrictionsUpdate = ({
                 <IpsRestrictionsForm
                   {...field}
                   disabled={
-                    service.capabilities.ipRestrictions?.update !==
-                    database.service.capability.StateEnum.enabled
+                    service.capabilities.serviceIpRestriction?.update ===
+                    database.service.capability.StateEnum.disabled
                   }
                   value={field.value as database.IpRestrictionCreation[]}
                   onChange={field.onChange}
@@ -110,7 +110,7 @@ const IpsRestrictionsUpdate = ({
               data-testid="ips-update-submit-button"
               disabled={
                 isPending ||
-                service.capabilities.ipRestrictions?.update ===
+                service.capabilities.serviceIpRestriction?.update ===
                   database.service.capability.StateEnum.disabled
               }
             >
