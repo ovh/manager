@@ -1,0 +1,8 @@
+{
+  "cancel": "Abbrechen",
+  "cancel_savings_plan_modal_title": "Sparen-Plan abbrechen?",
+  "close_modal": "Schliessen",
+  "confirm": "Bestätigen",
+  "cancel_savings_plan_success": "Der Sparplan wurde erfolgreich storniert.",
+  "cancel_savings_plan_error": "Fehler beim Abbrechen des Sparplans. Bitte versuchen Sie es später noch einmal. ({{ error }})"
+}

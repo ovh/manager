@@ -1,11 +1,13 @@
-import React from 'react';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import { OKMS } from '@key-management-service/types/okms.type';
-import useProductType from '@/common/hooks/useProductType';
+import { useTranslation } from 'react-i18next';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
+import { useProductType } from '@/common/hooks/useProductType';
+
 import { SecretCountTileItem } from './items/SecretCountTileItem.component';
-import { SecretVersionCountTileItem } from './items/SecretVersionCountTileItem.component';
 import { SecretListLinkTileItem } from './items/SecretListLinkTileItem.component';
+import { SecretVersionCountTileItem } from './items/SecretVersionCountTileItem.component';
 
 type SecretsTileProps = {
   okms: OKMS;
@@ -18,9 +20,7 @@ export const SecretsTile = ({ okms }: SecretsTileProps) => {
 
   return (
     <ManagerTile>
-      <ManagerTile.Title>
-        {t('key_management_service_listing_secret_cell')}
-      </ManagerTile.Title>
+      <ManagerTile.Title>{t('key_management_service_listing_secret_cell')}</ManagerTile.Title>
       <ManagerTile.Divider />
       <SecretCountTileItem okms={okms} />
       <ManagerTile.Divider />

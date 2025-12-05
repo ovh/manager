@@ -3,49 +3,49 @@
 exports[`Step Component - Snapshot Tests > renders the Step with Edit Button 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--check block p-[12px] text-[20px] text-[--ods-color-primary-500]
+        data-ods=icon
+        role=presentation
       />
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5"
-        data-testid="content"
+        class=mt-5
+        data-testid=content
       >
         <p>
           Step Content
         </p>
       </div>
       <div
-        class="flex items-center gap-6 mt-6"
+        class=flex items-center gap-6 mt-6
       />
     </div>
   </section>
@@ -55,49 +55,49 @@ exports[`Step Component - Snapshot Tests > renders the Step with Edit Button 1`]
 exports[`Step Component - Snapshot Tests > renders the Step with Edit Button disabled 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--check block p-[12px] text-[20px] text-[--ods-color-primary-500]
+        data-ods=icon
+        role=presentation
       />
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5"
-        data-testid="content"
+        class=mt-5
+        data-testid=content
       >
         <p>
           Step Content
         </p>
       </div>
       <div
-        class="flex items-center gap-6 mt-6"
+        class=flex items-center gap-6 mt-6
       />
     </div>
   </section>
@@ -107,56 +107,56 @@ exports[`Step Component - Snapshot Tests > renders the Step with Edit Button dis
 exports[`Step Component - Snapshot Tests > renders the Step with Next button disabled 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]"
+        class=flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]
       >
         1
       </span>
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5"
-        data-testid="content"
+        class=mt-5
+        data-testid=content
       >
         <p>
           Step Content
         </p>
       </div>
       <div
-        class="flex items-center gap-6 mt-6"
+        class=flex items-center gap-6 mt-6
       >
         <button
-          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 w-fit"
-          data-ods="button"
-          data-testid="next-cta"
-          disabled=""
-          type="button"
+          class=_button _button--primary _button--md _button--default w-fit
+          data-ods=button
+          data-testid=next-cta
+          disabled=
+          type=button
         >
           Next Step
         </button>
@@ -169,55 +169,55 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button dis
 exports[`Step Component - Snapshot Tests > renders the Step with Next button enabled 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]"
+        class=flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]
       >
         1
       </span>
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5"
-        data-testid="content"
+        class=mt-5
+        data-testid=content
       >
         <p>
           Step Content
         </p>
       </div>
       <div
-        class="flex items-center gap-6 mt-6"
+        class=flex items-center gap-6 mt-6
       >
         <button
-          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 w-fit"
-          data-ods="button"
-          data-testid="next-cta"
-          type="button"
+          class=_button _button--primary _button--md _button--default w-fit
+          data-ods=button
+          data-testid=next-cta
+          type=button
         >
           Next Step
         </button>
@@ -230,60 +230,60 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button ena
 exports[`Step Component - Snapshot Tests > renders the Step with Skip button 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]"
+        class=flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]
       >
         1
       </span>
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
           <span
-            class="_text--span_1aw48_60 ml-2"
-            data-ods="text"
+            class=_text--span ml-2
+            data-ods=text
           >
             (Optional)
           </span>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5"
-        data-testid="content"
+        class=mt-5
+        data-testid=content
       >
         <p>
           Step Content
         </p>
       </div>
       <div
-        class="flex items-center gap-6 mt-6"
+        class=flex items-center gap-6 mt-6
       >
         <button
-          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 w-fit"
-          data-ods="button"
-          type="button"
+          class=_button _button--primary _button--md _button--ghost w-fit
+          data-ods=button
+          type=button
         >
           Skip this step
         </button>
@@ -296,61 +296,61 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button 1`]
 exports[`Step Component - Snapshot Tests > renders the Step with Skip button disabled 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]"
+        class=flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]
       >
         1
       </span>
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
           <span
-            class="_text--span_1aw48_60 ml-2"
-            data-ods="text"
+            class=_text--span ml-2
+            data-ods=text
           >
             (Optional)
           </span>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5"
-        data-testid="content"
+        class=mt-5
+        data-testid=content
       >
         <p>
           Step Content
         </p>
       </div>
       <div
-        class="flex items-center gap-6 mt-6"
+        class=flex items-center gap-6 mt-6
       >
         <button
-          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 w-fit"
-          data-ods="button"
-          disabled=""
-          type="button"
+          class=_button _button--primary _button--md _button--ghost w-fit
+          data-ods=button
+          disabled=
+          type=button
         >
           Skip this step
         </button>
@@ -363,49 +363,49 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button dis
 exports[`Step Component - Snapshot Tests > renders the Step with Title and Subtitle 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]"
+        class=flex justify-center items-center border-2 border-solid rounded-full h-10 w-10 font-semibold text-[16px] leading-[20px] border-[--ods-color-primary-500] text-[--ods-color-text]
       >
         1
       </span>
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5"
-        data-testid="content"
+        class=mt-5
+        data-testid=content
       >
         <p>
           Step Content
         </p>
       </div>
       <div
-        class="flex items-center gap-6 mt-6"
+        class=flex items-center gap-6 mt-6
       />
     </div>
   </section>
@@ -415,42 +415,42 @@ exports[`Step Component - Snapshot Tests > renders the Step with Title and Subti
 exports[`Step Component - Snapshot Tests > renders the checked and locked Step 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--check block p-[12px] text-[20px] text-[--ods-color-primary-500]
+        data-ods=icon
+        role=presentation
       />
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-text]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>
         </div>
       </div>
       <div
-        data-testid="subtitle"
+        data-testid=subtitle
       >
         This is a test step
       </div>
       <div
-        class="mt-5 cursor-not-allowed pointer-events-none opacity-50"
-        data-testid="content"
+        class=mt-5 cursor-not-allowed pointer-events-none opacity-50
+        data-testid=content
       >
         Test Body
       </div>
@@ -462,29 +462,29 @@ exports[`Step Component - Snapshot Tests > renders the checked and locked Step 1
 exports[`Step Component - Snapshot Tests > renders the closed Step 1`] = `
 <div>
   <section
-    class="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5"
+    class=flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5
   >
     <div
-      class="basis-[40px]"
+      class=basis-[40px]
     >
       <span
-        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--check block p-[12px] text-[20px] text-[--ods-color-primary-500]
+        data-ods=icon
+        role=presentation
       />
     </div>
     <div
-      class="basis-full px-5"
+      class=basis-full px-5
     >
       <div
-        class="flex flex-col md:flex-row"
+        class=flex flex-col md:flex-row
       >
         <div
-          class="font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-neutral-500]"
+          class=font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6 text-[--ods-color-neutral-500]
         >
           <h4
-            class="_text--heading-4_1aw48_31"
-            data-ods="text"
+            class=_text--heading-4
+            data-ods=text
           >
             Test Step
           </h4>

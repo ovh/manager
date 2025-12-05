@@ -17,5 +17,7 @@
   "zimbra_redirections_edit_success_message": "La solicitud de modificación de redirecciones se ha enviado. Será tratada en unos instantes.",
   "zimbra_redirections_edit_error_message": "Se ha producido un error al enviar la solicitud de modificación de redirecciones. {{ error }}",
   "zimbra_redirections_delete_success_message": "La solicitud de eliminación de la redirección se ha enviado. Será tratada en unos instantes.",
-  "zimbra_redirections_delete_error_message": "Se ha producido un error al enviar la solicitud de eliminación de la redirección. {{ error }}"
+  "zimbra_redirections_delete_error_message": "Se ha producido un error al enviar la solicitud de eliminación de la redirección. {{ error }}",
+  "zimbra_redirections_account_quota": "Cuota de redirección",
+  "zimbra_redirections_delete_selected_modal_content": "¿Quiere eliminar las redirecciones?"
 }

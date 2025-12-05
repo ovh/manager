@@ -1,7 +1,7 @@
 import {
   OkmsKeyTypes,
-  OkmsServiceKeyOperations,
   OkmsServiceKeyCurve,
+  OkmsServiceKeyOperations,
   OkmsServiceKeyTypeOctSize,
   OkmsServiceKeyTypeRSASize,
 } from './okmsServiceKey.type';

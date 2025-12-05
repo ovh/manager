@@ -3,88 +3,88 @@
 exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custom className 1`] = `
 <div>
   <div
-    class="custom-class"
+    class=custom-class
   >
     <div
-      data-ods="tabs"
-      data-orientation="horizontal"
-      data-part="root"
-      data-scope="tabs"
-      dir="ltr"
-      id="tabs::r2:"
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r2:
     >
       <div
-        aria-orientation="horizontal"
-        class="_tab-list_wv0v9_2"
-        data-ods="tab-list"
-        data-orientation="horizontal"
-        data-part="list"
-        data-scope="tabs"
-        dir="ltr"
-        id="tabs::r2::list"
-        role="tablist"
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r2::list
+        role=tablist
       >
         <div
-          class="_tab-list__container_wv0v9_40"
-          tabindex="-1"
+          class=_tab-list__container
+          tabindex=-1
         >
           <div
-            class="_tab-list__container__tabs_wv0v9_60"
+            class=_tab-list__container__tabs
           >
             <button
-              aria-controls="tabs::r2::content-tab1"
-              aria-selected="true"
-              class="_tab_bhw12_2"
-              data-focus=""
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r2::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="tab1"
-              dir="ltr"
-              id="tabs::r2::trigger-tab1"
-              role="tab"
-              tabindex="0"
-              type="button"
+              aria-controls=tabs::r2::content-tab1
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r2::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=tab1
+              dir=ltr
+              id=tabs::r2::trigger-tab1
+              role=tab
+              tabindex=0
+              type=button
             >
               tab1
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r2::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab2"
-              dir="ltr"
-              id="tabs::r2::trigger-tab2"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r2::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab2
+              dir=ltr
+              id=tabs::r2::trigger-tab2
+              role=tab
+              tabindex=-1
+              type=button
             >
               tab2
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r2::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab3"
-              dir="ltr"
-              id="tabs::r2::trigger-tab3"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r2::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab3
+              dir=ltr
+              id=tabs::r2::trigger-tab3
+              role=tab
+              tabindex=-1
+              type=button
             >
               tab3
             </button>
@@ -93,7 +93,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       </div>
     </div>
     <div
-      class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
     >
       tab1
     </div>
@@ -105,85 +105,85 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
 <div>
   <div>
     <div
-      data-ods="tabs"
-      data-orientation="horizontal"
-      data-part="root"
-      data-scope="tabs"
-      dir="ltr"
-      id="tabs::r4:"
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r4:
     >
       <div
-        aria-orientation="horizontal"
-        class="_tab-list_wv0v9_2"
-        data-ods="tab-list"
-        data-orientation="horizontal"
-        data-part="list"
-        data-scope="tabs"
-        dir="ltr"
-        id="tabs::r4::list"
-        role="tablist"
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r4::list
+        role=tablist
       >
         <div
-          class="_tab-list__container_wv0v9_40"
-          tabindex="-1"
+          class=_tab-list__container
+          tabindex=-1
         >
           <div
-            class="_tab-list__container__tabs_wv0v9_60"
+            class=_tab-list__container__tabs
           >
             <button
-              aria-controls="tabs::r4::content-tab1"
-              aria-selected="true"
-              class="_tab_bhw12_2"
-              data-focus=""
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r4::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="tab1"
-              dir="ltr"
-              id="tabs::r4::trigger-tab1"
-              role="tab"
-              tabindex="0"
-              type="button"
+              aria-controls=tabs::r4::content-tab1
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r4::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=tab1
+              dir=ltr
+              id=tabs::r4::trigger-tab1
+              role=tab
+              tabindex=0
+              type=button
             >
               tab1
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r4::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab2"
-              dir="ltr"
-              id="tabs::r4::trigger-tab2"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r4::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab2
+              dir=ltr
+              id=tabs::r4::trigger-tab2
+              role=tab
+              tabindex=-1
+              type=button
             >
               tab2
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r4::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab3"
-              dir="ltr"
-              id="tabs::r4::trigger-tab3"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r4::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab3
+              dir=ltr
+              id=tabs::r4::trigger-tab3
+              role=tab
+              tabindex=-1
+              type=button
             >
               tab3
             </button>
@@ -192,10 +192,10 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       </div>
     </div>
     <div
-      class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
     >
       <div
-        data-testid="custom-content-tab1"
+        data-testid=custom-content-tab1
       >
         Custom content for 
         tab1
@@ -209,79 +209,79 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
 <div>
   <div>
     <div
-      data-ods="tabs"
-      data-orientation="horizontal"
-      data-part="root"
-      data-scope="tabs"
-      dir="ltr"
-      id="tabs::r6:"
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r6:
     >
       <div
-        aria-orientation="horizontal"
-        class="_tab-list_wv0v9_2"
-        data-ods="tab-list"
-        data-orientation="horizontal"
-        data-part="list"
-        data-scope="tabs"
-        dir="ltr"
-        id="tabs::r6::list"
-        role="tablist"
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r6::list
+        role=tablist
       >
         <div
-          class="_tab-list__container_wv0v9_40"
-          tabindex="-1"
+          class=_tab-list__container
+          tabindex=-1
         >
           <div
-            class="_tab-list__container__tabs_wv0v9_60"
+            class=_tab-list__container__tabs
           >
             <button
-              aria-controls="tabs::r6::content-[object Object]"
-              aria-selected="true"
-              class="_tab_bhw12_2"
-              data-focus=""
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r6::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="[object Object]"
-              dir="ltr"
-              id="tabs::r6::trigger-[object Object]"
-              role="tab"
-              tabindex="0"
-              type="button"
+              aria-controls=tabs::r6::content-[object Object]
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r6::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=[object Object]
+              dir=ltr
+              id=tabs::r6::trigger-[object Object]
+              role=tab
+              tabindex=0
+              type=button
             >
               <span
-                data-selected="true"
-                data-testid="title-1"
+                data-selected=true
+                data-testid=title-1
               >
                 First
               </span>
             </button>
             <button
-              aria-controls="tabs::r6::content-[object Object]"
-              aria-selected="true"
-              class="_tab_bhw12_2"
-              data-focus=""
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r6::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="[object Object]"
-              dir="ltr"
-              id="tabs::r6::trigger-[object Object]"
-              role="tab"
-              tabindex="0"
-              type="button"
+              aria-controls=tabs::r6::content-[object Object]
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r6::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=[object Object]
+              dir=ltr
+              id=tabs::r6::trigger-[object Object]
+              role=tab
+              tabindex=0
+              type=button
             >
               <span
-                data-selected="true"
-                data-testid="title-2"
+                data-selected=true
+                data-testid=title-2
               >
                 Second
               </span>
@@ -291,10 +291,10 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       </div>
     </div>
     <div
-      class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
     >
       <div
-        data-testid="content-undefined"
+        data-testid=content-undefined
       />
     </div>
   </div>
@@ -305,101 +305,101 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
 <div>
   <div>
     <div
-      data-ods="tabs"
-      data-orientation="horizontal"
-      data-part="root"
-      data-scope="tabs"
-      dir="ltr"
-      id="tabs::r3:"
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r3:
     >
       <div
-        aria-orientation="horizontal"
-        class="_tab-list_wv0v9_2"
-        data-ods="tab-list"
-        data-orientation="horizontal"
-        data-part="list"
-        data-scope="tabs"
-        dir="ltr"
-        id="tabs::r3::list"
-        role="tablist"
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r3::list
+        role=tablist
       >
         <div
-          class="_tab-list__container_wv0v9_40"
-          tabindex="-1"
+          class=_tab-list__container
+          tabindex=-1
         >
           <div
-            class="_tab-list__container__tabs_wv0v9_60"
+            class=_tab-list__container__tabs
           >
             <button
-              aria-controls="tabs::r3::content-tab1"
-              aria-selected="true"
-              class="_tab_bhw12_2"
-              data-focus=""
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r3::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="tab1"
-              dir="ltr"
-              id="tabs::r3::trigger-tab1"
-              role="tab"
-              tabindex="0"
-              type="button"
+              aria-controls=tabs::r3::content-tab1
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r3::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=tab1
+              dir=ltr
+              id=tabs::r3::trigger-tab1
+              role=tab
+              tabindex=0
+              type=button
             >
               <span
-                data-selected="true"
-                data-testid="custom-title-tab1"
+                data-selected=true
+                data-testid=custom-title-tab1
               >
                 Custom 
                 tab1
               </span>
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r3::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab2"
-              dir="ltr"
-              id="tabs::r3::trigger-tab2"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r3::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab2
+              dir=ltr
+              id=tabs::r3::trigger-tab2
+              role=tab
+              tabindex=-1
+              type=button
             >
               <span
-                data-selected="false"
-                data-testid="custom-title-tab2"
+                data-selected=false
+                data-testid=custom-title-tab2
               >
                 Custom 
                 tab2
               </span>
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r3::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab3"
-              dir="ltr"
-              id="tabs::r3::trigger-tab3"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r3::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab3
+              dir=ltr
+              id=tabs::r3::trigger-tab3
+              role=tab
+              tabindex=-1
+              type=button
             >
               <span
-                data-selected="false"
-                data-testid="custom-title-tab3"
+                data-selected=false
+                data-testid=custom-title-tab3
               >
                 Custom 
                 tab3
@@ -410,7 +410,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with custo
       </div>
     </div>
     <div
-      class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
     >
       tab1
     </div>
@@ -422,85 +422,85 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with defau
 <div>
   <div>
     <div
-      data-ods="tabs"
-      data-orientation="horizontal"
-      data-part="root"
-      data-scope="tabs"
-      dir="ltr"
-      id="tabs::r0:"
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r0:
     >
       <div
-        aria-orientation="horizontal"
-        class="_tab-list_wv0v9_2"
-        data-ods="tab-list"
-        data-orientation="horizontal"
-        data-part="list"
-        data-scope="tabs"
-        dir="ltr"
-        id="tabs::r0::list"
-        role="tablist"
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r0::list
+        role=tablist
       >
         <div
-          class="_tab-list__container_wv0v9_40"
-          tabindex="-1"
+          class=_tab-list__container
+          tabindex=-1
         >
           <div
-            class="_tab-list__container__tabs_wv0v9_60"
+            class=_tab-list__container__tabs
           >
             <button
-              aria-controls="tabs::r0::content-tab1"
-              aria-selected="true"
-              class="_tab_bhw12_2"
-              data-focus=""
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r0::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="tab1"
-              dir="ltr"
-              id="tabs::r0::trigger-tab1"
-              role="tab"
-              tabindex="0"
-              type="button"
+              aria-controls=tabs::r0::content-tab1
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=tab1
+              dir=ltr
+              id=tabs::r0::trigger-tab1
+              role=tab
+              tabindex=0
+              type=button
             >
               tab1
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r0::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab2"
-              dir="ltr"
-              id="tabs::r0::trigger-tab2"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab2
+              dir=ltr
+              id=tabs::r0::trigger-tab2
+              role=tab
+              tabindex=-1
+              type=button
             >
               tab2
             </button>
             <button
-              aria-selected="false"
-              class="_tab_bhw12_2"
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r0::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab3"
-              dir="ltr"
-              id="tabs::r0::trigger-tab3"
-              role="tab"
-              tabindex="-1"
-              type="button"
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=tab3
+              dir=ltr
+              id=tabs::r0::trigger-tab3
+              role=tab
+              tabindex=-1
+              type=button
             >
               tab3
             </button>
@@ -509,7 +509,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with defau
       </div>
     </div>
     <div
-      class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
     >
       tab1
     </div>
@@ -521,36 +521,36 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with empty
 <div>
   <div>
     <div
-      data-ods="tabs"
-      data-orientation="horizontal"
-      data-part="root"
-      data-scope="tabs"
-      dir="ltr"
-      id="tabs::r1:"
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r1:
     >
       <div
-        aria-orientation="horizontal"
-        class="_tab-list_wv0v9_2"
-        data-ods="tab-list"
-        data-orientation="horizontal"
-        data-part="list"
-        data-scope="tabs"
-        dir="ltr"
-        id="tabs::r1::list"
-        role="tablist"
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r1::list
+        role=tablist
       >
         <div
-          class="_tab-list__container_wv0v9_40"
-          tabindex="-1"
+          class=_tab-list__container
+          tabindex=-1
         >
           <div
-            class="_tab-list__container__tabs_wv0v9_60"
+            class=_tab-list__container__tabs
           />
         </div>
       </div>
     </div>
     <div
-      class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
     />
   </div>
 </div>
@@ -560,49 +560,49 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with singl
 <div>
   <div>
     <div
-      data-ods="tabs"
-      data-orientation="horizontal"
-      data-part="root"
-      data-scope="tabs"
-      dir="ltr"
-      id="tabs::r5:"
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r5:
     >
       <div
-        aria-orientation="horizontal"
-        class="_tab-list_wv0v9_2"
-        data-ods="tab-list"
-        data-orientation="horizontal"
-        data-part="list"
-        data-scope="tabs"
-        dir="ltr"
-        id="tabs::r5::list"
-        role="tablist"
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r5::list
+        role=tablist
       >
         <div
-          class="_tab-list__container_wv0v9_40"
-          tabindex="-1"
+          class=_tab-list__container
+          tabindex=-1
         >
           <div
-            class="_tab-list__container__tabs_wv0v9_60"
+            class=_tab-list__container__tabs
           >
             <button
-              aria-controls="tabs::r5::content-single-tab"
-              aria-selected="true"
-              class="_tab_bhw12_2"
-              data-focus=""
-              data-ods="tab"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r5::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="single-tab"
-              dir="ltr"
-              id="tabs::r5::trigger-single-tab"
-              role="tab"
-              tabindex="0"
-              type="button"
+              aria-controls=tabs::r5::content-single-tab
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r5::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=single-tab
+              dir=ltr
+              id=tabs::r5::trigger-single-tab
+              role=tab
+              tabindex=0
+              type=button
             >
               single-tab
             </button>
@@ -611,7 +611,7 @@ exports[`TilesInputGroupTabs > Snapshot tests > should match snapshot with singl
       </div>
     </div>
     <div
-      class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
     >
       single-tab
     </div>

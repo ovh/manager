@@ -1,5 +1,6 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
 import { SecretConfigReference } from '@secret-manager/types/secret.type';
+
+import { apiClient } from '@ovh-ux/manager-core-api';
 
 export const secretReferenceQueryKeys = {
   config: (regionId: string) => ['secret', 'config', 'reference', regionId],

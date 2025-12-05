@@ -839,5 +839,16 @@
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "Trwa procedura weryfikacji danych kontaktowych przypisanych do Twojej domeny. Zapoznaj się z bieżącymi operacjami, aby ustalić, czy jest wymagane jakieś działanie z Twojej strony. ",
   "domain_dashboard_general_information_see_operations": "Wyświetl operacje w trakcie",
   "domain_tab_DNS_state_error": "Błąd",
-  "domain_tab_DNS_error_warning": "Podczas aktualizacji rekordów DNS został wykryty błąd. Prosimy o jego skorygowanie."
+  "domain_tab_DNS_error_warning": "Podczas aktualizacji rekordów DNS został wykryty błąd. Prosimy o jego skorygowanie.",
+  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb": "SVCB i HTTPS",
+  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc": "Wskazuje serwer i ustawienia połączenia, które mają być używane do uzyskiwania dostępu do usługi w domenie.",
+  "domain_configuration_dns_entry_add_step1_helpwizard_rp": "RP",
+  "domain_configuration_dns_entry_add_step1_helpwizard_rp_desc": "Umożliwia wskazanie adresu e-mail osoby odpowiedzialnej za domenę.",
+  "domain_configuration_dns_entry_add_rp_mbox": "Kontakt",
+  "domain_configuration_dns_entry_add_rp_txt_dname": "Informacje",
+  "domain_configuration_dns_entry_add_svcb_priority": "Priorytet",
+  "domain_configuration_dns_entry_add_svcb_target": "Adres docelowy",
+  "domain_configuration_dns_entry_add_svcb_params": "Ustawienia",
+  "domain_configuration_dns_entry_add_svcb_priority_help": "Priorytet 0 wskazuje tryb aliasu. Każda inna wartość odpowiada trybowi usługi.",
+  "domain_configuration_dns_entry_add_svcb_params_help": "Jeśli priorytet wynosi 0, to pole musi pozostać puste. W pozostałych przypadkach należy użyć formatu: ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
 }

@@ -33,12 +33,14 @@
   "account_details_title_association_prefilled": "Verifica e conferma le informazioni dell'associazione",
   "account_details_title_administration": "Inserisci le informazioni dell'amministrazione",
   "account_details_title_administration_prefilled": "Verifica e conferma le informazioni dell'amministrazione",
-  "account_details_section_address_individual": "Indirizzo",
+  "account_details_section_address_individual": "Indirizzo postale",
   "account_details_section_address_corporation": "Coordinate dell’azienda",
   "account_details_section_address_association": "Coordinate dell'associazione",
   "account_details_section_address_administration": "Coordinate dell'amministrazione",
   "account_details_field_sms_consent": "Accetto liberamente di ricevere SMS relativi a novità e offerte commerciali di OVHcloud.",
   "account_details_field_area": "Region",
   "account_details_field_state": "Stato",
-  "account_details_field_province": "Provincia"
+  "account_details_field_province": "Provincia",
+  "account_details_field_corporation_firstname": "Nome del rappresentante legale",
+  "account_details_field_corporation_lastname": "Cognome del rappresentante legale"
 }

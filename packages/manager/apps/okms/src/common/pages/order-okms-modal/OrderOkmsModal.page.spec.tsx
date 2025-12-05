@@ -1,22 +1,33 @@
-import React from 'react';
-import { i18n } from 'i18next';
-import { AxiosResponse } from 'axios';
-import { I18nextProvider } from 'react-i18next';
-import { vi } from 'vitest';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import { AxiosResponse } from 'axios';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { vi } from 'vitest';
+
+import { OdsCheckbox } from '@ovhcloud/ods-components';
+
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import {
   Contract,
-  createCart,
   Order,
+  createCart,
   postOrderCartCartIdCheckout,
 } from '@ovh-ux/manager-module-order';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
+import { useProductType } from '@/common/hooks/useProductType';
+import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import {
+  createErrorResponseMock,
+  promiseWithDelayMock,
+  renderWithClient,
+  wait,
+} from '@/common/utils/tests/testUtils';
+import { getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
+
 import OrderOkmsModal from './OrderOkmsModal.page';
 import {
   ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID,
@@ -25,12 +36,6 @@ import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
 } from './OrderOkmsModal.page.constants';
-import { OrderOkmsModalProvider } from './OrderOkmsModalContext';
-import {
-  renderWithClient,
-  promiseWithDelayMock,
-  wait,
-} from '@/common/utils/tests/testUtils';
 
 let i18nValue: i18n;
 
@@ -57,7 +62,14 @@ const mockedContracts: Contract[] = [
 
 const navigate = vi.fn();
 
-// Mock modules at the top level
+vi.mock('@/common/hooks/useProductType', () => ({
+  useProductType: vi.fn(),
+}));
+
+vi.mock('@/common/store/pendingOkmsOrder', () => ({
+  registerPendingOrder: vi.fn(),
+}));
+
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
   return {
@@ -78,9 +90,9 @@ vi.mock('@ovh-ux/manager-module-order', async (importOriginal) => {
 
 // Declare mocked functions with proper types
 const mockedCreateCart = vi.mocked(createCart);
-const mockedPostOrderCartCartIdCheckout = vi.mocked(
-  postOrderCartCartIdCheckout,
-);
+const mockedPostOrderCartCartIdCheckout = vi.mocked(postOrderCartCartIdCheckout);
+const mockedRegisterPendingOrder = vi.mocked(registerPendingOrder);
+const mockedUseProductType = vi.mocked(useProductType);
 
 const renderOrderOkmsModal = async () => {
   if (!i18nValue) {
@@ -89,25 +101,22 @@ const renderOrderOkmsModal = async () => {
 
   return renderWithClient(
     <I18nextProvider i18n={i18nValue}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <OrderOkmsModalProvider>
-          <OrderOkmsModal />
-        </OrderOkmsModalProvider>
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
+        <OrderOkmsModal />
       </ShellContext.Provider>
     </I18nextProvider>,
   );
 };
 
-const clickOnConfirmCheckbox = async () => {
+const clickOnConfirmCheckbox = () => {
   const confirmCheckbox = screen.getByTestId(
     ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ) as any;
+  ) as unknown as OdsCheckbox;
   act(() => {
     confirmCheckbox.odsChange.emit({
-      checked: 'true',
+      name: 'confirm-contract',
+      value: 'confirm-contract',
+      checked: true,
     });
   });
 };
@@ -117,14 +126,23 @@ const clickOnConfirmButton = async (user: UserEvent) => {
   // Fails intermittently without this - button click does not always works
   await wait(300);
 
-  let confirmButton: HTMLElement;
+  let confirmButton: HTMLElement | undefined = undefined;
   await waitFor(() => {
     confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
     expect(confirmButton).toHaveAttribute('is-disabled', 'false');
   });
-  await act(() => user.click(confirmButton));
+  await act(async () => {
+    await user.click(confirmButton!);
+  });
 
   return confirmButton;
+};
+
+const submitOrder = async (user: UserEvent) => {
+  await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
+
+  clickOnConfirmCheckbox();
+  await clickOnConfirmButton(user);
 };
 
 describe('Order Okms Modal test suite', () => {
@@ -138,9 +156,9 @@ describe('Order Okms Modal test suite', () => {
       contractList: mockedContracts,
     });
 
-    mockedPostOrderCartCartIdCheckout.mockResolvedValue(
-      {} as AxiosResponse<Order>,
-    );
+    mockedPostOrderCartCartIdCheckout.mockResolvedValue({} as AxiosResponse<Order>);
+
+    mockedUseProductType.mockReturnValue('secret-manager');
   });
 
   afterEach(() => {
@@ -152,10 +170,7 @@ describe('Order Okms Modal test suite', () => {
     it('should display a loading state when creating a cart', async () => {
       // GIVEN - Override the default mock with a delayed one to ensure loading state is visible
       mockedCreateCart.mockImplementationOnce(() =>
-        promiseWithDelayMock(
-          { cartId: 'cart-id', contractList: mockedContracts },
-          1000,
-        ),
+        promiseWithDelayMock({ cartId: 'cart-id', contractList: mockedContracts }, 1000),
       );
 
       // WHEN
@@ -164,9 +179,7 @@ describe('Order Okms Modal test suite', () => {
       // THEN
       await waitFor(
         () => {
-          expect(
-            screen.getByTestId(ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID),
-          ).toBeVisible();
+          expect(screen.getByTestId(ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID)).toBeVisible();
         },
         { timeout: 5000, interval: 200 },
       );
@@ -179,9 +192,7 @@ describe('Order Okms Modal test suite', () => {
       await renderOrderOkmsModal();
 
       // THEN
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
     });
 
     it('should display a notification and a retry button on error', async () => {
@@ -194,17 +205,10 @@ describe('Order Okms Modal test suite', () => {
 
       // THEN
       await assertTextVisibility(
-        labels.common.error.error_message.replace(
-          '{{message}}',
-          mockError.message,
-        ),
+        labels.common.error.error_message.replace('{{message}}', mockError.message),
       );
-      expect(
-        screen.getByTestId(ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID),
-      ).toBeVisible();
-      expect(
-        screen.getByTestId(ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID),
-      ).toBeVisible();
+      expect(screen.getByTestId(ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID)).toBeVisible();
+      expect(screen.getByTestId(ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID)).toBeVisible();
     });
   });
 
@@ -213,33 +217,27 @@ describe('Order Okms Modal test suite', () => {
       // GIVEN - Use default mock
 
       // WHEN
-      await renderOrderOkmsModal();
+      const { container } = await renderOrderOkmsModal();
 
       // THEN
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_description,
-      );
+      await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
+      await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_description);
 
-      mockedContracts.forEach(async (contract) => {
-        await assertTextVisibility(contract.name);
-      });
+      for (const contract of mockedContracts) {
+        await getOdsButtonByLabel({
+          container,
+          label: contract.name,
+          isLink: true,
+        });
+      }
 
-      const confirmCheckbox = screen.getByTestId(
-        ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
-      );
+      const confirmCheckbox = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID);
       expect(confirmCheckbox).toBeVisible();
       expect(confirmCheckbox).toHaveAttribute('is-checked', 'false');
 
-      expect(
-        screen.getByTestId(ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID),
-      ).toBeVisible();
+      expect(screen.getByTestId(ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID)).toBeVisible();
 
-      const confirmButton = screen.getByTestId(
-        ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
-      );
+      const confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
       expect(confirmButton).toBeVisible();
       expect(confirmButton).toHaveAttribute('is-disabled', 'true');
     });
@@ -247,17 +245,13 @@ describe('Order Okms Modal test suite', () => {
     it('should enable confirm button on condition approval', async () => {
       // GIVEN
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
 
       // WHEN
-      await clickOnConfirmCheckbox();
+      clickOnConfirmCheckbox();
 
       // THEN
-      const confirmButton = screen.getByTestId(
-        ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
-      );
+      const confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
       expect(confirmButton).toHaveAttribute('is-disabled', 'false');
     });
 
@@ -270,14 +264,12 @@ describe('Order Okms Modal test suite', () => {
       );
 
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
 
       // WHEN
 
       // THEN - Test loading state
-      await clickOnConfirmCheckbox();
+      clickOnConfirmCheckbox();
       const confirmButton = await clickOnConfirmButton(user);
       // THEN - Test loading state
       await waitFor(() => {
@@ -285,54 +277,70 @@ describe('Order Okms Modal test suite', () => {
       });
     });
 
-    it('should close the modal on success', async () => {
+    it('should register the pending order on success', async () => {
+      const user = userEvent.setup();
+
+      // GIVEN
+      await renderOrderOkmsModal();
+
+      // // WHEN
+      await submitOrder(user);
+
+      // THEN
+      await waitFor(() => {
+        expect(mockedRegisterPendingOrder).toHaveBeenCalledWith(mockedRegion);
+      });
+    });
+
+    it('should close the modal on success for secret manager', async () => {
+      mockedUseProductType.mockReturnValue('secret-manager');
+
       const user = userEvent.setup();
 
       // GIVEN - Use fast default mock
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
 
       // WHEN
-      await clickOnConfirmCheckbox();
-      await clickOnConfirmButton(user);
+      await submitOrder(user);
 
       // THEN
-      await waitFor(
-        () => {
-          expect(navigate).toHaveBeenCalledTimes(1);
-        },
-        { timeout: 5000 },
-      );
-      expect(navigate).toHaveBeenCalledWith('..');
+      await waitFor(() => {
+        expect(navigate).toHaveBeenCalledWith('..');
+      });
+    });
+
+    it('should navigate to the kms listing page on success for key management service', async () => {
+      mockedUseProductType.mockReturnValue('key-management-service');
+
+      const user = userEvent.setup();
+
+      // GIVEN - Use fast default mock
+      await renderOrderOkmsModal();
+
+      // WHEN
+      await submitOrder(user);
+
+      // THEN
+      await waitFor(() => {
+        expect(navigate).toHaveBeenCalledWith(KMS_ROUTES_URLS.kmsListing);
+      });
     });
 
     it('should display a notification on error', async () => {
       const user = userEvent.setup();
 
       // GIVEN
-      const mockError = {
-        response: { data: { message: 'Failed to submit order' } },
-      };
-
+      const mockError = createErrorResponseMock('Failed to submit order');
       mockedPostOrderCartCartIdCheckout.mockRejectedValueOnce(mockError);
 
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create_okms_terms_and_conditions_title,
-      );
 
       // WHEN
-      await clickOnConfirmCheckbox();
-      await clickOnConfirmButton(user);
+      await submitOrder(user);
 
       // THEN
       await assertTextVisibility(
-        labels.common.error.error_message.replace(
-          '{{message}}',
-          mockError.response.data.message,
-        ),
+        labels.common.error.error_message.replace('{{message}}', mockError.response.data.message),
       );
     });
   });

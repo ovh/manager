@@ -125,10 +125,7 @@ export const baseEmailAccountSchema = z.object({
   slotId: z.string().optional(),
 });
 
-export const addEmailAccountSchema = baseEmailAccountSchema
-  .merge(withPassword)
-  .merge(withSlotId)
-  .merge(withOffer);
+export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword).merge(withOffer);
 
 export const addEmailAccountsSchema = z
   .object({
@@ -221,7 +218,6 @@ export const redirectionSchema = z.object({
   account,
   domain,
   to: email,
-  keepCopy: z.boolean(),
 });
 
 export type RedirectionSchema = z.infer<typeof redirectionSchema>;

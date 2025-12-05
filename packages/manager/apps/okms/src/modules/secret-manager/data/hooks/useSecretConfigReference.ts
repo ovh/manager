@@ -1,5 +1,6 @@
-import { skipToken, useQuery } from '@tanstack/react-query';
 import { SecretConfigReference } from '@secret-manager/types/secret.type';
+import { skipToken, useQuery } from '@tanstack/react-query';
+
 import { ErrorResponse } from '@/common/types/api.type';
 import {
   getSecretConfigReference,

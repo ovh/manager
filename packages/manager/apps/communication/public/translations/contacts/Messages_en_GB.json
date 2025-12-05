@@ -6,7 +6,7 @@
   "table_action_edit": "Rename",
   "table_action_deactivate": "Disable",
   "table_action_enter_verification_code": "Enter validation code",
-  "table_action_resend_verification_code": "Resend the confirmation email",
+  "table_action_resend_verification_code": "Resend confirmation email",
   "default_badge_label": "By default",
   "add_contact_button": "Add a contact",
   "type_email": "Email address",
@@ -21,7 +21,7 @@
   "edit_contact_success_message": "The contact has been updated",
   "verify_contact_error_message": "An error occurred while validating the contact.",
   "restart_validation_contact_success_message": "The confirmation email has been successfully resent.",
-  "restart_validation_contact_error_message": "An error occurred while renewing the confirmation email.",
+  "restart_validation_contact_error_message": "An error has occurred resending the confirmation email.",
   "verify_contact_info": "If required, you can enter the validation code at a later time to finish adding the contact.",
   "verify_contact_link_label": "Resend code",
   "verify_contact_contact_email_info": "A code has been sent to <strong>{{email}}</strong>.",
@@ -36,10 +36,10 @@
   "contact_form_type_phone_label": "Phone",
   "contact_form_name_label": "Name",
   "verify_contact_form_otp_label": "Validation code",
-  "validation_pending_modal_title": "Confirm your contact",
+  "validation_pending_modal_title": "Confirm contact",
   "validation_pending_contact_email_info": "A confirmation link has been sent to <strong>{{email}}</strong>.",
-  "validation_pending_resend_validation_code_label": "Resend the confirmation link",
-  "validation_pending_validate_contact_label": "Enter the code",
-  "activate_contact_success_message": "The contact has been successfully activated.",
-  "activate_contact_error_message": "An error occurred while activating the contact."
+  "validation_pending_resend_validation_code_label": "Resend confirmation link",
+  "validation_pending_validate_contact_label": "Enter code",
+  "activate_contact_success_message": "The contact has been enabled.",
+  "activate_contact_error_message": "An error has occurred enabling the contact."
 }

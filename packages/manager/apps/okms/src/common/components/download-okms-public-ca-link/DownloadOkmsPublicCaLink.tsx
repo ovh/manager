@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { OdsLink, OdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { getOkmsPublicCa } from '@key-management-service/data/api/okms';
 import { OKMS, OkmsPublicCa } from '@key-management-service/types/okms.type';
-import { initiateTextFileDownload } from '@/common/utils/dom/download';
-import {
-  PUBLIC_CA_FILENAME,
-  PUBLIC_RSA_CA_FILENAME,
-} from './downloadOkmsPublicCaLink.constants';
+import { useTranslation } from 'react-i18next';
 
-export type CertificateType =
-  | 'publicCaRest'
-  | 'publicCaKmip'
-  | 'publicCaRsaKmip';
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { OdsLink, OdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { initiateTextFileDownload } from '@/common/utils/dom/download';
+
+import { PUBLIC_CA_FILENAME, PUBLIC_RSA_CA_FILENAME } from './downloadOkmsPublicCaLink.constants';
+
+export type CertificateType = 'publicCaRest' | 'publicCaKmip' | 'publicCaRsaKmip';
 
 type ButtonResource = {
   label: string;
@@ -33,10 +28,7 @@ export type DownloadOkmsPublicCaLinkProps = {
   type: CertificateType;
 };
 
-export const DownloadOkmsPublicCaLink = ({
-  okms,
-  type,
-}: DownloadOkmsPublicCaLinkProps) => {
+export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLinkProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
   const [loading, setLoading] = useState(false);
   const { addError } = useNotifications();
@@ -63,9 +55,7 @@ export const DownloadOkmsPublicCaLink = ({
     },
   };
 
-  const handleDownloadCa = async (
-    event: React.MouseEvent<HTMLOdsLinkElement, MouseEvent>,
-  ) => {
+  const handleDownloadCa = async (event: React.MouseEvent<HTMLOdsLinkElement, MouseEvent>) => {
     event.preventDefault();
 
     try {
@@ -95,7 +85,7 @@ export const DownloadOkmsPublicCaLink = ({
       <OdsLink
         href="#"
         color={ODS_BUTTON_COLOR.primary}
-        onClick={handleDownloadCa}
+        onClick={(event) => void handleDownloadCa(event)}
         label={resources[type].label}
         isDisabled={loading}
         icon="download"
