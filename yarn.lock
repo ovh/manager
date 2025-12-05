@@ -10823,7 +10823,7 @@
   dependencies:
     "@tanstack/query-core" "5.72.2"
 
-"@tanstack/react-table@8.11.8", "@tanstack/react-table@^8.11.8":
+"@tanstack/react-table@8.11.8":
   version "8.11.8"
   resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.11.8.tgz#4eef4a2d91116ca51c8c9b2f00b455d8d99886c7"
   integrity sha512-NEwvIq4iSiDQozEyvbdiSdCOiLa+g5xHmdEnvwDb98FObcK6YkBOkRrs/CNqrKdDy+/lqoIllIWHk+M80GW6+g==
