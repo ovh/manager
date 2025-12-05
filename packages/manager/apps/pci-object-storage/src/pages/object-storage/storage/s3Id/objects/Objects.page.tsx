@@ -16,6 +16,7 @@ import Guides from '@/components/guides/Guides.component';
 import S3ObjectBrowser from './_components/S3ObjectBrowser.component';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import SimpleSearchBar from '@/components/simple-search-bar/SimpleSearchBar.component';
 import SearchBar from './_components/SearchBar.component';
 
 const Objects = () => {
@@ -70,12 +71,18 @@ const Objects = () => {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between w-full">
         <Button onClick={() => navigate('./add-object')}>
           <Plus className="size-6" />
           {t('addNewObject')}
         </Button>
-        {!isLocaleZone && (
+        {isLocaleZone ? (
+          <SimpleSearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder={t('searchPlaceholder')}
+          />
+        ) : (
           <div className="flex items-center space-x-2">
             <Switch
               id="versions"
@@ -88,13 +95,13 @@ const Objects = () => {
               onSearchChange={setSearchQuery}
               deferredSearchQuery={deferredSearchQuery}
               filteredObjects={filteredObjects}
-              placeholder={t('searchPlaceholder') || 'Search...'}
+              placeholder={t('searchPlaceholder')}
             />
           </div>
         )}
       </div>
       <S3ObjectBrowser
-        objects={objects}
+        objects={filteredObjects}
         isLocaleZone={isLocaleZone}
         showVersion={withVersion}
       />
