@@ -39,24 +39,25 @@ export default class {
     this.steps = [
       {
         isValid: () =>
-          !this.isLoading && (this.plans?.length === 0 || this.model.plan),
+          !this.isLoading &&
+          (this.plans?.length === 0 || this.model.plan?.planCode),
         isLoading: () => this.isLoading,
       },
       {
-        isValid: () => this.model.plan,
+        isValid: () => this.model.plan?.planCode,
         isLoading: () => this.isLoading,
         load: () => {
           this.isLoading = true;
           return this.Server.getBareMetalPublicBandwidthOrder(
             this.serviceId,
-            this.model.plan,
+            this.model.plan?.planCode,
             this.getServiceUpgradeParams(),
           )
             .then((res) => {
               res.bandwidth = find(this.plans, {
-                planCode: this.model.plan,
+                planCode: this.model.plan?.planCode,
               }).bandwidth;
-              res.planCode = this.model.plan;
+              res.planCode = this.model.plan?.planCode;
               this.provisionalPlan = res;
             })
             .catch((error) => {
@@ -74,7 +75,7 @@ export default class {
 
   initSecondStep() {
     this.atInternet.trackClick({
-      name: `dedicated::server::${this.model.plan}::next`,
+      name: `dedicated::server::${this.model.plan?.planCode}::next`,
       type: 'action',
     });
     this.steps[1].load();
@@ -82,15 +83,15 @@ export default class {
 
   order() {
     this.atInternet.trackClick({
-      name: `dedicated::server::${this.model.plan}::pay`,
+      name: `dedicated::server::${this.model.plan?.planCode}::pay`,
       type: 'action',
     });
-    if (this.model.plan) {
+    if (this.model.plan?.planCode) {
       this.isLoading = true;
       this.atTrack(`${this.trackingPrefix}confirm`);
       this.Server.bareMetalPublicBandwidthPlaceOrder(
         this.serviceId,
-        this.model.plan,
+        this.model.plan?.planCode,
         this.getServiceUpgradeParams(),
       )
         .then((result) => {
@@ -113,7 +114,7 @@ export default class {
 
   getServiceUpgradeParams() {
     const renewPrice = this.plans
-      .find((plan) => plan.planCode === this.model.plan)
+      .find((plan) => plan.planCode === this.model.plan?.planCode)
       ?.prices?.find((price) => price.capacities.includes('renew'));
     return {
       autoPayWithPreferredPaymentMethod:
