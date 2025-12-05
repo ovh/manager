@@ -9,6 +9,7 @@ import TrackingMessage from '@/components/Tracking/TrackingMessage';
 import TrackingFinalized from '@/components/Tracking/TrackingFinalized';
 import TrackingCard from '@/components/Tracking/TrackingCard';
 import { useDomain, useTracking } from '@/hooks/data/query';
+import NotFound from '@/pages/404';
 
 export default function TrackingTranfert() {
   const { t } = useTranslation('dashboard');
@@ -29,6 +30,10 @@ export default function TrackingTranfert() {
       </div>
     );
   }
+
+    if (!domain || !tracking){
+      return <NotFound/>
+    }
 
   if (transfertFinalised) {
     return <TrackingFinalized />;
