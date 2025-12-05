@@ -291,7 +291,13 @@ export default function CreatePage() {
           )}
         />
         <FormField>
-          <Button type="submit" id="create" disabled={!isDirty || !isValid} loading={isPending}>
+          <Button
+            type="submit"
+            id="create"
+            data-testid="create"
+            disabled={!isDirty || !isValid}
+            loading={isPending}
+          >
             {t('common:web_hosting_common_action_continue')}
           </Button>
         </FormField>
