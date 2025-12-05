@@ -12,7 +12,7 @@ import {
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useApplication } from '@/context';
 import { Suggestion } from '@/types/suggestion';
-import { isSuggestionRelevant, isUserConcernedBySuggestion } from '@/helpers/suggestions/suggestionsHelper';
+import { isAssociationOrOther, isSuggestionRelevant, isUserConcernedBySuggestion } from '@/helpers/suggestions/suggestionsHelper';
 import {
   useSuggestions,
   useSuggestionsCheck,
@@ -73,7 +73,7 @@ const SuggestionModal: FC = () => {
     const DAYS_DELAY = 30;
     updatePreference(time + DAYS_DELAY * 24 * 60 * 60);
     tracking.trackClick({
-      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::confirm`,
+      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::cancel`,
       type: 'action',
       ...TRACKING_CONTEXT,
     });
@@ -83,11 +83,11 @@ const SuggestionModal: FC = () => {
     // Update preference so the modal is not displayed until a day later
     updatePreference(time);
     tracking.trackClick({
-      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::cancel`,
+      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::confirm`,
       type: 'action',
       ...TRACKING_CONTEXT,
     });
-    window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
+    window.top.location.href = isAssociationOrOther(user.legalform) ? `${accountEditionLink}?fieldToFocus=ovh_form_content_identification` : `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
   }, [accountEditionLink, time]);
 
   useEffect(() => {
@@ -109,15 +109,15 @@ const SuggestionModal: FC = () => {
     showModal && (
       <OsdsModal
         dismissible={false}
-        headline={t('suggestion_modal_title')}
+        headline={isAssociationOrOther(user.legalform) ? t('suggestion_modal_title_association_other') : t('suggestion_modal_title_corporation')}
         color={ODS_THEME_COLOR_INTENT.info}
         data-testid="suggestion-modal"
       >
-        <OsdsText
+        {suggestions.length !==0 && <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
-          <p>{t('suggestion_modal_description')}</p>
+          <p>{isAssociationOrOther(user.legalform) ? t('suggestion_modal_description_association_other') : t('suggestion_modal_description_corporation')}</p>
           <ul>
             {suggestions
               .map((suggestion: Suggestion) => (
@@ -133,10 +133,10 @@ const SuggestionModal: FC = () => {
               ))}
           </ul>
           <p>{t('suggestion_modal_description_sub', {
-            confirmLabel: t('suggestion_modal_action_confirm'),
+            confirmLabel: isAssociationOrOther(user.legalform) ? t('suggestion_modal_action_confirm_association_other') :  t('suggestion_modal_action_confirm_corporation'),
             modifyLabel: t('suggestion_modal_action_modify')
           })}</p>
-        </OsdsText>
+        </OsdsText>}
 
         <OsdsButton
           onClick={goToProfileEdition}
@@ -155,7 +155,7 @@ const SuggestionModal: FC = () => {
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
         >
-          {t('suggestion_modal_action_confirm')}
+          {isAssociationOrOther(user.legalform) ? t('suggestion_modal_action_confirm_association_other') :  t('suggestion_modal_action_confirm_corporation')}
         </OsdsButton>
       </OsdsModal>
     )

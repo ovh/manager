@@ -1,12 +1,11 @@
 import { useCallback } from "react";
-import { AxiosError } from "axios";
 import { User } from "@ovh-ux/manager-config";
 import { useApplication } from "@/context";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompanyNumbersSuggestions } from "@/data/api/suggestion";
 import { Suggestion } from "@/types/suggestion";
 import { IGNORED_SUGGESTION_TYPES } from "@/components/suggestion-modal/suggestionModal.constants";
-import { isSuggestionRelevant } from "@/helpers/suggestions/suggestionsHelper";
+import { isAssociationOrOther, isSuggestionRelevant } from "@/helpers/suggestions/suggestionsHelper";
 
 export const useSuggestionTargetUrl = () => {
   const { shell } = useApplication();
@@ -27,13 +26,12 @@ export const useSuggestions = (enabled: boolean) => useQuery({
 
 export const useSuggestionsCheck = (user: User) => useCallback(
   (suggestions?: Suggestion[], error?: Error) => {
-    if (error) {
-      return false;
-    }
+    if (error) return false;
+    if (isAssociationOrOther(user.legalform)) return true;
+
     const ninSuggestion = suggestions?.find((suggestion) => suggestion.type === 'NIN');
-    if (ninSuggestion?.isActive) {
-      return false;
-    }
+    if (ninSuggestion?.isActive) return false;
+
     return suggestions?.some((suggestion) => isSuggestionRelevant(suggestion, user));
   },
   [user],
