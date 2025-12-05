@@ -52,16 +52,16 @@ const email = (region: string, sub: string): ShopItem => ({
   icon: OdsIconWrapper({ name: ODS_ICON_NAME.ENVELOP_CONCEPT }),
   subMenu: [
     {
-      label: 'order_item_email_exchange',
+      label: 'order_item_exchange',
       external: true,
       url: getOrderURL('email_exchange', region, sub),
       tracking: 'telecom::orders::hosted-exchange::order',
     },
     {
-      label: 'order_item_email_sharepoint',
+      label: 'order_item_zimbra',
       external: true,
-      url: getOrderURL('email_sharepoint', region, sub),
-      tracking: 'telecom::orders::microsoft-sharepoint::order',
+      url: getOrderURL('zimbra_email', region, sub),
+      tracking: 'telecom::orders::zimbra::order',
     },
   ],
 });
@@ -75,13 +75,7 @@ const office = (region: string, sub: string): ShopItem => ({
       external: true,
       url: getOrderURL('office365_business', region, sub),
       tracking: 'telecom::orders::office-365-business::order',
-    },
-    {
-      label: 'order_item_office365_sharepoint',
-      external: true,
-      url: getOrderURL('office365_sharepoint', region, sub),
-      tracking: 'telecom::orders::microsoft-sharepoint::order',
-    },
+    }
   ],
 });
 
