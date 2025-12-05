@@ -13,5 +13,6 @@ export const urls = {
   domainTabHost: '/domain/:serviceName/hosts',
   domainTabHostDelete: '/domain/:serviceName/hosts/:hostname/delete',
   domainTabDnssec: '/domain/:serviceName/dnssec',
+  domainTabDsrecords: '/domain/:serviceName/ds-records',
   domainTabContactManagement: '/domain/:serviceName/contact-management',
 };
