@@ -5,7 +5,7 @@ import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { IamUserToken } from '@/data/api/iam-users';
 
 export function ExpirationStatus({ token }: { token: IamUserToken }) {
-  const { t } = useTranslation('manage-tokens');
+  const { t } = useTranslation('permanent-tokens');
   const status = useMemo(() => {
     // If there is no expiration date, it's considered active
     if (!token.expiresAt || token.expiresAt === '') {

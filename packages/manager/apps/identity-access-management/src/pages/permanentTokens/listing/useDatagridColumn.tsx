@@ -9,10 +9,10 @@ import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 import { IamUserToken } from '@/data/api/iam-users';
 import { Actions } from './Actions.component';
-import { ExpirationStatus } from '@/pages/manageTokens/components/ExpirationStatus.component';
+import { ExpirationStatus } from '@/pages/permanentTokens/components/ExpirationStatus.component';
 
 export function useDatagridColumn(): DatagridColumn<IamUserToken>[] {
-  const { t } = useTranslation('manage-tokens');
+  const { t } = useTranslation('permanent-tokens');
   const formatDate = useFormatDate();
 
   return [
