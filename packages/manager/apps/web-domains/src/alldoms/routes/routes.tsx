@@ -80,5 +80,6 @@ export default (
         ></Route>
       </Route>
     </Route>
+    <Route path="/" element={<Navigate to={urls.alldomsRoot} replace />} />
   </>
 );
