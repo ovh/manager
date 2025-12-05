@@ -81,3 +81,5 @@ export const buildAddSshKeyFormSchema = ({
 export type TAddSshKeyForm = z.infer<
   ReturnType<typeof buildAddSshKeyFormSchema>
 >;
+
+export const networkIdSchema = z.string().nullable();

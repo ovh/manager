@@ -22,6 +22,7 @@ import {
   sshPublicKeySchema,
   distributionImageOsTypeSchema,
   distributionImageVersionSchema,
+  networkIdSchema,
 } from '@/pages/instances/create/CreateInstance.schema';
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
@@ -45,6 +46,7 @@ export const instanceCreationSchema = z.object({
   distributionImageOsType: distributionImageOsTypeSchema,
   sshKeyId: sshKeyIdSchema,
   newSshPublicKey: sshPublicKeySchema.nullable(),
+  networkId: networkIdSchema,
 });
 
 const CreateInstance: FC = () => {
@@ -60,7 +62,7 @@ const CreateInstance: FC = () => {
   ];
 
   return (
-    <main className="py-8 px-4 mt-8 md:py-9 md:px-10 md:mt-2">
+    <main className="mt-8 px-4 py-8 md:mt-2 md:px-10 md:py-9">
       <section className="mb-8">
         {project && (
           <Breadcrumb

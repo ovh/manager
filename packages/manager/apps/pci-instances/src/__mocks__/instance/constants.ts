@@ -1275,3 +1275,10 @@ export const mockedFlavorCategories = [
     tags: null,
   },
 ];
+
+export const mockedPrivateNetworks = [
+  { label: 'Priv_roubaix_ovh', value: 'networkId-1' },
+  { label: 'test-waw1_2', value: 'networkId-2' },
+  { label: 'SGB1NET', value: 'networkId-3' },
+  { label: 'test-sbg7-gateway', value: 'networkId-4' },
+];

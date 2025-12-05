@@ -98,5 +98,7 @@
   "pci_instance_creation_network_setting_title": "Paramètres de réseaux",
   "pci_instance_creation_network_private_network_setting_title": "Réseau Privé",
   "pci_instance_creation_network_private_network_setting_description": "Les instances sont en réseau privé. Un accès Internet ou SSH nécessite une Floating IP, une Gateway ou un SSH-Proxy.",
-  "pci_instance_creation_network_setting_help_title": "Comprendre les paramètres réseaux"
+  "pci_instance_creation_network_setting_help_title": "Comprendre les paramètres réseaux",
+  "pci_instance_creation_select_network_dropdown_label": "Sélectionnez un réseau privé existant",
+  "pci_instance_creation_network_add_new": "Créer un réseau privé"
 }

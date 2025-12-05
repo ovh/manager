@@ -98,5 +98,7 @@
   "pci_instance_creation_network_private_network_setting_description": "Instancje są połączone w sieć prywatną. Dostęp do Internetu lub SSH wymaga adresu Floating IP, bramy lub serwera proxy SSH.",
   "pci_instance_creation_network_setting_help_title": "Zrozumienie parametrów sieciowych",
   "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} netto/godz.",
-  "pci_instance_creation_image_available_on_other_models": "Ten obraz jest dostępny w innych modelach."
+  "pci_instance_creation_image_available_on_other_models": "Ten obraz jest dostępny w innych modelach.",
+  "pci_instance_creation_select_network_dropdown_label": "Wybierz istniejącą sieć prywatną",
+  "pci_instance_creation_network_add_new": "Utwórz sieć prywatną"
 }
