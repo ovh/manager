@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, Control } from 'react-hook-form';
 import { CpuRamFields } from './CpuRamFields';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 
 const TestWrapper = ({ defaultValue = 75 }: { defaultValue?: number }) => {
   const methods = useForm({
@@ -12,7 +13,9 @@ const TestWrapper = ({ defaultValue = 75 }: { defaultValue?: number }) => {
 
   return (
     <FormProvider {...methods}>
-      <CpuRamFields />
+      <CpuRamFields
+        control={methods.control as Control<FullScalingFormValues>}
+      />
     </FormProvider>
   );
 };

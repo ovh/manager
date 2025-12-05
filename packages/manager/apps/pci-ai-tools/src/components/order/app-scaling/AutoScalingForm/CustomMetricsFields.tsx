@@ -18,10 +18,10 @@ import {
 } from '@datatr-ux/uxlib';
 
 import ai from '@/types/AI';
-import { ScalingFormValues } from '@/lib/scalingHelper';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 
 interface CustomMetricsFieldsProps {
-  control: Control<ScalingFormValues>;
+  control: Control<FullScalingFormValues>;
 }
 
 export function CustomMetricsFields({ control }: CustomMetricsFieldsProps) {

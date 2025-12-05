@@ -764,7 +764,7 @@ const OrderFunnel = ({
                 type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                disabled={isPendingAddApp}
+                disabled={isPendingAddApp || !model.form.formState.isValid}
               >
                 {t('orderButton')}
               </Button>

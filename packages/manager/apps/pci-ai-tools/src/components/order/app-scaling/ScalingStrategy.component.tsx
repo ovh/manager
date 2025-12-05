@@ -26,110 +26,109 @@ interface ScalingStrategyProps {
   pricingFlavor?: AppPricing;
 }
 
-const ScalingStrategy = React.forwardRef<HTMLInputElement, ScalingStrategyProps>(
-  function ScalingStrategy({ control, pricingFlavor }, ref) {
-    const { t } = useTranslation('ai-tools/components/scaling');
-    const locale = useLocale();
+const ScalingStrategy = React.forwardRef<
+  HTMLInputElement,
+  ScalingStrategyProps
+>(function ScalingStrategy({ control, pricingFlavor }, ref) {
+  const { t } = useTranslation('ai-tools/components/scaling');
+  const locale = useLocale();
 
-    const autoScaling = useWatch({ control, name: 'autoScaling' });
-    const replicas = useWatch({ control, name: 'replicas' });
+  const autoScaling = useWatch({ control, name: 'autoScaling' });
+  const replicas = useWatch({ control, name: 'replicas' });
 
-    return (
-      <div
-        data-testid="scaling-strat-container"
-        className="flex flex-col gap-4 mb-2"
-      >
-        <div className="mx-2 text-sm">
-          <p>{t('fieldScalingDesc1')}</p>
-          <A
-            href={getGuideUrl(GUIDES.HOW_TO_MANAGE_SCALING, locale)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="inline-flex items-center gap-2">
-              <span>{t('scalingLink')}</span>
-              <ExternalLink className="size-4" />
+  return (
+    <div
+      data-testid="scaling-strat-container"
+      className="flex flex-col gap-4 mb-2"
+    >
+      <div className="mx-2 text-sm">
+        <p>{t('fieldScalingDesc1')}</p>
+        <A
+          href={getGuideUrl(GUIDES.HOW_TO_MANAGE_SCALING, locale)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="inline-flex items-center gap-2">
+            <span>{t('scalingLink')}</span>
+            <ExternalLink className="size-4" />
+          </div>
+        </A>
+      </div>
+      <FormField
+        control={control}
+        name="autoScaling"
+        render={({ field }) => (
+          <FormItem>
+            <div className="flex items-center space-x-2">
+              <FormControl>
+                <Switch
+                  data-testid="switch-scaling-button"
+                  className="rounded-xl"
+                  id="scaling-strat"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <Label className="font-semibold text-lg">
+                {field.value
+                  ? t('scalingStratActiveLabel')
+                  : t('noScalingStratActiveLabel')}
+              </Label>
             </div>
-          </A>
-        </div>
-
-        <FormField
-          control={control}
-          name="autoScaling"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex items-center space-x-2">
+          </FormItem>
+        )}
+      />
+      {autoScaling ? (
+        <AutoScalingForm control={control} pricingFlavor={pricingFlavor} />
+      ) : (
+        <div>
+          <FormField
+            control={control}
+            name="replicas"
+            render={({ field }) => (
+              <FormItem>
+                <div
+                  data-testid="fixed-scaling-container"
+                  className="flex items-center space-x-2 mb-2"
+                >
+                  <p className="text-sm">{t('replicasInputLabel')}</p>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button type="button">
+                        <HelpCircle className="size-4" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="text-sm">
+                      <p>{t('haInfoHelper')}</p>
+                    </PopoverContent>
+                  </Popover>
+                </div>
                 <FormControl>
-                  <Switch
-                    data-testid="switch-scaling-button"
-                    className="rounded-xl"
-                    id="scaling-strat"
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
+                  <Input
+                    data-testid="replicas-input"
+                    {...field}
+                    type="number"
+                    max={10}
+                    min={1}
                   />
                 </FormControl>
-                <Label className="font-semibold text-lg">
-                  {field.value
-                    ? t('scalingStratActiveLabel')
-                    : t('noScalingStratActiveLabel')}
-                </Label>
-              </div>
-            </FormItem>
-          )}
-        />
-
-        {autoScaling ? (
-          <AutoScalingForm control={control as any} pricingFlavor={pricingFlavor} />
-        ) : (
-          <div>
-            <FormField
-              control={control}
-              name="replicas"
-              render={({ field }) => (
-                <FormItem>
-                  <div
-                    data-testid="fixed-scaling-container"
-                    className="flex items-center space-x-2 mb-2"
-                  >
-                    <p className="text-sm">{t('replicasInputLabel')}</p>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <button type="button">
-                          <HelpCircle className="size-4" />
-                        </button>
-                      </PopoverTrigger>
-                      <PopoverContent className="text-sm">
-                        <p>{t('haInfoHelper')}</p>
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                  <FormControl>
-                    <Input
-                      data-testid="replicas-input"
-                      {...field}
-                      type="number"
-                      max={10}
-                      min={1}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            {pricingFlavor && (
-              <div className="mt-2">
-                <Price
-                  decimals={2}
-                  displayInHour={true}
-                  priceInUcents={(replicas ?? 1) * 60 * pricingFlavor.price}
-                  taxInUcents={(replicas ?? 1) * 60 * pricingFlavor.tax}
-                />
-              </div>
+              </FormItem>
             )}
-          </div>
-        )}
-      </div>
-    );
-  },
-);
+          />
+          {pricingFlavor && (
+            <div className="mt-2">
+              <Price
+                decimals={2}
+                displayInHour={true}
+                priceInUcents={(replicas ?? 1) * 60 * pricingFlavor.price}
+                taxInUcents={(replicas ?? 1) * 60 * pricingFlavor.tax}
+              />
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+});
 
 export default ScalingStrategy;

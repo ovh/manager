@@ -1,13 +1,14 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, Control } from 'react-hook-form';
 import { CustomMetricsFields } from './CustomMetricsFields';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 import ai from '@/types/AI';
 
 const TestWrapper = ({
   defaultValues,
 }: {
-  defaultValues?: Record<string, any>;
+  defaultValues?: Record<string, unknown>;
 }) => {
   const methods = useForm({
     defaultValues: {
@@ -22,7 +23,9 @@ const TestWrapper = ({
 
   return (
     <FormProvider {...methods}>
-      <CustomMetricsFields />
+      <CustomMetricsFields
+        control={methods.control as Control<FullScalingFormValues>}
+      />
     </FormProvider>
   );
 };
@@ -60,7 +63,9 @@ describe('CustomMetricsFields', () => {
     render(<TestWrapper />);
 
     const input = screen.getByTestId('metric-url-input') as HTMLInputElement;
-    fireEvent.change(input, { target: { value: 'http://example.com/metrics' } });
+    fireEvent.change(input, {
+      target: { value: 'http://example.com/metrics' },
+    });
 
     expect(input.value).toBe('http://example.com/metrics');
   });
@@ -86,22 +91,14 @@ describe('CustomMetricsFields', () => {
   });
 
   it('should not display error when metricUrl has valid value', () => {
-    render(
-      <TestWrapper
-        defaultValues={{ metricUrl: 'http://example.com' }}
-      />,
-    );
+    render(<TestWrapper defaultValues={{ metricUrl: 'http://example.com' }} />);
 
     const errorMessages = screen.queryAllByText(/metricUrlRequired/i);
     expect(errorMessages.length).toBe(0);
   });
 
   it('should not display error when dataLocation has valid value', () => {
-    render(
-      <TestWrapper
-        defaultValues={{ dataLocation: '$.data' }}
-      />,
-    );
+    render(<TestWrapper defaultValues={{ dataLocation: '$.data' }} />);
 
     const errorMessages = screen.queryAllByText(/dataLocationRequired/i);
     expect(errorMessages.length).toBe(0);

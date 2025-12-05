@@ -1,30 +1,29 @@
-import React from 'react';
 import { Control, useWatch } from 'react-hook-form';
 
 import Price from '@/components/price/Price.component';
 import { AppPricing } from '@/types/orderFunnel';
-import { ScalingFormValues } from '@/lib/scalingHelper';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 import { ReplicaFields } from './ReplicaFields';
 import { ResourceTypeSelector } from './ResourceTypeSelector';
 import { CpuRamFields } from './CpuRamFields';
 import { CustomMetricsFields } from './CustomMetricsFields';
 
 interface AutoScalingFormProps {
-  control: Control<ScalingFormValues>;
+  control: Control<FullScalingFormValues>;
   pricingFlavor?: AppPricing;
 }
 
-export const AutoScalingForm = React.forwardRef<
-  HTMLDivElement,
-  AutoScalingFormProps
->(function AutoScalingForm({ control, pricingFlavor }, ref) {
+export function AutoScalingForm({
+  control,
+  pricingFlavor,
+}: AutoScalingFormProps) {
   const resType = useWatch({ control, name: 'resourceType' });
   const minRep = useWatch({ control, name: 'replicasMin' });
 
   const isCustom = resType === 'CUSTOM';
 
   return (
-    <div ref={ref} data-testid="auto-scaling-container">
+    <div data-testid="auto-scaling-container">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6 mb-4">
         <ReplicaFields control={control} />
         <ResourceTypeSelector control={control} />
@@ -43,4 +42,4 @@ export const AutoScalingForm = React.forwardRef<
       )}
     </div>
   );
-});
+}

@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, Control } from 'react-hook-form';
 import { ReplicaFields } from './ReplicaFields';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 
 const TestWrapper = () => {
   const methods = useForm({
@@ -13,7 +14,9 @@ const TestWrapper = () => {
 
   return (
     <FormProvider {...methods}>
-      <ReplicaFields />
+      <ReplicaFields
+        control={methods.control as Control<FullScalingFormValues>}
+      />
     </FormProvider>
   );
 };

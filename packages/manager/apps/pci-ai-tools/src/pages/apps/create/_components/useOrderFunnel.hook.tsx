@@ -36,89 +36,105 @@ export function useOrderFunnel(
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/apps/create');
 
-  const orderSchema = z.object({
-    region: z.string(),
-    flavorWithQuantity: z.object({
-      flavor: z.string(),
-      quantity: z.coerce.number(),
-    }),
-    image: z.object({
-      name: z
-        .string()
-        .trim()
-        .min(1, {
-          message: t('errorFormEmptyImageApp'),
-        }),
-      version: z.string().optional(),
-      contractChecked: z.boolean().optional(),
-    }),
-    appName: z
-      .string()
-      .trim()
-      .min(1),
-    privacy: z.nativeEnum(PrivacyEnum),
-    autoScaling: z.boolean(),
-    replicas: z.coerce.number().optional(),
-    replicasMin: z.coerce.number().optional(),
-    replicasMax: z.coerce.number().optional(),
-    resourceType: z
-      .union([
-        z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-        z.literal('CUSTOM'),
-      ])
-      .optional(),
-    averageUsageTarget: z.coerce.number().optional(),
-    metricUrl: z.string().optional(),
-    dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
-    dataLocation: z.string().optional(),
-    targetMetricValue: z.coerce.number().optional(),
-    aggregationType: z
-      .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
-      .optional(),
-    labels: z
-      .array(
-        z.object({
-          name: z.string().optional(),
-          value: z.string().optional(),
-        }),
-      )
-      .optional(),
-    dockerCommand: z.array(z.string()).optional(),
-    httpPort: z.coerce
-      .number()
-      .min(APP_CONFIG.port.min)
-      .max(APP_CONFIG.port.max),
-    volumes: z.array(
-      z.object({
-        cache: z.boolean().optional(),
-        dataStore: z
-          .object({
-            alias: z.string(),
-            container: z.string(),
-          })
-          .optional(),
-        publicGit: z
-          .object({
-            url: z.string(),
-          })
-          .optional(),
-        mountPath: z.string(),
-        permission: z.nativeEnum(ai.VolumePermissionEnum),
+  const orderSchema = z
+    .object({
+      region: z.string(),
+      flavorWithQuantity: z.object({
+        flavor: z.string(),
+        quantity: z.coerce.number(),
       }),
-    ),
-    probe: z
-      .object({
-        path: z
+      image: z.object({
+        name: z
           .string()
           .trim()
-          .optional(),
-        port: z.coerce.number().optional(),
-      })
-      .optional(),
-  });
+          .min(1, {
+            message: t('errorFormEmptyImageApp'),
+          }),
+        version: z.string().optional(),
+        contractChecked: z.boolean().optional(),
+      }),
+      appName: z
+        .string()
+        .trim()
+        .min(1),
+      privacy: z.nativeEnum(PrivacyEnum),
+      autoScaling: z.boolean(),
+      replicas: z.coerce.number().optional(),
+      replicasMin: z.coerce.number().optional(),
+      replicasMax: z.coerce.number().optional(),
+      resourceType: z
+        .union([
+          z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+          z.literal('CUSTOM'),
+        ])
+        .optional(),
+      averageUsageTarget: z.coerce.number().optional(),
+      metricUrl: z.string().optional(),
+      dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
+      dataLocation: z.string().optional(),
+      targetMetricValue: z.coerce.number().optional(),
+      aggregationType: z
+        .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
+        .optional(),
+      labels: z
+        .array(
+          z.object({
+            name: z.string().optional(),
+            value: z.string().optional(),
+          }),
+        )
+        .optional(),
+      dockerCommand: z.array(z.string()).optional(),
+      httpPort: z.coerce
+        .number()
+        .min(APP_CONFIG.port.min)
+        .max(APP_CONFIG.port.max),
+      volumes: z.array(
+        z.object({
+          cache: z.boolean().optional(),
+          dataStore: z
+            .object({
+              alias: z.string(),
+              container: z.string(),
+            })
+            .optional(),
+          publicGit: z
+            .object({
+              url: z.string(),
+            })
+            .optional(),
+          mountPath: z.string(),
+          permission: z.nativeEnum(ai.VolumePermissionEnum),
+        }),
+      ),
+      probe: z
+        .object({
+          path: z
+            .string()
+            .trim()
+            .optional(),
+          port: z.coerce.number().optional(),
+        })
+        .optional(),
+    })
+    .refine(
+      (data) => {
+        if (!data.autoScaling) return true;
+
+        if (data.resourceType === 'CUSTOM') {
+          return !!(data.metricUrl && data.dataLocation);
+        }
+
+        return true;
+      },
+      {
+        path: ['autoScaling'],
+      },
+    );
 
   const form = useForm({
     resolver: zodResolver(orderSchema),
+    mode: 'onChange',
     defaultValues: {
       region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
@@ -149,17 +165,17 @@ export function useOrderFunnel(
   });
 
   const formValues = form.watch();
-  
-  const region = formValues.region;
-  const flavorWithQuantity = formValues.flavorWithQuantity;
+
+  const { region } = formValues;
+  const { flavorWithQuantity } = formValues;
   const imageWithVersion = formValues.image;
-  const appName = formValues.appName;
+  const { appName } = formValues;
   const unsecureHttp = formValues.privacy;
-  const httpPort = formValues.httpPort;
-  const labels = formValues.labels;
-  const volumes = formValues.volumes;
-  const dockerCommand = formValues.dockerCommand;
-  const probe = formValues.probe;
+  const { httpPort } = formValues;
+  const { labels } = formValues;
+  const { volumes } = formValues;
+  const { dockerCommand } = formValues;
+  const { probe } = formValues;
 
   const scaling = useMemo(() => {
     const parsed = baseScalingSchema.safeParse({
@@ -175,19 +191,21 @@ export function useOrderFunnel(
       targetMetricValue: formValues.targetMetricValue,
       aggregationType: formValues.aggregationType,
     });
-    return parsed.success ? parsed.data : {
-      autoScaling: formValues.autoScaling,
-      replicas: formValues.replicas,
-      replicasMin: formValues.replicasMin,
-      replicasMax: formValues.replicasMax,
-      resourceType: formValues.resourceType,
-      averageUsageTarget: formValues.averageUsageTarget,
-      metricUrl: formValues.metricUrl,
-      dataFormat: formValues.dataFormat,
-      dataLocation: formValues.dataLocation,
-      targetMetricValue: formValues.targetMetricValue,
-      aggregationType: formValues.aggregationType,
-    };
+    return parsed.success
+      ? parsed.data
+      : {
+          autoScaling: formValues.autoScaling,
+          replicas: formValues.replicas,
+          replicasMin: formValues.replicasMin,
+          replicasMax: formValues.replicasMax,
+          resourceType: formValues.resourceType,
+          averageUsageTarget: formValues.averageUsageTarget,
+          metricUrl: formValues.metricUrl,
+          dataFormat: formValues.dataFormat,
+          dataLocation: formValues.dataLocation,
+          targetMetricValue: formValues.targetMetricValue,
+          aggregationType: formValues.aggregationType,
+        };
   }, [formValues]);
 
   const flavorQuery = useGetFlavor(projectId, region);

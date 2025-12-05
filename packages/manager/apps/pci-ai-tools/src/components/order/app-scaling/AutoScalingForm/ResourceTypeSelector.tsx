@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Control } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
@@ -14,10 +13,10 @@ import {
 } from '@datatr-ux/uxlib';
 
 import ai from '@/types/AI';
-import { SCALING_DEFAULTS, ScalingFormValues } from '@/lib/scalingHelper';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 
 interface ResourceTypeSelectorProps {
-  control: Control<ScalingFormValues>;
+  control: Control<FullScalingFormValues>;
 }
 
 export function ResourceTypeSelector({ control }: ResourceTypeSelectorProps) {

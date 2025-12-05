@@ -23,7 +23,11 @@ import { AppPricing, Scaling } from '@/types/orderFunnel';
 import { getFlavorPricing } from '@/lib/priceFlavorHelper';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useScalingStrategy } from '@/data/hooks/ai/app/scaling-strategy/useScalingStrategy.hook';
-import { getInitialValues, FullScalingFormValues, baseScalingSchema } from '@/lib/scalingHelper';
+import {
+  getInitialValues,
+  FullScalingFormValues,
+  baseScalingSchema,
+} from '@/lib/scalingHelper';
 
 const UpdateScaling = () => {
   const { app, projectId } = useAppData();
@@ -45,7 +49,7 @@ const UpdateScaling = () => {
   const currentScaling: Scaling = useMemo(() => {
     const automatic = app.spec.scalingStrategy?.automatic;
     const fixed = app.spec.scalingStrategy?.fixed;
-    
+
     return {
       autoScaling: !!automatic,
       replicas: fixed?.replicas || automatic?.replicasMin || 1,
@@ -100,19 +104,16 @@ const UpdateScaling = () => {
             replicasMax: formValues.replicasMax,
             ...((!isCustom && {
               averageUsageTarget: formValues.averageUsageTarget || 75,
-              resourceType: formValues
-                .resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
+              resourceType: formValues.resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
             }) ||
               {}),
             ...(isCustom && {
               customMetrics: {
                 apiUrl: formValues.metricUrl || '',
-                format: formValues
-                  .dataFormat as ai.app.CustomMetricsFormatEnum,
+                format: formValues.dataFormat as ai.app.CustomMetricsFormatEnum,
                 targetValue: formValues.targetMetricValue || 0,
                 valueLocation: formValues.dataLocation || '',
-                aggregationType: formValues
-                  .aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
+                aggregationType: formValues.aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
               },
             }),
           },
@@ -136,7 +137,10 @@ const UpdateScaling = () => {
         <ScrollArea className="max-h-[80vh]">
           <FormProvider {...form}>
             <form onSubmit={onSubmit} className="flex flex-col gap-2">
-              <ScalingStrategy control={form.control} pricingFlavor={pricingResource} />
+              <ScalingStrategy
+                control={form.control}
+                pricingFlavor={pricingResource}
+              />
               <DialogFooter className="flex justify-end mr-4">
                 <DialogClose asChild>
                   <Button

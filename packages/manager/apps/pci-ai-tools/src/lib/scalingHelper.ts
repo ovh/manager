@@ -13,14 +13,26 @@ export const SCALING_DEFAULTS = {
 
 export const createScalingSchema = (t: (key: string) => string) => {
   const replicaFields = {
-    replicasMin: z.coerce.number().int().min(1).max(100),
-    replicasMax: z.coerce.number().int().min(1).max(100),
+    replicasMin: z.coerce
+      .number()
+      .int()
+      .min(1)
+      .max(100),
+    replicasMax: z.coerce
+      .number()
+      .int()
+      .min(1)
+      .max(100),
   };
 
   const cpuRamSchema = z.object({
     ...replicaFields,
     resourceType: z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-    averageUsageTarget: z.coerce.number().int().min(0).max(100),
+    averageUsageTarget: z.coerce
+      .number()
+      .int()
+      .min(0)
+      .max(100),
     metricUrl: z.string().optional(),
     dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
     dataLocation: z.string().optional(),
@@ -106,7 +118,8 @@ export const getInitialValues = (scaling: Scaling): ScalingFormValues => ({
   replicasMin: scaling.replicasMin ?? SCALING_DEFAULTS.MIN_REPLICAS,
   replicasMax: scaling.replicasMax ?? SCALING_DEFAULTS.MAX_REPLICAS,
   resourceType: scaling.resourceType ?? SCALING_DEFAULTS.RESOURCE_TYPE,
-  averageUsageTarget: scaling.averageUsageTarget ?? SCALING_DEFAULTS.AVERAGE_USAGE,
+  averageUsageTarget:
+    scaling.averageUsageTarget ?? SCALING_DEFAULTS.AVERAGE_USAGE,
   metricUrl: scaling.metricUrl ?? '',
   dataFormat: scaling.dataFormat ?? SCALING_DEFAULTS.DATA_FORMAT,
   dataLocation: scaling.dataLocation ?? '',

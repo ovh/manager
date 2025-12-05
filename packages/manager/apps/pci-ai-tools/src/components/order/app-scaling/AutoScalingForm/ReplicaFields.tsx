@@ -12,10 +12,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@datatr-ux/uxlib';
-import { ScalingFormValues } from '@/lib/scalingHelper';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 
 interface ReplicaFieldsProps {
-  control: Control<ScalingFormValues>;
+  control: Control<FullScalingFormValues>;
 }
 
 export function ReplicaFields({ control }: ReplicaFieldsProps) {

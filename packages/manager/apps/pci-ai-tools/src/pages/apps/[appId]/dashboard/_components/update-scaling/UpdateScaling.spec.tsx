@@ -62,7 +62,7 @@ describe('Data Sync Component', () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
     expect(screen.getByTestId('replicas-input')).toBeTruthy();
-    
+
     act(() => {
       fireEvent.change(screen.getByTestId('replicas-input'), {
         target: {
@@ -94,7 +94,7 @@ describe('Data Sync Component', () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
     expect(screen.getByTestId('replicas-input')).toBeTruthy();
-    
+
     act(() => {
       fireEvent.change(screen.getByTestId('replicas-input'), {
         target: {
@@ -128,12 +128,12 @@ describe('Data Sync Component', () => {
       appQuery: {} as UseQueryResult<ai.app.App, AIError>,
     });
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
-    
+
     await waitFor(() => {
       expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
       expect(screen.getByTestId('max-rep-input')).toBeTruthy();
     });
-    
+
     act(() => {
       fireEvent.change(screen.getByTestId('max-rep-input'), {
         target: {

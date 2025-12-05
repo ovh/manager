@@ -9,10 +9,10 @@ import {
   PopoverTrigger,
   Slider,
 } from '@datatr-ux/uxlib';
-import { ScalingFormValues } from '@/lib/scalingHelper';
+import { FullScalingFormValues } from '@/lib/scalingHelper';
 
 interface CpuRamFieldsProps {
-  control: Control<ScalingFormValues>;
+  control: Control<FullScalingFormValues>;
 }
 
 export function CpuRamFields({ control }: CpuRamFieldsProps) {
