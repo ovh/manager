@@ -8,13 +8,16 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsBreadcrumb,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
-  Notifications,
   StepComponent,
   useNotifications,
   useProjectUrl,
@@ -28,7 +31,10 @@ import { useSafeParam } from '@/hooks/useSafeParam';
 import { useWorkflowStepper } from './hooks/useWorkflowStepper';
 import { WorkflowName } from './steps/WorkflowName.component';
 import { WorkflowResource } from './steps/WorkflowResource.component';
-import { WorkflowScheduling, getCron } from './steps/WorkflowScheduling.component';
+import {
+  WorkflowScheduling,
+  getCron,
+} from './steps/WorkflowScheduling.component';
 import { WorkflowType } from './steps/WorkflowType.component';
 
 export default function NewPage() {
@@ -55,7 +61,9 @@ export default function NewPage() {
         <Translation ns="workflow-add">
           {(tr) =>
             tr('pci_workflow_add_error', {
-              message: isApiCustomError(err) ? err.response?.data.message : err.message,
+              message: isApiCustomError(err)
+                ? err.response?.data.message
+                : err.message,
             })
           }
         </Translation>,
@@ -160,37 +168,38 @@ export default function NewPage() {
           isLocked={stepper.scheduling.step.isLocked}
           title={t('pci_workflow_create_schedule_title')}
         >
-          <>
-            <Notifications />
-            <WorkflowScheduling
-              instanceId={stepper.form.instanceId}
-              step={stepper.scheduling.step}
-              onSubmit={(scheduling, distantRegion) => {
-                stepper.scheduling.submit(scheduling, distantRegion);
-                addWorkflow({
-                  cron: getCron(scheduling),
-                  instanceId: stepper.form.instanceId,
-                  name: stepper.form.name,
-                  rotation: scheduling.rotation,
-                  maxExecutionCount: scheduling.maxExecutionCount,
-                  distantRegion,
-                });
-              }}
-            />
-            {isAdding && (
-              <div className="mt-5">
-                <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="align-middle" />
-                <OsdsText
-                  className="ml-8"
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-                >
-                  {t('pci_workflow_creating')}
-                </OsdsText>
-              </div>
-            )}
-          </>
+          <WorkflowScheduling
+            instanceId={stepper.form.instanceId}
+            step={stepper.scheduling.step}
+            onSubmit={(scheduling, distantRegion) => {
+              stepper.scheduling.submit(scheduling, distantRegion);
+              addWorkflow({
+                cron: getCron(scheduling),
+                instanceId: stepper.form.instanceId,
+                name: stepper.form.name,
+                rotation: scheduling.rotation,
+                maxExecutionCount: scheduling.maxExecutionCount,
+                distantRegion,
+              });
+            }}
+          />
+          {isAdding && (
+            <div className="mt-5">
+              <OsdsSpinner
+                inline
+                size={ODS_SPINNER_SIZE.md}
+                className="align-middle"
+              />
+              <OsdsText
+                className="ml-8"
+                color={ODS_THEME_COLOR_INTENT.text}
+                level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              >
+                {t('pci_workflow_creating')}
+              </OsdsText>
+            </div>
+          )}
         </StepComponent>
       </div>
     </>
