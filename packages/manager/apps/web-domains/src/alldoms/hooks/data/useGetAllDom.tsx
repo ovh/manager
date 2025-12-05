@@ -34,7 +34,6 @@ export const useGetAllDom = ({
         return {
           data: {} as AlldomService,
           isLoading: results.some((r) => r.isLoading),
-          isError: true,
         };
       }
 
@@ -55,6 +54,7 @@ export const useGetAllDom = ({
           serviceId: serviceInfo.serviceId,
         } as AlldomService,
         isLoading: results.some((r) => r.isLoading),
+        isError: results.some((r) => r.isError),
       };
     },
   });
