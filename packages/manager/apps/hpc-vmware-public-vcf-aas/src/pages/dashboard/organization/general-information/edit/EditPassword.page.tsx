@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +10,7 @@ import { useResetVcdPassword } from '@ovh-ux/manager-module-vcd-api';
 import { Modal } from '@ovh-ux/manager-react-components';
 
 import { useMessageContext } from '@/context/Message.context';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
 
 export default function EditPassword() {
@@ -17,7 +18,7 @@ export default function EditPassword() {
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { addSuccess, addError } = useMessageContext();
   const { mutate: resetPassword, isPending } = useResetVcdPassword(
     { id },

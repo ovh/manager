@@ -1,16 +1,20 @@
 import { screen } from '@testing-library/dom';
 import { act } from '@testing-library/react';
 
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
 import { labels, renderTest } from '../../test-utils';
+
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+};
 
 const openTerminateModal = async () => {
   const vcdActionMenu = await screen.findByTestId('navigation-action-trigger-action');
   expect(vcdActionMenu).toBeVisible();
   act(() => vcdActionMenu.click());
 
-  const terminateCta = await screen.findByTestId(`terminate-cta-${organizationList[0].id}`);
+  const terminateCta = await screen.findByTestId(`terminate-cta-${config.org.id}`);
   expect(terminateCta).toBeVisible();
 
   act(() => {
@@ -58,7 +62,7 @@ describe('Organization Terminate Page', () => {
     await act(() => new Promise((resolve) => setTimeout(resolve, 2000)));
 
     const successBanner = await screen.findByText(
-      labels.terminate.terminate_managed_vcd_success.replace('{{service}}', organizationList[0].id),
+      labels.terminate.terminate_managed_vcd_success.replace('{{service}}', config.org.id),
     );
     expect(successBanner).toBeVisible();
 

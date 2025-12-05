@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
-
 import { OdsMessage, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { useVcdDatacentres } from '@ovh-ux/manager-module-vcd-api';
 
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
+
 export const DatacentresCount: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { data: vDatacentres, isError, error, isLoading } = useVcdDatacentres(id);
 
   if (isError) {

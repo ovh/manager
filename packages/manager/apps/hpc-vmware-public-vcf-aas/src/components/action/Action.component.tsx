@@ -1,7 +1,5 @@
 import React, { useId } from 'react';
 
-import { useTranslation } from 'react-i18next';
-
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
@@ -116,9 +114,8 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   isLoading = false,
   id,
   popoverPosition,
-  label,
+  label = '',
 }) => {
-  const { t } = useTranslation('buttons');
   const [isTrigger, setIsTrigger] = React.useState(false);
 
   return (
@@ -133,9 +130,9 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           isLoading={isLoading}
           size={ODS_BUTTON_SIZE.sm}
           onClick={() => setIsTrigger(true)}
-          {...(!isCompact && { label: label || t('common_actions') })}
           icon={icon || (isCompact ? ODS_ICON_NAME.ellipsisVertical : ODS_ICON_NAME.chevronDown)}
-          aria-label={label || t('common_actions')}
+          aria-label={isCompact ? '' : label}
+          label={isCompact ? '' : label}
         />
       </div>
       <OdsPopover

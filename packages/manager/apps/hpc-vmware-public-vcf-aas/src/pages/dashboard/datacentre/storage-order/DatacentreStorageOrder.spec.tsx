@@ -10,6 +10,7 @@ import {
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import {
+  VCDOrderableStorage,
   datacentreList,
   orderableResourceData,
   organizationList,
@@ -30,24 +31,30 @@ vitest.mock('@ovhcloud/ods-components/react', async () => {
   };
 });
 
-const orderLabel = labels.datacentresStorage.managed_vcd_vdc_storage_order_cta;
-const orderTitle = labels.datacentresOrder.managed_vcd_vdc_order_storage_title;
-const orderError = labels.datacentresOrder.managed_vcd_vdc_order_unavailable;
+const config = {
+  id: organizationList[0]?.id,
+  vdcId: datacentreList[0]?.id,
+  storage: orderableResourceData.storage[0] as VCDOrderableStorage,
+  orderLabel: labels.datacentresStorage.managed_vcd_vdc_storage_order_cta,
+  orderTitle: labels.datacentresOrder.managed_vcd_vdc_order_storage_title,
+  orderError: labels.datacentresOrder.managed_vcd_vdc_order_unavailable,
+};
+
+const initialRoute = `/${config.id}/virtual-datacenters/${config.vdcId}/storage`;
+const orderRoute = `${initialRoute}/order`;
 
 describe('Datacentre Storage Order Page', () => {
   it('access and display storage order page', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage`,
-    });
+    await renderTest({ initialRoute });
 
-    const { name, performanceClass } = orderableResourceData.storage[0];
+    const { name, performanceClass } = config.storage;
 
     // checks CTA
     const orderButton = await getElementByTestId(TEST_IDS.storageOrderCta);
-    await assertElementLabel({ element: orderButton, label: orderLabel });
+    await assertElementLabel({ element: orderButton, label: config.orderLabel });
     await waitFor(() => userEvent.click(orderButton));
 
-    await assertTextVisibility(orderTitle);
+    await assertTextVisibility(config.orderTitle);
 
     // check datagrid content
     const datagridElements = [
@@ -65,34 +72,22 @@ describe('Datacentre Storage Order Page', () => {
   });
 
   it('display an error if orderableResource service is KO', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      isOrderableResourceKO: true,
-    });
-    await assertTextVisibility(orderError);
+    await renderTest({ initialRoute: orderRoute, isOrderableResourceKO: true });
+    await assertTextVisibility(config.orderError);
   });
 
   it('display an error if there is no orderableResource', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      nbOrderableResource: 0,
-    });
-    await assertTextVisibility(orderError);
+    await renderTest({ initialRoute: orderRoute, nbOrderableResource: 0 });
+    await assertTextVisibility(config.orderError);
   });
 
   it('display an error if catalog service is KO', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      isCatalogKO: true,
-    });
-    await assertTextVisibility(orderError);
+    await renderTest({ initialRoute: orderRoute, isCatalogKO: true });
+    await assertTextVisibility(config.orderError);
   });
 
   it('display an error if there is no catalog products', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/storage/order`,
-      nbCatalogProduct: 0,
-    });
-    await assertTextVisibility(orderError);
+    await renderTest({ initialRoute: orderRoute, nbCatalogProduct: 0 });
+    await assertTextVisibility(config.orderError);
   });
 });
