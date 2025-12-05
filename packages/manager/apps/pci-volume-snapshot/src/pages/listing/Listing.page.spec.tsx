@@ -12,7 +12,6 @@ import { FilterComparator } from '@ovh-ux/manager-core-api';
 import * as SnapshotsApi from '@/api/hooks/useSnapshots';
 import ListingPage from './Listing.page';
 
-// Mock hooks and dependencies
 vi.mock('@/hooks/usePageTracking', () => ({
   usePageTracking: vi.fn(),
 }));
@@ -20,6 +19,8 @@ vi.mock('@/hooks/usePageTracking', () => ({
 vi.mock('@/hooks/useNotifications', () => ({
   useNotifications: vi.fn(),
 }));
+
+vi.mock('@/pages/listing/components/VolumeSnapshotGuidesHeader.component');
 
 const mockSetPagination = vi.fn();
 const mockAddFilter = vi.fn();
