@@ -1,6 +1,4 @@
 import { useState, Suspense } from 'react';
-
-import { useMediaQuery } from 'react-responsive';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
@@ -16,9 +14,9 @@ import { useHeader } from '@/context/header';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { Logo } from '@/container/common/Logo';
 import SkipToMainContent from './skip-to-main-content';
+import { SupportLink } from '../support-link';
 
 import style from './style.module.scss';
-import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
   isSidebarExpanded?: boolean;
@@ -39,12 +37,9 @@ function Header({
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
-  const isSmallDevice = useMediaQuery({
-    query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
-  });
-  const { data: cloudShellAvailability } = useFeatureAvailability(
-    ['cloud-shell'],
-  );
+  const { data: cloudShellAvailability } = useFeatureAvailability([
+    'cloud-shell',
+  ]);
   const navigationPlugin = shell.getPlugin('navigation');
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const { isMobile } = useProductNavReshuffle();
@@ -63,43 +58,60 @@ function Header({
               isOpen={isSidebarExpanded}
               onClick={onHamburgerMenuClick}
             />
-            {isMobile && (
-              <a
-                role="img"
-                className={`block ${style.navbarLogo} ml-2`}
-                aria-label="OVHcloud"
-                target="_top"
-                href={logoLink}
-              >
-                <Logo />
-              </a>
-            )}
+            <a
+              role="img"
+              className={`block ${style.navbarLogo} ml-2`}
+              aria-label="OVHcloud"
+              target="_top"
+              href={logoLink}
+            >
+              <Logo />
+            </a>
             <div
               className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
             >
               <SkipToMainContent iframeRef={iframeRef} />
-              {!isSmallDevice && (
+              {!isMobile && (
+                <>
+                  <div
+                    className={style.navbarSeparator}
+                    aria-hidden="true"
+                  ></div>
+                  <div
+                    className={`oui-navbar-list__item ${style.navbarListItem}`}
+                  >
+                    <NavReshuffleSwitchBack />
+                  </div>
+                  <div
+                    className={style.navbarSeparator}
+                    aria-hidden="true"
+                  ></div>
+                  <div
+                    className={`oui-navbar-list__item ${style.navbarListItem}`}
+                  >
+                    <LanguageMenu
+                      setUserLocale={setUserLocale}
+                      userLocale={userLocale}
+                      onChange={(show: boolean) => {
+                        setIsDropdownOpen(show);
+                        setIsNotificationsSidebarVisible(false);
+                      }}
+                    ></LanguageMenu>
+                  </div>
+                  <div
+                    className={`oui-navbar-list__item ${style.navbarListItem}`}
+                  >
+                    <SupportLink />
+                  </div>
+                </>
+              )}
+              {cloudShellAvailability?.['cloud-shell'] && (
                 <div
                   className={`oui-navbar-list__item ${style.navbarListItem}`}
                 >
-                  <NavReshuffleSwitchBack />
+                  <CloudShellLink />
                 </div>
               )}
-              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-                <LanguageMenu
-                  setUserLocale={setUserLocale}
-                  userLocale={userLocale}
-                  onChange={(show: boolean) => {
-                    setIsDropdownOpen(show);
-                    setIsNotificationsSidebarVisible(false);
-                  }}
-                ></LanguageMenu>
-              </div>
-          {cloudShellAvailability?.['cloud-shell'] && (
-              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-            <CloudShellLink />
-          </div>
-          )}
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <Notifications />
               </div>
@@ -113,11 +125,6 @@ function Header({
               </div>
             </div>
           </div>
-          {isSmallDevice && (
-            <div className={style['small-device-pnr-switch']}>
-              <NavReshuffleSwitchBack />
-            </div>
-          )}
           <NotificationsSidebar />
         </Suspense>
       )}
