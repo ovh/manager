@@ -71,7 +71,7 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-8">
+      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
         {step.isLocked && (
           <PciTile
             title={`${t(
@@ -122,7 +122,7 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
       )}
 
       {!step.isLocked && (
-        <div className="flex flex-row mt-8 gap-4">
+        <div className="mt-8 flex flex-row gap-4">
           <Button
             size={'md'}
             color={'primary'}
