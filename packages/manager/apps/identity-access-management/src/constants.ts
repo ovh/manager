@@ -1,5 +1,9 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
+export const IAM_FEATURES = {
+  PERMANENT_TOKENS: 'identity-access-management:permanent-tokens',
+};
+
 export const CHANGELOG_LINKS: ChangelogLinks = {
   roadmap:
     'https://github.com/orgs/ovh/projects/16/views/1?sliceBy%5Bvalue%5D=Identity+and+Access+Management+%28IAM%29',

@@ -31,6 +31,7 @@ const FEATURE = {
   IDENTITIES: 'identity-access-management:identities',
   POLICIES: 'identity-access-management:policies',
   APIKEYS: 'identity-access-management:api-keys',
+  PERMANENT_TOKENS: 'identity-access-management:permanent-tokens',
 };
 
 const ENTITY = {

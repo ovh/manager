@@ -1,5 +1,6 @@
 import { get, map } from 'lodash-es';
 import { USERS_TRACKING_HITS } from './users.constants';
+import { FEATURE } from '../../iam.constants';
 
 export default class IamUsersCtrl {
   /* @ngInject */
@@ -16,6 +17,7 @@ export default class IamUsersCtrl {
     trackClick,
     trackPage,
     coreURLBuilder,
+    features,
   ) {
     this.$scope = $scope;
     this.$timeout = $timeout;
@@ -35,6 +37,7 @@ export default class IamUsersCtrl {
     this.$scope.trackPage = trackPage;
     this.$scope.trackClick = trackClick;
     this.coreURLBuilder = coreURLBuilder;
+    this.features = features;
 
     this.$scope.$on('iam.security.users.refresh', () => {
       this.$onInit();
@@ -52,6 +55,9 @@ export default class IamUsersCtrl {
       'identity-access-management',
       `/manage-tokens/`,
     );
+    this.enablePermanentTokens = !!this.features.features[
+      FEATURE.PERMANENT_TOKENS
+    ];
 
     this.$scope.resetAction = function resetAction() {
       this.$scope.setAction(false);
