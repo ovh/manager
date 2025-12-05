@@ -12,6 +12,7 @@ import { deps } from '@/deps/deps';
 import {
   selectFlavorDetails,
   selectLocalisationDetails,
+  selectWindowsImageLicensePrice,
 } from '../view-models/cartViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
@@ -37,6 +38,7 @@ export const CreationCart = () => {
     flavorId,
     distributionImageVariantId,
     distributionImageVersion,
+    distributionImageOsType,
     sshKeyId,
   ] = useWatch({
     control,
@@ -49,6 +51,7 @@ export const CreationCart = () => {
       'flavorId',
       'distributionImageVariantId',
       'distributionImageVersion',
+      'distributionImageOsType',
       'sshKeyId',
     ],
   });
@@ -66,8 +69,24 @@ export const CreationCart = () => {
 
   const selectedFlavorDetails = useMemo(
     () =>
-      selectFlavorDetails(deps)(projectId, flavorId, distributionImageVersion),
-    [distributionImageVersion, flavorId, projectId],
+      selectFlavorDetails(deps)(projectId, flavorId, distributionImageOsType),
+    [distributionImageOsType, flavorId, projectId],
+  );
+
+  const windowsImageLicensePrice = useMemo(
+    () =>
+      selectWindowsImageLicensePrice(deps)(
+        projectId,
+        microRegion,
+        distributionImageOsType,
+        selectedFlavorDetails?.name,
+      ),
+    [
+      distributionImageOsType,
+      microRegion,
+      projectId,
+      selectedFlavorDetails?.name,
+    ],
   );
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
@@ -128,12 +147,12 @@ export const CreationCart = () => {
                   >
                     {distributionImageVersion.distributionImageVersionName}
                   </Text>
-                  {selectedFlavorDetails?.prices.licencePrice && (
+                  {windowsImageLicensePrice && (
                     <Text
                       preset="heading-6"
                       className="text-[--ods-color-heading]"
                     >
-                      {getTextPrice(selectedFlavorDetails.prices.licencePrice)}
+                      {getTextPrice(windowsImageLicensePrice)}
                     </Text>
                   )}
                 </>
@@ -151,6 +170,7 @@ export const CreationCart = () => {
     getTextPrice,
     distributionImageVariantId,
     distributionImageVersion.distributionImageVersionName,
+    windowsImageLicensePrice,
   ]);
 
   const sshKeyDetails = useMemo(

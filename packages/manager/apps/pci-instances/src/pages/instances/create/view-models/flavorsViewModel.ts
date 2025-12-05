@@ -106,7 +106,7 @@ type TMinimumPrices = {
   estimatedMinimumMonthlyPrice: number | null;
 };
 
-const getMinimumPrices = (pricings: TFlavorPrices[]) =>
+export const getMinimumPrices = (pricings: TFlavorPrices[]) =>
   pricings.reduce<TMinimumPrices>(
     (acc, pricing) => {
       pricing.prices.forEach(({ price, type, monthlyEquivalent }) => {
