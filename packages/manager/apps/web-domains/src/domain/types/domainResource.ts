@@ -14,6 +14,7 @@ import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
 import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
 import { THost, THostsconfiguration } from './host';
+import contact from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/contact/Messages_fr_FR.json';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -76,15 +77,30 @@ export interface TDomainResource {
   iam: IAMResource | null;
   id: string;
   resourceStatus: ResourceStatusEnum;
-  targetSpec?: {
-    dnsConfiguration?: {
-      nameServers: TNameServer[];
-    };
-    hostsConfiguration?: {
-      hosts: THost[];
-    };
-    protectionState: ProtectionStateEnum;
+  targetSpec?: TTargetSpec;
+}
+
+export interface TTargetSpec {
+  dnsConfiguration?: {
+    nameServers: TNameServer[];
   };
+  hostsConfiguration?: {
+    hosts: THost[];
+  };
+  protectionState: ProtectionStateEnum;
+  contactsConfiguration?: TContactsConfigurationTargetSpec;
+}
+
+export interface TContactDisclosurePolicy {
+  disclosureConfiguration: DisclosureConfigurationEnum;
+  forceDisclosure: boolean;
+  disclosedFields: string[];
+  visibleViaRdds: boolean;
+}
+
+export interface TContactDetails {
+  id: string;
+  disclosurePolicy?: TContactDisclosurePolicy;
 }
 
 export interface TContactsConfiguration {
@@ -94,9 +110,14 @@ export interface TContactsConfiguration {
   contactBilling: TContactDetails;
 }
 
-export interface TContactDetails {
-  id: string;
-}
+export type TContactsConfigurationTargetSpec = {
+  [key: string]: {
+    disclosurePolicy?: {
+      disclosureConfiguration: DisclosureConfigurationEnum;
+    };
+    id?: string;
+  };
+};
 
 export interface TDomainOption {
   option: OptionEnum;
@@ -197,6 +218,31 @@ export enum TransferLockStatusEnum {
   UNAVAILABLE = 'unavailable',
   UNLOCKED = 'unlocked',
   UNLOCKING = 'unlocking',
+}
+
+export enum DisclosureConfigurationEnum {
+  REDACTED = 'REDACTED',
+  DISCLOSED = 'DISCLOSED',
+}
+
+export enum DataProtectionStatus {
+  ACTIVE = 'active',
+  PARTIAL = 'partial',
+  NONE = 'none',
+  DISABLED = 'disabled',
+}
+
+export enum DataProtectionFieldEnum {
+  ADDRESS = 'ADDRESS',
+  CITY = 'CITY',
+  COUNTRY = 'COUNTRY',
+  EMAIL = 'EMAIL',
+  FAX = 'FAX',
+  NAME = 'NAME',
+  ORGANISATION = 'ORGANISATION',
+  PHONE = 'PHONE',
+  PROVINCE = 'PROVINCE',
+  ZIP = 'ZIP',
 }
 
 export interface ContactData {

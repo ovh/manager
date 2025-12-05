@@ -120,13 +120,17 @@ describe('HostDrawer', () => {
 
     expect(payload).toMatchObject({
       checksum: serviceInfoDetail.checksum,
-      nameServers: serviceInfoDetail.targetSpec.dnsConfiguration.nameServers,
-      hosts: expect.arrayContaining([
-        expect.objectContaining({
-          host: 'test.example.com',
-          ips: ['1.2.3.4'],
-        }),
-      ]),
+      currentTargetSpec: serviceInfoDetail.targetSpec,
+      updatedSpec: {
+        hostsConfiguration: {
+          hosts: expect.arrayContaining([
+            expect.objectContaining({
+              host: 'test.example.com',
+              ips: ['1.2.3.4'],
+            }),
+          ]),
+        },
+      },
     });
 
     callbacks.onSuccess();
@@ -216,14 +220,20 @@ describe('HostDrawer', () => {
       ],
     ];
 
-    expect(payload.hosts).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          host: 'updated-host.example.com',
-          ips: ['9.9.9.9'],
-        }),
-      ]),
-    );
+    expect(payload).toMatchObject({
+      checksum: serviceInfoDetail.checksum,
+      currentTargetSpec: serviceInfoDetail.targetSpec,
+      updatedSpec: {
+        hostsConfiguration: {
+          hosts: expect.arrayContaining([
+            expect.objectContaining({
+              host: 'updated-host.example.com',
+              ips: ['9.9.9.9'],
+            }),
+          ]),
+        },
+      },
+    });
 
     callbacks.onSuccess();
     expect(addSuccess).toHaveBeenCalledWith(

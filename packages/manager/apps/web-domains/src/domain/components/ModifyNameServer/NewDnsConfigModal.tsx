@@ -49,9 +49,12 @@ export default function NewDnsConfigModal({
     updateDomain(
       {
         checksum,
-        nameServers: cleanedNameServers,
-        hosts: domainResource?.targetSpec.hostsConfiguration.hosts,
-        protectionState: domainResource?.targetSpec.protectionState,
+        currentTargetSpec: domainResource?.targetSpec,
+        updatedSpec: {
+          dnsConfiguration: {
+            nameServers: cleanedNameServers,
+          },
+        },
       },
       {
         onSuccess: () => {

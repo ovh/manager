@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import {
   useGetDnssecStatus,
+  useGetDomainAnycastOption,
   useGetDomainAuthInfo,
   useGetDomainResource,
   useTransferTag,
@@ -19,6 +20,14 @@ import TransferAuthInfoModal from './TransferAuthInfoModal';
 import { TUpdateDNSConfigError } from '@/domain/types/error';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import TransferTagModal from './TagModal';
+import DataProtection from './DataProtection';
+import DataProtectionDrawer from './DataProtectionDrawer';
+import {
+  DisclosureConfigurationEnum,
+  TContactsConfigurationTargetSpec,
+} from '@/domain/types/domainResource';
+import DnsState from './DnsState';
+import AnycastTerminateModal from '../AnycastOrder/AnycastTerminateModal';
 
 interface ConfigurationCardsProps {
   readonly serviceName: string;
@@ -30,6 +39,9 @@ export default function ConfigurationCards({
   const { t } = useTranslation(['domain']);
   const { domainResource } = useGetDomainResource(serviceName);
   const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(serviceName);
+  const { anycastOption, isFetchingAnycastOption } = useGetDomainAnycastOption(
+    serviceName,
+  );
   const [dnssecModalOpened, setDnssecModalOpened] = React.useState<boolean>(
     false,
   );
@@ -37,7 +49,16 @@ export default function ConfigurationCards({
     false,
   );
   const [tagModalOpened, setTagModalOpened] = React.useState<boolean>(false);
+  const [
+    dataProtectionDrawerOpened,
+    setDataProtectionDrawerOpened,
+  ] = React.useState<boolean>(false);
   const [tag, setTag] = React.useState<string>('');
+  const [
+    anycastTerminateModalOpen,
+    setAnycastTerminateModalOpen,
+  ] = React.useState<boolean>(false);
+  const [restoreAnycast, setRestoreAnycast] = React.useState<boolean>(false);
   const [
     transferAuthInfoModalOpened,
     setTransferAuthInfoModalOpened,
@@ -60,32 +81,71 @@ export default function ConfigurationCards({
     transferTagError,
   } = useTransferTag(serviceName, tag);
 
+  const visibleContacts = useMemo(() => {
+    const contacts = domainResource?.currentState?.contactsConfiguration;
+    if (!contacts) return [];
+
+    return Object.entries(contacts)
+      .filter(([_, contact]) => contact.disclosurePolicy?.visibleViaRdds)
+      .map(([key, contact]) => ({
+        key,
+        id: contact.id,
+        label: key.replace('contact', ''),
+        disclosedFields: contact.disclosurePolicy?.disclosedFields || [],
+      }));
+  }, [domainResource]);
+
+  const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
+
+  React.useEffect(() => {
+    const contacts = domainResource?.currentState?.contactsConfiguration;
+    if (!contacts) return;
+
+    const disclosedContacts = Object.entries(contacts)
+      .filter(
+        ([_, contact]) =>
+          contact.disclosurePolicy?.visibleViaRdds &&
+          contact.disclosurePolicy?.disclosureConfiguration ===
+            DisclosureConfigurationEnum.DISCLOSED,
+      )
+      .map(([key]) => key);
+    setSelectedContacts(disclosedContacts);
+  }, [domainResource]);
+
+  const handleCheckboxChange = (
+    contactKey: string,
+    checked: boolean | 'indeterminate',
+  ) => {
+    if (checked === 'indeterminate') return;
+
+    setSelectedContacts((prev) =>
+      checked
+        ? [...prev, contactKey]
+        : prev.filter((key) => key !== contactKey),
+    );
+  };
+
   const handleTag = () => {
     setTag(tag);
     transferTag();
   };
 
   const handleUpdateProtectionState = () => {
-    const checksum = domainResource?.checksum;
-    if (!checksum) return;
-    const cleanedNameServers = domainResource?.currentState?.dnsConfiguration?.nameServers.map(
-      ({ nameServer, ipv4, ipv6 }) => ({
-        nameServer,
-        ...(ipv4 ? { ipv4 } : {}),
-        ...(ipv6 ? { ipv6 } : {}),
-      }),
-    );
+    if (!domainResource?.checksum || !domainResource?.targetSpec) return;
+
     const newProtectionState =
       domainResource?.currentState?.protectionState ===
       ProtectionStateEnum.UNPROTECTED
         ? ProtectionStateEnum.PROTECTED
         : ProtectionStateEnum.UNPROTECTED;
+
     updateDomain(
       {
-        checksum,
-        nameServers: cleanedNameServers,
-        protectionState: newProtectionState,
-        hosts: domainResource?.targetSpec?.hostsConfiguration?.hosts,
+        checksum: domainResource.checksum,
+        currentTargetSpec: domainResource.targetSpec,
+        updatedSpec: {
+          protectionState: newProtectionState,
+        },
       },
       {
         onSuccess: () => {
@@ -94,6 +154,47 @@ export default function ConfigurationCards({
         onError: (error: TUpdateDNSConfigError) => {
           setTransferModalOpened(false);
           console.log(error);
+        },
+      },
+    );
+  };
+
+  const handleUpdateDataProtection = () => {
+    if (!domainResource?.checksum || !domainResource?.targetSpec) return;
+
+    const contacts = domainResource?.currentState?.contactsConfiguration;
+    if (!contacts) return;
+
+    const contactsConfiguration = Object.entries(contacts).reduce(
+      (acc, [key, contact]) => {
+        if (contact.disclosurePolicy?.visibleViaRdds) {
+          acc[key] = {
+            disclosurePolicy: {
+              disclosureConfiguration: selectedContacts.includes(key)
+                ? DisclosureConfigurationEnum.DISCLOSED
+                : DisclosureConfigurationEnum.REDACTED,
+            },
+          };
+        }
+        return acc;
+      },
+      {} as TContactsConfigurationTargetSpec,
+    );
+
+    updateDomain(
+      {
+        checksum: domainResource.checksum,
+        currentTargetSpec: domainResource.targetSpec,
+        updatedSpec: {
+          contactsConfiguration,
+        },
+      },
+      {
+        onSuccess: () => {
+          setDataProtectionDrawerOpened(false);
+        },
+        onError: (_: TUpdateDNSConfigError) => {
+          setDataProtectionDrawerOpened(false);
         },
       },
     );
@@ -114,14 +215,16 @@ export default function ConfigurationCards({
         {t('domain_tab_general_information_configuration')}
       </ManagerTile.Title>
       <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>Serveur DNS</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
-          <Badge color={BADGE_COLOR.success} className="mt-4">
-            Enregistré
-          </Badge>
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
+      <DnsState
+        domainResource={domainResource}
+        serviceName={serviceName}
+        anycastOption={anycastOption}
+        isFetchingAnycastOption={isFetchingAnycastOption}
+        anycastTerminateModalOpen={anycastTerminateModalOpen}
+        setAnycastTerminateModalOpen={setAnycastTerminateModalOpen}
+        restoreAnycast={restoreAnycast}
+        setRestoreAnycast={setRestoreAnycast}
+      />
       <ManagerTile.Divider />
       <DnssecToggleStatus
         dnssecModalOpened={dnssecModalOpened}
@@ -143,6 +246,11 @@ export default function ConfigurationCards({
         open={dnssecModalOpened}
         updateDnssec={updateDnssec}
         onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
+      />
+      <ManagerTile.Divider />
+      <DataProtection
+        domainResource={domainResource}
+        setDataProtectionDrawerOpened={setDataProtectionDrawerOpened}
       />
       <TransferModal
         serviceName={serviceName}
@@ -171,6 +279,26 @@ export default function ConfigurationCards({
         transferTagError={transferTagError}
         open={tagModalOpened}
         onClose={() => setTagModalOpened(!tagModalOpened)}
+      />
+      <DataProtectionDrawer
+        isDrawerOpen={dataProtectionDrawerOpened}
+        onClose={() => setDataProtectionDrawerOpened(false)}
+        domainResource={domainResource}
+        visibleContacts={visibleContacts}
+        selectedContacts={selectedContacts}
+        onCheckboxChange={handleCheckboxChange}
+        onClick={() => {
+          handleUpdateDataProtection();
+        }}
+      />
+      <AnycastTerminateModal
+        serviceName={serviceName}
+        restore={restoreAnycast}
+        anycastTerminateModalOpen={anycastTerminateModalOpen}
+        expirationDate={anycastOption?.expirationDate}
+        onOpenAnycastTerminateModal={() =>
+          setAnycastTerminateModalOpen(!anycastTerminateModalOpen)
+        }
       />
     </ManagerTile>
   );

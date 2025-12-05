@@ -21,6 +21,7 @@ import {
   ServiceType,
   TDomainOption,
   TDomainResource,
+  TTargetSpec,
 } from '@/domain/types/domainResource';
 import {
   activateServiceDnssec,
@@ -162,31 +163,23 @@ export const useUpdateDomainResource = (serviceName: string) => {
     mutationKey: ['domain', 'resource', 'update', serviceName],
     mutationFn: ({
       checksum,
-      nameServers,
-      hosts,
-      protectionState,
+      currentTargetSpec,
+      updatedSpec,
     }: {
       checksum: string;
-      nameServers: {
-        nameServer: string;
-        ipv4?: string;
-        ipv6?: string;
-      }[];
-      hosts: THost[];
-      protectionState: ProtectionStateEnum;
-    }) =>
-      updateDomainResource(serviceName, {
+      currentTargetSpec: TTargetSpec;
+      updatedSpec: Partial<TTargetSpec>;
+    }) => {
+      const newTargetSpec: TTargetSpec = {
+        ...currentTargetSpec,
+        ...updatedSpec,
+      };
+
+      return updateDomainResource(serviceName, {
         checksum,
-        targetSpec: {
-          dnsConfiguration: {
-            nameServers,
-          },
-          hostsConfiguration: {
-            hosts,
-          },
-          protectionState,
-        },
-      }),
+        targetSpec: newTargetSpec,
+      });
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['domain', 'resource', serviceName],

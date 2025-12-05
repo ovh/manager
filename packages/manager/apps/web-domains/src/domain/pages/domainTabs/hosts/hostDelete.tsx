@@ -36,14 +36,16 @@ export default function HostDelete() {
         updateDomain(
           {
             checksum: domainResource?.checksum,
-            nameServers:
-              domainResource?.targetSpec.dnsConfiguration.nameServers,
-            hosts: [
-              ...domainResource.targetSpec.hostsConfiguration.hosts.filter(
-                (item) => item.host !== hostname,
-              ),
-            ],
-            protectionState: domainResource?.targetSpec.protectionState,
+            currentTargetSpec: domainResource?.targetSpec,
+            updatedSpec: {
+              hostsConfiguration: {
+                hosts: [
+                  ...domainResource.targetSpec.hostsConfiguration.hosts.filter(
+                    (item) => item.host !== hostname,
+                  ),
+                ],
+              },
+            },
           },
           {
             onSuccess: () => {
