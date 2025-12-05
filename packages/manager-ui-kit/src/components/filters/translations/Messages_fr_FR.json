@@ -6,6 +6,7 @@
   "common_criteria_adder_operator_starts_with": "débute par",
   "common_criteria_adder_operator_ends_with": "termine par",
   "common_criteria_adder_operator_is_equal": "est égal à",
+  "common_criteria_adder_operator_is_in": "est dans",
   "common_criteria_adder_operator_EQ": "est égal à",
   "common_criteria_adder_operator_is_different": "est différent de",
   "common_criteria_adder_operator_NEQ": "est différent de",
