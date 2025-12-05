@@ -7,6 +7,15 @@ declare global {
   interface Window {
     elqwebtrigger: any;
     surveyLanguage: string;
+    zESettings: {
+      webWidget: {
+        authenticate: {
+          chat: {
+            jwtFn: (callback: (jwt: string) => void) => void;
+          };
+        };
+      };
+    };
   }
   const __REGION__: string;
   const __VERSION__: string;
