@@ -683,7 +683,12 @@ describe('useSnapshots hooks', () => {
       await waitFor(() => expect(result.current.isError).toBe(true));
 
       // Verify onError callback was called with the error
-      expect(onError).toHaveBeenCalledWith(error, 'snap-1', undefined);
+      expect(onError).toHaveBeenCalledWith(
+        error,
+        'snap-1',
+        undefined,
+        expect.any(Object),
+      );
       expect(onSuccess).not.toHaveBeenCalled();
 
       // Verify cache invalidation was NOT called
