@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.0...@ovh-ux/muk@0.10.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **muk:** correct datagrid container ref ([c7b8b7f](https://github.com/ovh/manager/commit/c7b8b7f54f62e8e8b607cfe696ee5892d49a47c7)), closes [#MNAGEr-20498](https://github.com/ovh/manager/issues/MNAGEr-20498)
+* **muk:** correct issue of build ([89870b1](https://github.com/ovh/manager/commit/89870b128c7c97efb6efdd7a8e397b050d3b705e)), closes [#MANAGER-20498](https://github.com/ovh/manager/issues/MANAGER-20498)
+* **muk:** update minimum width for row selection and expandable ([e66218f](https://github.com/ovh/manager/commit/e66218ff46cca81b95076f1cf01a89f5f9005b8b)), closes [#MANAGER-20498](https://github.com/ovh/manager/issues/MANAGER-20498)
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.9.1...@ovh-ux/muk@0.10.0) (2025-12-05)
 
 
