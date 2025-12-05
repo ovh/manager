@@ -16,32 +16,23 @@ import {
 } from '@datatr-ux/uxlib';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 import RouteModal from '@/components/route-modal/RouteModal';
-import storages, { ObjectStorageTypeEnum } from '@/types/Storages';
-import { useDeleteStorage } from '@/data/hooks/storage/useDeleteStorage.hook';
+import storages from '@/types/Storages';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
+import { useDeleteS3 } from '@/data/hooks/s3-storage/useDeleteS3.hook';
 
-interface DeleteStorageModalProps {
-  storage: storages.ContainerDetail | StorageContainer;
-  type: ObjectStorageTypeEnum;
-  storageId: string;
+interface DeleteS3ModalProps {
+  s3: StorageContainer;
   onSuccess?: (storage: storages.ContainerDetail | StorageContainer) => void;
   onError?: (err: Error) => void;
 }
 
-const DeleteStorage = ({
-  storage,
-  type,
-  storageId,
-  onError,
-  onSuccess,
-}: DeleteStorageModalProps) => {
+const DeleteS3 = ({ s3, onError, onSuccess }: DeleteS3ModalProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-object-storage/storages/delete');
   const toast = useToast();
   const [confirmationInput, setConfirmationInput] = useState('');
 
-  const { deleteStorage, isPending } = useDeleteStorage({
-    storageType: type,
+  const { deleteS3, isPending } = useDeleteS3({
     onError: (err) => {
       toast.toast({
         title: t('deleteStorageToastErrorTitle'),
@@ -56,33 +47,25 @@ const DeleteStorage = ({
       toast.toast({
         title: t('deleteStorageToastSuccessTitle'),
         description: t('deleteStorageToastSuccessDescription', {
-          name: storage.name,
+          name: s3.name,
         }),
       });
       if (onSuccess) {
-        onSuccess(storage);
+        onSuccess(s3);
       }
     },
   });
 
   const handleDelete = () => {
-    const payload =
-      type === ObjectStorageTypeEnum.s3
-        ? {
-            projectId,
-            name: storageId,
-            region: storage.region,
-          }
-        : {
-            projectId,
-            containerId: storageId,
-          };
-
-    deleteStorage(payload);
+    deleteS3({
+      projectId,
+      name: s3.name,
+      region: s3.region,
+    });
   };
 
   return (
-    <RouteModal isLoading={!storage}>
+    <RouteModal isLoading={!s3}>
       <DialogContent className="p-0" variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-storage-modal">
@@ -92,7 +75,7 @@ const DeleteStorage = ({
         <DialogBody>
           <p className="mt-2">
             {t('deleteStorageDescription', {
-              name: storage?.name,
+              name: s3?.name,
             })}
           </p>
           <div className="flex flex-col gap-2 mt-2">
@@ -134,4 +117,4 @@ const DeleteStorage = ({
   );
 };
 
-export default DeleteStorage;
+export default DeleteS3;
