@@ -245,12 +245,23 @@ angular
       $scope.loadDomains = () => {
         $scope.loading.domains = true;
 
-        HostingModule.getAttachedDomains($stateParams.productId)
+         HostingModule.getAttachedDomains($stateParams.productId)
           .then((domains) => {
             $scope.loading.domains = false;
             $scope.model.domains = domains;
+            const hasSingleDomain = isArray(domains) && domains.length === 1;
+            const hasMultipleDomains = isArray(domains) && domains.length > 1;
+
             HostingModule.getService($stateParams.productId).then(
               (service) => {
+                if (hasSingleDomain) {
+                  [$scope.model.domain] = domains;
+                  return;
+                }
+                if (hasMultipleDomains) {
+                  $scope.model.domain = null;
+                  return;
+                }
                 if ($scope.model.domains.indexOf(service.serviceName) !== -1) {
                   $scope.model.domain = service.serviceName;
                 }
