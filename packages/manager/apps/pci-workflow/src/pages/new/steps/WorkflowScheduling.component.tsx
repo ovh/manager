@@ -122,9 +122,9 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
         <DistantBackup
           distantContinents={distantContinents}
           distantRegion={distantRegion}
-          onChange={handleDistantRegionChange}
+          onDistantRegionChange={handleDistantRegionChange}
           isDistantBackup={isDistantBackup}
-          onChangeIsDistantBackup={setIsDistantBackup}
+          onIsDistantBackupChange={setIsDistantBackup}
         />
       )}
 

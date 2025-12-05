@@ -30,17 +30,17 @@ import { RegionTypeBadge } from '@/components/new/RegionTypeBadge.component';
 interface DistantBackupProps {
   distantContinents: Map<string, ContinentRegion[]>;
   distantRegion: string;
-  onChange: (distantRegion: string | null) => void;
+  onDistantRegionChange: (distantRegion: string | null) => void;
   isDistantBackup: boolean;
-  onChangeIsDistantBackup: (newValue: boolean) => void;
+  onIsDistantBackupChange: (newValue: boolean) => void;
 }
 
 export const DistantBackup: FC<DistantBackupProps> = ({
   distantContinents,
   distantRegion,
-  onChange,
+  onDistantRegionChange,
   isDistantBackup,
-  onChangeIsDistantBackup,
+  onIsDistantBackupChange,
 }) => {
   const { t } = useTranslation(['workflow-add', 'pci-common', 'global']);
 
@@ -100,12 +100,12 @@ export const DistantBackup: FC<DistantBackupProps> = ({
   }, [distantRegion, distantContinents, getFormattedCatalogPrice]);
 
   const handleDistantRegionChange = (changeDetails: ComboboxValueChangeDetails) =>
-    onChange(changeDetails.value[0] ?? null);
+    onDistantRegionChange(changeDetails.value[0] ?? null);
 
   return (
     <div className="mt-8">
       <Text preset="label">
-        <Toggle onCheckedChange={(e) => onChangeIsDistantBackup(e.checked)}>
+        <Toggle onCheckedChange={(e) => onIsDistantBackupChange(e.checked)}>
           <ToggleControl />
           <ToggleLabel>
             <span>{t('pci_workflow_create_distant_label')}</span>
