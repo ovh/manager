@@ -1,12 +1,12 @@
 {
-  "dashboardTitle": "Painel de controle",
+  "dashboardTitle": "Dashboard",
   "informationTitle": "Informações",
   "spaceUsedTableHeader": "Espaço utilizado",
-  "endpointRegionTableHeader": "Ponto final",
-  "cnameTableHeader": "Registro CNAME/TXT",
+  "endpointRegionTableHeader": "Endpoint",
+  "cnameTableHeader": "Registo CNAME/TXT",
   "configurationTitle": "Gestão do serviço",
-  "swiftIdLabel": "Id do contêiner",
+  "swiftIdLabel": "ID do container",
   "copyLabel": "Copiado",
-  "deleteSwiftButton": "Suprimir",
+  "deleteSwiftButton": "Eliminar",
   "settingsTitle": "Configurações"
 }

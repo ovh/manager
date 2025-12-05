@@ -3,49 +3,49 @@
 exports[`Toggle Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <label
-    class="_toggle_2vo1m_2"
-    data-ods="toggle"
-    data-part="root"
-    data-scope="switch"
-    data-state="unchecked"
-    dir="ltr"
-    for="switch::r0::input"
-    id="switch::r0:"
+    class=_toggle
+    data-ods=toggle
+    data-part=root
+    data-scope=switch
+    data-state=unchecked
+    dir=ltr
+    for=switch::r0::input
+    id=switch::r0:
   >
     <span
-      aria-hidden="true"
-      class="_toggle-control_t6d2a_2"
-      data-ods="toggle-control"
-      data-part="control"
-      data-scope="switch"
-      data-state="unchecked"
-      dir="ltr"
-      id="switch::r0::control"
+      aria-hidden=true
+      class=_toggle-control
+      data-ods=toggle-control
+      data-part=control
+      data-scope=switch
+      data-state=unchecked
+      dir=ltr
+      id=switch::r0::control
     >
       <span
-        aria-hidden="true"
-        class="_toggle-control__thumb_t6d2a_42"
-        data-part="thumb"
-        data-scope="switch"
-        data-state="unchecked"
-        dir="ltr"
-        id="switch::r0::thumb"
+        aria-hidden=true
+        class=_toggle-control__thumb
+        data-part=thumb
+        data-scope=switch
+        data-state=unchecked
+        dir=ltr
+        id=switch::r0::thumb
       />
     </span>
     <input
-      aria-labelledby=""
-      id="switch::r0::input"
-      style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-      type="checkbox"
-      value="on"
+      aria-labelledby=
+      id=switch::r0::input
+      style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
+      type=checkbox
+      value=on
     />
     <span
-      data-ods="toggle-label"
-      data-part="label"
-      data-scope="switch"
-      data-state="unchecked"
-      dir="ltr"
-      id="switch::r0::label"
+      data-ods=toggle-label
+      data-part=label
+      data-scope=switch
+      data-state=unchecked
+      dir=ltr
+      id=switch::r0::label
     >
       Enable dark mode
     </span>

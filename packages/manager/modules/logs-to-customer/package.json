@@ -23,7 +23,7 @@
     "@ovh-ux/manager-core-test-utils": "^0.11.0",
     "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
-    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.2",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",

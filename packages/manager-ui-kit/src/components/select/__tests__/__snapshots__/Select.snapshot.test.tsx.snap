@@ -3,91 +3,91 @@
 exports[`Select Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    data-ods="select"
-    data-part="root"
-    data-scope="select"
-    dir="ltr"
-    id="select::r0:"
+    data-ods=select
+    data-part=root
+    data-scope=select
+    dir=ltr
+    id=select::r0:
   >
     <div
-      data-part="control"
-      data-scope="select"
-      data-state="closed"
-      dir="ltr"
-      id="select::r0::control"
+      data-part=control
+      data-scope=select
+      data-state=closed
+      dir=ltr
+      id=select::r0::control
     >
       <button
-        aria-controls="select::r0::content"
-        aria-disabled="false"
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-invalid="false"
-        aria-labelledby=""
-        class="_select-control_1mzzf_2"
-        data-empty="false"
-        data-ods="select-control"
-        data-part="trigger"
-        data-placeholder-shown=""
-        data-scope="select"
-        data-state="closed"
-        dir="ltr"
-        id="select::r0::trigger"
-        role="combobox"
-        type="button"
+        aria-controls=select::r0::content
+        aria-disabled=false
+        aria-expanded=false
+        aria-haspopup=listbox
+        aria-invalid=false
+        aria-labelledby=
+        class=_select-control
+        data-empty=false
+        data-ods=select-control
+        data-part=trigger
+        data-placeholder-shown=
+        data-scope=select
+        data-state=closed
+        dir=ltr
+        id=select::r0::trigger
+        role=combobox
+        type=button
       >
         <span
-          data-part="value-text"
-          data-scope="select"
-          dir="ltr"
+          data-part=value-text
+          data-scope=select
+          dir=ltr
         />
         <span
-          aria-hidden="true"
-          class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
-          data-ods="icon"
-          data-part="indicator"
-          data-scope="select"
-          data-state="closed"
-          dir="ltr"
-          role="presentation"
+          aria-hidden=true
+          class=_icon _icon--chevron-down _select-control__icon
+          data-ods=icon
+          data-part=indicator
+          data-scope=select
+          data-state=closed
+          dir=ltr
+          role=presentation
         />
       </button>
       <select
-        aria-hidden="true"
-        aria-labelledby="select::r0::label"
-        id="select::r0::select"
-        style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-        tabindex="-1"
+        aria-hidden=true
+        aria-labelledby=select::r0::label
+        id=select::r0::select
+        style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
+        tabindex=-1
       >
         <option
-          value=""
+          value=
         />
         <option
-          value="dog"
+          value=dog
         >
           Dog
         </option>
         <option
-          value="cat"
+          value=cat
         >
           Cat
         </option>
         <option
-          value="hamster"
+          value=hamster
         >
           Hamster
         </option>
         <option
-          value="parrot"
+          value=parrot
         >
           Parrot
         </option>
         <option
-          value="spider"
+          value=spider
         >
           Spider
         </option>
         <option
-          value="goldfish"
+          value=goldfish
         >
           Goldfish
         </option>

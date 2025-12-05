@@ -1,5 +1,5 @@
 {
-  "objectClassDefault": "Identical to the source",
+  "objectClassDefault": "Same as source",
   "objectClass_STANDARD": "Standard",
   "objectClass_HIGH_PERF": "High performance",
   "objectClass_DEEP_ARCHIVE": "Cold Archive",

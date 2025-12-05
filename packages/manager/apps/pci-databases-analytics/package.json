@@ -59,7 +59,7 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
-    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.2",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@types/jest": "^29.5.11",

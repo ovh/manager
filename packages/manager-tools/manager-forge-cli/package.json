@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.14.0",
-    "@ovh-ux/manager-tests-setup": "^0.4.7",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "^0.15.2",
     "@types/figlet": "^1.7.0",
     "@types/node": "^24.10.0",

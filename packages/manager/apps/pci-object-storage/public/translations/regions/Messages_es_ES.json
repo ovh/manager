@@ -93,6 +93,6 @@
   "region_EU-SOUTH-MIL_micro": "Milán ({{ micro }})",
   "region_MIL": "Milán",
   "region_MIL_micro": "Milán ({{ micro }})",
-  "region_continent_MIL": "Europa del Sur",
-  "region_location_MIL": "Europa del Sur (Italia)"
+  "region_continent_MIL": "Europa Meridional\n",
+  "region_location_MIL": "Europa meridional (Italia)"
 }
