@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.9.1...@ovh-ux/muk@0.10.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* make muk snapshots stable ([c98b972](https://github.com/ovh/manager/commit/c98b9727376e29bcc804ef500ceac34f06e287b8))
+* make ods dependencies stable ([babd112](https://github.com/ovh/manager/commit/babd112364f19e2dbf65b014b5106902c7fe0af5)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+* typescript issues on muk build ([9528984](https://github.com/ovh/manager/commit/952898410d78dd39e527c1f09858e499779a52ae)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
 ## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.9.0...@ovh-ux/muk@0.9.1) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/muk
