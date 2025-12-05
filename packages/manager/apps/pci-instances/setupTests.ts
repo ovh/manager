@@ -48,3 +48,16 @@ const ResizeObserverMock = vi.fn((callback) => {
 });
 
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+
+  return {
+    ...original,
+    useOvhTracking: vi.fn().mockReturnValue({
+      trackCurrentPage: vi.fn(),
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    }),
+  };
+});

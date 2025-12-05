@@ -1,27 +1,14 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import NetworkHelper from '../network/NetworkHelper.component';
-import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { GUIDE_LINKS } from '@/hooks/url/useGuideLink.constant';
-
-const trackClick = vi.hoisted(() => vi.fn());
-
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
-
-  return {
-    ...original,
-    useOvhTracking: vi.fn().mockReturnValue(({
-      trackClick,
-    } as unknown) as {
-      trackCurrentPage: () => void;
-      trackPage: () => void;
-      trackClick: () => void;
-    }),
-  };
-});
 
 describe('Considering NetworkHelper component', () => {
   it('should track the open click', async () => {
@@ -32,7 +19,7 @@ describe('Considering NetworkHelper component', () => {
     fireEvent.click(helpButton);
 
     await waitFor(() =>
-      expect(trackClick).toHaveBeenCalledWith({
+      expect(useOvhTracking().trackClick).toHaveBeenCalledWith({
         location: PageLocation.popup,
         actionType: 'action',
         actions: ['add_instance', 'see-helper_network'],
@@ -55,7 +42,7 @@ describe('Considering NetworkHelper component', () => {
     );
 
     await waitFor(() => {
-      expect(trackClick).toHaveBeenCalledWith({
+      expect(useOvhTracking().trackClick).toHaveBeenCalledWith({
         location: PageLocation.funnel,
         buttonType: ButtonType.externalLink,
         actionType: 'action',
