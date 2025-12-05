@@ -2,10 +2,11 @@ import { waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import ListingPage from './List.page';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
-import { useIsFileStorageAlphaBannerAvailable } from '@/api/feature';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const actual: any = await importOriginal();
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
   return {
     ...actual,
     useNavigation: vi.fn(() => ({
@@ -17,7 +18,9 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 vi.mock('react-router-dom');
 
 vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-  const actual: any = await importOriginal();
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-pci-common')
+  >();
   return {
     ...actual,
     useProject: vi.fn(() => ({
@@ -30,7 +33,9 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual: any = await importOriginal();
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
   return {
     ...actual,
     isDiscoveryProject: vi.fn(),

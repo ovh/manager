@@ -3,6 +3,7 @@ import { StorageGuidesHeader } from './StorageGuidesHeader.component';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
 vi.mock('@/hooks/useTrackAction');
+vi.mock('react-router-dom');
 
 describe('StorageGuidesHeader', () => {
   it('should renders', () => {
