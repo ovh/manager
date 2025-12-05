@@ -1,21 +1,25 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { VCDOrderableStoragePriced } from '@ovh-ux/manager-module-vcd-api';
-import { DatacentreOrderProvider } from '@/context/DatacentreOrder.context';
-import { DatacentreOrder } from '@/components/form/DatacentreOrder.component';
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import {
   StorageOrderPriceCell,
   StorageOrderSelectCell,
   StorageOrderTypeCell,
   StoragePerformanceClassCell,
 } from '@/components/datagrid/storage/StorageOrderCells.component';
+import { DatacentreOrder } from '@/components/form/DatacentreOrder.component';
+import { DatacentreOrderProvider } from '@/context/DatacentreOrder.context';
+import { subRoutes } from '@/routes/routes.constant';
+
 import {
   PERFORMANCE_CLASS_LABEL,
   STORAGE_ORDER_MAX_QUANTITY,
   STORAGE_ORDER_MIN_QUANTITY,
 } from './datacentreStorageOrder.constants';
-import { subRoutes } from '@/routes/routes.constant';
 
 export default function StorageOrderPage() {
   const { t } = useTranslation('datacentres/order');

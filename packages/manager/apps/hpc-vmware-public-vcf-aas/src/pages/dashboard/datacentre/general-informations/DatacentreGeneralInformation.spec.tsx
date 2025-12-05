@@ -1,24 +1,16 @@
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
 import {
   assertOdsModalText,
   assertOdsModalVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import {
-  datacentreList,
-  organizationList,
-} from '@ovh-ux/manager-module-vcd-api';
-import { vi } from 'vitest';
+import { datacentreList, organizationList } from '@ovh-ux/manager-module-vcd-api';
 
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {
-  labels,
-  mockEditInputValue,
-  mockSubmitNewValue,
-  renderTest,
-} from '../../../../test-utils';
-
+import { labels, mockEditInputValue, mockSubmitNewValue, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -31,15 +23,13 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-describe('Datacentre General Information Page Updates', () => {
+describe('Datacentre General Information Page Display', () => {
   it('display the datacentre dashboard general page', async () => {
     await renderTest({
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
     });
 
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_general_information,
-    );
+    await assertTextVisibility(labels.dashboard.managed_vcd_dashboard_general_information);
   });
 });
 
@@ -61,9 +51,7 @@ describe('Datacentre General Information Page Updates', () => {
     await assertOdsModalVisibility({ container, isVisible: false });
 
     expect(
-      screen.queryByText(
-        labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
-      ),
+      screen.queryByText(labels.dashboard.managed_vcd_dashboard_edit_description_modal_success),
     ).toBeVisible();
   });
 
@@ -72,8 +60,7 @@ describe('Datacentre General Information Page Updates', () => {
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
     });
     const expectedError =
-      labels.dashboard
-        .managed_vcd_dashboard_edit_description_modal_helper_error;
+      labels.dashboard.managed_vcd_dashboard_edit_description_modal_helper_error;
 
     await assertOdsModalVisibility({ container, isVisible: true });
     const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);

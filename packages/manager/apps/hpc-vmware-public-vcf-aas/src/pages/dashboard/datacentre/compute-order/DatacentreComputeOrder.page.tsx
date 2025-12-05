@@ -1,23 +1,27 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { VCDOrderableVhostPriced } from '@ovh-ux/manager-module-vcd-api';
-import { DatacentreOrderProvider } from '@/context/DatacentreOrder.context';
-import { DatacentreOrder } from '@/components/form/DatacentreOrder.component';
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import {
+  ComputeOrderCpuCountCell,
+  ComputeOrderCpuSpeedCell,
+  ComputeOrderPriceCell,
+  ComputeOrderRamCell,
   ComputeOrderSelectCell,
   ComputeOrderVhostCell,
-  ComputeOrderCpuSpeedCell,
-  ComputeOrderRamCell,
-  ComputeOrderCpuCountCell,
-  ComputeOrderPriceCell,
 } from '@/components/datagrid/compute/ComputeOrderCells.component';
+import { DatacentreOrder } from '@/components/form/DatacentreOrder.component';
+import { DatacentreOrderProvider } from '@/context/DatacentreOrder.context';
+import { subRoutes } from '@/routes/routes.constant';
+
+import { RAM_LABEL, VHOST_LABEL } from '../compute/datacentreCompute.constants';
 import {
   COMPUTE_ORDER_MAX_QUANTITY,
   COMPUTE_ORDER_MIN_QUANTITY,
 } from './datacentreComputeOrder.constants';
-import { subRoutes } from '@/routes/routes.constant';
-import { RAM_LABEL, VHOST_LABEL } from '../compute/datacentreCompute.constants';
 
 export default function ComputeOrderPage() {
   const { t } = useTranslation('datacentres/order');

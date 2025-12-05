@@ -4,6 +4,7 @@ const TEST_IDS = {
   dashboardVcdInterfaceLink: 'dashboard-vcd-interface-link',
   dashboardVeeamBackupLink: 'dashboard-veeam-backup-link',
   dashboardDatacentreInterfaceLink: 'dashboard-datacentre-interface-link',
+  dashboardDatacentreVrackLink: 'dashboard-datacentre-vrack-link',
   activateLicenseCta: 'activate-license-cta',
   editButton: 'edit-button',
   modalSubmitCta: 'modal-submit-cta',

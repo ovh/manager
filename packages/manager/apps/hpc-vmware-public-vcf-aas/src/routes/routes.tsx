@@ -1,103 +1,81 @@
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+
+import { Navigate, Route } from 'react-router-dom';
+
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import NotFound from '@/pages/404';
 import { subRoutes, urls } from '@/routes/routes.constant';
 
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
-const OnboardingPage = React.lazy(() =>
-  import('@/pages/onboarding/Onboarding.page'),
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const ListingPage = React.lazy(() => import('@/pages/listing/organizations/Organizations.page'));
+const OrganizationDashboardPage = React.lazy(
+  () => import('@/pages/dashboard/organization/OrganizationDashboard.page'),
 );
-const ListingPage = React.lazy(() =>
-  import('@/pages/listing/organizations/Organizations.page'),
+const OrganizationGeneralInformationPage = React.lazy(
+  () =>
+    import(
+      '@/pages/dashboard/organization/general-information/OrganizationGeneralInformation.page'
+    ),
 );
-const OrganizationDashboardPage = React.lazy(() =>
-  import('@/pages/dashboard/organization/OrganizationDashboard.page'),
+const OrganizationEditNamePage = React.lazy(
+  () => import('@/pages/dashboard/organization/general-information/edit/EditName.page'),
 );
-const OrganizationGeneralInformationPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/OrganizationGeneralInformation.page'
-  ),
+const OrganizationEditDescriptionPage = React.lazy(
+  () => import('@/pages/dashboard/organization/general-information/edit/EditDescription.page'),
 );
-const OrganizationEditNamePage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/edit/EditName.page'
-  ),
+const OrganizationResetPasswordPage = React.lazy(
+  () => import('@/pages/dashboard/organization/general-information/edit/EditPassword.page'),
 );
-const OrganizationEditDescriptionPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/edit/EditDescription.page'
-  ),
+const DatacentresPage = React.lazy(() => import('@/pages/listing/datacentres/Datacentres.page'));
+const DatacentreDashboardPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/DatacentreDashboard.page'),
 );
-const OrganizationResetPasswordPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/organization/general-information/edit/EditPassword.page'
-  ),
+const DatacentreGeneralInformationPage = React.lazy(
+  () =>
+    import('@/pages/dashboard/datacentre/general-informations/DatacentreGeneralInformation.page'),
 );
-const DatacentresPage = React.lazy(() =>
-  import('@/pages/listing/datacentres/Datacentres.page'),
+const DatacentreEditDescriptionPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/general-informations/edit/EditVdcDescription.page'),
 );
-const DatacentreDashboardPage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/DatacentreDashboard.page'),
+const DatacentreStoragePage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/storage/DatacentreStorage.page'),
 );
-const DatacentreGeneralInformationPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/general-informations/DatacentreGeneralInformation.page'
-  ),
+const DatacentreStorageOrderPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/storage-order/DatacentreStorageOrder.page'),
 );
-const DatacentreEditDescriptionPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/general-informations/edit/EditVdcDescription.page'
-  ),
+const DatacentreComputePage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/compute/DatacentreCompute.page'),
 );
-const DatacentreStoragePage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/storage/DatacentreStorage.page'),
-);
-const DatacentreStorageOrderPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/storage-order/DatacentreStorageOrder.page'
-  ),
-);
-const DatacentreComputePage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/compute/DatacentreCompute.page'),
-);
-const DatacentreComputeOrderPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/compute-order/DatacentreComputeOrder.page'
-  ),
+const DatacentreComputeOrderPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/compute-order/DatacentreComputeOrder.page'),
 );
 
-const DatacenterVrackSegmentPage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/vrack-segment/DatacentreVrack.page'),
+const DatacenterVrackSegmentPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/DatacentreVrack.page'),
 );
 
-const EditVrackSegmentIdPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'
-  ),
+const EditVrackSegmentIdPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/edit/EditVrackSegmentId.page'),
 );
 
-const DeleteVrackNetworkPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/delete-network/DeleteVrackNetwork.page'
-  ),
+const DeleteVrackNetworkPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/delete-network/DeleteVrackNetwork.page'),
 );
 
-const AddNetworkInVrackSegmentPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/add-network/AddNetworkInVrackSegment.page'
-  ),
+const AddNetworkInVrackSegmentPage = React.lazy(
+  () =>
+    import('@/pages/dashboard/datacentre/vrack-segment/add-network/AddNetworkInVrackSegment.page'),
 );
 
-const DeleteVrackSegmentPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/datacentre/vrack-segment/delete-segment/DeleteVrackSegment.page'
-  ),
+const DeleteVrackSegmentPage = React.lazy(
+  () => import('@/pages/dashboard/datacentre/vrack-segment/delete-segment/DeleteVrackSegment.page'),
 );
 
-const TerminateOrganizationPage = React.lazy(() =>
-  import('@/pages/terminate/TerminateOrganization.page'),
+const TerminateOrganizationPage = React.lazy(
+  () => import('@/pages/terminate/TerminateOrganization.page'),
 );
 
 export default (

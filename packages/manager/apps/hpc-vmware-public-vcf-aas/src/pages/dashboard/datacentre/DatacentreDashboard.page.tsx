@@ -1,35 +1,37 @@
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import {
-  useVcdOrganization,
-  useVcdDatacentre,
-  getVcdDatacentreListQueryKey,
-} from '@ovh-ux/manager-module-vcd-api';
+
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+import {
+  getVcdDatacentreListQueryKey,
+  useVcdDatacentre,
+  useVcdOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import { ChangelogButton } from '@ovh-ux/manager-react-components';
-import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+
+import { FEATURE_FLAGS } from '@/app.constants';
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
-import { subRoutes, urls } from '@/routes/routes.constant';
-import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
-import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
-import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
-import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
-import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
-import { VRACK_LABEL } from '../dashboard.constants';
-import { FEATURE_FLAGS } from '@/app.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
+import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
+import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
+import { subRoutes, urls } from '@/routes/routes.constant';
+import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
+
+import { VRACK_LABEL } from '../dashboard.constants';
+import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
+import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('dashboard');
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
-  const { data: featuresAvailable } = useFeatureAvailability([
-    FEATURE_FLAGS.VRACK,
-  ]);
+  const { data: featuresAvailable } = useFeatureAvailability([FEATURE_FLAGS.VRACK]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
   const navigate = useNavigate();
 
@@ -63,8 +65,7 @@ function DatacentreDashboardPage() {
       title: VRACK_LABEL,
       to: useResolvedPath(subRoutes.vrackSegments).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.vrack,
-      disabled:
-        !isVrackFeatureAvailable || !vcdDatacentre?.data?.currentState?.vrack,
+      disabled: !isVrackFeatureAvailable || !vcdDatacentre?.data?.currentState?.vrack,
     },
   ].filter(({ disabled }) => !disabled);
 
@@ -101,51 +102,35 @@ function DatacentreDashboardPage() {
     },
     {
       id: subRoutes.edit,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan'),
     },
     {
       id: subRoutes.deleteSegment,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment'),
     },
     {
       id: subRoutes.deleteNetwork,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_network',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_network'),
     },
     {
       id: subRoutes.addNetwork,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title'),
     },
     {
       id: subRoutes.edit,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan'),
     },
     {
       id: subRoutes.deleteSegment,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment'),
     },
     {
       id: subRoutes.deleteNetwork,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_network',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_network'),
     },
     {
       id: subRoutes.addNetwork,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
-      ),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title'),
     },
   ];
 
@@ -154,13 +139,9 @@ function DatacentreDashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
-      message={
-        <MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />
-      }
+      message={<MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />}
       backLinkLabel={t('dashboard:managed_vcd_dashboard_back_link')}
-      onClickReturn={() =>
-        navigate(urls.datacentres.replace(subRoutes.dashboard, id))
-      }
+      onClickReturn={() => navigate(urls.datacentres.replace(subRoutes.dashboard, id))}
     />
   );
 }

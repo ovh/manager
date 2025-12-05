@@ -1,11 +1,9 @@
-import React, { useEffect, useContext } from 'react';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import React, { useContext, useEffect } from 'react';
+
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
-import {
-  useOvhTracking,
-  useRouteSynchro,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 export default function Layout() {
   const location = useLocation();
@@ -17,15 +15,15 @@ export default function Layout() {
   useEffect(() => {
     const match = matches.slice(-1);
     defineCurrentPage(`app.hpc-vmware-public-vcf-aas-${match[0]?.id}`);
-  }, [location]);
+  }, [location, matches]);
 
   useEffect(() => {
     trackCurrentPage();
-  }, [location]);
+  }, [location, trackCurrentPage]);
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+  }, [shell.ux]);
 
   return <Outlet />;
 }
