@@ -3,13 +3,29 @@ import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
+import { DrawerBehavior } from '@/common/types/common.types';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/DatagridColumnStatus';
+import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { domain_dsrecords_key_signing_ksk } from '@/domain/constants/dsRecords';
+import { isDsRecordActionDisabled } from '@/domain/utils/utils';
+import { StatusEnum } from '@/domain/enum/Status.enum';
 
-export const useDomainDsRecordsDatagridColumns = () => {
-  const { t } = useTranslation(['domain', NAMESPACES.STATUS]);
+interface useDomainDsRecordsDatagridColumnsProps {
+  readonly setDrawer: Dispatch<SetStateAction<DrawerBehavior>>;
+  readonly setDsRecordsData: Dispatch<SetStateAction<TDsDataInterface>>;
+  readonly activeConfiguration: ActiveConfigurationTypeEnum;
+}
+
+export const useDomainDsRecordsDatagridColumns = ({
+  setDrawer,
+  setDsRecordsData,
+  activeConfiguration,
+}: useDomainDsRecordsDatagridColumnsProps) => {
+  const { t } = useTranslation('domain');
   const [isPublicKeyExpanded, setisPublicKeyExpanded] = useState<boolean>(true);
+  const isModifyAction = isDsRecordActionDisabled(activeConfiguration);
   const columns = [
     {
       id: 'keyTag',
@@ -58,12 +74,21 @@ export const useDomainDsRecordsDatagridColumns = () => {
     },
     {
       id: 'actions',
-      cell: () => (
+      cell: (props: TDsDataInterface) => (
         <ActionMenu
           items={[
             {
               id: 1,
               label: t(`${NAMESPACES.ACTIONS}:modify`),
+              onClick: () => {
+                setDrawer({
+                  action: DrawerActionEnum.Modify,
+                  isOpen: true,
+                });
+                setDsRecordsData(props);
+              },
+              isDisabled:
+                isModifyAction || props.status === StatusEnum.ACTIVATING,
             },
             {
               id: 2,
@@ -71,7 +96,7 @@ export const useDomainDsRecordsDatagridColumns = () => {
               color: ODS_BUTTON_COLOR.critical,
             },
           ]}
-          id={'1'}
+          id={`${props.publicKey}`}
           isCompact
           variant={ODS_BUTTON_VARIANT.ghost}
         />

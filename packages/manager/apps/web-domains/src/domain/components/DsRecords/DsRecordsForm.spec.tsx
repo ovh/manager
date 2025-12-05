@@ -56,14 +56,13 @@ describe('DsRecordsForm', () => {
     ).toBeInTheDocument();
   });
 
-  it('Display an error when keyTag is input is empty', async () => {
+  it('Display an error when keyTag input is empty', async () => {
     render(<DsRecordsForm supportedAlgorithms={supportedAlgorithms} />, {
       wrapper: Wrapper,
     });
 
     const keyTagInput = screen.getByPlaceholderText('32456');
 
-    // On force un cycle de validation : valeur non vide puis vide
     fireEvent.change(keyTagInput, { target: { value: '123' } });
     fireEvent.change(keyTagInput, { target: { value: '' } });
 
@@ -113,7 +112,7 @@ describe('DsRecordsForm', () => {
 
     await waitFor(() => {
       expect(
-        screen.queryByText('domain_dsrecords_publicKey_error'),
+        screen.queryByText('domain_tab_dsrecords_drawer_form_publicKey_error'),
       ).not.toBeInTheDocument();
     });
   });
