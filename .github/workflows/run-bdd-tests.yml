@@ -47,6 +47,7 @@ jobs:
           yarn build --filter="./packages/manager/modules/order"
           yarn build --filter="./packages/manager/modules/common-api"
           yarn build --filter="./packages/manager/modules/common-translations"
+          yarn build --filter="./packages/manager/modules/logs-to-customer"
           yarn build --filter="./packages/manager/modules/vcd-api"
           yarn build --filter="./packages/manager/modules/manager-pci-common"
           yarn build --filter="./packages/manager/modules/network-common"

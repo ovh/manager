@@ -1,7 +1,6 @@
 {
   "name": "@ovh-ux/logs-to-customer",
   "version": "1.10.0",
-  "private": true,
   "description": "OVHcloud - observability - logs to customer module",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -9,8 +8,8 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/src/lib.js",
       "types": "./dist/types/src/lib.d.ts",
+      "import": "./dist/src/lib.js",
       "default": "./dist/src/lib.js"
     },
     "./vite-config": {
@@ -34,6 +33,7 @@
     "dev:watch": "vite build --watch",
     "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "prepare": "tsc && vite build",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
