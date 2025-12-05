@@ -84,6 +84,7 @@ export default function CreateConfirmModal() {
       {hasVrackServiceOrderAsked &&
         !isPending &&
         !isSendOrderPending &&
+        !isError &&
         !isSendOrderError && (
           <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
             {t('modalDescriptionLine5')}
@@ -127,65 +128,69 @@ export default function CreateConfirmModal() {
         label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={cancel}
       />
-      {data?.contractList?.length > 0 ? (
-        <OrderSubmitModalContent
-          submitButtonLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-          cartId={data?.cartId}
-          contractList={data?.contractList}
-          onSuccess={async () => {
-            await queryClient.invalidateQueries({
-              queryKey: getDeliveringOrderQueryKey(
-                OrderDescription.vrackServices,
-              ),
-            });
-
-            await queryClient.invalidateQueries({
-              queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
-            });
-
-            navigate(urls.listing, { state: { fromOrder: true } });
-          }}
-        />
-      ) : (
+      {!isError && (
         <>
-          <OdsButton
-            slot="actions"
-            type="button"
-            variant={ODS_BUTTON_VARIANT.outline}
-            isDisabled={isPending || isSendOrderPending}
-            onClick={() => {
-              setHasVrackServiceOrderAsked(true);
-              trackClick({
-                ...trackingParams,
-                actions: ['no-vrack', 'confirm'],
-              });
-              createCart({
-                region,
-                hasVrack: false,
-                ovhSubsidiary: environment.user.ovhSubsidiary,
-              });
-            }}
-            label={t('modalNoVrackButtonLabel')}
-          />
-          <OdsButton
-            slot="actions"
-            type="button"
-            isDisabled={isPending || isSendOrderPending}
-            label={t('modalConfirmVrackButtonLabel')}
-            onClick={() => {
-              setHasVrackOrderAsked(true);
-              setHasVrackServiceOrderAsked(true);
-              trackClick({
-                ...trackingParams,
-                actions: ['create-vrack', 'confirm'],
-              });
-              createCart({
-                region,
-                hasVrack: true,
-                ovhSubsidiary: environment.user.ovhSubsidiary,
-              });
-            }}
-          />
+          {data?.contractList?.length > 0 ? (
+            <OrderSubmitModalContent
+              submitButtonLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
+              cartId={data?.cartId}
+              contractList={data?.contractList}
+              onSuccess={async () => {
+                await queryClient.invalidateQueries({
+                  queryKey: getDeliveringOrderQueryKey(
+                    OrderDescription.vrackServices,
+                  ),
+                });
+
+                await queryClient.invalidateQueries({
+                  queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
+                });
+
+                navigate(urls.listing, { state: { fromOrder: true } });
+              }}
+            />
+          ) : (
+            <>
+              <OdsButton
+                slot="actions"
+                type="button"
+                variant={ODS_BUTTON_VARIANT.outline}
+                isDisabled={isPending || isSendOrderPending}
+                onClick={() => {
+                  setHasVrackServiceOrderAsked(true);
+                  trackClick({
+                    ...trackingParams,
+                    actions: ['no-vrack', 'confirm'],
+                  });
+                  createCart({
+                    region,
+                    hasVrack: false,
+                    ovhSubsidiary: environment.user.ovhSubsidiary,
+                  });
+                }}
+                label={t('modalNoVrackButtonLabel')}
+              />
+              <OdsButton
+                slot="actions"
+                type="button"
+                isDisabled={isPending || isSendOrderPending}
+                label={t('modalConfirmVrackButtonLabel')}
+                onClick={() => {
+                  setHasVrackOrderAsked(true);
+                  setHasVrackServiceOrderAsked(true);
+                  trackClick({
+                    ...trackingParams,
+                    actions: ['create-vrack', 'confirm'],
+                  });
+                  createCart({
+                    region,
+                    hasVrack: true,
+                    ovhSubsidiary: environment.user.ovhSubsidiary,
+                  });
+                }}
+              />
+            </>
+          )}
         </>
       )}
     </OdsModal>
