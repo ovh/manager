@@ -17,6 +17,7 @@ import S3ObjectBrowser from './_components/S3ObjectBrowser.component';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import SearchBar from './_components/SearchBar.component';
+import RefreshButton from '@/components/refresh-button/RefreshButton.component';
 
 const Objects = () => {
   const { projectId } = useParams();
@@ -75,23 +76,29 @@ const Objects = () => {
           <Plus className="size-6" />
           {t('addNewObject')}
         </Button>
-        {!isLocaleZone && (
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="versions"
-              checked={withVersion}
-              onCheckedChange={setWithVersion}
-            />
-            <Label htmlFor="versions">{t('seeVersionsSwitchLabel')}</Label>
-            <SearchBar
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
-              deferredSearchQuery={deferredSearchQuery}
-              filteredObjects={filteredObjects}
-              placeholder={t('searchPlaceholder') || 'Search...'}
-            />
-          </div>
-        )}
+        <div className="flex items-center space-x-2">
+          <RefreshButton
+            onClick={objectQuery.refetch}
+            isLoading={objectQuery.isFetching}
+          />
+          {!isLocaleZone && (
+            <>
+              <Switch
+                id="versions"
+                checked={withVersion}
+                onCheckedChange={setWithVersion}
+              />
+              <Label htmlFor="versions">{t('seeVersionsSwitchLabel')}</Label>
+              <SearchBar
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                deferredSearchQuery={deferredSearchQuery}
+                filteredObjects={filteredObjects}
+                placeholder={t('searchPlaceholder') || 'Search...'}
+              />
+            </>
+          )}
+        </div>
       </div>
       <S3ObjectBrowser
         objects={objects}

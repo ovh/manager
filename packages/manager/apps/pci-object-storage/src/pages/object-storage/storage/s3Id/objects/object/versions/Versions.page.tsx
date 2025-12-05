@@ -41,7 +41,11 @@ const Versions = () => {
   return (
     <>
       <h2>{t('versionsTitle')}</h2>
-      <S3ObjectVersionList objects={objectVersionQuery.data} />
+      <S3ObjectVersionList
+        objects={objectVersionQuery.data}
+        onRefreshClicked={objectVersionQuery.refetch}
+        isLoading={objectVersionQuery.isFetching}
+      />
       <Outlet />
     </>
   );
