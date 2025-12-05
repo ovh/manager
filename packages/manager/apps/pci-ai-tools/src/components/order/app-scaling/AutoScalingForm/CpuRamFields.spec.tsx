@@ -13,9 +13,7 @@ const TestWrapper = ({ defaultValue = 75 }: { defaultValue?: number }) => {
 
   return (
     <FormProvider {...methods}>
-      <CpuRamFields
-        control={methods.control as Control<FullScalingFormValues>}
-      />
+      <CpuRamFields />
     </FormProvider>
   );
 };

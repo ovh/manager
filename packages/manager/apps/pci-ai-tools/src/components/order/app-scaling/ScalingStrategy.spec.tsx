@@ -6,12 +6,11 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { useForm, FormProvider, Control } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import ScalingStrategy from './ScalingStrategy.component';
 import { mockedAppPricing1 } from '@/__tests__/helpers/mocks/app/appHelper';
-import { FullScalingFormValues } from '@/lib/scalingHelper';
 import ai from '@/types/AI';
 
 describe('Scaling strategy component', () => {
@@ -36,7 +35,7 @@ describe('Scaling strategy component', () => {
   });
 
   const TestWrapper = ({
-    autoScaling = true,
+    autoScaling = false,
     replicas = 1,
   }: {
     autoScaling?: boolean;
@@ -60,10 +59,7 @@ describe('Scaling strategy component', () => {
 
     return (
       <FormProvider {...form}>
-        <ScalingStrategy
-          control={form.control as Control<FullScalingFormValues>}
-          pricingFlavor={mockedAppPricing1}
-        />
+        <ScalingStrategy pricingFlavor={mockedAppPricing1} />
       </FormProvider>
     );
   };

@@ -23,9 +23,7 @@ const TestWrapper = ({
 
   return (
     <FormProvider {...methods}>
-      <CustomMetricsFields
-        control={methods.control as Control<FullScalingFormValues>}
-      />
+      <CustomMetricsFields />
     </FormProvider>
   );
 };

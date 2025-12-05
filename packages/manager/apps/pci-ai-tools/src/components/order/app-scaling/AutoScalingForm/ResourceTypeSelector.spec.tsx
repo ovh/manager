@@ -14,9 +14,7 @@ const TestWrapper = () => {
 
   return (
     <FormProvider {...methods}>
-      <ResourceTypeSelector
-        control={methods.control as Control<FullScalingFormValues>}
-      />
+      <ResourceTypeSelector />
     </FormProvider>
   );
 };

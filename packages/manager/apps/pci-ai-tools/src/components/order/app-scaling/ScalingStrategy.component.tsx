@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Control, useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { ExternalLink, HelpCircle } from 'lucide-react';
 import {
   FormControl,
@@ -19,19 +19,19 @@ import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { AutoScalingForm } from './AutoScalingForm/AutoScalingForm.component';
 import Price from '@/components/price/Price.component';
-import { FullScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from '@/lib/scalingHelper';
 
 interface ScalingStrategyProps {
-  control: Control<FullScalingFormValues>;
   pricingFlavor?: AppPricing;
 }
 
 const ScalingStrategy = React.forwardRef<
   HTMLInputElement,
   ScalingStrategyProps
->(function ScalingStrategy({ control, pricingFlavor }, ref) {
+>(function ScalingStrategy({ pricingFlavor }, ref) {
   const { t } = useTranslation('ai-tools/components/scaling');
   const locale = useLocale();
+  const { control } = useFormContext<ScalingStrategySchema>();
 
   const autoScaling = useWatch({ control, name: 'autoScaling' });
   const replicas = useWatch({ control, name: 'replicas' });
@@ -39,7 +39,7 @@ const ScalingStrategy = React.forwardRef<
   return (
     <div
       data-testid="scaling-strat-container"
-      className="flex flex-col gap-4 mb-2"
+      className="flex flex-col gap-4 mb-2 px-2"
     >
       <div className="mx-2 text-sm">
         <p>{t('fieldScalingDesc1')}</p>
@@ -79,7 +79,7 @@ const ScalingStrategy = React.forwardRef<
         )}
       />
       {autoScaling ? (
-        <AutoScalingForm control={control} pricingFlavor={pricingFlavor} />
+        <AutoScalingForm pricingFlavor={pricingFlavor} />
       ) : (
         <div>
           <FormField

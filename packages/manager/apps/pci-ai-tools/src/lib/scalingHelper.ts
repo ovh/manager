@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import i18next from 'i18next';
 import { Scaling } from '@/types/orderFunnel';
 import ai from '@/types/AI';
 
@@ -11,28 +12,33 @@ export const SCALING_DEFAULTS = {
   AGGREGATION_TYPE: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
 } as const;
 
-export const createScalingSchema = (t: (key: string) => string) => {
-  const replicaFields = {
-    replicasMin: z.coerce
-      .number()
-      .int()
-      .min(1)
-      .max(100),
-    replicasMax: z.coerce
-      .number()
-      .int()
-      .min(1)
-      .max(100),
-  };
+export type ScalingStrategySchema = {
+  autoScaling?: boolean;
+  replicas?: number;
+  averageUsageTarget?: number;
+  replicasMax?: number;
+  replicasMin?: number;
+  resourceType?: ai.app.ScalingAutomaticStrategyResourceTypeEnum | 'CUSTOM';
+  metricUrl?: string;
+  dataFormat?: ai.app.CustomMetricsFormatEnum;
+  dataLocation?: string;
+  targetMetricValue?: number;
+  aggregationType?: ai.app.CustomMetricsAggregationTypeEnum;
+};
 
-  const cpuRamSchema = z.object({
-    ...replicaFields,
-    resourceType: z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-    averageUsageTarget: z.coerce
-      .number()
-      .int()
-      .min(0)
-      .max(100),
+export const baseScalingSchema = z
+  .object({
+    autoScaling: z.boolean(),
+    replicas: z.coerce.number(),
+    replicasMin: z.coerce.number().optional(),
+    replicasMax: z.coerce.number().optional(),
+    resourceType: z
+      .union([
+        z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
+        z.literal('CUSTOM'),
+      ])
+      .optional(),
+    averageUsageTarget: z.coerce.number().optional(),
     metricUrl: z.string().optional(),
     dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
     dataLocation: z.string().optional(),
@@ -40,81 +46,32 @@ export const createScalingSchema = (t: (key: string) => string) => {
     aggregationType: z
       .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
       .optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.autoScaling && data.resourceType === 'CUSTOM') {
+      if (!data.metricUrl || data.metricUrl.trim() === '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Metric URL is required',
+          path: ['metricUrl'],
+        });
+      }
+
+      if (!data.dataLocation || data.dataLocation.trim() === '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Data location is required',
+          path: ['dataLocation'],
+        });
+      }
+    }
   });
-
-  const customSchema = z.object({
-    ...replicaFields,
-    resourceType: z.literal('CUSTOM'),
-    averageUsageTarget: z.coerce.number().optional(),
-    metricUrl: z.string().min(1, t('metricUrlRequired')),
-    dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum, {
-      required_error: t('dataFormatRequired'),
-    }),
-    dataLocation: z.string().min(1, t('dataLocationRequired')),
-    targetMetricValue: z.coerce
-      .number({ required_error: t('targetMetricValueRequired') })
-      .min(0, t('targetMetricValueMinimum')),
-    aggregationType: z.nativeEnum(ai.app.CustomMetricsAggregationTypeEnum, {
-      required_error: t('aggregationTypeRequired'),
-    }),
-  });
-
-  return z
-    .discriminatedUnion('resourceType', [cpuRamSchema, customSchema])
-    .refine(({ replicasMin, replicasMax }) => replicasMax >= replicasMin, {
-      message: t('errorFormMinMaxRepField'),
-      path: ['replicasMax'],
-    });
-};
-
-export type ScalingFormValues = z.infer<ReturnType<typeof createScalingSchema>>;
-
-export const baseScalingSchema = z.object({
-  autoScaling: z.boolean(),
-  replicas: z.coerce.number(),
-  replicasMin: z.coerce.number(),
-  replicasMax: z.coerce.number(),
-  resourceType: z.union([
-    z.nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum),
-    z.literal('CUSTOM'),
-  ]),
-  averageUsageTarget: z.coerce.number().optional(),
-  metricUrl: z.string().optional(),
-  dataFormat: z.nativeEnum(ai.app.CustomMetricsFormatEnum).optional(),
-  dataLocation: z.string().optional(),
-  targetMetricValue: z.coerce.number().optional(),
-  aggregationType: z
-    .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
-    .optional(),
-});
 
 export type FullScalingFormValues = z.infer<typeof baseScalingSchema>;
 
-export const toScaling = (
-  base: Scaling,
-  values: ScalingFormValues,
-): Scaling => {
-  const result: Scaling = {
-    ...base,
-    replicasMin: values.replicasMin,
-    replicasMax: values.replicasMax,
-    resourceType: values.resourceType,
-  };
-
-  if (values.resourceType === 'CUSTOM') {
-    result.metricUrl = values.metricUrl;
-    result.dataFormat = values.dataFormat;
-    result.dataLocation = values.dataLocation;
-    result.targetMetricValue = values.targetMetricValue;
-    result.aggregationType = values.aggregationType;
-  } else {
-    result.averageUsageTarget = values.averageUsageTarget;
-  }
-
-  return result;
-};
-
-export const getInitialValues = (scaling: Scaling): ScalingFormValues => ({
+export const getInitialValues = (
+  scaling: Scaling,
+): Partial<FullScalingFormValues> => ({
   replicasMin: scaling.replicasMin ?? SCALING_DEFAULTS.MIN_REPLICAS,
   replicasMax: scaling.replicasMax ?? SCALING_DEFAULTS.MAX_REPLICAS,
   resourceType: scaling.resourceType ?? SCALING_DEFAULTS.RESOURCE_TYPE,

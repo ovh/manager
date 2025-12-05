@@ -1,6 +1,6 @@
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Control } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import {
   FormControl,
   FormField,
@@ -12,14 +12,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@datatr-ux/uxlib';
-import { FullScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from '@/lib/scalingHelper';
 
-interface ReplicaFieldsProps {
-  control: Control<FullScalingFormValues>;
-}
-
-export function ReplicaFields({ control }: ReplicaFieldsProps) {
+export function ReplicaFields() {
   const { t } = useTranslation('ai-tools/components/scaling');
+  const { control } = useFormContext<ScalingStrategySchema>();
 
   return (
     <>

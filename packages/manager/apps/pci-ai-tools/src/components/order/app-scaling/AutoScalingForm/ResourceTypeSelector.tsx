@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Control } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
 import {
   FormField,
@@ -13,14 +13,11 @@ import {
 } from '@datatr-ux/uxlib';
 
 import ai from '@/types/AI';
-import { FullScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from '@/lib/scalingHelper';
 
-interface ResourceTypeSelectorProps {
-  control: Control<FullScalingFormValues>;
-}
-
-export function ResourceTypeSelector({ control }: ResourceTypeSelectorProps) {
+export function ResourceTypeSelector() {
   const { t } = useTranslation('ai-tools/components/scaling');
+  const { control } = useFormContext<ScalingStrategySchema>();
 
   return (
     <div className="xl:col-start-2 xl:row-start-1 w-full">

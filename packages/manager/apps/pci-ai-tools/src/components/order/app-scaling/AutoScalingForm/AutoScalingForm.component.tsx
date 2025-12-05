@@ -1,22 +1,19 @@
-import { Control, useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 import Price from '@/components/price/Price.component';
 import { AppPricing } from '@/types/orderFunnel';
-import { FullScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from '@/lib/scalingHelper';
 import { ReplicaFields } from './ReplicaFields';
 import { ResourceTypeSelector } from './ResourceTypeSelector';
 import { CpuRamFields } from './CpuRamFields';
 import { CustomMetricsFields } from './CustomMetricsFields';
 
 interface AutoScalingFormProps {
-  control: Control<FullScalingFormValues>;
   pricingFlavor?: AppPricing;
 }
 
-export function AutoScalingForm({
-  control,
-  pricingFlavor,
-}: AutoScalingFormProps) {
+export function AutoScalingForm({ pricingFlavor }: AutoScalingFormProps) {
+  const { control } = useFormContext<ScalingStrategySchema>();
   const resType = useWatch({ control, name: 'resourceType' });
   const minRep = useWatch({ control, name: 'replicasMin' });
 
@@ -25,10 +22,10 @@ export function AutoScalingForm({
   return (
     <div data-testid="auto-scaling-container">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6 mb-4">
-        <ReplicaFields control={control} />
-        <ResourceTypeSelector control={control} />
-        {!isCustom && <CpuRamFields control={control} />}
-        {isCustom && <CustomMetricsFields control={control} />}
+        <ReplicaFields />
+        <ResourceTypeSelector />
+        {!isCustom && <CpuRamFields />}
+        {isCustom && <CustomMetricsFields />}
       </div>
       {pricingFlavor && (
         <div>

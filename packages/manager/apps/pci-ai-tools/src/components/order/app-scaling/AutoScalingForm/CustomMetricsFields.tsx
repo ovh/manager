@@ -1,6 +1,6 @@
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Control } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import {
   FormControl,
   FormField,
@@ -18,14 +18,11 @@ import {
 } from '@datatr-ux/uxlib';
 
 import ai from '@/types/AI';
-import { FullScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from '@/lib/scalingHelper';
 
-interface CustomMetricsFieldsProps {
-  control: Control<FullScalingFormValues>;
-}
-
-export function CustomMetricsFields({ control }: CustomMetricsFieldsProps) {
+export function CustomMetricsFields() {
   const { t } = useTranslation('ai-tools/components/scaling');
+  const { control } = useFormContext<ScalingStrategySchema>();
 
   return (
     <>
@@ -59,6 +56,7 @@ export function CustomMetricsFields({ control }: CustomMetricsFieldsProps) {
                     data-testid="metric-url-input"
                     {...field}
                     placeholder={t('metricUrlPlaceholder')}
+                    autoComplete="url"
                   />
                 </FormControl>
                 {errorMessage && (
@@ -147,6 +145,7 @@ export function CustomMetricsFields({ control }: CustomMetricsFieldsProps) {
                     data-testid="data-location-input"
                     {...field}
                     placeholder={t('dataLocationPlaceholder')}
+                    autoComplete="on"
                   />
                 </FormControl>
                 {errorMessage && (

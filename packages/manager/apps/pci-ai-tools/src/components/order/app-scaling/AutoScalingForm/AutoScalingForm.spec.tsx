@@ -55,10 +55,7 @@ describe('AutoScalingForm component', () => {
 
     return (
       <FormProvider {...methods}>
-        <AutoScalingForm
-          control={methods.control as Control<FullScalingFormValues>}
-          pricingFlavor={mockedAppPricing1}
-        />
+        <AutoScalingForm pricingFlavor={mockedAppPricing1} />
       </FormProvider>
     );
   };

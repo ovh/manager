@@ -81,6 +81,14 @@ const OrderFunnel = ({
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
 
+  const isCustomWithEmptyFields =
+    model.result.scaling.autoScaling &&
+    model.result.scaling.resourceType === 'CUSTOM' &&
+    (!model.result.scaling.metricUrl ||
+      model.result.scaling.metricUrl.trim() === '' ||
+      !model.result.scaling.dataLocation ||
+      model.result.scaling.dataLocation.trim() === '');
+
   const { addApp, isPending: isPendingAddApp } = useAddApp({
     onError: (err) => {
       trackBanner(
@@ -177,7 +185,7 @@ const OrderFunnel = ({
   };
 
   const onSubmit = model.form.handleSubmit(
-    () => {
+    (validatedData) => {
       // if partner Image and contract not checked, throw error
       if (!model.result.isContractChecked) throwErrorContract();
       // if partner Image and contract need to be sign
@@ -192,9 +200,26 @@ const OrderFunnel = ({
         // Sign and deploy app
         signPartnerContract(signPartnerInfo);
       } else {
-        // Deploy the app
+        // Deploy the app - utiliser validatedData pour avoir les nombres coercés
+        const resultWithCoercedScaling = {
+          ...model.result,
+          scaling: {
+            autoScaling: validatedData.autoScaling,
+            replicas: validatedData.replicas,
+            replicasMin: validatedData.replicasMin,
+            replicasMax: validatedData.replicasMax,
+            resourceType: validatedData.resourceType,
+            averageUsageTarget: validatedData.averageUsageTarget,
+            metricUrl: validatedData.metricUrl,
+            dataFormat: validatedData.dataFormat,
+            dataLocation: validatedData.dataLocation,
+            targetMetricValue: validatedData.targetMetricValue,
+            aggregationType: validatedData.aggregationType,
+          },
+        };
+
         const appInfo: ai.app.AppSpecInput = getAppSpec(
-          model.result,
+          resultWithCoercedScaling,
           model.lists.appImages,
         );
 
@@ -439,7 +464,6 @@ const OrderFunnel = ({
               </CardHeader>
               <CardContent>
                 <ScalingStrategy
-                  control={model.form.control}
                   pricingFlavor={model.result.pricing?.resourcePricing}
                 />
               </CardContent>
@@ -764,7 +788,7 @@ const OrderFunnel = ({
                 type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                disabled={isPendingAddApp || !model.form.formState.isValid}
+                disabled={isPendingAddApp || isCustomWithEmptyFields}
               >
                 {t('orderButton')}
               </Button>

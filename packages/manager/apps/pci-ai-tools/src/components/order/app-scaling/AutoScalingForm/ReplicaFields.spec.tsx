@@ -14,9 +14,7 @@ const TestWrapper = () => {
 
   return (
     <FormProvider {...methods}>
-      <ReplicaFields
-        control={methods.control as Control<FullScalingFormValues>}
-      />
+      <ReplicaFields />
     </FormProvider>
   );
 };

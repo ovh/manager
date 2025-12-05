@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
@@ -94,7 +95,7 @@ const UpdateScaling = () => {
     },
   });
 
-  const onSubmit = form.handleSubmit((formValues: FullScalingFormValues) => {
+  const onSubmit = form.handleSubmit((formValues) => {
     const isCustom = formValues.resourceType === 'CUSTOM';
 
     const scalingInfo: ai.app.ScalingStrategyInput = formValues.autoScaling
@@ -136,12 +137,9 @@ const UpdateScaling = () => {
         </DialogHeader>
         <ScrollArea className="max-h-[80vh]">
           <FormProvider {...form}>
-            <form onSubmit={onSubmit} className="flex flex-col gap-2">
-              <ScalingStrategy
-                control={form.control}
-                pricingFlavor={pricingResource}
-              />
-              <DialogFooter className="flex justify-end mr-4">
+            <form onSubmit={onSubmit} className="flex flex-col gap-2 pr-4">
+              <ScalingStrategy pricingFlavor={pricingResource} />
+              <DialogFooter className="flex justify-end">
                 <DialogClose asChild>
                   <Button
                     data-testid="update-scaling-cancel-button"

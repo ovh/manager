@@ -1,6 +1,6 @@
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Control, useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import {
   FormField,
   FormItem,
@@ -9,14 +9,11 @@ import {
   PopoverTrigger,
   Slider,
 } from '@datatr-ux/uxlib';
-import { FullScalingFormValues } from '@/lib/scalingHelper';
+import { ScalingStrategySchema } from '@/lib/scalingHelper';
 
-interface CpuRamFieldsProps {
-  control: Control<FullScalingFormValues>;
-}
-
-export function CpuRamFields({ control }: CpuRamFieldsProps) {
+export function CpuRamFields() {
   const { t } = useTranslation('ai-tools/components/scaling');
+  const { control } = useFormContext<ScalingStrategySchema>();
   const averageUsageTarget = useWatch({ control, name: 'averageUsageTarget' });
 
   return (
