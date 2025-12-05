@@ -74,5 +74,7 @@
   "replicationRequiresVersioningAlert": "Per utilizzare la replica asincrona, il versioning deve essere attivato.",
   "destinationFieldLabel": "Contenitore di destinazione",
   "replicationButtonCancel": "Annulla",
-  "disabledClassDestinationHelper": "Seleziona un contenitore di destinazione per attivare questa opzione"
+  "disabledClassDestinationHelper": "Seleziona un contenitore di destinazione per attivare questa opzione",
+  "warning1AZTo3AZ": "La classe di archiviazione ad alte prestazioni non è disponibile con la modalità di distribuzione 3-AZ. I tuoi oggetti sorgente archiviati in alta prestazione saranno quindi replicati per impostazione predefinita nella classe di archiviazione standard, che è la classe di archiviazione più vicina in termini di utilizzo.",
+  "warning3AZTo1AZ": "La classe di archiviazione Cold Archive è disponibile solo nella modalità di distribuzione 3-AZ e nella regione di Parigi. I tuoi oggetti sorgente archiviati in Cold Archive saranno quindi replicati per impostazione predefinita in Infrequent Access, che è la classe di archiviazione più vicina in termini di utilizzo."
 }

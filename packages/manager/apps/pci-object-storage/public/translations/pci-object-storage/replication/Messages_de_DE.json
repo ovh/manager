@@ -74,5 +74,7 @@
   "replicationRequiresVersioningAlert": "Um die asynchrone Replikation zu verwenden, muss das Versioning aktiviert sein.",
   "destinationFieldLabel": "Zielcontainer",
   "replicationButtonCancel": "Abbrechen",
-  "disabledClassDestinationHelper": "Wählen Sie einen Zielcontainer aus, um diese Option zu aktivieren."
+  "disabledClassDestinationHelper": "Wählen Sie einen Zielcontainer aus, um diese Option zu aktivieren.",
+  "warning1AZTo3AZ": "Die High-Performance-Speicherklasse ist im 3-AZ-Bereitstellungsmodus nicht verfügbar. Ihre in High Performance gespeicherten Quellobjekte werden standardmäßig in die Standard-Speicherklasse repliziert, die der am nächsten gelegene Speicherklasse in Bezug auf die Nutzung ist.",
+  "warning3AZTo1AZ": "Die Cold Archive-Speicherklasse ist nur im 3-AZ-Bereitstellungsmodus und in der Region Paris verfügbar. Ihre in Cold Archive gespeicherten Quellobjekte werden standardmäßig in Infrequent Access repliziert, die der am nächsten gelegene Speicherklasse in Bezug auf die Nutzung ist."
 }

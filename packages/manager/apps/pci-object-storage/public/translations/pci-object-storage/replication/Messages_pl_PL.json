@@ -74,5 +74,7 @@
   "replicationRequiresVersioningAlert": "Aby można było używać replikacji asynchronicznej, należy włączyć wersjonowanie.",
   "destinationFieldLabel": "Kontener docelowy",
   "replicationButtonCancel": "Anuluj",
-  "disabledClassDestinationHelper": "Wybierz kontener docelowy, aby aktywować tę opcję"
+  "disabledClassDestinationHelper": "Wybierz kontener docelowy, aby aktywować tę opcję",
+  "warning1AZTo3AZ": "Klasa przechowywania o wysokiej wydajności nie jest dostępna w trybie wdrożenia 3-AZ. Twoje obiekty źródłowe przechowywane w wysokiej wydajności będą domyślnie replikowane do standardowej klasy przechowywania, która jest najbliższą klasą przechowywania pod względem użycia.",
+  "warning3AZTo1AZ": "Klasa przechowywania Cold Archive jest dostępna tylko w trybie wdrożenia 3-AZ i w regionie Paryż. Twoje obiekty źródłowe przechowywane w Cold Archive będą domyślnie replikowane do Infrequent Access, która jest najbliższą klasą przechowywania pod względem użycia."
 }

@@ -74,5 +74,7 @@
   "replicationRequiresVersioningAlert": "To use asynchronous replication, versioning must be enabled.",
   "destinationFieldLabel": "Destination container",
   "replicationButtonCancel": "Cancel",
-  "disabledClassDestinationHelper": "Select a destination container to enable this option"
+  "disabledClassDestinationHelper": "Select a destination container to enable this option",
+  "warning1AZTo3AZ": "The High Performance storage class is not available with the 3-AZ deployment mode. Your source objects stored in High Performance will therefore be replicated by default to the standard storage class, which is the closest storage class in terms of usage.",
+  "warning3AZTo1AZ": "The Cold Archive storage class is only available in the 3-AZ deployment mode and in the Paris region. Your source objects stored in Cold Archive will therefore be replicated by default to Infrequent Access, which is the closest storage class in terms of usage."
 }
