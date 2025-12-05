@@ -127,7 +127,7 @@
                                             data-translate="user_users_update"
                                         ></button>
                                     </li>
-                                    <li>
+                                    <li ng-if="$ctrl.enablePermanentTokens">
                                         <a
                                             class="oui-button"
                                             data-ng-href="{{ $ctrl.manageTokensBaseUrl + user.login}}"
