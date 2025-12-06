@@ -8,6 +8,7 @@ export const subRoutes = {
   editDescription: 'edit-description',
   vdcId: ':vdcId',
   virtualDatacenters: 'virtual-datacenters',
+  networkAcl: 'network-acl',
   datacentreStorage: 'storage',
   datacentreCompute: 'compute',
   resetPassword: 'reset-password',
@@ -19,6 +20,9 @@ export const subRoutes = {
   deleteSegment: 'delete-segment',
   deleteNetwork: 'delete-network',
   terminate: 'terminate',
+  addNetworkAcl: 'add-network-acl',
+  deleteNetworkAcl: 'delete-network-acl',
+  editNetworkAcl: 'edit-network-acl',
 } as const;
 
 export const urls = {
@@ -42,6 +46,10 @@ export const urls = {
   vrackSegmentEditVlanId: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.edit}`,
   vrackSegmentAddNetwork: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.addNetwork}`,
   vrackSegmentDeleteNetwork: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.vrackNetwork}/${subRoutes.vrackNetworkId}/${subRoutes.deleteNetwork}`,
+  networkAcl: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}`,
+  networkAclAdd: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.addNetworkAcl}`,
+  networkAclEdit: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.editNetworkAcl}`,
+  networkAclDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.deleteNetworkAcl}`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';
