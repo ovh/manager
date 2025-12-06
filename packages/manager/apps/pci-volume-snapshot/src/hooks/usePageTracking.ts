@@ -10,9 +10,8 @@ export default function usePageTracking() {
   const location = useLocation();
   const matches = useMatches();
   const { data: project } = useProject();
-  const { setPciProjectMode, trackPage } = useContext(
-    ShellContext,
-  )?.shell?.tracking || {};
+  const { setPciProjectMode, trackPage } =
+    useContext(ShellContext)?.shell?.tracking || {};
 
   useEffect(() => {
     if (project) {
