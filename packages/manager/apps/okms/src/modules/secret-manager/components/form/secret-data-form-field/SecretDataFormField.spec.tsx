@@ -1,6 +1,6 @@
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { KEY_VALUES_EDITOR_TEST_IDS } from '@secret-manager/components/form/key-values-editor/keyValuesEditor.constants';
-import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value-toggle/secretValueToggle.constants';
+import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FormProvider, useForm } from 'react-hook-form';

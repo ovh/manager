@@ -14,8 +14,6 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
-
 import {
   BaseLayout,
   DashboardGridLayout,
@@ -25,6 +23,10 @@ import {
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import {
+  TabNavigation,
+  TabNavigationItem,
+} from '@/common/components/tab-navigation/TabNavigation.component';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
@@ -81,6 +83,14 @@ export default function ServiceKeyDashboard() {
   const kms = okms?.data;
   const kmsKey = serviceKey?.data;
 
+  const tabsList: TabNavigationItem[] = [
+    {
+      name: 'general-information',
+      title: t('key_management_service_service-keys_dashboard_tab_informations'),
+      url: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
+    },
+  ];
+
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
@@ -124,11 +134,7 @@ export default function ServiceKeyDashboard() {
         }}
         backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}
-        tabs={
-          <OdsTabs>
-            <OdsTab>{t('key_management_service_service-keys_dashboard_tab_informations')}</OdsTab>
-          </OdsTabs>
-        }
+        tabs={<TabNavigation tabs={tabsList} />}
       >
         <DashboardGridLayout>
           <GeneralInformationTile kms={kms} serviceKey={kmsKey} />

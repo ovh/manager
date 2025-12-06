@@ -1,3 +1,4 @@
+import { KEY_VALUES_TEST_IDS } from '@secret-manager/components/secret-value/secretValueClipboards.constants';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import {
   versionActiveMock,
@@ -17,7 +18,6 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { RenderTestMockParams, renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
-import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
 import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
@@ -192,10 +192,9 @@ describe('ValueDrawer test suite', () => {
 
         if (!haveValue) return;
 
-        // TODO: update this part when we'll handle key/value representation.
         await waitFor(() => {
-          const versionRawValue = screen.getByTestId(SECRET_RAW_VALUE_TEST_ID);
-          expect(versionRawValue).toBeVisible();
+          const keyValuesContainer = screen.getByTestId(KEY_VALUES_TEST_IDS.container);
+          expect(keyValuesContainer).toBeVisible();
         }, WAIT_FOR_DEFAULT_OPTIONS);
       },
     );

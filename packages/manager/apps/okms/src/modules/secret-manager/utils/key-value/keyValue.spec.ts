@@ -1,8 +1,8 @@
 import {
-  formatKeyValueArrayFromString,
-  formatStringFromKeyValueArray,
   isKeyValueObject,
-  isStringValidForKeyValueForm,
+  isKeyValueObjectString,
+  keyValuePairsToString,
+  stringToKeyValuePairs,
 } from './keyValue';
 
 describe('isKeyValueObject', () => {
@@ -132,29 +132,27 @@ describe('isKeyValueObject', () => {
   });
 });
 
-describe('isStringValidForKeyValueForm', () => {
+describe('isKeyValueObjectString', () => {
   it('should return true for empty string', () => {
-    expect(isStringValidForKeyValueForm('')).toBe(true);
+    expect(isKeyValueObjectString('')).toBe(true);
   });
 
   it('should return true for undefined', () => {
-    expect(isStringValidForKeyValueForm(undefined)).toBe(true);
+    expect(isKeyValueObjectString(undefined)).toBe(true);
   });
 
   it('should return true for valid JSON object', () => {
-    expect(isStringValidForKeyValueForm('{"key1":"value1","key2":"value2"}')).toBe(true);
+    expect(isKeyValueObjectString('{"key1":"value1","key2":"value2"}')).toBe(true);
   });
 
   it('should return false for malformed JSON', () => {
-    expect(isStringValidForKeyValueForm('{ invalid: "json" }')).toBe(false);
+    expect(isKeyValueObjectString('{ invalid: "json" }')).toBe(false);
   });
 });
 
-describe('formatKeyValueArrayFromString', () => {
+describe('stringToKeyValuePairs', () => {
   it('should return array of key-value pairs for a good key/value object', () => {
-    const result = formatKeyValueArrayFromString(
-      '{"key1":"value1","key2":"value2","key3":"value3"}',
-    );
+    const result = stringToKeyValuePairs('{"key1":"value1","key2":"value2","key3":"value3"}');
     expect(result).toEqual([
       { key: 'key1', value: 'value1' },
       { key: 'key2', value: 'value2' },
@@ -163,19 +161,19 @@ describe('formatKeyValueArrayFromString', () => {
   });
 
   it('should return empty pair for an invalid key/value object', () => {
-    const result = formatKeyValueArrayFromString('{"key":{"nested":"object"}}');
+    const result = stringToKeyValuePairs('{"key":{"nested":"object"}}');
     expect(result).toEqual([{ key: '', value: '' }]);
   });
 
   it('should return empty pair for empty string', () => {
-    const result = formatKeyValueArrayFromString('');
+    const result = stringToKeyValuePairs('');
     expect(result).toEqual([{ key: '', value: '' }]);
   });
 });
 
-describe('formatStringFromKeyValueArray', () => {
+describe('keyValuePairsToString', () => {
   it('should return JSON string for array of key-value pairs', () => {
-    const result = formatStringFromKeyValueArray([
+    const result = keyValuePairsToString([
       { key: 'key1', value: 'value1' },
       { key: 'key2', value: 'value2' },
     ]);
@@ -183,7 +181,7 @@ describe('formatStringFromKeyValueArray', () => {
   });
 
   it('should return empty string for empty array', () => {
-    const result = formatStringFromKeyValueArray([]);
+    const result = keyValuePairsToString([]);
     expect(result).toBe('');
   });
 });
