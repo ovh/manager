@@ -14,6 +14,7 @@ export default {
     getResiliationLink: '&?',
     handleGoToResiliation: '&?',
     isCustomResiliationHandled: '<?',
+    advancePaymentCallBack: '&?',
   },
   controller,
   template,
