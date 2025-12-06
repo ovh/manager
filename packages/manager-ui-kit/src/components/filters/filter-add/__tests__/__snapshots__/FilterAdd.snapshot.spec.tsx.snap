@@ -1363,7 +1363,6 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                         </button>
                       </td>
                       <td
-                        aria-current="date"
                         aria-selected="false"
                         data-part="table-cell"
                         data-scope="date-picker"
@@ -1373,17 +1372,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                         <button
                           aria-label="Choose Wednesday, October 29, 2025"
                           class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
-                          data-focus=""
                           data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
-                          data-today=""
                           data-value="2025-10-29"
                           data-view="day"
                           dir="ltr"
                           id="datepicker::rf::cell-trigger:2025-10-29"
                           role="button"
-                          tabindex="0"
+                          tabindex="-1"
                           type="button"
                         >
                           29
@@ -2479,46 +2476,46 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:r1f:
-        id=:r1g:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r1s:"
+        id=":r1t:"
       >
         Colonne
       </label>
       <div
-        data-ods=select
-        data-part=root
-        data-scope=select
-        data-testid=add-filter_select_idColumn
-        dir=ltr
-        id=select::r1f:
+        data-ods="select"
+        data-part="root"
+        data-scope="select"
+        data-testid="add-filter_select_idColumn"
+        dir="ltr"
+        id="select::r1s:"
       >
         <div
-          data-part=control
-          data-scope=select
-          data-state=closed
-          dir=ltr
-          id=select::r1f::control
+          data-part="control"
+          data-scope="select"
+          data-state="closed"
+          dir="ltr"
+          id="select::r1s::control"
         >
           <button
-            aria-controls=select::r1f::content
-            aria-describedby=
-            aria-disabled=false
-            aria-expanded=false
-            aria-haspopup=listbox
-            aria-invalid=false
-            aria-labelledby=:r1g:
-            class=_select-control
-            data-empty=false
-            data-ods=select-control
-            data-part=trigger
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::r1f::trigger
-            role=combobox
-            type=button
+            aria-controls="select::r1s::content"
+            aria-describedby=""
+            aria-disabled="false"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-invalid="false"
+            aria-labelledby=":r1t:"
+            class="_select-control_1mzzf_2"
+            data-empty="false"
+            data-ods="select-control"
+            data-part="trigger"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::r1s::trigger"
+            role="combobox"
+            type="button"
           >
             <span
               data-part=value-text
@@ -2539,12 +2536,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
             />
           </button>
           <select
-            aria-hidden=true
-            aria-labelledby=select::r1f::label
-            id=:r1f:
-            name=add-filter_select_idColumn-username
-            style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-            tabindex=-1
+            aria-hidden="true"
+            aria-labelledby="select::r1s::label"
+            id=":r1s:"
+            name="add-filter_select_idColumn-username"
+            style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+            tabindex="-1"
           >
             <option
               selected=
@@ -2565,36 +2562,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
           </select>
         </div>
         <div
-          data-part=positioner
-          data-scope=select
-          dir=ltr
-          id=select::r1f::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+          data-part="positioner"
+          data-scope="select"
+          dir="ltr"
+          id="select::r1s::positioner"
+          style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby=select::r1f::label
-            class=_select-content
-            data-empty=false
-            data-ods=select-content
-            data-part=content
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            hidden=
-            id=select::r1f::content
-            role=listbox
-            tabindex=0
+            aria-labelledby="select::r1s::label"
+            class="_select-content_1jhsg_2"
+            data-empty="false"
+            data-ods="select-content"
+            data-part="content"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            hidden=""
+            id="select::r1s::content"
+            role="listbox"
+            tabindex="0"
           >
             <div
-              aria-selected=true
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=checked
-              data-value=username
-              dir=ltr
-              id=select::r1f::option:username
-              role=option
+              aria-selected="true"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="checked"
+              data-value="username"
+              dir="ltr"
+              id="select::r1s::option:username"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -2605,15 +2602,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
               </span>
             </div>
             <div
-              aria-selected=false
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=unchecked
-              data-value=age
-              dir=ltr
-              id=select::r1f::option:age
-              role=option
+              aria-selected="false"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="unchecked"
+              data-value="age"
+              dir="ltr"
+              id="select::r1s::option:age"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -2624,15 +2621,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
               </span>
             </div>
             <div
-              aria-selected=false
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=unchecked
-              data-value=createdAt
-              dir=ltr
-              id=select::r1f::option:createdAt
-              role=option
+              aria-selected="false"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="unchecked"
+              data-value="createdAt"
+              dir="ltr"
+              id="select::r1s::option:createdAt"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -2656,10 +2653,10 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:r1i:
-        id=:r1j:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r1v:"
+        id=":r20:"
       >
         Condition
       </label>
@@ -2667,37 +2664,37 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
         data-testid=add-operator-username
       >
         <div
-          data-ods=select
-          data-part=root
-          data-scope=select
-          dir=ltr
-          id=select::r1i:
+          data-ods="select"
+          data-part="root"
+          data-scope="select"
+          dir="ltr"
+          id="select::r1v:"
         >
           <div
-            data-part=control
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::r1i::control
+            data-part="control"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::r1v::control"
           >
             <button
-              aria-controls=select::r1i::content
-              aria-describedby=
-              aria-disabled=false
-              aria-expanded=false
-              aria-haspopup=listbox
-              aria-invalid=false
-              aria-labelledby=:r1j:
-              class=_select-control
-              data-empty=false
-              data-ods=select-control
-              data-part=trigger
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              id=select::r1i::trigger
-              role=combobox
-              type=button
+              aria-controls="select::r1v::content"
+              aria-describedby=""
+              aria-disabled="false"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              aria-labelledby=":r20:"
+              class="_select-control_1mzzf_2"
+              data-empty="false"
+              data-ods="select-control"
+              data-part="trigger"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              id="select::r1v::trigger"
+              role="combobox"
+              type="button"
             >
               <span
                 data-part=value-text
@@ -2718,12 +2715,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
               />
             </button>
             <select
-              aria-hidden=true
-              aria-labelledby=select::r1i::label
-              id=:r1i:
-              name=add-operator-username
-              style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-              tabindex=-1
+              aria-hidden="true"
+              aria-labelledby="select::r1v::label"
+              id=":r1v:"
+              name="add-operator-username"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              tabindex="-1"
             >
               <option
                 selected=
@@ -2739,36 +2736,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
             </select>
           </div>
           <div
-            data-part=positioner
-            data-scope=select
-            dir=ltr
-            id=select::r1i::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+            data-part="positioner"
+            data-scope="select"
+            dir="ltr"
+            id="select::r1v::positioner"
+            style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby=select::r1i::label
-              class=_select-content
-              data-empty=false
-              data-ods=select-content
-              data-part=content
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              hidden=
-              id=select::r1i::content
-              role=listbox
-              tabindex=0
+              aria-labelledby="select::r1v::label"
+              class="_select-content_1jhsg_2"
+              data-empty="false"
+              data-ods="select-content"
+              data-part="content"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              hidden=""
+              id="select::r1v::content"
+              role="listbox"
+              tabindex="0"
             >
               <div
-                aria-selected=true
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=checked
-                data-value=includes
-                dir=ltr
-                id=select::r1i::option:includes
-                role=option
+                aria-selected="true"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="checked"
+                data-value="includes"
+                dir="ltr"
+                id="select::r1v::option:includes"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -2779,15 +2776,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
                 </span>
               </div>
               <div
-                aria-selected=false
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=unchecked
-                data-value=is_equal
-                dir=ltr
-                id=select::r1i::option:is_equal
-                role=option
+                aria-selected="false"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="unchecked"
+                data-value="is_equal"
+                dir="ltr"
+                id="select::r1v::option:is_equal"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -2812,10 +2809,10 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:r1l:
-        id=:r1m:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r22:"
+        id=":r23:"
       >
         Valeur
       </label>
@@ -2823,15 +2820,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
         class=_input border
       >
         <input
-          aria-busy=false
-          aria-describedby=
-          class=_input__field
-          data-ods=input
-          data-testid=filter-add_value-input
-          id=:r1l:
-          name=filter-add_value-input
-          type=text
-          value=
+          aria-busy="false"
+          aria-describedby=""
+          class="_input__field_ff5b7_41"
+          data-ods="input"
+          data-testid="filter-add_value-input"
+          id=":r22:"
+          name="filter-add_value-input"
+          type="text"
+          value=""
         />
       </div>
     </div>
@@ -2863,46 +2860,46 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:r9:
-        id=:ra:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":rm:"
+        id=":rn:"
       >
         Colonne
       </label>
       <div
-        data-ods=select
-        data-part=root
-        data-scope=select
-        data-testid=add-filter_select_idColumn
-        dir=ltr
-        id=select::r9:
+        data-ods="select"
+        data-part="root"
+        data-scope="select"
+        data-testid="add-filter_select_idColumn"
+        dir="ltr"
+        id="select::rm:"
       >
         <div
-          data-part=control
-          data-scope=select
-          data-state=closed
-          dir=ltr
-          id=select::r9::control
+          data-part="control"
+          data-scope="select"
+          data-state="closed"
+          dir="ltr"
+          id="select::rm::control"
         >
           <button
-            aria-controls=select::r9::content
-            aria-describedby=
-            aria-disabled=false
-            aria-expanded=false
-            aria-haspopup=listbox
-            aria-invalid=false
-            aria-labelledby=:ra:
-            class=_select-control
-            data-empty=false
-            data-ods=select-control
-            data-part=trigger
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::r9::trigger
-            role=combobox
-            type=button
+            aria-controls="select::rm::content"
+            aria-describedby=""
+            aria-disabled="false"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-invalid="false"
+            aria-labelledby=":rn:"
+            class="_select-control_1mzzf_2"
+            data-empty="false"
+            data-ods="select-control"
+            data-part="trigger"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::rm::trigger"
+            role="combobox"
+            type="button"
           >
             <span
               data-part=value-text
@@ -2923,12 +2920,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
             />
           </button>
           <select
-            aria-hidden=true
-            aria-labelledby=select::r9::label
-            id=:r9:
-            name=add-filter_select_idColumn-age
-            style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-            tabindex=-1
+            aria-hidden="true"
+            aria-labelledby="select::rm::label"
+            id=":rm:"
+            name="add-filter_select_idColumn-age"
+            style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+            tabindex="-1"
           >
             <option
               selected=
@@ -2939,36 +2936,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
           </select>
         </div>
         <div
-          data-part=positioner
-          data-scope=select
-          dir=ltr
-          id=select::r9::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+          data-part="positioner"
+          data-scope="select"
+          dir="ltr"
+          id="select::rm::positioner"
+          style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby=select::r9::label
-            class=_select-content
-            data-empty=false
-            data-ods=select-content
-            data-part=content
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            hidden=
-            id=select::r9::content
-            role=listbox
-            tabindex=0
+            aria-labelledby="select::rm::label"
+            class="_select-content_1jhsg_2"
+            data-empty="false"
+            data-ods="select-content"
+            data-part="content"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            hidden=""
+            id="select::rm::content"
+            role="listbox"
+            tabindex="0"
           >
             <div
-              aria-selected=true
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=checked
-              data-value=age
-              dir=ltr
-              id=select::r9::option:age
-              role=option
+              aria-selected="true"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="checked"
+              data-value="age"
+              dir="ltr"
+              id="select::rm::option:age"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -2992,10 +2989,10 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:rc:
-        id=:rd:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":rp:"
+        id=":rq:"
       >
         Condition
       </label>
@@ -3003,37 +3000,37 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
         data-testid=add-operator-age
       >
         <div
-          data-ods=select
-          data-part=root
-          data-scope=select
-          dir=ltr
-          id=select::rc:
+          data-ods="select"
+          data-part="root"
+          data-scope="select"
+          dir="ltr"
+          id="select::rp:"
         >
           <div
-            data-part=control
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::rc::control
+            data-part="control"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::rp::control"
           >
             <button
-              aria-controls=select::rc::content
-              aria-describedby=
-              aria-disabled=false
-              aria-expanded=false
-              aria-haspopup=listbox
-              aria-invalid=false
-              aria-labelledby=:rd:
-              class=_select-control
-              data-empty=false
-              data-ods=select-control
-              data-part=trigger
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              id=select::rc::trigger
-              role=combobox
-              type=button
+              aria-controls="select::rp::content"
+              aria-describedby=""
+              aria-disabled="false"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              aria-labelledby=":rq:"
+              class="_select-control_1mzzf_2"
+              data-empty="false"
+              data-ods="select-control"
+              data-part="trigger"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              id="select::rp::trigger"
+              role="combobox"
+              type="button"
             >
               <span
                 data-part=value-text
@@ -3054,12 +3051,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
               />
             </button>
             <select
-              aria-hidden=true
-              aria-labelledby=select::rc::label
-              id=:rc:
-              name=add-operator-age
-              style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-              tabindex=-1
+              aria-hidden="true"
+              aria-labelledby="select::rp::label"
+              id=":rp:"
+              name="add-operator-age"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              tabindex="-1"
             >
               <option
                 selected=
@@ -3080,36 +3077,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
             </select>
           </div>
           <div
-            data-part=positioner
-            data-scope=select
-            dir=ltr
-            id=select::rc::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+            data-part="positioner"
+            data-scope="select"
+            dir="ltr"
+            id="select::rp::positioner"
+            style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby=select::rc::label
-              class=_select-content
-              data-empty=false
-              data-ods=select-content
-              data-part=content
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              hidden=
-              id=select::rc::content
-              role=listbox
-              tabindex=0
+              aria-labelledby="select::rp::label"
+              class="_select-content_1jhsg_2"
+              data-empty="false"
+              data-ods="select-content"
+              data-part="content"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              hidden=""
+              id="select::rp::content"
+              role="listbox"
+              tabindex="0"
             >
               <div
-                aria-selected=true
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=checked
-                data-value=is_lower
-                dir=ltr
-                id=select::rc::option:is_lower
-                role=option
+                aria-selected="true"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="checked"
+                data-value="is_lower"
+                dir="ltr"
+                id="select::rp::option:is_lower"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -3120,15 +3117,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
                 </span>
               </div>
               <div
-                aria-selected=false
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=unchecked
-                data-value=is_higher
-                dir=ltr
-                id=select::rc::option:is_higher
-                role=option
+                aria-selected="false"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="unchecked"
+                data-value="is_higher"
+                dir="ltr"
+                id="select::rp::option:is_higher"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -3139,15 +3136,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
                 </span>
               </div>
               <div
-                aria-selected=false
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=unchecked
-                data-value=is_equal
-                dir=ltr
-                id=select::rc::option:is_equal
-                role=option
+                aria-selected="false"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="unchecked"
+                data-value="is_equal"
+                dir="ltr"
+                id="select::rp::option:is_equal"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -3172,10 +3169,10 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:rf:
-        id=:rg:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":rs:"
+        id=":rt:"
       >
         Valeur
       </label>
@@ -3183,16 +3180,16 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
         class=_input border
       >
         <input
-          aria-busy=false
-          aria-describedby=
-          class=_input__field
-          data-ods=input
-          data-testid=filter-add_value-numeric
-          id=:rf:
-          name=filter-add_value-input
-          pattern=(\\+|-)?[0-9]+([.][0-9]+)?
-          type=text
-          value=
+          aria-busy="false"
+          aria-describedby=""
+          class="_input__field_ff5b7_41"
+          data-ods="input"
+          data-testid="filter-add_value-numeric"
+          id=":rs:"
+          name="filter-add_value-input"
+          pattern="(\\+|-)?[0-9]+([.][0-9]+)?"
+          type="text"
+          value=""
         />
       </div>
     </div>
@@ -3224,46 +3221,46 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:ri:
-        id=:rj:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":rv:"
+        id=":r10:"
       >
         Colonne
       </label>
       <div
-        data-ods=select
-        data-part=root
-        data-scope=select
-        data-testid=add-filter_select_idColumn
-        dir=ltr
-        id=select::ri:
+        data-ods="select"
+        data-part="root"
+        data-scope="select"
+        data-testid="add-filter_select_idColumn"
+        dir="ltr"
+        id="select::rv:"
       >
         <div
-          data-part=control
-          data-scope=select
-          data-state=closed
-          dir=ltr
-          id=select::ri::control
+          data-part="control"
+          data-scope="select"
+          data-state="closed"
+          dir="ltr"
+          id="select::rv::control"
         >
           <button
-            aria-controls=select::ri::content
-            aria-describedby=
-            aria-disabled=false
-            aria-expanded=false
-            aria-haspopup=listbox
-            aria-invalid=false
-            aria-labelledby=:rj:
-            class=_select-control
-            data-empty=false
-            data-ods=select-control
-            data-part=trigger
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::ri::trigger
-            role=combobox
-            type=button
+            aria-controls="select::rv::content"
+            aria-describedby=""
+            aria-disabled="false"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-invalid="false"
+            aria-labelledby=":r10:"
+            class="_select-control_1mzzf_2"
+            data-empty="false"
+            data-ods="select-control"
+            data-part="trigger"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::rv::trigger"
+            role="combobox"
+            type="button"
           >
             <span
               data-part=value-text
@@ -3284,12 +3281,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
             />
           </button>
           <select
-            aria-hidden=true
-            aria-labelledby=select::ri::label
-            id=:ri:
-            name=add-filter_select_idColumn-status
-            style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-            tabindex=-1
+            aria-hidden="true"
+            aria-labelledby="select::rv::label"
+            id=":rv:"
+            name="add-filter_select_idColumn-status"
+            style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+            tabindex="-1"
           >
             <option
               selected=
@@ -3300,36 +3297,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
           </select>
         </div>
         <div
-          data-part=positioner
-          data-scope=select
-          dir=ltr
-          id=select::ri::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+          data-part="positioner"
+          data-scope="select"
+          dir="ltr"
+          id="select::rv::positioner"
+          style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby=select::ri::label
-            class=_select-content
-            data-empty=false
-            data-ods=select-content
-            data-part=content
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            hidden=
-            id=select::ri::content
-            role=listbox
-            tabindex=0
+            aria-labelledby="select::rv::label"
+            class="_select-content_1jhsg_2"
+            data-empty="false"
+            data-ods="select-content"
+            data-part="content"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            hidden=""
+            id="select::rv::content"
+            role="listbox"
+            tabindex="0"
           >
             <div
-              aria-selected=true
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=checked
-              data-value=status
-              dir=ltr
-              id=select::ri::option:status
-              role=option
+              aria-selected="true"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="checked"
+              data-value="status"
+              dir="ltr"
+              id="select::rv::option:status"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -3353,10 +3350,10 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:rl:
-        id=:rm:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r12:"
+        id=":r13:"
       >
         Condition
       </label>
@@ -3364,37 +3361,37 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
         data-testid=add-operator-status
       >
         <div
-          data-ods=select
-          data-part=root
-          data-scope=select
-          dir=ltr
-          id=select::rl:
+          data-ods="select"
+          data-part="root"
+          data-scope="select"
+          dir="ltr"
+          id="select::r12:"
         >
           <div
-            data-part=control
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::rl::control
+            data-part="control"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::r12::control"
           >
             <button
-              aria-controls=select::rl::content
-              aria-describedby=
-              aria-disabled=false
-              aria-expanded=false
-              aria-haspopup=listbox
-              aria-invalid=false
-              aria-labelledby=:rm:
-              class=_select-control
-              data-empty=false
-              data-ods=select-control
-              data-part=trigger
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              id=select::rl::trigger
-              role=combobox
-              type=button
+              aria-controls="select::r12::content"
+              aria-describedby=""
+              aria-disabled="false"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              aria-labelledby=":r13:"
+              class="_select-control_1mzzf_2"
+              data-empty="false"
+              data-ods="select-control"
+              data-part="trigger"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              id="select::r12::trigger"
+              role="combobox"
+              type="button"
             >
               <span
                 data-part=value-text
@@ -3415,12 +3412,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
               />
             </button>
             <select
-              aria-hidden=true
-              aria-labelledby=select::rl::label
-              id=:rl:
-              name=add-operator-status
-              style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-              tabindex=-1
+              aria-hidden="true"
+              aria-labelledby="select::r12::label"
+              id=":r12:"
+              name="add-operator-status"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              tabindex="-1"
             >
               <option
                 selected=
@@ -3436,36 +3433,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
             </select>
           </div>
           <div
-            data-part=positioner
-            data-scope=select
-            dir=ltr
-            id=select::rl::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+            data-part="positioner"
+            data-scope="select"
+            dir="ltr"
+            id="select::r12::positioner"
+            style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby=select::rl::label
-              class=_select-content
-              data-empty=false
-              data-ods=select-content
-              data-part=content
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              hidden=
-              id=select::rl::content
-              role=listbox
-              tabindex=0
+              aria-labelledby="select::r12::label"
+              class="_select-content_1jhsg_2"
+              data-empty="false"
+              data-ods="select-content"
+              data-part="content"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              hidden=""
+              id="select::r12::content"
+              role="listbox"
+              tabindex="0"
             >
               <div
-                aria-selected=true
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=checked
-                data-value=is_equal
-                dir=ltr
-                id=select::rl::option:is_equal
-                role=option
+                aria-selected="true"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="checked"
+                data-value="is_equal"
+                dir="ltr"
+                id="select::r12::option:is_equal"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -3476,15 +3473,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
                 </span>
               </div>
               <div
-                aria-selected=false
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=unchecked
-                data-value=is_different
-                dir=ltr
-                id=select::rl::option:is_different
-                role=option
+                aria-selected="false"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="unchecked"
+                data-value="is_different"
+                dir="ltr"
+                id="select::r12::option:is_different"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -3509,46 +3506,46 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:ro:
-        id=:rp:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r15:"
+        id=":r16:"
       >
         Valeur
       </label>
       <div
-        data-ods=select
-        data-part=root
-        data-scope=select
-        data-testid=filter-add_value-select
-        dir=ltr
-        id=select::ro:
+        data-ods="select"
+        data-part="root"
+        data-scope="select"
+        data-testid="filter-add_value-select"
+        dir="ltr"
+        id="select::r15:"
       >
         <div
-          data-part=control
-          data-scope=select
-          data-state=closed
-          dir=ltr
-          id=select::ro::control
+          data-part="control"
+          data-scope="select"
+          data-state="closed"
+          dir="ltr"
+          id="select::r15::control"
         >
           <button
-            aria-controls=select::ro::content
-            aria-describedby=
-            aria-disabled=false
-            aria-expanded=false
-            aria-haspopup=listbox
-            aria-invalid=false
-            aria-labelledby=:rp:
-            class=_select-control
-            data-empty=false
-            data-ods=select-control
-            data-part=trigger
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::ro::trigger
-            role=combobox
-            type=button
+            aria-controls="select::r15::content"
+            aria-describedby=""
+            aria-disabled="false"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-invalid="false"
+            aria-labelledby=":r16:"
+            class="_select-control_1mzzf_2"
+            data-empty="false"
+            data-ods="select-control"
+            data-part="trigger"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::r15::trigger"
+            role="combobox"
+            type="button"
           >
             <span
               data-part=value-text
@@ -3567,12 +3564,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
             />
           </button>
           <select
-            aria-hidden=true
-            aria-labelledby=select::ro::label
-            id=:ro:
-            name=filter-add_value-select-status
-            style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-            tabindex=-1
+            aria-hidden="true"
+            aria-labelledby="select::r15::label"
+            id=":r15:"
+            name="filter-add_value-select-status"
+            style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+            tabindex="-1"
           >
             <option
               value=active
@@ -3587,36 +3584,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
           </select>
         </div>
         <div
-          data-part=positioner
-          data-scope=select
-          dir=ltr
-          id=select::ro::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+          data-part="positioner"
+          data-scope="select"
+          dir="ltr"
+          id="select::r15::positioner"
+          style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby=select::ro::label
-            class=_select-content
-            data-empty=false
-            data-ods=select-content
-            data-part=content
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            hidden=
-            id=select::ro::content
-            role=listbox
-            tabindex=0
+            aria-labelledby="select::r15::label"
+            class="_select-content_1jhsg_2"
+            data-empty="false"
+            data-ods="select-content"
+            data-part="content"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            hidden=""
+            id="select::r15::content"
+            role="listbox"
+            tabindex="0"
           >
             <div
-              aria-selected=false
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=unchecked
-              data-value=active
-              dir=ltr
-              id=select::ro::option:active
-              role=option
+              aria-selected="false"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="unchecked"
+              data-value="active"
+              dir="ltr"
+              id="select::r15::option:active"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -3627,15 +3624,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
               </span>
             </div>
             <div
-              aria-selected=false
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=unchecked
-              data-value=inactive
-              dir=ltr
-              id=select::ro::option:inactive
-              role=option
+              aria-selected="false"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="unchecked"
+              data-value="inactive"
+              dir="ltr"
+              id="select::r15::option:inactive"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -4085,46 +4082,46 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:rr:
-        id=:rs:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r18:"
+        id=":r19:"
       >
         Colonne
       </label>
       <div
-        data-ods=select
-        data-part=root
-        data-scope=select
-        data-testid=add-filter_select_idColumn
-        dir=ltr
-        id=select::rr:
+        data-ods="select"
+        data-part="root"
+        data-scope="select"
+        data-testid="add-filter_select_idColumn"
+        dir="ltr"
+        id="select::r18:"
       >
         <div
-          data-part=control
-          data-scope=select
-          data-state=closed
-          dir=ltr
-          id=select::rr::control
+          data-part="control"
+          data-scope="select"
+          data-state="closed"
+          dir="ltr"
+          id="select::r18::control"
         >
           <button
-            aria-controls=select::rr::content
-            aria-describedby=
-            aria-disabled=false
-            aria-expanded=false
-            aria-haspopup=listbox
-            aria-invalid=false
-            aria-labelledby=:rs:
-            class=_select-control
-            data-empty=false
-            data-ods=select-control
-            data-part=trigger
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::rr::trigger
-            role=combobox
-            type=button
+            aria-controls="select::r18::content"
+            aria-describedby=""
+            aria-disabled="false"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-invalid="false"
+            aria-labelledby=":r19:"
+            class="_select-control_1mzzf_2"
+            data-empty="false"
+            data-ods="select-control"
+            data-part="trigger"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::r18::trigger"
+            role="combobox"
+            type="button"
           >
             <span
               data-part=value-text
@@ -4145,12 +4142,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
             />
           </button>
           <select
-            aria-hidden=true
-            aria-labelledby=select::rr::label
-            id=:rr:
-            name=add-filter_select_idColumn-tags
-            style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-            tabindex=-1
+            aria-hidden="true"
+            aria-labelledby="select::r18::label"
+            id=":r18:"
+            name="add-filter_select_idColumn-tags"
+            style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+            tabindex="-1"
           >
             <option
               selected=
@@ -4161,36 +4158,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
           </select>
         </div>
         <div
-          data-part=positioner
-          data-scope=select
-          dir=ltr
-          id=select::rr::positioner
-          style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+          data-part="positioner"
+          data-scope="select"
+          dir="ltr"
+          id="select::r18::positioner"
+          style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby=select::rr::label
-            class=_select-content
-            data-empty=false
-            data-ods=select-content
-            data-part=content
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            hidden=
-            id=select::rr::content
-            role=listbox
-            tabindex=0
+            aria-labelledby="select::r18::label"
+            class="_select-content_1jhsg_2"
+            data-empty="false"
+            data-ods="select-content"
+            data-part="content"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            hidden=""
+            id="select::r18::content"
+            role="listbox"
+            tabindex="0"
           >
             <div
-              aria-selected=true
-              class=_select-option
-              data-part=item
-              data-scope=select
-              data-state=checked
-              data-value=tags
-              dir=ltr
-              id=select::rr::option:tags
-              role=option
+              aria-selected="true"
+              class="_select-option_8h38j_2"
+              data-part="item"
+              data-scope="select"
+              data-state="checked"
+              data-value="tags"
+              dir="ltr"
+              id="select::r18::option:tags"
+              role="option"
             >
               <span
                 data-part=item-text
@@ -4214,10 +4211,10 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:ru:
-        id=:rv:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r1b:"
+        id=":r1c:"
       >
         Condition
       </label>
@@ -4225,37 +4222,37 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
         data-testid=add-operator-tags
       >
         <div
-          data-ods=select
-          data-part=root
-          data-scope=select
-          dir=ltr
-          id=select::ru:
+          data-ods="select"
+          data-part="root"
+          data-scope="select"
+          dir="ltr"
+          id="select::r1b:"
         >
           <div
-            data-part=control
-            data-scope=select
-            data-state=closed
-            dir=ltr
-            id=select::ru::control
+            data-part="control"
+            data-scope="select"
+            data-state="closed"
+            dir="ltr"
+            id="select::r1b::control"
           >
             <button
-              aria-controls=select::ru::content
-              aria-describedby=
-              aria-disabled=false
-              aria-expanded=false
-              aria-haspopup=listbox
-              aria-invalid=false
-              aria-labelledby=:rv:
-              class=_select-control
-              data-empty=false
-              data-ods=select-control
-              data-part=trigger
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              id=select::ru::trigger
-              role=combobox
-              type=button
+              aria-controls="select::r1b::content"
+              aria-describedby=""
+              aria-disabled="false"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              aria-labelledby=":r1c:"
+              class="_select-control_1mzzf_2"
+              data-empty="false"
+              data-ods="select-control"
+              data-part="trigger"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              id="select::r1b::trigger"
+              role="combobox"
+              type="button"
             >
               <span
                 data-part=value-text
@@ -4276,12 +4273,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
               />
             </button>
             <select
-              aria-hidden=true
-              aria-labelledby=select::ru::label
-              id=:ru:
-              name=add-operator-tags
-              style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
-              tabindex=-1
+              aria-hidden="true"
+              aria-labelledby="select::r1b::label"
+              id=":r1b:"
+              name="add-operator-tags"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              tabindex="-1"
             >
               <option
                 selected=
@@ -4307,36 +4304,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
             </select>
           </div>
           <div
-            data-part=positioner
-            data-scope=select
-            dir=ltr
-            id=select::ru::positioner
-            style=position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);
+            data-part="positioner"
+            data-scope="select"
+            dir="ltr"
+            id="select::r1b::positioner"
+            style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby=select::ru::label
-              class=_select-content
-              data-empty=false
-              data-ods=select-content
-              data-part=content
-              data-scope=select
-              data-state=closed
-              dir=ltr
-              hidden=
-              id=select::ru::content
-              role=listbox
-              tabindex=0
+              aria-labelledby="select::r1b::label"
+              class="_select-content_1jhsg_2"
+              data-empty="false"
+              data-ods="select-content"
+              data-part="content"
+              data-scope="select"
+              data-state="closed"
+              dir="ltr"
+              hidden=""
+              id="select::r1b::content"
+              role="listbox"
+              tabindex="0"
             >
               <div
-                aria-selected=true
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=checked
-                data-value=EQ
-                dir=ltr
-                id=select::ru::option:EQ
-                role=option
+                aria-selected="true"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="checked"
+                data-value="EQ"
+                dir="ltr"
+                id="select::r1b::option:EQ"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -4347,15 +4344,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
                 </span>
               </div>
               <div
-                aria-selected=false
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=unchecked
-                data-value=NEQ
-                dir=ltr
-                id=select::ru::option:NEQ
-                role=option
+                aria-selected="false"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="unchecked"
+                data-value="NEQ"
+                dir="ltr"
+                id="select::r1b::option:NEQ"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -4366,15 +4363,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
                 </span>
               </div>
               <div
-                aria-selected=false
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=unchecked
-                data-value=EXISTS
-                dir=ltr
-                id=select::ru::option:EXISTS
-                role=option
+                aria-selected="false"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="unchecked"
+                data-value="EXISTS"
+                dir="ltr"
+                id="select::r1b::option:EXISTS"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -4385,15 +4382,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
                 </span>
               </div>
               <div
-                aria-selected=false
-                class=_select-option
-                data-part=item
-                data-scope=select
-                data-state=unchecked
-                data-value=NOT_EXISTS
-                dir=ltr
-                id=select::ru::option:NOT_EXISTS
-                role=option
+                aria-selected="false"
+                class="_select-option_8h38j_2"
+                data-part="item"
+                data-scope="select"
+                data-state="unchecked"
+                data-value="NOT_EXISTS"
+                dir="ltr"
+                id="select::r1b::option:NOT_EXISTS"
+                role="option"
               >
                 <span
                   data-part=item-text
@@ -4431,31 +4428,31 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
         data-testid=tags-filter-form-key-field
       >
         <div
-          class=_combobox-control
-          data-ods=combobox-control
-          id=:r13:
+          class="_combobox-control_14h0r_2"
+          data-ods="combobox-control"
+          id=":r1g:"
         >
           <div
             class=_input _combobox-control__input
           >
             <input
-              aria-activedescendant=
-              aria-autocomplete=list
-              aria-busy=false
-              aria-controls=:r15:
-              aria-describedby=
-              aria-expanded=false
-              autocapitalize=none
-              autocomplete=off
-              autocorrect=off
-              class=_input__field
-              data-ods=input
-              id=:r11:
-              name=tag-key
-              role=combobox
-              spellcheck=false
-              type=text
-              value=
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-busy="false"
+              aria-controls=":r1i:"
+              aria-describedby=""
+              aria-expanded="false"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class="_input__field_ff5b7_41"
+              data-ods="input"
+              id=":r1e:"
+              name="tag-key"
+              role="combobox"
+              spellcheck="false"
+              type="text"
+              value=""
             />
           </div>
         </div>
@@ -4467,10 +4464,10 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
       role=group
     >
       <label
-        class=_text--label _form-field-label
-        data-ods=form-field-label
-        for=:r18:
-        id=:r19:
+        class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
+        for=":r1l:"
+        id=":r1m:"
       >
         Valeur
       </label>
@@ -4480,33 +4477,33 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
         data-testid=tags-filter-form-value-field
       >
         <div
-          class=_combobox-control _combobox-control--disabled
-          data-ods=combobox-control
-          id=:r1a:
+          class="_combobox-control_14h0r_2 _combobox-control--disabled_14h0r_16"
+          data-ods="combobox-control"
+          id=":r1n:"
         >
           <div
             class=_input _combobox-control__input
             data-disabled=true
           >
             <input
-              aria-activedescendant=
-              aria-autocomplete=list
-              aria-busy=false
-              aria-controls=:r1c:
-              aria-describedby=
-              aria-expanded=false
-              autocapitalize=none
-              autocomplete=off
-              autocorrect=off
-              class=_input__field
-              data-ods=input
-              disabled=
-              id=:r18:
-              name=tag-value
-              role=combobox
-              spellcheck=false
-              type=text
-              value=
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-busy="false"
+              aria-controls=":r1p:"
+              aria-describedby=""
+              aria-expanded="false"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class="_input__field_ff5b7_41"
+              data-ods="input"
+              disabled=""
+              id=":r1l:"
+              name="tag-value"
+              role="combobox"
+              spellcheck="false"
+              type="text"
+              value=""
             />
           </div>
         </div>
