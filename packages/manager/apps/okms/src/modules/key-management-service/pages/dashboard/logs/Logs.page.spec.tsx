@@ -35,7 +35,13 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   return { ...module, useFeatureAvailability: vi.fn() };
 });
 
-vi.mock('@ovh-ux/logs-to-customer/src/LogsToCustomer.module');
+vi.mock('@ovh-ux/logs-to-customer', async (importOriginal) => {
+  const module = await importOriginal<typeof import('@ovh-ux/logs-to-customer')>();
+  return {
+    ...module,
+    LogsToCustomerModule: vi.fn().mockReturnValue(<div>LogsToCustomerModule</div>),
+  };
+});
 
 describe('Logs page tests suite', () => {
   afterEach(() => vi.clearAllMocks());

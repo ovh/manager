@@ -1,5 +1,5 @@
-import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import { Service } from '../types/dbaas/logs';
+import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import { Service } from '@/data/types/dbaas/logs';
 
 /**
  * LIST log services infos
@@ -15,5 +15,9 @@ export const getLogServices = async () => {
 /**
  * GET log service infos
  */
-export const getLogService = async (serviceName: string) =>
-  v6.get<Service>(`/dbaas/logs/${serviceName}`);
+export const getLogService = async (serviceName: string): Promise<Service> => {
+  const { data } = await apiClient.v6.get<Service>(
+    `/dbaas/logs/${serviceName}`,
+  );
+  return data;
+};

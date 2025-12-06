@@ -1,3 +1,4 @@
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +10,7 @@ export interface IError {
 }
 
 export default function ApiError({ error, onRetry, testId }: Readonly<IError>) {
-  const { t } = useTranslation('error');
+  const { t } = useTranslation(NAMESPACES.ERROR);
 
   return (
     <div className="flex flex-col gap-2" data-testid={testId}>

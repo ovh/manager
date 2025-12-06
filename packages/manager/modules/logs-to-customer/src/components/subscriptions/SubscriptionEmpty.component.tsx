@@ -1,11 +1,12 @@
 import { OdsText, OdsCard } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import SubscriptionAddSubcription from './SubscriptionsAddSubscription';
-import KnowMoreLink from '../services/KnowMoreLink.component';
+import SubscriptionAddSubcription from '@/components/subscriptions/SubscriptionsAddSubscription';
+import KnowMoreLink from '@/components/services/KnowMoreLink.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const SubscriptionEmpty = () => {
-  const { t } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
 
   return (
     <OdsCard className="flex flex-col p-4">

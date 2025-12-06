@@ -5,11 +5,11 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TemporaryLogsLink } from '../types/dbaas/logs';
-import { getLogTailMessages, Tmessage } from '../api/logTailMessages';
-import { LogsContext } from '../../LogsToCustomer.context';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import { getLogTailMessages, Tmessage } from '@/data/api/logTailMessages';
+import { LogsContext } from '@/LogsToCustomer.context';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
 
 export const getLogTailMessageQueryKey = (
   logTailMessageUrl: TemporaryLogsLink['url'],

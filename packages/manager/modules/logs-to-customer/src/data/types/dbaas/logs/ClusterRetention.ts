@@ -1,4 +1,4 @@
-import { RetentionTypeEnum } from './RetentionTypeEnum';
+import { RetentionTypeEnum } from '@/data/types/dbaas/logs/RetentionTypeEnum';
 
 /** Cluster retention */
 export interface ClusterRetention {

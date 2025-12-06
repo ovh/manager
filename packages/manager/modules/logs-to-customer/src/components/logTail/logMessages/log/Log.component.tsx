@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Tmessage } from '../../../../data/api/logTailMessages';
-import { HighlightSearch } from './highligthSearch/HighlightSearch.component';
-import { LogLevel } from './logLevel/LogLevel.component';
-import { LogTimestamp } from './logTimestamp/LogTimestamp.component';
+import { Tmessage } from '@/data/api/logTailMessages';
+import { HighlightSearch } from '@/components/logTail/logMessages/log/highligthSearch/HighlightSearch.component';
+import { LogLevel } from '@/components/logTail/logMessages/log/logLevel/LogLevel.component';
+import { LogTimestamp } from '@/components/logTail/logMessages/log/logTimestamp/LogTimestamp.component';
 
 export const LogSeparator = () => {
   return <span className="text-slate-500"> | </span>;

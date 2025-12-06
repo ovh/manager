@@ -1,18 +1,29 @@
-import React, { createContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  createContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useTranslation } from 'react-i18next';
 
 import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
-import { useLogTailMessages } from '../../../data/hooks/useLogTailMessages';
-import { TemporaryLogsLink } from '../../../data/types/dbaas/logs';
-import useLogTrackingActions from '../../../hooks/useLogTrackingActions';
-import { useZoomedInOut } from '../../../hooks/useZoomedInOut';
-import { LogsActionEnum } from '../../../types/logsTracking';
-import { Log } from './log/Log.component';
+import { useLogTailMessages } from '@/data/hooks/useLogTailMessages';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { useZoomedInOut } from '@/hooks/useZoomedInOut';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { Log } from '@/components/logTail/logMessages/log/Log.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 interface ISearchContext {
   query?: string;
@@ -23,7 +34,9 @@ export const searchContext = createContext<ISearchContext>({
 });
 
 const BlinkingCursor = () => {
-  return <div className="w-2 h-4 bg-white animate-[cursor-blink_1s_step-end_infinite]" />;
+  return (
+    <div className="w-2 h-4 bg-white animate-[cursor-blink_1s_step-end_infinite]" />
+  );
 };
 
 interface ILogTailMessageUrl {
@@ -31,19 +44,27 @@ interface ILogTailMessageUrl {
 }
 
 export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
-  const { t } = useTranslation('logTail');
+  const { t } = useTranslation(NAMESPACES.LOG_TAIL);
   const parentRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [autoScroll, setAutoScroll] = useState(true);
   const { isZoomedIn, toggleZoom } = useZoomedInOut();
-  const clearSessionLogsAccess = useLogTrackingActions(LogsActionEnum.clear_session_logs_access);
+  const clearSessionLogsAccess = useLogTrackingActions(
+    LogsActionEnum.clear_session_logs_access,
+  );
   const { trackClick } = useOvhTracking();
-  const { messages, error, isPending, isPolling, togglePolling, clearLogs } =
-    useLogTailMessages(logTailMessageUrl);
+  const {
+    messages = [],
+    error,
+    isPending,
+    isPolling,
+    togglePolling,
+    clearLogs,
+  } = useLogTailMessages(logTailMessageUrl);
 
   const virtualizer = useVirtualizer({
-    count: messages?.length,
+    count: messages.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 80,
     paddingEnd: 80,
@@ -170,7 +191,10 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
                 ))}
               </searchContext.Provider>
               {error && (
-                <div className="text-red-400" data-testid="logTail-message-error">
+                <div
+                  className="text-red-400"
+                  data-testid="logTail-message-error"
+                >
                   {t('log_tail_error_get_logs')}
                 </div>
               )}

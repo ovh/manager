@@ -1,4 +1,4 @@
-import { LogSubscriptionResource } from './LogSubscriptionResource';
+import { LogSubscriptionResource } from '@/data/types/dbaas/logs/LogSubscriptionResource';
 
 /** Log subscription */
 export interface LogSubscription {

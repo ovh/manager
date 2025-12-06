@@ -1,5 +1,7 @@
+import path from 'path';
 import {
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -24,6 +26,13 @@ export default mergeConfig(
           'src/**/*.spec.ts',
           'src/**/*.spec.tsx',
         ],
+      },
+    },
+    resolve: {
+      dedupe: [...defaultDedupedDependencies, 'msw'],
+      alias: {
+        '@/public': path.resolve(__dirname, 'public'),
+        '@': path.resolve(__dirname, 'src'),
       },
     },
   }),

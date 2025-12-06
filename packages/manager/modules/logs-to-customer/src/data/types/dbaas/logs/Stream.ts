@@ -1,6 +1,6 @@
-import { StreamColdStorageCompressionEnum } from './StreamColdStorageCompressionEnum';
-import { StreamColdStorageContentEnum } from './StreamColdStorageContentEnum';
-import { StreamColdStorageTargetEnum } from './StreamColdStorageTargetEnum';
+import { StreamColdStorageCompressionEnum } from '@/data/types/dbaas/logs/StreamColdStorageCompressionEnum';
+import { StreamColdStorageContentEnum } from '@/data/types/dbaas/logs/StreamColdStorageContentEnum';
+import { StreamColdStorageTargetEnum } from '@/data/types/dbaas/logs/StreamColdStorageTargetEnum';
 
 /** Graylog stream */
 export interface Stream {

@@ -5,7 +5,8 @@ import {
   ODS_BADGE_COLOR,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { Stream } from '../../data/types/dbaas/logs';
+import { Stream } from '@/data/types/dbaas/logs';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export const DATA_STREAM_INDEXING_STATUS_TEST_ID =
   'data-stream-indexing-status-test-id';
@@ -20,7 +21,7 @@ const DataStreamIndexingStatus = ({
   size = 'md',
   ...props
 }: DataStreamIndexingProps) => {
-  const { t } = useTranslation('logStream');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAM);
 
   const label = indexingEnabled
     ? t('log_stream_indexing_active')
