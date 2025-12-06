@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 
-import { logger } from '@/utils/log-manager.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
 
 /**
  * Run a CLI command synchronously and stream output to the terminal.

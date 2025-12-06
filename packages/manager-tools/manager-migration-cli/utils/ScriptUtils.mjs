@@ -110,7 +110,7 @@ export const runMigration = ({
           `  - App name is missing or invalid: "${appName}"`,
           `  - App folder not found at: ${appPath}`,
           '',
-          `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${
+          `Usage: yarn manager-migration-cli ${commandLabel} --app <app-name> ${
             framework ? '[--framework <name>] ' : ''
           }${
             commandLabel.includes('tests-migrate') ? '--testType <unit|integration> ' : ''

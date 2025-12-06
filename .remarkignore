@@ -2,3 +2,4 @@ dist
 CHANGELOG.md
 packages/manager-tools/manager-forge-cli
 packages/manager-tools/manager-forge-cli/template
+packages/manager-tools/manager-cli-core

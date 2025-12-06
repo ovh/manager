@@ -3,7 +3,7 @@
  * @file Patch VSCode settings.json to enable ESLint Flat Config integration
  * with the Static Analysis Kit in an app-specific, non-intrusive way.
  *
- * This script is internally invoked by the CLI (`manager-cli ide-config patch`)
+ * This script is internally invoked by the CLI (`manager-migration-cli ide-config patch`)
  * and writes updated config files under `.ide-config/vscode/`.
  *
  * It avoids modifying developer-specific `.vscode` settings.

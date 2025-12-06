@@ -186,7 +186,7 @@ Each reference (`--app` or `--module`) may be:
 ### Binary
 
 ```bash
-manager-pm --type pnpm --action <action> [options] [-- <passthrough>]
+manager-pm --type pnpm --action <action> [options] [--<passthrough>]
 ```
 
 **Common flags**
@@ -223,8 +223,8 @@ yarn manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
 yarn manager-pm --type pnpm --action testCI  --filter=packages/manager/apps/docs... --parallel
 
 # Using raw passthrough
-yarn manager-pm --action buildCI -- --filter=@ovh-ux/manager-web --graph
-yarn manager-pm --action testCI  -- --filter=tag:unit --parallel
+yarn manager-pm --action buildCI --filter=@ovh-ux/manager-web --graph
+yarn manager-pm --action testCI --filter=tag:unit --parallel
 ```
 
 ### Global
@@ -235,8 +235,14 @@ yarn manager-pm --action full-test      # Test ALL apps
 yarn manager-pm --action full-lint      # Lint ALL apps
 yarn manager-pm --action start          # Interactive app starter (region/container prompt)
 yarn manager-pm --action docs           # Build @ovh-ux/manager-documentation docs
-yarn manager-pm --action cli -- …       # Passthrough to @ovh-ux/manager-cli (with merged workspaces)
+yarn manager-pm --action cli ...        # Passthrough to @ovh-ux/manager-migration-cli (with merged workspaces)
 yarn manager-pm --action workspace --mode prepare|remove   # Prepare/Clear merged root workspaces
+```
+
+Examples:
+
+```bash
+yarn manager-pm --action cli migrations-status --type all
 ```
 
 ### Publish & Release (delegates to repo scripts)

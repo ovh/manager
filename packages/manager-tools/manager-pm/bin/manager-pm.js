@@ -4,7 +4,7 @@
  * @fileoverview manager-pm CLI entrypoint.
  *
  * Provides a simple argument parser and dispatcher for actions like
- * build, test, lint, CI tasks, docs, manager-cli passthrough,
+ * build, test, lint, CI tasks, docs, manager-migration-cli passthrough,
  * workspace management, publishing, release, and lifecycle hooks.
  * Supports forwarding arbitrary Turbo CLI flags.
  */
@@ -141,7 +141,7 @@ ACTIONS
     full-lint [--fix ...]                Lint ALL (supports --fix and other ESLint flags)
     start                                Launch interactive app starter
     docs                                 Build documentation workspace
-    cli                                  Run manager-cli (everything after "cli" is forwarded)
+    cli                                  Run manager-migration-cli (everything after "cli" is forwarded)
     workspace --mode <prepare|remove>    Prepare or clear root workspaces
 
   Publishing & Release:
@@ -215,7 +215,7 @@ EXAMPLES
   manager-pm --action workspace --mode prepare
   manager-pm --action workspace --mode remove
 
-  # manager-cli passthrough
+  # manager-migration-cli passthrough
   manager-pm --type pnpm --action cli -- migrations-status --type all
 
   # Reports
@@ -241,7 +241,7 @@ NOTES
   • Lint actions support --fix, --quiet, and other ESLint-compatible flags.
   • In dry release mode, the script safeguards your working tree: no tags/commits/push,
     no persistent file changes (package.json/CHANGELOG restored).
-  • For "cli" action, everything after the word "cli" is forwarded to manager-cli verbatim.
+  • For "cli" action, everything after the word "cli" is forwarded to manager-migration-cli verbatim.
   • For "lerna" action, everything after the word "lerna" is forwarded to Lerna verbatim.
 `;
 
@@ -426,11 +426,11 @@ const actions = {
     return createRelease(normalized);
   },
   async cli() {
-    // Everything after "cli" is forwarded directly to manager-cli
+    // Everything after "cli" is forwarded directly to manager-migration-cli
     const cliIndex = process.argv.indexOf('cli');
     let extraArgs = cliIndex !== -1 ? process.argv.slice(cliIndex + 1) : [];
 
-    // Strip --silent before passing to manager-cli
+    // Strip --silent before passing to manager-migration-cli
     if (extraArgs.includes('--silent')) {
       extraArgs = extraArgs.filter((arg) => arg !== '--silent');
       setLoggerMode('silent');
