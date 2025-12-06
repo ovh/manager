@@ -2,6 +2,7 @@ import path from 'path';
 
 import {
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -11,7 +12,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: ['./src/setupTests.ts'],
+      setupFiles: ['./src/setupTests.tsx'],
       server: {
         deps: {
           inline: [/@ovhcloud\/ods-react\/.*/i],
@@ -32,6 +33,7 @@ export default mergeConfig(
       },
     },
     resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
