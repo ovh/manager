@@ -2,7 +2,10 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { UseInfiniteQueryOptions, useInfiniteQuery } from '@tanstack/react-query';
+import {
+  UseInfiniteQueryOptions,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
 
 import {
   getManagedCmsResourceWebsites,
@@ -35,18 +38,33 @@ type UseManagedWordpressWebsitesParams = Omit<
   disableRefetchInterval?: boolean;
 };
 
-export const useManagedWordpressWebsites = (props: UseManagedWordpressWebsitesParams = {}) => {
-  const { defaultFQDN, shouldFetchAll, disableRefetchInterval, ...options } = props;
+export const useManagedWordpressWebsites = (
+  props: UseManagedWordpressWebsitesParams = {},
+) => {
+  const {
+    defaultFQDN,
+    shouldFetchAll,
+    disableRefetchInterval,
+    ...options
+  } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const { serviceName } = useParams();
   const searchParams = buildURLSearchParams({
     defaultFQDN,
   });
-  const query = useInfiniteQuery<WebsitesResponse, Error, ManagedWordpressWebsites[]>({
+  const query = useInfiniteQuery<
+    WebsitesResponse,
+    Error,
+    ManagedWordpressWebsites[]
+  >({
     ...options,
     initialPageParam: null,
 
-    queryKey: getManagedCmsResourceWebsitesQueryKey(serviceName, searchParams, allPages),
+    queryKey: getManagedCmsResourceWebsitesQueryKey(
+      serviceName,
+      searchParams,
+      allPages,
+    ),
     queryFn: ({ pageParam }) =>
       getManagedCmsResourceWebsites({
         serviceName: serviceName,
@@ -58,8 +76,9 @@ export const useManagedWordpressWebsites = (props: UseManagedWordpressWebsitesPa
       typeof props.enabled === 'function'
         ? props.enabled
         : typeof props.enabled !== 'boolean' || props.enabled,
-    getNextPageParam: (lastPage) => lastPage.cursorNext,
-    select: (data) => data?.pages.flatMap((page: WebsitesResponse) => page.data) ?? [],
+    getNextPageParam: (lastPage) => lastPage?.cursorNext,
+    select: (data) =>
+      data?.pages.flatMap((page: WebsitesResponse) => page.data) ?? [],
     refetchInterval: disableRefetchInterval ? false : DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
   });

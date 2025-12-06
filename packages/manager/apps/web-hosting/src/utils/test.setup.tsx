@@ -19,11 +19,14 @@ import {
 } from '@/data/__mocks__/managedWordpress/ressource';
 import { managedWordpressRerefenceSupportedVersionMock } from '@/data/__mocks__/managedWordpress/supportedPhpVersion';
 import { managedWordpressWebsitesTaskMock } from '@/data/__mocks__/managedWordpress/tasks';
+import { IcebergFetchResultV2 } from '@ovh-ux/manager-core-api';
+
 import {
   managedWordpressWebsitesDeleteMock,
   managedWordpressWebsitesDetailsMock,
   managedWordpressWebsitesMock,
 } from '@/data/__mocks__/managedWordpress/website';
+import { ManagedWordpressWebsites } from '@/data/types/product/managedWordpress/website';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -77,7 +80,9 @@ vi.mock('axios', async (importActual) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
-  const actual = await importActual<typeof import('@ovh-ux/manager-react-shell-client')>();
+  const actual = await importActual<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
   return {
     ...actual,
     ShellContext: React.createContext(mocksHostingUrl),
@@ -102,7 +107,9 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   return {
-    ...(await importOriginal<typeof import('@ovh-ux/manager-react-components')>()),
+    ...(await importOriginal<
+      typeof import('@ovh-ux/manager-react-components')
+    >()),
     useNotifications: () => ({
       addSuccess: vi.fn(),
       addWarning: vi.fn(),
@@ -139,7 +146,7 @@ vi.mock('react-router-dom', async (importActual) => {
         ({
           serviceName: 'serviceName',
           domain: 'domain',
-        }) as Record<string, string | undefined>,
+        } as Record<string, string | undefined>),
     ),
   };
 });
@@ -159,7 +166,9 @@ vi.mock('@/data/api/index', () => ({
     cursorNext: null,
   }),
   getWebHostingAttachedDomainQueryKey: vi.fn(),
-  getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
+  getWebHostingAttachedDomainDigStatus: vi.fn(() =>
+    Promise.resolve(attachedDomainDigStatusMock),
+  ),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
   getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
 }));
@@ -181,31 +190,51 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useGetHostingService: vi.fn(),
 }));
 
-vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (importActual) => {
-  const actual =
-    await importActual<typeof import('@/data/hooks/webHostingDashboard/useWebHostingDashboard')>();
-  return {
-    ...actual,
-    useGetServiceInfos: vi.fn(() => ({
-      data: serviceInfosMock,
-      isSuccess: true,
-      isLoading: false,
-      isError: false,
-      status: 'success',
-    })),
-  };
-});
+vi.mock(
+  '@/data/hooks/webHostingDashboard/useWebHostingDashboard',
+  async (importActual) => {
+    const actual = await importActual<
+      typeof import('@/data/hooks/webHostingDashboard/useWebHostingDashboard')
+    >();
+    return {
+      ...actual,
+      useGetServiceInfos: vi.fn(() => ({
+        data: serviceInfosMock,
+        isSuccess: true,
+        isLoading: false,
+        isError: false,
+        status: 'success',
+      })),
+    };
+  },
+);
 
 vi.mock('@/data/api/managedWordpress', () => ({
-  getManagedCmsResource: vi.fn(() => Promise.resolve(managedWordpressResourceMock)),
-  getManagedCmsResourceDetails: vi.fn(() => Promise.resolve(managedWordpressResourceDetailsMock)),
-  getManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
-  getAllManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
+  getManagedCmsResource: vi.fn(() =>
+    Promise.resolve(managedWordpressResourceMock),
+  ),
+  getManagedCmsResourceDetails: vi.fn(() =>
+    Promise.resolve(managedWordpressResourceDetailsMock),
+  ),
+  getManagedCmsResourceWebsites: vi.fn(() =>
+    Promise.resolve({
+      data: managedWordpressWebsitesMock,
+      cursorNext: undefined,
+      status: 200,
+    } as IcebergFetchResultV2<ManagedWordpressWebsites>),
+  ),
+  getAllManagedCmsResourceWebsites: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesMock),
+  ),
   getManagedCmsResourceWebsiteDetails: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesDetailsMock),
   ),
-  deleteManagedCmsResourceWebsite: vi.fn(() => Promise.resolve(managedWordpressWebsitesDeleteMock)),
-  getManagedCmsResourceWebsiteTasks: vi.fn(() => Promise.resolve(managedWordpressWebsitesTaskMock)),
+  deleteManagedCmsResourceWebsite: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesDeleteMock),
+  ),
+  getManagedCmsResourceWebsiteTasks: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesTaskMock),
+  ),
   getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
     Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
   ),

@@ -23,7 +23,8 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     currentTasks: [
       {
         id: '866f8418-9e30-456b-8311-bc465aaf0b7b',
-        link: '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
+        link:
+          '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
         status: TaskStatus.RUNNING,
         type: 'WEBSITE_CREATE',
       },
@@ -61,7 +62,8 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     currentTasks: [
       {
         id: '866f8418-9e30-456b-8311-bc465aaf0b7b',
-        link: '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
+        link:
+          '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
         status: TaskStatus.RUNNING,
         type: 'WEBSITE_CREATE',
       },
@@ -145,7 +147,8 @@ export const managedWordpressWebsitesDetailsMock: ManagedWordpressWebsiteDetails
   currentTasks: [
     {
       id: '663d955c-9063-46d7-bd4c-e92c3c8d50af',
-      link: '/v2/managedCMS/resource/ddb77eb4-3316-420b-8cee-f02aa3094963/website/88f3766f-7951-45fc-8336-fea9418c14f4',
+      link:
+        '/v2/managedCMS/resource/ddb77eb4-3316-420b-8cee-f02aa3094963/website/88f3766f-7951-45fc-8336-fea9418c14f4',
       status: Status.RUNNING,
       type: 'WEBSITE_IMPORT',
     },
@@ -166,7 +169,8 @@ export const managedWordpressWebsitesDeleteMock: ManagedWordpressWebsiteDetails 
   currentTasks: [
     {
       id: '866f8418-9e30-456b-8311-bc465aaf0b7b',
-      link: '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/214daed5-19d9-45ea-8d2c-5281b1f7a943',
+      link:
+        '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/214daed5-19d9-45ea-8d2c-5281b1f7a943',
       status: Status.PENDING,
       type: 'WEBSITE_DELETE',
     },
