@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import {
   APPLICATION_TEMPLATE_DIR,
   MANAGER_APPLICATIONS_DIR,
@@ -13,7 +15,6 @@ import {
   ensureDirectory,
 } from '@/helpers/manager-forge-template-helper.js';
 import type { Answers } from '@/types/PromptType.js';
-import { logger } from '@/utils/log-manager.js';
 
 /**
  * Generates a new full forge application using templates,
