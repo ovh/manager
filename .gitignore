@@ -29,3 +29,4 @@ static-dynamic-quality-reports/**/**
 **/.type-coverage/result.json
 target
 packages/manager-tools/manager-muk-cli/target/**/**/**
+analysis/**

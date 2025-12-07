@@ -14,7 +14,8 @@
         "^test",
         "@ovh-ux/manager-static-analysis-kit#build"
       ],
-      "outputs": []
+      "outputs": [],
+      "outputLogs": "errors-only"
     },
     "dev": {
       "dependsOn": ["^dev"],

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": "",
+      "project": ""
+    },
+    "packages/manager/*": {
+      "project": "**/*.ts*"
+    }
+  },
+  "ignoreFiles": [
+    "**/__mocks__/**",
+    "**/__tests__/**",
+    "**/mocks/**",
+    "**/docs/**",
+    "**/index.**",
+    "**/rollup**",
+    "**/vitest**",
+    "**/postcss**"
+  ],
+  "ignoreWorkspaces": [
+    "packages/manager-tools",
+    "packages/manager-wiki",
+    "packages/manager-ui-kit"
+  ]
+}
