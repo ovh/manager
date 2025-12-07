@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,10 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
+import { deleteZimbraPlatformRedirection, getZimbraPlatformRedirectionsQueryKey } from '@/data/api';
+import { useRedirections } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
+import queryClient from '@/queryClient';
 import {
   CANCEL,
   CONFIRM,
@@ -30,17 +33,43 @@ export const DeleteOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['redirections', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const location = useLocation();
   const { addSuccess, addError } = useNotifications();
-  const { accountId, redirectionId } = useParams();
+  const { platformId, accountId, redirectionId } = useParams();
+  const { data: allRedirections, isLoading } = useRedirections({
+    enabled: !!redirectionId,
+  });
+
+  const redirections = useMemo(() => {
+    let {
+      selectedRedirections,
+    }: {
+      selectedRedirections: Array<{ id: string; from: string; to: string }>;
+    } = location.state || {};
+    const redirection = allRedirections?.find((r) => r.id === redirectionId);
+    if (redirection && !selectedRedirections) {
+      selectedRedirections = [
+        {
+          id: redirection.id,
+          from: redirection?.currentState?.source,
+          to: redirection?.currentState?.destination,
+        },
+      ];
+    }
+    return selectedRedirections ?? [];
+  }, [location.state, redirectionId, allRedirections]);
 
   const trackingName = accountId ? EMAIL_ACCOUNT_DELETE_REDIRECTION : DELETE_REDIRECTION;
 
-  const goBackUrl = useGenerateUrl('../..', 'path');
-  const onClose = () => navigate(goBackUrl);
+  const goBackUrl = useGenerateUrl('..', 'path');
+  const onClose = (clear: boolean) =>
+    navigate(goBackUrl, { state: { clearSelectedRedirections: clear } });
 
-  const { mutate: deleteRedirection, isPending: isSending } = useMutation({
-    mutationFn: (id: string) => {
-      return Promise.resolve(id);
+  const { mutate: deleteRedirections, isPending: isSending } = useMutation({
+    mutationFn: () => {
+      return Promise.all(
+        redirections.map((r) => deleteZimbraPlatformRedirection(platformId, r.id)),
+      );
     },
     onSuccess: () => {
       trackPage({
@@ -69,11 +98,11 @@ export const DeleteOrganizationModal = () => {
       );
     },
     onSettled: () => {
-      /* queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: getZimbraPlatformRedirectionsQueryKey(platformId),
-      }); */
+      });
 
-      onClose();
+      onClose(true);
     },
   });
 
@@ -84,7 +113,7 @@ export const DeleteOrganizationModal = () => {
       actionType: 'action',
       actions: [trackingName, CONFIRM],
     });
-    deleteRedirection(redirectionId);
+    deleteRedirections();
   };
 
   const handleCancelClick = () => {
@@ -94,41 +123,46 @@ export const DeleteOrganizationModal = () => {
       actionType: 'action',
       actions: [trackingName, CANCEL],
     });
-    onClose();
+    onClose(false);
   };
 
   return (
     <Modal
       type={ODS_MODAL_COLOR.critical}
-      heading={t('common:delete_redirection')}
+      heading={redirectionId ? t('common:delete_redirection') : t('common:delete_redirections')}
       isOpen
-      onDismiss={onClose}
+      onDismiss={() => onClose(false)}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       onPrimaryButtonClick={handleConfirmClick}
-      isPrimaryButtonLoading={isSending}
+      isPrimaryButtonLoading={isSending || isLoading}
       primaryButtonTestId="delete-btn"
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       secondaryButtonTestId="cancel-btn"
     >
       <>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
-          className="mt-5 mb-5"
-          data-testid="modal-content"
-        >
-          {t('zimbra_redirections_delete_modal_content')}
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="my-5" data-testid="modal-content">
+          {redirectionId
+            ? t('zimbra_redirections_delete_modal_content')
+            : t('zimbra_redirections_delete_selected_modal_content')}
         </OdsText>
+        <div className="flex flex-col">
+          {redirections.map((item) => (
+            <div className="flex gap-6" key={item?.id}>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
+                {t('zimbra_redirections_from')}
+                {': '}
+                {item?.from}
+              </OdsText>
 
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
-          {t('zimbra_redirections_from')}
-          {' :'}
-        </OdsText>
-
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
-          {t('zimbra_redirections_to')}
-          {' :'}
-        </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
+                {t('zimbra_redirections_to')}
+                {': '}
+                {item?.to}
+              </OdsText>
+            </div>
+          ))}
+        </div>
       </>
     </Modal>
   );
