@@ -27,4 +27,15 @@ describe('TileError Component', () => {
       expect(refetchMock).toHaveBeenCalledTimes(1);
     });
   });
+
+  it('should have a valid html', () => {
+    const refetchMock = vi.fn();
+
+    const { container } = render(
+      <TileError message="Error message details" refetch={refetchMock} />,
+    );
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

@@ -3,6 +3,7 @@ import {
   shouldAccessOrganizationSearch,
   shouldEnableSIRENDisplay,
   getSirenFromSiret,
+  isIndividualLegalForm,
 } from './flowHelper';
 
 describe('shouldAccessOrganizationSearch', () => {
@@ -61,5 +62,27 @@ describe('getSirenFromSiret', () => {
   it('returns null if the SIRET or pattern is missing', () => {
     expect(getSirenFromSiret(undefined, pattern)).toBeNull();
     expect(getSirenFromSiret('12345678912345', null)).toBeNull();
+  });
+});
+
+describe('isIndividualLegalForm', () => {
+  it('should return true when legalForm is "individual"', () => {
+    expect(isIndividualLegalForm('individual')).toBe(true);
+  });
+
+  it('should return false when legalForm is "association"', () => {
+    expect(isIndividualLegalForm('association')).toBe(false);
+  });
+
+  it('should return false when legalForm is "administration"', () => {
+    expect(isIndividualLegalForm('administration')).toBe(false);
+  });
+
+  it('should return false when legalForm is "corporation"', () => {
+    expect(isIndividualLegalForm('corporation')).toBe(false);
+  });
+
+  it('should return false when legalForm is undefined', () => {
+    expect(isIndividualLegalForm(undefined)).toBe(false);
   });
 });

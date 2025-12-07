@@ -7,5 +7,8 @@
   "dashboard_users_change_password_email-edit-title": "Si vous ne renseignez pas de mot de passe, celui-ci sera généré aléatoirement et envoyé par email à l'adresse précisée",
   "dashboard_users_change_password_email-edit": "Envoyer par email",
   "dashboard_users_change_password_message_error": "Une erreur s'est produite lors de la récupération des informations.",
-  "dashboard_users_change_password_message_success": "Votre changement de mot de passe a bien été pris en compte."
+  "dashboard_users_change_password_message_success": "Votre changement de mot de passe a bien été pris en compte.",
+  "dashboard_users_change_password_helper3": "Ne doit pas contenir l'identifiant",
+  "dashboard_users_change_password_generate_password_tooltip": "Générer un mot de passe",
+  "dashboard_users_change_password_generated_password_tooltip": "Mot de passe copié dans le presse-papier !"
 }

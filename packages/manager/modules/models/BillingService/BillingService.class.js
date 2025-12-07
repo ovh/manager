@@ -3,6 +3,7 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isNull from 'lodash/isNull';
 import snakeCase from 'lodash/snakeCase';
+import punycode from 'punycode';
 import 'moment';
 
 import {
@@ -15,6 +16,10 @@ export default class BillingService {
   constructor(service) {
     Object.assign(this, service);
 
+    this.serviceIdUnicode =
+      typeof service.serviceId === 'string'
+        ? punycode.toUnicode(service.serviceId)
+        : service.serviceId;
     this.id = service.id || service.serviceId;
     this.expirationDate = moment(this.expiration);
     this.creationDate = moment(this.creation);

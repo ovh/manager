@@ -8,14 +8,17 @@ import { ShellContext, TrackingContextParams } from '../ShellContext';
 
 export const getLevel2TrackingParam = (universe: string) => {
   const result = Object.keys(AT_INTERNET_LEVEL2).filter((element) =>
-    (AT_INTERNET_LEVEL2?.[element]?.toLowerCase?.()?.indexOf?.(universe.toLowerCase()) || 0) > -1
+    (AT_INTERNET_LEVEL2?.[element]
+      ?.toLowerCase?.()
+      ?.indexOf?.(universe.toLowerCase()) || 0) > -1
       ? element
       : false,
   );
   return result ? result[0] : '0';
 };
 
-export const sanitizeLabel = (label: string) => label.replace(/\s/g, '_').replace(/:/g, '');
+export const sanitizeLabel = (label: string) =>
+  label.replace(/\s/g, '_').replace(/:/g, '');
 
 export enum PageType {
   onboarding = 'onboarding',
@@ -49,9 +52,12 @@ export enum ButtonType {
   tab = 'go-to-tab',
 }
 
+type AdditionalData = Record<string, string>;
+
 export type TrackingPageParams = {
   pageType?: PageType;
   pageName?: string;
+  additionalData?: AdditionalData;
 };
 
 export const getPageProps = ({
@@ -76,10 +82,13 @@ export const getPageProps = ({
 });
 
 const actionTypes = ['action', 'navigation', 'download', 'exit'] as const;
-export type ActionType = (typeof actionTypes)[number];
+export type ActionType = typeof actionTypes[number];
 
-export const isActionType = (maybeActionType: unknown): maybeActionType is ActionType =>
-  typeof maybeActionType === 'string' && new Set<string>(actionTypes).has(maybeActionType);
+export const isActionType = (
+  maybeActionType: unknown,
+): maybeActionType is ActionType =>
+  typeof maybeActionType === 'string' &&
+  new Set<string>(actionTypes).has(maybeActionType);
 
 export type TrackingClickParams = {
   location?: PageLocation;
@@ -145,31 +154,40 @@ export const useOvhTracking = () => {
   const { shell, tracking, environment } = React.useContext(ShellContext);
   const region = environment?.getRegion();
   const level2 =
-    (region && (tracking?.level2Config as RegionsTrackingConfig)?.[region]?.config?.level2) ||
+    (region &&
+      (tracking?.level2Config as RegionsTrackingConfig)?.[region]?.config
+        ?.level2) ||
     tracking?.level2;
 
   return {
-    trackCurrentPage: () => {
+    trackCurrentPage: (additionalData?: AdditionalData) => {
       if (tracking && pageTracking) {
-        shell?.tracking.trackPage(
-          getPageProps({
+        shell?.tracking.trackPage({
+          ...getPageProps({
             ...tracking,
             ...pageTracking,
             level2,
           }),
-        );
+          ...(additionalData && { ...additionalData }),
+        });
       }
     },
     trackPage: (params: TrackingPageParams) => {
-      shell?.tracking.trackPage(
-        getPageProps({
+      shell?.tracking.trackPage({
+        ...getPageProps({
           ...tracking,
           ...params,
           level2,
         }),
-      );
+        ...(params.additionalData && { ...params.additionalData }),
+      });
     },
-    trackClick: ({ location, buttonType, actions, actionType }: TrackingClickParams) => {
+    trackClick: ({
+      location,
+      buttonType,
+      actions,
+      actionType,
+    }: TrackingClickParams) => {
       shell?.tracking.trackClick(
         getClickProps({
           ...tracking,

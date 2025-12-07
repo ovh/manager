@@ -68,10 +68,7 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
 
   if (!service || isLoading) {
     return (
-      <OdsSkeleton
-        data-testid="billing-state-loading"
-        className="[&::part(skeleton)]:max-w-[10rem]"
-      />
+      <OdsSkeleton data-testid="billing-state-loading" className="[&::part(skeleton)]:max-w-40" />
     );
   }
 
@@ -87,7 +84,7 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
       />
       {BILLING_STATE_TOOLTIP[service.state] && (
         <OdsTooltip withArrow position="bottom" triggerId={`service-${service.id}`}>
-          <div className="flex flex-col text-center gap-4">
+          <div className="flex flex-col gap-4 text-center">
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t(BILLING_STATE_TOOLTIP[service.state])}
             </OdsText>
