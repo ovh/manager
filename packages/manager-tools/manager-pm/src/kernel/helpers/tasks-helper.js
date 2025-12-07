@@ -335,20 +335,20 @@ export async function buildDocs() {
 }
 
 /**
- * Run the manager-cli workspace command.
+ * Run the manager-migration-cli workspace command.
  *
- * @param {string[]} [options=[]] - CLI args forwarded to manager-cli.
+ * @param {string[]} [options=[]] - CLI args forwarded to manager-migration-cli.
  * @returns {Promise<void>}
  * @example
  * await runManagerCli(['--migrations-status']);
  */
 export async function runManagerCli(options = []) {
   return withWorkspaces(() =>
-    runTaskFromRoot('manager-cli', 'yarn', [
+    runTaskFromRoot('manager-migration-cli', 'yarn', [
       'workspace',
-      '@ovh-ux/manager-cli',
+      '@ovh-ux/manager-migration-cli',
       'run',
-      'manager-cli',
+      'manager-migration-cli',
       ...options,
     ]),
   );

@@ -1,6 +1,6 @@
-# 🛠️ Manager CLI — OVH Manager Monorepo Automation Toolkit
+# 🛠️ Manager Migration CLI — OVH Manager Monorepo Automation Toolkit
 
-The `@ovh-ux/manager-cli` is a developer productivity tool built to assist in automating repetitive migration, transformation, and verification tasks across µ-applications in the OVH Manager monorepo.
+The `@ovh-ux/manager-migration-cli` is a developer productivity tool built to assist in automating repetitive migration, transformation, and verification tasks across µ-applications in the OVH Manager monorepo.
 
 ---
 
@@ -8,7 +8,7 @@ The `@ovh-ux/manager-cli` is a developer productivity tool built to assist in au
 
 ```json
 {
-  "name": "@ovh-ux/manager-cli",
+  "name": "@ovh-ux/manager-migration-cli",
   "description": "Manager CLI automation packages",
   "license": "BSD-3-Clause"
 }
@@ -31,33 +31,33 @@ The `@ovh-ux/manager-cli` is a developer productivity tool built to assist in au
 ## 📘 Usage
 
 ```bash
-yarn manager-cli <command> [--app <app-name>] [--testType <unit|integration>] [--framework <jest|vitest>] [--dry-run] [--type <routes|tests|swc>] [--format <json|html>]
+yarn manager-migration-cli <command> [--app <app-name>] [--testType <unit|integration>] [--framework <jest|vitest>] [--dry-run] [--type <routes|tests|swc>] [--format <json|html>]
 ```
 
 ### Help and App Listing
 
 ```bash
-yarn manager-cli --help     # Show help & examples
-yarn manager-cli --list     # List available apps in packages/manager/apps
+yarn manager-migration-cli --help     # Show help & examples
+yarn manager-migration-cli --list     # List available apps in packages/manager/apps
 ```
 
 ### Example Commands
 
 ```bash
 # Migrate routes in "zimbra" app
-yarn manager-cli routes-migrate --app zimbra
+yarn manager-migration-cli routes-migrate --app zimbra
 
 # Run test config migration for unit tests
-yarn manager-cli tests-migrate --app zimbra --testType unit
+yarn manager-migration-cli tests-migrate --app zimbra --testType unit
 
 # Run static analysis migration (ESLint & TS)
-yarn manager-cli static-analysis-migrate --app zimbra
+yarn manager-migration-cli static-analysis-migrate --app zimbra
 
 # Preview without changing files
-yarn manager-cli routes-migrate --app zimbra --dry-run
+yarn manager-migration-cli routes-migrate --app zimbra --dry-run
 
 # Get full status report
-yarn manager-cli migrations-status --type all --format html
+yarn manager-migration-cli migrations-status --type all --format html
 ```
 
 ---
@@ -68,7 +68,7 @@ The CLI delegates to local scripts:
 
 ```json
 "scripts": {
-  "manager-cli": "node ./manager-cli.mjs",
+  "manager-migration-cli": "node ./manager-migration-cli.mjs",
   "routes-migrate": "node ./routes-migrate/json-to-component-route-migration.mjs",
   "tests-migrate": "node ./tests-migrate/common-tests-config-migration.mjs",
   "duplicated-translations": "node ./translations-checker/check-duplicated-translations.mjs",
@@ -90,7 +90,7 @@ packages/manager/apps/
 Use:
 
 ```bash
-yarn manager-cli --list
+yarn manager-migration-cli --list
 ```
 
 To list all detected µ-apps.

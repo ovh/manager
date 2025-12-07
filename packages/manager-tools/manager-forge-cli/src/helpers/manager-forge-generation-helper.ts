@@ -2,13 +2,14 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import {
   APPLICATIONS_FOLDER_PATH,
   IGNORE_TARGETS,
   MODULES_FOLDER_PATH,
 } from '@/configs/manager-forge-path-config.js';
 import { CaseStyle, GeneratorOptions } from '@/types/GenerationType.js';
-import { logger } from '@/utils/log-manager.js';
 
 /**
  * Ensures that a given relative path (app/module) is added
