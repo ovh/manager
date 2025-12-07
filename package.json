@@ -14,6 +14,7 @@
     "clean:deep": "node ./packages/manager-tools/manager-pm/src/manager-pm-deep-clean.js",
     "clean:dist": "rimraf \"packages/**/dist\"",
     "commit": "node scripts/commit.js",
+    "depgraph:html": "depcruise -T dot packages/manager | dot -T svg | depcruise-wrap-stream-in-html > dependencygraph.html",
     "dev": "turbo run dev",
     "dev:watch": "turbo run dev:watch",
     "format": "run-p format:*",
