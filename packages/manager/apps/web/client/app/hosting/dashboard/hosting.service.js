@@ -13,7 +13,7 @@ import union from 'lodash/union';
 {
   const hostingCache = 'UNIVERS_WEB_HOSTING';
   const passwordConditions = {
-    min: 8,
+    min: 9,
     max: 30,
   };
 

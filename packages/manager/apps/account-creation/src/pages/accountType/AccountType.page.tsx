@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   OdsRadio,
   OdsFormField,
@@ -24,6 +24,7 @@ export default function AccountType() {
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const navigate = useNavigate();
+  const [ searchParams ] = useSearchParams();
   const { ovhSubsidiary, country, legalForm, setLegalForm } = useUserContext();
   const { data: rule, isLoading } = useLegalFormRules({
     ovhSubsidiary,
@@ -35,9 +36,9 @@ export default function AccountType() {
     if (!legalForm) {
       setLegalFormError(true);
     } else if (shouldAccessOrganizationSearch(country, legalForm)) {
-      navigate(urls.company);
+      navigate(`${urls.company}?${searchParams.toString()}`);
     } else {
-      navigate(urls.accountDetails);
+      navigate(`${urls.accountDetails}?${searchParams.toString()}`);
     }
   }, [legalForm, country]);
 

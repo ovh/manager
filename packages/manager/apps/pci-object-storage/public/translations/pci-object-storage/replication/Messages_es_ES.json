@@ -73,5 +73,6 @@
   "noAvailableDestinationContainersAlert": "Para usar la replicación asincrónica, necesita otro contenedor con el «versioning» habilitado.",
   "replicationRequiresVersioningAlert": "Para usar la replicación asincrónica, el control de versiones debe estar habilitado.",
   "destinationFieldLabel": "Contenedor de destino",
-  "replicationButtonCancel": "Cancelar"
+  "replicationButtonCancel": "Cancelar",
+  "disabledClassDestinationHelper": "Seleccione un contenedor de destino para activar esta opción"
 }

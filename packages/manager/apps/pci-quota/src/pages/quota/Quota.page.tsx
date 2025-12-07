@@ -5,7 +5,7 @@ import {
   useMe,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
@@ -32,6 +32,7 @@ import {
   RESTRICTED_CORES,
   RESTRICTED_INSTANCES,
   RESTRICTED_RAM,
+  SUPPORT_INCREASE_QUOTA,
   SUPPORT_LINK,
 } from '@/constants';
 import { toggleManualQuota, unleash } from '@/api/data/project';
@@ -48,6 +49,8 @@ export default function QuotaPage(): JSX.Element {
   const { t } = useTranslation(['regions', 'quotas']);
   const { projectId } = useParams();
   const columns = useDatagridColumn();
+
+  const supportHref = useHref('./increase/contact-support');
 
   const { data: project } = useProject(projectId);
 
@@ -162,6 +165,11 @@ export default function QuotaPage(): JSX.Element {
     },
   };
 
+  const increaseQuotaSupport =
+    SUPPORT_INCREASE_QUOTA[
+      me?.ovhSubsidiary as keyof typeof SUPPORT_INCREASE_QUOTA
+    ] ?? SUPPORT_INCREASE_QUOTA.DEFAULT;
+
   useEffect(() => {
     if (project) {
       setManualQuotaIsActive(!project.manualQuota);
@@ -221,68 +229,57 @@ export default function QuotaPage(): JSX.Element {
             <OdsText preset="heading-6">
               {t('quotas:pci_projects_project_quota_protect_explain')}
             </OdsText>
-            <div className="mt-6">
+            <div className="mt-4">
               <OdsText preset="paragraph">
-                {t('pci_projects_project_quota_protect_more', { ns: 'quotas' })}
+                {t('pci_projects_project_quota_limit_warning', {
+                  ns: 'quotas',
+                })}
               </OdsText>
             </div>
           </div>
           {me?.ovhSubsidiary !== 'US' ? (
             <div className="mt-4">
-              {quotas?.length > 0 && (
-                <OdsButton
-                  size="sm"
-                  label={`${t(
-                    'quotas:pci_projects_project_quota_protect_contact_support',
-                  )}`}
-                  onClick={() => navigate('./increase/contact-support')}
-                />
-              )}
-              {quotas?.length > 0 && serviceOptions?.length > 0 && (
-                <OdsButton
-                  className="ml-4"
-                  size="sm"
-                  onClick={() => navigate('./increase/buy-credit')}
-                  label={`${t(
-                    'quotas:pci_projects_project_quota_protect_more_btn',
-                  )}`}
-                />
-              )}
-              {(!quotas || quotas.length === 0) && (
-                <OdsButton
-                  className="ml-4"
-                  size="sm"
+              {quotas?.length > 0 &&
+                serviceOptions &&
+                serviceOptions.length > 0 && (
+                  <OdsButton
+                    className="mb-4"
+                    size="sm"
+                    onClick={() => navigate('./increase/buy-credit')}
+                    label={t(
+                      'quotas:pci_projects_project_quota_protect_more_btn',
+                    )}
+                  />
+                )}
+              <div className="flex gap-x-8">
+                <OdsLink
+                  href={increaseQuotaSupport}
+                  label={t('quotas:pci_projects_project_quota_help_cta')}
                   icon="external-link"
-                  iconAlignment="right"
-                  label={`${t(
-                    'quotas:pci_projects_project_quota_protect_more_btn',
-                  )}`}
+                  target="_blank"
                 />
-              )}
+                {quotas?.length > 0 && (
+                  <OdsLink
+                    className="visited:text-[var(--ods-color-primary-500)]"
+                    href={supportHref}
+                    label={t(
+                      'quotas:pci_projects_project_quota_protect_contact_support',
+                    )}
+                    icon="arrow-right"
+                  />
+                )}
+              </div>
             </div>
           ) : (
             <div className="mt-4">
-              {(!quotas || quotas.length === 0) && (
-                <OdsButton
-                  size="sm"
-                  label={`${t(
-                    'quotas:pci_projects_project_quota_protect_more_btn',
-                  )}`}
-                  isDisabled={true}
-                />
-              )}
-              {quotas?.length > 0 && (
-                <OdsButton
-                  className="ml-4"
-                  size="sm"
-                  label={`${t(
-                    'quotas:pci_projects_project_quota_protect_more_btn',
-                  )}`}
-                  onClick={() => {
-                    window.open(SUPPORT_LINK, '_top');
-                  }}
-                />
-              )}
+              <OdsButton
+                size="sm"
+                label={t('quotas:pci_projects_project_quota_protect_more_btn')}
+                onClick={() => {
+                  window.open(SUPPORT_LINK, '_top');
+                }}
+                isDisabled={!quotas || quotas.length === 0}
+              />
             </div>
           )}
         </div>
