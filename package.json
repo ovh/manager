@@ -118,6 +118,7 @@
     "identity-obj-proxy": "^3.0.0",
     "inquirer": "^7.0.6",
     "inquirer-search-list": "1.2.6",
+    "knip": "5.71.0",
     "lerna": "^5.5.0",
     "lint-staged": "^13.0.3",
     "lodash": "4.17.21",
@@ -140,6 +141,7 @@
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
     "turbo": "2.6.1",
+    "typescript": "5.9.3",
     "vite": "^5.4.18",
     "whatwg-fetch": "^3.6.2"
   },
