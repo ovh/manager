@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import ServiceDetail from '@/alldoms/pages/service/serviceDetail/serviceDetail';
@@ -19,7 +19,10 @@ describe('AllDom datagrid', () => {
     });
 
     const { getByTestId } = render(<ServiceDetail />, { wrapper });
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
+    });
   });
 
   it('display the information general pack', async () => {

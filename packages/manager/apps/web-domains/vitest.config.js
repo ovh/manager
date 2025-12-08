@@ -2,7 +2,8 @@ import path from 'path';
 import {
   sharedConfig,
   mergeConfig,
-  createConfig, 	defaultDedupedDependencies,
+  createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
 } from '@ovh-ux/manager-tests-setup';
 
@@ -29,8 +30,10 @@ export default mergeConfig(
         },
       },
     },
-    resolve: { dedupe: [...defaultDedupedDependencies], 
+    resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
+        '@/public': path.resolve(__dirname, 'public'),
         '@': path.resolve(__dirname, 'src'),
       },
       mainFields: ['module'],

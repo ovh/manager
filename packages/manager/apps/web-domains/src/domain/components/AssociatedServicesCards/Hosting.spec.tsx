@@ -1,7 +1,12 @@
 import '@/common/setupTests';
 import React, { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from '@/common/utils/test.provider';
 import { UseQueryResult } from '@tanstack/react-query';
 import { wrapper } from '@/common/utils/test.provider';
 import Hosting from './Hosting';

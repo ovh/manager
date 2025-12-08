@@ -1,23 +1,15 @@
 import '@/common/setupTests';
-import { renderHook } from '@testing-library/react';
+import { renderHook } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 
-vi.mock('react-router-dom', async (importOriginal) => {
-  const original: typeof import('react-router-dom') = await importOriginal();
-  return {
-    ...original,
-    useSearchParams: () => [{ get: (str: string) => str }],
-    useNavigate: vi.fn(),
-    useLocation: vi.fn().mockReturnValue({
-      pathname: 'pathname',
-    }),
-  };
-});
-
 describe('Datagrid columns', () => {
   const { result } = renderHook(() => useAllDomDatagridColumns());
-  const columns = result.current;
+  const columns = result.current as Array<{
+    id: string;
+    label: string;
+    [key: string]: any;
+  }>;
   it('should return the correct number of column', () => {
     expect(columns).toHaveLength(9);
   });

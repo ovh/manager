@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import DnsConfigurationForm from './DnsConfigurationForm';

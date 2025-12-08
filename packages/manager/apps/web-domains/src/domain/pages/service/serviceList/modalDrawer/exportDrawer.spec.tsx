@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
 import ExportDrawer from './exportDrawer';
@@ -101,16 +106,20 @@ vi.mock('@ovhcloud/ods-react', () => ({
   },
 }));
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string, options?: { count?: number }) => {
-      if (options?.count !== undefined) {
-        return `${key}_${options.count}`;
-      }
-      return key;
-    },
-  }),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-i18next')>();
+  return {
+    ...actual,
+    useTranslation: () => ({
+      t: (key: string, options?: { count?: number }) => {
+        if (options?.count !== undefined) {
+          return `${key}_${options.count}`;
+        }
+        return key;
+      },
+    }),
+  };
+});
 
 vi.mock('../treeViews/domainTreeView', () => ({
   default: ({

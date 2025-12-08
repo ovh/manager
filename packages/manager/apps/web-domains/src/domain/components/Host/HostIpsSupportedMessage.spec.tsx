@@ -1,5 +1,5 @@
 import '@/common/setupTests';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { describe, it, expect } from 'vitest';
 import HostsIpsSupportedMessage from '@/domain/components/Host/HostIpsSupportedMessage';
 import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';

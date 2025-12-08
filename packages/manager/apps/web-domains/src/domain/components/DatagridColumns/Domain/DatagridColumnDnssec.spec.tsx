@@ -1,14 +1,18 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi } from 'vitest';
 import { useTranslation } from 'react-i18next';
 import DatagridColumnDnssec from './DatagridColumnDnssec';
 import { useGetDnssecStatus } from '@/domain/hooks/data/query';
 import { wrapper } from '@/common/utils/test.provider';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-i18next')>();
+  return {
+    ...actual,
+    useTranslation: vi.fn(),
+  };
+});
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDnssecStatus: vi.fn(),
