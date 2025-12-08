@@ -16,6 +16,13 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Currency } from '@ovh-ux/manager-config';
 import {
+  ButtonType,
+  PageLocation,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
+
+import { useTrackingContext } from '@/context/tracking/useTracking';
+import {
   useCountrySettings,
   useCurrencySettings,
   useLanguageSettings,
@@ -26,6 +33,7 @@ import {
   useRedirectToSignUpUrl,
 } from '@/hooks/redirection/useSettingsRedirecions';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
+import { useTrackError } from '@/hooks/tracking/useTracking';
 import { DEFAULT_REDIRECT_URL, WEBSITE_LABEL_BY_LOCALE } from './settings.constants';
 import AccountSettingsPopoverContent from './popover-content/PopoverContent';
 
@@ -41,6 +49,9 @@ export default function Settings() {
     NAMESPACES.ACTIONS,
     NAMESPACES.FORM,
   ]);
+  const { trackClick } = useTrackingContext();
+  const { trackError } = useTrackError('choose-preferences');
+  const pageTracking = usePageTracking();
   const redirectToLoginUrl = useRedirectToLoginUrl();
   const redirectToSignUpUrl = useRedirectToSignUpUrl();
 
@@ -63,9 +74,12 @@ export default function Settings() {
   const {
     data: countries,
     isLoading: isLoadingCountries,
+    error: errorCountries,
   } = useCountrySettings();
-  const { data: currencies } = useCurrencySettings(selectedCountry);
-  const { data: languages } = useLanguageSettings(
+  const { data: currencies, error: errorCurrencies } = useCurrencySettings(
+    selectedCountry,
+  );
+  const { data: languages, error: errorLanguages } = useLanguageSettings(
     selectedCountry,
     selectedCurrency,
   );
@@ -110,6 +124,13 @@ export default function Settings() {
     }
   }, [languages, selectedCountry, selectedCurrency]);
 
+  useEffect(() => {
+    const error = errorCountries || errorCurrencies || errorLanguages;
+    if (error) {
+      trackError(error.message);
+    }
+  }, [errorCountries, errorCurrencies, errorLanguages]);
+
   const resetCurrencyAndLanguage = useCallback(() => {
     setValue('currency', '');
     setValue('language', '');
@@ -117,6 +138,17 @@ export default function Settings() {
 
   const submitSettings: SubmitHandler<SettingsFormData> = useCallback(
     ({ country, currency, language }: SettingsFormData) => {
+      if (pageTracking) {
+        trackClick(pageTracking, {
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actions: [
+            'account-creation-choose-preferences',
+            'next',
+            `${ovhSubsidiary}_${language}`,
+          ],
+        });
+      }
       console.log({ country, currency, language });
       // In case the signup url is not valid, we will redirect to the website
       if (redirectToSignUpUrl !== null) {
@@ -130,6 +162,16 @@ export default function Settings() {
     [redirectToSignUpUrl, ovhSubsidiary],
   );
 
+  const trackAuthLinkClick = useCallback(() => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: ['login'],
+      });
+    }
+  }, [trackClick, pageTracking]);
+
   return (
     <div className={'flex flex-col gap-8'}>
       <div className={'flex flex-col gap-5'}>
@@ -140,7 +182,7 @@ export default function Settings() {
             i18nKey="description"
             components={{
               Link: (
-                <OdsLink href={redirectToLoginUrl || DEFAULT_REDIRECT_URL} />
+                <OdsLink href={redirectToLoginUrl || DEFAULT_REDIRECT_URL} onClick={() => trackAuthLinkClick()} />
               ),
             }}
           />
@@ -297,6 +339,7 @@ export default function Settings() {
           label={t('validate', { ns: NAMESPACES.ACTIONS })}
           isDisabled={!isValid}
           type="submit"
+          data-testid="validate-button"
         />
       </form>
     </div>

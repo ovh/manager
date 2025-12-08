@@ -1,33 +1,31 @@
+import { SERVICE_TYPE } from '../utils/constants';
+
 export default class ResiliateModalController {
   /* @ngInject */
   constructor(
     $translate,
     atInternet,
+    coreConfig,
     BillingService,
     RESILIATION_CAPACITIES,
     RESILIATION_DEFAULT_CAPABILITY,
-    coreConfig,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.RESILIATION_CAPACITIES = RESILIATION_CAPACITIES;
     this.RESILIATION_DEFAULT_CAPABILITY = RESILIATION_DEFAULT_CAPABILITY;
-    this.coreConfig = coreConfig;
+    this.isUSRegion = coreConfig.isRegion('US');
+    this.SERVICE_TYPE = SERVICE_TYPE;
   }
 
   $onInit() {
-    this.isUSRegion = this.coreConfig.isRegion('US');
     this.resiliateOptions = (this.capabilities || [])
       .filter((option) => this.RESILIATION_CAPACITIES.includes(option))
       .map((value) => ({
         value,
         label: this.$translate.instant(
-          `billing_resiliate_${value}${
-            value === 'terminateAtEngagementDate' && this.isUSRegion
-              ? '_us'
-              : ''
-          }`,
+          `billing_resiliate_${value}${this.isUSRegion ? '_us' : ''}`,
         ),
       }));
 
