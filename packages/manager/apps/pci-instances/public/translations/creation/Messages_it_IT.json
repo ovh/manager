@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Il tuo attuale quota ti consente di creare simultaneamente fino a {{ quota }} istanza(e) di tipo {{ type }} per la regione di {{ region }}. <Link>Controlla la tua quota.</Link>",
   "pci_instance_creation_choose_localization_title": "Scegli una localizzazione",
   "pci_instance_creation_select_localization_label": "Seleziona una localizzazione",
-  "pci_instance_creation_continue_order": "Continua il mio ordine",
   "pci_instance_creation_configuration_code": "Codice della mia configurazione",
   "pci_instance_creation_select_deployment_mode_title": "Filtra un modo di distribuzione",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud fornisce un'infrastruttura robusta e adattabile, progettata per soddisfare una grande varietà di casi d'uso grazie a modelli di distribuzione che bilanciano redditività, ridondanza e tolleranza ai guasti. Queste diverse opzioni consentono agli utenti di scegliere l'approccio più adatto alle loro esigenze in termini di resilienza, disponibilità e prestazioni.",
@@ -109,5 +108,6 @@
   "pci_instance_creation_network_add_new_used_vlanID_warning": "L'uso di un stesso ID VLAN per più reti private implica una gestione attenta degli IP privati. L'uso di un pool di allocazione DHCP senza sovrapposizioni può essere un modo per gestire questo problema.",
   "pci_instance_creation_network_add_new_vlanID_warning": "L'ID VLAN 0 è utilizzato per impostazione predefinita su altri prodotti, anche al di fuori dell'universo Public Cloud. Gli IP privati devono essere gestiti con attenzione",
   "pci_instance_creation_network_add_new_cidr_error": "Si prega di inserire un indirizzo IP valido",
-  "pci_instance_creation_network_add_new_vlanId_error": "L'ID vLAN deve essere compreso tra 0 e 4000. Si prega di verificare il valore inserito prima di continuare."
+  "pci_instance_creation_network_add_new_vlanId_error": "L'ID vLAN deve essere compreso tra 0 e 4000. Si prega di verificare il valore inserito prima di continuare.",
+  "pci_instance_creation_create_my_instance": "Avvia la mia istanza"
 }

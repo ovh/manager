@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "O seu quota atual permite criar simultaneamente até {{ quota }} instância(s) do tipo {{ type }} para a região de {{ region }}. <Link>Consulte o seu quota.</Link>",
   "pci_instance_creation_choose_localization_title": "Escolha uma localização",
   "pci_instance_creation_select_localization_label": "Selecione uma localização",
-  "pci_instance_creation_continue_order": "Continuar a minha encomenda",
   "pci_instance_creation_configuration_code": "Código da minha configuração",
   "pci_instance_creation_select_deployment_mode_title": "Filtre um modo de implantação",
   "pci_instance_creation_select_deployment_mode_help_p1": "A OVHcloud fornece uma infraestrutura robusta e adaptável, projetada para atender a uma grande variedade de casos de uso, graças a modelos de implantação que equilibram rentabilidade, redundância e tolerância a falhas. Essas diferentes opções permitem que os usuários escolham a abordagem mais adequada às suas exigências em termos de resiliência, disponibilidade e desempenho.",
@@ -109,5 +108,6 @@
   "pci_instance_creation_network_add_new_used_vlanID_warning": "O uso do mesmo ID de VLAN para várias redes privadas implica gerenciar com atenção os IPs privados. O uso de pool de alocação DHCP sem sobreposição pode ser uma forma de gerenciar essa problemática.",
   "pci_instance_creation_network_add_new_vlanID_warning": "O ID da VLAN 0 é usado por padrão em outros produtos, incluindo fora do universo de Nuvem Pública. Os IPs privados devem ser gerenciados com atenção",
   "pci_instance_creation_network_add_new_cidr_error": "Por favor, insira um endereço IP válido",
-  "pci_instance_creation_network_add_new_vlanId_error": "O ID da vLAN deve estar entre 0 e 4000. Por favor, verifique o valor inserido antes de continuar."
+  "pci_instance_creation_network_add_new_vlanId_error": "O ID da vLAN deve estar entre 0 e 4000. Por favor, verifique o valor inserido antes de continuar.",
+  "pci_instance_creation_create_my_instance": "Iniciar a minha instância"
 }

@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Ihr aktuelles Kontingent erlaubt es Ihnen, gleichzeitig bis zu {{ quota }} Instanz(en) vom Typ {{ type }} für die Region {{ region }} zu erstellen. <Link>Überprüfen Sie Ihr Kontingent.</Link>",
   "pci_instance_creation_choose_localization_title": "Wählen Sie einen Standort aus",
   "pci_instance_creation_select_localization_label": "Wählen Sie einen Standort aus",
-  "pci_instance_creation_continue_order": "Meine Bestellung fortsetzen",
   "pci_instance_creation_configuration_code": "Code meiner Konfiguration",
   "pci_instance_creation_select_deployment_mode_title": "Filtern Sie einen Bereitstellungsmodus",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud bietet eine robuste und anpassungsfähige Infrastruktur, die entwickelt wurde, um eine Vielzahl von Anwendungsfällen zu erfüllen, dank Bereitstellungsmodellen, die Rentabilität, Redundanz und Fehlertoleranz ausbalancieren. Diese verschiedenen Optionen ermöglichen es den Benutzern, den Ansatz zu wählen, der am besten zu ihren Anforderungen an Resilienz, Verfügbarkeit und Leistung passt.",
@@ -109,5 +108,6 @@
   "pci_instance_creation_network_add_new_used_vlanID_warning": "Die Verwendung derselben VLAN-ID für mehrere private Netzwerke erfordert eine sorgfältige Verwaltung der privaten IPs. Die Verwendung eines DHCP-Adresspools ohne Überlappung kann eine Möglichkeit sein, dieses Problem zu verwalten.",
   "pci_instance_creation_network_add_new_vlanID_warning": "Die VLAN-ID 0 wird standardmäßig in anderen Produkten verwendet, auch außerhalb der Public Cloud. Private IPs müssen sorgfältig verwaltet werden.",
   "pci_instance_creation_network_add_new_cidr_error": "Bitte geben Sie eine gültige IP-Adresse ein.",
-  "pci_instance_creation_network_add_new_vlanId_error": "Die vLAN-ID muss zwischen 0 und 4000 liegen. Bitte überprüfen Sie den eingegebenen Wert, bevor Sie fortfahren."
+  "pci_instance_creation_network_add_new_vlanId_error": "Die vLAN-ID muss zwischen 0 und 4000 liegen. Bitte überprüfen Sie den eingegebenen Wert, bevor Sie fortfahren.",
+  "pci_instance_creation_create_my_instance": "Starte meine Instanz"
 }

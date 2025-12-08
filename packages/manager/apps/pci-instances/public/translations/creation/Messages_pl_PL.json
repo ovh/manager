@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Twój aktualny limit pozwala na jednoczesne utworzenie do {{ quota }} instancji typu {{ type }} w regionie {{ region }}. <Link>Sprawdź swój limit.</Link>",
   "pci_instance_creation_choose_localization_title": "Wybierz lokalizację",
   "pci_instance_creation_select_localization_label": "Wybierz lokalizację",
-  "pci_instance_creation_continue_order": "Kontynuuj moje zamówienie",
   "pci_instance_creation_configuration_code": "Kod mojej konfiguracji",
   "pci_instance_creation_select_deployment_mode_title": "Filtruj tryb wdrożenia",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud zapewnia solidną i elastyczną infrastrukturę, zaprojektowaną w celu zaspokojenia szerokiego zakresu przypadków użycia dzięki modelom wdrożenia, które równoważą opłacalność, redundancję i tolerancję na awarie. Te różne opcje pozwalają użytkownikom wybrać podejście najlepiej odpowiadające ich wymaganiom w zakresie odporności, dostępności i wydajności.",
@@ -109,5 +108,6 @@
   "pci_instance_creation_network_add_new_used_vlanID_warning": "Użycie tego samego ID VLAN dla wielu sieci prywatnych wymaga starannego zarządzania adresami IP. Użycie puli alokacji DHCP bez nakładania się może być sposobem na zarządzanie tym problemem.",
   "pci_instance_creation_network_add_new_vlanID_warning": "ID VLAN 0 jest domyślnie używane w innych produktach, w tym poza światem Public Cloud. Adresy IP prywatne muszą być zarządzane z uwagą",
   "pci_instance_creation_network_add_new_cidr_error": "Proszę wprowadzić prawidłowy adres IP",
-  "pci_instance_creation_network_add_new_vlanId_error": "ID vLAN musi mieścić się w zakresie od 0 do 4000. Proszę sprawdzić wprowadzone wartości przed kontynuowaniem."
+  "pci_instance_creation_network_add_new_vlanId_error": "ID vLAN musi mieścić się w zakresie od 0 do 4000. Proszę sprawdzić wprowadzone wartości przed kontynuowaniem.",
+  "pci_instance_creation_create_my_instance": "Uruchom moją instancję"
 }
