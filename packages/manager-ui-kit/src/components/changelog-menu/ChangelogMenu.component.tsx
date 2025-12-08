@@ -2,7 +2,7 @@ import { FC, useCallback, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT, ICON_NAME } from '@ovhcloud/ods-react';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
