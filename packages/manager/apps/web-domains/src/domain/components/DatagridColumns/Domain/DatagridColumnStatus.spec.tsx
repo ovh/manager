@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi } from 'vitest';
 import { useTranslation } from 'react-i18next';
 import DatagridColumnStatus from './DatagridColumnStatus';
@@ -7,11 +7,15 @@ import { DomainServiceStateEnum } from '@/domain/types/domainResource';
 import { DOMAIN_STATE } from '@/domain/constants/serviceDetail';
 import { wrapper } from '@/common/utils/test.provider';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-i18next')>();
+  return {
+    ...actual,
+    useTranslation: vi.fn(),
+  };
+});
 
-vi.mock('@/domain/utils/domainStatus', () => ({
+vi.mock('@/domain/hooks/data/query', () => ({
   domainStatusToBadge: vi.fn((mapping, state) => {
     const statusDetails = mapping[state];
     return statusDetails
@@ -43,7 +47,9 @@ describe('DatagridColumnStatus', () => {
 
     const badge = screen.getByTestId(`status-badge-${state}`);
     expect(badge).toBeInTheDocument();
-    expect(mockT).toHaveBeenCalledWith(`domain_status_${state}`);
+    expect(mockT).toHaveBeenCalledWith(
+      `domain_tab_general_information_registered`,
+    );
   });
 
   it('should not render badge when state does not exist in mapping', () => {

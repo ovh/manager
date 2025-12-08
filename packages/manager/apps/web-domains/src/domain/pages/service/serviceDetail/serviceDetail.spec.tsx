@@ -1,8 +1,7 @@
 import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import { wrapper } from '@/common/utils/test.provider';
+import { render, screen, waitFor, wrapper } from '@/common/utils/test.provider';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import ServiceDetail from './serviceDetail';
@@ -24,7 +23,10 @@ describe('Domain detail', () => {
     });
 
     render(<ServiceDetail />, { wrapper });
-    expect(screen.getByTestId('listing-page-spinner')).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('listing-page-spinner')).toBeInTheDocument();
+    });
   });
 
   it('display the information of Domain', async () => {

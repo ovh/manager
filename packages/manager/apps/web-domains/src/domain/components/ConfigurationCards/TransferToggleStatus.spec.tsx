@@ -1,9 +1,15 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+  wrapper,
+} from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
 import TransferToggleStatus from './TransferToggleStatus';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
@@ -85,7 +91,7 @@ describe('TransferToggleStatus component', () => {
     vi.clearAllMocks();
   });
 
-  it('renders with PROTECTED state', () => {
+  it('renders with PROTECTED state', async () => {
     render(
       <TransferToggleStatus
         domainResource={mockDomainResource}
@@ -97,9 +103,11 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_tab_general_information_transfer'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText('domain_tab_general_information_transfer'),
+      ).toBeInTheDocument();
+    });
     expect(screen.getByTestId('toggle')).toBeInTheDocument();
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeChecked();
@@ -108,7 +116,7 @@ describe('TransferToggleStatus component', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('renders with UNPROTECTED state and shows authinfo link', () => {
+  it('renders with UNPROTECTED state and shows authinfo link', async () => {
     const unprotectedDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -131,9 +139,11 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_tab_general_information_transfer'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText('domain_tab_general_information_transfer'),
+      ).toBeInTheDocument();
+    });
     expect(screen.getByTestId('toggle')).toBeInTheDocument();
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).not.toBeChecked();
@@ -156,7 +166,7 @@ describe('TransferToggleStatus component', () => {
     );
 
     const toggle = screen.getByTestId('toggle');
-    await user.click(toggle);
+    await act(() => user.click(toggle));
 
     expect(mockSetTransferModalOpened).toHaveBeenCalledWith(true);
     expect(mockSetTransferModalOpened).toHaveBeenCalledTimes(1);
@@ -176,13 +186,13 @@ describe('TransferToggleStatus component', () => {
     );
 
     const toggle = screen.getByTestId('toggle');
-    await user.click(toggle);
+    await act(() => user.click(toggle));
 
     expect(mockSetTransferModalOpened).toHaveBeenCalledWith(false);
     expect(mockSetTransferModalOpened).toHaveBeenCalledTimes(1);
   });
 
-  it('calls setTransferAuthInfoModalOpened when authinfo link is clicked', () => {
+  it('calls setTransferAuthInfoModalOpened when authinfo link is clicked', async () => {
     const unprotectedDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -205,16 +215,18 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    const authinfoLink = screen.getByText(
-      'domain_tab_general_information_transfer_authinfo',
-    );
-    fireEvent.click(authinfoLink);
+    await waitFor(() => {
+      const authinfoLink = screen.getByText(
+        'domain_tab_general_information_transfer_authinfo',
+      );
+      fireEvent.click(authinfoLink);
+    });
 
     expect(mockSetTransferAuthInfoModalOpened).toHaveBeenCalledWith(true);
     expect(mockSetTransferAuthInfoModalOpened).toHaveBeenCalledTimes(1);
   });
 
-  it('renders tooltip with correct content', () => {
+  it('renders tooltip with correct content', async () => {
     render(
       <TransferToggleStatus
         domainResource={mockDomainResource}
@@ -226,11 +238,13 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    const tooltipIcon = screen.getByRole('button');
-    expect(tooltipIcon).toBeInTheDocument();
+    await waitFor(() => {
+      const tooltipIcon = screen.getByRole('button');
+      expect(tooltipIcon).toBeInTheDocument();
+    });
   });
 
-  it('renders toggle control', () => {
+  it('renders toggle control', async () => {
     render(
       <TransferToggleStatus
         domainResource={mockDomainResource}
@@ -242,10 +256,12 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    expect(screen.getByTestId('toggle-control')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('toggle-control')).toBeInTheDocument();
+    });
   });
 
-  it('renders badge with correct status', () => {
+  it('renders badge with correct status', async () => {
     render(
       <TransferToggleStatus
         domainResource={mockDomainResource}
@@ -257,14 +273,16 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText(
-        '@ovh-ux/manager-common-translations/service:service_state_enabled',
-      ),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          '@ovh-ux/manager-common-translations/service:service_state_enabled',
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
-  it('renders with disabled toggle and badge showing activation when UNPROTECTED with targetSpec PROTECTED', () => {
+  it('renders with disabled toggle and badge showing activation when UNPROTECTED with targetSpec PROTECTED', async () => {
     const unprotectedDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -287,15 +305,18 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
+    await waitFor(() => {
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).toBeDisabled();
+    });
     const checkbox = screen.getByRole('checkbox');
-    expect(checkbox).toBeDisabled();
     expect(checkbox).not.toBeChecked();
     expect(
       screen.getByText('domain_dns_table_state_activating'),
     ).toBeInTheDocument();
   });
 
-  it('renders enabled toggle when PROTECTED', () => {
+  it('renders enabled toggle when PROTECTED', async () => {
     render(
       <TransferToggleStatus
         domainResource={mockDomainResource}
@@ -307,8 +328,11 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
+    await waitFor(() => {
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).not.toBeDisabled();
+    });
     const checkbox = screen.getByRole('checkbox');
-    expect(checkbox).not.toBeDisabled();
     expect(checkbox).toBeChecked();
     expect(
       screen.getByText(
@@ -317,7 +341,7 @@ describe('TransferToggleStatus component', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders correct tooltip content for PROTECTED state', () => {
+  it('renders correct tooltip content for PROTECTED state', async () => {
     render(
       <TransferToggleStatus
         domainResource={mockDomainResource}
@@ -329,12 +353,14 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_tab_general_information_transfer_activated'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText('domain_tab_general_information_transfer_activated'),
+      ).toBeInTheDocument();
+    });
   });
 
-  it('renders correct tooltip content for UNPROTECTED state with activation in progress', () => {
+  it('renders correct tooltip content for UNPROTECTED state with activation in progress', async () => {
     const unprotectedDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -357,14 +383,16 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText(
-        'domain_tab_general_information_transfer_activation_progress',
-      ),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'domain_tab_general_information_transfer_activation_progress',
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
-  it('shows tag link when authInfo is not supported', () => {
+  it('shows tag link when authInfo is not supported', async () => {
     const noAuthInfoDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -387,9 +415,11 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_tab_general_information_transfer_tag'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText('domain_tab_general_information_transfer_tag'),
+      ).toBeInTheDocument();
+    });
     expect(
       screen.getByText(
         'domain_tab_general_information_transfer_authinfo_not_supported',
@@ -397,7 +427,7 @@ describe('TransferToggleStatus component', () => {
     ).toBeInTheDocument();
   });
 
-  it('calls setTagModalOpened when tag link is clicked', () => {
+  it('calls setTagModalOpened when tag link is clicked', async () => {
     const noAuthInfoDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -420,16 +450,18 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
-    const tagLink = screen.getByText(
-      'domain_tab_general_information_transfer_tag',
-    );
-    fireEvent.click(tagLink);
+    await waitFor(() => {
+      const tagLink = screen.getByText(
+        'domain_tab_general_information_transfer_tag',
+      );
+      fireEvent.click(tagLink);
+    });
 
     expect(mockSetTagModalOpened).toHaveBeenCalledWith(true);
     expect(mockSetTagModalOpened).toHaveBeenCalledTimes(1);
   });
 
-  it('renders enabled toggle when UNPROTECTED without targetSpec', () => {
+  it('renders enabled toggle when UNPROTECTED without targetSpec', async () => {
     const unprotectedDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -452,12 +484,15 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
+    await waitFor(() => {
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).not.toBeDisabled();
+    });
     const checkbox = screen.getByRole('checkbox');
-    expect(checkbox).not.toBeDisabled();
     expect(checkbox).not.toBeChecked();
   });
 
-  it('renders with disabled toggle when PROTECTED with targetSpec UNPROTECTED', () => {
+  it('renders with disabled toggle when PROTECTED with targetSpec UNPROTECTED', async () => {
     const deactivatingDomainResource = {
       ...mockDomainResource,
       currentState: {
@@ -480,8 +515,11 @@ describe('TransferToggleStatus component', () => {
       { wrapper },
     );
 
+    await waitFor(() => {
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).toBeDisabled();
+    });
     const checkbox = screen.getByRole('checkbox');
-    expect(checkbox).toBeDisabled();
     expect(checkbox).toBeChecked();
     expect(
       screen.getByText('domain_dns_table_state_deleting'),

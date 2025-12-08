@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DatagridColumnRenewFrequency from './DatagridColumnRenewFrequency';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
@@ -10,37 +10,41 @@ vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
 }));
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string, options?: { years?: string }) => {
-      if (
-        key ===
-        'domain_tab_general_information_subscription_renew_frequency_year'
-      ) {
-        return 'Yearly';
-      }
-      if (
-        key ===
-        'domain_tab_general_information_subscription_renew_frequency_years'
-      ) {
-        return `Every ${options?.years} years`;
-      }
-      if (
-        key ===
-        'domain_tab_general_information_subscription_renew_frequency_none'
-      ) {
-        return 'None';
-      }
-      if (
-        key ===
-        'domain_tab_general_information_subscription_manual_renew_tooltip'
-      ) {
-        return 'Manual renewal tooltip';
-      }
-      return key;
-    },
-  }),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-i18next')>();
+  return {
+    ...actual,
+    useTranslation: () => ({
+      t: (key: string, options?: { years?: string }) => {
+        if (
+          key ===
+          'domain_tab_general_information_subscription_renew_frequency_year'
+        ) {
+          return 'Yearly';
+        }
+        if (
+          key ===
+          'domain_tab_general_information_subscription_renew_frequency_years'
+        ) {
+          return `Every ${options?.years} years`;
+        }
+        if (
+          key ===
+          'domain_tab_general_information_subscription_renew_frequency_none'
+        ) {
+          return 'None';
+        }
+        if (
+          key ===
+          'domain_tab_general_information_subscription_manual_renew_tooltip'
+        ) {
+          return 'Manual renewal tooltip';
+        }
+        return key;
+      },
+    }),
+  };
+});
 
 vi.mock('@ovhcloud/ods-react', () => ({
   Skeleton: () => <div data-testid="skeleton" />,

@@ -1,6 +1,7 @@
 import '@/common/setupTests';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@/common/utils/test.provider';
+import { useParams, useNavigate } from 'react-router-dom';
 import HostDelete from '@/domain/pages/domainTabs/hosts/hostDelete';
 import { wrapper } from '@/common/utils/test.provider';
 import { urls } from '@/domain/routes/routes.constant';
@@ -49,14 +50,6 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   };
 });
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => navigate,
-  useParams: () => ({
-    serviceName: 'foobar',
-    hostname: 'ns1.foobar',
-  }),
-}));
-
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(() => ({
     domainResource: {
@@ -88,6 +81,11 @@ vi.mock('@/common/hooks/generateUrl/useGenerateUrl', () => ({
 describe('HostDelete', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    (useParams as any).mockReturnValue({
+      serviceName: 'foobar',
+      hostname: 'ns1.foobar',
+    });
+    (useNavigate as any).mockReturnValue(navigate);
   });
 
   it('renders modal with correct heading', () => {
