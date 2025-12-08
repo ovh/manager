@@ -1,6 +1,7 @@
 {
   "group_dashboard_actions": "Je veux...",
   "telephony_group_billing_dashboard_actions_group_order": "Commander un numéro",
+  "telephony_group_billing_dashboard_actions_group_order_plan": "Commander un forfait",
   "telephony_group_billing_dashboard_actions_group_delete": "Supprimer le groupe",
   "telephony_group_billing_dashboard_actions_group_last_bill": "Consulter mes dernières factures",
   "telephony_group_billing_dashboard_actions_portabilities": "Consulter mes portabilités en cours",
