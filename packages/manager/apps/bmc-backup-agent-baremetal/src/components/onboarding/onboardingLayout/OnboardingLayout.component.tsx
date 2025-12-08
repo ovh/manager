@@ -45,7 +45,7 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
     return null;
   }
   return (
-    <div className="flex sm:pt-8 xs:pt-2.5 flex-row items-center space-x-4 justify-center">
+    <div className="flex flex-row items-center justify-center space-x-4 xs:pt-2.5 sm:pt-8">
       <Link id={tooltipId} to={!isOrderDisabled && !isOrderLoading ? orderHref : ''}>
         <OdsButton
           size={ODS_BUTTON_SIZE.md}
@@ -90,14 +90,13 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
 }) => {
   const { ...imgProps } = img;
   return (
-    <div className="flex flex-col mx-auto sm:px-10">
+    <div className="mx-auto flex flex-col sm:px-10">
       {!hideHeadingSection && (
         <section className="flex flex-col items-center">
           {(img?.src || placeholderImg) && (
-            <div className="flex justify-center pt-8 max-h-28 w-full">
+            <div className="flex max-h-28 w-full justify-center pt-8">
               <img
                 {...imgProps}
-                className="max-h-[150px]"
                 src={img?.src ?? placeholderImg}
                 alt=""
                 width={img?.width}
@@ -107,12 +106,12 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           )}
           <OdsText
             preset={ODS_TEXT_PRESET.heading1}
-            className="block text-center sm:pt-8 xs:pt-2.5"
+            className="block text-center xs:pt-2.5 sm:pt-8"
           >
             {title}
           </OdsText>
           {description && (
-            <OdsText preset="span" className="[&::part(text)]:pt-0 [&::part(text)]:mt-0">
+            <OdsText preset="span" className="[&::part(text)]:mt-0 [&::part(text)]:pt-0">
               {description}
             </OdsText>
           )}
@@ -131,7 +130,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
         </section>
       )}
       {children && (
-        <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20">
+        <aside className="grid grid-cols-1 gap-6 xs:pt-10 sm:grid-cols-2 sm:pt-20 md:grid-cols-3">
           {children}
         </aside>
       )}
