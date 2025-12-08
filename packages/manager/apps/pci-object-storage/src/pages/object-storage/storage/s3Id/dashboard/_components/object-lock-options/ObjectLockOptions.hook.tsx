@@ -47,20 +47,15 @@ export const useObjectLockOptionsForm = ({
   form.watch('rule.durationValue');
   form.watch('rule.durationUnit');
 
+  // Check if retention field has been modified
+  const isRetentionDirty = form.formState.dirtyFields.retention;
+
   useEffect(() => {
-    // if (!retention) {
-    //   form.setValue('rule', undefined, { shouldValidate: true });
-    // }
-
-    // Mark that user has interacted if retention changes from initial value
-    if (retention !== defaultValues.retention) {
-      hasUserToggledRetention.current = true;
-    }
-
-    if (hasUserToggledRetention.current) {
+    // Only act if user has modified retention
+    if (isRetentionDirty) {
       if (!retention) {
         form.setValue('rule', null, { shouldValidate: true });
-      } else {
+      } else if (!form.getValues('rule')) {
         form.setValue(
           'rule',
           {
@@ -72,7 +67,7 @@ export const useObjectLockOptionsForm = ({
         );
       }
     }
-  }, [retention]);
+  }, [retention, isRetentionDirty]);
 
   return { form, schema };
 };
