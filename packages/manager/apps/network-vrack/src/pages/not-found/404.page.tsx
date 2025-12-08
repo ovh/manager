@@ -1,7 +1,6 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function NotFound() {
-  // @TODO: add a redirection here in order to catch /:serviceName given from iframe
-
-  return <h1>404 - route not found</h1>;
+  const { t } = useTranslation('common');
+  return <h1 className="flex justify-center">404 - {t('common_error_notfound')}</h1>;
 }
