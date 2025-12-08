@@ -44,6 +44,7 @@ export default function Multisite() {
       <Datagrid
         columns={columns as DatagridColumn<Record<string, unknown>>[]}
         data={flattenData ?? []}
+        containerHeight={500}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {
           void fetchNextPage();
