@@ -7,8 +7,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@/*": ["./src/*"]
     },
     "baseUrl": "."
   },

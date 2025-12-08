@@ -3,7 +3,7 @@ import { Page } from '@playwright/test';
 import { ICustomWorld } from './bdd.type';
 
 export class CustomWorld extends World implements ICustomWorld {
-  page: Page = null as unknown as Page;
+  page: Page = (null as unknown) as Page;
 
   handlersConfig = {};
 

@@ -8,8 +8,7 @@
     "allowJs": true,
     "strict": false,
     "paths": {
-      "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@/*": ["./src/*"]
     },
     "baseUrl": "."
   },
