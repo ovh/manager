@@ -243,6 +243,7 @@ export default function Websites() {
       {
         id: 'actions',
         header: '',
+        size: 48,
         cell: ({ row }) => <ActionButtonStatistics webSiteItem={row.original} />,
         enableHiding: false,
       },
@@ -432,6 +433,7 @@ export default function Websites() {
       <Datagrid
         data-testid="websites-page-datagrid"
         columns={data ? displayColumns : []}
+        containerHeight={500}
         data={data ?? []}
         isLoading={isLoading}
         hasNextPage={!isFetchingNextPage && hasNextPage}
