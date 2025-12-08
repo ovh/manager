@@ -29,7 +29,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['listing', 'dashboard', 'onboarding'],
+    ns: ['dashboard', 'onboarding', 'common', 'publicIpRouting'],
   });
 
   // Configure tracking per region
