@@ -66,8 +66,6 @@
   "domain_tab_DNS_modification_default_activate_dns": "Aby korzystać z domyślnych serwerów DNS OVHcloud, włącz strefę DNS.",
   "domain_tab_DNS_modification_activate_dns_link": "Włącz strefę DNS",
   "domain_tab_DNS_modification_mixed_activate_dns": "Aby korzystać z konfiguracji mieszanej, w tym z DNS OVHcloud, włącz strefę DNS.",
-  "domain_tab_DNS_modification_mixed_dns_number": "Wpisz od 2 do 14 DNS.",
-  "domain_tab_DNS_modification_external_dns_number": "Wpisz od 2 do 10 DNS.",
   "domain_tab_general_information_banner_expired_to_delete": "Twoja domena jest zawieszona. Możesz ją odnowić w okresie karencji. Po jego zakończeniu zostaną doliczone dodatkowe opłaty, których wysokość zależy od rodzaju rozszerzenia.",
   "domain_tab_general_information_banner_restorable": "Trwa usuwanie Twojej domeny, ale możesz ją jeszcze przywrócić za dodatkową opłatą, korzystając z linku „Przywróć”. W przeciwnym razie Twoja domena zostanie definitywnie usunięta. <br /><Link />",
   "domain_tab_general_information_banner_dispute": "Twoja domena jest objęta procedurą. Niektóre funkcje mogą działać nieprawidłowo. Skontaktuj się z działem wsparcia, żeby uzyskać więcej informacji.",

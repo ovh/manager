@@ -66,8 +66,6 @@
   "domain_tab_DNS_modification_default_activate_dns": "Para usar os DNS predefinidos da OVHcloud, ative primeiro uma zona DNS.",
   "domain_tab_DNS_modification_activate_dns_link": "Ativar a zona DNS",
   "domain_tab_DNS_modification_mixed_activate_dns": "Para usar uma configuração mista que inclua os DNS da OVHcloud, ative primeiro uma zona DNS.",
-  "domain_tab_DNS_modification_mixed_dns_number": "Introduza entre 2 e 14 DNS.",
-  "domain_tab_DNS_modification_external_dns_number": "Introduza entre 2 e 10 DNS.",
   "domain_tab_general_information_banner_expired_to_delete": "O seu domínio foi suspenso, mas pode renová-lo durante o período de graça. Decorrido este prazo, serão aplicadas taxas adicionais, que poderão variar em função da extensão em causa.",
   "domain_tab_general_information_banner_restorable": "O seu domínio está a ser eliminado. Pode restaurá-lo, com custos adicionais, através do link «Restaurar». Caso contrário, o domínio será eliminado de forma definitiva. <br /><Link />",
   "domain_tab_general_information_banner_dispute": "O seu nome de domínio encontra-se sujeito a um procedimento. Algumas funcionalidades podem ser afetadas. Contacte o suporte para obter mais informações.",
