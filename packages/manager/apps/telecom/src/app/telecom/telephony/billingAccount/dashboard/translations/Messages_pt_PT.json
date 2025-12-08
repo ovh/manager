@@ -54,5 +54,6 @@
   "telephony_group_line_softphone_save_logo": "Deve reiniciar a aplicação para que o logótipo fique ativo.",
   "telephony_group_line_softphone_save_theme": "Deve reiniciar a aplicação para que o tema esteja ativo.",
   "telephony_group_billing_dashboard_suspended_info_link": "Clique aqui para aumentar o seu depósito de garantia.",
-  "telephony_group_billing_dashboard_suspended_info": "Este grupo está atualmente suspenso."
+  "telephony_group_billing_dashboard_suspended_info": "Este grupo está atualmente suspenso.",
+  "telephony_group_billing_dashboard_actions_group_order_plan": "Encomendar um tarifário"
 }

@@ -41,7 +41,22 @@
                         class="oui-tile__item oui-tile__item_button"
                         data-ng-repeat="action in DashboardCtrl.actions track by $index"
                     >
+                        <!-- external link -->
                         <a
+                            data-ng-if="action.external"
+                            class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
+                            data-ng-attr-href="{{ action.href }}"
+                            target="{{ action.target }}"
+                        >
+                            <span data-ng-bind="action.text"></span>
+                            <i
+                                class="oui-icon oui-icon-chevron-right"
+                                aria-label="{{ action.text }}"
+                            ></i>
+                        </a>
+                        <!-- internal link -->
+                        <a
+                            data-ng-if="!action.external"
                             class="oui-tile__button oui-button oui-button_icon-right oui-button_ghost oui-button_block"
                             data-ui-sref="{{ action.sref }}"
                         >
