@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
 import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
-import { SecretVersionDataField, SecretWithData } from '@secret-manager/types/secret.type';
+import { SecretVersionDataField, SecretVersionWithData } from '@secret-manager/types/secret.type';
 import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
@@ -22,17 +22,19 @@ import {
 import { VersionStatusMessage } from './VersionStatusMessage.component';
 
 type CreateVersionDrawerFormProps = {
-  secret: SecretWithData;
   okmsId: string;
   secretPath: string;
+  version?: SecretVersionWithData;
+  currentVersionId?: number;
   secretConfig: SecretSmartConfig;
   onDismiss: () => void;
 };
 
 export const CreateVersionDrawerForm = ({
-  secret,
   okmsId,
   secretPath,
+  version,
+  currentVersionId,
   secretConfig,
   onDismiss,
 }: CreateVersionDrawerFormProps) => {
@@ -44,7 +46,7 @@ export const CreateVersionDrawerForm = ({
     error: createError,
   } = useCreateSecretVersion();
 
-  const dataAsString = JSON.stringify(secret?.version?.data);
+  const dataAsString = JSON.stringify(version?.data);
 
   const dataSchema = useSecretDataSchema();
   const formSchema = z.object({ data: dataSchema });
@@ -70,7 +72,8 @@ export const CreateVersionDrawerForm = ({
         path: decodeSecretPath(secretPath),
         data: JSON.parse(data.data) as SecretVersionDataField,
         cas: addCurrentVersionToCas(
-          secret?.metadata?.currentVersion ?? 0,
+          // No currentVersionId means there is no version yet, so we use 0 for CAS
+          currentVersionId ?? 0,
           secretConfig.casRequired.value,
         ),
       });
@@ -92,7 +95,7 @@ export const CreateVersionDrawerForm = ({
                 {createError?.response?.data?.message || t('add_new_version_error')}
               </OdsMessage>
             )}
-            {secret.version && <VersionStatusMessage state={secret.version.state} />}
+            {version && <VersionStatusMessage state={version.state} />}
             <SecretDataFormField name="data" control={control} />
           </form>
         </FormProvider>
