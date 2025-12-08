@@ -30,6 +30,11 @@ describe('bannerTypeFromFlags (severity + i18n key)', () => {
     ).toEqual({
       type: 'warning',
       i18nKey: 'domain_tab_general_information_banner_technical_not_suspended',
+      link: {
+        linkDetails: ['web-ongoing-operations', '/domain', {}],
+        linki18n:
+          'domain_tab_general_information_banner_link_ongoing_operations',
+      },
     });
   });
 
