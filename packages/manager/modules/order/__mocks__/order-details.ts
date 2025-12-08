@@ -1,6 +1,6 @@
-import { Handler } from '../../../../../playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
+import { getParamsFromUrl } from './test-helpers';
 import { OrderData, OrderDetail } from '../src';
-import { getParamsFromUrl } from '../../../../../playwright-helpers/network';
 
 const orderList = [1, 2, 3];
 

@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
+    "@playwright/test": "^1.49.1",
     "@types/jsurl": "^0.1.2"
   },
   "peerDependencies": {

@@ -20,7 +20,6 @@
     "jsx": "react",
     "paths": {
       "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"],
       "@translation/*": ["./public/translations/*"]
     }
   },
