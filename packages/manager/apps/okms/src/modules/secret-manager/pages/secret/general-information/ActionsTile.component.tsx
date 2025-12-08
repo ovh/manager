@@ -26,7 +26,11 @@ export const ActionsTile = ({ secret }: ActionsTileParams) => {
           isRouterLink
         />
         <Link
-          href={SECRET_MANAGER_ROUTES_URLS.secretCreateVersionDrawer(okmsId, secret.path)}
+          href={SECRET_MANAGER_ROUTES_URLS.secretCreateVersionDrawer(
+            okmsId,
+            secret.path,
+            secret.metadata.currentVersion,
+          )}
           label={t('add_new_version')}
           isRouterLink
         />

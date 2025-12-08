@@ -17,32 +17,19 @@ import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import { VersionSelector } from './VersionSelector.component';
 
-const useHasVersion = (version: SecretVersion | undefined) => {
-  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
-  const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
-
-  if (!version || !secret) {
-    return {
-      isCurrentVersion: false,
-      hasVersion: false,
-    };
-  }
-  return {
-    isCurrentVersion: secret.metadata.currentVersion === version.id,
-    hasVersion: secret.metadata.currentVersion !== undefined,
-  };
-};
-
 const SecretValueDrawerPage = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation('secret-manager');
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const secretPathDecoded = decodeSecretPath(secretPath);
   const { versionId } = useParams();
-  const { t } = useTranslation('secret-manager');
-  const navigate = useNavigate();
+
+  const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
 
   const [selectedVersion, setSelectedVersion] = useState<SecretVersion | undefined>(undefined);
 
-  const { isCurrentVersion, hasVersion } = useHasVersion(selectedVersion);
+  const isCurrentVersion = secret?.metadata.currentVersion === selectedVersion?.id;
+  const hasVersion = secret?.metadata.currentVersion !== undefined;
 
   return (
     <Drawer
