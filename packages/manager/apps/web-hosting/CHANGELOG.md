@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.11.0...@ovh-ux/manager-web-hosting-app@0.12.0) (2025-12-08)
+
+
+### Features
+
+* **web-hosting:** change attached domain api for ssl certificate ([d54db4e](https://github.com/ovh/manager/commit/d54db4e1ef9481e3a6cd4d62c0b31b9b790be296)), closes [#PUWEBPT-133](https://github.com/ovh/manager/issues/PUWEBPT-133)
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.4...@ovh-ux/manager-web-hosting-app@0.11.0) (2025-12-05)
 
 
