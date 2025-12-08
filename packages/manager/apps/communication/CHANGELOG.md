@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.1...@ovh-ux/manager-communication-app@0.4.2) (2025-12-08)
+
+
+### Bug Fixes
+
+* **communication:** resolve issue with the link ([07900cc](https://github.com/ovh/manager/commit/07900cc25d47076e0f381fc6d606e83399952564)), closes [#MANAGER-20465](https://github.com/ovh/manager/issues/MANAGER-20465)
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.0...@ovh-ux/manager-communication-app@0.4.1) (2025-12-05)
 
 
