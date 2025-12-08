@@ -44,5 +44,7 @@
   "netapp_volumes_edit_volume_size": "Modifier la taille",
   "netapp_volumes_edit_reserve_space": "Modifier l'espace réservé des snapshots",
   "netapp_volumes_mount_path_not_configurated": "Non configuré",
-  "netapp_volumes_button_replications": "Répliquer volume(s)"
+  "netapp_volumes_button_replications": "Répliquer volume(s)",
+  "netapp_volumes_status_awaiting_replication": "Réplication en cours",
+  "netapp_volumes_edit_create_single_replication": "Répliquer ce volume"
 }
