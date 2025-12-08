@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
-import { render } from '@testing-library/react';
+import { render } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import {

@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import RenewFrequency from './RenewFrequency';
 import { serviceInfoAuto } from '@/domain/__mocks__/serviceInfo';

@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
 import DnsZoneOrder from './DnsZoneOrder';

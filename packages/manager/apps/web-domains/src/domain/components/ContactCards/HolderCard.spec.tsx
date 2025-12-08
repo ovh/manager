@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { vi, describe, it, beforeEach } from 'vitest';
 import {
   useGetDomainResource,

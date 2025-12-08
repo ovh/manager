@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi } from 'vitest';
 import DatagridColumnDnsType from './DatagridColumnDnsType';
 import { NameServerTypeEnum } from '@/domain/types/domainResource';

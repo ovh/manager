@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/common/utils/test.provider';
@@ -238,13 +238,19 @@ describe('ConfigurationCards component', () => {
       const tagButtons = screen.getAllByText(
         'domain_tab_general_information_transfer_tag',
       );
-      fireEvent.click(tagButtons[0]);
+      act(() => {
+        fireEvent.click(tagButtons[0]);
+      });
       await screen.findByRole('dialog');
       const input = screen.getByRole('textbox');
-      fireEvent.change(input, { target: { value: 'myTag' } });
+      act(() => {
+        fireEvent.change(input, { target: { value: 'myTag' } });
+      });
       const buttons = screen.getAllByRole('button');
       const confirmButton = buttons[1];
-      fireEvent.click(confirmButton);
+      act(() => {
+        fireEvent.click(confirmButton);
+      });
 
       expect(mockTransferTag).toHaveBeenCalled();
     });
@@ -266,7 +272,9 @@ describe('ConfigurationCards component', () => {
       const dnssecToggles = screen.getAllByRole('checkbox', {
         name: /service_state_enabled/i,
       });
-      fireEvent.click(dnssecToggles[0]);
+      act(() => {
+        fireEvent.click(dnssecToggles[0]);
+      });
       expect(
         screen.getByText(
           'domain_tab_general_information_dnssec_deactivate_modal',
@@ -279,7 +287,9 @@ describe('ConfigurationCards component', () => {
       const transferToggles = screen.getAllByRole('checkbox', {
         name: /service_state_enabled/i,
       });
-      fireEvent.click(transferToggles[1]);
+      act(() => {
+        fireEvent.click(transferToggles[1]);
+      });
       expect(
         screen.getByText(
           'domain_tab_general_information_transfer_deactivate_modal',
@@ -306,7 +316,9 @@ describe('ConfigurationCards component', () => {
       const authInfoLink = screen.getByText(
         'domain_tab_general_information_transfer_authinfo',
       );
-      fireEvent.click(authInfoLink);
+      act(() => {
+        fireEvent.click(authInfoLink);
+      });
       expect(
         screen.getByText(
           'domain_tab_general_information_transfer_authinfo_modal_title',
@@ -320,7 +332,9 @@ describe('ConfigurationCards component', () => {
       const tagLinks = screen.getAllByText(
         'domain_tab_general_information_transfer_tag',
       );
-      fireEvent.click(tagLinks[0]);
+      act(() => {
+        fireEvent.click(tagLinks[0]);
+      });
 
       const modalTexts = screen.getAllByText(
         'domain_tab_general_information_transfer_tag',

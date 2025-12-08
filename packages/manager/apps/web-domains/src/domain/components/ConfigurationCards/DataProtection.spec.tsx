@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';

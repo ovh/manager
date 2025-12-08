@@ -1,6 +1,11 @@
 import '@/common/setupTests';
 import { vi, describe, it, expect } from 'vitest';
-import { fireEvent, render, renderHook, screen } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  renderHook,
+  screen,
+} from '@/common/utils/test.provider';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import HostsListing from './hostsListing';
 import { wrapper } from '@/common/utils/test.provider';
@@ -24,7 +29,11 @@ describe('Host Columns', () => {
   const { result } = renderHook(() =>
     useHostsDatagridColumns({ setDrawer, setHostData }),
   );
-  const columns = result.current;
+  const columns = result.current as Array<{
+    id: string;
+    label: string;
+    [key: string]: any;
+  }>;
   it('should return the correct number of column', () => {
     expect(columns).toHaveLength(4);
   });
