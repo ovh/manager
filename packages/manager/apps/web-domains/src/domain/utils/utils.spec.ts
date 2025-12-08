@@ -5,20 +5,30 @@ import {
   getLanguageKey,
   computeDnsDetails,
   getIpsSupported,
-  getHostnameErrorMessage,
-  tranformIpsStringToArray,
+  transformIpsStringToArray,
+  isDuplicateHost,
+  isValidHostSyntax,
+  makeHostValidators,
+  isDuplicateIps,
+  isValidIpv4,
+  isValidIpv6,
+  isValidIpSyntax,
+  isValidNumberOfIps,
+  areIpsCompliantWithRegistryConfiguration,
+  makeIpsValidator,
+  areIPsValid,
 } from './utils';
 import {
   TDomainResource,
   TNameServerWithType,
 } from '@/domain/types/domainResource';
 import { baseDomainResource, ns1, ns2 } from '@/domain/__mocks__/dnsDetails';
-import { TaskStatusEnum } from '../enum/taskStatus.enum';
-import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
-import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
+import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { StatusEnum } from '../enum/Status.enum';
-import { THost } from '../types/host';
-import { ProtectionStateEnum } from '../enum/protectionState.enum';
+import { useTranslation } from 'react-i18next';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFormatDate: () => () => '03/01/2025 10:15',
@@ -257,7 +267,7 @@ describe('getIpsSupported', () => {
 
   it('returns OneIPv4OneIPv6 when both ipv4 and ipv6 are supported but multiple IPs are not allowed', () => {
     expect(getIpsSupported(true, true, false)).toBe(
-      IpsSupportedEnum.OneIPv4OneIPv6,
+      IpsSupportedEnum.OneIPv4OrOneIPv6,
     );
   });
 
@@ -286,37 +296,6 @@ describe('getIpsSupported', () => {
   });
 });
 
-describe('getHostnameErrorMessage', () => {
-  const serviceName = 'example.com';
-  const hosts: THost[] = [
-    {
-      host: 'ns1.example.com',
-      ips: ['1.1.1.1'],
-      status: StatusEnum.ENABLED,
-    },
-  ];
-
-  it('returns duplicate error when hostname already exists in hosts list', () => {
-    const msg = getHostnameErrorMessage('ns1', serviceName, hosts);
-    expect(msg).toBe('domain_tab_hosts_drawer_add_invalid_host_same');
-  });
-
-  it('returns format error when hostname is invalid', () => {
-    const msg = getHostnameErrorMessage('bad host', serviceName, hosts);
-    expect(msg).toBe('domain_tab_hosts_drawer_add_invalid_host_format');
-  });
-
-  it('returns format error when hostname is empty', () => {
-    const msg = getHostnameErrorMessage('', serviceName, hosts);
-    expect(msg).toBe('domain_tab_hosts_drawer_add_invalid_host_format');
-  });
-
-  it('returns empty string when hostname is valid and not duplicate', () => {
-    const msg = getHostnameErrorMessage('ns2', serviceName, hosts);
-    expect(msg).toBe('');
-  });
-});
-
 describe('tranformIpsStringToArray', () => {
   it('splits a comma-separated string and trims spaces', () => {
     const result = tranformIpsStringToArray('1.1.1.1,  2.2.2.2 ,3.3.3.3');
@@ -336,5 +315,149 @@ describe('tranformIpsStringToArray', () => {
   it('keeps empty segments as empty strings when there are consecutive commas', () => {
     const result = tranformIpsStringToArray('1.1.1.1,,2.2.2.2');
     expect(result).toEqual(['1.1.1.1', '', '2.2.2.2']);
+  });
+});
+
+describe('isDuplicateHost', () => {
+  const hostsTargetSpec = [
+    {
+      host: 'foo.example.com',
+      status: StatusEnum.ACTIVATING,
+      ips: ['1.1.1.1'],
+    },
+  ];
+  it('should return true when host already exists in target spec', () => {
+    expect(isDuplicateHost('foo', hostsTargetSpec, 'example.com')).toBe(true);
+  });
+  it('should return false when host does not exist in target spec', () => {
+    expect(isDuplicateHost('bar', hostsTargetSpec, 'example.com')).toBe(false);
+  });
+});
+
+describe('isValidHostSyntax', () => {
+  it('should return true for valid hostname', () => {
+    expect(isValidHostSyntax('valid.host', 'example.com')).toBe(true);
+  });
+
+  it('should return false for invalid hostname', () => {
+    expect(isValidHostSyntax('invalid#host', 'example.com')).toBe(false);
+  });
+});
+
+describe('makeHostValidators', () => {
+  const hostsTargetSpec = [
+    {
+      host: 'foo.example.com',
+      status: StatusEnum.ACTIVATING,
+      ips: ['1.1.1.1'],
+    },
+  ];
+  const { t } = useTranslation(['domain']);
+  it('should create validators with correct error messages', () => {
+    const validators = makeHostValidators(hostsTargetSpec, 'example.com', t);
+    expect(validators.noDuplicate('bar')).toBe(true);
+    expect(validators.validSyntax('invalid#host')).toBe(
+      'domain_tab_hosts_drawer_add_invalid_host_format',
+    );
+  });
+});
+
+describe('isDuplicateIps', () => {
+  it('should detect duplicate IPs', () => {
+    expect(isDuplicateIps(['1.1.1.1', '1.1.1.1'])).toBe(true);
+  });
+
+  it('should return false for unique IPs', () => {
+    expect(isDuplicateIps(['1.1.1.1', '2.2.2.2'])).toBe(false);
+  });
+});
+
+describe('isValidIpv4', () => {
+  it('should validate IPv4 addresses', () => {
+    expect(isValidIpv4('192.168.1.1')).toBe(true);
+    expect(isValidIpv4('invalid')).toBe(false);
+  });
+});
+
+describe('isValidIpv6', () => {
+  it('should validate IPv6 addresses', () => {
+    expect(isValidIpv6('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toBe(true);
+    expect(isValidIpv6('invalid')).toBe(false);
+  });
+});
+
+describe('areIPsValid', () => {
+  it('should return false when no IPs are provided', () => {
+    expect(areIPsValid([], IpsSupportedEnum.OneIPv4)).toBe(false);
+  });
+
+  it('should return false when more than one IP is provided for single IP support', () => {
+    expect(
+      areIPsValid(['192.168.1.1', '10.0.0.1'], IpsSupportedEnum.OneIPv4),
+    ).toBe(false);
+  });
+
+  it('should return false when invalid IPv4 is present in MultipleIPv4', () => {
+    expect(
+      areIPsValid(['192.168.1.1', 'invalid'], IpsSupportedEnum.MultipleIPv4),
+    ).toBe(false);
+  });
+
+  it('should return false when invalid IPv6 is present in MultipleIPv6', () => {
+    expect(
+      areIPsValid(
+        ['2001:0db8:85a3::8a2e:0370:7334', 'invalid'],
+        IpsSupportedEnum.MultipleIPv6,
+      ),
+    ).toBe(false);
+  });
+
+  it('should return false when mixed invalid IPs in OneIPv4OrOneIPv6', () => {
+    expect(
+      areIPsValid(
+        ['invalid', '2001:0db8:85a3::8a2e:0370:7334'],
+        IpsSupportedEnum.OneIPv4OrOneIPv6,
+      ),
+    ).toBe(false);
+  });
+
+  it('should return true for valid IPv4 in OneIPv4', () => {
+    expect(areIPsValid(['192.168.1.1'], IpsSupportedEnum.OneIPv4)).toBe(true);
+  });
+
+  it('should return true for valid IPv6 in OneIPv6', () => {
+    expect(
+      areIPsValid(['2001:0db8:85a3::8a2e:0370:7334'], IpsSupportedEnum.OneIPv6),
+    ).toBe(true);
+  });
+
+  it('should return true for valid mixed IPs in All mode', () => {
+    expect(
+      areIPsValid(
+        ['192.168.1.1', '2001:0db8:85a3::8a2e:0370:7334'],
+        IpsSupportedEnum.All,
+      ),
+    ).toBe(true);
+  });
+
+  it('should return false for invalid enum value', () => {
+    // @ts-ignore
+    expect(
+      areIPsValid(['192.168.1.1'], 'invalid-enum' as IpsSupportedEnum),
+    ).toBe(false);
+  });
+});
+
+describe('makeIpsValidator', () => {
+  const { t } = useTranslation(['domain']);
+  it('should combine both validators for complex scenarios', () => {
+    const validator = makeIpsValidator(IpsSupportedEnum.All, t);
+    expect(validator.noDuplicate('192.168.1.1,192.168.1.1')).toBe(
+      'domain_tab_hosts_drawer_add_duplicate_ips',
+    );
+    expect(validator.validIps('192.168.1.1,2001:0db8::1')).toBe(true);
+    expect(validator.validIps('invalid,2001:0db8::1')).toBe(
+      'domain_tab_hosts_drawer_add_invalid_ips',
+    );
   });
 });
