@@ -65,7 +65,13 @@ export const DatagridAction = (secret: Secret) => {
       id: 2,
       label: t('add_new_version'),
       onClick: () => {
-        navigate(SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(okmsId, secret.path));
+        navigate(
+          SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(
+            okmsId,
+            secret.path,
+            secret.metadata.currentVersion,
+          ),
+        );
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretVersionCreate],
