@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.17.0...@ovh-ux/manager-web-ongoing-operations-app@1.18.0) (2025-12-08)
+
+
+### Bug Fixes
+
+* **domains:** update dependencies and fix css issue ([022d827](https://github.com/ovh/manager/commit/022d827865c2f5062b039574bd921a36c88291c3)), closes [#DCE-109](https://github.com/ovh/manager/issues/DCE-109)
+
+
+### Features
+
+* **web-ongoing-operations:** eslint and ts migration ([86a9ec4](https://github.com/ovh/manager/commit/86a9ec4219280ee558c5c20a54f9eb990e89e7cb)), closes [#DCE-102](https://github.com/ovh/manager/issues/DCE-102)
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.3...@ovh-ux/manager-web-ongoing-operations-app@1.17.0) (2025-12-05)
 
 

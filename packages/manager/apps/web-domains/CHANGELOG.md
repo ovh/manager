@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.4.0...@ovh-ux/manager-web-domains-app@1.4.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* **domains:** update dependencies and fix css issue ([022d827](https://github.com/ovh/manager/commit/022d827865c2f5062b039574bd921a36c88291c3)), closes [#DCE-109](https://github.com/ovh/manager/issues/DCE-109)
+
+
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.30...@ovh-ux/manager-web-domains-app@1.4.0) (2025-12-05)
 
 
