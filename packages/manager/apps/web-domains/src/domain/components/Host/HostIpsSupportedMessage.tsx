@@ -22,7 +22,7 @@ export default function HostsIpsSupportedMessage({
       'domain_tab_hosts_drawer_add_form_helper_multiple_ipv4',
     [IpsSupportedEnum.MultipleIPv6]:
       'domain_tab_hosts_drawer_add_form_helper_multiple_ipv6',
-    [IpsSupportedEnum.OneIPv4OneIPv6]:
+    [IpsSupportedEnum.OneIPv4OrOneIPv6]:
       'domain_tab_hosts_drawer_add_form_helper_all_supported_no_multiple_ips',
   };
 

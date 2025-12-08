@@ -303,7 +303,7 @@
   "domain_tab_hosts_drawer_add_invalid_host_format": "Le nom d’hôte saisi n’est pas au bon format",
   "domain_tab_hosts_drawer_add_invalid_host_same": "Le nom d'hôte existe déjà",
   "domain_tab_hosts_drawer_add_invalid_ips": "Une ou plusieurs adresses IP sont invalides. Veuillez saisir des adresses IPv4 ou IPv6 valides.",
-  "domain_tab_hosts_drawer_add_duplicate_ips": "Il y a une ou plusieurs IP dupliqué(es) dans la saisie",
+  "domain_tab_hosts_drawer_add_duplicate_ips": "Il y a une ou plusieurs adresses IP dupliquées dans la saisie",
   "domain_tab_hosts_drawer_add_success_message": "{{ host }} a été ajouté avec succès",
   "domain_tab_hosts_drawer_modify_success_message": "{{ host }} a été modifié avec succès",
   "domain_tab_hosts_drawer_add_error_message": "Une erreur a été détectée lors de l'ajout de l'hôte : {{ error }}",
