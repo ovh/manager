@@ -4,21 +4,22 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
-import { LogsContext } from '../../LogsToCustomer.context';
-import { useLogSubscriptions } from '../../data/hooks/useLogSubscriptions';
-import { Stream } from '../../data/types/dbaas/logs';
-import getStreamSubscription from '../../helpers/getStreamSubscription';
-import SubscribeButton from './DataStreamSubscribeButton.component';
-import UnsubscribeButton from './DataStreamUnsubscribeButton.component';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { useLogSubscriptions } from '@/data/hooks/useLogSubscriptions';
+import { Stream } from '@/data/types/dbaas/logs';
+import getStreamSubscription from '@/helpers/getStreamSubscription';
+import SubscribeButton from '@/components/data-streams/DataStreamSubscribeButton.component';
+import UnsubscribeButton from '@/components/data-streams/DataStreamUnsubscribeButton.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
-export const DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID = 'data-stream-retention-loading-test-id';
+export const DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID = 'data-stream-subscription-loading-test-id';
 
 interface TDataStreamActions {
   stream?: Stream;
 }
 
 const DataStreamActions = ({ stream }: TDataStreamActions) => {
-  const { t } = useTranslation('error');
+  const { t } = useTranslation(NAMESPACES.ERROR);
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
 
   const {

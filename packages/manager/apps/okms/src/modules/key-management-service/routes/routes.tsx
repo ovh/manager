@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 
 import NotFound from '@key-management-service/pages/404';
 
-import { getLogsRoute } from '@ovh-ux/logs-to-customer';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
@@ -233,9 +232,7 @@ export default (
           }}
         />
       </Route>
-      <Route path={`${KMS_ROUTES_URIS.kmsLogs}/*`} Component={KmsLogs}>
-        {getLogsRoute()}
-      </Route>
+      <Route path={`${KMS_ROUTES_URIS.kmsLogs}/*`} Component={KmsLogs} />
     </Route>
     <Route
       path={`${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.serviceKeys}/${KMS_ROUTES_URIS.serviceKeyCreate}`}
