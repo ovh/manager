@@ -18,7 +18,7 @@ const usePaymentMethod = (environment: Environment): UsePaymentMethod => {
   };
 
   const isEnterpriseAccount = () => {
-    return user.enterprise;
+    return user?.enterprise;
   };
 
   return {
