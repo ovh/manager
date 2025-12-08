@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.1...@ovh-ux/sign-up-app@4.6.2) (2025-12-08)
+
+
+### Bug Fixes
+
+* **account-creation:** add query params persistence ([d4cadd2](https://github.com/ovh/manager/commit/d4cadd2787e9b0fd2ec163cc5e54a2f69807fca2)), closes [#MANAGER-20472](https://github.com/ovh/manager/issues/MANAGER-20472)
+
+
+
+
+
 ## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.0...@ovh-ux/sign-up-app@4.6.1) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

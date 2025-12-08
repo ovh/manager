@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   BaseLayout,
+  Links,
+  LinkType,
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -15,7 +17,6 @@ import {
   OdsCheckbox,
   OdsFormField,
   OdsInput,
-  OdsLink,
   OdsPhoneNumber,
   OdsRadio,
   OdsSelect,
@@ -25,8 +26,6 @@ import {
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_ICON_ALIGNMENT,
   ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
   ODS_TEXT_PRESET,
   OdsPhoneNumberChangeEventDetail,
@@ -34,6 +33,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { User } from '@ovh-ux/manager-config';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useRules } from '@/data/hooks/useRules';
 import { RulesParam } from '@/data/api/rules';
 import { useUserContext } from '@/context/user/useUser';
@@ -46,6 +51,7 @@ import {
 import { putMe } from '@/data/api/me';
 import { putSmsConsent } from '@/data/api/marketing';
 import { urls } from '@/routes/routes.constant';
+import { useTrackingContext } from '@/context/tracking/useTracking';
 import {
   getSirenFromSiret,
   isIndividualLegalForm,
@@ -53,6 +59,11 @@ import {
   shouldEnableSIRENDisplay,
 } from '@/helpers/flowHelper';
 import { useDetailsRedirection } from '@/hooks/redirection/useDetailsRedirection';
+import {
+  useTrackError,
+  useTrackBackButtonClick,
+} from '@/hooks/tracking/useTracking';
+import { TRACKING_GOAL_TYPE } from './accountDetails.constants';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -67,7 +78,7 @@ function AccountDetailsForm({
   currentUser,
   updateRulesParams,
 }: AccountDetailsFormProps) {
-  const { t } = useTranslation([
+  const { t, i18n } = useTranslation([
     'account-details',
     'area',
     NAMESPACES.FORM,
@@ -77,6 +88,9 @@ function AccountDetailsForm({
   const { addError, addSuccess } = useNotifications();
 
   const { url: redirectionUrl, isLoading: isRedirectionUrlLoading } = useDetailsRedirection();
+  const pageTracking = usePageTracking();
+  const { trackClick, trackPage } = useTrackingContext();
+  const { trackError } = useTrackError('final-step');
 
   const {
     legalForm,
@@ -84,6 +98,8 @@ function AccountDetailsForm({
     companyNationalIdentificationNumber,
     address,
     city,
+    ovhSubsidiary,
+    language,
     isSMSConsentAvailable,
   } = useUserContext();
 
@@ -120,8 +136,8 @@ function AccountDetailsForm({
       phoneCountry: currentUser.phoneCountry || 'GB',
       organisation,
       companyNationalIdentificationNumber,
-      address: address || currentUser.address,
-      city: city || currentUser.city,
+      address: address || currentUser.address || '',
+      city: city || currentUser.city || '',
       legalform: legalForm,
       smsConsent: false,
     },
@@ -162,6 +178,7 @@ function AccountDetailsForm({
 
   const phoneCountry = watch('phoneCountry');
   const phoneType = watch('phoneType');
+  const country = watch('country');
 
   useEffect(() => {
     if (phoneType === 'landline' && isSMSConsentAvailable) {
@@ -173,7 +190,13 @@ function AccountDetailsForm({
     if (phoneCountry) {
       updateRulesParams('phoneCountry', phoneCountry);
     }
-  }, [phoneCountry]);
+    if (country) {
+      updateRulesParams('country', country);
+      if (country !== currentUser.country) {
+        setValue('language', '');
+      }
+    }
+  }, [phoneCountry, country]);
 
   const { mutate: addAccountDetails, isPending: isFormPending } = useMutation({
     mutationFn: async (payload: FormData) => {
@@ -186,6 +209,12 @@ function AccountDetailsForm({
       }
     },
     onSuccess: () => {
+      trackPage({
+        pageName: `final-step_${i18n.language}_${language}_${legalForm}`,
+        pageType: PageType.bannerSuccess,
+        pageCategory: 'banner',
+        goalType: TRACKING_GOAL_TYPE,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('account_details_success_message')}
@@ -194,7 +223,8 @@ function AccountDetailsForm({
       );
       window.location.assign(redirectionUrl!);
     },
-    onError: () => {
+    onError: (error) => {
+      trackError(error.message);
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('account_details_error_message')}
@@ -207,6 +237,18 @@ function AccountDetailsForm({
   const handleValidateClick: SubmitHandler<z.infer<typeof zodSchema>> = (
     formData,
   ) => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: [
+          'account-create-check-customer-informations',
+          'confirm',
+          `${ovhSubsidiary}_${language}_${legalForm}`,
+        ],
+        goalType: TRACKING_GOAL_TYPE,
+      });
+    }
     addAccountDetails(formData as FormData);
   };
 
@@ -560,6 +602,7 @@ function AccountDetailsForm({
                       isDisabled={!rules}
                       className="flex-1"
                       hasError={!!errors[name]}
+                      key={`areas_for_${country}_${rules?.area.in?.length || 0}`}
                     >
                       {rules?.area.in?.map((area: string) => (
                         <option key={area} value={area}>
@@ -693,68 +736,74 @@ function AccountDetailsForm({
               <OdsSkeleton className="w-full" />
             </div>
           )}
-          {
-            <OdsFormField>
-              <OdsText
-                preset="caption"
-                aria-label={t('account_details_field_phone')}
-              >
-                <label htmlFor="phone">
-                  {t('account_details_field_phone')}
-                  {rules?.phone?.mandatory && ' *'}
-                </label>
-              </OdsText>
-              <OdsPhoneNumber
-                name="phone"
-                countries={
-                  rules?.phoneCountry && rules?.phoneCountry.in
-                    ? [
-                        ...rules?.phoneCountry.in
-                          .filter(
-                            (countryCode: string) =>
-                              ODS_PHONE_NUMBER_COUNTRY_ISO_CODE[
-                                countryCode.toLowerCase() as keyof typeof ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
-                              ],
-                          )
-                          .map(
-                            (countryCode: string) =>
-                              countryCode.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
-                          ),
-                      ]
-                    : []
-                }
-                value={watch('phone')}
-                isoCode={
-                  watch(
-                    'phoneCountry',
-                  )?.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
-                }
-                onOdsChange={(
-                  e: OdsPhoneNumberCustomEvent<OdsPhoneNumberChangeEventDetail>,
-                ) => {
-                  switch (e.detail.name) {
-                    case 'iso-code':
-                      setValue('phoneCountry', e.detail.value?.toUpperCase());
-                      break;
-                    case 'phone':
-                      setValue('phone', e.detail.value || '');
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-                class="w-full flex flex-row"
-              />
-              {errors.phone && rules?.phone && (
+          <Controller
+            control={control}
+            name="phone"
+            render={({ field: { name, value, onBlur } }) => (
+              <OdsFormField>
                 <OdsText
-                  className="text-critical leading-[0.8]"
                   preset="caption"
+                  aria-label={t('account_details_field_phone')}
                 >
-                  {renderTranslatedZodError(errors.phone.message, rules?.phone)}
+                  <label htmlFor="phone">
+                    {t('account_details_field_phone')}
+                    {rules?.phone?.mandatory && ' *'}
+                  </label>
                 </OdsText>
-              )}
-            </OdsFormField>
-          }
+                <OdsPhoneNumber
+                  name={name}
+                  countries={
+                    rules?.phoneCountry && rules?.phoneCountry.in
+                      ? [
+                          ...rules?.phoneCountry.in
+                            .filter(
+                              (countryCode: string) =>
+                                ODS_PHONE_NUMBER_COUNTRY_ISO_CODE[
+                                  countryCode.toLowerCase() as keyof typeof ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
+                                ],
+                            )
+                            .map(
+                              (countryCode: string) =>
+                                countryCode.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
+                            ),
+                        ]
+                      : []
+                  }
+                  value={value}
+                  isoCode={
+                    watch(
+                      'phoneCountry',
+                    )?.toLowerCase() as ODS_PHONE_NUMBER_COUNTRY_ISO_CODE
+                  }
+                  onOdsChange={(
+                    e: OdsPhoneNumberCustomEvent<OdsPhoneNumberChangeEventDetail>,
+                  ) => {
+                    switch (e.detail.name) {
+                      case 'iso-code':
+                        setValue('phoneCountry', e.detail.value?.toUpperCase());
+                        break;
+                      case 'phone':
+                        setValue('phone', e.detail.value || '');
+                        break;
+                      default:
+                        break;
+                    }
+                  }}
+                  onOdsBlur={onBlur}
+                  hasError={!!errors.phone}
+                  className="w-full flex flex-row"
+                />
+                {errors.phone && rules?.phone && (
+                  <OdsText
+                    className="text-critical leading-[0.8]"
+                    preset="caption"
+                  >
+                    {renderTranslatedZodError(errors.phone.message, rules?.phone)}
+                  </OdsText>
+                )}
+              </OdsFormField>
+            )}
+            />
         </div>
 
         <div className="flex flex-col">
@@ -776,24 +825,35 @@ function AccountDetailsForm({
                   </label>
                 </OdsText>
                 {!isLoading && (
-                  <OdsSelect
-                    name={name}
-                    value={value}
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                    isDisabled={!rules}
-                    className="flex-1"
-                  >
-                    {rules?.language
-                      ? rules?.language.in?.map((lang: string) => (
-                          <option key={lang} value={lang}>
-                            {t(`language_${lang}`, {
-                              ns: NAMESPACES.LANGUAGE,
-                            })}
-                          </option>
-                        ))
-                      : null}
-                  </OdsSelect>
+                  <>
+                    <OdsSelect
+                      name={name}
+                      value={value}
+                      onOdsChange={onChange}
+                      onOdsBlur={onBlur}
+                      isDisabled={!rules}
+                      className="flex-1"
+                      key={`languages_for_${country}_${rules?.language.in?.length || 0}`}
+                    >
+                      {rules?.language
+                        ? rules?.language.in?.map((lang: string) => (
+                            <option key={lang} value={lang}>
+                              {t(`language_${lang}`, {
+                                ns: NAMESPACES.LANGUAGE,
+                              })}
+                            </option>
+                          ))
+                        : null}
+                    </OdsSelect>
+                    {errors[name] && rules?.[name] && (
+                      <OdsText
+                        className="text-critical leading-[0.8]"
+                        preset="caption"
+                      >
+                        {renderTranslatedZodError(errors[name].message, rules?.phone)}
+                      </OdsText>
+                    )}
+                  </>
                 )}
               </OdsFormField>
             )}
@@ -901,6 +961,8 @@ export default function AccountDetailsPage() {
     currentUser?.country,
     legalForm,
   );
+  const { trackBackButtonClick } = useTrackBackButtonClick();
+  const { trackError } = useTrackError('check-customer-informations');
 
   const header = {
     title: t(
@@ -916,15 +978,12 @@ export default function AccountDetailsPage() {
     phoneCountry: currentUser?.country || 'GB',
   });
 
-  const { data: rules, refetch: refetchRules, isLoading } = useRules(
+  const { data: rules, refetch: refetchRules, isLoading, error } = useRules(
     rulesParams,
   );
 
   const updateRulesParams = useCallback(
     (key: keyof RulesParam, value: string) => {
-      if (rulesParams[key] === value) {
-        return;
-      }
       setRulesParams((prev) => ({
         ...prev,
         [key]: value,
@@ -937,16 +996,22 @@ export default function AccountDetailsPage() {
     refetchRules();
   }, [rulesParams]);
 
+  useEffect(() => {
+    if (error) {
+      trackError(error.message);
+    }
+  }, [error]);
+
   return (
     <>
-      <OdsLink
-        icon={ODS_ICON_NAME.arrowLeft}
-        iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
+      <Links
+        label={tAction('back')}
+        type={LinkType.back}
         href={`#${
           wentThroughOrganizationSearch ? urls.company : urls.accountType
         }?${searchParams.toString()}`}
-        label={tAction('back')}
         className="flex mb-6"
+        onClickReturn={() => trackBackButtonClick()}
       />
       {wentThroughOrganizationSearch && (
         <OdsText preset={ODS_TEXT_PRESET.caption}>
@@ -961,7 +1026,7 @@ export default function AccountDetailsPage() {
           <AccountDetailsForm
             rules={rules}
             isLoading={isLoading}
-            currentUser={{ ...(currentUser || {}), ...rulesParams }}
+            currentUser={{ ...(currentUser || {}) }}
             updateRulesParams={updateRulesParams}
           />
         )}

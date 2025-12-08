@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-creation-app",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "description": "Application used to finalize an account creation",
   "repository": {
@@ -37,6 +37,7 @@
     "element-internals-polyfill": "^3.0.0",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
+    "piano-analytics-js": "^6.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.55.0",
