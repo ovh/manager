@@ -50,6 +50,7 @@ export default function CreateVersionDrawerPage() {
       data-testid={CREATE_VERSION_DRAWER_TEST_IDS.drawer}
     >
       <Suspense>
+        <div></div>
         {error && (
           <OdsMessage color="danger" className="mb-4" isDismissible={false}>
             {error?.response?.data?.message}
