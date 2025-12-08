@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.57.0...@ovh-ux/manager-billing@0.57.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* **billing:** fix translation ([d26c927](https://github.com/ovh/manager/commit/d26c9272da77a335ce501347dbd2153c049b25c3)), closes [#DCE-97](https://github.com/ovh/manager/issues/DCE-97)
+
+
+
+
+
 # [0.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.56.0...@ovh-ux/manager-billing@0.57.0) (2025-12-03)
 
 
