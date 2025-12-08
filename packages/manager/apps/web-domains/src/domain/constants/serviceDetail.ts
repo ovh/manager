@@ -149,6 +149,11 @@ export const WARNING_RULES: ComboRule[] = [
     result: {
       type: 'warning',
       i18nKey: 'domain_tab_general_information_banner_technical_not_suspended',
+      link: {
+        linkDetails: ongoingOperationLink,
+        linki18n:
+          'domain_tab_general_information_banner_link_ongoing_operations',
+      },
     },
   },
 ];
@@ -352,7 +357,7 @@ export const DOMAIN_DNSSEC_STATUS: Record<string, StatusDetails> = {
 };
 
 export const DOMAIN_PENDING_ACTIONS: Record<string, StatusDetails> = {
-  [LifecycleCapacitiesEnum.AutorRenewInProgress]: {
+  [LifecycleCapacitiesEnum.AutoRenewInProgress]: {
     i18nKey: 'domain_status_auto_renew_in_progress',
     statusColor: BADGE_COLOR.information,
   },
@@ -361,7 +366,7 @@ export const DOMAIN_PENDING_ACTIONS: Record<string, StatusDetails> = {
     statusColor: BADGE_COLOR.warning,
   },
   [LifecycleCapacitiesEnum.EarlyRenewal]: {
-    i18nKey: 'domain_status_early_renewal',
+    i18nKey: 'domain_status_auto_renew_in_progress',
     statusColor: BADGE_COLOR.information,
   },
   [LifecycleCapacitiesEnum.Terminate]: {
@@ -379,7 +384,7 @@ export const DOMAIN_PENDING_ACTIONS: Record<string, StatusDetails> = {
 };
 
 export const contactTypeTranslationKeys: Record<string, string> = {
-  contactOwner: 'domain_tab_contact_management_owner_title',
+  contactOwner: 'domain_tab_contact_management_holder_title',
   contactAdministrator: 'domain_tab_contact_management_admin_title',
   contactTechnical: 'domain_tab_contact_management_tech_title',
   contactBilling: 'domain_tab_contact_management_billing_title',
