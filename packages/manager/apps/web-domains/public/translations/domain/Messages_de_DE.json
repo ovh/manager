@@ -66,8 +66,6 @@
   "domain_tab_DNS_modification_default_activate_dns": "Um die standardmäßigen DNS von OVHcloud zu verwenden, aktivieren Sie bitte zuerst eine DNS-Zone.",
   "domain_tab_DNS_modification_activate_dns_link": "Ihre DNS-Zone aktivieren",
   "domain_tab_DNS_modification_mixed_activate_dns": "Um eine gemischte Konfiguration mit DNS von OVHcloud zu verwenden, aktivieren Sie bitte zuerst eine DNS-Zone.",
-  "domain_tab_DNS_modification_mixed_dns_number": "Bitte geben Sie zwischen 2 und 14 DNS an.",
-  "domain_tab_DNS_modification_external_dns_number": "Bitte geben Sie zwischen 2 und 10 DNS an.",
   "domain_tab_general_information_banner_expired_to_delete": "Ihr Domainname ist ausgesetzt. Sie können ihn während der Karenzzeit verlängern. Nach Ablauf dieser Frist werden zusätzliche Kosten berechnet, die je nach Endung variieren können.",
   "domain_tab_general_information_banner_restorable": "Ihr Domainname wird gelöscht. Sie können ihn gegen zusätzliche Gebühren wieder herstellen. Klicken Sie dazu auf den Link „Wieder herstellen“. Andernfalls wird Ihr Domainname endgültig gelöscht. <br /><Link />",
   "domain_tab_general_information_banner_dispute": "Für Ihre Domain läuft gerade ein Verfahren. Manche Funktionen können beeinträchtigt sein. Für weitere Informationen kontaktieren Sie bitte den Support.",

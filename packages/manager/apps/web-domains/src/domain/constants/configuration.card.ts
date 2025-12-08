@@ -97,28 +97,32 @@ export const ConfigurationDataProtectionBadgeColorAndContent = {
   [DataProtectionStatus.ACTIVE]: {
     color: BADGE_COLOR.success,
     buttonStatus: false,
-    i18nkeyContent: 'domain_tab_general_information_status_enabled',
+    i18nkeyContent:
+      'domain_tab_general_information_data_protection_status_enabled',
     i18nkeySubContent:
       'domain_tab_general_information_data_protection_activated',
   },
   [DataProtectionStatus.DISABLED]: {
     color: BADGE_COLOR.success,
     buttonStatus: true,
-    i18nkeyContent: 'domain_tab_general_information_status_enabled',
+    i18nkeyContent:
+      'domain_tab_general_information_data_protection_status_enabled',
     i18nkeySubContent:
       'domain_tab_general_information_data_protection_activated',
   },
   [DataProtectionStatus.NONE]: {
     color: BADGE_COLOR.critical,
     buttonStatus: false,
-    i18nkeyContent: 'domain_tab_general_information_status_disabled',
+    i18nkeyContent:
+      'domain_tab_general_information_data_protection_status_disabled',
     i18nkeySubContent:
-      'domain_tab_general_information_data_protection_desactivated',
+      'domain_tab_general_information_data_protection_deactivated',
   },
   [DataProtectionStatus.PARTIAL]: {
     color: BADGE_COLOR.warning,
     buttonStatus: false,
-    i18nkeyContent: 'domain_tab_general_information_status_partial',
+    i18nkeyContent:
+      'domain_tab_general_information_data_protection_status_partial',
     i18nkeySubContent: 'domain_tab_general_information_data_protection_partial',
   },
 };
