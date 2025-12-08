@@ -15,7 +15,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
-import { AsyncFallback } from '@/components/query/AsyncFallback.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import TDatagridRoute from '@/types/datagrid-route.type';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
@@ -79,12 +79,12 @@ export default function DatagridContainer({
     }
   }, [data, navigate, onboarding, status]);
 
-  if (isLoading) return <AsyncFallback state="loading" />;
+  if (isLoading) return <DisplayStatus variant="loading" />;
   if (error || !flattenData?.length)
     return (
-      <AsyncFallback
-        state="customError"
+      <DisplayStatus
         // TODO: Replace with a proper error message
+        variant="customError"
         error={{ status: 500, data: { message: 'An error occured while fetching data' } }}
       />
     );

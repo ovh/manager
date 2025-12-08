@@ -24,7 +24,7 @@ import { TRACKING } from '@/tracking.constants';
 import { validateQuantity } from '@/utils/formValidation';
 import { getPricedVdcResources } from '@/utils/getPricedOrderableResource';
 
-import { AsyncFallback } from '../query/AsyncFallback.component';
+import { DisplayStatus } from '../status/DisplayStatus';
 
 type OrderType = 'compute' | 'storage';
 type PricedResource<T extends OrderType> = T extends 'compute'
@@ -55,15 +55,19 @@ export const DatacentreOrder = <T extends OrderType>({
   const navigate = useNavigate();
   const { id, vdcId } = useDatacentreParams();
   const { trackClick } = useOvhTracking();
-  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const {
+    data: vcdDatacentre,
+    isPending: isLoadingDatacentre,
+    error: datacentreError,
+  } = useVcdDatacentre(id, vdcId);
   const { selectedResource, setSelectedResource, selectedQuantity, setSelectedQuantity } =
     useDatacentreOrderContext();
   const {
     data: orderableResource,
-    isLoading: isLoadingResource,
-    isError: isResourceError,
+    isPending: isLoadingResource,
+    error: resourceError,
   } = useVdcOrderableResource(id, vdcId);
-  const { data: catalog, isLoading: isLoadingCatalog, isError: isCatalogError } = useVcdCatalog(id);
+  const { data: catalog, isPending: isLoadingCatalog, error: catalogError } = useVcdCatalog(id);
   const { redirectToOrder } = useVcdOrder({
     serviceName: id,
     planCode: selectedResource,
@@ -93,24 +97,16 @@ export const DatacentreOrder = <T extends OrderType>({
     }
   }, [selectedResource, pricedResources, setSelectedResource]);
 
-  if (isLoadingResource || isLoadingCatalog) return <AsyncFallback state="loading" />;
-  if (isResourceError || isCatalogError || !pricedResources.length)
-    return (
-      <AsyncFallback
-        state="customError"
-        // TODO: Replace with a proper error message
-        error={{ status: 500, data: { message: t('managed_vcd_vdc_order_unavailable') } }}
-      />
-    );
+  if (isLoadingDatacentre || isLoadingResource || isLoadingCatalog) {
+    return <DisplayStatus variant="loading" />;
+  }
+  const queryError = datacentreError || resourceError || catalogError;
+  if (queryError) return <DisplayStatus variant="error" error={queryError} />;
 
   return (
     <RedirectionGuard
       isLoading={false}
-      condition={
-        vcdDatacentre?.data?.resourceStatus
-          ? isStatusTerminated(vcdDatacentre.data.resourceStatus)
-          : false
-      }
+      condition={isStatusTerminated(vcdDatacentre.data.resourceStatus)}
       route={'..'}
     >
       <div className="my-4 flex flex-col px-10">

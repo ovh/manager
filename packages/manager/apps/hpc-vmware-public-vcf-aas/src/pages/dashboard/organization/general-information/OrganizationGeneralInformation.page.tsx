@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import { isStatusTerminated, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 
-import { AsyncFallback } from '@/components/query/AsyncFallback.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
 import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
@@ -14,15 +14,14 @@ export default function GeneralInformation() {
   const {
     data: vcdOrganization,
     error,
-    isLoading,
+    isPending,
   } = useVcdOrganization({
     id,
     refetchInterval: 60 * 1000,
   });
 
-  if (isLoading) return <AsyncFallback state="loading" />;
-  if (error) return <AsyncFallback state="error" error={error} />;
-  if (!vcdOrganization?.data) return <AsyncFallback state="emptyError" />;
+  if (isPending) return <DisplayStatus variant="loading" />;
+  if (error) return <DisplayStatus variant="error" error={error} />;
 
   return (
     <div className="grid gap-8 px-10 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">

@@ -6,7 +6,7 @@ import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { CustomerContact } from '@ovh-ux/manager-module-common-api';
 import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-react-components';
 
-import { AsyncFallback } from '@/components/query/AsyncFallback.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
 import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 
 export default function ServiceContactsTileItem() {
@@ -23,7 +23,7 @@ export default function ServiceContactsTileItem() {
   };
   const contactList: CustomerContact[] = serviceDetails?.data?.customer?.contacts || [];
 
-  if (isLoading) return <AsyncFallback state="skeletonLoading" count={3} />;
+  if (isLoading) return <DisplayStatus variant="skeletonLoading" count={3} />;
   if (isError || !contactList?.length) {
     return <OdsText>-</OdsText>;
   }
