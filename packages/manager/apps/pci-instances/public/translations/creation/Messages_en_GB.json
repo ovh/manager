@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Your current quota allows you to create up to {{ quota }} instance(s) of type {{ type }} for the {{ region }} region simultaneously. <Link>Check your quota.</Link>",
   "pci_instance_creation_choose_localization_title": "Choose a location",
   "pci_instance_creation_select_localization_label": "Select a location",
-  "pci_instance_creation_continue_order": "Continue my order",
   "pci_instance_creation_configuration_code": "Code for my configuration",
   "pci_instance_creation_select_deployment_mode_title": "Filter a deployment mode",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud provides a robust and adaptable infrastructure designed to meet a wide variety of use cases through deployment models that balance cost-effectiveness, redundancy, and fault tolerance. These different options allow users to choose the approach that best meets their requirements for resilience, availability, and performance.",
@@ -109,5 +108,6 @@
   "pci_instance_creation_network_add_new_used_vlanID_warning": "Using the same VLAN ID for multiple private networks requires careful management of private IPs. Using a non-overlapping DHCP allocation pool can be a way to manage this issue.",
   "pci_instance_creation_network_add_new_vlanID_warning": "VLAN ID 0 is used by default on other products including those outside the Public Cloud environment. Private IPs must be managed carefully",
   "pci_instance_creation_network_add_new_cidr_error": "Please enter a valid IP address",
-  "pci_instance_creation_network_add_new_vlanId_error": "The VLAN ID must be between 0 and 4000. Please check the entered value before continuing."
+  "pci_instance_creation_network_add_new_vlanId_error": "The VLAN ID must be between 0 and 4000. Please check the entered value before continuing.",
+  "pci_instance_creation_create_my_instance": "Launch my instance"
 }

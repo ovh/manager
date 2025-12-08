@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Su cuota actual le permite crear simultáneamente hasta {{ quota }} instancia(s) del tipo {{ type }} para la región de {{ region }}. <Link>Consulte su cuota.</Link>",
   "pci_instance_creation_choose_localization_title": "Elija una localización",
   "pci_instance_creation_select_localization_label": "Seleccione una localización",
-  "pci_instance_creation_continue_order": "Continuar mi pedido",
   "pci_instance_creation_configuration_code": "Código de mi configuración",
   "pci_instance_creation_select_deployment_mode_title": "Filtrar un modo de despliegue",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud proporciona una infraestructura robusta y adaptable, diseñada para satisfacer una amplia variedad de casos de uso gracias a modelos de despliegue que equilibran rentabilidad, redundancia y tolerancia a fallos. Estas diferentes opciones permiten a los usuarios elegir el enfoque más adecuado a sus requisitos de resiliencia, disponibilidad y rendimiento.",
@@ -109,5 +108,6 @@
   "pci_instance_creation_network_add_new_used_vlanID_warning": "El uso de un mismo ID de VLAN para varias redes privadas implica gestionar con atención las IP privadas. El uso de un pool de asignación DHCP sin solapamientos puede ser una forma de gestionar esta problemática.",
   "pci_instance_creation_network_add_new_vlanID_warning": "El ID de VLAN 0 se utiliza por defecto en otros productos, incluidos aquellos fuera del universo de Nube Pública. Las IP privadas deben ser gestionadas con atención",
   "pci_instance_creation_network_add_new_cidr_error": "Por favor, introduzca una dirección IP válida",
-  "pci_instance_creation_network_add_new_vlanId_error": "El ID de vLAN debe estar entre 0 y 4000. Por favor, verifique el valor ingresado antes de continuar."
+  "pci_instance_creation_network_add_new_vlanId_error": "El ID de vLAN debe estar entre 0 y 4000. Por favor, verifique el valor ingresado antes de continuar.",
+  "pci_instance_creation_create_my_instance": "Iniciar mi instancia"
 }
