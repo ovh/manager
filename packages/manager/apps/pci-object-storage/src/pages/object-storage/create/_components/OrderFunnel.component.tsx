@@ -251,11 +251,8 @@ const OrderFunnel = ({
                             form.setValue('objectLockAcknowledgement', checked)
                           }
                           acknowledgementError={
-                            (form.formState.errors as {
-                              objectLockAcknowledgement?: {
-                                message?: string;
-                              };
-                            })?.objectLockAcknowledgement?.message
+                            form.formState.errors.objectLockAcknowledgement
+                              ?.message
                           }
                         />
                       )}

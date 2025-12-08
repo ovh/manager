@@ -13,6 +13,7 @@ export const createOrderFunnelFormSchema = (t: typeof i18next.t) => {
       .regex(/^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/, t('nameInputRegexError')),
     region: z.string().min(1, t('regionRequired')),
     user: z.number().optional(),
+    objectLockAcknowledgement: z.boolean().optional(),
   });
 
   const replicationSchema = z
@@ -38,7 +39,6 @@ export const createOrderFunnelFormSchema = (t: typeof i18next.t) => {
     replication: replicationSchema,
     versioning: z.nativeEnum(storages.VersioningStatusEnum).optional(),
     objectLock: z.nativeEnum(storages.ObjectLockStatusEnum).optional(),
-    objectLockAcknowledgement: z.boolean().default(false),
   });
 
   const swiftSchema = baseSchema.extend({
