@@ -193,6 +193,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
     {
       id: 'action',
       accessorFn: () => '',
+      size: 48,
       header: '',
       cell: ({ row }) => <DatagridActionCell {...row.original} />,
     },
@@ -212,6 +213,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
         columns={rulesData ? columns : []}
         data={rulesData ?? []}
         sorting={sorting}
+        containerHeight={500}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {
           void fetchNextPage();

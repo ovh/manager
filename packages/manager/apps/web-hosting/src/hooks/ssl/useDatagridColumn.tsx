@@ -154,6 +154,7 @@ export default function useDatagridColumn() {
       {
         id: 'actions',
         label: '',
+        size: 48,
         isSortable: false,
         cell: DatagridActionCell,
       },

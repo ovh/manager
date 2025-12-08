@@ -248,6 +248,7 @@ export default function MultisitePage() {
         id: 'actions',
         accessorFn: () => '',
         header: '',
+        size: 48,
         cell: ({ row }) => {
           if (isDomain(row.original)) {
             const domain = row.original;
@@ -264,9 +265,8 @@ export default function MultisitePage() {
                 domains={allDomains}
                 isDisabled={domainsAttached.some((d) => {
                   return (
-                    console.log(d.currentState?.fqdn, domain.currentState.fqdn),
                     d.currentState?.fqdn === domain.currentState.fqdn &&
-                      d.currentState?.isDefault === true
+                    d.currentState?.isDefault === true
                   );
                 })}
               />
@@ -297,6 +297,7 @@ export default function MultisitePage() {
           data={combinedData || []}
           isLoading={isLoading}
           autoScroll={false}
+          containerHeight={500}
           topbar={
             <Button
               id="add-website"
