@@ -32,8 +32,7 @@ export default class NetAppDashboardService {
     ];
     this.coreConfig = coreConfig;
     this.activesNFS = [];
-    //  mock - will be updated with checkboxes implmentation.
-    this.replicationsSelectedVolumes = ['92ae0729-123b-4321-81a2-0cef3b0a8607'];
+    this.replicationsSelectedVolumes = [];
   }
 
   /**
