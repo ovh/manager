@@ -30,7 +30,7 @@
   "multisite_add_website_order_domain_card_text": "Der Domainname wird von OVHcloud verwaltet und automatisch mit Ihrer Seite verknüpft.",
   "multisite_add_website_configure_domain_title": "Konfigurieren Sie Ihre Domain",
   "multisite_add_website_configure_domain_display_name": "Seitenname",
-  "multisite_add_website_configure_domain_display_text": "Die Seite und ihr Stammverzeichnis tragen diesen Namen. Dies ist ein interner Name, der nur für Sie sichtbar ist.",
+  "multisite_add_website_configure_domain_display_text": "Dieser Name hilft Ihnen, Ihre Website in Ihrem Kundenbereich zu identifizieren. Er ist nur für Sie sichtbar.",
   "multisite_add_website_configure_domain_fqdn": "Domainname - erforderlich",
   "multisite_add_website_configure_domain_advanced": "Erweiterte Konfiguration",
   "multisite_add_website_configure_domain_advanced_message": "Ihre DNS-Zone wird automatisch konfiguriert.",
