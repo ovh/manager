@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, renderHook } from '@testing-library/react';
+import { render, renderHook } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import {
   dnsDatagridMock,
@@ -22,7 +22,11 @@ describe('DomainTabDnsWithError', () => {
     (computeDnsDetails as jest.Mock).mockReturnValue(dnsDatagridMockError);
   });
   const { result } = renderHook(() => useDomainDnsDatagridColumns());
-  const columns = result.current;
+  const columns = result.current as Array<{
+    id: string;
+    label: string;
+    [key: string]: any;
+  }>;
   it('should return the correct number of column', () => {
     expect(columns).toHaveLength(4);
   });

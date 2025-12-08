@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { RENEW_URL } from '@/common/constants';
@@ -103,19 +103,23 @@ vi.mock('@ovhcloud/ods-react', () => ({
   },
 }));
 
-vi.mock('react-i18next', () => ({
-  Trans: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="trans">{children}</div>
-  ),
-  useTranslation: () => ({
-    t: (key: string, options?: { count?: number }) => {
-      if (options?.count !== undefined) {
-        return `${key}_count_${options.count}`;
-      }
-      return key;
-    },
-  }),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-i18next')>();
+  return {
+    ...actual,
+    Trans: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="trans">{children}</div>
+    ),
+    useTranslation: () => ({
+      t: (key: string, options?: { count?: number }) => {
+        if (options?.count !== undefined) {
+          return `${key}_count_${options.count}`;
+        }
+        return key;
+      },
+    }),
+  };
+});
 
 describe('RenewRestoreModal', () => {
   const mockOnOpenChange = vi.fn();

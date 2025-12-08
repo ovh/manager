@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, waitFor, fireEvent } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import ServiceList from './serviceList';
 import { wrapper } from '@/common/utils/test.provider';
@@ -252,10 +252,6 @@ vi.mock('./guideButton', () => ({
   default: () => <div data-testid="domain-guide-button" />,
 }));
 
-vi.mock('react-router-dom', () => ({
-  Outlet: () => <div data-testid="outlet" />,
-}));
-
 // Mock export-to-csv
 vi.mock('export-to-csv', () => ({
   download: vi.fn(() => vi.fn()),
@@ -301,7 +297,10 @@ describe('Domains datagrid', () => {
       const { getByTestId, getAllByTestId } = render(<ServiceList />, {
         wrapper,
       });
-      expect(getByTestId('base-layout')).toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(getByTestId('base-layout')).toBeInTheDocument();
+      });
       expect(getAllByTestId('datagrid').length).toBeGreaterThan(0);
       expect(getByTestId('mock-datagrid')).toBeInTheDocument();
     });
@@ -337,14 +336,18 @@ describe('Domains datagrid', () => {
       });
 
       const { getByTestId } = render(<ServiceList />, { wrapper });
-      expect(getByTestId('error-banner')).toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(getByTestId('error-banner')).toBeInTheDocument();
+      });
     });
 
     it('renders without notifications by default', async () => {
       const { queryByTestId } = render(<ServiceList />, { wrapper });
-      // Since our mock returns empty notifications array,
-      // the notifications component should not be rendered in the message prop
-      expect(queryByTestId('notifications')).not.toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(queryByTestId('notifications')).not.toBeInTheDocument();
+      });
     });
   });
 
@@ -466,7 +469,15 @@ describe('Domains datagrid', () => {
       // Select a domain first to trigger the right export path
       const { getByTestId } = render(<ServiceList />, { wrapper });
 
+      await waitFor(() => {
+        expect(getByTestId('checkbox-example.com')).toBeInTheDocument();
+      });
+
       fireEvent.click(getByTestId('checkbox-example.com'));
+
+      await waitFor(() => {
+        expect(getByTestId('checkbox-example.com')).toBeChecked();
+      });
 
       let resolveExport: (value: any) => void;
       mockFetchDomainDetails.mockImplementation(
@@ -477,6 +488,11 @@ describe('Domains datagrid', () => {
       );
 
       fireEvent.click(getByTestId('open-drawer-btn'));
+
+      await waitFor(() => {
+        expect(getByTestId('export-btn')).toBeInTheDocument();
+      });
+
       fireEvent.click(getByTestId('export-btn'));
 
       // Wait for the export process to start
@@ -486,6 +502,10 @@ describe('Domains datagrid', () => {
 
       // Resolve the export to complete the test
       resolveExport({ domain: 'example.com', owner: 'test' });
+
+      await waitFor(() => {
+        expect(mockFetchDomainDetails).toHaveBeenCalled();
+      });
     });
   });
 
@@ -496,7 +516,6 @@ describe('Domains datagrid', () => {
       expect(getByTestId('top-bar-cta')).toBeInTheDocument();
       expect(getByTestId('domain-guide-button')).toBeInTheDocument();
       expect(getByTestId('changelog-button')).toBeInTheDocument();
-      expect(getByTestId('outlet')).toBeInTheDocument();
     });
 
     it('passes correct props to TopBarCTA', async () => {

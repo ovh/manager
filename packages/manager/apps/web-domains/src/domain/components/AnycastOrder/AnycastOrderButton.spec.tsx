@@ -1,16 +1,11 @@
 import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import { OptionStateEnum } from '@/domain/enum/optionState.enum';
 import { useGetDomainAnycastOption } from '@/domain/hooks/data/query';
 import AnycastOrderButtonComponent from './AnycastOrderButton';
-
-const mockNavigate = vi.fn();
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => mockNavigate,
-}));
 
 vi.mock('@/domain/components/AnycastOrder/AnycastTerminateModal', () => ({
   default: () => <div>Modal</div>,

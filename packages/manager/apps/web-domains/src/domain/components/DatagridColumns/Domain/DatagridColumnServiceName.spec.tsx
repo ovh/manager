@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import DatagridColumnServiceName from './DatagridColumnServiceName';
@@ -34,12 +34,6 @@ vi.mock('@ovhcloud/ods-react', () => ({
     <a data-testid={testId} href={href}>
       {children}
     </a>
-  ),
-}));
-
-vi.mock('react-router-dom', () => ({
-  Link: ({ children, to }: { children: React.ReactNode; to: string }) => (
-    <div data-testid={`router-link-${to}`}>{children}</div>
   ),
 }));
 
@@ -86,9 +80,7 @@ describe('DatagridColumnServiceName', () => {
       wrapper,
     });
 
-    const routerLink = screen.getByTestId(
-      `router-link-/domain/${mockDomainName}/information`,
-    );
+    const routerLink = screen.getByTestId(mockDomainName);
     expect(routerLink).toBeInTheDocument();
   });
 });

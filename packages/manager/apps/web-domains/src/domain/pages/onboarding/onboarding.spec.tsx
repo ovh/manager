@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import { describe, expect, vi } from 'vitest';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '@/common/utils/test.provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Onboarding from './onboarding';
 

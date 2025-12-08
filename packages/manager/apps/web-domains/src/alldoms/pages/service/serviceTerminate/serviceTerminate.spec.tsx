@@ -1,7 +1,12 @@
 import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
-import { render, waitFor, screen, fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitFor,
+  screen,
+  fireEvent,
+} from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import ServiceTerminate from '@/alldoms/pages/service/serviceTerminate/serviceTerminate';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
@@ -30,7 +35,10 @@ describe('Terminate service', () => {
     });
 
     render(<ServiceTerminate />, { wrapper });
-    expect(screen.getByTestId('modal')).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('modal')).toBeInTheDocument();
+    });
 
     await waitFor(() => {
       expect(screen.getByText('allDom_modal_subtitle')).toBeInTheDocument();

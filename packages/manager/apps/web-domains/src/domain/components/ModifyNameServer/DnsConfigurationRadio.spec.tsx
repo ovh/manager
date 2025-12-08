@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import DnsConfigurationRadio from './DnsConfigurationRadio';
 import {

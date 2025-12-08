@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
@@ -107,7 +107,7 @@ describe('DataProtectionDrawer component', () => {
     vi.clearAllMocks();
   });
 
-  it('should render drawer with title and description', () => {
+  it('should render drawer with title and description', async () => {
     render(
       <DataProtectionDrawer
         isDrawerOpen={true}
@@ -121,9 +121,11 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByText('domain_tab_general_information_data_drawer_title'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText('domain_tab_general_information_data_drawer_title'),
+      ).toBeInTheDocument();
+    });
     expect(
       screen.getByText(
         'domain_tab_general_information_data_drawer_description',
@@ -131,7 +133,7 @@ describe('DataProtectionDrawer component', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render checkboxes for visible contacts', () => {
+  it('should render checkboxes for visible contacts', async () => {
     render(
       <DataProtectionDrawer
         isDrawerOpen={true}
@@ -145,11 +147,13 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    expect(checkboxes).toHaveLength(2);
+    await waitFor(() => {
+      const checkboxes = screen.getAllByRole('checkbox');
+      expect(checkboxes).toHaveLength(2);
+    });
   });
 
-  it('should check checkbox for selected contacts', () => {
+  it('should check checkbox for selected contacts', async () => {
     render(
       <DataProtectionDrawer
         isDrawerOpen={true}
@@ -163,9 +167,11 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    expect(checkboxes[0]).toBeChecked();
-    expect(checkboxes[1]).not.toBeChecked();
+    await waitFor(() => {
+      const checkboxes = screen.getAllByRole('checkbox');
+      expect(checkboxes[0]).toBeChecked();
+      expect(checkboxes[1]).not.toBeChecked();
+    });
   });
 
   it('should call onCheckboxChange when checkbox is clicked', async () => {
@@ -183,8 +189,13 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
+    await waitFor(() => {
+      const checkboxes = screen.getAllByRole('checkbox');
+      expect(checkboxes.length).toBe(2);
+    });
+
     const checkboxes = screen.getAllByRole('checkbox');
-    await user.click(checkboxes[1]);
+    await act(() => user.click(checkboxes[1]));
 
     await waitFor(() => {
       expect(mockOnCheckboxChange).toHaveBeenCalledWith(
@@ -194,7 +205,7 @@ describe('DataProtectionDrawer component', () => {
     });
   });
 
-  it('should display disclosed fields in tooltip', () => {
+  it('should display disclosed fields in tooltip', async () => {
     render(
       <DataProtectionDrawer
         isDrawerOpen={true}
@@ -208,14 +219,16 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getAllByText(
-        'domain_tab_general_information_data_drawer_contact_field',
-      ).length,
-    ).toBe(2);
+    await waitFor(() => {
+      expect(
+        screen.getAllByText(
+          'domain_tab_general_information_data_drawer_contact_field',
+        ).length,
+      ).toBe(2);
+    });
   });
 
-  it('should disable validate button when no contacts are selected', () => {
+  it('should disable validate button when no contacts are selected', async () => {
     render(
       <DataProtectionDrawer
         isDrawerOpen={true}
@@ -229,11 +242,13 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
-    const validateButton = screen.getByRole('button', { name: /validate/i });
-    expect(validateButton).toBeDisabled();
+    await waitFor(() => {
+      const validateButton = screen.getByRole('button', { name: /validate/i });
+      expect(validateButton).toBeDisabled();
+    });
   });
 
-  it('should enable validate button when contacts are selected', () => {
+  it('should enable validate button when contacts are selected', async () => {
     render(
       <DataProtectionDrawer
         isDrawerOpen={true}
@@ -247,8 +262,10 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
-    const validateButton = screen.getByRole('button', { name: /validate/i });
-    expect(validateButton).not.toBeDisabled();
+    await waitFor(() => {
+      const validateButton = screen.getByRole('button', { name: /validate/i });
+      expect(validateButton).not.toBeDisabled();
+    });
   });
 
   it('should call onClick with selected contacts when validate is clicked', async () => {
@@ -267,7 +284,7 @@ describe('DataProtectionDrawer component', () => {
     );
 
     const validateButton = screen.getByRole('button', { name: /validate/i });
-    await user.click(validateButton);
+    await act(() => user.click(validateButton));
 
     expect(mockOnClick).toHaveBeenCalledWith([
       'contactOwner',
@@ -290,13 +307,18 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', { name: /cancel/i }),
+      ).toBeInTheDocument();
+    });
     const cancelButton = screen.getByRole('button', { name: /cancel/i });
-    await user.click(cancelButton);
+    await act(() => user.click(cancelButton));
 
     expect(mockOnClose).toHaveBeenCalled();
   });
 
-  it('should render empty state when no visible contacts', () => {
+  it('should render empty state when no visible contacts', async () => {
     render(
       <DataProtectionDrawer
         isDrawerOpen={true}
@@ -310,7 +332,9 @@ describe('DataProtectionDrawer component', () => {
       { wrapper },
     );
 
-    const checkboxes = screen.queryAllByRole('checkbox');
-    expect(checkboxes).toHaveLength(0);
+    await waitFor(() => {
+      const checkboxes = screen.queryAllByRole('checkbox');
+      expect(checkboxes).toHaveLength(0);
+    });
   });
 });

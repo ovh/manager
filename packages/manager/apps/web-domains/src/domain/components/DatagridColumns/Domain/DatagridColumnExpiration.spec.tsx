@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DatagridColumnExpiration from './DatagridColumnExpiration';
 import { useGetServiceInformation } from '@/common/hooks/data/query';

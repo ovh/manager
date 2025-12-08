@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '@/common/utils/test.provider';
 import { describe, expect, vi } from 'vitest';
 import {
   useGetDomainResource,

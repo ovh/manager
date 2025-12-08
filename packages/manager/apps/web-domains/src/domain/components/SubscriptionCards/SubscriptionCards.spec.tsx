@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import SubscriptionCards from '@/domain/components/SubscriptionCards/SubscriptionCards';
 import {

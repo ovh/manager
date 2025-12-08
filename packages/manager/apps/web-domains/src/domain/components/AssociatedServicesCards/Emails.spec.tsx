@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
 import Emails from '@/domain/components/AssociatedServicesCards/Emails';

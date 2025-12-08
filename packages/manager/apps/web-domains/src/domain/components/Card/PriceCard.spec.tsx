@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { wrapper } from '@/common/utils/test.provider';

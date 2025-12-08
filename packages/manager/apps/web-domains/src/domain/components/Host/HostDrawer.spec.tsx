@@ -1,5 +1,10 @@
 import '@/common/setupTests';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import HostDrawer from '@/domain/components/Host/HostDrawer';
 import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';

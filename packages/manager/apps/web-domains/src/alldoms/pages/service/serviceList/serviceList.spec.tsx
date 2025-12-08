@@ -1,10 +1,10 @@
 import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
-import { fireEvent, render, waitFor, screen } from '@testing-library/react';
+import { fireEvent, waitFor, act } from '@/common/utils/test.provider';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
-import { wrapper } from '@/common/utils/test.provider';
+import { wrapper, render, screen } from '@/common/utils/test.provider';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
@@ -37,15 +37,18 @@ describe('AllDom datagrid', () => {
       expect(serviceName).toBeInTheDocument();
       expect(serviceName).toHaveAttribute(
         'href',
-        'https://ovh.test/#/web-domains/alldoms/alldom-french-international-example',
+        '/alldoms/alldom-french-international-example',
       );
 
-      // We test the status
       const status = getByTestId('status');
       expect(status).toBeInTheDocument();
+    });
 
-      // We test the actions
+    act(() => {
       fireEvent.click(screen.getByTestId('navigation-action-trigger-action'));
+    });
+
+    await waitFor(() => {
       const renewAction = screen.getByTestId('renew-button');
       expect(renewAction).toBeInTheDocument();
       expect(renewAction).toHaveAttribute(

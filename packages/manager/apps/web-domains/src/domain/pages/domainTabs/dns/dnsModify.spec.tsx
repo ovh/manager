@@ -1,5 +1,5 @@
 import '@/common/setupTests';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@/common/utils/test.provider';
 import { describe, expect, vi } from 'vitest';
 import React from 'react';
 import {
@@ -23,7 +23,7 @@ vi.mock('@/domain/components/ModifyNameServer/DnsConfigurationRadio', () => ({
 }));
 
 describe('DnsModifyPage', () => {
-  it('Render loading component when data is still fetching', () => {
+  it('Render loading component when data is still fetching', async () => {
     (useGetDomainZone as jest.Mock).mockReturnValue({
       domainZone: {},
       isFetchingdomainZone: true,
@@ -35,10 +35,12 @@ describe('DnsModifyPage', () => {
     const { getByTestId } = render(<DnsModifyPage />, {
       wrapper,
     });
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
+    });
   });
 
-  it('Render DnsModify page', () => {
+  it('Render DnsModify page', async () => {
     (useGetDomainZone as jest.Mock).mockReturnValue({
       domainZone: {},
       isFetchingdomainZone: false,
@@ -50,6 +52,8 @@ describe('DnsModifyPage', () => {
     const { getByTestId } = render(<DnsModifyPage />, {
       wrapper,
     });
-    expect(getByTestId('modify-component')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('modify-component')).toBeInTheDocument();
+    });
   });
 });

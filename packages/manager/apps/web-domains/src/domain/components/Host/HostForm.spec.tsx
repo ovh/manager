@@ -1,6 +1,11 @@
 import '@/common/setupTests';
 import { PropsWithChildren } from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { FormProvider, useForm } from 'react-hook-form';
 import HostForm from '@/domain/components/Host/HostForm';

@@ -1,5 +1,5 @@
 import '@/common/setupTests';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/common/utils/test.provider';
 import { vi, describe, it, beforeEach } from 'vitest';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
