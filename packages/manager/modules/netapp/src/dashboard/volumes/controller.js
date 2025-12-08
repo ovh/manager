@@ -1,11 +1,28 @@
 export default class {
   /* @ngInject */
   constructor(NetAppDashboardService) {
-    this.replicationsSelectedVolumes =
-      NetAppDashboardService.replicationsSelectedVolumes;
+    this.NetAppDashboardService = NetAppDashboardService;
+    this.hasAvailableReplicationsServices =
+      NetAppDashboardService.hasAvailableReplicationsServices;
+    this.selectedReplicationsCheckboxes = {};
+    this.AWAITING_REPLICATION_STATUS = 'awaiting_replication';
   }
 
-  $onInit() {
-    console.log('volumes', this);
+  $onDestroy() {
+    this.NetAppDashboardService.replicationsSelectedVolumes = [];
+  }
+
+  handleCheckboxChange({ volumeId, checked }) {
+    if (!checked)
+      this.NetAppDashboardService.replicationsSelectedVolumes = this.NetAppDashboardService.replicationsSelectedVolumes.filter(
+        (id) => id !== volumeId,
+      );
+    else this.NetAppDashboardService.replicationsSelectedVolumes.push(volumeId);
+  }
+
+  goToSingleReplication(volumeId) {
+    this.NetAppDashboardService.replicationsSelectedVolumes = [volumeId];
+    this.selectedReplicationsCheckboxes = { [volumeId]: true };
+    return this.goToCreateReplications();
   }
 }
