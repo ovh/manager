@@ -46,6 +46,7 @@ import {
   ResourceStatus,
   ZimbraOffer,
   formatAccountPayload,
+  getZimbraPlatformAccountDetailQueryKey,
   getZimbraPlatformListQueryKey,
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
@@ -165,7 +166,10 @@ export const EmailAccountForm = () => {
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformListQueryKey(),
+        queryKey: [
+          getZimbraPlatformListQueryKey(),
+          getZimbraPlatformAccountDetailQueryKey(platformId, accountId),
+        ],
       });
     },
   });
@@ -177,11 +181,12 @@ export const EmailAccountForm = () => {
       actionType: 'action',
       actions: [trackingName, CONFIRM],
     });
+    let updatedData = null;
     if (typeof data.offer === 'string' && groupedSlots?.[data.offer]) {
       const selectedSlot = groupedSlots?.[data.offer]?.[0];
-      const updatedData = { ...data, slotId: selectedSlot.id };
-      addOrEditEmailAccount(formatAccountPayload(updatedData, !!accountId));
+      updatedData = { ...data, slotId: selectedSlot.id };
     }
+    return addOrEditEmailAccount(formatAccountPayload(updatedData ?? data, !!accountId));
   };
 
   const {
