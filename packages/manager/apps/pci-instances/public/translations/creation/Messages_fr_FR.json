@@ -17,7 +17,7 @@
   "pci_instance_creation_choose_datacenter_label": "Choisissez un datacentre",
   "pci_instance_creation_show_all_localizations": "Voir toutes les localisations",
   "pci_instance_creation_select_localization_help": "OVHcloud propose sa solution Public Cloud à travers le monde via nos datacenters présents sur plusieurs continents. Celle-ci est donc accessible en Europe, en Amérique du Nord et en Asie-Pacifique. Notre volonté : élargir la disponibilité de nos services à de nouvelles zones géographiques.",
-  "pci_instance_creation_continue_order": "Continuer ma commande",
+  "pci_instance_creation_create_my_instance": "Lancer mon instance",
   "pci_instance_creation_configuration_code": "Code de ma configuration",
   "pci_instance_creation_select_flavor_title": "Sélectionnez un modèle",
   "pci_instance_creation_select_flavor_cart_section": "Modèle",

@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Ihr aktuelles Kontingent erlaubt es Ihnen, gleichzeitig bis zu {{ quota }} Instanz(en) vom Typ {{ type }} für die Region {{ region }} zu erstellen. <Link>Überprüfen Sie Ihr Kontingent.</Link>",
   "pci_instance_creation_choose_localization_title": "Wählen Sie einen Standort aus",
   "pci_instance_creation_select_localization_label": "Wählen Sie einen Standort aus",
-  "pci_instance_creation_continue_order": "Meine Bestellung fortsetzen",
   "pci_instance_creation_configuration_code": "Code meiner Konfiguration",
   "pci_instance_creation_select_deployment_mode_title": "Filtern Sie einen Bereitstellungsmodus",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud bietet eine robuste und anpassungsfähige Infrastruktur, die entwickelt wurde, um eine Vielzahl von Anwendungsfällen zu erfüllen, dank Bereitstellungsmodellen, die Rentabilität, Redundanz und Fehlertoleranz ausbalancieren. Diese verschiedenen Optionen ermöglichen es den Benutzern, den Ansatz zu wählen, der am besten zu ihren Anforderungen an Resilienz, Verfügbarkeit und Leistung passt.",
@@ -100,5 +99,6 @@
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} inkl. MwSt./Stunde",
   "pci_instance_creation_image_available_on_other_models": "Dieses Bild ist in anderen Modellen verfügbar.",
   "pci_instance_creation_select_network_dropdown_label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
-  "pci_instance_creation_network_add_new": "Ein privates Netzwerk erstellen"
+  "pci_instance_creation_network_add_new": "Ein privates Netzwerk erstellen",
+  "pci_instance_creation_create_my_instance": "Starte meine Instanz"
 }
