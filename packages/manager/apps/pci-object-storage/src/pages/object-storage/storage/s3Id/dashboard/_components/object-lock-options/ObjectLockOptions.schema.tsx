@@ -34,7 +34,7 @@ export const createObjectLockOptionsSchema = (t: typeof i18next.t) => {
       }
 
       // When retention is enabled, rule must be valid
-      if (data.retention && !data.rule) {
+      if (!data.rule) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: t('errorRuleRequired'),
