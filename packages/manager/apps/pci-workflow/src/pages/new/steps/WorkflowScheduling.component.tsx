@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -64,11 +64,16 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
 
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
   const [distantRegion, setDistantRegion] = useState<string | null>(null);
+  const [isDistantBackup, setIsDistantBackup] = useState(false);
 
   const isCustom = [ROTATE_7, ROTATE_14].indexOf(schedule) < 0;
 
   const handleDistantRegionChange = (newRegion: string) => setDistantRegion(newRegion);
 
+  const isNextDisable = useMemo(
+    () => !schedule || (isDistantBackup && !distantRegion),
+    [schedule, isDistantBackup, distantRegion],
+  );
   return (
     <>
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -117,7 +122,9 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
         <DistantBackup
           distantContinents={distantContinents}
           distantRegion={distantRegion}
-          onChange={handleDistantRegionChange}
+          onDistantRegionChange={handleDistantRegionChange}
+          isDistantBackup={isDistantBackup}
+          onIsDistantBackupChange={setIsDistantBackup}
         />
       )}
 
@@ -126,7 +133,7 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
           <Button
             size={'md'}
             color={'primary'}
-            disabled={!schedule}
+            disabled={isNextDisable}
             onClick={() => schedule && onSubmit(schedule, distantRegion)}
           >
             {t('pci_workflow_create')}
