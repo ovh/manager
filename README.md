@@ -1,6 +1,7 @@
 # Manager
 
 (COLD START)
+(TESTS EXECUTION WITH SMALL NON IMPACTFULL CHANGE (CACHE HIT))
 
 > The official [OVHcloud](https://ovhcloud.com) control panel also known as the **[Manager](https://manager.eu.ovhcloud.com/)**.
 
