@@ -16,9 +16,32 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
    * @returns {Promise}
    */
   createItemsPromise({ cursor }) {
+    let identities = [];
+    if (this.identities) {
+      identities = [
+        ...(this.identities.selection || []),
+        ...(this.identities.manual || []),
+      ];
+    }
+
+    let resources = [];
+    if (this.resources) {
+      resources = (this.resources.selection || []).map((d) => d.urn);
+    }
+
+    let actions = [];
+    if (this.actions) {
+      actions = [
+        ...(this.actions.groups || []).map((d) => d.urn),
+        ...(this.actions.selection || []).map((d) => d.action),
+      ];
+    }
     return this.IAMService.getPolicies({
       cursor,
       readOnly: false,
+      identities,
+      resources,
+      actions,
     });
   }
 
@@ -54,6 +77,12 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
     return this.goTo({
       name: 'iam.policies.myPolicies.delete',
       params: { ...this.params, policy: id },
+    });
+  }
+
+  openAdvancedSearchModal() {
+    return this.goTo({
+      name: 'iam.policies.myPolicies.advancedSearch',
     });
   }
 }

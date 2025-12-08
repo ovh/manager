@@ -12,5 +12,7 @@
   "iam_policies_my_policies": "Le mie policy",
   "iam_policies_ovh": "Policy OVHcloud",
   "iam_policies_resource_groups": "Gruppi di risorse",
-  "iam_policies_header_guide_text": "Guide"
+  "iam_policies_header_guide_text": "Guide",
+  "iam_policies_datagrid_column_resources": "Numero di risorse",
+  "iam_policies_datagrid_topbar_advanced_search": "Ricerca avanzata"
 }

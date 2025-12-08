@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.24.1...@ovh-ux/manager-iam@1.25.0) (2025-12-08)
+
+
+### Features
+
+* **iam:** add 'advanced search' modal on myPolicies page ([17233b9](https://github.com/ovh/manager/commit/17233b9900d9164c2407bea46a3450ffc1150c3d)), closes [#MAIAM-33](https://github.com/ovh/manager/issues/MAIAM-33)
+
+
+
+
+
 ## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.24.0...@ovh-ux/manager-iam@1.24.1) (2025-12-03)
 
 

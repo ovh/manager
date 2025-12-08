@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.0...@ovh-ux/manager-zimbra-app@0.41.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* **zimbra:** fix the form on edition of account ([51b9e0d](https://github.com/ovh/manager/commit/51b9e0dcef593bb495cf50a2b3d2016e1267eae0)), closes [#INC0174599](https://github.com/ovh/manager/issues/INC0174599)
+
+
+
+
+
 # [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.40.0...@ovh-ux/manager-zimbra-app@0.41.0) (2025-12-05)
 
 
