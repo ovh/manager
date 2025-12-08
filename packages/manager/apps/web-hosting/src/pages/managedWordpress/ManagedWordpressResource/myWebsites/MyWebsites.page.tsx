@@ -103,7 +103,6 @@ export default function MyWebsitesPage() {
         accessorKey: 'currentState.defaultFQDN',
         cell: ({ getValue }) => {
           const defaultFQDN = getValue<string>();
-          console.log(defaultFQDN);
           return (
             <div>{!defaultFQDN ? t('common:web_hosting_status_creating_label') : defaultFQDN}</div>
           );
@@ -126,6 +125,7 @@ export default function MyWebsitesPage() {
       },
       {
         id: 'actions',
+        size: 48,
         cell: ({ row }) => (
           <ActionMenu
             items={[
@@ -159,6 +159,7 @@ export default function MyWebsitesPage() {
             return isRowSelectable(row.original);
           },
         }}
+        containerHeight={500}
         data={data ?? []}
         hasNextPage={!isFetchingNextPage && hasNextPage}
         onFetchNextPage={(): void => {

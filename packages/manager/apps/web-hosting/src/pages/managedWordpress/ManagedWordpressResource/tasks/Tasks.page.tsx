@@ -47,8 +47,6 @@ export default function TasksPage() {
     [navigate, goToStep2],
   ); */
 
-  console.log(data);
-
   const columns: DatagridColumn<ManagedWordpressResourceTask>[] = useMemo(
     () => [
       {

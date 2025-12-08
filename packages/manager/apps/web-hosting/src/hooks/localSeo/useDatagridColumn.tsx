@@ -143,6 +143,7 @@ export default function useDatagridColumn() {
       {
         id: 'actions',
         header: '',
+        size: 48,
         isSortable: false,
         cell: ({ row }) => <DatagridActionCell {...row.original} />,
       },
