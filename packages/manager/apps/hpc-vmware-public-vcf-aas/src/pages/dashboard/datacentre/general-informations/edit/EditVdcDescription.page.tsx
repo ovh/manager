@@ -11,7 +11,7 @@ import {
 import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
-import { AsyncFallback } from '@/components/query/AsyncFallback.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
 import { useMessageContext } from '@/context/Message.context';
 import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes } from '@/routes/routes.constant';
@@ -23,7 +23,7 @@ export default function EditVdcDescription() {
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
   const { id, vdcId } = useDatacentreParams();
-  const { data: vcdDatacentre, isLoading, error } = useVcdDatacentre(id, vdcId);
+  const { data: vcdDatacentre, isPending, error } = useVcdDatacentre(id, vdcId);
   const {
     updateDetails,
     error: updateError,
@@ -41,9 +41,8 @@ export default function EditVdcDescription() {
     },
   });
 
-  if (isLoading) return <AsyncFallback state="loading" />;
-  if (error) return <AsyncFallback state="error" error={error} />;
-  if (!vcdDatacentre?.data) return <AsyncFallback state="emptyError" />;
+  if (isPending) return <DisplayStatus variant="loading" />;
+  if (error) return <DisplayStatus variant="error" error={error} />;
 
   const currentVdcDetails: VCDDatacentreTargetSpec = vcdDatacentre.data.targetSpec;
 

@@ -1,4 +1,4 @@
-import { waitFor } from '@testing-library/dom';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vitest } from 'vitest';
 
@@ -24,7 +24,10 @@ const config = {
   vdc: SAFE_MOCK_DATA.vdcStandard,
   orderCTA: labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
   orderTitle: labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
-  orderError: labels.datacentresOrder.managed_vcd_vdc_order_unavailable,
+  defaultError: labels.error.manager_error_page_default,
+  emptyOrderableResourceError: 'OrderableResource error',
+  emptyCatalogError: 'Catalog error',
+  emptyLabel: 'Aucun résultat',
 };
 const initialRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}/compute`;
 const orderRoute = `${initialRoute}/order`;
@@ -41,21 +44,22 @@ describe('Datacentre Compute Order Page', () => {
 
   it('display an error if orderableResource service is KO', async () => {
     await renderTest({ initialRoute: orderRoute, isOrderableResourceKO: true });
-    await assertTextVisibility(config.orderError);
+    await assertTextVisibility(config.emptyOrderableResourceError);
+    await assertTextVisibility(config.defaultError);
   });
 
   it('display an error if there is no orderableResource', async () => {
     await renderTest({ initialRoute: orderRoute, nbOrderableResource: 0 });
-    await assertTextVisibility(config.orderError);
+    await assertTextVisibility(config.emptyLabel);
   });
 
   it('display an error if catalog service is KO', async () => {
     await renderTest({ initialRoute: orderRoute, isCatalogKO: true });
-    await assertTextVisibility(config.orderError);
+    await assertTextVisibility(config.emptyCatalogError);
   });
 
   it('display an error if there is no catalog products', async () => {
     await renderTest({ initialRoute: orderRoute, nbCatalogProduct: 0 });
-    await assertTextVisibility(config.orderError);
+    await assertTextVisibility(config.emptyLabel);
   });
 });

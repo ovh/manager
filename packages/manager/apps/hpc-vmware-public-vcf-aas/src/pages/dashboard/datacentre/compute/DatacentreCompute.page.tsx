@@ -22,7 +22,7 @@ import {
   DatagridVHostProfilCell,
 } from '@/components/datagrid/compute/ComputeCells.component';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
-import { AsyncFallback } from '@/components/query/AsyncFallback.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
 import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constants';
@@ -40,7 +40,7 @@ export default function ComputeListingPage() {
   const navigate = useNavigate();
   const { data: features } = useFeatureAvailability([FEATURES.COMPUTE_SPECIAL_OFFER_BANNER]);
   const { trackClick } = useOvhTracking();
-  const { data: vcdDatacentre, isLoading, error } = useVcdDatacentre(id, vdcId);
+  const { data: vcdDatacentre, isPending, error } = useVcdDatacentre(id, vdcId);
 
   const columns = [
     {
@@ -80,9 +80,8 @@ export default function ComputeListingPage() {
     },
   ] as DatagridColumn<unknown>[];
 
-  if (isLoading) return <AsyncFallback state="loading" />;
-  if (error) return <AsyncFallback state="error" error={error} />;
-  if (!vcdDatacentre?.data) return <AsyncFallback state="emptyError" />;
+  if (isPending) return <DisplayStatus variant="loading" />;
+  if (error) return <DisplayStatus variant="error" error={error} />;
 
   return (
     <>
