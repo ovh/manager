@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -11,6 +15,10 @@ import queryClient from './queryClient';
 
 function App() {
   const routes = createHashRouter(createRoutesFromElements(Routes));
+
+  const value =
+    'CASE 3: EXECUTION WITH SMALL IMPACTFULL CHANGE IN ONE APP (CACHE LOOSE FOR AN APP)';
+  console.log(value);
 
   return (
     <QueryClientProvider client={queryClient}>
