@@ -1,12 +1,12 @@
 export default class NetappVolumesCreateReplicationsCtrl {
   /* @ngInject */ constructor(NetAppDashboardService) {
-    this.replicationsSelectedVolumes =
-      NetAppDashboardService.replicationsSelectedVolumes || [];
     this.destinationServiceId = undefined;
     this.hasAvailableReplicationsServices =
       NetAppDashboardService.hasAvailableReplicationsServices;
     this.optionsReplicationsAvaibleServices = [];
     this.onPostLoad = false;
+    this.replicationsSelectedVolumes =
+      NetAppDashboardService.replicationsSelectedVolumes;
   }
 
   $onInit() {
@@ -16,7 +16,6 @@ export default class NetappVolumesCreateReplicationsCtrl {
         displayName: `${id} <br /> <small>${name}</small>`,
       }),
     );
-    console.log('create 2', this);
   }
 
   onPrimaryClick() {
@@ -28,6 +27,7 @@ export default class NetappVolumesCreateReplicationsCtrl {
         destinationServiceId: this.destinationServiceId,
       }).then((resp) => {
         this.onPostLoad = false;
+        // It will be remove in an other PR.
         console.info({ resp });
         return this.goToVolumes();
       });
