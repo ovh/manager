@@ -3,6 +3,8 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer, useNotifications } from '@ovh-ux/manager-react-components';
 import { Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
+import { FormProvider, useForm } from 'react-hook-form';
+import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
 import HostForm from './HostForm';
 import {
   getIpsSupported,
@@ -10,10 +12,8 @@ import {
 } from '@/domain/utils/utils';
 import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { TDomainResource } from '@/domain/types/domainResource';
-import { FormProvider, useForm } from 'react-hook-form';
 import { THost } from '@/domain/types/host';
 import { DrawerBehavior } from '@/common/types/common.types';
-import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 interface HostDrawerProps {
   readonly drawer: DrawerBehavior;
@@ -45,6 +45,7 @@ export default function HostDrawer({
   const { updateDomain, isUpdateDomainPending } = useUpdateDomainResource(
     serviceName,
   );
+
   const ipsSupported = getIpsSupported(
     ipv4Supported,
     ipv6Supported,

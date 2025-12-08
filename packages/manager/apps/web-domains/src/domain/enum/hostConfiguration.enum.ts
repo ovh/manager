@@ -4,5 +4,5 @@ export enum IpsSupportedEnum {
   OneIPv6 = 'oneIPv6',
   MultipleIPv4 = 'multipleIPv4',
   MultipleIPv6 = 'multipleIPv6',
-  OneIPv4OneIPv6 = 'oneIPv4OneIPv6',
+  OneIPv4OrOneIPv6 = 'oneIPv4OrOneIPv6',
 }
