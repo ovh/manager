@@ -1,5 +1,5 @@
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
 
-export type InstancesCatalogPort = {
+export type TInstancesCatalogPort = {
   selectInstancesCatalog: (projectId: string) => TInstancesCatalog | undefined;
 };
