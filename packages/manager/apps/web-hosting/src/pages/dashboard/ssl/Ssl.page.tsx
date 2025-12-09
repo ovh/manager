@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BUTTON_COLOR, BUTTON_VARIANT, Button, ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';
 
-import { Datagrid, Notifications, useDataApi, useNotifications } from '@ovh-ux/muk';
+import { Datagrid, useDataApi, useNotifications } from '@ovh-ux/muk';
 
 import Loading from '@/components/loading/Loading.component';
 import Topbar from '@/components/topBar/TopBar.component';
@@ -115,7 +115,6 @@ export default function Ssl() {
 
   return (
     <React.Suspense fallback={<Loading />}>
-      <Notifications />
       <Topbar />
       <div className="mb-7 flex">
         <div className="w-2/3">
