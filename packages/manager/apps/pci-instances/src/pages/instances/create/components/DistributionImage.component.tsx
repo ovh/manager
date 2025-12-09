@@ -8,8 +8,8 @@ import DistributionVersionList from './distributionImage/DistributionVersionList
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { deps } from '@/deps/deps';
-import { TInstanceCreationForm } from '../CreateInstance.page';
 import { selectImages } from '../view-models/imagesViewModel';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 const DistributionImage: FC = () => {
   const projectId = useProjectId();

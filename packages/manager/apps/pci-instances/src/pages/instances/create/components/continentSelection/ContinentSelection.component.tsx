@@ -8,11 +8,11 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { deps } from '@/deps/deps';
 import { selectContinent } from '../../view-models/continentsViewModel';
 import { useEffect, useMemo } from 'react';
 import { useProjectId } from '@/hooks/project/useProjectId';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 export const ContinentSelection = () => {
   const projectId = useProjectId();

@@ -20,7 +20,7 @@ import { PropsWithChildren } from 'react';
 import {
   TInstanceCreationForm,
   instanceCreationSchema,
-} from '../../CreateInstance.page';
+} from '../../CreateInstance.schema';
 
 const selectPrivateNetworksMock = vi.fn();
 

@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { CartContent } from '../components/CartContent.component';
-import { TCartItem, TCartItemDetail } from '../Cart.component';
 import { CartItem } from '../components';
+import {
+  TCartItemDetail,
+  TCartItem,
+} from '@/pages/instances/create/hooks/useCartIems';
 
 const instanceItemTitle = 'instance';
 const instanceItemName = 'instance_01';

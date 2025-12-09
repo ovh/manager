@@ -42,12 +42,11 @@ export const DeploymentModeSelection = () => {
     field: ControllerRenderProps<TDeploymentModeSelection, 'deploymentModes'>,
     selectedMode: TDeploymentMode,
   ) => () => {
-    const values = field.value ?? [];
-    const isSelected = values.includes(selectedMode);
+    const isSelected = field.value.includes(selectedMode);
 
     const selection = isSelected
-      ? values.filter((value) => value !== selectedMode)
-      : [...values, selectedMode];
+      ? field.value.filter((value) => value !== selectedMode)
+      : [...field.value, selectedMode];
 
     field.onChange(selection);
 
@@ -67,7 +66,7 @@ export const DeploymentModeSelection = () => {
         render={({ field }) => (
           <CheckboxGroup
             name="deploymentModes"
-            className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"
+            className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3"
             defaultValue={field.value}
             onValueChange={(value) => {
               field.onChange(value);
@@ -77,7 +76,7 @@ export const DeploymentModeSelection = () => {
               ({ mode, titleKey, descriptionKey, Image }) => (
                 <PciCard
                   selectable
-                  selected={(field.value ?? []).includes(mode)}
+                  selected={field.value.includes(mode)}
                   className="h-full"
                   key={mode}
                   onClick={handleSelect(field, mode)}
@@ -85,10 +84,10 @@ export const DeploymentModeSelection = () => {
                   <PciCard.Header>
                     <Checkbox
                       className="w-full"
-                      checked={(field.value ?? []).includes(mode)}
+                      checked={field.value.includes(mode)}
                     >
                       <CheckboxControl />
-                      <CheckboxLabel className="font-bold text-lg text-[--ods-color-heading]">
+                      <CheckboxLabel className="text-lg font-bold text-[--ods-color-heading]">
                         {t(`common:${titleKey}`)}
                       </CheckboxLabel>
                     </Checkbox>
@@ -97,7 +96,7 @@ export const DeploymentModeSelection = () => {
 
                   <PciCard.Content className="justify-between">
                     <Text>{t(`common:${descriptionKey}`)}</Text>
-                    <div className="flex justify-center mt-4">
+                    <div className="mt-4 flex justify-center">
                       <Image />
                     </div>
                   </PciCard.Content>

@@ -14,9 +14,9 @@ import {
 } from '../view-models/categoriesTypesViewModel';
 import { deps } from '@/deps/deps';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../CreateInstance.page';
 import { FlavorHelper } from './flavor/FlavorHelper.component';
 import { FlavorSelection } from '@/pages/instances/create/components/flavor/FlavorSelection.component';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 const FlavorBlock: FC = () => {
   const { t } = useTranslation('creation');

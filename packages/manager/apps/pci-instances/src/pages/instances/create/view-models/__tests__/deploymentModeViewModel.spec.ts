@@ -16,6 +16,9 @@ const fakeDeps: Deps = {
   configurationPort: {
     selectSshKeys: vi.fn(),
   },
+  instancePort: {
+    createInstance: vi.fn(),
+  },
 };
 
 describe('SelectDeploymentMode ViewModel', () => {

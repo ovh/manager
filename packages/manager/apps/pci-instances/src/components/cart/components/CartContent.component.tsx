@@ -1,6 +1,6 @@
+import { TCartItem } from '@/pages/instances/create/hooks/useCartIems';
 import { Accordion, AccordionChangeDetail } from '@ovhcloud/ods-react';
 import { ReactNode, useState } from 'react';
-import { TCartItem } from '../Cart.component';
 
 export type TRenderCartItemParams = {
   item: TCartItem;

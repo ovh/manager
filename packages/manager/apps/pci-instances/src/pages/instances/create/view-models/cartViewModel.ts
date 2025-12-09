@@ -8,7 +8,7 @@ import {
 } from '@/domain/entities/instancesCatalog';
 import { getMinimumPrices } from './flavorsViewModel';
 
-type TSelectLocalizationDetails = {
+export type TSelectLocalizationDetails = {
   cityKey: string;
   datacenterDetails: string;
 };
@@ -144,7 +144,12 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
       foundRegionalizedFlavor.flavorId,
     );
 
-    if (!foundFlavor) return null;
+    const flavorId =
+      data.entities.regionalizedFlavorOsTypes.byId.get(
+        `${regionalizedFlavorId}_${osType}`,
+      )?.flavorId ?? null;
+
+    if (!foundFlavor || !flavorId) return null;
 
     const prices = osType
       ? getFlavorPrices(
@@ -161,7 +166,7 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
 
     // TODO: adapt to GPU
     return {
-      id: regionalizedFlavorId,
+      id: flavorId,
       name: foundFlavor.name,
       memory: foundFlavor.specifications.ram.value,
       vCore: foundFlavor.specifications.cpu.value,
