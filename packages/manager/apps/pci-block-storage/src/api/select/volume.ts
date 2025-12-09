@@ -9,6 +9,7 @@ import { TVolume, UseVolumeResult } from '@/api/hooks/useVolume';
 import {
   AddVolumeProps,
   TAPIVolume,
+  TRetypeVolumeProps,
   TUpdateVolumeProps,
 } from '@/api/data/volume';
 import { TVolumeCatalog } from '@/api/data/catalog';
@@ -258,6 +259,19 @@ export const mapVolumePricing = <V extends TAPIVolume>(
   };
 };
 
+const getVolumeTypeName = (
+  catalog: TVolumeCatalog,
+  region: string,
+  type: string,
+  encryptionType: EncryptionType,
+): string | undefined =>
+  catalog.models
+    .find((m) => m.name === type)
+    ?.pricings?.find(
+      (p) =>
+        p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
+    )?.specs?.name;
+
 export type TVolumeToAdd = {
   name: string;
   region: string;
@@ -267,6 +281,10 @@ export type TVolumeToAdd = {
   availabilityZone: string | null;
 };
 
+export enum TErrors {
+  VOLUME_TYPE_NOT_FOUND = 'volume_not_found',
+}
+
 export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   name,
   region,
@@ -274,20 +292,17 @@ export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   type,
   availabilityZone,
   encryptionType,
-}: TVolumeToAdd): AddVolumeProps => {
-  const pricing = catalog.models
-    .find((m) => m.name === type)
-    .pricings.find(
-      (p) =>
-        p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
-    );
+}: TVolumeToAdd): AddVolumeProps | TErrors.VOLUME_TYPE_NOT_FOUND => {
+  const typeName = getVolumeTypeName(catalog, region, type, encryptionType);
+
+  if (!typeName) return TErrors.VOLUME_TYPE_NOT_FOUND;
 
   return {
     projectId,
     name,
     region,
     size,
-    type: pricing.specs.name,
+    type: typeName,
     availabilityZone,
   };
 };
@@ -344,3 +359,25 @@ export const mapVolumeType = <V extends TAPIVolume>(
   isClassicMultiAttach: isClassicMultiAttach(volume),
   canRetype: canRetype(catalog)(volume),
 });
+
+export type TVolumeToRetype = {
+  type: string;
+};
+
+export const mapVolumeToRetype = (
+  projectId: string,
+  volume: TAPIVolume,
+  catalog: TVolumeCatalog,
+) => ({
+  type,
+}: TVolumeToRetype): TRetypeVolumeProps | TErrors.VOLUME_TYPE_NOT_FOUND => {
+  const typeName = getVolumeTypeName(catalog, volume.region, type, null);
+
+  if (!typeName) return TErrors.VOLUME_TYPE_NOT_FOUND;
+
+  return {
+    projectId,
+    originalVolume: { id: volume.id, region: volume.region },
+    newType: typeName,
+  };
+};

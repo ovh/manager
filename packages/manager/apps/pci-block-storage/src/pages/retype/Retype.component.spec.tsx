@@ -6,53 +6,69 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { Retype } from '@/pages/retype/Retype.component';
 import { capitalizeFirstLetter } from '@/utils';
+import { useRetypeVolume } from '@/api/hooks/useVolume';
 
-const getSelectedCatalogOption = (encrypted = false) =>
-  ({
-    name: 'volume model',
-    displayName: 'display volume model',
-    isPreselected: true,
-    capacity: { max: 5 },
-    encrypted,
-  } as TVolumeRetypeModel);
+vi.mock('@/hooks/useTrackBanner');
 
-const getOtherCatalogOption = (encrypted = false) =>
-  ({
-    name: 'other volume model',
-    displayName: 'display other volume model',
-    isPreselected: false,
-    capacity: { max: 5 },
-    encrypted,
-  } as TVolumeRetypeModel);
+const retypeMock = vi.fn();
+vi.mock('@/api/hooks/useVolume', () => ({
+  useRetypeVolume: vi.fn(),
+}));
+vi.mocked(useRetypeVolume).mockReturnValue(({
+  retypeVolume: retypeMock,
+} as unknown) as ReturnType<typeof useRetypeVolume>);
+
+const PROJECT_ID = 'PROJECT_ID';
+const VOLUME_ID = 'VOLUME_ID';
+
+const selectedCatalogOption = {
+  name: 'volume model',
+  displayName: 'display volume model',
+  isPreselected: true,
+  capacity: { max: 5 },
+} as TVolumeRetypeModel;
+
+const otherCatalogOption = {
+  name: 'other volume model',
+  displayName: 'display other volume model',
+  isPreselected: false,
+  capacity: { max: 5 },
+} as TVolumeRetypeModel;
 
 describe('Retype', () => {
-  beforeEach(() => vi.restoreAllMocks());
+  beforeEach(() => {
+    vi.mocked(useRetypeVolume).mockReturnValue(({
+      retypeVolume: retypeMock,
+    } as unknown) as ReturnType<typeof useRetypeVolume>);
+  });
 
   it('should render volume data with preselection', () => {
     const { getByRole } = render(
       <Retype
-        volumeModelData={[getSelectedCatalogOption(), getOtherCatalogOption()]}
+        projectId={PROJECT_ID}
+        volumeId={VOLUME_ID}
+        volumeModelData={[selectedCatalogOption, otherCatalogOption]}
       />,
     );
 
     expect(
       getByRole('radio', {
-        name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+        name: capitalizeFirstLetter(selectedCatalogOption.displayName),
       }),
     ).toBeVisible();
     expect(
       getByRole('radio', {
-        name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+        name: capitalizeFirstLetter(selectedCatalogOption.displayName),
       }),
     ).toBeChecked();
     expect(
       getByRole('radio', {
-        name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+        name: capitalizeFirstLetter(otherCatalogOption.displayName),
       }),
     ).toBeVisible();
     expect(
       getByRole('radio', {
-        name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+        name: capitalizeFirstLetter(otherCatalogOption.displayName),
       }),
     ).not.toBeChecked();
   });
@@ -61,10 +77,9 @@ describe('Retype', () => {
     it('should be disabled if nothing has changed', () => {
       const { getByText } = render(
         <Retype
-          volumeModelData={[
-            getSelectedCatalogOption(true),
-            getOtherCatalogOption(true),
-          ]}
+          projectId={PROJECT_ID}
+          volumeId={VOLUME_ID}
+          volumeModelData={[selectedCatalogOption, otherCatalogOption]}
         />,
       );
 
@@ -74,16 +89,15 @@ describe('Retype', () => {
     it('should be enabled if volume type has changed', async () => {
       const { getByText, getByRole } = render(
         <Retype
-          volumeModelData={[
-            getSelectedCatalogOption(true),
-            getOtherCatalogOption(true),
-          ]}
+          projectId={PROJECT_ID}
+          volumeId={VOLUME_ID}
+          volumeModelData={[selectedCatalogOption, otherCatalogOption]}
         />,
       );
 
       await userEvent.click(
         getByRole('radio', {
-          name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+          name: capitalizeFirstLetter(otherCatalogOption.displayName),
         }),
       );
 
@@ -93,25 +107,76 @@ describe('Retype', () => {
     it('should be disabled if volume type has changed and back to original value', async () => {
       const { getByText, getByRole } = render(
         <Retype
-          volumeModelData={[
-            getSelectedCatalogOption(true),
-            getOtherCatalogOption(true),
-          ]}
+          projectId={PROJECT_ID}
+          volumeId={VOLUME_ID}
+          volumeModelData={[selectedCatalogOption, otherCatalogOption]}
         />,
       );
 
       await userEvent.click(
         getByRole('radio', {
-          name: capitalizeFirstLetter(getOtherCatalogOption().displayName),
+          name: capitalizeFirstLetter(otherCatalogOption.displayName),
         }),
       );
       await userEvent.click(
         getByRole('radio', {
-          name: capitalizeFirstLetter(getSelectedCatalogOption().displayName),
+          name: capitalizeFirstLetter(selectedCatalogOption.displayName),
         }),
       );
 
       expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
+    });
+  });
+
+  describe('when retyping', () => {
+    it('should call retype volume when confirming', async () => {
+      const { getByText, getByRole } = render(
+        <Retype
+          projectId={PROJECT_ID}
+          volumeId={VOLUME_ID}
+          volumeModelData={[selectedCatalogOption, otherCatalogOption]}
+        />,
+      );
+
+      await userEvent.click(
+        getByRole('radio', {
+          name: capitalizeFirstLetter(otherCatalogOption.displayName),
+        }),
+      );
+      const confirmButton = getByText(`${NAMESPACES.ACTIONS}:modify`);
+
+      await userEvent.click(confirmButton);
+
+      expect(retypeMock).toHaveBeenCalledWith({
+        type: otherCatalogOption.name,
+      });
+    });
+
+    it('should disable button and inputs', async () => {
+      vi.mocked(useRetypeVolume).mockReturnValue(({
+        retypeVolume: retypeMock,
+        isPending: true,
+      } as unknown) as ReturnType<typeof useRetypeVolume>);
+
+      const { getByText, getByRole } = render(
+        <Retype
+          projectId={PROJECT_ID}
+          volumeId={VOLUME_ID}
+          volumeModelData={[selectedCatalogOption, otherCatalogOption]}
+        />,
+      );
+
+      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
+      expect(
+        getByRole('radio', {
+          name: capitalizeFirstLetter(selectedCatalogOption.displayName),
+        }),
+      ).toBeDisabled();
+      expect(
+        getByRole('radio', {
+          name: capitalizeFirstLetter(otherCatalogOption.displayName),
+        }),
+      ).toBeDisabled();
     });
   });
 });
