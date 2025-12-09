@@ -6,7 +6,7 @@ export type OkmsServiceKeyOptions = {
 };
 
 /*
-ALL SERVICE KEY TYPE
+SERVICE KEY TYPE
 */
 export type OkmsServiceKey = {
   id: string;
@@ -19,6 +19,10 @@ export type OkmsServiceKey = {
   size?: OkmsServiceKeySize;
   curve?: OkmsServiceKeyCurve;
   operations: OkmsServiceKeyOperations[];
+};
+
+export type OkmsServiceKeyWithData = OkmsServiceKey & {
+  keys: OkmsServiceKeyObject;
 };
 
 // A JSON Web Key (JWK) object
