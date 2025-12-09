@@ -100,33 +100,28 @@ const ObjectLockOptions = () => {
   });
 
   // Handle form submission
-  const onSubmit = form.handleSubmit(
-    (values) => {
-      const data = {
-        projectId,
-        region,
-        name: s3Name,
-        data: {
-          objectLock: {
-            status: s3Query.data?.objectLock?.status,
-            rule: values?.retention
-              ? {
-                  mode: values.rule?.mode,
-                  period: toISO8601(
-                    values.rule?.durationValue!,
-                    values.rule?.durationUnit!,
-                  ),
-                }
-              : undefined,
-          },
+  const onSubmit = form.handleSubmit((values) => {
+    const data = {
+      projectId,
+      region,
+      name: s3Name,
+      data: {
+        objectLock: {
+          status: s3Query.data?.objectLock?.status,
+          rule: values?.retention
+            ? {
+                mode: values.rule?.mode,
+                period: toISO8601(
+                  values.rule?.durationValue!,
+                  values.rule?.durationUnit!,
+                ),
+              }
+            : undefined,
         },
-      };
-      updateS3Storage(data);
-    },
-    (errors) => {
-      console.log('errors', errors);
-    },
-  );
+      },
+    };
+    updateS3Storage(data);
+  });
 
   return (
     <RouteSheet>
