@@ -21,6 +21,7 @@
         data-on-click="$ctrl.goToCreateReplications()"
         data-icon-left="oui-icon oui-icon-arrow-transfer"
         class="mr-2"
+        ng-if="!$ctrl.isNetworkAvailable"
         data-disabled="$ctrl.hasAvailableReplicationsServices() && !$ctrl.NetAppDashboardService.replicationsSelectedVolumes.length"
     >
         <span data-translate="netapp_volumes_button_replications"></span>
@@ -34,9 +35,10 @@
     >
         <oui-datagrid-column data-prevent-customization>
             <oui-checkbox
+                data-ng-if="!$ctrl.isNetworkAvailable"
                 data-model="$ctrl.selectedReplicationsCheckboxes[$row.id]"
                 data-on-change="$ctrl.handleCheckboxChange({volumeId: $row.id, checked: modelValue})"
-                disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS || !$ctrl.hasAvailableReplicationsServices()"
+                data-disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS || !$ctrl.hasAvailableReplicationsServices()"
             ></oui-checkbox>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -50,7 +52,7 @@
                 data-ng-bind="$row.id"
                 data-ng-click="$ctrl.goToVolumeDetails($row)"
             ></a>
-            <p ng-bind="$row.name"></p>
+            <p data-ng-bind="$row.name"></p>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'netapp_volumes_description' | translate"
@@ -75,7 +77,7 @@
             ></oui-clipboard>
             <i
                 data-ng-if="!$row.mountPath"
-                translate="netapp_volumes_mount_path_not_configurated"
+                data-translate="netapp_volumes_mount_path_not_configurated"
             ></i>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -97,8 +99,8 @@
                 <span data-translate="netapp_volumes_edit_volume"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                ng-if="$ctrl.hasAvailableReplicationsServices()"
-                disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS"
+                data-ng-if="$ctrl.hasAvailableReplicationsServices() && !$ctrl.isNetworkAvailable"
+                data-disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS"
                 data-on-click="$ctrl.goToSingleReplication($row.id)"
             >
                 <span

@@ -16,6 +16,15 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_title'),
+
+      goToOrder: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackClick({
+          type: 'action',
+          name: `netapp::create`,
+        });
+
+        return $state.go('netapp.order');
+      },
     },
   });
 
@@ -124,15 +133,6 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         },
       }),
-
-      goToOrder: /* @ngInject */ ($state, atInternet) => () => {
-        atInternet.trackClick({
-          type: 'action',
-          name: `netapp::create`,
-        });
-
-        return $state.go('netapp.order');
-      },
 
       hideBreadcrumb: () => true,
     },
