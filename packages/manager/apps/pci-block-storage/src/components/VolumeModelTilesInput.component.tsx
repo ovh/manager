@@ -108,7 +108,7 @@ export const VolumeModelTilesInput = ({
     [volumeModels, value],
   );
 
-  const disablePropsAllProps = useCallback(
+  const disableAllProps = useCallback(
     (e: typeof volumeTypes[number] & { disabled: boolean }) => {
       // We can't directly disable the input tiles. In waiting for changing the lib used, we do this instead.
       // eslint-disable-next-line no-param-reassign
@@ -135,7 +135,7 @@ export const VolumeModelTilesInput = ({
         onChange={(e) => onChange(e)}
         locked={locked}
         horizontal={horizontal}
-        inputProps={disablePropsAllProps}
+        inputProps={disableAllProps}
       />
     </div>
   );
