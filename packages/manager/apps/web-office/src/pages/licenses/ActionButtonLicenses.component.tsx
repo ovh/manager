@@ -7,8 +7,10 @@ import { useTranslation } from 'react-i18next';
 import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu } from '@ovh-ux/muk';
 
+import { AGREEMENT, APP_NAME, DETAILS_SERVICE } from '@/Tracking.constants';
 import { IAM_ACTIONS } from '@/utils/IamAction.constants';
 
 interface ActionButtonLicensesProps {
@@ -25,13 +27,23 @@ const ActionButtonLicenses: React.FC<ActionButtonLicensesProps> = ({
   mcaAgreed,
 }) => {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
+  const tracking = (action: string[]) =>
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: action,
+    });
   const handleGoToDetailClick = () => {
+    tracking(DETAILS_SERVICE);
     navigate(serviceDetailUrl);
   };
 
   const handleSignAgreementClick = () => {
+    tracking([AGREEMENT, APP_NAME]);
     navigate(mcaUrl);
   };
 
