@@ -1,8 +1,6 @@
-export const validateOrganizationName = (name: string) =>
-  /^.{1,128}$/.test(name);
+export const validateOrganizationName = (name: string) => /^.{1,128}$/.test(name);
 
-export const validateDescription = (description: string) =>
-  /^.{1,255}$/.test(description);
+export const validateDescription = (description: string) => /^.{1,255}$/.test(description);
 
 export const validateQuantity = ({
   quantity,

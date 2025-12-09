@@ -1,25 +1,25 @@
 import React, { useContext } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  useOvhTracking,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import useGuideUtils from '@/hooks/guide/useGuideUtils';
+import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg?url';
+import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { TRACKING } from '@/tracking.constants';
-import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
 import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
+import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
 
 export default function Onboarding() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS]);
 
   const link = useGuideUtils();
   const { trackClick } = useOvhTracking();
-  const { ovhSubsidiary } =
-    useContext(ShellContext)?.environment?.getUser() || {};
+  const { ovhSubsidiary } = useContext(ShellContext)?.environment?.getUser() || {};
 
   const tileList = [
     {
@@ -87,23 +87,22 @@ export default function Onboarding() {
         onOrderButtonClick={() => {
           trackClick(TRACKING.common.order);
           window.open(
-            ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] ||
-              ORDER_VCD_REDIRECTION_URL.DEFAULT,
+            ORDER_VCD_REDIRECTION_URL[ovhSubsidiary] || ORDER_VCD_REDIRECTION_URL.DEFAULT,
             '_blank',
           );
         }}
       >
-        {tileList.map((tile) => (
-          <Card
-            key={tile.id}
-            href={tile.href}
-            texts={tile.texts}
-            hrefLabel={tile.hrefLabel}
-            onClick={() =>
-              trackClick(TRACKING.onboarding.guideClick(tile.tracking))
-            }
-          />
-        ))}
+        {tileList.map((tile) =>
+          tile.href ? (
+            <Card
+              key={tile.id}
+              href={tile.href}
+              texts={tile.texts}
+              hrefLabel={tile.hrefLabel}
+              onClick={() => trackClick(TRACKING.onboarding.guideClick(tile.tracking))}
+            />
+          ) : null,
+        )}
       </OnboardingLayout>
     </div>
   );

@@ -1,15 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { VrackSegmentResourceStatus } from '@ovh-ux/manager-module-vcd-api';
+
 import { OdsBadgeColor } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
+
+import { VrackSegmentResourceStatus } from '@ovh-ux/manager-module-vcd-api';
 
 export function getVrackSegmentColorFromResourceStatus(
   resourceStatus: VrackSegmentResourceStatus,
 ): OdsBadgeColor {
-  const colorResourceStatusMapping: Partial<Record<
-    VrackSegmentResourceStatus,
-    OdsBadgeColor
-  >> = {
+  const colorResourceStatusMapping: Partial<Record<VrackSegmentResourceStatus, OdsBadgeColor>> = {
     READY: 'success',
     ERROR: 'critical',
     SUSPENDED: 'warning',
@@ -28,9 +27,7 @@ export const VrackSegmentStatusBadge = ({
   return (
     <OdsBadge
       color={getVrackSegmentColorFromResourceStatus(resourceStatus)}
-      label={t(
-        `managed_vcd_dashboard_vrack_status_${resourceStatus.toLowerCase()}`,
-      )}
+      label={t(`managed_vcd_dashboard_vrack_status_${resourceStatus.toLowerCase()}`)}
     ></OdsBadge>
   );
 };

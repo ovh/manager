@@ -1,14 +1,14 @@
 import React, { Suspense } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
+import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import {
-  RouterProvider,
-  createHashRouter,
-  createRoutesFromElements,
-} from 'react-router-dom';
+
 import Routes from '@/routes/routes';
-import { MessageContextProvider } from './context/Message.context';
+
 import Loading from './components/loading/Loading.component';
+import { MessageContextProvider } from './context/Message.context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
