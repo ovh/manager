@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.18.0...@ovh-ux/manager-procedures-app@0.19.0) (2025-12-05)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.4...@ovh-ux/manager-procedures-app@0.18.0) (2025-12-01)
+
+
+### Features
+
+* **procedures:** get auth URLs from core-sso package ([7bb0fec](https://github.com/ovh/manager/commit/7bb0fecd181fecabe94d1e16eb533953030de343)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.3...@ovh-ux/manager-procedures-app@0.17.4) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.2...@ovh-ux/manager-procedures-app@0.17.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.1...@ovh-ux/manager-procedures-app@0.17.2) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.17.0...@ovh-ux/manager-procedures-app@0.17.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.15...@ovh-ux/manager-procedures-app@0.17.0) (2025-11-12)
+
+
+### Features
+
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
+## [0.16.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.14...@ovh-ux/manager-procedures-app@0.16.15) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
 ## [0.16.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.13...@ovh-ux/manager-procedures-app@0.16.14) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

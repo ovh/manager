@@ -23,6 +23,8 @@ export default class {
           this.$translate.instant(
             'autorenew_service_cancel_resiliation_success',
           ),
+          'success',
+          true,
         ),
       )
       .catch((error) =>

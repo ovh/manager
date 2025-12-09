@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Country, LegalForm, Subsidiary, User } from '@ovh-ux/manager-config';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  Country,
+  LegalForm,
+  Subsidiary,
+  User,
+  UserLocales,
+} from '@ovh-ux/manager-config';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import userContext from '@/context/user/user.context';
 import { useTrackingContext } from '@/context/tracking/useTracking';
@@ -18,6 +24,7 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
+  const [ searchParams ] = useSearchParams();
   const { setUser } = useTrackingContext();
   const { data: me, isFetched, error } = useMe({ retry: 0 });
   const { data: availability } = useFeatureAvailability(
@@ -25,7 +32,6 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     { enabled: Boolean(isFetched && me) },
   );
   const redirectToLegacySignup = useLegacySignupRedirection();
-  // We will need to add states for language to prefill the /details form
   const [legalForm, setLegalForm] = useState<LegalForm | undefined>(undefined);
   const [ovhSubsidiary, setOvhSubsidiary] = useState<Subsidiary | undefined>(
     undefined,
@@ -40,16 +46,23 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   ] = useState<string | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [city, setCity] = useState<string | undefined>(undefined);
+  const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
 
   useEffect(() => {
     if (isFetched) {
       if (error?.status === 401) {
-        navigate(urls.settings);
+        navigate(`${urls.settings}?${searchParams.toString()}`);
         return;
       }
       setLegalForm(me?.legalform);
       setOvhSubsidiary(me?.ovhSubsidiary);
-      setCountry(me?.country as Country);
+      setCountry(me?.country);
+      setLanguage(me?.language || undefined);
+      // When we receive the user data, we will call setUser to update the tracking configuration
+      setUser({
+        ...(me || {}),
+        language: me?.language || undefined,
+      } as User);
     }
   }, [isFetched]);
 
@@ -58,19 +71,18 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
       if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
         redirectToLegacySignup();
       } else {
-        navigate(urls.accountType);
+        navigate(`${urls.accountType}?${searchParams.toString()}`);
       }
     }
   }, [availability]);
 
+  // When the legal form is updated, we will call setUser to update the tracking configuration
   useEffect(() => {
-    // TODO: add currency to dependencies (MANAGER-17334)
     setUser({
       ...(me || {}),
       legalform: legalForm,
-      country,
     } as User);
-  }, [legalForm, country]);
+  }, [legalForm]);
 
   const setCompany = (company: Company | null) => {
     if (company !== null) {
@@ -102,6 +114,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     address,
     city,
     setCompany,
+    language,
     isSMSConsentAvailable: availability?.[SMS_CONSENT_FEATURE] ?? false,
   };
 

@@ -3,6 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.31.1...@ovh-ux/manager-billing-components@4.32.0) (2025-12-08)
+
+
+### Features
+
+* **billing:** add us specific wording in the resiliation modal ([77f7882](https://github.com/ovh/manager/commit/77f7882dd001a51297e53ace64d59018523400f1)), closes [#MANAGER-20069](https://github.com/ovh/manager/issues/MANAGER-20069)
+* **billing:** display vps outperform banner in resillation modal ([f3eb66b](https://github.com/ovh/manager/commit/f3eb66b235b4bd2267b1b32a3a602f478ec20756)), closes [#MANAGER-20126](https://github.com/ovh/manager/issues/MANAGER-20126)
+* **billing:** remove vrack termination in us region ([ddc610c](https://github.com/ovh/manager/commit/ddc610c39dce114e539da4cd4cb3098eef39409d)), closes [#MANAGER-20124](https://github.com/ovh/manager/issues/MANAGER-20124)
+* **billing:** use resiliation modal for us ([048e6bc](https://github.com/ovh/manager/commit/048e6bc00e31cb89d91da1ec6f36f9bb91711615)), closes [#MANAGER-19890](https://github.com/ovh/manager/issues/MANAGER-19890)
+
+
+
+
+
+## [4.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.31.0...@ovh-ux/manager-billing-components@4.31.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.30.1...@ovh-ux/manager-billing-components@4.31.0) (2025-12-03)
+
+
+### Features
+
+* **billing-components:** fix design status column in table services ([b16d042](https://github.com/ovh/manager/commit/b16d042a4ed81af8fcd833e1255fd579bbe65adf)), closes [#MANAGER-20011](https://github.com/ovh/manager/issues/MANAGER-20011)
+
+
+
+
+
+## [4.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.30.0...@ovh-ux/manager-billing-components@4.30.1) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.29.0...@ovh-ux/manager-billing-components@4.30.0) (2025-11-27)
+
+
+### Features
+
+* **billing:** disable cache in services ([6a7471f](https://github.com/ovh/manager/commit/6a7471f836ffa41b6a9520eae1d4405a80e8fbcc)), closes [#MANAGER-20010](https://github.com/ovh/manager/issues/MANAGER-20010)
+* **billing:** replace serviceinfo call with services on cancel resillation ([db20d86](https://github.com/ovh/manager/commit/db20d86b793f83af2bb95fd64617d614ff5506c0)), closes [#MANAGER-20162](https://github.com/ovh/manager/issues/MANAGER-20162)
+
+
+
+
+
+# [4.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.28.1...@ovh-ux/manager-billing-components@4.29.0) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 845] ([b7cf02f](https://github.com/ovh/manager/commit/b7cf02f422fdb4e6fbc6c881c52a019429ec170b))
+
+
+### Features
+
+* **billing-components:** refactoring with the creation of a service ([144a8d3](https://github.com/ovh/manager/commit/144a8d39dcaf15049474d4f3706f8533566b2494)), closes [#MANAGER-19800](https://github.com/ovh/manager/issues/MANAGER-19800)
+
+
+
+
+
+## [4.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.28.0...@ovh-ux/manager-billing-components@4.28.1) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.10...@ovh-ux/manager-billing-components@4.28.0) (2025-11-17)
+
+
+### Features
+
+* **billing:** us ftc compliance, commitment wording on my services ([581052b](https://github.com/ovh/manager/commit/581052b7b1c66e3e7eb34874db4b5f8baece06ef)), closes [#MANAGER-19940](https://github.com/ovh/manager/issues/MANAGER-19940)
+
+
+
+
+
+## [4.27.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.9...@ovh-ux/manager-billing-components@4.27.10) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.27.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.8...@ovh-ux/manager-billing-components@4.27.9) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.27.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.7...@ovh-ux/manager-billing-components@4.27.8) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
 ## [4.27.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.6...@ovh-ux/manager-billing-components@4.27.7) (2025-11-04)
 
 

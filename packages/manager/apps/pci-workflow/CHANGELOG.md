@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.0...@ovh-ux/manager-pci-workflow-app@0.11.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.10.4...@ovh-ux/manager-pci-workflow-app@0.11.0) (2025-12-03)
+
+
+### Features
+
+* **pci-workflow:** add ODS 19 ([5f487b8](https://github.com/ovh/manager/commit/5f487b8bd7a34de153de60ebbd075256adecfd2d))
+* **pci-worklow:** distant backup - add distant region selection on automatic volume backup ([ef3c0b2](https://github.com/ovh/manager/commit/ef3c0b236861342d2e5ae8dbc3bf101feb51e2df)), closes [#TAPC-4416](https://github.com/ovh/manager/issues/TAPC-4416)
+
+
+
+
+
+## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.10.3...@ovh-ux/manager-pci-workflow-app@0.10.4) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.10.2...@ovh-ux/manager-pci-workflow-app@0.10.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.10.1...@ovh-ux/manager-pci-workflow-app@0.10.2) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.10.0...@ovh-ux/manager-pci-workflow-app@0.10.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.24...@ovh-ux/manager-pci-workflow-app@0.10.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
+## [0.9.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.23...@ovh-ux/manager-pci-workflow-app@0.9.24) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.9.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.22...@ovh-ux/manager-pci-workflow-app@0.9.23) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.9.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.21...@ovh-ux/manager-pci-workflow-app@0.9.22) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
 ## [0.9.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.20...@ovh-ux/manager-pci-workflow-app@0.9.21) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app

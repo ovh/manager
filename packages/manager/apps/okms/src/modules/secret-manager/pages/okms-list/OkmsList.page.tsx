@@ -1,0 +1,103 @@
+import { useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms';
+import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
+import { RegionSelector } from '@secret-manager/components/region-selector/RegionSelector.component';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
+import { useTranslation } from 'react-i18next';
+
+import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
+
+import {
+  BaseLayout,
+  ErrorBanner,
+  Notifications,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
+import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { isErrorResponse } from '@/common/utils/api/api';
+
+export default function OkmsListPage() {
+  const { t } = useTranslation('secret-manager');
+  const navigate = useNavigate();
+  const { notifications } = useNotifications();
+  const { region } = useRequiredParams('region');
+
+  const { data, error, isPending, refetch } = useOkmsDatagridList({
+    pageSize: 100,
+  });
+  const flattenData = data?.pages.flatMap((page) => page.data) || [];
+
+  // Filter okms by regionId
+  const okmsList = filterOkmsListByRegion(flattenData, region);
+
+  // Redirections management
+  useEffect(() => {
+    // Wait for the data to be loaded
+    if (isPending) return;
+
+    if (okmsList.length === 0) {
+      // If no okms found for the region, redirect to secret-manager root
+      // This also handles the case where the region is not valid
+      navigate({
+        pathname: SECRET_MANAGER_ROUTES_URLS.root,
+      });
+    } else if (okmsList.length === 1 && okmsList[0]) {
+      // If only one okms is found, redirect to its secrets listing page
+      const okmsId = okmsList[0].id;
+      navigate({
+        pathname: SECRET_MANAGER_ROUTES_URLS.secretList(okmsId),
+      });
+    }
+  }, [isPending, okmsList.length, navigate, okmsList]);
+
+  if (error) {
+    return (
+      <ErrorBanner
+        error={isErrorResponse(error) ? error.response : {}}
+        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
+        onReloadPage={refetch}
+      />
+    );
+  }
+
+  return (
+    <BaseLayout
+      header={{
+        title: t('okms_list'),
+        changelogButton: <SecretManagerChangelogButton />,
+        headerButton: <SecretManagerGuidesButton />,
+      }}
+      breadcrumb={
+        <OdsBreadcrumb>
+          <RootBreadcrumbItem />
+        </OdsBreadcrumb>
+      }
+      message={notifications.length > 0 ? <Notifications /> : undefined}
+    >
+      <div className="space-y-6">
+        <RegionSelector />
+        <OkmsDatagrid
+          type="secret-manager"
+          isLoading={isPending}
+          okmsList={okmsList}
+          topbar={
+            <OdsButton
+              label={t('create_a_secret')}
+              onClick={() => {
+                navigate(SECRET_MANAGER_ROUTES_URLS.createSecret);
+              }}
+            />
+          }
+        />
+      </div>
+    </BaseLayout>
+  );
+}

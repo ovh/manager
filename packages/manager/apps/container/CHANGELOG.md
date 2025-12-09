@@ -3,6 +3,168 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.169.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.168.0...@ovh-ux/manager-container-app@0.169.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4518] ([d5fe2fc](https://github.com/ovh/manager/commit/d5fe2fce0f29f22224aac501981c4eae5a971e4c))
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+# [0.168.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.167.1...@ovh-ux/manager-container-app@0.168.0) (2025-12-04)
+
+
+### Features
+
+* **cold-archive:** banner message to object storage ([0478590](https://github.com/ovh/manager/commit/04785909b8c75b57e4eaed171ad5d75ed97aa5fe)), closes [#DATATR-2632](https://github.com/ovh/manager/issues/DATATR-2632)
+
+
+
+
+
+## [0.167.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.167.0...@ovh-ux/manager-container-app@0.167.1) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.167.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.166.1...@ovh-ux/manager-container-app@0.167.0) (2025-12-03)
+
+
+### Features
+
+* **okms:** feature flipping on beta badge ([3e31adc](https://github.com/ovh/manager/commit/3e31adcc34e92276b85c5ae710f79310f5e20dab)), closes [#MANAGER-20139](https://github.com/ovh/manager/issues/MANAGER-20139)
+
+
+
+
+
+## [0.166.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.166.0...@ovh-ux/manager-container-app@0.166.1) (2025-12-02)
+
+
+### Bug Fixes
+
+* **container:** update live-chat URLs to load on ovhcloud.com ([6db6c0a](https://github.com/ovh/manager/commit/6db6c0abe63e2750cfb375aff8179f79a937279e))
+
+
+
+
+
+# [0.166.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.165.0...@ovh-ux/manager-container-app@0.166.0) (2025-12-01)
+
+
+### Features
+
+* **config:** update Telecom domain ([960af71](https://github.com/ovh/manager/commit/960af718758143716f043346a297dd4143829764)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* **container:** replace old domain to new domain ([7cbc94d](https://github.com/ovh/manager/commit/7cbc94d8cbbf14e84b517ebfbad9006168f36400)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* **container:** update new development mode app config ([cdbfc35](https://github.com/ovh/manager/commit/cdbfc3574e337c5c1ea40927956e64cdb2d85c6b)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* migrate telecom to ovhcloud.com domain ([3da12e0](https://github.com/ovh/manager/commit/3da12e0adc0931bf9251d6df986090f9b756d176)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* skip labeu url update ([3a3d68b](https://github.com/ovh/manager/commit/3a3d68b9887e541040685f795a5989d63377f65d))
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [0.165.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.164.2...@ovh-ux/manager-container-app@0.165.0) (2025-11-27)
+
+
+### Features
+
+* replace account-emails with communication app ([0f6d4f0](https://github.com/ovh/manager/commit/0f6d4f0f6a56c37ed90992242edd3f4090becf08)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+* replace account-emails with communication app ([43a15f4](https://github.com/ovh/manager/commit/43a15f41b92c6990b0d725a66585bdcefaa37066)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+
+
+### Reverts
+
+* replace account-emails with communication app ([8463e83](https://github.com/ovh/manager/commit/8463e83ff542c2acacc5ab41e9c413c9eab2e99e)), closes [#MANAGER-20243](https://github.com/ovh/manager/issues/MANAGER-20243)
+
+
+
+
+
+## [0.164.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.164.1...@ovh-ux/manager-container-app@0.164.2) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.164.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.164.0...@ovh-ux/manager-container-app@0.164.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.164.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.163.0...@ovh-ux/manager-container-app@0.164.0) (2025-11-18)
+
+
+### Features
+
+* **cloud-shell:** add cloud-shell app ([d4b9f7c](https://github.com/ovh/manager/commit/d4b9f7c735941b4979db8c497b636cbe42030c27)), closes [#MANAGER-20239](https://github.com/ovh/manager/issues/MANAGER-20239)
+
+
+
+
+
+# [0.163.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.162.1...@ovh-ux/manager-container-app@0.163.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
+## [0.162.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.162.0...@ovh-ux/manager-container-app@0.162.1) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.162.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.11...@ovh-ux/manager-container-app@0.162.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* fix usage of useOvhPaymentMethod in apps and packages ([79eef98](https://github.com/ovh/manager/commit/79eef988152e4c5a959336733060cae90b1f0a13)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+### Features
+
+* **container:** migrate from reket to axios ([12256c8](https://github.com/ovh/manager/commit/12256c833c4fa35966ae0f42f569589e41852ac3)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* resolve error message issue for axios ([b837d29](https://github.com/ovh/manager/commit/b837d297a7630fed1a6a96fa2dc004548f3b8c49)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
+## [0.161.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.10...@ovh-ux/manager-container-app@0.161.11) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 ## [0.161.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.9...@ovh-ux/manager-container-app@0.161.10) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

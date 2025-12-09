@@ -6,7 +6,7 @@ export default {
     addPaymentMean: '<',
     autoRenewAgreements: '<',
     defaultPaymentMean: '<',
-    goBack: '<',
+    goToAutorenew: '<',
     service: '<',
     updateRenew: '<',
   },

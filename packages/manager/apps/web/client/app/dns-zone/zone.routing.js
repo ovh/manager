@@ -54,11 +54,11 @@ export default /* @ngInject */ ($stateProvider) => {
         {
           property: 'dnssecSupported',
           title: 'DNSSEC',
-          template: `<span data-ng-bind="$row.dnssecSupported ? '${$translate.instant(
+          template: `<span data-ng-bind="$row.dnssecSupported && $row.dnssecActivated ? '${$translate.instant(
             'zones_enabled',
           )}' : '${$translate.instant(
             'zones_disabled',
-          )}'" class="oui-badge" ng-class="{'oui-badge_success': $row.dnssecSupported, 'oui-badge_error': !$row.dnssecSupported}"></span>
+          )}'" class="oui-badge" ng-class="{'oui-badge_success': $row.dnssecSupported && $row.dnssecActivated, 'oui-badge_error': !$row.dnssecSupported || !$row.dnssecActivated }"></span>
           `,
           searchable: true,
           sortable: true,

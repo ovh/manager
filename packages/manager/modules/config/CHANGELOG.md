@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.8.0...@ovh-ux/manager-config@8.8.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-config
+
+
+
+
+
+# [8.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.7.2...@ovh-ux/manager-config@8.8.0) (2025-12-01)
+
+
+### Features
+
+* **config:** ovhcom to ovhcloudcom migration ([8ca31c7](https://github.com/ovh/manager/commit/8ca31c78bab36ab952da31722f7ee7650450a683)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* **config:** update Manager domains in front-end ([1d42671](https://github.com/ovh/manager/commit/1d426715ffb0502b1a1861edeae335b09dca2d94)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* **config:** update Telecom domain ([960af71](https://github.com/ovh/manager/commit/960af718758143716f043346a297dd4143829764)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* skip labeu url update ([3a3d68b](https://github.com/ovh/manager/commit/3a3d68b9887e541040685f795a5989d63377f65d))
+
+
+
+
+
+## [8.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.7.1...@ovh-ux/manager-config@8.7.2) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-config
+
+
+
+
+
+## [8.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.7.0...@ovh-ux/manager-config@8.7.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-config
+
+
+
+
+
+# [8.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.6.8...@ovh-ux/manager-config@8.7.0) (2025-11-12)
+
+
+### Features
+
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* resolve error message issue for axios ([b837d29](https://github.com/ovh/manager/commit/b837d297a7630fed1a6a96fa2dc004548f3b8c49)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [8.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.6.7...@ovh-ux/manager-config@8.6.8) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-config

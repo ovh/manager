@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-jquery-ui-draggable",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Make elements draggable",
   "keywords": [
     "angularjs",
@@ -38,7 +38,7 @@
     "set-value": "^2.0.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.1.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0"
   },
   "peerDependencies": {
     "angular": "~1.6",

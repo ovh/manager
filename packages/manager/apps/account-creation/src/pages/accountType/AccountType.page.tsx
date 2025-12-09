@@ -1,19 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   OdsRadio,
   OdsFormField,
   OdsText,
-  OdsTooltip,
   OdsButton,
   OdsSkeleton,
+  OdsPopover,
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LegalForm } from '@ovh-ux/manager-config';
+import { ButtonType, PageLocation, usePageTracking } from '@ovh-ux/manager-react-shell-client';
+import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useUserContext } from '@/context/user/useUser';
 import { useLegalFormRules } from '@/data/hooks/useRules';
+import { useTrackError } from '@/hooks/tracking/useTracking';
 import { AVERAGE_NUMBER_OF_LEGAL_FORMS } from './accountType.constants';
 import AccountTypeTooltipContent from './tooltip-content/TooltipContent.component';
 import { urls } from '@/routes/routes.constant';
@@ -24,49 +27,74 @@ export default function AccountType() {
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const navigate = useNavigate();
-  const { ovhSubsidiary, country, legalForm, setLegalForm } = useUserContext();
-  const { data: rule, isLoading } = useLegalFormRules({
+  const [ searchParams ] = useSearchParams();
+  const { trackClick } = useTrackingContext();
+  const { trackError } = useTrackError('select-account-type');
+  const pageTracking = usePageTracking();
+  const { ovhSubsidiary, country, legalForm, setLegalForm, language } = useUserContext();
+  const { data: rule, isLoading, error } = useLegalFormRules({
     ovhSubsidiary,
     country,
   });
   const [legalFormError, setLegalFormError] = useState<boolean>(false);
 
   const validateStep = useCallback(() => {
-    if (!legalForm) {
+    // Account are created with the "other" legal form which is not available anymore
+    if (!legalForm || legalForm === 'other') {
       setLegalFormError(true);
-    } else if (shouldAccessOrganizationSearch(country, legalForm)) {
-      navigate(urls.company);
+      trackError('empty');
+      return;
+    }
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: ['account-create-select-account-type', 'next', `${ovhSubsidiary}_${language}_${legalForm}`],
+      });
+    }
+    if (shouldAccessOrganizationSearch(country, legalForm)) {
+      navigate(`${urls.company}?${searchParams.toString()}`);
     } else {
-      navigate(urls.accountDetails);
+      navigate(`${urls.accountDetails}?${searchParams.toString()}`);
     }
   }, [legalForm, country]);
+
+  useEffect(() => {
+    if (error) {
+      trackError(error.message);
+    }
+  }, [error]);
+
+  const trackTooltipClick = useCallback(() => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        buttonType: ButtonType.externalLink,
+        actions: ['see-more-account-type'],
+      });
+    }
+  }, [trackClick]);
 
   return (
     <>
       <div className={'flex flex-col gap-8'}>
         <div className={'flex flex-col gap-5'}>
           <OdsText preset={ODS_TEXT_PRESET.heading1}>{t('title')}</OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            <Trans
-              t={t}
-              i18nKey="description"
-              components={{
-                Tooltip: (
-                  <span
-                    className={isLoading ? '' : 'tooltip-trigger'}
-                    id={`legal-form-tooltip-trigger`}
-                  />
-                ),
-              }}
-            />
+          <OdsText
+            className="cursor-pointer"
+            preset={ODS_TEXT_PRESET.paragraph}
+            id="account-type-description"
+            onClick={() => trackTooltipClick()}
+          >
+            <Trans t={t} i18nKey="description" />
           </OdsText>
           {!isLoading && rule && (
-            <OdsTooltip
-              className="rounded-sm max-w-xs"
-              triggerId={`legal-form-tooltip-trigger`}
+            <OdsPopover
+              className="md:w-1/4 p-5"
+              triggerId="account-type-description"
+              with-arrow
             >
               <AccountTypeTooltipContent legalForms={rule.in as LegalForm[]} />
-            </OdsTooltip>
+            </OdsPopover>
           )}
         </div>
         <OdsFormField>
@@ -92,7 +120,7 @@ export default function AccountType() {
             {rule?.in &&
               rule.in.map((value: string) => (
                 <div
-                  className={`w-full sm:w-auto flex items-center gap-4 border border-solid rounded-md px-6 py-4 ${
+                  className={`w-full sm:w-auto flex items-center gap-4 border border-solid border-[--ods-color-primary-700] rounded-md px-6 py-4 ${
                     legalFormError
                       ? 'border-[var(--ods-color-form-element-border-critical)]'
                       : ''
@@ -110,7 +138,10 @@ export default function AccountType() {
                     hasError={legalFormError}
                     className="contents sm:inline-flex"
                   ></OdsRadio>
-                  <label htmlFor={`legal_form_${value}`}>
+                  <label
+                    className="text-[--ods-color-primary-700]"
+                    htmlFor={`legal_form_${value}`}
+                  >
                     {t(`legal_form_${value}`)}
                   </label>
                 </div>

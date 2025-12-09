@@ -119,6 +119,7 @@ export function OvhTracking({ shell }: ShellContextType) {
   useEffect(() => {
     OvhTrackPage(location);
     myStateRef.current = location;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocationPath(location);
   }, [location]);
 

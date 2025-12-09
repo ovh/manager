@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.18.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.18.0...@ovh-ux/ng-ovh-payment-method@9.18.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method
+
+
+
+
+
+# [9.18.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.17.13...@ovh-ux/ng-ovh-payment-method@9.18.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* fix usage of useOvhPaymentMethod in apps and packages ([79eef98](https://github.com/ovh/manager/commit/79eef988152e4c5a959336733060cae90b1f0a13)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* **payment-methode:** fix the user locale undefined issue ([e0bdb54](https://github.com/ovh/manager/commit/e0bdb54433b9b790a14b4a5faea93cd17869b99a)), closes [#INC0163710](https://github.com/ovh/manager/issues/INC0163710) [#MANAGER-20223](https://github.com/ovh/manager/issues/MANAGER-20223)
+
+
+### Features
+
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [9.17.13](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.17.12...@ovh-ux/ng-ovh-payment-method@9.17.13) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method

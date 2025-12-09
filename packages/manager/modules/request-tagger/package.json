@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-request-tagger",
-  "version": "2.0.12",
+  "version": "2.0.15",
   "private": true,
   "description": "Request tagger",
   "keywords": [
@@ -31,11 +31,11 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/request-tagger": "^0.5.7",
+    "@ovh-ux/request-tagger": "^0.5.10",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.1.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",

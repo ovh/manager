@@ -6,11 +6,12 @@ import sortBy from 'lodash/sortBy';
 
 export default class {
   /* @ngInject */
-  constructor($q, $scope, OvhHttp, User) {
+  constructor($q, $scope, OvhHttp, User, $translate) {
     this.$q = $q;
     this.$scope = $scope;
     this.OvhHttp = OvhHttp;
     this.User = User;
+    this.$translate = $translate;
   }
 
   fetchOffers() {
@@ -113,5 +114,17 @@ export default class {
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  confirmOrder() {
+    const url = this.getOrderUrl();
+    window.open(url, '_blank', 'noopener');
+    this.goBack(
+      this.$translate.instant('dedicatedCloud_order_success_message', {
+        productName: this.selectedOffer.planCode,
+        url,
+      }),
+      'info',
+    );
   }
 }

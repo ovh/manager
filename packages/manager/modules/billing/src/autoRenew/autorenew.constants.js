@@ -81,10 +81,6 @@ export const SERVICE_TYPES = {
   ZIMBRA_SLOT: 'ZIMBRA_SLOT',
 };
 
-// This list represent what service types uses apiv6 `/services` routes to
-// handle retrieving informations about the service and updating it
-export const SERVICE_TYPES_USING_V6_SERVICES = [SERVICE_TYPES.ZIMBRA_SLOT];
-
 const TRACKING_CHAPTER_1 = 'Hub';
 const TRACKING_CHAPTER_2 = 'billing';
 const TRACKING_CHAPTER_3 = 'services';
@@ -163,6 +159,8 @@ export const SERVICE_INFOS_URLS_BY_TYPE = {
   NUTANIX: `/nutanix/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
 };
 
+export const UNIT_YEARLY = 'Y';
+
 export default {
   AUTORENEW_EVENT,
   CONTRACTS_IDS,
@@ -174,4 +172,5 @@ export default {
   URL_PARAMETER_SEPARATOR,
   SERVICE_INFOS_URLS_BY_TYPE,
   SERVICE_NAME_PLACEHOLDER,
+  UNIT_YEARLY,
 };

@@ -1,0 +1,16 @@
+{
+  "title": "Object Storage",
+  "description1": "Todavía no ha creado ningún servicio de Object Storage.",
+  "description2": "Disfrute de almacenamiento ilimitado bajo demanda, con acceso a través de la API.",
+  "description3": "Object Storage permite almacenar los datos en un espacio ilimitado al que podrá acceder directamente a través de una API HTTP. Gracias a las numerosas librerías OpenStack Swift existentes, podrá integrar el acceso a esta información desde sus aplicaciones. Además de administrar los permisos de acceso, Object Storage incorpora funcionalidades de «almacenamiento inteligente», como la gestión de versiones y fechas de expiración o la sincronización entre diferentes localizaciones.",
+  "description4": "Los datos están protegidos mediante triple replicación para garantizar su durabilidad. Asimismo, el servicio se factura por consumo desde el primer GB.",
+  "createButtonLabel": "Crear un contenedor de objetos",
+  "cardTopGuide": "Guía",
+  "cardFindOutMore": "Más información",
+  "cardLeftTitle": "Colocar un contenedor de Object Storage detrás de un nombre de dominio",
+  "cardLeftDesc": "Esta guía explica cómo configurar un contenedor de objetos con un dominio",
+  "cardMiddleTitle": "Configurar la eliminación automática de objetos",
+  "cardMiddleDescription": "Cómo activar la eliminación automática de objetos en el contenedor",
+  "cardRightTitle": "Compartir un objeto con una URL temporal",
+  "cardRightDesc": "Cómo compartir un objeto sin comunicar información personal"
+}

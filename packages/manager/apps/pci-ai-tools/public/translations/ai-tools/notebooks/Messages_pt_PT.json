@@ -16,5 +16,6 @@
   "tableActionStop": "Parar",
   "tableActionDelete": "Eliminar",
   "deleteTableTooltip": "O notebook deve encontrar-se no estado «parado»",
-  "quantumTitle": "Emuladores"
+  "quantumTitle": "Emulators",
+  "qpuTitle": "QPU"
 }

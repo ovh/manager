@@ -23,7 +23,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('ovhManagerNetAppVolumesDashboardAcl', component)
+  .component(moduleName, component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

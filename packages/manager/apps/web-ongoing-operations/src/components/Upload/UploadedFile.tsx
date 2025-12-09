@@ -16,6 +16,7 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { TArgument } from '@/types';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 interface FileUploadProps {
   readonly argument: TArgument;
@@ -28,6 +29,7 @@ export default function UploadedFile({
   argument,
   setUploadedFiles,
 }: FileUploadProps) {
+  const { trackPageNavivationLink } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
   const [files, setFiles] = useState<File[]>([]);
   const [errorUpload, setErrorUpload] = useState<string>('');
@@ -62,7 +64,14 @@ export default function UploadedFile({
             <MessageBody>
               <Text className="block">
                 {t('domain_operations_upload_file_template_1')}
-                <Link href={template} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={template}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackPageNavivationLink(template, true);
+                  }}
+                >
                   {t('domain_operations_upload_file_template_link')}
                 </Link>
                 {t('domain_operations_upload_file_template_2')}
@@ -76,7 +85,8 @@ export default function UploadedFile({
           setFiles(detail.files);
         }}
         onFileReject={(detail: FileUploadRejectDetail) => {
-          setErrorUpload(detail.files[0].errors[0]);
+          const file = detail?.files[0] || null;
+          setErrorUpload(file?.errors[0]|| 'unknown_error');
         }}
         accept={fileUploadFormat}
         acceptedFileLabel={t('domain_operations_upload_accepted_file_types', {

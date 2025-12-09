@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Meta } from '@storybook/react';
 import {
   UpdateNameModal as UpdateNameModalComponent,
   UpdateNameModalProps,
+  Button,
 } from '@ovh-ux/muk';
 
 export const UpdateNameModalDefault = (props: UpdateNameModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const [isOpen, setIsOpen] = useState(props.isOpen);
+  const handleOpenChange = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
   return (
-    <UpdateNameModalComponent
-      {...props}
-      isOpen={isOpen}
-      onClose={handleClose}
-    />
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <UpdateNameModalComponent
+        {...props}
+        isOpen={isOpen}
+        onClose={handleOpenChange}
+        onOpenChange={handleOpenChange}
+      />
+    </>
   );
 };
 
 UpdateNameModalDefault.parameters = {
+  args: {
+    isOpen: false,
+  },
+  argTypes: {
+    isOpen: { control: 'boolean' },
+  },
   docs: {
     source: {
       code: `<UpdateNameModal 
@@ -38,17 +49,21 @@ UpdateNameModalDefault.parameters = {
 };
 
 export const UpdateNameModalWithError = (props: UpdateNameModalProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const [isOpen, setIsOpen] = useState(props.isOpen);
+  const handleOpenChange = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
   return (
-    <UpdateNameModalComponent
-      {...props}
-      isOpen={isOpen}
-      onClose={handleClose}
-      error="Message error update name"
-    />
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <UpdateNameModalComponent
+        {...props}
+        isOpen={isOpen}
+        onClose={handleOpenChange}
+        onOpenChange={handleOpenChange}
+        error="Message error update name"
+      />
+    </>
   );
 };
 
@@ -70,7 +85,7 @@ const meta: Meta = {
     isOpen: { control: 'text' },
   },
   args: {
-    isOpen: true,
+    isOpen: false,
     onClose: () => {
       // Handle close
     },

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { Link } from '@ovhcloud/ods-react';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 interface ActionMeDnsComponentProps {
   readonly domainName: string;
@@ -10,6 +11,7 @@ interface ActionMeDnsComponentProps {
 export default function ActionMeDnsComponent({
   domainName,
 }: ActionMeDnsComponentProps) {
+  const { trackPageNavivationLink } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
   const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
 
@@ -21,6 +23,9 @@ export default function ActionMeDnsComponent({
       className="block"
       icon="external-link"
       disabled={!url}
+      onClick={() => {
+        trackPageNavivationLink(url);
+      }}
     >
       {t('domain_operations_update_dns_click')}
     </Link>

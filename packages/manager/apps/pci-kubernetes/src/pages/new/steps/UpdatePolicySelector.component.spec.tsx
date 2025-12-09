@@ -22,7 +22,7 @@ describe('UpgradePolicyTileSelector', () => {
     },
   } as ShellContextType;
 
-  it('renders correctly ', () => {
+  it('renders correctly', () => {
     const { container } = render(
       <ShellContext.Provider value={mockShellContextValue}>
         <UpdatePolicySelector onPolicyChange={setPolicyMock} policy={UpdatePolicy.AlwaysUpdate} />

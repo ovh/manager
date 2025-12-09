@@ -1,7 +1,7 @@
 {
-  "Title": "Computadores Quânticos (QPU)",
+  "Title": "Computadores quânticos (QPU)",
   "createNotebookButton": "Criar um Notebook",
-  "Description1": "Aceda ao verdadeiro poder do quântico em QaaS a partir da OVHcloud.",
-  "Description2": "Execute os seus algoritmos em processadores quânticos físicos (QPUs), de forma segura e sem infraestrutura para gerir.",
-  "Description3": "Desfrute de uma integração perfeita com os nossos emuladores e de uma faturação por segundo para melhor gerir os seus custos."
+  "Description1": "Com a OVHcloud, aceda ao verdadeiro poder da computação quântica em QaaS.",
+  "Description2": "Execute os seus algoritmos em processadores quânticos físicos (QPU), com toda a segurança e sem gestão de infraestruturas.",
+  "Description3": "Usufrua de uma integração transparente com os nossos emuladores e de uma faturação por segundo para gerir melhor os seus custos."
 }

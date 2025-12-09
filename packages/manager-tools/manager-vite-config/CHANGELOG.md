@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.15.2...@ovh-ux/manager-vite-config@0.15.3) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.15.1...@ovh-ux/manager-vite-config@0.15.2) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.15.0...@ovh-ux/manager-vite-config@0.15.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.14.1...@ovh-ux/manager-vite-config@0.15.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 ## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.14.0...@ovh-ux/manager-vite-config@0.14.1) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-vite-config

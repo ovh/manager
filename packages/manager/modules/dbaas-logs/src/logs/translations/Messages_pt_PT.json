@@ -297,7 +297,7 @@
   "logs_streams_update_title": "Modificar o fluxo",
   "logs_streams_update_description": "Para o fluxo <strong>{{ name }}</strong>",
   "logs_streams_enable_indexing": "Ativar a indexação",
-  "logs_streams_enable_indexing_description": "Explore os seus logs no Graylog e OpenSearch ({{t0}} + IVA/mês por GB para os primeiros {{t1}} GB, {{t2}} + IVA/mês por GB para maiores volumes)",
+  "logs_streams_enable_indexing_description": "Explore os seus logs em Graylog e OpenSearch.",
   "logs_streams_no_limit": "Nenhum limite",
   "logs_streams_enable_websocket": "Ativar difusão WebSocket",
   "logs_streams_enable_websocket_description": "Monitorize a receção dos logs em tempo real através do protocolo WebSocket.",
@@ -803,5 +803,8 @@
   "logs_iam_ovhcloud_iam": "o IAM OVHcloud",
   "logs_iam_enable_iam": "Ativar o IAM OVHcloud",
   "logs_iam_policies": "Políticas IAM",
-  "logs_encryption_keys_get_error": "Ocorreu um erro ao carregar as chaves de encriptação: {{message}}"
+  "logs_encryption_keys_get_error": "Ocorreu um erro ao carregar as chaves de encriptação: {{message}}",
+  "logs_streams_enable_indexing_description_detail_small": "Armazenamento de logs < {{t0}} GB de logs: Grátis",
+  "logs_streams_enable_indexing_description_detail_medium": "Armazenamento de logs de {{t0}} a {{t1}} GB de logs: {{t2}} /mês + IVA por GB",
+  "logs_streams_enable_indexing_description_detail_large": "Armazenamento de logs para volumes maiores (acima de {{t0}} GB): {{t1}} /mês + IVA por GB"
 }

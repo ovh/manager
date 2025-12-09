@@ -1,0 +1,11 @@
+{
+  "addUserPolicyTitle": "Zaimportuj plik",
+  "addUserPolicyDescription": "Możesz zaimportować plik JSON, aby zarządzać uprawnieniami użytkownika.",
+  "userPolicyToastErrorTitle": "Błąd",
+  "userPolicySuccessTitle": "Operacja zakończona pomyślnie",
+  "userPolicyToastSuccessDescription": "Polityka została zaimportowana",
+  "userPolicyJSONToastError": "Wystąpił błąd podczas odczytywania pliku JSON.",
+  "errorFileRequired": "Wybierz 1 plik",
+  "fileUploaderButtonCancel": "Anuluj",
+  "fileUploaderButtonConfirm": "Importuj"
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -19,6 +18,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TOngoingOperations } from '@/types';
 import { ActionNameEnum } from '@/enum/actionName.enum';
 import { urls } from '@/routes/routes.constant';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 interface UpdateActionsProps {
   readonly data: TOngoingOperations;
@@ -37,6 +37,7 @@ export default function UpdateActions({
   onValidate,
   setActionName,
 }: UpdateActionsProps) {
+  const { trackPageNavivationButton } = useTrackNavigation();
   const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
@@ -52,9 +53,9 @@ export default function UpdateActions({
           <RadioControl />
           <RadioLabel
             className={
-              !data?.canRelaunch
-                ? 'text-[var(--ods-color-text-disabled-default)]'
-                : 'text-[var(--ods-color-text)]'
+              data.canRelaunch
+                ? 'text-[var(--ods-color-text)]'
+                : 'text-[var(--ods-color-text-disabled-default)]'
             }
           >
             {t('domain_operations_relaunch_title')}
@@ -67,9 +68,9 @@ export default function UpdateActions({
           <RadioControl />
           <RadioLabel
             className={
-              !data?.canAccelerate
-                ? 'text-[var(--ods-color-text-disabled-default)]'
-                : 'text-[var(--ods-color-text)]'
+              data.canAccelerate
+                ? 'text-[var(--ods-color-text)]'
+                : 'text-[var(--ods-color-text-disabled-default)]'
             }
           >
             {t('domain_operations_accelerate_title')}
@@ -79,9 +80,9 @@ export default function UpdateActions({
           <RadioControl />
           <RadioLabel
             className={
-              !data?.canCancel
-                ? 'text-[var(--ods-color-text-disabled-default)]'
-                : 'text-[var(--ods-color-text)]'
+              data.canCancel
+                ? 'text-[var(--ods-color-text)]'
+                : 'text-[var(--ods-color-text-disabled-default)]'
             }
           >
             {t('domain_operations_cancel_title')}
@@ -99,7 +100,9 @@ export default function UpdateActions({
         <Button
           slot="actions"
           onClick={() => {
-            navigate(urls.root);
+            const url = urls.root;
+            trackPageNavivationButton(url);
+            navigate(url);
           }}
           variant={BUTTON_VARIANT.ghost}
         >
@@ -107,7 +110,9 @@ export default function UpdateActions({
         </Button>
         <Button
           slot="actions"
-          onClick={() => onValidate()}
+          onClick={() => {
+            onValidate();
+          }}
           disabled={disabled}
           loading={isActionLoading}
         >

@@ -9,11 +9,17 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($translate, PciLoadBalancerService, coreConfig) {
+  constructor(
+    $translate,
+    PciLoadBalancerService,
+    coreConfig,
+    ovhFeatureFlipping,
+  ) {
     this.$translate = $translate;
     this.PciLoadBalancerService = PciLoadBalancerService;
     this.coreConfig = coreConfig;
     this.user = coreConfig.getUser();
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.PciLoadBalancerGuides =
       LOAD_BALANCER_LINKS[this.user.ovhSubsidiary] ||
       LOAD_BALANCER_LINKS.DEFAULT;
@@ -38,11 +44,30 @@ export default class {
       ],
       [],
     );
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability('public-cloud:project:eos-load-balancer-test')
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(
+          'public-cloud:project:eos-load-balancer-test',
+        ),
+      )
+      .then((isEosMessageActive) => {
+        this.getEndOFServiceMessage = isEosMessageActive;
+        this.initializeTranslationKeys();
+      });
   }
 
   onGuideClick(guide) {
     if (guide.id === USING_LOAD_BALANCER_GUIDE_ID) {
       this.PciLoadBalancerService.trackClick(LOAD_BALANCER_CONFIGURE_TRACKING);
     }
+  }
+
+  initializeTranslationKeys() {
+    this.getEndServiceKey =
+      'pci_projects_project_load_balancer_end_service_definitive';
+
+    this.getEndServiceWelcomeKey =
+      'pci_projects_project_load_balancer_end_service_welcome_definitive';
   }
 }

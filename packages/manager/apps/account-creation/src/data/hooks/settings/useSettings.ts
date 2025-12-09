@@ -6,68 +6,84 @@ import { getSettings } from '../../api/settings';
 import { BillingCountry, SupportLanguage } from '@/types/settings';
 import { getRegion } from '@/helpers/region/regionHelper';
 
-export const useCountrySettings = () => {
-  const { t } = useTranslation(NAMESPACES.COUNTRY);
-  return useQuery({
+const useSettingsQuery = <T>(
+  select: (settings: Map<string, BillingCountry[]>) => T,
+) =>
+  useQuery({
     queryKey: ['settings'],
     queryFn: () => getSettings(getRegion()),
-    select: (settings: Map<string, BillingCountry[]>) =>
-      Array.from(settings.keys())
-        .map((countryCode) => ({
-          code: countryCode,
-          label: t(`country_${countryCode}`),
-        }))
-        .sort((countryA, countryB) =>
-          countryA.label > countryB.label ? 1 : -1,
-        ),
+    select,
   });
+
+export const useCountrySettings = () => {
+  const { t } = useTranslation(NAMESPACES.COUNTRY);
+
+  return useSettingsQuery((settings) =>
+    Array.from(settings.keys())
+      .map((countryCode) => ({
+        code: countryCode,
+        label: t(`country_${countryCode}`),
+      }))
+      .sort((countryA, countryB) => (countryA.label > countryB.label ? 1 : -1)),
+  );
 };
 
 export const useCurrencySettings = (country?: string) =>
-  useQuery({
-    queryKey: ['settings'],
-    queryFn: () => getSettings(getRegion()),
-    select: (settings: Map<string, BillingCountry[]>) => {
-      if (!country) {
-        return [];
-      }
-      return (
-        settings
-          .get(country)
-          ?.reduce((currencies: Currency[], billingCountry) => {
-            if (
-              !currencies.find(
-                (currency) => currency.code === billingCountry.currency.code,
-              )
-            ) {
-              currencies.push(billingCountry.currency);
-            }
-            return currencies;
-          }, []) ?? []
-      );
-    },
+  useSettingsQuery((settings) => {
+    if (!country) return [];
+
+    return (
+      settings
+        .get(country)
+        ?.reduce((currencies: Currency[], billingCountry) => {
+          if (
+            !currencies.find(
+              (currency) => currency.code === billingCountry.currency.code,
+            )
+          ) {
+            currencies.push(billingCountry.currency);
+          }
+          return currencies;
+        }, []) ?? []
+    );
   });
 
 export const useLanguageSettings = (country?: string, currency?: string) =>
-  useQuery({
-    queryKey: ['settings'],
-    queryFn: () => getSettings(getRegion()),
-    select: (settings: Map<string, BillingCountry[]>) => {
-      if (!(country && currency)) {
-        return [];
-      }
-      return (
-        settings
-          .get(country)
-          ?.reduce((languages: SupportLanguage[], billingCountry) => {
-            if (
-              currency === billingCountry.currency.code &&
-              !languages.includes(billingCountry.ietfLanguageTag)
-            ) {
-              languages.push(billingCountry.ietfLanguageTag);
-            }
-            return languages;
-          }, []) ?? []
-      );
-    },
+  useSettingsQuery((settings) => {
+    if (!(country && currency)) return [];
+
+    return (
+      settings
+        .get(country)
+        ?.reduce((languages: SupportLanguage[], billingCountry) => {
+          if (
+            currency === billingCountry.currency.code &&
+            !languages.includes(billingCountry.ietfLanguageTag)
+          ) {
+            languages.push(billingCountry.ietfLanguageTag);
+          }
+          return languages;
+        }, []) ?? []
+    );
   });
+
+export const useSubsidiarySettings = (
+  country?: string,
+  currency?: string,
+  language?: string,
+) => {
+  return useSettingsQuery<string | null>((settings) => {
+    if (!(country && currency && language)) {
+      return null;
+    }
+    const foundCountry = settings
+      .get(country)
+      ?.find(
+        (billingCountry) =>
+          billingCountry.currency.code === currency &&
+          billingCountry.ietfLanguageTag === language,
+      );
+
+    return foundCountry ? foundCountry.ovhSubsidiary : null;
+  });
+};

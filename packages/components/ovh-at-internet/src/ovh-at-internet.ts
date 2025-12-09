@@ -87,6 +87,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       page_category: params.page_category,
       complete_page_name: params.complete_page_name,
       page_theme: params.page_theme,
+      support_language: params.language,
+      interface_language: params.interfaceLanguage,
     };
   }
 

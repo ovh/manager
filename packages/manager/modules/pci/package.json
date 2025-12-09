@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "6.99.1",
+  "version": "6.101.0",
   "private": true,
   "description": "Public Cloud Instance product.",
   "repository": {
@@ -28,7 +28,6 @@
     "xterm": "^3.14.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-account-migration": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-banner": "^1.2.7",
     "@ovh-ux/manager-catalog-price": "^1.2.0",

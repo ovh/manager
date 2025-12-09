@@ -1,5 +1,4 @@
 import { render, screen, waitFor, act } from '@testing-library/react';
-import { useReket } from '@ovh-ux/ovh-reket';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { KeyPairName } from '@ovh-ux/manager-config';
@@ -10,6 +9,8 @@ import UserAccountMenuButton from './user-account-menu/Button';
 import HeaderComponent from './index';
 import UserAccountMenu from './user-account-menu/Content';
 import { UserLink } from './user-account-menu/UserLink';
+import { fetchProcedureStatus } from '@/data/api/procedure/procedure';
+import { ProcedureStatus } from '@/types/procedure';
 
 /**
  * Mocked Data
@@ -33,8 +34,6 @@ const mockedUser = {
 };
 
 let mockedRegion = 'EU';
-
-vi.mock('@ovh-ux/ovh-reket');
 /**
  * Mocking hooks instead of queries/apies since there are a lot and hooks should be tested
  * in isolation instead of replicated in each test
@@ -52,6 +51,8 @@ vi.mock('@/core/notifications/useNotifications', () => ({
     notifications: [],
   }),
 }));
+
+vi.mock('@/data/api/procedure/procedure');
 
 vi.mock('@/hooks/useOnboardingPreferences', () => ({
   useOnboardingPreferences: vi.fn().mockReturnValue({
@@ -187,8 +188,9 @@ describe('Header.component', () => {
         vi.mocked(fetchFeatureAvailabilityData).mockResolvedValue({
           [feature]: isEnabled,
         });
-        vi.mocked(useReket).mockReturnValue({
-          get: () => Promise.resolve({ status: 'open' }),
+        vi.mocked(fetchProcedureStatus).mockResolvedValue({
+          status: ProcedureStatus.Open,
+          ticketId: 'XXXXXX',
         });
 
         await act(async () => {

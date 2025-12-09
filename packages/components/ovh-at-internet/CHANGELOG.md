@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.28.0...@ovh-ux/ovh-at-internet@0.28.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.27.0...@ovh-ux/ovh-at-internet@0.28.0) (2025-12-01)
+
+
+### Features
+
+* **ovh-at-internet:** update mix-commander script for ovhcloud.com migration ([10fffe0](https://github.com/ovh/manager/commit/10fffe09d0415f786ca4519f1c8b9360577dae39)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.26.0...@ovh-ux/ovh-at-internet@0.27.0) (2025-11-27)
+
+
+### Features
+
+* **communication:** add tracking on contacts page ([9f5f5e7](https://github.com/ovh/manager/commit/9f5f5e7a17c4ac8bb5c87d7f151e5aa9228145b9)), closes [#MANAGER-19530](https://github.com/ovh/manager/issues/MANAGER-19530)
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.25.2...@ovh-ux/ovh-at-internet@0.26.0) (2025-11-27)
+
+
+### Features
+
+* add network level2 tracking label ([ff78038](https://github.com/ovh/manager/commit/ff78038f7e40d184d58aba83bb2abc557d1fe3d5)), closes [#MANAGER-20276](https://github.com/ovh/manager/issues/MANAGER-20276)
+* add new standard tracking property ([0c1ecd8](https://github.com/ovh/manager/commit/0c1ecd8ea963c053d285c812e63b3aeaf7b831f3)), closes [#MANAGER-19491](https://github.com/ovh/manager/issues/MANAGER-19491)
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.25.1...@ovh-ux/ovh-at-internet@0.25.2) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.25.0...@ovh-ux/ovh-at-internet@0.25.1) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
 # [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.24.10...@ovh-ux/ovh-at-internet@0.25.0) (2025-11-05)
 
 

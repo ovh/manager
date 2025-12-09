@@ -1,7 +1,7 @@
 {
-  "Title": "Komputery Kwantowe (QPU)",
-  "createNotebookButton": "Utwórz Notatnik",
-  "Description1": "Uzyskaj dostęp do rzeczywistej mocy kwantowej w QaaS z OVHcloud.",
-  "Description2": "Uruchom swoje algorytmy na fizycznych procesorach kwantowych (QPU), w pełni bezpiecznie i bez potrzeby zarządzania infrastrukturą.",
-  "Description3": "Skorzystaj z płynnej integracji z naszymi emulatorami i rozliczania co sekundę, aby lepiej zarządzać swoimi kosztami."
+  "Title": "Komputery kwantowe (QPU)",
+  "createNotebookButton": "Stwórz notebook",
+  "Description1": "Wykonuj obliczenia kwantowe w modelu QaaS, korzystając z platformy OVHcloud.",
+  "Description2": "Uruchamiaj algorytmy na fizycznych procesorach kwantowych (QPU) w bezpiecznym środowisku, które nie wymaga zarządzania infrastrukturą.",
+  "Description3": "Kontroluj koszty dzięki pełnej integracji z emulatorami i modelowi płatności za sekundę."
 }

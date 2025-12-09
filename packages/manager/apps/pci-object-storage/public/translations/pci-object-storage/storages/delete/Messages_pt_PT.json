@@ -1,0 +1,10 @@
+{
+  "deleteStorageTitle": "Eliminar um container",
+  "deleteStorageDescription": "Tem a certeza de que deseja eliminar o container {{ name }}",
+  "deleteStorageConfirmation": "Introduza «TERMINATE» para confirmar a sua escolha.",
+  "deleteStorageButtonCancel": "Anular",
+  "deleteStorageButtonConfirm": "Confirmar",
+  "deleteStorageToastErrorTitle": "Erro",
+  "deleteStorageToastSuccessTitle": "Êxito",
+  "deleteStorageToastSuccessDescription": "O container {{ name }} foi eliminado"
+}

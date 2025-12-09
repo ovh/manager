@@ -6,7 +6,7 @@
   "table_action_edit": "Rinomina",
   "table_action_deactivate": "Disattivare",
   "table_action_enter_verification_code": "Inserire il codice di conferma",
-  "table_action_resend_verification_code": "Inviare di nuovo il codice di conferma",
+  "table_action_resend_verification_code": "Inviare di nuovo l'email di conferma",
   "default_badge_label": "Predefinito",
   "add_contact_button": "Aggiungere un contatto",
   "type_email": "Email",
@@ -20,8 +20,8 @@
   "edit_contact_error_message": "Si è verificato un errore durante la modifica del contatto.",
   "edit_contact_success_message": "Il contatto è stato modificato correttamente.",
   "verify_contact_error_message": "Si è verificato un errore durante la conferma del contatto.",
-  "restart_validation_contact_success_message": "Il codice di conferma è stato rinnovato correttamente.",
-  "restart_validation_contact_error_message": "Si è verificato un errore durante il rinnovo del codice di conferma.",
+  "restart_validation_contact_success_message": "L'email di conferma è stata rinviata correttamente.",
+  "restart_validation_contact_error_message": "Si è verificato un errore durante il rinnovo dell'email di conferma.",
   "verify_contact_info": "Se necessario, potrai inserire il codice di conferma in seguito per completare l'aggiunta del contatto.",
   "verify_contact_link_label": "Inviare di nuovo il codice",
   "verify_contact_contact_email_info": "Hai ricevuto un codice su <strong>{{email}}</strong>.",
@@ -35,5 +35,11 @@
   "contact_form_type_email_label": "Email",
   "contact_form_type_phone_label": "Telefono",
   "contact_form_name_label": "Cognome",
-  "verify_contact_form_otp_label": "Codice di conferma"
+  "verify_contact_form_otp_label": "Codice di conferma",
+  "validation_pending_modal_title": "Conferma del tuo contatto",
+  "validation_pending_contact_email_info": "Un link di conferma è stato inviato a <strong>{{email}}</strong>.",
+  "validation_pending_resend_validation_code_label": "Inviare di nuovo il link di conferma",
+  "validation_pending_validate_contact_label": "Inserire il codice",
+  "activate_contact_success_message": "Il contatto è stato attivato correttamente.",
+  "activate_contact_error_message": "Si è verificato un errore durante l'attivazione del contatto."
 }

@@ -1,0 +1,21 @@
+{
+  "objectTitle": "Objetos",
+  "addNewObject": "Adicionar objetos",
+  "tableHeaderName": "Nome",
+  "tableHeaderUpdateDate": "Última alteração",
+  "tableHeaderSize": "Dimensão",
+  "tableHeaderType": "Tipo",
+  "tableActionDownload": "Transferir",
+  "tableActionDelete": "Eliminar",
+  "objectToastErrorTitle": "Ocorreu um erro",
+  "objectToastSuccessTitle": "Êxito",
+  "addObjectToastSuccessDescription": "O objeto foi adicionado",
+  "addOjectModalTitle": "Adicionar um ou vários objeto(s)",
+  "deleteObjectToastSuccessDescription": "O objeto {{ name }} foi eliminado.",
+  "deleteObjectTitle": "Eliminar um objeto",
+  "deleteObjectDescription": "Deseja eliminar definitivamente o objeto {{- name }}? Esta ação não pode ser anulada.",
+  "deleteObjectConfirmation": "Digite PERMANENTLY DELETE para confirmar",
+  "deleteObjectButtonCancel": "Anular",
+  "deleteObjectButtonConfirm": "Eliminar",
+  "seeVersionsSwitchLabel": "Ver as versões"
+}

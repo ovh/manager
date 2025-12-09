@@ -1,5 +1,6 @@
 import { FEATURE_LOGS } from './logs.constants';
 import { name } from './logs.component';
+import { CHANGELOG } from '../iam.constants';
 
 const redirectTo = (transition) =>
   transition
@@ -46,6 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+      changelogLinks: () => CHANGELOG.default,
       features: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping.checkFeatureAvailability(
           Object.values(FEATURE_LOGS).join(','),

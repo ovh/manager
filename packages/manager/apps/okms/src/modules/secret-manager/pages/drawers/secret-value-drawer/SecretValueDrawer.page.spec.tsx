@@ -1,0 +1,203 @@
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import {
+  versionActiveMock,
+  versionDeactivatedMock,
+  versionDeletedMock,
+  versionListMock,
+} from '@secret-manager/mocks/versions/versions.mock';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { SecretVersion } from '@secret-manager/types/secret.type';
+import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
+import { labels } from '@/common/utils/tests/init.i18n';
+import { RenderTestMockParams, renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+
+import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
+import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
+import {
+  VERSION_SELECTOR_ERROR_TEST_ID,
+  VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+  VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
+  VERSION_SELECTOR_TEST_ID,
+} from './VersionSelector.constants';
+
+const mockOkmsId = '12345';
+const mockSecret = secretListMock[0];
+const mockSecretPath = mockSecret?.path ?? '';
+
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(mockOkmsId, mockSecretPath);
+
+const renderPage = async ({
+  url = mockPageUrl,
+  mockParams,
+}: {
+  url?: string;
+  mockParams?: RenderTestMockParams;
+} = {}) => {
+  const user = userEvent.setup();
+  const { container } = await renderTestApp(url, mockParams);
+
+  // Check if the drawer is open
+  expect(
+    await screen.findByTestId(SECRET_VALUE_DRAWER_TEST_ID, {}, WAIT_FOR_DEFAULT_OPTIONS),
+  ).toBeInTheDocument();
+
+  // wait for the content to be displayed
+  await assertTextVisibility(labels.secretManager.values);
+
+  return { user, container };
+};
+
+describe('ValueDrawer test suite', () => {
+  it('should display skeletons while loading secret versions', async () => {
+    // GIVEN
+    // WHEN
+    await renderPage();
+
+    // THEN
+    const selectSkeleton = screen.getByTestId(VERSION_SELECTOR_SELECT_SKELETON_TEST_ID);
+    const statusSkeleton = screen.getByTestId(VERSION_SELECTOR_STATUS_SKELETON_TEST_ID);
+    expect(selectSkeleton).toBeVisible();
+    expect(statusSkeleton).toBeVisible();
+  });
+
+  it('should display a notification on error loading secret versions', async () => {
+    // GIVEN isVersionsKO
+    // WHEN
+    await renderPage({ mockParams: { isVersionsKO: true } });
+
+    // THEN
+    await waitFor(() => {
+      const versionsError = screen.getByTestId(VERSION_SELECTOR_ERROR_TEST_ID);
+      expect(versionsError).toBeVisible();
+    }, WAIT_FOR_DEFAULT_OPTIONS);
+  });
+
+  describe('on versions successfully loaded', () => {
+    it('should display the version selector with the last version pre-selected', async () => {
+      // GIVEN
+      // WHEN
+      await renderPage();
+
+      // THEN
+      await waitFor(() => {
+        const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
+        expect(versionSelect).toBeVisible();
+        expect(versionSelect).toHaveAttribute(
+          'default-value',
+          versionListMock[0]?.id?.toString() ?? '',
+        );
+        expect(versionSelect).toBeEnabled();
+      }, WAIT_FOR_DEFAULT_OPTIONS);
+    });
+
+    it('should display the version selector with the url version pre-selected', async () => {
+      // GIVEN
+      const lastVersionId = versionListMock.length;
+
+      // WHEN
+      await renderPage({
+        url: SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
+          mockOkmsId,
+          mockSecretPath,
+          lastVersionId,
+        ),
+      });
+
+      // THEN
+      await waitFor(() => {
+        const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
+        expect(versionSelect).toBeVisible();
+        expect(versionSelect).toHaveAttribute(
+          'default-value',
+          versionListMock[lastVersionId - 1]?.id?.toString() ?? '',
+        );
+        expect(versionSelect).toBeEnabled();
+      }, WAIT_FOR_DEFAULT_OPTIONS);
+    });
+
+    it('should disabled the version selector when there is only one version', async () => {
+      // GIVEN
+      const nbVersions = 1;
+
+      // WHEN
+      await renderPage({ mockParams: { nbVersions } });
+
+      // THEN
+      await waitFor(() => {
+        const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
+        expect(versionSelect).toBeVisible();
+        expect(versionSelect).toBeDisabled();
+      }, WAIT_FOR_DEFAULT_OPTIONS);
+    });
+
+    it('should display a message when the selected version is the current version', async () => {
+      // GIVEN
+      const currentVersionId = mockSecret?.version?.id ?? 0;
+
+      // WHEN
+      await renderPage({
+        url: SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
+          mockOkmsId,
+          mockSecretPath,
+          currentVersionId,
+        ),
+      });
+
+      // THEN
+      await assertTextVisibility(labels.secretManager.current_version);
+    });
+  });
+
+  describe('on version selection', () => {
+    type TestCases = {
+      version: SecretVersion;
+      haveValue: boolean;
+    };
+    const testCases: TestCases[] = [
+      {
+        version: versionActiveMock,
+        haveValue: true,
+      },
+      {
+        version: versionDeactivatedMock,
+        haveValue: false,
+      },
+      {
+        version: versionDeletedMock,
+        haveValue: false,
+      },
+    ];
+
+    it.each(testCases)(
+      'should display the correct version informations for $version',
+      async ({ version, haveValue }) => {
+        // GIVEN version, haveValue
+        await renderPage();
+
+        // Change the data input value
+        await changeOdsInputValueByTestId(VERSION_SELECTOR_TEST_ID, version.id.toString());
+
+        // THEN
+        await assertTextVisibility(labels.common.status.status);
+        await waitFor(() => {
+          const versionStatusBadge = screen.getByTestId(VERSION_BADGE_TEST_ID);
+          expect(versionStatusBadge).toBeVisible();
+        });
+
+        if (!haveValue) return;
+
+        // TODO: update this part when we'll handle key/value representation.
+        await waitFor(() => {
+          const versionRawValue = screen.getByTestId(SECRET_RAW_VALUE_TEST_ID);
+          expect(versionRawValue).toBeVisible();
+        }, WAIT_FOR_DEFAULT_OPTIONS);
+      },
+    );
+  });
+});

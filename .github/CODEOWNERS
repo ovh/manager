@@ -52,6 +52,7 @@
 /packages/manager/apps/pci-ai-tools @ovh/dev-manager-pci-ai
 /packages/manager/apps/pci-databases-analytics @ovh/dev-manager-pci-database
 /packages/manager/apps/pci-dataplatform @ovh/dev-manager-pci-database
+/packages/manager/apps/pci-object-storage @ovh/dev-manager-pci-database
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
 /packages/manager/apps/restricted @ovh/dev-manager-enablers-all
@@ -91,6 +92,7 @@
 /packages/manager/modules/account @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
+/packages/manager/modules/billing-informations @ovh/dev-manager-enablers-all
 /packages/manager/modules/bm-server-components @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/carbon-calculator @ovh/dev-manager-gcj-all
 /packages/manager/modules/carrier-sip @ovh/dev-manager-web-collaboration
@@ -110,6 +112,7 @@
 /packages/manager/modules/metrics @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/modules/nasha @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/modules/netapp @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/network-common @ovh/dev-manager-infrastructure-network
 /packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/nutanix @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/overthebox @ovh/dev-manager-infrastructure-network

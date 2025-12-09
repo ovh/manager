@@ -23,11 +23,13 @@ import {
   DomainOperationsEnum,
   AlldomOperations,
 } from '@/constants';
+import { useTrackNavigation } from './tracking/useTrackDatagridNavivationLink';
 
 export const useOngoingOperationDatagridColumns = (
   searchableColumnID: string,
   parent: ParentEnum,
 ) => {
+  const { trackPageNavivationTile } = useTrackNavigation();
   const { t } = useTranslation([
     'dashboard',
     NAMESPACES.FORM,
@@ -61,7 +63,7 @@ export const useOngoingOperationDatagridColumns = (
         (parent === ParentEnum.DOMAIN &&
           t('domain_operations_table_header_domain')) ||
         (parent === ParentEnum.ZONE && DNS_OPERATIONS_TABLE_HEADER_DOMAIN) ||
-        (parent === ParentEnum.ALLDOM && t(`${NAMESPACES.FORM}:lastname`)),
+        (parent === ParentEnum.ALLDOM && t(`${NAMESPACES.FORM}:lastname`)) || '',
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,
@@ -145,7 +147,9 @@ export const useOngoingOperationDatagridColumns = (
                 !props.canCancel &&
                 'hidden'} menu-item-button`,
               onClick: () => {
-                navigate(`${location.pathname}/update/${props.id}`);
+                const url = `${location.pathname}/update/${props.id}`;
+                trackPageNavivationTile(url);
+                navigate(url);
                 clearNotifications();
               },
             },
@@ -155,7 +159,11 @@ export const useOngoingOperationDatagridColumns = (
               className: `${props.function !==
                 DomainOperationsEnum.DomainIncomingTransfer &&
                 'hidden'} menu-item-button`,
-              onClick: () => navigate(`/tracking/${props.id}`),
+              onClick: () => {
+                const url = `/tracking/${props.id}`;
+                trackPageNavivationTile(url);
+                navigate(url);
+              },
             },
           ]}
         />

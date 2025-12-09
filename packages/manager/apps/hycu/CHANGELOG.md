@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.15...@ovh-ux/manager-hycu-app@0.15.16) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.14...@ovh-ux/manager-hycu-app@0.15.15) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.13...@ovh-ux/manager-hycu-app@0.15.14) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.12...@ovh-ux/manager-hycu-app@0.15.13) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.11...@ovh-ux/manager-hycu-app@0.15.12) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.10...@ovh-ux/manager-hycu-app@0.15.11) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.9...@ovh-ux/manager-hycu-app@0.15.10) (2025-11-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.8...@ovh-ux/manager-hycu-app@0.15.9) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.7...@ovh-ux/manager-hycu-app@0.15.8) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.6...@ovh-ux/manager-hycu-app@0.15.7) (2025-11-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.5...@ovh-ux/manager-hycu-app@0.15.6) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
 ## [0.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.4...@ovh-ux/manager-hycu-app@0.15.5) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app

@@ -1,0 +1,885 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TilesInputGroup - Snapshot Tests > should match snapshot with basic props > tiles-input-group-basic 1`] = `
+<div>
+  <div>
+    <ul
+      class=simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3
+    >
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Morocco
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Algeria
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Tunisia
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Cameron
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          South Africa
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          France
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Luxembourg
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          England
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Saoudi Arabia
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Palestine
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          United states
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          China
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > tiles-input-group-with-group 1`] = `
+<div>
+  <div>
+    <div
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r0:
+    >
+      <div
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r0::list
+        role=tablist
+      >
+        <div
+          class=_tab-list__container
+          tabindex=-1
+        >
+          <div
+            class=_tab-list__container__tabs
+          >
+            <button
+              aria-controls=tabs::r0::content-ALL
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=ALL
+              dir=ltr
+              id=tabs::r0::trigger-ALL
+              role=tab
+              tabindex=0
+              type=button
+            >
+              ALL
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=AFRICA
+              dir=ltr
+              id=tabs::r0::trigger-AFRICA
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              AFRICA
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=EUROPE
+              dir=ltr
+              id=tabs::r0::trigger-EUROPE
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              EUROPE
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=ASIA
+              dir=ltr
+              id=tabs::r0::trigger-ASIA
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              ASIA
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r0::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=AMERICA
+              dir=ltr
+              id=tabs::r0::trigger-AMERICA
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              AMERICA
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
+    >
+      <div>
+        <ul
+          class=simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3
+        >
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              Morocco
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              Algeria
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              Tunisia
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              Cameron
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              South Africa
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              France
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              Luxembourg
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              England
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              Saoudi Arabia
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              Palestine
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              United states
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              China
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and stack > tiles-input-group-with-group-and-stack 1`] = `
+<div>
+  <div>
+    <div
+      data-ods=tabs
+      data-orientation=horizontal
+      data-part=root
+      data-scope=tabs
+      dir=ltr
+      id=tabs::r1:
+    >
+      <div
+        aria-orientation=horizontal
+        class=_tab-list
+        data-ods=tab-list
+        data-orientation=horizontal
+        data-part=list
+        data-scope=tabs
+        dir=ltr
+        id=tabs::r1::list
+        role=tablist
+      >
+        <div
+          class=_tab-list__container
+          tabindex=-1
+        >
+          <div
+            class=_tab-list__container__tabs
+          >
+            <button
+              aria-controls=tabs::r1::content-ALL
+              aria-selected=true
+              class=_tab
+              data-focus=
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r1::list
+              data-part=trigger
+              data-scope=tabs
+              data-selected=
+              data-ssr=
+              data-value=ALL
+              dir=ltr
+              id=tabs::r1::trigger-ALL
+              role=tab
+              tabindex=0
+              type=button
+            >
+              ALL
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r1::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=AFRICA
+              dir=ltr
+              id=tabs::r1::trigger-AFRICA
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              AFRICA
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r1::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=EUROPE
+              dir=ltr
+              id=tabs::r1::trigger-EUROPE
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              EUROPE
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r1::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=ASIA
+              dir=ltr
+              id=tabs::r1::trigger-ASIA
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              ASIA
+            </button>
+            <button
+              aria-selected=false
+              class=_tab
+              data-ods=tab
+              data-orientation=horizontal
+              data-ownedby=tabs::r1::list
+              data-part=trigger
+              data-scope=tabs
+              data-ssr=
+              data-value=AMERICA
+              dir=ltr
+              id=tabs::r1::trigger-AMERICA
+              role=tab
+              tabindex=-1
+              type=button
+            >
+              AMERICA
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class=bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0
+    >
+      <div>
+        <ul
+          class=simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3
+        >
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              ARABIC (5)
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              FRENCH (3)
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              ENGLISH (3)
+            </div>
+          </li>
+          <li
+            class=w-full px-1
+          >
+            <div
+              class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+              data-ods=card
+            >
+              China
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TilesInputGroup - Snapshot Tests > should match snapshot with selected value > tiles-input-group-with-value 1`] = `
+<div>
+  <div>
+    <ul
+      class=simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3
+    >
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary bg-orange-110 cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Morocco
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Algeria
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Tunisia
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Cameron
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          South Africa
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          France
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Luxembourg
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          England
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Saoudi Arabia
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Palestine
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          United states
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          China
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`TilesInputGroup - Snapshot Tests > should match snapshot with stack > tiles-input-group-with-stack 1`] = `
+<div>
+  <div>
+    <ul
+      class=simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3
+    >
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          ARABIC (5)
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          FRENCH (3)
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          ENGLISH (3)
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] undefined w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          China
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`TilesInputGroup - Snapshot Tests > should match snapshot with tileClass > tiles-input-group-with-tile-class 1`] = `
+<div>
+  <div>
+    <ul
+      class=simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3
+    >
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Morocco
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Algeria
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Tunisia
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Cameron
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          South Africa
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          France
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Luxembourg
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          England
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Saoudi Arabia
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          Palestine
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          United states
+        </div>
+      </li>
+      <li
+        class=w-full px-1
+      >
+        <div
+          class=_card _card--primary cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] text-gray-500 w-full px-[24px] py-[16px]
+          data-ods=card
+        >
+          China
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

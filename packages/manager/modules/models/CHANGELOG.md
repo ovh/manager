@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.0...@ovh-ux/manager-models@2.7.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.4...@ovh-ux/manager-models@2.7.0) (2025-12-03)
+
+
+### Features
+
+* **billing:** add punycode in datagrid popin and csv ([6462e19](https://github.com/ovh/manager/commit/6462e1966c80186d3d39691d6b5a201a21bfe9f2)), closes [#MANAGER-20025](https://github.com/ovh/manager/issues/MANAGER-20025)
+
+
+
+
+
+## [2.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.3...@ovh-ux/manager-models@2.6.4) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+## [2.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.2...@ovh-ux/manager-models@2.6.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.1...@ovh-ux/manager-models@2.6.2) (2025-11-21)
+
+
+### Bug Fixes
+
+* **models.service:** roll-back option commitment price calc ([b5caf59](https://github.com/ovh/manager/commit/b5caf59ba71309ae7e9e20acd06ded41b2aeb648)), closes [#MANAGER-20353](https://github.com/ovh/manager/issues/MANAGER-20353)
+
+
+
+
+
+## [2.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.0...@ovh-ux/manager-models@2.6.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+# [2.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.17...@ovh-ux/manager-models@2.6.0) (2025-11-13)
+
+
+### Features
+
+* **models.billingservice:** enable stop cancellation of manual renvew service ([58d5be0](https://github.com/ovh/manager/commit/58d5be0264978e1f90538f0f43db5c445e826ece)), closes [#INC0166234](https://github.com/ovh/manager/issues/INC0166234)
+
+
+
+
+
+## [2.5.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.16...@ovh-ux/manager-models@2.5.17) (2025-11-12)
+
+
+### Bug Fixes
+
+* **billing:** add error message for renew bulk actions ([b56ae66](https://github.com/ovh/manager/commit/b56ae666de3c2974463bdbd009b6ab2447a853f9)), closes [#MANAGER-20226](https://github.com/ovh/manager/issues/MANAGER-20226)
+
+
+
+
+
 ## [2.5.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.15...@ovh-ux/manager-models@2.5.16) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

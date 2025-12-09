@@ -1,0 +1,21 @@
+{
+  "createNewStorage": "Create an object container",
+  "tableHeaderName": "Name",
+  "tableHeaderLocation": "Location",
+  "tableHeaderDeploymentMode": "Deployment mode",
+  "tableHeaderOffer": "Service plan",
+  "tableSwiftOffer": "Swift",
+  "tableS3Offer": "S3-compatible",
+  "tableHeaderObjectNumber": "Number of objects",
+  "tableHeaderSpaceUsed": "Space used",
+  "tableHeaderType": "Type",
+  "tablePublicType": "Public",
+  "tablePrivateType": "Private",
+  "tableStaticType": "Static",
+  "tableActionManage": "Details",
+  "tableActionCopy": "Copy ID",
+  "tableActionSwitchToPublic": "Switch to Public",
+  "tableActionSwitchToPrivate": "Switch to Private",
+  "tableActionAddUser": "Add user",
+  "tableActionDelete": "Delete"
+}

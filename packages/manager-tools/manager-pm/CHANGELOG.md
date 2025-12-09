@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.40.0...@ovh-ux/manager-pm@0.40.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.39.0...@ovh-ux/manager-pm@0.40.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.38.0...@ovh-ux/manager-pm@0.39.0) (2025-11-27)
+
+
+### Features
+
+* extends forge cli to create module and static kit update ([992f693](https://github.com/ovh/manager/commit/992f693fdd17ba82f2afb8f6cdfeb8fbd063929c))
+
+
+
+
+
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.37.1...@ovh-ux/manager-pm@0.38.0) (2025-11-18)
+
+
+### Features
+
+* **cloud-shell:** add cloud-shell app ([d4b9f7c](https://github.com/ovh/manager/commit/d4b9f7c735941b4979db8c497b636cbe42030c27)), closes [#MANAGER-20239](https://github.com/ovh/manager/issues/MANAGER-20239)
+
+
+
+
+
+## [0.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.37.0...@ovh-ux/manager-pm@0.37.1) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.36.0...@ovh-ux/manager-pm@0.37.0) (2025-11-16)
+
+
+### Features
+
+* forge cli to generate app and its parts ([402cb76](https://github.com/ovh/manager/commit/402cb7665cb62f6bdff08cb21716b2e97cc4b2f1))
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+* pnpm migration documentation ([0fec031](https://github.com/ovh/manager/commit/0fec0319caa33951d3b0f4588a0b6f3897f73afb)), closes [#MANAGER-20071](https://github.com/ovh/manager/issues/MANAGER-20071)
+
+
+
+
+
+# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.35.0...@ovh-ux/manager-pm@0.36.0) (2025-11-13)
+
+
+### Features
+
+* **web-ongoing-operations:** pnpm migration ([06a047e](https://github.com/ovh/manager/commit/06a047e72705f825e17d7acec8150cd43e688b1f)), closes [#DCE-73](https://github.com/ovh/manager/issues/DCE-73)
+
+
+
+
+
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.34.0...@ovh-ux/manager-pm@0.35.0) (2025-11-13)
+
+
+### Features
+
+* **pci-contacts:** create 'pci-contacts' micro-app ([e3277fb](https://github.com/ovh/manager/commit/e3277fb8e78b8483d9bdd5b491c2b269257c9b7f)), closes [#MANAGER-19074](https://github.com/ovh/manager/issues/MANAGER-19074)
+
+
+
+
+
 # [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.33.5...@ovh-ux/manager-pm@0.34.0) (2025-11-06)
 
 

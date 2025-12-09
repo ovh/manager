@@ -10,5 +10,7 @@
   "billing_resiliation_success": "Zlecenie rozwiązania umowy terminowej zostało złożone.",
   "billing_resiliation_error": "Wystąpił błąd podczas rozwiązywania umowy terminowej.",
   "billing_resiliation_cancel": "Nie",
-  "billing_resiliation_validate": "Tak"
+  "billing_resiliation_validate": "Tak",
+  "billing_resiliation_title_us": "Zrezygnuj z umowy terminowej",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE_us": "Anuluj umowę terminową i zachowaj usługę bez zobowiązań."
 }

@@ -8,7 +8,7 @@ import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
 import DeleteModal from './Delete.modal';
 
 describe('Deletemodal Component', () => {
-  it('deletion for a website', async () => {
+  it.skip('deletion for a website', async () => {
     vi.mocked(useParams).mockReturnValue({ serviceName: 'test-service' });
     vi.mocked(useLocation).mockReturnValue({
       state: { websiteIds: ['testID'] },

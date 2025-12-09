@@ -34,7 +34,11 @@ import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 import { urls } from '@/alldoms/routes/routes.constant';
 import appConfig from '@/web-domains.config';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import {
+  DomainRegistrationStateEnum,
+  ServiceRoutes,
+} from '@/alldoms/enum/service.enum';
+import NotFound from '../../404';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -50,7 +54,7 @@ export default function ServiceDetail() {
     title: serviceName,
   };
 
-  const { data: alldom, isLoading } = useGetAllDom({
+  const { data: alldom, isLoading, isError } = useGetAllDom({
     serviceName,
   });
 
@@ -58,9 +62,18 @@ export default function ServiceDetail() {
     data: domainServiceList,
     listLoading: domainServiceListLoading,
   } = useGetServices({
-    names: alldom?.currentState?.domains.map((domain) => domain.name),
+    names: alldom?.currentState?.domains
+      .filter(
+        (domain) =>
+          domain.registrationStatus === DomainRegistrationStateEnum.Registered,
+      )
+      .map((domain) => domain.name),
     serviceRoute: ServiceRoutes.Domain,
   });
+
+  if (isError) {
+    return <NotFound />;
+  }
 
   const alldomService = alldom;
   if (

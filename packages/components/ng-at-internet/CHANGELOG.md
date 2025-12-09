@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.38](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@6.0.37...@ovh-ux/ng-at-internet@6.0.38) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
+## [6.0.37](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@6.0.36...@ovh-ux/ng-at-internet@6.0.37) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
+## [6.0.36](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@6.0.35...@ovh-ux/ng-at-internet@6.0.36) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
+## [6.0.35](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@6.0.34...@ovh-ux/ng-at-internet@6.0.35) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
+## [6.0.34](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@6.0.33...@ovh-ux/ng-at-internet@6.0.34) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
+## [6.0.33](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@6.0.32...@ovh-ux/ng-at-internet@6.0.33) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet
+
+
+
+
+
 ## [6.0.32](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet@6.0.31...@ovh-ux/ng-at-internet@6.0.32) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/ng-at-internet

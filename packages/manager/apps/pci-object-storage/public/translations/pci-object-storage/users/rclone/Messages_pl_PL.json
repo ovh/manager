@@ -1,0 +1,15 @@
+{
+  "rcloneTitle": "Pobierz plik konfiguracyjny rclone",
+  "rcloneDescription": "Chcesz pobrać plik konfiguracyjny pozwalający na ponowne połączenie z rclone.",
+  "rcloneDoc": "Dowiedz się więcej",
+  "typeLabel": "Typ pliku",
+  "swiftTypeLabel": "Swift",
+  "s3TypeLabel": "Kompatybilny z S3",
+  "regionLabel": "Wybierz region, w którym ten plik będzie miał zastosowanie:",
+  "regionPlaceholder": "Wybierz region",
+  "noRegionFound": "Brak wyników",
+  "rcloneInfo": "Ze względów bezpieczeństwa plik konfiguracyjny nie zawiera Twojego hasła. Edytuj plik konfiguracyjny, aby dodać hasło ręcznie.",
+  "rcloneButtonConfirm": "Pobierz",
+  "rcloneButtonCancel": "Anuluj",
+  "userRcloneDownloadFailed": "Wystąpił błąd"
+}

@@ -28,5 +28,7 @@
   "key_management_service_create_region_ap_south_mum": "Asia Pacific (India – Mumbai)",
   "key_management_service_create_region_labeu_west_1_preprod": "LABEU (France – Croix) (PREPROD)",
   "key_management_service_create_region_labeu_west_1_dev_1": "LABEU (France – Croix) (DEV-1)",
-  "key_management_service_create_region_labeu_west_1_dev_2": "LABEU (France – Croix) (DEV-2)"
+  "key_management_service_create_region_labeu_west_1_dev_2": "LABEU (France – Croix) (DEV-2)",
+  "region_selection": "Select region",
+  "region_selection_description": "Please specify the region where you plan to deploy it. You can then create and manage your own Service Keys and access certificates in this KMS. This KMS will store its cryptographic objects in the specified region. They can be used with any OVHcloud product, no matter the region."
 }

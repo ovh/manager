@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
+import { useLocation } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -21,9 +23,13 @@ import { EmailAccountItem } from './EmailAccounts.types';
 
 export const EmailAccountsDatagrid = () => {
   const { t } = useTranslation(['accounts', 'common', NAMESPACES.STATUS]);
+  const [rowSelection, setRowSelection] = useState({});
+  const [selectedRows, setSelectedRows] = useState([]);
   const [hasADeletingAccount, setHasADeletingAccount] = useState(false);
   const isOverridedPage = useOverridePage();
   const { formatBytes } = useBytes();
+  const location = useLocation();
+  const { clearSelectedEmailAccounts } = location.state || {};
 
   const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
     useDebouncedValue('');
@@ -47,6 +53,13 @@ export const EmailAccountsDatagrid = () => {
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
     enabled: !isOverridedPage,
   });
+
+  useEffect(() => {
+    if (clearSelectedEmailAccounts) {
+      setRowSelection({});
+      setSelectedRows([]);
+    }
+  }, [clearSelectedEmailAccounts]);
 
   /* This is necessary to enable back the "Create account" button when your
    * slots are full and you delete an account and the account goes
@@ -84,6 +97,11 @@ export const EmailAccountsDatagrid = () => {
     );
   }, [accounts, services]);
 
+  const isRowSelectable = useCallback(
+    (item: EmailAccountItem) => item.status === ResourceStatus.READY,
+    [],
+  );
+
   const columns: DatagridColumn<EmailAccountItem>[] = useMemo(
     () => [
       {
@@ -106,7 +124,7 @@ export const EmailAccountsDatagrid = () => {
         id: 'quota',
         cell: (item) => (
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {formatBytes(item.used, 2, 1024)} / {formatBytes(item.available, 0, 1024)}
+            {formatBytes(item.available, 0, 1024)}
           </OdsText>
         ),
         label: 'zimbra_account_datagrid_quota',
@@ -132,11 +150,17 @@ export const EmailAccountsDatagrid = () => {
 
   return (
     <Datagrid
-      topbar={<DatagridTopbar />}
+      topbar={<DatagridTopbar selectedRows={selectedRows} />}
       search={{
         searchInput,
         setSearchInput,
         onSearch: (search) => setDebouncedSearchInput(search),
+      }}
+      rowSelection={{
+        rowSelection,
+        setRowSelection,
+        enableRowSelection: ({ original: item }) => isRowSelectable(item),
+        onRowSelectionChange: setSelectedRows,
       }}
       columns={columns.map((column) => ({
         ...column,

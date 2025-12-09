@@ -3,534 +3,534 @@
 exports[`Pagination Snapshot tests > renders the component with default props 1`] = `
 <div>
   <nav
-    aria-label="pagination"
-    class="_pagination_6qm34_2"
-    data-ods="pagination"
-    data-part="root"
-    data-scope="pagination"
-    dir="ltr"
-    id="pagination::r0:"
+    aria-label=pagination
+    class=_pagination
+    data-ods=pagination
+    data-part=root
+    data-scope=pagination
+    dir=ltr
+    id=pagination::r0:
   >
     <button
-      aria-label="previous page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-disabled=""
-      data-ods="button"
-      data-part="prev-trigger"
-      data-scope="pagination"
-      dir="ltr"
-      disabled=""
-      id="pagination::r0::prev"
-      type="button"
+      aria-label=previous page
+      class=_button _button--primary _button--md _button--ghost
+      data-disabled=
+      data-ods=button
+      data-part=prev-trigger
+      data-scope=pagination
+      dir=ltr
+      disabled=
+      id=pagination::r0::prev
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-left_10c23_88"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-left
+        data-ods=icon
+        role=presentation
       />
     </button>
     <button
-      aria-current="page"
-      aria-label="page 1"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _pagination__item_i63de_1"
-      data-index="1"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      data-selected=""
-      dir="ltr"
-      id="pagination::r0::item:1"
-      type="button"
+      aria-current=page
+      aria-label=page 1
+      class=_button _button--primary _button--md _button--default _pagination__item
+      data-index=1
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      data-selected=
+      dir=ltr
+      id=pagination::r0::item:1
+      type=button
     >
       1
     </button>
     <button
-      aria-label="page 2"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="2"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r0::item:2"
-      type="button"
+      aria-label=page 2
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=2
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r0::item:2
+      type=button
     >
       2
     </button>
     <button
-      aria-label="page 3"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="3"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r0::item:3"
-      type="button"
+      aria-label=page 3
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=3
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r0::item:3
+      type=button
     >
       3
     </button>
     <button
-      aria-label="page 4"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="4"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r0::item:4"
-      type="button"
+      aria-label=page 4
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=4
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r0::item:4
+      type=button
     >
       4
     </button>
     <button
-      aria-label="page 5"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="5"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r0::item:5"
-      type="button"
+      aria-label=page 5
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=5
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r0::item:5
+      type=button
     >
       5
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="ellipsis"
-      data-scope="pagination"
-      dir="ltr"
-      disabled=""
-      id="pagination::r0::ellipsis:5"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=ellipsis
+      data-scope=pagination
+      dir=ltr
+      disabled=
+      id=pagination::r0::ellipsis:5
+      type=button
     >
       …
     </button>
     <button
-      aria-label="last page, page 20"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="20"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r0::item:20"
-      type="button"
+      aria-label=last page, page 20
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=20
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r0::item:20
+      type=button
     >
       20
     </button>
     <button
-      aria-label="next page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="next-trigger"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r0::next"
-      type="button"
+      aria-label=next page
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=next-trigger
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r0::next
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-right_10c23_97"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-right
+        data-ods=icon
+        role=presentation
       />
     </button>
   </nav>
   <nav
-    aria-label="pagination"
-    class="_pagination_6qm34_2"
-    data-ods="pagination"
-    data-part="root"
-    data-scope="pagination"
-    dir="ltr"
-    id="pagination::r1:"
+    aria-label=pagination
+    class=_pagination
+    data-ods=pagination
+    data-part=root
+    data-scope=pagination
+    dir=ltr
+    id=pagination::r1:
   >
     <button
-      aria-label="previous page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="prev-trigger"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::prev"
-      type="button"
+      aria-label=previous page
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=prev-trigger
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::prev
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-left_10c23_88"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-left
+        data-ods=icon
+        role=presentation
       />
     </button>
     <button
-      aria-label="page 1"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="1"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::item:1"
-      type="button"
+      aria-label=page 1
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=1
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::item:1
+      type=button
     >
       1
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="ellipsis"
-      data-scope="pagination"
-      dir="ltr"
-      disabled=""
-      id="pagination::r1::ellipsis:1"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=ellipsis
+      data-scope=pagination
+      dir=ltr
+      disabled=
+      id=pagination::r1::ellipsis:1
+      type=button
     >
       …
     </button>
     <button
-      aria-label="page 3"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="3"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::item:3"
-      type="button"
+      aria-label=page 3
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=3
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::item:3
+      type=button
     >
       3
     </button>
     <button
-      aria-label="page 4"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="4"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::item:4"
-      type="button"
+      aria-label=page 4
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=4
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::item:4
+      type=button
     >
       4
     </button>
     <button
-      aria-current="page"
-      aria-label="page 5"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _pagination__item_i63de_1"
-      data-index="5"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      data-selected=""
-      dir="ltr"
-      id="pagination::r1::item:5"
-      type="button"
+      aria-current=page
+      aria-label=page 5
+      class=_button _button--primary _button--md _button--default _pagination__item
+      data-index=5
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      data-selected=
+      dir=ltr
+      id=pagination::r1::item:5
+      type=button
     >
       5
     </button>
     <button
-      aria-label="page 6"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="6"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::item:6"
-      type="button"
+      aria-label=page 6
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=6
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::item:6
+      type=button
     >
       6
     </button>
     <button
-      aria-label="page 7"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="7"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::item:7"
-      type="button"
+      aria-label=page 7
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=7
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::item:7
+      type=button
     >
       7
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="ellipsis"
-      data-scope="pagination"
-      dir="ltr"
-      disabled=""
-      id="pagination::r1::ellipsis:7"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=ellipsis
+      data-scope=pagination
+      dir=ltr
+      disabled=
+      id=pagination::r1::ellipsis:7
+      type=button
     >
       …
     </button>
     <button
-      aria-label="last page, page 50"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="50"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::item:50"
-      type="button"
+      aria-label=last page, page 50
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=50
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::item:50
+      type=button
     >
       50
     </button>
     <button
-      aria-label="next page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="next-trigger"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r1::next"
-      type="button"
+      aria-label=next page
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=next-trigger
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r1::next
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-right_10c23_97"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-right
+        data-ods=icon
+        role=presentation
       />
     </button>
   </nav>
   <nav
-    aria-label="pagination"
-    class="_pagination_6qm34_2"
-    data-ods="pagination"
-    data-part="root"
-    data-scope="pagination"
-    dir="ltr"
-    id="pagination::r2:"
+    aria-label=pagination
+    class=_pagination
+    data-ods=pagination
+    data-part=root
+    data-scope=pagination
+    dir=ltr
+    id=pagination::r2:
   >
     <button
-      aria-label="previous page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _tooltip-trigger_wxukn_2"
-      data-disabled=""
-      data-ods="tooltip-trigger"
-      data-part="trigger"
-      data-scope="tooltip"
-      data-state="closed"
-      dir="ltr"
-      disabled=""
-      id="tooltip::r3::trigger"
-      role="button"
-      tabindex="0"
-      type="button"
+      aria-label=previous page
+      class=_button _button--primary _button--md _button--ghost _tooltip-trigger
+      data-disabled=
+      data-ods=tooltip-trigger
+      data-part=trigger
+      data-scope=tooltip
+      data-state=closed
+      dir=ltr
+      disabled=
+      id=tooltip::r3::trigger
+      role=button
+      tabindex=0
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-left_10c23_88"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-left
+        data-ods=icon
+        role=presentation
       />
     </button>
     <button
-      aria-current="page"
-      aria-label="page 1"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _pagination__item_i63de_1"
-      data-index="1"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      data-selected=""
-      dir="ltr"
-      id="pagination::r2::item:1"
-      type="button"
+      aria-current=page
+      aria-label=page 1
+      class=_button _button--primary _button--md _button--default _pagination__item
+      data-index=1
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      data-selected=
+      dir=ltr
+      id=pagination::r2::item:1
+      type=button
     >
       1
     </button>
     <button
-      aria-label="page 2"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="2"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r2::item:2"
-      type="button"
+      aria-label=page 2
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=2
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r2::item:2
+      type=button
     >
       2
     </button>
     <button
-      aria-label="page 3"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="3"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r2::item:3"
-      type="button"
+      aria-label=page 3
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=3
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r2::item:3
+      type=button
     >
       3
     </button>
     <button
-      aria-label="page 4"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="4"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r2::item:4"
-      type="button"
+      aria-label=page 4
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=4
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r2::item:4
+      type=button
     >
       4
     </button>
     <button
-      aria-label="page 5"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="5"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r2::item:5"
-      type="button"
+      aria-label=page 5
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=5
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r2::item:5
+      type=button
     >
       5
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="ellipsis"
-      data-scope="pagination"
-      dir="ltr"
-      disabled=""
-      id="pagination::r2::ellipsis:5"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=ellipsis
+      data-scope=pagination
+      dir=ltr
+      disabled=
+      id=pagination::r2::ellipsis:5
+      type=button
     >
       …
     </button>
     <button
-      aria-label="last page, page 50"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="50"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r2::item:50"
-      type="button"
+      aria-label=last page, page 50
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=50
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r2::item:50
+      type=button
     >
       50
     </button>
     <button
-      aria-label="next page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _tooltip-trigger_wxukn_2"
-      data-ods="tooltip-trigger"
-      data-part="trigger"
-      data-scope="tooltip"
-      data-state="closed"
-      dir="ltr"
-      id="tooltip::r4::trigger"
-      role="button"
-      tabindex="0"
-      type="button"
+      aria-label=next page
+      class=_button _button--primary _button--md _button--ghost _tooltip-trigger
+      data-ods=tooltip-trigger
+      data-part=trigger
+      data-scope=tooltip
+      data-state=closed
+      dir=ltr
+      id=tooltip::r4::trigger
+      role=button
+      tabindex=0
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-right_10c23_97"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-right
+        data-ods=icon
+        role=presentation
       />
     </button>
   </nav>
   <nav
-    aria-label="pagination"
-    class="_pagination_6qm34_2"
-    data-ods="pagination"
-    data-part="root"
-    data-scope="pagination"
-    dir="ltr"
-    id="pagination::r5:"
+    aria-label=pagination
+    class=_pagination
+    data-ods=pagination
+    data-part=root
+    data-scope=pagination
+    dir=ltr
+    id=pagination::r5:
   >
     <div
-      class="_pagination-page-size-selector_1cj93_2"
+      class=_pagination-page-size-selector
     >
       <div
-        data-ods="select"
-        data-part="root"
-        data-scope="select"
-        dir="ltr"
-        id="select::r7:"
+        data-ods=select
+        data-part=root
+        data-scope=select
+        dir=ltr
+        id=select::r7:
       >
         <div
-          data-part="control"
-          data-scope="select"
-          data-state="closed"
-          dir="ltr"
-          id="select::r7::control"
+          data-part=control
+          data-scope=select
+          data-state=closed
+          dir=ltr
+          id=select::r7::control
         >
           <button
-            aria-controls="select::r7::content"
-            aria-disabled="false"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            aria-invalid="false"
-            aria-labelledby=":r6:"
-            class="_select-control_1mzzf_2"
-            data-empty="false"
-            data-ods="select-control"
-            data-part="trigger"
-            data-scope="select"
-            data-state="closed"
-            dir="ltr"
-            id="select::r7::trigger"
-            role="combobox"
-            type="button"
+            aria-controls=select::r7::content
+            aria-disabled=false
+            aria-expanded=false
+            aria-haspopup=listbox
+            aria-invalid=false
+            aria-labelledby=:r6:
+            class=_select-control
+            data-empty=false
+            data-ods=select-control
+            data-part=trigger
+            data-scope=select
+            data-state=closed
+            dir=ltr
+            id=select::r7::trigger
+            role=combobox
+            type=button
           >
             <span
-              data-part="value-text"
-              data-scope="select"
-              dir="ltr"
+              data-part=value-text
+              data-scope=select
+              dir=ltr
             >
               10
             </span>
             <span
-              aria-hidden="true"
-              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
-              data-ods="icon"
-              data-part="indicator"
-              data-scope="select"
-              data-state="closed"
-              dir="ltr"
-              role="presentation"
+              aria-hidden=true
+              class=_icon _icon--chevron-down _select-control__icon
+              data-ods=icon
+              data-part=indicator
+              data-scope=select
+              data-state=closed
+              dir=ltr
+              role=presentation
             />
           </button>
           <select
-            aria-hidden="true"
-            aria-labelledby="select::r7::label"
-            id="select::r7::select"
-            style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-            tabindex="-1"
+            aria-hidden=true
+            aria-labelledby=select::r7::label
+            id=select::r7::select
+            style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
+            tabindex=-1
           >
             <option
-              selected=""
-              value="10"
+              selected=
+              value=10
             >
               10
             </option>
             <option
-              value="25"
+              value=25
             >
               25
             </option>
             <option
-              value="50"
+              value=50
             >
               50
             </option>
             <option
-              value="100"
+              value=100
             >
               100
             </option>
             <option
-              value="300"
+              value=300
             >
               300
             </option>
@@ -538,136 +538,136 @@ exports[`Pagination Snapshot tests > renders the component with default props 1`
         </div>
       </div>
       <p
-        class="_pagination-page-size-selector__label_1cj93_7"
-        id=":r6:"
+        class=_pagination-page-size-selector__label
+        id=:r6:
       >
         of 500 results
       </p>
     </div>
     <button
-      aria-label="previous page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-disabled=""
-      data-ods="button"
-      data-part="prev-trigger"
-      data-scope="pagination"
-      dir="ltr"
-      disabled=""
-      id="pagination::r5::prev"
-      type="button"
+      aria-label=previous page
+      class=_button _button--primary _button--md _button--ghost
+      data-disabled=
+      data-ods=button
+      data-part=prev-trigger
+      data-scope=pagination
+      dir=ltr
+      disabled=
+      id=pagination::r5::prev
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-left_10c23_88"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-left
+        data-ods=icon
+        role=presentation
       />
     </button>
     <button
-      aria-current="page"
-      aria-label="page 1"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _pagination__item_i63de_1"
-      data-index="1"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      data-selected=""
-      dir="ltr"
-      id="pagination::r5::item:1"
-      type="button"
+      aria-current=page
+      aria-label=page 1
+      class=_button _button--primary _button--md _button--default _pagination__item
+      data-index=1
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      data-selected=
+      dir=ltr
+      id=pagination::r5::item:1
+      type=button
     >
       1
     </button>
     <button
-      aria-label="page 2"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="2"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r5::item:2"
-      type="button"
+      aria-label=page 2
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=2
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r5::item:2
+      type=button
     >
       2
     </button>
     <button
-      aria-label="page 3"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="3"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r5::item:3"
-      type="button"
+      aria-label=page 3
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=3
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r5::item:3
+      type=button
     >
       3
     </button>
     <button
-      aria-label="page 4"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="4"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r5::item:4"
-      type="button"
+      aria-label=page 4
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=4
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r5::item:4
+      type=button
     >
       4
     </button>
     <button
-      aria-label="page 5"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="5"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r5::item:5"
-      type="button"
+      aria-label=page 5
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=5
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r5::item:5
+      type=button
     >
       5
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="ellipsis"
-      data-scope="pagination"
-      dir="ltr"
-      disabled=""
-      id="pagination::r5::ellipsis:5"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=ellipsis
+      data-scope=pagination
+      dir=ltr
+      disabled=
+      id=pagination::r5::ellipsis:5
+      type=button
     >
       …
     </button>
     <button
-      aria-label="last page, page 50"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 _pagination__item_i63de_1"
-      data-index="50"
-      data-ods="button"
-      data-part="item"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r5::item:50"
-      type="button"
+      aria-label=last page, page 50
+      class=_button _button--primary _button--md _button--ghost _pagination__item
+      data-index=50
+      data-ods=button
+      data-part=item
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r5::item:50
+      type=button
     >
       50
     </button>
     <button
-      aria-label="next page"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-part="next-trigger"
-      data-scope="pagination"
-      dir="ltr"
-      id="pagination::r5::next"
-      type="button"
+      aria-label=next page
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-part=next-trigger
+      data-scope=pagination
+      dir=ltr
+      id=pagination::r5::next
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--chevron-right_10c23_97"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--chevron-right
+        data-ods=icon
+        role=presentation
       />
     </button>
   </nav>

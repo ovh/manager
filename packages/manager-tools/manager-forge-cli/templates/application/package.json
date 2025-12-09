@@ -1,0 +1,62 @@
+{
+  "name": "{{appPackageName}}",
+  "version": "0.0.0",
+  "private": true,
+  "description": "{{appDescription}}",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "{{appRepositoryUrl}}"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "tsc && vite build",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "start": "vite",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "5.2.2",
+    "@ovh-ux/manager-common-translations": "*",
+    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/muk": "0.5.0",
+    "@ovh-ux/request-tagger": "*",
+    "@ovh-ux/shell": "^4.5.7",
+    "@tanstack/react-query": "5.90.7",
+    "axios": "^1.13.2",
+    "i18next": "25.6.1",
+    "i18next-http-backend": "3.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.66.0",
+    "react-i18next": "16.2.4",
+    "react-router-dom": "7.9.5",
+    "tailwindcss": "^4.1.17",
+    "zod": "4.1.12"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "0.12.0",
+    "@ovh-ux/manager-tailwind-config": "*",
+    "@ovh-ux/manager-tests-setup": "^0.6.1",
+    "@ovh-ux/manager-vite-config": "*",
+    "@tanstack/react-query-devtools": "5.90.2",
+    "@tailwindcss/postcss": "^4.1.17",
+    "typescript": "5.9.3",
+    "vite": "7.2.2",
+    "vitest": "3.2.4",
+    "msw": "2.12.1"
+  },
+  "regions": [
+    "{{regions}}"
+  ],
+  "universes": [
+    "{{universes}}"
+  ]
+}

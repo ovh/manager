@@ -8,8 +8,7 @@
     <!-- IPv4 -->
     <oui-tile-definition term="{{ :: 'server_network_ipv4' | translate }}">
         <oui-tile-description>
-            <oui-clipboard class="ip-clipboard" data-model="$ctrl.server.ip">
-            </oui-clipboard>
+            <oui-clipboard data-model="$ctrl.server.ip"> </oui-clipboard>
         </oui-tile-description>
         <oui-action-menu
             aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_network_ipv4' | translate)} }}"
@@ -68,7 +67,6 @@
         >
             <oui-tile-description>
                 <oui-clipboard
-                    class="ip-clipboard"
                     data-model="$ctrl.server.reverse || ('server_network_reverse_not_configured' | translate)"
                 >
                 </oui-clipboard>

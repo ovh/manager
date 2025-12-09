@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.32](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.31...@ovh-ux/ng-shell-tracking@0.7.32) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
+## [0.7.31](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.30...@ovh-ux/ng-shell-tracking@0.7.31) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
+## [0.7.30](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.29...@ovh-ux/ng-shell-tracking@0.7.30) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
+## [0.7.29](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.28...@ovh-ux/ng-shell-tracking@0.7.29) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
+## [0.7.28](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.27...@ovh-ux/ng-shell-tracking@0.7.28) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
+## [0.7.27](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.26...@ovh-ux/ng-shell-tracking@0.7.27) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
 ## [0.7.26](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.25...@ovh-ux/ng-shell-tracking@0.7.26) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/ng-shell-tracking

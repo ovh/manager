@@ -34,7 +34,10 @@ export const getAddDomainExisting = async (
   return data;
 };
 
-export const updateHostingService = async (serviceName: string, displayName: string) =>
+export const updateHostingService = async (
+  serviceName: string,
+  displayName: string,
+): Promise<void> =>
   v6.put(`/hosting/web/${serviceName}`, {
     displayName,
   });

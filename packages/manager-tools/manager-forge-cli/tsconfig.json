@@ -1,0 +1,22 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/node-strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "noEmit": false,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  /* Custom Config To Keep Extension */
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist",
+    "template"
+  ]
+}

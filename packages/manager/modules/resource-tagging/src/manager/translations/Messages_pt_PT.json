@@ -1,10 +1,14 @@
 {
   "manager_components_resource_tagging_manager_column_tag": "Tag",
   "manager_components_resource_tagging_manager_column_tag_type": "Tipo de tag",
-  "manager_components_resource_tagging_manager_tag_type_custom": "Tipo personalizado",
-  "manager_components_resource_tagging_manager_tag_type_ovhcloud": "Tipo OVHcloud",
+  "manager_components_resource_tagging_manager_tag_type_custom": "Tag custom",
+  "manager_components_resource_tagging_manager_tag_type_ovhcloud": "Tag predefinida",
   "manager_components_resource_tagging_manager_action_assign_tag": "Atribuir uma tag",
   "manager_components_resource_tagging_manager_action_unassign_tag": "Anular atribuição",
   "manager_components_resource_tagging_manager_action_tag_details": "Detalhes da tag",
-  "manager_components_resource_tagging_manager_empty": "Nenhuma tag atribuída"
+  "manager_components_resource_tagging_manager_empty": "Nenhuma tag atribuída",
+  "manager_components_resource_tagging_manager_guide": "Manual",
+  "manager_components_resource_tagging_manager_title": "Como atribuir uma tag a um servidor Bare Metal",
+  "manager_components_resource_tagging_manager_tooltip_custom": "Criada e gerida por si",
+  "manager_components_resource_tagging_manager_tooltip_ovhcloud": "Criada pela OVHcloud, atribuída aos recursos por si"
 }

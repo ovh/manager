@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.24.1...@ovh-ux/manager-common-translations@0.24.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4501] ([ef3ed5d](https://github.com/ovh/manager/commit/ef3ed5db35791f91a7aae3404c72883187b58515))
+
+
+
+
+
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.24.0...@ovh-ux/manager-common-translations@0.24.1) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-common-translations
+
+
+
+
+
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.23.2...@ovh-ux/manager-common-translations@0.24.0) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4476] ([9fc0b9b](https://github.com/ovh/manager/commit/9fc0b9bd444e084a91ce72a4f93cbcd4ac98e0e8))
+* **i18n:** add missing translations [CDS 4488] ([4c5feab](https://github.com/ovh/manager/commit/4c5feabbb28166129e0a9bb219148fee2d7a4327))
+* **i18n:** add missing translations [CDS 4492] ([2e92c0c](https://github.com/ovh/manager/commit/2e92c0cf80d4ef4d6e15b89f82ea38eed585c542))
+* **manager-common-translations:** delete duplicate region keys ([7f288e8](https://github.com/ovh/manager/commit/7f288e81bf5fe39fa40390d3ce36aca8a6e80ca0)), closes [#MANAGER-20207](https://github.com/ovh/manager/issues/MANAGER-20207)
+
+
+### Features
+
+* **vcfaas:** add discover action translation ([ce35180](https://github.com/ovh/manager/commit/ce35180df6baaa1f69209dad224bd034dbf98c26)), closes [#MANAGER-19649](https://github.com/ovh/manager/issues/MANAGER-19649)
+
+
+
+
+
+## [0.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.23.1...@ovh-ux/manager-common-translations@0.23.2) (2025-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4473] ([0d10e26](https://github.com/ovh/manager/commit/0d10e2630ca81bf2451d668c342c3f820a60a5f6))
+
+
+
+
+
+## [0.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.23.0...@ovh-ux/manager-common-translations@0.23.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-common-translations
+
+
+
+
+
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.22.2...@ovh-ux/manager-common-translations@0.23.0) (2025-11-14)
+
+
+### Features
+
+* **common-translations:** add missing regions and datacenters ([03ab1a9](https://github.com/ovh/manager/commit/03ab1a91141ef3a68157dff56be42dcef10bef7a)), closes [#MANAGER-20134](https://github.com/ovh/manager/issues/MANAGER-20134)
+
+
+
+
+
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.22.1...@ovh-ux/manager-common-translations@0.22.2) (2025-11-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4457] ([5978840](https://github.com/ovh/manager/commit/59788408c090b30a06d78afff1a8ca3b1022dfc9))
+
+
+
+
+
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.22.0...@ovh-ux/manager-common-translations@0.22.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+* **i18n:** add missing translations [CDS 4455] ([c05d4c6](https://github.com/ovh/manager/commit/c05d4c6aab3456f2611819550290446f31b7870f))
+* **okms:** translate regions to french ([0a67421](https://github.com/ovh/manager/commit/0a674218587f5e9e21274ee7d1c4add1a10a37ed)), closes [#MANAGER-19002](https://github.com/ovh/manager/issues/MANAGER-19002)
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.21.1...@ovh-ux/manager-common-translations@0.22.0) (2025-11-04)
 
 

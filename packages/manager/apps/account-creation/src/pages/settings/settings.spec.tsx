@@ -24,9 +24,18 @@ const mockedApiResult = [
 ];
 
 vi.mock('@ovh-ux/manager-core-api');
-vi.mocked(API.v2.get).mockImplementation(() =>
+vi.mocked(API.v6.get).mockImplementation(() =>
   Promise.resolve({ data: mockedApiResult }),
 );
+vi.mock('react-router-dom', () => ({
+  useSearchParams: () => [
+    new URLSearchParams({
+      login: 'https://www.ovh.com/auth/login',
+      signup: 'https://www.ovh.com/auth/signup',
+    }),
+    vi.fn(),
+  ],
+}));
 
 const setInputhValue = async (input: HTMLElement, value: string) => {
   await act(() =>
@@ -36,33 +45,12 @@ const setInputhValue = async (input: HTMLElement, value: string) => {
   );
 };
 
-/* vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
-  const module = await importOriginal<
-    typeof import('@ovhcloud/ods-components/react')
-  >();
-  return {
-    ...module,
-    OdsInput: ({ ...props }) => (
-      <input
-        name={props.name}
-        type="text"
-        value={props.value}
-        onChange={props.onOdsChange}
-        onBlur={props.onBlur}
-        data-testid="search-input"
-      />
-    ),
-    OdsButton: ({ ...props }: any) => (
-      <module.OdsButton {...props}>{props.label}</module.OdsButton>
-    ),
-    OdsLink: ({ ...props }) => <a {...props}>{props.label}</a>,
-  };
-}); */
+const mockedTrackClick = vi.fn();
 
-vi.mock('@/pages/company/company-tile/CompanyTile.component', () => ({
-  default: ({ ...props }) => (
-    <div onClick={props.onClick}>{props.company.name}</div>
-  ),
+vi.mock('@/context/tracking/useTracking', () => ({
+  useTrackingContext: () => ({
+    trackClick: mockedTrackClick,
+  }),
 }));
 
 const queryClient = new QueryClient();
@@ -80,6 +68,7 @@ describe('SettingsPage', () => {
     const countryComboboxElement = screen.getByTestId('country-combobox');
     const currencySelectElement = screen.getByTestId('currency-select');
     const languageSelectElement = screen.getByTestId('language-select');
+    const validateButtonElement = screen.getByTestId('validate-button');
 
     expect(countryComboboxElement).toBeInTheDocument();
     expect(currencySelectElement).toBeInTheDocument();
@@ -87,10 +76,11 @@ describe('SettingsPage', () => {
 
     expect(currencySelectElement.getAttribute('is-disabled')).toBe('true');
     expect(languageSelectElement.getAttribute('is-disabled')).toBe('true');
+    expect(validateButtonElement.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should enable currency input when a country is selected', async () => {
-    const { container } = renderComponent();
+    renderComponent();
 
     const countryComboboxElement = screen.getByTestId('country-combobox');
 
@@ -98,15 +88,17 @@ describe('SettingsPage', () => {
       await setInputhValue(countryComboboxElement, 'BJ');
     });
 
-    const currencySelectElement = screen.getByTestId('currency-select');
-    const languageSelectElement = screen.getByTestId('language-select');
-
     await waitFor(() => {
+      const currencySelectElement = screen.getByTestId('currency-select');
+      const languageSelectElement = screen.getByTestId('language-select');
       expect(currencySelectElement.getAttribute('is-disabled')).not.toBe(
         'true',
       );
+      expect(languageSelectElement.getAttribute('is-disabled')).toBe('true');
     });
-    expect(languageSelectElement.getAttribute('is-disabled')).toBe('true');
+
+    const validateButtonElement = screen.getByTestId('validate-button');
+    expect(validateButtonElement.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should enable language input when a country and currency are selected', async () => {
@@ -118,9 +110,10 @@ describe('SettingsPage', () => {
       await setInputhValue(countryComboboxElement, 'BJ');
     });
 
-    const currencySelectElement = screen.getByTestId('currency-select');
+    let currencySelectElement: HTMLElement;
 
     await waitFor(() => {
+      currencySelectElement = screen.getByTestId('currency-select');
       expect(currencySelectElement.getAttribute('is-disabled')).not.toBe(
         'true',
       );
@@ -130,13 +123,15 @@ describe('SettingsPage', () => {
       await setInputhValue(currencySelectElement, 'EUR');
     });
 
-    const languageSelectElement = screen.getByTestId('language-select');
-
     await waitFor(() => {
+      const languageSelectElement = screen.getByTestId('language-select');
       expect(languageSelectElement.getAttribute('is-disabled')).not.toBe(
         'true',
       );
     });
+
+    const validateButtonElement = screen.getByTestId('validate-button');
+    expect(validateButtonElement.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should preselect currency and language if they have only one option', async () => {
@@ -148,12 +143,25 @@ describe('SettingsPage', () => {
       await setInputhValue(countryComboboxElement, 'GB');
     });
 
-    const currencySelectElement = screen.getByTestId('currency-select');
-    const languageSelectElement = screen.getByTestId('language-select');
+    let validateButtonElement: HTMLElement;
 
     await waitFor(() => {
+      const currencySelectElement = screen.getByTestId('currency-select');
+      const languageSelectElement = screen.getByTestId('language-select');
       expect(currencySelectElement.getAttribute('value')).toBe('GBP');
       expect(languageSelectElement.getAttribute('value')).toBe('en-GB');
+      validateButtonElement = screen.getByTestId('validate-button');
+      expect(validateButtonElement.getAttribute('is-disabled')).not.toBe('true');
     });
+
+    await act(() => validateButtonElement.click());
+    expect(mockedTrackClick).toHaveBeenCalledWith(
+      { pageName: 'page-name', pageType: 'page' },
+      {
+        location: 'page',
+        buttonType: 'button',
+        actions: ['account-creation-choose-preferences', 'next', 'GB_en-GB'],
+      },
+    );
   });
 });

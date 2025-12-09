@@ -1,0 +1,21 @@
+{
+  "objectTitle": "Objekte",
+  "addNewObject": "Objekte hinzufügen",
+  "tableHeaderName": "Name",
+  "tableHeaderUpdateDate": "Letzte Änderung",
+  "tableHeaderSize": "Größe",
+  "tableHeaderType": "Typ",
+  "tableActionDownload": "Herunterladen",
+  "tableActionDelete": "Löschen",
+  "objectToastErrorTitle": "Es ist ein Fehler aufgetreten",
+  "objectToastSuccessTitle": "Erfolgreich",
+  "addObjectToastSuccessDescription": "Das Objekt wurde hinzugefügt.",
+  "addOjectModalTitle": "Objekt(e) hinzufügen",
+  "deleteObjectToastSuccessDescription": "Das Objekt {{ name }} wurde gelöscht.",
+  "deleteObjectTitle": "Objekt löschen",
+  "deleteObjectDescription": "Möchten Sie das Objekt {{- name }} endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "deleteObjectConfirmation": "Geben Sie PERMANENTLY DELETE ein, um zu bestätigen.",
+  "deleteObjectButtonCancel": "Abbrechen",
+  "deleteObjectButtonConfirm": "Löschen",
+  "seeVersionsSwitchLabel": "Versionen anzeigen"
+}

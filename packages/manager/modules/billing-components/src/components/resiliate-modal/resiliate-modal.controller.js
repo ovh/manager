@@ -1,8 +1,11 @@
+import { SERVICE_TYPE } from '../utils/constants';
+
 export default class ResiliateModalController {
   /* @ngInject */
   constructor(
     $translate,
     atInternet,
+    coreConfig,
     BillingService,
     RESILIATION_CAPACITIES,
     RESILIATION_DEFAULT_CAPABILITY,
@@ -12,6 +15,8 @@ export default class ResiliateModalController {
     this.BillingService = BillingService;
     this.RESILIATION_CAPACITIES = RESILIATION_CAPACITIES;
     this.RESILIATION_DEFAULT_CAPABILITY = RESILIATION_DEFAULT_CAPABILITY;
+    this.isUSRegion = coreConfig.isRegion('US');
+    this.SERVICE_TYPE = SERVICE_TYPE;
   }
 
   $onInit() {
@@ -19,7 +24,9 @@ export default class ResiliateModalController {
       .filter((option) => this.RESILIATION_CAPACITIES.includes(option))
       .map((value) => ({
         value,
-        label: this.$translate.instant(`billing_resiliate_${value}`),
+        label: this.$translate.instant(
+          `billing_resiliate_${value}${this.isUSRegion ? '_us' : ''}`,
+        ),
       }));
 
     this.resiliateOption =
@@ -51,11 +58,16 @@ export default class ResiliateModalController {
         );
       })
       .catch((error) => {
-        const translationKey = this.RESILIATION_CAPACITIES.includes(
+        const translationKeyBase = this.RESILIATION_CAPACITIES.includes(
           this.resiliateOption,
         )
           ? `billing_resiliate_${this.resiliateOption}_error`
           : 'billing_resiliate_error';
+        const translationKey =
+          this.resiliateOption === 'terminateAtEngagementDate' &&
+          this.isUSRegion
+            ? `${translationKeyBase.replace('_error', '')}_error_us`
+            : translationKeyBase;
         const errorMessage = error?.data?.message || error?.message || error;
         return this.onError(
           `${this.$translate.instant(translationKey)} ${errorMessage}`,

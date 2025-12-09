@@ -15,6 +15,8 @@ import { CompanySuggestion } from '@/types/suggestion';
 
 const mocks = vi.hoisted(() => ({
   legalForm: 'corporation',
+  ovhSubsidiary: 'FR',
+  language: 'fr-FR',
   country: 'FR',
   setLegalForm: vi.fn(),
   setCompany: vi.fn(),
@@ -44,7 +46,15 @@ const setSearchValue = async (input: HTMLElement, value: string) => {
   );
 };
 
-vi.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(navigate);
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => navigate,
+  useSearchParams: () => [
+    new URLSearchParams({
+      onsuccess: 'https://www.ovh.com/manager',
+    }),
+    vi.fn(),
+  ],
+}));
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const module = await importOriginal<
@@ -73,6 +83,14 @@ vi.mock('@/pages/company/company-tile/CompanyTile.component', () => ({
   default: ({ ...props }) => (
     <div onClick={props.onClick}>{props.company.name}</div>
   ),
+}));
+
+const mockedTrackClick = vi.fn();
+
+vi.mock('@/context/tracking/useTracking', () => ({
+  useTrackingContext: () => ({
+    trackClick: mockedTrackClick,
+  }),
 }));
 
 const queryClient = new QueryClient();
@@ -132,6 +150,14 @@ describe('CompanyPage', () => {
     expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
+    expect(mockedTrackClick).toHaveBeenCalledWith(
+      { pageName: 'page-name', pageType: 'page' },
+      {
+        location: 'page',
+        buttonType: 'button',
+        actions: ['search-enterprise'],
+      },
+    );
     expect(getCompanySuggestionSpy).toHaveBeenCalled();
   });
 
@@ -143,6 +169,14 @@ describe('CompanyPage', () => {
     expect(fallbackTextElement).toBeInTheDocument();
     expect(fallbackLinkElement).toBeInTheDocument();
     await act(() => fallbackLinkElement.click());
+    expect(mockedTrackClick).toHaveBeenCalledWith(
+      { pageName: 'page-name', pageType: 'page' },
+      {
+        location: 'page',
+        buttonType: 'button',
+        actions: ['create-individual-account'],
+      },
+    );
     expect(mocks.setLegalForm).toHaveBeenCalledWith('individual');
   });
 
@@ -159,6 +193,15 @@ describe('CompanyPage', () => {
       `search_not_satisfactory_${mocks.legalForm}`,
     );
     expect(fallbackLinkElement).toBeInTheDocument();
+    await act(() => fallbackLinkElement.click());
+    expect(mockedTrackClick).toHaveBeenCalledWith(
+      { pageName: 'page-name', pageType: 'page' },
+      {
+        location: 'page',
+        buttonType: 'button',
+        actions: ['siret-siren-not-found-add-manually'],
+      },
+    );
   });
 
   it('should update user context when user select his corporation', async () => {
@@ -172,6 +215,18 @@ describe('CompanyPage', () => {
     const companyElement = screen.getByText('test-company');
     expect(companyElement).toBeInTheDocument();
     await act(() => companyElement.click());
+    expect(mockedTrackClick).toHaveBeenCalledWith(
+      { pageName: 'page-name', pageType: 'page' },
+      {
+        location: 'page',
+        buttonType: 'button',
+        actions: [
+          'account-create-add-customer-informations',
+          'next',
+          `${mocks.ovhSubsidiary}_${mocks.language}_${mocks.legalForm}`,
+        ],
+      },
+    );
     expect(mocks.setCompany).toHaveBeenCalledWith(company);
   });
 

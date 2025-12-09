@@ -22,7 +22,7 @@ export const AddEditMailingList = () => {
 
   return (
     <>
-      <div className="flex flex-col items-start space-y-4 mb-5" data-testid="page-title">
+      <div className="mb-5 flex flex-col items-start space-y-4" data-testid="page-title">
         <Links
           data-testid="back-btn"
           type={LinkType.back}

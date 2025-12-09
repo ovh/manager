@@ -110,7 +110,10 @@ const Notebooks = () => {
           <RoadmapChangelog
             links={isQuantum ? EmulatorRoadmapLinks : NotebookRoadmapLinks}
           />
-          {!isQuantum && <Guides section={notebookGuidesSections} />}
+          <Guides
+            category={isQuantum ? 'quantum' : 'ai'}
+            section={notebookGuidesSections}
+          />
         </div>
       </div>
       <NotebooksList

@@ -1,0 +1,7 @@
+{
+  "secretTitle": "Información del usuario",
+  "accessKeyLabel": "Clave de acceso",
+  "secretKeyLabel": "Clave secreta",
+  "passwordCopy": "¡Copiado!",
+  "useSecretButtonClose": "Cerrar"
+}

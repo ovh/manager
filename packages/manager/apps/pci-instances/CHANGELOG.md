@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.5...@ovh-ux/manager-pci-instances-app@0.10.6) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.4...@ovh-ux/manager-pci-instances-app@0.10.5) (2025-12-01)
+
+
+### Bug Fixes
+
+* **pci-*:** fix ods19 versioning ([#20702](https://github.com/ovh/manager/issues/20702)) ([6f2b3e4](https://github.com/ovh/manager/commit/6f2b3e4a7505f43936a86204c5f0b97c8220e049))
+
+
+
+
+
+## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.3...@ovh-ux/manager-pci-instances-app@0.10.4) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.2...@ovh-ux/manager-pci-instances-app@0.10.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.1...@ovh-ux/manager-pci-instances-app@0.10.2) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.0...@ovh-ux/manager-pci-instances-app@0.10.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* **pci-instances:** hide datagrid on query error ([2b08626](https://github.com/ovh/manager/commit/2b086262dd49106e18644b6b4366939bc1f92de5)), closes [#TAPC-5302](https://github.com/ovh/manager/issues/TAPC-5302)
+
+
+
+
+
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.8...@ovh-ux/manager-pci-instances-app@0.10.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
+## [0.9.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.7...@ovh-ux/manager-pci-instances-app@0.9.8) (2025-11-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.6...@ovh-ux/manager-pci-instances-app@0.9.7) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.5...@ovh-ux/manager-pci-instances-app@0.9.6) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.4...@ovh-ux/manager-pci-instances-app@0.9.5) (2025-11-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.3...@ovh-ux/manager-pci-instances-app@0.9.4) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4455] ([c05d4c6](https://github.com/ovh/manager/commit/c05d4c6aab3456f2611819550290446f31b7870f))
+
+
+
+
+
 ## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.9.2...@ovh-ux/manager-pci-instances-app@0.9.3) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app

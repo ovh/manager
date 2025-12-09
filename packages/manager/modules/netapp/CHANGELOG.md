@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.16.2...@ovh-ux/manager-netapp@2.16.3) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.16.1...@ovh-ux/manager-netapp@2.16.2) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.16.0...@ovh-ux/manager-netapp@2.16.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+# [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.4...@ovh-ux/manager-netapp@2.16.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* **dedicated:** fix netapp filters ([12e7339](https://github.com/ovh/manager/commit/12e73391325cf1d74178ddda433705bbbae28bee)), closes [#MANAGER-20097](https://github.com/ovh/manager/issues/MANAGER-20097)
+* **i18n:** add missing translations [CDS 4482] ([78d74c5](https://github.com/ovh/manager/commit/78d74c551719d81676dd3a7b915d1269f9f48c09))
+* **i18n:** add missing translations [CDS 4484] ([e8b94ae](https://github.com/ovh/manager/commit/e8b94ae28c7f02899cdc12be5dcff3f556e2fda1))
+* **i18n:** add missing translations [CDS 4490] ([b543057](https://github.com/ovh/manager/commit/b5430576681ecc62c7058410e55c1e29a30dd2b9))
+
+
+### Features
+
+* **dedicated:** add actives-nfs page ([1793ac5](https://github.com/ovh/manager/commit/1793ac52f4a1bb475d6d964ae640d803cffe7025)), closes [#MANAGER-19993](https://github.com/ovh/manager/issues/MANAGER-19993)
+* **dedicated:** add guides links ([c9521ad](https://github.com/ovh/manager/commit/c9521adc6fdd671c3f006216a0c76fbc4d40c674)), closes [#MANAGER-19986](https://github.com/ovh/manager/issues/MANAGER-19986)
+* **dedicated:** usage overview tile ([328d0aa](https://github.com/ovh/manager/commit/328d0aa2a81a68c34489c86b83b7371b647ea1e5)), closes [#MANAGER-19992](https://github.com/ovh/manager/issues/MANAGER-19992)
+
+
+
+
+
+## [2.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.3...@ovh-ux/manager-netapp@2.15.4) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.2...@ovh-ux/manager-netapp@2.15.3) (2025-11-12)
+
+
+### Bug Fixes
+
+* **dedicated:** update currentEditedRow after delete ([cb65aac](https://github.com/ovh/manager/commit/cb65aac94f7119015db53118e226198817d2ea68)), closes [#MANAGER-20046](https://github.com/ovh/manager/issues/MANAGER-20046)
+
+
+
+
+
+## [2.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.1...@ovh-ux/manager-netapp@2.15.2) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
 ## [2.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.0...@ovh-ux/manager-netapp@2.15.1) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

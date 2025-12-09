@@ -1,0 +1,11 @@
+{
+  "deleteUserTitle": "Desactivar un usuario para S3",
+  "deleteUserDescription": "La eliminación total de un usuario se realiza en la sección «Users & Roles».",
+  "deleteUSerDescription1": "Gestionar mis usuarios",
+  "deleteUSerDescription2": "Esta acción permite eliminar las claves de conexión S3 del usuario {{ name }}.",
+  "deleteUserButtonCancel": "Cancelar",
+  "deleteUserButtonConfirm": "Confirmar",
+  "deleteUserToastErrorTitle": "Error",
+  "deleteUserToastSuccessTitle": "Realizado",
+  "deleteUserToastSuccessDescription": "Se ha eliminado el usuario {{ name }}"
+}

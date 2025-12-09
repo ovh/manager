@@ -10,49 +10,33 @@
 @cloud-space-meter-uib-progress-background-color_used: #64afa0;
 @cloud-space-meter-uib-progress-background-color_usedbysnaphots: #ffcd00;
 
-.cloud-space-meter {
-  &__progress-bar {
-    height: @cloud-space-meter-progress-bar-height;
-    padding: 1px;
-    box-shadow: none;
-    background-color: @cloud-space-meter-progress-bar-background-color;
-    border-width: @cloud-space-meter-progress-bar-border-width;
-    border-style: @cloud-space-meter-progress-bar-border-style;
-    border-color: @cloud-space-meter-progress-bar-border-color;
+.oui-progress {
+  .oui-progress__bar {
+    &_used::before {
+      @color: rgba(255, 255, 255, 0.2);
 
-    &_large {
-      height: @cloud-space-meter-progress-bar-height_large;
+      background-color: @cloud-space-meter-uib-progress-background-color_used;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        @color,
+        @color 40%,
+        transparent 25%,
+        transparent 50%,
+        @color 50%
+      );
+      background-size: 8px 8px;
+      background-position: -1.25rem 0;
+      content: '';
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      overflow: hidden;
     }
-  }
 
-  .oui-progress {
-    .oui-progress__bar {
-      &_used::before {
-        @color: rgba(255, 255, 255, 0.2);
-
-        background-color: @cloud-space-meter-uib-progress-background-color_used;
-        background-image: repeating-linear-gradient(
-          -45deg,
-          @color,
-          @color 40%,
-          transparent 25%,
-          transparent 50%,
-          @color 50%
-        );
-        background-size: 8px 8px;
-        background-position: -1.25rem 0;
-        content: '';
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 1;
-        overflow: hidden;
-      }
-
-      &_usedbysnapshots::before {
-        background-color: @cloud-space-meter-uib-progress-background-color_usedbysnaphots;
-      }
+    &_usedbysnapshots::before {
+      background-color: @cloud-space-meter-uib-progress-background-color_usedbysnaphots;
     }
   }
 }

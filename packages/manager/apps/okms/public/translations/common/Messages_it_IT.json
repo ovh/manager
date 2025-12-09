@@ -1,0 +1,15 @@
+{
+  "error_fetching_data": "Si è verificato un errore durante il caricamento dei dati",
+  "okms_order_blocked": "Un dominio OKMS è già in fase di creazione. Potrai attivare un nuovo dominio OKMS quando la tua prima richiesta sarà elaborata.",
+  "okms_order_expired": "L'attivazione della regione richiede più tempo del previsto. Per favore, riprova tra qualche minuto.",
+  "okms_order_pending": "Il tuo dominio OKMS è in fase di creazione. Verrai notificato quando sarà pronto.",
+  "okms_order_success": "Il tuo dominio OKMS {{ okmsId }} è pronto. Ora puoi usarlo.",
+  "region_1_az_description": "Deploy resiliente ed economico su 1 zona di disponibilità.",
+  "region_3_az_description": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità.",
+  "region_continent_AFRICA": "Africa",
+  "region_continent_ASIA": "Asia Pacifica",
+  "region_continent_EUROPE": "Europa",
+  "region_continent_NORTH_AMERICA": "Nord America ",
+  "region_continent_OTHERS": "Altre Region",
+  "region_local_zone_description": "Esecuzione delle applicazioni il più vicino possibile ai tuoi utenti per una latenza ridotta e la localizzazione dei dati."
+}
