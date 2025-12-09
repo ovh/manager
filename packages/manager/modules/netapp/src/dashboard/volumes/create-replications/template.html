@@ -2,41 +2,39 @@
     data-loading="$ctrl.onPostLoad"
     data-on-dismiss="$ctrl.goToVolumes()"
     data-heading="{{:: 'netapp_network_volumes_replications_title' | translate }}"
-    data-primary-label="{{:: $ctrl.hasAvailableReplicationsServices() ? 'netapp_network_volumes_replications_button_sync' : 'netapp_network_volumes_replications_button_buy' | translate }}"
+    data-primary-label="{{:: !$ctrl.isNetworkAvailable && $ctrl.hasAvailableReplicationsServices() ? 'netapp_network_volumes_replications_button_sync' : 'netapp_network_volumes_replications_button_buy' | translate }}"
     data-primary-action="$ctrl.onPrimaryClick()"
     data-secondary-label="{{:: 'netapp_network_volumes_replications_button_cancel' | translate }}"
     data-secondary-action="$ctrl.goToVolumes()"
     data-primary-disabled="$ctrl.isPrimaryButtonDisabled()"
 >
     <div
-        ng-if="!$ctrl.replicationsSelectedVolumes.length && $ctrl.hasAvailableReplicationsServices()"
+        data-ng-if="!$ctrl.replicationsSelectedVolumes.length && $ctrl.hasAvailableReplicationsServices()"
     >
-        <p
-            class="bold"
+        <strong
             data-translate="netapp_network_volumes_no_selected_volume_replications_subtitle"
-        ></p>
+        ></strong>
         <p
             data-translate="netapp_network_volumes_no_selected_volume_replications_description"
         ></p>
     </div>
-    <div ng-if="!$ctrl.hasAvailableReplicationsServices()">
-        <p
-            class="bold"
-            data-translate="{{ 'netapp_network_volumes_no_replications_subtitle' }}"
-        ></p>
+    <div data-ng-if="!$ctrl.hasAvailableReplicationsServices()">
+        <strong
+            data-translate="netapp_network_volumes_no_replications_subtitle"
+        ></strong>
         <p
             data-translate="netapp_network_volumes_not_replications_description"
         ></p>
     </div>
     <div
-        ng-if="$ctrl.hasAvailableReplicationsServices() && $ctrl.replicationsSelectedVolumes.length"
+        data-ng-if="$ctrl.hasAvailableReplicationsServices() && $ctrl.replicationsSelectedVolumes.length"
     >
         <p data-translate="netapp_network_volumes_replications_description"></p>
         <p
             data-translate="netapp_network_volumes_replications_selected_volumes"
         ></p>
         <ul>
-            <li ng-repeat="volumeId in $ctrl.replicationsSelectedVolumes">
+            <li data-ng-repeat="volumeId in $ctrl.replicationsSelectedVolumes">
                 {{volumeId}}
             </li>
         </ul>

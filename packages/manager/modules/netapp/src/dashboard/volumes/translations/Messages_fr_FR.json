@@ -46,5 +46,6 @@
   "netapp_volumes_mount_path_not_configurated": "Non configuré",
   "netapp_volumes_button_replications": "Répliquer volume(s)",
   "netapp_volumes_status_awaiting_replication": "Réplication en cours",
-  "netapp_volumes_edit_create_single_replication": "Répliquer ce volume"
+  "netapp_volumes_edit_create_single_replication": "Répliquer ce volume",
+  "netapp_volumes_replications_errors": "Le volume {{sourceShareId}} n'a pas pu être répliqué sur le service {{destinationServiceId}}."
 }
