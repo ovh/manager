@@ -13,6 +13,7 @@
   "packages/manager/apps/pci-kubernetes",
   "packages/manager/apps/pci-instances",
   "packages/manager/apps/pci-load-balancer",
+  "packages/manager/apps/pci-object-storage",
   "packages/manager/apps/pci-private-network",
   "packages/manager/apps/pci-public-ip",
   "packages/manager/apps/pci-quota",
