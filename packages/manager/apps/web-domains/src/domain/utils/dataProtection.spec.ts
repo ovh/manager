@@ -304,7 +304,7 @@ describe('dataProtection utilities', () => {
 
     it('should have translation key for ORGANISATION field', () => {
       expect(translateContactField[DataProtectionFieldEnum.ORGANISATION]).toBe(
-        'domain_tab_general_information_data_drawer_contact_field_organisation',
+        'domain_tab_general_information_data_drawer_contact_field_organization',
       );
     });
 
