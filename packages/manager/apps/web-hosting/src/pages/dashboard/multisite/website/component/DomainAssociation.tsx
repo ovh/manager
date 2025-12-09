@@ -71,6 +71,16 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
           <RadioGroup value={field.value} onChange={field.onChange}>
             <div className="flex flex-row space-x-4">
               <Card
+                onClick={() => {
+                  reset?.({
+                    associationType: AssociationType.EXISTING,
+                    autoConfigureDns: true,
+                    path: controlValues.path || 'public_html',
+                    fqdn: '',
+                    name: isAddingDomain ? controlValues.name : '',
+                  });
+                  setStep(1);
+                }}
                 className="w-1/3 p-4"
                 color={
                   controlValues.associationType === AssociationType.EXISTING
@@ -79,19 +89,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                 }
               >
                 <div className="flex items-center gap-4">
-                  <Radio
-                    value={AssociationType.EXISTING}
-                    onClick={() => {
-                      reset?.({
-                        associationType: AssociationType.EXISTING,
-                        autoConfigureDns: true,
-                        path: controlValues.path || 'public_html',
-                        fqdn: '',
-                        name: isAddingDomain ? controlValues.name : '',
-                      });
-                      setStep(1);
-                    }}
-                  >
+                  <Radio value={AssociationType.EXISTING}>
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
@@ -108,6 +106,15 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
               </Card>
               <Card
                 className="w-1/3 p-4"
+                onClick={() => {
+                  reset?.({
+                    associationType: AssociationType.EXTERNAL,
+                    fqdn: '',
+                    name: isAddingDomain ? controlValues.name : '',
+                    path: controlValues.path || 'public_html',
+                  });
+                  setStep(1);
+                }}
                 color={
                   controlValues.associationType === AssociationType.EXTERNAL
                     ? CARD_COLOR.primary
@@ -115,18 +122,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                 }
               >
                 <div className="flex items-center gap-4">
-                  <Radio
-                    value={AssociationType.EXTERNAL}
-                    onClick={() => {
-                      reset?.({
-                        associationType: AssociationType.EXTERNAL,
-                        fqdn: '',
-                        name: isAddingDomain ? controlValues.name : '',
-                        path: controlValues.path || 'public_html',
-                      });
-                      setStep(1);
-                    }}
-                  >
+                  <Radio value={AssociationType.EXTERNAL}>
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
@@ -143,6 +139,10 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
               </Card>
               <Card
                 className="w-1/3 p-4"
+                onClick={() => {
+                  field.onChange(AssociationType.ORDER);
+                  setStep(1);
+                }}
                 color={
                   controlValues.associationType === AssociationType.ORDER
                     ? CARD_COLOR.primary
@@ -150,13 +150,7 @@ export const DomainAssociation: React.FC<DomainAssociationProps> = ({
                 }
               >
                 <div className="flex items-center gap-4">
-                  <Radio
-                    value={AssociationType.ORDER}
-                    onClick={() => {
-                      field.onChange(AssociationType.ORDER);
-                      setStep(1);
-                    }}
-                  >
+                  <Radio value={AssociationType.ORDER}>
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.heading6}>
