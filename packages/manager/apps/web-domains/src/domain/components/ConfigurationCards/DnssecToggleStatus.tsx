@@ -50,7 +50,10 @@ export default function DnssecToggleStatus({
         {t('domain_tab_general_information_dnssec')}
         <Tooltip>
           <TooltipTrigger asChild>
-            <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
+            <Icon
+              className="pl-3 text-[--ods-color-primary-500]"
+              name={ICON_NAME.circleQuestion}
+            />
           </TooltipTrigger>
           <TooltipContent>
             {t(
