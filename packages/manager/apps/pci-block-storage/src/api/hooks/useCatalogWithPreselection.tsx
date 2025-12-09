@@ -35,7 +35,11 @@ export const useCatalogWithPreselection = (
     { data: catalogData, ...restCatalogQuery },
   ] = useQueries({
     queries: [
-      getVolumeQuery(projectId, volumeId),
+      {
+        ...getVolumeQuery(projectId, volumeId),
+        refetchOnWindowFocus: true,
+        refetchOnMount: true,
+      },
       getVolumeCatalogQuery(projectId),
     ],
   });

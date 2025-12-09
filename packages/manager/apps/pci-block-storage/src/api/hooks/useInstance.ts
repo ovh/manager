@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { getInstancesByRegion } from '@/api/data/instance';
 import { useVolume } from '@/api/hooks/useVolume';
@@ -32,7 +32,11 @@ export const useAttachableInstances = (projectId: string, volumeId: string) => {
   });
 };
 
-export const useAttachedInstances = (projectId: string, volumeId: string) => {
+export const useAttachedInstances = (
+  projectId: string,
+  volumeId: string,
+  forceReload = false,
+) => {
   const { data: volume } = useVolume(projectId, volumeId);
 
   const select = useMemo(
@@ -40,10 +44,22 @@ export const useAttachedInstances = (projectId: string, volumeId: string) => {
     [volume],
   );
 
+  const forceReloadOption: Pick<
+    UseQueryOptions,
+    'refetchOnMount' | 'refetchOnWindowFocus' | 'refetchOnReconnect'
+  > = forceReload
+    ? {
+        refetchOnMount: 'always',
+        refetchOnWindowFocus: 'always',
+        refetchOnReconnect: 'always',
+      }
+    : {};
+
   return useQuery({
     queryKey: getInstancesQueryKey(projectId, volume?.region),
     queryFn: () => getInstancesByRegion(projectId, volume.region),
     enabled: !!volume,
     select,
+    ...forceReloadOption,
   });
 };

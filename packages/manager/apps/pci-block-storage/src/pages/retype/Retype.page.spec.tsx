@@ -65,88 +65,47 @@ const snapshot = {
 } as TVolumeSnapshot;
 
 describe('RetypePage', () => {
-  it('should render spinner while fetching volumeRetypeModel', () => {
-    vi.mocked(useCatalogWithPreselection).mockReturnValue({
-      isPending: true,
-    } as ReturnType<typeof useCatalogWithPreselection>);
+  describe('loading state', () => {
+    enum TestCase {
+      'CATALOG_IS_PENDING' = 'catalog is pending',
+      'ATTACHED_INSTANCES_IS_PENDING' = 'attachedInstances is pending',
+      'ATTACHED_INSTANCES_IS_FETCHING' = 'attachedInstances is fetching',
+      'VOLUME_SNAPSHOTS_IS_PENDING' = 'volumeSnapshots is pending',
+      'VOLUME_SNAPSHOTS_IS_FETCHING' = 'volumeSnapshots is fetching',
+    }
 
-    vi.mocked(useAttachedInstances).mockReturnValue({
-      data: [],
-      isPending: false,
-    } as ReturnType<typeof useAttachedInstances>);
+    it.each([...Object.values(TestCase)])(
+      'should render spinner while %s',
+      (testCase) => {
+        vi.mocked(useCatalogWithPreselection).mockReturnValue({
+          isPending: testCase === TestCase.CATALOG_IS_PENDING,
+        } as ReturnType<typeof useCatalogWithPreselection>);
 
-    vi.mocked(useVolumeSnapshots).mockReturnValue({
-      data: [],
-      isPending: false,
-    } as ReturnType<typeof useVolumeSnapshots>);
+        vi.mocked(useAttachedInstances).mockReturnValue({
+          data: [],
+          isPending: testCase === TestCase.ATTACHED_INSTANCES_IS_PENDING,
+          isFetching: testCase === TestCase.ATTACHED_INSTANCES_IS_FETCHING,
+        } as ReturnType<typeof useAttachedInstances>);
 
-    const { getByTestId, queryByText } = render(<RetypePage />);
+        vi.mocked(useVolumeSnapshots).mockReturnValue({
+          data: [],
+          isPending: testCase === TestCase.VOLUME_SNAPSHOTS_IS_PENDING,
+          isFetching: testCase === TestCase.VOLUME_SNAPSHOTS_IS_FETCHING,
+        } as ReturnType<typeof useVolumeSnapshots>);
 
-    expect(getByTestId('retypePage-loader')).toBeVisible();
-    expect(
-      queryByText(
-        'retype:pci_projects_project_storages_blocks_retype_cant_retype',
-      ),
-    ).toBeNull();
-    expect(queryByText('Detach instance')).toBeNull();
-    expect(queryByText('Retype instance')).toBeNull();
-    expect(queryByText('Delete snapshots')).toBeNull();
-  });
+        const { getByTestId, queryByText } = render(<RetypePage />);
 
-  it('should render spinner while fetching instances', () => {
-    vi.mocked(useCatalogWithPreselection).mockReturnValue({
-      data: [],
-      isPending: false,
-    } as ReturnType<typeof useCatalogWithPreselection>);
-
-    vi.mocked(useAttachedInstances).mockReturnValue({
-      isPending: true,
-    } as ReturnType<typeof useAttachedInstances>);
-
-    vi.mocked(useVolumeSnapshots).mockReturnValue({
-      data: [],
-      isPending: false,
-    } as ReturnType<typeof useVolumeSnapshots>);
-
-    const { getByTestId, queryByText } = render(<RetypePage />);
-
-    expect(getByTestId('retypePage-loader')).toBeVisible();
-    expect(
-      queryByText(
-        'retype:pci_projects_project_storages_blocks_retype_cant_retype',
-      ),
-    ).toBeNull();
-    expect(queryByText('Detach instance')).toBeNull();
-    expect(queryByText('Retype instance')).toBeNull();
-    expect(queryByText('Delete snapshots')).toBeNull();
-  });
-
-  it('should render spinner while fetching snapshots', () => {
-    vi.mocked(useCatalogWithPreselection).mockReturnValue({
-      data: [],
-      isPending: false,
-    } as ReturnType<typeof useCatalogWithPreselection>);
-
-    vi.mocked(useAttachedInstances).mockReturnValue({
-      isPending: false,
-    } as ReturnType<typeof useAttachedInstances>);
-
-    vi.mocked(useVolumeSnapshots).mockReturnValue({
-      data: [],
-      isPending: true,
-    } as ReturnType<typeof useVolumeSnapshots>);
-
-    const { getByTestId, queryByText } = render(<RetypePage />);
-
-    expect(getByTestId('retypePage-loader')).toBeVisible();
-    expect(
-      queryByText(
-        'retype:pci_projects_project_storages_blocks_retype_cant_retype',
-      ),
-    ).toBeNull();
-    expect(queryByText('Detach instance')).toBeNull();
-    expect(queryByText('Retype instance')).toBeNull();
-    expect(queryByText('Delete snapshots')).toBeNull();
+        expect(getByTestId('retypePage-loader')).toBeVisible();
+        expect(
+          queryByText(
+            'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+          ),
+        ).toBeNull();
+        expect(queryByText('Detach instance')).toBeNull();
+        expect(queryByText('Retype instance')).toBeNull();
+        expect(queryByText('Delete snapshots')).toBeNull();
+      },
+    );
   });
 
   it('should render warning message if volumeRetypeModel data is an empty array', () => {

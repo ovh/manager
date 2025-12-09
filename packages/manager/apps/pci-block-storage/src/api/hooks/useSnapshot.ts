@@ -1,7 +1,11 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { useVolume } from '@/api/hooks/useVolume';
-import { deleteSnapshots, getSnapshotsByRegion } from '@/api/data/snapshot';
+import {
+  deleteSnapshots,
+  getSnapshotsByRegion,
+  TVolumeSnapshot,
+} from '@/api/data/snapshot';
 import { selectSnapshotForVolume } from '@/api/select/snapshot';
 import queryClient from '@/queryClient';
 import { TOperation } from '@/api/data/operation';
@@ -19,7 +23,11 @@ export const getVolumeSnapshotsQueryKey = (
   volumeId: string,
 ) => ['volume-snapshot', projectId, volumeId];
 
-export const useVolumeSnapshots = (projectId: string, volumeId: string) => {
+export const useVolumeSnapshots = (
+  projectId: string,
+  volumeId: string,
+  forceReload = false,
+) => {
   const { data: volume } = useVolume(projectId, volumeId);
 
   const select = useMemo(
@@ -27,11 +35,23 @@ export const useVolumeSnapshots = (projectId: string, volumeId: string) => {
     [volume],
   );
 
-  return useQuery({
+  const forceReloadOption: Pick<
+    UseQueryOptions,
+    'refetchOnMount' | 'refetchOnWindowFocus' | 'refetchOnReconnect'
+  > = forceReload
+    ? {
+        refetchOnMount: 'always',
+        refetchOnWindowFocus: 'always',
+        refetchOnReconnect: 'always',
+      }
+    : {};
+
+  return useQuery<TVolumeSnapshot[]>({
     queryKey: getVolumeSnapshotsQueryKey(projectId, volumeId),
     queryFn: () => getSnapshotsByRegion(projectId, volume?.region),
     enabled: !!volume,
     select,
+    ...forceReloadOption,
   });
 };
 
