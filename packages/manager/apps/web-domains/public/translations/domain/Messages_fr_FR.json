@@ -66,6 +66,7 @@
   "domain_dns_table_type_standard": "Standard",
   "domain_dns_table_type_dedicated": "Secondaire",
   "domain_dns_table_type_standard_tooltip": "Mettez à niveau vers une offre DNS Anycast pour de meilleures performances.",
+  "domain_dns_table_renew_anycast": "Option DNS Anycast renouvelée automatiquement le <strong>{{expirationDate}}</strong>.",
   "domain_dns_tab_button_modify_dns": "Modifier les DNS",
   "domain_dns_tab_button_cancel_terminate_anycast": "{{action}} DNS Anycast",
   "domain_dns_tab_terminate_description_anycast": "La résiliation prendra effet à la date d'expiration du service, le <strong>{{expirationDate}}</strong>.",
