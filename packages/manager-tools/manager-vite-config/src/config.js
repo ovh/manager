@@ -8,6 +8,7 @@ import yn from 'yn';
 import { getCommonTranslations } from './commonTranslations.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
+import metricsBaseUrlPlugin from './plugin/metrics-baseurl.js';
 
 const isContainerApp = process.cwd().endsWith('container');
 const runInContainer = process.env.CONTAINER;
@@ -66,6 +67,7 @@ const getBaseConfig = (config) => {
     },
     plugins: [
       react(),
+      metricsBaseUrlPlugin(),
       viteOvhDevServerPlugin({ isContainerApp, envConfig }),
       IframeHmrPlugin(),
       svgr({
