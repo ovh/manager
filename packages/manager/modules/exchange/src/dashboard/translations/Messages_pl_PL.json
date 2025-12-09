@@ -491,7 +491,6 @@
   "exchange_account_add_personal_account_info_title": "Informacje o koncie",
   "exchange_account_add_company_account_info_title": "Informacje o firmie",
   "exchange_account_add_contact_account_info_title": "Dane kontaktu",
-  "exchange_account_add_sections_title": "Zaawansowane parametry",
   "exchange_account_add_accountType_label": "Typ konta (obowiązkowe)",
   "exchange_account_add_accountType_tooltip": "E-mail Pro: 10 GB przestrzeni dyskowej, protokoły POP, IMAP i SMTP.  Exchange: 50 GB przestrzeni dyskowej, protokoły MAPI i ActiveSync.\n",
   "exchange_account_add_emailAddress_label": "Adres e-mail (obowiązkowy)",
