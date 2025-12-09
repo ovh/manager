@@ -33,6 +33,7 @@ export default function Topbar() {
     route: `/webhosting/resource/${serviceName}/attachedDomain`,
     cacheKey: ['webhosting', 'resource', serviceName, 'attachedDomain'],
     pageSize: APIV2_MAX_PAGESIZE,
+    enabled: !!serviceName,
     iceberg: true,
     version: 'v2',
   });
@@ -63,7 +64,6 @@ export default function Topbar() {
       ?.filter(
         (item) =>
           item?.currentState?.ssl?.status !== ServiceStatus.ACTIVE &&
-          item?.currentState?.hosting?.serviceName === serviceName &&
           !item?.currentState?.isDefault,
       )
       ?.map((it) => ({
