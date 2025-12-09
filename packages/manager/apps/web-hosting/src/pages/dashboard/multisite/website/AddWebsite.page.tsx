@@ -35,7 +35,7 @@ import { DomainManagement } from './component/DomainManagement';
 export default function AddWebsitePage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const { addSuccess, addWarning } = useNotifications();
+  const { addSuccess, addWarning, clearNotifications } = useNotifications();
   const { t } = useTranslation(['common', 'multisite']);
   const [step, setStep] = useState<number>(1);
 
@@ -75,6 +75,7 @@ export default function AddWebsitePage() {
   );
 
   const onSubmit = (data: FormData) => {
+    clearNotifications();
     if (data.associationType === AssociationType.EXISTING) {
       const payload = {
         targetSpec: {
@@ -105,6 +106,9 @@ export default function AddWebsitePage() {
           name: data.name,
           fqdn: data.fqdn,
           path: data.path ?? null,
+          ...(data.module && data.module !== CmsType.NONE
+            ? { module: { name: data.module as CmsType } }
+            : {}),
         },
       };
       postWebHostingWebsites([payload, data.wwwNeeded ?? false]);
@@ -145,17 +149,12 @@ export default function AddWebsitePage() {
           />
         </>
       )}
-      {controlValues.associationType === AssociationType.EXTERNAL && step === 3 && (
-        <div>
-          <DomainManagement controlValues={controlValues} />
-          <Button
-            onClick={() => void handleSubmit(onSubmit)()}
-            disabled={!controlValues.fqdn}
-            className="mt-4"
-          >
-            {t('common:web_hosting_common_action_continue')}
-          </Button>
-        </div>
+      {controlValues.associationType === AssociationType.EXTERNAL && step >= 3 && (
+        <DomainManagement
+          controlValues={controlValues}
+          setStep={setStep}
+          isNextButtonVisible={step === 3}
+        />
       )}
       {step === 4 && (
         <div>
