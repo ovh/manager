@@ -118,7 +118,7 @@ describe('DnsState component', () => {
       screen.getByText('domain_tab_general_information_dns_standard'),
     ).toBeInTheDocument();
     expect(
-      screen.getByText('domain_tab_general_information_note_anycast'),
+      screen.getByText('domain_dns_table_renew_anycast'),
     ).toBeInTheDocument();
   });
 

@@ -64,7 +64,7 @@ export default (
       id="domain-root"
       errorElement={
         <ErrorBoundary
-          redirectionApp="web-domains-domain-backup"
+          redirectionApp="web-domains"
           isPreloaderHide
           isRouteShellSync
         />

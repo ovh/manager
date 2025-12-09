@@ -54,7 +54,7 @@ export default function DomainTreeView({
         },
         {
           id: 'dns-type',
-          name: t('domain_tab_DNS_modification_form_server_field'),
+          name: t('domain_dns_table_header_type'),
         },
       ],
     },
