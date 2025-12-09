@@ -58,7 +58,6 @@ export default function CdnCacheRuleModal() {
   const unitTime = convertToUnitTime(modifiedOption?.config?.ttl, t);
   const {
     control,
-    handleSubmit,
     watch,
     formState: { isDirty },
   } = useForm<FormData>({
@@ -89,19 +88,19 @@ export default function CdnCacheRuleModal() {
       enabled: true,
       config: {
         ttl: convertToTtl(data?.ttl, data?.ttlUnit, t),
-        priority: data?.priority,
+        priority: Number(data?.priority),
         patternType: data?.patternType as PatternType,
       },
     };
     const updatePriority = optionsData?.data?.find(
-      (item) => item?.config?.priority === data?.priority,
+      (item) => item?.config?.priority === Number(data?.priority),
     );
     const optionsToUpdate = updatePriority
       ? optionsData?.data
           ?.filter(
             (option) =>
               option?.type === CdnOptionType.CACHE_RULE &&
-              option?.config?.priority >= data?.priority,
+              option?.config?.priority >= Number(data?.priority),
           )
           .map((option) => ({
             ...option,
@@ -132,7 +131,7 @@ export default function CdnCacheRuleModal() {
       onOpenChange={onClose}
       primaryButton={{
         label: t(`cdn_shared_modal_add_rule_btn_${modifiedOption ? 'set_rule' : 'validate_rule'}`),
-        onClick: () => void handleSubmit(onSubmit)(),
+        onClick: () => onSubmit(ruleValues),
         disabled: !canValidate,
       }}
       secondaryButton={{

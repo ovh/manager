@@ -213,7 +213,7 @@ export default function CdnRuleDatagrid({ range }: { range: string }) {
         columns={rulesData ? columns : []}
         data={rulesData ?? []}
         sorting={sorting}
-        containerHeight={500}
+        containerHeight={250}
         hasNextPage={hasNextPage && !isLoading}
         onFetchNextPage={(): void => {
           void fetchNextPage();
