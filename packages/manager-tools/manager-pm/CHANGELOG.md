@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.40.1...@ovh-ux/manager-pm@0.41.0) (2025-12-09)
+
+
+### Bug Fixes
+
+* duplicated block storage app ([ad22b90](https://github.com/ovh/manager/commit/ad22b90b72676abd2c3fa26d425bc94159e0faa9)), closes [#MANAGER-20373](https://github.com/ovh/manager/issues/MANAGER-20373)
+
+
+### Features
+
+* **ips:** init ips react app ([#13742](https://github.com/ovh/manager/issues/13742)) ([cb30312](https://github.com/ovh/manager/commit/cb30312fbcbf2fefaaedfdfa5bb9fcfa7805d289))
+* manager tools improvement ([9a1c441](https://github.com/ovh/manager/commit/9a1c4410d4082994a19eb3404aaca841201e93e9))
+
+
+
+
+
 ## [0.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.40.0...@ovh-ux/manager-pm@0.40.1) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm

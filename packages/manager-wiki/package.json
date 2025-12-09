@@ -1,13 +1,13 @@
 {
   "name": "@ovh-ux/manager-wiki",
-  "version": "0.20.4",
+  "version": "0.21.0",
   "private": true,
   "description": "Manager Wiki",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build-dependencies": "yarn --cwd ../../ build --filter=\"@ovh-ux/manager-wiki\"",
     "build:storybook": "storybook build",
+    "build-dependencies": "yarn --cwd ../../ build --filter=\"@ovh-ux/manager-wiki\"",
     "dev": "tsc",
     "start": "yarn run build-dependencies && rm -rf dist/.cache/storybook && storybook dev -p 6006"
   },
