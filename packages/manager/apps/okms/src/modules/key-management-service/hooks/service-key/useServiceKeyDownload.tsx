@@ -1,0 +1,69 @@
+import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
+import {
+  OkmsKeyTypes,
+  OkmsServiceKeyState,
+} from '@key-management-service/types/okmsServiceKey.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { initiateTextFileDownload } from '@/common/utils/dom/download';
+
+import { ServiceKeyAction } from './service-key.type';
+
+type ServiceKeyDownloadParams = {
+  okmsId: string;
+  keyId: string;
+  keyType: OkmsKeyTypes;
+  keyState: OkmsServiceKeyState;
+  page: 'list' | 'detail';
+};
+
+export const useServiceKeyDownload = ({
+  okmsId,
+  keyId,
+  keyType,
+  keyState,
+  page,
+}: ServiceKeyDownloadParams): ServiceKeyAction | undefined => {
+  const { t } = useTranslation(['key-management-service/serviceKeys', 'common']);
+  const { addError } = useNotifications();
+  const { trackClick } = useOvhTracking();
+  const { refetch, isFetching } = useOkmsServiceKeyById({ okmsId, keyId, enabled: false });
+
+  // Oct keys are not downloadable
+  if (keyType === OkmsKeyTypes.oct) {
+    return undefined;
+  }
+
+  return {
+    name: 'download_encryption_key',
+    label: t(
+      'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
+    ),
+    isLoading: isFetching,
+    isDisabled: keyState !== OkmsServiceKeyState.active,
+    icon: ODS_ICON_NAME.download,
+    color: ODS_BUTTON_COLOR.primary,
+    onClick: async () => {
+      const key = await refetch();
+      if (!key.data) {
+        addError(t('common:error_fetching_data'));
+        return;
+      }
+      trackClick({
+        location: page === 'list' ? PageLocation.datagrid : PageLocation.page,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: ['download_encryption_key'],
+      });
+      initiateTextFileDownload({
+        filename: `${key.data.data.name}.jwk`,
+        text: JSON.stringify(key.data.data.keys),
+      });
+    },
+  };
+};
