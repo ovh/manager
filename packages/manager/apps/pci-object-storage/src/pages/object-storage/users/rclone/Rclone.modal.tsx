@@ -23,19 +23,18 @@ import {
   useToast,
   FieldLabel,
 } from '@datatr-ux/uxlib';
-import { Check, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useObjectStorageData } from '../../ObjectStorage.context';
 import { useRcloneForm } from './formRclone/useRcloneForm.hook';
 import { ObjectStorageTypeEnum } from '@/types/Storages';
-import { cn } from '@/lib/utils';
+import user from '@/types/User';
 import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { getUserRclone } from '@/data/api/user/user.api';
 import useDownload from '@/hooks/useDownload';
 import { FormField } from '@/components/form-field/FormField.component';
-import Flag from '@/components/flag/Flag.component';
 import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
 
 const Rclone = () => {
@@ -51,10 +50,15 @@ const Rclone = () => {
 
   const onSubmit = form.handleSubmit(async (formValues) => {
     try {
+      const service =
+        formValues.rcloneType === ObjectStorageTypeEnum.s3
+          ? user.RCloneServiceEnum['storage-s3']
+          : user.RCloneServiceEnum.storage;
       const rcloneData = await getUserRclone({
         projectId,
         userId: Number(userId),
         region: formValues.region,
+        service,
       });
       download({ type: 'raw', data: rcloneData.content }, 'rclone.conf');
       navigate('../');
