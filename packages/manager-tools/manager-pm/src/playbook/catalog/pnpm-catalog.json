@@ -6,8 +6,9 @@
   "packages/manager/apps/web-hosting",
   "packages/manager/apps/web-ongoing-operations",
   "packages/manager/apps/pci-block-storage",
+  "packages/manager/apps/pci-kubernetes",
   "packages/manager/apps/pci-private-network",
   "packages/manager/apps/pci-ssh-keys",
-  "packages/manager/apps/pci-vouchers",
-  "packages/manager/apps/pci-users"
+  "packages/manager/apps/pci-users",
+  "packages/manager/apps/pci-vouchers"
 ]
