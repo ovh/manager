@@ -4,7 +4,9 @@ import {
   canRetype,
   EncryptionType,
   getEncryption,
+  mapVolumeAttach,
   mapVolumeEncryption,
+  mapVolumeToRetype,
   mapVolumeType,
   paginateResults,
   sortResults,
@@ -12,7 +14,7 @@ import {
 import { TVolume } from '@/api/hooks/useVolume';
 import { BlockStorageListColumn } from '@/hooks/useDatagridColumn';
 import { TVolumeCatalog } from '@/api/data/catalog';
-import { TAPIVolume } from '@/api/data/volume';
+import { TAPIVolume, TAPIVolumeStatus } from '@/api/data/volume';
 import { is3az } from '@/api/select/catalog';
 
 vi.mock('@/api/select/catalog', () => ({
@@ -44,6 +46,7 @@ const specWithoutEncryptionSpecification = {
 const catalog = {
   models: [
     {
+      name: 'model',
       pricings: [
         {
           specs: encryptedSpec,
@@ -62,13 +65,21 @@ const catalog = {
   ],
 } as TVolumeCatalog;
 
+type BuildDataProps = {
+  isEncrypted?: boolean;
+  isVolumeClassicMultiAttach?: boolean;
+  maxAttachedInstances?: number;
+  numberOfAttachedInstances?: number;
+  volumeStatus?: TAPIVolumeStatus;
+};
+
 const buildData = ({
-  isEncrypted,
-  isVolumeClassicMultiAttach,
-}: {
-  isEncrypted: boolean;
-  isVolumeClassicMultiAttach: boolean;
-}) => {
+  isEncrypted = false,
+  isVolumeClassicMultiAttach = false,
+  maxAttachedInstances = 1,
+  numberOfAttachedInstances = 0,
+  volumeStatus = 'available',
+}: BuildDataProps) => {
   const volumeRegion = 'volumeRegion';
   const volumeType = isVolumeClassicMultiAttach
     ? 'classic-multiattach'
@@ -79,7 +90,11 @@ const buildData = ({
       {
         pricings: [
           {
-            specs: { name: volumeType, encrypted: isEncrypted },
+            specs: {
+              name: volumeType,
+              encrypted: isEncrypted,
+              maxAttachedInstances,
+            },
             regions: [volumeRegion],
           },
         ],
@@ -90,6 +105,8 @@ const buildData = ({
   const mockVolume = {
     region: volumeRegion,
     type: volumeType,
+    attachedTo: new Array(numberOfAttachedInstances),
+    status: volumeStatus,
   } as TAPIVolume;
 
   return { mockCatalog, mockVolume };
@@ -617,6 +634,62 @@ describe('volume', () => {
         const result = canRetype(mockCatalog)(mockVolume);
 
         expect(result).toBe(expectedCantRetype);
+      },
+    );
+  });
+
+  describe('mapVolumeToRetype', () => {
+    it('should return the project id, the mapped volume and the type from catalog not encrypted', () => {
+      const mockVolume = { id: '1', region } as TAPIVolume;
+      const result = mapVolumeToRetype(
+        '123',
+        mockVolume,
+        catalog,
+      )({ type: 'model' });
+
+      expect(result).toEqual({
+        projectId: '123',
+        originalVolume: mockVolume,
+        newType: nonEncryptedSpec.name,
+      });
+    });
+  });
+
+  describe('mapVolumeAttach', () => {
+    it.each`
+      numberOfAttachedInstances | maxAttachedInstances | volumeStatus   | expected
+      ${0}                      | ${1}                 | ${'available'} | ${{ canAttachInstance: true, canDetachInstance: false }}
+      ${1}                      | ${1}                 | ${'available'} | ${{ canAttachInstance: false, canDetachInstance: true }}
+      ${0}                      | ${10}                | ${'available'} | ${{ canAttachInstance: true, canDetachInstance: false }}
+      ${5}                      | ${10}                | ${'available'} | ${{ canAttachInstance: true, canDetachInstance: true }}
+      ${10}                     | ${10}                | ${'available'} | ${{ canAttachInstance: false, canDetachInstance: true }}
+      ${0}                      | ${1}                 | ${'retyping'}  | ${{ canAttachInstance: false, canDetachInstance: false }}
+      ${1}                      | ${1}                 | ${'retyping'}  | ${{ canAttachInstance: false, canDetachInstance: false }}
+      ${0}                      | ${10}                | ${'retyping'}  | ${{ canAttachInstance: false, canDetachInstance: false }}
+      ${5}                      | ${10}                | ${'retyping'}  | ${{ canAttachInstance: false, canDetachInstance: false }}
+      ${10}                     | ${10}                | ${'retyping'}  | ${{ canAttachInstance: false, canDetachInstance: false }}
+    `(
+      'should have $expected when maxAttachedInstances is $maxAttachedInstances and volume has $numberOfAttachedInstances attached instances and $volumeStatus status',
+      ({
+        numberOfAttachedInstances,
+        maxAttachedInstances,
+        volumeStatus,
+        expected,
+      }: {
+        numberOfAttachedInstances: number;
+        maxAttachedInstances: number;
+        volumeStatus: TAPIVolumeStatus;
+        expected: { canAttachInstance: boolean; canDetachInstance: boolean };
+      }) => {
+        const { mockCatalog, mockVolume } = buildData({
+          numberOfAttachedInstances,
+          maxAttachedInstances,
+          volumeStatus,
+        });
+
+        const result = mapVolumeAttach(mockCatalog)(mockVolume);
+
+        expect(result).toMatchObject(expected);
       },
     );
   });

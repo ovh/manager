@@ -7,90 +7,145 @@ import { TVolume } from '@/api/hooks/useVolume';
 vi.mock('@/hooks/useTrackAction', () => ({ useTrackAction: vi.fn() }));
 
 vi.mock('react-router-dom');
-const mockVolume = {
-  id: '1',
-  attachedTo: [],
+const volumeThatCanDoEverything = {
+  id: '1221',
   canAttachInstance: true,
-  canDetachInstance: false,
-  canRetype: true,
-} as TVolume;
-
-const mockVolumeDetach = {
-  id: '1',
-  attachedTo: ['attach-1'],
-  canAttachInstance: false,
   canDetachInstance: true,
+  canRetype: true,
+  status: 'available',
 } as TVolume;
 
 vi.mocked(useHref).mockImplementation((value: string) => value);
 
 describe('ActionsComponent', () => {
+  describe('visible actions', () => {
+    const translationLabelPrefix = 'pci_projects_project_storages_blocks_';
+    const allActionsLabel = [
+      'edit_label',
+      `instance_attach_label`,
+      `instance_detach_label`,
+      'create_backup_label',
+      'change_type',
+      'delete_label',
+    ];
+
+    it.each([
+      {
+        description: 'volume is available and can do every action',
+        volume: {
+          canRetype: true,
+          canDetachInstance: true,
+          canAttachInstance: true,
+          status: 'available',
+        } as TVolume,
+        hiddenActions: [],
+      },
+      {
+        description: 'volume is available and cant retype',
+        volume: {
+          canRetype: false,
+          canDetachInstance: true,
+          canAttachInstance: true,
+          status: 'available',
+        } as TVolume,
+        hiddenActions: [],
+      },
+      {
+        description: 'volume is available and cant detach instance',
+        volume: {
+          canRetype: true,
+          canDetachInstance: false,
+          canAttachInstance: true,
+          status: 'available',
+        } as TVolume,
+        hiddenActions: ['instance_detach_label'],
+      },
+      {
+        description: 'volume is available and cant attach instance',
+        volume: {
+          canRetype: true,
+          canDetachInstance: true,
+          canAttachInstance: false,
+          status: 'available',
+        } as TVolume,
+        hiddenActions: ['instance_attach_label'],
+      },
+      {
+        description: 'volume is being retyped',
+        volume: {
+          canRetype: true,
+          canDetachInstance: true,
+          canAttachInstance: true,
+          status: 'retyping',
+        } as TVolume,
+        hiddenActions: ['create_backup_label', 'change_type', 'delete_label'],
+      },
+    ])(
+      'expect $hiddenActions not to be visible when $description',
+      ({ volume, hiddenActions }) => {
+        const { getByText, queryByText } = render(
+          <ActionsComponent volume={volume} projectUrl="/project" />,
+        );
+
+        allActionsLabel.forEach((possibleAction) => {
+          if (hiddenActions.includes(possibleAction)) {
+            expect(
+              queryByText(`${translationLabelPrefix}${possibleAction}`),
+            ).toBeNull();
+          } else {
+            expect(
+              getByText(`${translationLabelPrefix}${possibleAction}`),
+            ).toBeVisible();
+          }
+        });
+      },
+    );
+  });
+
   it('should render correct buttons with correct links', () => {
-    const { getByTestId, queryByTestId } = render(
-      <ActionsComponent volume={mockVolume} projectUrl="/project" />,
+    const { getByTestId } = render(
+      <ActionsComponent
+        volume={volumeThatCanDoEverything}
+        projectUrl="/project"
+      />,
     );
 
-    expect(getByTestId('actionComponent-create-backup-button')).toHaveAttribute(
+    expect(getByTestId('actionComponent-edit-button')).toHaveAttribute(
       'href',
-      '/project/storages/volume-backup/create?volumeId=1',
-    );
-
-    expect(getByTestId('actionComponent-remove-button')).toHaveAttribute(
-      'href',
-      './delete/1',
+      './1221/edit',
     );
 
     expect(getByTestId('actionComponent-attach-button')).toHaveAttribute(
       'href',
-      './attach/1',
+      './attach/1221',
     );
 
-    expect(queryByTestId('actionComponent-detach-button')).toBeNull();
-
-    expect(getByTestId('actionComponent-retype-button')).toHaveAttribute(
+    expect(getByTestId('actionComponent-detach-button')).toHaveAttribute(
       'href',
-      './retype/1',
-    );
-  });
-
-  it('should render correct buttons with detach link given an instance to detach', () => {
-    const { getByTestId, queryByTestId } = render(
-      <ActionsComponent volume={mockVolumeDetach} projectUrl="/project" />,
+      './detach/1221',
     );
 
     expect(getByTestId('actionComponent-create-backup-button')).toHaveAttribute(
       'href',
-      '/project/storages/volume-backup/create?volumeId=1',
-    );
-
-    expect(getByTestId('actionComponent-remove-button')).toHaveAttribute(
-      'href',
-      './delete/1',
-    );
-
-    expect(queryByTestId('actionComponent-attach-button')).toBeNull();
-
-    expect(getByTestId('actionComponent-detach-button')).toHaveAttribute(
-      'href',
-      './detach/1',
+      '/project/storages/volume-backup/create?volumeId=1221',
     );
 
     expect(getByTestId('actionComponent-retype-button')).toHaveAttribute(
       'href',
-      './retype/1',
+      './retype/1221',
+    );
+
+    expect(getByTestId('actionComponent-remove-button')).toHaveAttribute(
+      'href',
+      './delete/1221',
     );
   });
 
-  describe('change type actions', () => {
+  describe('retyping action', () => {
     it('should be enabled without a title if volume can retype', () => {
-      const canRetype = true;
-
       const { getByTestId } = render(
         <ActionsComponent
-          volume={{
-            ...mockVolumeDetach,
-            canRetype,
-          }}
+          volume={{ canRetype: true } as TVolume}
           projectUrl="/project"
         />,
       );
@@ -103,11 +158,9 @@ describe('ActionsComponent', () => {
     });
 
     it('should be disabled with a title if volume cant retype', () => {
-      const canRetype = false;
-
       const { getByTestId } = render(
         <ActionsComponent
-          volume={{ ...mockVolumeDetach, canRetype }}
+          volume={{ canRetype: false } as TVolume}
           projectUrl="/project"
         />,
       );

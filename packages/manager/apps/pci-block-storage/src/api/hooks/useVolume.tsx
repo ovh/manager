@@ -16,6 +16,7 @@ import {
   detachVolume,
   getAllVolumes,
   getVolume,
+  retypeVolume,
   TAPIVolume,
   updateVolume,
 } from '@/api/data/volume';
@@ -33,17 +34,24 @@ import {
   mapVolumeStatus,
   mapVolumeToAdd,
   mapVolumeToEdit,
+  mapVolumeToRetype,
   mapVolumeType,
   paginateResults,
   sortResults,
+  TErrors,
   TVolumeAttach,
   TVolumeEncryption,
   TVolumePricing,
   TVolumeRegion,
   TVolumeStatus,
   TVolumeToAdd,
+  TVolumeToRetype,
   TVolumeType,
 } from '@/api/select/volume';
+import {
+  forceReloadUseQueryOptions,
+  TApiHookOptions,
+} from '@/api/hooks/helpers';
 
 export type TVolume = TAPIVolume &
   TVolumeAttach &
@@ -122,10 +130,15 @@ export const getVolumeQueryKey = (projectId: string, volumeId: string) => [
   volumeId,
 ];
 
-export const getVolumeQuery = (projectId: string, volumeId: string) => ({
+export const getVolumeQuery = (
+  projectId: string,
+  volumeId: string,
+  options: TApiHookOptions = {},
+) => ({
   queryKey: getVolumeQueryKey(projectId, volumeId),
   queryFn: () => getVolume(projectId, volumeId),
   enabled: !!volumeId,
+  ...(options.forceReload && forceReloadUseQueryOptions),
 });
 
 export type UseVolumeResult =
@@ -140,11 +153,11 @@ export type UseVolumeResult =
 export const useVolume = (
   projectId: string,
   volumeId: string,
-  capacity?: number,
+  options: TApiHookOptions & { capacity?: number } = {},
 ) => {
   const [{ data, ...restQuery }, { data: catalogData }] = useQueries({
     queries: [
-      getVolumeQuery(projectId, volumeId),
+      getVolumeQuery(projectId, volumeId, options),
       getVolumeCatalogQuery(projectId),
     ],
   });
@@ -160,9 +173,14 @@ export const useVolume = (
         mapVolumeEncryption(t, catalogData),
         mapVolumeStatus(t),
         mapVolumeRegion(t),
-        mapVolumePricing(catalogData, getFormattedCatalogPrice, t, capacity),
+        mapVolumePricing(
+          catalogData,
+          getFormattedCatalogPrice,
+          t,
+          options?.capacity,
+        ),
       ),
-    [catalogData, t, getFormattedCatalogPrice, capacity],
+    [catalogData, t, getFormattedCatalogPrice, options?.capacity],
   );
 
   return {
@@ -346,10 +364,14 @@ export const useAddVolume = ({
   const { data: catalog } = useVolumeCatalog(projectId);
 
   const mutationFn = useCallback<(volumeToAdd: TVolumeToAdd) => Promise<void>>(
-    (volumeToAdd) =>
-      catalog
-        ? addVolume(mapVolumeToAdd(projectId, catalog)(volumeToAdd))
-        : Promise.reject(),
+    (volumeToAdd) => {
+      const volumeType = mapVolumeToAdd(projectId, catalog)(volumeToAdd);
+      if (volumeType === TErrors.VOLUME_TYPE_NOT_FOUND)
+        return Promise.reject(new Error('Volume type not found'));
+      return catalog
+        ? addVolume(volumeType)
+        : Promise.reject(new Error('No catalog'));
+    },
     [catalog, projectId],
   );
 
@@ -366,6 +388,60 @@ export const useAddVolume = ({
 
   return {
     addVolume: mutation.mutate,
+    ...mutation,
+  };
+};
+
+type UseRetypeVolumeProps = {
+  projectId: string;
+  volumeId: string;
+  onSuccess?: (originalVolume?: TAPIVolume) => void;
+  onError?: (cause: Error) => void;
+};
+
+export const useRetypeVolume = ({
+  projectId,
+  volumeId,
+  onError,
+  onSuccess,
+}: UseRetypeVolumeProps) => {
+  const { data: catalog } = useVolumeCatalog(projectId);
+  const { data: volume } = useVolume(projectId, volumeId);
+
+  const mutationFn = useCallback<
+    (newVolumeType: TVolumeToRetype) => Promise<void>
+  >(
+    (newVolumeType) => {
+      const volumeType = mapVolumeToRetype(
+        projectId,
+        volume,
+        catalog,
+      )(newVolumeType);
+      if (volumeType === TErrors.VOLUME_TYPE_NOT_FOUND)
+        return Promise.reject(new Error('Volume type not found'));
+      return catalog
+        ? retypeVolume(volumeType)
+        : Promise.reject(new Error('Catalog not found'));
+    },
+    [catalog, projectId],
+  );
+
+  const mutation = useMutation({
+    mutationFn,
+    onError,
+    onSuccess: async () => {
+      onSuccess(volume);
+      await queryClient.invalidateQueries({
+        queryKey: getVolumeQueryKey(projectId, volumeId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getVolumesQueryKey(projectId),
+      });
+    },
+  });
+
+  return {
+    retypeVolume: mutation.mutate,
     ...mutation,
   };
 };

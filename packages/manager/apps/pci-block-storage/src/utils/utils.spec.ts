@@ -3,6 +3,8 @@ import { capitalizeFirstLetter } from '@/utils/index';
 describe('utils', () => {
   describe('capitalizeFirstLetter', () => {
     it.each([
+      [undefined, undefined],
+      [null, null],
       ['', ''],
       ['a', 'A'],
       ['high-speed', 'High-speed'],

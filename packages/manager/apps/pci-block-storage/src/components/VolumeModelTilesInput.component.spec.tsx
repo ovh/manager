@@ -195,4 +195,27 @@ describe('VolumeModelTilesInput', () => {
       expect.objectContaining(otherVolume),
     );
   });
+
+  it('should disabled all fields', () => {
+    const { getByRole } = render(
+      <VolumeModelTilesInput
+        volumeModels={[baseVolume, otherVolume]}
+        value={baseVolume}
+        label="label"
+        onChange={spyOnChange}
+        disabled
+      />,
+    );
+
+    expect(
+      getByRole('radio', {
+        name: capitalizeFirstLetter(baseVolume.displayName),
+      }),
+    ).toBeDisabled();
+    expect(
+      getByRole('radio', {
+        name: capitalizeFirstLetter(otherVolume.displayName),
+      }),
+    ).toBeDisabled();
+  });
 });
