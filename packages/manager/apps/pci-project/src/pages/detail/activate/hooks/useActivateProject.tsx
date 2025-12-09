@@ -105,18 +105,16 @@ export const useProjectActivation = ({
         );
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       claimDiscoveryVoucher,
       simulateDiscoveryProjectActivation,
       activateDiscoveryProject,
-      trackActivateSuccess,
-      trackActivateError,
       navigateToUpdating,
       addError,
       promotionVoucher,
       serviceId,
       projectId,
-      t,
     ],
   );
 
