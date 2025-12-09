@@ -70,7 +70,7 @@ export const translateContactField = {
   [DataProtectionFieldEnum.NAME]:
     'domain_tab_general_information_data_drawer_contact_field_name',
   [DataProtectionFieldEnum.ORGANISATION]:
-    'domain_tab_general_information_data_drawer_contact_field_organisation',
+    'domain_tab_general_information_data_drawer_contact_field_organization',
   [DataProtectionFieldEnum.PHONE]:
     'domain_tab_general_information_data_drawer_contact_field_phone',
   [DataProtectionFieldEnum.PROVINCE]:
