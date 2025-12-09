@@ -35,10 +35,10 @@
   "netapp_volumes_dashboard_mount_path_not_configurated": "Definições de rede não configuradas",
   "netapp_volumes_dashboard_information_reserve_space": "Reserva das snapshots",
   "netapp_volumes_dashboard_usage_title": "Visão geral da utilização",
-  "netapp_volumes_dashboard_usage_max_files": "Ficheiros máximos",
-  "netapp_volumes_dashboard_usage_files": "Ficheiros utilizados",
+  "netapp_volumes_dashboard_usage_max_files": "Máximo de ficheiros",
+  "netapp_volumes_dashboard_usage_files": "Ficheiros usados",
   "netapp_volumes_dashboard_usage_nfs_client": "Clientes NFS (ativos nas últimas 48 horas)",
   "netapp_volumes_dashboard_usage_no_nfs_client": "Sem ligações ativas",
-  "netapp_volumes_dashboard_usage_view_all": "Consultar todos",
+  "netapp_volumes_dashboard_usage_view_all": "Consultar tudo",
   "netapp_volumes_dashboard_actives_nfs_title": "Conexões NFS"
 }
