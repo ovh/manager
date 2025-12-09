@@ -2,6 +2,7 @@ import {
   OkmsServiceKey,
   OkmsServiceKeyPostPayload,
   OkmsServiceKeyPutPayload,
+  OkmsServiceKeyWithData,
 } from '@key-management-service/types/okmsServiceKey.type';
 
 import apiClient from '@ovh-ux/manager-core-api';
@@ -59,7 +60,7 @@ export const getOkmsServiceKeyResource = async ({
 }: {
   okmsId: string;
   keyId: string;
-}): Promise<{ data: OkmsServiceKey }> => {
+}): Promise<{ data: OkmsServiceKeyWithData }> => {
   return apiClient.v2.get(`okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`);
 };
 
