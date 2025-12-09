@@ -6,6 +6,10 @@ import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.
 import { useTenants } from '@/data/hooks/tenants/useTenants.hook';
 import { urls } from '@/routes/Routes.constants';
 
+const redirectableUrls: string[] = [urls.tenants, urls.tenantsOnboarding, urls.onboarding];
+
+const shouldRedirect = (pathname: string) => redirectableUrls.includes(pathname);
+
 export const useTenantsRedirect = () => {
   const {
     selectedService,
@@ -43,10 +47,8 @@ export const useTenantsRedirect = () => {
       }
     };
 
-    // Only redirect when on the tenants route
-    const shouldRedirect = location.pathname === urls.tenants;
-
-    if (isSuccess && shouldRedirect) {
+    // Only redirect when on the tenants route listing/onboarding
+    if ((isSuccess || hasNoServices) && shouldRedirect(location.pathname)) {
       redirect();
     }
   }, [hasNoTenants, hasNoServices, isSuccess, navigate, location.pathname]);
