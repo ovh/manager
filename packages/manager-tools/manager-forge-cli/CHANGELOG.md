@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-forge-cli@0.3.0...@ovh-ux/manager-forge-cli@0.4.0) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4521] ([e49a719](https://github.com/ovh/manager/commit/e49a719210c59b26cb9ac073d13dbe331ad9adda))
+* **i18n:** add missing translations [CDS 4523] ([386acf9](https://github.com/ovh/manager/commit/386acf964bc3039fd0ae8ad6ad93ab5e79666109))
+
+
+### Features
+
+* manager tools improvement ([9a1c441](https://github.com/ovh/manager/commit/9a1c4410d4082994a19eb3404aaca841201e93e9))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-forge-cli@0.2.1...@ovh-ux/manager-forge-cli@0.3.0) (2025-12-05)
 
 

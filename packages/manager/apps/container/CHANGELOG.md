@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.170.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.169.0...@ovh-ux/manager-container-app@0.170.0) (2025-12-09)
+
+
+### Features
+
+* **ips:** init ips react app ([#13742](https://github.com/ovh/manager/issues/13742)) ([cb30312](https://github.com/ovh/manager/commit/cb30312fbcbf2fefaaedfdfa5bb9fcfa7805d289))
+
+
+
+
+
 # [0.169.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.168.0...@ovh-ux/manager-container-app@0.169.0) (2025-12-05)
 
 

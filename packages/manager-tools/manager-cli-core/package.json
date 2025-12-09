@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cli-core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -26,7 +26,6 @@
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
-  "dependencies": {},
   "devDependencies": {
     "@ovh-ux/manager-config": "8.8.0",
     "@ovh-ux/manager-core-api": "0.19.4",
