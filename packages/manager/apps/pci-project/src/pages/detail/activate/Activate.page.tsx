@@ -122,7 +122,8 @@ export default function ActivatePage() {
     if (isSaved) {
       void handleActivateProject();
     }
-  }, [isSaved, handleActivateProject]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSaved]);
 
   useEffect(() => {
     createAndAssignCart({ ovhSubsidiary });
