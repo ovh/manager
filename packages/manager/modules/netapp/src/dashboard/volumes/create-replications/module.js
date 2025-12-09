@@ -1,7 +1,6 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-utils';
-import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -13,7 +12,6 @@ const moduleName = 'ovhManagerNetAppVolumesCreateReplications';
 
 angular
   .module(moduleName, [
-    'ngUiRouterBreadcrumb',
     'ngOvhUtils',
     'oui',
     'ovhManagerCore',

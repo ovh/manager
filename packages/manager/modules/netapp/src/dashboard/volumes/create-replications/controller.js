@@ -1,5 +1,5 @@
 export default class NetappVolumesCreateReplicationsCtrl {
-  /* @ngInject */ constructor(NetAppDashboardService) {
+  /* @ngInject */ constructor(NetAppDashboardService, $translate) {
     this.destinationServiceId = undefined;
     this.hasAvailableReplicationsServices =
       NetAppDashboardService.hasAvailableReplicationsServices;
@@ -7,6 +7,8 @@ export default class NetappVolumesCreateReplicationsCtrl {
     this.onPostLoad = false;
     this.replicationsSelectedVolumes =
       NetAppDashboardService.replicationsSelectedVolumes;
+    this.NetAppDashboardService = NetAppDashboardService;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -19,20 +21,41 @@ export default class NetappVolumesCreateReplicationsCtrl {
   }
 
   onPrimaryClick() {
-    if (!this.replicationsAvaibleServices.length) return this.goToOrder();
-    if (this.replicationsSelectedVolumes.length && this.destinationServiceId) {
+    if (!this.replicationsAvaibleServices.length) this.goToOrder();
+    else if (
+      this.replicationsSelectedVolumes.length &&
+      this.destinationServiceId
+    ) {
       this.onPostLoad = true;
-      return this.postReplications({
+      this.postReplications({
         volumesIds: this.replicationsSelectedVolumes,
         destinationServiceId: this.destinationServiceId,
-      }).then((resp) => {
-        this.onPostLoad = false;
-        // It will be remove in an other PR.
-        console.info({ resp });
-        return this.goToVolumes();
+      }).then((resp = []) => {
+        const errors = resp.reduce(
+          (
+            prev,
+            {
+              status,
+              config: {
+                data: { destinationServiceId, sourceShareId } = {},
+              } = {},
+            },
+          ) =>
+            status === 201
+              ? prev
+              : `${prev}<li>${this.$translate.instant(
+                  'netapp_volumes_replications_errors',
+                  { destinationServiceId, sourceShareId },
+                )}</li>`,
+          '',
+        );
+
+        const message = errors.length ? `<ul>${errors}</ul>` : undefined;
+        const type = message ? 'warning' : 'success';
+
+        return this.goToVolumes(message, type, true);
       });
     }
-    return false;
   }
 
   isPrimaryButtonDisabled() {

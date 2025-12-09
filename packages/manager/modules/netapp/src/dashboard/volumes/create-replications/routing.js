@@ -5,8 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       goToOrder: /* @ngInject */ ($state) => () => $state.go('netapp.order'),
-      goToVolumes: /* @ngInject */ ($state, serviceName) => () =>
-        $state.go('netapp.dashboard.volumes', { serviceName }),
       postReplications: /* @ngInject */ ($q, $http, serviceName) => ({
         volumesIds,
         destinationServiceId,
@@ -18,9 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
                 destinationServiceId,
                 sourceShareId,
               })
-              .catch(() => null),
+              .catch((resp) => resp),
           ),
         ),
+      breadcrumb: () => null,
     },
   });
 };

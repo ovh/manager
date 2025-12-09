@@ -21,7 +21,8 @@
         data-on-click="$ctrl.goToCreateReplications()"
         data-icon-left="oui-icon oui-icon-arrow-transfer"
         class="mr-2"
-        data-disabled="$ctrl.hasAvailableReplicationsServices() && !$ctrl.NetAppDashboardService.replicationsSelectedVolumes.length"
+        ng-if="!$ctrl.isNetworkAvailable"
+        disabled="$ctrl.hasAvailableReplicationsServices() && !$ctrl.NetAppDashboardService.replicationsSelectedVolumes.length"
     >
         <span data-translate="netapp_volumes_button_replications"></span>
     </oui-button>
@@ -34,6 +35,7 @@
     >
         <oui-datagrid-column data-prevent-customization>
             <oui-checkbox
+                ng-if="!$ctrl.isNetworkAvailable"
                 data-model="$ctrl.selectedReplicationsCheckboxes[$row.id]"
                 data-on-change="$ctrl.handleCheckboxChange({volumeId: $row.id, checked: modelValue})"
                 disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS || !$ctrl.hasAvailableReplicationsServices()"
@@ -97,7 +99,7 @@
                 <span data-translate="netapp_volumes_edit_volume"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                ng-if="$ctrl.hasAvailableReplicationsServices()"
+                ng-if="$ctrl.hasAvailableReplicationsServices() && !$ctrl.isNetworkAvailable"
                 disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS"
                 data-on-click="$ctrl.goToSingleReplication($row.id)"
             >

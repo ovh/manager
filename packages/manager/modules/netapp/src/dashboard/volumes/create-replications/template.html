@@ -2,7 +2,7 @@
     data-loading="$ctrl.onPostLoad"
     data-on-dismiss="$ctrl.goToVolumes()"
     data-heading="{{:: 'netapp_network_volumes_replications_title' | translate }}"
-    data-primary-label="{{:: $ctrl.hasAvailableReplicationsServices() ? 'netapp_network_volumes_replications_button_sync' : 'netapp_network_volumes_replications_button_buy' | translate }}"
+    data-primary-label="{{:: !$ctrl.isNetworkAvailable && $ctrl.hasAvailableReplicationsServices() ? 'netapp_network_volumes_replications_button_sync' : 'netapp_network_volumes_replications_button_buy' | translate }}"
     data-primary-action="$ctrl.onPrimaryClick()"
     data-secondary-label="{{:: 'netapp_network_volumes_replications_button_cancel' | translate }}"
     data-secondary-action="$ctrl.goToVolumes()"

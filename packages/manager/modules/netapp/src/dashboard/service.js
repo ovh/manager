@@ -381,7 +381,6 @@ export default class NetAppDashboardService {
       });
   }
 
-  // will be used to disable/enable checkboxes in volumes' list too.
   hasAvailableReplicationsServices() {
     return !!this.replicationsAvaibleServices.length;
   }
