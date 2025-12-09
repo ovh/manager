@@ -122,7 +122,7 @@ export const Retype: FC<RetypeProps> = ({
             <VolumeModelTilesInput
               value={value}
               volumeModels={volumeModelData}
-              onChange={!isRetypingPending && onChange}
+              onChange={onChange}
               label={t(
                 'retype:pci_projects_project_storages_blocks_retype_change_type_title',
               )}
