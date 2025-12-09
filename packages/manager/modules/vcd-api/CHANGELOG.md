@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.0...@ovh-ux/manager-module-vcd-api@0.9.1) (2025-12-09)
+
+
+### Bug Fixes
+
+* **public-vcf:** fix and refactor breadcrumb translations ([08617ff](https://github.com/ovh/manager/commit/08617ffe58bddf68dba94e2ee5fda758263bd3fd)), closes [#MANAGER-20296](https://github.com/ovh/manager/issues/MANAGER-20296)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.8.21...@ovh-ux/manager-module-vcd-api@0.9.0) (2025-12-05)
 
 

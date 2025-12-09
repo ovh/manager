@@ -114,7 +114,7 @@ export default function ComputeListingPage() {
             isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
             onClick={() => {
               trackClick(TRACKING.compute.addVirtualHost);
-              navigate(subRoutes.order);
+              navigate(subRoutes.datacentreComputeOrder);
             }}
             data-testid={TEST_IDS.computeOrderCta}
           />
