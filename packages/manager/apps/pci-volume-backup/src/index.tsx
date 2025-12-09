@@ -36,7 +36,7 @@ const init = async (appName: string) => {
   });
 
   const region = context?.environment?.getRegion();
-  if(region){
+  if (region) {
     context?.shell?.tracking.setConfig(region, LEVEL2);
   }
 
