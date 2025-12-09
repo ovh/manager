@@ -15,7 +15,6 @@ import {
   useFormContext,
   useWatch,
 } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../../CreateInstance.page';
 import { useEffect, useMemo } from 'react';
 import { TOptionsData } from '../../../view-models/categoriesTypesViewModel';
 import FlavorOption from './FlavorSelectOption.component';
@@ -25,6 +24,7 @@ import {
   ButtonType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TInstanceCreationForm } from '../../../CreateInstance.schema';
 
 type TFlavorSelectOption = {
   option: 'category' | 'type';
@@ -89,7 +89,7 @@ const FlavorSelect = ({ option, items }: TFlavorSelectOption) => {
       control={control}
       name={flavorField}
       render={({ field }) => (
-        <FormField className="min-w-[236px] w-auto max-w-[50%]">
+        <FormField className="w-auto min-w-[236px] max-w-[50%]">
           <FormFieldLabel>
             {t(`pci_instances_common_instance_${isType ? 'type' : 'category'}`)}
           </FormFieldLabel>

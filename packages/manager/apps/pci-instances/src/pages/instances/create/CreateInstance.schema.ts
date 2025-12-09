@@ -46,7 +46,9 @@ export type TDistributionImageVersion = z.infer<
 
 export const distributionImageVersionNameSchema = z.string().nullable();
 
-export const distributionImageOsTypeSchema = z.string().nullable();
+export const distributionImageOsTypeSchema = z
+  .enum(['baremetal-linux', 'bsd', 'linux', 'windows'])
+  .nullable();
 
 export const sshKeyIdSchema = z
   .string()
@@ -126,3 +128,24 @@ export const networkSchema = z
   .nullable();
 
 export type TAddNetworkForm = z.infer<typeof networkSchema>;
+export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
+export const instanceCreationSchema = z.object({
+  name: nameSchema,
+  quantity: quantitySchema,
+  deploymentModes: deploymentModesSchema,
+  continent: continentSelectionSchema,
+  flavorCategory: flavorCategorySchema,
+  flavorType: flavorTypeSchema,
+  flavorId: flavorIdSchema,
+  macroRegion: macroRegionSelectionSchema,
+  microRegion: microRegionSelectionSchema,
+  availabilityZone: availabilityZoneSelectionSchema,
+  distributionImageType: distributionImageTypeSchema,
+  distributionImageVariantId: distributionImageVariantIdSchema,
+  distributionImageVersion: distributionImageVersionSchema,
+  distributionImageOsType: distributionImageOsTypeSchema,
+  sshKeyId: sshKeyIdSchema,
+  newSshPublicKey: sshPublicKeySchema.nullable(),
+  networkId: networkIdSchema,
+  newPrivateNetwork: networkSchema,
+});

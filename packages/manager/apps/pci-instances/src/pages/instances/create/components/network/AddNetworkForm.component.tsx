@@ -14,7 +14,7 @@ import {
 } from 'react-hook-form';
 import Banner from '@/components/banner/Banner.component';
 import { InputField } from '@/components/form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 type TAddNetworkFormProps = {
   takenVlanIds?: number[];

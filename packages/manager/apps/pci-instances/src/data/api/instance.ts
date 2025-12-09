@@ -6,8 +6,12 @@ import {
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
 import { mapDtoToInstance } from './mapper/instance.mapper';
+import { mapDtoToInstanceCreationData } from '@/adapters/tanstack/instances/right/mapper';
 import { TInstance } from '@/types/instance/entity.type';
 import { DeepReadonly } from '@/types/utils.type';
+import { TCreateInstanceResponseDTO } from '@/adapters/tanstack/instances/right/dto.type';
+import { TInstanceCreationData } from '@/domain/entities/instance';
+import { TCreateInstanceArgs } from '@/domain/port/instance/port';
 
 type TInstanceAction =
   | 'delete'
@@ -258,3 +262,14 @@ export const attachVolume = ({
   v6.post(`/cloud/project/${projectId}/volume/${volumeId}/attach`, {
     instanceId,
   });
+
+export const createInstance = ({
+  projectId,
+  regionName,
+  instance,
+}: TCreateInstanceArgs): Promise<TInstanceCreationData> =>
+  v6
+    .post(`/cloud/project/${projectId}/region/${regionName}/instance`, instance)
+    .then((response: AxiosResponse<TCreateInstanceResponseDTO>) =>
+      mapDtoToInstanceCreationData(response.data),
+    );

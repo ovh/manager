@@ -21,11 +21,11 @@ import {
   useFormContext,
   useWatch,
 } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { TImageOption, TImageOsType } from '../../view-models/imagesViewModel';
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 type TDistributionvariants = {
   variants: TImageOption[];

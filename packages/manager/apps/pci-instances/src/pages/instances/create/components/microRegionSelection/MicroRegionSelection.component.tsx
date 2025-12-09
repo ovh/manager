@@ -9,9 +9,9 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { TMicroRegionData } from '../../view-models/microRegionsViewModel';
 import { useEffect } from 'react';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 type TMicroRegionSelectionProps = {
   microRegions: TMicroRegionData[];
@@ -34,7 +34,7 @@ export const MicroRegionSelection = ({
   }, [microRegions, selectedMicroRegion, setValue]);
 
   return (
-    <div className=" flex flex-col gap-4 pt-9 pb-5">
+    <div className=" flex flex-col gap-4 pb-5 pt-9">
       <Text preset="heading-4">
         {t('creation:pci_instance_creation_select_datacenter_label')}
       </Text>

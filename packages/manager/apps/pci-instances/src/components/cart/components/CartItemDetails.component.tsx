@@ -1,12 +1,12 @@
+import { TCartItemDetail } from '@/pages/instances/create/hooks/useCartIems';
 import { AccordionContent, Divider, Text } from '@ovhcloud/ods-react';
-import { TCartItemDetail } from '../Cart.component';
 
 type TCartItemsDetailsProps = {
   details: TCartItemDetail[];
 };
 
 export const CartItemDetails = ({ details }: TCartItemsDetailsProps) => (
-  <AccordionContent className="bg-[--ods-color-neutral-050] py-5 px-8">
+  <AccordionContent className="bg-[--ods-color-neutral-050] px-8 py-5">
     {details.map(({ name, description, price }, index) => (
       <div key={`${name}-${index}`} data-testid={`cart-item-details-${name}`}>
         <Text className="text-sm text-[--ods-color-heading]">{name}</Text>

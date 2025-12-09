@@ -19,11 +19,11 @@ import {
   SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useMemo } from 'react';
 import { selectImagesTypes } from '../../view-models/imagesViewModel';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 const DistributionImageType = () => {
   const projectId = useProjectId();

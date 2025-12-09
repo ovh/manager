@@ -9,12 +9,12 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { useEffect, useState } from 'react';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 type TAvailabilityZoneSelection = { availabilityZones: string[] };
 type TChoice = 'companyChoice' | 'userChoice';

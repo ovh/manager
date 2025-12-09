@@ -15,7 +15,7 @@ import { FC, PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TCustomRegionItemData } from '../view-models/flavorsViewModel';
 import { useFormContext } from 'react-hook-form';
-import { TInstanceCreationForm } from '../CreateInstance.page';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 export type TCustomRegionSelected = {
   macroRegionId: string;

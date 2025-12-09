@@ -18,7 +18,6 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../CreateInstance.page';
 import { selectPrivateNetworks } from '../view-models/networksViewModel';
 import AddNetworkForm from './network/AddNetworkForm.component';
 import { TAddNetworkForm } from '../CreateInstance.schema';
@@ -29,6 +28,7 @@ type TUpdateNetworkFieldsArgs = {
   networkId: string | null;
   newPrivateNetwork: TAddNetworkForm | null;
 };
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
