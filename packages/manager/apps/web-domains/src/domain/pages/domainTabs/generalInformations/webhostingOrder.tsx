@@ -41,6 +41,7 @@ export default function WebHostingOrderPage() {
     changelogButton: <ChangelogButton links={changelogLinks} />,
     headerButton: <GuideButton items={guideItems} />,
   };
+
   return (
     <BaseLayout
       breadcrumb={<BreadcrumbWebHostingOrder serviceName={serviceName} />}

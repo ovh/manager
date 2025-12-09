@@ -14,7 +14,7 @@ import {
   Icon,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
@@ -24,6 +24,8 @@ import HostDrawer from '@/domain/components/Host/HostDrawer';
 import Loading from '@/domain/components/Loading/Loading';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import { THost } from '@/domain/types/host';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
+import { urls } from '@/domain/routes/routes.constant';
 
 export default function HostsListingTab() {
   const { t } = useTranslation([
@@ -35,6 +37,7 @@ export default function HostsListingTab() {
   const [hostsArray, setHostsArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { serviceName } = useParams<{ serviceName: string }>();
+  const navigate = useNavigate();
 
   const [drawer, setDrawer] = useState<{
     isOpen: boolean;
@@ -51,6 +54,15 @@ export default function HostsListingTab() {
 
   const { domainResource } = useGetDomainResource(serviceName);
   const { nichandleInformation } = useNichandleInformation();
+
+  if (!domainResource.currentState.hostsConfiguration.hostSupported) {
+    navigate(
+      useGenerateUrl(urls.domainTabInformation, 'path', {
+        serviceName,
+      }),
+      { replace: true },
+    );
+  }
 
   // We compare the current and the targetSpec to add a status. The status depends of the difference between current and target object.
   useEffect(() => {

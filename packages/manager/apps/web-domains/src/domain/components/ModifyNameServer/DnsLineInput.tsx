@@ -113,7 +113,7 @@ export default function DnsLineInput({
       className={`flex ${type &&
         'flex-col md:flex-row lg:flex-row'} gap-6 w-full mb-4`}
     >
-      <FormField>
+      <FormField className="flex-1">
         {showLabels && (
           <div>
             <FormFieldLabel className="text-sm">
@@ -157,7 +157,7 @@ export default function DnsLineInput({
           </p>
         )}
       </FormField>
-      <FormField className="flex-1">
+      <FormField className="flex-0.5">
         {showLabels && (
           <div>
             <FormFieldLabel className="text-sm">
