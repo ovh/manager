@@ -11,5 +11,7 @@
   "pci_projects_project_storages_blocks_retype_detach_volume_error": "Une erreur s'est produite lors du détachement de l'instance. Nous vous invitons à vous rendre sur <0>la page block storage</0> afin de détacher l'instance manuellement.",
   "pci_projects_project_storages_blocks_retype_delete_snapshots_label": "Supprimer les snapshots",
   "pci_projects_project_storages_blocks_retype_delete_snapshots_warning": "Pour modifier votre type d’offre vous devez avant supprimer les snapshots rattachés à votre volume.",
-  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "Une erreur s'est produite lors de la suppression des snapshots. Nous vous invitons à vous rendre sur <0>la page des snapshots</0> afin de les supprimer manuellement."
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "Une erreur s'est produite lors de la suppression des snapshots. Nous vous invitons à vous rendre sur <0>la page des snapshots</0> afin de les supprimer manuellement.",
+  "pci_projects_project_storages_blocks_retype_retype_success": "Le volume {{ volumeName }} est en cours de modification. Cette opération peut prendre plusieurs minutes. Une fois celle-ci terminée, vous pourrez procéder aux actions habituelles",
+  "pci_projects_project_storages_blocks_retype_retype_error": "Une erreur s'est produite lors de la modification du type de votre volume."
 }

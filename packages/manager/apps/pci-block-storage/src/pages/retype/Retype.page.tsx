@@ -32,20 +32,28 @@ const RetypePage = () => {
   const {
     data: volumeModelData,
     isPending: isCatalogPending,
-  } = useCatalogWithPreselection(projectId, volumeId);
+    isFetching: isCatalogFetching,
+  } = useCatalogWithPreselection(projectId, volumeId, { forceReload: true });
 
   const {
     data: instances,
     isPending: isInstancesPending,
-  } = useAttachedInstances(projectId, volumeId);
+    isFetching: isInstancesFetching,
+  } = useAttachedInstances(projectId, volumeId, { forceReload: true });
 
-  const { data: snapshots, isPending: isSnapshotsPending } = useVolumeSnapshots(
-    projectId,
-    volumeId,
-  );
+  const {
+    data: snapshots,
+    isPending: isSnapshotsPending,
+    isFetching: isSnapshotsFetching,
+  } = useVolumeSnapshots(projectId, volumeId, { forceReload: true });
 
   const isPending =
-    isCatalogPending || isInstancesPending || isSnapshotsPending;
+    isCatalogPending ||
+    isCatalogFetching ||
+    isInstancesPending ||
+    isInstancesFetching ||
+    isSnapshotsPending ||
+    isSnapshotsFetching;
 
   const handleOnClose = () => {
     navigate('..');
@@ -103,7 +111,13 @@ const RetypePage = () => {
       );
     }
 
-    return <Retype volumeModelData={volumeModelData} />;
+    return (
+      <Retype
+        projectId={projectId}
+        volumeId={volumeId}
+        volumeModelData={volumeModelData}
+      />
+    );
   }, [volumeModelData, isPending, instances]);
 
   return (

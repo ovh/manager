@@ -20,6 +20,8 @@ export default function ActionsComponent({
   const hrefRetype = useHref(`./retype/${volume.id}`);
   const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volumeId=${volume.id}`;
 
+  const isVolumeBeingRetyped = volume.status === 'retyping';
+
   const onTrackingClick = useTrackAction<(actionName: string) => void>(
     (actionName) => ({
       actionName,
@@ -58,14 +60,14 @@ export default function ActionsComponent({
       dataTestid: 'actionComponent-detach-button',
       onClick: () => onTrackingClick('detach_instance'),
     },
-    {
+    !isVolumeBeingRetyped && {
       id: 3,
       href: hrefCreateBackup,
       label: t('pci_projects_project_storages_blocks_create_backup_label'),
       dataTestid: 'actionComponent-create-backup-button',
       onClick: () => onTrackingClick('create_volume_backup'),
     },
-    {
+    !isVolumeBeingRetyped && {
       id: 5,
       href: hrefRetype,
       label: t('pci_projects_project_storages_blocks_change_type'),
@@ -73,7 +75,7 @@ export default function ActionsComponent({
       disabled: !volume.canRetype,
       ...retypeTitleIfDeactivated,
     },
-    {
+    !isVolumeBeingRetyped && {
       id: 6,
       href: hrefRemove,
       label: t('pci_projects_project_storages_blocks_delete_label'),

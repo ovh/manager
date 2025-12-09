@@ -16,8 +16,13 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(),
-  useParams: vi.fn(),
-  useHref: vi.fn(),
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = (await importOriginal()) as Record<string, unknown>;
+
+  return {
+    ...actual,
+    useNavigate: () => vi.fn(),
+    useParams: vi.fn(),
+    useHref: vi.fn(),
+  };
+});
