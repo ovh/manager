@@ -7150,15 +7150,15 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.10.0.tgz#b135fbf4c9fd64a6c2045ad54091a1982fbad2d0"
   integrity sha512-f4o6TSBloE1VfZQigkulEjPU7IlsMj1VqhKD+VETOIroHMmD0JUaLkWXNQWRlRZ+lFHZmDvSQGdqYwFWmQfNdw==
 
-"@ovh-ux/manager-common-translations@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"
-  integrity sha512-5upqmSqpbbNtg+/R2L+F7h9aJHilANq7BkgVUuEOaWgN8KMC1fTdnivQUFrC23mdnhD/H3LpDXKi+8+GajP39Q==
-
 "@ovh-ux/manager-common-translations@^0.22.2":
   version "0.22.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.22.2.tgz#4543cd343e2b893ebf417a920e55895cec0b56a9"
   integrity sha512-eQVXnmDZifWB3JoE/+uPbk4O8y/L/IcRqexQVx2OEU4apJg/OYl/mFqFnwt4SK/HqXnq6v+00dQPMLNYUBVk8g==
+
+"@ovh-ux/manager-common-translations@^0.23.0":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.23.2.tgz#71f4812de2400a5897159a18bb9d7f5f3a05fd30"
+  integrity sha512-+kWwTgA51z8rDTXbMiZiCH85L2nSewD9H/HVrqFivo1/1uZLrNHkOLKouGVmP7isnqFRAMyOa0FTbDtk2Dm6LQ==
 
 "@ovh-ux/manager-common-translations@^0.9.1":
   version "0.9.1"
