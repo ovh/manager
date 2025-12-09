@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import {
+  Button,
   Clipboard,
   ClipboardControl,
   ClipboardTrigger,
@@ -25,13 +26,17 @@ type FormData = z.infer<typeof websiteFormSchema>;
 
 interface DomainManagementProps {
   controlValues: FormData;
+  setStep?: React.Dispatch<React.SetStateAction<number>>;
+  isNextButtonVisible?: boolean;
 }
 
 export const DomainManagement: React.FC<DomainManagementProps> = ({
   controlValues,
+  setStep,
+  isNextButtonVisible = false,
 }: DomainManagementProps) => {
   const { serviceName } = useParams();
-  const { t } = useTranslation(['multisite', 'dashboard']);
+  const { t } = useTranslation(['multisite', 'dashboard', 'common']);
   const hostingService = useGetHostingService(serviceName);
   const existingDomain = useGetAddDomainExisting(serviceName, true, Boolean(serviceName));
 
@@ -84,6 +89,13 @@ export const DomainManagement: React.FC<DomainManagementProps> = ({
       <Message color={MESSAGE_COLOR.warning} dismissible={false}>
         {t('multisite:multisite_add_website_domain_management_propagation')}
       </Message>
+      {isNextButtonVisible && (
+        <div>
+          <Button onClick={() => setStep?.(4)}>
+            {t('common:web_hosting_common_action_continue')}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

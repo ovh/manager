@@ -38,7 +38,7 @@ interface AddDomainPageState {
 export default function AddWDomainPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const { addSuccess, addWarning } = useNotifications();
+  const { addSuccess, addWarning, clearNotifications } = useNotifications();
   const { t } = useTranslation(['common', 'multisite']);
   const [step, setStep] = useState<number>(1);
 
@@ -80,6 +80,7 @@ export default function AddWDomainPage() {
   );
 
   const onSubmit = (data: FormData) => {
+    clearNotifications();
     if (data.associationType === AssociationType.EXISTING) {
       const payload = {
         serviceName,
