@@ -1,0 +1,21 @@
+{
+  "title": "Importar os meus endereços IP da SYS para a OVHcloud",
+  "step1Description": "Para importar um IP, precisa de saber a chave (token) gerada pelo manager do servidor (chave atualmente associada ao IP que deseja migrar).",
+  "step1IpLabel": "IP ou bloco de IP:",
+  "step1TokenLabel": "Token:",
+  "step2Description": "Selecione o servidor de destino:",
+  "step2ServerLabel": "Servidor de destino",
+  "step2ServerPlaceholder": "Escolher um servidor dedicado",
+  "step2LoadingServerCheck": "Verificação das modalidades de migração",
+  "step2CompatibilitySuccessMessage": "O servidor {{ serverName }} é compatível com {{ ip }}",
+  "step2UnavailableMigrationMessage": "O servidor {{ serverName }} não é compatível com a importação do endereço IP {{ ip }}. Contacte o suporte para obter mais informações.",
+  "step3Description": "Selecione a duração:",
+  "duration-upto": "Até",
+  "acceptContracts": "Aceito as condições contratuais",
+  "step5Description": "Resumo da nota de encomenda",
+  "step5ConfirmTextPart1": "Clique no botão \"{{ confirmButtonLabel }}\" para confirmar a encomenda.",
+  "step5ConfirmTextPart2": "Irá visualizar um novo separador, e será automaticamente reencaminhado para a página de pagamento.",
+  "step5TotalPriceHT": "Preço total sem IVA: {{ price }}",
+  "step5TotalPriceTTC": "Preço total com IVA: {{ price }}",
+  "step5SuccessMessage": "O pedido de migração (encomenda {{ orderId }}) foi devidamente registado."
+}

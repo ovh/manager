@@ -1,0 +1,11 @@
+{
+  "listingReverseDnsUpdateSuccess": "Reverse wurde aktualisiert.",
+  "reverseDnsModalTitle": "Reverse DNS konfigurieren",
+  "reverseDnsModalDescription": "Bitte geben Sie eine Domain als Reverse DNS für eine bestimmte IP-Adresse ein (PTR-Eintrag). Weitere Informationen finden Sie in unserem ",
+  "reverseDnsParentIpBlockFieldLabel": "Übergeordneter IP-Block",
+  "reverseDnsIpFieldLabel": "IP-Adresse",
+  "reverseDnsIpError": "Bitte geben Sie eine gültige IP-Adresse ein.",
+  "reverseDnsIpNotInsideBlockError": "Bitte geben Sie eine im Block enthaltene IP-Adresse ein.",
+  "reverseDnsDnsFieldLabel": "Reverse DNS",
+  "reverseDnsDnsError": "Bitte geben Sie einen gültigen Domainnamen ein."
+}

@@ -1,0 +1,118 @@
+import React, { useEffect, useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Modal } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useIpHasVmac, useGetIpVmacDetails } from '@/data/hooks/ip';
+import { fromIdToIp, ipFormatter } from '@/utils';
+
+export default function ViewVirtualMacModal() {
+  const { t } = useTranslation(['virtual-mac', NAMESPACES.ACTIONS, 'error']);
+  const [type, setType] = useState('');
+  const [macAddress, setMacAddress] = useState('');
+  const [virtualMachineName, setVirtualMachineName] = useState('');
+  const navigate = useNavigate();
+  const [search] = useSearchParams();
+  const { id, service } = useParams();
+  const { ip } = ipFormatter(fromIdToIp(id));
+  const { trackClick } = useOvhTracking();
+
+  const { ipvmac, isLoading: isVmacLoading } = useIpHasVmac({
+    serviceName: service,
+    ip,
+    enabled: Boolean(service),
+  });
+
+  const {
+    dedicatedServerVmacWithIpResponse,
+    isLoading: isVmacWithIpLoading,
+  } = useGetIpVmacDetails({
+    serviceName: service,
+    ip,
+    macAddress,
+    enabled: macAddress !== '' && Boolean(service),
+  });
+
+  useEffect(() => {
+    if (ipvmac) {
+      setType(ipvmac[0]?.type);
+      setMacAddress(ipvmac[0]?.macAddress);
+    }
+  }, [ipvmac]);
+
+  useEffect(() => {
+    if (dedicatedServerVmacWithIpResponse) {
+      setVirtualMachineName(
+        dedicatedServerVmacWithIpResponse?.virtualMachineName,
+      );
+    }
+  }, [dedicatedServerVmacWithIpResponse]);
+
+  const closeModal = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['view_virtual-mac', 'cancel'],
+    });
+    navigate(`..?${search.toString()}`);
+  };
+
+  const fields = useMemo(
+    () => [
+      {
+        label: t('virtualMacIpAddress'),
+        value: ip,
+        key: 'ipAddress',
+      },
+      {
+        label: t('virtualMacField'),
+        value: macAddress,
+        key: 'macAddress',
+      },
+      { label: t('virtualMacType'), value: type, key: 'type' },
+      {
+        label: t('virtualMacMachinename'),
+        value: virtualMachineName,
+        key: 'virtualMachineName',
+      },
+    ],
+    [ip, macAddress, type, virtualMachineName],
+  );
+
+  return (
+    <Modal
+      isOpen
+      onDismiss={closeModal}
+      heading={t('viewVirtualMacTitle')}
+      secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
+      onSecondaryButtonClick={closeModal}
+      isLoading={isVmacLoading || isVmacWithIpLoading}
+    >
+      <div>
+        <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+          {t('viewVirtualMacQuestion')}
+        </OdsText>
+        {fields.map(({ label, value, key }) => (
+          <div className="block mb-2">
+            <OdsText
+              className="font-semibold text-right min-w-[200px]"
+              key={key}
+              preset={ODS_TEXT_PRESET.heading6}
+            >
+              {label}
+            </OdsText>
+            <OdsText className="ml-2">{value}</OdsText>
+          </div>
+        ))}
+      </div>
+    </Modal>
+  );
+}

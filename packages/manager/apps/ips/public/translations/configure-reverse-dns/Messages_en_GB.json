@@ -1,0 +1,11 @@
+{
+  "listingReverseDnsUpdateSuccess": "The reverse path has been updated.",
+  "reverseDnsModalTitle": "Configure the reverse DNS",
+  "reverseDnsModalDescription": "Please enter a domain name as a reverse DNS for a given IP address (PTR record). For more information, please refer to our ",
+  "reverseDnsParentIpBlockFieldLabel": "Parent IP block",
+  "reverseDnsIpFieldLabel": "IP address",
+  "reverseDnsIpError": "Please enter a valid IP address",
+  "reverseDnsIpNotInsideBlockError": "Please enter an IP address contained in the block",
+  "reverseDnsDnsFieldLabel": "Reverse DNS",
+  "reverseDnsDnsError": "Please enter a valid domain name"
+}
