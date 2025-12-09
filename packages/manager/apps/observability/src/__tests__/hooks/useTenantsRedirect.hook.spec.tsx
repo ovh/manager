@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
@@ -16,13 +16,7 @@ import { Tenant } from '@/types/tenants.type';
 // Mock dependencies
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
-  useLocation: vi.fn(() => ({
-    pathname: '/metrics/tenants',
-    search: '',
-    hash: '',
-    state: null,
-    key: 'default',
-  })),
+  useLocation: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/tenants/useTenants.hook', () => ({
@@ -37,6 +31,15 @@ const mockNavigate = vi.fn();
 const mockUseTenants = vi.mocked(useTenants);
 const mockUseObservabilityServiceContext = vi.mocked(useObservabilityServiceContext);
 const mockUseNavigate = vi.mocked(useNavigate);
+const mockUseLocation = vi.mocked(useLocation);
+
+const createMockLocation = (pathname: string) => ({
+  pathname,
+  search: '',
+  hash: '',
+  state: null,
+  key: 'default',
+});
 
 // Test wrapper for React Query
 const createWrapper = () => {
@@ -90,6 +93,7 @@ describe('useTenantsRedirect', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockUseNavigate.mockReturnValue(mockNavigate);
+    mockUseLocation.mockReturnValue(createMockLocation(urls.tenants));
   });
 
   const mockService: ObservabilityService = {
@@ -141,12 +145,15 @@ describe('useTenantsRedirect', () => {
   });
 
   describe('when no services exist', () => {
-    it('should redirect to onboarding when no services exist', async () => {
+    it.each([
+      { services: [], description: 'empty array' },
+      { services: undefined, description: 'undefined' },
+    ])('should redirect to onboarding when services is $description', async ({ services }) => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService: undefined,
         isSuccess: true,
-        services: [],
+        services,
         setSelectedService: vi.fn(),
         isLoading: false,
         error: null,
@@ -176,113 +183,51 @@ describe('useTenantsRedirect', () => {
 
       expect(result.current.hasNoServices).toBe(true);
     });
-
-    it('should redirect to onboarding when services is undefined', async () => {
-      // Arrange
-      mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: undefined,
-        isSuccess: true,
-        services: undefined,
-        setSelectedService: vi.fn(),
-        isLoading: false,
-        error: null,
-      });
-
-      mockUseTenants.mockReturnValue(
-        createMockQueryResult({
-          data: undefined,
-          isLoading: false,
-          isSuccess: true,
-          isPending: false,
-          status: 'success',
-        }),
-      );
-
-      // Act
-      renderHook(() => useTenantsRedirect(), {
-        wrapper: createWrapper(),
-      });
-
-      // Assert
-      await waitFor(() => {
-        expect(mockNavigate).toHaveBeenCalledWith(urls.onboarding, {
-          replace: true,
-        });
-      });
-    });
   });
 
   describe('when services exist but no tenants', () => {
-    it('should redirect to tenants onboarding when no tenants exist', async () => {
-      // Arrange
-      mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: mockService,
-        isSuccess: true,
-        services: [mockService],
-        setSelectedService: vi.fn(),
-        isLoading: false,
-        error: null,
-      });
-
-      mockUseTenants.mockReturnValue(
-        createMockQueryResult({
-          data: [],
-          isLoading: false,
+    it.each([
+      { tenants: [], description: 'empty array' },
+      { tenants: undefined, description: 'undefined' },
+    ])(
+      'should redirect to tenants onboarding when tenants is $description',
+      async ({ tenants }) => {
+        // Arrange
+        mockUseObservabilityServiceContext.mockReturnValue({
+          selectedService: mockService,
           isSuccess: true,
-          isPending: false,
-          status: 'success',
-        }),
-      );
-
-      // Act
-      const { result } = renderHook(() => useTenantsRedirect(), {
-        wrapper: createWrapper(),
-      });
-
-      // Assert
-      await waitFor(() => {
-        expect(mockNavigate).toHaveBeenCalledWith(urls.tenantsOnboarding, {
-          replace: true,
-        });
-      });
-
-      expect(result.current.hasNoServices).toBe(false);
-      expect(result.current.hasNoTenants).toBe(true);
-    });
-
-    it('should redirect to tenants onboarding when tenants is undefined', async () => {
-      // Arrange
-      mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: mockService,
-        isSuccess: true,
-        services: [mockService],
-        setSelectedService: vi.fn(),
-        isLoading: false,
-        error: null,
-      });
-
-      mockUseTenants.mockReturnValue(
-        createMockQueryResult({
-          data: undefined,
+          services: [mockService],
+          setSelectedService: vi.fn(),
           isLoading: false,
-          isSuccess: true,
-          isPending: false,
-          status: 'success',
-        }),
-      );
-
-      // Act
-      renderHook(() => useTenantsRedirect(), {
-        wrapper: createWrapper(),
-      });
-
-      // Assert
-      await waitFor(() => {
-        expect(mockNavigate).toHaveBeenCalledWith(urls.tenantsOnboarding, {
-          replace: true,
+          error: null,
         });
-      });
-    });
+
+        mockUseTenants.mockReturnValue(
+          createMockQueryResult({
+            data: tenants,
+            isLoading: false,
+            isSuccess: true,
+            isPending: false,
+            status: 'success',
+          }),
+        );
+
+        // Act
+        const { result } = renderHook(() => useTenantsRedirect(), {
+          wrapper: createWrapper(),
+        });
+
+        // Assert
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith(urls.tenantsOnboarding, {
+            replace: true,
+          });
+        });
+
+        expect(result.current.hasNoServices).toBe(false);
+        expect(result.current.hasNoTenants).toBe(true);
+      },
+    );
   });
 
   describe('when services and tenants exist', () => {
@@ -321,6 +266,155 @@ describe('useTenantsRedirect', () => {
 
       expect(result.current.hasNoServices).toBe(false);
       expect(result.current.hasNoTenants).toBe(false);
+    });
+  });
+
+  describe('redirectable URLs', () => {
+    const redirectableUrls = [urls.tenants, urls.tenantsOnboarding, urls.onboarding];
+
+    it.each(redirectableUrls)(
+      'should redirect to onboarding from %s when no services exist',
+      async (pathname) => {
+        // Arrange
+        mockUseLocation.mockReturnValue(createMockLocation(pathname));
+        mockUseObservabilityServiceContext.mockReturnValue({
+          selectedService: undefined,
+          isSuccess: true,
+          services: [],
+          setSelectedService: vi.fn(),
+          isLoading: false,
+          error: null,
+        });
+
+        mockUseTenants.mockReturnValue(
+          createMockQueryResult({
+            data: undefined,
+            isLoading: false,
+            isSuccess: true,
+            isPending: false,
+            status: 'success',
+          }),
+        );
+
+        // Act
+        renderHook(() => useTenantsRedirect(), {
+          wrapper: createWrapper(),
+        });
+
+        // Assert
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith(urls.onboarding, {
+            replace: true,
+          });
+        });
+      },
+    );
+
+    it.each(redirectableUrls)(
+      'should redirect to tenants onboarding from %s when services exist but no tenants',
+      async (pathname) => {
+        // Arrange
+        mockUseLocation.mockReturnValue(createMockLocation(pathname));
+        mockUseObservabilityServiceContext.mockReturnValue({
+          selectedService: mockService,
+          isSuccess: true,
+          services: [mockService],
+          setSelectedService: vi.fn(),
+          isLoading: false,
+          error: null,
+        });
+
+        mockUseTenants.mockReturnValue(
+          createMockQueryResult({
+            data: [],
+            isLoading: false,
+            isSuccess: true,
+            isPending: false,
+            status: 'success',
+          }),
+        );
+
+        // Act
+        renderHook(() => useTenantsRedirect(), {
+          wrapper: createWrapper(),
+        });
+
+        // Assert
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith(urls.tenantsOnboarding, {
+            replace: true,
+          });
+        });
+      },
+    );
+
+    it.each(redirectableUrls)(
+      'should redirect to tenants listing from %s when both services and tenants exist',
+      async (pathname) => {
+        // Arrange
+        mockUseLocation.mockReturnValue(createMockLocation(pathname));
+        mockUseObservabilityServiceContext.mockReturnValue({
+          selectedService: mockService,
+          isSuccess: true,
+          services: [mockService],
+          setSelectedService: vi.fn(),
+          isLoading: false,
+          error: null,
+        });
+
+        mockUseTenants.mockReturnValue(
+          createMockQueryResult({
+            data: [mockTenant],
+            isLoading: false,
+            isSuccess: true,
+            isPending: false,
+            status: 'success',
+          }),
+        );
+
+        // Act
+        renderHook(() => useTenantsRedirect(), {
+          wrapper: createWrapper(),
+        });
+
+        // Assert
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith(urls.tenants, {
+            replace: true,
+          });
+        });
+      },
+    );
+
+    it('should not redirect when on a non-redirectable URL', () => {
+      // Arrange
+      mockUseLocation.mockReturnValue(createMockLocation(urls.tenantsCreation));
+      mockUseObservabilityServiceContext.mockReturnValue({
+        selectedService: mockService,
+        isSuccess: true,
+        services: [mockService],
+        setSelectedService: vi.fn(),
+        isLoading: false,
+        error: null,
+      });
+
+      mockUseTenants.mockReturnValue(
+        createMockQueryResult({
+          data: [mockTenant],
+          isLoading: false,
+          isSuccess: true,
+          isPending: false,
+          status: 'success',
+        }),
+      );
+
+      // Act
+      renderHook(() => useTenantsRedirect(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert
+      expect(mockNavigate).not.toHaveBeenCalled();
     });
   });
 
