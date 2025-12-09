@@ -53,7 +53,10 @@ export default function TransferToggleStatus({
         {t('domain_tab_general_information_transfer')}
         <Tooltip>
           <TooltipTrigger asChild>
-            <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
+            <Icon
+              className="pl-3 text-[--ods-color-primary-500]"
+              name={ICON_NAME.circleQuestion}
+            />
           </TooltipTrigger>
           <TooltipContent>{t(transferStatus.i18nkeyTooltip)}</TooltipContent>
         </Tooltip>

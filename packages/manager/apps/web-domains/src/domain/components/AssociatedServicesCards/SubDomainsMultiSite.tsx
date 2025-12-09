@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { Link, Text } from '@ovhcloud/ods-react';
+import { Icon, ICON_NAME, Link, Text } from '@ovhcloud/ods-react';
 import { useGetSubDomainsAndMultiSites } from '@/domain/hooks/data/query';
 
 interface SubDomainMultiSiteProps {
@@ -32,7 +32,9 @@ export default function SubDomainMultiSite({
               {allSubDomains.map((hosting: string) => {
                 return (
                   <li key={hosting} className="flex items-center gap-2">
-                    <Link href={`https://${hosting}`}>{hosting}</Link>
+                    <Link href={`https://${hosting}`} target="blank">
+                      {hosting} <Icon name={ICON_NAME.externalLink} />
+                    </Link>
                   </li>
                 );
               })}
