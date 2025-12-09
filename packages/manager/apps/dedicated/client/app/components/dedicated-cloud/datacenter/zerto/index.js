@@ -17,7 +17,6 @@ import {
 import zertoAlerts from './alerts';
 import zertoService from './dedicatedCloud-datacenter-zerto.service';
 import component from './dedicatedCloud-datacenter-zerto.component';
-import onPremiseTypeConfiguration from './configuration/onPremise';
 import ovhTypeConfiguration from './configuration/ovh';
 import summary from './summary';
 import listing from './listing';
@@ -41,7 +40,6 @@ angular
     'pascalprecht.translate',
     zertoAlerts,
     zertoService,
-    onPremiseTypeConfiguration,
     ovhTypeConfiguration,
     summary,
     listing,
