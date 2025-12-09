@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ import {
   ButtonType,
   PageLocation,
   PageType,
+  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
@@ -39,6 +40,8 @@ export const ConfigureOrganization: React.FC = () => {
   const { platformId } = useParams();
   const navigate = useNavigate();
   const { data: organizations, isLoading } = useOrganizations({ gcTime: 0 });
+  const context = useContext(ShellContext);
+  const user = context.environment.getUser();
   const next = (organizationId: string) => {
     navigate(`../domain?organization=${organizationId}`);
   };
@@ -55,7 +58,7 @@ export const ConfigureOrganization: React.FC = () => {
     formState: { isDirty, isValid, errors },
   } = useForm({
     defaultValues: {
-      name: '',
+      name: user?.organisation ?? user?.name ?? '',
     },
     mode: 'onTouched',
     resolver: zodResolver(simpleOrganizationSchema),
