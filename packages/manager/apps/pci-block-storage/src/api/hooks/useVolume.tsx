@@ -38,6 +38,7 @@ import {
   mapVolumeType,
   paginateResults,
   sortResults,
+  TErrors,
   TVolumeAttach,
   TVolumeEncryption,
   TVolumePricing,
@@ -347,10 +348,14 @@ export const useAddVolume = ({
   const { data: catalog } = useVolumeCatalog(projectId);
 
   const mutationFn = useCallback<(volumeToAdd: TVolumeToAdd) => Promise<void>>(
-    (volumeToAdd) =>
-      catalog
-        ? addVolume(mapVolumeToAdd(projectId, catalog)(volumeToAdd))
-        : Promise.reject(),
+    (volumeToAdd) => {
+      const volumeType = mapVolumeToAdd(projectId, catalog)(volumeToAdd);
+      if (volumeType === TErrors.VOLUME_TYPE_NOT_FOUND)
+        return Promise.reject(new Error('Volume type not found'));
+      return catalog
+        ? addVolume(volumeType)
+        : Promise.reject(new Error('No catalog'));
+    },
     [catalog, projectId],
   );
 
@@ -390,12 +395,18 @@ export const useRetypeVolume = ({
   const mutationFn = useCallback<
     (newVolumeType: TVolumeToRetype) => Promise<void>
   >(
-    (newVolumeType) =>
-      catalog
-        ? retypeVolume(
-            mapVolumeToRetype(projectId, volume, catalog)(newVolumeType),
-          )
-        : Promise.reject(new Error('Catalog not found')),
+    (newVolumeType) => {
+      const volumeType = mapVolumeToRetype(
+        projectId,
+        volume,
+        catalog,
+      )(newVolumeType);
+      if (volumeType === TErrors.VOLUME_TYPE_NOT_FOUND)
+        return Promise.reject(new Error('Volume type not found'));
+      return catalog
+        ? retypeVolume(volumeType)
+        : Promise.reject(new Error('Catalog not found'));
+    },
     [catalog, projectId],
   );
 

@@ -264,13 +264,13 @@ const getVolumeTypeName = (
   region: string,
   type: string,
   encryptionType: EncryptionType,
-) =>
+): string | undefined =>
   catalog.models
     .find((m) => m.name === type)
-    .pricings.find(
+    ?.pricings?.find(
       (p) =>
         p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
-    ).specs.name;
+    )?.specs?.name;
 
 export type TVolumeToAdd = {
   name: string;
@@ -281,6 +281,10 @@ export type TVolumeToAdd = {
   availabilityZone: string | null;
 };
 
+export enum TErrors {
+  VOLUME_TYPE_NOT_FOUND = 'volume_not_found',
+}
+
 export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   name,
   region,
@@ -288,8 +292,10 @@ export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   type,
   availabilityZone,
   encryptionType,
-}: TVolumeToAdd): AddVolumeProps => {
+}: TVolumeToAdd): AddVolumeProps | TErrors.VOLUME_TYPE_NOT_FOUND => {
   const typeName = getVolumeTypeName(catalog, region, type, encryptionType);
+
+  if (!typeName) return TErrors.VOLUME_TYPE_NOT_FOUND;
 
   return {
     projectId,
@@ -362,8 +368,12 @@ export const mapVolumeToRetype = (
   projectId: string,
   volume: TAPIVolume,
   catalog: TVolumeCatalog,
-) => ({ type }: TVolumeToRetype): TRetypeVolumeProps => {
+) => ({
+  type,
+}: TVolumeToRetype): TRetypeVolumeProps | TErrors.VOLUME_TYPE_NOT_FOUND => {
   const typeName = getVolumeTypeName(catalog, volume.region, type, null);
+
+  if (!typeName) return TErrors.VOLUME_TYPE_NOT_FOUND;
 
   return {
     projectId,
