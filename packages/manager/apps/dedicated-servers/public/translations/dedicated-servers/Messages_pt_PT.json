@@ -35,5 +35,5 @@
   "server_display_vrack": "vRack",
   "guide_first_step_label": "Primeiros passos com um servidor dedicado",
   "guide_secure_label": "Proteger um servidor dedicado",
-  "guide_ssh_connections_label": "Como começar com as ligações SSH"
+  "guide_ssh_connections_label": "Introdução às ligações SSH"
 }
