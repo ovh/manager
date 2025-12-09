@@ -1,11 +1,11 @@
 {
-  "kube_list_title": "Kubernetes",
+  "kube_list_title": "Managed Kubernetes Service",
   "kube_list_name": "Cluster name",
   "kube_list_id": "ID",
   "kube_list_region": "Region",
   "kube_list_version": "Version",
   "kube_list_cluster_manage": "Manage cluster",
-  "kube_list_cluster_create": "Create a Kubernetes cluster",
+  "kube_list_cluster_create": "Create an MKS cluster",
   "kube_list_error": "An error has occurred loading your clusters.",
   "kube_common_save": "Save",
   "kube_common_cancel": "Cancel",
