@@ -13,5 +13,5 @@
   "server_ola_terminate": "OLA kündigen",
   "server_ola_mode_vrack_aggregation": "Private Aggregation",
   "server_ola_mode_default": "Standard",
-  "server_ola_alert_new_lacp_rule": "OVHcloud führt am 25. November 2025 ein Update des LACP-Aggregationsmodells ein. Der Wechsel in den OLA-Modus oder umgekehrt oder die Neukonfiguration der Aggregation wird das neue Verhalten anwenden. Überprüfen Sie bei Bedarf die LACP- und MAC-Einstellungen Ihres Betriebssystems, um sich an dieses Update anzupassen. Zusätzliche Informationen sind in dieser Dokumentation verfügbar."
+  "server_ola_alert_new_lacp_rule": "OVHcloud führt ab 25. November 2025 eine Aktualisierung des LACP-Aggregationsmodells ein. Beim Wechsel in den OLA-Modus oder umgekehrt oder durch Neukonfiguration der Aggregation wird das neue Verhalten angewendet. Überprüfen Sie bei Bedarf die LACP- und MAC-Einstellungen Ihres Betriebssystems, um sich an dieses Update anzupassen. Weitere Informationen finden Sie in dieser Dokumentation."
 }
