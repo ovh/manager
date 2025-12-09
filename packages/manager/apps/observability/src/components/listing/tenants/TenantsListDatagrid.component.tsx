@@ -184,6 +184,7 @@ export default function TenantsListDatagrid({
   return (
     <React.Suspense>
       <Datagrid
+        key={filteredTenants.length}
         topbar={topbar}
         columns={columns}
         columnVisibility={columnVisibilityProps}
