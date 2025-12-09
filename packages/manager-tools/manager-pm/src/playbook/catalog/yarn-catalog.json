@@ -49,7 +49,6 @@
   "packages/manager/apps/pci-quota",
   "packages/manager/apps/pci-rancher",
   "packages/manager/apps/pci-savings-plan",
-  "packages/manager/apps/pci-users",
   "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-workflow",
