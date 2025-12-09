@@ -8,6 +8,13 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { GUIDE_LIST, useMetricsGuides } from '@/hooks/guide/useMetricsGuides.hook';
 
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const React = await import('react');
+  return {
+    ShellContext: React.createContext({}),
+  };
+});
+
 describe('useMetricsGuides', () => {
   const mockGetEnvironment = vi.fn();
 
