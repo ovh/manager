@@ -80,7 +80,7 @@ export default function DnssecToggleStatus({
             }
             checked={
               dnssecStatus?.status === DnssecStatusEnum.ENABLED ||
-              dnssecStatus?.status === DnssecStatusEnum.ENABLE_IN_PROGRESS
+              dnssecStatus?.status === DnssecStatusEnum.DISABLE_IN_PROGRESS
             }
             onCheckedChange={() => setDnssecModalOpened(!dnssecModalOpened)}
             data-testid={'toggle'}
