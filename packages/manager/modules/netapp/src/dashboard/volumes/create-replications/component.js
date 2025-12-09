@@ -7,6 +7,7 @@ export default {
     goToOrder: '<',
     goToVolumes: '<',
     postReplications: '<',
+    isNetworkAvailable: '<',
   },
   template,
   controller,

@@ -39,8 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToVolumes: /* @ngInject */ ($state, Alerter, storage) => (
         message = false,
         type = 'success',
+        forceReload = false,
       ) => {
-        const reload = message && type === 'success';
+        const reload = forceReload || (message && type === 'success');
         const promise = $state.go(
           'netapp.dashboard.volumes',
           {
@@ -177,7 +178,7 @@ export default /* @ngInject */ ($stateProvider) => {
             `/storage/netapp/${serviceName}/shareReplicationServicesCompatibility?compatibleOnly=true`,
           )
           .then(({ data = [] }) => data)
-          .catch(() => null),
+          .catch(() => []),
     },
     atInternet: {
       ignore: true,
