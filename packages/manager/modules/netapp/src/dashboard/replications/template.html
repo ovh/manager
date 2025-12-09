@@ -1,16 +1,10 @@
-<section
-    ng-repeat="(type, rows) in $ctrl.replications track by $index"
-    ng-if="type === $ctrl.ongoingStatus || type !== $ctrl.ongoingStatus && rows.length"
->
+<section ng-if="$ctrl.hasReplications">
     <h1
         class="oui-header__title mb-3"
-        data-translate="{{'netapp_replications_title_' + type}}"
+        data-translate="netapp_replications_title"
     ></h1>
-    <p
-        ng-if="type === $ctrl.ongoingStatus"
-        data-translate="netapp_replications_information"
-    ></p>
-    <oui-datagrid data-rows="rows">
+    <p data-translate="netapp_replications_information"></p>
+    <oui-datagrid data-rows="$ctrl.replications">
         <oui-datagrid-column
             data-title=":: 'netapp_replications_source_efs_id' | translate"
             data-property="source"
@@ -93,7 +87,7 @@
 <section ng-if="!$ctrl.hasReplications">
     <h1
         class="oui-header__title mb-3"
-        data-translate="{{'netapp_replications_title_no_replication'}}"
+        data-translate="netapp_replications_title_no_replication"
     ></h1>
     <p data-translate="netapp_replications_information"></p>
 </section>

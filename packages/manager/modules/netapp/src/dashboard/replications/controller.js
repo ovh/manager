@@ -1,15 +1,14 @@
-import { REPLICATIONS_STATUS, ACCEPTED_REPLICATION_STATE } from './constants';
+import { ACCEPTED_REPLICATION_STATE } from './constants';
 
 export default class OvhManagerNetAppReplicationsCtrl {
   /* @ngInject */
   constructor($translate) {
     this.$translate = $translate;
-    this.ongoingStatus = REPLICATIONS_STATUS.ONGOING;
     this.hasReplications = false;
   }
 
   $onInit() {
-    this.hasReplications = !!Object.keys(this.replications).length;
+    this.hasReplications = !!this.replications.length;
   }
 
   status = {

@@ -1,4 +1,4 @@
-import { REPLICATIONS_STATUS, ACCEPTED_REPLICATION_STATE } from './constants';
+import { ACCEPTED_REPLICATION_STATE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.replications', {
@@ -50,17 +50,12 @@ export default /* @ngInject */ ($stateProvider) => {
                     return ACCEPTED_REPLICATION_STATE.OUT_OF_SYNC;
                   return '';
                 };
-                const shareReplications = data.map((replication) => ({
+                return data.map((replication) => ({
                   ...replication,
                   ...(replication.status === 'accepted' && {
                     status: getAcceptedStatus(replication.id),
                   }),
                 }));
-                return Object.groupBy(shareReplications, ({ status }) =>
-                  status === REPLICATIONS_STATUS.COMPLETED
-                    ? REPLICATIONS_STATUS.COMPLETED
-                    : REPLICATIONS_STATUS.ONGOING,
-                );
               }),
           ),
       goToVolumeDetails: /* @ngInject */ ($state, serviceName) => (volumeId) =>
