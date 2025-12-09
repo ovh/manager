@@ -98,7 +98,6 @@ export default function DetacheDomainModal() {
           {t('hosting_tab_DOMAINS_configuration_home')}
         </Text>
         <div className="space-x-2">
-          <Input type="text" name="domain" value={domain} disabled className="w-11/12" />
           <Input type="text" name="domain" value="./" disabled className="w-1/12" />
           <Input
             type="text"
