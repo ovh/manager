@@ -49,7 +49,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
   const { serviceName } = useParams();
 
   const { t } = useTranslation(['multisite', 'dashboard', NAMESPACES.COUNTRIES]);
-  const hostingService = useGetHostingService(serviceName);
+  const { data } = useGetHostingService(serviceName);
 
   return (
     <>
@@ -110,7 +110,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 data-testid="ip"
                 disabled={!controlValues.ip}
                 value={field.value ? [field.value] : []}
-                items={hostingService?.data?.countriesIp?.map((item) => ({
+                items={data?.countriesIp?.map((item) => ({
                   label: item.country,
                   options: [
                     {
@@ -172,6 +172,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                 <Checkbox
                   name="cdn"
                   checked={field.value}
+                  disabled={!data?.hasCdn}
                   onCheckedChange={() => field.onChange(!field.value)}
                 >
                   <CheckboxControl />
