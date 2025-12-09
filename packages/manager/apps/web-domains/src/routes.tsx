@@ -6,8 +6,8 @@ import NotFound from '@/pages/404';
 
 const routes = (
   <>
-    {AlldomRoutes}
     {DomainRoutes}
+    {AlldomRoutes}
     <Route path="*" element={<NotFound />} />
   </>
 );

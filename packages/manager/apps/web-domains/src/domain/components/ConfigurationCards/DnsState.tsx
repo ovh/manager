@@ -129,6 +129,18 @@ export default function DnsState({
               }}
               components={{ strong: <strong /> }}
             />
+          ) : anycastOption && !restoreAnycast ? (
+            <Trans
+              t={t}
+              i18nKey="domain_dns_table_renew_anycast"
+              values={{
+                expirationDate: formatDate({
+                  date: anycastOption?.expirationDate,
+                  format: 'P',
+                }),
+              }}
+              components={{ strong: <strong /> }}
+            />
           ) : (
             t(dnsState.notes)
           )}
