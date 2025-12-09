@@ -16,6 +16,7 @@ type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   locked?: boolean;
   horizontal?: boolean;
   hideBadges?: boolean;
+  disabled?: boolean;
 };
 
 export const VolumeModelTilesInput = ({
@@ -26,6 +27,7 @@ export const VolumeModelTilesInput = ({
   locked = false,
   horizontal = false,
   hideBadges = false,
+  disabled = false,
 }: Props) => {
   const { t } = useTranslation(['add', 'common']);
   const { formatBytes } = useBytes();
@@ -106,6 +108,16 @@ export const VolumeModelTilesInput = ({
     [volumeModels, value],
   );
 
+  const disableAllProps = useCallback(
+    (e: typeof volumeTypes[number] & { disabled: boolean }) => {
+      // We can't directly disable the input tiles. In waiting for changing the lib used, we do this instead.
+      // eslint-disable-next-line no-param-reassign
+      e.disabled = disabled;
+      return e;
+    },
+    [disabled],
+  );
+
   return (
     <div
       className={clsx(
@@ -123,6 +135,7 @@ export const VolumeModelTilesInput = ({
         onChange={(e) => onChange(e)}
         locked={locked}
         horizontal={horizontal}
+        inputProps={disableAllProps}
       />
     </div>
   );

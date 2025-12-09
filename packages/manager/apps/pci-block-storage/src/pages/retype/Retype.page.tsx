@@ -103,7 +103,13 @@ const RetypePage = () => {
       );
     }
 
-    return <Retype volumeModelData={volumeModelData} />;
+    return (
+      <Retype
+        projectId={projectId}
+        volumeId={volumeId}
+        volumeModelData={volumeModelData}
+      />
+    );
   }, [volumeModelData, isPending, instances]);
 
   return (

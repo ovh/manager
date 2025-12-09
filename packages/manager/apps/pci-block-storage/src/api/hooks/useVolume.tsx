@@ -16,6 +16,7 @@ import {
   detachVolume,
   getAllVolumes,
   getVolume,
+  retypeVolume,
   TAPIVolume,
   updateVolume,
 } from '@/api/data/volume';
@@ -33,15 +34,18 @@ import {
   mapVolumeStatus,
   mapVolumeToAdd,
   mapVolumeToEdit,
+  mapVolumeToRetype,
   mapVolumeType,
   paginateResults,
   sortResults,
+  TErrors,
   TVolumeAttach,
   TVolumeEncryption,
   TVolumePricing,
   TVolumeRegion,
   TVolumeStatus,
   TVolumeToAdd,
+  TVolumeToRetype,
   TVolumeType,
 } from '@/api/select/volume';
 
@@ -344,10 +348,14 @@ export const useAddVolume = ({
   const { data: catalog } = useVolumeCatalog(projectId);
 
   const mutationFn = useCallback<(volumeToAdd: TVolumeToAdd) => Promise<void>>(
-    (volumeToAdd) =>
-      catalog
-        ? addVolume(mapVolumeToAdd(projectId, catalog)(volumeToAdd))
-        : Promise.reject(),
+    (volumeToAdd) => {
+      const volumeType = mapVolumeToAdd(projectId, catalog)(volumeToAdd);
+      if (volumeType === TErrors.VOLUME_TYPE_NOT_FOUND)
+        return Promise.reject(new Error('Volume type not found'));
+      return catalog
+        ? addVolume(volumeType)
+        : Promise.reject(new Error('No catalog'));
+    },
     [catalog, projectId],
   );
 
@@ -364,6 +372,60 @@ export const useAddVolume = ({
 
   return {
     addVolume: mutation.mutate,
+    ...mutation,
+  };
+};
+
+type UseRetypeVolumeProps = {
+  projectId: string;
+  volumeId: string;
+  onSuccess?: (originalVolume?: TAPIVolume) => void;
+  onError?: (cause: Error) => void;
+};
+
+export const useRetypeVolume = ({
+  projectId,
+  volumeId,
+  onError,
+  onSuccess,
+}: UseRetypeVolumeProps) => {
+  const { data: catalog } = useVolumeCatalog(projectId);
+  const { data: volume } = useVolume(projectId, volumeId);
+
+  const mutationFn = useCallback<
+    (newVolumeType: TVolumeToRetype) => Promise<void>
+  >(
+    (newVolumeType) => {
+      const volumeType = mapVolumeToRetype(
+        projectId,
+        volume,
+        catalog,
+      )(newVolumeType);
+      if (volumeType === TErrors.VOLUME_TYPE_NOT_FOUND)
+        return Promise.reject(new Error('Volume type not found'));
+      return catalog
+        ? retypeVolume(volumeType)
+        : Promise.reject(new Error('Catalog not found'));
+    },
+    [catalog, projectId],
+  );
+
+  const mutation = useMutation({
+    mutationFn,
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getVolumeQueryKey(projectId, volumeId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getVolumesQueryKey(projectId),
+      });
+      onSuccess(volume);
+    },
+  });
+
+  return {
+    retypeVolume: mutation.mutate,
     ...mutation,
   };
 };
