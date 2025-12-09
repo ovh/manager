@@ -395,7 +395,7 @@ export const useRetypeVolume = ({
         ? retypeVolume(
             mapVolumeToRetype(projectId, volume, catalog)(newVolumeType),
           )
-        : Promise.reject(),
+        : Promise.reject(new Error('Catalog not found')),
     [catalog, projectId],
   );
 
@@ -409,7 +409,7 @@ export const useRetypeVolume = ({
       await queryClient.invalidateQueries({
         queryKey: getVolumesQueryKey(projectId),
       });
-      return onSuccess(volume);
+      onSuccess(volume);
     },
   });
 
