@@ -83,3 +83,24 @@ export type TAddSshKeyForm = z.infer<
 >;
 
 export const networkIdSchema = z.string().nullable();
+
+export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
+export const instanceCreationSchema = z.object({
+  name: nameSchema,
+  quantity: quantitySchema,
+  deploymentModes: deploymentModesSchema,
+  continent: continentSelectionSchema,
+  flavorCategory: flavorCategorySchema,
+  flavorType: flavorTypeSchema,
+  flavorId: flavorIdSchema,
+  macroRegion: macroRegionSelectionSchema,
+  microRegion: microRegionSelectionSchema,
+  availabilityZone: availabilityZoneSelectionSchema,
+  distributionImageType: distributionImageTypeSchema,
+  distributionImageVariantId: distributionImageVariantIdSchema,
+  distributionImageVersion: distributionImageVersionSchema,
+  distributionImageOsType: distributionImageOsTypeSchema,
+  sshKeyId: sshKeyIdSchema,
+  newSshPublicKey: sshPublicKeySchema.nullable(),
+  networkId: networkIdSchema,
+});

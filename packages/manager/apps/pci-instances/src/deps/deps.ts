@@ -3,7 +3,7 @@ import { TInstancesCatalogPort } from '@/domain/port/instancesCatalog/left/port'
 import { TConfigurationPort } from '@/domain/port/configuration/left/port';
 import { configurationAdapter } from '@/adapters/tanstack/configuration/left/configurationAdapter';
 import { TInstancePort } from '@/domain/port/instance/port';
-import { instanceAdapter } from '@/adapters/tanstack/instance/left/instanceAdapter';
+import { instanceAdapter } from '@/adapters/tanstack/instances/right/instanceAdapter';
 
 export type Deps = {
   instancesCatalogPort: TInstancesCatalogPort;

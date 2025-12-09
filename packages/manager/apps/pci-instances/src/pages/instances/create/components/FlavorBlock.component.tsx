@@ -14,9 +14,9 @@ import {
 } from '../view-models/categoriesTypesViewModel';
 import { deps } from '@/deps/deps';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../CreateInstance.page';
 import { FlavorHelper } from './flavor/FlavorHelper.component';
 import { FlavorSelection } from '@/pages/instances/create/components/flavor/FlavorSelection.component';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 const FlavorBlock: FC = () => {
   const { t } = useTranslation('creation');
@@ -47,7 +47,7 @@ const FlavorBlock: FC = () => {
         tempor incididunt ut labore et dolore magna aliqua. enim ad. (Not
         mandatory) Si besoin d’un texte explicatif/consigne de section...
       </Text>
-      <div className="flex justify-between mt-6 flex-wrap">
+      <div className="mt-6 flex flex-wrap justify-between">
         <div className="flex gap-x-4 gap-y-6">
           {categories.length && (
             <FlavorCategoryTypeSelect items={categories} option="category" />

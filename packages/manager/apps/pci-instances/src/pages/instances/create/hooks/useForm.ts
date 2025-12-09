@@ -3,7 +3,6 @@ import { useForm as useReactHookForm } from 'react-hook-form';
 import { deps } from '@/deps/deps';
 import { nameDefaultValue } from '../components/Name.component';
 import { quantityDefaultValue } from '../components/QuantitySelector.component';
-import { instanceCreationSchema } from '../CreateInstance.page';
 import { selectContinent } from '../view-models/continentsViewModel';
 import { selectLocalizations } from '../view-models/localizationsViewModel';
 import { TDeploymentMode } from '@/types/instance/common.type';
@@ -15,6 +14,7 @@ import { selectFlavors } from '../view-models/flavorsViewModel';
 import { selectImages } from '../view-models/imagesViewModel';
 import { useMemo } from 'react';
 import { mockedPrivateNetworks } from '@/__mocks__/instance/constants';
+import { instanceCreationSchema } from '../CreateInstance.schema';
 
 const preselectedOs = 'linux';
 // eslint-disable-next-line max-lines-per-function

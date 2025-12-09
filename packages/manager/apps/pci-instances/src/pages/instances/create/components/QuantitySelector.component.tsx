@@ -10,9 +10,11 @@ import {
   QuantityInput,
   Text,
 } from '@ovhcloud/ods-react';
-import { quantityRules } from '@/pages/instances/create/CreateInstance.schema';
+import {
+  quantityRules,
+  TInstanceCreationForm,
+} from '@/pages/instances/create/CreateInstance.schema';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import { TInstanceCreationForm } from '../CreateInstance.page';
 
 export const quantityDefaultValue = 1;
 
@@ -38,11 +40,11 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
   });
 
   return (
-    <article className="flex flex-col w-full mb-8">
+    <article className="mb-8 flex w-full flex-col">
       <Text preset="heading-2">
         {t('pci_instances_creation_quantity_title')}
       </Text>
-      <div className="mt-4 pt-3 pb-4">
+      <div className="mt-4 pb-4 pt-3">
         <FormField>
           <FormFieldLabel>
             {t('pci_instances_creation_quantity_label')}

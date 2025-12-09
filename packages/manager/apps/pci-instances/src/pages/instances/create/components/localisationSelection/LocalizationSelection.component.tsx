@@ -14,7 +14,6 @@ import { deps } from '@/deps/deps';
 import { selectLocalizations } from '../../view-models/localizationsViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   isMicroRegionAvailable,
@@ -23,6 +22,7 @@ import {
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { ContinentSelection } from '../continentSelection/ContinentSelection.component';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 export const LocalizationSelection = () => {
   const projectId = useProjectId();
@@ -127,7 +127,7 @@ export const LocalizationSelection = () => {
 
   return (
     <section>
-      <div className="flex justify-between pt-5 pb-5">
+      <div className="flex justify-between py-5">
         <ContinentSelection />
         {hasMoreLocalizations && (
           <Checkbox className="self-end" onCheckedChange={handleDisplayChange}>
