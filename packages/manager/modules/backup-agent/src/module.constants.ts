@@ -11,5 +11,4 @@ export const FEATURE_AVAILABILITY = Object.freeze({
 export const OS_LABELS = {
   LINUX: 'Linux',
   WINDOWS: 'Windows',
-  MAC: 'Mac',
 };
