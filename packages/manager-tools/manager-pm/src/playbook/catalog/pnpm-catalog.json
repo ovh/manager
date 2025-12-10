@@ -8,5 +8,6 @@
   "packages/manager/apps/pci-block-storage",
   "packages/manager/apps/pci-vouchers",
   "packages/manager/apps/pci-users",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/apps/pci-file-storage"
 ]
