@@ -10,6 +10,8 @@ import { DashboardProps } from './Dashboard.props';
 
 export const Dashboard = <TData,>({
   charts: widgets,
+  onRefresh,
+  onCancel,
 }: Readonly<DashboardProps<TData>>): JSX.Element => {
   const { state, setState } = useDashboardContext();
 
@@ -27,6 +29,8 @@ export const Dashboard = <TData,>({
           isLoading={isDashboardLoading}
           state={state}
           onStateChange={onStateChange}
+          onRefresh={onRefresh}
+          onCancel={onCancel}
         />
       </div>
       <div

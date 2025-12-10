@@ -1,16 +1,12 @@
 {
-    "id": "11111111-1111-1111-1111-111111111111",
+    "id": "11111111-1111-1111-1111-111111111105",
     "currentState": {
         "chart": {
-            "id": "chart-1",
-            "title": "Disk Read Bytes",
-            "unit": "KiB/s",
-            "colspan": 2,
-            "tooltip": {
-                "title": "Metrics Description",
-                "content": "Average number of read bytes over a specific period of time"
-            },
-            "query": "prometheus_tsdb_head_chunks_storage_size_bytes",
+            "id": "libvirtd_domain_cpu_time",
+            "title": "CPU utilization",
+            "unit": "percent",
+            "colspan": 2,            
+            "query": "ovhcloud_libvirtd_domain_cpu_time_ns{resource_urn=<resource_urn>}",
             "chart": {
                 "type": "TimeSeries",
                 "curveType": "linear",
@@ -27,7 +23,7 @@
                 }
             }
         },
-        "displayName": "My kind 1",        
-        "name": "mykind1"
+        "displayName": "My kind 4",
+        "name": "mykind4"
     }
 }

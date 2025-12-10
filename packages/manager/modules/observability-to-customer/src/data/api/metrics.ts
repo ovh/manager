@@ -1,6 +1,6 @@
 import apiClient from '@ovh-ux/manager-core-api';
 
-import { fetchPrometheusData as requestMetricData } from '@/data/api/prometheusClient';
+import { fetchPrometheusData as requestMetricData } from '@/data/api/metricsClient';
 import {
   ObservabilityMetricDataParams,
   ObservabilityMetricKindParams,

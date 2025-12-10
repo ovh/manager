@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 
+import { useQueryClient } from '@tanstack/react-query';
+
 import { ChartWidgetWithData } from '@/components/widget/ChartWidgetWithData.type';
 import { useDashboardContext } from '@/contexts';
 import { useDashboardConfig, useMultipleChartData } from '@/data/hooks/dashboards';
@@ -15,6 +17,7 @@ import { ChartQueryResult } from '@/types/ChartQueryResult.type';
  *   - configLoading: Boolean indicating if dashboard config is still loading
  */
 export const useDashboardData = <TData>(resourceName: string, productType: string) => {
+  const queryClient = useQueryClient();
   const { state: dashboardState } = useDashboardContext();
   const { startDateTime, endDateTime, selectedTimeOption, refreshInterval } = dashboardState;
 
@@ -46,5 +49,20 @@ export const useDashboardData = <TData>(resourceName: string, productType: strin
     });
   }, [dashboard, chartQueries]);
 
-  return { charts, configLoading };
+  const refetchAll = () => {
+    chartQueries.forEach((query) => {
+      if (query && 'refetch' in query && typeof query.refetch === 'function') {
+        void query.refetch();
+      }
+    });
+  };
+
+  const cancelAll = () => {
+    void queryClient.cancelQueries({
+      queryKey: ['chartData'],
+      exact: false,
+    });
+  };
+
+  return { charts, configLoading, refetchAll, cancelAll };
 };

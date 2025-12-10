@@ -37,7 +37,7 @@ const DashboardWidgetModal = <TData,>() => {
 
   const { startDateTime, endDateTime, selectedTimeOption, refreshInterval } = state;
 
-  const { isLoading, config, data } = useChartWithData<TData>({
+  const { isLoading, config, data, refetch, cancel } = useChartWithData<TData>({
     chartId: widgetId as string,
     resourceName: state.resourceName ?? '',
     productType: state.productType ?? '',
@@ -84,7 +84,7 @@ const DashboardWidgetModal = <TData,>() => {
             <Text preset={TEXT_PRESET.heading3}>{title}</Text>
           </div>
           <div className="ml-auto flex justify-end gap-4">
-            <TimeControls isLoading={isLoading} state={state} onStateChange={onStateChange} />
+            <TimeControls isLoading={isLoading} state={state} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
           </div>
         </div>
         <ModalBody>

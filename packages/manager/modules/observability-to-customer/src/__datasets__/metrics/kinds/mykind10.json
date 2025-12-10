@@ -1,16 +1,12 @@
 {
-    "id": "11111111-1111-1111-1111-111111111111",
+    "id": "11111111-1111-1111-1111-111111111110",
     "currentState": {
         "chart": {
-            "id": "chart-1",
-            "title": "Disk Read Bytes",
-            "unit": "KiB/s",
+            "id": "libvirtd_domain_balloon_current",
+            "title": "Memory utilization",
+            "unit": "percent",
             "colspan": 2,
-            "tooltip": {
-                "title": "Metrics Description",
-                "content": "Average number of read bytes over a specific period of time"
-            },
-            "query": "prometheus_tsdb_head_chunks_storage_size_bytes",
+            "query": "ovhcloud_libvirtd_domain_balloon_current_bytes{resource_urn=<resource_urn>}",
             "chart": {
                 "type": "TimeSeries",
                 "curveType": "linear",
@@ -27,7 +23,7 @@
                 }
             }
         },
-        "displayName": "My kind 1",        
-        "name": "mykind1"
+        "displayName": "My kind 4",
+        "name": "mykind4"
     }
 }

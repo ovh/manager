@@ -3,6 +3,8 @@ import { useChartData, useDashboardConfig } from '@/data/hooks';
 import { RequestPayload } from '@/types/RequestPayload.type';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 import { getWindowSecAndStep } from '@/utils/dateTimeUtils';
+import { useQueryClient } from '@tanstack/react-query';
+import getChartDataQueryKey from './getChartDataQueryKey';
 
 type UseChartWithDataParams = {
   chartId: string;
@@ -23,6 +25,9 @@ export const useChartWithData = <TData>({
   selectedTimeOption,
   refreshInterval,
 }: UseChartWithDataParams) => {
+
+  const queryClient = useQueryClient();
+
   const {
     data: dashboard,
     isLoading: configLoading,
@@ -47,12 +52,18 @@ export const useChartWithData = <TData>({
   };
 
   // fetch chart data
-  const {
+  const {    
     data: chartData,
     isLoading: dataLoading,
     error: dataError,
     isError: isDataError,
+    refetch,    
   } = useChartData<TData>(requestPayload, refreshInterval);
+
+  const cancel = () => queryClient.cancelQueries({
+    queryKey: getChartDataQueryKey(requestPayload),
+    exact: true,
+  });
 
   const isLoading = configLoading || dataLoading;
 
@@ -69,5 +80,7 @@ export const useChartWithData = <TData>({
     dataError,
     isConfigError,
     isDataError,
+    refetch,
+    cancel,
   };
 };

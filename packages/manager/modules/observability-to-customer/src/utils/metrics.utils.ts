@@ -1,4 +1,4 @@
-import { PrometheusResult } from '@/data/api/prometheusClient';
+import { PrometheusResult } from '@/data/api/metricsClient';
 import { MetricData } from '@/types/observability.type';
 
 // TODO: update the chart adapter when wired to the real metric APIs.

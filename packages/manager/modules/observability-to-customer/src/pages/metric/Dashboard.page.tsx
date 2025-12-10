@@ -21,7 +21,7 @@ const DashboardPage = () => {
   const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
   const { state } = useDashboardContext();
-  const { charts, configLoading } = useDashboardData<DataValueType>(
+  const { charts, configLoading, refetchAll, cancelAll } = useDashboardData<DataValueType>(
     state.resourceName ?? '',
     state.productType ?? '',
   );
@@ -40,7 +40,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <Dashboard charts={charts} />
+      <Dashboard charts={charts} onRefresh={refetchAll} onCancel={cancelAll} />
       <Outlet />
     </>
   );
