@@ -74,6 +74,7 @@ export default function ServiceList() {
   const {
     flattenData: domainResources,
     isLoading,
+    isFetching,
     isError,
     filters,
     error,
@@ -198,7 +199,7 @@ export default function ServiceList() {
       )}
       <div data-testid="datagrid">
         <Datagrid
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
           columns={domainColumns}
           items={domainResources || []}
           totalItems={totalCount || 0}
