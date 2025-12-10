@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.14.0...@ovh-ux/ovh-product-icons@0.14.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/ovh-product-icons
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.13.10...@ovh-ux/ovh-product-icons@0.14.0) (2025-12-05)
 
 

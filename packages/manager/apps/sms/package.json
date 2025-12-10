@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "9.0.72",
+  "version": "9.0.73",
   "private": true,
   "description": "SMS standalone application.",
   "repository": {
@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.6",
-    "@ovh-ux/manager-config": "^8.8.1",
-    "@ovh-ux/manager-core": "^13.3.2",
+    "@ovh-ux/manager-config": "^8.8.2",
+    "@ovh-ux/manager-core": "^13.3.3",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
     "@ovh-ux/manager-sms": "^8.19.7",
     "@ovh-ux/manager-telecom-styles": "^4.8.7",
-    "@ovh-ux/ng-at-internet": "^6.0.38",
+    "@ovh-ux/ng-at-internet": "^6.0.39",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.5",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.6",

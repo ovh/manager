@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.0...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.1) (2025-12-10)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix display of logs notifications ([2c63c38](https://github.com/ovh/manager/commit/2c63c38da66b2a5264d3e41f364220d5fee29a47)), closes [#MAOBS-151](https://github.com/ovh/manager/issues/MAOBS-151)
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.19...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.0) (2025-12-05)
 
 
