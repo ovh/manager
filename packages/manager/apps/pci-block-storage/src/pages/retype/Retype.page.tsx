@@ -37,15 +37,21 @@ const RetypePage = () => {
   const {
     data: instances,
     isPending: isInstancesPending,
-  } = useAttachedInstances(projectId, volumeId);
+    isFetching: isInstancesFetching,
+  } = useAttachedInstances(projectId, volumeId, { forceReload: true });
 
-  const { data: snapshots, isPending: isSnapshotsPending } = useVolumeSnapshots(
-    projectId,
-    volumeId,
-  );
+  const {
+    data: snapshots,
+    isPending: isSnapshotsPending,
+    isFetching: isSnapshotsFetching,
+  } = useVolumeSnapshots(projectId, volumeId, { forceReload: true });
 
   const isPending =
-    isCatalogPending || isInstancesPending || isSnapshotsPending;
+    isCatalogPending ||
+    isInstancesPending ||
+    isInstancesFetching ||
+    isSnapshotsPending ||
+    isSnapshotsFetching;
 
   const handleOnClose = () => {
     navigate('..');
