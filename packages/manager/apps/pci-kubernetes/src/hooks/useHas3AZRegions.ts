@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParam } from '@ovh-ux/manager-pci-common';
 
-import { useProductAvailability } from '@ovh-ux/manager-pci-common';
+import usePlanToRegionAvailability from '@/api/hooks/usePlanToRegionAvailability';
 
 export enum RegionType {
   Region = 'region',
@@ -11,15 +11,13 @@ export enum RegionType {
 }
 
 const useHas3AZRegions = () => {
-  const { projectId } = useParams<{ projectId: string }>();
+  const { projectId } = useParam('projectId');
 
-  const { data: availability } = useProductAvailability(projectId, {
-    product: 'kubernetes',
+  const { data: availability, isPending } = usePlanToRegionAvailability(projectId, 'mks', {
+    transform: true,
   });
 
-  const product = availability?.products.find(({ name }) => name === 'kubernetes');
-
-  const regionTypes = product?.regions.map(({ type }) => type) || [];
+  const regionTypes = (!isPending && availability.map(({ type }) => type)) || [];
 
   const uniqueRegions = [...new Set(regionTypes)].sort((a, b) => {
     if (a === (RegionType.Region3Az as string)) return 1;

@@ -41,7 +41,7 @@ const PlanTile = ({
     e.preventDefault();
     onSubmit(selected);
   };
-  const { plans, isPending: isPendingPlans } = usePlanData();
+  const { plans, isPending: isPendingPlans } = usePlanData(type);
 
   const planIsDisabled = (plan: TClusterPlan) =>
     (isMonoDeploymentZone(type) && plan === TClusterPlanEnum.STANDARD) ||
@@ -223,7 +223,7 @@ PlanTile.Header = function PlanTileHeader({
         </h5>
         {displayWarningMessage && (
           <Badge className="rounded-[1rem]" color="information">
-            {t('kube_add_plan_content_coming_very_soon')}
+            {t('kube_add_plan_content_not_available')}
           </Badge>
         )}
       </div>
