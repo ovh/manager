@@ -8,7 +8,7 @@ import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
 import HostForm from './HostForm';
 import {
   getIpsSupported,
-  tranformIpsStringToArray,
+  transformIpsStringToArray,
 } from '@/domain/utils/utils';
 import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { TDomainResource } from '@/domain/types/domainResource';
@@ -103,7 +103,7 @@ export default function HostDrawer({
                   ...hostsConfiguration.hosts,
                   {
                     host: `${values.host}.${serviceName}`,
-                    ips: tranformIpsStringToArray(values.ips),
+                    ips: transformIpsStringToArray(values.ips),
                   },
                 ],
               },
