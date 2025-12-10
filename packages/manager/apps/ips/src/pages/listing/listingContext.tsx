@@ -24,7 +24,7 @@ export type ListingContextType = {
   setOnGoingSlicedIps: React.Dispatch<React.SetStateAction<string[]>>;
   onGoingAggregatedIps: string[];
   setOnGoingAggregatedIps: React.Dispatch<React.SetStateAction<string[]>>;
-  onGoingCreatedIps?: string[];
+  onGoingCreatedIps: string[];
   setOnGoingCreatedIps?: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
