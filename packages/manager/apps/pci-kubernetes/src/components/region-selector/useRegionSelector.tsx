@@ -22,7 +22,7 @@ export function useRegionSelector({
   } | null>(null);
   const [selectedMacroRegion, setSelectedMacroRegion] = useState<string | null>(null);
   const [selectedMicroRegion, setSelectedMicroRegion] = useState<string | null>(null);
-  const { localisationData: query, isPending } = useProjectLocalisation(projectId, 'kubernetes');
+  const { localisationData: query, isPending } = useProjectLocalisation(projectId, 'mks');
   const { continents: unfilteredContinents, regions: unfilteredRegions } = query || {};
   const regions = unfilteredRegions?.filter((region) =>
     regionFilter ? regionFilter(region) : true,
