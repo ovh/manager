@@ -1,11 +1,10 @@
-import { memo, useContext } from 'react';
+import { useContext } from 'react';
 import { GuidesHeader } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { Guide, GUIDES } from './guidesHeader.constants';
 
-// eslint-disable-next-line react/display-name
-export const VolumeSnapshotGuidesHeader = memo(() => {
+export const VolumeSnapshotGuidesHeader = () => {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const { t } = useTranslation(['guides']);
@@ -21,4 +20,4 @@ export const VolumeSnapshotGuidesHeader = memo(() => {
       getGuideLabel={getGuideLabel}
     />
   );
-});
+};
