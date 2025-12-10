@@ -1,0 +1,24 @@
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+/**
+ * Get the Vite configuration fragment for observability-to-customer module
+ * This should be merged with getBaseConfig() in consumer apps
+ * 
+ * @returns {Object} Configuration object with staticCopyTargets
+ */
+export function getObservabilityToCustomerConfig() {
+  // Get the directory of this config file (logs-to-customer package root)
+  const packageRoot = dirname(fileURLToPath(import.meta.url));
+  const translationsSourcePath = resolve(packageRoot, 'dist/@ovh-ux/observability-to-customer/translations');
+
+  return {
+    staticCopyTargets: [
+      {
+        src: `${translationsSourcePath}/*`,
+        dest: 'translations/@ovh-ux/observability-to-customer',
+        overwrite: true,
+      },
+    ],    
+  };
+}

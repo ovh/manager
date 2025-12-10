@@ -30,7 +30,7 @@ export const useMultipleChartData = <TData>({
   const start = startDateTime ?? end - windowSec;
 
   const queries = hasCharts
-    ? dashboard.currentState.map((chart) => {
+    ? dashboard.currentState.map((chart) => {        
         const payload: RequestPayload = {
           query: chart.query,
           start,

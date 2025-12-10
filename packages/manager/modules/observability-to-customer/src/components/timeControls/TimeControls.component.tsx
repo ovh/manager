@@ -12,14 +12,10 @@ import {
   PopoverContent,
   PopoverOpenChangeDetail,
   PopoverTrigger,
-  TEXT_PRESET,
-  Text,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
-import { formatDateTime } from '@/utils/dateTimeUtils';
-
 import RefreshTimeControl from './RefreshTimeControl.component';
 import { TimeControlsProps } from './TimeControls.props';
 import { TimeRangeOptionCustom, defaultTimeRangeOptions } from './TimeRangeOption.constants';

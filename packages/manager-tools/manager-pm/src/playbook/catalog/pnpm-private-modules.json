@@ -176,6 +176,10 @@
     "pnpm": "packages/manager/modules/order"
   },
   {
+    "turbo": "--filter @ovh-ux/observability-to-customer",
+    "pnpm": "packages/manager/modules/observability-to-customer"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-overthebox",
     "pnpm": "packages/manager/modules/overthebox"
   },

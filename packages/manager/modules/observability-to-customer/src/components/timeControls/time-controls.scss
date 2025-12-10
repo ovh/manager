@@ -1,4 +1,9 @@
 /* stylelint-disable css/no-important */
+
+::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 [data-scope="date-picker"][data-part="positioner"][style] {
   --z-index: 100 !important;
 }

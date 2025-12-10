@@ -33,7 +33,7 @@ const DashboardWidgetModal = <TData,>() => {
 
   const { widgetId } = useParams();
 
-  const { state } = useDashboardContext();
+  const { state, setState } = useDashboardContext();
 
   const { startDateTime, endDateTime, selectedTimeOption, refreshInterval } = state;
 
@@ -57,8 +57,7 @@ const DashboardWidgetModal = <TData,>() => {
   };
 
   const onStateChange = <TValue,>(key: string, value: TValue) => {
-    // TODO
-    console.log(`[${key} = ${value}`);
+    setState({ ...state, [key]: value });
   };
 
   if (!config) {

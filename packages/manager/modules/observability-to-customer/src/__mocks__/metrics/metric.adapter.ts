@@ -21,7 +21,7 @@ export const fetchChartData = async <TData>(
 ): Promise<MetricData<TData>> => {
   const isMockEnabled = apiConfig.mode === 'mock';
   console.info('[MOCK-ADAPTER][fetchChartData] Mock enabled -> ', isMockEnabled);
-  return isMockEnabled
+  return false
     ? fetchChartDataFromMock<TData>(params)
     : fetchChartDataFromApi<TData>(params);
 };

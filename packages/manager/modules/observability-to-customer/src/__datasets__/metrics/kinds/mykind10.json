@@ -18,8 +18,7 @@
                 "YAxis": {
                     "dataKeys": [
                         "value"
-                    ],
-                    "formatter": "formatLargeNumber"
+                    ]
                 }
             }
         },

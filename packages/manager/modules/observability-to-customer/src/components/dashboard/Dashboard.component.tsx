@@ -16,7 +16,21 @@ export const Dashboard = <TData,>({
   const { state, setState } = useDashboardContext();
 
   const onStateChange = <TValue,>(key: string, value: TValue) => {
-    setState({ ...state, [key]: value });
+    
+    // Allow updating multiple fields at once when a composite key is used
+    if (key === 'dateRange' && typeof value === 'object' && value !== null) {
+      setState((prevState) => ({
+        ...prevState,
+        ...(value as Partial<typeof prevState>),
+      }));
+      return;
+    }
+
+    // Default behaviour: update a single key
+    setState((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
   };
 
   const isDashboardLoading = useMemo(() => widgets.some((w) => w.isLoading), [widgets]);

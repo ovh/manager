@@ -1,1 +1,1 @@
-export * from './DashboardContext';
+export * from './Dashboard.context';

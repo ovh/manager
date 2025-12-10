@@ -1,15 +1,12 @@
 {
-    "id": "11111111-1111-1111-1111-111111111104",
+    "id": "11111111-1111-1111-1111-111111111108",
     "currentState": {
         "chart": {
-            "id": "libvirtd_domain_block_write_requests",
-            "title": "Disk write IOPS",
-            "unit": "IOPS",
+            "id": "neutron_port_rx_packets",
+            "title": "Network packets in",
+            "unit": "packet/s",
             "colspan": 2,
-            "tooltip": {                
-                "title": "The average number of completed write operations over a specific period of time."
-            },
-            "query": "ovhcloud_libvirtd_domain_local_block_write_requests{resource_urn=<resource_urn>}",
+            "query": "ovhcloud_neutron_port_rx_packets{resource_urn=<resource_urn>}",
             "chart": {
                 "type": "TimeSeries",
                 "curveType": "linear",

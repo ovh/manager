@@ -124,6 +124,7 @@
   "packages/manager/modules/ng-layout-helpers",
   "packages/manager/modules/ng-ovh-order-tracking",
   "packages/manager/modules/nutanix",
+  "packages/manager/modules/observability-to-customer",
   "packages/manager/modules/order",
   "packages/manager/modules/overthebox",
   "packages/manager/modules/pci",

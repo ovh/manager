@@ -5,7 +5,6 @@ import { Routes } from 'react-router-dom';
 import { IObservabilityToCustomerModule } from '@/IObservabilityToCustomerModule.interface';
 import { DashboardProvider } from '@/contexts';
 import getObservabilityRoute from '@/routes/routes';
-import '@/public/translations';
 
 export function ObservabilityToCustomerModule(
   moduleProps: Readonly<IObservabilityToCustomerModule>,

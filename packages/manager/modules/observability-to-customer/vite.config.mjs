@@ -8,6 +8,7 @@ import * as packageJson from './package.json' with { type: 'json' };
 
 const baseConfig = getBaseConfig({});
 const pathSrc = path.resolve(__dirname, 'src');
+const pathPublic = path.resolve(__dirname, 'public');
 const externalDeps = [
   ...Object.keys(packageJson.default.peerDependencies || {}),
   '@ovhcloud/ods-components/react',
@@ -18,7 +19,7 @@ export default defineConfig({
   ...baseConfig,
   resolve: {
     alias: {
-      '@/public': path.resolve(__dirname, 'public'),
+      '@/public': pathPublic,
       '@': pathSrc,
     },
   },
@@ -38,6 +39,10 @@ export default defineConfig({
             const relativePath = path.relative(pathSrc, fullPath);
             return relativePath;
           },
+        },
+        {
+          src: `${pathPublic}/translations`,
+          dest: '@ovh-ux/observability-to-customer',
         },
       ],
     }),
