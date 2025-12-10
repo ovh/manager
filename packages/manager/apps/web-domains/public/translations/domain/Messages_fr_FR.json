@@ -50,6 +50,7 @@
   "domain_tab_name_not_supported": "La fonctionnalité n’est pas supportée pour cette extension.",
   "domain_back_to_service_list": "Retour à la liste de services",
   "domain_back_to_service_details": "Retour aux informations générales",
+  "domain_back_to_dns_servers": "Retour à la configuration des serveurs DNS",
   "domain_back_to_previous_page": "Retour à la page précédente",
   "domain_guide_button_label": "Guide d'utilisation",
   "domain_dns_table_header_serviceName": "Serveurs DNS",

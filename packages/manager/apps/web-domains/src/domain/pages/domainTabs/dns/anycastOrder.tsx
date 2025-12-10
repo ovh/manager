@@ -10,7 +10,13 @@ import {
   Order,
   OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
-import { Outlet, useHref, useNavigate, useParams } from 'react-router-dom';
+import {
+  Outlet,
+  useHref,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { UserLocales } from '@ovh-ux/manager-config';
@@ -30,6 +36,7 @@ import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
 import config from '@/web-domains.config';
 import { BreadcrumbAnyCast } from './breadcrumb';
+import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 
 export default function AnycastOrder() {
   const { t, i18n } = useTranslation(['domain', 'web-domains/error']);
@@ -48,12 +55,19 @@ export default function AnycastOrder() {
     .ovhSubsidiary as OvhSubsidiary;
   const userLocal = context.environment.getUserLocale() as UserLocales;
   const backUrl = useGenerateUrl(urls.domainTabDns, 'path', { serviceName });
+  const location = useLocation();
+  const from = location.state?.from;
+  const pageToRedirectTo =
+    from === AnycastPreviousPages.DNS_SERVERS
+      ? urls.domainTabDns
+      : urls.domainTabInformation;
   const hrefPrevious = useHref(
-    `/${config.rootLabel}${urls.domainTabDns.replace(
+    `/${config.rootLabel}${pageToRedirectTo.replace(
       ':serviceName',
       serviceName,
     )}`,
   );
+
   const region = context.environment.getRegion();
   const orderBaseUrl = getExpressOrderURL(region, ovhSubsidiary);
   const onCheckBoxChange = () => {
@@ -99,7 +113,11 @@ export default function AnycastOrder() {
       breadcrumb={<BreadcrumbAnyCast serviceName={serviceName} />}
       header={header}
       hrefPrevious={`/${hrefPrevious}`}
-      backLinkLabel={t('domain_back_to_service_details')}
+      backLinkLabel={
+        from === AnycastPreviousPages.DNS_SERVERS
+          ? t('domain_back_to_dns_servers')
+          : t('domain_back_to_service_details')
+      }
     >
       <section data-testid="order-component">
         <Order>
