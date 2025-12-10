@@ -27,7 +27,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock('@/domain/utils/utils', () => ({
   getHostnameErrorMessage: mocks.getHostnameErrorMessageMock,
   getIpsErrorMessage: mocks.getIpsErrorMessageMock,
-  tranformIpsStringToArray: mocks.tranformIpsStringToArrayMock,
+  transformIpsStringToArray: mocks.tranformIpsStringToArrayMock,
 }));
 
 type FormValues = {
