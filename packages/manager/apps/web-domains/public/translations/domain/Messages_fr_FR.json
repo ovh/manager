@@ -320,6 +320,7 @@
   "domain_tab_dsrecords_drawer_add_title": "Ajouter une nouvelle entrée",
   "domain_tab_dsrecords_drawer_modify_title": "Modifier l'entrée",
   "domain_tab_dsrecords_drawer_form_publicKey_error": "La clé publique renseignée n'est pas au bon format",
+  "domain_tab_dsrecords_drawer_form_invalid_keytag": "La valeur du keyTag doit être comprise entre 0 et 65535",
   "domain_tab_dsrecords_drawer_add_success": "Le DS record {{ keyTag }} a été ajouté avec succès",
   "domain_tab_dsrecords_drawer_modify_success": "Le DS record {{ keyTag }} a été modifié avec succès",
   "domain_tab_dsrecords_drawer_add_error": "Une erreur a été detectée lors de l'ajout du DS record : {{ error }}",
