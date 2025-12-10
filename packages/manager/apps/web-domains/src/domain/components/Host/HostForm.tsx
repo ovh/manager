@@ -65,7 +65,12 @@ export default function HostForm({
             className="relative w-full"
             readOnly={drawerAction === DrawerActionEnum.Modify}
             {...register('host', {
-              validate: makeHostValidators(hostsTargetSpec, serviceName, t),
+              validate: makeHostValidators(
+                hostsTargetSpec,
+                serviceName,
+                drawerAction,
+                t,
+              ),
             })}
           />
 
