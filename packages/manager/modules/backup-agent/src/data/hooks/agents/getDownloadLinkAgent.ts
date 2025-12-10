@@ -29,12 +29,9 @@ export const useBackupVSPCTenantAgentDownloadLink = ({
     enabled: !!tenantId,
     select: (data) => {
       switch (os) {
-        case 'LINUX':
-          return data.linuxUrl;
         case 'WINDOWS':
           return data.windowsUrl;
-        case 'MAC':
-          return data.macUrl;
+        case 'LINUX':
         default:
           return data.linuxUrl;
       }
