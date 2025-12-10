@@ -22,7 +22,10 @@ import {
 import { baseDomainResource, ns1, ns2 } from '@/domain/__mocks__/dnsDetails';
 import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
-import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
+import {
+  DrawerActionEnum,
+  IpsSupportedEnum,
+} from '@/domain/enum/hostConfiguration.enum';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { StatusEnum } from '../enum/Status.enum';
 import { useTranslation } from 'react-i18next';
@@ -351,7 +354,12 @@ describe('makeHostValidators', () => {
   ];
   const { t } = useTranslation(['domain']);
   it('should create validators with correct error messages', () => {
-    const validators = makeHostValidators(hostsTargetSpec, 'example.com', t);
+    const validators = makeHostValidators(
+      hostsTargetSpec,
+      'example.com',
+      DrawerActionEnum.Add,
+      t,
+    );
     expect(validators.noDuplicate('bar')).toBe(true);
     expect(validators.validSyntax('invalid#host')).toBe(
       'domain_tab_hosts_drawer_add_invalid_host_format',
