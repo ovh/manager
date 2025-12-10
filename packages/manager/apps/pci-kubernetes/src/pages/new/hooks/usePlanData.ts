@@ -23,7 +23,7 @@ const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
       if (catalog) {
         const getAddon = catalog.addons.find((add) => add.planCode === code);
 
-        return getAddon?.pricings[0].price ?? null;
+        return getAddon?.pricings[0]?.price ?? null;
       }
       return null;
     },
@@ -36,7 +36,6 @@ const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
       description: 'kube_add_plan_description_free',
       content: [
         'kube_add_plan_content_free_control',
-        'kube_add_plan_content_free_high_availability',
         'kube_add_plan_content_free_SLO',
         'kube_add_plan_content_free_auto_scaling',
         'kube_add_plan_content_free_ETCD',
