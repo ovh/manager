@@ -13,7 +13,10 @@ import {
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DNS_UPDATE_OPERATION } from '@/domain/constants/dns.const';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
-import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
+import {
+  DrawerActionEnum,
+  IpsSupportedEnum,
+} from '@/domain/enum/hostConfiguration.enum';
 import { THost } from '@/domain/types/host';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { algorithm_RSASHZA3457 } from '@/domain/constants/dsRecords';
@@ -114,8 +117,16 @@ export const isValidHostSyntax = (value: string, serviceName: string) => {
 export const makeHostValidators = (
   hostsTargetSpec: THost[],
   serviceName: string,
+  actionType: DrawerActionEnum,
   t: TFunction,
 ) => {
+  if (actionType === DrawerActionEnum.Modify) {
+    // Checks are ok, field is readonly
+    return {
+      noDuplicate: () => true || '',
+      validSyntax: () => true || '',
+    };
+  }
   return {
     noDuplicate: (value: string) =>
       !isDuplicateHost(value, hostsTargetSpec, serviceName) ||
