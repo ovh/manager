@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsIcon, OdsSkeleton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -21,13 +21,24 @@ export function SubscriptionTile({ vaultId }: SubscriptionTileProps) {
     BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD,
   ]);
   const { isLoading } = useBackupVaultDetails({ vaultId });
+  const tooltipId = 'consumption-tooltip';
 
   return (
     <ManagerTile className="h-fit">
       <ManagerTile.Title>{t(`${NAMESPACES.BILLING}:subscription`)}</ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:consumption`)}</ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>
+          <div className="flex items-center gap-x-4">
+            {t(`${NAMESPACES.DASHBOARD}:consumption`)}
+            <OdsIcon name="circle-info" id={tooltipId} className="hover:cursor-help" />
+            <OdsTooltip triggerId={tooltipId}>
+              <OdsText>
+                {t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:consumption_tooltip`)}
+              </OdsText>
+            </OdsTooltip>
+          </div>
+        </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           {isLoading ? (
             <OdsSkeleton />
