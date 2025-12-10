@@ -81,7 +81,13 @@ export default (
               pageType: PageType.listing,
             },
           }}
-        />
+        >
+          <Route
+            path={subRoutes.delete}
+            Component={VaultDeletePage}
+            handle={{ tracking: { pageName: 'delete-vault', pageType: PageType.popup } }}
+          />
+        </Route>
       </Route>
       <Route
         path={subRoutes.billing}
@@ -117,12 +123,12 @@ export default (
       <Route path={`${subRoutes.dashboard}/${urlParams.vaultId}`} Component={VaultDashboardPage}>
         <Route path="" Component={VaultGeneralInformationPage} />
         <Route path={subRoutes.buckets} Component={VaultBucketsPage} />
+        <Route
+          path={subRoutes.delete}
+          Component={VaultDeletePage}
+          handle={{ tracking: { pageName: 'delete-vault', pageType: PageType.popup } }}
+        />
       </Route>
-      <Route
-        path={subRoutes.delete}
-        Component={VaultDeletePage}
-        handle={{ tracking: { pageName: 'delete-vault', pageType: PageType.popup } }}
-      />
     </Route>
   </>
 );
