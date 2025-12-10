@@ -1,4 +1,4 @@
-import { JSX, useCallback, useEffect, useState } from 'react';
+import { JSX, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
@@ -6,7 +6,7 @@ import isEqual from 'lodash.isequal';
 import { Card } from '@ovhcloud/ods-react';
 
 import { hashCode } from '@/commons/utils/MukHelper';
-import { TilesInputProps, TilesInputState } from '@/components/tiles-input/TilesInput.props';
+import { TilesInputProps } from '@/components/tiles-input/TilesInput.props';
 
 import { stackItems } from './TilesInput.utils';
 
@@ -19,93 +19,89 @@ export const TilesInputComponent = <T, S>({
   stack,
   id,
 }: TilesInputProps<T, S>): JSX.Element => {
-  const [state, setState] = useState<TilesInputState<T, S>>({
-    stacks: stackItems(items, stack?.by),
-    selectedStack: stack?.value,
-    activeClass: `bg-orange-110 cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
-    inactiveClass: `cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] ${tileClass?.inactive}`,
-  });
+  const [selectedStack, setSelectedStack] = useState<S | undefined>(stack?.value);
 
-  const set = {
-    selectedStack: (s: S) => {
-      setState((prev) => ({ ...prev, selectedStack: s }));
-    },
-    value: (t: T) => onInput(t),
-  };
+  const stacks = useMemo(() => stackItems(items, stack?.by), [items, stack]);
+
+  const activeClass = useMemo(
+    () =>
+      clsx(
+        `cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
+      ),
+    [tileClass?.active],
+  );
+
+  const inactiveClass = useMemo(
+    () =>
+      clsx(
+        `cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] ${tileClass?.inactive}`,
+      ),
+    [tileClass?.inactive],
+  );
+
+  const set = useMemo(
+    () => ({
+      selectedStack: (s: S) => {
+        setSelectedStack(s);
+      },
+      value: (t: T) => onInput(t),
+    }),
+    [onInput],
+  );
 
   const is = {
     stack: {
       checked: useCallback(
         (s: S | undefined) => {
           if (s === undefined) return false;
-          const stackItem = state.stacks?.get(s);
+          const stackItem = stacks?.get(s);
           return stackItem && stackItem.length > 1
-            ? isEqual(state.selectedStack, s)
+            ? isEqual(selectedStack, s)
             : stackItem && stackItem.length === 1 && isEqual(stackItem[0], value);
         },
-        [state.stacks, state.selectedStack, value],
+        [stacks, selectedStack, value],
       ),
       singleton: useCallback(
         (s: S | undefined) => {
           if (s === undefined) return false;
-          const stackItem = state.stacks.get(s);
+          const stackItem = stacks.get(s);
           return stackItem?.length === 1;
         },
-        [state.stacks],
+        [stacks],
       ),
     },
   };
 
-  // Update stacks from props
-  useEffect(() => {
-    setState((prev) => ({ ...prev, stacks: stackItems(items, stack?.by) }));
-  }, [items, stack]);
-
-  // Update active/inactive class from props
-  useEffect(() => {
-    if (tileClass) {
-      setState((prev) => ({
-        ...prev,
-        activeClass: clsx(
-          `cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
-        ),
-        inactiveClass: clsx(
-          `cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] ${tileClass?.inactive}`,
-        ),
-      }));
-    }
-  }, [tileClass]);
-
   // Warn parent on stack change
   useEffect(() => {
-    if (typeof stack?.onChange === 'function' && state.selectedStack !== undefined) {
-      stack.onChange(state.selectedStack);
+    if (typeof stack?.onChange === 'function' && selectedStack !== undefined) {
+      stack.onChange(selectedStack);
     }
-  }, [state.selectedStack, stack?.onChange]);
+  }, [selectedStack, stack?.onChange, stack]);
 
   // Update selected stack from value
   useEffect(() => {
     if (stack && value) {
       set.selectedStack(stack.by(value));
     }
-  }, [value, stack]);
+  }, [value, stack, set]);
 
   // Update value from selected stack
   useEffect(() => {
-    if (stack && state.selectedStack !== undefined && value) {
-      const stackItem = state.stacks.get(state.selectedStack);
-      if (stackItem?.length && stackItem[0] && !isEqual(state.selectedStack, stack.by(value))) {
+    if (stack && selectedStack !== undefined && value) {
+      const stackItem = stacks.get(selectedStack);
+      if (stackItem?.length && stackItem[0] && !isEqual(selectedStack, stack.by(value))) {
         set.value(stackItem[0]);
       }
     }
-  }, [state.selectedStack, state.stacks, stack, value]);
+  }, [selectedStack, stacks, stack, value, set]);
 
   return (
     <div id={typeof id === 'function' ? id() : id}>
       <ul className="simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3">
         {stack
-          ? [...state.stacks.keys()].map((key) => {
-              const stackItem = state.stacks.get(key);
+          ? [...stacks.keys()].map((key) => {
+              const stackItem = stacks.get(key);
               if (!stackItem) return null;
 
               return (
@@ -119,7 +115,7 @@ export const TilesInputComponent = <T, S>({
                       }
                     }}
                     className={`${clsx(
-                      is.stack.checked(key) ? state.activeClass : state.inactiveClass,
+                      is.stack.checked(key) ? activeClass : inactiveClass,
                     )} w-full px-[24px] py-[16px]`}
                   >
                     {is.stack.singleton(key) && stackItem[0] !== undefined
@@ -134,7 +130,7 @@ export const TilesInputComponent = <T, S>({
                 <Card
                   onClick={() => set.value(item)}
                   className={`${clsx(
-                    isEqual(value, item) ? state.activeClass : state.inactiveClass,
+                    isEqual(value, item) ? activeClass : inactiveClass,
                   )} w-full px-[24px] py-[16px]`}
                 >
                   {label(item)}
@@ -142,20 +138,20 @@ export const TilesInputComponent = <T, S>({
               </li>
             ))}
       </ul>
-      {state.selectedStack !== undefined &&
+      {selectedStack !== undefined &&
         (() => {
-          const selectedStackItems = state.stacks.get(state.selectedStack);
+          const selectedStackItems = stacks.get(selectedStack);
           return selectedStackItems && selectedStackItems.length > 1;
         })() && (
           <>
             <div className="mt-6 ml-8">
               <span className="text-[--ods-color-heading] leading-[22px] font-bold">
-                {stack?.title(state.selectedStack, state.stacks.get(state.selectedStack) || [])}
+                {stack?.title(selectedStack, stacks.get(selectedStack) || [])}
               </span>
             </div>
             <TilesInputComponent
               value={value}
-              items={state.stacks.get(state.selectedStack) || []}
+              items={stacks.get(selectedStack) || []}
               label={label}
               onInput={onInput}
               tileClass={tileClass}
