@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -9,7 +9,6 @@ import { BreadcrumbItem, BreadcrumbType } from './Breadcrumb.type';
 export const useBreadcrumb = ({ rootLabel, appName, hideRootLabel = false }: BreadcrumbType) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
-  const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -40,11 +39,11 @@ export const useBreadcrumb = ({ rootLabel, appName, hideRootLabel = false }: Bre
       }
     };
     void fetchRoot();
-  }, [rootLabel, appName, shell?.navigation]);
+  }, [rootLabel, appName, shell?.navigation, hideRootLabel]);
 
-  useEffect(() => {
+  const paths = useMemo(() => {
     const pathnames = location?.pathname.split('/').filter((x) => x);
-    const pathsTab = pathnames?.map((value, index) => {
+    return pathnames?.map((value, index) => {
       const parentPaths = pathnames.slice(0, index + 1);
       return {
         label: value,
@@ -52,8 +51,7 @@ export const useBreadcrumb = ({ rootLabel, appName, hideRootLabel = false }: Bre
         hideLabel: false,
       };
     });
-    setPaths(pathsTab);
-  }, [location.pathname]);
+  }, [location?.pathname]);
 
   return [...root, ...paths];
 };

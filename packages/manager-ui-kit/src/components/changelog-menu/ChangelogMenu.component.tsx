@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -23,50 +23,39 @@ const LinksTrad = {
   changelog: 'mrc_changelog_changelog',
   roadmap: 'mrc_changelog_roadmap',
   'feature-request': 'mrc_changelog_feature-request',
-};
+} as const;
 
-export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({ links, chapters = [], prefixes }) => {
+export const ChangelogMenu: FC<ChangelogMenuProps> = ({ links, chapters = [], prefixes }) => {
   const { t } = useTranslation('changelog-menu');
   const { trackClick } = useOvhTracking();
-  const [linksArray, setLinksArray] = useState<
-    {
-      id: number;
-      label: string;
-      href: string;
-      linktype: LinkType;
-      target: string;
-      onClick: () => void;
-    }[]
-  >([]);
 
-  const sendTrackClick = (key: string) => {
-    trackClick({
-      actionType: 'navigation',
-      actions: [...chapters, ...(prefixes || CHANGELOG_PREFIXES), GO_TO(key)],
-    });
-  };
+  const effectivePrefixes = prefixes ?? CHANGELOG_PREFIXES;
 
-  useEffect(() => {
-    const linksTab: {
-      id: number;
-      label: string;
-      href: string;
-      linktype: LinkType;
-      target: string;
-      onClick: () => void;
-    }[] = [];
-    Object.keys(links).forEach((key, index) => {
-      linksTab.push({
-        id: index,
-        label: t(LinksTrad[key as keyof typeof LinksTrad]),
-        href: links[key as keyof ChangelogMenuLinks],
-        linktype: LinkType.external,
-        target: DEFAULT_EXT_TARGET,
-        onClick: () => sendTrackClick(key),
+  const sendTrackClick = useCallback(
+    (key: keyof typeof LinksTrad) => {
+      trackClick({
+        actionType: 'navigation',
+        actions: [...chapters, ...effectivePrefixes, GO_TO(key)],
       });
-    });
-    setLinksArray(linksTab);
-  }, [links]);
+    },
+    [chapters, effectivePrefixes, trackClick],
+  );
+
+  const linksMap = useMemo(
+    () =>
+      Object.keys(links).map((key, index) => {
+        const typedKey = key as keyof typeof LinksTrad;
+        return {
+          id: index,
+          label: t(LinksTrad[typedKey]),
+          href: links[key as keyof ChangelogMenuLinks],
+          linktype: LinkType.external,
+          onClick: () => sendTrackClick(typedKey),
+          target: DEFAULT_EXT_TARGET,
+        };
+      }),
+    [links, t, sendTrackClick],
+  );
 
   return (
     <ActionMenu
@@ -74,7 +63,7 @@ export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({ links, chapters = 
       label={t('mrc_changelog_header')}
       id="changelog-button"
       displayIcon={false}
-      items={linksArray}
+      items={linksMap}
     />
   );
 };
