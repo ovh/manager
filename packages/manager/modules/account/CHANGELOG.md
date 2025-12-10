@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.3...@ovh-ux/manager-account@0.19.4) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedicated:** update vmware and nsx official documentation link ([aead439](https://github.com/ovh/manager/commit/aead43966124e5436984fde7d5f2788c681844d8)), closes [#MANAGER-20049](https://github.com/ovh/manager/issues/MANAGER-20049)
+
+
+
+
+
 ## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.2...@ovh-ux/manager-account@0.19.3) (2025-12-09)
 
 
