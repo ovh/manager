@@ -42,6 +42,10 @@ const ContactManagementPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/contactManagement/contactManagement'),
 );
 
+const DsRecordListingPage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/dsRecords/dsRecordsListing'),
+);
+
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
@@ -106,7 +110,7 @@ export default (
             Component={HostConfigurationDeletePage}
           />
         </Route>
-        <Route path={urls.domainTabDnssec} Component={Outlet} />
+        <Route path={urls.domainTabDsrecords} Component={DsRecordListingPage} />
         <Route
           path={urls.domainTabContactManagement}
           Component={ContactManagementPage}

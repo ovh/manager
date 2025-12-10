@@ -1,16 +1,17 @@
-import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
-import { DomainStateEnum } from '../enum/domainState.enum';
-import { ProtectionStateEnum } from '../enum/protectionState.enum';
-import { PublicNameServerTypeEnum } from '../enum/publicNameServerType.enum';
-import { ResourceStatusEnum } from '../enum/resourceStatus.enum';
-import { StatusEnum } from '../enum/Status.enum';
-import { SuspensionStateEnum } from '../enum/suspensionState.enum';
+import { supportedAlgorithms } from '@/domain/constants/dsRecords';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { DomainStateEnum } from '@/domain/enum/domainState.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { PublicNameServerTypeEnum } from '@/domain/enum/publicNameServerType.enum';
+import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
+import { StatusEnum } from '@/domain/enum/Status.enum';
+import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import {
   TDatagridDnsDetails,
   TDomainResource,
   TNameServerWithType,
-} from '../types/domainResource';
-import { TDomainZone } from '../types/domainZone';
+} from '@/domain/types/domainResource';
+import { TDomainZone } from '@/domain/types/domainZone';
 
 export const ns1: TNameServerWithType = {
   nameServer: 'ns1.example.com',
@@ -65,6 +66,19 @@ export const baseDomainResource: TDomainResource = {
     },
     authInfoManagedByOVHcloud: true,
     authInfoSupported: true,
+    dnssecConfiguration: {
+      dnssecSupported: true,
+      dsData: [
+        {
+          algorithm: 8,
+          keyTag: 0,
+          flags: 0,
+          publicKey:
+            'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+        },
+      ],
+      supportedAlgorithms,
+    },
     createdAt: '2025-10-11T11:00:00',
   },
   currentTasks: [],

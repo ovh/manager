@@ -23,6 +23,7 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { StatusEnum } from '@/domain/enum/Status.enum';
+import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
   const actual = await vi.importActual('@ovh-ux/manager-react-components');
@@ -80,6 +81,19 @@ describe('ConfigurationCards component', () => {
             status: StatusEnum.ENABLED,
           },
         ],
+      },
+      dnssecConfiguration: {
+        dnssecSupported: true,
+        dsData: [
+          {
+            algorithm: 8,
+            keyTag: 0,
+            flags: 0,
+            publicKey:
+              'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+          },
+        ],
+        supportedAlgorithms,
       },
       extension: '.com',
       mainState: DomainStateEnum.OK,
