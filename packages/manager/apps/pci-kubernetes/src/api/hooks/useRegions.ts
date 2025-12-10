@@ -8,7 +8,6 @@ import {
   TProductAvailabilityRegion,
   TRegion,
   TRegionType,
-  useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { getMacroRegion, useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 
@@ -16,6 +15,7 @@ import { isLocalDeploymentZone } from '@/helpers';
 import { TLocation, TProjectLocation } from '@/types/region';
 
 import { getProjectRegions } from '../../api/data/regions';
+import usePlanToRegionAvailability from './usePlanToRegionAvailability';
 
 export const getRegionQueryKey = (projectId: string) => ['project', projectId, 'region'];
 
@@ -92,32 +92,28 @@ export const useProjectLocalisation = (projectId: string, product: string) => {
   const { t } = useTranslation('region-selector');
   const translate = useTranslatedMicroRegions();
 
-  const { data: availability, isPending: isPendingAvailability } = useProductAvailability(
+  const { data: availability, isPending: isPendingAvailability } = usePlanToRegionAvailability(
     projectId,
-    {
-      product,
-    },
+    product,
+    { transform: true },
   );
 
   const { data: projectRegions, isPending: isPendingRegions } = useQuery({
     queryKey: getRegionQueryKey(projectId),
     queryFn: () => getProjectRegions(projectId),
   });
-
   const isPending = isPendingAvailability || isPendingRegions;
 
-  const regions = availability?.products?.[0]?.regions;
-
   const localisationData = useMemo(() => {
-    if (!projectRegions || !regions) return null;
+    if (!projectRegions || !availability) return null;
 
     return buildLocalisationData(
       projectRegions,
-      regions,
+      availability,
       translate,
       t('pci_project_regions_list_continent_all'),
     );
-  }, [regions, projectRegions, t]);
+  }, [availability, projectRegions, t]);
 
   return {
     localisationData,
