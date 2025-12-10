@@ -52,9 +52,9 @@ export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
     value: 'hosts',
   },
   {
-    id: 'dnssec',
+    id: 'ds-records',
     name: 'domain_tab_name_ds_records',
-    value: 'dnssec',
+    value: 'ds-records',
   },
   {
     id: 'contact-management',

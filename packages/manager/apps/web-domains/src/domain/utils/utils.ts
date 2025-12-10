@@ -14,6 +14,8 @@ import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
 import { FreeHostingOptions } from '../components/AssociatedServicesCards/Hosting';
 import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
 import { THost } from '../types/host';
+import { TDsDataInterface } from '../types/dnssecConfiguration';
+import { algorithm_RSASHZA3457 } from '../constants/dsRecords';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -175,4 +177,31 @@ export const getIpsErrorMessage = (
 
 export const tranformIpsStringToArray = (ipString: string) => {
   return ipString?.split(',').map((ip: string) => ip.trim());
+};
+
+export const areDsRecordsEqual = (
+  a: TDsDataInterface,
+  b: TDsDataInterface,
+): boolean =>
+  a.algorithm === b.algorithm &&
+  a.keyTag === b.keyTag &&
+  a.flags === b.flags &&
+  a.publicKey === b.publicKey;
+
+export const getSupportedAlgorithm = (
+  algorithm: number,
+  supportedAlgorithms: { name: string; number: number }[],
+): { name: string; number: number } => {
+  if (algorithm === 3) {
+    return algorithm_RSASHZA3457;
+  }
+
+  const found = supportedAlgorithms.find((algo) => algo.number === algorithm);
+
+  return (
+    found ?? {
+      name: '',
+      number: algorithm,
+    }
+  );
 };
