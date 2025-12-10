@@ -1,4 +1,6 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
+
+import { Outlet } from 'react-router-dom';
 
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -42,6 +44,7 @@ export default function ListingPage() {
         items={flattenData ?? []}
         totalItems={3}
       />
+      <Outlet />
     </Suspense>
   );
 }
