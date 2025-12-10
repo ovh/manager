@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.68.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.68.0...@ovh-ux/manager-dedicated@20.68.1) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedcated/ip:** fixing the missing translations for the dedicated ip app ([6b2eff4](https://github.com/ovh/manager/commit/6b2eff409976b90aded1d9ed7c4365689acbae07)), closes [#INC0175233](https://github.com/ovh/manager/issues/INC0175233)
+
+
+
+
+
+# [20.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.67.1...@ovh-ux/manager-dedicated@20.68.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedicated:** update vmware and nsx official documentation link ([aead439](https://github.com/ovh/manager/commit/aead43966124e5436984fde7d5f2788c681844d8)), closes [#MANAGER-20049](https://github.com/ovh/manager/issues/MANAGER-20049)
+* **dedicated:** use invoiceName to order bandwidth ([673e051](https://github.com/ovh/manager/commit/673e051688bb7e89b0b9107f5a39819b6c1eed44)), closes [#MANAGER-20343](https://github.com/ovh/manager/issues/MANAGER-20343)
+
+
+### Features
+
+* **dedicated:** add capacity info tile ([af80704](https://github.com/ovh/manager/commit/af80704de90c8af7488ef0467e0af5e0ddf2e36e)), closes [#MANAGER-19269](https://github.com/ovh/manager/issues/MANAGER-19269)
+* **dedicated:** add ftp backup region info ([e61611d](https://github.com/ovh/manager/commit/e61611d24581240ecaeea8ec8900d34803860c66)), closes [#MANAGER-11817](https://github.com/ovh/manager/issues/MANAGER-11817)
+* **dedicated:** fixes css ([709b699](https://github.com/ovh/manager/commit/709b69917f77629981190c3d4d652caab925ab92)), closes [#MANAGER-14217](https://github.com/ovh/manager/issues/MANAGER-14217)
+* **dedicated:** updates lincence version binding ([d2656db](https://github.com/ovh/manager/commit/d2656db900e51fd05ad6e67fd9ad5bf403429638)), closes [#MANAGER-17741](https://github.com/ovh/manager/issues/MANAGER-17741)
+
+
+
+
+
 ## [20.67.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.67.0...@ovh-ux/manager-dedicated@20.67.1) (2025-12-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

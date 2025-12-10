@@ -1,39 +1,33 @@
 import React from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
-import { SetupServer } from 'msw/node';
+import type { SetupServer } from 'msw/node';
 
 import { toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
-import { GetLogKindsMocksParams, getLogKindsMocks } from '../data/mocks/logKind.handler';
-import { GetLogMessageParams, getLogMessageMocks } from '../data/mocks/logMessage.handler';
-import {
-  GetLogRetentionMocksParams,
-  getLogRetentionMocks,
-} from '../data/mocks/logRetention.handler';
+import { GetLogKindsMocksParams, getLogKindsMocks } from '@/__mocks__/logKind.handler';
+import { GetLogMessageParams, getLogMessageMocks } from '@/__mocks__/logMessage.handler';
+import { GetLogRetentionMocksParams, getLogRetentionMocks } from '@/__mocks__/logRetention.handler';
 import {
   GetLogServiceMocksParams,
   GetLogServicesMocksParams,
   getLogServiceMocks,
   getLogServicesMocks,
-} from '../data/mocks/logService.handler';
+} from '@/__mocks__/logService.handler';
 import {
   GetLogStreamMocksParams,
   GetLogStreamsMocksParams,
   getLogStreamMocks,
   getLogStreamsMocks,
-} from '../data/mocks/logStream.handler';
-import {
-  GetLogStreamUrlMocksParams,
-  getLogStreamUrlMocks,
-} from '../data/mocks/logStreamUrl.handler';
+} from '@/__mocks__/logStream.handler';
+import { GetLogStreamUrlMocksParams, getLogStreamUrlMocks } from '@/__mocks__/logStreamUrl.handler';
 import {
   GetLogSubscriptionsMocksParams,
   getLogSubscriptionsMocks,
-} from '../data/mocks/logSubscription.handler';
-import { PostLogTailUrlParams, postLogTailUrlMocks } from '../data/mocks/logTailUrl.handler';
-import { MockedAppPageLabel } from './MockedAppPage';
-import { TestApp } from './TestApp';
+} from '@/__mocks__/logSubscription.handler';
+import { PostLogTailUrlParams, postLogTailUrlMocks } from '@/__mocks__/logTailUrl.handler';
+import { MockedAppPageLabel } from '@/test-utils/MockedAppPage';
+import { TestApp } from '@/test-utils/TestApp';
 
 export const renderTest = async ({
   initialRoute,
@@ -61,8 +55,8 @@ export const renderTest = async ({
       ...getLogServiceMocks(mockParams),
       ...getLogServicesMocks(mockParams),
       ...getLogRetentionMocks(mockParams),
+      ...getLogMessageMocks(mockParams),
     ]),
-    getLogMessageMocks(mockParams),
   );
 
   const result = render(<TestApp initialRoute={initialRoute} />);

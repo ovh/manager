@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.34.2...@ovh-ux/manager-dbaas-logs@1.35.0) (2025-12-10)
+
+
+### Features
+
+* **dedicated.dbaas:** change account activation journey ([e7f1fa0](https://github.com/ovh/manager/commit/e7f1fa045518e900953bfea57a9539e1b08bb7c8)), closes [#MAOBS-135](https://github.com/ovh/manager/issues/MAOBS-135)
+
+
+
+
+
 ## [1.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.34.1...@ovh-ux/manager-dbaas-logs@1.34.2) (2025-11-27)
 
 

@@ -2,6 +2,7 @@ import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import filter from 'lodash/filter';
 import set from 'lodash/set';
+import startCase from 'lodash/startCase';
 
 export default /* @ngInject */ function LicenseService(
   WucApi,
@@ -11,6 +12,7 @@ export default /* @ngInject */ function LicenseService(
   $rootScope,
   OvhHttp,
   licenseFeatureAvailability,
+  $translate,
 ) {
   const self = this;
 
@@ -62,14 +64,13 @@ export default /* @ngInject */ function LicenseService(
     }).then((data) => data.options);
   };
 
-  this.getActualUpgradeVersion = (serviceId) => {
-    return OvhHttp.get(`/services/{serviceId}`, {
+  this.getActualLicenseVersion = (serviceId) =>
+    OvhHttp.get(`/services/{serviceId}`, {
       rootPath: 'apiv6',
       urlParams: {
         serviceId,
       },
     });
-  };
 
   this.getAllUpgradeVersion = (serviceId) => {
     return OvhHttp.get(`/services/{serviceId}/upgrade`, {
@@ -80,13 +81,16 @@ export default /* @ngInject */ function LicenseService(
     });
   };
 
-  this.getUpgradeVersion = (serviceId) => {
-    return $q
+  this.getUpgradeVersion = (serviceId) =>
+    $q
       .all({
-        actualUpgradeVersion: this.getActualUpgradeVersion(serviceId),
+        actualUpgradeVersion: this.getActualLicenseVersion(serviceId),
         upgradableVersions: this.getAllUpgradeVersion(serviceId),
       })
       .then((result) => {
+        if (result?.actualUpgradeVersion?.resource?.product?.description)
+          this.licenseDescription =
+            result.actualUpgradeVersion.resource.product.description;
         // Pricing mode
         this.pricingMode =
           result?.actualUpgradeVersion?.billing?.pricing?.pricingMode ||
@@ -129,7 +133,6 @@ export default /* @ngInject */ function LicenseService(
             return result.upgradableVersions;
         }
       });
-  };
 
   this.getFilteredUpgradeVersions = function getFilteredUpgradeVersions(
     results,
@@ -553,6 +556,13 @@ export default /* @ngInject */ function LicenseService(
         serviceName,
       },
     });
+  };
+
+  this.formatName = ({ version, type }) => {
+    const formattedVersion = startCase(version.replace(/-|_/g, ' '));
+    return `${$translate.instant(
+      `license_designation_${type}`,
+    )} ${formattedVersion}`;
   };
 
   init();

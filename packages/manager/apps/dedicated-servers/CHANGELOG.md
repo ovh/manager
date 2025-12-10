@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.7.5...@ovh-ux/manager-dedicated-servers-app@0.8.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedicated-server:** fix billing info ([ef666f4](https://github.com/ovh/manager/commit/ef666f4353595e352d83bc3c3686ca94a391764e)), closes [#MANAGER-18419](https://github.com/ovh/manager/issues/MANAGER-18419)
+* **dedicated-servers:** fix expiration date ([17f0623](https://github.com/ovh/manager/commit/17f06238477f8f7c7754839a0ed90a4e52d07c57)), closes [#MANAGER-18852](https://github.com/ovh/manager/issues/MANAGER-18852)
+
+
+### Features
+
+* **dedicated-server:** add csv export ([3897e22](https://github.com/ovh/manager/commit/3897e22bf75762dfdb0c8e3d31a436b98daf5fda)), closes [#MANAGER-20093](https://github.com/ovh/manager/issues/MANAGER-20093)
+* **dedicated-server:** remove load button & add infinite scroll ([b74802e](https://github.com/ovh/manager/commit/b74802e8379f71428e8b07f0932d7a34868ca2c8)), closes [#MANAGER-20279](https://github.com/ovh/manager/issues/MANAGER-20279)
+
+
+
+
+
 ## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.7.4...@ovh-ux/manager-dedicated-servers-app@0.7.5) (2025-12-09)
 
 

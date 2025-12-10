@@ -12,5 +12,6 @@
   "packages/manager/apps/pci-savings-plan",
   "packages/manager/apps/pci-ssh-keys",
   "packages/manager/apps/pci-users",
-  "packages/manager/apps/pci-vouchers"
+  "packages/manager/apps/pci-vouchers",
+  "packages/manager/modules/logs-to-customer"
 ]
