@@ -120,17 +120,6 @@ export default class TelecomTelephonyLinePhoneCtrl {
           'telecom::telephony::billingAccount::line::phone::accessories',
       },
       {
-        name: 'line_phonebook',
-        main: true,
-        disabled: !this.line.hasPhone || !this.line.hasSupportsPhonebook,
-        picto: 'ovh-font-contacts',
-        sref: 'telecom.telephony.billingAccount.line.dashboard.phone.phonebook',
-        text: this.$translate.instant(
-          'telephony_line_phone_actions_line_phonebook',
-        ),
-        tracking: 'telecom::telephony::billingAccount::line::phone::phonebook',
-      },
-      {
         name: `${
           this.line.hasPhone
             ? 'line_phone_order_detach'
