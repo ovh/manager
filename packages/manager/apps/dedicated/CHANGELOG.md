@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.68.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.68.0...@ovh-ux/manager-dedicated@20.68.1) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedcated/ip:** fixing the missing translations for the dedicated ip app ([6b2eff4](https://github.com/ovh/manager/commit/6b2eff409976b90aded1d9ed7c4365689acbae07)), closes [#INC0175233](https://github.com/ovh/manager/issues/INC0175233)
+
+
+
+
+
 # [20.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.67.1...@ovh-ux/manager-dedicated@20.68.0) (2025-12-10)
 
 
