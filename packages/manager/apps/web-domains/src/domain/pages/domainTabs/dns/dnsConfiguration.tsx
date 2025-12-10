@@ -23,6 +23,7 @@ import { computeDnsDetails } from '@/domain/utils/utils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import AnycastOrderButtonComponent from '@/domain/components/AnycastOrder/AnycastOrderButton';
 import { ongoingOperationLink } from '@/domain/constants/serviceDetail';
+import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 
 interface DnsConfigurationTabProps {
   readonly domainResource: TDomainResource;
@@ -115,6 +116,7 @@ export default function DnsConfigurationTab({
           anycastTerminateModalOpen={anycastTerminateModalOpen}
           serviceName={domainResource.id}
           onOpenAnycastTerminateModal={onOpenAnycastTerminateModal}
+          goBack={AnycastPreviousPages.DNS_SERVERS}
         />
       </div>
       <Datagrid
