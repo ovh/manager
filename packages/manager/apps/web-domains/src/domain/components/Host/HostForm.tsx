@@ -23,7 +23,7 @@ import { THost } from '@/domain/types/host';
 import {
   makeHostValidators,
   makeIpsValidator,
-  tranformIpsStringToArray,
+  transformIpsStringToArray,
 } from '@/domain/utils/utils';
 
 interface HostFormProps {
@@ -46,7 +46,7 @@ export default function HostForm({
     formState: { errors },
   } = useFormContext();
   const ips = watch('ips');
-  const ipsList = tranformIpsStringToArray(ips);
+  const ipsList = transformIpsStringToArray(ips);
 
   return (
     <section className="flex flex-col gap-y-6" data-testid="host-form">

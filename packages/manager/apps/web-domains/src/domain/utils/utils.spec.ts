@@ -12,9 +12,6 @@ import {
   isDuplicateIps,
   isValidIpv4,
   isValidIpv6,
-  isValidIpSyntax,
-  isValidNumberOfIps,
-  areIpsCompliantWithRegistryConfiguration,
   makeIpsValidator,
   areIPsValid,
 } from './utils';
@@ -296,24 +293,24 @@ describe('getIpsSupported', () => {
   });
 });
 
-describe('tranformIpsStringToArray', () => {
+describe('transformIpsStringToArray', () => {
   it('splits a comma-separated string and trims spaces', () => {
-    const result = tranformIpsStringToArray('1.1.1.1,  2.2.2.2 ,3.3.3.3');
+    const result = transformIpsStringToArray('1.1.1.1,  2.2.2.2 ,3.3.3.3');
     expect(result).toEqual(['1.1.1.1', '2.2.2.2', '3.3.3.3']);
   });
 
   it('returns array with empty string when input is empty', () => {
-    const result = tranformIpsStringToArray('');
+    const result = transformIpsStringToArray('');
     expect(result).toEqual(['']);
   });
 
   it('handles single IP without comma', () => {
-    const result = tranformIpsStringToArray('1.1.1.1');
+    const result = transformIpsStringToArray('1.1.1.1');
     expect(result).toEqual(['1.1.1.1']);
   });
 
   it('keeps empty segments as empty strings when there are consecutive commas', () => {
-    const result = tranformIpsStringToArray('1.1.1.1,,2.2.2.2');
+    const result = transformIpsStringToArray('1.1.1.1,,2.2.2.2');
     expect(result).toEqual(['1.1.1.1', '', '2.2.2.2']);
   });
 });
