@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.8.0...@ovh-ux/manager-dedicated-servers-app@0.8.1) (2025-12-10)
+
+
+### Bug Fixes
+
+* dedicated servers lint issues ([bccb0d5](https://github.com/ovh/manager/commit/bccb0d53f425c2a29db9eb997c654526d691bdcf)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.7.5...@ovh-ux/manager-dedicated-servers-app@0.8.0) (2025-12-10)
 
 
