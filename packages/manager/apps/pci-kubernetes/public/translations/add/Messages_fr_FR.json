@@ -81,6 +81,7 @@
   "kube_add_plan_content_unavailable_1AZ_banner": "Le plan {{ plan }} n'est pas encore disponible dans les régions 1-AZ. Si vous souhaitez profiter du plan {{ plan }}, veuillez sélectionner le déploiement en 3-AZ.",
   "kube_add_plan_content_unavailable_3AZ_banner": "Le plan {{ plan }} n'est pas encore disponible dans les régions 3-AZ. Si vous souhaitez profiter du plan {{ plan }}, veuillez sélectionner un déploiement en 1-AZ.",
   "kube_add_plan_content_coming_very_soon": "Bientôt disponible",
+  "kube_add_plan_content_not_available": "indisponible dans la région",
   "kube_add_plan_subtitle": "Choisissez le plan adapté à vos besoins. Bénéficiez d'un large choix d'instances utilisées comme nœuds Kubernetes, facturées à l'usage ou avec engagement.",
   "kube_add_node_pool_name_already_exist_validation_error": "Le nom de nodepool est déjà utilisé. Veuillez en choisir un autre."
 }
