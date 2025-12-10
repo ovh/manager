@@ -9,13 +9,8 @@ export type TForceReloadUseQueryParams = Pick<
   'refetchOnMount' | 'refetchOnWindowFocus' | 'refetchOnReconnect'
 >;
 
-export const getForceReloadUseQueryParams = (
-  forceReload?: boolean,
-): TForceReloadUseQueryParams =>
-  forceReload
-    ? {
-        refetchOnMount: 'always',
-        refetchOnWindowFocus: 'always',
-        refetchOnReconnect: 'always',
-      }
-    : {};
+export const forceReloadUseQueryOptions: TForceReloadUseQueryParams = {
+  refetchOnMount: 'always',
+  refetchOnWindowFocus: 'always',
+  refetchOnReconnect: 'always',
+};

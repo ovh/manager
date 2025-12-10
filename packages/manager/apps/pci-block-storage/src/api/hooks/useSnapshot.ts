@@ -16,7 +16,7 @@ import {
   isOperationInProgress,
 } from '@/api/select/operation';
 import {
-  getForceReloadUseQueryParams,
+  forceReloadUseQueryOptions,
   TApiHookOptions,
 } from '@/api/hooks/helpers';
 
@@ -39,14 +39,12 @@ export const useVolumeSnapshots = (
     [volume],
   );
 
-  const forceReloadOptions = getForceReloadUseQueryParams(options.forceReload);
-
   return useQuery<TVolumeSnapshot[]>({
     queryKey: getVolumeSnapshotsQueryKey(projectId, volumeId),
     queryFn: () => getSnapshotsByRegion(projectId, volume?.region),
     enabled: !!volume,
     select,
-    ...forceReloadOptions,
+    ...(options.forceReload && forceReloadUseQueryOptions),
   });
 };
 

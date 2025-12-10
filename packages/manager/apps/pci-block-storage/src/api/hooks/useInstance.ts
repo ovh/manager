@@ -7,7 +7,7 @@ import {
   selectAttachedInstances,
 } from '@/api/select/instances';
 import {
-  getForceReloadUseQueryParams,
+  forceReloadUseQueryOptions,
   TApiHookOptions,
 } from '@/api/hooks/helpers';
 
@@ -48,13 +48,11 @@ export const useAttachedInstances = (
     [volume],
   );
 
-  const forceReloadOptions = getForceReloadUseQueryParams(options.forceReload);
-
   return useQuery({
     queryKey: getInstancesQueryKey(projectId, volume?.region),
     queryFn: () => getInstancesByRegion(projectId, volume.region),
     enabled: !!volume,
     select,
-    ...forceReloadOptions,
+    ...(options.forceReload && forceReloadUseQueryOptions),
   });
 };

@@ -38,13 +38,13 @@ const RetypePage = () => {
     data: instances,
     isPending: isInstancesPending,
     isFetching: isInstancesFetching,
-  } = useAttachedInstances(projectId, volumeId, true);
+  } = useAttachedInstances(projectId, volumeId, { forceReload: true });
 
   const {
     data: snapshots,
     isPending: isSnapshotsPending,
     isFetching: isSnapshotsFetching,
-  } = useVolumeSnapshots(projectId, volumeId, true);
+  } = useVolumeSnapshots(projectId, volumeId, { forceReload: true });
 
   const isPending =
     isCatalogPending ||
