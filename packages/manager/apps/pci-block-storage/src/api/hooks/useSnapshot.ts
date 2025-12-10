@@ -1,4 +1,4 @@
-import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { useVolume } from '@/api/hooks/useVolume';
 import {
@@ -15,6 +15,10 @@ import {
   isOperationInFailedState,
   isOperationInProgress,
 } from '@/api/select/operation';
+import {
+  getForceReloadUseQueryParams,
+  TApiHookOptions,
+} from '@/api/hooks/helpers';
 
 const MAX_NUMBER_OF_TRIES = 10;
 
@@ -26,7 +30,7 @@ export const getVolumeSnapshotsQueryKey = (
 export const useVolumeSnapshots = (
   projectId: string,
   volumeId: string,
-  forceReload = false,
+  options: TApiHookOptions = {},
 ) => {
   const { data: volume } = useVolume(projectId, volumeId);
 
@@ -35,23 +39,14 @@ export const useVolumeSnapshots = (
     [volume],
   );
 
-  const forceReloadOption: Pick<
-    UseQueryOptions,
-    'refetchOnMount' | 'refetchOnWindowFocus' | 'refetchOnReconnect'
-  > = forceReload
-    ? {
-        refetchOnMount: 'always',
-        refetchOnWindowFocus: 'always',
-        refetchOnReconnect: 'always',
-      }
-    : {};
+  const forceReloadOptions = getForceReloadUseQueryParams(options.forceReload);
 
   return useQuery<TVolumeSnapshot[]>({
     queryKey: getVolumeSnapshotsQueryKey(projectId, volumeId),
     queryFn: () => getSnapshotsByRegion(projectId, volume?.region),
     enabled: !!volume,
     select,
-    ...forceReloadOption,
+    ...forceReloadOptions,
   });
 };
 
