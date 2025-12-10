@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -22,47 +22,31 @@ const LinksTrad = {
   changelog: 'mrc_changelog_changelog',
   roadmap: 'mrc_changelog_roadmap',
   'feature-request': 'mrc_changelog_feature-request',
-};
+} as const;
 
 export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({ links, chapters = [], prefixes }) => {
   const { t } = useTranslation('changelog-menu');
   const { trackClick } = useOvhTracking();
-  const [linksArray, setLinksArray] = useState<
-    {
-      id: number;
-      label: string;
-      href: string;
-      linktype: LinkType;
-      onClick: () => void;
-    }[]
-  >([]);
 
-  const sendTrackClick = (key: string) => {
+  const effectivePrefixes = prefixes ?? CHANGELOG_PREFIXES;
+
+  const sendTrackClick = (key: keyof typeof LinksTrad) => {
     trackClick({
       actionType: 'navigation',
-      actions: [...chapters, ...(prefixes || CHANGELOG_PREFIXES), GO_TO(key)],
+      actions: [...chapters, ...effectivePrefixes, GO_TO(key)],
     });
   };
 
-  useEffect(() => {
-    const linksTab: {
-      id: number;
-      label: string;
-      href: string;
-      linktype: LinkType;
-      onClick: () => void;
-    }[] = [];
-    Object.keys(links).forEach((key, index) => {
-      linksTab.push({
-        id: index,
-        label: t(LinksTrad[key as keyof typeof LinksTrad]),
-        href: links[key as keyof ChangelogMenuLinks],
-        linktype: LinkType.external,
-        onClick: () => sendTrackClick(key),
-      });
-    });
-    setLinksArray(linksTab);
-  }, [links]);
+  const linksArray = Object.keys(links).map((key, index) => {
+    const typedKey = key as keyof typeof LinksTrad;
+    return {
+      id: index,
+      label: t(LinksTrad[typedKey]),
+      href: links[key as keyof ChangelogMenuLinks],
+      linktype: LinkType.external,
+      onClick: () => sendTrackClick(typedKey),
+    };
+  });
 
   return (
     <ActionMenu

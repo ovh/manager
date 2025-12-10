@@ -27,9 +27,11 @@ export const TableBody = <T,>({
   const { rows } = rowModel;
   const previousRowsLength = usePrevious(rows?.length);
   const browserName = useMemo(() => getBrowserName(), []);
+  // eslint-disable-next-line react-hooks/incompatible-library
+  // TanStack Virtual's useVirtualizer returns functions that cannot be memoized safely
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    estimateSize: useCallback(() => maxRowHeight, [maxRowHeight]),
+    estimateSize: () => maxRowHeight,
     getScrollElement: () => tableContainerRef,
     measureElement:
       typeof window !== 'undefined' && navigator.userAgent.indexOf('Firefox') === -1
@@ -42,7 +44,7 @@ export const TableBody = <T,>({
     if (autoScroll && previousRowsLength !== undefined && rows?.length > previousRowsLength) {
       rowVirtualizer.scrollToIndex(previousRowsLength, { align: 'start' });
     }
-  }, [rows?.length]);
+  }, [autoScroll, previousRowsLength, rows?.length, rowVirtualizer]);
 
   const getOffset = useCallback(
     (index: number) => {
@@ -52,7 +54,7 @@ export const TableBody = <T,>({
       }
       return count * subComponentHeight;
     },
-    [subComponentHeight],
+    [rows, subComponentHeight],
   );
 
   const totalHeight = useMemo(() => {
