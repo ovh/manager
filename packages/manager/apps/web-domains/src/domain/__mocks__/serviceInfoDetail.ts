@@ -4,8 +4,9 @@ import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
-import { AdditionalDomainStateEnum } from '../enum/domainState.enum';
+import { AdditionalDomainStateEnum } from '@/domain/enum/domainState.enum';
 import { StatusEnum } from '@/domain/enum/Status.enum';
+import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 
 export const domainResourceOK: TDomainResource = {
   checksum: 'example-checksum',
@@ -44,6 +45,19 @@ export const domainResourceOK: TDomainResource = {
     },
     authInfoManagedByOVHcloud: true,
     authInfoSupported: true,
+    dnssecConfiguration: {
+      dnssecSupported: true,
+      dsData: [
+        {
+          algorithm: 8,
+          keyTag: 0,
+          flags: 0,
+          publicKey:
+            'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+        },
+      ],
+      supportedAlgorithms,
+    },
     extension: '.com',
     mainState: DomainStateEnum.OK,
     protectionState: ProtectionStateEnum.PROTECTED,
@@ -107,6 +121,19 @@ export const serviceInfoDetail: TDomainResource = {
         },
       ],
     },
+    dnssecConfiguration: {
+      dnssecSupported: true,
+      dsData: [
+        {
+          algorithm: 8,
+          keyTag: 0,
+          flags: 0,
+          publicKey:
+            'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+        },
+      ],
+      supportedAlgorithms,
+    },
     contactsConfiguration: {
       contactOwner: { id: 'owner-id' },
       contactAdministrator: { id: 'admin-id' },
@@ -136,6 +163,17 @@ export const serviceInfoDetail: TDomainResource = {
       ],
     },
     protectionState: ProtectionStateEnum.PROTECTED,
+    dnssecConfiguration: {
+      dsData: [
+        {
+          algorithm: 8,
+          keyTag: 0,
+          flags: 0,
+          publicKey:
+            'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+        },
+      ],
+    },
   },
   currentTasks: [],
   iam: {
