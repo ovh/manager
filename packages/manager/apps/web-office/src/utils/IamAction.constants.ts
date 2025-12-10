@@ -21,6 +21,10 @@ export const IAM_ACTIONS = {
     getParentTenant: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}parentTenant/get`,
     putParentTenant: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}parentTenant/edit`,
   },
+  mca: {
+    createAttestation: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}createAttestation`,
+    acceptAgreement: `${IAM_ACTIONS_OFFICE_PREPAID_PREFIX}acceptAgreement`,
+  },
 };
 
 export default { IAM_ACTIONS };

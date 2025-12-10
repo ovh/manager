@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +24,7 @@ import { useParentTenant } from '@/data/hooks/parent-tenant/useParentTenant';
 import { useServiceInfos } from '@/data/hooks/service-infos/useServiceInfos';
 import { useUsers } from '@/data/hooks/users/useUsers';
 import { useDateFnsLocale } from '@/hooks/date-fns-locale/useDateFnsLocale';
+import { urls } from '@/routes/Routes.constants';
 import { IAM_ACTIONS } from '@/utils/IamAction.constants';
 import { ServiceType } from '@/utils/ServiceType.utils';
 
@@ -44,7 +45,7 @@ export default function GeneralInformation() {
   const { data: dataUsers, isLoading: isLoadingUsers } = useUsers();
   const { data: dataParentTenant, isLoading: isLoadingParentTenant } = useParentTenant();
 
-  return (
+  return dataParentTenant?.mcaAgreed ? (
     <GridLayout>
       <Tile.Root
         data-testid="general_informations"
@@ -180,5 +181,7 @@ export default function GeneralInformation() {
         )}
       </Tile.Root>
     </GridLayout>
+  ) : (
+    <Navigate to={urls.listing} />
   );
 }
