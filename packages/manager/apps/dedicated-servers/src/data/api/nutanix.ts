@@ -7,9 +7,9 @@ type NutanixCluster = {
 };
 
 export const getNutanixServer = async (): Promise<NutanixCluster[]> => {
-  const { data } = await apiClient.v6.get<string[]>(`/nutanix`);
+  const { data: nutanixCluster } = await apiClient.v6.get<string[]>(`/nutanix`);
   const clusters = await Promise.all(
-    data.map((clusterId) =>
+    nutanixCluster.map((clusterId) =>
       apiClient.v6
         .get<NutanixCluster>(`/nutanix/${clusterId}`)
         .then(({ data }) => {
