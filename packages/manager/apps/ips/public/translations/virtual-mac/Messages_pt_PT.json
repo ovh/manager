@@ -2,7 +2,7 @@
   "addVirtualMacTitle": "Adicionar um MAC virtual",
   "addVirtualMacNew": "Criar um novo MAC virtual",
   "addVirtualMacNewInfo": "Os MAC virtuais permitem uma melhor gestão dos endereços IP ao atribuírem endereços MAC únicos a cada máquina virtual.",
-  "addVirtualMacNewInfoGuide": "Ver o guia sobre os MAC virtuais",
+  "addVirtualMacNewInfoGuide": "Consultar o guia sobre os MAC virtuais",
   "addVirtualMacExisting": "Utilizar um MAC virtual existente",
   "virtualMacIpAddress": "Endereço IP",
   "virtualMacType": "Tipo",

@@ -35,7 +35,7 @@
   "any_source": "alle",
   "none_label": "Keine",
   "only_permit_rules_warning": "Es wurden nur „Akzeptieren“-Regeln und keine „Ablehnen“-Regeln gefunden. Daher wird kein Traffic durch diese Konfiguration blockiert. Wir empfehlen Ihnen die letzte Regel, um Ihre Konfiguration effektiv zu gestalten. Klicken Sie hier <Link>Ablehnungsregel erstellen</Link> , um diese Regel hinzuzufügen.",
-  "only_permit_rule_link_label": "Ablehnungsregel erstellen,",
+  "only_permit_rule_link_label": "Ablehnungsregel erstellen",
   "mitigation_mode_active_warning_toltip": "Der Schutz ist derzeit aktiviert, die Firewall kann nicht deaktiviert werden.",
   "firewall_not_created_tooltip": "Die Firewall kann erst aktiviert werden, wenn eine erste Regel erstellt wurde.",
   "destinationPortLowerThanSourcePortError": "Der Zielport darf nicht kleiner als der Quellport sein.",
