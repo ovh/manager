@@ -78,7 +78,7 @@ export function useDatagridColumn(): DatagridColumn<IamUserToken>[] {
     {
       id: 'actions',
       label: '',
-      cell: () => <Actions />,
+      cell: (token: IamUserToken) => <Actions token={token} />,
     },
   ];
 }

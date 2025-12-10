@@ -14,6 +14,7 @@ const AssignTag = lazy(() =>
   import('@/pages/tagManager/assignTag/AssignTag.page'),
 );
 const PermanentTokensListing = lazy(() => import('@/pages/permanentTokens/listing/PermanentTokensListing.page'));
+const PermanentTokensEdit = lazy(() => import('@/pages/permanentTokens/edit/PermanentTokensEdit.page'));
 
 
 export default (
@@ -86,6 +87,15 @@ export default (
     <Route
       path={urls.permanentTokens}
       Component={PermanentTokensListing}
-    />
+    >
+      <Route
+        path={urls.permanentTokensAdd}
+        Component={PermanentTokensEdit}
+      />
+      <Route
+        path={urls.permanentTokensEdit}
+        Component={PermanentTokensEdit}
+      />
+    </Route>
   </Route>
 );
