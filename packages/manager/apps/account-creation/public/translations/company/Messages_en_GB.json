@@ -19,7 +19,7 @@
   "fallback_association": "Does your nonprofit not have a SIREN/SIRET (registration number) yet?",
   "fallback_administration": "Does your public authority not have a SIREN/SIRET (registration number) yet?",
   "fallback_button": "Skip this step",
-  "search_not_satisfactory_corporation": "Can’t find your company? Add it manually",
+  "search_not_satisfactory_corporation": "Can't find your company? Add it manually",
   "search_not_satisfactory_association": "Can’t find your nonprofit? Add it manually",
   "search_not_satisfactory_administration": "Can’t find your public authority? Add it manually"
 }

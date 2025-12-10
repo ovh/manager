@@ -1,7 +1,7 @@
 {
   "deleteStorageTitle": "Delete a container",
-  "deleteStorageDescription": "Are you sure you want to delete the container {{ name }}",
-  "deleteStorageConfirmation": "Enter 'TERMINATE' to confirm your choice.",
+  "deleteStorageDescription": "Are you sure you want to delete the container {{ name }}?",
+  "deleteStorageConfirmation": "Enter “TERMINATE” to confirm your choice.",
   "deleteStorageButtonCancel": "Cancel",
   "deleteStorageButtonConfirm": "Confirm",
   "deleteStorageToastErrorTitle": "Error",

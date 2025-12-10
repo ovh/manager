@@ -2,6 +2,10 @@
   "title": "Choisissez les paramètres du compte",
   "description": "Vous avez déjà un compte ? <Link label=\"Connectez-vous\"></Link>",
   "country_setting": "Pays de résidence fiscale",
+  "setting_description": "Selon votre pays de résidence, vous avez la possibilité de choisir le site web sur lequel vous pouvez contracter et choisir vos produits. La devise de facturation sera également liée au site web choisi",
+  "setting_description_list_first": "1 . Si vous êtes un client immatriculé à la TVA, à la GST ou à une taxe assimilée, votre pays de résidence correspond au pays dans lequel vous êtes immatriculé",
+  "setting_description_list_second": "2 . Si vous être un client non immatriculé à la TVA, à la GST ou autre taxe assimilée mais que vous êtes toutefois immatriculé comme « entrepreneur », votre pays de résidence correspond au pays dans lequel vous êtes immatriculé en tant qu’entrepreneur (numéro d’identification fiscal)",
+  "setting_description_list_last": "3 . Si vous être un client non immatriculé à la TVA, à la GST ou autre taxe assimilée, votre pays de résidence correspond en principe à celui de votre adresse de facturation. En application de la législation applicable, OVH pourra être amené à croiser cette information avec celle de votre adresse ip ou de la domiciliation bancaire de votre moyen de paiement. En cas de discordance, OVH pourra vous contacter pour valider votre pays de résidence",
   "currency_setting": "Devise",
   "site_setting": "Site web (langue)"
 }

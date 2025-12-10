@@ -1,6 +1,8 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { versionListMock, createVersionResponseMock } from './versions.mock';
+
 import { buildMswResponseMock } from '@/common/utils/tests/msw';
+
+import { createVersionResponseMock, versionListMock } from './versions.mock';
 import { findVersionMockById } from './versionsMock.utils';
 
 // LIST VERSION
@@ -34,14 +36,11 @@ export type GetVersionMockParams = {
 
 export const getVersionErrorMessage = 'get-version-error-message';
 
-export const getVersionMock = ({
-  isVersionKO,
-}: GetVersionMockParams): Handler[] => [
+export const getVersionMock = ({ isVersionKO }: GetVersionMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version/:versionId',
     response: buildMswResponseMock({
-      data: (request, params) =>
-        findVersionMockById(versionListMock, request, params),
+      data: (request, params) => findVersionMockById(versionListMock, request, params),
       errorMessage: getVersionErrorMessage,
       isError: isVersionKO,
     }),
@@ -57,9 +56,7 @@ export type CreateVersionMockParams = {
   isCreateVersionKO?: boolean;
 };
 
-export const createVersionMock = ({
-  isCreateVersionKO,
-}: CreateVersionMockParams): Handler[] => [
+export const createVersionMock = ({ isCreateVersionKO }: CreateVersionMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version',
     response: buildMswResponseMock({
@@ -80,9 +77,7 @@ export type UpdateVersionMockParams = {
 
 export const updateVersionErrorMessage = 'update-secret-version-error-message';
 
-export const updateVersionMock = ({
-  isVersionUpdateKO,
-}: UpdateVersionMockParams): Handler[] => [
+export const updateVersionMock = ({ isVersionUpdateKO }: UpdateVersionMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version/:versionId',
     method: 'put',

@@ -35,6 +35,7 @@ export const features = [
   'identity-access-management',
   'identity-access-management:logs',
   'identity-access-management:tag-management',
+  'ips',
   'public-cloud',
   'dedicated-server:order',
   'kubernetes',
@@ -51,6 +52,7 @@ export const features = [
   'okms',
   'okms:key-management-service',
   'okms:secret-manager',
+  'okms:secret-manager:beta-badge',
 ];
 
 export default function DedicatedSidebar() {
@@ -250,12 +252,17 @@ export default function DedicatedSidebar() {
         ),
         pathMatcher: new RegExp('^(/vrack-services/)'),
         subItems: [
-          feature.ip && {
+          (feature['ip'] || feature['ips']) && {
             id: 'dedicated-ip',
             label: t('sidebar_ip_short'),
             icon: getIcon('ovh-font ovh-font-ip'),
-            href: navigation.getURL('dedicated', '#/ip'),
-            routeMatcher: new RegExp('/ip(/|$)'),
+            ...(feature['ips'] ? {
+              href: navigation.getURL('ips', '#/ip'),
+              pathMatcher: new RegExp('/ip(/|$)'),
+            } : {
+              href: navigation.getURL('dedicated', '#/ip'),
+              routeMatcher: new RegExp('/ip(/|$)'),
+            })
           },
           feature['network-security'] && {
             id: 'dedicated-network-security',
@@ -429,7 +436,7 @@ export default function DedicatedSidebar() {
           feature['okms:secret-manager'] && {
             id: 'secret-manager',
             label: 'Secret Manager',
-            badge: 'beta',
+            badge: feature['okms:secret-manager:beta-badge'] ? 'beta' : undefined,
             icon: <OsdsIcon
               name={ODS_ICON_NAME.SHIELD_CONCEPT}
               size={ODS_ICON_SIZE.xxs}

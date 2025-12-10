@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+import { UseControllerProps, useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import {
-  useController,
-  UseControllerProps,
-  useFormContext,
-} from 'react-hook-form';
+
 import { OdsButton, OdsFormField } from '@ovhcloud/ods-components/react';
+
+import { KeyValuesEditorErrorMessage } from './KeyValuesEditorErrorMessage';
+import { KeyValuePair, KeyValuesEditorItem } from './KeyValuesEditorItem';
+import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 import {
   formatKeyValueArrayFromString,
   formatStringFromKeyValueArray,
   isStringValidForKeyValueForm,
 } from './utils/keyValue';
-import { KeyValuesEditorItem, KeyValuePair } from './KeyValuesEditorItem';
-import { KeyValuesEditorErrorMessage } from './KeyValuesEditorErrorMessage';
-import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
 export type FormFieldInput = {
   data: string;
@@ -81,10 +80,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
 
   return (
     <div className="space-y-5">
-      <OdsFormField
-        className="w-full block space-y-1"
-        error={fieldState.error?.message}
-      >
+      <OdsFormField className="block w-full space-y-1" error={fieldState.error?.message}>
         {keyValuePairs.map(({ key, value }, index) => (
           <KeyValuesEditorItem
             key={KEY_VALUES_EDITOR_TEST_IDS.pairItem(index)}

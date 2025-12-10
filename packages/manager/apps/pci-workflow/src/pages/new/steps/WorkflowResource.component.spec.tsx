@@ -1,31 +1,43 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
-import { TInstance } from '@ovh-ux/manager-pci-common';
-
-import { usePaginatedInstances } from '@/api/hooks/useInstances';
-import { useRegionsWithAutomaticBackup } from '@/hooks/useRegionsWithAutomaticBackup';
+import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { useInstance } from '@/api/hooks/instance/useAllInstances';
+import { usePaginatedInstances } from '@/api/hooks/instance/usePaginatedInstances';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { wrapper } from '@/wrapperRenders';
 
 import { WorkflowResource } from './WorkflowResource.component';
 
-vi.mock('@/api/hooks/useInstances');
+vi.mock('@/api/hooks/instance/useAllInstances');
+vi.mock('@/api/hooks/instance/usePaginatedInstances');
 
-vi.mock('@/hooks/useRegionsWithAutomaticBackup');
+vi.mocked(useInstance).mockReturnValue({ instance: null });
 
 describe('WorkflowResource Component', () => {
   const mockOnSubmit = vi.fn();
+  const mockOnUpdate = vi.fn();
+  const instanceId = buildInstanceId('instance1', 'region1');
   const unlockedStep = { isLocked: false };
-  vi.mocked(useRegionsWithAutomaticBackup).mockReturnValue(['regionmock1']);
   vi.mocked(usePaginatedInstances).mockReturnValue({
     isPending: false,
-    error: null,
     data: {
       rows: [
-        { id: 'instance1', region: 'regionmock1' },
-        { id: 'instance2', region: 'regionmock2' },
-      ] as TInstance[],
+        {
+          label: 'instance1',
+          region: { label: 'region1' },
+          status: { group: 'A' },
+          flavor: 'flavor1',
+          autoBackup: true,
+        } as TInstance,
+        {
+          label: 'instance2',
+          region: { label: 'region2' },
+          status: { group: 'B' },
+          flavor: 'flavor1',
+          autoBackup: false,
+        } as TInstance,
+      ],
       pageCount: 1,
       totalRows: 1,
     },
@@ -37,7 +49,12 @@ describe('WorkflowResource Component', () => {
 
   it('renders ResourceSelectorComponent when step is unlocked', () => {
     const { getByTestId } = render(
-      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
+      <WorkflowResource
+        step={unlockedStep as StepState}
+        onSubmit={mockOnSubmit}
+        onUpdate={mockOnUpdate}
+        instanceId={instanceId}
+      />,
       { wrapper },
     );
     expect(getByTestId('radio-button-instance1')).toBeInTheDocument();
@@ -45,7 +62,12 @@ describe('WorkflowResource Component', () => {
 
   it('disables next button when no instance is selected', () => {
     const { getByText } = render(
-      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
+      <WorkflowResource
+        step={unlockedStep as StepState}
+        onSubmit={mockOnSubmit}
+        onUpdate={mockOnUpdate}
+        instanceId={null}
+      />,
       { wrapper },
     );
     expect(getByText(/common_stepper_next_button_label/i)).toBeDisabled();
@@ -53,7 +75,12 @@ describe('WorkflowResource Component', () => {
 
   it('enables next button when an instance is selected', () => {
     const { getByTestId, getByText } = render(
-      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
+      <WorkflowResource
+        step={unlockedStep as StepState}
+        onSubmit={mockOnSubmit}
+        onUpdate={mockOnUpdate}
+        instanceId={instanceId}
+      />,
       { wrapper },
     );
     fireEvent.click(getByTestId('radio-button-instance1')); // Simulate selecting an instance
@@ -62,7 +89,12 @@ describe('WorkflowResource Component', () => {
 
   it('cannot select instance where workflow is not available', () => {
     const { getByTestId } = render(
-      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
+      <WorkflowResource
+        step={unlockedStep as StepState}
+        onSubmit={mockOnSubmit}
+        onUpdate={mockOnUpdate}
+        instanceId={instanceId}
+      />,
       { wrapper },
     );
     expect(getByTestId('radio-button-instance2')).toBeDisabled();

@@ -30,7 +30,7 @@ export const TableBody = <T,>({
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     estimateSize: useCallback(() => maxRowHeight, [maxRowHeight]),
-    getScrollElement: () => tableContainerRef.current,
+    getScrollElement: () => tableContainerRef,
     measureElement:
       typeof window !== 'undefined' && navigator.userAgent.indexOf('Firefox') === -1
         ? (el) => el?.getBoundingClientRect().height

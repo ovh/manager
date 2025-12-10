@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { MANAGER_MODULES_DIR, MODULE_TEMPLATE_DIR } from '@/configs/manager-forge-path-config.js';
 import { updateIgnoreFiles } from '@/helpers/manager-forge-generation-helper.js';
 import { addModuleToWorkspace } from '@/helpers/manager-forge-tasks-helper.js';
@@ -11,7 +13,6 @@ import {
   selectTemplateFile,
 } from '@/helpers/manager-forge-template-helper.js';
 import type { Answers } from '@/types/PromptType.js';
-import { logger } from '@/utils/log-manager.js';
 
 /**
  * Generates a new Manager Forge module using templates,

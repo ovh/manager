@@ -1,21 +1,22 @@
-import { screen, waitFor } from '@testing-library/react';
+import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
   getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { credentialMock } from '@key-management-service/mocks/credentials/credentials.mock';
-import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { labels } from '@/common/utils/tests/init.i18n';
-import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 
-const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(
-  okmsMock[0].id,
-  credentialMock[0].id,
-);
+import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
+const mockOkms = okmsRoubaix1Mock;
+const mockCredential = credentialMock1;
+const mockPageUrl = KMS_ROUTES_URLS.credentialDashboard(mockOkms.id, mockCredential.id);
 
 describe('Credential dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
@@ -32,9 +33,7 @@ describe('Credential dashboard test suite', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(
-          labels.credentials.key_management_service_credential_dashboard_name,
-        ),
+        screen.getByText(labels.credentials.key_management_service_credential_dashboard_name),
       ).toBeVisible();
     }, WAIT_FOR_DEFAULT_OPTIONS);
   });
@@ -45,28 +44,24 @@ describe('Credential dashboard test suite', () => {
 
     const backLink = await getOdsButtonByLabel({
       container,
-      label:
-        labels.credentials.key_management_service_credential_dashboard_backlink,
+      label: labels.credentials.key_management_service_credential_dashboard_backlink,
       isLink: true,
     });
 
-    user.click(backLink);
+    await act(async () => {
+      await user.click(backLink);
+    });
 
-    await assertTextVisibility(
-      labels.credentials.key_management_service_credential_headline,
-    );
+    await assertTextVisibility(labels.credentials.key_management_service_credential_headline);
   });
 
   it(`should navigate to the identity page on click on ${labels.credentials.key_management_service_credential_identities} `, async () => {
     const identitiesTabLabel =
-      labels.credentials
-        .key_management_service_credential_dashboard_tab_identities;
+      labels.credentials.key_management_service_credential_dashboard_tab_identities;
     const userTitleLabel =
-      labels.credentials
-        .key_management_service_credential_identities_user_title;
+      labels.credentials.key_management_service_credential_identities_user_title;
     const userGroupsTitleLabel =
-      labels.credentials
-        .key_management_service_credential_identities_usergroup_title;
+      labels.credentials.key_management_service_credential_identities_usergroup_title;
 
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
@@ -76,7 +71,9 @@ describe('Credential dashboard test suite', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    user.click(screen.getByText(identitiesTabLabel));
+    await act(async () => {
+      await user.click(screen.getByText(identitiesTabLabel));
+    });
 
     await waitFor(() => {
       expect(screen.getByText(userTitleLabel)).toBeVisible();

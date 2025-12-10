@@ -59,5 +59,9 @@
   "zimbra_account_plan_tag_coming_soon": "Dostępne wkrótce",
   "zimbra_account_plan_feature_share_starter_tooltip": "Udostępnianie ręczne (brak synchronizacji ActiveSync). W przypadku systemu Android udostępnianie działa wyłącznie w aplikacji Zimbra - nie jest obsługiwane w innych aplikacjach.",
   "zimbra_account_plan_feature_sync_tooltip": "Automatyczna synchronizacja na wszystkich urządzeniach w czasie rzeczywistym.",
-  "zimbra_account_update_offer_paid_now_tooltip": "Opłata jest naliczana za okres pozostały do najbliższego odnowienia (pro rata temporis)."
+  "zimbra_account_update_offer_paid_now_tooltip": "Opłata jest naliczana za okres pozostały do najbliższego odnowienia (pro rata temporis).",
+  "zimbra_account_delete_all": "Usuń konta ({{count}})",
+  "zimbra_account_delete_all_modal_content_step1": "Czy na pewno chcesz usunąć następujące konta?",
+  "zimbra_account_delete_all_modal_content_step2": "Czy na pewno chcesz usunąć te konta e-mail?",
+  "zimbra_account_delete_all_confirm_label": "Wpisz <strong>{{label}}</strong>, aby potwierdzić usunięcie:"
 }

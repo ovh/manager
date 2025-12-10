@@ -1,8 +1,9 @@
-import React from 'react';
-import { ManagerTile, Clipboard } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { ENPOINT_LABEL } from '@/constants';
+
+import { Clipboard, ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { DownloadOkmsPublicCaLink } from '@/common/components/download-okms-public-ca-link/DownloadOkmsPublicCaLink';
+import { ENPOINT_LABEL } from '@/constants';
 
 type KmipEndpointTileItemProps = {
   okms: OKMS;

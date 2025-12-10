@@ -10,12 +10,13 @@ import {
 import { HelpCircle } from 'lucide-react';
 import { useS3Data } from '../../S3.context';
 import { S3RegionServicesTypeEnum } from '@/types/Region';
-import { octetConverter } from '@/lib/bytesHelper';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
+import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
 
 const BucketOverview = () => {
   const { s3 } = useS3Data();
+  const localeBytesConverter = useLocaleBytesConverter();
   const { regions } = useObjectStorageData();
   const isLocaleZone = useIsLocaleZone(s3, regions);
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
@@ -50,7 +51,7 @@ const BucketOverview = () => {
         <>
           <div className="mt-4">
             <h5>{t('spaceUsed')}</h5>
-            <p>{octetConverter(s3.objectsSize)}</p>
+            <p>{localeBytesConverter(s3.objectsSize)}</p>
           </div>
           <div className="mt-4">
             <div className="flex flex-row items-center gap-2">

@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/button/Button.component';
 import type { ExpandedProps } from '@/components/datagrid/Datagrid.props';
 
-const ROW_SIZE = 30;
+const ROW_SIZE = 50;
 
 const SIZE_TO_BUTTON_SIZE: Record<TABLE_SIZE, BUTTON_SIZE> = {
   [TABLE_SIZE.sm]: BUTTON_SIZE.xs,

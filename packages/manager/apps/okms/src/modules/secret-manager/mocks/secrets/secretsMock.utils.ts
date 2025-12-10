@@ -1,5 +1,6 @@
-import { PathParams } from 'msw';
 import { Secret, SecretWithData } from '@secret-manager/types/secret.type';
+import { PathParams } from 'msw';
+
 import { getVersionMockWithData } from '../versions/versionsMock.utils';
 
 export const getSecretMockWithData = (secret: Secret): SecretWithData => {
@@ -19,8 +20,6 @@ export const findSecretMockByPath = (
 ) => {
   const url = new URL(request.url);
   const includeData = url.searchParams.get('includeData');
-  const mockList = includeData
-    ? getSecretListMockWithData(secretListMock)
-    : secretListMock;
+  const mockList = includeData ? getSecretListMockWithData(secretListMock) : secretListMock;
   return mockList.find(({ path }) => path === params.secretPath);
 };

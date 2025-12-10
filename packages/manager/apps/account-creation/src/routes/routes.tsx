@@ -20,7 +20,6 @@ export default (
     Component={LayoutPage}
     errorElement={
       <ErrorBoundary
-        isPreloaderHide
         isRouteShellSync
         redirectionApp="account-creation"
       />
@@ -31,8 +30,7 @@ export default (
       Component={SettingsPage}
       handle={{
         tracking: {
-          pageName: 'settings',
-          pageType: PageType.funnel,
+          pageName: 'choose-preferences',
         },
       }}
     />
@@ -41,8 +39,7 @@ export default (
       Component={AccountTypePage}
       handle={{
         tracking: {
-          pageName: 'account-type',
-          pageType: PageType.funnel,
+          pageName: 'select-account-type'
         },
       }}
     />
@@ -51,8 +48,7 @@ export default (
       Component={CompanyPage}
       handle={{
         tracking: {
-          pageName: 'company',
-          pageType: PageType.funnel,
+          pageName: 'add-customer-informations',
         },
       }}
     />
@@ -61,8 +57,7 @@ export default (
       Component={AccountDetailsPage}
       handle={{
         tracking: {
-          pageName: 'account-details',
-          pageType: PageType.funnel,
+          pageName: 'check-customer-informations',
         },
       }}
     />

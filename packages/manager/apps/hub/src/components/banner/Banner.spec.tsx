@@ -58,12 +58,12 @@ describe('Banner.component', () => {
       alt: 'Summit Banner',
       images: {
         default: {
-          src: 'data:image/jpeg;base64,....',
+          src: 'url',
           width: 1250,
           height: 117,
         },
         responsive: {
-          src: 'data:image/jpeg;base64,....',
+          src: 'url',
           width: 453,
           height: 117,
         },
@@ -85,5 +85,12 @@ describe('Banner.component', () => {
     await act(() => fireEvent.click(link));
 
     expect(trackingSpy).toHaveBeenCalled();
+  });
+
+  it('should have a valid html', () => {
+    const { container } = renderComponent();
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
   });
 });

@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.3...@ovh-ux/manager-account@0.19.4) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedicated:** update vmware and nsx official documentation link ([aead439](https://github.com/ovh/manager/commit/aead43966124e5436984fde7d5f2788c681844d8)), closes [#MANAGER-20049](https://github.com/ovh/manager/issues/MANAGER-20049)
+
+
+
+
+
+## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.2...@ovh-ux/manager-account@0.19.3) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4524] ([7ccf245](https://github.com/ovh/manager/commit/7ccf245dfb71a734dae520873a681c570082d62e))
+
+
+
+
+
+## [0.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.1...@ovh-ux/manager-account@0.19.2) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.0...@ovh-ux/manager-account@0.19.1) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.18.0...@ovh-ux/manager-account@0.19.0) (2025-12-01)
 
 

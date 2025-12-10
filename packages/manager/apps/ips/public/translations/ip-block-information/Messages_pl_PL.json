@@ -1,0 +1,12 @@
+{
+  "ipBlockInformationTitle": "Dane bloku IP",
+  "ipBlockInformationSubtitle": "W tej sekcji możesz spersonalizować dane publiczne dotyczące bloku IP (informacje dostępne w bazie whois).",
+  "ipBlockInformationNetNameLabel": "Nazwa sieci (Netname)",
+  "ipBlockInformationDescriptionLabel": "Opis",
+  "ipBlockInformationOrganisationLabel": "Organizacja",
+  "ipBlockInformationOrganisationOnGoingChange": "Trwa ponowne przypisywanie bloku adresów IP. Zajmie to kilka minut.",
+  "ipBlockInformationUpdateSuccessMessage": "Dane bloku adresów IP {{ip}} zostały zaktualizowane.",
+  "ipBlockInformationUpdateErrorMessage": "Wystąpił błąd podczas aktualizacji danych bloku IP {{ip}}: {{error}}",
+  "ipBlockInformationOrgUpdateSuccessMessage": "Trwa przypisywanie bloku IP {{ip}} do organizacji {{organisation}}. Operacja może zająć kilka minut.",
+  "ipBlockInformationOrgUpdateErrorMessage": "Wystąpił błąd podczas przypisywania bloku IP {{ip}} do organizacji {{organisation}}: {{error}}"
+}

@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.3...@ovh-ux/manager-communication-app@0.4.4) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.2...@ovh-ux/manager-communication-app@0.4.3) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4524] ([7ccf245](https://github.com/ovh/manager/commit/7ccf245dfb71a734dae520873a681c570082d62e))
+
+
+
+
+
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.1...@ovh-ux/manager-communication-app@0.4.2) (2025-12-08)
+
+
+### Bug Fixes
+
+* **communication:** resolve issue with the link ([07900cc](https://github.com/ovh/manager/commit/07900cc25d47076e0f381fc6d606e83399952564)), closes [#MANAGER-20465](https://github.com/ovh/manager/issues/MANAGER-20465)
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.0...@ovh-ux/manager-communication-app@0.4.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4520] ([79d395c](https://github.com/ovh/manager/commit/79d395c6b5cad1d18f0bfbe23e87ad71ce228dc1))
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.3.2...@ovh-ux/manager-communication-app@0.4.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4518] ([d5fe2fc](https://github.com/ovh/manager/commit/d5fe2fce0f29f22224aac501981c4eae5a971e4c))
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.3.1...@ovh-ux/manager-communication-app@0.3.2) (2025-12-03)
+
+
+### Bug Fixes
+
+* **communication:** add muk fixed version import ([1dce8d5](https://github.com/ovh/manager/commit/1dce8d5890b4d52ebc2b5b3fc0d802343e31c42c)), closes [#MANAGER-20434](https://github.com/ovh/manager/issues/MANAGER-20434)
+
+
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.3.0...@ovh-ux/manager-communication-app@0.3.1) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app

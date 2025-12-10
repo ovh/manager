@@ -15,8 +15,6 @@ import {
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import Flag from '@/components/flag/Flag.component';
-import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import cloud from '@/types/Cloud';
 import storages from '@/types/Storages';
 import { isS3Order, isSwiftOrder } from './useOrderFunnel.hook';
@@ -196,7 +194,10 @@ const OrderSummary = ({
                 <SummaryItem>
                   <KeyRound className="size-4" />
                   <span className="capitalize">
-                    {order.encryption.sseAlgorithm}
+                    {order.encryption.sseAlgorithm ===
+                    storages.EncryptionAlgorithmEnum.plaintext
+                      ? t('summaryEncryptionPlaintext')
+                      : order.encryption.sseAlgorithm}
                   </span>
                 </SummaryItem>
               </SummarySection>

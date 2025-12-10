@@ -1,12 +1,11 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_TEXT_PRESET,
-  OdsRadio as OdsRadioType,
-} from '@ovhcloud/ods-components';
-import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
 import { OkmsKeyTypes } from '@key-management-service/types/okmsServiceKey.type';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET, OdsRadio as OdsRadioType } from '@ovhcloud/ods-components';
+import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
 
 type TServiceKeyTypeRadioButton = {
   name: string;
@@ -14,10 +13,7 @@ type TServiceKeyTypeRadioButton = {
   onClick: React.MouseEventHandler<HTMLOdsRadioElement>;
 } & Partial<OdsRadioType>;
 
-export const ServiceKeyTypeRadioButton = ({
-  type,
-  ...props
-}: TServiceKeyTypeRadioButton) => {
+export const ServiceKeyTypeRadioButton = ({ type, ...props }: TServiceKeyTypeRadioButton) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const translatedType = useServiceKeyTypeTranslations(type);
   const buttonId = `serviceKeyType-${type}`;

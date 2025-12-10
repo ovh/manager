@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,6 +21,8 @@ import {
   ODS_LINK_ICON_ALIGNMENT,
 } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation, usePageTracking } from '@ovh-ux/manager-react-shell-client';
+import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useUserContext } from '@/context/user/useUser';
 import {
   useCompanySuggestion,
@@ -28,6 +30,7 @@ import {
 } from '@/data/hooks/useCompanySuggestion';
 import { Company } from '@/types/company';
 import { useCompanySearchSchema } from '@/hooks/companySearch/useCompanySearch';
+import { useTrackBackButtonClick, useTrackError } from '@/hooks/tracking/useTracking';
 import CompanyTile from '@/pages/company/company-tile/CompanyTile.component';
 import { searchMinlength } from './company.constants';
 import { urls } from '@/routes/routes.constant';
@@ -43,10 +46,13 @@ export default function CompanyPage() {
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const { t: tError } = useTranslation(NAMESPACES.ERROR);
   const navigate = useNavigate();
-
+  const [ searchParams ] = useSearchParams();
+  const { trackClick } = useTrackingContext();
   const queryClient = useQueryClient();
-
-  const { country, legalForm, setLegalForm, setCompany } = useUserContext();
+  const pageTracking = usePageTracking();
+  const { trackBackButtonClick } = useTrackBackButtonClick();
+  const { trackError } = useTrackError('add-customer-informations');
+  const { country, legalForm, setLegalForm, setCompany, ovhSubsidiary, language } = useUserContext();
   const [search, setSearch] = useState<string>('');
   const queryKey = useCompanySuggestionQueryKey(search);
   const schema = useCompanySearchSchema();
@@ -68,16 +74,37 @@ export default function CompanyPage() {
   });
 
   const onFallbackLinkClicked = useCallback(() => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: ['create-individual-account'],
+      });
+    }
     setLegalForm('individual');
   }, [legalForm]);
 
   const onFallbackButtonClicked = useCallback(() => {
-    navigate(urls.accountDetails);
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: ['association-skip-step'],
+      });
+    }
+    navigate(`${urls.accountDetails}?${searchParams.toString()}`);
   }, [legalForm]);
 
   const submitCompanySearch: SubmitHandler<SearchFormData> = useCallback(
     ({ search: value }: SearchFormData) => {
       setSearch(value);
+      if (pageTracking) {
+        trackClick(pageTracking, {
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actions: ['search-enterprise'],
+        });
+      }
     },
     [],
   );
@@ -99,18 +126,42 @@ export default function CompanyPage() {
     setCompany(null);
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      trackError(error.message);
+    }
+  }, [error]);
+
   const selectCompany = useCallback((company: Company) => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: ['account-create-add-customer-informations', 'next', `${ovhSubsidiary}_${language}_${legalForm}`],
+      });
+    }
     setCompany(company);
-    navigate('/details');
+    navigate(`${urls.accountDetails}?${searchParams.toString()}`);
   }, []);
+
+  const trackNotFoundLinkClick = useCallback(() => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: ['siret-siren-not-found-add-manually'],
+      });
+    }
+  }, [trackClick]);
 
   return (
     <>
       <OdsLink
         icon={ODS_ICON_NAME.arrowLeft}
         iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
-        href={`#${urls.accountType}`}
+        href={`#${urls.accountType}?${searchParams.toString()}`}
         label={tAction('back')}
+        onClick={() => trackBackButtonClick()}
         className="flex mb-6"
       />
       <OdsText preset={ODS_TEXT_PRESET.caption}>
@@ -251,6 +302,7 @@ export default function CompanyPage() {
               href="#/details"
               color={ODS_LINK_COLOR.primary}
               label={t(`search_not_satisfactory_${legalForm}`)}
+              onClick={() => trackNotFoundLinkClick()}
             />
           </div>
         )}

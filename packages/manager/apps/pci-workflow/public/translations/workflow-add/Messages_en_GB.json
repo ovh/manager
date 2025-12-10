@@ -76,5 +76,8 @@
   "pci_projects_project_workflow_instance_status_RESUMING": "Recovering",
   "pci_workflow_create_price_monthly": "~ {{ price }} ex. VAT/month/GB",
   "pci_workflow_create_monthly_backup_price": "Each backup will be billed at: {{ price }} ex. VAT/month/GB",
-  "pci_projects_project_workflow_instance_status_IS_IOPS": "The automatic backup applies strictly to data on your instance’s local disk. NVMe drive data will not be backed up."
+  "pci_projects_project_workflow_instance_status_IS_IOPS": "The automatic backup applies strictly to data on your instance’s local disk. NVMe drive data will not be backed up.",
+  "pci_workflow_create_distant_label": "Add a remote backup",
+  "pci_workflow_create_distant_region_label": "Select a region",
+  "pci_workflow_create_distant_region_enable_warning": "The selected location is not currently active. You can add it to your Public Cloud project by clicking “Create”."
 }

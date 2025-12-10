@@ -1,91 +1,88 @@
-import React from 'react';
 import {
-  initShellContext,
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
-import {
-  getServicesMocks,
-  GetServicesMocksParams,
-} from '@ovh-ux/manager-module-common-api';
-
-import { render, waitFor, screen } from '@testing-library/react';
-import {
-  getAuthenticationMocks,
-  toMswHandlers,
-  WAIT_FOR_DEFAULT_OPTIONS,
-} from '@ovh-ux/manager-core-test-utils';
-import {
-  createSecretsMock,
-  CreateSecretsMockParams,
-  deleteSecretMock,
-  DeleteSecretMockParams,
-  getSecretMock,
-  GetSecretMockParams,
-  getSecretsMock,
-  GetSecretsMockParams,
-  updateSecretMock,
-  UpdateSecretMockParams,
-} from '@secret-manager/mocks/secrets/secrets.handler';
-import {
-  getSecretConfigOkmsMock,
-  GetSecretConfigOkmsMockParams,
-} from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.handler';
-import {
-  getSecretConfigReferenceMock,
-  GetSecretConfigReferenceMockParams,
-} from '@secret-manager/mocks/secret-reference/secretReference.handler';
-import {
-  getVersionMock,
-  GetVersionMockParams,
-  getVersionsMock,
-  GetVersionsMockParams,
-  createVersionMock,
-  CreateVersionMockParams,
-  updateVersionMock,
-  UpdateVersionMockParams,
-} from '@secret-manager/mocks/versions/versions.handler';
-import {
-  getOkmsMocks,
-  GetOkmsMocksParams,
-} from '@key-management-service/mocks/kms/okms.handler';
-import {
-  getServiceKeysMock,
-  GetServiceKeysMockParams,
-} from '@key-management-service/mocks/service-keys/serviceKeys.handler';
-import {
-  getIamMocks,
-  GetIamAuthorizationMockParams,
-} from '@key-management-service/mocks/iam/iam.handler';
-import {
-  getCredentialsMock,
+  CreateCredentialsMockParams,
+  DeleteCredentialsMockParams,
   GetCredentialsMockParams,
   createCredentialsMock,
-  CreateCredentialsMockParams,
   deleteCredentialMock,
-  DeleteCredentialsMockParams,
+  getCredentialsMock,
 } from '@key-management-service/mocks/credentials/credentials.handler';
-import { kmsServicesMock } from '@key-management-service/mocks/services/services.mock';
 import {
   GetFeatureAvailabilityMocksParams,
   getFeatureAvailabilityMocks,
 } from '@key-management-service/mocks/feature-availability/feature-availability.handler';
 import {
-  getCatalogKmsMocks,
-  GetCatalogKmsMocksParams,
-} from '@key-management-service/mocks/catalog/catalog.handler';
-import {
-  getReferenceMock,
-  GetReferenceMockParams,
-} from '@key-management-service/mocks/reference/reference.handler';
+  GetIamAuthorizationMockParams,
+  getIamMocks,
+} from '@key-management-service/mocks/iam/iam.handler';
 import { getIdentityUserIds } from '@key-management-service/mocks/identity/identityUserIds.handler';
 import { getIdentityUsers } from '@key-management-service/mocks/identity/identityUsers.handler';
+import { GetOkmsMocksParams, getOkmsMocks } from '@key-management-service/mocks/kms/okms.handler';
+import {
+  GetReferenceMockParams,
+  getReferenceMock,
+} from '@key-management-service/mocks/reference/reference.handler';
+import {
+  GetServiceKeysMockParams,
+  getServiceKeysMock,
+} from '@key-management-service/mocks/service-keys/serviceKeys.handler';
+import { kmsServicesMock } from '@key-management-service/mocks/services/services.mock';
+import {
+  GetSecretConfigOkmsMockParams,
+  UpdateSecretConfigOkmsMockParams,
+  getSecretConfigOkmsMock,
+  updateSecretConfigOkmsMock,
+} from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.handler';
+import {
+  GetSecretConfigReferenceMockParams,
+  getSecretConfigReferenceMock,
+} from '@secret-manager/mocks/secret-reference/secretReference.handler';
+import {
+  CreateSecretsMockParams,
+  DeleteSecretMockParams,
+  GetSecretMockParams,
+  GetSecretsMockParams,
+  UpdateSecretMockParams,
+  createSecretsMock,
+  deleteSecretMock,
+  getSecretMock,
+  getSecretsMock,
+  updateSecretMock,
+} from '@secret-manager/mocks/secrets/secrets.handler';
+import {
+  CreateVersionMockParams,
+  GetVersionMockParams,
+  GetVersionsMockParams,
+  UpdateVersionMockParams,
+  createVersionMock,
+  getVersionMock,
+  getVersionsMock,
+  updateVersionMock,
+} from '@secret-manager/mocks/versions/versions.handler';
+import { render, screen, waitFor } from '@testing-library/react';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  getAuthenticationMocks,
+  toMswHandlers,
+} from '@ovh-ux/manager-core-test-utils';
+import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
+import {
+  ShellContext,
+  ShellContextType,
+  initShellContext,
+} from '@ovh-ux/manager-react-shell-client';
+
+import {
+  GetCatalogKmsMocksParams,
+  getCatalogKmsMocks,
+} from '@/common/mocks/catalog/catalog.handler';
 import { getLocationsMock } from '@/common/mocks/locations/locations.handler';
+
+import { TestApp } from './TestApp';
 import { initTestI18n } from './init.i18n';
 import { removeHandlersDelay } from './msw';
-import { TestApp } from './TestApp';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -106,16 +103,14 @@ export type RenderTestMockParams = GetOkmsMocksParams &
   UpdateSecretMockParams &
   DeleteSecretMockParams &
   GetSecretConfigOkmsMockParams &
+  UpdateSecretConfigOkmsMockParams &
   GetSecretConfigReferenceMockParams &
   GetVersionsMockParams &
   GetVersionMockParams &
   CreateVersionMockParams &
   UpdateVersionMockParams;
 
-export const renderTestApp = async (
-  initialRoute = '/',
-  mockParams: RenderTestMockParams = {},
-) => {
+export const renderTestApp = async (initialRoute = '/', mockParams: RenderTestMockParams = {}) => {
   global.server?.resetHandlers(
     ...toMswHandlers(
       removeHandlersDelay([
@@ -142,6 +137,7 @@ export const renderTestApp = async (
         ...updateSecretMock(mockParams),
         ...deleteSecretMock(mockParams),
         ...getSecretConfigOkmsMock(mockParams),
+        ...updateSecretConfigOkmsMock(mockParams),
         ...getSecretConfigReferenceMock(mockParams),
         ...getVersionsMock(mockParams),
         ...getVersionMock(mockParams),
@@ -171,8 +167,7 @@ export const renderTestApp = async (
     await waitFor(
       () =>
         expect(
-          screen.getAllByText('Key Management Service', { exact: false })
-            .length,
+          screen.getAllByText('Key Management Service', { exact: false }).length,
         ).toBeGreaterThan(0),
       WAIT_FOR_DEFAULT_OPTIONS,
     );

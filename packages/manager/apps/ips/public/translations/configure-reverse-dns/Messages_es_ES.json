@@ -1,0 +1,11 @@
+{
+  "listingReverseDnsUpdateSuccess": "Se ha actualizado el registro inverso.",
+  "reverseDnsModalTitle": "Configurar el registro DNS inverso",
+  "reverseDnsModalDescription": "Introduzca un nombre de dominio como registro DNS inverso para una dirección IP dada (registro PTR). Para más información, puede consultar nuestra ",
+  "reverseDnsParentIpBlockFieldLabel": "Parent IP block",
+  "reverseDnsIpFieldLabel": "Dirección IP",
+  "reverseDnsIpError": "Introduzca una dirección IP válida",
+  "reverseDnsIpNotInsideBlockError": "Introduzca una dirección IP contenida en el bloque",
+  "reverseDnsDnsFieldLabel": "Registro DNS inverso",
+  "reverseDnsDnsError": "Introduzca un dominio válido"
+}

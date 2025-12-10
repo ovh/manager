@@ -128,10 +128,6 @@
     "pnpm": "packages/manager/modules/iplb"
   },
   {
-    "turbo": "--filter @ovh-ux/logs-to-customer",
-    "pnpm": "packages/manager/modules/logs-to-customer"
-  },
-  {
     "turbo": "--filter @ovh-ux/manager-components",
     "pnpm": "packages/manager/modules/manager-components"
   },
@@ -262,6 +258,10 @@
   {
     "turbo": "--filter @ovh-ux/ng-ovh-web-universe-components",
     "pnpm": "packages/manager/modules/web-universe-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-cli-core",
+    "pnpm": "packages/manager-tools/manager-cli-core"
   },
   {
     "turbo": "--filter @ovh-ux/manager-static-analysis-kit",

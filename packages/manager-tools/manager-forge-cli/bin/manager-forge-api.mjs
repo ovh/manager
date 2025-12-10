@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 
-import { HELP_API } from '../dist/src/configs/manager-forge-config.js';
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
+import { HELP_API } from '../dist/src/configs/manager-forge-help-config.js';
 import { runForgeCli } from '../dist/src/helpers/manager-forge-cli-helper.js';
 import { forgeApiCli } from '../dist/src/manager-forge-api.js';
-import { logger } from '../dist/src/utils/log-manager.js';
 
 async function main() {
   try {

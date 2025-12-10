@@ -1,0 +1,12 @@
+{
+  "ipBlockInformationTitle": "Informationen zum IP-Block",
+  "ipBlockInformationSubtitle": "In diesem Abschnitt können Sie die öffentlichen Informationen zu Ihrem IP-Block anpassen (Informationen in der Whois-Datenbank).",
+  "ipBlockInformationNetNameLabel": "Netzwerkname (Netname)",
+  "ipBlockInformationDescriptionLabel": "Beschreibung",
+  "ipBlockInformationOrganisationLabel": "Organisation",
+  "ipBlockInformationOrganisationOnGoingChange": "Die Organisation des IP-Blocks wird neu zugewiesen. Bitte warten Sie einige Minuten.",
+  "ipBlockInformationUpdateSuccessMessage": "Die Informationen zum IP-Block {{ip}} wurden aktualisiert.",
+  "ipBlockInformationUpdateErrorMessage": "Beim Aktualisieren der Informationen zum IP-Block {{ip}} ist ein Fehler aufgetreten: {{error}}",
+  "ipBlockInformationOrgUpdateSuccessMessage": "Der IP-Block {{ip}} wird der Organisation {{organisation}} zugewiesen. Dieser Vorgang kann einige Minuten dauern.",
+  "ipBlockInformationOrgUpdateErrorMessage": "Beim Zuweisen des IP-Blocks {{ip}} zur Organisation {{organisation}} ist ein Fehler aufgetreten: {{error}}"
+}

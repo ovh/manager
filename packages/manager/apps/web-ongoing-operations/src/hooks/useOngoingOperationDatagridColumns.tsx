@@ -63,7 +63,7 @@ export const useOngoingOperationDatagridColumns = (
         (parent === ParentEnum.DOMAIN &&
           t('domain_operations_table_header_domain')) ||
         (parent === ParentEnum.ZONE && DNS_OPERATIONS_TABLE_HEADER_DOMAIN) ||
-        (parent === ParentEnum.ALLDOM && t(`${NAMESPACES.FORM}:lastname`)),
+        (parent === ParentEnum.ALLDOM && t(`${NAMESPACES.FORM}:lastname`)) || '',
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,

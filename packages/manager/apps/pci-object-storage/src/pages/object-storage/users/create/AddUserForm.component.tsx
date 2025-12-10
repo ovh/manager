@@ -30,7 +30,8 @@ interface AddUserFormProps {
 const AddUserForm = ({ onClose }: AddUserFormProps) => {
   const { projectId } = useParams();
   const [newUserId, setNewUserId] = useState<number>();
-  const [newUserPwd, setNewUserPwd] = useState<string>();
+  const [newUserAccess, setNewUserAccess] = useState<string>();
+  const [newUserSecret, setNewUserSecret] = useState<string>();
   const { t } = useTranslation('pci-object-storage/users/create');
   const toast = useToast();
   const { form } = useAddUserForm();
@@ -52,7 +53,12 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
         description: getObjectStoreApiErrorMessage(err),
       });
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      const { access, secret } = data;
+
+      setNewUserAccess(access);
+      setNewUserSecret(secret);
+
       toast.toast({
         title: t('addUserToastSuccessTitle'),
         description: t('addUserToastSuccessDescription', {
@@ -71,7 +77,6 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
       });
     },
     onSuccess: (newUser) => {
-      setNewUserPwd(newUser.password);
       setNewUserId(newUser.id);
     },
   });
@@ -97,9 +102,11 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
 
   const handleClose = () => {
     setNewUserId(undefined);
-    setNewUserPwd(undefined);
+    setNewUserAccess(undefined);
+    setNewUserSecret(undefined);
     onClose?.(newUserQuery.data);
   };
+
 
   return (
     <>
@@ -109,10 +116,10 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
             {t('addUserTitle')}
           </DialogTitle>
         </DialogHeader>
-        {newUserPwd ? (
+        {newUserId ? (
           <>
             <DialogBody>
-              <UserInformation pwd={newUserPwd} newUser={newUserQuery.data} />
+              <UserInformation newUser={newUserQuery.data} access={newUserAccess} secret={newUserSecret} />
             </DialogBody>
             <DialogFooter>
               <DialogClose asChild onClick={() => handleClose()}>

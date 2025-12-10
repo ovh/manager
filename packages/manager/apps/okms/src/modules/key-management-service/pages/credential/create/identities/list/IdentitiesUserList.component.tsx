@@ -1,8 +1,11 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsInput } from '@ovhcloud/ods-components/react';
+import { Dispatch, SetStateAction, useState } from 'react';
+
 import { IdentityUser } from '@key-management-service/types/identity.type';
 import identityListSortAndFilter from '@key-management-service/utils/credential/identityListSortAndFilter';
+import { useTranslation } from 'react-i18next';
+
+import { OdsInput } from '@ovhcloud/ods-components/react';
+
 import IdentitiesUserTile from '../tile/IdentitiesUserTile.component';
 
 type IdentitiesUserListProps = {
@@ -17,16 +20,13 @@ const IdentitiesUserList = ({
   setSelectedUserList,
 }: IdentitiesUserListProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const [sortedFilteredUsers, setSortedFilteredUsers] = useState<
-    IdentityUser[]
-  >(identityListSortAndFilter<IdentityUser>(userList, 'login'));
+  const [sortedFilteredUsers, setSortedFilteredUsers] = useState<IdentityUser[]>(
+    identityListSortAndFilter<IdentityUser>(userList, 'login'),
+  );
 
   const filterTerms = (searchTerm: string) => {
     setSortedFilteredUsers(
-      identityListSortAndFilter<IdentityUser>(userList, 'login', searchTerm, [
-        'login',
-        'email',
-      ]),
+      identityListSortAndFilter<IdentityUser>(userList, 'login', searchTerm, ['login', 'email']),
     );
   };
 
@@ -41,7 +41,7 @@ const IdentitiesUserList = ({
         onOdsChange={(event) => filterTerms(event.detail.value as string)}
         type="search"
       />
-      <div className="grid gap-3 mb-4">
+      <div className="mb-4 grid gap-3">
         {sortedFilteredUsers.map((user) => (
           <IdentitiesUserTile
             key={user.urn}

@@ -1,0 +1,8 @@
+{
+  "cancel": "Anular",
+  "cancel_savings_plan_modal_title": "Cancelar o Plano de Poupança?",
+  "close_modal": "Fechar",
+  "confirm": "Confirmar",
+  "cancel_savings_plan_success": "O Plano de Poupança foi cancelado com sucesso.",
+  "cancel_savings_plan_error": "Erro ao cancelar o Plano de Poupança. Volte a tentar mais tarde. ({{ error }})"
+}

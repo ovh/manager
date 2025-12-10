@@ -1,5 +1,6 @@
-import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const DATA_MIN_CHAR = 1;
@@ -13,9 +14,9 @@ export const useSecretDataSchema = () => {
     .refine(
       (value) => {
         try {
-          const parsedJSON = JSON.parse(value);
+          const parsedJSON = JSON.parse(value) as object;
           return typeof parsedJSON === 'object' && !Array.isArray(parsedJSON);
-        } catch (error) {
+        } catch {
           return false;
         }
       },
@@ -26,7 +27,7 @@ export const useSecretDataSchema = () => {
     .refine(
       (value) => {
         try {
-          const parsed = JSON.parse(value);
+          const parsed = JSON.parse(value) as object;
           const stringified = JSON.stringify(parsed);
 
           // Normalize both strings for comparison (remove whitespace differences)
@@ -36,7 +37,7 @@ export const useSecretDataSchema = () => {
           // If the strings are not equal, it means there are duplicated keys
           // (duplicated keys are lost with JSON.parse)
           return original === result;
-        } catch (error) {
+        } catch {
           return true;
         }
       },
@@ -47,10 +48,10 @@ export const useSecretDataSchema = () => {
     .refine(
       (value) => {
         try {
-          const parsedJSON = JSON.parse(value);
+          const parsedJSON = JSON.parse(value) as object;
           const keys = Object.keys(parsedJSON);
           return keys.every((key) => key !== '');
-        } catch (error) {
+        } catch {
           return true;
         }
       },

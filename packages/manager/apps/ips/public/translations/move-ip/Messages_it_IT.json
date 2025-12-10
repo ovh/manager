@@ -1,0 +1,20 @@
+{
+  "step1Description": "Seleziona il servizio di destinazione per l'IP <b>{{ip}}</b>:",
+  "step1CurrentServiceLabel": "Da",
+  "step1EmptyCurrentServiceValue": "Parking degli IP",
+  "step1DestinationServiceLabel": "Verso",
+  "step1NextHopLabel": "Su",
+  "step2DescriptionWithNextHop": "Vuoi davvero trasferire l'IP <b>{{ip}}</b> verso <b>{{destinationService}}</b> su <b>{{nextHop}}</b>?",
+  "step2DescriptionWithoutNextHop": "Vuoi davvero trasferire l'IP <b>{{ip}}</b> verso <b>{{destinationService}}</b>?",
+  "moveIpOnGoingTaskMessage": "Questo IP è già in fase di trasferimento.",
+  "moveIpSuccessMessage": "L'IP {{ip}} sarà disponibile in \"{{destinationService}}\" entro pochi minuti.",
+  "moveIpDoneMessage": "L'IP {{ip}} è stato trasferito correttamente.",
+  "service_destination_ipLoadbalancing_option_group_label": "IP Load Balancing",
+  "service_destination_dedicatedServer_option_group_label": "Server dedicati",
+  "service_destination_dedicatedCloud_option_group_label": "Cloud dedicato",
+  "service_destination_vps_option_group_label": "VPS",
+  "service_destination_cloudProject_option_group_label": "Progetto Cloud",
+  "service_destination_hostingReseller_option_group_label": "Hosting Reseller",
+  "service_selection_select_ip_parking_option_group_label": "IP Parking",
+  "service_selection_select_ip_parking_option_label": "IP Parking"
+}

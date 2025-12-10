@@ -25,5 +25,7 @@
   "pci_projects_project_quota_autoscaling_error": "Bei der Aktualisierung des Quotas ist ein Fehler aufgetreten",
   "pci_projects_project_quota_autoscaling_help": "Ihr Quota wird automatisch entsprechend Ihrer Nutzung und nach bestimmten Kriterien angepasst.",
   "pci_projects_project_quota_protect_contact_support": "Support kontaktieren",
-  "pci_projects_project_quota_error_forbidden": "Sie haben nicht die nötigen Rechte, um Ihre Quotas zu verwalten. Bitte wenden Sie sich an den Inhaber des Dienstes"
+  "pci_projects_project_quota_error_forbidden": "Sie haben nicht die nötigen Rechte, um Ihre Quotas zu verwalten. Bitte wenden Sie sich an den Inhaber des Dienstes",
+  "pci_projects_project_quota_limit_warning": "Die Quoten entsprechen der maximalen Menge an Ressourcen, die Sie verbrauchen können. Um Missbrauch zu begrenzen, haben wir standardmäßig Grenzen festgelegt.",
+  "pci_projects_project_quota_help_cta": "Verstehen, wie die Quoten funktionieren"
 }

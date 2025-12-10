@@ -1,8 +1,8 @@
 import {
-  isKeyValueObject,
-  isStringValidForKeyValueForm,
   formatKeyValueArrayFromString,
   formatStringFromKeyValueArray,
+  isKeyValueObject,
+  isStringValidForKeyValueForm,
 } from './keyValue';
 
 describe('isKeyValueObject', () => {
@@ -28,9 +28,7 @@ describe('isKeyValueObject', () => {
     });
 
     it('should return true for object with undefined values', () => {
-      expect(
-        isKeyValueObject({ optional: undefined, missing: undefined }),
-      ).toBe(true);
+      expect(isKeyValueObject({ optional: undefined, missing: undefined })).toBe(true);
     });
 
     it('should return true for object with mixed primitive types', () => {
@@ -82,9 +80,7 @@ describe('isKeyValueObject', () => {
 
     it('should return false for objects with nested objects', () => {
       expect(isKeyValueObject({ user: { name: 'John', age: 30 } })).toBe(false);
-      expect(isKeyValueObject({ data: { nested: { deep: 'value' } } })).toBe(
-        false,
-      );
+      expect(isKeyValueObject({ data: { nested: { deep: 'value' } } })).toBe(false);
     });
 
     it('should return false for objects with array values', () => {
@@ -146,9 +142,7 @@ describe('isStringValidForKeyValueForm', () => {
   });
 
   it('should return true for valid JSON object', () => {
-    expect(
-      isStringValidForKeyValueForm('{"key1":"value1","key2":"value2"}'),
-    ).toBe(true);
+    expect(isStringValidForKeyValueForm('{"key1":"value1","key2":"value2"}')).toBe(true);
   });
 
   it('should return false for malformed JSON', () => {

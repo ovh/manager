@@ -59,5 +59,9 @@
   "zimbra_account_plan_tag_coming_soon": "Demnächst verfügbar",
   "zimbra_account_plan_feature_share_starter_tooltip": "Manuelle Freigabe (keine ActiveSync-Synchronisierung) Für Android ist die Freigabe nicht mit einer anderen App als Zimbra kompatibel.",
   "zimbra_account_plan_feature_sync_tooltip": "Automatische Synchronisierung auf allen Geräten in Echtzeit.",
-  "zimbra_account_update_offer_paid_now_tooltip": "Der Preis wird auf Basis der bis zu Ihrem nächsten Verlängerungsdatum verbleibenden Zeit anteilig berechnet."
+  "zimbra_account_update_offer_paid_now_tooltip": "Der Preis wird auf Basis der bis zu Ihrem nächsten Verlängerungsdatum verbleibenden Zeit anteilig berechnet.",
+  "zimbra_account_delete_all": "Accounts löschen ({{ count }})",
+  "zimbra_account_delete_all_modal_content_step1": "Möchten Sie die folgenden Accounts wirklich löschen?",
+  "zimbra_account_delete_all_modal_content_step2": "Möchten Sie die folgenden E-Mail-Accounts wirklich löschen?",
+  "zimbra_account_delete_all_confirm_label": "Geben Sie <strong>{{ label }}</strong> ein, um den Löschvorgang zu bestätigen:"
 }

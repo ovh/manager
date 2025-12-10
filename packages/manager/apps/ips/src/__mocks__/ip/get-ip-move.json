@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud": [{ "nexthop": [], "service": "0123456" }],
+  "ipLoadbalancing": [{ "nexthop": [], "service": "0123457" }],
+  "vps": [{ "nexthop": [], "service": "0123458" }],
+  "hostingReseller": [{ "nexthop": [], "service": "0123459" }],
+  "cloudProject": [
+    {
+      "service": "01234506",
+      "nexthop": ["111.22.333.444", "111.22.333.445"]
+    },
+    { "nexthop": [], "service": "0122456" }
+  ],
+  "dedicatedServer": [{ "nexthop": [], "service": "1122456" }]
+}

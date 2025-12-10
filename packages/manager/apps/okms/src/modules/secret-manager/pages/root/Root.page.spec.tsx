@@ -1,7 +1,9 @@
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { PATH_LABEL } from '@/constants';
 
 describe('Secret Manager root page test suite', () => {

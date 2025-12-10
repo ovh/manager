@@ -1,16 +1,10 @@
-import React from 'react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_BUTTON_COLOR,
-} from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
 import { useIdentityData } from '@key-management-service/hooks/credential/useIdentityData';
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';
 
-const IdentityServiceAccountDeleteActionCell = (
-  serviceAccount: IdentityOauthClient,
-) => {
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+const IdentityServiceAccountDeleteActionCell = (serviceAccount: IdentityOauthClient) => {
   const { setServiceAccountList } = useIdentityData();
 
   return (
@@ -20,8 +14,7 @@ const IdentityServiceAccountDeleteActionCell = (
       onClick={() => {
         setServiceAccountList((prevServiceAccountList) =>
           prevServiceAccountList.filter(
-            (serviceAccountInList) =>
-              serviceAccountInList.identity !== serviceAccount.identity,
+            (serviceAccountInList) => serviceAccountInList.identity !== serviceAccount.identity,
           ),
         );
       }}

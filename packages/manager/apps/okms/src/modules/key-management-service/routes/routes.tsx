@@ -1,119 +1,120 @@
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { getLogsRoute } from '@ovh-ux/logs-to-customer';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { Route } from 'react-router-dom';
+
 import NotFound from '@key-management-service/pages/404';
+
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { KMS_ROUTES_URIS, KMS_URL_PARAMS } from './routes.constants';
 
 export const COMMON_PATH = '/key-management-service';
 
 // Kms
-const KmsLayout = React.lazy(() =>
-  import('@key-management-service/pages/layout'),
+const KmsLayout = React.lazy(() => import('@key-management-service/pages/layout'));
+const KmsListing = React.lazy(
+  () => import('@key-management-service/pages/listing/KmsListing.page'),
 );
-const KmsListing = React.lazy(() =>
-  import('@key-management-service/pages/listing/KmsListing.page'),
+const KmsTerminateModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/dashboard/general-informations/terminate/terminate-kms/page'
+    ),
 );
-const KmsTerminateModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/dashboard/general-informations/terminate/terminate-kms/page'
-  ),
+const KmsCreate = React.lazy(() => import('@key-management-service/pages/create/CreateKms.page'));
+const KmsCreateOrderOkmsModal = React.lazy(
+  () => import('@/common/pages/order-okms-modal/OrderOkmsModal.page'),
 );
-const KmsCreate = React.lazy(() =>
-  import('@key-management-service/pages/create/CreateKms.page'),
+const KmsOnboarding = React.lazy(
+  () => import('@key-management-service/pages/onboarding/Onboarding'),
 );
-const KmsOnboarding = React.lazy(() =>
-  import('@key-management-service/pages/onboarding/Onboarding'),
+const KmsDashboard = React.lazy(
+  () => import('@key-management-service/pages/dashboard/KmsDashboard.page'),
 );
-const KmsDashboard = React.lazy(() =>
-  import('@key-management-service/pages/dashboard/KmsDashboard.page'),
+const KmsGeneralInformations = React.lazy(
+  () =>
+    import('@key-management-service/pages/dashboard/general-informations/GeneralInformations.page'),
 );
-const KmsGeneralInformations = React.lazy(() =>
-  import(
-    '@key-management-service/pages/dashboard/general-informations/GeneralInformations.page'
-  ),
-);
-const KmsLogs = React.lazy(() =>
-  import('@key-management-service/pages/dashboard/logs/Logs.page'),
-);
-const KmsRenameModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/dashboard/general-informations/update-name/OkmsNameUpdateModal.page'
-  ),
+const KmsLogs = React.lazy(() => import('@key-management-service/pages/dashboard/logs/Logs.page'));
+const KmsRenameModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/dashboard/general-informations/update-name/OkmsNameUpdateModal.page'
+    ),
 );
 
 // Service Key
-const ServiceKeyDashboard = React.lazy(() =>
-  import(
-    '@key-management-service/pages/service-key/dashboard/ServiceKeyDashboard.page'
-  ),
+const ServiceKeyDashboard = React.lazy(
+  () => import('@key-management-service/pages/service-key/dashboard/ServiceKeyDashboard.page'),
 );
-const ServiceKeyRenameModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/service-key/edit-service-key-name-modal/EditServiceKeyNameModal.page'
-  ),
+const ServiceKeyRenameModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/service-key/edit-service-key-name-modal/EditServiceKeyNameModal.page'
+    ),
 );
-const ServiceKeyList = React.lazy(() =>
-  import(
-    '@key-management-service/pages/dashboard/service-key-list/ServiceKeyList.page'
-  ),
+const ServiceKeyList = React.lazy(
+  () => import('@key-management-service/pages/dashboard/service-key-list/ServiceKeyList.page'),
 );
-const ServiceKeyDeactivateModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/service-key/deactivate-service-key-modal/DeactivateServiceKeyModal.page'
-  ),
+const ServiceKeyDeactivateModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/service-key/deactivate-service-key-modal/DeactivateServiceKeyModal.page'
+    ),
 );
-const ServiceKeyCreate = React.lazy(() =>
-  import('@key-management-service/pages/service-key/create/CreateKey.page'),
+const ServiceKeyCreate = React.lazy(
+  () => import('@key-management-service/pages/service-key/create/CreateKey.page'),
 );
 
 // Credentials
-const CredentialsList = React.lazy(() =>
-  import(
-    '@key-management-service/pages/dashboard/credential-list/CredentialList.page'
-  ),
+const CredentialsList = React.lazy(
+  () => import('@key-management-service/pages/dashboard/credential-list/CredentialList.page'),
 );
-const CredentialsListDeleteModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/dashboard/credential-list/delete/DeleteCredentialModal.page'
-  ),
+const CredentialsListDeleteModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/dashboard/credential-list/delete/DeleteCredentialModal.page'
+    ),
 );
-const CredentialsDashboard = React.lazy(() =>
-  import('@key-management-service/pages/credential/Credential.page'),
+const CredentialsDashboard = React.lazy(
+  () => import('@key-management-service/pages/credential/Credential.page'),
 );
-const CredentialsGeneralInformations = React.lazy(() =>
-  import(
-    '@key-management-service/pages/credential/general-informations/generalInformations.page'
-  ),
+const CredentialsGeneralInformations = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/credential/general-informations/generalInformations.page'
+    ),
 );
-const CredentialsDashboardDeleteModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/credential/general-informations/delete/DeleteCredentialModal.page'
-  ),
+const CredentialsDashboardDeleteModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/credential/general-informations/delete/DeleteCredentialModal.page'
+    ),
 );
-const CredentialsIdentities = React.lazy(() =>
-  import('@key-management-service/pages/credential/identities/identities.page'),
+const CredentialsIdentities = React.lazy(
+  () => import('@key-management-service/pages/credential/identities/identities.page'),
 );
-const CredentialsCreate = React.lazy(() =>
-  import(
-    '@key-management-service/pages/credential/create/CreateCredential.page'
-  ),
+const CredentialsCreate = React.lazy(
+  () => import('@key-management-service/pages/credential/create/CreateCredential.page'),
 );
-const CredentialsCreateUserListModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/credential/create/add-users/CreateCredentialIdentityUserList.page'
-  ),
+const CredentialsCreateUserListModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/credential/create/add-users/CreateCredentialIdentityUserList.page'
+    ),
 );
-const CredentialsCreateGroupListModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/credential/create/add-groups/CreateCredentialIdentityGroupList.page'
-  ),
+const CredentialsCreateGroupListModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/credential/create/add-groups/CreateCredentialIdentityGroupList.page'
+    ),
 );
-const CredentialsCreateServiceAccountListModal = React.lazy(() =>
-  import(
-    '@key-management-service/pages/credential/create/add-service-account/CreateCredentialIdentityServiceAccountList.page'
-  ),
+const CredentialsCreateServiceAccountListModal = React.lazy(
+  () =>
+    import(
+      '@key-management-service/pages/credential/create/add-service-account/CreateCredentialIdentityServiceAccountList.page'
+    ),
 );
 
 export default (
@@ -122,11 +123,7 @@ export default (
     Component={KmsLayout}
     id={'kms-root'}
     errorElement={
-      <ErrorBoundary
-        redirectionApp="okms"
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-      />
+      <ErrorBoundary redirectionApp="okms" isPreloaderHide={true} isRouteShellSync={true} />
     }
   >
     <Route
@@ -140,7 +137,7 @@ export default (
       }}
     />
     <Route
-      path={KMS_ROUTES_URIS.serviceKeyCreate}
+      path={KMS_ROUTES_URIS.kmsCreate}
       Component={KmsCreate}
       handle={{
         tracking: {
@@ -148,7 +145,9 @@ export default (
           pageType: PageType.funnel,
         },
       }}
-    />
+    >
+      <Route path={KMS_URL_PARAMS.region} Component={KmsCreateOrderOkmsModal} />
+    </Route>
     <Route
       path={KMS_ROUTES_URIS.kmsOnboarding}
       Component={KmsOnboarding}
@@ -233,9 +232,7 @@ export default (
           }}
         />
       </Route>
-      <Route path={`${KMS_ROUTES_URIS.kmsLogs}/*`} Component={KmsLogs}>
-        {getLogsRoute()}
-      </Route>
+      <Route path={`${KMS_ROUTES_URIS.kmsLogs}/*`} Component={KmsLogs} />
     </Route>
     <Route
       path={`${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.serviceKeys}/${KMS_ROUTES_URIS.serviceKeyCreate}`}

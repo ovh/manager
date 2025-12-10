@@ -17,8 +17,7 @@ import ipPunycode from './filters/ip/ipPunycode/ipPunycode';
 import byoip from './byoip';
 import failover from './failover';
 import onboarding from './onboarding';
-
-import routing from './ip.routing';
+import routing, { mapAngularStateToReactUrl } from './ip.routing';
 
 const moduleName = 'Ip';
 
@@ -44,6 +43,30 @@ angular
   .filter('ipFilterByService', ipFilterByService)
   .filter('ipFirewallRulePort', ipFirewallRulePort)
   .filter('ipPunycode', ipPunycode)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(function($window, $transitions, ovhFeatureFlipping, shellClient) {
+    const windowRef = $window;
+    $transitions.onStart({ to: 'app.ip.**' }, function(trans) {
+      const ipFeatureId = 'ips';
+      return ovhFeatureFlipping
+        .checkFeatureAvailability(ipFeatureId)
+        .then((feat) => {
+          if (!feat.isFeatureAvailable(ipFeatureId)) {
+            // Let AngularJS handle the route normally
+            return true;
+          }
+          const targetUrl = mapAngularStateToReactUrl(
+            trans.to().name,
+            trans.params(),
+          );
+          shellClient.navigation
+            .getURL('ips', `#/${targetUrl}`)
+            .then((redirectionUrl) => {
+              windowRef.location.href = redirectionUrl;
+            });
+          return false; // cancel AngularJS transition
+        });
+    });
+  });
 
 export default moduleName;

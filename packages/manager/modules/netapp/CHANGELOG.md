@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.16.4...@ovh-ux/manager-netapp@2.17.0) (2025-12-10)
+
+
+### Features
+
+* **dedicated:** add capacity info tile ([af80704](https://github.com/ovh/manager/commit/af80704de90c8af7488ef0467e0af5e0ddf2e36e)), closes [#MANAGER-19269](https://github.com/ovh/manager/issues/MANAGER-19269)
+* **dedicated:** add path column in netapp/dashboard/volumes/dashboard/snapshots ([80d8db1](https://github.com/ovh/manager/commit/80d8db1f6bd1512e43a39e08ecd5130c9a680c72)), closes [#MANAGER-19842](https://github.com/ovh/manager/issues/MANAGER-19842)
+* **dedicated:** update translations according with network status ([8f414fd](https://github.com/ovh/manager/commit/8f414fd98bdc175e02ee3448d60631845bae96f7)), closes [#MANAGER-18079](https://github.com/ovh/manager/issues/MANAGER-18079)
+
+
+
+
+
+## [2.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.16.3...@ovh-ux/manager-netapp@2.16.4) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4524] ([7ccf245](https://github.com/ovh/manager/commit/7ccf245dfb71a734dae520873a681c570082d62e))
+
+
+
+
+
+## [2.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.16.2...@ovh-ux/manager-netapp@2.16.3) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
 ## [2.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.16.1...@ovh-ux/manager-netapp@2.16.2) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

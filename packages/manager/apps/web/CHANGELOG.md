@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.4...@ovh-ux/manager-web@19.31.5) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.3...@ovh-ux/manager-web@19.31.4) (2025-12-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.2...@ovh-ux/manager-web@19.31.3) (2025-12-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.1...@ovh-ux/manager-web@19.31.2) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.0...@ovh-ux/manager-web@19.31.1) (2025-12-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.30.1...@ovh-ux/manager-web@19.31.0) (2025-12-04)
+
+
+### Features
+
+* **web-hosting:** change password min char policy ([4b3330c](https://github.com/ovh/manager/commit/4b3330cac4cb4951a5dded92c53f4318979b83be)), closes [#PUWEBPT-124](https://github.com/ovh/manager/issues/PUWEBPT-124)
+* **web.zone:** update dnssec on datagrid ([5aee11c](https://github.com/ovh/manager/commit/5aee11cecb29c4c08b8efddf5f51ca4400195c83)), closes [#PUWEBPT-9](https://github.com/ovh/manager/issues/PUWEBPT-9)
+
+
+
+
+
+## [19.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.30.0...@ovh-ux/manager-web@19.30.1) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.29.0...@ovh-ux/manager-web@19.30.0) (2025-12-03)
+
+
+### Features
+
+* **web-domain-zone:** add dns rp, https and svcb field ([38d704a](https://github.com/ovh/manager/commit/38d704a3cef93372c84a421c11450b96bfd14da5))
+
+
+
+
+
 # [19.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.28.0...@ovh-ux/manager-web@19.29.0) (2025-12-01)
 
 

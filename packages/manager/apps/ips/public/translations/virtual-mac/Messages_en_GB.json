@@ -1,0 +1,22 @@
+{
+  "addVirtualMacTitle": "Add a virtual MAC",
+  "addVirtualMacNew": "Create a new virtual MAC address",
+  "addVirtualMacNewInfo": "Virtual MAC addresses enable better IP management by assigning unique MAC addresses to each virtual machine.",
+  "addVirtualMacNewInfoGuide": "See the guide on virtual MACs",
+  "addVirtualMacExisting": "Use an existing virtual MAC address",
+  "virtualMacIpAddress": "IP address",
+  "virtualMacType": "Type",
+  "virtualMacField": "Virtual MAC address",
+  "virtualMacMachinename": "Virtual machine name",
+  "viewVirtualMacTitle": "Details of the virtual MAC",
+  "viewVirtualMacQuestion": "Here is the information on the virtual MAC address:",
+  "addVirtualMacAddNewSuccess": "A new virtual MAC address will be generated, and will be available on the {{t0}} IP shortly.",
+  "addVirtualMacAddNewFailure": "An error has occurred generating a new virtual MAC address on the {{t0}} IP. {{error}} request_id: {{ovhQueryId}} IP",
+  "addVirtualMacAddExistingSuccess": "The {{t0}} IP will be associated with the existing virtual MAC address shortly.",
+  "addVirtualMacAddExistingFailure": "An error has occurred linking an existing virtual MAC address with the {{t0}} IP. {{error}} request_id: {{ovhQueryId}}",
+  "deleteVirtualMacTitle": "Delete the virtual MAC address",
+  "deleteVirtualMacInfo": "Deleting this virtual MAC address will unassign the IP address linked to the VM, which could disrupt the services or configurations that use it. This action cannot be reversed.",
+  "deleteVirtualMacConfirmation": "Are you sure you want to permanently delete the virtual MAC address?",
+  "deleteVirtualMacSuccess": "The {{vmac}} virtual MAC address will be deleted from the {{ip}} IP in a few moments.",
+  "deleteVirtualMacError": "An error has occurred deleting the virtual MAC address: {{error}}"
+}

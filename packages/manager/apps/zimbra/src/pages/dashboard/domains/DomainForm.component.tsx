@@ -218,7 +218,7 @@ export const DomainForm = ({
   return (
     <form
       onSubmit={handleSubmit(handleAddDomainClick)}
-      className="flex flex-col items-start w-full md:w-1/2 gap-4"
+      className="flex w-full flex-col items-start gap-4 md:w-1/2"
       data-testid="add-domain-page"
     >
       {backUrl && (
@@ -278,7 +278,7 @@ export const DomainForm = ({
       )}
       {formValues.organizationId && (
         <OdsFormField className="w-full gap-4">
-          <div className="flex leading-none gap-4">
+          <div className="flex gap-4 leading-none">
             <OdsRadio
               value={DomainOwnership.OVH}
               inputId={DomainOwnership.OVH}
@@ -292,7 +292,7 @@ export const DomainForm = ({
               </OdsText>
             </label>
           </div>
-          <div className="flex leading-none gap-4">
+          <div className="flex gap-4 leading-none">
             <OdsRadio
               value={DomainOwnership.EXTERNAL}
               inputId={DomainOwnership.EXTERNAL}
@@ -374,7 +374,7 @@ export const DomainForm = ({
               {t('zimbra_domains_add_domain_configuration_description')}
             </OdsText>
             {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
-              <div key={type} className="flex leading-none gap-4">
+              <div key={type} className="flex gap-4 leading-none">
                 <OdsRadio
                   key={type}
                   inputId={type}
@@ -384,7 +384,7 @@ export const DomainForm = ({
                   onOdsChange={(value) => handleConfigurationTypeChange(value)}
                   data-testid={`radio-config-${type}`}
                 ></OdsRadio>
-                <label htmlFor={type} className="flex flex-col w-full">
+                <label htmlFor={type} className="flex w-full flex-col">
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     {t(`zimbra_domains_add_domain_configuration_choice_${type}`)}
                   </OdsText>
@@ -408,7 +408,7 @@ export const DomainForm = ({
                 control={control}
                 name="autoConfigureAutodiscover"
                 render={({ field: { name, value, onChange } }) => (
-                  <div key={name} className="flex leading-none gap-4">
+                  <div key={name} className="flex gap-4 leading-none">
                     <OdsCheckbox
                       inputId={name}
                       key={name}
@@ -428,7 +428,7 @@ export const DomainForm = ({
                 control={control}
                 name="autoConfigureMX"
                 render={({ field: { name, value, onChange } }) => (
-                  <div key={name} className="flex leading-none gap-4">
+                  <div key={name} className="flex gap-4 leading-none">
                     <OdsCheckbox
                       inputId={name}
                       key={name}
@@ -448,7 +448,7 @@ export const DomainForm = ({
                 control={control}
                 name="autoConfigureSPF"
                 render={({ field: { name, value, onChange } }) => (
-                  <div key={name} className="flex leading-none gap-4">
+                  <div key={name} className="flex gap-4 leading-none">
                     <OdsCheckbox
                       inputId={name}
                       key={name}
@@ -468,7 +468,7 @@ export const DomainForm = ({
                 control={control}
                 name="autoConfigureDKIM"
                 render={({ field: { name, value, onChange } }) => (
-                  <div key={name} className="flex leading-none gap-4">
+                  <div key={name} className="flex gap-4 leading-none">
                     <OdsCheckbox
                       inputId={name}
                       key={name}

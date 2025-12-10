@@ -12,7 +12,7 @@
   "labelLocation": "Standort",
   "labelContainerType": "Containertyp",
   "labelOffsiteReplication": "Offsite-Replikation",
-  "descriptionOffsiteReplication": "Replizieren Sie Ihre Daten automatisch an einem Remote-Standort in einer Infrequent Access-Speicherklasse. <0>Weitere Informationen</0>",
+  "descriptionOffsiteReplication": "Automatische Replikation Ihrer Daten auf einer entfernten Site in einer Klasse für seltenen Zugriff. &lt;0>Mehr erfahren&lt;/0>",
   "labelVersioning": "Versionsverwaltung",
   "descriptionVersioning": "Automatisiert die Erstellung von Objektversionen, um versehentliches Löschen zu vermeiden, oder wenn ein neues Objekt hochgeladen wird.",
   "labelUser": "Nutzer",
@@ -30,7 +30,7 @@
   "summaryOfferS3": "S3-kompatible API",
   "summaryOfferSwift": "Swift-API",
   "summaryLocationSection": "Region",
-  "summaryOffsiteReplicationSection": "Replikation",
+  "summaryOffsiteReplicationSection": "Offsite-Replikation",
   "summaryOffsiteReplicationEnabled": "Replikation aktiviert",
   "summaryOffsiteReplicationDisabled": "Replikation deaktiviert",
   "summaryOffsiteReplicationRegion": "Region:",
@@ -80,9 +80,11 @@
   "pci_instances_common_instance_region_deployment_mode": "1-AZ Region",
   "pci_instances_common_instance_region-3-az_deployment_mode": "3-AZ Region",
   "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
+  "nameInputInfo": "Der Name des Containers muss zwischen 3 und 63 Zeichen lang sein, muss mit alphanumerischen Kleinbuchstaben (von a bis z und von 0 bis 9) beginnen und enden und kann die folgenden Satzzeichen enthalten: « . » und « - ».",
   "pci_instances_common_instance_region_deployment_mode_description": "Resiliente und kostengünstige Bereitstellung in 1 Availability Zone.",
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Bereitstellung mit hoher Resilienz/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Availability Zones.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Bereitstellung Ihrer Anwendungen möglichst nahe an Ihren Usern für niedrige Latenz und die Datenresidenz.",
-  "selectGeographicalZone": "Eine geografische Zone auswählen",
-  "showAllRegions": "Alle Regionen anzeigen"
+  "selectGeographicalZone": "Wählen Sie eine geografische Region aus",
+  "showAllRegions": "Alle Regionen anzeigen",
+  "summaryEncryptionPlaintext": "Keine"
 }

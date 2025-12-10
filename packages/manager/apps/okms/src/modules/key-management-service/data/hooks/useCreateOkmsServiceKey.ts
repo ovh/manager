@@ -1,8 +1,10 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { OkmsServiceKeyPostPayload } from '@key-management-service/types/okmsServiceKey.type';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import {
   createOkmsServiceKeyResource,
   getOkmsServiceKeyResourceListQueryKey,
@@ -12,17 +14,14 @@ export type CreateOkmsServiceKeyParams = {
   okmsId: string;
 };
 
-export const useCreateOkmsServiceKey = ({
-  okmsId,
-}: CreateOkmsServiceKeyParams) => {
+export const useCreateOkmsServiceKey = ({ okmsId }: CreateOkmsServiceKeyParams) => {
   const queryClient = useQueryClient();
   const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const { t } = useTranslation('key-management-service/serviceKeys');
 
   const { mutateAsync: createKmsServiceKey, isPending } = useMutation({
-    mutationFn: (data: OkmsServiceKeyPostPayload) =>
-      createOkmsServiceKeyResource({ okmsId, data }),
+    mutationFn: (data: OkmsServiceKeyPostPayload) => createOkmsServiceKeyResource({ okmsId, data }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),

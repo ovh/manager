@@ -1,22 +1,25 @@
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+
 import { IamCheckResponse } from '@ovh-ux/manager-react-components';
-import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
+
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
-import { okmsMock } from '../kms/okms.mock';
-import { serviceKeyMock } from '../service-keys/serviceKeys.mock';
+
+import { okmsRoubaix1Mock } from '../kms/okms.mock';
+import { serviceKeyMock1 } from '../service-keys/serviceKeys.mock';
 
 export const kmsIamMock: IamCheckResponse[] = [
   {
-    urn: okmsMock[0].iam.urn,
+    urn: okmsRoubaix1Mock.iam.urn,
     authorizedActions: [...Object.values(kmsIamActions)],
     unauthorizedActions: [],
   },
   {
-    urn: serviceKeyMock[0].iam.urn,
+    urn: serviceKeyMock1.iam.urn,
     authorizedActions: [...Object.values(kmsIamActions)],
     unauthorizedActions: [],
   },
   {
-    urn: secretListMock[0].iam.urn,
+    urn: mockSecret1.iam.urn,
     authorizedActions: [...Object.values(kmsIamActions)],
     unauthorizedActions: [],
   },

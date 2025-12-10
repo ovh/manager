@@ -14,6 +14,6 @@
   "newUserUsernameLabel": "Twoja nazwa użytkownika:",
   "newUserDescriptionLabel": "Opis:",
   "newUserAccessKeyLabel": "Klucz dostępu:",
-  "newUserPwdLabel": "Tajny klucz:",
+  "newUserSecretKeyLabel": "Tajny klucz:",
   "passwordCopy": "Skopiowano!"
 }

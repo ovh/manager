@@ -1,9 +1,11 @@
-import { Subtitle } from '@ovh-ux/manager-react-components';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsCard } from '@ovhcloud/ods-components/react';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { getDaysFromDate } from '@key-management-service/utils/credential/validityDateUtils';
+import { useTranslation } from 'react-i18next';
+
+import { OdsCard } from '@ovhcloud/ods-components/react';
+
+import { Subtitle } from '@ovh-ux/manager-react-components';
+
 import CreateCredentialConfirmationDetailsText from './CreateCredentialConfirmationDetailsText.component';
 
 type CreateCredentialConfirmationDetailsProps = {
@@ -17,16 +19,12 @@ const CreateCredentialConfirmationDetails = ({
 
   return (
     <OdsCard className="p-4">
-      <div className="flex flex-col w-full gap-4 md:gap-5 break-words">
+      <div className="flex w-full flex-col gap-4 break-words md:gap-5">
         <Subtitle>
-          {t(
-            'key_management_service_credential_create_confirmation_details_title',
-          )}
+          {t('key_management_service_credential_create_confirmation_details_title')}
         </Subtitle>
         <CreateCredentialConfirmationDetailsText
-          label={t(
-            'key_management_service_credential_create_confirmation_details_id_label',
-          )}
+          label={t('key_management_service_credential_create_confirmation_details_id_label')}
           value={okmsCredential.id}
         />
         <CreateCredentialConfirmationDetailsText
@@ -42,9 +40,7 @@ const CreateCredentialConfirmationDetails = ({
           value={okmsCredential.description}
         />
         <CreateCredentialConfirmationDetailsText
-          label={t(
-            'key_management_service_credential_create_confirmation_details_validity_label',
-          )}
+          label={t('key_management_service_credential_create_confirmation_details_validity_label')}
           value={t(
             'key_management_service_credential_create_confirmation_details_validity_suffix',
             { days: getDaysFromDate(new Date(okmsCredential.expiredAt)) },

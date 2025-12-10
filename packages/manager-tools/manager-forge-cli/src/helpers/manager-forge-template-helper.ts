@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { TemplateObject, TemplateSelectorConfig, TemplateValue } from '@/types/TemplateType.js';
-import { logger } from '@/utils/log-manager.js';
 
 /**
  * Ensure a directory exists, creating it recursively if missing.

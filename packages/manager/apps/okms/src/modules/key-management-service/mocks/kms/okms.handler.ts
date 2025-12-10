@@ -1,5 +1,7 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { okmsMock } from './okms.mock';
 
 export type GetOkmsMocksParams = {
@@ -7,8 +9,7 @@ export type GetOkmsMocksParams = {
   nbOkms?: number;
 };
 
-const findOkmsById = (params: PathParams) =>
-  okmsMock.find(({ id }) => id === params.id);
+const findOkmsById = (params: PathParams) => okmsMock.find(({ id }) => id === params.id);
 
 export const getOkmsMocks = ({
   isOkmsKO,
@@ -16,9 +17,7 @@ export const getOkmsMocks = ({
 }: GetOkmsMocksParams): Handler[] => [
   {
     url: '/okms/resource',
-    response: isOkmsKO
-      ? { message: 'okms list error' }
-      : okmsMock.slice(0, nbOkms),
+    response: isOkmsKO ? { message: 'okms list error' } : okmsMock.slice(0, nbOkms),
     status: isOkmsKO ? 500 : 200,
     api: 'v2',
   },

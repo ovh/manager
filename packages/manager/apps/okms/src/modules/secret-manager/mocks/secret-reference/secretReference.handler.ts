@@ -1,13 +1,14 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { mockSecretConfigReference } from './secretReference.mock';
+
 import { buildMswResponseMock } from '@/common/utils/tests/msw';
+
+import { mockSecretConfigReference } from './secretReference.mock';
 
 export type GetSecretConfigReferenceMockParams = {
   isSecretConfigReferenceKO?: boolean;
 };
 
-export const getSecretConfigReferenceErrorMessage =
-  'get-secret-config-reference-error-message';
+export const getSecretConfigReferenceErrorMessage = 'get-secret-config-reference-error-message';
 
 export const getSecretConfigReferenceMock = ({
   isSecretConfigReferenceKO,

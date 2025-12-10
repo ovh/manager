@@ -1,6 +1,8 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { credentialMock } from './credentials.mock';
+
+import { credentialListMock } from './credentials.mock';
 
 export type GetCredentialsMockParams = {
   isCredentialKO?: boolean;
@@ -8,11 +10,11 @@ export type GetCredentialsMockParams = {
 };
 
 const findCredentialByID = (params: PathParams) =>
-  credentialMock.find(({ id }) => id === params.credentialId);
+  credentialListMock.find(({ id }) => id === params.credentialId);
 
 export const getCredentialsMock = ({
   isCredentialKO,
-  nbCredential = credentialMock.length,
+  nbCredential = credentialListMock.length,
 }: GetCredentialsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/credential',
@@ -23,7 +25,7 @@ export const getCredentialsMock = ({
             message: 'credentials error',
           },
         }
-      : credentialMock.slice(0, nbCredential),
+      : credentialListMock.slice(0, nbCredential),
     status: isCredentialKO ? 500 : 200,
     api: 'v2',
   },
@@ -47,7 +49,7 @@ export const createCredentialsMock = ({
   {
     url: '/okms/resource/:okmsId/credential',
     method: 'post',
-    response: { ...credentialMock[1], fromCSR },
+    response: { ...credentialListMock[1], fromCSR },
     status: 200,
     api: 'v2',
   },

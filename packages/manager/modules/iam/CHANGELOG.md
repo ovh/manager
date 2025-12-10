@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.24.1...@ovh-ux/manager-iam@1.25.0) (2025-12-08)
+
+
+### Features
+
+* **iam:** add 'advanced search' modal on myPolicies page ([17233b9](https://github.com/ovh/manager/commit/17233b9900d9164c2407bea46a3450ffc1150c3d)), closes [#MAIAM-33](https://github.com/ovh/manager/issues/MAIAM-33)
+
+
+
+
+
+## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.24.0...@ovh-ux/manager-iam@1.24.1) (2025-12-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 863] ([3c24342](https://github.com/ovh/manager/commit/3c2434288f7fc721448aacf6f89617637fa9dbaf))
+* **iam:** fix okms resource types translations ([a197b5a](https://github.com/ovh/manager/commit/a197b5a7610409c39f45adbf0d11af05b3853786)), closes [#MANAGER-20402](https://github.com/ovh/manager/issues/MANAGER-20402)
+
+
+
+
+
 # [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.23.0...@ovh-ux/manager-iam@1.24.0) (2025-12-01)
 
 

@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { TInstance } from '@ovh-ux/manager-pci-common';
+import { useSearchParams } from 'react-router-dom';
 
+import { TInstance, buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
 import { useStep } from '@/pages/new/hooks/useStep';
 
+export const enum WorkflowType {
+  INSTANCE_BACKUP = 'instance_backup',
+}
+
 export type TWorkflowCreationForm = {
-  type: string;
-  instance: TInstance;
-  scheduling: TWorkflowScheduling;
+  type: WorkflowType | null;
+  instanceId: TInstance['id'] | null;
+  scheduling: TWorkflowScheduling | null;
   name: string;
+  distantRegion: string | null;
 };
 
 export type TWorkflowScheduling = {
@@ -23,22 +29,46 @@ export type TWorkflowScheduling = {
 };
 
 export const DEFAULT_FORM_STATE: TWorkflowCreationForm = {
-  type: '',
-  instance: null,
+  type: null,
+  instanceId: null,
   scheduling: null,
   name: '',
+  distantRegion: null,
 };
 
 // eslint-disable-next-line max-lines-per-function
 export function useWorkflowStepper() {
-  const [form, setForm] = useState<TWorkflowCreationForm>({
-    ...DEFAULT_FORM_STATE,
+  const [searchParams] = useSearchParams();
+
+  const [form, setForm] = useState<TWorkflowCreationForm>(() => {
+    const queryInstanceId = searchParams.get('instanceId');
+    const queryRegion = searchParams.get('region');
+
+    const instanceId =
+      !!queryInstanceId && !!queryRegion ? buildInstanceId(queryInstanceId, queryRegion) : null;
+
+    return {
+      ...DEFAULT_FORM_STATE,
+      instanceId,
+      type: !!instanceId ? WorkflowType.INSTANCE_BACKUP : null,
+    };
   });
 
   const typeStep = useStep({ isOpen: true });
   const resourceStep = useStep();
-  const schedulingStep = useStep();
   const namingStep = useStep();
+  const schedulingStep = useStep();
+
+  useEffect(() => {
+    if (form.instanceId) {
+      [typeStep, resourceStep].forEach((s) => {
+        s.check();
+        s.lock();
+        s.open();
+      });
+      namingStep.open();
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     form,
@@ -53,7 +83,7 @@ export function useWorkflowStepper() {
         });
         setForm({ ...DEFAULT_FORM_STATE });
       },
-      submit: (type: string) => {
+      submit: (type: TWorkflowCreationForm['type']) => {
         typeStep.check();
         typeStep.lock();
         resourceStep.open();
@@ -72,26 +102,24 @@ export function useWorkflowStepper() {
           step.unlock();
           step.close();
         });
-        setForm((f) => ({
-          ...DEFAULT_FORM_STATE,
-          type: f.type,
-        }));
       },
-      submit: (instance: TInstance) => {
-        resourceStep.check();
-        resourceStep.lock();
-        schedulingStep.open();
+      update: (instance: TInstance) => {
         setForm((f) => ({
           ...f,
-          instance,
+          instanceId: instance.id,
         }));
       },
+      submit: () => {
+        resourceStep.check();
+        resourceStep.lock();
+        namingStep.open();
+      },
     },
-    scheduling: {
-      step: schedulingStep,
+    naming: {
+      step: namingStep,
       edit: () => {
-        schedulingStep.unlock();
-        [namingStep].forEach((step) => {
+        namingStep.unlock();
+        [schedulingStep].forEach((step) => {
           step.uncheck();
           step.unlock();
           step.close();
@@ -99,21 +127,9 @@ export function useWorkflowStepper() {
         setForm((f) => ({
           ...DEFAULT_FORM_STATE,
           type: f.type,
-          instance: f.instance,
+          instanceId: f.instanceId,
         }));
       },
-      submit: (scheduling: TWorkflowScheduling) => {
-        schedulingStep.check();
-        schedulingStep.lock();
-        namingStep.open();
-        setForm((f) => ({
-          ...f,
-          scheduling,
-        }));
-      },
-    },
-    naming: {
-      step: namingStep,
       update: (name: string) => {
         setForm((f) => ({
           ...f,
@@ -121,7 +137,26 @@ export function useWorkflowStepper() {
         }));
       },
       submit: () => {
+        namingStep.check();
         namingStep.lock();
+        schedulingStep.open();
+      },
+    },
+    scheduling: {
+      step: schedulingStep,
+      submit: (
+        scheduling: TWorkflowScheduling,
+        distantRegion: TWorkflowCreationForm['distantRegion'],
+      ) => {
+        schedulingStep.lock();
+        setForm((f) => ({
+          ...f,
+          scheduling,
+          distantRegion,
+        }));
+      },
+      onSubmitError: () => {
+        schedulingStep.unlock();
       },
     },
   };

@@ -1,53 +1,48 @@
-import React, { useState } from 'react';
-import { i18n } from 'i18next';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import { I18nextProvider } from 'react-i18next';
-import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
+import { useState } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import userEvent, { UserEvent } from '@testing-library/user-event';
-import {
-  ServiceDetails,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { vi } from 'vitest';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { waitFor } from '@testing-library/dom';
-import { act, render, screen } from '@testing-library/react';
-import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.contants';
+
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
-import { getOrderCatalogOKMS } from '@key-management-service/data/api/orderCatalogOKMS';
-import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
+import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import {
   okmsMock,
-  regionWithOneOkms,
+  okmsRoubaix1Mock,
   regionWithMultipleOkms,
+  regionWithOneOkms,
   regionWithoutOkms,
 } from '@key-management-service/mocks/kms/okms.mock';
-import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { locationsMock } from '@/common/mocks/locations/locations.mock';
-import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
-import { OkmsManagement } from './OkmsManagement.component';
-import * as locationApi from '@/common/data/api/location';
-import { ErrorResponse } from '@/common/types/api.type';
-import { OrderOkmsModalProvider } from '@/common/pages/order-okms-modal/OrderOkmsModalContext';
+import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
+import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
+import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { waitFor } from '@testing-library/dom';
+import { act, render, screen } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { vi } from 'vitest';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { REGION_PICKER_TEST_IDS } from '@/common/components/region-picker/regionPicker.constants';
+import * as locationApi from '@/common/data/api/location';
+import { getOrderCatalogOkms } from '@/common/data/api/orderCatalogOkms';
+import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
+import { locationsMock } from '@/common/mocks/locations/locations.mock';
+import { ErrorResponse } from '@/common/types/api.type';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
+
+import { OkmsManagement } from './OkmsManagement.component';
 
 let i18nValue: i18n;
 
-const mockedGetOrderCatalogOKMS = vi.mocked(getOrderCatalogOKMS);
-vi.mock('@key-management-service/data/api/orderCatalogOKMS', () => ({
-  getOrderCatalogOKMS: vi.fn(),
+const mockedGetOrderCatalogOkms = vi.mocked(getOrderCatalogOkms);
+vi.mock('@/common/data/api/orderCatalogOkms', () => ({
+  getOrderCatalogOkms: vi.fn(),
 }));
 
 vi.spyOn(locationApi, 'getLocations').mockResolvedValue(locationsMock);
@@ -61,28 +56,32 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
     useSearchParams: vi.fn(),
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const module: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
+vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
+  const module: typeof import('@ovh-ux/manager-module-common-api') = await importOriginal();
   return {
     ...module,
     useServiceDetails: vi.fn(),
   };
 });
 
+const mockServiceDetails = {
+  data: {
+    resource: {
+      state: 'active',
+    },
+  },
+};
 vi.mocked(useServiceDetails).mockReturnValue({
-  data: { data: { resource: { state: 'mockedState' } } },
+  data: mockServiceDetails,
 } as UseQueryResult<ApiResponse<ServiceDetails>, ApiError>);
 
 const mockedSetSearchParams = vi.fn();
-vi.mocked(useSearchParams).mockReturnValue([
-  new URLSearchParams(),
-  mockedSetSearchParams,
-]);
+vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams(), mockedSetSearchParams]);
 
 const shellContext = {
   environment: {
@@ -114,7 +113,7 @@ const TestComponent = () => {
   );
 };
 
-const renderOkmsManagement = async (processingRegion?: string) => {
+const renderOkmsManagement = async () => {
   const queryClient = new QueryClient();
   if (!i18nValue) {
     i18nValue = await initTestI18n();
@@ -123,12 +122,8 @@ const renderOkmsManagement = async (processingRegion?: string) => {
   return render(
     <I18nextProvider i18n={i18nValue}>
       <QueryClientProvider client={queryClient}>
-        <ShellContext.Provider
-          value={(shellContext as unknown) as ShellContextType}
-        >
-          <OrderOkmsModalProvider region={processingRegion}>
-            <TestComponent />
-          </OrderOkmsModalProvider>
+        <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
+          <TestComponent />
         </ShellContext.Provider>
       </QueryClientProvider>
     </I18nextProvider>,
@@ -137,7 +132,12 @@ const renderOkmsManagement = async (processingRegion?: string) => {
 
 /* TEST UTILS */
 const assertInitialRegionList = async () => {
-  const availableRegions = catalogMock.plans[0].configurations[0].values;
+  const availableRegions = catalogMock.plans[0]?.configurations[0]?.values;
+
+  if (!availableRegions) {
+    throw new Error('Available regions not found');
+  }
+
   await waitFor(
     () => {
       // assert that we display the correct region list
@@ -158,7 +158,7 @@ const assertInitialRegionList = async () => {
 
 const assertOkmsListIsNotInTheDocument = async (okmsList: OKMS[]) => {
   await waitFor(() => {
-    okmsList.forEach(async (okms) => {
+    okmsList.forEach((okms) => {
       const okmsRadioCard = screen.queryByTestId(okms.id);
       expect(okmsRadioCard).toBeNull();
     });
@@ -167,8 +167,8 @@ const assertOkmsListIsNotInTheDocument = async (okmsList: OKMS[]) => {
 
 const assertOkmsListIsInTheDocument = async (okmsList: OKMS[]) => {
   await waitFor(() => {
-    okmsList.forEach((okms) => {
-      assertTextVisibility(okms.iam.displayName);
+    okmsList.forEach(async (okms) => {
+      await assertTextVisibility(okms.iam.displayName);
       const okmsRadioCard = screen.getByTestId(okms.id);
       expect(okmsRadioCard).toBeVisible();
     });
@@ -176,36 +176,21 @@ const assertOkmsListIsInTheDocument = async (okmsList: OKMS[]) => {
 };
 
 const assertActivateButtonIsInTheDocument = async () => {
-  const activateButton = screen.queryByTestId(
-    SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON,
-  );
+  const activateButton = screen.queryByTestId(SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON);
   await waitFor(() => {
     expect(activateButton).toBeVisible();
   });
 };
 
 const assertActivateButtonIsNotInTheDocument = async () => {
-  const activateButton = screen.queryByTestId(
-    SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON,
-  );
+  const activateButton = screen.queryByTestId(SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON);
   await waitFor(() => {
     expect(activateButton).toBeNull();
   });
 };
 
-const assertLoadingListIsInTheDocument = async () => {
-  const activateSpinner = screen.queryByTestId(
-    SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER,
-  );
-  await waitFor(() => {
-    expect(activateSpinner).toBeVisible();
-  });
-};
-
 const assertLoadingListIsNotInTheDocument = async () => {
-  const activateSpinner = screen.queryByTestId(
-    SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER,
-  );
+  const activateSpinner = screen.queryByTestId(SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER);
   await waitFor(() => {
     expect(activateSpinner).toBeNull();
   });
@@ -223,9 +208,17 @@ const selectRegion = async (user: UserEvent, region: string) => {
 
 /* OKMS MANAGEMENT TEST SUITE */
 describe('OKMS management test suite', () => {
+  beforeEach(() => {
+    // Set default successful mock behavior for all tests
+    mockedGetOrderCatalogOkms.mockResolvedValue(catalogMock);
+  });
+
+  afterEach(() => {
+    // Clean up all mocks after each test to prevent pollution
+    vi.clearAllMocks();
+  });
+
   it('should display a spinner when loading', async () => {
-    // GIVEN
-    mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
     // WHEN
     await renderOkmsManagement();
 
@@ -235,9 +228,9 @@ describe('OKMS management test suite', () => {
   });
 
   it('should display a notification message when error on catalog api', async () => {
-    // GIVEN
+    // GIVEN - override default mock for this specific test
     const mockError = createErrorResponseMock('errorCatalog');
-    mockedGetOrderCatalogOKMS.mockRejectedValue(mockError);
+    mockedGetOrderCatalogOkms.mockRejectedValue(mockError);
 
     // WHEN
     await renderOkmsManagement();
@@ -249,32 +242,21 @@ describe('OKMS management test suite', () => {
   });
 
   it('should display the available region list', async () => {
-    // GIVEN
-    mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
     // WHEN
     await renderOkmsManagement();
-    await assertTextVisibility(
-      labels.secretManager.create_secret_form_region_section_title,
-    );
+    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
 
     // THEN
     await assertInitialRegionList();
   });
 
   describe('on region selection', () => {
-    afterEach(() => {
-      vi.clearAllMocks();
-    });
     describe('when there is no okms', () => {
       it('should display a CTA', async () => {
         const user = userEvent.setup();
-        // GIVEN
-        mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
         await renderOkmsManagement();
-        await assertTextVisibility(
-          labels.secretManager.create_secret_form_region_section_title,
-        );
+        await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
         await assertTextVisibility(regionWithoutOkms.region);
 
         // WHEN
@@ -287,37 +269,13 @@ describe('OKMS management test suite', () => {
         // assert we reset the selectedOkmsId
         expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(undefined);
       });
-
-      it('should display a loading state when an order is processing', async () => {
-        const user = userEvent.setup();
-        // GIVEN
-        mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
-
-        await renderOkmsManagement('rbx');
-        await assertTextVisibility(
-          labels.secretManager.create_secret_form_region_section_title,
-        );
-        await assertTextVisibility(regionWithoutOkms.region);
-
-        // WHEN
-        await selectRegion(user, regionWithoutOkms.region);
-
-        // THEN
-        await assertOkmsListIsNotInTheDocument(okmsMock);
-        await assertActivateButtonIsNotInTheDocument();
-        await assertLoadingListIsInTheDocument();
-      });
     });
 
     it('should not display anything when there is exactly one okms', async () => {
       const user = userEvent.setup();
-      // GIVEN
-      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
       await renderOkmsManagement();
-      await assertTextVisibility(
-        labels.secretManager.create_secret_form_region_section_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
       await assertTextVisibility(regionWithOneOkms.region);
 
       // WHEN
@@ -327,66 +285,56 @@ describe('OKMS management test suite', () => {
       await assertOkmsListIsNotInTheDocument(okmsMock);
       await assertActivateButtonIsNotInTheDocument();
       // assert we select the region's
-      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(
-        regionWithOneOkms.okmsMock[0].id,
-      );
+      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(regionWithOneOkms.okmsMock?.[0]?.id);
     });
 
     it('should display a filtered okms list when there is more than one okms', async () => {
       const user = userEvent.setup();
 
-      // GIVEN
-      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
-
       await renderOkmsManagement();
-      await assertTextVisibility(
-        labels.secretManager.create_secret_form_region_section_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
       await assertTextVisibility(regionWithMultipleOkms.region);
 
       // WHEN
       await selectRegion(user, regionWithMultipleOkms.region);
 
       // THEN
-      await assertOkmsListIsNotInTheDocument(regionWithOneOkms.okmsMock);
-      await assertOkmsListIsInTheDocument(regionWithMultipleOkms.okmsMock);
+      await assertOkmsListIsNotInTheDocument(regionWithOneOkms.okmsMock ?? []);
+      await assertOkmsListIsInTheDocument(regionWithMultipleOkms.okmsMock ?? []);
       await assertActivateButtonIsNotInTheDocument();
+
+      const firstOkmsId = regionWithMultipleOkms.okmsMock?.[0]?.id;
+      if (!firstOkmsId) {
+        throw new Error('First okms id not found');
+      }
+
       // assert that the first okms is selected
       await waitFor(() => {
-        const okmsRadioCard = screen.getByTestId(
-          regionWithMultipleOkms.okmsMock[0].id,
-        );
+        const okmsRadioCard = screen.getByTestId(firstOkmsId);
         expect(okmsRadioCard).toBeChecked();
       });
       // assert we set the selected okms id
-      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(
-        regionWithMultipleOkms.okmsMock[0].id,
-      );
+      expect(setselectedOkmsIdMocked).toHaveBeenCalledWith(firstOkmsId);
     });
   });
 
   describe('When there is a okmsId search param', () => {
-    beforeEach(() => {
-      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
-    });
     it('should pre-select the right region and okms', async () => {
       // GIVEN
-      const mockOkmsId = okmsMock[0].id;
+      const mockOkmsId = okmsRoubaix1Mock.id;
       const urlParams = new URLSearchParams();
       urlParams.set(SECRET_MANAGER_SEARCH_PARAMS.okmsId, mockOkmsId);
-      vi.mocked(useSearchParams).mockReturnValueOnce([
-        urlParams,
-        mockedSetSearchParams,
-      ]);
+      vi.mocked(useSearchParams).mockReturnValueOnce([urlParams, mockedSetSearchParams]);
 
       // WHEN
       await renderOkmsManagement();
-      await assertTextVisibility(
-        labels.secretManager.create_secret_form_region_section_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
 
       // THEN
       const currentOkms = okmsMock.find((okms) => okms.id === mockOkmsId);
+      if (!currentOkms) {
+        throw new Error('Current okms not found');
+      }
       const currentRegion = currentOkms.region;
 
       await assertTextVisibility(currentOkms.iam.displayName);
@@ -408,16 +356,11 @@ describe('OKMS management test suite', () => {
       const mockOkmsId = '123456';
       const urlParams = new URLSearchParams();
       urlParams.set(SECRET_MANAGER_SEARCH_PARAMS.okmsId, mockOkmsId);
-      vi.mocked(useSearchParams).mockReturnValueOnce([
-        urlParams,
-        mockedSetSearchParams,
-      ]);
+      vi.mocked(useSearchParams).mockReturnValueOnce([urlParams, mockedSetSearchParams]);
 
       // WHEN
       await renderOkmsManagement();
-      await assertTextVisibility(
-        labels.secretManager.create_secret_form_region_section_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
 
       // THEN
       await assertInitialRegionList();

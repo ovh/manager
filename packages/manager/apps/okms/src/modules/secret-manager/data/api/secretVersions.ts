@@ -1,10 +1,11 @@
-import apiClient from '@ovh-ux/manager-core-api';
 import {
   SecretVersion,
   SecretVersionDataField,
   SecretVersionWithData,
 } from '@secret-manager/types/secret.type';
 import { buildQueryString } from '@secret-manager/utils/queryStrings';
+
+import apiClient from '@ovh-ux/manager-core-api';
 
 export const secretVersionsQueryKeys = {
   list: (okmsId: string, path: string) => ['secret', okmsId, path, 'versions'],
@@ -18,11 +19,7 @@ export const secretVersionsQueryKeys = {
 };
 
 // GET Version
-export const getSecretVersionWithData = async (
-  okmsId: string,
-  path: string,
-  versionId: number,
-) => {
+export const getSecretVersionWithData = async (okmsId: string, path: string, versionId: number) => {
   const { data } = await apiClient.v2.get<SecretVersionWithData>(
     `okms/resource/${okmsId}/secret/${encodeURIComponent(
       path,
@@ -52,9 +49,7 @@ export const createSecretVersion = async ({
     path,
   )}/version${buildQueryString({ cas })}`;
 
-  const { data: response } = await apiClient.v2.post<
-    CreateSecretVersionResponse
-  >(url, {
+  const { data: response } = await apiClient.v2.post<CreateSecretVersionResponse>(url, {
     data,
   });
   return response;
@@ -77,12 +72,8 @@ export const updateSecretVersion = async ({
   version,
   state,
 }: UpdateSecretVersionParams) => {
-  const { data: response } = await apiClient.v2.put<
-    UpdateSecretVersionResponse
-  >(
-    `okms/resource/${okmsId}/secret/${encodeURIComponent(
-      path,
-    )}/version/${version}`,
+  const { data: response } = await apiClient.v2.put<UpdateSecretVersionResponse>(
+    `okms/resource/${okmsId}/secret/${encodeURIComponent(path)}/version/${version}`,
     {
       state,
     },

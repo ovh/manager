@@ -38,7 +38,7 @@ module.exports = {
     '**/loader/**',
     '**/templates/**',
     '**/*.config.ts',
-    'vite-env.d.ts'
+    'vite-env.d.ts',
   ],
   overrides: [
     {

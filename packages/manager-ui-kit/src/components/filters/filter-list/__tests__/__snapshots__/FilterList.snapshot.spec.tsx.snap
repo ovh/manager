@@ -3,16 +3,16 @@
 exports[`FilterList Snapshot Tests > should match snapshot with date filter 1`] = `
 <div>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Date de création est égal à 15/10/2023
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>
@@ -21,42 +21,42 @@ exports[`FilterList Snapshot Tests > should match snapshot with date filter 1`] 
 exports[`FilterList Snapshot Tests > should match snapshot with different comparators 1`] = `
 <div>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Name débute par Test
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Email termine par @example.com
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Role est différent de guest
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>
@@ -67,42 +67,42 @@ exports[`FilterList Snapshot Tests > should match snapshot with empty filters 1`
 exports[`FilterList Snapshot Tests > should match snapshot with multiple filters 1`] = `
 <div>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Username contient admin
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Status est égal à active
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Created After est après 01/01/2023
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>
@@ -111,16 +111,16 @@ exports[`FilterList Snapshot Tests > should match snapshot with multiple filters
 exports[`FilterList Snapshot Tests > should match snapshot with numeric filter 1`] = `
 <div>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Age est supérieur à 25
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>
@@ -129,16 +129,16 @@ exports[`FilterList Snapshot Tests > should match snapshot with numeric filter 1
 exports[`FilterList Snapshot Tests > should match snapshot with single string filter 1`] = `
 <div>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114 mr-3"
-    data-ods="tag"
-    data-testid="filter-list_tag_item"
-    type="button"
+    class=_tag _tag--information _tag--lg mr-3
+    data-ods=tag
+    data-testid=filter-list_tag_item
+    type=button
   >
     Nom d'utilisateur contient john_doe
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>

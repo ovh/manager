@@ -16,9 +16,10 @@ export const state = {
   url: '/?lang&ovhSubsidiary&ovhCompany&callback&onsuccess',
   component: signupFormComponent.name,
   resolve: {
-    getRedirectLocation: /* @ngInject */ ($location) => (nic) => {
-      const { callback, onsuccess } = $location.search();
-
+    queryParams: /* @ngInject */ ($location) => $location.search(),
+    callback: /* @ngInject */ (queryParams) => queryParams.callback,
+    onsuccess: /* @ngInject */ (queryParams) => queryParams.onsuccess,
+    getRedirectLocation: /* @ngInject */ (callback, onsuccess) => (nic) => {
       if (
         callback &&
         SANITIZATION.regex.test(window.location.href) &&
@@ -65,20 +66,24 @@ export const state = {
         .getSsoAuthPendingPromise()
         .then(() => ssoAuthentication.user),
 
-    cancelStep: /* @ngInject */ ($location, ssoAuthentication) => () => {
-      ssoAuthentication.logout($location.search().onsuccess);
+    cancelStep: /* @ngInject */ (ssoAuthentication, onsuccess) => () => {
+      ssoAuthentication.logout(onsuccess);
     },
 
-    isKycFeatureAvailable: /* @ngInject */ ($http) => {
-      return $http
-        .get(`/feature/identity-documents/availability`, {
+    featureAvailability: /* @ngInject */ ($http) => {
+      return $http.get(
+        `/feature/identity-documents,account-creation/availability`,
+        {
           serviceType: 'aapi',
-        })
-        .then(
-          ({ data: featureAvailability }) =>
-            featureAvailability['identity-documents'],
-        );
+        },
+      );
     },
+
+    isKycFeatureAvailable: /* @ngInject */ (featureAvailability) =>
+      featureAvailability.data['identity-documents'],
+
+    isNewAccountCreateAvailable: /* @ngInject */ (featureAvailability) =>
+      featureAvailability.data['account-creation'],
 
     kycStatus: /* @ngInject */ ($http, isKycFeatureAvailable) => {
       if (isKycFeatureAvailable) {
@@ -215,6 +220,19 @@ export const state = {
   },
   atInternet: {
     ignore: true,
+  },
+  onEnter: /* @ngInject */ (
+    $window,
+    isNewAccountCreateAvailable,
+    coreURLBuilder,
+    onsuccess,
+  ) => {
+    if (isNewAccountCreateAvailable) {
+      const url = coreURLBuilder.buildURL('account-creation', '/#/');
+      $window.location.assign(
+        `${url}?onsuccess=${encodeURIComponent(onsuccess)}`,
+      );
+    }
   },
 };
 

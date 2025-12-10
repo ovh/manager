@@ -17,5 +17,7 @@
   "zimbra_redirections_edit_success_message": "Ihre Anfrage zur Änderung einer Weiterleitung wurde registriert. Sie wird in Kürze bearbeitet.",
   "zimbra_redirections_edit_error_message": "Ihre Anfrage zur Änderung einer Weiterleitung ist fehlgeschlagen. {{ error }}",
   "zimbra_redirections_delete_success_message": "Ihre Anfrage zur Löschung einer Weiterleitung wurde registriert. Sie wird in Kürze bearbeitet.",
-  "zimbra_redirections_delete_error_message": "Ihre Anfrage zum Löschen einer Weiterleitung ist fehlgeschlagen. {{ error }}"
+  "zimbra_redirections_delete_error_message": "Ihre Anfrage zum Löschen einer Weiterleitung ist fehlgeschlagen. {{ error }}",
+  "zimbra_redirections_account_quota": "Weiterleitungskontingent",
+  "zimbra_redirections_delete_selected_modal_content": "Möchten Sie die Weiterleitungen entfernen?"
 }

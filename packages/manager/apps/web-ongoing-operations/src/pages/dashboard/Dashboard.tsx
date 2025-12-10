@@ -66,7 +66,7 @@ export default function DashboardPage() {
     },
   ];
   const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
-  const urn = allDomIAMRessources?.[0]?.urn;
+  const urn = allDomIAMRessources?.[0]?.urn ?? '';
   const { isAuthorized = false } = useAuthorizationIam(
     [iamGetAllDomAction],
     urn,
@@ -110,10 +110,11 @@ export default function DashboardPage() {
       setActivePanel(activeTab.name);
       return;
     }
-    setActivePanel(tabsList[0].name);
-    const url = tabsList[0].to;
+      setActivePanel(tabsList[0]?.name ?? '');
+      const url = tabsList[0]?.to ?? '';
     trackPageNavivationTile(url);
     navigate(url);
+
   }, [location.pathname]);
 
   return (
@@ -147,7 +148,7 @@ export default function DashboardPage() {
           </TabList>
         </Tabs>
       }
-      message={notifications.length ? <Notifications /> : null}
+      message={notifications.length ? <Notifications /> : undefined}
     >
       <Outlet />
     </BaseLayout>

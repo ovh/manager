@@ -1,5 +1,6 @@
-import { describe, expect, it, test, vi } from 'vitest';
 import { OkmsKeyTypes } from '@key-management-service/types/okmsServiceKey.type';
+import { describe, expect, it, test, vi } from 'vitest';
+
 import { useServiceKeyTypeTranslations } from './useServiceKeyTypeTranslations';
 
 vi.mock('react-i18next', () => ({
@@ -11,25 +12,22 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-describe('get service key type translation ', () => {
+describe('get service key type translation', () => {
   const useCases: {
     type: OkmsKeyTypes;
     translationKey: string;
   }[] = [
     {
       type: OkmsKeyTypes.EC,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_type_EC',
+      translationKey: 'key_management_service_service-keys_dashboard_field_type_EC',
     },
     {
       type: OkmsKeyTypes.RSA,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_type_RSA',
+      translationKey: 'key_management_service_service-keys_dashboard_field_type_RSA',
     },
     {
       type: OkmsKeyTypes.oct,
-      translationKey:
-        'key_management_service_service-keys_dashboard_field_type_oct',
+      translationKey: 'key_management_service_service-keys_dashboard_field_type_oct',
     },
   ];
 

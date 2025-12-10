@@ -2,7 +2,6 @@ import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import remove from 'lodash/remove';
-import startCase from 'lodash/startCase';
 import config from '../config/config';
 
 export default /* @ngInject */ (
@@ -10,12 +9,12 @@ export default /* @ngInject */ (
   $state,
   License,
   $timeout,
-  $translate,
   constants,
   ovhFeatureFlipping,
   LICENCE_TYPES,
   atInternet,
   iceberg,
+  $q,
 ) => {
   $scope.licencesTableLoading = false;
   $scope.licenses = null;
@@ -104,13 +103,48 @@ export default /* @ngInject */ (
         });
         $scope.licenses = licenses;
 
-        return {
-          ...licenses,
-          list: {
-            ...licenses.list,
-            results,
-          },
-        };
+        return $q
+          .all(
+            results.reduce((prev, license) => {
+              return license.type === $scope.licenseTypes.SPLA
+                ? prev
+                : [
+                    ...prev,
+                    License.getServiceId(license).then(
+                      ({ serviceId }) => serviceId,
+                    ),
+                  ];
+            }, []),
+          )
+          .then((servicesIds) =>
+            $q
+              .all(
+                servicesIds.map((serviceId) =>
+                  License.getActualLicenseVersion(serviceId),
+                ),
+              )
+              .then((detailedLicenses) => {
+                const describedResults = results.map((result) => {
+                  const matchLicense = detailedLicenses.find(
+                    (currLicense) => result.id === currLicense.resource.name,
+                  );
+                  return {
+                    ...result,
+                    ...(matchLicense?.resource?.product?.description && {
+                      description: matchLicense.resource.product.description,
+                    }),
+                  };
+                });
+
+                return {
+                  ...licenses,
+                  list: {
+                    ...licenses.list,
+                    results: describedResults,
+                  },
+                };
+              }),
+          );
       })
       .finally(() => {
         $scope.licencesTableLoading = false;
@@ -148,12 +182,7 @@ export default /* @ngInject */ (
 
   $scope.capitalize = capitalize;
 
-  $scope.formatName = (license) => {
-    const formattedVersion = startCase(license.version.replace(/-|_/g, ' '));
-    return `${$translate.instant(
-      `license_designation_${license.type}`,
-    )} ${formattedVersion}`;
-  };
+  $scope.formatName = License.formatName;
 
   $scope.canRenewLicense = (licenseType) => {
     return LICENCE_TYPES.indexOf(licenseType) > -1;

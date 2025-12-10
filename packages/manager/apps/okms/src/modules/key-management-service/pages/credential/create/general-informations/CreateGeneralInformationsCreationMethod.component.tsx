@@ -1,28 +1,21 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  OdsText,
-  OdsFormField,
-  OdsRadio,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { CertificateType } from '@key-management-service/types/okmsCredential.type';
 import { CredentialCreationMethodErrorsType } from '@key-management-service/utils/credential/validateCredentialCreationMethod';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsRadio, OdsText, OdsTextarea } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { CSR_PLACEHOLDER } from '../CreateGeneralInformations.constants';
 
 type CreateGeneralInformationsCreationMethodProps = {
   csr: string | null;
-  setCsr: Dispatch<SetStateAction<string | null>>;
+  setCsr: (csr: string | null) => void;
   isCustomCsr: boolean;
-  setIsCustomCsr: Dispatch<SetStateAction<boolean>>;
+  setIsCustomCsr: (isCustomCsr: boolean) => void;
   certificateType: CertificateType | null;
-  setCertificateType: Dispatch<SetStateAction<CertificateType | null>>;
+  setCertificateType: (certificateType: CertificateType | null) => void;
   credentialCreationMethodError: CredentialCreationMethodErrorsType | undefined;
 };
 
@@ -38,13 +31,9 @@ const CreateGeneralInformationsCreationMethod = ({
   const { t } = useTranslation('key-management-service/credential');
   const { trackClick } = useOvhTracking();
 
-  const getCreationMethodErrorMessage = (
-    error: CredentialCreationMethodErrorsType | undefined,
-  ) => {
+  const getCreationMethodErrorMessage = (error: CredentialCreationMethodErrorsType | undefined) => {
     if (error === 'REQUIRED') {
-      return t(
-        'key_management_service_credential_update_custom_csr_error_required',
-      );
+      return t('key_management_service_credential_update_custom_csr_error_required');
     }
     return undefined;
   };
@@ -52,11 +41,9 @@ const CreateGeneralInformationsCreationMethod = ({
   return (
     <>
       <OdsFormField>
-        <div slot="label" className="space-y-2 mb-2">
+        <div slot="label" className="mb-2 space-y-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-            {t(
-              'key_management_service_credential_create_general_creation_method_title',
-            )}
+            {t('key_management_service_credential_create_general_creation_method_title')}
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t(
@@ -124,19 +111,13 @@ const CreateGeneralInformationsCreationMethod = ({
         </div>
       </OdsFormField>
       {isCustomCsr ? (
-        <OdsFormField
-          error={getCreationMethodErrorMessage(credentialCreationMethodError)}
-        >
-          <div slot="label" className="space-y-2 mb-2">
+        <OdsFormField error={getCreationMethodErrorMessage(credentialCreationMethodError)}>
+          <div slot="label" className="mb-2 space-y-2">
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-              {t(
-                'key_management_service_credential_create_general_information_csr_title',
-              )}
+              {t('key_management_service_credential_create_general_information_csr_title')}
             </OdsText>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(
-                'key_management_service_credential_create_general_information_csr_subtitle',
-              )}
+              {t('key_management_service_credential_create_general_information_csr_subtitle')}
             </OdsText>
           </div>
           <OdsTextarea
@@ -163,7 +144,7 @@ const CreateGeneralInformationsCreationMethod = ({
               )}
             </OdsText>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <OdsRadio
               inputId="certificateTypeECDSA"
               id="certificateTypeECDSA"
@@ -183,7 +164,7 @@ const CreateGeneralInformationsCreationMethod = ({
               </OdsText>
             </label>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <OdsRadio
               inputId="certificateTypeRSA"
               id="certificateTypeRSA"

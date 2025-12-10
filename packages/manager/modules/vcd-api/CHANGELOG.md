@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.1...@ovh-ux/manager-module-vcd-api@0.9.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.0...@ovh-ux/manager-module-vcd-api@0.9.1) (2025-12-09)
+
+
+### Bug Fixes
+
+* **public-vcf:** fix and refactor breadcrumb translations ([08617ff](https://github.com/ovh/manager/commit/08617ffe58bddf68dba94e2ee5fda758263bd3fd)), closes [#MANAGER-20296](https://github.com/ovh/manager/issues/MANAGER-20296)
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.8.21...@ovh-ux/manager-module-vcd-api@0.9.0) (2025-12-05)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
 ## [0.8.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.8.20...@ovh-ux/manager-module-vcd-api@0.8.21) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api

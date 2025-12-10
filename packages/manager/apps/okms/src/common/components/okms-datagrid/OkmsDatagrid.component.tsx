@@ -1,27 +1,22 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Datagrid,
-  DatagridProps,
-  DatagridColumn,
-} from '@ovh-ux/manager-react-components';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { useTranslation } from 'react-i18next';
+
+import { Datagrid, DatagridColumn, DatagridProps } from '@ovh-ux/manager-react-components';
+
+import { SERVICE_KEYS_LABEL } from '@/constants';
+
 import {
   DatagridCellId,
+  DatagridCellKmipCount,
   DatagridCellName,
   DatagridCellRegion,
-  DatagridCellStatus,
-  DatagridCellKmipCount,
   DatagridCellSecretCount,
   DatagridCellServiceKeyCount,
+  DatagridCellStatus,
 } from './ListingCells.component';
-import { SERVICE_KEYS_LABEL } from '@/constants';
 import { OkmsDatagridType } from './okmsDatagrid.type';
 
-type OkmsDatagridProps = Omit<
-  DatagridProps<OKMS>,
-  'items' | 'columns' | 'totalItems'
-> & {
+type OkmsDatagridProps = Omit<DatagridProps<OKMS>, 'items' | 'columns' | 'totalItems'> & {
   type: OkmsDatagridType;
   okmsList: OKMS[];
   isLoading?: boolean;
@@ -32,11 +27,7 @@ const columnsList: Record<OkmsDatagridType, string[]> = {
   'secret-manager': ['name', 'id', 'secret_count', 'status'],
 };
 
-export const OkmsDatagrid = ({
-  type = 'secret-manager',
-  okmsList,
-  ...rest
-}: OkmsDatagridProps) => {
+export const OkmsDatagrid = ({ type = 'secret-manager', okmsList, ...rest }: OkmsDatagridProps) => {
   const { t } = useTranslation('key-management-service/listing');
 
   const columns: DatagridColumn<OKMS>[] = [
@@ -79,9 +70,7 @@ export const OkmsDatagrid = ({
 
   return (
     <Datagrid
-      columns={columns.filter((column) =>
-        columnsList[type].includes(column.id),
-      )}
+      columns={columns.filter((column) => columnsList[type].includes(column.id))}
       items={okmsList}
       totalItems={okmsList.length}
       contentAlignLeft

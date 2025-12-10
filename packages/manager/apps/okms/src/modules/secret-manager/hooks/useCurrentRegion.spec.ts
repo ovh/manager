@@ -1,12 +1,16 @@
-import { renderHook } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+
 import {
   okmsMock,
   okmsRoubaix1Mock,
   okmsStrasbourg1Mock,
 } from '@key-management-service/mocks/kms/okms.mock';
+import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { useCurrentRegion } from './useCurrentRegion';
+
+const mockOkmsList = okmsMock;
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
@@ -27,7 +31,7 @@ describe('useCurrentRegion tests suite', () => {
         region: undefined,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBe(okmsRoubaix1Mock.region);
     });
@@ -38,7 +42,7 @@ describe('useCurrentRegion tests suite', () => {
         region: undefined,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBeUndefined();
     });
@@ -49,7 +53,7 @@ describe('useCurrentRegion tests suite', () => {
         region: 'some-other-region',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBe(okmsRoubaix1Mock.region);
     });
@@ -62,7 +66,7 @@ describe('useCurrentRegion tests suite', () => {
         region: 'custom-region',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBe('custom-region');
     });
@@ -73,7 +77,7 @@ describe('useCurrentRegion tests suite', () => {
         region: 'another-region',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBe('another-region');
     });
@@ -86,7 +90,7 @@ describe('useCurrentRegion tests suite', () => {
         region: undefined,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBeUndefined();
     });
@@ -97,7 +101,7 @@ describe('useCurrentRegion tests suite', () => {
         region: '',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBeUndefined();
     });
@@ -117,11 +121,11 @@ describe('useCurrentRegion tests suite', () => {
 
     it('should handle when useParams returns null values', () => {
       mockUseParams.mockReturnValue({
-        okmsId: (null as unknown) as string,
-        region: (null as unknown) as string,
+        okmsId: null as unknown as string,
+        region: null as unknown as string,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBeUndefined();
     });
@@ -134,19 +138,16 @@ describe('useCurrentRegion tests suite', () => {
         region: undefined,
       });
 
-      const { result, rerender } = renderHook(
-        ({ okmsList }) => useCurrentRegion(okmsList),
-        {
-          initialProps: { okmsList: okmsMock },
-        },
-      );
+      const { result, rerender } = renderHook(({ okmsList }) => useCurrentRegion(okmsList), {
+        initialProps: { okmsList: mockOkmsList },
+      });
 
       expect(result.current).toBe(okmsRoubaix1Mock.region);
 
       // Update okms list
       const newOkmsList = [
         {
-          ...okmsMock[0],
+          ...okmsRoubaix1Mock,
           region: 'updated-region',
         },
       ];
@@ -162,7 +163,7 @@ describe('useCurrentRegion tests suite', () => {
         region: undefined,
       });
 
-      const { result, rerender } = renderHook(() => useCurrentRegion(okmsMock));
+      const { result, rerender } = renderHook(() => useCurrentRegion(mockOkmsList));
 
       expect(result.current).toBe(okmsRoubaix1Mock.region);
 

@@ -1,8 +1,9 @@
-import React from 'react';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { OkmsServiceKeyState } from '@key-management-service/types/okmsServiceKey.type';
 import { render } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
-import { OkmsServiceKeyState } from '@key-management-service/types/okmsServiceKey.type';
+
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import { ServiceKeyStatus } from './serviceKeyStatus.component';
 
 describe('ServiceKeyStatus component test suite', () => {
@@ -18,32 +19,27 @@ describe('ServiceKeyStatus component test suite', () => {
     },
     {
       state: OkmsServiceKeyState.compromised,
-      label:
-        'key_management_service_service-keys_dashboard_field_state_compromised',
+      label: 'key_management_service_service-keys_dashboard_field_state_compromised',
       colorValue: ODS_BADGE_COLOR.warning,
     },
     {
       state: OkmsServiceKeyState.deactivated,
-      label:
-        'key_management_service_service-keys_dashboard_field_state_deactivated',
+      label: 'key_management_service_service-keys_dashboard_field_state_deactivated',
       colorValue: ODS_BADGE_COLOR.warning,
     },
     {
       state: OkmsServiceKeyState.destroyed,
-      label:
-        'key_management_service_service-keys_dashboard_field_state_destroyed',
+      label: 'key_management_service_service-keys_dashboard_field_state_destroyed',
       colorValue: ODS_BADGE_COLOR.critical,
     },
     {
       state: OkmsServiceKeyState.destroyed_compromised,
-      label:
-        'key_management_service_service-keys_dashboard_field_state_destroyed_compromised',
+      label: 'key_management_service_service-keys_dashboard_field_state_destroyed_compromised',
       colorValue: ODS_BADGE_COLOR.critical,
     },
     {
       state: OkmsServiceKeyState.pre_active,
-      label:
-        'key_management_service_service-keys_dashboard_field_state_pre_active',
+      label: 'key_management_service_service-keys_dashboard_field_state_pre_active',
       colorValue: ODS_BADGE_COLOR.information,
     },
   ];
@@ -54,9 +50,7 @@ describe('ServiceKeyStatus component test suite', () => {
       // given state, colorValue and label
 
       // when
-      const { getByTestId } = render(
-        <ServiceKeyStatus state={state} data-testid="test" />,
-      );
+      const { getByTestId } = render(<ServiceKeyStatus state={state} data-testid="test" />);
       const component = getByTestId('test');
 
       // then
@@ -70,9 +64,7 @@ describe('ServiceKeyStatus component test suite', () => {
     const serviceKeyState = 'unknown' as OkmsServiceKeyState;
 
     // when
-    const { getByTestId } = render(
-      <ServiceKeyStatus state={serviceKeyState} data-testid="test" />,
-    );
+    const { getByTestId } = render(<ServiceKeyStatus state={serviceKeyState} data-testid="test" />);
     const component = getByTestId('test');
 
     // then

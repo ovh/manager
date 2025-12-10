@@ -33,12 +33,14 @@
   "account_details_title_association_prefilled": "Verifique e valide as informações da associação",
   "account_details_title_administration": "Introduza as informações da organização",
   "account_details_title_administration_prefilled": "Verifique e valide as informações da organização",
-  "account_details_section_address_individual": "Morada",
+  "account_details_section_address_individual": "Endereço postal",
   "account_details_section_address_corporation": "Informações de contacto da empresa",
   "account_details_section_address_association": "Informações de contacto da associação",
   "account_details_section_address_administration": "Informações de contacto da organização",
   "account_details_field_sms_consent": "Aceito receber SMS relativos às novidades e ofertas comerciais da OVHcloud.",
   "account_details_field_area": "Região",
   "account_details_field_state": "Estado",
-  "account_details_field_province": "Província"
+  "account_details_field_province": "Província",
+  "account_details_field_corporation_firstname": "Nome do representante legal",
+  "account_details_field_corporation_lastname": "Sobrenome do representante legal"
 }

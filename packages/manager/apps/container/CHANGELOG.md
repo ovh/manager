@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.170.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.1...@ovh-ux/manager-container-app@0.170.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.170.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.0...@ovh-ux/manager-container-app@0.170.1) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4524] ([7ccf245](https://github.com/ovh/manager/commit/7ccf245dfb71a734dae520873a681c570082d62e))
+
+
+
+
+
+# [0.170.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.169.0...@ovh-ux/manager-container-app@0.170.0) (2025-12-09)
+
+
+### Features
+
+* **ips:** init ips react app ([#13742](https://github.com/ovh/manager/issues/13742)) ([cb30312](https://github.com/ovh/manager/commit/cb30312fbcbf2fefaaedfdfa5bb9fcfa7805d289))
+
+
+
+
+
+# [0.169.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.168.0...@ovh-ux/manager-container-app@0.169.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4518] ([d5fe2fc](https://github.com/ovh/manager/commit/d5fe2fce0f29f22224aac501981c4eae5a971e4c))
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+# [0.168.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.167.1...@ovh-ux/manager-container-app@0.168.0) (2025-12-04)
+
+
+### Features
+
+* **cold-archive:** banner message to object storage ([0478590](https://github.com/ovh/manager/commit/04785909b8c75b57e4eaed171ad5d75ed97aa5fe)), closes [#DATATR-2632](https://github.com/ovh/manager/issues/DATATR-2632)
+
+
+
+
+
+## [0.167.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.167.0...@ovh-ux/manager-container-app@0.167.1) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.167.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.166.1...@ovh-ux/manager-container-app@0.167.0) (2025-12-03)
+
+
+### Features
+
+* **okms:** feature flipping on beta badge ([3e31adc](https://github.com/ovh/manager/commit/3e31adcc34e92276b85c5ae710f79310f5e20dab)), closes [#MANAGER-20139](https://github.com/ovh/manager/issues/MANAGER-20139)
+
+
+
+
+
+## [0.166.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.166.0...@ovh-ux/manager-container-app@0.166.1) (2025-12-02)
+
+
+### Bug Fixes
+
+* **container:** update live-chat URLs to load on ovhcloud.com ([6db6c0a](https://github.com/ovh/manager/commit/6db6c0abe63e2750cfb375aff8179f79a937279e))
+
+
+
+
+
 # [0.166.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.165.0...@ovh-ux/manager-container-app@0.166.0) (2025-12-01)
 
 

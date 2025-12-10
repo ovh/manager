@@ -1,0 +1,22 @@
+{
+  "addVirtualMacTitle": "Virtuelle MAC hinzufügen",
+  "addVirtualMacNew": "Eine neue virtuelle MAC erstellen",
+  "addVirtualMacNewInfo": "Virtual MACs ermöglichen eine bessere Verwaltung von IP-Adressen, indem jeder virtuellen Maschine einzigartige MAC-Adressen zugewiesen werden.",
+  "addVirtualMacNewInfoGuide": "Guide zu Virtual MACs ansehen",
+  "addVirtualMacExisting": "Vorhandene virtuelle MAC verwenden",
+  "virtualMacIpAddress": "IP-Adresse",
+  "virtualMacType": "Typ",
+  "virtualMacField": "Virtuelle MAC-Adresse",
+  "virtualMacMachinename": "Name der virtuellen Maschine",
+  "viewVirtualMacTitle": "Details zur virtuellen MAC",
+  "viewVirtualMacQuestion": "Hier die Details zur virtuellen MAC:",
+  "addVirtualMacAddNewSuccess": "Eine neue virtuelle MAC-Adresse wurde erstellt und wird in wenigen Minuten für die IP {{t0}} verfügbar sein.",
+  "addVirtualMacAddNewFailure": "Beim Erstellen einer neuen virtuellen MAC für die IP {{t0}} ist ein Fehler aufgetreten. {{error}} request_id: {{ovhQueryId}}",
+  "addVirtualMacAddExistingSuccess": "Die IP {{t0}} wird in einigen Minuten der bestehenden virtuellen MAC-Adresse zugewiesen.",
+  "addVirtualMacAddExistingFailure": "Beim Zuweisen einer bestehenden virtuellen MAC zur IP {{t0}} ist ein Fehler aufgetreten. {{error}} request_id: {{ovhQueryId}}",
+  "deleteVirtualMacTitle": "Virtuelle MAC löschen",
+  "deleteVirtualMacInfo": "Durch das Löschen dieser virtuellen MAC wird die Zuweisung der mit der virtuellen Maschine verbundenen IP-Adresse aufgehoben, was zu einer Unterbrechung der von ihr abhängigen Dienste oder Konfigurationen führen kann. Dieser Vorgang kann nicht rückgängig gemacht werden.",
+  "deleteVirtualMacConfirmation": "Möchten Sie die virtuelle MAC wirklich endgültig löschen?",
+  "deleteVirtualMacSuccess": "Die virtuelle MAC {{vmac}} wird in wenigen Minuten von der IP {{ip}} entfernt.",
+  "deleteVirtualMacError": "Beim Löschen der virtuellen MAC ist ein Fehler aufgetreten: {{error}}"
+}

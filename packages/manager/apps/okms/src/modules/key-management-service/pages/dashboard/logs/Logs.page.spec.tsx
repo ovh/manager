@@ -1,17 +1,20 @@
-import React from 'react';
+import { Navigate } from 'react-router-dom';
+
+import { OKMS } from '@key-management-service/types/okms.type';
+import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
-import {
-  useFeatureAvailability,
-  UseFeatureAvailabilityResult,
-} from '@ovh-ux/manager-react-components';
+
 import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
-import { UseQueryResult } from '@tanstack/react-query';
-import { Navigate } from 'react-router-dom';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
-import { OKMS } from '@key-management-service/types/okms.type';
-import KmsLogs from './Logs.page';
+import {
+  UseFeatureAvailabilityResult,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
+
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+
+import KmsLogs from './Logs.page';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module = await importOriginal<typeof import('react-router-dom')>();
@@ -24,29 +27,31 @@ vi.mock('react-router-dom', async (importOriginal) => {
 
 vi.mock('@key-management-service/data/hooks/useOkms', () => ({
   useOkmsById: (id: string) =>
-    ({ data: { data: { id, iam: { urn: `urn:${id}` } } } } as UseQueryResult<
-      ApiResponse<OKMS>
-    >),
+    ({ data: { data: { id, iam: { urn: `urn:${id}` } } } }) as UseQueryResult<ApiResponse<OKMS>>,
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const module = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
+  const module = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return { ...module, useFeatureAvailability: vi.fn() };
 });
 
-vi.mock('@ovh-ux/logs-to-customer/src/LogsToCustomer.module');
+vi.mock('@ovh-ux/logs-to-customer', async (importOriginal) => {
+  const module = await importOriginal<typeof import('@ovh-ux/logs-to-customer')>();
+  return {
+    ...module,
+    LogsToCustomerModule: vi.fn().mockReturnValue(<div>LogsToCustomerModule</div>),
+  };
+});
 
 describe('Logs page tests suite', () => {
   afterEach(() => vi.clearAllMocks());
 
   const renderLogsPage = () => render(<KmsLogs />);
 
-  it('should display logs if logs feature is enabled', async () => {
-    vi.mocked(useFeatureAvailability).mockReturnValue(({
+  it('should display logs if logs feature is enabled', () => {
+    vi.mocked(useFeatureAvailability).mockReturnValue({
       data: { [KMS_FEATURES.LOGS]: true },
-    } as unknown) as UseFeatureAvailabilityResult);
+    } as unknown as UseFeatureAvailabilityResult);
 
     renderLogsPage();
 
@@ -70,17 +75,14 @@ describe('Logs page tests suite', () => {
     );
   });
 
-  it('should redirect to dashboard if logs feature is disabled', async () => {
-    vi.mocked(useFeatureAvailability).mockReturnValue(({
+  it('should redirect to dashboard if logs feature is disabled', () => {
+    vi.mocked(useFeatureAvailability).mockReturnValue({
       data: { [KMS_FEATURES.LOGS]: false },
-    } as unknown) as UseFeatureAvailabilityResult);
+    } as unknown as UseFeatureAvailabilityResult);
 
     renderLogsPage();
 
-    expect(Navigate).toHaveBeenCalledWith(
-      { to: '/key-management-service/okmsId' },
-      {},
-    );
+    expect(Navigate).toHaveBeenCalledWith({ to: '/key-management-service/okmsId' }, {});
     expect(LogsToCustomerModule).not.toHaveBeenCalled();
   });
 });

@@ -1,12 +1,12 @@
 {
   "deleteReplicationTitle": "Delete a replication rule",
-  "deleteReplicationDescription": "Do you really want to delete the replication rule <strong>{{decodedRuleId}}</strong>?",
+  "deleteReplicationDescription": "Are you sure you want to delete the replication rule <strong>{{decodedRuleId}}</strong>?",
   "deleteReplicationButtonConfirm": "Delete",
   "deleteReplicationButtonCancel": "Cancel",
   "deleteReplicationToastSuccessTitle": "Rule deleted",
-  "deleteReplicationToastSuccessMessage": "The deletion of your replication rule has been successfully completed.",
+  "deleteReplicationToastSuccessMessage": "Your replication rule has been deleted.",
   "deleteReplicationToastErrorTitle": "Deletion error",
-  "deleteReplicationToastErrorMessage": "An error occurred while deleting your replication rule: {{message}}.",
+  "deleteReplicationToastErrorMessage": "An error occurred while deleting your replication rule: {{ message }}.",
   "replicationRuleNotFound": "The replication rule was not found.",
   "close": "Close"
 }

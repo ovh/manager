@@ -1,17 +1,14 @@
-import React from 'react';
+import { OkmsCredentialStatus } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BADGE_COLOR,
   ODS_BADGE_SIZE,
   OdsBadge as OdsBadgeType,
 } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { OkmsCredentialStatus } from '@key-management-service/types/okmsCredential.type';
 
-export type KeyStatusProps = Omit<
-  OdsBadgeType,
-  'render' | 'color' | 'label' | 'size'
-> & {
+export type KeyStatusProps = Omit<OdsBadgeType, 'render' | 'color' | 'label' | 'size'> & {
   state: OkmsCredentialStatus;
   size?: ODS_BADGE_SIZE;
 };

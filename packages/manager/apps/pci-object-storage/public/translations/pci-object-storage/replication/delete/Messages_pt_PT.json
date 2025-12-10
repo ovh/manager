@@ -1,12 +1,12 @@
 {
-  "deleteReplicationTitle": "Remover uma regra de replicação",
-  "deleteReplicationDescription": "Tem certeza de que deseja remover a regra de replicação <strong>{{decodedRuleId}}</strong> ?",
-  "deleteReplicationButtonConfirm": "Suprimir",
+  "deleteReplicationTitle": "Eliminar uma regra de replicação",
+  "deleteReplicationDescription": "Tem a certeza de que quer eliminar a regra de replicação <strong>{{decodedRuleId}}</strong>?",
+  "deleteReplicationButtonConfirm": "Eliminar",
   "deleteReplicationButtonCancel": "Anular",
-  "deleteReplicationToastSuccessTitle": "Regra removida",
-  "deleteReplicationToastSuccessMessage": "A remoção da sua regra de replicação foi realizada com sucesso.",
-  "deleteReplicationToastErrorTitle": "Erro de remoção",
-  "deleteReplicationToastErrorMessage": "Ocorreu um erro ao remover a sua regra de replicação: {{message}}.",
+  "deleteReplicationToastSuccessTitle": "Regra eliminada",
+  "deleteReplicationToastSuccessMessage": "A sua regra de replicação foi eliminada com sucesso.",
+  "deleteReplicationToastErrorTitle": "Erro de eliminação",
+  "deleteReplicationToastErrorMessage": "Ocorreu um erro aquando da eliminação da sua regra de replicação: {{message}}.",
   "replicationRuleNotFound": "A regra de replicação não foi encontrada.",
   "close": "Fechar"
 }

@@ -1,0 +1,10 @@
+{
+  "breadcrumb_root_label": "Wszystkie adresy IP",
+  "order": "Zamów IP",
+  "byoip": "BYOIP",
+  "free_price": "Gratis",
+  "task_error_message": "Status zadania: {{status}}. Komentarz: {{comment}}",
+  "ip_task_status_cancelled": "anulowane",
+  "ip_task_status_customerError": "błąd",
+  "ip_task_status_ovhError": "błąd"
+}

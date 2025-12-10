@@ -1,5 +1,6 @@
-import { describe, expect, test } from 'vitest';
 import { IdentityType } from '@key-management-service/types/identity.type';
+import { describe, expect, test } from 'vitest';
+
 import { filterIdentities } from './filterIdentities';
 
 const userIdentities: string[] = [

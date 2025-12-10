@@ -52,4 +52,11 @@ describe('Welcome.component', () => {
 
     expect(getByTestId('snc_chip')).not.toBeNull();
   });
+
+  it('should have a valid html', () => {
+    const { container } = renderComponent();
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

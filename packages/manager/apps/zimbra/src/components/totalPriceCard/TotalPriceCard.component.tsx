@@ -46,7 +46,7 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
     <OdsCard
       className={cn('flex flex-col w-full h-max min-w-72 border-2 border-gray-300', className)}
     >
-      <div className="flex flex-1 gap-6 justify-between items-start pt-6 px-6">
+      <div className="flex flex-1 items-start justify-between gap-6 px-6 pt-6">
         <OdsText preset="heading-6">{t('common:next_billing')}</OdsText>
         <div className="flex flex-col items-end">
           {isLoading ? (
@@ -65,7 +65,7 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
         </div>
       </div>
       {!isCurrentOffer && (
-        <div className="flex flex-1 gap-6 justify-between items-start pt-6 px-6">
+        <div className="flex flex-1 items-start justify-between gap-6 px-6 pt-6">
           <div className="flex items-center">
             <OdsText preset="heading-6">{t('common:paid_now')}</OdsText>
             <OdsIcon id="paid-now-info" className="ml-3" name={ODS_ICON_NAME.circleInfo} />
@@ -92,7 +92,7 @@ export const TotalPriceCard: React.FC<TotalPriceCardProps> = ({
           </div>
         </div>
       )}
-      <div className="w-[calc(100%-2rem)] p-6 justify-center">
+      <div className="w-[calc(100%-2rem)] justify-center p-6">
         <OdsButton
           label={t('common:continue_order_btn')}
           className="w-full [&::part(button)]:w-full"

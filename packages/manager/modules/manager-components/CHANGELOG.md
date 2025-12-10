@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.26.2...@ovh-ux/manager-components@1.27.0) (2025-12-08)
+
+
+### Features
+
+* **billing:** add us specific wording in the resiliation modal ([77f7882](https://github.com/ovh/manager/commit/77f7882dd001a51297e53ace64d59018523400f1)), closes [#MANAGER-20069](https://github.com/ovh/manager/issues/MANAGER-20069)
+
+
+
+
+
 ## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.26.1...@ovh-ux/manager-components@1.26.2) (2025-11-03)
 
 

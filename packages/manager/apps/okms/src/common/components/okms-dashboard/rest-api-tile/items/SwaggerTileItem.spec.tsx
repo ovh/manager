@@ -1,18 +1,18 @@
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
-import React from 'react';
 import { vi } from 'vitest';
-import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
-import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { SWAGGER_UI_LABEL } from '@/constants';
-import { SwaggerTileItem } from './SwaggerTileItem.component';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
-const okmsMocked = okmsMock[0];
+import { LinkType, LinksProps } from '@ovh-ux/manager-react-components';
+
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { SWAGGER_UI_LABEL } from '@/constants';
+
+import { SwaggerTileItem } from './SwaggerTileItem.component';
+
+const okmsMocked = okmsRoubaix1Mock;
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return {
     ...actual,
     Links: ({ onClickReturn, ...rest }: LinksProps) => (
@@ -22,9 +22,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
 
   return {
     ...mod,

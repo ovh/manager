@@ -1,15 +1,9 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Datagrid,
-  DatagridColumn,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
 import { IdentityObject } from '@key-management-service/types/identity.type';
-import {
-  IdentityAccountCell,
-  IdentityUrnCell,
-} from './cell/identityCell.component';
+import { useTranslation } from 'react-i18next';
+
+import { Datagrid, DatagridColumn, Subtitle } from '@ovh-ux/manager-react-components';
+
+import { IdentityAccountCell, IdentityUrnCell } from './cell/identityCell.component';
 
 interface IOVHAccounts {
   identities: IdentityObject[];
@@ -21,9 +15,7 @@ const OVHAccounts = ({ identities }: IOVHAccounts) => {
   const columns: DatagridColumn<IdentityObject>[] = [
     {
       id: 'Account',
-      label: t(
-        'key_management_service_credential_identities_account_column_account',
-      ),
+      label: t('key_management_service_credential_identities_account_column_account'),
       cell: IdentityAccountCell,
     },
     {
@@ -35,9 +27,7 @@ const OVHAccounts = ({ identities }: IOVHAccounts) => {
 
   return (
     <div className="flex flex-col gap-3">
-      <Subtitle>
-        {t('key_management_service_credential_identities_account_title')}
-      </Subtitle>
+      <Subtitle>{t('key_management_service_credential_identities_account_title')}</Subtitle>
       <Datagrid
         columns={columns}
         items={identities || []}

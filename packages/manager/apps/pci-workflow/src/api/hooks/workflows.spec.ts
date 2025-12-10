@@ -1,10 +1,12 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { ColumnSort } from '@ovh-ux/manager-react-components';
+
 import { deleteWorkflow } from '@/api/data/workflow';
 import { wrapper } from '@/wrapperRenders';
 
-import { useDeleteWorkflow } from './workflows';
+import { TWorkflow, sortWorkflows, useDeleteWorkflow } from './workflows';
 
 vi.mock('@/api/data/workflow');
 
@@ -55,5 +57,79 @@ describe('useDeleteWorkflow', () => {
 
     await waitFor(() => expect(onErrorMock).toHaveBeenCalled());
     expect(onSuccessMock).not.toHaveBeenCalled();
+  });
+});
+
+describe('sortWorkflows', () => {
+  it.each([
+    {
+      workflows: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+      ] as TWorkflow[],
+      sorting: undefined,
+      expectedResults: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+      ] as TWorkflow[],
+    },
+    {
+      workflows: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+      ] as TWorkflow[],
+      sorting: { id: 'regions', desc: false } as ColumnSort,
+      expectedResults: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+      ] as TWorkflow[],
+    },
+    {
+      workflows: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+      ] as TWorkflow[],
+      sorting: { id: 'regions', desc: true } as ColumnSort,
+      expectedResults: [
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+      ] as TWorkflow[],
+    },
+    {
+      workflows: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+      ] as TWorkflow[],
+      sorting: { id: 'name', desc: false } as ColumnSort,
+      expectedResults: [
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+      ] as TWorkflow[],
+    },
+    {
+      workflows: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+      ] as TWorkflow[],
+      sorting: { id: 'name', desc: true } as ColumnSort,
+      expectedResults: [
+        { id: '1', name: 'zz', region: 'EU-WEST' },
+        { id: '3', name: 'bb', region: 'GRA9' },
+        { id: '2', name: 'aa', region: 'SBG5' },
+      ] as TWorkflow[],
+    },
+  ])('should sort workflows with $sorting', ({ workflows, sorting, expectedResults }) => {
+    const result = sortWorkflows(workflows, sorting, []);
+
+    expect(result).toEqual(expectedResults);
   });
 });

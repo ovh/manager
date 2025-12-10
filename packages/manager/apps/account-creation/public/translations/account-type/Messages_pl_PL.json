@@ -1,14 +1,14 @@
 {
   "title": "Wybierz rodzaj konta",
-  "description": "Potrzebujesz pomocy? <Tooltip>Więcej informacji dotyczących rodzajów kont</Tooltip>",
+  "description": "Potrzebujesz pomocy? <strong>Dowiedz się więcej o rodzajach kont</strong>",
   "legal_form_association": "Stowarzyszenie",
   "legal_form_administration": "Administracja publiczna",
   "legal_form_corporation": "Firma",
   "legal_form_individual": "Osoba fizyczna",
   "legal_form_personalcorporation": "Spółka jednoosobowa",
-  "legal_form_tooltip_corporation_description": "Załóż konto dla swojej firmy, jeśli masz zarejestrowaną działalność, w tym przedsiębiorstwo jednoosobowe.",
-  "legal_form_tooltip_individual_description": "Załóż konto jako osoba prywatna, jeśli nie posiadasz zarejestrowanej działalności lub jesteś w trakcie zakładania firmy.",
-  "legal_form_tooltip_administration_description": "Załóż konto dla organizmu publicznego, jeśli reprezentujesz państwo, jednostkę samorządu terytorialnego, międzynarodową organizację lub instytucję.",
-  "legal_form_tooltip_association_description": "Załóż konto dla Twojego stowarzyszenia, jeśli jesteś zapisana/-y w krajowym rejestrze przedsiębiorstw i organizacji (KRS w Polsce). Jeżeli nie widniejesz w tym rejestrze, załóż konto jako osoba prywatna.",
-  "legal_form_tooltip_personalcorporation_description": "Opis Ditta Individuale."
+  "legal_form_tooltip_corporation_description": "Utwórz konto firmowe, jeśli prowadzisz zarejestrowaną działalność, także jednoosobową.",
+  "legal_form_tooltip_individual_description": "Utwórz konto jako osoba prywatna, jeśli nie prowadzisz zarejestrowanej działalności albo dopiero zakładasz firmę.",
+  "legal_form_tooltip_administration_description": "Utwórz konto dla instytucji publicznej, jeśli reprezentujesz organ państwowy, jednostkę terytorialną lub organizację czy instytucję międzynarodową.",
+  "legal_form_tooltip_association_description": "Utwórz konto dla stowarzyszenia, jeśli jest ono wpisane do krajowego rejestru firm i instytucji. Jeśli nie masz jeszcze konta, utwórz konto jako osoba prywatna.",
+  "legal_form_tooltip_personalcorporation_description": "Opis jednoosobowej działalności gospodarczej."
 }

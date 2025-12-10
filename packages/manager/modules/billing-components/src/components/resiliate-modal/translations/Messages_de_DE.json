@@ -15,5 +15,9 @@
   "billing_resiliate_terminateAtExpirationDate_error": "Bei der Anfrage zum Kündigen dieses Dienstes am Ablaufdatum ist ein Fehler aufgetreten:",
   "billing_resiliate_error": "Bei der Kündigungsanfrage ist ein Fehler aufgetreten:",
   "billing_resiliate_terminateAtEngagementDate_us": "Dienst am Ablaufdatum kündigen",
-  "billing_resiliate_terminateAtEngagementDate_error_us": "Bei der Anfrage zur Kündigung des Dienstes am Ablaufdatum ist ein Fehler aufgetreten:"
+  "billing_resiliate_terminateAtEngagementDate_error_us": "Bei der Anfrage zur Kündigung des Dienstes am Ablaufdatum ist ein Fehler aufgetreten:",
+  "billing_resiliate_mode_label_us": "Die gewünschte Aktion auswählen",
+  "billing_resiliate_terminate_us": "Meinen Dienst jetzt kündigen",
+  "billing_resiliate_terminateAtExpirationDate_us": "Meinen Dienst am Ende der Vertragsbindung kündigen",
+  "billing_resiliate_confirmation_mail_to_be_sent": "Wir senden Ihnen ein E-Mail, um die Kündigung Ihres Dienstes zu bestätigen."
 }

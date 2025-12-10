@@ -1,16 +1,17 @@
-import React from 'react';
-import { describe, expect, test, vi, beforeEach } from 'vitest';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useForm, FormProvider } from 'react-hook-form';
-import { KeyValuesEditor, FormFieldInput } from './KeyValuesEditor';
+import { FormProvider, useForm } from 'react-hook-form';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+
+import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 import {
   changeOdsInputValueByTestId,
   getOdsButtonByLabel,
 } from '@/common/utils/tests/uiTestHelpers';
+
+import { FormFieldInput, KeyValuesEditor } from './KeyValuesEditor';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
-import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 
 const labels = allLabels.secretManager;
 
@@ -44,6 +45,7 @@ type TestWrapperProps = {
 
 const TestWrapper = ({ defaultValues }: TestWrapperProps) => {
   const methods = useForm<FormFieldInput>({ defaultValues });
+  // eslint-disable-next-line react-hooks/incompatible-library
   const value = methods.watch('data');
 
   return (
@@ -93,9 +95,7 @@ describe('KeyValuesEditor', () => {
 
       // Then
       await waitFor(() => {
-        expect(
-          screen.getByText(labels.error_key_value_conversion),
-        ).toBeInTheDocument();
+        expect(screen.getByText(labels.error_key_value_conversion)).toBeInTheDocument();
       });
     });
 
@@ -124,6 +124,7 @@ describe('KeyValuesEditor', () => {
         container,
         label: labels.add_row,
       });
+
       await act(async () => user.click(addButton));
 
       // Then
@@ -175,9 +176,7 @@ describe('KeyValuesEditor', () => {
       expect(
         screen.queryByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1)),
       ).not.toBeInTheDocument();
-      expect(screen.getByTestId('value')).toHaveTextContent(
-        '{"key2":"value2"}',
-      );
+      expect(screen.getByTestId('value')).toHaveTextContent('{"key2":"value2"}');
     });
   });
 
@@ -187,17 +186,12 @@ describe('KeyValuesEditor', () => {
       const { container } = await renderTest(mockDefaultValues.valid);
 
       // When
-      await changeOdsInputValueByTestId(
-        KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1),
-        'key1',
-      );
+      await changeOdsInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1), 'key1');
 
       // Then
       await waitFor(() => {
         expect(
-          container.querySelector(
-            `ods-form-field[error="${labels.error_duplicate_keys}"]`,
-          ),
+          container.querySelector(`ods-form-field[error="${labels.error_duplicate_keys}"]`),
         ).toBeInTheDocument();
       });
     });
@@ -209,9 +203,7 @@ describe('KeyValuesEditor', () => {
       await renderTest(mockDefaultValues.empty);
 
       // Then
-      const deleteButton = screen.getByTestId(
-        KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0),
-      );
+      const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
       expect(deleteButton).toHaveAttribute('is-disabled', 'true');
     });
 
@@ -220,12 +212,8 @@ describe('KeyValuesEditor', () => {
       await renderTest(mockDefaultValues.valid);
 
       // Then
-      const deleteButton0 = screen.getByTestId(
-        KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0),
-      );
-      const deleteButton1 = screen.getByTestId(
-        KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(1),
-      );
+      const deleteButton0 = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
+      const deleteButton1 = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(1));
       expect(deleteButton0).not.toBeDisabled();
       expect(deleteButton1).not.toBeDisabled();
     });
@@ -236,9 +224,7 @@ describe('KeyValuesEditor', () => {
       await renderTest(mockDefaultValues.valid);
 
       // When - delete one item to leave only one remaining
-      const deleteButton = screen.getByTestId(
-        KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0),
-      );
+      const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
       await act(async () => user.click(deleteButton));
 
       // Then - the remaining delete button should be disabled
@@ -266,6 +252,7 @@ describe('KeyValuesEditor', () => {
         container,
         label: labels.add_row,
       });
+
       await act(async () => user.click(addButton));
 
       // Then - both delete buttons should be enabled

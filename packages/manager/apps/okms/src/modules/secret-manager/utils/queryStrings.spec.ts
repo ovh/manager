@@ -31,8 +31,6 @@ describe('buildQueryString', () => {
       q: 'a b&c=d',
       u: 'https://ex.com/?x=1&y=2',
     });
-    expect(result).toBe(
-      '?q=a+b%26c%3Dd&u=https%3A%2F%2Fex.com%2F%3Fx%3D1%26y%3D2',
-    );
+    expect(result).toBe('?q=a+b%26c%3Dd&u=https%3A%2F%2Fex.com%2F%3Fx%3D1%26y%3D2');
   });
 });

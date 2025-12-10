@@ -200,6 +200,53 @@ export default class NetAppDashboardService {
   }
 
   /**
+   * Get VolumeCapacity
+   * @param {*} serviceName
+   * @param {*} volumeId
+   * @returns capacity info for a volume
+   */
+  getVolumeCapacity(serviceName, volumeId) {
+    const octetsToGigaoctets = (octets) => {
+      if (octets === 0) return 0;
+      const giga = octets / 1024 ** 3;
+      return Number(giga.toFixed(2));
+    };
+
+    return this.$http
+      .get(`/storage/netapp/${serviceName}/metricsToken`)
+      .then(({ data: { endpoint, token } }) => {
+        // eslint-disable-next-line no-useless-escape
+        const QUERY = `\{__name__=~"volume_size|volume_size_used|volume_snapshot_reserve_overflow|volume_size_available|volume_snapshot_reserve_size|volume_snapshot_reserve_used|volume_snapshot_reserve_available",service_id="${serviceName}",share_id="${volumeId}"\}`;
+        return this.$http.get(
+          `${endpoint}/prometheus/api/v1/query?query=${QUERY}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+      })
+      .then(
+        ({
+          data: {
+            data: { result },
+          },
+        }) => {
+          const capacity = result.reduce(
+            (prev, { metric: { __name__: key }, value }) => ({
+              ...prev,
+              [key]: value[1]
+                ? octetsToGigaoctets(Number.parseInt(value[1], 10))
+                : 0,
+            }),
+            {},
+          );
+          return capacity;
+        },
+      );
+  }
+
+  /**
    * Update the EFS name
    * @param {string} storageId
    * @param {string} name

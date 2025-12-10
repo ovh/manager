@@ -8,6 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
+      serverRegion: /* @ngInject */ (server) => {
+        const zone = server.region.split('-')[0];
+        return ['eu', 'labeu'].includes(zone) ? 'Roubaix' : 'BHS';
+      },
       goBack: /* @ngInject */ (goToFtpBackUpStorage) => goToFtpBackUpStorage,
       breadcrumb: () => null,
     },

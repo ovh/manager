@@ -1,10 +1,12 @@
-import { ColumnSort } from '@ovh-ux/manager-react-components';
-import apiClient from '@ovh-ux/manager-core-api';
 import {
   OkmsServiceKey,
   OkmsServiceKeyPostPayload,
   OkmsServiceKeyPutPayload,
 } from '@key-management-service/types/okmsServiceKey.type';
+
+import apiClient from '@ovh-ux/manager-core-api';
+import { ColumnSort } from '@ovh-ux/manager-react-components';
+
 import { defaultCompareFunctionSortKey } from './utils';
 
 /**
@@ -58,9 +60,7 @@ export const getOkmsServiceKeyResource = async ({
   okmsId: string;
   keyId: string;
 }): Promise<{ data: OkmsServiceKey }> => {
-  return apiClient.v2.get(
-    `okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`,
-  );
+  return apiClient.v2.get(`okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`);
 };
 
 /**
@@ -113,11 +113,9 @@ export const deleteOkmsServiceKeyResource = async ({
  *  create okms Servicekey
  */
 
-export const createOkmsServiceKeyResourceQueryKey = ({
-  okmsId,
-}: {
-  okmsId: string;
-}) => [`put/okms/resource/${okmsId}/serviceKey/create`];
+export const createOkmsServiceKeyResourceQueryKey = ({ okmsId }: { okmsId: string }) => [
+  `put/okms/resource/${okmsId}/serviceKey/create`,
+];
 
 export const createOkmsServiceKeyResource = async ({
   okmsId,

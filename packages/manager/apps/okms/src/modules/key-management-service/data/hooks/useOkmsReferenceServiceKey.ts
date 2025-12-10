@@ -1,10 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import OkmsServiceKeyReference from '@key-management-service/types/okmsServiceKeyReference.type';
-import {
-  getOkmsServiceKeyReferenceQueryKey,
-  getServiceKeyReference,
-} from '../api/okmsReference';
+import { useQuery } from '@tanstack/react-query';
+
 import { ErrorResponse } from '@/common/types/api.type';
+
+import { getOkmsServiceKeyReferenceQueryKey, getServiceKeyReference } from '../api/okmsReference';
 
 export const useOkmsServiceKeyReference = (okmsRegion: string) => {
   return useQuery<{ data: OkmsServiceKeyReference[] }, ErrorResponse>({

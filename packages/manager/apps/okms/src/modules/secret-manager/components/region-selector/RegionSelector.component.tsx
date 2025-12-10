@@ -1,24 +1,18 @@
-import React, { Fragment, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
-import {
-  OdsButton,
-  OdsPopover,
-  OdsDivider,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Fragment, useRef } from 'react';
+
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsDivider, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { Link } from '@/common/components/link/Link.component';
 import { useRegionSelector } from '@/modules/secret-manager/hooks/useRegionSelector';
 
 export const RegionSelector = () => {
-  const {
-    geographyGroups,
-    currentRegion,
-    isLoading,
-    isError,
-  } = useRegionSelector();
+  const { geographyGroups, currentRegion, isLoading, isError } = useRegionSelector();
   const { t } = useTranslation(NAMESPACES.REGION);
   const { translateRegionName, translateGeographyName } = useRegionName();
   const popoverRef = useRef<HTMLOdsPopoverElement>(null);
@@ -46,7 +40,7 @@ export const RegionSelector = () => {
           ref={popoverRef}
           triggerId="trigger-region-selector-popover"
           position="bottom-start"
-          className="p-0 m-0"
+          className="m-0 p-0"
         >
           <div className="flex flex-col gap-2 p-4">
             {geographyGroups.map((geographyGroup, index) => (
@@ -70,15 +64,13 @@ export const RegionSelector = () => {
                       href={link.href}
                       label={translateRegionName(link.region)}
                       isRouterLink
-                      onClick={() => {
-                        popoverRef.current?.hide();
+                      onClick={async () => {
+                        await popoverRef.current?.hide();
                       }}
                     />
                   ))}
                 </div>
-                {index < geographyGroups.length - 1 && (
-                  <OdsDivider className="-mx-4 mt-2 mb-1" />
-                )}
+                {index < geographyGroups.length - 1 && <OdsDivider className="-mx-4 mb-1 mt-2" />}
               </Fragment>
             ))}
           </div>

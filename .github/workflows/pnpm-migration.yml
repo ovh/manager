@@ -93,3 +93,8 @@ jobs:
           gh pr edit "$BRANCH" --add-label "pnpm-migration" || true
           gh pr edit "$BRANCH" --add-label "$TICKET" || true
           gh pr edit "$BRANCH" --add-reviewer helabenkhalfallah || true
+
+      - name: Trigger CI by amending commit
+        run: |
+          git commit --amend --no-edit --allow-empty
+          git push origin "$BRANCH" --force-with-lease

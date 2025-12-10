@@ -10,13 +10,13 @@ import {
 } from '@datatr-ux/uxlib';
 import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import ConditionalLink from '@/components/links/ConditionalLink.component';
 import { cn } from '@/lib/utils';
 import { useS3ObjectActions } from '../_hooks/useS3ObjectActions.hook';
 import { DeepArchiveBadge } from './DeepArchiveBadge.component';
+import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
 
 interface S3ObjectFileRendererProps {
   object: StorageObject;
@@ -30,6 +30,7 @@ const S3ObjectFileRenderer = ({
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
   );
+  const localeBytesConverter = useLocaleBytesConverter();
 
   const { actions } = useS3ObjectActions({
     object,
@@ -71,7 +72,7 @@ const S3ObjectFileRenderer = ({
         {/* SIZE + DATE */}
         <div className="text-muted-foreground flex justify-end gap-2">
           {object.size !== undefined && (
-            <span>{octetConverter(object.size, true, 2)}</span>
+            <span>{localeBytesConverter(object.size, true, 2)}</span>
           )}
           {object.lastModified && (
             <FormattedDate

@@ -1,8 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import {
-  ValidityPeriodErrors,
-  validateValidityDate,
-} from './validateValidityDate';
+import { describe, expect, it } from 'vitest';
+
+import { ValidityPeriodErrors, validateValidityDate } from './validateValidityDate';
 
 describe('validateValidityDate', () => {
   it('should return undefined for a validity within the valid range', () => {
@@ -12,16 +10,12 @@ describe('validateValidityDate', () => {
 
   it('should return minPeriod error if validity is less than 1', () => {
     const invalidValidityLow = 0;
-    expect(validateValidityDate(invalidValidityLow)).toBe(
-      ValidityPeriodErrors.minPeriod,
-    );
+    expect(validateValidityDate(invalidValidityLow)).toBe(ValidityPeriodErrors.minPeriod);
   });
 
   it('should return maxPeriod error if validity exceeds 365', () => {
     const invalidValidityHigh = 366;
-    expect(validateValidityDate(invalidValidityHigh)).toBe(
-      ValidityPeriodErrors.maxPeriod,
-    );
+    expect(validateValidityDate(invalidValidityHigh)).toBe(ValidityPeriodErrors.maxPeriod);
   });
 
   it('should return undefined for a validity of exactly 1 day', () => {
@@ -36,15 +30,11 @@ describe('validateValidityDate', () => {
 
   it('should return minPeriod error for a negative validity', () => {
     const negativeValidity = -10;
-    expect(validateValidityDate(negativeValidity)).toBe(
-      ValidityPeriodErrors.minPeriod,
-    );
+    expect(validateValidityDate(negativeValidity)).toBe(ValidityPeriodErrors.minPeriod);
   });
 
   it('should return maxPeriod error for a very large validity number', () => {
     const largeValidity = 1000;
-    expect(validateValidityDate(largeValidity)).toBe(
-      ValidityPeriodErrors.maxPeriod,
-    );
+    expect(validateValidityDate(largeValidity)).toBe(ValidityPeriodErrors.maxPeriod);
   });
 });

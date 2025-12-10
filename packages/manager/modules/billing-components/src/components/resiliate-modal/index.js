@@ -1,5 +1,6 @@
 import angular from 'angular';
 import { deleteModal } from '@ovh-ux/manager-components';
+import vpsOutperformBanner from '../vps-outperform-banner';
 
 import component from './resiliate-modal.component';
 import {
@@ -10,7 +11,7 @@ import {
 const moduleName = 'ovhManagerBillingResiliateModal';
 
 angular
-  .module(moduleName, [deleteModal])
+  .module(moduleName, [deleteModal, vpsOutperformBanner])
   .component(component.name, component)
   .constant('RESILIATION_CAPACITIES', RESILIATION_CAPACITIES)
   .constant('RESILIATION_DEFAULT_CAPABILITY', RESILIATION_DEFAULT_CAPABILITY)

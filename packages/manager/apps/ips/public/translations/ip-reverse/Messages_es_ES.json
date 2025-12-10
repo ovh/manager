@@ -1,0 +1,7 @@
+{
+  "ip_reverse_update_failure_title": "No se ha podido actualizar el registro DNS inverso",
+  "ip_reverse_update_failure_hint": "Asegúrese de que el registro A esté configurado correctamente para un nombre de host determinado. Para más información, consulte ",
+  "ip_reverse_update_failure_hint_link": "nuestra guía",
+  "ip_reverse_update_failure_api_error": "API error:",
+  "ip_reverse_update_failure_request_id": "Request ID:"
+}

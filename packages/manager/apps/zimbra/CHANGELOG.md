@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.1...@ovh-ux/manager-zimbra-app@0.41.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.0...@ovh-ux/manager-zimbra-app@0.41.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* **zimbra:** fix the form on edition of account ([51b9e0d](https://github.com/ovh/manager/commit/51b9e0dcef593bb495cf50a2b3d2016e1267eae0)), closes [#INC0174599](https://github.com/ovh/manager/issues/INC0174599)
+
+
+
+
+
+# [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.40.0...@ovh-ux/manager-zimbra-app@0.41.0) (2025-12-05)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.39.5...@ovh-ux/manager-zimbra-app@0.40.0) (2025-12-04)
+
+
+### Bug Fixes
+
+* **zimbra:** display organization name instead of label in domain tab and domain configuration modal ([4938a3f](https://github.com/ovh/manager/commit/4938a3f289af787689d50de66f367e2879fccdce)), closes [#PRDCOL-256](https://github.com/ovh/manager/issues/PRDCOL-256)
+* **zimbra:** update create account form to select an offer instead of a slot ([e706e02](https://github.com/ovh/manager/commit/e706e0285faa8a8b51cbf63a9b0ddb934ae4216a)), closes [#PRDCOL-252](https://github.com/ovh/manager/issues/PRDCOL-252)
+
+
+### Features
+
+* **zimbra:** add deletion of multiple selected email accounts ([fdea9ff](https://github.com/ovh/manager/commit/fdea9ff1c67b477b7cbc319d6246a429d8277d49)), closes [#PRDCOL-219](https://github.com/ovh/manager/issues/PRDCOL-219)
+* **zimbra:** add redirections tab ([1ad8595](https://github.com/ovh/manager/commit/1ad85952340b8a26ffcbe0444b463e8a32611916)), closes [#PRDCOL-113](https://github.com/ovh/manager/issues/PRDCOL-113)
+
+
+
+
+
 ## [0.39.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.39.4...@ovh-ux/manager-zimbra-app@0.39.5) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

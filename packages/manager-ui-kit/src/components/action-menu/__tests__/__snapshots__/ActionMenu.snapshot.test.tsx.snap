@@ -2,27 +2,27 @@
 
 exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with default variant > default-variant 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rd:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::rc::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rd:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--default _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::rc::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -31,27 +31,27 @@ exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with def
 
 exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with ghost variant > ghost-variant 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rb:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::ra::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rb:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--ghost _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::ra::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -60,27 +60,27 @@ exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with gho
 
 exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with outline variant > outline-variant 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r9:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r8::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r9:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r8::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -89,27 +89,27 @@ exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with out
 
 exports[`ActionMenu Snapshot Tests > Compact mode > matches snapshot in compact mode > compact-mode 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r5:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r4::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r5:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r4::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--ellipsis-vertical_10c23_205"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--ellipsis-vertical
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>
@@ -117,27 +117,27 @@ exports[`ActionMenu Snapshot Tests > Compact mode > matches snapshot in compact 
 
 exports[`ActionMenu Snapshot Tests > Compact mode > matches snapshot in compact mode with custom icon > compact-mode-custom-icon 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r7:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r6::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r7:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r6::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--ellipsis-horizontal_10c23_202"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--ellipsis-horizontal
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>
@@ -145,27 +145,27 @@ exports[`ActionMenu Snapshot Tests > Compact mode > matches snapshot in compact 
 
 exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot with custom icon > custom-icon 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rn:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::rm::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rn:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::rm::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--plus_10c23_409"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--plus
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -174,27 +174,27 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot 
 
 exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot with custom label > custom-label 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rl:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::rk::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rl:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::rk::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Custom Actions
   </button>
@@ -203,27 +203,27 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot 
 
 exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot with custom label and icon > custom-label-and-icon 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rp:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::ro::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rp:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::ro::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--plus_10c23_409"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--plus
+      data-ods=icon
+      role=presentation
     />
     Settings
   </button>
@@ -232,27 +232,27 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot 
 
 exports[`ActionMenu Snapshot Tests > Default rendering > matches snapshot with default props > default-props 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r1:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r0::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r1:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r0::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -261,27 +261,27 @@ exports[`ActionMenu Snapshot Tests > Default rendering > matches snapshot with d
 
 exports[`ActionMenu Snapshot Tests > Default rendering > matches snapshot with minimal props > minimal-props 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r3:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r2::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r3:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r2::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -290,27 +290,27 @@ exports[`ActionMenu Snapshot Tests > Default rendering > matches snapshot with m
 
 exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with empty items array > empty-items 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r19:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r18::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r19:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r18::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -319,27 +319,27 @@ exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with empty it
 
 exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with many items > many-items 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r1d:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r1c::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r1d:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r1c::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -348,27 +348,27 @@ exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with many ite
 
 exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with single item > single-item 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r1b:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r1a::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r1b:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r1a::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -377,27 +377,27 @@ exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with single i
 
 exports[`ActionMenu Snapshot Tests > IAM authorization states > matches snapshot when IAM is loading > iam-loading-state 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r1f:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r1e::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r1f:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r1e::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -406,27 +406,27 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > matches snapshot
 
 exports[`ActionMenu Snapshot Tests > IAM authorization states > matches snapshot when IAM is not authorized > iam-unauthorized-state 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r1h:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r1g::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r1h:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r1g::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -435,27 +435,27 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > matches snapshot
 
 exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with IAM-protected items > iam-protected-items 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r15:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r14::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r15:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r14::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -464,27 +464,27 @@ exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with IAM
 
 exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with mixed item types > mixed-item-types 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r17:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r16::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r17:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r16::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -493,27 +493,27 @@ exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with mix
 
 exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with only button items > button-only-items 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r13:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r12::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r13:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r12::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -522,27 +522,27 @@ exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with onl
 
 exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with only link items > link-only-items 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":r11:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r10::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:r11:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::r10::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -551,27 +551,27 @@ exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with onl
 
 exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with left position > left-position 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rv:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::ru::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rv:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::ru::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -580,27 +580,27 @@ exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with l
 
 exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with right position > right-position 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rt:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::rs::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rt:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::rs::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -609,27 +609,27 @@ exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with r
 
 exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with top position > top-position 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rr:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::rq::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rr:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::rq::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -638,28 +638,28 @@ exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with t
 
 exports[`ActionMenu Snapshot Tests > States > matches snapshot when disabled > disabled-state 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rf:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    disabled=""
-    id="popover::re::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rf:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    disabled=
+    id=popover::re::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -668,70 +668,70 @@ exports[`ActionMenu Snapshot Tests > States > matches snapshot when disabled > d
 
 exports[`ActionMenu Snapshot Tests > States > matches snapshot when disabled-loading > disabled-loading-state 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rj:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    disabled=""
-    id="popover::ri::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rj:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    disabled=
+    id=popover::ri::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_button__spinner_1koyw_373"
+      class=_button__spinner
     >
       <span
-        class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-        data-ods="spinner"
-        role="none"
+        class=_spinner _spinner--neutral _spinner--sm
+        data-ods=spinner
+        role=none
       >
         <svg
-          aria-hidden="true"
-          class="_spinner__svg_o7c7y_32"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden=true
+          class=_spinner__svg
+          viewBox=0 0 24 24
+          xmlns=http://www.w3.org/2000/svg
         >
           <rect
-            fill="none"
-            height="24"
-            width="24"
+            fill=none
+            height=24
+            width=24
           />
           <g
-            transform="translate(-237.694 -93.932)"
+            transform=translate(-237.694 -93.932)
           >
             <path
-              d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-              transform="translate(5486 4225)"
+              d=M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z
+              transform=translate(5486 4225)
             />
             <circle
-              cx="1"
-              cy="1"
-              r="1"
-              transform="translate(248.694 114.932)"
+              cx=1
+              cy=1
+              r=1
+              transform=translate(248.694 114.932)
             />
             <circle
-              cx="1"
-              cy="1"
-              r="1"
-              transform="translate(238.694 104.932)"
+              cx=1
+              cy=1
+              r=1
+              transform=translate(238.694 104.932)
             />
           </g>
         </svg>
       </span>
     </span>
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>
@@ -740,69 +740,69 @@ exports[`ActionMenu Snapshot Tests > States > matches snapshot when disabled-loa
 
 exports[`ActionMenu Snapshot Tests > States > matches snapshot when loading > loading-state 1`] = `
 <div
-  data-testid="navigation-action-trigger-action"
+  data-testid=navigation-action-trigger-action
 >
   <button
-    aria-controls=":rh:"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-    data-ods="popover-trigger"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::rg::trigger"
-    role="button"
-    tabindex="0"
-    type="button"
+    aria-controls=:rh:
+    aria-expanded=false
+    aria-haspopup=dialog
+    class=_button _button--primary _button--sm _button--outline _popover-trigger
+    data-ods=popover-trigger
+    data-part=trigger
+    data-scope=popover
+    data-state=closed
+    dir=ltr
+    id=popover::rg::trigger
+    role=button
+    tabindex=0
+    type=button
   >
     <span
-      class="_button__spinner_1koyw_373"
+      class=_button__spinner
     >
       <span
-        class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-        data-ods="spinner"
-        role="none"
+        class=_spinner _spinner--neutral _spinner--sm
+        data-ods=spinner
+        role=none
       >
         <svg
-          aria-hidden="true"
-          class="_spinner__svg_o7c7y_32"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden=true
+          class=_spinner__svg
+          viewBox=0 0 24 24
+          xmlns=http://www.w3.org/2000/svg
         >
           <rect
-            fill="none"
-            height="24"
-            width="24"
+            fill=none
+            height=24
+            width=24
           />
           <g
-            transform="translate(-237.694 -93.932)"
+            transform=translate(-237.694 -93.932)
           >
             <path
-              d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-              transform="translate(5486 4225)"
+              d=M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z
+              transform=translate(5486 4225)
             />
             <circle
-              cx="1"
-              cy="1"
-              r="1"
-              transform="translate(248.694 114.932)"
+              cx=1
+              cy=1
+              r=1
+              transform=translate(248.694 114.932)
             />
             <circle
-              cx="1"
-              cy="1"
-              r="1"
-              transform="translate(238.694 104.932)"
+              cx=1
+              cy=1
+              r=1
+              transform=translate(238.694 104.932)
             />
           </g>
         </svg>
       </span>
     </span>
     <span
-      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--chevron-down
+      data-ods=icon
+      role=presentation
     />
     Actions
   </button>

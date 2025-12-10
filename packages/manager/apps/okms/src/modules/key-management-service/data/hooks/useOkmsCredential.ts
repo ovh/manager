@@ -1,8 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
-import { getOkmsCredential, getOkmsCredentials } from '../api/okmsCredential';
+import { useQuery } from '@tanstack/react-query';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { ErrorResponse } from '@/common/types/api.type';
+
+import { getOkmsCredential, getOkmsCredentials } from '../api/okmsCredential';
 
 /* Credential List */
 
@@ -26,9 +29,7 @@ export const useOkmsCredentials = ({
     },
     refetchInterval: (query) => {
       return deletingCredentialId &&
-        query?.state?.data?.data?.find(
-          (credential) => credential.id === deletingCredentialId,
-        )
+        query?.state?.data?.data?.find((credential) => credential.id === deletingCredentialId)
         ? 2000
         : false;
     },

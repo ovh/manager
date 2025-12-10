@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.1...@ovh-ux/manager-exchange@4.16.2) (2025-12-09)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([bc46e04](https://github.com/ovh/manager/commit/bc46e04d67ba2f7dd443b855385295cc7e28167e))
+
+
+
+
+
+## [4.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.0...@ovh-ux/manager-exchange@4.16.1) (2025-12-04)
+
+
+### Bug Fixes
+
+* **exchange:** replace an existing key information contact instead of creating a new one ([3dd2cae](https://github.com/ovh/manager/commit/3dd2caebc44cdaa66d6444e57b1cadaecdec70a0)), closes [#PRDCOL-267](https://github.com/ovh/manager/issues/PRDCOL-267)
+* **exchange:** show diagnostic field only for trusted and private servers ([a4ea82e](https://github.com/ovh/manager/commit/a4ea82e8f7adafccc693a8b26d6d7b817134aa07)), closes [#PRDCOL-71](https://github.com/ovh/manager/issues/PRDCOL-71)
+* **web.exchange:** replace the spam ticket url ([5971854](https://github.com/ovh/manager/commit/59718546f5f96618c8cfeffa28c594af9c7515cf)), closes [#PRDCOL-133](https://github.com/ovh/manager/issues/PRDCOL-133)
+
+
+
+
+
 # [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.12...@ovh-ux/manager-exchange@4.16.0) (2025-11-27)
 
 

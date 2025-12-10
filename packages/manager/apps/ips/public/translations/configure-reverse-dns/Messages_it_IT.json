@@ -1,0 +1,11 @@
+{
+  "listingReverseDnsUpdateSuccess": "L'aggiornamento del Reverse è stato effettuato",
+  "reverseDnsModalTitle": "Configurare il reverse DNS",
+  "reverseDnsModalDescription": "Inserisci un dominio come reverse DNS per un indirizzo IP specifico (record PTR). Per maggiori informazioni, consulta la nostra ",
+  "reverseDnsParentIpBlockFieldLabel": "Parent IP block",
+  "reverseDnsIpFieldLabel": "Indirizzo IP",
+  "reverseDnsIpError": "Inserisci un indirizzo IP valido",
+  "reverseDnsIpNotInsideBlockError": "Inserisci un indirizzo IP contenuto nel block",
+  "reverseDnsDnsFieldLabel": "Reverse DNS",
+  "reverseDnsDnsError": "Inserisci un dominio valido"
+}

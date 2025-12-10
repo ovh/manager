@@ -73,7 +73,7 @@ export const EmailAccountsOrder = () => {
   }, [isError, error]);
 
   return (
-    <div className="flex flex-col items-start space-y-4 mb-5 w-full md:w-3/4">
+    <div className="mb-5 flex w-full flex-col items-start space-y-4 md:w-3/4">
       <Links
         type={LinkType.back}
         onClickReturn={goBack}

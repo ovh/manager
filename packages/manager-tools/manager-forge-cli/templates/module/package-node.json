@@ -30,7 +30,7 @@
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-module-common-api": "*",
     "@ovh-ux/manager-static-analysis-kit": "0.13.0",
-    "@ovh-ux/manager-tests-setup": "0.6.0",
+    "@ovh-ux/manager-tests-setup": "0.6.1",
     "@ovh-ux/manager-vite-config": "0.15.0",
     "concurrently": "^9.2.1",
     "msw": "2.1.7",

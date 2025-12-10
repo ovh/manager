@@ -64,11 +64,11 @@
   "key_management_service_dashboard_button_label_download_ca": "Descarregar CA",
   "key_management_service_dashboard_button_label_download_rsa_ca": "Transferir o CA RSA",
   "key_management_service_dashboard_error_download_ca": "Não é possível transferir o certificado",
-  "okms_secret_config": "Definições padrão dos Segredos",
+  "okms_secret_config": "Predefinições de Segredos",
   "okms_services": "Serviços do domínio OKMS",
   "okms_secret_count": "Número de segredos",
   "okms_secret_version_count": "Número total de versões",
-  "okms_service_key_count": "Número de Chaves de Serviço",
+  "okms_service_key_count": "Número de Service Keys",
   "okms_kmip_object_count": "Número de objetos KMIP",
   "okms_kmip_object_count_tooltip": "Os objetos destruídos não são contados",
   "kmip_objects": "Objetos KMIP"

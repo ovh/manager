@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.32.0...@ovh-ux/manager-billing-components@4.32.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.31.1...@ovh-ux/manager-billing-components@4.32.0) (2025-12-08)
+
+
+### Features
+
+* **billing:** add us specific wording in the resiliation modal ([77f7882](https://github.com/ovh/manager/commit/77f7882dd001a51297e53ace64d59018523400f1)), closes [#MANAGER-20069](https://github.com/ovh/manager/issues/MANAGER-20069)
+* **billing:** display vps outperform banner in resillation modal ([f3eb66b](https://github.com/ovh/manager/commit/f3eb66b235b4bd2267b1b32a3a602f478ec20756)), closes [#MANAGER-20126](https://github.com/ovh/manager/issues/MANAGER-20126)
+* **billing:** remove vrack termination in us region ([ddc610c](https://github.com/ovh/manager/commit/ddc610c39dce114e539da4cd4cb3098eef39409d)), closes [#MANAGER-20124](https://github.com/ovh/manager/issues/MANAGER-20124)
+* **billing:** use resiliation modal for us ([048e6bc](https://github.com/ovh/manager/commit/048e6bc00e31cb89d91da1ec6f36f9bb91711615)), closes [#MANAGER-19890](https://github.com/ovh/manager/issues/MANAGER-19890)
+
+
+
+
+
+## [4.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.31.0...@ovh-ux/manager-billing-components@4.31.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.30.1...@ovh-ux/manager-billing-components@4.31.0) (2025-12-03)
+
+
+### Features
+
+* **billing-components:** fix design status column in table services ([b16d042](https://github.com/ovh/manager/commit/b16d042a4ed81af8fcd833e1255fd579bbe65adf)), closes [#MANAGER-20011](https://github.com/ovh/manager/issues/MANAGER-20011)
+
+
+
+
+
 ## [4.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.30.0...@ovh-ux/manager-billing-components@4.30.1) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

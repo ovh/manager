@@ -3,5 +3,6 @@
   "manager_components_delete_modal_delete_button": "Tak, chcę",
   "manager_components_delete_modal_description": "Rezygnacja z usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych. Czy chcesz  zrezygnować z usługi?",
   "manager_components_delete_modal_headline": "Zakończyć {{serviceType}}?",
-  "manager_components_delete_modal_headline_service": "Usługa"
+  "manager_components_delete_modal_headline_service": "Usługa",
+  "manager_components_delete_modal_description_us": "Rezygnacja z usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych. Rezygnacja z usługi nie stanowi podstawy do zwrotu środków. Jeśli masz pytania dotyczące zwrotu środków, skontaktuj się z naszym działem obsługi klienta."
 }

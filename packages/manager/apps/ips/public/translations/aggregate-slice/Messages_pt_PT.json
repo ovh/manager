@@ -1,0 +1,12 @@
+{
+  "aggregateModalTitle": "Agregar o bloco {{ ip }}",
+  "aggregateModalDescription": "Especifique o bloco principal desejado",
+  "aggregateModalChildrenIpsDescription": "Esta ação agregará as seguintes sub-redes:",
+  "aggregateSuccessMessage": "O seu bloco IP vai ser agregado. Atualize dentro de alguns minutos.",
+  "noAggregateSliceAvailable": "Nenhuma configuração de segmentação/agregação disponível. Para mais informações, consulte o nosso guia: ",
+  "noAggregateLinkLabel": "aqui",
+  "sliceModalTitle": "Segmentar o bloco {{ ip }}",
+  "sliceModalDescription": "Indique o tamanho dos blocos secundários pretendido",
+  "sliceModalChildrenIpsDescription": "Esta configuração levará à criação dos seguintes blocos",
+  "sliceSuccessMessage": "O seu bloco IP vai ser segmentado. Atualize dentro de alguns minutos."
+}

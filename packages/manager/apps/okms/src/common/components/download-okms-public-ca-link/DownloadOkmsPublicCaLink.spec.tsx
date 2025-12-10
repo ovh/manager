@@ -1,15 +1,14 @@
-import React from 'react';
-import { describe, vi, expect, test, beforeEach, afterEach } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import * as api from '@key-management-service/data/api/okms';
 import { OKMS } from '@key-management-service/types/okms.type';
-import {
-  CertificateType,
-  DownloadOkmsPublicCaLink,
-} from './DownloadOkmsPublicCaLink';
+import { render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+
+import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
+
+import { CertificateType, DownloadOkmsPublicCaLink } from './DownloadOkmsPublicCaLink';
 
 const addErrorMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-components', () => ({
@@ -38,10 +37,8 @@ const mockOkms = {
 } as OKMS;
 
 const mockCertificates = {
-  publicCA:
-    '-----BEGIN CERTIFICATE-----\nMIIDDummyCertificate\n-----END CERTIFICATE-----',
-  publicRsaCA:
-    '-----BEGIN CERTIFICATE-----\nMIIDummyRsaCertificate\n-----END CERTIFICATE-----',
+  publicCA: '-----BEGIN CERTIFICATE-----\nMIIDDummyCertificate\n-----END CERTIFICATE-----',
+  publicRsaCA: '-----BEGIN CERTIFICATE-----\nMIIDummyRsaCertificate\n-----END CERTIFICATE-----',
 };
 
 const renderComponentAndGetLink = async ({
@@ -51,9 +48,7 @@ const renderComponentAndGetLink = async ({
   type: CertificateType;
   label: string;
 }) => {
-  const { container } = render(
-    <DownloadOkmsPublicCaLink okms={mockOkms} type={type} />,
-  );
+  const { container } = render(<DownloadOkmsPublicCaLink okms={mockOkms} type={type} />);
 
   const downloadLink = await getOdsButtonByLabel({
     container,
@@ -104,16 +99,13 @@ describe('DownloadOkmsPublicCaLink component tests suite', () => {
     },
   ];
 
-  test.each(buttons)(
-    'should render $type download link correctly',
-    async ({ type, label }) => {
-      const { downloadLink } = await renderComponentAndGetLink({
-        type,
-        label,
-      });
-      expect(downloadLink).toBeInTheDocument();
-    },
-  );
+  test.each(buttons)('should render $type download link correctly', async ({ type, label }) => {
+    const { downloadLink } = await renderComponentAndGetLink({
+      type,
+      label,
+    });
+    expect(downloadLink).toBeInTheDocument();
+  });
 
   test.each(buttons)(
     'should download $expectedCa certificate when clicked on $type button',
@@ -162,9 +154,7 @@ describe('DownloadOkmsPublicCaLink component tests suite', () => {
 
   test('should show error notification when download fails', async () => {
     // Override the successful mock with an error
-    vi.spyOn(api, 'getOkmsPublicCa').mockRejectedValueOnce(
-      new Error('API Error'),
-    );
+    vi.spyOn(api, 'getOkmsPublicCa').mockRejectedValueOnce(new Error('API Error'));
 
     const { downloadLink } = await renderComponentAndGetLink({
       type: 'publicCaRest',

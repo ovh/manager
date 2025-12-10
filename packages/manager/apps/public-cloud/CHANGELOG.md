@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.4...@ovh-ux/manager-public-cloud@7.10.5) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.3...@ovh-ux/manager-public-cloud@7.10.4) (2025-12-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.2...@ovh-ux/manager-public-cloud@7.10.3) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.1...@ovh-ux/manager-public-cloud@7.10.2) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [7.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.0...@ovh-ux/manager-public-cloud@7.10.1) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

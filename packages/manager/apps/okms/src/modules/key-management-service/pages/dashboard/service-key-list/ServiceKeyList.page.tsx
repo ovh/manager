@@ -1,31 +1,5 @@
-import React from 'react';
-import {
-  Outlet,
-  useNavigate,
-  useParams,
-  useOutletContext,
-} from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import {
-  ODS_MESSAGE_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_TEXT_PRESET,
-  ODS_BUTTON_COLOR,
-} from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  Datagrid,
-  ErrorBanner,
-  ManagerButton,
-  useDatagridSearchParams,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { KmsDashboardOutletContext } from '@key-management-service/pages/dashboard/KmsDashboard.type';
+import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
+
 import {
   DatagridCellType,
   DatagridCreationDate,
@@ -34,12 +8,34 @@ import {
   DatagridServiceKeyCellName,
   DatagridStatus,
 } from '@key-management-service/components/listing/ListingCells';
-import { useOkmsServiceKeys } from '@key-management-service/data/hooks/useOkmsServiceKeys';
 import { getOkmsServiceKeyResourceListQueryKey } from '@key-management-service/data/api/okmsServiceKey';
-import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
+import { useOkmsServiceKeys } from '@key-management-service/data/hooks/useOkmsServiceKeys';
+import { KmsDashboardOutletContext } from '@key-management-service/pages/dashboard/KmsDashboard.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import {
+  Datagrid,
+  ErrorBanner,
+  ManagerButton,
+  useDatagridSearchParams,
+} from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
+
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
 
 export default function Keys() {
@@ -49,8 +45,12 @@ export default function Keys() {
   const { trackClick } = useOvhTracking();
 
   const { sorting, setSorting } = useDatagridSearchParams();
-  const { okmsId } = useParams() as { okmsId: string };
-  const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({
+  const { okmsId } = useRequiredParams('okmsId');
+  const {
+    error,
+    data: okmsServiceKey,
+    isLoading,
+  } = useOkmsServiceKeys({
     sorting,
     okmsId,
   });
@@ -99,8 +99,7 @@ export default function Keys() {
     },
     {
       id: 'action',
-      cell: (serviceKey: OkmsServiceKey) =>
-        DatagridServiceKeyActionMenu(serviceKey, okms),
+      cell: (serviceKey: OkmsServiceKey) => DatagridServiceKeyActionMenu(serviceKey, okms),
       isSortable: false,
       label: '',
     },

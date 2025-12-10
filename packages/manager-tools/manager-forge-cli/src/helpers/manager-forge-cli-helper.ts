@@ -4,10 +4,11 @@ import chalk from 'chalk';
 import gradient from 'gradient-string';
 import ora, { Ora } from 'ora';
 
+import { logger } from '@ovh-ux/manager-cli-core/logger';
+
 import { ForgeCliOptions } from '@/types/GenerationType.js';
 import { Answers } from '@/types/PromptType.js';
 import { Theme } from '@/types/ThemeType.js';
-import { logger } from '@/utils/log-manager.js';
 
 /**
  * Retrieves the official OVH FORGE CLI theme colors.

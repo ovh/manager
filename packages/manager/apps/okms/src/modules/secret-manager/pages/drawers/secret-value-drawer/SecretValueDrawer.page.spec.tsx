@@ -1,42 +1,36 @@
-import { screen, waitFor } from '@testing-library/react';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
-import { SecretVersion } from '@secret-manager/types/secret.type';
-import {
-  assertTextVisibility,
-  WAIT_FOR_DEFAULT_OPTIONS,
-} from '@ovh-ux/manager-core-test-utils';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import {
   versionActiveMock,
   versionDeactivatedMock,
   versionDeletedMock,
   versionListMock,
 } from '@secret-manager/mocks/versions/versions.mock';
-import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { SecretVersion } from '@secret-manager/types/secret.type';
+import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
+import { labels } from '@/common/utils/tests/init.i18n';
+import { RenderTestMockParams, renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+
 import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
+import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
   VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
   VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
 } from './VersionSelector.constants';
-import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
-import {
-  renderTestApp,
-  RenderTestMockParams,
-} from '@/common/utils/tests/renderTestApp';
-import { labels } from '@/common/utils/tests/init.i18n';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = '12345';
 const mockSecret = secretListMock[0];
-const mockSecretPath = mockSecret.path;
+const mockSecretPath = mockSecret?.path ?? '';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(
-  mockOkmsId,
-  mockSecretPath,
-);
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(mockOkmsId, mockSecretPath);
 
 const renderPage = async ({
   url = mockPageUrl,
@@ -50,11 +44,7 @@ const renderPage = async ({
 
   // Check if the drawer is open
   expect(
-    await screen.findByTestId(
-      SECRET_VALUE_DRAWER_TEST_ID,
-      {},
-      WAIT_FOR_DEFAULT_OPTIONS,
-    ),
+    await screen.findByTestId(SECRET_VALUE_DRAWER_TEST_ID, {}, WAIT_FOR_DEFAULT_OPTIONS),
   ).toBeInTheDocument();
 
   // wait for the content to be displayed
@@ -70,12 +60,8 @@ describe('ValueDrawer test suite', () => {
     await renderPage();
 
     // THEN
-    const selectSkeleton = screen.getByTestId(
-      VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
-    );
-    const statusSkeleton = screen.getByTestId(
-      VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
-    );
+    const selectSkeleton = screen.getByTestId(VERSION_SELECTOR_SELECT_SKELETON_TEST_ID);
+    const statusSkeleton = screen.getByTestId(VERSION_SELECTOR_STATUS_SKELETON_TEST_ID);
     expect(selectSkeleton).toBeVisible();
     expect(statusSkeleton).toBeVisible();
   });
@@ -104,7 +90,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[0].id.toString(),
+          versionListMock[0]?.id?.toString() ?? '',
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -129,7 +115,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[lastVersionId - 1].id.toString(),
+          versionListMock[lastVersionId - 1]?.id?.toString() ?? '',
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -152,7 +138,7 @@ describe('ValueDrawer test suite', () => {
 
     it('should display a message when the selected version is the current version', async () => {
       // GIVEN
-      const currentVersionId = mockSecret.version.id;
+      const currentVersionId = mockSecret?.version?.id ?? 0;
 
       // WHEN
       await renderPage({
@@ -195,10 +181,7 @@ describe('ValueDrawer test suite', () => {
         await renderPage();
 
         // Change the data input value
-        await changeOdsInputValueByTestId(
-          VERSION_SELECTOR_TEST_ID,
-          version.id.toString(),
-        );
+        await changeOdsInputValueByTestId(VERSION_SELECTOR_TEST_ID, version.id.toString());
 
         // THEN
         await assertTextVisibility(labels.common.status.status);

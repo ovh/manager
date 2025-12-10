@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.57.1...@ovh-ux/manager-billing@0.58.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedicated:** update vmware and nsx official documentation link ([aead439](https://github.com/ovh/manager/commit/aead43966124e5436984fde7d5f2788c681844d8)), closes [#MANAGER-20049](https://github.com/ovh/manager/issues/MANAGER-20049)
+
+
+### Features
+
+* **dedicated:** fixes css ([709b699](https://github.com/ovh/manager/commit/709b69917f77629981190c3d4d652caab925ab92)), closes [#MANAGER-14217](https://github.com/ovh/manager/issues/MANAGER-14217)
+
+
+
+
+
+## [0.57.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.57.0...@ovh-ux/manager-billing@0.57.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* **billing:** fix translation ([d26c927](https://github.com/ovh/manager/commit/d26c9272da77a335ce501347dbd2153c049b25c3)), closes [#DCE-97](https://github.com/ovh/manager/issues/DCE-97)
+
+
+
+
+
+# [0.57.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.56.0...@ovh-ux/manager-billing@0.57.0) (2025-12-03)
+
+
+### Features
+
+* **billing:** add punycode in datagrid popin and csv ([6462e19](https://github.com/ovh/manager/commit/6462e1966c80186d3d39691d6b5a201a21bfe9f2)), closes [#MANAGER-20025](https://github.com/ovh/manager/issues/MANAGER-20025)
+
+
+
+
+
 # [0.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.55.0...@ovh-ux/manager-billing@0.56.0) (2025-12-01)
 
 

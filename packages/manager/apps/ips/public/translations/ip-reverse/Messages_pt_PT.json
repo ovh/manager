@@ -1,0 +1,7 @@
+{
+  "ip_reverse_update_failure_title": "A atualização do Reverse DNS falhou",
+  "ip_reverse_update_failure_hint": "Verifique se o registo A está configurado corretamente para determinado nome de host. Para mais informações, consulte ",
+  "ip_reverse_update_failure_hint_link": "o nosso guia",
+  "ip_reverse_update_failure_api_error": "API error:",
+  "ip_reverse_update_failure_request_id": "Request ID:"
+}

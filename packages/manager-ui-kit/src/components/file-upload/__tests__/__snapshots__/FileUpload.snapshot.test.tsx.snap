@@ -3,42 +3,42 @@
 exports[`FileUpload Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    class="_file-upload_138iw_2"
-    data-ods="file-upload"
-    data-part="root"
-    data-scope="file-upload"
-    dir="ltr"
-    id="file::r0:"
+    class=_file-upload
+    data-ods=file-upload
+    data-part=root
+    data-scope=file-upload
+    dir=ltr
+    id=file::r0:
   >
     <div
-      aria-disabled="false"
-      aria-label="dropzone"
-      data-part="dropzone"
-      data-scope="file-upload"
-      dir="ltr"
-      id="file::r0::dropzone"
-      role="application"
+      aria-disabled=false
+      aria-label=dropzone
+      data-part=dropzone
+      data-scope=file-upload
+      dir=ltr
+      id=file::r0::dropzone
+      role=application
     >
       <div
-        class="_file-upload-dropzone_faoyu_21 _file-upload-dropzone--empty_faoyu_34"
+        class=_file-upload-dropzone _file-upload-dropzone--empty
       >
         <span
-          class="_icon_10c23_2 _icon--file-plus_10c23_253 _file-upload-dropzone__icon_faoyu_28"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--file-plus _file-upload-dropzone__icon
+          data-ods=icon
+          role=presentation
         />
         <span>
           Drag & drop a file
         </span>
         <button
-          aria-describedby=""
-          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-          data-ods="button"
-          data-part="trigger"
-          data-scope="file-upload"
-          dir="ltr"
-          id="file::r0::trigger"
-          type="button"
+          aria-describedby=
+          class=_button _button--primary _button--md _button--ghost
+          data-ods=button
+          data-part=trigger
+          data-scope=file-upload
+          dir=ltr
+          id=file::r0::trigger
+          type=button
         >
           Browse files
         </button>
@@ -46,11 +46,11 @@ exports[`FileUpload Snapshot tests > renders the component with default props an
       Hello
     </div>
     <input
-      id="file::r0::input"
-      multiple=""
-      style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-      tabindex="-1"
-      type="file"
+      id=file::r0::input
+      multiple=
+      style=border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;
+      tabindex=-1
+      type=file
     />
   </div>
 </div>

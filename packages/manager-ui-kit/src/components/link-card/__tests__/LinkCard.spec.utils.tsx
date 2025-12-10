@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
 
 import { LinkCard } from '@/components';
 import { LinkCardProps } from '@/components/link-card/LinkCard.props';
@@ -27,4 +28,5 @@ export const badges = [
   },
 ];
 
-export const renderLinkCard = (props: LinkCardProps) => render(<LinkCard {...props} />);
+export const renderLinkCard = (props: LinkCardProps): RenderResult =>
+  render(<LinkCard {...props} />);

@@ -1,24 +1,27 @@
-import React from 'react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi } from 'vitest';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
 import {
   MOCK_DATA_VALID_JSON,
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
-import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
-import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
-import { SecretForm } from './SecretForm.component';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+import { vi } from 'vitest';
+
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import {
   changeOdsInputValueByTestId,
   clickJsonEditorToggle,
 } from '@/common/utils/tests/uiTestHelpers';
+
+import { SecretForm } from './SecretForm.component';
 
 let i18nValue: i18n;
 
@@ -27,19 +30,16 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link) => link),
+    useHref: vi.fn((link: string) => link),
     useSearchParams: vi.fn(),
   };
 });
 
 // Mocking ODS Input component
 vi.mock('@ovhcloud/ods-components/react', async () => {
-  const {
-    odsInputMock,
-    odsTextareaMock,
-    odsSwitchMock,
-    odsSwitchItemMock,
-  } = await import('@/common/utils/tests/odsMocks');
+  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock } = await import(
+    '@/common/utils/tests/odsMocks'
+  );
   const original = await vi.importActual('@ovhcloud/ods-components/react');
   return {
     ...original,
@@ -99,28 +99,21 @@ describe('Secrets creation form test suite', () => {
       shouldButtonBeDisabled: false,
     },
   ])(
-    'should check the form validity for data: $data, path: $path and a selectedOkms: $selectedOkmsId ',
+    'should check the form validity for data: $data, path: $path and a selectedOkms: $selectedOkmsId',
     async ({ data, path, selectedOkmsId, shouldButtonBeDisabled }) => {
       // GIVEN
       const user = userEvent.setup();
       await renderSecretForm(selectedOkmsId);
-      await assertTextVisibility(
-        labels.secretManager.create_secret_form_secret_section_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
 
       // WHEN
       await clickJsonEditorToggle(user);
 
       if (path) {
-        await changeOdsInputValueByTestId(
-          SECRET_FORM_TEST_IDS.INPUT_PATH,
-          path,
-        );
+        await changeOdsInputValueByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH, path);
       }
       if (data) {
-        const input = await screen.findByTestId(
-          SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
-        );
+        const input = await screen.findByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
 
         // clean first the input
         await act(() => user.clear(input));
@@ -130,9 +123,7 @@ describe('Secrets creation form test suite', () => {
       }
 
       // THEN
-      const submitButton = screen.getByTestId(
-        SECRET_FORM_TEST_IDS.SUBMIT_BUTTON,
-      );
+      const submitButton = screen.getByTestId(SECRET_FORM_TEST_IDS.SUBMIT_BUTTON);
       expect(submitButton).toBeInTheDocument();
 
       await waitFor(() =>

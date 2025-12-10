@@ -3,32 +3,32 @@
 exports[`Combobox Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    data-ods="combobox"
+    data-ods=combobox
   >
     <div
-      class="_combobox-control_14h0r_2"
-      data-ods="combobox-control"
-      id=":r0:"
+      class=_combobox-control
+      data-ods=combobox-control
+      id=:r0:
     >
       <div
-        class="_input_ff5b7_2 _combobox-control__input_14h0r_49"
+        class=_input _combobox-control__input
       >
         <input
-          aria-activedescendant=""
-          aria-autocomplete="list"
-          aria-busy="false"
-          aria-controls=":r2:"
-          aria-expanded="false"
-          autocapitalize="none"
-          autocomplete="off"
-          autocorrect="off"
-          class="_input__field_ff5b7_41"
-          data-ods="input"
-          id=":r1:"
-          role="combobox"
-          spellcheck="false"
-          type="text"
-          value=""
+          aria-activedescendant=
+          aria-autocomplete=list
+          aria-busy=false
+          aria-controls=:r2:
+          aria-expanded=false
+          autocapitalize=none
+          autocomplete=off
+          autocorrect=off
+          class=_input__field
+          data-ods=input
+          id=:r1:
+          role=combobox
+          spellcheck=false
+          type=text
+          value=
         />
       </div>
     </div>

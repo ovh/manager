@@ -1,51 +1,44 @@
-import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Suspense } from 'react';
+
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
+import { okmsQueryKeys } from '@key-management-service/data/api/okms';
+import { getOkmsServiceKeyResourceQueryKey } from '@key-management-service/data/api/okmsServiceKey';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
+import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
+import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
 import {
   BaseLayout,
   DashboardGridLayout,
   ErrorBanner,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
-import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
-import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
-import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
-import { getOkmsServiceKeyResourceQueryKey } from '@key-management-service/data/api/okmsServiceKey';
-import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
-import { okmsQueryKeys } from '@key-management-service/data/api/okms';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
-import {
-  KMS_ROUTES_URIS,
-  KMS_ROUTES_URLS,
-} from '@key-management-service/routes/routes.constants';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
-import { GeneralInformationTile } from './GeneralInformationTile.component';
+
 import { CryptoPropertiesTile } from './CryptoPropertiesTile.component';
+import { GeneralInformationTile } from './GeneralInformationTile.component';
 
 export default function ServiceKeyDashboard() {
-  const { okmsId, keyId } = useParams() as {
-    okmsId: string;
-    keyId: string;
-  };
+  const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const {
-    data: okms,
-    isPending: isLoadingOkms,
-    error: okmsError,
-  } = useOkmsById(okmsId);
+  const { data: okms, isPending: isLoadingOkms, error: okmsError } = useOkmsById(okmsId);
 
   const {
     data: serviceKey,
@@ -133,11 +126,7 @@ export default function ServiceKeyDashboard() {
         message={<Notifications />}
         tabs={
           <OdsTabs>
-            <OdsTab>
-              {t(
-                'key_management_service_service-keys_dashboard_tab_informations',
-              )}
-            </OdsTab>
+            <OdsTab>{t('key_management_service_service-keys_dashboard_tab_informations')}</OdsTab>
           </OdsTabs>
         }
       >

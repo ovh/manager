@@ -1,16 +1,16 @@
 {
   "title": "Object Storage",
-  "description1": "You have not yet created an Object Storage service.",
-  "description2": "Enjoy unlimited on-demand storage, accessible via the API.",
-  "description3": "Object Storage involves placing your data in an unlimited space, directly accessible via an HTTP API. This allows you to integrate access to this information from your applications, thanks to the many existing OpenStack Swift libraries. In addition to access rights management, Object Storage includes \"smart storage\" features such as versioning and expiration date management, as well as synchronization between different locations.",
-  "description4": "Your data is secured on three replicas to ensure its longevity, and you benefit from usage-based billing from the first GB.",
+  "description1": "You have not created an Object Storage service yet.",
+  "description2": "Get unlimited storage on demand, accessible via the API.",
+  "description3": "Object Storage involves placing your data in an unlimited space, accessible directly via an HTTP API. You can integrate access to this data from your applications, using the range of existing OpenStack Swift libraries. Object Storage offers access rights administration, along with intelligent storage features such as version and expiry date management, and syncing between different locations.",
+  "description4": "Your data is secured through triple-replication to guarantee its life expectancy, and you get usage-based billing from the first GB used.",
   "createButtonLabel": "Create an object container ",
   "cardTopGuide": "Tutorial",
-  "cardFindOutMore": "Learn more",
-  "cardLeftTitle": "Configure a domain name on your Object Storage container",
-  "cardLeftDesc": "Discover how to set up your object container with your domain",
+  "cardFindOutMore": "Find out more",
+  "cardLeftTitle": "Placing an Object Storage container behind a domain name",
+  "cardLeftDesc": "Find out how to configure your object container with your domain",
   "cardMiddleTitle": "Configure automatic object deletion",
-  "cardMiddleDescription": "Discover how to enable automatic deletion of objects in your container",
+  "cardMiddleDescription": "Find out how to enable automatic deletion of objects from your container",
   "cardRightTitle": "Share an object via a temporary URL",
-  "cardRightDesc": "Discover how to share an object without providing your personal information"
+  "cardRightDesc": "Find out how to share an object via a temporary URL"
 }

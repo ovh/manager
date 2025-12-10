@@ -1,16 +1,13 @@
-import React from 'react';
-import { Subtitle } from '@ovh-ux/manager-react-components';
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import {
   ServiceKeyNameErrors,
   validateServiceKeyName,
 } from '@key-management-service/utils/service-key/validateServiceKeyName';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
+import { Subtitle } from '@ovh-ux/manager-react-components';
 
 type GeneralInformationSectionProps = {
   serviceKeyNameError: ServiceKeyNameErrors | undefined;
@@ -30,13 +27,9 @@ export const GeneralInformationSection = ({
   const getErrorMessage = (error: ServiceKeyNameErrors | undefined) => {
     switch (error) {
       case 'REQUIRED':
-        return t(
-          'key_management_service_service-keys_update_name_error_required',
-        );
+        return t('key_management_service_service-keys_update_name_error_required');
       case 'INVALID_CHARACTERS':
-        return t(
-          'key_management_service_service-keys_update_name_error_invalid_characters',
-        );
+        return t('key_management_service_service-keys_update_name_error_invalid_characters');
       case 'TOO_MANY_CHARACTERS':
         return t('key_management_service_service-keys_update_name_error_max');
 
@@ -48,17 +41,13 @@ export const GeneralInformationSection = ({
   return (
     <div className="flex flex-col space-y-3 md:space-y-4">
       <Subtitle>
-        {t(
-          'key_management_service_service-keys_create_general_information_title',
-        )}
+        {t('key_management_service_service-keys_create_general_information_title')}
       </Subtitle>
 
       <OdsFormField error={getErrorMessage(serviceKeyNameError)}>
-        <div slot="label" className="space-y-2 mb-2">
+        <div slot="label" className="mb-2 space-y-2">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
-            {t(
-              'key_management_service_service-keys_create_general_information_field_name_title',
-            )}
+            {t('key_management_service_service-keys_create_general_information_field_name_title')}
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t(

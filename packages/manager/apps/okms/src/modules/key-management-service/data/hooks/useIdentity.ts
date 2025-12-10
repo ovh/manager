@@ -1,23 +1,25 @@
-import { UseQueryOptions, useQueries, useQuery } from '@tanstack/react-query';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
-  IdentityUser,
   IdentityGroup,
   IdentityOauthClient,
+  IdentityUser,
 } from '@key-management-service/types/identity.type';
+import { UseQueryOptions, useQueries, useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
-  getIdentityUsersIdsQueryKey,
-  getIdentityUsersIds,
-  getIdentityUserQueryKey,
-  getIdentityUser,
-  getIdentityGroupsIdsQueryKey,
-  getIdentityGroupsIds,
   getIdentityGroup,
   getIdentityGroupQueryKey,
-  getIdentityServiceAccountQueryKey,
+  getIdentityGroupsIds,
+  getIdentityGroupsIdsQueryKey,
   getIdentityServiceAccount,
-  getIdentityServiceAccountsIdsQueryKey,
+  getIdentityServiceAccountQueryKey,
   getIdentityServiceAccountsIds,
+  getIdentityServiceAccountsIdsQueryKey,
+  getIdentityUser,
+  getIdentityUserQueryKey,
+  getIdentityUsersIds,
+  getIdentityUsersIdsQueryKey,
 } from '../api/identity';
 
 const useIdentityList = <T>(
@@ -51,8 +53,7 @@ const useIdentityList = <T>(
   });
 
   const resultStatus = {
-    isLoading:
-      isListLoading || detailsQueries.some(({ isLoading }) => isLoading),
+    isLoading: isListLoading || detailsQueries.some(({ isLoading }) => isLoading),
     isError: isListError || detailsQueries.some(({ isError }) => isError),
     error: listError || detailsQueries.find(({ error }) => error)?.error,
     identitiesInError: detailsQueries

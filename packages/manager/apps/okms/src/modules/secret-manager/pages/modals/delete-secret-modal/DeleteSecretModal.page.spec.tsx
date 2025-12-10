@@ -1,27 +1,28 @@
-import { vi } from 'vitest';
-import { waitFor } from '@testing-library/react';
+import * as router from 'react-router-dom';
+
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
 import {
-  getOdsButtonByLabel,
   assertOdsModalVisibility,
   assertTextVisibility,
+  getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
-import * as router from 'react-router-dom';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
-import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
-import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+
 import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDeleteSecret(
   okmsRoubaix1Mock.id,
   mockSecret1.path,
 );
 
-const mockSecretListingPage = SECRET_MANAGER_ROUTES_URLS.secretList(
-  okmsRoubaix1Mock.id,
-);
+const mockSecretListingPage = SECRET_MANAGER_ROUTES_URLS.secretList(okmsRoubaix1Mock.id);
 
 describe('Delete secret modal test suite', () => {
   const mockNavigate = vi.fn();
@@ -58,7 +59,9 @@ describe('Delete secret modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Check navigation
     await waitFor(() => {
@@ -80,7 +83,9 @@ describe('Delete secret modal test suite', () => {
       disabled: false,
     });
 
-    user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     await assertTextVisibility(deleteSecretErrorMessage);
 

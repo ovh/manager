@@ -28,40 +28,6 @@ import ActionButtonDomain from './ActionButton.component';
 import { CnameBadge } from './CnameBadge.component';
 import { DomainItem } from './Domains.types';
 
-const columns: DatagridColumn<DomainItem>[] = [
-  {
-    id: 'domains',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
-    label: 'common:domain',
-    isSearchable: true,
-  },
-  {
-    id: 'organization',
-    cell: (item) => <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>,
-    label: 'common:organization',
-  },
-  {
-    id: 'account',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>,
-    label: 'common:number_of_accounts',
-  },
-  {
-    id: 'status',
-    cell: (item) =>
-      item.cnameToCheck && item.status === ResourceStatus.CREATING ? (
-        <CnameBadge item={item} />
-      ) : (
-        <BadgeStatus status={item.status}></BadgeStatus>
-      ),
-    label: `${NAMESPACES.STATUS}:status`,
-  },
-  {
-    id: 'tooltip',
-    cell: (item: DomainItem) => <ActionButtonDomain item={item} />,
-    label: '',
-  },
-];
-
 export const Domains = () => {
   const { t } = useTranslation(['domains', 'common', NAMESPACES.STATUS]);
   const { trackClick } = useOvhTracking();
@@ -89,6 +55,48 @@ export const Domains = () => {
   const { data: organizations } = useOrganizations({
     enabled: !isOverridedPage,
   });
+
+  const columns: DatagridColumn<DomainItem>[] = useMemo(
+    () => [
+      {
+        id: 'domains',
+        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
+        label: 'common:domain',
+        isSearchable: true,
+      },
+      {
+        id: 'organization',
+        cell: (item) => {
+          const organizationName =
+            organizations?.find((org) => org?.id === item?.organizationId)?.currentState?.name ||
+            '';
+          return <LabelChip id={item.organizationId}>{organizationName}</LabelChip>;
+        },
+        label: 'common:organization',
+      },
+      {
+        id: 'account',
+        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>,
+        label: 'common:number_of_accounts',
+      },
+      {
+        id: 'status',
+        cell: (item) =>
+          item.cnameToCheck && item.status === ResourceStatus.CREATING ? (
+            <CnameBadge item={item} />
+          ) : (
+            <BadgeStatus status={item.status}></BadgeStatus>
+          ),
+        label: `${NAMESPACES.STATUS}:status`,
+      },
+      {
+        id: 'tooltip',
+        cell: (item: DomainItem) => <ActionButtonDomain item={item} />,
+        label: '',
+      },
+    ],
+    [organizations],
+  );
 
   const hrefAddDomain = useGenerateUrl('./add', 'path');
 

@@ -1,12 +1,9 @@
-import { useTranslation } from 'react-i18next';
 import { OkmsKeyTypes } from '@key-management-service/types/okmsServiceKey.type';
+import { useTranslation } from 'react-i18next';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 type TuseServiceKeyTypeTranslations = OkmsKeyTypes | (string & {});
 
-export const useServiceKeyTypeTranslations = (
-  type: TuseServiceKeyTypeTranslations,
-) => {
+export const useServiceKeyTypeTranslations = (type: TuseServiceKeyTypeTranslations) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
 
   switch (type) {

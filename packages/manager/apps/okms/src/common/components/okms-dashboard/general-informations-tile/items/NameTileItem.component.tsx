@@ -1,13 +1,16 @@
-import React from 'react';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OKMS } from '@key-management-service/types/okms.type';
+
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import useProductType, { ProductType } from '@/common/hooks/useProductType';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+
+import { ProductType, useProductType } from '@/common/hooks/useProductType';
 
 const useRenameLink = (okms: OKMS) => {
   const productType = useProductType();
@@ -34,7 +37,7 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
     <ManagerTile.Item>
       <ManagerTile.Item.Label>{t('display_name')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
-        <div className="flex justify-between items-center gap-2">
+        <div className="flex items-center justify-between gap-2">
           <OdsText preset="span" className="break-all">
             {okms.iam.displayName}
           </OdsText>

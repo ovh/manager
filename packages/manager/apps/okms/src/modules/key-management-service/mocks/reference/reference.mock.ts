@@ -17,17 +17,11 @@ export const referenceServiceKeyMock: OkmsServiceKeyReference[] = [
     default: true,
     operations: [
       {
-        value: [
-          OkmsServiceKeyOperations.encrypt,
-          OkmsServiceKeyOperations.decrypt,
-        ],
+        value: [OkmsServiceKeyOperations.encrypt, OkmsServiceKeyOperations.decrypt],
         default: true,
       },
       {
-        value: [
-          OkmsServiceKeyOperations.wrapKey,
-          OkmsServiceKeyOperations.unwrapKey,
-        ],
+        value: [OkmsServiceKeyOperations.wrapKey, OkmsServiceKeyOperations.unwrapKey],
         default: false,
       },
     ],

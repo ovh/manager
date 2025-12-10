@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.3.0...@ovh-ux/manager-pci-quota-app@0.3.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.2.1...@ovh-ux/manager-pci-quota-app@0.3.0) (2025-12-08)
+
+
+### Features
+
+* **pci-instances:** replace text on option select volume quota ([1aa7485](https://github.com/ovh/manager/commit/1aa74856319f49ef3dd33943654fd9bb48d6878c)), closes [#TAPC-5439](https://github.com/ovh/manager/issues/TAPC-5439)
+
+
+
+
+
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.2.0...@ovh-ux/manager-pci-quota-app@0.2.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.61...@ovh-ux/manager-pci-quota-app@0.2.0) (2025-12-03)
+
+
+### Features
+
+* **pci-quota:** add guide link and replace contact btn by link ([e2fe88c](https://github.com/ovh/manager/commit/e2fe88ca4d0889d3a272a8390e1af89001163679)), closes [#TAPC-5303](https://github.com/ovh/manager/issues/TAPC-5303)
+
+
+
+
+
 ## [0.1.61](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.60...@ovh-ux/manager-pci-quota-app@0.1.61) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app

@@ -1,15 +1,12 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
+
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 // Sub components for the drawer
 // Those components will be moved to MRC to get a composable version of the drawer
 
 export const DrawerContent = ({ children }: PropsWithChildren) => {
-  return (
-    <section className="flex-1 overflow-y-auto outline-none">
-      {children}
-    </section>
-  );
+  return <section className="flex-1 overflow-y-auto outline-none">{children}</section>;
 };
 
 export type DrawerFooterProps = PropsWithChildren & {

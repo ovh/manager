@@ -11,6 +11,19 @@ export default class BillingLinksService {
     this.autorenewLink = null;
   }
 
+  buildStateParamsQuery() {
+    return Object.entries(this.$state.params).reduce(
+      (queryString, [key, value]) =>
+        value ? `${queryString}&${key}=${value}` : queryString,
+      '',
+    );
+  }
+
+  buildResiliateModalLink(autorenewLink, service) {
+    const params = this.buildStateParamsQuery();
+    return `${autorenewLink}/services/resiliate?serviceId=${service.id}${params}`;
+  }
+
   generateAutorenewLinks(service, options) {
     const {
       billingManagementAvailability,
@@ -81,6 +94,16 @@ export default class BillingLinksService {
         (getResiliationLink && getResiliationLink()) ||
         `${autorenewLink}/resiliation?serviceId=${service.id}&serviceName=${service.serviceId}${serviceTypeParam}`;
 
+      if (this.coreConfig.isRegion('US')) {
+        if (service.serviceType !== 'VRACK')
+          // Currently vRack termination is not handled by backend for vRack
+          links.resiliateLink = this.buildResiliateModalLink(
+            autorenewLink,
+            service,
+          );
+        return links;
+      }
+
       switch (service.serviceType) {
         case SERVICE_TYPE.EMAIL_DOMAIN:
           links.resiliateLink = `${autorenewLink}/services/delete-email?serviceId=${service.serviceId}&name=${service.domain}`;
@@ -141,20 +164,11 @@ export default class BillingLinksService {
           if (service.canResiliateByEndRule()) {
             links.resiliateLink = resiliationByEndRuleLink;
           } else if (autorenewLink) {
-            const params = Object.entries(this.$state.params).reduce(
-              (queryString, [key, value]) => {
-                if (value) {
-                  return `${queryString}&${key}=${value}`;
-                }
-                return queryString;
-              },
-              '',
-            );
-
-            links.resiliateLink = service.isByoipService() ||
+            links.resiliateLink =
+              service.isByoipService() ||
               service.serviceType === SERVICE_TYPE.DOMAIN
-              ? `${autorenewLink}/services/resiliate?serviceId=${service.id}${params}`
-              : `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
+                ? this.buildResiliateModalLink(autorenewLink, service)
+                : `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           }
           break;
       }

@@ -25,4 +25,11 @@ describe('Skeletons Component', () => {
       expect(skeleton).toHaveAttribute('data-randomized', 'true');
     });
   });
+
+  it('should have a valid html', () => {
+    const { container } = render(<Skeletons />);
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

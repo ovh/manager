@@ -1,6 +1,14 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
+import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
+import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
 import {
   ActionMenu,
   ActionMenuItem,
@@ -8,19 +16,11 @@ import {
   DataGridTextCell,
   Links,
 } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
-import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
-import { OKMS } from '@key-management-service/types/okms.type';
-import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
-import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
-import { CredentialStatus } from '../credential-status/CredentialStatus.component';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
+
+import { CredentialStatus } from '../credential-status/CredentialStatus.component';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
@@ -47,9 +47,7 @@ export const DatagridCredentialCellId = (credential: OkmsCredential) => {
   return <Clipboard className="w-full" value={credential.id} />;
 };
 
-export const DatagridCredentialCellIdentities = (
-  credential: OkmsCredential,
-) => {
+export const DatagridCredentialCellIdentities = (credential: OkmsCredential) => {
   const identities = credential.identityURNs.length;
   return <DataGridTextCell>{identities}</DataGridTextCell>;
 };
@@ -64,9 +62,7 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   second: 'numeric',
 };
 
-export const DatagridCredentialCellCreationDate = (
-  credential: OkmsCredential,
-) => {
+export const DatagridCredentialCellCreationDate = (credential: OkmsCredential) => {
   const date = new Date(Date.parse(credential.createdAt));
 
   const formattedDate = useFormattedDate({
@@ -77,9 +73,7 @@ export const DatagridCredentialCellCreationDate = (
   return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
 };
 
-export const DatagridCredentialCellExpirationDate = (
-  credential: OkmsCredential,
-) => {
+export const DatagridCredentialCellExpirationDate = (credential: OkmsCredential) => {
   const date = new Date(Date.parse(credential.expiredAt));
 
   const formattedDate = useFormattedDate({
@@ -94,16 +88,11 @@ export const DatagridCredentialCellStatus = (credential: OkmsCredential) => {
   return <CredentialStatus state={credential.status} />;
 };
 
-export const DatagridCredentialCellActions = (
-  credential: OkmsCredential,
-  okms: OKMS,
-) => {
+export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: OKMS) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-  const { filename, href, isDisabled } = getDownloadCredentialParameters(
-    credential,
-  );
+  const { filename, href, isDisabled } = getDownloadCredentialParameters(credential);
 
   const items: ActionMenuItem[] = [
     {

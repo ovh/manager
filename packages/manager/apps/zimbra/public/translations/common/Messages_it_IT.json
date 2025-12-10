@@ -145,5 +145,8 @@
   "contactInformation_street": "Via",
   "contactInformation_postcode": "Codice postale",
   "contactInformation_city": "Città",
-  "contactInformation_country": "Paese"
+  "contactInformation_country": "Paese",
+  "redirections": "Reindirizzamenti",
+  "delete_redirections": "Eliminare i reindirizzamenti",
+  "delete_email_accounts": "Eliminare gli account"
 }

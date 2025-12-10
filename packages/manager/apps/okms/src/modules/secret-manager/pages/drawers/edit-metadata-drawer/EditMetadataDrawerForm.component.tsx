@@ -1,23 +1,25 @@
-import React from 'react';
-import z from 'zod';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
-import { Secret } from '@secret-manager/types/secret.type';
-import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { useUpdateSecret } from '@secret-manager/data/hooks/useUpdateSecret';
-import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   SecretCasRequiredFormField,
   casRequiredToFormValue,
   formValueToCasRequired,
 } from '@secret-manager/components/form/SecretCasRequiredFormField.component';
+import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
-import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
-import { useSecretMetadataSchema } from '@secret-manager/validation/metadata/metadataSchema';
+import { useUpdateSecret } from '@secret-manager/data/hooks/useUpdateSecret';
+import { Secret } from '@secret-manager/types/secret.type';
 import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import z from 'zod';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import {
   DrawerContent,
   DrawerFooter,
@@ -46,7 +48,7 @@ export const EditMetadataDrawerForm = ({
     error: updateError,
   } = useUpdateSecret();
 
-  const metadataSchema = useSecretMetadataSchema();
+  const metadataSchema = useSecretConfigSchema();
 
   type FormSchema = z.infer<typeof metadataSchema>;
   const { control, handleSubmit } = useForm({
@@ -82,19 +84,15 @@ export const EditMetadataDrawerForm = ({
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       <DrawerContent>
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4 p-1">
           {updateError && (
             <OdsMessage color="danger" className="mb-4">
-              {updateError?.response?.data?.message ||
-                t('error_update_settings')}
+              {updateError?.response?.data?.message || t('error_update_settings')}
             </OdsMessage>
           )}
-          <SecretDeactivateVersionAfterFormField
-            name="deactivateVersionAfter"
-            control={control}
-          />
+          <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
           <SecretMaxVersionsFormField
             name="maxVersions"
             control={control}

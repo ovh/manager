@@ -1,26 +1,18 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import {
-  OdsToggle,
-  OdsText,
-  OdsFormField,
-} from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { Dispatch, SetStateAction } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsText, OdsToggle } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 type IdentitiesRootAccountProps = {
   isRootAccount: boolean;
   setIsRootAccount: Dispatch<SetStateAction<boolean>>;
 };
 
-const IdentitiesRootAccount = ({
-  isRootAccount,
-  setIsRootAccount,
-}: IdentitiesRootAccountProps) => {
+const IdentitiesRootAccount = ({ isRootAccount, setIsRootAccount }: IdentitiesRootAccountProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const { trackClick } = useOvhTracking();
 
@@ -43,17 +35,13 @@ const IdentitiesRootAccount = ({
         />
         <label htmlFor="rootAccount" slot="label">
           <OdsText>
-            {t(
-              'key_management_service_credential_create_identities_root_account_toggle_label',
-            )}
+            {t('key_management_service_credential_create_identities_root_account_toggle_label')}
           </OdsText>
         </label>
       </div>
 
       <OdsText preset={ODS_TEXT_PRESET.caption}>
-        {t(
-          'key_management_service_credential_create_identities_root_account_toggle_helper',
-        )}
+        {t('key_management_service_credential_create_identities_root_account_toggle_helper')}
       </OdsText>
     </OdsFormField>
   );

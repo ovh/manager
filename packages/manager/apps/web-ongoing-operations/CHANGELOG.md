@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.18.0...@ovh-ux/manager-web-ongoing-operations-app@1.18.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.17.0...@ovh-ux/manager-web-ongoing-operations-app@1.18.0) (2025-12-08)
+
+
+### Bug Fixes
+
+* **domains:** update dependencies and fix css issue ([022d827](https://github.com/ovh/manager/commit/022d827865c2f5062b039574bd921a36c88291c3)), closes [#DCE-109](https://github.com/ovh/manager/issues/DCE-109)
+
+
+### Features
+
+* **web-ongoing-operations:** eslint and ts migration ([86a9ec4](https://github.com/ovh/manager/commit/86a9ec4219280ee558c5c20a54f9eb990e89e7cb)), closes [#DCE-102](https://github.com/ovh/manager/issues/DCE-102)
+
+
+
+
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.3...@ovh-ux/manager-web-ongoing-operations-app@1.17.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4502] ([a07afca](https://github.com/ovh/manager/commit/a07afcacdb0e73bab5309df2800e8a19f623da5c))
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
 ## [1.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.2...@ovh-ux/manager-web-ongoing-operations-app@1.16.3) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

@@ -1,9 +1,10 @@
 import { renderHook } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { useFormatDate } from './useFormatDate';
 
 // Mock the manager-react-components hook
-const mockFormatDateMrc = vi.fn(({ date }) => date);
+const mockFormatDateMrc = vi.fn(({ date }: { date: string }) => date);
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFormatDate: () => mockFormatDateMrc,
 }));
@@ -30,7 +31,7 @@ describe('useFormatDate', () => {
       {
         // default format (long)
         input: '2025-06-15T12:45:30Z',
-        format: undefined as undefined,
+        format: undefined,
         expectedFormatCall: 'Pp',
       },
     ];

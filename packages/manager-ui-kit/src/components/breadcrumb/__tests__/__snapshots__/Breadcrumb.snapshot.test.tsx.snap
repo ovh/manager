@@ -3,57 +3,57 @@
 exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel is false 1`] = `
 <DocumentFragment>
   <nav
-    class=""
-    data-ods="breadcrumb"
-    id=":r0:"
-    role="navigation"
+    class=
+    data-ods=breadcrumb
+    id=:r0:
+    role=navigation
   >
     <ol
-      class="_breadcrumb__list_1jn0o_2"
+      class=_breadcrumb__list
     >
       <li
-        class="_breadcrumb-item_1bnix_2"
-        data-ods="breadcrumb-item"
-        role="listitem"
+        class=_breadcrumb-item
+        data-ods=breadcrumb-item
+        role=listitem
       >
         <a
-          class="_link_1y3p4_2"
-          data-ods="breadcrumb-link"
-          href="/"
+          class=_link
+          data-ods=breadcrumb-link
+          href=/
         >
           vRack services
         </a>
         <span
-          class="_breadcrumb-separator_8bc5w_11"
-          role="presentation"
+          class=_breadcrumb-separator
+          role=presentation
         />
       </li>
       <li
-        class="_breadcrumb-item_1bnix_2"
-        data-ods="breadcrumb-item"
-        role="listitem"
+        class=_breadcrumb-item
+        data-ods=breadcrumb-item
+        role=listitem
       >
         <a
-          class="_link_1y3p4_2"
-          data-ods="breadcrumb-link"
-          href="/:id"
+          class=_link
+          data-ods=breadcrumb-link
+          href=/:id
         >
           vRack service
         </a>
         <span
-          class="_breadcrumb-separator_8bc5w_11"
-          role="presentation"
+          class=_breadcrumb-separator
+          role=presentation
         />
       </li>
       <li
-        class="_breadcrumb-item_1bnix_2"
-        data-ods="breadcrumb-item"
-        role="listitem"
+        class=_breadcrumb-item
+        data-ods=breadcrumb-item
+        role=listitem
       >
         <span
-          aria-current="page"
-          data-ods="breadcrumb-link"
-          href="/:id/listing"
+          aria-current=page
+          data-ods=breadcrumb-link
+          href=/:id/listing
         >
           vRack service listing
         </span>
@@ -66,40 +66,40 @@ exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel i
 exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel is true 1`] = `
 <DocumentFragment>
   <nav
-    class=""
-    data-ods="breadcrumb"
-    id=":r1:"
-    role="navigation"
+    class=
+    data-ods=breadcrumb
+    id=:r1:
+    role=navigation
   >
     <ol
-      class="_breadcrumb__list_1jn0o_2"
+      class=_breadcrumb__list
     >
       <li
-        class="_breadcrumb-item_1bnix_2"
-        data-ods="breadcrumb-item"
-        role="listitem"
+        class=_breadcrumb-item
+        data-ods=breadcrumb-item
+        role=listitem
       >
         <a
-          class="_link_1y3p4_2"
-          data-ods="breadcrumb-link"
-          href="/:id"
+          class=_link
+          data-ods=breadcrumb-link
+          href=/:id
         >
           vRack service
         </a>
         <span
-          class="_breadcrumb-separator_8bc5w_11"
-          role="presentation"
+          class=_breadcrumb-separator
+          role=presentation
         />
       </li>
       <li
-        class="_breadcrumb-item_1bnix_2"
-        data-ods="breadcrumb-item"
-        role="listitem"
+        class=_breadcrumb-item
+        data-ods=breadcrumb-item
+        role=listitem
       >
         <span
-          aria-current="page"
-          data-ods="breadcrumb-link"
-          href="/:id/listing"
+          aria-current=page
+          data-ods=breadcrumb-link
+          href=/:id/listing
         >
           vRack service listing
         </span>

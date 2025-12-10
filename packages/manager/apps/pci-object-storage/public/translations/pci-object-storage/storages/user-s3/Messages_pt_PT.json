@@ -1,6 +1,6 @@
 {
-  "updateS3PolicyTitle": "Adicionar um utilizador ao meu contentor S3",
-  "updateS3PolicyDescription": "Selecione o utilizador a adicionar ao seu contentor. Se não aparecer nesta lista, por favor crie-o na seção dedicada.",
+  "updateS3PolicyTitle": "Adicionar um utilizador ao meu container S3",
+  "updateS3PolicyDescription": "Selecione o utilizador que quer adicionar ao seu container. Se não aparecer nesta lista, crie-o na secção dedicada.",
   "userIdFieldLabel": "Utilizador",
   "inputUserPlaceholder": "Procurar um utilizador",
   "noUserFound": "Nenhum utilizador encontrado",
@@ -8,7 +8,7 @@
   "rolePlaceholder": "Selecionar uma função",
   "inputRolePlaceholder": "Procurar uma função",
   "noUserRoleFound": "Nenhuma função encontrada",
-  "role_deny": "Negar",
+  "role_deny": "Deny",
   "role_admin": "Administrador",
   "role_readOnly": "Apenas leitura",
   "role_readWrite": "Leitura e escrita",

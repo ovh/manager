@@ -8,18 +8,12 @@ export type UpdateOkmsNameParams = {
 
 export const updateOkmsNameQueryKey = () => [`put/services/displayName`];
 
-export const updateOkmsName = async ({
-  serviceId,
-  displayName,
-}: UpdateOkmsNameParams) =>
+export const updateOkmsName = async ({ serviceId, displayName }: UpdateOkmsNameParams) =>
   apiClient.v6.put<ServiceDetails>(`/services/${serviceId}`, {
     displayName,
   });
 
-export const getOkmsServiceIdQueryKey = (okmsId: string) => [
-  `get/okms/services`,
-  okmsId,
-];
+export const getOkmsServiceIdQueryKey = (okmsId: string) => [`get/okms/services`, okmsId];
 
 /**
  * allowedServices operations : List all services allowed in this kms

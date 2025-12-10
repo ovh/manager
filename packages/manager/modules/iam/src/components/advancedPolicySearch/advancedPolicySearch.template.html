@@ -1,0 +1,230 @@
+<oui-modal
+    data-heading="{{:: 'iam_advanced_policy_search_title' | translate}}"
+    data-primary-label="{{:: 'iam_advanced_policy_search_button' | translate}}"
+    data-primary-action="$ctrl.submitSearch()"
+    data-primary-disabled="$ctrl.urlSizeLimitReached"
+    data-secondary-label="{{:: 'iam_create_policy_cancel' | translate}}"
+    data-secondary-action="$ctrl.closeModal()"
+    data-on-dismiss="$ctrl.closeModal()"
+>
+    <!-- Section: identities -->
+    <oui-checkbox
+        class="search-section-checkbox"
+        data-model="$ctrl.display.identities"
+        data-on-change="$ctrl.triggerResize()"
+    >
+        <oui-checkbox-label>
+            {{:: 'iam_advanced_policy_search_criteria_identities' | translate}}
+            <span>({{$ctrl.parameterList.identities.length}})</span>
+        </oui-checkbox-label>
+    </oui-checkbox>
+
+    <!-- Identities: local users -->
+    <oui-collapsible
+        ng-if="$ctrl.display.identities"
+        data-heading="{{:: 'iam_advanced_policy_search_criteria_identities_local_users' | translate}}"
+        data-on-toggle="$ctrl.loadLocalUsers(expanded)"
+        data-loading="$ctrl.localUsers.status === 'loading'"
+    >
+        <oui-search
+            class="identity-search-input"
+            data-placeholder="{{:: 'iam_identities_users_modal_search_placeholder' | translate}}"
+            data-model="$ctrl.localUsers.search"
+        ></oui-search>
+        <oui-message
+            data-type="error"
+            data-ng-if="$ctrl.localUsers.status === 'error'"
+        >
+            <span data-ng-bind="$ctrl.localUsers.errorMessage"></span>
+        </oui-message>
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.localUsers.status === 'empty'"
+        >
+            <span
+                data-translate="iam_identities_users_modal_empty_state"
+            ></span>
+        </oui-message>
+        <oui-checkbox
+            data-ng-repeat="user in $ctrl.localUsers.items | filter: $ctrl.filterLocalUsersFn track by $index"
+            data-model="$ctrl.model.identities.selected[user.urn]"
+            data-on-change="$ctrl.updateIdentitiesParametersList()"
+            thumbnail
+        >
+            <oui-checkbox-label>
+                <span data-ng-bind="user.login"></span>
+            </oui-checkbox-label>
+            <oui-checkbox-description>
+                <div>
+                    <span data-translate="iam_identities_users_email"></span>
+                    <b data-ng-bind="user.email"></b>
+                </div>
+                <div>
+                    <span data-translate="iam_identities_users_group"></span>
+                    <b data-ng-bind="user.group"></b>
+                </div>
+                <div>
+                    <span data-translate="iam_identities_urn"></span>
+                    <b data-ng-bind="user.urn"></b>
+                </div>
+            </oui-checkbox-description>
+        </oui-checkbox>
+    </oui-collapsible>
+
+    <!-- Identities: user groups -->
+    <oui-collapsible
+        ng-if="$ctrl.display.identities"
+        class="collapsible-with-search-list"
+        data-heading="{{:: 'iam_advanced_policy_search_criteria_identities_user_groups' | translate}}"
+        data-on-toggle="$ctrl.loadUserGroups(expanded)"
+        data-loading="$ctrl.userGroups.status === 'loading'"
+    >
+        <oui-search
+            class="identity-search-input"
+            data-placeholder="{{:: 'iam_identities_groups_modal_search_placeholder' | translate}}"
+            data-model="$ctrl.userGroups.search"
+        ></oui-search>
+        <oui-message
+            data-type="error"
+            data-ng-if="$ctrl.userGroups.status === 'error'"
+        >
+            <span data-ng-bind="$ctrl.userGroups.errorMessage"></span>
+        </oui-message>
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.userGroups.status === 'empty'"
+        >
+            <span
+                data-translate="iam_identities_groups_modal_empty_state"
+            ></span>
+        </oui-message>
+        <oui-checkbox
+            data-ng-repeat="group in $ctrl.userGroups.items | filter: $ctrl.filterUserGroupsFn track by $index"
+            data-model="$ctrl.model.identities.selected[group.urn]"
+            data-on-change="$ctrl.updateIdentitiesParametersList()"
+            thumbnail
+        >
+            <oui-checkbox-label>
+                <span data-ng-bind="group.name"></span>
+            </oui-checkbox-label>
+            <oui-checkbox-description>
+                <div>
+                    <span
+                        data-translate="iam_identities_groups_description"
+                    ></span>
+                    <b data-ng-bind="group.description"></b>
+                </div>
+                <div>
+                    <span data-translate="iam_identities_groups_role"></span>
+                    <b data-ng-bind="group.role"></b>
+                </div>
+                <div>
+                    <span data-translate="iam_identities_urn"></span>
+                    <b data-ng-bind="group.urn"></b>
+                </div>
+            </oui-checkbox-description>
+        </oui-checkbox>
+    </oui-collapsible>
+
+    <!-- Identities: URN search -->
+    <oui-collapsible
+        ng-if="$ctrl.display.identities"
+        heading="{{:: 'iam_advanced_policy_search_criteria_identities_urn_search' | translate}}"
+    >
+        <oui-field
+            data-label="{{:: 'iam_advanced_policy_search_criteria_identities_urn_search_label' | translate }}"
+        >
+            <div class="d-flex align-items-start">
+                <input
+                    class="oui-input mr-3"
+                    name="urnSearch"
+                    type="text"
+                    data-ng-model="$ctrl.urnSearch.search"
+                    data-ng-keypress="$ctrl.onNicSearchKeyPressed($event)"
+                />
+                <button
+                    type="button"
+                    class="iam-action-select__custom-action_button flex oui-button oui-button_ghost"
+                    data-ng-click="$ctrl.addOvhNic()"
+                >
+                    <span
+                        data-translate="iam_action_select_custom_action_button"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-plus mr-2"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </div>
+        </oui-field>
+
+        <oui-chips
+            items="$ctrl.model.identities.manual"
+            closable="true"
+            on-remove="$ctrl.updateIdentitiesParametersList()"
+        ></oui-chips>
+    </oui-collapsible>
+
+    <!-- Section: resources -->
+    <oui-checkbox
+        class="search-section-checkbox"
+        data-model="$ctrl.display.resources"
+        data-on-change="$ctrl.triggerResize()"
+    >
+        <oui-checkbox-label>
+            {{:: 'iam_advanced_policy_search_criteria_ressources' | translate}}
+            <span>({{$ctrl.parameterList.resources.length}})</span>
+        </oui-checkbox-label>
+    </oui-checkbox>
+
+    <!-- Ressources -->
+    <iam-resource-select
+        ng-show="$ctrl.display.resources"
+        data-ng-model="$ctrl.model.resources"
+        data-on-change="$ctrl.updateResourcesParametersList()"
+        data-on-resource-types-confirm-remove="$ctrl.onResourceTypesConfirmRemove(item, index)"
+        data-read-only="false"
+        data-resources-label="{{:: 'iam_create_policy_form_resources_heading' | translate }}"
+        data-resources-name="resources"
+        data-resources-required-message="{{:: 'iam_create_policy_form_resources_error_required' | translate }}"
+        data-resource-types-label="{{:: 'iam_create_policy_form_resource_types_heading' | translate }}"
+        data-resource-types-name="resourceTypes"
+        data-max-length="10"
+    ></iam-resource-select>
+
+    <!-- Section: actions -->
+    <oui-checkbox
+        class="search-section-checkbox"
+        data-model="$ctrl.display.actions"
+        data-on-change="$ctrl.triggerResize()"
+    >
+        <oui-checkbox-label>
+            {{:: 'iam_advanced_policy_search_criteria_actions' | translate}}
+            <span>({{$ctrl.parameterList.actions.length}})</span>
+        </oui-checkbox-label>
+    </oui-checkbox>
+
+    <!-- Actions: managed permissions -->
+    <iam-action-select
+        ng-show="$ctrl.display.actions"
+        data-error="$ctrl.onError(error)"
+        data-name="actions"
+        data-ng-model="$ctrl.model"
+        data-on-change="$ctrl.updateActionsParametersList()"
+        data-resource-types="$ctrl.model.resources.types"
+        data-read-only="$ctrl.policy.readOnly"
+        data-tag-prefix=":: $ctrl.tag.prefix"
+        data-show-action-wildcard="false"
+        data-expand-by-default="false"
+        data-allow-group-selection="false"
+        data-show-permissions-group="false"
+        data-managed-permissions-label="'iam_advanced_policy_search_criteria_actions_managed_permissions'"
+        data-permissions-groups="$ctrl.permissionsGroups"
+    ></iam-action-select>
+
+    <oui-message data-type="warning" ng-if="$ctrl.urlSizeLimitReached">
+        <span
+            data-translate="iam_advanced_search_url_limit_reached_warning"
+        ></span>
+    </oui-message>
+</oui-modal>

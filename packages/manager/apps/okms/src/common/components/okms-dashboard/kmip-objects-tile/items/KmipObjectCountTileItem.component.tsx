@@ -1,16 +1,15 @@
-import React from 'react';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { useTranslation } from 'react-i18next';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 type KmipObjectCountTileItemProps = {
   okms: OKMS;
 };
 
-export const KmipObjectCountTileItem = ({
-  okms,
-}: KmipObjectCountTileItemProps) => {
+export const KmipObjectCountTileItem = ({ okms }: KmipObjectCountTileItemProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
 
   return (

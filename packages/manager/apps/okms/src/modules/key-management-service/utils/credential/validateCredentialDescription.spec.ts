@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import {
   CredentialDescriptionErrors,
   CredentialDescriptionMaxCharacters,
@@ -19,8 +20,7 @@ describe('validateCredentialDescription', () => {
   });
 
   it('should return invalidCharacters error if description contains invalid characters', () => {
-    const invalidDescription =
-      'This description contains invalid characters: \u00A9'; // © is outside the ASCII range
+    const invalidDescription = 'This description contains invalid characters: \u00A9'; // © is outside the ASCII range
     expect(validateCredentialDescription(invalidDescription)).toBe(
       CredentialDescriptionErrors.invalidCharacters,
     );
@@ -39,9 +39,7 @@ describe('validateCredentialDescription', () => {
 
   it('should return undefined for a description with exactly 1 character', () => {
     const singleCharDescription = 'a';
-    expect(
-      validateCredentialDescription(singleCharDescription),
-    ).toBeUndefined();
+    expect(validateCredentialDescription(singleCharDescription)).toBeUndefined();
   });
 
   it('should return undefined for a description with exactly 200 characters', () => {

@@ -1,31 +1,39 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Drawer } from '@ovh-ux/manager-react-components';
-import { SecretVersion } from '@secret-manager/types/secret.type';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
+import { useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useSecret } from '@secret-manager/data/hooks/useSecret';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
+import { useTranslation } from 'react-i18next';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { Drawer } from '@ovh-ux/manager-react-components';
+
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 import { SecretRawValue } from './SecretRawValue.component';
+import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import { VersionSelector } from './VersionSelector.component';
 
-const useIsCurrentVersion = (version: SecretVersion) => {
-  const { okmsId, secretPath } = useParams<LocationPathParams>();
+const useIsCurrentVersion = (version: SecretVersion | undefined) => {
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
 
-  return secret?.metadata?.currentVersion === version?.id;
+  if (!version || !secret) {
+    return false;
+  }
+  return secret.metadata.currentVersion === version.id;
 };
 
 const SecretValueDrawerPage = () => {
-  const { okmsId, secretPath, versionId } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
+  const { versionId } = useParams();
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 
-  const [selectedVersion, setSelectedVersion] = useState<
-    SecretVersion | undefined
-  >(undefined);
+  const [selectedVersion, setSelectedVersion] = useState<SecretVersion | undefined>(undefined);
 
   const isCurrentVersion = useIsCurrentVersion(selectedVersion);
 
@@ -46,15 +54,9 @@ const SecretValueDrawerPage = () => {
           selectedVersion={selectedVersion}
           setSelectedVersion={setSelectedVersion}
         />
-        {isCurrentVersion && (
-          <OdsMessage isDismissible={false}>{t('current_version')}</OdsMessage>
-        )}
+        {isCurrentVersion && <OdsMessage isDismissible={false}>{t('current_version')}</OdsMessage>}
         {selectedVersion && selectedVersion.state === 'ACTIVE' && (
-          <SecretRawValue
-            okmsId={okmsId}
-            secretPath={secretPath}
-            version={selectedVersion}
-          />
+          <SecretRawValue okmsId={okmsId} secretPath={secretPath} version={selectedVersion} />
         )}
       </div>
     </Drawer>

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.1...@ovh-ux/manager-models@2.7.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.0...@ovh-ux/manager-models@2.7.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.4...@ovh-ux/manager-models@2.7.0) (2025-12-03)
+
+
+### Features
+
+* **billing:** add punycode in datagrid popin and csv ([6462e19](https://github.com/ovh/manager/commit/6462e1966c80186d3d39691d6b5a201a21bfe9f2)), closes [#MANAGER-20025](https://github.com/ovh/manager/issues/MANAGER-20025)
+
+
+
+
+
 ## [2.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.6.3...@ovh-ux/manager-models@2.6.4) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

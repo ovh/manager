@@ -1,29 +1,27 @@
-import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, waitFor, act } from '@testing-library/react';
-import userEvent, { UserEvent } from '@testing-library/user-event';
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { act, screen, waitFor } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
-import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
-import { EditMetadataDrawerForm } from './EditMetadataDrawerForm.component';
+
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
-import {
-  createErrorResponseMock,
-  renderWithI18n,
-} from '@/common/utils/tests/testUtils';
+import { createErrorResponseMock, renderWithI18n } from '@/common/utils/tests/testUtils';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+
+import { EditMetadataDrawerForm } from './EditMetadataDrawerForm.component';
 
 const labels = allLabels.secretManager;
 const commonLabels = allLabels.common;
 
 const mockUpdateSecret = vi.fn();
 const mockUseUpdateSecret = vi.fn();
-const mockUseSecretMetadataSchema = vi.fn();
 
 vi.mock('@secret-manager/data/hooks/useUpdateSecret', () => ({
-  useUpdateSecret: () => mockUseUpdateSecret(),
+  useUpdateSecret: (): unknown => mockUseUpdateSecret(),
 }));
 
 const mockSecret: Secret = mockSecret1;
@@ -57,9 +55,7 @@ const renderComponent = async () => {
     onDismiss: mockOnDismiss,
   };
 
-  const renderResult = await renderWithI18n(
-    <EditMetadataDrawerForm {...defaultProps} />,
-  );
+  const renderResult = await renderWithI18n(<EditMetadataDrawerForm {...defaultProps} />);
 
   return {
     user,
@@ -87,10 +83,6 @@ describe('EditMetadataDrawerForm component test suite', () => {
       isPending: false,
       error: null,
     });
-
-    mockUseSecretMetadataSchema.mockReturnValue({
-      safeParse: vi.fn().mockReturnValue({ success: true, data: {} }),
-    });
   });
 
   describe('when component renders successfully', () => {
@@ -98,27 +90,19 @@ describe('EditMetadataDrawerForm component test suite', () => {
       await renderComponent();
 
       // Should render form fields
-      const input1 = screen.getByTestId(
-        SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER,
-      );
+      const input1 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER);
       expect(input1).toBeInTheDocument();
       expect(input1).toHaveValue(mockSecretConfig.deactivateVersionAfter.value);
 
-      const input2 = screen.getByTestId(
-        SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS,
-      );
+      const input2 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS);
       expect(input2).toBeInTheDocument();
       expect(input2).toHaveValue(mockSecretConfig.maxVersions.value);
 
-      const input3 = screen.getByTestId(
-        SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE,
-      );
+      const input3 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE);
       expect(input3).toBeInTheDocument();
       expect(input3).toHaveAttribute('is-checked', 'true');
 
-      const input4 = screen.getByTestId(
-        SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE,
-      );
+      const input4 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE);
       expect(input4).toBeInTheDocument();
       expect(input4).not.toHaveAttribute('is-checked', 'true');
     });
@@ -144,14 +128,13 @@ describe('EditMetadataDrawerForm component test suite', () => {
         expect(mockUpdateSecret).toHaveBeenCalledWith({
           okmsId: 'test-okms-id',
           path: 'test-secret-path',
-          cas: expect.any(Number),
+          cas: expect.any(Number) as number,
           data: {
             metadata: expect.objectContaining({
               casRequired: mockSecretConfig.casRequired.value,
-              deactivateVersionAfter:
-                mockSecretConfig.deactivateVersionAfter.value,
+              deactivateVersionAfter: mockSecretConfig.deactivateVersionAfter.value,
               maxVersions: mockSecretConfig.maxVersions.value,
-            }),
+            }) as Record<string, unknown>,
           },
         });
       });
@@ -239,9 +222,7 @@ describe('EditMetadataDrawerForm component test suite', () => {
       // Check if the error is displayed
       await waitFor(() => {
         expect(
-          container.querySelector(
-            `ods-form-field[error="${labels.error_invalid_duration}"]`,
-          ),
+          container.querySelector(`ods-form-field[error="${labels.error_invalid_duration}"]`),
         ).toBeInTheDocument();
       });
     });

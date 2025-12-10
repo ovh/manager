@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import {
   CredentialNameErrors,
   credentialNameMaxCharacters,
@@ -13,16 +14,12 @@ describe('validateCredentialName', () => {
 
   it('should return required error if name is empty', () => {
     const emptyName = '';
-    expect(validateCredentialName(emptyName)).toBe(
-      CredentialNameErrors.required,
-    );
+    expect(validateCredentialName(emptyName)).toBe(CredentialNameErrors.required);
   });
 
   it('should return tooManyCharacters error if name exceeds 50 characters', () => {
     const longName = 'a'.repeat(credentialNameMaxCharacters + 1);
-    expect(validateCredentialName(longName)).toBe(
-      CredentialNameErrors.tooManyCharacters,
-    );
+    expect(validateCredentialName(longName)).toBe(CredentialNameErrors.tooManyCharacters);
   });
 
   it('should return invalidCharacters error if name contains invalid characters', () => {
@@ -44,8 +41,6 @@ describe('validateCredentialName', () => {
 
   it('should return invalidCharacters error if name contains characters below "space"', () => {
     const invalidName = 'Invalid\tName'; // \t (tab) is not valid
-    expect(validateCredentialName(invalidName)).toBe(
-      CredentialNameErrors.invalidCharacters,
-    );
+    expect(validateCredentialName(invalidName)).toBe(CredentialNameErrors.invalidCharacters);
   });
 });

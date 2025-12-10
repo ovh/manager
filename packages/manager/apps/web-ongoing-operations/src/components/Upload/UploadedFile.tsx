@@ -85,7 +85,8 @@ export default function UploadedFile({
           setFiles(detail.files);
         }}
         onFileReject={(detail: FileUploadRejectDetail) => {
-          setErrorUpload(detail.files[0].errors[0]);
+          const file = detail?.files[0] || null;
+          setErrorUpload(file?.errors[0]|| 'unknown_error');
         }}
         accept={fileUploadFormat}
         acceptedFileLabel={t('domain_operations_upload_accepted_file_types', {

@@ -1,18 +1,20 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
-  UpdateSecretResponse,
-  updateSecret,
   UpdateSecretParams,
+  UpdateSecretResponse,
   secretQueryKeys,
+  updateSecret,
 } from '../api/secrets';
 
 export const useUpdateSecret = () => {
   const queryClient = useQueryClient();
   return useMutation<UpdateSecretResponse, ApiError, UpdateSecretParams>({
     mutationFn: (params) => updateSecret(params),
-    onSuccess: (_, params) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (_, params) => {
+      await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.detail(params.okmsId, params.path),
       });
     },

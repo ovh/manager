@@ -1,12 +1,12 @@
-import userEvent from '@testing-library/user-event';
-import {
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { versionActiveMock } from '@secret-manager/mocks/versions/versions.mock';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { versionActiveMock } from '@secret-manager/mocks/versions/versions.mock';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
+import { act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
@@ -17,9 +17,7 @@ describe('Version list page test suite', () => {
     // GIVEN
 
     // WHEN
-    await renderTestApp(
-      SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path),
-    );
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path));
 
     // THEN
     await assertVersionDatagridVisilibity();
@@ -43,7 +41,9 @@ describe('Version list page test suite', () => {
     });
 
     // WHEN
-    user.click(versionLink);
+    await act(async () => {
+      await user.click(versionLink);
+    });
 
     // THEN
     await assertTextVisibility(labels.secretManager.values);

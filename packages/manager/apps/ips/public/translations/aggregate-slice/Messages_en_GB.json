@@ -1,0 +1,12 @@
+{
+  "aggregateModalTitle": "Aggregate the {{ ip }} block",
+  "aggregateModalDescription": "Please specify the desired parent block",
+  "aggregateModalChildrenIpsDescription": "This action will aggregate the following subnets:",
+  "aggregateSuccessMessage": "Your IP block will be aggregated. Please refresh in a few minutes.",
+  "noAggregateSliceAvailable": "No segmentation/aggregation configuration available. For more information, please refer to our guide: ",
+  "noAggregateLinkLabel": "here",
+  "sliceModalTitle": "Segment the {{ ip }} block",
+  "sliceModalDescription": "Please specify the desired size of the child blocks",
+  "sliceModalChildrenIpsDescription": "This configuration will create the following blocks",
+  "sliceSuccessMessage": "Your IP block will be segmented. Please refresh in a few minutes."
+}
