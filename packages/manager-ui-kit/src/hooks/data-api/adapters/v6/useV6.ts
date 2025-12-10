@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import type { SortingState } from '@tanstack/react-table';
 
@@ -33,17 +33,14 @@ export const useV6 = <TData = Record<string, unknown>>({
     removeFilter,
     onSearch,
   } = useDataRetrievalOperations<TData>({ defaultSorting, columns });
+
   const [pageIndex, setPageIndex] = useState(0);
-  const [totalCount, setTotalCount] = useState(0);
-  const [flattenData, setFlattenData] = useState<TData[]>([]);
 
   const { data, error, isError, isFetching, isLoading, isSuccess, status } = useQuery<
     FetchV6Result<TData>
   >({
     cacheKey: [cacheKey],
-    fetchDataFn: () => {
-      return fetchDataFn ? fetchDataFn(route) : v6.get(route);
-    },
+    fetchDataFn: () => (fetchDataFn ? fetchDataFn(route) : v6.get(route)),
     refetchInterval: refetchInterval || false,
     enabled,
   });
@@ -56,17 +53,55 @@ export const useV6 = <TData = Record<string, unknown>>({
     sorting,
   });
 
-  useEffect(() => {
-    if (!isLoading && enabled) {
-      setTotalCount(filteredAndSortedData.length);
-      setPageIndex(0);
-      setFlattenData(filteredAndSortedData);
-    }
-  }, [filteredAndSortedData, isLoading, enabled]);
+  const flattenData = useMemo(
+    () => (enabled && !isLoading ? filteredAndSortedData : []),
+    [enabled, isLoading, filteredAndSortedData],
+  );
 
-  const fetchNextPage = useCallback(
-    () => setPageIndex((previousPageIndex) => previousPageIndex + 1),
-    [],
+  const totalCount = flattenData.length;
+
+  const fetchNextPage = useCallback(() => {
+    setPageIndex((previousPageIndex) => previousPageIndex + 1);
+  }, []);
+
+  const setSortingWithReset = useCallback(
+    (value: React.SetStateAction<SortingState>) => {
+      setPageIndex(0);
+      setSorting(typeof value === 'function' ? (prev) => value(prev ?? []) : (value ?? []));
+    },
+    [setSorting],
+  );
+
+  const addFilterWithReset = useCallback(
+    (...args: Parameters<typeof addFilter>) => {
+      setPageIndex(0);
+      addFilter(...args);
+    },
+    [addFilter],
+  );
+
+  const removeFilterWithReset = useCallback(
+    (...args: Parameters<typeof removeFilter>) => {
+      setPageIndex(0);
+      removeFilter(...args);
+    },
+    [removeFilter],
+  );
+
+  const onSearchWithReset = useCallback(
+    (...args: Parameters<typeof onSearch>) => {
+      setPageIndex(0);
+      onSearch(...args);
+    },
+    [onSearch],
+  );
+
+  const setSearchInputWithReset = useCallback(
+    (...args: Parameters<typeof setSearchInput>) => {
+      setPageIndex(0);
+      setSearchInput(...args);
+    },
+    [setSearchInput],
   );
 
   if (!enabled) {
@@ -80,6 +115,8 @@ export const useV6 = <TData = Record<string, unknown>>({
     };
   }
 
+  const pagedData = flattenData.slice(0, (pageIndex + 1) * pageSize);
+
   return {
     error,
     isError,
@@ -89,26 +126,23 @@ export const useV6 = <TData = Record<string, unknown>>({
     isLoading,
     pageIndex,
     totalCount,
-    flattenData: flattenData?.slice(0, (pageIndex + 1) * pageSize),
-    hasNextPage: pageIndex * pageSize + pageSize < flattenData?.length,
+    flattenData: pagedData,
+    hasNextPage: pageIndex * pageSize + pageSize < flattenData.length,
     fetchNextPage,
     sorting: {
       sorting: sorting ?? [],
-      setSorting: ((value) =>
-        setSorting(
-          typeof value === 'function' ? (prev) => value(prev ?? []) : (value ?? []),
-        )) as React.Dispatch<React.SetStateAction<SortingState>>,
+      setSorting: setSortingWithReset as React.Dispatch<React.SetStateAction<SortingState>>,
       manualSorting: true,
     },
     filters: {
       filters,
-      add: addFilter,
-      remove: removeFilter,
+      add: addFilterWithReset,
+      remove: removeFilterWithReset,
     },
     search: {
-      onSearch,
+      onSearch: onSearchWithReset,
       searchInput,
-      setSearchInput,
+      setSearchInput: setSearchInputWithReset,
     },
   };
 };

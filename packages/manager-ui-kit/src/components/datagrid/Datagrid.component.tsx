@@ -45,15 +45,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
   const rowHeight = RowHeight[size];
   const DEFAULT_CONTAINER_HEIGHT =
     maxRowHeight || (hideHeader ? ContainerWihtoutHeaderHeight[size] : ContainerHeight[size]);
-  const {
-    features,
-    getHeaderGroups,
-    getRowModel,
-    getAllLeafColumns,
-    toggleAllColumnsVisible,
-    getIsAllColumnsVisible,
-    getIsSomeColumnsVisible,
-  } = useDatagrid({
+  const { table, features } = useDatagrid({
     columns,
     data,
     sorting: sorting?.sorting,
@@ -68,11 +60,11 @@ export const Datagrid = <T extends Record<string, unknown>>({
   });
   const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
     features;
-  const rowModel = getRowModel();
+  const rowModel = table.getRowModel();
   const { rows } = rowModel;
-  const headerGroups = getHeaderGroups();
+  const headerGroups = table.getHeaderGroups();
   const [tableContainerRef, setTableContainerRef] = useState<HTMLDivElement | null>(null);
-  const visibleColumns = getAllLeafColumns();
+  const visibleColumns = table.getAllLeafColumns();
   const containerSize = data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
   const containerStyle = {
     maxHeight: containerHeight ? `${containerHeight}px` : containerSize,
@@ -94,9 +86,9 @@ export const Datagrid = <T extends Record<string, unknown>>({
           enableSearch={hasSearchFeature}
           enableColumnvisibility={hasColumnVisibilityFeature}
           visibleColumns={visibleColumns}
-          toggleAllColumnsVisible={toggleAllColumnsVisible}
-          getIsAllColumnsVisible={getIsAllColumnsVisible}
-          getIsSomeColumnsVisible={getIsSomeColumnsVisible}
+          toggleAllColumnsVisible={table.toggleAllColumnsVisible}
+          getIsAllColumnsVisible={table.getIsAllColumnsVisible}
+          getIsSomeColumnsVisible={table.getIsSomeColumnsVisible}
           setColumnVisibility={columnVisibility?.setColumnVisibility}
         />
       )}

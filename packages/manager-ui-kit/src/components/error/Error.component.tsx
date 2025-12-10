@@ -50,7 +50,7 @@ export const Error = ({
         page_category: PageType.bannerError,
       });
     });
-  }, []);
+  }, [error, shell?.environment, shell?.tracking]);
 
   return (
     <section
