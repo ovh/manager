@@ -1,5 +1,8 @@
 import { TRACKING_DISPLAY_EDIT_NSX_EDGES_PREFIX } from './constants';
-import { TRACKING_PREFIX_DATACENTER } from '../../dedicatedCloud-datacenter.constants';
+import {
+  TRACKING_PREFIX_DATACENTER,
+  TRACKING_ACTION_GO_BACK_PREFIX,
+} from '../../dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -7,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       resolve: {
         goBack: /* @ngInject */ (trackClick, goBackToDashboard) => () => {
-          trackClick('::cancel'); // TODO this is not cohrent anymore with new nomenclature MANAGER-19493
+          trackClick(`${TRACKING_ACTION_GO_BACK_PREFIX}nsx-edge-nodes`);
           return goBackToDashboard();
         },
         breadcrumb: /* @ngInject */ ($translate) =>
