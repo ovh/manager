@@ -8,29 +8,29 @@ import {
   CardTitle,
 } from '@datatr-ux/uxlib';
 import A from '@/components/links/A.component';
+import { PropsWithChildren } from "react";
 
 interface OnboardingTileProps {
   title: string;
-  description: string;
-  content: string;
+  description?: string;
   href: string;
   linkName: string;
 }
 const OnboardingTile = ({
   title,
   description,
-  content,
   href,
   linkName,
-}: OnboardingTileProps) => {
+  children
+}: PropsWithChildren<OnboardingTileProps>) => {
   return (
     <Card className="flex flex-col justify-between">
-      <CardHeader>
+      <CardHeader className="py-4">
         <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
-      <CardContent>
-        <p>{content}</p>
+      <CardContent className="pb-4">
+        {children}
       </CardContent>
       <CardFooter>
         <A href={href} target="_blank" rel="noopener noreferrer">
