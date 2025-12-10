@@ -22,6 +22,7 @@ export const GENERAL_INFORMATION = 'general-information';
 export const LICENCES = 'licences';
 export const USAGE = 'usage';
 export const DETAILS_SERVICE = ['details_service', 'domain'];
+export const AGREEMENT = 'agreement';
 export const GO_TO_ORDER = ['go-to-order', 'office'];
 export const ORDER_OFFICE = 'order_office';
 export const GUIDES = 'guides';

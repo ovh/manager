@@ -3,6 +3,8 @@ import { z } from 'zod';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { CountriesEnum, LanguagesEnum } from '@/data/api/mca/type';
+
 import { PASSWORD_REGEX } from './form';
 
 const looseOptional = <T extends z.ZodTypeAny>(schema: T) =>
@@ -74,9 +76,21 @@ export const zForm = (t: typeof i18next.t, login?: string, automatiqueMode?: boo
     password: automatiqueMode ? looseOptional(passwordSchema) : passwordSchema,
     email: automatiqueMode ? emailSchema : looseOptional(emailSchema),
   });
+
+  const AGREEMENT_FORM_SCHEMA = z.object({
+    country: z.nativeEnum(CountriesEnum),
+    companyName: z.string().min(1, formFieldError),
+    language: z.nativeEnum(LanguagesEnum),
+    signatoryFirstName: z.string().min(1, formFieldError),
+    signatoryLastName: z.string().min(1, formFieldError),
+    emailAddress: z.string().email(t(`${NAMESPACES.FORM}:error_email`)),
+    phoneNumber: z.string().min(1, formFieldError),
+  });
+
   return {
     EDIT_USERS_FORM_SCHEMA,
     POST_USERS_FORM_SCHEMA,
     CHANGE_PASSWORD_USERS_FORM_SCHEMA,
+    AGREEMENT_FORM_SCHEMA,
   };
 };
