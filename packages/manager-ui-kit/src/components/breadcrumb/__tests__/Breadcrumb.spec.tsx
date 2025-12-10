@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { renderBreadcrumb } from '@/commons/tests-utils/Render.utils';
 
@@ -11,16 +11,9 @@ vi.mock('@/hooks/breadcrumb/useBreadcrumb', () => ({
 }));
 
 describe('Breadcrumb component - behavior', () => {
-  it.skip('should not have any accessibility violations', async () => {
+  it('should not have any accessibility violations', async () => {
     const { container } = renderBreadcrumb({ hideRootLabel: false });
     await expect(container).toBeAccessible();
-  });
-
-  it.skip('should have a valid html', async () => {
-    const { container } = renderBreadcrumb({ hideRootLabel: false });
-    const html = container.innerHTML;
-
-    await expect(html).toBeValidHtml();
   });
 
   it('renders 3 breadcrumb items when hideRootLabel is false', () => {
