@@ -1,6 +1,6 @@
-import { IamObject } from "@ovh-ux/manager-react-components";
+import { IamObject } from '@ovh-ux/manager-react-components';
 
-type Status = "pending" | "in-progress" | "done" | "failed"; 
+type Status = 'pending' | 'in-progress' | 'done' | 'failed';
 
 export type Cluster = {
   id: string;

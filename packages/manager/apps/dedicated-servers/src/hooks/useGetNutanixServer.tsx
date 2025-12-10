@@ -7,8 +7,8 @@ export const useGetNutanixServer = () => {
     queryFn: () => getNutanixServer(),
     select: (data) => {
       const nutanixServers: { [key: string]: string } = {};
-      for (let cluster of data) {
-        for (let node of cluster.targetSpec.nodes) {
+      for (const cluster of data) {
+        for (const node of cluster.targetSpec.nodes) {
           nutanixServers[node.server] = cluster.targetSpec.name;
         }
       }

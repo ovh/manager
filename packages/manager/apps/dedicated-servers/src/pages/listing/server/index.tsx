@@ -74,7 +74,9 @@ export default function ServerListing() {
                     setColumnVisibility={setColumnVisibility}
                     search={search}
                     className="server-data-grid"
-                    topbar={<OrderMenu exportCsvData={{ columns, totalCount }} />}
+                    topbar={
+                      <OrderMenu exportCsvData={{ columns, totalCount }} />
+                    }
                     resourceType="dedicatedServer"
                   />
                 </div>
