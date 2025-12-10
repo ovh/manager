@@ -67,7 +67,6 @@ export default /* @ngInject */ ($stateProvider) => {
           'web-domains',
           `/domain/${serviceName}/contact-management`,
         );
-        console.log(url);
 
         window.location.href = url;
         return Promise.resolve();
@@ -116,7 +115,6 @@ export default /* @ngInject */ ($stateProvider) => {
           'web-domains',
           `/domain/${serviceName}/contact-management`,
         );
-        console.log(url);
 
         window.location.href = url;
         return Promise.resolve();
