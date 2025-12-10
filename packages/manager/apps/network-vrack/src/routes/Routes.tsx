@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Navigate, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/muk';
@@ -13,13 +13,13 @@ import { redirectionApp, urls } from './Routes.constants';
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
 export default (
   <>
-    <Route path="/" element={<Navigate to={urls.onboarding} replace />} />
     <Route
       id="root"
-      path={urls.root}
+      path="/"
       Component={MainLayoutPage}
       errorElement={
         <ErrorBoundary
@@ -30,10 +30,14 @@ export default (
       }
     >
       <Route
-        path={urls.onboarding}
-        Component={OnboardingPage}
+        id="listing"
+        path={urls.listing}
+        Component={ListingPage}
         handle={{
-          tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+          tracking: {
+            pageName: 'all-vrack',
+            pageType: PageType.listing,
+          },
         }}
       />
       <Route id="vrack.dashboard" path={urls.dashboard} Component={DashboardPage}>
@@ -49,7 +53,15 @@ export default (
           }}
         />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route
+        id="onboarding"
+        path={urls.onboarding}
+        Component={OnboardingPage}
+        handle={{
+          tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+        }}
+      />
     </Route>
+    <Route path="*" element={<NotFound />} />
   </>
 );
