@@ -43,6 +43,7 @@ angular
   .filter('ipFilterByService', ipFilterByService)
   .filter('ipFirewallRulePort', ipFirewallRulePort)
   .filter('ipPunycode', ipPunycode)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(function($window, $transitions, ovhFeatureFlipping, shellClient) {
     const windowRef = $window;
     $transitions.onStart({ to: 'app.ip.**' }, function(trans) {

@@ -8,10 +8,10 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { Service } from '../../data/types/dbaas/logs';
-import getServiceLabel from '../../helpers/getServiceLabel';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import { Service } from '@/data/types/dbaas/logs';
+import getServiceLabel from '@/helpers/getServiceLabel';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
 
 const ServiceLink = ({ service }: { service: Service }) => {
   const [serviceUrl, setServiceUrl] = useState('');

@@ -7,9 +7,12 @@ export const getBillingInfoQueryKey = (serverName: string) => [
 
 export const getBillingInfo = async (
   serviceName: string,
+  isNutanix = false,
+  cluster?: string,
 ): Promise<ApiResponse<BillingInfo>> => {
+  const pathType = isNutanix ? 'nutanix' : 'dedicated/server';
   const { data } = await apiClient.v6.get<{ serviceId: string }>(
-    `/dedicated/server/${serviceName}/serviceInfos`,
+    `/${pathType}/${isNutanix ? cluster : serviceName}/serviceInfos`,
   );
   return apiClient.v6.get<BillingInfo>(`/services/${data.serviceId}`);
 };

@@ -1180,7 +1180,7 @@ const constants = {
           {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
-            url: 'https://www.vmware.com/support/pubs/',
+            url: 'https://techdocs.broadcom.com/fr/fr/vmware-cis.html',
           },
           {
             title: 'core_pcc_top_guide_7_title',
@@ -1191,7 +1191,8 @@ const constants = {
           {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
-            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
+            url:
+              'https://techdocs.broadcom.com/fr/fr/vmware-cis/nsx/vmware-nsx/4-1/installation-guide/overview-of-nsx.html',
           },
           {
             title: 'core_pcc_top_guide_14_title',
@@ -1245,7 +1246,7 @@ const constants = {
           {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
-            url: 'https://www.vmware.com/support/pubs/',
+            url: 'https://techdocs.broadcom.com/de/de/vmware-cis.html',
           },
           {
             title: 'core_pcc_top_guide_7_title',
@@ -1256,7 +1257,7 @@ const constants = {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url:
-              'https://docs.vmware.com/de/VMware-NSX-Data-Center-for-vSphere/index.html',
+              'https://techdocs.broadcom.com/de/de/vmware-cis/nsx/vmware-nsx/4-1/installation-guide/overview-of-nsx.html',
           },
           {
             title: 'core_pcc_top_guide_14_title',
@@ -1303,7 +1304,7 @@ const constants = {
           {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
-            url: 'https://www.vmware.com/support/pubs/',
+            url: 'https://techdocs.broadcom.com/us/en/vmware-cis.html',
           },
           {
             title: 'core_pcc_top_guide_7_title',
@@ -1318,7 +1319,8 @@ const constants = {
           {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
-            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=en',
+            url:
+              'https://techdocs.broadcom.com/us/en/vmware-cis/nsx/vmware-nsx/4-1/installation-guide/overview-of-nsx.html',
           },
           {
             title: 'core_pcc_top_guide_14_title',
@@ -1900,7 +1902,7 @@ const constants = {
           {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
-            url: 'https://www.vmware.com/support/pubs/',
+            url: 'https://techdocs.broadcom.com/fr/fr/vmware-cis.html',
           },
           {
             title: 'core_pcc_top_guide_7_title',
@@ -1911,7 +1913,8 @@ const constants = {
           {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
-            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
+            url:
+              'https://techdocs.broadcom.com/fr/fr/vmware-cis/nsx/vmware-nsx/4-1/installation-guide/overview-of-nsx.html',
           },
           {
             title: 'core_pcc_top_guide_14_title',
@@ -1965,7 +1968,7 @@ const constants = {
           {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
-            url: 'https://www.vmware.com/support/pubs/',
+            url: 'https://techdocs.broadcom.com/de/de/vmware-cis.html',
           },
           {
             title: 'core_pcc_top_guide_7_title',
@@ -1976,7 +1979,7 @@ const constants = {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
             url:
-              'https://docs.vmware.com/de/VMware-NSX-Data-Center-for-vSphere/index.html',
+              'https://techdocs.broadcom.com/de/de/vmware-cis/nsx/vmware-nsx/4-1/installation-guide/overview-of-nsx.html',
           },
           {
             title: 'core_pcc_top_guide_14_title',
@@ -2023,7 +2026,7 @@ const constants = {
           {
             title: 'core_pcc_top_guide_6_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-6',
-            url: 'https://www.vmware.com/support/pubs/',
+            url: 'https://techdocs.broadcom.com/us/en/vmware-cis.html',
           },
           {
             title: 'core_pcc_top_guide_7_title',
@@ -2038,7 +2041,8 @@ const constants = {
           {
             title: 'core_pcc_top_guide_10_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-10',
-            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=en',
+            url:
+              'https://techdocs.broadcom.com/us/en/vmware-cis/nsx/vmware-nsx/4-1/installation-guide/overview-of-nsx.html',
           },
           {
             title: 'core_pcc_top_guide_14_title',

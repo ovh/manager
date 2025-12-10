@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.115](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@3.0.114...@ovh-ux/manager-nutanix-app@3.0.115) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix-app
+
+
+
+
+
 ## [3.0.114](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix-app@3.0.113...@ovh-ux/manager-nutanix-app@3.0.114) (2025-12-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix-app

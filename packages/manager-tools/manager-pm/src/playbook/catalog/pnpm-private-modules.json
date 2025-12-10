@@ -128,10 +128,6 @@
     "pnpm": "packages/manager/modules/iplb"
   },
   {
-    "turbo": "--filter @ovh-ux/logs-to-customer",
-    "pnpm": "packages/manager/modules/logs-to-customer"
-  },
-  {
     "turbo": "--filter @ovh-ux/manager-components",
     "pnpm": "packages/manager/modules/manager-components"
   },

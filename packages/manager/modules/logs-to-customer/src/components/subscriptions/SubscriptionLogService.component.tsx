@@ -5,9 +5,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import {
   getLogServiceQueryKey,
   useLogService,
-} from '../../data/hooks/useLogService';
-import { LogSubscription } from '../../data/types/dbaas/logs';
-import ApiError from '../apiError/ApiError.component';
+} from '@/data/hooks/useLogService';
+import { LogSubscription } from '@/data/types/dbaas/logs';
+import ApiError from '@/components/apiError/ApiError.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 type SubscriptionLogServiceProps = {
   subscription: LogSubscription;
@@ -16,9 +17,9 @@ type SubscriptionLogServiceProps = {
 const SubscriptionLogService = ({
   subscription,
 }: SubscriptionLogServiceProps) => {
-  const { t } = useTranslation('logService');
+  const { t } = useTranslation(NAMESPACES.LOG_SERVICE);
   const queryClient = useQueryClient();
-  const { data, isLoading, isPending, error } = useLogService(
+  const { data: service, isLoading, isPending, error } = useLogService(
     subscription.serviceName,
   );
 
@@ -47,7 +48,7 @@ const SubscriptionLogService = ({
     <>
       <div className="flex flex-row justify-between ">
         <OdsText preset="heading-6">
-          {data?.data.displayName || subscription.serviceName}
+          {service?.displayName || subscription.serviceName}
         </OdsText>
         <OdsText preset="span">{subscription.serviceName}</OdsText>
       </div>
@@ -55,7 +56,7 @@ const SubscriptionLogService = ({
         <OdsText preset="heading-6">
           {t('log_service_username_tile_label')}
         </OdsText>
-        <OdsText preset="span">{data?.data.username}</OdsText>
+        <OdsText preset="span">{service?.username}</OdsText>
       </div>
     </>
   );

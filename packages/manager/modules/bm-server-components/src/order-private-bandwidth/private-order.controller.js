@@ -49,24 +49,24 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
       });
     this.steps = [
       {
-        isValid: () => this.model.plan,
+        isValid: () => this.model.plan?.planCode,
         isLoading: () => this.isLoading,
       },
       {
-        isValid: () => this.model.plan,
+        isValid: () => this.model.plan?.planCode,
         isLoading: () => this.isLoading,
         load: () => {
           this.isLoading = true;
           return this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOrder(
             this.serviceId,
-            this.model.plan,
+            this.model.plan?.planCode,
             this.getServiceUpgradeParams(),
           )
             .then((res) => {
               res.bandwidth = find(this.plans, {
-                planCode: this.model.plan,
+                planCode: this.model.plan?.planCode,
               }).bandwidth;
-              res.planCode = this.model.plan;
+              res.planCode = this.model.plan?.planCode;
               this.provisionalPlan = res;
             })
             .catch((error) => {
@@ -97,12 +97,12 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
   }
 
   order() {
-    if (this.model.plan) {
+    if (this.model.plan?.planCode) {
       this.isLoading = true;
       this.trackClick(`${this.trackingPrefix}confirm`);
       return this.OrderPrivateBandwidthService.bareMetalPrivateBandwidthPlaceOrder(
         this.serviceId,
-        this.model.plan,
+        this.model.plan?.planCode,
         this.getServiceUpgradeParams(),
       )
         .then((result) => {
@@ -180,7 +180,7 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
 
   getServiceUpgradeParams() {
     const renewPrice = this.plans
-      .find((plan) => plan.planCode === this.model.plan)
+      .find((plan) => plan.planCode === this.model.plan?.planCode)
       ?.prices?.find((price) => price.capacities.includes('renew'));
     return {
       autoPayWithPreferredPaymentMethod:
