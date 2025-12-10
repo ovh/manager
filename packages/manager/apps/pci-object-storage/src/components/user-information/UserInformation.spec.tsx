@@ -22,11 +22,18 @@ const mockedCreatingUser: user.User = {
   status: user.UserStatusEnum.creating,
 };
 
-describe('user information l component', () => {
+describe('user information component', () => {
   it('renders Loading info while user is not ready component', async () => {
-    render(<UserInformation newUser={mockedCreatingUser} pwd={'myNewPwd'} />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
+    render(
+      <UserInformation
+        newUser={mockedCreatingUser}
+        access="myAcceess"
+        secret="mySecret"
+      />,
+      {
+        wrapper: RouterWithQueryClientWrapper,
+      },
+    );
     await waitFor(() => {
       expect(
         screen.queryByTestId('user-information-container'),
@@ -38,9 +45,16 @@ describe('user information l component', () => {
   });
 
   it('renders user Information component', async () => {
-    render(<UserInformation newUser={mockedCloudUser} pwd={'myNewPwd'} />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
+    render(
+      <UserInformation
+        newUser={mockedCloudUser}
+        access="myAcceess"
+        secret="mySecret"
+      />,
+      {
+        wrapper: RouterWithQueryClientWrapper,
+      },
+    );
     await waitFor(() => {
       expect(
         screen.queryByTestId('user-information-loading-container'),
@@ -51,9 +65,16 @@ describe('user information l component', () => {
   });
 
   it('should download user info', async () => {
-    render(<UserInformation newUser={mockedCloudUser} pwd={'myNewPwd'} />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
+    render(
+      <UserInformation
+        newUser={mockedCloudUser}
+        access="myAcceess"
+        secret="mySecret"
+      />,
+      {
+        wrapper: RouterWithQueryClientWrapper,
+      },
+    );
     act(() => {
       fireEvent.click(screen.getByTestId('download-user-button'));
     });

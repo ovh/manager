@@ -258,10 +258,10 @@ describe('S3 Storage functions', () => {
       name: 's3Name',
       region: 'BHS',
       key: 'objectKey',
-      versionId: 'verionId',
+      versionId: 'versionId',
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/projectId/region/BHS/storage/s3Name/object/objectKey/version/verionId',
+      '/cloud/project/projectId/region/BHS/storage/s3Name/object/objectKey/version/versionId',
       undefined,
     );
   });
@@ -274,10 +274,10 @@ describe('S3 Storage functions', () => {
       region: 'BHS',
       key: 'objectKey',
       storageClass: storages.StorageClassEnum.STANDARD,
-      versionId: 'verionId',
+      versionId: 'versionId',
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
-      '/cloud/project/projectId/region/BHS/storage/s3Name/object/objectKey/version/verionId/copy',
+      '/cloud/project/projectId/region/BHS/storage/s3Name/object/objectKey/version/versionId/copy',
       {
         storageClass: storages.StorageClassEnum.STANDARD,
         targetBucket: 's3Name',

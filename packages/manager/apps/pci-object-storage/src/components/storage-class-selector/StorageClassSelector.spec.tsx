@@ -17,7 +17,7 @@ const availableStorageClasses = [
 
 const onStorageClassChange = vi.fn();
 describe('StorageClassSelector component', () => {
-  it('renders Storage Class Selectorcomponent', async () => {
+  it('renders Storage Class Selector component', async () => {
     render(
       <StorageClassSelector
         storageClass={storages.StorageClassEnum.STANDARD}
@@ -56,7 +56,7 @@ describe('StorageClassSelector component', () => {
     });
   });
 
-  it('trigger and dispay popover content', async () => {
+  it('trigger and display popover content', async () => {
     render(
       <StorageClassSelector
         storageClass={storages.StorageClassEnum.STANDARD}

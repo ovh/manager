@@ -47,7 +47,7 @@ export const mockedRclone: user.Rclone = {
   content: 'rclone configuration data',
 };
 
-export const mockedS3CredentialsWihoutPwd: user.S3Credentials = {
+export const mockedS3CredentialsWithoutPwd: user.S3Credentials = {
   access: 'mock-access-key-1',
   tenantId: 'tenant-1',
   userId: 'user-1',

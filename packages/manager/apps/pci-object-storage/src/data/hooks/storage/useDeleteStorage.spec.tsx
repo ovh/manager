@@ -15,7 +15,7 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
 }));
 
 describe('useDeleteStorage', () => {
-  it('should call useDeleteStorage with Swidft on mutation with data', async () => {
+  it('should call useDeleteStorage with Swift on mutation with data', async () => {
     const onDeleteSuccess = vi.fn();
     const onError = vi.fn();
     const storageType = ObjectStorageTypeEnum.swift;

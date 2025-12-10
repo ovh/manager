@@ -9,8 +9,8 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
   getS3ObjectVersions: vi.fn(),
 }));
 
-describe('useGetS3ObjectVerions', () => {
-  it('should call useGetS3ObjectVerions on mutation with data', async () => {
+describe('useGetS3ObjectVersions', () => {
+  it('should call useGetS3ObjectVersions on mutation with data', async () => {
     const projectId = 'projectId';
     const region = 'BHS';
     const name = 's3Name';
