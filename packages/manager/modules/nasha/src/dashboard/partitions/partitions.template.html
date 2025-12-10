@@ -12,7 +12,7 @@
         ></nasha-components-metrics>
         <h4 data-translate="nasha_dashboard_partitions_title"></h4>
         <oui-datagrid
-            data-rows-loader="$ctrl.loadPartitions()"
+            data-rows="$ctrl.partitions.error.partitions || $ctrl.partitions"
             data-page-size="{{ $ctrl.maxPartitions }}"
         >
             <oui-datagrid-topbar>
