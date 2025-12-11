@@ -1,0 +1,7 @@
+{
+  "installed_agents": "Installierte Agenten",
+  "connected_vaults": "Verbundenen Tresore",
+  "billing_more_info": "Weitere Informationen zur Abrechnung",
+  "number_of_connected_vaults": "{{connectedVaultCount}} verbunden(e)",
+  "number_of_installed_agents": "{{installedAgentsCount}} installiert(e)"
+}

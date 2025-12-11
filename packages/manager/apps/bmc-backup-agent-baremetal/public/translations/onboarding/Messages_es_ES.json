@@ -1,0 +1,27 @@
+{
+  "title_fallback": "Bienvenido a app-gen-test",
+  "description_part1": "Descubre cómo aprovechar al máximo app-gen-test, ddd.",
+  "description_part2": "Sigue nuestras guías para comenzar rápidamente.",
+  "guides": {
+    "guide1": {
+      "category": "Descubrimiento",
+      "title": "Comenzar con app-gen-test",
+      "description": "Aprende lo básico para empezar.",
+      "cta": "Descubrir"
+    },
+    "guide2": {
+      "category": "Tutoriales",
+      "title": "Configura tu entorno",
+      "description": "Sigue nuestra guía paso a paso.",
+      "cta": "Ver el tutorial"
+    },
+    "guide3": {
+      "category": "Preguntas frecuentes",
+      "title": "Preguntas frecuentes",
+      "description": "Encuentra respuestas a preguntas comunes.",
+      "cta": "Leer la FAQ"
+    }
+  },
+  "no_baremetal_available": "Ningún Bare Metal disponible",
+  "select_baremetal": "Selecciona tu servidor BareMetal"
+}

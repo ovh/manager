@@ -1,0 +1,51 @@
+import { useId } from 'react';
+
+import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
+
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import { urlParams, urls } from '@/routes/Routes.constants';
+
+export type AgentActionsCellProps = {
+  tenantId: string;
+  agentId: string;
+};
+export const AgentActionsCell = ({ tenantId, agentId }: AgentActionsCellProps) => {
+  const id = useId();
+  const { t } = useTranslation([NAMESPACES.ACTIONS, BACKUP_AGENT_NAMESPACES.COMMON]);
+  const configurationHref = useHref(
+    urls.editAgentConfiguration.replace(urlParams.tenantId, tenantId).replace(':agentId', agentId),
+  );
+
+  const deleteHref = useHref(
+    urls.dashboardTenantAgentDelete
+      .replace(urlParams.tenantId, tenantId)
+      .replace(':agentId', agentId),
+  );
+
+  const actions: ActionMenuItem[] = [
+    {
+      id: 0,
+      label: t(`${NAMESPACES.ACTIONS}:configure`),
+      href: configurationHref,
+    },
+    {
+      id: 1,
+      label: t(`${NAMESPACES.ACTIONS}:delete`),
+      href: deleteHref,
+      color: ODS_BUTTON_COLOR.critical,
+    },
+  ];
+
+  return (
+    <DataGridTextCell>
+      <ActionMenu id={id} items={actions} isCompact variant={ODS_BUTTON_VARIANT.ghost} />
+    </DataGridTextCell>
+  );
+};

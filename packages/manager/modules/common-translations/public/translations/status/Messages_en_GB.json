@@ -20,5 +20,7 @@
   "creating": "Creating",
   "updating": "Updating",
   "unconfigured": "Not configured",
-  "unPaid": "Unpaid bill"
+  "unPaid": "Unpaid bill",
+  "error": "Error",
+  "ready": "Active"
 }
