@@ -35,6 +35,7 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
 
   const { data: okmsList, error: okmsError, isPending: isOkmsListLoading } = useOkmsList();
+  const okmsActiveList = okmsList?.filter((okms) => okms.iam.state === 'OK');
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -47,9 +48,9 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
     // okms from the secret list page
     const okmsIdSearchParam = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.okmsId) ?? undefined;
 
-    if (!okmsList || selectedRegion) return;
+    if (!okmsActiveList || selectedRegion) return;
 
-    const okmsFromSearchParam = okmsList.find((okms) => okms.id === okmsIdSearchParam);
+    const okmsFromSearchParam = okmsActiveList.find((okms) => okms.id === okmsIdSearchParam);
 
     if (!okmsFromSearchParam) {
       setSearchParams({});
@@ -63,7 +64,7 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
     setSelectedRegion(okmsFromSearchParam.region);
     setSelectedOkmsId(okmsIdSearchParam);
   }, [
-    okmsList,
+    okmsActiveList,
     searchParams,
     selectedRegion,
     setSearchParams,
@@ -74,9 +75,9 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
   const handleRegionSelection = (region: string | undefined) => {
     setSelectedRegion(region);
 
-    if (!okmsList) return;
+    if (!okmsActiveList) return;
 
-    const regionOkmsList = region ? filterOkmsListByRegion(okmsList, region) : [];
+    const regionOkmsList = region ? filterOkmsListByRegion(okmsActiveList, region) : [];
 
     if (regionOkmsList.length === 0) {
       setSelectedOkmsId(undefined);
@@ -106,7 +107,7 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
         <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={handleRegionSelection} />
       </div>
       <OkmsSelector
-        okmsList={filterOkmsListByRegion(okmsList, selectedRegion)}
+        okmsList={filterOkmsListByRegion(okmsActiveList ?? [], selectedRegion)}
         selectedRegion={selectedRegion}
         selectedOkms={selectedOkmsId}
         onOkmsSelection={setSelectedOkmsId}
