@@ -586,6 +586,5 @@ export const mapInstancesCatalogDtoToEntity = (
       ),
     },
   };
-
   return catalog;
 };

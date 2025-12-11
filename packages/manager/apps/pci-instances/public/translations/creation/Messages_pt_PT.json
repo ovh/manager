@@ -109,5 +109,11 @@
   "pci_instance_creation_network_add_new_vlanID_warning": "O ID da VLAN 0 é usado por padrão em outros produtos, incluindo fora do universo de Nuvem Pública. Os IPs privados devem ser gerenciados com atenção",
   "pci_instance_creation_network_add_new_cidr_error": "Por favor, insira um endereço IP válido",
   "pci_instance_creation_network_add_new_vlanId_error": "O ID da vLAN deve estar entre 0 e 4000. Por favor, verifique o valor inserido antes de continuar.",
-  "pci_instance_creation_create_my_instance": "Iniciar a minha instância"
+  "pci_instance_creation_create_my_instance": "Iniciar a minha instância",
+  "pci_instance_creation_select_billing_choice_title": "Faturação",
+  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} HT/hora",
+  "pci_instance_creation_select_billing_hourly": "Horário",
+  "pci_instance_creation_select_billing_monthly": "Mensal",
+  "pci_instance_creation_select_billing_choice_subtext_hourly": "Pague conforme o uso, de acordo com o tempo real de utilização.",
+  "pci_instance_creation_select_billing_choice_subtext_monthly": "Pague mensalmente, com custos fixos"
 }
