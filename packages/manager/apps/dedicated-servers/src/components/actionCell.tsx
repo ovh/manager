@@ -5,12 +5,8 @@ import {
   ShellContext,
   ButtonType,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_POPOVER_POSITION,
-} from '@ovhcloud/ods-components';
+
+import { ActionMenu, BUTTON_VARIANT } from '@ovh-ux/muk';
 import { DedicatedServer } from '@/data/types/server.type';
 
 export const ActionCell = (server: DedicatedServer) => {
@@ -19,21 +15,12 @@ export const ActionCell = (server: DedicatedServer) => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="action-menu">
-      <OdsButton
-        icon={ODS_ICON_NAME.ellipsisVertical}
-        id={`service-key-actions-${server.name}`}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        label=""
-      />
-      <OdsPopover
-        triggerId={`service-key-actions-${server.name}`}
-        position={ODS_POPOVER_POSITION.bottomStart}
-      >
-        <OdsButton
-          variant="ghost"
-          label={t('action-goDetails')}
-          onClick={() => {
+    <ActionMenu
+      id={`service-key-actions-${server.name}`}
+      items={[
+        {
+          id: 1,
+          onClick: () => {
             trackClick({
               actionType: 'action',
               actions: [
@@ -48,10 +35,13 @@ export const ActionCell = (server: DedicatedServer) => {
               `#/server/${server.name}`,
               {},
             );
-          }}
-        />
-      </OdsPopover>
-    </div>
+          },
+          label: t('action-goDetails'),
+        },
+      ]}
+      isCompact
+      variant={BUTTON_VARIANT.ghost}
+    />
   );
 };
 
