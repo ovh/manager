@@ -1,13 +1,13 @@
 {
-  "home": "Home page",
-  "order": "Ordinare",
+  "home": "Home",
+  "order": "Ordina",
   "back": "Indietro",
-  "title": "Dashboard",
+  "title": "Cruscotto",
   "email": "Email",
   "subject": "Oggetto",
   "message": "Messaggio",
   "submitButton": "Inviare",
-  "successMessage": "La richiesta è stata inviata correttamente.",
+  "successMessage": "La tua richiesta è stata inviata con successo.",
   "errors": {
     "emailRequired": "L'email è obbligatoria.",
     "emailInvalid": "Inserisci un indirizzo email valido.",
@@ -15,5 +15,7 @@
     "messageRequired": "Il messaggio è obbligatorio."
   },
   "general-information": "Informazioni generali",
-  "help": "Aiuto"
+  "help": "Aiuto",
+  "type_billing": "Tipo di fatturazione",
+  "consumption_tooltip": "Lo spazio di archiviazione aggiuntivo non è disponibile in modalità self-service. Per aumentare la tua capacità di archiviazione, contatta il supporto."
 }
