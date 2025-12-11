@@ -21,5 +21,7 @@
       "description": "Trouvez les réponses aux questions courantes.",
       "cta": "Lire la FAQ"
     }
-  }
+  },
+  "no_baremetal_available": "Aucun Bare Metal disponible",
+  "select_baremetal": "Sélectionner votre serveur BareMetal"
 }
