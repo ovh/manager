@@ -16,7 +16,13 @@ export default class Commitment {
   }
 
   addOptionCommitment(optionEngagement) {
-    this.price += optionEngagement.price;
+    if (this.pricing.interval === optionEngagement.pricing.interval) {
+      this.price += optionEngagement.price;
+    } else {
+      this.price +=
+        optionEngagement.price *
+        (this.pricing.interval / optionEngagement.pricing.interval);
+    }
     this.pricing = new Pricing(
       {
         ...this.pricing,
