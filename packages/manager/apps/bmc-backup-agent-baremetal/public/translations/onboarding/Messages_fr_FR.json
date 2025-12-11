@@ -23,5 +23,9 @@
     }
   },
   "no_baremetal_available": "Aucun Bare Metal disponible",
-  "select_baremetal": "Sélectionner votre serveur BareMetal"
+  "select_baremetal": "Sélectionner votre serveur BareMetal",
+  "first_order_terms_and_conditions_title": "Activation du Backup Tenant",
+  "first_order_terms_and_conditions_description": "Pour activer votre service il est nécessaire de créer un Backup Tenant. Souhaitez-vous continuer l'activation de votre service ?",
+  "first_order_terms_and_conditions_confirm_label": "J'ai pris connaissance et j'accepte les conditions générales, l'annexe relative au traitement des données personnelles et les conditions particulières de services d'OVH.",
+  "first_order_terms_and_conditions_annexe_label": "Annexe Traitement de données à caractère personnel"
 }

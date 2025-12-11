@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +20,7 @@ type FirstOrderSchema = z.infer<typeof FIRST_ORDER_SCHEMA>;
 export const FirstOrderFormComponent = () => {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const { flattenData, isLoading } = useBaremetalsList();
+  const navigate = useNavigate();
 
   const {
     control,
@@ -27,7 +30,10 @@ export const FirstOrderFormComponent = () => {
     resolver: zodResolver(FIRST_ORDER_SCHEMA as any),
     defaultValues: { baremetal: '' },
   });
-  const onSubmit: SubmitHandler<FirstOrderSchema> = (dataForm) => console.log({ dataForm });
+  const onSubmit: SubmitHandler<FirstOrderSchema> = (dataForm) => {
+    console.log({ dataForm });
+    navigate('confirmation');
+  };
 
   return (
     <form
