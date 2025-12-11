@@ -6,8 +6,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      PNPM_VERSION: "10.17.0" # must match playbook-config.js
+
     steps:
-      # choose with pkgs and storage you want to clean
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
@@ -23,12 +26,30 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Use Node.js 22.x
         uses: actions/setup-node@v3
         with:
           node-version: 22
-      # Restore and cache node_modules and yarn.lock related cache
-      - name: Restore node_modules cache
+
+      # ------------------------------------------
+      # PNPM CACHE (binary + store under ./target)
+      # ------------------------------------------
+      - name: Restore PNPM cache (binary + store)
+        uses: actions/cache@v3
+        with:
+          path: |
+            target/pnpm
+            target/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-${{ env.PNPM_VERSION }}-
+            ${{ runner.os }}-pnpm-
+
+      # ------------------------------------------
+      # YARN CACHE (node_modules + yarn cache)
+      # ------------------------------------------
+      - name: Restore Yarn cache
         uses: actions/cache@v3
         with:
           path: |
@@ -40,6 +61,10 @@ jobs:
 
       - name: Install repository
         run: yarn install --frozen-lockfile
+
+      # ------------------------------------------
+      # BUILD TARGETED PACKAGES
+      # ------------------------------------------
       - name: Build covered packages and dependencies
         run: |
           yarn build --filter="./packages/manager/core/*" --concurrency=5
@@ -52,6 +77,7 @@ jobs:
           yarn build --filter="./packages/manager/modules/manager-pci-common"
           yarn build --filter="./packages/manager/modules/network-common"
           yarn build --filter="./packages/components/ovh-payment-method"
+
       - name: Run tests on changed packages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
