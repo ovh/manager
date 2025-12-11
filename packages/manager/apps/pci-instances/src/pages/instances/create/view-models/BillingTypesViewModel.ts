@@ -1,12 +1,12 @@
 import { Deps } from '@/deps/deps';
-import { BillingType } from '@/types/instance/common.type';
+import { BILLING_TYPE } from '@/types/instance/common.type';
 import { Reader } from '@/types/utils.type';
 
 type TSelectBillingData = (
   projectId: string,
   flavorId: string | null,
   distributionImageVersionName: string | null,
-) => BillingType[];
+) => BILLING_TYPE[];
 
 export const selectBillingTypes: Reader<Deps, TSelectBillingData> = (deps) => {
   return (projectId, flavorId, distributionImageVersionName) => {
@@ -26,7 +26,7 @@ export const selectBillingTypes: Reader<Deps, TSelectBillingData> = (deps) => {
 
     const prices = periodPrices?.filter((t) => t.type !== 'licence') || [];
     return prices.map(({ type }) =>
-      type === 'hour' ? BillingType.Hourly : BillingType.Monthly,
+      type === 'hour' ? BILLING_TYPE.Hourly : BILLING_TYPE.Monthly,
     );
   };
 };

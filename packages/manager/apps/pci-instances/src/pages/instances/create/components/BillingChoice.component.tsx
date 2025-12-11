@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 import { TInstanceCreationForm } from '../CreateInstance.page';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { BillingType } from '@/types/instance/common.type';
+import { BILLING_TYPE } from '@/types/instance/common.type';
 import {
   ButtonType,
   PageLocation,
@@ -31,7 +31,7 @@ const BillingChoice = () => {
     ],
   });
 
-  const updateBillingSelection = (billingType: BillingType) => {
+  const updateBillingSelection = (billingType: BILLING_TYPE) => {
     setValue('billingType', billingType);
 
     trackClick({
@@ -54,7 +54,7 @@ const BillingChoice = () => {
         <div className="flex items-center space-x-4">
           <PciCard
             compact
-            onClick={() => updateBillingSelection(BillingType.Hourly)}
+            onClick={() => updateBillingSelection(BILLING_TYPE.Hourly)}
             selected={selectedBillingType === 'hourly'}
           >
             <Radio value="Hourly">
@@ -74,7 +74,7 @@ const BillingChoice = () => {
 
           <PciCard
             compact
-            onClick={() => updateBillingSelection(BillingType.Monthly)}
+            onClick={() => updateBillingSelection(BILLING_TYPE.Monthly)}
             selected={selectedBillingType === 'monthly'}
           >
             <Radio value="Monthly">

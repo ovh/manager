@@ -6,7 +6,7 @@ import { quantityDefaultValue } from '../components/QuantitySelector.component';
 import { instanceCreationSchema } from '../CreateInstance.page';
 import { selectContinent } from '../view-models/continentsViewModel';
 import { selectLocalizations } from '../view-models/localizationsViewModel';
-import { BillingType, TDeploymentMode } from '@/types/instance/common.type';
+import { BILLING_TYPE, TDeploymentMode } from '@/types/instance/common.type';
 import {
   selectCategories,
   selectTypes,
@@ -105,7 +105,7 @@ export const useForm = (projectId: string) => {
       sshKeyId: sshKeyIdDefaultValue,
       newSshPublicKey: newSshPublicKeyDefaultValue,
       networkId: defaultNetworkId,
-      billingType: BillingType.Hourly,
+      billingType: BILLING_TYPE.Hourly,
     },
     mode: 'onChange',
   });

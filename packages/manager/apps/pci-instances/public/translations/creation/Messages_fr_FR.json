@@ -102,7 +102,7 @@
   "pci_instance_creation_network_setting_help_title": "Comprendre les paramètres réseaux",
   "pci_instance_creation_select_network_dropdown_label": "Sélectionnez un réseau privé existant",
   "pci_instance_creation_network_add_new": "Créer un réseau privé",
-  "pci_instances_creation_select_billing_hourly": "Hourly",
-  "pci_instances_creation_select_billing_monthly": "Monthly",
-  "pci_instances_creation_select_billing_subtext": "Pay as you go, with costs vased on actual usage time"
+  "pci_instances_creation_select_billing_hourly": "Horaire",
+  "pci_instances_creation_select_billing_monthly": "Mensuel",
+  "pci_instances_creation_select_billing_subtext": "Payez à l'utilisation, les coûts étant basés sur le temps d'utilisation réel."
 }

@@ -71,7 +71,7 @@ export type TPrice = {
 
 export type TRegionType = 'region' | 'localzone' | 'region-3-az' | string;
 
-export enum BillingType {
+export enum BILLING_TYPE {
   Monthly = 'monthly',
   Hourly = 'hourly',
 }
