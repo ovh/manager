@@ -1,53 +1,32 @@
-import React, { useState } from 'react';
-import { TagsList, TagsModal } from '@ovh-ux/manager-react-components';
+import React from 'react';
+import { TagsList } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DedicatedServer } from '@/data/types/server.type';
 import { useServerUrl } from '@/hooks/useServerUrl';
+import { DedicatedServer } from '@/data/types/server.type';
 
 export const TagsCell = (server: DedicatedServer) => {
-  const [toggleModal, setToggleModal] = useState(false);
   const { trackClick, trackPage } = useOvhTracking();
   const serverUrl = useServerUrl(server);
   return (
     <>
       {server.iam?.tags && Object.keys(server.iam?.tags).length > 0 && (
         <>
-          {toggleModal && (
-            <TagsModal
-              displayName={server?.iam?.displayName}
-              tags={server.iam?.tags}
-              onEditTags={() => {
-                trackClick({
-                  actionType: 'action',
-                  actions: ['pop-up', 'edit-tags'],
-                });
-                setToggleModal(false);
-                window.location.href = `${serverUrl}/tag-manager`;
-              }}
-              onCancel={() => {
-                trackClick({
-                  actionType: 'action',
-                  actions: ['pop-up', 'cancel'],
-                });
-                setToggleModal(false);
-              }}
-              isOpen={toggleModal}
-            />
-          )}
           <TagsList
             tags={server.iam?.tags}
+            modalHeading={server?.iam?.displayName}
+            maxLines={1}
             lineNumber={1}
-            onClick={() => {
+            onEditTags={() => {
               trackClick({
                 actionType: 'action',
                 buttonType: ButtonType.button,
                 actions: ['datagrid', ButtonType.button, 'edit-tags'],
               });
-              setToggleModal(true);
+              window.location.href = `${serverUrl}/tag-manager`;
               trackPage({
                 pageType: PageType.popup,
                 pageName: 'edit-tags',

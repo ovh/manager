@@ -5,7 +5,7 @@ import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 type InfiniteScrollType = {
   children: ReactNode;
   hasNextPage: boolean;
-  fetchNextPage: () => Promise<unknown>;
+  fetchNextPage: () => Promise<unknown> | void;
 };
 
 const InfiniteScroll: FC<InfiniteScrollType> = ({
