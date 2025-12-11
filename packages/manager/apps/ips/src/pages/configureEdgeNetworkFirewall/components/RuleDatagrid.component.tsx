@@ -21,7 +21,6 @@ import { ActionColumn } from './ActionColumn.component';
 export const RuleDatagrid: React.FC = () => {
   const {
     isNewRuleRowDisplayed,
-    showNewRuleRow,
     isLoading,
     isRulesLoading,
     rules,
@@ -88,7 +87,7 @@ export const RuleDatagrid: React.FC = () => {
         items={
           (isNewRuleRowDisplayed ? [{ isNew: true }, ...rules] : rules) || []
         }
-        totalItems={rules?.length + (showNewRuleRow ? 1 : 0)}
+        totalItems={rules?.length + (isNewRuleRowDisplayed ? 1 : 0)}
         isLoading={isLoading || isRulesLoading}
         numberOfLoadingRows={5}
       />

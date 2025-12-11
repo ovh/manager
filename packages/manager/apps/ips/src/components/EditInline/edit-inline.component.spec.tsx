@@ -1,27 +1,19 @@
 import '@/test-utils/setupUnitTests';
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
-import {
-  ODS_ICON_NAME,
-  OdsInput,
-  OdsInputChangeEventDetail,
-} from '@ovhcloud/ods-components';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-import { EditInline, EditInlineProps } from './edit-inline.component';
+import { EditInline } from './edit-inline.component';
 import { getButtonByIcon } from '@/test-utils';
-
-/** RENDER */
-const renderComponent = (params: EditInlineProps, value: string) => {
-  return render(<EditInline {...params}>{value}</EditInline>);
-};
 
 describe('EditInline Component', async () => {
   it('Should edit value', async () => {
     const spy = vi.fn();
-    const { getByText, container, getByTestId } = renderComponent(
-      { onConfirm: spy, name: 'test', defaultValue: 'test-value' },
-      'test-value',
+    const { getByText, container, getByTestId } = render(
+      <EditInline onConfirm={spy} name="test" defaultValue="test-value">
+        {'test-value'}
+      </EditInline>,
     );
 
     const editButton = await getButtonByIcon({
@@ -31,34 +23,33 @@ describe('EditInline Component', async () => {
 
     await waitFor(() => {
       expect(getByText('test-value')).toBeDefined();
-    });
+    }, WAIT_FOR_DEFAULT_OPTIONS);
 
-    await act(() => {
+    await waitFor(() => {
       fireEvent.click(editButton);
-    });
+    }, WAIT_FOR_DEFAULT_OPTIONS);
 
     const submitButton = await getButtonByIcon({
       container,
       iconName: ODS_ICON_NAME.check,
     });
 
-    const editInput = (getByTestId('edit-inline-input') as unknown) as OdsInput;
+    const editInput = getByTestId('edit-inline-input') as HTMLElement;
 
-    act(() => {
-      editInput.odsChange.emit({
-        value: 'test-value-2',
-      } as OdsInputChangeEventDetail);
+    editButton.nodeValue = 'test-value-2';
+    const event = new CustomEvent('odsChange', {
+      detail: { value: 'test-value-2' },
     });
 
-    act(() => {
-      fireEvent.click(submitButton);
-    });
+    await waitFor(() => fireEvent(editInput, event), WAIT_FOR_DEFAULT_OPTIONS);
 
     await waitFor(
-      () => {
-        expect(spy).toHaveBeenCalledWith('test-value-2');
-      },
-      { ...WAIT_FOR_DEFAULT_OPTIONS },
+      () => fireEvent.click(submitButton),
+      WAIT_FOR_DEFAULT_OPTIONS,
     );
+
+    await waitFor(() => {
+      expect(spy).toHaveBeenCalledWith('test-value-2');
+    }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 });
