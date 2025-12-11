@@ -2,5 +2,12 @@
   "home": "Strona główna",
   "order": "Zamów",
   "open": "Otwórz dashboard",
-  "title": "Lista"
+  "title": "Lista",
+  "resource_name_label": "Nazwa",
+  "location_label": "Dzierżawa",
+  "region_label": "Region",
+  "buckets_label": "Liczba bucketów",
+  "status_label": "Status",
+  "order_vault": "Zamów vault",
+  "more_action": "Dodatkowe działanie"
 }
