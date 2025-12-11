@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Outlet } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -23,13 +25,16 @@ export default function FirstOrderPage() {
   const img = useOnboardingHeroImage();
   // Build localized description paragraph.
   return (
-    <section className="flex flex-col items-center justify-center gap-10">
-      <OnboardingLayout
-        title={title ?? t('onboarding:title_fallback', { productName })}
-        img={img}
-        description={<OnboardingDescription />}
-      ></OnboardingLayout>
-      <FirstOrderFormComponent />
-    </section>
+    <>
+      <section className="flex flex-col items-center justify-center gap-10">
+        <OnboardingLayout
+          title={title ?? t('onboarding:title_fallback', { productName })}
+          img={img}
+          description={<OnboardingDescription />}
+        ></OnboardingLayout>
+        <FirstOrderFormComponent />
+      </section>
+      <Outlet />
+    </>
   );
 }
