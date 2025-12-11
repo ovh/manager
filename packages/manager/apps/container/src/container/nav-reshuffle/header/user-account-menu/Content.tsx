@@ -76,6 +76,7 @@ const UserAccountMenu = ({
       const featureAvailability = await fetchFeatureAvailabilityData([
         'identity-documents',
         'procedures:fraud',
+        'communication',
       ]);
       if (featureAvailability['identity-documents']) {
         try {
@@ -101,7 +102,19 @@ const UserAccountMenu = ({
           ]
         : [];
 
-      setAllLinks([...links, ...myIdentityDocuments].filter((link: UserLink) => !link.region || link.region.includes(region)));
+      const communicationLink = featureAvailability['communication']
+        ? [
+            {
+              app: 'communication',
+              key: 'myCommunications',
+              hash: '#/',
+              i18nKey: 'user_account_menu_my_communication',
+              trackingHit: tracking.accountContacts,
+            },
+          ]
+        : [];
+
+      setAllLinks([...links, ...myIdentityDocuments, ...communicationLink].filter((link: UserLink) => !link.region || link.region.includes(region)));
     };
 
     fetchData();
