@@ -15,5 +15,7 @@
     "messageRequired": "Le message est obligatoire."
   },
   "general-information": "Informations générales",
-  "help": "Aide"
+  "help": "Aide",
+  "type_billing": "Type de facturation",
+  "consumption_tooltip": "Le stockage supplémentaire n'est pas disponible en libre-service. Pour augmenter votre capacité de stockage, veuillez contacter le support."
 }

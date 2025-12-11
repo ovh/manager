@@ -1,6 +1,13 @@
 {
   "home": "Home",
-  "order": "Order",
-  "open": "Open dashboard",
-  "title": "List"
+  "order": "Order now",
+  "open": "Open the dashboard",
+  "title": "List",
+  "resource_name_label": "Name",
+  "location_label": "Price per month",
+  "region_label": "Region",
+  "buckets_label": "Number of buckets",
+  "status_label": "Status",
+  "order_vault": "Order a vault",
+  "more_action": "Additional action"
 }
