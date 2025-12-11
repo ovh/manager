@@ -164,7 +164,7 @@
   "hosting_tab_DOMAINS_configuration_remove_step1_www": "Usuń również nazwę domeny {{domain}}",
   "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Jeśli chcesz odłączyć swoją nazwę domeny, musisz najpierw usunąć swoją konfigurację Git, aby zapobiec ewentualnym problemom z śledzeniem zmian i zarządzaniem wdrożeniami.",
   "hosting_dashboard_ssl_delete_error": "Wystąpił błąd podczas usuwania certyfikatu SSL. {{error}}",
-  "hosting_tab_DOMAINS_configuration_remove_failure": "Wystąpił błąd podczas odłączania domeny od twojego hostingu współdzielonego.",
+  "hosting_tab_DOMAINS_configuration_remove_failure": "Wystąpił błąd podczas odłączania domeny od twojego hostingu współdzielonego. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_success": "Domena zostanie odłączona od twojego hostingu współdzielonego.",
   "activate_cdn": "Aktywuj CDN"
 }
