@@ -181,7 +181,7 @@ describe('Update Plan modal', () => {
     const errorMsg = {
       description: 'api error message',
       title: 'updatePlanToastErrorTitle',
-      variant: 'destructive',
+      variant: 'critical',
     };
     vi.mocked(serviceApi.editService).mockImplementationOnce(() => {
       throw apiErrorMock;

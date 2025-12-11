@@ -1,4 +1,4 @@
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import { useState } from 'react';
 import S3ObjectFileRenderer from './S3ObjectFileRenderer.component';
 import S3ObjectDropFileModal, {

@@ -59,5 +59,6 @@
   "available": "Disponível até",
   "restoreAvailableUntil": "O objeto ficará disponível até",
   "seeVersionsSwitchLabel": "Ver as versões",
-  "searchPlaceholder": "Procurar..."
+  "searchPlaceholder": "Procurar...",
+  "changeStorageClassWarningInfrequentAccess": "Atenção: As classes Infrequent Access e Cold Archive impõem uma duração mínima de conservação. <0>Saiba mais</0>"
 }

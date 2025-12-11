@@ -13,7 +13,7 @@ import {
   PopoverContent,
 } from '@datatr-ux/uxlib';
 import { Search, Folder } from 'lucide-react';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 
 interface SearchBarProps {
@@ -29,7 +29,7 @@ const SearchBar = ({
   onSearchChange,
   deferredSearchQuery,
   filteredObjects,
-  placeholder = 'Search...',
+  placeholder,
 }: SearchBarProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
@@ -52,6 +52,7 @@ const SearchBar = ({
                 value={searchQuery}
                 onValueChange={handleSearchChange}
                 placeholder={placeholder}
+                className="text-sm"
               />
               <Button className="rounded-l-none rounded-r-[5px] h-auto">
                 <Search />

@@ -95,21 +95,23 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
       return (
         <Alert data-testid="AlertNoNetwork" variant="warning">
           <NetworkIcon className="h-4 w-4" />
-          <AlertTitle>{t('noNetworkFoundTitle')}</AlertTitle>
-          <AlertDescription>
-            <Trans
-              t={t}
-              i18nKey={'noNetworkFoundDescription'}
-              components={{
-                anchor: (
-                  <OvhLink
-                    application="public-cloud"
-                    path={`#/pci/projects/${projectId}/private-networks/new`}
-                  ></OvhLink>
-                ),
-              }}
-            ></Trans>
-          </AlertDescription>
+          <div>
+            <AlertTitle>{t('noNetworkFoundTitle')}</AlertTitle>
+            <AlertDescription>
+              <Trans
+                t={t}
+                i18nKey={'noNetworkFoundDescription'}
+                components={{
+                  anchor: (
+                    <OvhLink
+                      application="public-cloud"
+                      path={`#/pci/projects/${projectId}/private-networks/new`}
+                    ></OvhLink>
+                  ),
+                }}
+              ></Trans>
+            </AlertDescription>
+          </div>
         </Alert>
       );
     };
@@ -148,21 +150,23 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
       return (
         <Alert variant="warning">
           <NetworkIcon className="h-4 w-4" />
-          <AlertTitle>{t('noNetworkFoundTitle')}</AlertTitle>
-          <AlertDescription>
-            <Trans
-              t={t}
-              i18nKey={'noNetworkFoundDescription'}
-              components={{
-                anchor: (
-                  <OvhLink
-                    application="public-cloud"
-                    path={`#/pci/projects/${projectId}/gateway/new`}
-                  ></OvhLink>
-                ),
-              }}
-            ></Trans>
-          </AlertDescription>
+          <div>
+            <AlertTitle>{t('noNetworkFoundTitle')}</AlertTitle>
+            <AlertDescription>
+              <Trans
+                t={t}
+                i18nKey={'noNetworkFoundDescription'}
+                components={{
+                  anchor: (
+                    <OvhLink
+                      application="public-cloud"
+                      path={`#/pci/projects/${projectId}/gateway/new`}
+                    ></OvhLink>
+                  ),
+                }}
+              ></Trans>
+            </AlertDescription>
+          </div>
         </Alert>
       );
     };

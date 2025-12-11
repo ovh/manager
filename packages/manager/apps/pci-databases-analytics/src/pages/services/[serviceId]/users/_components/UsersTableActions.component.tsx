@@ -98,7 +98,7 @@ const UserActions = ({
           {service.capabilities.users?.delete && (
             <DropdownMenuItem
               data-testid="user-action-delete-button"
-              variant="destructive"
+              variant="critical"
               disabled={
                 service.capabilities.users?.delete ===
                 database.service.capability.StateEnum.disabled

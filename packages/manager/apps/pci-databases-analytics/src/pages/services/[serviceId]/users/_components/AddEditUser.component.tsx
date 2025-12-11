@@ -17,6 +17,7 @@ import {
   FormLabel,
   FormMessage,
   useToast,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import {
   GenericUser,
@@ -71,7 +72,7 @@ const AddEditUserModal = ({
     onError: (err) => {
       toast.toast({
         title: t(`${prefix}UserToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -120,7 +121,7 @@ const AddEditUserModal = ({
 
   return (
     <RouteModal isLoading={!existingUsers}>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl" variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-edit-user-modal">
             {t(`${prefix}UserTitle`)}
@@ -129,42 +130,27 @@ const AddEditUserModal = ({
             <DialogDescription>{t('addUserDescription')}</DialogDescription>
           )}
         </DialogHeader>
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="flex flex-col gap-2">
-            {/* UserName */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('formUserFieldNameLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      data-testid="add-edit-username-input"
-                      placeholder="name"
-                      disabled={
-                        isPendingAddUser || isPendingEditUser || isEdition
-                      }
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {/* Group (m3db) */}
-            {'group' in schema.shape && (
+        <DialogBody>
+          <Form {...form}>
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col gap-2"
+              id="add-user-form"
+            >
+              {/* UserName */}
               <FormField
                 control={form.control}
-                name="group"
+                name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t('formUserFieldGroupLabel')}</FormLabel>
+                    <FormLabel>{t('formUserFieldNameLabel')}</FormLabel>
                     <FormControl>
                       <Input
-                        data-testid="add-edit-group-input"
-                        placeholder="group"
-                        disabled={isPendingAddUser || isPendingEditUser}
+                        data-testid="add-edit-username-input"
+                        placeholder="name"
+                        disabled={
+                          isPendingAddUser || isPendingEditUser || isEdition
+                        }
                         {...field}
                       />
                     </FormControl>
@@ -172,175 +158,201 @@ const AddEditUserModal = ({
                   </FormItem>
                 )}
               />
-            )}
-            {'roles' in schema.shape && (
-              <FormField
-                control={form.control}
-                name="roles"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('formUserFieldRolesLabel')}</FormLabel>
-                    <FormControl>
-                      <RolesSelect {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {'keys' in schema.shape && (
-              <FormField
-                control={form.control}
-                name="keys"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col items-start">
-                    <FormLabel className="text-left">
-                      {t('formUserFieldKeysLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <TagsInput
-                        {...field}
-                        data-testid="add-edit-keys-input"
-                        value={field.value}
-                        onChange={(newTags) => form.setValue('keys', newTags)}
-                        schema={
-                          'keys' in schema.shape &&
-                          (schema.shape.keys as z.ZodArray<z.ZodString, 'many'>)
-                            .element
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {'categories' in schema.shape && (
-              <FormField
-                control={form.control}
-                name="categories"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col items-start">
-                    <FormLabel className="text-left">
-                      {t('formUserFieldCategoriesLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <TagsInput
-                        {...field}
-                        value={field.value}
-                        onChange={(newTags) =>
-                          form.setValue('categories', newTags)
-                        }
-                        schema={
-                          'categories' in schema.shape &&
-                          (schema.shape.categories as z.ZodArray<
-                            z.ZodString,
-                            'many'
-                          >).element
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {'commands' in schema.shape && (
-              <FormField
-                control={form.control}
-                name="commands"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col items-start">
-                    <FormLabel className="text-left">
-                      {t('formUserFieldCommandsLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <TagsInput
-                        {...field}
-                        value={field.value}
-                        onChange={(newTags) =>
-                          form.setValue('commands', newTags)
-                        }
-                        schema={
-                          'commands' in schema.shape &&
-                          (schema.shape.commands as z.ZodArray<
-                            z.ZodString,
-                            'many'
-                          >).element
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {'channels' in schema.shape && (
-              <FormField
-                control={form.control}
-                name="channels"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col items-start">
-                    <FormLabel className="text-left">
-                      {t('formUserFieldChannelsLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <TagsInput
-                        {...field}
-                        value={field.value}
-                        onChange={(newTags) =>
-                          form.setValue('channels', newTags)
-                        }
-                        schema={
-                          'channels' in schema.shape &&
-                          (schema.shape.channels as z.ZodArray<
-                            z.ZodString,
-                            'many'
-                          >).element
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {'acls' in schema.shape && (
-              <FormField
-                control={form.control}
-                name="acls"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('formUserFieldAclsLabel')}</FormLabel>
-                    <FormControl>
-                      <AclsSelect {...field} value={field.value as UserAcl[]} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button
-                  type="button"
-                  mode="outline"
-                  data-testid="add-edit-user-cancel-button"
-                >
-                  {t('formUserButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                disabled={isPendingAddUser || isPendingEditUser}
-                data-testid="add-edit-user-submit-button"
-              >
-                {t(`${prefix}UserButtonConfirm`)}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+              {/* Group (m3db) */}
+              {'group' in schema.shape && (
+                <FormField
+                  control={form.control}
+                  name="group"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('formUserFieldGroupLabel')}</FormLabel>
+                      <FormControl>
+                        <Input
+                          data-testid="add-edit-group-input"
+                          placeholder="group"
+                          disabled={isPendingAddUser || isPendingEditUser}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {'roles' in schema.shape && (
+                <FormField
+                  control={form.control}
+                  name="roles"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('formUserFieldRolesLabel')}</FormLabel>
+                      <FormControl>
+                        <RolesSelect {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {'keys' in schema.shape && (
+                <FormField
+                  control={form.control}
+                  name="keys"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col items-start">
+                      <FormLabel className="text-left">
+                        {t('formUserFieldKeysLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <TagsInput
+                          {...field}
+                          data-testid="add-edit-keys-input"
+                          value={field.value}
+                          onChange={(newTags) => form.setValue('keys', newTags)}
+                          schema={
+                            'keys' in schema.shape &&
+                            (schema.shape.keys as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {'categories' in schema.shape && (
+                <FormField
+                  control={form.control}
+                  name="categories"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col items-start">
+                      <FormLabel className="text-left">
+                        {t('formUserFieldCategoriesLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <TagsInput
+                          {...field}
+                          value={field.value}
+                          onChange={(newTags) =>
+                            form.setValue('categories', newTags)
+                          }
+                          schema={
+                            'categories' in schema.shape &&
+                            (schema.shape.categories as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {'commands' in schema.shape && (
+                <FormField
+                  control={form.control}
+                  name="commands"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col items-start">
+                      <FormLabel className="text-left">
+                        {t('formUserFieldCommandsLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <TagsInput
+                          {...field}
+                          value={field.value}
+                          onChange={(newTags) =>
+                            form.setValue('commands', newTags)
+                          }
+                          schema={
+                            'commands' in schema.shape &&
+                            (schema.shape.commands as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {'channels' in schema.shape && (
+                <FormField
+                  control={form.control}
+                  name="channels"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col items-start">
+                      <FormLabel className="text-left">
+                        {t('formUserFieldChannelsLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <TagsInput
+                          {...field}
+                          value={field.value}
+                          onChange={(newTags) =>
+                            form.setValue('channels', newTags)
+                          }
+                          schema={
+                            'channels' in schema.shape &&
+                            (schema.shape.channels as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              {'acls' in schema.shape && (
+                <FormField
+                  control={form.control}
+                  name="acls"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('formUserFieldAclsLabel')}</FormLabel>
+                      <FormControl>
+                        <AclsSelect
+                          {...field}
+                          value={field.value as UserAcl[]}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter className="flex justify-end">
+          <DialogClose asChild>
+            <Button
+              type="button"
+              mode="ghost"
+              data-testid="add-edit-user-cancel-button"
+            >
+              {t('formUserButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            type="submit"
+            form="add-user-form"
+            disabled={isPendingAddUser || isPendingEditUser}
+            data-testid="add-edit-user-submit-button"
+          >
+            {t(`${prefix}UserButtonConfirm`)}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

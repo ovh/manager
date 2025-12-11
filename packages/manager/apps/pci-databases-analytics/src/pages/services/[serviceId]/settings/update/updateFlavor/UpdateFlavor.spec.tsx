@@ -170,7 +170,7 @@ describe('Update Flavor modal', () => {
     const errorMsg = {
       description: 'api error message',
       title: 'updateFlavorToastErrorTitle',
-      variant: 'destructive',
+      variant: 'critical',
     };
     vi.mocked(serviceApi.editService).mockImplementationOnce(() => {
       throw apiErrorMock;

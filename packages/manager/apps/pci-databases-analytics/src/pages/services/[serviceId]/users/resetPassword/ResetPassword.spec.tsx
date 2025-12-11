@@ -125,7 +125,7 @@ describe('Reset user password modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'resetUserPasswordToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

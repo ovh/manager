@@ -91,7 +91,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
 
     return (
       <>
-        <Alert variant="primary">
+        <Alert variant="information" className="rounded-md">
           <InfoIcon className="h-6 w-6" />
           <AlertDescription>
             <p>{t('formUserAclPatternAlertInfo')}</p>
@@ -150,7 +150,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
           />
           <Button
             ref={addAclBtnRef}
-            mode={'ghost'}
+            mode="ghost"
             type="button"
             onClick={form.handleSubmit(handleAddAcl)}
             data-testid="acl-select-submit-button"
@@ -172,7 +172,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
         <div>
           <label>{t('formUserAclConfiguredAcls')}</label>
           <ScrollArea className="h-40 rounded-md border">
-            <ul ref={scrollListRef}>
+            <ul className="px-2" ref={scrollListRef}>
               {value.map((acl, index) => (
                 <li
                   key={`${acl.pattern}${acl.permission}`}
@@ -180,8 +180,9 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
                   data-testid="acl-select-list-acl-item"
                 >
                   <Button
-                    className="text-destructive rounded-full p-2 ml-2 hover:text-destructive h-8 w-8"
-                    mode={'ghost'}
+                    className="rounded-full p-2 ml-2 h-8 w-8"
+                    mode="ghost"
+                    variant="critical"
                     type="button"
                     onClick={() => handleRemoveAcl(index)}
                   >

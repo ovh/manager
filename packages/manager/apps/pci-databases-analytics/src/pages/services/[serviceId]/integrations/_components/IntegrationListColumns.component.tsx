@@ -93,7 +93,7 @@ export const getColumns = ({
                 {service.capabilities.integrations?.delete && (
                   <DropdownMenuItem
                     data-testid="integrations-action-delete-button"
-                    variant="destructive"
+                    variant="critical"
                     disabled={
                       service.capabilities.integrations?.delete ===
                       database.service.capability.StateEnum.disabled

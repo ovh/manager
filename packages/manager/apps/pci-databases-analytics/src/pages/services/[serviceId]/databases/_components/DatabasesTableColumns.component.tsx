@@ -60,7 +60,7 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
                         data-testid="databases-action-delete-button"
-                        variant="destructive"
+                        variant="critical"
                         disabled={
                           row.original.default ||
                           service.capabilities.databases?.delete ===

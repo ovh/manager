@@ -8,6 +8,16 @@ import InformationsDetails from './_components/InformationsDetails.component';
 import Guides from '@/components/guides/Guides.component';
 import BillingSupport from '@/components/biling-support/BillingSupport.component';
 import Configuration from './_components/Configuration.component';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="dashboardTab"
+      namespace="pci-object-storage/storages/header-tabs"
+    />
+  );
+}
 
 const Dashboard = () => {
   const { swift } = useSwiftData();

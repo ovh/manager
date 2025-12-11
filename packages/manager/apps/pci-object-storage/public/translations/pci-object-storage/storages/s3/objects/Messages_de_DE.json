@@ -59,5 +59,6 @@
   "available": "Verfügbar bis",
   "restoreAvailableUntil": "Das Objekt ist verfügbar bis",
   "seeVersionsSwitchLabel": "Versionen anzeigen",
-  "searchPlaceholder": "Suchen…"
+  "searchPlaceholder": "Suchen...",
+  "changeStorageClassWarningInfrequentAccess": "Achtung: Die Klassen Infrequent Access und Cold Archive erfordern eine Mindestaufbewahrungsdauer. <0>Mehr erfahren</0>"
 }

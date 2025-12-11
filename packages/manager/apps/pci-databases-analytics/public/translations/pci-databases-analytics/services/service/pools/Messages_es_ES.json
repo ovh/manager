@@ -52,5 +52,6 @@
   "infoConnectionPoolUriLabel": "Servicio URI",
   "infoConnectionPoolUriToast": "Se ha copiado el URI en el portapapeles.",
   "infoConnectionPoolModeLabel": "Modo",
-  "infoConnectionPoolSizeLabel": "Tamaño"
+  "infoConnectionPoolSizeLabel": "Tamaño",
+  "infoConnectionPoolButtonClose": "Cerrar"
 }

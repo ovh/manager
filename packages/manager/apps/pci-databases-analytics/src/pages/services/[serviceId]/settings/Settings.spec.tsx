@@ -151,7 +151,7 @@ describe('Settings page', () => {
         screen.getByText(mockedMaintenance.description),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(mockedServiceOrig.description),
+        screen.getByTestId('service-configuration-table'),
       ).toBeInTheDocument();
     });
   });

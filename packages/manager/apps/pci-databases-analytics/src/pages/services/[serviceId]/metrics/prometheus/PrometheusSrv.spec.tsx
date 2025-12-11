@@ -18,11 +18,11 @@ describe('PrometheusSrv', () => {
     render(<PrometheusSrv prometheusData={mockPrometheusData} />);
 
     // Verify username row
-    expect(screen.getByText('usernameLabel')).toBeInTheDocument();
+    expect(screen.getByText('username')).toBeInTheDocument();
     expect(screen.getByText('srv-user')).toBeInTheDocument();
 
     // Verify srvDomain row
-    expect(screen.getByText('srvDomainLabel')).toBeInTheDocument();
+    expect(screen.getByText('srvDomain')).toBeInTheDocument();
     expect(screen.getByText('srv.example.com')).toBeInTheDocument();
   });
 

@@ -16,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
   useToast,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
@@ -42,7 +43,7 @@ const RenameService = ({ service, onError, onSuccess }: RenameServiceProps) => {
     onError: (err) => {
       toast.toast({
         title: t('renameServiceToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
       if (onError) {
@@ -76,56 +77,63 @@ const RenameService = ({ service, onError, onSuccess }: RenameServiceProps) => {
 
   return (
     <RouteModal isLoading={!service?.id}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="rename-service-modal">
             {t('renameServiceTitle')}
           </DialogTitle>
           <DialogDescription>{t('renameServiceDescription')}</DialogDescription>
         </DialogHeader>
+        <DialogBody>
+          <Form {...form}>
+            <form
+              onSubmit={onSubmit}
+              className="grid gap-4"
+              id="rename-service-form"
+            >
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('renameServiceNameInputLabel')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        data-testid="rename-service-input"
+                        placeholder="name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </DialogBody>
 
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="grid gap-4">
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('renameServiceNameInputLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      data-testid="rename-service-input"
-                      placeholder="name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button
-                  data-testid="rename-service-cancel-button"
-                  type="button"
-                  mode="outline"
-                  onClick={() =>
-                    track(TRACKING.renameService.cancel(service.engine))
-                  }
-                >
-                  {t('renameServiceButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                data-testid="rename-service-submit-button"
-                type="submit"
-                disabled={isPending}
-              >
-                {t('renameServiceNameSubmit')}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              data-testid="rename-service-cancel-button"
+              type="button"
+              mode="outline"
+              onClick={() =>
+                track(TRACKING.renameService.cancel(service.engine))
+              }
+            >
+              {t('renameServiceButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            data-testid="rename-service-submit-button"
+            type="submit"
+            disabled={isPending}
+            form="rename-service-form"
+          >
+            {t('renameServiceNameSubmit')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

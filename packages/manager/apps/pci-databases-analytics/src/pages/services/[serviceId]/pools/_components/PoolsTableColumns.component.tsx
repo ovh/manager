@@ -133,7 +133,7 @@ export const getColumns = ({
                       {service.capabilities.connectionPools?.delete && (
                         <DropdownMenuItem
                           data-testid="pools-action-delete-button"
-                          variant="destructive"
+                          variant="critical"
                           disabled={
                             service.capabilities.connectionPools?.delete ===
                             database.service.capability.StateEnum.disabled

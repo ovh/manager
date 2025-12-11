@@ -69,7 +69,7 @@ export const getPatternsColumns = ({
                       {service.capabilities.patterns?.delete && (
                         <DropdownMenuItem
                           data-testid="patterns-action-delete-button"
-                          variant="destructive"
+                          variant="critical"
                           disabled={
                             service.capabilities.patterns?.delete ===
                             database.service.capability.StateEnum.disabled

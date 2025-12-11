@@ -1,5 +1,5 @@
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
-import { StorageClassEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
+import { StorageClassEnum } from '@datatr-ux/ovhcloud-types/cloud/storage';
 
 function randomFolderName() {
   return Math.random()

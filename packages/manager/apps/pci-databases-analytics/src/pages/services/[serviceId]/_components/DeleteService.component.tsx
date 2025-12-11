@@ -14,6 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
   Label,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useDeleteService } from '@/hooks/api/database/service/useDeleteService.hook';
@@ -84,7 +85,7 @@ const DeleteService = ({
       );
       toast.toast({
         title: t('deleteServiceToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
       if (onError) {
@@ -120,34 +121,36 @@ const DeleteService = ({
 
   return (
     <RouteModal isLoading={!service?.id || !integratedServices}>
-      <DialogContent className="p-0">
-        <DialogHeader className="bg-warning-100 p-6 rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent variant="warning">
+        <DialogHeader>
           <DialogTitle data-testid="delete-service-modal">
             {t('deleteServiceTitle')}
           </DialogTitle>
         </DialogHeader>
-        <div className="p-6 pt-0">
+        <DialogBody>
           {integratedServices?.length > 0 && (
-            <Alert variant="primary">
-              <AlertDescription className="mt-2 text-base">
-                <div className="flex flex-row gap-5 items-center text-foreground">
-                  <AlertTriangle className="h-6 w-6" />
-                  <div>
-                    {integratedServices.length === 1 ? (
-                      <p>{t('deleteServiceIntegrationDescription')}</p>
-                    ) : (
-                      <p>{t('deleteServiceIntegrationsDescription')}</p>
-                    )}
-                    <ul className="list-disc pl-5 text-sm">
-                      {integratedServices.map((integratedService) => (
-                        <li className="ml-3" key={integratedService.id}>
-                          {integratedService.description}
-                        </li>
-                      ))}
-                    </ul>
+            <Alert variant="information">
+              <div>
+                <AlertDescription className="text-base">
+                  <div className="flex flex-row items-center gap-4">
+                    <AlertTriangle className="h-4 w-4" />
+                    <p>
+                      {t(
+                        integratedServices.length === 1
+                          ? 'deleteServiceIntegrationDescription'
+                          : 'deleteServiceIntegrationsDescription',
+                      )}
+                    </p>
                   </div>
-                </div>
-              </AlertDescription>
+                  <ul className="list-disc pl-5 text-sm">
+                    {integratedServices.map((integratedService) => (
+                      <li className="ml-3" key={integratedService.id}>
+                        {integratedService.description}
+                      </li>
+                    ))}
+                  </ul>
+                </AlertDescription>
+              </div>
             </Alert>
           )}
           <p className="mt-2">
@@ -169,13 +172,13 @@ const DeleteService = ({
               }}
             />
           </div>
-        </div>
-        <DialogFooter className="flex justify-end p-6 pt-0">
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-service-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
               onClick={() =>
                 track(
                   TRACKING.deleteService.cancel(

@@ -16,7 +16,7 @@ interface ReplicationListProps {
 export default function ReplicationList({
   replicationRules,
 }: Readonly<ReplicationListProps>) {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
   const navigate = useNavigate();
   const { s3 } = useS3Data();
 

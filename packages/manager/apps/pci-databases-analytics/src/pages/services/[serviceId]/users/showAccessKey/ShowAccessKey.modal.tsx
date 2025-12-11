@@ -7,21 +7,16 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  useToast,
-  Code,
-  githubDark,
-  ScrollArea,
+  Clipboard,
+  DialogBody,
 } from '@datatr-ux/uxlib';
-import { Download } from 'lucide-react';
 import { useServiceData } from '../../Service.context';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useGetUserAccess } from '@/hooks/api/database/user/useGetUserAccess.hook';
-import useDownload from '@/hooks/useDownload';
 
 const ShowAccessKey = () => {
   const { userId } = useParams();
   const { projectId, service } = useServiceData();
-  const { download } = useDownload();
   const useGetUserAccessQuery = useGetUserAccess(
     projectId,
     service.engine,
@@ -36,55 +31,30 @@ const ShowAccessKey = () => {
     'pci-databases-analytics/services/service/users',
   );
 
-  const toast = useToast();
-
+  console.log('OKOKOK');
   return (
     <RouteModal isLoading={!useGetUserAccessQuery.isSuccess}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="show-access-modal">
             {t('showAccessKeyTitle')}
           </DialogTitle>
         </DialogHeader>
-        <ScrollArea className="h-auto max-h-64">
-          <div className="p-2 max-w-lg">
-            {useGetUserAccessQuery.data && (
-              <Code
-                code={useGetUserAccessQuery.data.key}
-                label={
-                  <div className="flex flex-row items-center justify-between w-full mr-2">
-                    <div>
-                      <span>{t('showAccessKeyTitle')}</span>
-                    </div>
-                    <Button
-                      size="xs"
-                      variant="neutral"
-                      className="bg-neutral-700 hover:bg-neutral-800"
-                      data-testid="show-access-key-dowload-button"
-                      onClick={() => {
-                        download(useGetUserAccessQuery.data.key, 'service.key');
-                      }}
-                    >
-                      <Download className="size-4 mr-1" />
-                      {t('downloadButton')}
-                    </Button>
-                  </div>
-                }
-                theme={githubDark}
-                onCopied={() =>
-                  toast.toast({
-                    title: t('showAccessKeyCopy'),
-                  })
-                }
-              />
-            )}
-          </div>
-        </ScrollArea>
+        <DialogBody>
+          {useGetUserAccessQuery.data && (
+            <Clipboard
+              data-testid="show-access-key-clipboard"
+              value={`${useGetUserAccessQuery.data.key}`}
+              showDownloadButton
+            />
+          )}
+        </DialogBody>
+
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
             <Button
               type="button"
-              mode="outline"
+              mode="ghost"
               data-testid="show-access-key-close-button"
             >
               {t('userButtonClose')}

@@ -2,7 +2,7 @@ import {
   StorageContainer,
   StorageObject,
   StorageContainerUpdate,
-} from '@datatr-ux/ovhcloud-types/cloud/index';
+} from '@datatr-ux/ovhcloud-types/cloud';
 import { PCIData } from '..';
 import { apiClient } from '../api.client';
 import storages from '@/types/Storages';

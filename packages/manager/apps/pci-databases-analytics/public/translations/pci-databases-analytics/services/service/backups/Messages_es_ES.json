@@ -32,5 +32,6 @@
   "inputSourceBackupPlaceholder": "Seleccione un backup",
   "inputSourcePITLabel": "Timestamp",
   "inputSourcePITPlaceholder": "Seleccione una fecha y una hora",
-  "restoreButtonValidate": "Restaurar"
+  "restoreButtonValidate": "Restaurar",
+  "restoreButtonCancel": "Cancelar"
 }

@@ -43,29 +43,34 @@ const TopicAcls = () => {
   return (
     <>
       <h2>{t('title')}</h2>
-      {service.capabilities.topicAcl?.create && (
-        <Button
-          mode={'outline'}
-          size="sm"
-          className="text-base"
-          data-testid="add-button"
-          disabled={
-            service.capabilities.topicAcl?.create ===
-            database.service.capability.StateEnum.disabled
-          }
-          onClick={() => navigate('./add')}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          {t('addButtonLabel')}
-        </Button>
-      )}
-
       {topicAclsQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
           data={topicAclsQuery.data}
           pageSize={10}
-        />
+        >
+          <DataTable.Header>
+            {service.capabilities.topicAcl?.create && (
+              <DataTable.Action>
+                <Button
+                  mode="outline"
+                  className="text-base"
+                  data-testid="add-button"
+                  disabled={
+                    service.capabilities.topicAcl?.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  onClick={() => navigate('./add')}
+                >
+                  <Plus className="w-4 h-4" />
+                  {t('addButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

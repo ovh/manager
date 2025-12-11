@@ -134,7 +134,7 @@ describe('ServiceNameWithUpdate', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'renameServiceToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

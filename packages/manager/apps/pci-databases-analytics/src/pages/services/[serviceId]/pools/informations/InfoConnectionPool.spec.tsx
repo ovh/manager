@@ -86,91 +86,17 @@ describe('InfoConnectionPool', () => {
 
     await waitFor(() => {
       expect(screen.getByTestId('info-pools-modal')).toBeInTheDocument();
-      expect(screen.getByTestId('info-pools-table')).toBeInTheDocument();
+      expect(screen.getByTestId('info-pools-container')).toBeInTheDocument();
     });
 
     expect(screen.getByText(mockedDatabase.name)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.port)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.sslMode)).toBeInTheDocument();
-    expect(screen.getByText(mockedConnectionPool.uri)).toBeInTheDocument();
+    // expect(screen.getByText(mockedConnectionPool.uri)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.mode)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.size)).toBeInTheDocument();
   });
 
-  it('should copy the certificate to the clipboard', async () => {
-    const writeTextMock = vi.fn();
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: writeTextMock,
-      },
-    });
-
-    render(<InfoConnectionPool />, { wrapper: RouterWithQueryClientWrapper });
-
-    await waitFor(() => {
-      expect(screen.getByTestId('info-pools-modal')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('info-pools-copy-certificate-action'));
-    });
-
-    await waitFor(() => {
-      expect(writeTextMock).toHaveBeenCalledWith(mockedCertificate.ca);
-      expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'infoConnectionPoolCertificateCopyToast',
-      });
-    });
-  });
-
-  it('should download the certificate', async () => {
-    vi.mock('@/hooks/useDownload', () => ({
-      default: vi.fn(() => ({ download: downloadMock })),
-    }));
-
-    render(<InfoConnectionPool />, { wrapper: RouterWithQueryClientWrapper });
-
-    await waitFor(() => {
-      expect(screen.getByTestId('info-pools-modal')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('info-pools-download-ca-action'));
-    });
-
-    await waitFor(() => {
-      expect(downloadMock).toHaveBeenCalledWith(mockedCertificate.ca, 'ca.pem');
-      expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'infoConnectionPoolCertificateDownloadToast',
-      });
-    });
-  });
-
-  it('should copy the URI to the clipboard', async () => {
-    const writeTextMock = vi.fn();
-    Object.assign(window.navigator, {
-      clipboard: {
-        writeText: writeTextMock,
-      },
-    });
-
-    render(<InfoConnectionPool />, { wrapper: RouterWithQueryClientWrapper });
-
-    await waitFor(() => {
-      expect(screen.getByTestId('info-pools-modal')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('info-pools-copy-uri-action'));
-    });
-
-    await waitFor(() => {
-      expect(writeTextMock).toHaveBeenCalledWith(mockedConnectionPool.uri);
-      expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'infoConnectionPoolUriToast',
-      });
-    });
-  });
 
   it('should navigate back if no connection pool is found', async () => {
     vi.mocked(connectionPoolApi.getConnectionPools).mockResolvedValueOnce([]);

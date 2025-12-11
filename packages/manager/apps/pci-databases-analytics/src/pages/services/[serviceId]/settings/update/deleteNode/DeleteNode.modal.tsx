@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -34,7 +35,7 @@ const DeleteNode = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteNodeToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -73,45 +74,52 @@ const DeleteNode = () => {
 
   return (
     <RouteModal isLoading={!price}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="delete-node-modal">
             {t('deleteNodeTitle')}
           </DialogTitle>
         </DialogHeader>
-        <Label>{t('priceUnitSwitchLabel')}</Label>
-        <PriceUnitSwitch showMonthly={showMonthly} onChange={setShowMonthly} />
-        <p>
-          {price && (
-            <Trans
-              t={t}
-              i18nKey={'deleteNodeDescription'}
-              values={{
-                nbNodes: service.nodes.length,
-                unit: showMonthly
-                  ? t('deleteNodeDescriptionUnitMonth')
-                  : t('deleteNodeDescriptionUnitHour'),
-              }}
-              components={{
-                price: (
-                  <Price
-                    priceInUcents={
-                      price[showMonthly ? 'monthly' : 'hourly'].price
-                    }
-                    taxInUcents={price[showMonthly ? 'monthly' : 'hourly'].tax}
-                    decimals={showMonthly ? 2 : 3}
-                  />
-                ),
-              }}
-            ></Trans>
-          )}
-        </p>
-        <DialogFooter className="flex justify-end">
+        <DialogBody>
+          <Label>{t('priceUnitSwitchLabel')}</Label>
+          <PriceUnitSwitch
+            showMonthly={showMonthly}
+            onChange={setShowMonthly}
+          />
+          <p>
+            {price && (
+              <Trans
+                t={t}
+                i18nKey={'deleteNodeDescription'}
+                values={{
+                  nbNodes: service.nodes.length,
+                  unit: showMonthly
+                    ? t('deleteNodeDescriptionUnitMonth')
+                    : t('deleteNodeDescriptionUnitHour'),
+                }}
+                components={{
+                  price: (
+                    <Price
+                      priceInUcents={
+                        price[showMonthly ? 'monthly' : 'hourly'].price
+                      }
+                      taxInUcents={
+                        price[showMonthly ? 'monthly' : 'hourly'].tax
+                      }
+                      decimals={showMonthly ? 2 : 3}
+                    />
+                  ),
+                }}
+              ></Trans>
+            )}
+          </p>
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-node-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteNodeCancelButton')}
             </Button>

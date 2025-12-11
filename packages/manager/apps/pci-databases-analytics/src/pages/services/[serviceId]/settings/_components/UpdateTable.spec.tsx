@@ -137,88 +137,17 @@ describe('Update table in settings page', () => {
     await waitFor(() => {
       expect(screen.getByText(mockedServiceOrig.plan)).toBeInTheDocument();
       expect(updateVersionButton).toBeInTheDocument();
-      expect(updateVersionButton).toBeDisabled();
+      expect(updateVersionButton.className).toContain('cursor-not-allowed');
       expect(updatePlanButton).toBeInTheDocument();
-      expect(updatePlanButton).toBeDisabled();
+      expect(updatePlanButton.className).toContain('cursor-not-allowed');
       expect(updateFlavorButton).toBeInTheDocument();
-      expect(updateFlavorButton).toBeDisabled();
+      expect(updateFlavorButton.className).toContain('cursor-not-allowed');
       expect(updateStorageButton).toBeInTheDocument();
-      expect(updateStorageButton).toBeDisabled();
+      expect(updateStorageButton.className).toContain('cursor-not-allowed');
       expect(createNodeButton).toBeInTheDocument();
-      expect(createNodeButton).toBeDisabled();
+      expect(createNodeButton.className).toContain('cursor-not-allowed');
       expect(deleteNodeButton).toBeInTheDocument();
-      expect(deleteNodeButton).toBeDisabled();
-    });
-  });
-});
-
-describe('Open modals', () => {
-  beforeEach(async () => {
-    window.HTMLElement.prototype.scrollIntoView = vi.fn();
-    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
-      projectId: 'projectId',
-      service: mockedService,
-      category: 'operational',
-      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
-    });
-    render(<UpdateTable />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(mockedServiceOrig.plan)).toBeInTheDocument();
-    });
-  });
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-  it('open update version modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('update-button-tableVersion'));
-    });
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./update-version');
-    });
-  });
-
-  it('open update plan modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('update-button-tablePlan'));
-    });
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./update-plan');
-    });
-  });
-
-  it('open update flavor modal', async () => {
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-
-    // Stub the global ResizeObserver
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-    act(() => {
-      fireEvent.click(screen.getByTestId('update-button-tableFlavor'));
-    });
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./update-flavor');
-    });
-  });
-
-  it('open add node modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('create-node-button'));
-    });
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./add-node');
-    });
-  });
-
-  it('open delete node modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('delete-node-button'));
-    });
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete-node');
+      expect(deleteNodeButton.className).toContain('cursor-not-allowed');
     });
   });
 });

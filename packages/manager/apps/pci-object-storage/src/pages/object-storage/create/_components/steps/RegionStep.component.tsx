@@ -15,7 +15,7 @@ import {
   Checkbox,
   Label,
 } from '@datatr-ux/uxlib';
-import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import {
   DeploymentModeSelection,

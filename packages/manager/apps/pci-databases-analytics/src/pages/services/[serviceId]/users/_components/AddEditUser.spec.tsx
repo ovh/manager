@@ -394,7 +394,7 @@ describe('AddEdit user form', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'addUserToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

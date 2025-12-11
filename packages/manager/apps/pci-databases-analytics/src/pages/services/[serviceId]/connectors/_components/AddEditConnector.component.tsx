@@ -86,7 +86,7 @@ const AddEditConnector = ({ connectorToEdit }: IAddEditConnectorProps) => {
         : null;
       toast.toast({
         title: t(`${prefix}ConnectorToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: details,
       });
     },
@@ -228,7 +228,7 @@ const AddEditConnector = ({ connectorToEdit }: IAddEditConnectorProps) => {
           />
         </li>
       </ul>
-      <Card>
+      <Card className="w-full">
         <CardContent className="py-2 my-0">
           <Form {...form}>
             <form onSubmit={onSubmit} className="grid gap-4 mb-2">

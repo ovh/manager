@@ -73,14 +73,14 @@ export function DatatableFiltersList() {
   return (
     <div className="flex flex-wrap gap-2 mt-2">
       {columnFilters.filters?.map((filter, key) => (
-        <Badge variant="primary" className="py-0.5" key={key}>
+        <Badge variant="information" className="py-0.5" key={key}>
           <span>{getFilterContent(filter)}</span>
           <Button
             mode="ghost"
             className="ml-2 p-0 size-4"
             onClick={() => columnFilters.removeFilter(filter)}
           >
-            <X className="size-4 text-white hover:text-primary" />
+            <X className="size-4 hover:text-primary" />
           </Button>
         </Badge>
       ))}

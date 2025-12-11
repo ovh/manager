@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Region } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region } from '@datatr-ux/ovhcloud-types/cloud';
 import { Clipboard, useToast } from '@datatr-ux/uxlib';
 import storages from '@/types/Storages';
 import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';

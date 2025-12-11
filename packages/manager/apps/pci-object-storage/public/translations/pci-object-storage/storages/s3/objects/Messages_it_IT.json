@@ -59,5 +59,6 @@
   "available": "Disponibile fino al",
   "restoreAvailableUntil": "L'oggetto sarà disponibile fino al",
   "seeVersionsSwitchLabel": "Visualizzare le versioni",
-  "searchPlaceholder": "Ricerca..."
+  "searchPlaceholder": "Ricerca...",
+  "changeStorageClassWarningInfrequentAccess": "Attenzione: Le classi Infrequent Access e Cold Archive impongono una durata minima di conservazione. <0>Scopri di pi</0>"
 }

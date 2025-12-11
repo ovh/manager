@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import {
+  Alert,
+  AlertDescription,
   Combobox,
   ComboboxContent,
   ComboboxEmpty,
@@ -13,6 +15,7 @@ import {
   FieldLabel,
   Skeleton,
 } from '@datatr-ux/uxlib';
+import { AlertTriangle } from 'lucide-react';
 import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
 import { FormField } from '@/components/form-field/FormField.component';
 import Flag from '@/components/flag/Flag.component';
@@ -20,8 +23,12 @@ import { useReplicationFormContext } from './ReplicationForm.context';
 import { useGetAvailableDestinationsContainers } from './useGetDestinationContainers';
 
 export const ReplicationRuleDestination = () => {
-  const { form, isPending } = useReplicationFormContext();
-  const { t } = useTranslation('pci-object-storage/replication');
+  const {
+    form,
+    isPending,
+    replicationWarningMessage,
+  } = useReplicationFormContext();
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
 
   const {
     availableDestinations,
@@ -110,6 +117,15 @@ export const ReplicationRuleDestination = () => {
             </Combobox>
 
             <FieldDescription>{t('destinationDescription')}</FieldDescription>
+
+            {replicationWarningMessage && (
+              <Alert variant="warning">
+                <AlertDescription className="flex gap-2 items-center">
+                  <AlertTriangle className="size-4" />
+                  {t(replicationWarningMessage)}
+                </AlertDescription>
+              </Alert>
+            )}
           </>
         )}
       </FormField>

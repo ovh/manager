@@ -261,7 +261,7 @@ describe('Fork funnel page', () => {
     const errorMsg = {
       description: 'api error message',
       title: 'errorCreatingService',
-      variant: 'destructive',
+      variant: 'critical',
     };
     vi.mocked(ServiceAPI.addService).mockImplementationOnce(() => {
       throw apiErrorMock;

@@ -12,7 +12,7 @@
   "labelLocation": "Lokalizacja",
   "labelContainerType": "Typ kontenera",
   "labelOffsiteReplication": "Offsite Replication",
-  "descriptionOffsiteReplication": "Automatyczne replikowanie danych na zdalnej stronie w klasie przechowywania Infrequent Access. &lt;0>Dowiedz się więcej&lt;/0>",
+  "descriptionOffsiteReplication": "Automatyczne replikowanie danych na zdalnej stronie w klasie przechowywania Infrequent Access. <0>Dowiedz się więcej</0>",
   "labelVersioning": "Zarządzanie wersjami",
   "descriptionVersioning": "Automatyzacja tworzenia wersji obiektu zabezpiecza przed przypadkowym usunięciem istniejącego obiektu, ale także uruchamia się za każdym razem, gdy dodawany jest nowy obiekt. ",
   "labelUser": "Użytkownik",

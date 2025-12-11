@@ -77,7 +77,7 @@ export const getColumns = ({
       return (
         <div className="flex flex-col gap-1">
           {roles.map((role) => (
-            <Badge variant="primary" key={role} className="text-xs w-fit">
+            <Badge variant="information" key={role} className="text-xs w-fit">
               {role}
             </Badge>
           ))}

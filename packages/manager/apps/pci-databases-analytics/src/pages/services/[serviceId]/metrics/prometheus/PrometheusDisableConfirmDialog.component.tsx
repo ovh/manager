@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from '@datatr-ux/uxlib';
 
 interface PrometheusDisableConfirmDialogProps {
@@ -22,30 +21,36 @@ const PrometheusDisableConfirmDialog = ({
     'pci-databases-analytics/services/service/metrics/prometheus',
   );
   return (
-    <AlertDialog open>
-      <AlertDialogContent data-testid="prometheus-disable-confirm-dialog">
-        <AlertDialogHeader>
-          <AlertDialogTitle>{t('confirmDisableDialogTitle')}</AlertDialogTitle>
-          <AlertDialogDescription>
+    <Dialog open>
+      <DialogContent
+        variant="warning"
+        data-testid="prometheus-disable-confirm-dialog"
+      >
+        <DialogHeader>
+          <DialogTitle>{t('confirmDisableDialogTitle')}</DialogTitle>
+          <DialogDescription>
             {t('confirmDisableDialogDescription')}
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button
             onClick={onCancel}
+            type="button"
+            mode="ghost"
             data-testid="prometheus-disable-confirm-dialog-cancel-button"
           >
             {t('confirmDisableDialogCancel')}
-          </AlertDialogCancel>
-          <AlertDialogAction
+          </Button>
+          <Button
+            type="button"
             onClick={onConfirm}
             data-testid="prometheus-disable-confirm-dialog-confirm-button"
           >
             {t('confirmDisableDialogConfirm')}
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

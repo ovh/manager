@@ -21,7 +21,7 @@ export function ActionsMenu({
   onEdit,
   onDelete,
 }: Readonly<ActionsMenuProps>) {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
 
   return (
     <DropdownMenu>

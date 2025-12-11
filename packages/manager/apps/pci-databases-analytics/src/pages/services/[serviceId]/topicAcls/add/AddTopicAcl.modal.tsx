@@ -24,6 +24,7 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
@@ -44,7 +45,7 @@ const AddTopicAcl = () => {
     onError: (err) => {
       toast.toast({
         title: t('addTopicAclToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -98,93 +99,102 @@ const AddTopicAcl = () => {
 
   return (
     <RouteModal isLoading={!service}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-topic-acl-modal">
             {t('addTopicAclTitle')}
           </DialogTitle>
           <DialogDescription>{t('addTopicAclDescription')}</DialogDescription>
         </DialogHeader>
-
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="grid gap-4">
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('addTopicAclUsernameLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      data-testid="add-topic-acl-username-input"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="topic"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('addTopicAclTopicLabel')}</FormLabel>
-                  <FormControl>
-                    <Input {...field} data-testid="add-topic-acl-topic-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="permission"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('addTopicAclPermissionLabel')}</FormLabel>
-                  <FormControl>
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                      data-testid="add-topic-acl-permission-input"
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {PERMISSIONS.map((permission) => (
-                          <SelectItem value={permission}>
-                            {permission}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button
-                  type="button"
-                  mode="outline"
-                  data-testid="add-topic-acl-cancel-button"
-                >
-                  {t('addTopicAclButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                disabled={isPending}
-                data-testid="add-topic-acl-submit-button"
-              >
-                {t('addTopicAclButtonConfirm')}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+        <DialogBody>
+          <Form {...form}>
+            <form
+              onSubmit={onSubmit}
+              className="grid gap-4"
+              id="addTopicAclForm"
+            >
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('addTopicAclUsernameLabel')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        data-testid="add-topic-acl-username-input"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="topic"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('addTopicAclTopicLabel')}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        data-testid="add-topic-acl-topic-input"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="permission"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('addTopicAclPermissionLabel')}</FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        data-testid="add-topic-acl-permission-input"
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {PERMISSIONS.map((permission) => (
+                            <SelectItem value={permission}>
+                              {permission}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="button"
+              mode="ghost"
+              data-testid="add-topic-acl-cancel-button"
+            >
+              {t('addTopicAclButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            form="addTopicAclForm"
+            type="submit"
+            disabled={isPending}
+            data-testid="add-topic-acl-submit-button"
+          >
+            {t('addTopicAclButtonConfirm')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

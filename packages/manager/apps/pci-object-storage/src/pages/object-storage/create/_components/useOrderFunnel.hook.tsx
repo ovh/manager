@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { useEffect, useMemo } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';

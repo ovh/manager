@@ -99,7 +99,7 @@ export const getColumns = ({
               {service.capabilities.currentQueriesCancel && (
                 <DropdownMenuItem
                   data-testid="current-queries-action-cancel-button"
-                  variant="destructive"
+                  variant="critical"
                   onClick={() => onCancelQueryClicked(row.original)}
                   disabled={
                     service.capabilities.currentQueriesCancel.create ===

@@ -74,7 +74,7 @@ const OrderFunnel = ({
     onError: (err) => {
       toast({
         title: t('errorCreatingService'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -133,7 +133,7 @@ const OrderFunnel = ({
     (error) => {
       toast({
         title: t('errorFormTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: <ErrorList error={error} />,
       });
     },
@@ -357,7 +357,7 @@ const OrderFunnel = ({
             </OrderSection>
           </div>
 
-          <Card className="sticky top-4 h-fit shadow-lg">
+          <Card className="sticky top-4 h-fit">
             <CardHeader>
               <CardTitle>{t('summaryTitle')}</CardTitle>
             </CardHeader>

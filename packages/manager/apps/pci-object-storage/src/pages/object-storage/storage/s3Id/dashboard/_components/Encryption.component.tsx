@@ -8,7 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@datatr-ux/uxlib';
-import { EncryptionAlgorithmEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/EncryptionAlgorithmEnum';
+import { EncryptionAlgorithmEnum } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import { useS3Data } from '../../S3.context';
 
 const Encryption = () => {

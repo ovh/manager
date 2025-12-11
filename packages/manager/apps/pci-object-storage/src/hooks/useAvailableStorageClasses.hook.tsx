@@ -1,5 +1,6 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
 import storages from '@/types/Storages';
 
@@ -10,13 +11,16 @@ export function useAvailableStorageClasses(region: string) {
   const regions = regionQuery.data;
 
   if (!regions) {
-    return [];
+    return {
+      availableStorageClasses: [],
+      isPending: regionQuery.isPending,
+    };
   }
 
-  const s3Region = regions.find((r) => r.name === region);
-  const regionType = s3Region?.type;
+    const s3Region = regions.find((r) => r.name === region);
+    const regionType = s3Region?.type;
 
-  return Object.values(storages.StorageClassEnum).filter((st) => {
+  const availableStorageClasses = Object.values(storages.StorageClassEnum).filter((st) => {
     if (!regionType) return false;
 
     switch (st) {
@@ -24,14 +28,19 @@ export function useAvailableStorageClasses(region: string) {
         return s3Region.name === "EU-WEST-PAR" 
         // Cold archive is only available in EU-WEST-PAR
 
-      case storages.StorageClassEnum.HIGH_PERF:
-        return regionType !== RegionTypeEnum['region-3-az'];
+        case storages.StorageClassEnum.HIGH_PERF:
+          return regionType !== RegionTypeEnum['region-3-az'];
 
-      case storages.StorageClassEnum.STANDARD_IA:
-        return regionType !== RegionTypeEnum.localzone;
+        case storages.StorageClassEnum.STANDARD_IA:
+          return regionType !== RegionTypeEnum.localzone;
 
       default:
         return true;
     }
   });
+
+  return {
+    availableStorageClasses,
+    isPending: regionQuery.isPending,
+  }
 }

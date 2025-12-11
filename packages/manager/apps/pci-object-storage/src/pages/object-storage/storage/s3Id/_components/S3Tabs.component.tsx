@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
@@ -17,7 +17,6 @@ const S3Tabs = ({ s3 }: S3TabsProps) => {
     {
       href: 'objects',
       label: t('objectsTab'),
-      count: s3.objects.length || 0,
     },
     !isLocaleZone && {
       href: 'replication',

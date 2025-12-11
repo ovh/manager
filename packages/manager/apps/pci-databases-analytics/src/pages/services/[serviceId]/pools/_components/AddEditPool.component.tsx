@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
   useToast,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { useConnectionPoolForm } from './formPools/useConnectionPoolForm.hook';
 import { GenericUser } from '@/data/api/database/user.api';
@@ -68,7 +69,7 @@ const AddEditConnectionPool = ({
     onError(err) {
       toast.toast({
         title: t(`${prefix}ConnectionPoolToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -131,7 +132,7 @@ const AddEditConnectionPool = ({
 
   return (
     <RouteModal>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl" variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-edit-pools-modal">
             {t(`${prefix}ConnectionPoolTitle`)}
@@ -142,156 +143,179 @@ const AddEditConnectionPool = ({
             </DialogDescription>
           )}
         </DialogHeader>
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="flex flex-col gap-2">
-            {/* PoolName */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('formConnectionPoolFieldNameLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      data-testid="add-edit-pools-name-input"
-                      placeholder="name"
-                      disabled={
-                        isEdition || isPendingAddPool || isPendingEditPool
-                      }
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="databaseId"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-1 mt-2">
-                  <FormLabel>
-                    {t('formConnectionPoolFieldDatabaseLabel')}
-                  </FormLabel>
-                  <FormControl>
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {databases.map((option) => (
-                          <SelectItem key={option.id} value={option.id}>
-                            {option.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="mode"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-1 mt-2">
-                  <FormLabel>{t('formConnectionPoolFieldModeLabel')}</FormLabel>
-                  <FormControl>
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {Object.values(
-                          database.postgresql.connectionpool.ModeEnum,
-                        ).map((option) => (
-                          <SelectItem key={option} value={option}>
-                            {option}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="size"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('formConnectionPoolFieldSizeLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      data-testid="add-edit-pools-size-input"
-                      type="number"
-                      value={field.value}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <DialogBody>
+          <Form {...form}>
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col gap-2"
+              id="add-edit-pools-form"
+            >
+              {/* PoolName */}
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t('formConnectionPoolFieldNameLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        data-testid="add-edit-pools-name-input"
+                        placeholder="name"
+                        disabled={
+                          isEdition || isPendingAddPool || isPendingEditPool
+                        }
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="databaseId"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-1 mt-2">
+                    <FormLabel>
+                      {t('formConnectionPoolFieldDatabaseLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {databases.map((option) => (
+                            <SelectItem key={option.id} value={option.id}>
+                              {option.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="mode"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-1 mt-2">
+                    <FormLabel>
+                      {t('formConnectionPoolFieldModeLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {Object.values(
+                            database.postgresql.connectionpool.ModeEnum,
+                          ).map((option) => (
+                            <SelectItem key={option} value={option}>
+                              {option}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="size"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t('formConnectionPoolFieldSizeLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        data-testid="add-edit-pools-size-input"
+                        type="number"
+                        value={field.value}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="userId"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-1 mt-2">
-                  <FormLabel>{t('formConnectionPoolFieldUserLabel')}</FormLabel>
-                  <FormControl>
-                    <Select
-                      value={field.value}
-                      onValueChange={(v) =>
-                        v === 'noUser'
-                          ? field.onChange(null)
-                          : field.onChange(v)
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue
-                          placeholder={t('formConnectionPoolFieldUserNoValue')}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value={'noUser'}>
-                          {t('formConnectionPoolFieldUserNoValue')}
-                        </SelectItem>
-                        {users.map((option) => (
-                          <SelectItem key={option.id} value={option.id}>
-                            {option.username}
+              <FormField
+                control={form.control}
+                name="userId"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-1 mt-2">
+                    <FormLabel>
+                      {t('formConnectionPoolFieldUserLabel')}
+                    </FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value}
+                        onValueChange={(v) =>
+                          v === 'noUser'
+                            ? field.onChange(null)
+                            : field.onChange(v)
+                        }
+                      >
+                        <SelectTrigger>
+                          <SelectValue
+                            placeholder={t(
+                              'formConnectionPoolFieldUserNoValue',
+                            )}
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value={'noUser'}>
+                            {t('formConnectionPoolFieldUserNoValue')}
                           </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter className="flex justify-end mt-4">
-              <DialogClose asChild>
-                <Button
-                  data-testid="add-edit-pools-cancel-button"
-                  type="button"
-                  mode="outline"
-                >
-                  {t('formConnectionButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                data-testid="add-edit-pools-submit-button"
-                type="submit"
-                disabled={isPendingAddPool || isPendingEditPool}
-              >
-                {t(`${prefix}ConnectionButtonConfirm`)}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+                          {users.map((option) => (
+                            <SelectItem key={option.id} value={option.id}>
+                              {option.username}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter className="flex justify-end mt-4">
+          <DialogClose asChild>
+            <Button
+              data-testid="add-edit-pools-cancel-button"
+              type="button"
+              mode="ghost"
+            >
+              {t('formConnectionButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            form="add-edit-pools-form"
+            data-testid="add-edit-pools-submit-button"
+            type="submit"
+            disabled={isPendingAddPool || isPendingEditPool}
+          >
+            {t(`${prefix}ConnectionButtonConfirm`)}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

@@ -109,7 +109,7 @@ export const getIndexesColumns = ({
                       {service.capabilities.indexes?.delete && (
                         <DropdownMenuItem
                           data-testid="indexes-action-delete-button"
-                          variant="destructive"
+                          variant="critical"
                           disabled={
                             service.capabilities.indexes?.delete ===
                             database.service.capability.StateEnum.disabled

@@ -1,4 +1,5 @@
 {
+  "searchPlaceholder": "Rechercher...",
   "itemCount_one": "{{count}} élément",
   "itemCount_other": "{{count}} éléments",
   "currentPage": "Page {{currentPage}} sur {{totalPagesCount}}",

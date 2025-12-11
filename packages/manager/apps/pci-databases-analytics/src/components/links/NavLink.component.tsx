@@ -12,7 +12,7 @@ function NavLink({
 }: NavLinkProps & { disabled?: boolean }) {
   const { setLoading } = useLoadingIndicatorContext();
   const baseClassName =
-    'whitespace-nowrap w-fit text-primary-500 text-base font-semibold m-0 py-2 hover:text-primary-700';
+    'whitespace-nowrap w-fit text-primary-500 text-base font-semibold m-0 py-2 hover:text-primary-700 cursor-pointer no-underline hover:underline';
   const activeClass = 'border-b-2 border-primary-500';
   const disabledClass = 'cursor-not-allowed opacity-50 hover:text-primary-500';
 

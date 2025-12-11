@@ -299,7 +299,7 @@ export const getColumns = ({
                       service.capabilities.service?.delete ===
                       database.service.capability.StateEnum.disabled
                     }
-                    variant="destructive"
+                    variant="critical"
                     onClick={() => {
                       onDeleteClicked(row.original);
                     }}

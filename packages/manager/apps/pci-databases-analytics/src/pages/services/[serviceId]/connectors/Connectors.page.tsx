@@ -64,7 +64,7 @@ const Connectors = () => {
     onError: (err: CdbError) => {
       toast.toast({
         title: t(`${action}ConnectorToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -137,7 +137,7 @@ const Connectors = () => {
     return (
       <>
         <h2>{t('title')}</h2>
-        <Alert variant="warning">
+        <Alert variant="warning" className="rounded-md flex flex-col gap-2">
           <AlertTitle>{t('noIntegrationTitle')}</AlertTitle>
           <AlertDescription>
             <p>{t('noIntegrationTitleDescription')}</p>
@@ -154,25 +154,29 @@ const Connectors = () => {
     <>
       <h2>{t('title')}</h2>
 
-      {service.capabilities.connector?.create && (
-        <Button
-          mode="outline"
-          size="sm"
-          className="text-base"
-          data-testid="add-button"
-          disabled={
-            service.capabilities.connector?.create ===
-            database.service.capability.StateEnum.disabled
-          }
-          onClick={() => navigate('./add')}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          {t('addButtonLabel')}
-        </Button>
-      )}
-
       {connectors ? (
-        <DataTable.Provider columns={columns} data={connectors} pageSize={25} />
+        <DataTable.Provider columns={columns} data={connectors} pageSize={25}>
+          <DataTable.Header>
+            {service.capabilities.connector?.create && (
+              <DataTable.Action>
+                <Button
+                  mode="outline"
+                  data-testid="add-button"
+                  disabled={
+                    service.capabilities.connector?.create ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  onClick={() => navigate('./add')}
+                >
+                  <Plus className="w-4 h-4" />
+                  {t('addButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

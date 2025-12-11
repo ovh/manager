@@ -85,7 +85,8 @@ describe('TabsMenu component', () => {
     await waitFor(() => {
       expect(scrollMock).toHaveBeenCalledWith({
         behavior: 'smooth',
-        block: 'center',
+        inline: 'center',
+        block: 'nearest',
       });
     });
   });

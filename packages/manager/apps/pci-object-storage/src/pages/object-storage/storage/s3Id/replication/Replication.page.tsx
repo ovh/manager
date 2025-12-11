@@ -4,9 +4,19 @@ import { useTranslation } from 'react-i18next';
 import { useS3Data } from '../S3.context';
 import ReplicationList from './_components/table/ReplicationList.component';
 import Guides from '@/components/guides/Guides.component';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="replicationTab"
+      namespace="pci-object-storage/storages/header-tabs"
+    />
+  );
+}
 
 const Replication = () => {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
   const { s3, s3Query } = useS3Data();
 
   const { replication } = s3;
