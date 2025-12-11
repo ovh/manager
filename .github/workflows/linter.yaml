@@ -35,7 +35,6 @@ jobs:
         with:
           path: |
             target/pnpm
-            target/.pnpm-store
           key: ${{ runner.os }}-pnpm-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-${{ env.PNPM_VERSION }}-
