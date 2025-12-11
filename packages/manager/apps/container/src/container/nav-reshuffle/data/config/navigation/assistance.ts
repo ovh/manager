@@ -1,4 +1,4 @@
-import { Node } from './types/node';
+import { Node } from '@/types/node';
 
 export const assistanceTree: Node = {
   id: 'assistance',

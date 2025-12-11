@@ -1,4 +1,4 @@
-import { Node } from './types/node';
+import { Node } from '@/types/node';
 import bareMetalCloud from './services/bareMetalCloud';
 import hostedPrivateCloud from './services/hostedPrivateCloud';
 import network from './services/network';
