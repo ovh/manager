@@ -1,6 +1,6 @@
 import { MODULE_NAME } from "@/ObservabilityToCustomer.constants";
 
-export const NAMESPACE_PREFIX = `@ovh-ux/${MODULE_NAME}`;
+export const NAMESPACE_PREFIX = `${MODULE_NAME}`;
 
 export const NAMESPACES = {
   CHART: `${NAMESPACE_PREFIX}/chart`,

@@ -42,7 +42,7 @@ export default defineConfig({
         },
         {
           src: `${pathPublic}/translations`,
-          dest: '@ovh-ux/observability-to-customer',
+          dest: 'observability-to-customer',
         },
       ],
     }),

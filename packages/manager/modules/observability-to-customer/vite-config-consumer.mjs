@@ -10,14 +10,13 @@ import { fileURLToPath } from 'url';
 export function getObservabilityToCustomerConfig() {
   // Get the directory of this config file (logs-to-customer package root)
   const packageRoot = dirname(fileURLToPath(import.meta.url));
-  const translationsSourcePath = resolve(packageRoot, 'dist/@ovh-ux/observability-to-customer/translations');
+  const translationsSourcePath = resolve(packageRoot, 'dist/observability-to-customer/translations');
 
   return {
     staticCopyTargets: [
       {
         src: `${translationsSourcePath}/*`,
-        dest: 'translations/@ovh-ux/observability-to-customer',
-        overwrite: true,
+        dest: 'translations/observability-to-customer',
       },
     ],    
   };
