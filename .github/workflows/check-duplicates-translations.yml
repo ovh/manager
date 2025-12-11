@@ -39,7 +39,7 @@ jobs:
             SHOULD_CONTINUE=true
             echo "should_continue<<EOF" >> $GITHUB_OUTPUT
             echo "$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT  
+            echo "EOF" >> $GITHUB_OUTPUT
           else
             echo "❌ Translation label does not exist, exit..."
             SHOULD_CONTINUE=false
@@ -64,14 +64,14 @@ jobs:
           path: |
             ~/.cache/yarn
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         if: steps.gate.outputs.should_continue == 'true'
         run: yarn install --frozen-lockfile
-        
+
       - name: GetChangedPackages
         if: steps.gate.outputs.should_continue == 'true'
         id: changed
@@ -94,7 +94,7 @@ jobs:
           CHANGED_PACKAGES=$(get_changed_packages)
           echo "Changed packages:"
           echo "$CHANGED_PACKAGES"
-      
+
           # Safe multiline output for next step
           echo "changed_packages<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
@@ -114,17 +114,17 @@ jobs:
             if [[ "$line" == "//" || -z "$line" ]]; then
               continue
             fi
-           
+
             # Remove prefix and suffix
             cleaned_package="${line#@ovh-ux/manager-}"   # remove prefix
             cleaned_package="${cleaned_package%-app}"    # remove suffix if exist
             echo "Checking: $cleaned_package"
-      
+
             # Check if cleaned_package is in available_apps
             if printf "%s\n" "${apps_array[@]}" | grep -qx "$cleaned_package"; then
               echo "✅ Found: $cleaned_package"
               yarn manager-cli duplicated-translations --app $cleaned_package
             fi
-            
+
 
           done <<< "${{ steps.changed.outputs.changed_packages }}"
