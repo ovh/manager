@@ -30,7 +30,7 @@
     "@ovh-ux/manager-pci-common": "^2.6.9",
     "@ovh-ux/manager-react-components": "^2.39.0",
     "@ovh-ux/manager-react-core-application": "*",
-    "@ovh-ux/manager-react-shell-client": "^0.9.1",
+    "@ovh-ux/manager-react-shell-client": "^1.0.1",
     "@ovh-ux/request-tagger": "*",
     "@ovhcloud/ods-components": "^18.6.3",
     "@ovhcloud/ods-themes": "^18.6.3",

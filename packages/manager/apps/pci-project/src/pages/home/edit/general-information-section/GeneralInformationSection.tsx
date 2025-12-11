@@ -17,6 +17,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useIsDefaultProject } from '@/data/hooks/useProjects';
+import { useTrackingAdditionalData } from '@/hooks/useTracking';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import { TProject } from '@/types/pci-common.types';
 
@@ -40,6 +41,7 @@ export default function GeneralInformationSection({
 
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { trackClick, trackPage } = useOvhTracking();
+  const trackingAdditionalData = useTrackingAdditionalData();
 
   const { data: hasDefaultProperty, isLoading: hasDefaultPropertyLoading } = useIsDefaultProject(
     project.project_id,
@@ -66,6 +68,7 @@ export default function GeneralInformationSection({
       trackPage({
         pageType: PageType.bannerInfo,
         pageName: PROJECTS_TRACKING.SETTINGS.REQUEST_SUCCESS,
+        additionalData: trackingAdditionalData,
       });
 
       addSuccess(
@@ -81,6 +84,10 @@ export default function GeneralInformationSection({
       trackPage({
         pageType: PageType.bannerError,
         pageName: PROJECTS_TRACKING.SETTINGS.REQUEST_ERROR,
+        additionalData: {
+          pciCreationErrorMessage: error.message,
+          ...trackingAdditionalData,
+        },
       });
 
       addError(

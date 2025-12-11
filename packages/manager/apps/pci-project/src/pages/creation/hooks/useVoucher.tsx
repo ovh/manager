@@ -12,6 +12,7 @@ import {
 } from '@/data/hooks/useCart';
 import { useCheckVoucherEligibility } from '@/data/hooks/useEligibility';
 import { CartConfiguration } from '@/data/models/Cart.type';
+import { useTrackingAdditionalData } from '@/hooks/useTracking';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type ApiError = AxiosError<{ message: string }>;
@@ -33,6 +34,7 @@ export function useVoucher({
   const [error, setError] = useState<string | undefined>(undefined);
 
   const { trackClick, trackPage } = useOvhTracking();
+  const trackingAdditionalData = useTrackingAdditionalData();
 
   const { mutate: attachConfig } = useAttachConfigurationToCartItem({
     onSuccess: (data: CartConfiguration) => {
@@ -64,6 +66,10 @@ export function useVoucher({
       trackPage({
         pageType: PageType.bannerInfo,
         pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_SUCCESS,
+        additionalData: {
+          ...trackingAdditionalData,
+          voucherCode: voucher,
+        },
       });
       attachConfig({
         cartId,
@@ -75,6 +81,12 @@ export function useVoucher({
       trackPage({
         pageType: PageType.bannerError,
         pageName: PROJECTS_TRACKING.CREATION.PAYMENT_STEP.ADD_VOUCHER_ERROR,
+        additionalData: {
+          ...trackingAdditionalData,
+          pciCreationErrorMessage: err.message,
+          voucherCode: voucher,
+          pciCreationStep: 'payment_step',
+        },
       });
 
       const errorCodeMatch = err.message?.match(/(VOUCHER_\w+)/i);
