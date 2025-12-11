@@ -2,13 +2,8 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
-import NotFound from '@key-management-service/pages/404';
-
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
-
 import { SECRET_MANAGER_ROUTES_URIS, SECRET_MANAGER_URL_PARAMS } from './routes.constants';
 
-const KmsLayout = React.lazy(() => import('@key-management-service/pages/layout'));
 const Root = React.lazy(() => import('@/modules/secret-manager/pages/root/Root.page'));
 const Onboarding = React.lazy(
   () => import('@/modules/secret-manager/pages/onboarding/Onboarding.page'),
@@ -72,18 +67,7 @@ const OrderOkmsModal = React.lazy(
 );
 
 export default (
-  <Route
-    path={SECRET_MANAGER_ROUTES_URIS.root}
-    Component={KmsLayout}
-    id={'secret-manager-root'}
-    errorElement={
-      <ErrorBoundary
-        redirectionApp="key-management-service"
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-      />
-    }
-  >
+  <Route path={SECRET_MANAGER_ROUTES_URIS.root} id={'secret-manager-root'}>
     <Route index Component={Root} />
     <Route path={SECRET_MANAGER_ROUTES_URIS.onboarding} Component={Onboarding} />
     <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={CreateSecret}>
@@ -144,6 +128,5 @@ export default (
         <Route path="*" element={<Navigate to={''} replace />} />
       </Route>
     </Route>
-    <Route path={'*'} element={<NotFound />} />
   </Route>
 );

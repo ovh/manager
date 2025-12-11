@@ -2,9 +2,6 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import NotFound from '@key-management-service/pages/404';
-
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import { KMS_ROUTES_URIS, KMS_URL_PARAMS } from './routes.constants';
@@ -12,7 +9,6 @@ import { KMS_ROUTES_URIS, KMS_URL_PARAMS } from './routes.constants';
 export const COMMON_PATH = '/key-management-service';
 
 // Kms
-const KmsLayout = React.lazy(() => import('@key-management-service/pages/layout'));
 const KmsListing = React.lazy(
   () => import('@key-management-service/pages/listing/KmsListing.page'),
 );
@@ -118,14 +114,7 @@ const CredentialsCreateServiceAccountListModal = React.lazy(
 );
 
 export default (
-  <Route
-    path={KMS_ROUTES_URIS.root}
-    Component={KmsLayout}
-    id={'kms-root'}
-    errorElement={
-      <ErrorBoundary redirectionApp="okms" isPreloaderHide={true} isRouteShellSync={true} />
-    }
-  >
+  <Route path={KMS_ROUTES_URIS.root} id={'kms-root'}>
     <Route
       path=""
       Component={KmsListing}
@@ -334,6 +323,5 @@ export default (
         }}
       />
     </Route>
-    <Route path={'*'} element={<NotFound />} />
   </Route>
 );
