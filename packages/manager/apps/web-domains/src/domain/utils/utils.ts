@@ -1,4 +1,5 @@
 import { z } from 'zod/v4';
+import { TFunction } from 'i18next';
 import { GUIDES_LIST, LangCode } from '@/domain/constants/guideLinks';
 import {
   TDatagridDnsDetails,
@@ -10,12 +11,15 @@ import {
   transformTarget,
 } from '@/domain/utils/dnsUtils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
-import { FreeHostingOptions } from '../components/AssociatedServicesCards/Hosting';
-import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
-import { THost } from '../types/host';
-import { TDsDataInterface } from '../types/dnssecConfiguration';
-import { algorithm_RSASHZA3457 } from '../constants/dsRecords';
+import { DNS_UPDATE_OPERATION } from '@/domain/constants/dns.const';
+import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
+import {
+  DrawerActionEnum,
+  IpsSupportedEnum,
+} from '@/domain/enum/hostConfiguration.enum';
+import { THost } from '@/domain/types/host';
+import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
+import { algorithm_RSASHZA3457 } from '@/domain/constants/dsRecords';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -72,15 +76,13 @@ export const formatConfigurationValue = (
 
 export function getIpsSupported(
   ipv4Supported: boolean,
-
   ipv6Supported: boolean,
-
   multipleIPsSupported: boolean,
 ): IpsSupportedEnum {
   if (ipv4Supported && ipv6Supported) {
     return multipleIPsSupported
       ? IpsSupportedEnum.All
-      : IpsSupportedEnum.OneIPv4OneIPv6;
+      : IpsSupportedEnum.OneIPv4OrOneIPv6;
   }
 
   if (ipv4Supported) {
@@ -98,84 +100,93 @@ export function getIpsSupported(
   return IpsSupportedEnum.All;
 }
 
-export const getHostnameErrorMessage = (
-  hostname: string,
+export const isDuplicateHost = (
+  value: string,
+  hostsTargetSpec: THost[],
   serviceName: string,
-  hosts: THost[],
-): string => {
-  const fullHostname = `${hostname}.${serviceName}`;
-
-  if (hosts.some((h) => h.host.toLowerCase() === fullHostname.toLowerCase())) {
-    return 'domain_tab_hosts_drawer_add_invalid_host_same';
-  }
-
-  if (!z.hostname().safeParse(fullHostname).success || fullHostname === '') {
-    return 'domain_tab_hosts_drawer_add_invalid_host_format';
-  }
-
-  return '';
+) => {
+  const candidate = `${value}.${serviceName}`.toLowerCase();
+  return hostsTargetSpec.some((h) => h.host.toLowerCase() === candidate);
 };
 
-export const getIpsErrorMessage = (
-  ips: string[],
-  ipsSupported: IpsSupportedEnum,
-): string => {
-  const ipv4 = z.ipv4();
-  const ipv6 = z.ipv6();
+export const isValidHostSyntax = (value: string, serviceName: string) => {
+  const candidate = `${value}.${serviceName}`;
+  return z.hostname().safeParse(candidate).success && candidate !== '';
+};
 
-  const set = new Set<string>();
+export const makeHostValidators = (
+  hostsTargetSpec: THost[],
+  serviceName: string,
+  actionType: DrawerActionEnum,
+  t: TFunction,
+) => {
+  if (actionType === DrawerActionEnum.Modify) {
+    // Checks are ok, field is readonly
+    return {
+      noDuplicate: () => true || '',
+      validSyntax: () => true || '',
+    };
+  }
+  return {
+    noDuplicate: (value: string) =>
+      !isDuplicateHost(value, hostsTargetSpec, serviceName) ||
+      t('domain_tab_hosts_drawer_add_invalid_host_same'),
+    validSyntax: (value: string) =>
+      isValidHostSyntax(value, serviceName) ||
+      t('domain_tab_hosts_drawer_add_invalid_host_format'),
+  };
+};
 
-  for (const ip of ips) {
-    const item = ip.trim();
-    if (item === '') continue;
+export const isDuplicateIps = (ips: string[]) => {
+  const hasDuplicate = ips
+    .map((ip) => ip.trim())
+    .some((item, idx, arr) => {
+      if (item === '') return false;
+      return arr.indexOf(item) !== idx;
+    });
 
-    if (set.has(ip)) {
-      return 'domain_tab_hosts_drawer_add_duplicate_ips';
-    }
-    set.add(ip);
+  return hasDuplicate;
+};
+
+export const isValidIpv4 = (ip: string) => {
+  return z.ipv4().safeParse(ip).success;
+};
+
+export const isValidIpv6 = (ip: string) => {
+  return z.ipv6().safeParse(ip).success;
+};
+
+export const areIPsValid = (ips: string[], ipsSupported: IpsSupportedEnum) => {
+  // Check the number of provided IPs
+  const onlyOneIpSupported =
+    ipsSupported === IpsSupportedEnum.OneIPv4OrOneIPv6 ||
+    ipsSupported === IpsSupportedEnum.OneIPv4 ||
+    ipsSupported === IpsSupportedEnum.OneIPv6;
+
+  if (ips.length === 0 || (onlyOneIpSupported && ips.length !== 1)) {
+    return false;
   }
 
+  // Check the provided IPs syntax
   switch (ipsSupported) {
-    case IpsSupportedEnum.All:
-      if (
-        ips.some(
-          (ip) => !ipv4.safeParse(ip).success && !ipv6.safeParse(ip).success,
-        )
-      ) {
-        return 'domain_tab_hosts_drawer_add_invalid_ips';
-      }
-      return '';
-
     case IpsSupportedEnum.OneIPv4:
-      if (ips.length !== 1 || !ipv4.safeParse(ips[0]).success) {
-        return 'domain_tab_hosts_drawer_add_invalid_ips';
-      }
-      return '';
-
+    case IpsSupportedEnum.MultipleIPv4: {
+      return ips.every((ip) => isValidIpv4(ip));
+    }
     case IpsSupportedEnum.OneIPv6:
-      if (ips.length !== 1 || !ipv6.safeParse(ips[0]).success) {
-        return 'domain_tab_hosts_drawer_add_invalid_ips';
-      }
-      return '';
-
-    case IpsSupportedEnum.MultipleIPv4:
-      if (ips.some((ip) => !ipv4.safeParse(ip).success)) {
-        return 'domain_tab_hosts_drawer_add_invalid_ips';
-      }
-      return '';
-
-    case IpsSupportedEnum.MultipleIPv6:
-      if (ips.some((ip) => !ipv6.safeParse(ip).success)) {
-        return 'domain_tab_hosts_drawer_add_invalid_ips';
-      }
-      return '';
-
+    case IpsSupportedEnum.MultipleIPv6: {
+      return ips.every((ip) => isValidIpv6(ip));
+    }
+    case IpsSupportedEnum.OneIPv4OrOneIPv6:
+    case IpsSupportedEnum.All: {
+      return ips.every((ip) => isValidIpv4(ip) || isValidIpv6(ip));
+    }
     default:
-      return '';
+      return false; // invalid enum value
   }
 };
 
-export const tranformIpsStringToArray = (ipString: string) => {
+export const transformIpsStringToArray = (ipString: string) => {
   return ipString?.split(',').map((ip: string) => ip.trim());
 };
 
@@ -204,4 +215,18 @@ export const getSupportedAlgorithm = (
       number: algorithm,
     }
   );
+};
+
+export const makeIpsValidator = (
+  ipsSupported: IpsSupportedEnum,
+  t: TFunction,
+) => {
+  return {
+    noDuplicate: (value: string) =>
+      !isDuplicateIps(transformIpsStringToArray(value)) ||
+      t('domain_tab_hosts_drawer_add_duplicate_ips'),
+    validIps: (value: string) =>
+      areIPsValid(transformIpsStringToArray(value), ipsSupported) ||
+      t('domain_tab_hosts_drawer_add_invalid_ips'),
+  };
 };

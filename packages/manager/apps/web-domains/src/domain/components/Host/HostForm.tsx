@@ -13,17 +13,17 @@ import {
   FormFieldError,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
+import { useFormContext } from 'react-hook-form';
 import {
   DrawerActionEnum,
   IpsSupportedEnum,
 } from '@/domain/enum/hostConfiguration.enum';
 import HostIpsSupportedMessage from '@/domain/components/Host/HostIpsSupportedMessage';
 import { THost } from '@/domain/types/host';
-import { useFormContext } from 'react-hook-form';
 import {
-  getHostnameErrorMessage,
-  getIpsErrorMessage,
-  tranformIpsStringToArray,
+  makeHostValidators,
+  makeIpsValidator,
+  transformIpsStringToArray,
 } from '@/domain/utils/utils';
 
 interface HostFormProps {
@@ -46,7 +46,7 @@ export default function HostForm({
     formState: { errors },
   } = useFormContext();
   const ips = watch('ips');
-  const ipsList = tranformIpsStringToArray(ips);
+  const ipsList = transformIpsStringToArray(ips);
 
   return (
     <section className="flex flex-col gap-y-6" data-testid="host-form">
@@ -67,17 +67,12 @@ export default function HostForm({
             className="relative w-full"
             readOnly={drawerAction === DrawerActionEnum.Modify}
             {...register('host', {
-              validate: (value: string) => {
-                // We use the if to make the error invalid
-                if (drawerAction === DrawerActionEnum.Add) {
-                  const errorKey = getHostnameErrorMessage(
-                    value,
-                    serviceName,
-                    hostsTargetSpec,
-                  );
-                  return errorKey ? t(errorKey) : true;
-                }
-              },
+              validate: makeHostValidators(
+                hostsTargetSpec,
+                serviceName,
+                drawerAction,
+                t,
+              ),
             })}
           />
 
@@ -112,12 +107,7 @@ export default function HostForm({
           <Input
             name="ips-host"
             {...register('ips', {
-              validate: (value: string) => {
-                const ips = tranformIpsStringToArray(value);
-                const errorKey = getIpsErrorMessage(ips, ipsSupported);
-
-                return errorKey ? t(errorKey) : true;
-              },
+              validate: makeIpsValidator(ipsSupported, t),
             })}
           />
           <FormFieldError className="text-sm">

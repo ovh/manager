@@ -25,21 +25,19 @@ export default function DatagridColumnContact({
   });
 
   if (isOwner) {
-    if (domainContact) {
-      const details =
-        domainContact.organisationName ||
-        `${domainContact.firstName} ${domainContact.lastName}`;
-      return <DataGridTextCell>{details}</DataGridTextCell>;
-    }
-    return <DataGridTextCell>{contactId}</DataGridTextCell>;
+    return (
+      <DataGridTextCell>
+        {domainContact
+          ? domainContact.organisationName ||
+            `${domainContact.firstName} ${domainContact.lastName}`
+          : contactId}
+      </DataGridTextCell>
+    );
   }
 
-  if (nichandleInformation?.nichandle === contactId) {
-    const details =
-      nichandleInformation.organisation ||
-      `${nichandleInformation.name} ${nichandleInformation.firstname}`;
-    return <Link href={userAccountUrl}>{details}</Link>;
-  }
-
-  return <DataGridTextCell>{contactId}</DataGridTextCell>;
+  return nichandleInformation?.nichandle === contactId ? (
+    <Link href={userAccountUrl}>{contactId}</Link>
+  ) : (
+    <DataGridTextCell>{contactId}</DataGridTextCell>
+  );
 }

@@ -51,7 +51,7 @@ describe('HostsIpsSupportedMessage', () => {
   it('Display well the text for IpsSupportedEnum.OnlyIPv4IPv6', () => {
     render(
       <HostsIpsSupportedMessage
-        ipsSupported={IpsSupportedEnum.OneIPv4OneIPv6}
+        ipsSupported={IpsSupportedEnum.OneIPv4OrOneIPv6}
       />,
     );
     expect(

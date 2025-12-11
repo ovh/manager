@@ -52,7 +52,10 @@ export default function GeneralInformationsCards({
           {t('domain_tab_general_information_tile_title_domain_state')}
           <Tooltip>
             <TooltipTrigger asChild>
-              <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
+              <Icon
+                className="pl-3 text-[--ods-color-primary-500]"
+                name={ICON_NAME.circleQuestion}
+              />
             </TooltipTrigger>
             <TooltipContent>
               {t('domain_tab_general_information_tooltip_domain_state')}
@@ -71,7 +74,10 @@ export default function GeneralInformationsCards({
           {t('domain_tab_general_information_tile_title_tech_state')}
           <Tooltip>
             <TooltipTrigger asChild>
-              <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
+              <Icon
+                className="pl-3 text-[--ods-color-primary-500]"
+                name={ICON_NAME.circleQuestion}
+              />
             </TooltipTrigger>
             <TooltipContent>
               {t('domain_tab_general_information_tooltip_domain_tech_state')}

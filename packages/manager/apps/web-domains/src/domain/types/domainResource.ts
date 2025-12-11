@@ -150,6 +150,7 @@ export type StatusDetails = {
   statusColor: BADGE_COLOR;
   i18nKey: string;
   icon?: ICON_NAME;
+  value?: string;
 };
 
 export type ServiceType =

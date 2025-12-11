@@ -2,12 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
   FilterCategories,
+  FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
 import DatagridColumnServiceName from '@/domain/components/DatagridColumns/Domain/DatagridColumnServiceName';
 import {
   DomainService,
   NameServerTypeEnum,
+  StatusDetails,
 } from '@/domain/types/domainResource';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/Domain/DatagridColumnStatus';
 import {
@@ -24,6 +26,7 @@ import DatagridColumnContact from '@/domain/components/DatagridColumns/Domain/Da
 import DatagridColumnDnsType from '@/domain/components/DatagridColumns/Domain/DatagridColumnDnsType';
 import DatagridColumnDns from '@/domain/components/DatagridColumns/Domain/DatagridColumnDns';
 import DatagridColumnActions from '@/domain/components/DatagridColumns/Domain/DatagridColumnActions';
+import { capitalize } from '@/domain/utils/helpers';
 
 interface DomainDatagridColumnsProps {
   readonly openModal: (serviceNames: string[]) => void;
@@ -32,6 +35,15 @@ export const useDomainDatagridColumns = ({
   openModal,
 }: DomainDatagridColumnsProps): DatagridColumn<DomainService>[] => {
   const { t } = useTranslation('domain');
+
+  const deduplicatedRecord = Object.entries(DOMAIN_STATE).reduce<
+    Record<string, StatusDetails>
+  >((acc, [key, item]) => {
+    if (!Object.values(acc).some((v) => v.i18nKey === item.i18nKey)) {
+      acc[key] = item;
+    }
+    return acc;
+  }, {});
 
   const columns: DatagridColumn<DomainService>[] = [
     {
@@ -46,14 +58,31 @@ export const useDomainDatagridColumns = ({
       isSearchable: true,
     },
     {
+      id: 'iam.tags',
+      cell: (props: DomainService) => (
+        <DatagridColumnTags tags={props.iam.tags} />
+      ),
+      type: FilterTypeCategories.Tags,
+      label: t('domain_table_header_tags'),
+      isFilterable: true,
+      enableHiding: true,
+    },
+    {
       id: 'state',
       cell: (props: DomainService) => (
         <DatagridColumnStatus state={props.state} mapping={DOMAIN_STATE} />
       ),
-      comparator: FilterCategories.String,
       label: t('domain_table_header_status'),
       isFilterable: true,
       enableHiding: false,
+      type: FilterTypeCategories.Options,
+      comparator: [FilterComparator.IsEqual],
+      filterOptions: Object.entries(deduplicatedRecord).map(
+        ([state, statusDetails]) => ({
+          label: t(statusDetails.i18nKey),
+          value: statusDetails.value ?? state,
+        }),
+      ),
     },
     {
       id: 'suspensionState',
@@ -105,16 +134,6 @@ export const useDomainDatagridColumns = ({
       label: t('domain_table_header_expiration'),
       isFilterable: false,
       enableHiding: false,
-    },
-    {
-      id: 'iam.tags',
-      cell: (props: DomainService) => (
-        <DatagridColumnTags tags={props.iam.tags} />
-      ),
-      type: FilterTypeCategories.Tags,
-      label: t('domain_table_header_tags'),
-      isFilterable: true,
-      enableHiding: true,
     },
     {
       id: 'dnssec',
@@ -197,35 +216,35 @@ export const useDomainDatagridColumns = ({
       filterOptions: [
         {
           value: NameServerTypeEnum.ANYCAST,
-          label: NameServerTypeEnum.ANYCAST,
+          label: capitalize(NameServerTypeEnum.ANYCAST),
         },
         {
           value: NameServerTypeEnum.MIXED,
-          label: NameServerTypeEnum.MIXED,
+          label: capitalize(NameServerTypeEnum.MIXED),
         },
         {
           value: NameServerTypeEnum.HOSTING,
-          label: NameServerTypeEnum.HOSTING,
+          label: capitalize(NameServerTypeEnum.HOSTING),
         },
         {
           value: NameServerTypeEnum.EMPTY,
-          label: NameServerTypeEnum.EMPTY,
+          label: capitalize(NameServerTypeEnum.EMPTY),
         },
         {
           value: NameServerTypeEnum.EXTERNAL,
-          label: NameServerTypeEnum.EXTERNAL,
+          label: capitalize(NameServerTypeEnum.EXTERNAL),
         },
         {
           value: NameServerTypeEnum.HOLD,
-          label: NameServerTypeEnum.HOLD,
+          label: capitalize(NameServerTypeEnum.HOLD),
         },
         {
           value: NameServerTypeEnum.HOSTED,
-          label: NameServerTypeEnum.HOSTED,
+          label: capitalize(NameServerTypeEnum.HOSTED),
         },
         {
           value: NameServerTypeEnum.PARKING,
-          label: NameServerTypeEnum.PARKING,
+          label: capitalize(NameServerTypeEnum.PARKING),
         },
       ],
       enableHiding: true,

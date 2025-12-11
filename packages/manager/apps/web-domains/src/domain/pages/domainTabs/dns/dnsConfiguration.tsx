@@ -23,6 +23,7 @@ import { computeDnsDetails } from '@/domain/utils/utils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import AnycastOrderButtonComponent from '@/domain/components/AnycastOrder/AnycastOrderButton';
 import { ongoingOperationLink } from '@/domain/constants/serviceDetail';
+import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 
 interface DnsConfigurationTabProps {
   readonly domainResource: TDomainResource;
@@ -47,6 +48,7 @@ export default function DnsConfigurationTab({
   const { data: ongoingOperationsURL } = useNavigationGetUrl(
     ongoingOperationLink,
   );
+  const zoneMasterUrl = 'https://www.zonemaster.net/en/run-test';
   const onOpenAnycastTerminateModal = () => {
     setAnycastTerminateModalOpen(!anycastTerminateModalOpen);
   };
@@ -96,11 +98,14 @@ export default function DnsConfigurationTab({
       >
         <MessageIcon name="circle-info" />
         <MessageBody>
-          {t('domain_tab_DNS_information_message')}
-          <Link href="https://www.zonemaster.net/en/run-test" target="_blank">
-            {t('domain_tab_DNS_information_link')}
-            <Icon name={ICON_NAME.externalLink} />
-          </Link>
+          <Trans
+            i18nKey="domain_tab_DNS_information_message"
+            t={t}
+            components={{
+              Link: <Link href={zoneMasterUrl} target="_blank"></Link>,
+              Icon: <Icon name={ICON_NAME.externalLink} />,
+            }}
+          />
         </MessageBody>
       </Message>
       <div className="flex gap-4 my-6">
@@ -111,6 +116,7 @@ export default function DnsConfigurationTab({
           anycastTerminateModalOpen={anycastTerminateModalOpen}
           serviceName={domainResource.id}
           onOpenAnycastTerminateModal={onOpenAnycastTerminateModal}
+          goBack={AnycastPreviousPages.DNS_SERVERS}
         />
       </div>
       <Datagrid

@@ -13,10 +13,12 @@ import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import { OptionStateEnum } from '@/domain/enum/optionState.enum';
 import AnycastTerminateModal from '@/domain/components/AnycastOrder/AnycastTerminateModal';
+import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 
 interface AnycastOrderButtonComponentProps {
   readonly serviceName: string;
   readonly anycastTerminateModalOpen: boolean;
+  readonly goBack?: AnycastPreviousPages;
   readonly onOpenAnycastTerminateModal: () => void;
 }
 
@@ -24,6 +26,7 @@ export default function AnycastOrderButtonComponent({
   serviceName,
   anycastTerminateModalOpen,
   onOpenAnycastTerminateModal,
+  goBack,
 }: AnycastOrderButtonComponentProps) {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
@@ -69,7 +72,12 @@ export default function AnycastOrderButtonComponent({
               useGenerateUrl(urls.domainTabOrderAnycast, 'path', {
                 serviceName,
               }),
-              { replace: true },
+              {
+                replace: true,
+                state: {
+                  from: goBack ?? AnycastPreviousPages.GENERAL_INFORMATION,
+                },
+              },
             )
           }
         >
