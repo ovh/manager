@@ -6,13 +6,16 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
-import { useProjectModeTracking } from '@/hooks/usePciProjectModelTracking';
+import { useTrackingAdditionalData } from '@/hooks/useTracking';
 
 export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
+
   const { trackCurrentPage } = useOvhTracking();
+  const trackingAdditionalData = useTrackingAdditionalData();
+
   const { clearNotifications } = useNotifications();
 
   useRouteSynchro();
@@ -22,11 +25,11 @@ export default function Layout() {
     defineCurrentPage(`app.pci-project-${match[0]?.id}`);
   }, [location, matches]);
 
-  useProjectModeTracking();
-
   useEffect(() => {
-    trackCurrentPage();
-  }, [location]);
+    trackCurrentPage({
+      ...trackingAdditionalData,
+    });
+  }, [location.pathname]);
 
   useEffect(() => {
     shell.ux.hidePreloader();

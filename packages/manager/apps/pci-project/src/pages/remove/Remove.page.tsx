@@ -16,6 +16,7 @@ import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
 import { useIsDefaultProject, useRemoveProjectMutation } from '@/data/hooks/useProjects';
 import { useHasActiveOrPendingSavingsPlan } from '@/data/hooks/useSavingsPlans';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+import { useTrackingAdditionalData } from '@/hooks/useTracking';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import { TProject } from '@/types/pci-common.types';
 
@@ -23,6 +24,8 @@ type ApiError = AxiosError<{ message: string }>;
 
 export default function RemovePage() {
   const { trackClick, trackPage } = useOvhTracking();
+  const trackingAdditionalData = useTrackingAdditionalData();
+
   const { t } = useTranslation('remove');
 
   const navigate = useNavigate();
@@ -56,6 +59,7 @@ export default function RemovePage() {
     trackPage({
       pageType: PageType.bannerInfo,
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_SUCCESS,
+      additionalData: trackingAdditionalData,
     });
 
     clearNotifications();
@@ -72,6 +76,10 @@ export default function RemovePage() {
     trackPage({
       pageType: PageType.bannerError,
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_FAIL,
+      additionalData: {
+        ...trackingAdditionalData,
+        pciCreationErrorMessage: error.message,
+      },
     });
 
     clearNotifications();

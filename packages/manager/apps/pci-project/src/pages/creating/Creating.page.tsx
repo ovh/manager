@@ -15,11 +15,13 @@ import LargeSpinner from '@/components/large-spinner/LargeSpinner';
 import { CREATING_GUIDE_URLS, DISCOVERY_PROJECT_PLANCODE } from '@/constants';
 import { useDeliveredProjectId, useOrderFollowUpPolling } from '@/data/hooks/useOrder';
 import { useParam } from '@/hooks/useParam';
+import { useTrackingAdditionalData } from '@/hooks/useTracking';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 export default function CreatingPage() {
   const { t } = useTranslation('creating');
   const { trackClick, trackPage } = useOvhTracking();
+  const trackingAdditionalData = useTrackingAdditionalData();
 
   const [isDelivered, setIsDelivered] = useState(false);
   const [searchParams] = useSearchParams();
@@ -29,7 +31,7 @@ export default function CreatingPage() {
 
   const navigate = useNavigate();
 
-  const { environment, shell } = useContext(ShellContext);
+  const { environment } = useContext(ShellContext);
   const user = environment.getUser();
 
   const pciProjectsHref = useHref('..');
@@ -38,6 +40,10 @@ export default function CreatingPage() {
     trackPage({
       pageType: PageType.bannerError,
       pageName: PROJECTS_TRACKING.CREATING.PROJECT_DELIVERY_FAILED,
+      additionalData: {
+        ...trackingAdditionalData,
+        pciCreationErrorMessage: t('pci_projects_creating_delivery_error'),
+      },
     });
 
     throw new Error(t('pci_projects_creating_delivery_error'));
@@ -57,13 +63,15 @@ export default function CreatingPage() {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     onProjectIdDelivered: async (projectId: string) => {
       const project = await getProject(projectId);
-      shell.tracking.setPciProjectMode({
-        projectId: projectId,
-        isDiscoveryProject: project?.planCode === DISCOVERY_PROJECT_PLANCODE,
-      });
+
       trackPage({
         pageType: PageType.bannerInfo,
         pageName: PROJECTS_TRACKING.CREATING.PROJECT_DELIVERED,
+        additionalData: {
+          ...trackingAdditionalData,
+          projectId: projectId,
+          pciProjectMode: project.planCode === DISCOVERY_PROJECT_PLANCODE ? 'discovery' : 'full',
+        },
       });
 
       if (redirectState) {

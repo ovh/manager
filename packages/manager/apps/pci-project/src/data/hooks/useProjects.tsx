@@ -156,3 +156,11 @@ export const useDiscoveryProject = () =>
       return data.find((project) => project.planCode === DISCOVERY_PROJECT_PLANCODE);
     },
   });
+
+export const usePciProjectsCount = () => {
+  return useQuery({
+    queryKey: ['/cloud/project'],
+    queryFn: () => getProjects(),
+    select: ({ data }) => data.length,
+  });
+};
