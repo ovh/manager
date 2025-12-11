@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { instanceNameRegex, sshKeyRegex } from '@/constants';
-import { DEPLOYMENT_MODES } from '@/types/instance/common.type';
+import { BILLINGTEST, DEPLOYMENT_MODES } from '@/types/instance/common.type';
 
 export const nameSchema = z.string().regex(instanceNameRegex);
 
@@ -17,6 +17,8 @@ export const flavorTypeSchema = z.string().nullable();
 export const flavorIdSchema = z.string().nullable();
 
 export const microRegionSelectionSchema = z.string().nullable();
+
+export const billingTypeSelectionSchema = z.enum(BILLINGTEST);
 
 export const availabilityZoneSelectionSchema = z.string().nullable();
 

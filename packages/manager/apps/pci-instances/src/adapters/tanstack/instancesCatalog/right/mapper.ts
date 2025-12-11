@@ -588,6 +588,6 @@ export const mapInstancesCatalogDtoToEntity = (
       ),
     },
   };
-
+  console.log('🚀 ~ toto ~ catalog:', catalog);
   return catalog;
 };
