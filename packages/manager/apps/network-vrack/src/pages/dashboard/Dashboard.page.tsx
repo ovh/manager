@@ -4,11 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Spinner, Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 
-import { BaseLayout, Breadcrumb, ChangelogMenu } from '@ovh-ux/muk';
+import { BaseLayout, Breadcrumb, ChangelogMenu, GuideMenu } from '@ovh-ux/muk';
 
 import { appName } from '@/App.constants';
 import { DashboardHeaderTitle } from '@/components/DashboardHeaderTitle';
-import { GuideMenuWithSurvey } from '@/components/GuideMenuWithSurvey';
+import { DashboardSubtitle } from '@/components/DashboardSubtitle';
+import { SurveyLink } from '@/components/SurveyLink';
+import { useGuideLinks } from '@/hooks/useGuideLinks';
 import { useGetVrackDetails } from '@/hooks/vrack/useGetVrackDetails';
 import { CHANGELOG_CHAPTERS, CHANGELOG_LINKS } from '@/utils/constants';
 
@@ -17,6 +19,7 @@ import NotFound from '../not-found/404.page';
 export default function DashboardPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
   const { t } = useTranslation('dashboard');
+  const guideItems = useGuideLinks();
   const { data: vrack, isLoading } = useGetVrackDetails(serviceName || '');
 
   if (isLoading) {
@@ -34,16 +37,22 @@ export default function DashboardPage() {
         header={{
           title: <DashboardHeaderTitle vrack={vrack} />,
           changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />,
-          guideMenu: <GuideMenuWithSurvey />,
+          guideMenu: <GuideMenu items={guideItems} />,
         }}
         tabs={
-          <Tabs value="vrack.dashboard.publicIpRouting">
-            <TabList>
-              <Tab value="vrack.dashboard.publicIpRouting">
-                {t('dashboard_publicIpConnectivityTab')}
-              </Tab>
-            </TabList>
-          </Tabs>
+          <>
+            <span className="flex">
+              <DashboardSubtitle vrack={vrack} />
+              <SurveyLink />
+            </span>
+            <Tabs value="vrack.dashboard.publicIpRouting">
+              <TabList>
+                <Tab value="vrack.dashboard.publicIpRouting">
+                  {t('dashboard_publicIpConnectivityTab')}
+                </Tab>
+              </TabList>
+            </Tabs>
+          </>
         }
       >
         <Outlet />
