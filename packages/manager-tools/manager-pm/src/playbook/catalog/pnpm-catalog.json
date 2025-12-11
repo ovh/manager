@@ -14,5 +14,6 @@
   "packages/manager/apps/pci-ssh-keys",
   "packages/manager/apps/pci-users",
   "packages/manager/apps/pci-vouchers",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/apps/pci-project"
 ]
