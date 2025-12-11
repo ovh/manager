@@ -164,7 +164,7 @@
   "hosting_tab_DOMAINS_configuration_remove_step1_www": "Also remove the domain name {{domain}}",
   "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "If you want to detach your domain name, you must first remove your Git configuration to prevent potential issues with tracking changes and managing deployments.",
   "hosting_dashboard_ssl_delete_error": "An error occurred while deleting an SSL certificate. {{error}}",
-  "hosting_tab_DOMAINS_configuration_remove_failure": "An error occurred while detaching the domain from your shared hosting.",
+  "hosting_tab_DOMAINS_configuration_remove_failure": "An error occurred while detaching the domain from your shared hosting. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_success": "The domain will be detached from your shared hosting.",
   "activate_cdn": "Activate the CDN"
 }
