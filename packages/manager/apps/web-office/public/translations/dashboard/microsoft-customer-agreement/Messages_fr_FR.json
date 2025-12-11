@@ -5,5 +5,6 @@
   "signatory_step2_description": "Pour livrer votre service, confirmez que vous avez bien signé votre contrat chez Microsoft.",
   "signatory_step2_link": "Lien vers Microsoft",
   "signatory_step2_button": "J'ai signé le contrat Microsoft",
-  "signatory_success_message": "Votre service a été livré avec succès et est désormais disponible !"
+  "signatory_success_message": "Votre service a été livré avec succès et est désormais disponible !",
+  "signatory_success_link": "Mes premiers pas avec Microsoft 365"
 }
