@@ -6632,7 +6632,7 @@
     "@module-federation/error-codes" "0.8.12"
     "@module-federation/sdk" "0.8.12"
 
-"@module-federation/runtime@0.8.12", "@module-federation/runtime@^0.21.2", "@module-federation/runtime@^0.8.11":
+"@module-federation/runtime@0.8.12", "@module-federation/runtime@^0.8.11":
   version "0.8.12"
   resolved "https://registry.yarnpkg.com/@module-federation/runtime/-/runtime-0.8.12.tgz#ce3b4f04b6e523c809244745381982e085b494aa"
   integrity sha512-eYohRfambj/qzxz6tEakDn459ROcixWO4zL5gmTEOmwG+jCDnxGR14j1guopyrrpjb6EKFNrPVWtYZTPPfGdQQ==
@@ -7384,7 +7384,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.39.0", "@ovh-ux/manager-react-components@^2.43.1":
+"@ovh-ux/manager-react-components@^2.43.1":
   version "2.43.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
   integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
@@ -7405,19 +7405,6 @@
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.11.2.tgz#4aa1146543db4ef6bb07461ae92f95f44251244d"
   integrity sha512-98Ug2+bm2sorverYRIhsiyn2BPJEMa2EZQxMpaIxC2bAl/qy3zggfQdzTfCqb13OY+7JTeoDqzfYMBa2DnHIlQ==
-  dependencies:
-    "@ovh-ux/manager-config" "^8.2.1"
-    "@ovh-ux/ovh-at-internet" "^0.24.1"
-    "@ovh-ux/request-tagger" "^0.4.1"
-    "@ovh-ux/shell" "^4.7.1"
-    "@ovh-ux/url-builder" "^2.0.4"
-    i18next "^23.8.2"
-    i18next-http-backend "^2.4.2"
-
-"@ovh-ux/manager-react-shell-client@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.0.1.tgz#ddb1a54b24ee150e604c0c66e2e694ee024afef0"
-  integrity sha512-uVTQXXo/CRWJPvFBhUmXQ1uiBMk591nUSDeg+rmGIkAOg7PpVYQ6AOFa2lh0m4HdZu3OnFl1ppTMBX3E2K7VZg==
   dependencies:
     "@ovh-ux/manager-config" "^8.2.1"
     "@ovh-ux/ovh-at-internet" "^0.24.1"
@@ -7550,7 +7537,7 @@
     "@ovhcloud/ods-common-stencil" "17.2.2"
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-components@18.6.4", "@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.3", "@ovhcloud/ods-components@^18.6.4":
+"@ovhcloud/ods-components@18.6.4", "@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.4":
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.4.tgz#7fc45c501f8ea6a7dda3be41ed1d7095b9c706c3"
   integrity sha512-vC2qkHEutihuuI0gYo4fRB2Gc7m1X/tfVFzvQb6c2+DcmuzDefkz48otCvqvKX0cz+a0X7Il4yRHhgrqmsH3Tw==
@@ -7610,7 +7597,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.2"
 
-"@ovhcloud/ods-themes@18.6.4", "@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.6.3", "@ovhcloud/ods-themes@^18.6.4":
+"@ovhcloud/ods-themes@18.6.4", "@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.6.4":
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
@@ -11849,11 +11836,6 @@
   version "9.0.8"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.8.tgz#7545ba4fc3c003d6c756f651f3bf163d8f0f29ba"
   integrity sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==
-
-"@types/validator@^13.15.2":
-  version "13.15.10"
-  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.15.10.tgz#742b77ec34d58554b94a76a14cef30d59e3c16b9"
-  integrity sha512-T8L6i7wCuyoK8A/ZeLYt1+q0ty3Zb9+qbSSvrIVitzT3YjZqkTZ40IbRsPanlB4h1QB3JVL1SYCdR6ngtFYcuA==
 
 "@types/warning@^3.0.0":
   version "3.0.3"
@@ -33152,11 +33134,6 @@ typescript@5.8.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.2.tgz#8170b3702f74b79db2e5a96207c15e65807999e4"
   integrity sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==
 
-typescript@5.9.3, typescript@^5.8.3, typescript@^5.9.2, typescript@^5.9.3:
-  version "5.9.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
-  integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
-
 "typescript@^3 || ^4":
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
@@ -33176,6 +33153,11 @@ typescript@^5.5.4:
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
   integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
+
+typescript@^5.8.3, typescript@^5.9.2, typescript@^5.9.3:
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
+  integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
 
 u2f-api-polyfill@^0.4.3:
   version "0.4.4"
@@ -33915,11 +33897,6 @@ validator-js@^0.2.1:
   integrity sha512-Ca4V9xWQbxg3gqSZaH24mNPOIks90J6UVeejvhDffQSvfRUuPZJFQmrzzU3mU9GwgbWLBnap0MBdEx94fg96DQ==
   dependencies:
     underscore "*"
-
-validator@^13.15.15:
-  version "13.15.23"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-13.15.23.tgz#59a874f84e4594588e3409ab1edbe64e96d0c62d"
-  integrity sha512-4yoz1kEWqUjzi5zsPbAS/903QXSYp0UOtHsPpp7p9rHAw/W+dkInskAE386Fat3oKRROwO98d9ZB0G4cObgUyw==
 
 validator@^13.7.0:
   version "13.11.0"

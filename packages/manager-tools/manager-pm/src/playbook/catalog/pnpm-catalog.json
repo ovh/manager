@@ -5,5 +5,6 @@
   "packages/manager/apps/pci-instances",
   "packages/manager/apps/web-hosting",
   "packages/manager/apps/web-ongoing-operations",
-  "packages/manager/apps/pci-block-storage"
+  "packages/manager/apps/pci-block-storage",
+  "packages/manager/apps/pci-project"
 ]
