@@ -1,4 +1,0 @@
-import{j as t}from"./jsx-runtime-BRNY0I4F.js";import{u as r}from"./index-DqmHFHkp.js";import{M as a}from"./index-B5IwYQPI.js";import"./index-Bnop-kX6.js";import"./iframe-CMtJSjaz.js";import"./index-4pTrEEYx.js";import"./index-DOoWsluG.js";import"./index-DrFu-skq.js";function o(e){const n={p:"p",...r(),...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(a,{title:"Manager UI Kit/Components/Table/Documentation",parameters:{status:{type:"deprecated"}}}),`
-`,t.jsx(n.p,{children:"Table - migrate from 1.X.0 from 2.X.0"}),`
-`,t.jsx(n.p,{children:"Table has been removed from Manager UI Kit library."}),`
-`,t.jsxs(n.p,{children:["You should use ",t.jsx("a",{href:"/?path=/docs/components-datagrid-cursor--empty",children:"datagrid components"})]})]})}function x(e={}){const{wrapper:n}={...r(),...e.components};return n?t.jsx(n,{...e,children:t.jsx(o,{...e})}):o(e)}export{x as default};
