@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useGuideUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
@@ -62,7 +62,7 @@ export default function Onboarding() {
       orderHref={dedicatedOrder as string}
     >
       {tileList.map((tile) => (
-        <Card key={tile.id} href={tile.href as string} texts={tile.texts} />
+        <LinkCard key={tile.id} href={tile.href as string} texts={tile.texts} />
       ))}
     </OnboardingLayout>
   );

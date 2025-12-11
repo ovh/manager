@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { GuideItem } from '@ovh-ux/manager-react-components';
+import { GuideMenuItem } from '@ovh-ux/muk';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -113,7 +113,7 @@ const guidesList = [
 ];
 
 export default function useGuides(translate: (key: string) => string) {
-  const [guides, setGuides] = useState<GuideItem[]>([]);
+  const [guides, setGuides] = useState<GuideMenuItem[]>([]);
   const {
     shell: { environment },
   } = useContext(ShellContext);
@@ -126,7 +126,7 @@ export default function useGuides(translate: (key: string) => string) {
       setGuides(
         guidesList.map(({ label, links }, id) => ({
           id,
-          label: translate(label),
+          children: translate(label),
           href: links[ovhSubsidiary as CountryCode] || links.DEFAULT,
           target: '_blank',
         })),

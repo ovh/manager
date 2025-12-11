@@ -2,10 +2,7 @@ import React from 'react';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import {
-  DataGridTextCell,
-  DatagridColumn,
-} from '@ovh-ux/manager-react-components';
+import { DatagridColumn } from '@ovh-ux/muk';
 import { useTranslation } from 'react-i18next';
 import { ActionCell } from '@/components/actionCell';
 import { DedicatedServer } from '@/data/types/server.type';
@@ -31,116 +28,139 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
   return [
     {
       id: 'serverId',
+      accessorFn: (row) => {
+        return row.serverId;
+      },
+      accessorKey: 'id',
       isSearchable: false,
+      isSortable: true,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.Numeric,
+      header: t('server_display_id'),
       label: t('server_display_id'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.serverId.toString())}</DataGridTextCell>
-      ),
+      cell: ({ row: { original: server } }) => <div>{server.serverId}</div>,
     },
     {
       id: 'iam.displayName',
+      accessorKey: 'displayName',
       isSearchable: true,
+      isSortable: true,
       isFilterable: true,
       enableHiding: false,
       type: FilterTypeCategories.String,
+      header: t('server_display_name'),
       label: t('server_display_name'),
-      cell: NameCell,
+      cell: ({ row: { original: server } }) => NameCell(server),
     },
     {
       id: 'ip',
       isSearchable: false,
+      accessorKey: 'ip',
       isSortable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
+      header: t('server_display_ip'),
       label: t('server_display_ip'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.ip)}</DataGridTextCell>
-      ),
+      cell: ({ row: { original: server } }) => <div>{t(server.ip)}</div>,
     },
     {
       id: 'reverse',
+      accessorKey: 'reverse',
       isSearchable: false,
       isFilterable: true,
+      isSortable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
+      header: t('server_display_reverse'),
       label: t('server_display_reverse'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
+      cell: ({ row: { original: server } }) => (
+        <div>
           <span className="whitespace-nowrap">{t(server.reverse)}</span>
-        </DataGridTextCell>
+        </div>
       ),
     },
     {
       id: 'commercialRange',
+      accessorKey: 'commercialRange',
       isSearchable: false,
+      isSortable: true,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
+      header: t('server_display_model'),
       label: t('server_display_model'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
+      cell: ({ row: { original: server } }) => (
+        <div>
           <span className="whitespace-nowrap">{t(server.commercialRange)}</span>
-        </DataGridTextCell>
+        </div>
       ),
     },
     {
       id: 'os',
+      accessorKey: 'os',
       isSearchable: false,
       isFilterable: true,
+      isSortable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
+      header: t('server_display_operating_system'),
       label: t('server_display_operating_system'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.os)}</DataGridTextCell>
-      ),
+      cell: ({ row: { original: server } }) => <div>{t(server.os)}</div>,
     },
     {
       id: 'region',
+      accessorKey: 'region',
       isSearchable: false,
       isFilterable: true,
+      isSortable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
+      header: t('server_display_region'),
       label: t('server_display_region'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
+      cell: ({ row: { original: server } }) => (
+        <div>
           <span className="whitespace-nowrap">{t(server.region)}</span>
-        </DataGridTextCell>
+        </div>
       ),
     },
     {
       id: 'rack',
+      accessorKey: 'rack',
       isSearchable: false,
       isFilterable: true,
+      isSortable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
+      header: t('server_display_rack'),
       label: t('server_display_rack'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.rack)}</DataGridTextCell>
-      ),
+      cell: ({ row: { original: server } }) => <div>{t(server.rack)}</div>,
     },
     {
       id: 'datacenter',
+      accessorKey: 'datacenter',
       isSearchable: false,
       isFilterable: true,
+      isSortable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
+      header: t('server_display_datacentre'),
       label: t('server_display_datacentre'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.datacenter)}</DataGridTextCell>
+      cell: ({ row: { original: server } }) => (
+        <div>{t(server.datacenter)}</div>
       ),
     },
     {
       id: 'state',
+      accessorKey: 'state',
       isSearchable: false,
       isFilterable: false, // until fix
       enableHiding: true,
+      isSortable: true,
       type: FilterTypeCategories.Boolean,
-      label: t('server_display_state'),
-      cell: (server: DedicatedServer) => (
+      header: t('server_display_state'),
+      cell: ({ row: { original: server } }) => (
         <OdsBadge
           label={t(textByProductStatus[server.state])}
           color={colorByProductStatus[server.state]}
@@ -150,82 +170,91 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
     },
     {
       id: 'monitoring',
+      accessorKey: 'monitoring',
       isSearchable: false,
       isFilterable: false, // until fix
       isSortable: false,
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
-      label: t('server_display_monitoring'),
-      cell: MonitoringStatusChip,
+      header: t('server_display_monitoring'),
+      cell: ({ row: { original: server } }) => MonitoringStatusChip(server),
     },
     {
       id: 'vrack',
+      accessorKey: 'vrack',
       isSearchable: false,
       isFilterable: false, // until fix
       isSortable: false,
       enableHiding: true,
       type: FilterTypeCategories.String,
-      label: t('server_display_vrack'),
-      cell: DSVrack,
+      header: t('server_display_vrack'),
+      cell: ({ row: { original: server } }) => DSVrack(server),
     },
     {
       id: 'renew',
+      accessorKey: 'renew',
       isSearchable: false,
       isFilterable: false,
       isSortable: false,
       enableHiding: true,
       type: FilterTypeCategories.String,
-      label: t('server_display_renew'),
-      cell: RenewCell,
+      header: t('server_display_renew'),
+      cell: ({ row: { original: server } }) => RenewCell(server),
     },
     {
       id: 'expiration',
+      accessorKey: 'expiration',
       isSearchable: false,
       isFilterable: false,
       isSortable: false,
       enableHiding: true,
       type: FilterTypeCategories.String,
-      label: t('server_display_expiration'),
-      cell: ExpirationCell,
+      header: t('server_display_expiration'),
+      cell: ({ row: { original: server } }) => ExpirationCell(server),
     },
     {
       id: 'engagement',
+      accessorKey: 'engagement',
       isSearchable: false,
       isFilterable: false,
       isSortable: false,
       enableHiding: true,
       type: FilterTypeCategories.String,
-      label: t('server_display_engagement'),
-      cell: EngagementCell,
+      header: t('server_display_engagement'),
+      cell: ({ row: { original: server } }) => EngagementCell(server),
     },
     {
       id: 'price',
+      accessorKey: 'price',
       isSearchable: false,
       isFilterable: false,
       enableHiding: true,
       isSortable: false,
       type: FilterTypeCategories.String,
-      label: t('server_display_price'),
-      cell: PriceCell,
+      header: t('server_display_price'),
+      cell: ({ row: { original: server } }) => PriceCell(server),
     },
     {
       id: 'tags',
+      accessorKey: 'tags',
       isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       isSortable: false,
       type: FilterTypeCategories.Tags,
+      header: 'Tags',
       label: 'Tags',
-      cell: TagsCell,
+      cell: ({ row: { original: server } }) => TagsCell(server),
     },
     {
       id: 'actions',
+      accessorKey: 'actions',
       isSearchable: false,
       isFilterable: false,
       enableHiding: false,
-      label: '',
+      header: '',
       isSortable: false,
-      cell: ActionCell,
+      cell: ({ row: { original: server } }) => ActionCell(server),
     },
   ];
 }
