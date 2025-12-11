@@ -19,11 +19,14 @@ export type OkmsPublicCa = {
   publicRsaCA: string;
 };
 
+export type OkmsServiceState = 'EXPIRED' | 'IN_CREATION' | 'OK' | 'SUSPENDED';
+
 export type IAM = {
   displayName: string;
   id: string;
   urn: string;
   tags?: Record<string, string>;
+  state?: OkmsServiceState;
 };
 
 export type OKMSOptions = {
