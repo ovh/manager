@@ -260,6 +260,7 @@ export default function MultisitePage() {
                 context="domain"
                 domainId={domain.id}
                 domain={domain.currentState?.fqdn}
+                siteId={domain?.currentState?.websiteId ?? ''}
                 site={domain.currentState?.name ?? ''}
                 path={domain.currentState?.path ?? ''}
                 domains={allDomains}
