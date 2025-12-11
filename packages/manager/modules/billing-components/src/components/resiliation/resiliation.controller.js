@@ -12,6 +12,9 @@ export default class BillingResiliationController {
 
   $onInit() {
     this.isUSRegion = this.coreConfig.isRegion('US');
+    this.availableStrategies = this.availableStrategies.filter(
+      ({ strategy }) => strategy !== 'REACTIVATE_ENGAGEMENT',
+    );
   }
 
   resiliate() {
