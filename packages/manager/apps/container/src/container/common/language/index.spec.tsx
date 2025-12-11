@@ -1,7 +1,12 @@
 import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { KeyPairName } from '@ovh-ux/manager-config';
+import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 import LanguageMenu, { Props } from './index';
+
+const wrapper = getComponentWrapper({
+  configuration: {},
+});
 
 const handleChange = vi.fn();
 const handleSetUserLanguge = vi.fn();
@@ -30,11 +35,13 @@ vi.mock('react-responsive');
 
 const renderLanguageMenu = (props: Props) => {
   return render(
-    <LanguageMenu
-      onChange={props.onChange}
-      setUserLocale={props.setUserLocale}
-      userLocale={props.userLocale}
-    />,
+    wrapper(
+      <LanguageMenu
+        onChange={props.onChange}
+        setUserLocale={props.setUserLocale}
+        userLocale={props.userLocale}
+      />,
+    ),
   );
 };
 

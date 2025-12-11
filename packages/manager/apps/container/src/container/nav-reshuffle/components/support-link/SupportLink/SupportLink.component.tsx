@@ -15,10 +15,9 @@ export const SupportLink = () => {
       target={OdsHTMLAnchorElementTarget._blank}
       rel={OdsHTMLAnchorElementRel.noopener}
       data-testid="support-link"
+      className="text-[var(--ods-color-primary-100)] hover:text-[var(--ods-color-primary-200)]"
     >
-      <span className={`text-[var(--ods-color-primary-100)]`}>
-        {t('navbar_support')}
-      </span>
+      {t('navbar_support')}
     </a>
   );
 };
