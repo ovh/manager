@@ -13,9 +13,9 @@
   "scripts": {
     "build": "tsc && vite build",
     "start": "tsc && vite",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test": "vitest --config vitest.config.mjs run",
+    "test:coverage": "vitest --config vitest.config.mjs run --coverage",
+    "test:watch": "vitest --config vitest.config.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
-    "@ovh-ux/manager-tests-setup": "^0.4.7",
+    "@ovh-ux/manager-tests-setup": "^0.6.2",
     "@ovh-ux/manager-vite-config": "^0.15.5",
     "@ovhcloud/ods-components": "17.2.1",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.1",
