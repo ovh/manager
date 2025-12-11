@@ -1,5 +1,5 @@
 name: Run tests
-on: 
+on:
   push:
     branches-ignore: [master]
 
@@ -34,10 +34,10 @@ jobs:
           path: |
             ~/.cache/yarn
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-            
+
       - name: Install repository
         run: yarn install --frozen-lockfile
       - name: Build covered packages and dependencies
