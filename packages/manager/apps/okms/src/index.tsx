@@ -5,8 +5,9 @@ import ReactDOM from 'react-dom/client';
 import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import App from './App';
+import { APP_NAME } from './App.constants';
 import './index.scss';
-import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
+import { LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -45,4 +46,4 @@ const init = async (appName: string) => {
   );
 };
 
-void init('okms');
+void init(APP_NAME);
