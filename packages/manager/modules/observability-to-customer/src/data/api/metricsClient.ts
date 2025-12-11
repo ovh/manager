@@ -36,7 +36,7 @@ metricForManagerClient.interceptors.request.use((config: InternalAxiosRequestCon
     (config.headers as Record<string, string>)[key] = value;
   });
   // Ensure cookies are sent with requests (for same-origin, this is automatic)
-  config.withCredentials = true;
+  config.withCredentials = false;
   return config;
 });
 

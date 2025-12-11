@@ -5,9 +5,17 @@ export const formatTimestamp = (timestamp: number): string => {
   return format(date, 'HH:mm:ss');
 };
 
+export const formatLargeNumber = (value: number): string => {
+  return new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+  }).format(value)
+};
+
 // Formatter registry for dynamic formatter selection
 export const formatters = {
   formatTimestamp,
+  formatLargeNumber,
   // Add more formatters here as needed
 };
 
