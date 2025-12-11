@@ -6,7 +6,15 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import type { SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import {
+  ICON_NAME,
+  Icon,
+  Link,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import type { ApiError } from '@ovh-ux/manager-core-api';
@@ -18,11 +26,13 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
 
+import { WEB_OFFICE_GUIDES } from '@/Guides.constants';
 import { AGREEMENT, CONFIRM } from '@/Tracking.constants';
 import { postAcceptAgreement, postCreateAttestation } from '@/data/api/mca/api';
 import { CreateAttestationBodyParamsType } from '@/data/api/mca/type';
 import { getParentTenant } from '@/data/api/parent-tenant/api';
 import { getOfficeParentTenantQueryKey } from '@/data/api/parent-tenant/key';
+import queryClient from '@/queryClient';
 
 import McaStep1 from './McaStep1.component';
 import McaStep2 from './McaStep2.component';
@@ -35,7 +45,7 @@ export const McaPage = () => {
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation(['dashboard/microsoft-customer-agreement', NAMESPACES.ERROR]);
   const context = useContext(ShellContext);
-  const { country, email, firstname, language, name, organisation, phone } =
+  const { country, email, firstname, language, name, organisation, phone, ovhSubsidiary } =
     context.environment.getUser();
   const { serviceName } = useParams();
 
@@ -65,10 +75,51 @@ export const McaPage = () => {
     });
   };
 
+  const invalidateQueries = async () => {
+    await queryClient.invalidateQueries({
+      queryKey: ['get'],
+    });
+  };
+
   const onSuccess = useCallback(() => {
-    addSuccess(<Text preset={TEXT_PRESET.paragraph}>{t('signatory_success_message')}</Text>, true);
+    void invalidateQueries();
+    addSuccess(
+      <>
+        <MessageIcon name={ICON_NAME.circleCheck} />
+        <MessageBody>
+          <Text preset={TEXT_PRESET.paragraph}>{t('signatory_success_message')}</Text>{' '}
+          <Link
+            href={WEB_OFFICE_GUIDES[ovhSubsidiary] || WEB_OFFICE_GUIDES.DEFAULT}
+            target="_blank"
+          >
+            {t('signatory_success_link')}
+            <Icon name={ICON_NAME.arrowRight} />
+          </Link>
+        </MessageBody>
+      </>,
+      true,
+    );
     navigate(`/license/${serviceName}`);
-  }, [t, addSuccess, navigate, serviceName]);
+  }, [t, addSuccess, navigate, serviceName, ovhSubsidiary]);
+
+  const onError = useCallback(
+    (error: ApiError) => {
+      addError(
+        <>
+          <MessageIcon name={ICON_NAME.hexagonExclamation} />
+          <MessageBody>
+            <Text preset={TEXT_PRESET.paragraph}>
+              {t(`${NAMESPACES.ERROR}:error_message`, {
+                message: error?.response?.data?.message,
+              })}
+            </Text>
+          </MessageBody>
+        </>,
+        true,
+      );
+    },
+    [t, addError],
+  );
 
   const { mutate: submitMca, isPending: isSubmitting } = useMutation({
     mutationFn: (params: CreateAttestationBodyParamsType) =>
@@ -78,31 +129,13 @@ export const McaPage = () => {
       setMicrosoftUrl(attestationLink);
       setStep(2);
     },
-    onError: (error: ApiError) => {
-      addError(
-        <Text preset={TEXT_PRESET.paragraph}>
-          {t(`${NAMESPACES.ERROR}:error_message`, {
-            message: error?.response?.data?.message,
-          })}
-        </Text>,
-        true,
-      );
-    },
+    onError: onError,
   });
 
   const { mutate: confirmMca, isPending: isConfirmPending } = useMutation({
     mutationFn: () => postAcceptAgreement(serviceName),
     onSuccess: onSuccess,
-    onError: (error: ApiError) => {
-      addError(
-        <Text preset={TEXT_PRESET.paragraph}>
-          {t(`${NAMESPACES.ERROR}:error_message`, {
-            message: error?.response?.data?.message,
-          })}
-        </Text>,
-        true,
-      );
-    },
+    onError: onError,
   });
 
   const { data } = useQuery({
