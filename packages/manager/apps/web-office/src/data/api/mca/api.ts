@@ -8,8 +8,13 @@ export const postCreateAttestation = async (
   params: CreateAttestationBodyParamsType,
 ) => {
   const { data } = await v6.post<CreateAttestationType>(
-    `${getApiPath(serviceName)}createAttestation`,
+    `${getApiPath(serviceName)}parentTenant/createAttestation`,
     params,
   );
+  return data;
+};
+
+export const postAcceptAgreement = async (serviceName: string) => {
+  const { data } = await v6.post<unknown>(`${getApiPath(serviceName)}parentTenant/acceptAgreement`);
   return data;
 };
