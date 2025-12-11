@@ -100,5 +100,9 @@
   "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} ex VAT/hour",
   "pci_instance_creation_image_available_on_other_models": "This image is available on other models.",
   "pci_instance_creation_select_network_dropdown_label": "Select an existing private network",
-  "pci_instance_creation_network_add_new": "Create a private network"
+  "pci_instance_creation_network_add_new": "Create a private network",
+  "pci_instance_creation_select_billing_choice_title": "Invoicing",
+  "pci_instances_creation_select_billing_hourly": "Schedule",
+  "pci_instances_creation_select_billing_monthly": "Monthly",
+  "pci_instances_creation_select_billing_subtext": "Pay as you go, with costs based on actual usage time."
 }

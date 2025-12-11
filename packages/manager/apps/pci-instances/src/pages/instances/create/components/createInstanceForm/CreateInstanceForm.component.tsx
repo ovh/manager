@@ -64,7 +64,6 @@ export const CreateInstanceForm = () => {
     distributionImageVersionName,
   );
 
-  console.log('🚀 ~ CreateInstanceForm ~ pricingTypes:', pricingTypes);
   return (
     <FormProvider {...formMethods}>
       <div className="flex gap-6">
