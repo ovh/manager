@@ -33,17 +33,17 @@ jobs:
           node-version: 22
 
       # ------------------------------------------
-      # PNPM CACHE (binary + store under ./target)
+      # PNPM CACHE (binary only)
       # ------------------------------------------
-      - name: Restore PNPM cache (binary + store)
+      - name: Restore PNPM cache (binary only)
         uses: actions/cache@v3
         with:
           path: |
             target/pnpm
-          key: ${{ runner.os }}-pnpm-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-pnpm-tests-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-${{ env.PNPM_VERSION }}-
-            ${{ runner.os }}-pnpm-
+            ${{ runner.os }}-pnpm-tests-${{ env.PNPM_VERSION }}-
+            ${{ runner.os }}-pnpm-tests-
 
       # ------------------------------------------
       # YARN CACHE (node_modules + yarn cache)
@@ -54,9 +54,9 @@ jobs:
           path: |
             ~/.cache/yarn
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-tests-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-tests-
 
       - name: Install repository
         run: yarn install --frozen-lockfile
@@ -77,6 +77,9 @@ jobs:
           yarn build --filter="./packages/manager/modules/network-common"
           yarn build --filter="./packages/components/ovh-payment-method"
 
+      # ------------------------------------------
+      # RUN TESTS ON CHANGED PACKAGES
+      # ------------------------------------------
       - name: Run tests on changed packages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -84,10 +87,12 @@ jobs:
         run: |
           BRANCH=$(git branch --show-current)
           echo "My branch is $BRANCH"
+
           if [[ "$BRANCH" == "master" ]]; then
             echo "My branch is master and no unit test to run, exit..."
             exit 0
           fi
+
           BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
 
           if [[ -z "$BASE_BRANCH" ]]; then
@@ -102,4 +107,5 @@ jobs:
             echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
+
           yarn test --concurrency=1 --filter=...[origin/${BASE_BRANCH}...origin/${BRANCH}]
