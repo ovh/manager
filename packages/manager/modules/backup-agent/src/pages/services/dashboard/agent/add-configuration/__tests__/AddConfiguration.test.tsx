@@ -7,7 +7,9 @@ import { vi } from 'vitest';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DrawerProps } from '@ovh-ux/manager-react-components';
 
+import { mockAgentDownloadLinks } from '@/mocks/agents/agentDownloadLinks';
 import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
+import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { OS_LABELS } from '@/module.constants';
 
 import AddConfigurationPage from '../AddConfiguration.page';
@@ -36,6 +38,12 @@ vi.mock('react-i18next', () => ({
 // --- Mock translation ---
 vi.mock('@ovhcloud/ods-components/react', () => ({
   OdsText: vi
+    .fn()
+    .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
+  OdsMessage: vi
+    .fn()
+    .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
+  OdsCode: vi
     .fn()
     .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
   OdsButton: vi
@@ -124,10 +132,27 @@ const { useBaremetalsListMock } = vi.hoisted(() => ({
     .fn()
     .mockReturnValue({ flattenData: undefined, isLoading: true, isError: false }),
 }));
+const { useBackupVSPCTenantAgentDownloadLinkMock } = vi.hoisted(() => ({
+  useBackupVSPCTenantAgentDownloadLinkMock: vi.fn(),
+}));
 
 vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => {
   return {
     useBaremetalsList: useBaremetalsListMock,
+  };
+});
+
+vi.mock('@/data/hooks/agents/getDownloadLinkAgent', () => {
+  return {
+    useBackupVSPCTenantAgentDownloadLink: useBackupVSPCTenantAgentDownloadLinkMock,
+  };
+});
+
+vi.mock('@/hooks/useRequiredParams', () => {
+  return {
+    useRequiredParams: vi.fn().mockReturnValue({
+      tenantId: TENANTS_MOCKS[0]!.id,
+    }),
   };
 });
 
@@ -142,6 +167,10 @@ describe('FirstOrderFormComponent', () => {
         flattenData: BAREMETAL_MOCK,
         isLoading: isLoadingMock,
         isError: false,
+      });
+      useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
+        data: mockAgentDownloadLinks.linuxUrl,
+        isLoading: false,
       });
 
       render(<AddConfigurationPage />);
@@ -158,6 +187,10 @@ describe('FirstOrderFormComponent', () => {
       flattenData: BAREMETAL_MOCK,
       isLoading: false,
       isError: false,
+    });
+    useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
+      data: mockAgentDownloadLinks.linuxUrl,
+      isLoading: false,
     });
     const user = userEvent.setup();
 
