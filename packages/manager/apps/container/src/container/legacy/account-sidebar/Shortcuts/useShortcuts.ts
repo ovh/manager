@@ -18,6 +18,7 @@ const useShortcuts = (): UseShortcuts => {
   const region = environment.getRegion();
   const user = environment.getUser();
   const navigation = shell.getPlugin('navigation');
+  const applications = environment.getApplications();
 
   const getShortcuts = (): Shortcut[] => {
     return [
@@ -58,12 +59,15 @@ const useShortcuts = (): UseShortcuts => {
               url: navigation.getURL('catalog', '#/'),
             },
           ]),
-      {
-        id: 'emails',
-        icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_LETTER_CONCEPT),
-        url: navigation.getURL('communication', '#/'),
-        tracking: 'hub::sidebar::shortcuts::go-to-emails',
-      },
+      // This should not be done in this way and rather check feature flipping
+      ...(applications.communication
+        ? [{
+          id: 'emails',
+          icon: getOdsIcon(ODS_ICON_NAME.ENVELOP_LETTER_CONCEPT),
+          url: navigation.getURL('communication', '#/'),
+          tracking: 'hub::sidebar::shortcuts::go-to-emails',
+        }]
+        :[]),
       ...(['EU', 'CA'].includes(region)
         ? [
             {
