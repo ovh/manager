@@ -49,7 +49,7 @@ const McaStep1 = ({
   handleSaveClick: SubmitHandler<CreateAttestationBodyParamsType>;
 }) => {
   const { t } = useTranslation([
-    'common',
+    'dashboard/microsoft-customer-agreement',
     NAMESPACES.FORM,
     NAMESPACES.COUNTRIES,
     NAMESPACES.LANGUAGE,
