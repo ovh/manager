@@ -39,7 +39,7 @@ export default function UpdatingPage() {
   const user = environment.getUser();
 
   const handleProjectDeliveryFail = () => {
-    trackUpdateProjectError();
+    trackUpdateProjectError(t('pci_projects_updating_delivery_error'));
     throw new Error(t('pci_projects_updating_delivery_error'));
   };
 

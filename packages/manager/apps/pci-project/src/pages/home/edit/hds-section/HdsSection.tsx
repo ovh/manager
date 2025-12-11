@@ -12,6 +12,7 @@ import Contracts from '@/components/contracts/Contracts';
 import HdsOption from '@/components/hds-option/HdsOption';
 import { useGetCartSummary } from '@/data/hooks/useCart';
 import { useCheckoutWithFidelityAccount } from '@/hooks/use-checkout/useCheckout';
+import { useTrackingAdditionalData } from '@/hooks/useTracking';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import { TProject } from '@/types/pci-common.types';
 
@@ -29,6 +30,7 @@ export default function HdsSection({ project }: { project: TProject }) {
   const { addSuccess, addError } = useNotifications();
 
   const { trackClick, trackPage } = useOvhTracking();
+  const trackingAdditionalData = useTrackingAdditionalData();
 
   const [isHDSChecked, setIsHDSChecked] = useState(false);
   const [isContractsChecked, setIsContractsChecked] = useState(false);
@@ -87,6 +89,7 @@ export default function HdsSection({ project }: { project: TProject }) {
         trackPage({
           pageType: PageType.bannerInfo,
           pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_SUCCESS,
+          additionalData: trackingAdditionalData,
         });
 
         addSuccess(
@@ -103,6 +106,10 @@ export default function HdsSection({ project }: { project: TProject }) {
         trackPage({
           pageType: PageType.bannerError,
           pageName: PROJECTS_TRACKING.SETTINGS.HDS_SECTION.REQUEST_ERROR,
+          additionalData: {
+            ...trackingAdditionalData,
+            pciCreationErrorMessage: error.message,
+          },
         });
 
         addError(

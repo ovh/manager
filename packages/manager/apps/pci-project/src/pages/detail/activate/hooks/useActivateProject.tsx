@@ -97,7 +97,9 @@ export const useProjectActivation = ({
         // Step 7: Navigate to updating page
         navigateToUpdating(activationResult.order.orderId);
       } catch (error) {
-        trackActivateError();
+        trackActivateError(
+          (error as ApiError)?.response?.data?.message || (error as Error).message,
+        );
         addError(
           t('pci_projects_project_activate_message_fail', {
             message: (error as ApiError)?.response?.data?.message || (error as Error).message,
