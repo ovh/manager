@@ -20,6 +20,9 @@ import { LocalizationSelection } from '../localisationSelection/LocalizationSele
 import DistributionImage from '../DistributionImage.component';
 import SshKey from '../SshKey.component';
 import Network from '../Network.component';
+import BillingChoice from '../BillingChoice.component';
+import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
+import { useMemo } from 'react';
 
 const quantityHintParams = {
   quota: 1,
@@ -34,9 +37,10 @@ export const CreateInstanceForm = () => {
   const formMethods = useForm(projectId);
   const macroRegion = formMethods.watch('macroRegion');
   const microRegion = formMethods.watch('microRegion');
-  const [osType, distributionImageType] = formMethods.watch([
+  const [osType, distributionImageType, flavorId] = formMethods.watch([
     'distributionImageOsType',
     'distributionImageType',
+    'flavorId',
   ]);
   const microRegions = selectMicroRegions(deps)(projectId, macroRegion);
   const availabilityZones = selectAvailabilityZones(deps)(
@@ -48,6 +52,12 @@ export const CreateInstanceForm = () => {
     osType === 'windows' || distributionImageType === 'windows';
 
   const hasMultiMicroRegions = microRegions ? microRegions.length > 1 : false;
+
+  const billingTypes = useMemo(
+    () => selectBillingTypes(deps)(projectId, flavorId, osType),
+    [projectId, flavorId, osType],
+  );
+
   return (
     <FormProvider {...formMethods}>
       <div className="flex gap-6">
@@ -87,6 +97,9 @@ export const CreateInstanceForm = () => {
           )}
           <Divider spacing="64" />
           <Network />
+          {billingTypes.length > 1 && (
+            <BillingChoice billingTypes={billingTypes} />
+          )}
           <AdvancedParameters />
           <PciCardShowcaseComponent />
         </section>

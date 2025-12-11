@@ -109,5 +109,11 @@
   "pci_instance_creation_network_add_new_vlanID_warning": "Die VLAN-ID 0 wird standardmäßig in anderen Produkten verwendet, auch außerhalb der Public Cloud. Private IPs müssen sorgfältig verwaltet werden.",
   "pci_instance_creation_network_add_new_cidr_error": "Bitte geben Sie eine gültige IP-Adresse ein.",
   "pci_instance_creation_network_add_new_vlanId_error": "Die vLAN-ID muss zwischen 0 und 4000 liegen. Bitte überprüfen Sie den eingegebenen Wert, bevor Sie fortfahren.",
-  "pci_instance_creation_create_my_instance": "Starte meine Instanz"
+  "pci_instance_creation_create_my_instance": "Starte meine Instanz",
+  "pci_instance_creation_select_billing_choice_title": "Abrechnung",
+  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} HT/Stunde",
+  "pci_instance_creation_select_billing_hourly": "Zeitplan",
+  "pci_instance_creation_select_billing_monthly": "Monatlich",
+  "pci_instance_creation_select_billing_choice_subtext_hourly": "Zahlen Sie nach Nutzung, basierend auf der tatsächlichen Nutzungszeit.",
+  "pci_instance_creation_select_billing_choice_subtext_monthly": "Zahlen Sie monatlich, mit festen Kosten"
 }

@@ -6,7 +6,7 @@ import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
 import Region1azImage from '../../../public/assets/1AZ.svg';
 import Region3azImage from '../../../public/assets/3AZ.svg';
 import LZImage from '../../../public/assets/LZ.svg';
-import { TDeploymentMode } from '@/types/instance/common.type';
+import { BILLING_TYPE, TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
@@ -1079,6 +1079,11 @@ export const mockedFlavorTypesSelectorData: TOptionsData[] = [
     value: 'Novelties',
     tags: ['New!'],
   },
+];
+
+export const mockedBillingTypesSelectorData: BILLING_TYPE[] = [
+  BILLING_TYPE.Hourly,
+  BILLING_TYPE.Monthly,
 ];
 
 export const mockedFlavorCategories = [

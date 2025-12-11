@@ -104,6 +104,10 @@ export type TPrice = {
   monthlyEquivalent: TPriceDetails | null;
 };
 
+/**
+ *  id: flavor_region_osType_price
+ *  Ex: 'B3-8_BHS1.PREPROD_linux_price'
+ */
 export type TFlavorPrices = {
   id: TFlavorPricesID;
   prices: TPrice[];

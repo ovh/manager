@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { instanceNameRegex, sshKeyRegex } from '@/constants';
-import { DEPLOYMENT_MODES } from '@/types/instance/common.type';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { BILLING_TYPE, DEPLOYMENT_MODES } from '@/types/instance/common.type';
 
 export const nameSchema = z.string().regex(instanceNameRegex);
 
@@ -18,6 +18,8 @@ export const flavorTypeSchema = z.string().nullable();
 export const flavorIdSchema = z.string().nullable();
 
 export const microRegionSelectionSchema = z.string().nullable();
+
+export const billingTypeSelectionSchema = z.nativeEnum(BILLING_TYPE);
 
 export const availabilityZoneSelectionSchema = z.string().nullable();
 
@@ -148,4 +150,5 @@ export const instanceCreationSchema = z.object({
   newSshPublicKey: sshPublicKeySchema.nullable(),
   networkId: networkIdSchema,
   newPrivateNetwork: networkSchema,
+  billingType: billingTypeSelectionSchema,
 });
