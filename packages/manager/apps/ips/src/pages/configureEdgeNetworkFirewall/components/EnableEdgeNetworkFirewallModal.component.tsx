@@ -1,15 +1,20 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { TRANSLATION_NAMESPACES } from '@/utils';
-import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
+
 import { getIpEdgeFirewallQueryKey, putIpEdgeFirewall } from '@/data/api';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 export const EnableEdgeNetworkFirewallModal: React.FC = () => {
   const {
@@ -28,12 +33,8 @@ export const EnableEdgeNetworkFirewallModal: React.FC = () => {
     TRANSLATION_NAMESPACES.error,
   ]);
 
-  const {
-    isPending: isUpdatePending,
-    mutate: updateGameFirewall,
-  } = useMutation({
-    mutationFn: () =>
-      putIpEdgeFirewall({ ip, ipOnFirewall, enabled: !firewallModeEnabled }),
+  const { isPending: isUpdatePending, mutate: updateGameFirewall } = useMutation({
+    mutationFn: () => putIpEdgeFirewall({ ip, ipOnFirewall, enabled: !firewallModeEnabled }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: getIpEdgeFirewallQueryKey({ ip, ipOnFirewall }),
@@ -61,9 +62,7 @@ export const EnableEdgeNetworkFirewallModal: React.FC = () => {
       isOpen={isEnableFirewallModalVisible}
       onDismiss={hideEnableFirewallModal}
       heading={
-        firewallModeEnabled
-          ? t('disable_firewall_modal_title')
-          : t('enable_firewall_modal_title')
+        firewallModeEnabled ? t('disable_firewall_modal_title') : t('enable_firewall_modal_title')
       }
       type={ODS_MODAL_COLOR.neutral}
       primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}

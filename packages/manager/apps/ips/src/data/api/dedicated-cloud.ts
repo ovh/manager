@@ -1,5 +1,6 @@
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { ServiceStatus } from '@/types';
 
 export type DedicatedCloudLocation = {

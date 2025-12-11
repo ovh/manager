@@ -1,23 +1,21 @@
 import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  Card,
-  OnboardingLayout,
-  Links,
-} from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useGuideUtils } from '@/utils';
-import onboardingImgSrc from './onboarding-img.png';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { Card, Links, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { urls } from '@/routes/routes.constant';
-import { OnboardingIpOptionsAdvantages } from './onboardingIpOptionsAdvantages';
+import { useGuideUtils } from '@/utils';
+
+import onboardingImgSrc from './onboarding-img.png';
 import { IpOptionTable } from './onboardingIpOptionTable';
+import { OnboardingIpOptionsAdvantages } from './onboardingIpOptionsAdvantages';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -32,7 +30,7 @@ export default function Onboarding() {
       description={
         <Suspense>
           <div className="text-center">
-            <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading2}>
+            <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.heading2}>
               {t('titleBis')}
             </OdsText>
             <OdsText className="block">{t('description')}</OdsText>
@@ -43,12 +41,8 @@ export default function Onboarding() {
               <IpOptionTable />
 
               <div className="mt-4 text-left">
-                <OdsText preset={ODS_TEXT_PRESET.span}>
-                  * {t('optionsFootnote')}
-                </OdsText>
-                <OdsText preset={ODS_TEXT_PRESET.span}>
-                  ** {t('geolocationNote')}
-                </OdsText>
+                <OdsText preset={ODS_TEXT_PRESET.span}>* {t('optionsFootnote')}</OdsText>
+                <OdsText preset={ODS_TEXT_PRESET.span}>** {t('geolocationNote')}</OdsText>
               </div>
 
               <OdsText className="mt-4 text-left">
@@ -61,9 +55,7 @@ export default function Onboarding() {
                       location: PageLocation.page,
                       buttonType: ButtonType.link,
                       actionType: 'action',
-                      actions: [
-                        `go-to_${links?.presentationLink.trackingLabel}`,
-                      ],
+                      actions: [`go-to_${links?.presentationLink.trackingLabel}`],
                     });
                   }}
                 />{' '}
@@ -76,9 +68,7 @@ export default function Onboarding() {
                       location: PageLocation.page,
                       buttonType: ButtonType.link,
                       actionType: 'action',
-                      actions: [
-                        `go-to_${links?.documentationLink.trackingLabel}`,
-                      ],
+                      actions: [`go-to_${links?.documentationLink.trackingLabel}`],
                     });
                   }}
                 />

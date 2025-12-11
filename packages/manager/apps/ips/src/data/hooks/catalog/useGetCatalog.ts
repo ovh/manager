@@ -1,7 +1,9 @@
+import { useContext } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
+
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
 
 export const BYOIP_FAILOVER_V4 = 'byoip-failover-v4';
 export const BYOIP_PRODUCT_ID = 'bringYourOwnIp';
@@ -82,18 +84,10 @@ export const useGetCatalog = () => {
                   internalType: el.details.product.internalType,
                   name: el.details.product.name,
                   configurations: [
-                    el.details.product.configurations.find(
-                      ({ name }) => name === 'asNumber',
-                    ),
-                    el.details.product.configurations.find(
-                      ({ name }) => name === 'asRir',
-                    ),
-                    el.details.product.configurations.find(
-                      ({ name }) => name === 'ip',
-                    ),
-                    el.details.product.configurations.find(
-                      ({ name }) => name === 'ipRir',
-                    ),
+                    el.details.product.configurations.find(({ name }) => name === 'asNumber'),
+                    el.details.product.configurations.find(({ name }) => name === 'asRir'),
+                    el.details.product.configurations.find(({ name }) => name === 'ip'),
+                    el.details.product.configurations.find(({ name }) => name === 'ipRir'),
                     el.details.product.configurations.find(
                       ({ name }) => name === CONFIG_NAME.CAMPUS,
                     ),

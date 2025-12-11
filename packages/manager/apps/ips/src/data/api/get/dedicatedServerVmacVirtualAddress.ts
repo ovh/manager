@@ -21,9 +21,7 @@ export const getDedicatedServerVmacVirtualAddressQueryKey = ({
 export const getDedicatedServerVmacVirtualAddress = async ({
   serviceName,
   macAddress,
-}: GetDedicatedServerVmacVirtualAddressParams): Promise<ApiResponse<
-  string[]
->> =>
+}: GetDedicatedServerVmacVirtualAddressParams): Promise<ApiResponse<string[]>> =>
   v6.get<string[]>(
     `/dedicated/server/${encodeURIComponent(
       serviceName,
@@ -49,9 +47,7 @@ export const getDedicatedServerVmacDetails = async ({
   serviceName,
   macAddress,
   ip,
-}: GetDedicatedServerVmacDetailsParams): Promise<ApiResponse<
-  DedicatedServerVmacDetailsType
->> =>
+}: GetDedicatedServerVmacDetailsParams): Promise<ApiResponse<DedicatedServerVmacDetailsType>> =>
   v6.get<DedicatedServerVmacDetailsType>(
     `/dedicated/server/${serviceName}/virtualMac/${macAddress}/virtualAddress/${ip}`,
   );

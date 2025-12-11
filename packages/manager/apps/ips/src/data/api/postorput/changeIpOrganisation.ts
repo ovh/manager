@@ -5,17 +5,14 @@ export type ChangeIpOrganisationParams = {
   organisation: string;
 };
 
-export const changeIpOrganisationQueryKey = (
-  params: ChangeIpOrganisationParams,
-) => [`post/ip/${encodeURIComponent(params.ip)}/changeOrg`];
+export const changeIpOrganisationQueryKey = (params: ChangeIpOrganisationParams) => [
+  `post/ip/${encodeURIComponent(params.ip)}/changeOrg`,
+];
 
 export const changeIpOrganisation = async (
   params: ChangeIpOrganisationParams,
 ): Promise<ApiResponse<void>> => {
-  return apiClient.v6.post<void>(
-    `/ip/${encodeURIComponent(params.ip)}/changeOrg`,
-    {
-      organisation: params.organisation,
-    },
-  );
+  return apiClient.v6.post<void>(`/ip/${encodeURIComponent(params.ip)}/changeOrg`, {
+    organisation: params.organisation,
+  });
 };

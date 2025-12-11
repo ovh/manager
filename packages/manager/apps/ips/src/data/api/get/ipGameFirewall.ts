@@ -21,18 +21,14 @@ export type IpGameFirewallType = {
 };
 
 export const getIpGameFirewallQueryKey = (params: GetIpGameFirewallParams) => [
-  `get/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
-    params.ipOnGame,
-  )}`,
+  `get/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(params.ipOnGame)}`,
 ];
 
 export const getIpGameFirewall = async (
   params: GetIpGameFirewallParams,
 ): Promise<ApiResponse<IpGameFirewallType>> =>
   v6.get<IpGameFirewallType>(
-    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
-      params.ipOnGame,
-    )}`,
+    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(params.ipOnGame)}`,
   );
 
 export type GetGameFirewallRuleParams = {
@@ -40,21 +36,15 @@ export type GetGameFirewallRuleParams = {
   ipOnGame: string;
 };
 
-export const getGameFirewallRuleQueryKey = (
-  params: GetGameFirewallRuleParams,
-) => [
-  `get/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
-    params.ipOnGame,
-  )}/rule`,
+export const getGameFirewallRuleQueryKey = (params: GetGameFirewallRuleParams) => [
+  `get/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(params.ipOnGame)}/rule`,
 ];
 
 export const getGameFirewallRuleList = async (
   params: GetGameFirewallRuleParams,
 ): Promise<ApiResponse<number[]>> =>
   v6.get<number[]>(
-    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
-      params.ipOnGame,
-    )}/rule`,
+    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(params.ipOnGame)}/rule`,
   );
 
 export type GetGameFirewallRuleDetailsParams = GetGameFirewallRuleParams & {
@@ -70,9 +60,10 @@ export type IpGameFirewallRule = {
   ports: { from: number; to: number };
 };
 
-export const getGameFirewallRuleDetailsQueryKey = (
-  params: GetGameFirewallRuleDetailsParams,
-) => [...getGameFirewallRuleQueryKey(params), params.ruleId];
+export const getGameFirewallRuleDetailsQueryKey = (params: GetGameFirewallRuleDetailsParams) => [
+  ...getGameFirewallRuleQueryKey(params),
+  params.ruleId,
+];
 
 export const getGameFirewallRuleDetails = async (
   params: GetGameFirewallRuleDetailsParams,

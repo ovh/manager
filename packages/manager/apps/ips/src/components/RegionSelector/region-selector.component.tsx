@@ -1,16 +1,18 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { RegionTabs } from './region-tabs.component';
+
+import { RegionCard } from '../RegionCard/RegionCard.component';
+import './region-selector.scss';
 import {
   RegionFilter,
   hasOnlyOneRegion,
+  isRegionInAp,
   isRegionInCa,
   isRegionInEu,
   isRegionInUs,
-  isRegionInAp,
 } from './region-selector.utils';
-import './region-selector.scss';
-import { RegionCard } from '../RegionCard/RegionCard.component';
+import { RegionTabs } from './region-tabs.component';
 
 export type DisabledRegion = {
   region: string;
@@ -63,9 +65,7 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
             }
           })
           .map((region) => {
-            const disabledMessage = disabledRegions.find(
-              (item) => item.region === region,
-            )?.message;
+            const disabledMessage = disabledRegions.find((item) => item.region === region)?.message;
             const isSelected = selectedRegion === region && !disabledMessage;
 
             return (

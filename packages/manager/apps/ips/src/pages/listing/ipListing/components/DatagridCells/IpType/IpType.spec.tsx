@@ -1,11 +1,14 @@
-import '@/test-utils/setupUnitTests';
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpType, IpTypeProps } from './IpType';
 import { getOdsBadgeByLabel } from '@/test-utils';
+import '@/test-utils/setupUnitTests';
+
+import { IpType, IpTypeProps } from './IpType';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -38,9 +41,7 @@ describe('IpType Component', async () => {
     });
     const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
     await waitFor(() => {
-      expect(
-        getByText(`listingColumnsType_${ipDetailsList[0].type}`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsType_${ipDetailsList[0].type}`)).toBeDefined();
     });
   });
 
@@ -53,9 +54,7 @@ describe('IpType Component', async () => {
       ip: ipDetailsList[1].ip,
     });
     await waitFor(() => {
-      expect(
-        getByText(`listingColumnsType_${ipDetailsList[1].type}`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsType_${ipDetailsList[1].type}`)).toBeDefined();
     });
     await getOdsBadgeByLabel({
       container,
@@ -72,9 +71,7 @@ describe('IpType Component', async () => {
       ip: ipDetailsList[2].ip,
     });
     await waitFor(() => {
-      expect(
-        getByText(`listingColumnsType_${ipDetailsList[2].type}`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsType_${ipDetailsList[2].type}`)).toBeDefined();
     });
     await getOdsBadgeByLabel({
       container,

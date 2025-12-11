@@ -1,12 +1,17 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { ListingContext } from '@/pages/listing/listingContext';
-import { IpFilter } from './FilterIp';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpFilter } from './FilterIp';
 
 const queryClient = new QueryClient();
 

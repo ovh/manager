@@ -1,19 +1,24 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import {
-  initShellContext,
   ShellContext,
   ShellContextType,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpEdgeFirewall, IpEdgeFirewallProps } from './IpEdgeFirewall';
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getOdsBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpEdgeFirewall, IpEdgeFirewallProps } from './IpEdgeFirewall';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -71,9 +76,7 @@ describe('IpEdgeFirewall Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.information);
-      expect(
-        getByText(`listingColumnsIpEdgeFirewallEnabledTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpEdgeFirewallEnabledTooltip`)).toBeDefined();
     });
   });
 
@@ -92,9 +95,7 @@ describe('IpEdgeFirewall Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
-      expect(
-        getByText(`listingColumnsIpEdgeFirewallDisabledTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpEdgeFirewallDisabledTooltip`)).toBeDefined();
     });
   });
 
@@ -116,9 +117,7 @@ describe('IpEdgeFirewall Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
-      expect(
-        getByText(`listingColumnsIpEdgeFirewallDisabledTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpEdgeFirewallDisabledTooltip`)).toBeDefined();
     });
   });
 
@@ -140,9 +139,7 @@ describe('IpEdgeFirewall Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
-      expect(
-        getByText(`listingColumnsIpEdgeFirewallPendingTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpEdgeFirewallPendingTooltip`)).toBeDefined();
     });
   });
 });

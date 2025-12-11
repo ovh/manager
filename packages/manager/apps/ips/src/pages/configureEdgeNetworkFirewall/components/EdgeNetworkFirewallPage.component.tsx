@@ -1,31 +1,33 @@
 import React from 'react';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
   ErrorBanner,
   GuideButton,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { Trans, useTranslation } from 'react-i18next';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
+import { IpEdgeFirewallProtocol } from '@/data/api';
 import { urls } from '@/routes/routes.constant';
 import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
-import { RuleDatagrid } from './RuleDatagrid.component';
-import { EnableEdgeNetworkFirewallModal } from './EnableEdgeNetworkFirewallModal.component';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
-import { TopBar } from './TopBar.component';
 import { DeleteRuleModal } from './DeleteRuleModal.component';
-import { IpEdgeFirewallProtocol } from '@/data/api';
+import { EnableEdgeNetworkFirewallModal } from './EnableEdgeNetworkFirewallModal.component';
+import { RuleDatagrid } from './RuleDatagrid.component';
 import { validSequenceNumbers } from './SequenceColumn.component';
+import { TopBar } from './TopBar.component';
 
 export default function EdgeNetworkFirewallPage() {
   const {
@@ -98,9 +100,7 @@ export default function EdgeNetworkFirewallPage() {
                       actionType: 'action',
                       buttonType: ButtonType.link,
                       location: PageLocation.page,
-                      actions: [
-                        `go-to_${links.configureEdgeNetworkFirewall.trackingLabel}`,
-                      ],
+                      actions: [`go-to_${links.configureEdgeNetworkFirewall.trackingLabel}`],
                     });
                   },
                 },
@@ -110,15 +110,11 @@ export default function EdgeNetworkFirewallPage() {
         }}
         message={<Notifications />}
       >
-        <OdsText className="block mb-3">{t('description')}</OdsText>
-        <OdsText className="block mb-3">{t('subDescription')}</OdsText>
-        <OdsText className="block mb-3">{t('tcpNoteDescription')}</OdsText>
+        <OdsText className="mb-3 block">{t('description')}</OdsText>
+        <OdsText className="mb-3 block">{t('subDescription')}</OdsText>
+        <OdsText className="mb-3 block">{t('tcpNoteDescription')}</OdsText>
         {rules.length > 0 && rules.every((rule) => rule?.action === 'permit') && (
-          <OdsMessage
-            className="my-3"
-            color={ODS_MESSAGE_COLOR.warning}
-            isDismissible={false}
-          >
+          <OdsMessage className="my-3" color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
             <div className="block">
               <Trans
                 t={t}
@@ -135,9 +131,7 @@ export default function EdgeNetworkFirewallPage() {
                         const latestValidSequence = validSequenceNumbers
                           .map((num) => num)
                           .reverse()
-                          .find(
-                            (sequence) => !ruleSequenceList.includes(sequence),
-                          );
+                          .find((sequence) => !ruleSequenceList.includes(sequence));
                         setNewSequence(latestValidSequence);
                         setNewMode('deny');
                         showNewRuleRow();

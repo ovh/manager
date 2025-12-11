@@ -1,27 +1,24 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Modal,
-  useNotifications,
-  useFormatDate,
-} from '@ovh-ux/manager-react-components';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  unblockAntiHackIp,
-  getIpAntihackQueryKey,
-  IpAntihackStateEnum,
-} from '@/data/api';
+
+import { IpAntihackStateEnum, getIpAntihackQueryKey, unblockAntiHackIp } from '@/data/api';
 import { useGetIpAntihack } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
 
@@ -35,9 +32,7 @@ export default function AntiHackModal() {
   const [blockedSince, setBlockedSince] = useState(undefined);
   const [time, setTime] = useState(0);
   const [logs, setLogs] = useState('');
-  const [logsDisplayClasses, setLogsDisplayClasses] = useState(
-    DEFAULT_LOG_DISPLAY_CLASS_NAMES,
-  );
+  const [logsDisplayClasses, setLogsDisplayClasses] = useState(DEFAULT_LOG_DISPLAY_CLASS_NAMES);
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { id, parentId } = useParams();
@@ -56,9 +51,7 @@ export default function AntiHackModal() {
   useEffect(() => {
     if (ipAntihack) {
       const toBeUnblocked = ipAntihack.find(
-        (antihack) =>
-          antihack.ipBlocked === ip &&
-          antihack.state === IpAntihackStateEnum.BLOCKED,
+        (antihack) => antihack.ipBlocked === ip && antihack.state === IpAntihackStateEnum.BLOCKED,
       );
       setIpBlocked(toBeUnblocked?.ipBlocked);
       setIpState(toBeUnblocked?.state);
@@ -163,19 +156,16 @@ export default function AntiHackModal() {
       onSecondaryButtonClick={closeHandler}
       isLoading={isIpAntihackLoading}
     >
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         {fields.map(({ label, value, key }) => (
-          <div className="flex mb-2 gap-x-4" key={key}>
-            <OdsText
-              className="font-semibold text-right w-1/2"
-              preset={ODS_TEXT_PRESET.heading6}
-            >
+          <div className="mb-2 flex gap-x-4" key={key}>
+            <OdsText className="w-1/2 text-right font-semibold" preset={ODS_TEXT_PRESET.heading6}>
               {label}
             </OdsText>
             <OdsText className="w-1/2">{value}</OdsText>
           </div>
         ))}
-        <div className="flex mb-2">
+        <div className="mb-2 flex">
           <OdsText className={logsDisplayClasses} preset="code">
             {logs}
           </OdsText>

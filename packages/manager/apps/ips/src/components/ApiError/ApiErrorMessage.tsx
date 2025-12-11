@@ -1,8 +1,12 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
+import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const useApiErrorMessage = (error?: ApiError) => {

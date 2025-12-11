@@ -1,17 +1,18 @@
 import React from 'react';
-import { vi } from 'vitest';
-import { setupServer } from 'msw/node';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import {
-  Handler,
-  toMswHandlers,
-  WAIT_FOR_DEFAULT_OPTIONS,
-} from '@ovh-ux/manager-core-test-utils';
+
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { setupServer } from 'msw/node';
+import { vi } from 'vitest';
+
+import { Handler, WAIT_FOR_DEFAULT_OPTIONS, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
+
 import { ListingContext } from '@/pages/listing/listingContext';
-import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 import { getComboboxByName } from '@/test-utils';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
 import { FilterService } from './FilterService';
 
 const queryClient = new QueryClient();
@@ -32,9 +33,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 const renderComponent = () => {
   const element = (
     <QueryClientProvider client={queryClient}>
-      <ListingContext.Provider
-        value={{ ...listingContextDefaultParams, setApiFilter }}
-      >
+      <ListingContext.Provider value={{ ...listingContextDefaultParams, setApiFilter }}>
         <FilterService />
       </ListingContext.Provider>
     </QueryClientProvider>
@@ -55,9 +54,11 @@ const renderComponent = () => {
 
 describe('FilterService', () => {
   beforeEach(() => {
-    ((global as unknown) as {
-      server: ReturnType<typeof setupServer>;
-    }).server.resetHandlers(
+    (
+      global as unknown as {
+        server: ReturnType<typeof setupServer>;
+      }
+    ).server.resetHandlers(
       ...toMswHandlers(
         [
           '/overTheBox',

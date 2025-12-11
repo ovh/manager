@@ -1,10 +1,11 @@
 import React from 'react';
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
 import { urls } from '@/routes/routes.constant';
 import { APP_NAME } from '@/tracking.constant';
 
@@ -18,9 +19,7 @@ export type BreadcrumbProps = {
   mapper?: (item: BreadcrumbItem, index: number) => BreadcrumbItem;
 };
 
-export function Breadcrumb({
-  mapper = (item) => item,
-}: BreadcrumbProps): JSX.Element {
+export function Breadcrumb({ mapper = (item) => item }: BreadcrumbProps): JSX.Element {
   const { t } = useTranslation('ips');
   const location = useLocation();
   const navigate = useNavigate();

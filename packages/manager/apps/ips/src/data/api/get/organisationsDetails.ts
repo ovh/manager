@@ -22,16 +22,14 @@ export type OrgDetails = {
   zip?: string;
 };
 
-export const getOrganisationsDetailsQueryKey = (
-  params: GetOrganisationsDetailsParams,
-) => [`get/me/ipOrganisation/${encodeURIComponent(params.organisationId)}`];
+export const getOrganisationsDetailsQueryKey = (params: GetOrganisationsDetailsParams) => [
+  `get/me/ipOrganisation/${encodeURIComponent(params.organisationId)}`,
+];
 
 export const getOrganisationsDetails = async (
   params: GetOrganisationsDetailsParams,
 ): Promise<ApiResponse<OrgDetails>> =>
-  apiClient.v6.get<OrgDetails>(
-    `/me/ipOrganisation/${encodeURIComponent(params.organisationId)}`,
-  );
+  apiClient.v6.get<OrgDetails>(`/me/ipOrganisation/${encodeURIComponent(params.organisationId)}`);
 
 export const getMeModelQueryKey = () => [`/me.json/`];
 

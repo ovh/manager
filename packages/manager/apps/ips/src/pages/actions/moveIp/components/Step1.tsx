@@ -1,21 +1,25 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
   OdsCombobox,
   OdsComboboxGroup,
   OdsComboboxItem,
+  OdsFormField,
   OdsInput,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { TRANSLATION_NAMESPACES } from '@/utils';
-import { ipParkingOptionValue } from '@/types';
-import { MoveIpAvailableDestinationsResponse } from '@/data/api';
+
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
-import { useGetProductServices } from '@/data/hooks';
+import { MoveIpAvailableDestinationsResponse } from '@/data/api';
 import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
+import { useGetProductServices } from '@/data/hooks';
+import { ipParkingOptionValue } from '@/types';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 type Step1Props = {
   ip: string;
@@ -45,13 +49,11 @@ export default function Step1({
 
   return (
     <div className="flex flex-col">
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-        <span
-          dangerouslySetInnerHTML={{ __html: t('step1Description', { ip }) }}
-        />
+      <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+        <span dangerouslySetInnerHTML={{ __html: t('step1Description', { ip }) }} />
       </OdsText>
 
-      <OdsFormField className="w-full mb-7">
+      <OdsFormField className="mb-7 w-full">
         <label htmlFor="service" slot="label">
           {t('step1CurrentServiceLabel')}
         </label>
@@ -84,17 +86,12 @@ export default function Step1({
             .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
             .map(([key, services]) => (
               <OdsComboboxGroup key={key}>
-                <span slot="title">
-                  {t(`service_destination_${key}_option_group_label`)}
-                </span>
+                <span slot="title">{t(`service_destination_${key}_option_group_label`)}</span>
                 {services.map(({ service }, index) => (
                   <ComboboxServiceItem
                     key={`${key}-${index}-${service}`}
                     name={service}
-                    displayName={
-                      productList?.find((s) => s.serviceName === service)
-                        ?.displayName
-                    }
+                    displayName={productList?.find((s) => s.serviceName === service)?.displayName}
                     isDisabled={service === currentService}
                   />
                 ))}
@@ -113,9 +110,7 @@ export default function Step1({
         </OdsCombobox>
       </OdsFormField>
 
-      <OdsFormField
-        className={`w-full mt-7 ${nextHopList.length === 0 ? 'hidden' : ''}`}
-      >
+      <OdsFormField className={`mt-7 w-full ${nextHopList.length === 0 ? 'hidden' : ''}`}>
         <label htmlFor="next-hop" slot="label">
           {t('step1NextHopLabel')}
         </label>

@@ -1,30 +1,24 @@
 import JSURL from 'jsurl';
-import {
-  ProductConfiguration,
-  BYOIP_FAILOVER_V4,
-  BYOIP_PRODUCT_ID,
-} from '@/data/hooks/catalog';
-import { ipFormatter } from '@/utils';
+
 import { IpDetails } from '@/data/api';
 import { IpTypeEnum } from '@/data/constants';
+import { BYOIP_FAILOVER_V4, BYOIP_PRODUCT_ID, ProductConfiguration } from '@/data/hooks/catalog';
+import { ipFormatter } from '@/utils';
 
-export const getConfigValues = (
-  configs: ProductConfiguration[] = [],
-  configName: string,
-) => {
+export const getConfigValues = (configs: ProductConfiguration[] = [], configName: string) => {
   return configs.find((config) => config.name === configName)?.values || [];
 };
 
 // Regular expression pattern for /24 subnet
-export const pattern = /^(?:(?:25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?\/((19|2[0-4]))?)$/;
+export const pattern =
+  /^(?:(?:25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?\/((19|2[0-4]))?)$/;
 
 export const ipRangePlaceholder = '192.168.22.42/24';
 
 const byoipIpRangeRe = new RegExp(pattern);
 
 // The subnet address is limited to only "/24".
-export const isValidIpRange = (subnet: string): boolean =>
-  byoipIpRangeRe.test(subnet);
+export const isValidIpRange = (subnet: string): boolean => byoipIpRangeRe.test(subnet);
 
 export const AS_OPTIONS = ['ovh_cloud', 'own'];
 
@@ -110,9 +104,7 @@ export function canTerminateByoipIp({
     !!ipDetails?.canBeTerminated &&
     ipDetails.bringYourOwnIp &&
     !parentIpGroup &&
-    [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
-      ipDetails?.type,
-    ) &&
+    [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(ipDetails?.type) &&
     !isByoipSlice
   );
 }

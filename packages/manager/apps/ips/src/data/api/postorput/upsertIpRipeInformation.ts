@@ -6,9 +6,9 @@ export type UpsertIpRipeInformationParams = {
   netname: string;
 };
 
-export const upsertIpRipeInformationQueryKey = (
-  params: UpsertIpRipeInformationParams,
-) => [`put/ip/${encodeURIComponent(params.ip)}/ripe`];
+export const upsertIpRipeInformationQueryKey = (params: UpsertIpRipeInformationParams) => [
+  `put/ip/${encodeURIComponent(params.ip)}/ripe`,
+];
 
 export const upsertIpRipeInformation = async (
   params: UpsertIpRipeInformationParams,

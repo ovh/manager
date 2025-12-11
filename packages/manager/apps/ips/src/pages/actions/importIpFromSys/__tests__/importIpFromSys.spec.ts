@@ -1,22 +1,21 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
-import { vi, describe } from 'vitest';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { describe, vi } from 'vitest';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertOdsModalText,
   assertOdsModalVisibility,
 } from '@ovh-ux/manager-core-test-utils';
-import {
-  getButtonByIcon,
-  getButtonByLabel,
-  labels,
-  renderTest,
-} from '@/test-utils';
-import { urls } from '@/routes/routes.constant';
+
 import {
   catalogDedicatedServerList,
   ipMigrationPostResponse,
 } from '@/__mocks__/catalog/dedicated-server-catalog';
+import { urls } from '@/routes/routes.constant';
+import { getButtonByIcon, getButtonByLabel, labels, renderTest } from '@/test-utils';
+
 import {
   VALID_INPUT_VALUES,
   fillStep1,
@@ -72,10 +71,7 @@ describe('Import IP from Sys modal', () => {
 
     await fillStep1(VALID_INPUT_VALUES);
 
-    await waitFor(
-      () => expect(nextButton).toBeEnabled(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await waitFor(() => expect(nextButton).toBeEnabled(), WAIT_FOR_DEFAULT_OPTIONS);
 
     await waitFor(() => fireEvent.click(nextButton));
   });

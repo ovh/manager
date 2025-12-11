@@ -1,15 +1,16 @@
-import '@/test-utils/setupUnitTests';
 import React, { PropsWithChildren } from 'react';
-import { describe, it, vi } from 'vitest';
-import { render } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import { render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpAttachedService, IpAttachedServiceProps } from './IpAttachedService';
 import { getLinkByHref } from '@/test-utils';
+import '@/test-utils/setupUnitTests';
+
+import { IpAttachedService, IpAttachedServiceProps } from './IpAttachedService';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -58,9 +59,7 @@ const shellContext = {
 const renderComponent = (params: IpAttachedServiceProps) => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <IpAttachedService {...params} />
       </ShellContext.Provider>
     </QueryClientProvider>,

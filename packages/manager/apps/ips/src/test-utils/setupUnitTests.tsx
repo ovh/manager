@@ -1,8 +1,9 @@
-import { vi } from 'vitest';
 import React from 'react';
-import '@testing-library/jest-dom';
+
 import { NavLinkProps } from 'react-router-dom';
-import { ListingContextType } from '@/pages/listing/listingContext';
+
+import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({

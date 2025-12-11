@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsFormField,
-  OdsModal,
-  OdsText,
-  OdsSelect,
-  OdsRadio,
   OdsInput,
   OdsLink,
+  OdsModal,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -25,16 +26,12 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useQueryClient } from '@tanstack/react-query';
-import {
-  useAddVirtualMacToIp,
-  useAddIpToVirtualMac,
-  useGetServerModels,
-} from '@/data/hooks';
+
+import { VirtualMac, getIcebergDedicatedServerTasksQueryKey } from '@/data/api';
+import { useAddIpToVirtualMac, useAddVirtualMacToIp, useGetServerModels } from '@/data/hooks';
 import { useGetIpVmac } from '@/data/hooks/ip';
-import { getIcebergDedicatedServerTasksQueryKey, VirtualMac } from '@/data/api';
-import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 import Loading from '@/pages/listing/manageOrganisations/components/Loading/Loading';
+import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 
 const MAX_CHARACTERS = 250;
 
@@ -78,17 +75,11 @@ export default function AddVirtualMacModal() {
   const {
     control,
     handleSubmit,
-    formState: { isDirty, isValid, isSubmitted, errors },
-    watch,
-    setError,
-    clearErrors,
+    formState: { isValid },
   } = useForm<VirtualMac>({});
 
   // Mutation function for Adding virtual Mac to Ip on new vmac creation selection
-  const {
-    mutate: addVirtualMacToIp,
-    isPending: addVirtualMacToIpPending,
-  } = useAddVirtualMacToIp({
+  const { mutate: addVirtualMacToIp, isPending: addVirtualMacToIpPending } = useAddVirtualMacToIp({
     serviceName: service,
     ip,
     type: selectedType,
@@ -120,10 +111,7 @@ export default function AddVirtualMacModal() {
   });
 
   // Mutation function for Adding Ip to Virtual mac on existing vmac creation selection
-  const {
-    mutate: addIpToVirtualMac,
-    isPending: addIpToVirtualMacPending,
-  } = useAddIpToVirtualMac({
+  const { mutate: addIpToVirtualMac, isPending: addIpToVirtualMacPending } = useAddIpToVirtualMac({
     serviceName: service,
     macAddress,
     ip,
@@ -155,14 +143,13 @@ export default function AddVirtualMacModal() {
   });
 
   // Api call to retrive all existing vmacs for a server
-  const { vmacs, isLoading: isVmacLoading, error } = useGetIpVmac({
+  const { vmacs, isLoading: isVmacLoading } = useGetIpVmac({
     serviceName: service,
     enabled: true,
   });
 
   useEffect(() => {
-    if (!isServerModelsLoading)
-      setTypes(models['dedicated.server.VmacTypeEnum']?.enum);
+    if (!isServerModelsLoading) setTypes(models?.['dedicated.server.VmacTypeEnum']?.enum);
   }, [models]);
 
   const handleVirtualMachineNameChange = (event: CustomEvent) => {
@@ -187,7 +174,7 @@ export default function AddVirtualMacModal() {
         <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.md} />
       ) : (
         <>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
+          <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.heading4}>
             {t('addVirtualMacTitle')}
           </OdsText>
           {vmacs &&
@@ -197,7 +184,7 @@ export default function AddVirtualMacModal() {
                   {t('addVirtualMacNewInfo')}
                   <OdsLink
                     className="inline"
-                    href={links.virtualMacLink.link}
+                    href={links?.virtualMacLink?.link || '#'}
                     target="_blank"
                     label={t('addVirtualMacNewInfoGuide')}
                     onClick={() => {
@@ -205,9 +192,7 @@ export default function AddVirtualMacModal() {
                         location: PageLocation.popup,
                         buttonType: ButtonType.link,
                         actionType: 'action',
-                        actions: [
-                          `go-to_${links.virtualMacLink.trackingLabel}`,
-                        ],
+                        actions: [`go-to_${links?.virtualMacLink?.trackingLabel}`],
                       });
                     }}
                   />
@@ -217,7 +202,7 @@ export default function AddVirtualMacModal() {
               /* Radio Option 1:  For creating new vmac */
               /* Radio Option 2: For using existing vmac */
               <OdsFormField>
-                <div className="flex gap-4 mb-2">
+                <div className="mb-2 flex gap-4">
                   <OdsRadio
                     name="radio-vmac"
                     inputId="radio-vmac-new"
@@ -237,24 +222,19 @@ export default function AddVirtualMacModal() {
                     onOdsChange={() => setCreateNewVirtualMac(false)}
                   />
                   <label htmlFor="radio-vmac-existing">
-                    <OdsText preset="span">
-                      {t('addVirtualMacExisting')}
-                    </OdsText>
+                    <OdsText preset="span">{t('addVirtualMacExisting')}</OdsText>
                   </label>
                 </div>
               </OdsFormField>
             ))}
-          <form
-            className="flex flex-col gap-2"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
             {/* New vmac type selection for Option 1 */}
             {createNewVirtualMac && (
               <div className="mt-6">
                 <Controller
                   control={control}
                   name="type"
-                  render={({ field: { name, value, onChange, onBlur } }) => (
+                  render={({ field: { name } }) => (
                     <OdsFormField className="w-full">
                       <label htmlFor={name} slot="label">
                         {t('virtualMacType')}
@@ -266,9 +246,7 @@ export default function AddVirtualMacModal() {
                           data-testid="input-type-selection"
                           value={selectedType}
                           isRequired
-                          onOdsChange={(event) =>
-                            setSelectedType(event.detail.value)
-                          }
+                          onOdsChange={(event) => setSelectedType(event.detail.value as string)}
                         >
                           {types?.map((type) => (
                             <option value={type} key={type}>
@@ -277,10 +255,7 @@ export default function AddVirtualMacModal() {
                           ))}
                         </OdsSelect>
                         {isServerModelsLoading && (
-                          <Loading
-                            className="flex justify-center"
-                            size={ODS_SPINNER_SIZE.sm}
-                          />
+                          <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                         )}
                       </div>
                     </OdsFormField>
@@ -294,7 +269,7 @@ export default function AddVirtualMacModal() {
                 <Controller
                   control={control}
                   name="vmac"
-                  render={({ field: { name, value, onChange, onBlur } }) => (
+                  render={({ field: { name } }) => (
                     <OdsFormField className="w-full">
                       <label htmlFor={name} slot="label">
                         {t('virtualMacField')}
@@ -306,24 +281,16 @@ export default function AddVirtualMacModal() {
                           data-testid="input-vmac-selection"
                           value={macAddress}
                           isRequired
-                          onOdsChange={(event) =>
-                            setMacAddress(event.detail.value)
-                          }
+                          onOdsChange={(event) => setMacAddress(event.detail.value as string)}
                         >
                           {vmacs?.map((vmac) => (
-                            <option
-                              value={vmac.macAddress}
-                              key={vmac.macAddress}
-                            >
+                            <option value={vmac.macAddress} key={vmac.macAddress}>
                               {vmac.macAddress}
                             </option>
                           ))}
                         </OdsSelect>
                         {isVmacLoading && (
-                          <Loading
-                            className="flex justify-center"
-                            size={ODS_SPINNER_SIZE.sm}
-                          />
+                          <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                         )}
                       </div>
                     </OdsFormField>
@@ -336,8 +303,8 @@ export default function AddVirtualMacModal() {
               <Controller
                 control={control}
                 name="vmacName"
-                render={({ field: { name, value, onChange, onBlur } }) => (
-                  <OdsFormField className="block my-4">
+                render={({ field: { name } }) => (
+                  <OdsFormField className="my-4 block">
                     <label htmlFor={name} slot="label">
                       {t('virtualMacMachinename')}
                     </label>

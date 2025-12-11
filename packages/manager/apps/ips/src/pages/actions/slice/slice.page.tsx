@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsText,
-  OdsLink,
-  OdsMessage,
-  OdsSelect,
-} from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsLink, OdsMessage, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -17,47 +16,31 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  fromIdToIp,
-  ipFormatter,
-  TRANSLATION_NAMESPACES,
-  useGuideUtils,
-} from '@/utils';
-import { useByoipSlice, useGetIpdetails } from '@/data/hooks/ip';
+
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
-import { ListingContext } from '@/pages/listing/listingContext';
 import { getIpDetailsQueryKey } from '@/data/api';
+import { useByoipSlice, useGetIpdetails } from '@/data/hooks/ip';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 
 export default function SliceModal() {
   const queryClient = useQueryClient();
   const { parentId } = useParams();
   const { ipGroup } = ipFormatter(fromIdToIp(parentId));
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.aggregateSlice,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.aggregateSlice, NAMESPACES.ACTIONS]);
   const { links } = useGuideUtils();
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const [slicingSize, setSlizingSize] = React.useState<number | undefined>();
-  const { setOnGoingCreatedIps, setOnGoingSlicedIps } = useContext(
-    ListingContext,
-  );
+  const { setOnGoingCreatedIps, setOnGoingSlicedIps } = useContext(ListingContext);
   const { trackClick, trackPage } = useOvhTracking();
 
   const closeModal = () => {
     navigate(`..?${search.toString()}`);
   };
 
-  const {
-    slice,
-    isLoading,
-    error,
-    isSlicePending,
-    slicingError,
-    postSlice,
-  } = useByoipSlice({
+  const { slice, isLoading, error, isSlicePending, slicingError, postSlice } = useByoipSlice({
     ip: ipGroup,
     onSuccess: () => {
       trackPage({
@@ -66,8 +49,7 @@ export default function SliceModal() {
       });
       addSuccess(t('sliceSuccessMessage'));
       closeModal();
-      const childrenIps =
-        slice.find((a) => a.slicingSize === slicingSize)?.childrenIps || [];
+      const childrenIps = slice.find((a) => a.slicingSize === slicingSize)?.childrenIps || [];
 
       childrenIps?.map((ip) =>
         queryClient.invalidateQueries({
@@ -97,9 +79,7 @@ export default function SliceModal() {
 
   React.useEffect(() => {
     if (!slicingSize && slice && slice.length > 0) {
-      setSlizingSize(
-        slice.find((a) => a.childrenIps.length > 0)?.slicingSize || undefined,
-      );
+      setSlizingSize(slice.find((a) => a.childrenIps.length > 0)?.slicingSize || undefined);
     }
   }, [slice, slicingSize]);
 
@@ -151,7 +131,7 @@ export default function SliceModal() {
       )}
       {slice.length > 0 && (
         <>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+          <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
             {t('sliceModalDescription')}
           </OdsText>
           <OdsSelect
@@ -171,7 +151,7 @@ export default function SliceModal() {
               </option>
             ))}
           </OdsSelect>
-          <section className="bg-neutral-100 p-4 mb-4">
+          <section className="mb-4 bg-neutral-100 p-4">
             <OdsText>{t('sliceModalChildrenIpsDescription')}</OdsText>
             <ul>
               {slice

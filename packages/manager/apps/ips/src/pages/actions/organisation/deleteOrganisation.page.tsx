@@ -1,7 +1,12 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -9,8 +14,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
   deleteOrganisation,
   getOrganisationListQueryKey,
@@ -49,9 +53,7 @@ export default function DeleteOrganisation() {
   const onError = (e: ApiError) => {
     clearNotifications();
     const responseErrorMessage = e.response?.data.message ?? e.message;
-    const displayedErrorMessage = responseErrorMessage.includes(
-      'still used on IP blocks',
-    )
+    const displayedErrorMessage = responseErrorMessage.includes('still used on IP blocks')
       ? t('manageOrganisationsDelete_includedInIpBlock_error')
       : t('manageOrganisationsDelete_unknown_error', {
           error: responseErrorMessage,

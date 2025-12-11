@@ -1,12 +1,15 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ListingContext } from '@/pages/listing/listingContext';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpVmac, IpVmacProps } from './IpVmac';
 import { DedicatedServerVmacWithIpType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpVmac, IpVmacProps } from './IpVmac';
 
 const queryClient = new QueryClient();
 /** MOCKS */

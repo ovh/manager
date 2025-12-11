@@ -1,7 +1,9 @@
 import { describe, it } from 'vitest';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { getButtonByIcon, renderTest } from '@/test-utils';
+
 import { urls } from '@/routes/routes.constant';
+import { getButtonByIcon, renderTest } from '@/test-utils';
 
 describe('IP Listing Page', async () => {
   it('should render a datagrid', async () => {

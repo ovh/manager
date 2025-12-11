@@ -1,13 +1,12 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 const trackingStepName = {
   1: 'select-ip',
@@ -40,7 +39,7 @@ export function ModalButtonGroup({
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex mt-4 gap-3 z-[2]" slot="actions">
+    <div className="z-[2] mt-4 flex gap-3" slot="actions">
       {onCancel && (
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
@@ -50,11 +49,7 @@ export function ModalButtonGroup({
               location: PageLocation.popup,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: [
-                'import_sys-ip',
-                trackingStepName[currentStep],
-                'cancel',
-              ],
+              actions: ['import_sys-ip', trackingStepName[currentStep], 'cancel'],
             });
             onCancel?.();
           }}
@@ -69,11 +64,7 @@ export function ModalButtonGroup({
               location: PageLocation.popup,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: [
-                'import_sys-ip',
-                trackingStepName[currentStep],
-                'previous',
-              ],
+              actions: ['import_sys-ip', trackingStepName[currentStep], 'previous'],
             });
             onPrevious?.();
           }}
@@ -103,11 +94,7 @@ export function ModalButtonGroup({
               location: PageLocation.popup,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: [
-                'import_sys-ip',
-                trackingStepName[currentStep],
-                'confirm',
-              ],
+              actions: ['import_sys-ip', trackingStepName[currentStep], 'confirm'],
             });
             onConfirm?.();
           }}

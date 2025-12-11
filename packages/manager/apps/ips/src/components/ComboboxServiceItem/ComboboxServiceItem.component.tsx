@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsComboboxItem, OdsText } from '@ovhcloud/ods-components/react';
 
@@ -14,9 +15,7 @@ export const ComboboxServiceItem: React.FC<ComboboxServiceItemProps> = ({
   isDisabled,
 }) => (
   <OdsComboboxItem
-    className={
-      isDisabled ? 'pointer-events-none cursor-not-allowed bg-gray-100' : ''
-    }
+    className={isDisabled ? 'pointer-events-none cursor-not-allowed bg-gray-100' : ''}
     selectionLabel={displayName ?? name}
     value={name}
     aria-disabled={isDisabled}

@@ -4,7 +4,7 @@ import { toASCII } from 'punycode';
 export function isValidIpv4(ip: string) {
   try {
     return ip && ip.split('.').length === 4 && ipaddr.IPv4.isValid(ip);
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -12,20 +12,13 @@ export function isValidIpv4(ip: string) {
 export function isValidIpv4Block(block: string) {
   const split = block?.split('/');
   const range = parseInt(split[1] || '', 10);
-  return (
-    split.length === 2 && isValidIpv4(split[0] || '') && range > 0 && range < 33
-  );
+  return split.length === 2 && isValidIpv4(split[0] || '') && range > 0 && range < 33;
 }
 
 export function isValidIpv6Block(block?: string) {
   const split = block?.split('/') || [];
   const range = parseInt(split[1] || '', 10);
-  return (
-    split.length === 2 &&
-    ipaddr.IPv6.isValid(split[0] || '') &&
-    range > 0 &&
-    range < 129
-  );
+  return split.length === 2 && ipaddr.IPv6.isValid(split[0] || '') && range > 0 && range < 129;
 }
 
 export function isIpInsideBlock(ipBlock: string, ip?: string) {
@@ -63,9 +56,7 @@ export function isValidDomain(domain?: string, opts: DomainOptions = {}) {
   // Check wildcard
   if (
     ~punycodeVersion.indexOf('*') &&
-    (opts.canBeginWithWildcard
-      ? !/^(?:\*\.)[^*]+$/.test(punycodeVersion)
-      : true)
+    (opts.canBeginWithWildcard ? !/^(?:\*\.)[^*]+$/.test(punycodeVersion) : true)
   ) {
     return false;
   }
@@ -76,8 +67,7 @@ export function isValidDomain(domain?: string, opts: DomainOptions = {}) {
       (sub: string) =>
         sub.length > 63 ||
         /(?:(?:^\s*$)|(?:^-)|(?:-$))/.test(sub) ||
-        (~sub.indexOf('_') &&
-          (opts.canBeginWithUnderscore ? !/^_[^_]+$/.test(sub) : true)),
+        (~sub.indexOf('_') && (opts.canBeginWithUnderscore ? !/^_[^_]+$/.test(sub) : true)),
     )
   ) {
     return false;
@@ -96,8 +86,5 @@ export function isValidSubDomain(subDomain?: string, opts?: DomainOptions) {
 }
 
 export function isValidReverseDomain(domain?: string, opts?: DomainOptions) {
-  return (
-    !!domain?.endsWith('.') &&
-    isValidDomain(domain.slice(0, domain.length - 2), opts)
-  );
+  return !!domain?.endsWith('.') && isValidDomain(domain.slice(0, domain.length - 2), opts);
 }

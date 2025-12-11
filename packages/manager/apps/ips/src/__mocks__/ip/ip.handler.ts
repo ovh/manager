@@ -1,18 +1,8 @@
 import ippadr from 'ipaddr.js';
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import ipList from './get-ips.json';
-import icebergIpList from './iceberg-get-ip.json';
-import icebergIpListFull from './iceberg-get-ip-full';
-import ipDetails from './get-ip-details.json';
-import getIpReverseForBlock from './get-ip-reverse-for-block.json';
-import getIpv6ReverseForBlock from './get-ipv6-reverse-for-block.json';
-import getIpMoveResponse from './get-ip-move.json';
-import {
-  getGameFirewallRuleListResponse,
-  getGameFirewallRuleResponse,
-  getIpGameFirewallResponse,
-} from './get-ip-game-firewall';
+
 import {
   IpAntihackType,
   IpEdgeFirewallRule,
@@ -26,7 +16,20 @@ import {
   IpSpamType,
 } from '@/data/api';
 import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
+
 import { GetByoipMocksParams, getByoipMocks } from './byoip';
+import ipDetails from './get-ip-details.json';
+import {
+  getGameFirewallRuleListResponse,
+  getGameFirewallRuleResponse,
+  getIpGameFirewallResponse,
+} from './get-ip-game-firewall';
+import getIpMoveResponse from './get-ip-move.json';
+import getIpReverseForBlock from './get-ip-reverse-for-block.json';
+import ipList from './get-ips.json';
+import getIpv6ReverseForBlock from './get-ipv6-reverse-for-block.json';
+import icebergIpListFull from './iceberg-get-ip-full';
+import icebergIpList from './iceberg-get-ip.json';
 
 export type GetIpsMocksParams = {
   nbIp?: number;
@@ -87,10 +90,7 @@ export const getIpsMocks = ({
   },
   {
     url: '/ip/:ip/task/:taskId',
-    response: (
-      _: unknown,
-      params: PathParams,
-    ): IpTask | { message: string } => {
+    response: (_: unknown, params: PathParams): IpTask | { message: string } => {
       if (getIpTaskKo) {
         return { message: 'Task Api Error' };
       }
@@ -165,9 +165,7 @@ export const getIpsMocks = ({
   {
     url: '/ip/:ip/reverse',
     response: (_: unknown, params: PathParams): IpReverseType[] =>
-      ippadr.IPv4.isIPv4(params.ip as string)
-        ? getIpReverseForBlock
-        : getIpv6ReverseForBlock,
+      ippadr.IPv4.isIPv4(params.ip as string) ? getIpReverseForBlock : getIpv6ReverseForBlock,
     api: 'v6',
   },
   {
@@ -209,9 +207,7 @@ export const getIpsMocks = ({
   {
     url: '/ip/:ipGroup/game/:ip',
     response: () =>
-      gameFirewallConfig?.isUpdateKo
-        ? { message: 'game firewall update KO' }
-        : null,
+      gameFirewallConfig?.isUpdateKo ? { message: 'game firewall update KO' } : null,
     status: gameFirewallConfig?.isUpdateKo ? 400 : 200,
     api: 'v6',
     method: 'put',
@@ -250,15 +246,13 @@ export const getIpsMocks = ({
   },
   {
     url: '/ip/:ip',
-    response: (_: Request, params: PathParams) =>
-      ipDetails.find(({ ip }) => ip === params.ip),
+    response: (_: Request, params: PathParams) => ipDetails.find(({ ip }) => ip === params.ip),
     api: 'v6',
   },
   {
     url: '/ip',
     response: ipList.slice(0, nbIp),
-    icebergResponse: () =>
-      isIpv6LimitReached ? icebergIpListFull : icebergIpList,
+    icebergResponse: () => (isIpv6LimitReached ? icebergIpListFull : icebergIpList),
     api: 'v6',
   },
 ];

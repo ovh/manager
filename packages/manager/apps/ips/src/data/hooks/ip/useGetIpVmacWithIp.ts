@@ -1,13 +1,16 @@
 import { UseQueryOptions, useQueries } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   DedicatedServerVmacType,
   getDedicatedServerVmacVirtualAddress,
-  getdedicatedServerVmacQueryKey,
   getDedicatedServerVmacVirtualAddressQueryKey,
+  getdedicatedServerVmacQueryKey,
 } from '@/data/api';
-import { useGetDedicatedServerTasks } from './useGetDedicatedServerTasks';
 import { VMAC_UPDATE_TASKS_QUERY_KEY_PARAMS } from '@/utils';
+
+import { useGetDedicatedServerTasks } from './useGetDedicatedServerTasks';
 import { useGetIpVmac } from './useGetIpVmac';
 
 export type UseGetIpVmacWithIpParams = {
@@ -20,17 +23,12 @@ export type VmacWithIpType = DedicatedServerVmacType & {
 };
 
 // Only for dedicated server for now
-export const useGetIpVmacWithIp = ({
-  serviceName,
-  enabled = true,
-}: UseGetIpVmacWithIpParams) => {
+export const useGetIpVmacWithIp = ({ serviceName, enabled = true }: UseGetIpVmacWithIpParams) => {
   const { vmacs, isLoading, isError } = useGetIpVmac({ serviceName, enabled });
 
   const results = useQueries({
     queries: (vmacs || []).map(
-      (
-        vmac: DedicatedServerVmacType,
-      ): UseQueryOptions<ApiResponse<string[]>, ApiError> => ({
+      (vmac: DedicatedServerVmacType): UseQueryOptions<ApiResponse<string[]>, ApiError> => ({
         queryKey: getDedicatedServerVmacVirtualAddressQueryKey({
           serviceName,
           macAddress: vmac.macAddress,
@@ -53,10 +51,7 @@ export const useGetIpVmacWithIp = ({
   });
 
   return {
-    isLoading:
-      isLoading ||
-      !!results.find((result) => !!result.isLoading) ||
-      hasVmacTasks,
+    isLoading: isLoading || !!results.find((result) => !!result.isLoading) || hasVmacTasks,
     isError: isError || !!results.find((result) => !!result.isError),
     vmacsWithIp: results?.map(
       ({ data }, index): VmacWithIpType => ({

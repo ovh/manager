@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { useGetIpdetails, useGetIpVmacWithIp } from '@/data/hooks';
-import { ipFormatter } from '@/utils/ipFormatter';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
+
+import { useGetIpVmacWithIp, useGetIpdetails } from '@/data/hooks';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { isVmacEnabled } from '../enableCellsUtils';
 
 export type IpVmacProps = {
@@ -31,10 +33,7 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
   });
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
-  const enabled =
-    expiredIps.indexOf(ip) === -1 &&
-    !isIpDetailsLoading &&
-    isVmacEnabled(ipDetails);
+  const enabled = expiredIps.indexOf(ip) === -1 && !isIpDetailsLoading && isVmacEnabled(ipDetails);
 
   // get vmacs if ip is routed to a dedicated server
   const serviceName = ipDetails?.routedTo?.serviceName;
@@ -44,11 +43,7 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
   });
 
   return (
-    <SkeletonCell
-      isLoading={isLoading || isIpDetailsLoading}
-      enabled={!isGroup}
-      ip={ip}
-    >
+    <SkeletonCell isLoading={isLoading || isIpDetailsLoading} enabled={!isGroup} ip={ip}>
       {!enabled && null}
       {enabled && !vmacsWithIp?.length && <>-</>}
       {enabled &&

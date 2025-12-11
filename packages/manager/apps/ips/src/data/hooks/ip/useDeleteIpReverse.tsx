@@ -1,11 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  deleteIpReverse,
-  getIcebergIpReverseQueryKey,
-  getIpReverseQueryKey,
-} from '@/data/api';
+
+import { deleteIpReverse, getIcebergIpReverseQueryKey, getIpReverseQueryKey } from '@/data/api';
 import { ipFormatter } from '@/utils';
 
 export type UseDeleteIpReverseParams = {
@@ -26,8 +24,7 @@ export const useDeleteIpReverse = ({
   const { ipGroup, ipAddress } = ipFormatter(ip);
 
   return useMutation({
-    mutationFn: () =>
-      deleteIpReverse({ ip: ipGroup || ip, ipReverse: ipReverse || ipAddress }),
+    mutationFn: () => deleteIpReverse({ ip: ipGroup || ip, ipReverse: ipReverse || ipAddress }),
     onSuccess: async (data) => {
       clearNotifications();
       await queryClient.invalidateQueries({

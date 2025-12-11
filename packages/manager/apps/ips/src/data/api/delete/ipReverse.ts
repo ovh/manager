@@ -6,13 +6,8 @@ export type DeleteIpReverseParams = {
   ip: string;
 };
 
-export const deleteIpReverseQueryKey = ({
-  ip,
-  ipReverse,
-}: DeleteIpReverseParams) => [
-  `delete/ip/${encodeURIComponent(ip)}/reverse/${encodeURIComponent(
-    ipReverse,
-  )}`,
+export const deleteIpReverseQueryKey = ({ ip, ipReverse }: DeleteIpReverseParams) => [
+  `delete/ip/${encodeURIComponent(ip)}/reverse/${encodeURIComponent(ipReverse)}`,
 ];
 
 /**
@@ -23,7 +18,5 @@ export const deleteIpReverse = async ({
   ipReverse,
 }: DeleteIpReverseParams): Promise<ApiResponse<null>> =>
   apiClient.v6.delete<null>(
-    `/ip/${encodeURIComponent(ipReverse)}/reverse/${encodeURIComponent(
-      ipReverse,
-    )}`,
+    `/ip/${encodeURIComponent(ipReverse)}/reverse/${encodeURIComponent(ipReverse)}`,
   );

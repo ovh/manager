@@ -1,14 +1,8 @@
 import React from 'react';
-import {
-  ChangelogButton,
-  GuideButton,
-  GuideItem,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ChangelogButton, GuideButton, GuideItem } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { CHANGELOG_LINKS, useGuideUtils } from '@/utils';
 
 export type Header = {
@@ -38,9 +32,7 @@ export const useHeader = (title: string): Header => {
 
   return {
     title,
-    changelogButton: (
-      <ChangelogButton chapters={['network::ip::ip']} links={CHANGELOG_LINKS} />
-    ),
+    changelogButton: <ChangelogButton chapters={['network::ip::ip']} links={CHANGELOG_LINKS} />,
     headerButton: <GuideButton items={guideItems} />,
   };
 };

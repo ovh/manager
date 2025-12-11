@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsFormField, OdsText, OdsTextarea } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  OdsFormField,
-  OdsText,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useUpsertIpDescription } from '@/data/hooks/ip/useUpsertIpDescription';
+
 import { useGetIpdetails } from '@/data/hooks/ip';
+import { useUpsertIpDescription } from '@/data/hooks/ip/useUpsertIpDescription';
 import { fromIdToIp, ipFormatter } from '@/utils';
 
 export default function UpsertDescriptionModal() {
@@ -23,18 +24,14 @@ export default function UpsertDescriptionModal() {
   const [search] = useSearchParams();
   const { trackClick, trackPage } = useOvhTracking();
   const { id, parentId } = useParams();
-  const { ipAddress: ip } = id
-    ? ipFormatter(fromIdToIp(id))
-    : { ipAddress: undefined };
+  const { ipAddress: ip } = id ? ipFormatter(fromIdToIp(id)) : { ipAddress: undefined };
   const { ipGroup } = ipFormatter(fromIdToIp(parentId));
   const { ipDetails, isLoading } = useGetIpdetails({ ip: ipGroup });
   const { addSuccess } = useNotifications();
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS, 'error']);
   const MAX_CHARACTERS = 250;
   const [characterCount, setCharacterCount] = React.useState(0);
-  const [description, setDescription] = React.useState(
-    ipDetails?.description || '',
-  );
+  const [description, setDescription] = React.useState(ipDetails?.description || '');
 
   const closeModal = () => {
     trackClick({
@@ -46,21 +43,19 @@ export default function UpsertDescriptionModal() {
     navigate(`..?${search.toString()}`);
   };
 
-  const {
-    mutate: upsertIpDescription,
-    isPending: upsertIpDescriptionPending,
-  } = useUpsertIpDescription({
-    ip: ip ?? ipGroup,
-    description,
-    onSuccess: () => {
-      addSuccess(t('listingUpsertDescriptionSuccessMessage', { value: ip }));
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'edit_description_success',
-      });
-      closeModal();
-    },
-  });
+  const { mutate: upsertIpDescription, isPending: upsertIpDescriptionPending } =
+    useUpsertIpDescription({
+      ip: ip ?? ipGroup,
+      description,
+      onSuccess: () => {
+        addSuccess(t('listingUpsertDescriptionSuccessMessage', { value: ip }));
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'edit_description_success',
+        });
+        closeModal();
+      },
+    });
 
   useEffect(() => {
     setDescription(ipDetails?.description);
@@ -98,7 +93,7 @@ export default function UpsertDescriptionModal() {
       secondaryButtonTestId="cancel-button"
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
     >
-      <OdsFormField className="block mb-4" id="textarea-form-field">
+      <OdsFormField className="mb-4 block" id="textarea-form-field">
         <label slot="label">{t('listingUpsertDescription')}:</label>
         <OdsText slot="visual-hint" preset="caption">
           {characterCount}/{MAX_CHARACTERS}

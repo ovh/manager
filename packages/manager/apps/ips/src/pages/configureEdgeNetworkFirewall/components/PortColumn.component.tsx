@@ -1,21 +1,18 @@
 import React from 'react';
-import {
-  OdsText,
-  OdsInput,
-  OdsFormField,
-} from '@ovhcloud/ods-components/react';
+
+import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
 import { IpEdgeFirewallProtocol, IpEdgeFirewallRule } from '@/data/api';
-import { handleEnterAndEscapeKeyDown } from '@/utils';
-import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 import { IP_EDGE_FIREWALL_PORT_MAX } from '@/data/hooks';
+import { handleEnterAndEscapeKeyDown } from '@/utils';
+
+import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 function formatRulePort(port?: string) {
   return port ? port.replace(/[^0-9]*/g, '') : '';
 }
 
-export const SourcePortColumn = (
-  rule: IpEdgeFirewallRule & { isNew?: boolean },
-) => {
+export const SourcePortColumn = (rule: IpEdgeFirewallRule & { isNew?: boolean }) => {
   const {
     newProtocol,
     newSourcePort,
@@ -29,9 +26,7 @@ export const SourcePortColumn = (
 
   if (
     !rule?.isNew ||
-    ![IpEdgeFirewallProtocol.UDP, IpEdgeFirewallProtocol.TCP].includes(
-      newProtocol,
-    )
+    ![IpEdgeFirewallProtocol.UDP, IpEdgeFirewallProtocol.TCP].includes(newProtocol)
   ) {
     return <OdsText>{formatRulePort(rule?.sourcePort)}</OdsText>;
   }
@@ -58,9 +53,7 @@ export const SourcePortColumn = (
   );
 };
 
-export const DestinationPortColumn = (
-  rule: IpEdgeFirewallRule & { isNew?: boolean },
-) => {
+export const DestinationPortColumn = (rule: IpEdgeFirewallRule & { isNew?: boolean }) => {
   const {
     newProtocol,
     newDestinationPort,
@@ -74,9 +67,7 @@ export const DestinationPortColumn = (
 
   if (
     !rule?.isNew ||
-    ![IpEdgeFirewallProtocol.UDP, IpEdgeFirewallProtocol.TCP].includes(
-      newProtocol,
-    )
+    ![IpEdgeFirewallProtocol.UDP, IpEdgeFirewallProtocol.TCP].includes(newProtocol)
   ) {
     return <OdsText>{formatRulePort(rule?.destinationPort)}</OdsText>;
   }

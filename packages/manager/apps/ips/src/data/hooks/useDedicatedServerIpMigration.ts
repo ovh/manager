@@ -1,13 +1,16 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { IpMigrationOrder } from '@/types/ipMigrationOrder';
+
 import {
+  OrderDedicatedServerIpMigrationParams,
   getOrderDedicatedServerInfo,
   getOrderDedicatedServerIpMigrationAvailableDurations,
   getOrderDedicatedServerIpMigrationDetails,
-  OrderDedicatedServerIpMigrationParams,
   postOrderDedicatedServerIpMigration,
 } from '../api/orderIpMigration';
-import { IpMigrationOrder } from '@/types/ipMigrationOrder';
 
 const getOrderDedicatedServerInfoQueryKey = (serviceName: string) => [
   `/order/dedicated/server/${serviceName}`,
@@ -15,11 +18,7 @@ const getOrderDedicatedServerInfoQueryKey = (serviceName: string) => [
 
 export const getOrderDedicatedServerIpMigrationQueryKey = (
   params: Omit<OrderDedicatedServerIpMigrationParams, 'duration'>,
-) => [
-  `/order/dedicated/server/${params.serviceName}`,
-  encodeURIComponent(params.ip),
-  params.token,
-];
+) => [`/order/dedicated/server/${params.serviceName}`, encodeURIComponent(params.ip), params.token];
 
 export const getOrderDedicatedServerIpMigrationDetailsQueryKey = (
   params: OrderDedicatedServerIpMigrationParams,
@@ -71,8 +70,7 @@ export function useDedicatedServerIpMigrationAvailableDurations({
       dedicatedServerInfoQuery?.data?.data?.includes('ipMigration') &&
       Boolean(ipMigrationQuery?.data?.data?.length),
     availableDurations: ipMigrationQuery?.data?.data,
-    isLoading:
-      dedicatedServerInfoQuery?.isLoading || ipMigrationQuery?.isLoading,
+    isLoading: dedicatedServerInfoQuery?.isLoading || ipMigrationQuery?.isLoading,
     error: dedicatedServerInfoQuery?.error || ipMigrationQuery?.error,
     isError: dedicatedServerInfoQuery?.isError || ipMigrationQuery?.isError,
   };
@@ -87,10 +85,7 @@ export function useDedicatedServerIpMigrationDetails({
   token,
   duration,
 }: OrderDedicatedServerIpMigrationParams) {
-  return useQuery<
-    ApiResponse<Omit<IpMigrationOrder, 'orderId' | 'url'>>,
-    ApiError
-  >({
+  return useQuery<ApiResponse<Omit<IpMigrationOrder, 'orderId' | 'url'>>, ApiError>({
     queryKey: getOrderDedicatedServerIpMigrationDetailsQueryKey({
       ip,
       serviceName,
@@ -104,11 +99,7 @@ export function useDedicatedServerIpMigrationDetails({
         token,
         duration,
       }),
-    enabled:
-      Boolean(serviceName) &&
-      Boolean(ip) &&
-      Boolean(token) &&
-      Boolean(duration),
+    enabled: Boolean(serviceName) && Boolean(ip) && Boolean(token) && Boolean(duration),
     retry: false,
   });
 }
@@ -134,7 +125,6 @@ export function useOrderIpMigration({
       serviceName,
       token,
     }),
-    mutationFn: () =>
-      postOrderDedicatedServerIpMigration({ ip, duration, serviceName, token }),
+    mutationFn: () => postOrderDedicatedServerIpMigration({ ip, duration, serviceName, token }),
   });
 }

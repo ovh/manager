@@ -1,11 +1,12 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
+
 import { render } from '@testing-library/react';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
+import '@/test-utils/setupUnitTests';
+
 import { SurveyLink } from './SurveyLink';
 
 const shellContext = {
@@ -27,9 +28,7 @@ const shellContext = {
 /** RENDER */
 const renderComponent = () => {
   return render(
-    <ShellContext.Provider
-      value={(shellContext as unknown) as ShellContextType}
-    >
+    <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       <SurveyLink />
     </ShellContext.Provider>,
   );

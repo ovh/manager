@@ -1,8 +1,10 @@
-import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import ipaddr from 'ipaddr.js';
-import { ipParkingOptionValue, IpTask } from '@/types';
-import { getTypeByServiceName } from '@/utils';
+
+import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { IpTypeEnum } from '@/data/constants';
+import { IpTask, ipParkingOptionValue } from '@/types';
+import { getTypeByServiceName } from '@/utils';
 
 export type PostMoveIpParams = {
   ip: string;
@@ -18,14 +20,11 @@ export const postMoveIp = async ({
   serviceName,
 }: PostMoveIpParams): Promise<ApiResponse<IpTask>> => {
   const isDetachedToParking = to === ipParkingOptionValue;
-  const isAttachedToSomeVrack =
-    getTypeByServiceName(serviceName) === IpTypeEnum.VRACK;
+  const isAttachedToSomeVrack = getTypeByServiceName(serviceName) === IpTypeEnum.VRACK;
 
   if (isDetachedToParking && isAttachedToSomeVrack) {
     return apiClient.v6.delete(
-      `/vrack/${serviceName}/${
-        ipaddr.IPv6.isIPv6(ip) ? 'ipv6' : 'ip'
-      }/${encodeURIComponent(ip)}`,
+      `/vrack/${serviceName}/${ipaddr.IPv6.isIPv6(ip) ? 'ipv6' : 'ip'}/${encodeURIComponent(ip)}`,
       {},
     );
   }

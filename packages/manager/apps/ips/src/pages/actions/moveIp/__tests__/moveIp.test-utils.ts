@@ -1,12 +1,14 @@
-import { waitFor, fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
+
 import {
-  assertOdsModalVisibility,
   WAIT_FOR_DEFAULT_OPTIONS,
+  assertOdsModalVisibility,
 } from '@ovh-ux/manager-core-test-utils';
-import { getComboboxByName, renderTest, MockParams } from '@/test-utils';
-import { urls } from '@/routes/routes.constant';
-import { fromIpToId } from '@/utils';
+
 import ipList from '@/__mocks__/ip/get-ips.json';
+import { urls } from '@/routes/routes.constant';
+import { MockParams, getComboboxByName, renderTest } from '@/test-utils';
+import { fromIpToId } from '@/utils';
 
 export async function openMoveIpModal(options: MockParams = {}) {
   const result = await renderTest({
@@ -34,9 +36,7 @@ export async function fillStep1({
   await waitFor(
     () =>
       expect(
-        serviceSelect.querySelector(
-          `ods-combobox-item[value="${destinationService}"]`,
-        ),
+        serviceSelect.querySelector(`ods-combobox-item[value="${destinationService}"]`),
       ).toBeInTheDocument(),
     WAIT_FOR_DEFAULT_OPTIONS,
   );
@@ -71,9 +71,6 @@ export async function fillStep1({
 
     await waitFor(() => fireEvent(nextHopSelect, event2));
 
-    await waitFor(
-      () => expect(nextHopSelect).toHaveValue(nextHop),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await waitFor(() => expect(nextHopSelect).toHaveValue(nextHop), WAIT_FOR_DEFAULT_OPTIONS);
   }
 }

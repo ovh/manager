@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { TokenParam, getTokens, getTokenQueryKey } from '../api';
+
+import { TokenParam, getTokenQueryKey, getTokens } from '../api';
 
 /**
  * Fetch the token for a given campus

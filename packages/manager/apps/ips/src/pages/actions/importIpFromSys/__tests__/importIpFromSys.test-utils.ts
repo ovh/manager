@@ -1,7 +1,9 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-import { getButtonByLabel, labels } from '@/test-utils';
+
 import { catalogDedicatedServerList } from '@/__mocks__/catalog/dedicated-server-catalog';
+import { getButtonByLabel, labels } from '@/test-utils';
 
 export const VALID_INPUT_VALUES = {
   ip: '23::',
@@ -15,9 +17,7 @@ export async function fillStep1({ ip, token } = VALID_INPUT_VALUES) {
   const ipInput = screen.getByLabelText(labels.importIpFromSys.step1IpLabel);
   await waitFor(() => fireEvent(ipInput, ipEvent));
 
-  const tokenInput = screen.getByLabelText(
-    labels.importIpFromSys.step1TokenLabel,
-  );
+  const tokenInput = screen.getByLabelText(labels.importIpFromSys.step1TokenLabel);
 
   const tokenEvent = new CustomEvent('odsChange', {
     detail: { value: token },
@@ -26,13 +26,9 @@ export async function fillStep1({ ip, token } = VALID_INPUT_VALUES) {
   await waitFor(() => fireEvent(tokenInput, tokenEvent));
 }
 
-export async function fillStep2(
-  destinationServerValue = catalogDedicatedServerList[0],
-) {
+export async function fillStep2(destinationServerValue = catalogDedicatedServerList[0]) {
   return waitFor(() => {
-    const destinationServerInput = screen.getByLabelText(
-      labels.importIpFromSys.step2ServerLabel,
-    );
+    const destinationServerInput = screen.getByLabelText(labels.importIpFromSys.step2ServerLabel);
 
     const event = new CustomEvent('odsChange', {
       detail: { value: destinationServerValue },

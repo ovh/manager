@@ -1,27 +1,22 @@
 import React from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { UseQueryResult } from '@tanstack/react-query';
-import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
-import {
-  getContinentKeyFromRegion,
-  isAdditionalIpPlan,
-  isBlockIpPlan,
-} from './catalog.utils';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   isRegionInAp,
   isRegionInCa,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
+import { CatalogIpPlan, CatalogIpsResponse, PccCatalogPlan, PccCatalogResponse } from '@/data/api';
 import { DEFAULT_PRICING_MODE } from '@/pages/order/order.constant';
+import { IpVersion, ServiceType } from '@/types';
+
+import { getContinentKeyFromRegion, isAdditionalIpPlan, isBlockIpPlan } from './catalog.utils';
 import { useCatalogIps } from './useCatalogIps';
 import { usePccCatalog } from './usePccCatalog';
-import { ServiceType, IpVersion } from '@/types';
-import {
-  CatalogIpPlan,
-  CatalogIpsResponse,
-  PccCatalogPlan,
-  PccCatalogResponse,
-} from '@/data/api';
 
 export type Pricing = {
   label: string;
@@ -84,9 +79,8 @@ export const useAdditionalIpPricings = ({
     ...query,
     additionalIpPlanCode: data?.data?.plans
       ?.filter(isAdditionalIpPlan)
-      ?.find((plan: CatalogIpPlan) =>
-        plan.invoiceName.includes(getContinentKeyFromRegion(region)),
-      )?.planCode as string,
+      ?.find((plan: CatalogIpPlan) => plan.invoiceName.includes(getContinentKeyFromRegion(region)))
+      ?.planCode as string,
     ipBlockPricingList: (data?.data?.plans
       ?.filter((plan: CatalogIpPlan) =>
         plan.planCode.includes(ipVersion === IpVersion.ipv4 ? 'v4' : 'v6'),
@@ -100,8 +94,7 @@ export const useAdditionalIpPricings = ({
           return plan.invoiceName.includes('CANADA');
         }
         return isApac
-          ? plan.invoiceName.includes('APAC') ||
-              plan.invoiceName.includes('ASIA')
+          ? plan.invoiceName.includes('APAC') || plan.invoiceName.includes('ASIA')
           : plan.invoiceName.includes('EUROPE');
       })
       .sort((planA: CatalogIpPlan, planB: CatalogIpPlan) =>
@@ -111,10 +104,7 @@ export const useAdditionalIpPricings = ({
           : -1,
       )
       .map((plan: CatalogIpPlan) => ({
-        label: toOptionLabel(
-          plan.invoiceName,
-          plan.details.pricings.default[0].price.text,
-        ),
+        label: toOptionLabel(plan.invoiceName, plan.details.pricings.default[0].price.text),
         value: plan.planCode,
         pricingMode: DEFAULT_PRICING_MODE,
       })) || []) as Pricing[],

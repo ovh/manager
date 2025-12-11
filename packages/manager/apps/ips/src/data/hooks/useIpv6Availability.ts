@@ -1,23 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import { getIcebergIpList } from '@/data/api';
-import { useAdditionalIpsRegions } from './catalog/useAdditionalIpsRegions';
-import { ServiceType, IpVersion } from '@/types';
+import { IpVersion, ServiceType } from '@/types';
 import { IpObject } from '@/types/ipObject';
+
+import { useAdditionalIpsRegions } from './catalog/useAdditionalIpsRegions';
 
 /**
  * Return the list of unavailable region to order an additional IPs for a given service
  */
-export const getUnavailableRegionList = (
-  additionalIps: IpObject[] = [],
-  serviceName: string,
-) => {
+export const getUnavailableRegionList = (additionalIps: IpObject[] = [], serviceName: string) => {
   const serviceListByRegion =
     additionalIps
       ?.filter((ip) => ip.isAdditionalIp && ip.version === 6)
-      .flatMap((ip) =>
-        ip.regions.map((region) => [region, ip.routedTo.serviceName]),
-      )
+      .flatMap((ip) => ip.regions.map((region) => [region, ip.routedTo.serviceName]))
       .reduce(
         (result, [region, service]) => ({
           ...result,
@@ -32,10 +30,7 @@ export const getUnavailableRegionList = (
       has3blocks: serviceList.length >= 3,
       alreadyInCurrentVrack: serviceList.includes(serviceName),
     }))
-    .filter(
-      ({ has3blocks, alreadyInCurrentVrack }) =>
-        has3blocks || alreadyInCurrentVrack,
-    );
+    .filter(({ has3blocks, alreadyInCurrentVrack }) => has3blocks || alreadyInCurrentVrack);
 };
 
 export const useIpv6Availability = ({
@@ -53,10 +48,7 @@ export const useIpv6Availability = ({
     isError: isRegionListError,
     error: regionListError,
   } = useAdditionalIpsRegions({ ipVersion, serviceType });
-  const { data, isLoading, isError, error } = useQuery<
-    IcebergFetchResultV6<IpObject>,
-    ApiError
-  >({
+  const { data, isLoading, isError, error } = useQuery<IcebergFetchResultV6<IpObject>, ApiError>({
     queryKey: ['additionalips', 'ipv6'],
     queryFn: () =>
       getIcebergIpList({

@@ -1,5 +1,6 @@
-import { IpObject } from '@/types/ipObject';
 import { IpTypeEnum } from '@/data/constants';
+import { IpObject } from '@/types/ipObject';
+
 import { getUnavailableRegionList } from './useIpv6Availability';
 
 const failoverIp: IpObject = {
@@ -48,20 +49,13 @@ const ip: IpObject = {
 
 describe('getUnavailableRegionList', () => {
   it('disable a region if there is already 3 ipv6 block on that region', () => {
-    expect(
-      getUnavailableRegionList(
-        [failoverIp, failoverIp, failoverIp],
-        'pn-00001',
-      ),
-    ).toEqual([
+    expect(getUnavailableRegionList([failoverIp, failoverIp, failoverIp], 'pn-00001')).toEqual([
       { region: 'eu-west-rbx', has3blocks: true, alreadyInCurrentVrack: false },
     ]);
   });
 
   it('doest not disable a region if there is less than 3 ipv6 block on that region', () => {
-    expect(
-      getUnavailableRegionList([failoverIp, failoverIp], 'pn-00001'),
-    ).toEqual([]);
+    expect(getUnavailableRegionList([failoverIp, failoverIp], 'pn-00001')).toEqual([]);
   });
 
   it('disable a region if there is already an ip block on this region for this service', () => {
@@ -71,9 +65,7 @@ describe('getUnavailableRegionList', () => {
   });
 
   it('disable a region if there is already an ip block on this region for this service and there are 3 blocks also', () => {
-    expect(
-      getUnavailableRegionList([ip, failoverIp, failoverIp], 'pn-00001'),
-    ).toEqual([
+    expect(getUnavailableRegionList([ip, failoverIp, failoverIp], 'pn-00001')).toEqual([
       { region: 'eu-west-rbx', has3blocks: true, alreadyInCurrentVrack: true },
     ]);
   });

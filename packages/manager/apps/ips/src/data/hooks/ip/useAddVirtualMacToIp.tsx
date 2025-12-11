@@ -1,10 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  addVirtualMacToIp,
-  createDedicatedServerTasksQueryKeyPredicate,
-} from '@/data/api';
+
+import { addVirtualMacToIp, createDedicatedServerTasksQueryKeyPredicate } from '@/data/api';
 import { VMAC_UPDATE_FUNCTION_LIST } from '@/utils';
 
 export type UseAddVirtualMacToIpParams = {

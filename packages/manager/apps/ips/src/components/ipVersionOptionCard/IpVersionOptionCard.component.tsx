@@ -1,19 +1,14 @@
 import React from 'react';
-import {
-  ODS_CARD_COLOR,
-  ODS_TEXT_PRESET,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCard,
-  OdsRadio,
-  OdsText,
-  OdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import { handleClick } from '@ovh-ux/manager-react-components';
-import './ip-version-option-card.scss';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_CARD_COLOR, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsCard, OdsRadio, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
+import { handleClick } from '@ovh-ux/manager-react-components';
+
 import { PriceDescription } from '../PriceDescription/PriceDescription';
+import './ip-version-option-card.scss';
 
 export type IpVersionOptionCardProps = React.PropsWithChildren<{
   className?: string;
@@ -48,22 +43,19 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
   return (
     <OdsCard
       tabIndex={0}
-      className={`flex flex-col transition-shadow justify-between ${stateStyle} ${cardStyle} ${className}`}
+      className={`flex flex-col justify-between transition-shadow ${stateStyle} ${cardStyle} ${className}`}
       {...handleClick(() => !isDisabled && onClick?.())}
       color={ODS_CARD_COLOR.neutral}
     >
-      <OdsText
-        className="flex justify-left m-4"
-        preset={ODS_TEXT_PRESET.heading4}
-      >
-        <span className="h-full align-middle mr-3">
+      <OdsText className="justify-left m-4 flex" preset={ODS_TEXT_PRESET.heading4}>
+        <span className="mr-3 h-full align-middle">
           <OdsRadio name="" is-checked={isSelected}></OdsRadio>
         </span>
         <span>{title}</span>
       </OdsText>
       {description && (
         <OdsText
-          className="flex justify-center text-left mt-0 m-4"
+          className="m-4 mt-0 flex justify-center text-left"
           preset={ODS_TEXT_PRESET.paragraph}
         >
           {description}
@@ -74,7 +66,7 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
           <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
         </div>
       ) : (
-        <span className="card-children p-4 rounded-b-md">
+        <span className="card-children rounded-b-md p-4">
           {!isStartingPrice && price === 0 ? (
             <span className="free-price">{t('free_price')}</span>
           ) : (

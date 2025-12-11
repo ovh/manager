@@ -9,9 +9,9 @@ export type GetIpRipeInformationParams = {
   ip: string;
 };
 
-export const getIpRipeInformationQueryKey = (
-  params: GetIpRipeInformationParams,
-) => [`get/ip/${encodeURIComponent(params.ip)}/ripe`];
+export const getIpRipeInformationQueryKey = (params: GetIpRipeInformationParams) => [
+  `get/ip/${encodeURIComponent(params.ip)}/ripe`,
+];
 
 /**
  * Get IP Ripe Information
@@ -19,6 +19,4 @@ export const getIpRipeInformationQueryKey = (
 export const getIpRipeInformation = async (
   params: GetIpRipeInformationParams,
 ): Promise<ApiResponse<IpRipeInformation>> =>
-  apiClient.v6.get<IpRipeInformation>(
-    `/ip/${encodeURIComponent(params.ip)}/ripe`,
-  );
+  apiClient.v6.get<IpRipeInformation>(`/ip/${encodeURIComponent(params.ip)}/ripe`);

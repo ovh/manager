@@ -1,18 +1,21 @@
 import React from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
-import { OrderContext } from './order.context';
-import { IpOffer } from './order.constant';
-import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
-import { OfferSelectionSection } from './sections/OfferSelectionSection.component';
-import { GeolocationSection } from './sections/GeolocationSection.component';
-import { OrganisationSection } from './sections/OrganisationSection.component';
-import { OrderButtonSection } from './sections/OrderButtonSection.component';
-import { useServiceRegion } from '@/data/hooks/useServiceRegion';
-import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
-import { IpVersion, ServiceType } from '@/types';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { isRegionInUs } from '@/components/RegionSelector/region-selector.utils';
+import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
+import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+import { IpVersion, ServiceType } from '@/types';
+
+import { IpOffer } from './order.constant';
+import { OrderContext } from './order.context';
+import { GeolocationSection } from './sections/GeolocationSection.component';
+import { OfferSelectionSection } from './sections/OfferSelectionSection.component';
+import { OrderButtonSection } from './sections/OrderButtonSection.component';
+import { OrganisationSection } from './sections/OrganisationSection.component';
+import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
+import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
 
 export const Ipv4Order: React.FC = () => {
   const {
@@ -61,10 +64,7 @@ export const Ipv4Order: React.FC = () => {
       !!selectedService &&
       serviceStatus === 'ok' &&
       [ServiceType.ipParking, ServiceType.vrack].includes(selectedServiceType),
-    offer:
-      !!selectedService &&
-      !!(selectedRegion || region) &&
-      serviceStatus === 'ok',
+    offer: !!selectedService && !!(selectedRegion || region) && serviceStatus === 'ok',
     geolocation:
       !!selectedService &&
       serviceStatus === 'ok' &&

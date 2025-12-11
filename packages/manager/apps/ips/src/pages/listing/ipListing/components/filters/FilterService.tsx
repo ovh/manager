@@ -1,19 +1,15 @@
 import React, { startTransition, useContext } from 'react';
-import {
-  OdsCombobox,
-  OdsComboboxGroup,
-  OdsComboboxItem,
-} from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
-import { ListingContext } from '@/pages/listing/listingContext';
+
+import { OdsCombobox, OdsComboboxGroup, OdsComboboxItem } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import { useGetProductServices } from '@/data/hooks/useGetProductServices';
+import { ListingContext } from '@/pages/listing/listingContext';
 
 const serviceOrder = [
   IpTypeEnum.ADDITIONAL,
@@ -46,9 +42,7 @@ export const FilterService = ({ className }: { className?: string }) => {
           [t(getAllItemLabelKeyFromType(category))]: category,
         }),
         {
-          [t(
-            getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL),
-          )]: IpTypeEnum.ADDITIONAL,
+          [t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))]: IpTypeEnum.ADDITIONAL,
         } as Record<string, IpTypeEnum>,
       ),
     [],
@@ -121,20 +115,15 @@ export const FilterService = ({ className }: { className?: string }) => {
       }}
     >
       <OdsComboboxGroup>
-        <span slot="title">
-          {t(`listingColumnsType_${IpTypeEnum.ADDITIONAL}`)}
-        </span>
-        <OdsComboboxItem
-          value={t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}
-        >
+        <span slot="title">{t(`listingColumnsType_${IpTypeEnum.ADDITIONAL}`)}</span>
+        <OdsComboboxItem value={t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}>
           {t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}
         </OdsComboboxItem>
       </OdsComboboxGroup>
       {Object.values(PRODUCT_PATHS_AND_CATEGORIES)
         .filter(
           ({ category }) =>
-            serviceByCategory?.[category] &&
-            serviceByCategory?.[category].length > 0,
+            serviceByCategory?.[category] && serviceByCategory?.[category].length > 0,
         )
         .sort(
           (a, b) =>
@@ -147,15 +136,9 @@ export const FilterService = ({ className }: { className?: string }) => {
             <OdsComboboxItem value={t(getAllItemLabelKeyFromType(category))}>
               {t(getAllItemLabelKeyFromType(category))}
             </OdsComboboxItem>
-            {serviceByCategory?.[category]?.map(
-              ({ serviceName, displayName }) => (
-                <ComboboxServiceItem
-                  key={serviceName}
-                  name={serviceName}
-                  displayName={displayName}
-                />
-              ),
-            )}
+            {serviceByCategory?.[category]?.map(({ serviceName, displayName }) => (
+              <ComboboxServiceItem key={serviceName} name={serviceName} displayName={displayName} />
+            ))}
           </OdsComboboxGroup>
         ))}
     </OdsCombobox>

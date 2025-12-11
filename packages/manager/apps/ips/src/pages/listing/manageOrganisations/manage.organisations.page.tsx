@@ -1,21 +1,19 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import './manage.organisations.scss';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import Loading from '@/components/Loading/Loading';
 import { ManageOrganisationsDatagrid } from '@/pages/listing/manageOrganisations/components/OrganisationsDatagrid/manageOrganisationsDataGrid.component';
 import { urls } from '@/routes/routes.constant';
+
+import './manage.organisations.scss';
 
 export default function ManageOrganisationsPage() {
   const { t } = useTranslation('manage-organisations');
@@ -35,7 +33,7 @@ export default function ManageOrganisationsPage() {
           {t('manageOrganisationsPageHowto')}
         </OdsText>
       </div>
-      <div className="flex flex-row mb-2">
+      <div className="mb-2 flex flex-row">
         <OdsButton
           className="mb-5 mr-2"
           variant={ODS_BUTTON_VARIANT.outline}

@@ -1,10 +1,14 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
-import { describe, it } from 'vitest';
+
 import { render } from '@testing-library/react';
+import { describe, it } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { BadgeCell, BadgeCellParams } from './BadgeCell';
+
 import { getTooltipByText } from '@/test-utils';
+import '@/test-utils/setupUnitTests';
+
+import { BadgeCell, BadgeCellParams } from './BadgeCell';
 
 const renderComponent = (params: BadgeCellParams) => {
   return render(<BadgeCell {...params} />);
