@@ -15,7 +15,7 @@ import {
   WebHostingWebsiteDomainType,
   WebHostingWebsiteType,
 } from '@/data/types/product/webHosting';
-import { GitStatus, ServiceStatus } from '@/data/types/status';
+import { GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
 import { useHostingUrl } from '@/hooks/useHostingUrl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
@@ -61,8 +61,8 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     action: Omit<ActionMenuItemProps, 'id'> & { id: number },
   ): ActionMenuItemProps | null => (condition ? action : null);
   const allActions: ActionMenuItemProps[] = useMemo(() => {
+    const website = websites.find((w) => w.id === siteId);
     if (context === 'site') {
-      const website = websites.find((w) => w.id === siteId);
       const vcsStatus = website?.currentState?.git?.status;
       // @TODO FOR NEXT STEP
       // const hasModule = !!website?.currentState?.module?.name;
@@ -73,6 +73,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
         vcsStatus,
       );
 
+      const canAddDomain = [ResourceStatus.READY].includes(website?.resourceStatus);
       const canDeployGit = [GitStatus.CREATED, GitStatus.ERROR].includes(vcsStatus);
 
       const canViewLastDeploymentGit = [
@@ -93,6 +94,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
       const siteActions: ActionMenuItemProps[] = [
         {
           id: 1,
+          isDisabled: !canAddDomain,
           onClick: () =>
             navigate(urls.addDomain.replace(subRoutes.serviceName, serviceName), {
               state: { site, path },
@@ -176,7 +178,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
       const canAccesscdn = currentDomain?.currentState?.cdn.status !== ServiceStatus.NONE;
       const canActivateCdn =
         currentDomain?.currentState?.cdn.status === ServiceStatus.NONE && service?.hasCdn == true;
-
+      const gitStatus = website?.currentState?.git?.status;
       const domainActions: ActionMenuItemProps[] = [
         {
           id: 11,
@@ -207,6 +209,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
               urls.detacheDomain
                 .replace(subRoutes.serviceName, serviceName)
                 .replace(subRoutes.domain, domain ?? ''),
+              { state: { gitStatus, path } },
             ),
           label: t('detache_domain'),
         },
