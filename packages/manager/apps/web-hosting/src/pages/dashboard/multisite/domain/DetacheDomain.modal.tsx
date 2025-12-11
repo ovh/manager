@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { Location, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -26,17 +26,23 @@ import { useGetAddDomainExisting } from '@/data/hooks/webHostingDashboard/useWeb
 import { HostingdOffer } from '@/data/types/product/webHosting';
 import { GitStatus } from '@/data/types/status';
 
+interface DetacheDomainModalState {
+  path: string;
+  gitStatus: GitStatus;
+}
+
 export default function DetacheDomainModal() {
   const navigate = useNavigate();
   const { domain, serviceName } = useParams();
   const { addSuccess, addWarning } = useNotifications();
+  const { state } = useLocation() as Location<DetacheDomainModalState>;
 
   const [isAutoconfigure, setIsAutoconfigure] = useState<boolean>(true);
   const [wwwRemoved, setWwwRemoved] = useState<boolean>(false);
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { data } = useWebHostingAttachedDomain({ domain });
   const domainData = data?.find((d) => d?.currentState?.fqdn === domain);
-  const canDetachDomainWithGit = domainData?.currentState?.git?.status === GitStatus?.CREATED;
+  const canDetachDomainWithGit = state?.gitStatus === GitStatus?.DISABLED;
   const domainExisting = useGetAddDomainExisting(serviceName, false, Boolean(serviceName));
   const wwwDomainExists = domainExisting?.data?.existingDomains?.includes(`www.${domain}`);
 
@@ -99,13 +105,7 @@ export default function DetacheDomainModal() {
         </Text>
         <div className="space-x-2">
           <Input type="text" name="domain" value="./" disabled className="w-1/12" />
-          <Input
-            type="text"
-            name="domain"
-            value={domainData?.currentState?.path || ''}
-            disabled
-            className="w-10/12"
-          />
+          <Input type="text" name="domain" value={state?.path || ''} disabled className="w-10/12" />
         </div>
         {wwwDomainExists && (
           <div className="mt-6 flex flex-row">
