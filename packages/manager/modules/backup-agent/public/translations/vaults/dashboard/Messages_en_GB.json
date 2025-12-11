@@ -1,19 +1,21 @@
 {
   "home": "Home",
-  "order": "Order",
+  "order": "Order now",
   "back": "Back",
   "title": "Dashboard",
-  "email": "Email address",
+  "email": "Email",
   "subject": "Subject",
   "message": "Message",
   "submitButton": "Send",
-  "successMessage": "Your request has been sent.",
+  "successMessage": "Your request has been successfully sent.",
   "errors": {
-    "emailRequired": "You need to enter an email address",
+    "emailRequired": "The email is mandatory.",
     "emailInvalid": "Please enter a valid email address.",
-    "subjectRequired": "You need to enter a subject.",
-    "messageRequired": "You need to write a message."
+    "subjectRequired": "The subject is mandatory.",
+    "messageRequired": "The message is mandatory."
   },
   "general-information": "General information",
-  "help": "Help"
+  "help": "Help",
+  "type_billing": "Billing type",
+  "consumption_tooltip": "Additional storage is not available for self-service. To increase your storage capacity, please contact support."
 }

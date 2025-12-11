@@ -1,8 +1,8 @@
 {
-  "home": "Página inicial",
+  "home": "Início",
   "order": "Encomendar",
-  "back": "Retroceder",
-  "title": "Dashboard",
+  "back": "Voltar",
+  "title": "Painel de controle",
   "email": "E-mail",
   "subject": "Objeto",
   "message": "Mensagem",
@@ -10,10 +10,12 @@
   "successMessage": "O seu pedido foi enviado com sucesso.",
   "errors": {
     "emailRequired": "O e-mail é obrigatório.",
-    "emailInvalid": "Introduza um endereço de correio eletrónico válido.",
-    "subjectRequired": "O objeto é obrigatório.",
+    "emailInvalid": "Queira introduzir um endereço de e-mail válido.",
+    "subjectRequired": "O assunto é obrigatório.",
     "messageRequired": "A mensagem é obrigatória."
   },
   "general-information": "Informações gerais",
-  "help": "Ajuda"
+  "help": "Ajuda",
+  "type_billing": "Tipo de facturação",
+  "consumption_tooltip": "O armazenamento adicional não está disponível em autoatendimento. Para aumentar a sua capacidade de armazenamento, por favor contacte o suporte."
 }
