@@ -2,5 +2,12 @@
   "home": "Inicio",
   "order": "Contratar",
   "open": "Abrir el panel de control",
-  "title": "Lista"
+  "title": "Lista",
+  "resource_name_label": "Nombre",
+  "location_label": "Alquiler",
+  "region_label": "Región",
+  "buckets_label": "Número de buckets",
+  "status_label": "Estado",
+  "order_vault": "Contratar un vault",
+  "more_action": "Acción adicional"
 }

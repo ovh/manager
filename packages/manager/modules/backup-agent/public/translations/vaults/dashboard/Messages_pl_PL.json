@@ -2,18 +2,20 @@
   "home": "Strona główna",
   "order": "Zamów",
   "back": "Powrót",
-  "title": "Dashboard",
-  "email": "Adres e-mail",
-  "subject": "Temat",
+  "title": "Panel sterowania",
+  "email": "E-mail",
+  "subject": "Przedmiot",
   "message": "Wiadomość",
   "submitButton": "Wyślij",
-  "successMessage": "Twoja wiadomość została wysłana.",
+  "successMessage": "Twoje zapytanie zostało pomyślnie wysłane.",
   "errors": {
-    "emailRequired": "Wpisz adres e-mail.",
-    "emailInvalid": "Wpisz poprawny adres e-mail.",
-    "subjectRequired": "Wpisz tytuł wiadomości.",
-    "messageRequired": "Wpisz wiadomość."
+    "emailRequired": "E-mail jest wymagany.",
+    "emailInvalid": "Prosimy o wprowadzenie poprawnego adresu e-mail.",
+    "subjectRequired": "Temat jest wymagany.",
+    "messageRequired": "Wiadomość jest wymagana."
   },
   "general-information": "Informacje ogólne",
-  "help": "Pomoc"
+  "help": "Pomoc",
+  "type_billing": "Sposób rozliczania usługi",
+  "consumption_tooltip": "Dodatkowe przechowywanie nie jest dostępne w trybie samoobsługowym. Aby zwiększyć swoją pojemność przechowywania, skontaktuj się z pomocą techniczną."
 }

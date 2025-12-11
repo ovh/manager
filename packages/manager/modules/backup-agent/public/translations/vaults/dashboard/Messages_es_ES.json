@@ -2,18 +2,20 @@
   "home": "Inicio",
   "order": "Contratar",
   "back": "Volver",
-  "title": "Dashboard",
-  "email": "Email",
+  "title": "Tablero",
+  "email": "Correo electrónico",
   "subject": "Asunto",
   "message": "Mensaje",
   "submitButton": "Enviar",
-  "successMessage": "Su solicitud se ha enviado correctamente.",
+  "successMessage": "Su solicitud ha sido enviada con éxito.",
   "errors": {
-    "emailRequired": "La dirección de correo es obligatoria.",
-    "emailInvalid": "Introduzca una dirección de correo electrónico válida.",
+    "emailRequired": "El correo electrónico es obligatorio.",
+    "emailInvalid": "Por favor, introduzca una dirección de correo electrónico válida.",
     "subjectRequired": "El asunto es obligatorio.",
     "messageRequired": "El mensaje es obligatorio."
   },
-  "general-information": "Información general",
-  "help": "Ayuda"
+  "general-information": "Datos generales",
+  "help": "Ayuda",
+  "type_billing": "Tipo de facturación",
+  "consumption_tooltip": "El almacenamiento adicional no está disponible de forma autoservicio. Para aumentar su capacidad de almacenamiento, por favor contacte con el soporte."
 }

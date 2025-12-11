@@ -227,5 +227,10 @@
   "sidebar_pci_quantum_qpu": "QPUs",
   "sidebar_security_identity_operations_secret_manager": "Secret Manager",
   "sidebar_web_hosting_managed_wordpress": "Managed Hosting for WordPress",
-  "sidebar_communication": "Meine Kommunikation"
+  "sidebar_communication": "Meine Kommunikation",
+  "sidebar_ovhcloud_backup": "OVHcloud Backup",
+  "sidebar_backup_billing": "Abrechnung",
+  "sidebar_backup_services": "Dienste",
+  "sidebar_backup_agent_iaas": "Backup-Agent für IaaS",
+  "sidebar_backup_agent_baremetal": "Backup-Agent"
 }
