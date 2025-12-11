@@ -71,10 +71,7 @@ export type TPrice = {
 
 export type TRegionType = 'region' | 'localzone' | 'region-3-az' | string;
 
-export const BILLINGTEST = ['hourly', 'monthly'] as const;
-export type TBillingtest = typeof BILLINGTEST[number];
-
-export enum BILLING_TYPE {
+export enum BillingType {
   Monthly = 'monthly',
   Hourly = 'hourly',
 }

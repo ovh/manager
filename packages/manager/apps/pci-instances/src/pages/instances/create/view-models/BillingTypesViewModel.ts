@@ -1,12 +1,12 @@
 import { Deps } from '@/deps/deps';
-import { BILLING_TYPE } from '@/types/instance/common.type';
+import { BillingType } from '@/types/instance/common.type';
 import { Reader } from '@/types/utils.type';
 
 type TSelectBillingData = (
   projectId: string,
   flavorId: string | null,
   distributionImageVersionName: string | null,
-) => BILLING_TYPE[];
+) => BillingType[];
 
 export const selectBillingTypes: Reader<Deps, TSelectBillingData> = (deps) => {
   return (projectId, flavorId, distributionImageVersionName) => {
@@ -15,7 +15,6 @@ export const selectBillingTypes: Reader<Deps, TSelectBillingData> = (deps) => {
     const { instancesCatalogPort } = deps;
 
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
-    console.log('🚀 ~ selectBillingTypes ~ data:', data);
     if (!data) return [];
 
     const image = data.entities.images.byId.get(distributionImageVersionName); // a changer apres le merge
@@ -27,7 +26,7 @@ export const selectBillingTypes: Reader<Deps, TSelectBillingData> = (deps) => {
 
     const prices = periodPrices?.filter((t) => t.type !== 'licence') || [];
     return prices.map(({ type }) =>
-      type === 'hour' ? BILLING_TYPE.Hourly : BILLING_TYPE.Monthly,
+      type === 'hour' ? BillingType.Hourly : BillingType.Monthly,
     );
   };
 };
