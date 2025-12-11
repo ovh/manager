@@ -39,15 +39,6 @@ vi.mock('react-i18next', () => ({
   Trans: ({ i18nKey }: { i18nKey: string }) => <span>{i18nKey}</span>,
 }));
 
-const trackClickMock = vi.fn();
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
-  return {
-    ...original,
-    useOvhTracking: () => ({ trackClick: trackClickMock }),
-  };
-});
-
 vi.mock('react-router-dom', async (importOriginal) => {
   const actual: typeof import('react-router-dom') = await importOriginal();
   return {
@@ -536,10 +527,8 @@ vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
 // Mock the ShellContext to provide navigation and other shell functionality
 const mockGetURL = vi.fn().mockResolvedValue('mocked-url');
 
-vi.mock('@ovh-ux/manager-react-shell-client', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-shell-client');
+vi.mock('@ovh-ux/manager-react-shell-client', () => {
   return {
-    ...actual,
     ShellContext: React.createContext({
       shell: {
         navigation: {
@@ -557,6 +546,20 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
       trackClick: vi.fn(),
       trackPage: vi.fn(),
     }),
+    PageType: {
+      bannerInfo: 'bannerInfo',
+      bannerError: 'bannerError',
+    },
+    PageLocation: {
+      page: 'page',
+      datagrid: 'datagrid',
+      popup: 'popup',
+      funnel: 'funnel',
+    },
+    ButtonType: {
+      button: 'button',
+      link: 'link',
+    },
   };
 });
 

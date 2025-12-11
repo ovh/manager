@@ -39,6 +39,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 
 const mockUseHasActiveOrPendingSavingsPlan = vi.fn<() => UseQueryResult<boolean>>();
 const mockUseIsDefaultProject = vi.fn<() => UseQueryResult<boolean>>();
+const mockUsePciProjectsCount = vi.fn<() => UseQueryResult<number>>();
 const mockRemoveProject = vi.fn<() => void>();
 
 vi.mock('@/data/hooks/useSavingsPlans', () => ({
@@ -52,6 +53,7 @@ vi.mock('@/data/hooks/useProjects', () => ({
     mutate: mockRemoveProject,
     isPending: false,
   }),
+  usePciProjectsCount: () => mockUsePciProjectsCount(),
 }));
 
 // Mock window.open to avoid jsdom errors
@@ -100,6 +102,8 @@ describe('RemovePage', () => {
     mockUseHasActiveOrPendingSavingsPlan.mockReturnValue(createMockQueryResult(false));
 
     mockUseIsDefaultProject.mockReturnValue(createMockQueryResult(false));
+
+    mockUsePciProjectsCount.mockReturnValue(createMockQueryResult(2));
   });
 
   it('should render the deletion modal', () => {

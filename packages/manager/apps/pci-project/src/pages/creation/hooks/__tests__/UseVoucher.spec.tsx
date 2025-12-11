@@ -10,6 +10,7 @@ import {
 import { useCheckVoucherEligibility } from '@/data/hooks/useEligibility';
 import { CartConfiguration } from '@/data/models/Cart.type';
 import { TEligibilityVoucher } from '@/data/models/Eligibility.type';
+import { createWrapper } from '@/wrapperRenders';
 
 import { useVoucher } from '../useVoucher';
 
@@ -218,7 +219,9 @@ describe('useVoucher', () => {
 
   describe('initial state', () => {
     it('should initialize with default state', () => {
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       expect(result.current.voucher).toBe('');
       expect(result.current.error).toBeUndefined();
@@ -229,7 +232,9 @@ describe('useVoucher', () => {
 
   describe('voucher state management', () => {
     it('should update voucher value', () => {
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       const setVoucherFn = result.current.setVoucher as (voucher: string) => void;
       act(() => {
@@ -240,7 +245,9 @@ describe('useVoucher', () => {
     });
 
     it('should clear error when setError is called', () => {
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       // First set an error
       const setErrorFn = result.current.setError as (error: string | undefined) => void;
@@ -278,7 +285,9 @@ describe('useVoucher', () => {
         }),
       );
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       act(() => {
         result.current.setVoucher('VALID_CODE');
@@ -309,7 +318,9 @@ describe('useVoucher', () => {
         }),
       );
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       act(() => {
         result.current.checkEligibility('INVALID_CODE');
@@ -334,7 +345,9 @@ describe('useVoucher', () => {
         }),
       );
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       // Simulate the error by directly calling the error handler
       const errorCodeMatch = 'VOUCHER_EXPIRED'.match(/(VOUCHER_\w+)/i);
@@ -361,7 +374,9 @@ describe('useVoucher', () => {
         }),
       );
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       const configurationId = 123;
 
@@ -394,7 +409,9 @@ describe('useVoucher', () => {
         }
       ).mockReturnValue(mockDeleteConfigMutationResult(false));
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       act(() => {
         result.current.handleRemove(undefined);
@@ -429,7 +446,9 @@ describe('useVoucher', () => {
         }),
       }));
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       // First set a voucher
       act(() => {
@@ -456,7 +475,9 @@ describe('useVoucher', () => {
         }
       ).mockReturnValue(mockCheckEligibilityMutationResult(true));
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       expect(result.current.isPending).toBe(true);
     });
@@ -468,7 +489,9 @@ describe('useVoucher', () => {
         }
       ).mockReturnValue(mockCheckEligibilityMutationResult(false));
 
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }));
+      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
+        wrapper: createWrapper(),
+      });
 
       expect(result.current.isPending).toBe(false);
     });

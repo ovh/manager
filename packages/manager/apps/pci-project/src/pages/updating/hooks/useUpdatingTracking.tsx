@@ -1,5 +1,6 @@
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { useTrackingAdditionalData } from '@/hooks/useTracking';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type TrackProjectUpdatedSuccessParams = {
@@ -8,11 +9,13 @@ type TrackProjectUpdatedSuccessParams = {
 
 export const useUpdatingTracking = () => {
   const { trackPage } = useOvhTracking();
+  const trackingAdditionalData = useTrackingAdditionalData();
 
   const trackProjectUpdated = () => {
     trackPage({
       pageType: PageType.bannerInfo,
       pageName: PROJECTS_TRACKING.UPDATING.PROJECT_UPDATED,
+      additionalData: trackingAdditionalData,
     });
   };
 
@@ -20,14 +23,21 @@ export const useUpdatingTracking = () => {
     trackPage({
       pageType: PageType.bannerInfo,
       pageName: PROJECTS_TRACKING.UPDATING.UPDATE_PROJECT_SUCCESS,
-      ...(voucherCode ? { voucherCode } : {}),
+      additionalData: {
+        ...trackingAdditionalData,
+        voucherCode: voucherCode || '',
+      },
     });
   };
 
-  const trackUpdateProjectError = () => {
+  const trackUpdateProjectError = (errorMessage: string) => {
     trackPage({
       pageType: PageType.bannerError,
       pageName: PROJECTS_TRACKING.UPDATING.UPDATE_PROJECT_ERROR,
+      additionalData: {
+        ...trackingAdditionalData,
+        pciCreationErrorMessage: errorMessage,
+      },
     });
   };
 
