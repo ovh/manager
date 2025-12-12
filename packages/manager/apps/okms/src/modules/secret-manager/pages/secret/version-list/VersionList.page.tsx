@@ -13,7 +13,9 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 
@@ -30,6 +32,7 @@ const VersionListPage = () => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS, NAMESPACES.DASHBOARD]);
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const secretPathDecoded = decodeSecretPath(secretPath);
+  const { trackClick } = useOkmsTracking();
 
   const { secret } = useOutletContext<SecretPageOutletContext>();
   const hasVersions = secret?.metadata?.currentVersion !== undefined;
@@ -104,14 +107,20 @@ const VersionListPage = () => {
         topbar={
           <OdsButton
             label={t('add_new_version')}
-            onClick={() =>
+            onClick={() => {
               navigate(
                 SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
                   okmsId,
                   secretPathDecoded,
                 ),
-              )
-            }
+              );
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'navigation',
+                actions: ['create-version'],
+              });
+            }}
             icon={'plus'}
           />
         }
