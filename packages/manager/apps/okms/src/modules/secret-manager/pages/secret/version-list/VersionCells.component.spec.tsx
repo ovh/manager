@@ -34,6 +34,10 @@ vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
 }));
 
+vi.mock('@/common/hooks/useOkmsTracking', () => ({
+  useOkmsTracking: () => ({ trackClick: vi.fn() }),
+}));
+
 const renderVersionLink = async (versionMock: SecretVersion) => {
   // use global server to mock iam response
   global.server?.resetHandlers(...toMswHandlers(removeHandlersDelay([...getIamMocks({})])));

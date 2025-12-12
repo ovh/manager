@@ -13,11 +13,13 @@ import z from 'zod';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { VersionStatusMessage } from './VersionStatusMessage.component';
 
@@ -39,6 +41,7 @@ export const CreateVersionDrawerForm = ({
   onDismiss,
 }: CreateVersionDrawerFormProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+  const { trackClick } = useOkmsTracking();
 
   const {
     mutateAsync: createSecretVersion,
@@ -66,6 +69,12 @@ export const CreateVersionDrawerForm = ({
   } = form;
 
   const handleSubmitForm = async (data: FormSchema) => {
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['create_version', 'confirm'],
+    });
     try {
       await createSecretVersion({
         okmsId,
@@ -81,6 +90,16 @@ export const CreateVersionDrawerForm = ({
     } catch {
       // Error is handled by the useCreateSecretVersion hook
     }
+  };
+
+  const handleDismiss = () => {
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['create_version', 'cancel'],
+    });
+    onDismiss();
   };
 
   return (
@@ -106,7 +125,7 @@ export const CreateVersionDrawerForm = ({
         isPrimaryButtonLoading={isCreating}
         onPrimaryButtonClick={handleSubmit(handleSubmitForm)}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-        onSecondaryButtonClick={onDismiss}
+        onSecondaryButtonClick={handleDismiss}
       />
     </div>
   );
