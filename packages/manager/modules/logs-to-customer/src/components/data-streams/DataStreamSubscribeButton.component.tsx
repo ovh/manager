@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { Button } from '@ovh-ux/muk';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { LogsContext } from '@/LogsToCustomer.context';
@@ -36,17 +35,18 @@ const SubscribeButton = ({ stream }: { stream?: Stream }) => {
   };
 
   return (
-    <ManagerButton
+    <Button
       size="sm"
       variant="outline"
       onClick={handleClick}
-      isLoading={isPending}
-      isDisabled={!!stream?.parentStreamId}
+      loading={isPending}
+      disabled={!!stream?.parentStreamId}
       iamActions={logIamActions?.deleteSubscription}
       urn={resourceURN}
-      id={'stream-subscription-btn'}
-      label={t('log_streams_subscribe')}
-    />
+      id="stream-subscription-btn"
+    >
+      {t('log_streams_subscribe')}
+    </Button>
   );
 };
 

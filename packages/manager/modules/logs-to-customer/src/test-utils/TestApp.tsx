@@ -47,6 +47,9 @@ export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
   const router = createMemoryRouter(appRoutes, {
     initialEntries: [initialRoute],
     initialIndex: 0,
+    future: {
+      v7_relativeSplatPath: true,
+    },
   });
 
   const queryClient = new QueryClient({
@@ -56,7 +59,7 @@ export function TestApp({ initialRoute = '/' }: { initialRoute?: string }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} future={{ v7_startTransition: true }} />
       </ShellContext.Provider>
     </QueryClientProvider>
   );

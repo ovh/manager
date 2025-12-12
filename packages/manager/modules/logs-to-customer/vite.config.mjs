@@ -67,9 +67,6 @@ export default defineConfig({
                     }
                     return '[name][extname]';
                 },
-                preserveModules: true,
-                preserveModulesRoot: 'src',
-                entryFileNames: 'src/[name].js',
             },
         },
         sourcemap: 'hidden',

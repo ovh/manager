@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
+import { Spinner, Text } from '@ovhcloud/ods-react';
 import { LogsContext } from '@/LogsToCustomer.context';
 import {
   getLogSubscriptionsQueryKey,
@@ -27,7 +28,7 @@ export default function LogsSubscriptions() {
   if (!currentLogKind) {
     return (
       <div className="flex py-8">
-        <OdsSpinner size="md" data-testid="logCurrentLogKind-spinner" />
+        <Spinner size="md" data-testid="logCurrentLogKind-spinner" />
       </div>
     );
   }
@@ -35,7 +36,7 @@ export default function LogsSubscriptions() {
   if (isLoading || isPending)
     return (
       <div className="flex py-8">
-        <OdsSpinner size="md" data-testid="logSubscriptions-spinner" />
+        <Spinner size="md" data-testid="logSubscriptions-spinner" />
       </div>
     );
 
@@ -57,7 +58,7 @@ export default function LogsSubscriptions() {
 
   return (
     <div className="flex flex-col gap-4">
-      <OdsText preset="heading-3">{t('log_subscription_list_title')}</OdsText>
+      <Text preset="heading-3">{t('log_subscription_list_title')}</Text>
       <div
         className={
           isZoomedIn
