@@ -7,7 +7,7 @@ type ActionsProps = {
   snapshot: TVolumeSnapshot;
 };
 
-export default function Actions({ snapshot }: Readonly<ActionsProps>) {
+export default function ActionsComponent({ snapshot }: Readonly<ActionsProps>) {
   const { t } = useTranslation('volumes');
 
   const items = [
