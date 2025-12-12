@@ -11,11 +11,20 @@ type TPlan = {
   content: string[];
   footer?: string;
   value: TClusterPlan;
-  code: string;
+  code: string | null;
   price: number | null;
 };
 
-const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
+enum TClusterCodePlanEnum {
+  FREE = 'mks.free.hour.consumption',
+  STANDARD = 'mks.standard.hour.consumption',
+  STANDARD3AZ = 'mks.standard.hour.consumption.3az',
+  FREE3AZ = 'mks.free.hour.consumption.3az',
+}
+
+const usePlanData = (
+  codes: string[], isMutiZone: boolean = false,
+): { plans: TPlan[]; isPending: boolean } => {
   const { data: catalog, isPending: isPendingCatalog } = useCatalog();
 
   const pricing = useCallback(
@@ -23,7 +32,7 @@ const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
       if (catalog) {
         const getAddon = catalog.addons.find((add) => add.planCode === code);
 
-        return getAddon?.pricings[0].price ?? null;
+        return getAddon?.pricings[0]?.price ?? null;
       }
       return null;
     },
@@ -45,7 +54,7 @@ const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
       ],
       value: TClusterPlanEnum.FREE,
       type: DeploymentMode.MONO_ZONE,
-      code: 'mks.free.hour.consumption',
+      code: codes.includes(TClusterCodePlanEnum.FREE) ? isMutiZone ? TClusterCodePlanEnum.FREE3AZ : TClusterCodePlanEnum.FREE : null,
     },
     {
       title: 'kube_add_plan_title_standard',
@@ -61,11 +70,11 @@ const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
       ],
       type: DeploymentMode.MULTI_ZONES,
       value: TClusterPlanEnum.STANDARD,
-      code: 'mks.standard.hour.consumption.3az',
+      code: codes.includes(TClusterCodePlanEnum.STANDARD) ? (isMutiZone ? TClusterCodePlanEnum.STANDARD3AZ : TClusterCodePlanEnum.STANDARD) : null,
     },
   ].map((plan) => ({
     ...plan,
-    price: pricing(plan.code),
+    price: plan.code ? pricing(plan.code) : null,
   }));
 
   return {
