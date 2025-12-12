@@ -53,5 +53,6 @@
   "telephony_group_line_softphone_logo_format": "Formats acceptés : {{format}} (Poids < {{weight}} , taille native : {{size}})",
   "telephony_group_line_softphone_save_logo": "Vous devez redémarrer l'application afin que le logo soit actif.",
   "telephony_group_line_softphone_save_theme": "Vous devez redémarrer l'application afin que le thème soit actif.",
+  "telephony_group_billing_dashboard_suspended_info": "Ce groupe est actuellement suspendu.",
   "telephony_group_billing_dashboard_suspended_info_link": "Cliquez ici pour augmenter votre dépôt de garantie."
 }

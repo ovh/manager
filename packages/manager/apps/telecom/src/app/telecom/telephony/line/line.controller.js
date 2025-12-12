@@ -15,6 +15,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   faxLink,
   lineLink,
   phoneLink,
+  phoneBookLink,
   softphoneStatus,
   softphoneLink,
   orderPhoneLink,
@@ -42,6 +43,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   self.tonesLink = tonesLink;
   self.answerLink = answerLink;
   self.phoneLink = phoneLink;
+  self.phoneBookLink = phoneBookLink;
   self.softphoneStatus = softphoneStatus;
   self.softphoneLink = softphoneLink;
   self.orderPhoneLink = orderPhoneLink;
@@ -118,6 +120,10 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
         self.disableFaxOptionTab =
           !(self.line.isPlugNFax || self.fax || self.line.hasFaxCapabilities) ||
           self.line.isTrunk();
+
+        // check if has phone or it supports phonebook
+        self.disablePhonebook =
+          !self.line.hasPhone || !self.line.hasSupportsPhonebook;
 
         return $q.all(promises);
       })

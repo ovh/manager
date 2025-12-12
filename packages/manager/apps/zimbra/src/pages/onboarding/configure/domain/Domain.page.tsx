@@ -26,7 +26,7 @@ export const ConfigureDomain: React.FC = () => {
   const [searchParams] = useSearchParams();
   const organizationId = searchParams.get('organization');
 
-  const { data: domains, isLoading: isLoadingDomains } = useDomains();
+  const { data: domains, isLoading: isLoadingDomains, refetch } = useDomains();
   const next = (domainId: string) => navigate(`../email_accounts?domain=${domainId}`);
   const previous = () => navigate('../organization');
 
@@ -68,7 +68,7 @@ export const ConfigureDomain: React.FC = () => {
       onError={onError}
       onSettled={(domain, error) => {
         if (domain && !error) {
-          next(domain.id);
+          refetch();
         }
       }}
       pageTrackingName={ONBOARDING_CONFIGURE_DOMAIN}

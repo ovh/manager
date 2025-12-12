@@ -111,6 +111,11 @@ export default /* @ngInject */ ($stateProvider) => {
           'telecom.telephony.billingAccount.line.dashboard.phone',
           $transition$.params(),
         ),
+      phoneBookLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'telecom.telephony.billingAccount.line.dashboard.phone.phonebook',
+          $transition$.params(),
+        ),
       orderPhoneLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'telecom.telephony.billingAccount.line.dashboard.phone.order',
