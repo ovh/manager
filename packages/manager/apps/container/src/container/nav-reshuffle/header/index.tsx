@@ -17,6 +17,8 @@ import SkipToMainContent from './skip-to-main-content';
 import { SupportLink } from '../support-link';
 
 import style from './style.module.scss';
+import Separator from './Separator.component';
+import clsx from 'clsx';
 
 type Props = {
   isSidebarExpanded?: boolean;
@@ -48,46 +50,30 @@ function Header({
     <ApplicationContext.Consumer>
       {() => (
         <Suspense fallback="">
-          <div
-            className={`${modalStyle.popoverClickAway} ${
-              isDropdownOpen ? '' : modalStyle.hidden
-            }`}
-          ></div>
-          <div className={`oui-navbar ${style.navbar}`}>
+          {isDropdownOpen && <div className={modalStyle.popoverClickAway} />}
+          <div className={`w-full bg-[var(--ods-color-primary-700)] flex flex-row items-center pr-3 md:px-4 ${style.navbar}`}>
             <HamburgerMenu
               isOpen={isSidebarExpanded}
               onClick={onHamburgerMenuClick}
             />
             <a
               role="img"
-              className={`block ${style.navbarLogo} ml-2`}
+              className={`flex-none block ${style.navbarLogo} ml-2 md:ml-0`}
               aria-label="OVHcloud"
               target="_top"
               href={logoLink}
             >
               <Logo />
             </a>
-            <div
-              className={`oui-navbar-list oui-navbar-list_aside oui-navbar-list_end ${style.navbarList}`}
-            >
+            <div className="grow flex flex-wrap gap-[0.75rem] items-center w-full justify-end">
               <SkipToMainContent iframeRef={iframeRef} />
               {!isMobile && (
                 <>
+                  {/* <Separator /> for searchbar separation */}
+                  <NavReshuffleSwitchBack />
+                  <Separator />
                   <div
-                    className={style.navbarSeparator}
-                    aria-hidden="true"
-                  ></div>
-                  <div
-                    className={`oui-navbar-list__item ${style.navbarListItem}`}
-                  >
-                    <NavReshuffleSwitchBack />
-                  </div>
-                  <div
-                    className={style.navbarSeparator}
-                    aria-hidden="true"
-                  ></div>
-                  <div
-                    className={`oui-navbar-list__item ${style.navbarListItem}`}
+                    className="block relative"
                   >
                     <LanguageMenu
                       setUserLocale={setUserLocale}
@@ -96,32 +82,22 @@ function Header({
                         setIsDropdownOpen(show);
                         setIsNotificationsSidebarVisible(false);
                       }}
-                    ></LanguageMenu>
+                    />
                   </div>
-                  <div
-                    className={`oui-navbar-list__item ${style.navbarListItem}`}
-                  >
-                    <SupportLink />
-                  </div>
+                  <SupportLink />
                 </>
               )}
-              {cloudShellAvailability?.['cloud-shell'] && (
-                <div
-                  className={`oui-navbar-list__item ${style.navbarListItem}`}
-                >
-                  <CloudShellLink />
-                </div>
-              )}
-              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
+              <div className="flex flex-row items-center gap-[0.5rem]">
+                {cloudShellAvailability?.['cloud-shell'] && <CloudShellLink />}
                 <Notifications />
-              </div>
-              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
-                <UserAccountMenu
-                  onToggle={(show: boolean) => {
-                    setIsDropdownOpen(show);
-                    onUserAccountMenuToggle(show);
-                  }}
-                />
+                <div className="block relative">
+                  <UserAccountMenu
+                    onToggle={(show: boolean) => {
+                      setIsDropdownOpen(show);
+                      onUserAccountMenuToggle(show);
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
