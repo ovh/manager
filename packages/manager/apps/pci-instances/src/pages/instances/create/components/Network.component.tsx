@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -20,16 +20,24 @@ import {
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../CreateInstance.page';
 import { selectPrivateNetworks } from '../view-models/networksViewModel';
+import AddNetworkForm from './network/AddNetworkForm.component';
+import { mockedPrivateNetworks } from '@/__mocks__/instance/constants';
+import { TAddNetworkForm } from '../CreateInstance.schema';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const networkId = useWatch({
+  const [networkId, microRegion] = useWatch({
     control,
-    name: 'networkId',
+    name: ['networkId', 'microRegion'],
   });
 
-  const networks = selectPrivateNetworks();
+  const [openCreateNetwork, setOpenCreateNetwork] = useState(false);
+
+  const { networks, ovhPrivateNetwork } = selectPrivateNetworks(
+    microRegion ?? '',
+  );
 
   const { trackClick } = useOvhTracking();
 
@@ -38,7 +46,11 @@ const Network: FC = () => {
 
     if (!id) return;
 
-    setValue('networkId', id);
+    updatePrivateNetworkFields({
+      networkId: id,
+      newPrivateNetwork: null,
+    });
+
     trackClick({
       location: PageLocation.funnel,
       buttonType: ButtonType.select,
@@ -46,6 +58,53 @@ const Network: FC = () => {
       actions: ['add_instance', 'associate_existing_private_network'],
     });
   };
+
+  const handleOpenCreateNetwork = () => {
+    setOpenCreateNetwork(true);
+
+    updatePrivateNetworkFields({
+      networkId: null,
+      newPrivateNetwork: ovhPrivateNetwork,
+    });
+
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add_instance', 'create_private_network'],
+    });
+  };
+
+  const handleAddNewNetwork = (values: TAddNetworkForm) => {
+    updatePrivateNetworkFields({
+      networkId: null,
+      newPrivateNetwork: values,
+    });
+  };
+
+  const handleCloseCreateNetwork = () => {
+    setOpenCreateNetwork(false);
+
+    updatePrivateNetworkFields({
+      networkId: networks[0]?.value ?? null,
+      newPrivateNetwork: null,
+    });
+  };
+
+  const updatePrivateNetworkFields = ({
+    networkId,
+    newPrivateNetwork,
+  }: {
+    networkId: string | null;
+    newPrivateNetwork: TAddNetworkForm | null;
+  }) => {
+    setValue('networkId', networkId);
+    setValue('newPrivateNetwork', newPrivateNetwork);
+  };
+
+  useEffect(() => {
+    if (networks.length === 0) setOpenCreateNetwork(true);
+  }, [networks.length]);
 
   return (
     <section>
@@ -65,7 +124,27 @@ const Network: FC = () => {
           'creation:pci_instance_creation_network_private_network_setting_description',
         )}
       </Text>
-      {networks.length !== 0 && (
+      {openCreateNetwork ? (
+        <>
+          <Text className="font-semibold" preset="paragraph">
+            {t('creation:pci_instance_creation_network_add_new_warning')}
+          </Text>
+          <AddNetworkForm
+            values={ovhPrivateNetwork}
+            onValuesChange={handleAddNewNetwork}
+          />
+          {networks.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-6"
+              onClick={handleCloseCreateNetwork}
+            >
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
+            </Button>
+          )}
+        </>
+      ) : (
         <>
           <FormField className="my-4 max-w-[32%]">
             <FormFieldLabel>
@@ -74,7 +153,7 @@ const Network: FC = () => {
               )}
             </FormFieldLabel>
             <Select
-              items={networks}
+              items={mockedPrivateNetworks}
               value={networkId ? [networkId] : []}
               onValueChange={handleSelectNetwork}
             >
@@ -82,7 +161,7 @@ const Network: FC = () => {
               <SelectContent />
             </Select>
           </FormField>
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={handleOpenCreateNetwork}>
             <Icon name="plus" />
             {t('creation:pci_instance_creation_network_add_new')}
           </Button>

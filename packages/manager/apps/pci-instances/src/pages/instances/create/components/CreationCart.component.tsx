@@ -42,6 +42,7 @@ export const CreationCart = () => {
     distributionImageOsType,
     sshKeyId,
     networkId,
+    newPrivateNetwork,
   ] = useWatch({
     control,
     name: [
@@ -56,6 +57,7 @@ export const CreationCart = () => {
       'distributionImageOsType',
       'sshKeyId',
       'networkId',
+      'newPrivateNetwork',
     ],
   });
 
@@ -194,8 +196,10 @@ export const CreationCart = () => {
   );
 
   const networkDetail = useMemo(() => {
-    const networks = selectPrivateNetworks();
-    const network = networks.find(({ value }) => networkId === value);
+    const { networks } = selectPrivateNetworks(microRegion ?? '');
+    const network =
+      newPrivateNetwork?.name ??
+      networks.find(({ value }) => networkId === value)?.label;
 
     return network
       ? [
@@ -205,13 +209,13 @@ export const CreationCart = () => {
             ),
             description: (
               <Text preset="heading-6" className="text-[--ods-color-heading]">
-                {network.label}
+                {network}
               </Text>
             ),
           },
         ]
       : [];
-  }, [networkId, t]);
+  }, [microRegion, networkId, newPrivateNetwork, t]);
 
   const cartItems: TCartItem[] = useMemo(
     () => [

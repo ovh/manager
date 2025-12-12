@@ -1282,3 +1282,10 @@ export const mockedPrivateNetworks = [
   { label: 'SGB1NET', value: 'networkId-3' },
   { label: 'test-sbg7-gateway', value: 'networkId-4' },
 ];
+
+export const mockedOvhPrivateNetwork = {
+  name: 'ovhPrivateNetwork',
+  vlanId: 1,
+  cidr: '10.1.0.0/16',
+  enableDhcp: true,
+};

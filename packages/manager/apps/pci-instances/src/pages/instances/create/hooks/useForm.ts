@@ -105,6 +105,7 @@ export const useForm = (projectId: string) => {
       sshKeyId: sshKeyIdDefaultValue,
       newSshPublicKey: newSshPublicKeyDefaultValue,
       networkId: defaultNetworkId,
+      newPrivateNetwork: null,
     },
     mode: 'onChange',
   });
