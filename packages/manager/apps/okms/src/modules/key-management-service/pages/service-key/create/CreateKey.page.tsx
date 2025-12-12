@@ -24,14 +24,10 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
@@ -69,7 +65,7 @@ export default function CreateKey() {
   const [serviceKeyNameError, setServiceKeyNameError] = useState<
     ServiceKeyNameErrors | undefined
   >();
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick, trackPage } = useOkmsTracking();
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
   });

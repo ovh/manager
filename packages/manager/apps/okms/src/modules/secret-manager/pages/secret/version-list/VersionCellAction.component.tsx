@@ -9,7 +9,9 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/o
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ActionMenu, ActionMenuItem, useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 type ButtonState = 'hidden' | 'enabled' | 'disabled';
@@ -54,6 +56,7 @@ export const VersionCellAction = ({
 }) => {
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
+  const { trackClick } = useOkmsTracking();
   const { addError } = useNotifications();
 
   const { mutateAsync: updateSecretVersion, isPending } = useUpdateSecretVersion();
@@ -61,6 +64,12 @@ export const VersionCellAction = ({
   const buttonGroupState = buttonsStateRecord[version.state];
 
   const handleUpdateVersion = async (state: SecretVersionState) => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['update-version'],
+    });
     try {
       await updateSecretVersion({
         okmsId,
@@ -78,6 +87,12 @@ export const VersionCellAction = ({
     navigate(
       SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(okmsId, secretPath, version.id),
     );
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['delete-version'],
+    });
   };
 
   const handleRevealVersionValue = () => {
@@ -87,6 +102,12 @@ export const VersionCellAction = ({
         secretPath,
         version.id,
       ),
+    });
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['reveal-version'],
     });
   };
 

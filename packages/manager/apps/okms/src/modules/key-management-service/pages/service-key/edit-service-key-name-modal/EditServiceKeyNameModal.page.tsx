@@ -27,9 +27,10 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants';
@@ -42,7 +43,7 @@ export const EditServiceKeyNameModal = () => {
   const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
-  const { trackPage } = useOvhTracking();
+  const { trackPage } = useOkmsTracking();
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');

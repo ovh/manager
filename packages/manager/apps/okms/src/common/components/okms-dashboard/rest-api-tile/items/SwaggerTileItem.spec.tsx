@@ -21,14 +21,9 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
-
-  return {
-    ...mod,
-    useOvhTracking: () => ({ trackClick: vi.fn() }),
-  };
-});
+vi.mock('@/common/hooks/useOkmsTracking', () => ({
+  useOkmsTracking: () => ({ trackClick: vi.fn() }),
+}));
 
 describe('OKMS Swagger Tile Item test suite', () => {
   it('should render the tile item correctly', async () => {
