@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import React from 'react';
 import { render, renderHook } from '@testing-library/react';
 import { useDatagridColumn } from './useDatagridColumn';
@@ -18,11 +18,11 @@ vi.mock('@/hooks/useFormattedDate', () => ({
   useFormattedDate: (date: string) => `formatted_${date}`,
 }));
 
-vi.mock('./Status.component', () => ({
+vi.mock('@/pages/listing/components/Status.component', () => ({
   default: ({ status }: { status: string }) => `Status: ${status}`,
 }));
 
-vi.mock('./Actions.component', () => ({
+vi.mock('@/pages/listing/components/Actions.component', () => ({
   default: ({ snapshot }: { snapshot: { id: string } }) =>
     `Actions for ${snapshot.id}`,
 }));
