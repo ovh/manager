@@ -1,4 +1,4 @@
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 
 export const getOrderCatalogQueryKey = (ovhSubsidiary: OvhSubsidiary, productName: string) => [
   'get',

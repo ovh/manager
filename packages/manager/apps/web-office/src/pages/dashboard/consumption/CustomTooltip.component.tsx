@@ -4,8 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 import type { Locale } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 interface CustomTooltipProps {
   payload?: {
@@ -32,8 +31,8 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload, locale }) => {
   });
 
   return (
-    <div className="bg-white p-3 rounded-lg shadow-xl border border-gray-300">
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+    <div className="rounded-lg border border-gray-300 bg-white p-3 shadow-xl">
+      <Text preset={TEXT_PRESET.paragraph}>
         <span data-testid="relative-date">{relativeDate}</span>
 
         <div className="flex">
@@ -49,7 +48,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload, locale }) => {
           </span>
           {officeProPlus}
         </div>
-      </OdsText>
+      </Text>
     </div>
   );
 };
