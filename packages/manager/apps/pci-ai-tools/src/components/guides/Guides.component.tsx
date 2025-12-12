@@ -21,7 +21,7 @@ interface GuidesProps {
   category?: string;
   onGuideClick?: (guide: Guide) => void;
 }
-const Guides = ({ category, section, onGuideClick }: GuidesProps) => {
+const Guides = ({ category = 'ai', section, onGuideClick }: GuidesProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/components/guides');
   const locale = useLocale();

@@ -27,5 +27,9 @@
   "deleteAppButton": "Usuń aplikację",
   "cliTitle": "CLI",
   "cliCodeTitle": "Możesz utworzyć taką samą aplikację, używając tych wierszy poleceń w ovhai CLI.",
-  "cliEquivalentToastMessage": "Zamówienie CLI zostało skopiowane"
+  "cliEquivalentToastMessage": "Zamówienie CLI zostało skopiowane",
+  "customMetricsUrlLabel": "URL: ",
+  "customMetricsFormatLabel": "Format: {{for}}",
+  "customMetricsLocationLabel": "Lokalizacja: ",
+  "customMetricsTargetValueLabel": "Wartość: {{val}}"
 }

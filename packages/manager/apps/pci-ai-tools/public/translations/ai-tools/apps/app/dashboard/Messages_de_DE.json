@@ -27,5 +27,9 @@
   "deleteAppButton": "Anwendung löschen",
   "cliTitle": "CLI",
   "cliCodeTitle": "Sie können dieselbe Anwendung mit diesen Befehlszeilen in Ihrer OVHAI CLI erstellen.",
-  "cliEquivalentToastMessage": "CLI-Befehl wurde kopiert"
+  "cliEquivalentToastMessage": "CLI-Befehl wurde kopiert",
+  "customMetricsUrlLabel": "URL: ",
+  "customMetricsFormatLabel": "Format : {{for}}",
+  "customMetricsLocationLabel": "Emplacement: ",
+  "customMetricsTargetValueLabel": "Valeur : {{val}}"
 }

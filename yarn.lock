@@ -3519,10 +3519,10 @@
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.8.tgz#0e6a8359cc8a52389f65c1aebfae57261ec8215a"
   integrity sha512-Fze56Qv4qkucB3/w5/bl1lNVCNKlOdSBKYDVLaHNCJhHs+JbHCtMR4Ki29dA+Lk8mti0r3g1fdMZ7Hb2YBZ8gA==
 
-"@datatr-ux/ovhcloud-types@^1.0.34":
-  version "1.0.38"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.38.tgz#db207335ed3e66f29023cedc8d6611fd928802d0"
-  integrity sha512-3DJcNoCsosdLAmd0UX+pTBMUxc4Zl69JjrNtVBBbUjHsau2l16nQnBQSU1GcExsln2gn91OyPg87B1eHRoLvHQ==
+"@datatr-ux/ovhcloud-types@^1.0.83":
+  version "1.0.84"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.84.tgz#b3afeaf7caffb887e492e56ee421f2c7dd4b1ec8"
+  integrity sha512-gnL+LtVakrmN4BDKt93zqhsclCWuFuIIIkojsjmG5DhCkIhdZ2AQIRltgLFanCRSa/1+iYXcJnyZ42B+loJTYA==
 
 "@datatr-ux/uxlib@0.0.10":
   version "0.0.10"
@@ -10588,6 +10588,13 @@
   version "5.90.11"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.90.11.tgz#9e7669cda649ed119f70b6432b3932f19cbe1cb5"
   integrity sha512-3uyzz01D1fkTLXuxF3JfoJoHQMU2fxsfJwE+6N5hHy0dVNoZOvwKP8Z2k7k1KDeD54N20apcJnG75TBAStIrBA==
+  dependencies:
+    "@tanstack/query-core" "5.90.11"
+
+"@tanstack/react-query@^5.69.0":
+  version "5.72.2"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.72.2.tgz#677a2b239bfee2dbeb75c3f4dc541a8fffa33d6d"
+  integrity sha512-SVNHzyBUYiis+XiCl+8yiPZmMYei2AKYY94wM/zpvB5l1jxqOo82FQTziSJ4pBi96jtYqvYrTMxWynmbQh3XKw==
   dependencies:
     "@tanstack/query-core" "5.90.11"
 

@@ -13,11 +13,16 @@ import {
   Flavor,
   ImagePartnerApp,
   PrivacyEnum,
+  Scaling,
 } from '@/types/orderFunnel';
 import { createAppImagePricingList } from '@/lib/pricePartnerImageHelper';
 import { createAppPriceObject } from '@/lib/priceAppHelper';
 import { APP_CONFIG } from '@/configuration/app';
 import publicCatalog from '@/types/Catalog';
+import {
+  baseScalingSchema,
+  getInitialValues,
+} from '@/components/order/app-scaling/scalingHelper';
 import { useGetFlavor } from '@/data/hooks/ai/capabilities/useGetFlavor.hook';
 import { useGetDatastores } from '@/data/hooks/ai/data/useGetDatastores.hook';
 import {
@@ -34,84 +39,80 @@ export function useOrderFunnel(
 ) {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/apps/create');
+  const { t: tScaling } = useTranslation('ai-tools/components/scaling');
 
-  const orderSchema = z.object({
-    region: z.string(),
-    flavorWithQuantity: z.object({
-      flavor: z.string(),
-      quantity: z.coerce.number(),
-    }),
-    image: z.object({
-      name: z
-        .string()
-        .trim()
-        .min(1, {
-          message: t('errorFormEmptyImageApp'),
-        }),
-      version: z.string().optional(),
-      contractChecked: z.boolean().optional(),
-    }),
-    appName: z
-      .string()
-      .trim()
-      .min(1),
-    privacy: z.nativeEnum(PrivacyEnum),
-    scaling: z
-      .object({
-        autoScaling: z.boolean(),
-        replicas: z.number().optional(),
-        averageUsageTarget: z.number().optional(),
-        replicasMax: z.number().optional(),
-        replicasMin: z.number().optional(),
-        resourceType: z
-          .nativeEnum(ai.app.ScalingAutomaticStrategyResourceTypeEnum)
-          .optional(),
-      })
-      .optional(),
-    labels: z
-      .array(
-        z.object({
-          name: z.string().optional(),
-          value: z.string().optional(),
-        }),
-      )
-      .optional(),
-    dockerCommand: z.array(z.string()).optional(),
-    httpPort: z.coerce
-      .number()
-      .min(APP_CONFIG.port.min)
-      .max(APP_CONFIG.port.max),
-    volumes: z.array(
-      z.object({
-        cache: z.boolean().optional(),
-        dataStore: z
-          .object({
-            alias: z.string(),
-            container: z.string(),
-          })
-          .optional(),
-        publicGit: z
-          .object({
-            url: z.string(),
-          })
-          .optional(),
-        mountPath: z.string(),
-        permission: z.nativeEnum(ai.VolumePermissionEnum),
-      }),
-    ),
-    probe: z
-      .object({
-        path: z
-          .string()
-          .trim()
-          .optional(),
-        port: z.coerce.number().optional(),
-      })
-      .optional(),
-  });
+  const orderSchema = useMemo(
+    () =>
+      z
+        .object({
+          region: z.string(),
+          flavorWithQuantity: z.object({
+            flavor: z.string(),
+            quantity: z.coerce.number(),
+          }),
+          image: z.object({
+            name: z
+              .string()
+              .trim()
+              .min(1, {
+                message: t('errorFormEmptyImageApp'),
+              }),
+            version: z.string().optional(),
+            contractChecked: z.boolean().optional(),
+          }),
+          appName: z
+            .string()
+            .trim()
+            .min(1),
+          privacy: z.nativeEnum(PrivacyEnum),
+          labels: z
+            .array(
+              z.object({
+                name: z.string().optional(),
+                value: z.string().optional(),
+              }),
+            )
+            .optional(),
+          dockerCommand: z.array(z.string()).optional(),
+          httpPort: z.coerce
+            .number()
+            .min(APP_CONFIG.port.min)
+            .max(APP_CONFIG.port.max),
+          volumes: z.array(
+            z.object({
+              cache: z.boolean().optional(),
+              dataStore: z
+                .object({
+                  alias: z.string(),
+                  container: z.string(),
+                })
+                .optional(),
+              publicGit: z
+                .object({
+                  url: z.string(),
+                })
+                .optional(),
+              mountPath: z.string(),
+              permission: z.nativeEnum(ai.VolumePermissionEnum),
+            }),
+          ),
+          probe: z
+            .object({
+              path: z
+                .string()
+                .trim()
+                .optional(),
+              port: z.coerce.number().optional(),
+            })
+            .optional(),
+        })
+        .and(baseScalingSchema(tScaling)),
+    [t, tScaling],
+  );
 
   const form = useForm({
     resolver: zodResolver(orderSchema),
+    mode: 'onSubmit',
     defaultValues: {
       region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
@@ -122,14 +123,7 @@ export function useOrderFunnel(
       ).unsecureHttp
         ? PrivacyEnum.private
         : PrivacyEnum.public,
-      scaling: {
-        autoScaling: false,
-        replicas: 1,
-        averageUsageTarget: 75,
-        replicasMax: 1,
-        replicasMin: 1,
-        resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
-      },
+      ...getInitialValues({}),
       httpPort: 8080,
       labels: [],
       dockerCommand: [],
@@ -143,12 +137,24 @@ export function useOrderFunnel(
   const imageWithVersion = form.watch('image');
   const appName = form.watch('appName');
   const unsecureHttp = form.watch('privacy');
-  const scaling = form.watch('scaling');
   const httpPort = form.watch('httpPort');
   const labels = form.watch('labels');
   const volumes = form.watch('volumes');
   const dockerCommand = form.watch('dockerCommand');
   const probe = form.watch('probe');
+  const scaling: Scaling = {
+    autoScaling: form.watch('autoScaling'),
+    replicas: form.watch('replicas'),
+    averageUsageTarget: form.watch('averageUsageTarget'),
+    replicasMax: form.watch('replicasMax'),
+    replicasMin: form.watch('replicasMin'),
+    resourceType: form.watch('resourceType'),
+    metricUrl: form.watch('metricUrl') as string | undefined,
+    dataFormat: form.watch('dataFormat'),
+    dataLocation: form.watch('dataLocation'),
+    targetMetricValue: form.watch('targetMetricValue'),
+    aggregationType: form.watch('aggregationType'),
+  };
 
   const flavorQuery = useGetFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
@@ -204,7 +210,7 @@ export function useOrderFunnel(
 
   const labelsObject: { [key: string]: string } = useMemo(() => {
     if (labels.length === 0) return {};
-    return labels.reduce((acc, label) => {
+    return labels.reduce((acc: { [key: string]: string }, label: any) => {
       acc[label.name] = label.value;
       return acc;
     }, {} as { [key: string]: string });
@@ -216,7 +222,6 @@ export function useOrderFunnel(
       .contract.signedAt;
   }, [imageWithVersion.name, imageWithVersion.version]);
 
-  // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
       suggestions.suggestions.find((sug) => sug.region === regionObject.id)
@@ -228,7 +233,6 @@ export function useOrderFunnel(
     form.setValue('flavorWithQuantity.quantity', suggestedQuantity);
   }, [regionObject, region, flavorQuery.isSuccess]);
 
-  // Pricing Object
   const pricingObject: AppGlobalPricing = useMemo(() => {
     if (!flavorObject || !flavorWithQuantity.quantity) return {};
     return createAppPriceObject(
