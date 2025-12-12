@@ -17,9 +17,13 @@ import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 import { ContainerProps } from '@/types/container';
 
-const ModalContainer = lazy(() => import('@/components/modal-container/ModalContainer.component'));
+const ModalContainer = lazy(() =>
+  import('@/components/modal-container/ModalContainer.component'),
+);
 
-function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
+function NavReshuffleContainer({
+  isCookiePolicyModalClosed,
+}: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
   const [iframe, setIframe] = useState(null);
   const shell = useShell();
@@ -42,7 +46,7 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
     isNavigationSidebarOpened,
     openNavigationSidebar,
     closeNavigationSidebar,
-    skipToTheMainContentSlot
+    skipToTheMainContentSlot,
   } = productNavReshuffle;
 
   const onHamburgerMenuClick = () => {
@@ -61,16 +65,9 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
   return (
     <div className={style.navReshuffle}>
       <div ref={skipToTheMainContentSlot} />
-      {isCookiePolicyModalClosed && <ModalContainer isPreloaderVisible={preloaderVisible} />}
-      <div
-        className={`${style.sidebar} ${
-          isNavigationSidebarOpened ? '' : style.hidden
-        }`}
-      >
-        <Suspense fallback="">
-          <Sidebar />
-        </Suspense>
-      </div>
+      {isCookiePolicyModalClosed && (
+        <ModalContainer isPreloaderVisible={preloaderVisible} />
+      )}
       <div className={`${style.container}`}>
         <Progress isAnimating={isProgressAnimating}></Progress>
         <div className={style.navbar}>
@@ -80,29 +77,40 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
             iframeRef={iframeRef}
           />
         </div>
-        <div className={style.iframeContainer}>
-          {isMfaEnrollmentVisible && (
+        <div className={style.bodyContainer}>
+          <div
+            className={`${style.sidebar} ${
+              isNavigationSidebarOpened ? '' : style.hidden
+            }`}
+          >
             <Suspense fallback="">
-              <MfaEnrollment
-                forced={isMfaEnrollmentForced}
-                onHide={hideMfaEnrollment}
-              />
+              <Sidebar />
             </Suspense>
-          )}
-          <Preloader visible={preloaderVisible}>
-            <>
-              <IFrameAppRouter
-                iframeRef={iframeRef}
-                configuration={applications}
-              />
-              <iframe
-                title="app"
-                role="document"
-                src="about:blank"
-                ref={iframeRef}
-              ></iframe>
-            </>
-          </Preloader>
+          </div>
+          <div className={style.iframeContainer}>
+            {isMfaEnrollmentVisible && (
+              <Suspense fallback="">
+                <MfaEnrollment
+                  forced={isMfaEnrollmentForced}
+                  onHide={hideMfaEnrollment}
+                />
+              </Suspense>
+            )}
+            <Preloader visible={preloaderVisible}>
+              <>
+                <IFrameAppRouter
+                  iframeRef={iframeRef}
+                  configuration={applications}
+                />
+                <iframe
+                  title="app"
+                  role="document"
+                  src="about:blank"
+                  ref={iframeRef}
+                ></iframe>
+              </>
+            </Preloader>
+          </div>
         </div>
         <Suspense fallback="">
           <NavReshuffleOnboardingWidget />

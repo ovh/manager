@@ -1,10 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
+import useContainer from '@/core/container';
+import style from './cloud-shell.module.scss';
 
 const CloudShellLink = (): JSX.Element => {
   const { t } = useTranslation('navbar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
+  const { betaVersion, useBeta } = useContainer();
+  const isNavReshuffle = betaVersion && useBeta;
   const applications = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -21,7 +25,7 @@ const CloudShellLink = (): JSX.Element => {
 
   return (
     <a
-      className="oui-navbar-link oui-navbar-link_icon"
+      className={`oui-navbar-link oui-navbar-link_icon ${isNavReshuffle ? style.cloudShellIconContrasted : style.cloudShellIcon}`}
       href={url}
       onClick={handleClick}
       title={t('navbar_cloud_shell')}

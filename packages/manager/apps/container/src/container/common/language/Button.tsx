@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import style from './style.module.scss';
 
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
+import useContainer from '@/core/container';
 
 export type Props = {
   children?: JSX.Element;
@@ -18,6 +19,8 @@ function LanguageButton({
   show = false,
 }: Props): JSX.Element {
   const { t } = useTranslation('language');
+  const { betaVersion, useBeta } = useContainer();
+  const isNavReshuffle = betaVersion && useBeta;
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
@@ -30,7 +33,7 @@ function LanguageButton({
       type="button"
       className={`oui-navbar-link oui-navbar-link_dropdown ${
         style.navbarFontSize
-      } ${isSmallDevice ? 'p-0' : ''}`}
+      } ${isSmallDevice ? 'p-0' : ''} ${isNavReshuffle ? style.contrastedButton : ''}`}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);
