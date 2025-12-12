@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.23.2...@ovh-ux/manager-pci-object-storage-app@0.24.0) (2025-12-12)
+
+
+### Features
+
+* **playright-helper:** clean playwright helper folder ([2c80387](https://github.com/ovh/manager/commit/2c803878257bc049cea849ab0c720eacb2e37448)), closes [#MANAGER-15903](https://github.com/ovh/manager/issues/MANAGER-15903)
+
+
+
+
+
 ## [0.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.23.1...@ovh-ux/manager-pci-object-storage-app@0.23.2) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

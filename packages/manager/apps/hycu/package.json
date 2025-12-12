@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hycu-app",
-  "version": "0.15.17",
+  "version": "0.15.18",
   "private": true,
   "description": "Backup HYCU for OVHcloud",
   "repository": {
@@ -17,12 +17,12 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.24.3",
+    "@ovh-ux/manager-common-translations": "^0.25.0",
     "@ovh-ux/manager-config": "^8.8.2",
     "@ovh-ux/manager-core-api": "^0.20.1",
     "@ovh-ux/manager-core-utils": "^0.4.10",
     "@ovh-ux/manager-module-common-api": "^0.6.1",
-    "@ovh-ux/manager-module-order": "^0.12.2",
+    "@ovh-ux/manager-module-order": "^0.13.0",
     "@ovh-ux/manager-react-components": "^1.48.0",
     "@ovh-ux/manager-react-core-application": "^0.13.6",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",

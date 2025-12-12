@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-app",
-  "version": "1.26.1",
+  "version": "1.27.0",
   "private": true,
   "description": "OVHcloud Catalog application",
   "repository": {
@@ -20,7 +20,7 @@
     "test:watch": "manager-test watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.24.3",
+    "@ovh-ux/manager-common-translations": "^0.25.0",
     "@ovh-ux/manager-core-api": "^0.20.1",
     "@ovh-ux/manager-core-utils": "^0.4.10",
     "@ovh-ux/manager-react-components": "^1.48.0",

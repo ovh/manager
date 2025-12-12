@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.25...@ovh-ux/manager-pci-dataplatform-app@1.7.0) (2025-12-12)
+
+
+### Features
+
+* **playright-helper:** clean playwright helper folder ([2c80387](https://github.com/ovh/manager/commit/2c803878257bc049cea849ab0c720eacb2e37448)), closes [#MANAGER-15903](https://github.com/ovh/manager/issues/MANAGER-15903)
+
+
+
+
+
 ## [1.6.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.24...@ovh-ux/manager-pci-dataplatform-app@1.6.25) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app

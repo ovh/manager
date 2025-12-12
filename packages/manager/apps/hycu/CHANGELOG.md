@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.17...@ovh-ux/manager-hycu-app@0.15.18) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
 ## [0.15.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.15.16...@ovh-ux/manager-hycu-app@0.15.17) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app

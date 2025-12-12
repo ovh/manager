@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated-servers-app",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "description": "Dedicated server listing ",
   "repository": {
@@ -18,7 +18,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.24.3",
+    "@ovh-ux/manager-common-translations": "^0.25.0",
     "@ovh-ux/manager-config": "^8.8.2",
     "@ovh-ux/manager-core-api": "^0.20.1",
     "@ovh-ux/manager-core-utils": "^0.4.10",

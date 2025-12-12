@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.2...@ovh-ux/muk@0.10.3) (2025-12-12)
+
+
+### Bug Fixes
+
+* **muk:** correct breadcrumb test ([844d22e](https://github.com/ovh/manager/commit/844d22eee5d92e269eaedaeaf1c0090016619db3)), closes [#MANAGER-20131](https://github.com/ovh/manager/issues/MANAGER-20131)
+* **muk:** correct filters unit test ([9f05534](https://github.com/ovh/manager/commit/9f0553497b2dbd92e76cbe5343e57c561f24ad59)), closes [#MANAGEr-20131](https://github.com/ovh/manager/issues/MANAGEr-20131)
+* **muk:** correct update name modal snapshot ([5597a21](https://github.com/ovh/manager/commit/5597a2197d1bcd66d1f86a382a3847b901fd8d70)), closes [#MANAGER-20131](https://github.com/ovh/manager/issues/MANAGER-20131)
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.1...@ovh-ux/muk@0.10.2) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/muk
