@@ -32,7 +32,7 @@ export default class DisplayNameCtrl {
       .then((server) => {
         if (server.state === 'OK') {
           this.dedicatedServer = server;
-          this.displayName = server.displayName;
+          this.displayName = server.iam.displayName;
         } else {
           this.actionEnabled = false;
         }
