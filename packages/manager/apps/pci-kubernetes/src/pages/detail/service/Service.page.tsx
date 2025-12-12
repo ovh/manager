@@ -67,7 +67,7 @@ export default function ServicePage() {
             size={ODS_TEXT_SIZE._400}
             level={ODS_TEXT_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
-            className="block mb-5"
+            className="mb-5 block"
           >
             <span
               dangerouslySetInnerHTML={{
@@ -81,7 +81,7 @@ export default function ServicePage() {
             size={ODS_TEXT_SIZE._400}
             level={ODS_TEXT_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
-            className="block mb-5"
+            className="mb-5 block"
           >
             <span
               dangerouslySetInnerHTML={{
@@ -95,12 +95,12 @@ export default function ServicePage() {
             size={ODS_TEXT_SIZE._400}
             level={ODS_TEXT_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.text}
-            className="block mb-5"
+            className="mb-5 block"
           >
             {t('kube_service_description_reset')}
           </OsdsText>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
             <div className="grid gap-7">
               <ClusterManagement kubeDetail={kubeDetail} />
               <ClusterNetwork projectId={projectId} kubeDetail={kubeDetail} />

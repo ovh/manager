@@ -6,7 +6,7 @@ import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector
 import { NODE_RANGE } from '@/constants';
 import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
-import { TScalingState } from '@/types';
+import { TAttachFloatingIPs, TScalingState } from '@/types';
 
 type TStep = {
   isOpen: boolean;
@@ -26,14 +26,16 @@ export type TFormStore = {
   scaling: TScalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
+  attachFloatingIps: TAttachFloatingIPs | null;
   steps: Map<StepsEnum, TStep>;
   set: {
     name: (val: string) => void;
     flavor: (val?: TComputedKubeFlavor) => void;
-    selectedAvailabilityZones: (val: { zone: string; checked: boolean }[]) => void;
+    selectAvailabilityZones: (val: { zone: string; checked: boolean }[]) => void;
     scaling: (val: TScalingState) => void;
     antiAffinity: (val: boolean) => void;
     isMonthlyBilling: (val: boolean) => void;
+    attachFloatingIps: (val: TAttachFloatingIPs) => void;
   };
   open: (step: StepsEnum) => void;
   close: (step: StepsEnum) => void;
@@ -106,10 +108,11 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   scaling: initScale,
   antiAffinity: false,
   isMonthlyBilling: false,
+  attachFloatingIps: null,
   selectedAvailabilityZones: null,
   steps: initialSteps(),
   set: {
-    selectedAvailabilityZones: (val: { zone: string; checked: boolean }[]) => {
+    selectAvailabilityZones: (val: { zone: string; checked: boolean }[]) => {
       set({
         selectedAvailabilityZones: val,
       });
@@ -130,6 +133,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
     scaling: (val: TScalingState) => set({ scaling: val }),
     antiAffinity: (val: boolean) => set({ antiAffinity: val }),
     isMonthlyBilling: (val: boolean) => set({ isMonthlyBilling: val }),
+    attachFloatingIps: (val: TAttachFloatingIPs) => set({ attachFloatingIps: val }),
   },
   open: (id: StepsEnum) => {
     set((state) => {
@@ -257,6 +261,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       antiAffinity: false,
       selectedAvailabilityZones: null,
       isMonthlyBilling: false,
+      attachFloatingIps: null,
       steps: initialSteps(),
     }));
   },

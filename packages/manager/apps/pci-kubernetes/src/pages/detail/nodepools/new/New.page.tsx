@@ -1,101 +1,45 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useMemo, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 import { Translation, useTranslation } from 'react-i18next';
 
-import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 
-import { useCatalog, useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
+import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import { Notifications, StepComponent, useNotifications } from '@ovh-ux/manager-react-components';
 
-import { createNodePool } from '@/api/data/node-pools';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import BillingStep, { TBillingStepProps } from '@/components/create/BillingStep.component';
-import { FlavorSelector } from '@/components/flavor-selector/FlavorSelector.component';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
 import { useTrack } from '@/hooks/track';
 import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
+import { useBillingState } from '@/pages/detail/nodepools/new/hooks/useBillingState';
+import { useNodePoolCreation } from '@/pages/detail/nodepools/new/hooks/useNodePoolCreation';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
-import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
-import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
-import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
-import queryClient from '@/queryClient';
-import { TCreateNodePoolParam } from '@/types';
+
+import FinalBillingStep from './components/FinalBillingStep.component';
+import NameStep from './components/NameStep.component';
+import SizeStep from './components/SizeStep.component';
+import TypeStep from './components/TypeStep.component';
 
 export default function NewPage(): ReactElement {
-  const { t } = useTranslation(['common', 'listing', 'add', 'add-form', 'kube', 'node-pool']);
-
+  const { t } = useTranslation(['common', 'listing', 'add-form', 'node-pool', 'kube']);
   const { trackClick } = useTrack();
-
   const store = useNewPoolStore();
-
-  const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
-  const { data: catalog, isPending: isCatalogPending } = useCatalog();
-  const { data: cluster, isPending: isClusterPending } = useKubernetesCluster(projectId, clusterId);
-
   const navigate = useNavigate();
 
-  const { addError, addSuccess } = useNotifications();
-
-  const [state, setState] = useState({
-    isAdding: false,
-  });
-
+  const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
+  const { data: cluster, isPending: isClusterPending } = useKubernetesCluster(projectId, clusterId);
   const { data: regionInformations } = useRegionInformations(projectId, cluster?.region ?? null);
-
-  const [billingState, setBillingState] = useState<
-    TBillingStepProps & {
-      antiAffinity: {
-        isEnabled: boolean;
-        isChecked: boolean;
-        onChange: (val: boolean) => void;
-      };
-    }
-  >({
-    antiAffinity: {
-      isEnabled: false,
-      isChecked: false,
-      onChange: (val: boolean) => {
-        setBillingState((prev) => ({
-          ...prev,
-          antiAffinity: { ...prev.antiAffinity, isChecked: val },
-        }));
-        store.set.antiAffinity(val);
-      },
-    },
-    price: 0,
-    monthlyPrice: undefined,
-    monthlyBilling: {
-      isComingSoon: false,
-      isChecked: false,
-      check: (val: boolean) => {
-        setBillingState((prev) => ({
-          ...prev,
-          monthlyBilling: { ...prev.monthlyBilling, isChecked: val },
-        }));
-        store.set.isMonthlyBilling(val);
-      },
-    },
-    warn: false,
-  });
+  const { addError, addSuccess } = useNotifications();
 
   const price = useMergedFlavorById(projectId, cluster?.region ?? null, store.flavor?.id, {
     select: (flavor) =>
@@ -106,117 +50,200 @@ export default function NewPage(): ReactElement {
       ),
   });
 
-  // reset store on mount
+  const billingState = useBillingState({
+    flavor: store.flavor,
+    isMonthlyBilling: store.isMonthlyBilling,
+    scaling: store.scaling,
+    onAntiAffinityChange: store.set.antiAffinity,
+  });
+
+  const { create, isAdding } = useNodePoolCreation(projectId, clusterId, {
+    onSuccess: () => {
+      addSuccess(
+        <Translation ns="add">
+          {(_t) =>
+            _t('kube_add_node_pool_success', {
+              nodePoolName: store.name.value,
+            })
+          }
+        </Translation>,
+        true,
+      );
+      navigate('../nodepools');
+    },
+    onError: (e) => {
+      addError(
+        <Translation ns="add">
+          {(_t) =>
+            _t('kube_add_node_pool_error', {
+              message: e?.response?.data?.message || e?.message || null,
+              nodePoolName: store.name.value,
+            })
+          }
+        </Translation>,
+        true,
+      );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+  });
+
   useEffect(() => {
     store.reset();
-  }, []);
+  }, [store.reset]);
 
-  // set billing state
-  useEffect(() => {
-    if (store.flavor && !isCatalogPending) {
-      const monthlyBillingState = (() => {
-        if (store.flavor) {
-          const addon = catalog?.addons.find(
-            (add) => add.planCode === store.flavor?.planCodes?.hourly,
-          );
-          return addon?.blobs?.tags?.includes('coming_soon') ? 'coming_soon' : 'not_available';
-        }
-        return 'available';
-      })();
-
-      const warnForAutoscaleBilling = Boolean(store.isMonthlyBilling && store.scaling?.isAutoscale);
-
-      setBillingState((prev) => ({
-        ...prev,
-        warn: warnForAutoscaleBilling,
-        price: store.flavor?.pricingsHourly?.price ?? 0,
-        monthlyPrice: store.flavor?.pricingsMonthly?.price ?? 0,
-        monthlyBilling: {
-          ...prev.monthlyBilling,
-          isComingSoon: monthlyBillingState === 'coming_soon',
-        },
-      }));
-    }
-  }, [store.flavor, store.isMonthlyBilling, store.scaling, isCatalogPending, catalog?.addons]);
-
-  const create = () => {
-    trackClick(`details::nodepools::add::confirm`);
-
-    setState((prev) => ({
-      ...prev,
-      isAdding: true,
-    }));
-
-    const param: TCreateNodePoolParam = {
-      flavorName: store.flavor?.name || '',
-      ...(store.selectedAvailabilityZones && {
-        availabilityZones: store.selectedAvailabilityZones
-          .filter(({ checked }) => checked)
-          .map(({ zone }) => zone),
-      }),
-      name: store.name.value,
-      antiAffinity: store.antiAffinity,
-      monthlyBilled: store.isMonthlyBilling,
-      autoscale: Boolean(store.scaling?.isAutoscale),
-      ...(Boolean(store.scaling?.isAutoscale) && {
-        minNodes: store.scaling?.quantity.min ?? 0,
-        maxNodes: store.scaling.quantity.max,
-      }),
-      desiredNodes: store.scaling?.quantity.desired ?? 0,
-    };
-    createNodePool(projectId, clusterId, param)
-      .then(() => {
-        addSuccess(
-          <Translation ns="add">
-            {(_t) =>
-              _t('kube_add_node_pool_success', {
-                nodePoolName: store.name.value,
-              })
-            }
-          </Translation>,
-          true,
-        );
-
-        queryClient.invalidateQueries({
-          queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
-        });
-        navigate('../nodepools');
-      })
-      .catch((e) => {
-        addError(
-          <Translation ns="add">
-            {(_t) =>
-              _t('kube_add_node_pool_error', {
-                message: e?.response?.data?.message || e?.message || null,
-                nodePoolName: store.name.value,
-              })
-            }
-          </Translation>,
-          true,
-        );
-      })
-      .finally(() => {
-        setState((prev) => ({
-          ...prev,
-          isAdding: false,
-        }));
-      });
-  };
-
-  const handleValueChange = (e: OdsInputValueChangeEvent) => {
+  const handleNameChange = (e: OdsInputValueChangeEvent) => {
     if (e.detail.value) store.set.name(e.detail.value);
   };
 
-  useEffect(() => {
-    if (regionInformations?.availabilityZones.length) {
-      store.set.selectedAvailabilityZones(
-        regionInformations?.availabilityZones.map((zone) => ({
-          zone,
-          checked: false,
-        })),
-      );
-    }
-  }, [regionInformations?.availabilityZones, store.set]);
+  const handleCreateNodePool = () => {
+    create(
+      {
+        name: store.name.value,
+        flavor: store.flavor,
+        antiAffinity: store.antiAffinity,
+        ...(store.selectedAvailabilityZones && {
+          selectedAvailabilityZones: store.selectedAvailabilityZones,
+        }),
+        ...(store.attachFloatingIps && { attachFloatingIps: store.attachFloatingIps }),
+        isMonthlyBilling: store.isMonthlyBilling,
+        scaling: store.scaling,
+      },
+      () => trackClick(`details::nodepools::add::confirm`),
+    );
+  };
+
+  const handleCancel = () => {
+    trackClick(`details::nodepools::add::cancel`);
+    navigate('../nodepools');
+  };
+
+  const steps = useMemo(
+    () => [
+      {
+        id: StepsEnum.NAME,
+        title: t('add:kube_add_name_title'),
+        condition: true,
+        next: {
+          action: () => {
+            if (store.name.isTouched && !store.name.hasError) {
+              store.check(StepsEnum.NAME);
+              store.lock(StepsEnum.NAME);
+              store.open(StepsEnum.TYPE);
+            }
+          },
+          label: t('common_stepper_next_button_label'),
+          isDisabled: !store.name.isTouched || !!store.name.hasError,
+        },
+        edit: {
+          action: () => {
+            store.edit(StepsEnum.NAME);
+          },
+          label: t('common_stepper_modify_this_step'),
+        },
+        render: () => <NameStep name={store.name} onNameChange={handleNameChange} />,
+      },
+      {
+        id: StepsEnum.TYPE,
+        title: t('add-form:kube_common_node_pool_model_type_selector'),
+        condition: !isClusterPending && !!cluster?.region,
+        next: {
+          action: () => {
+            if (store.flavor) {
+              store.check(StepsEnum.TYPE);
+              store.lock(StepsEnum.TYPE);
+              store.open(StepsEnum.SIZE);
+            }
+          },
+          label: t('common_stepper_next_button_label'),
+          isDisabled: !store.flavor,
+        },
+        edit: {
+          action: () => {
+            store.edit(StepsEnum.TYPE);
+          },
+          label: t('common_stepper_modify_this_step'),
+        },
+        render: () => (
+          <TypeStep
+            projectId={projectId}
+            region={cluster?.region ?? ''}
+            onFlavorSelect={store.set.flavor}
+          />
+        ),
+      },
+      {
+        id: StepsEnum.SIZE,
+        title: t('node-pool:kube_node_pool'),
+        condition: true,
+        next: {
+          action: () => {
+            if (store.scaling) {
+              store.check(StepsEnum.SIZE);
+              store.lock(StepsEnum.SIZE);
+              store.open(StepsEnum.BILLING);
+            }
+          },
+          label: t('common_stepper_next_button_label'),
+          isDisabled: !!(
+            regionInformations?.type &&
+            hasInvalidScalingOrAntiAffinityConfig(regionInformations.type, {
+              scaling: store.scaling,
+              antiAffinity: billingState.antiAffinity.isChecked,
+              selectedAvailabilityZones: store.selectedAvailabilityZones,
+            })
+          ),
+        },
+        edit: {
+          action: () => {
+            store.edit(StepsEnum.SIZE);
+          },
+          label: t('common_stepper_modify_this_step'),
+        },
+        render: () => (
+          <SizeStep
+            regionInformations={regionInformations}
+            selectedAvailabilityZones={store.selectedAvailabilityZones}
+            antiAffinity={billingState.antiAffinity.isChecked}
+            onAttachFloatingIPs={(enabled) => store.set.attachFloatingIps({ enabled })}
+            onAntiAffinityChange={billingState.antiAffinity.onChange}
+          />
+        ),
+      },
+      {
+        id: StepsEnum.BILLING,
+        title: t('kube:kube_service_billing'),
+        condition: true,
+        render: () => (
+          <FinalBillingStep
+            isAdding={isAdding}
+            price={price?.hour ?? 0}
+            regionType={regionInformations?.type}
+            monthlyPrice={price?.month}
+            monthlyBilling={billingState.monthlyBilling}
+            warn={billingState.warn}
+            onCreate={handleCreateNodePool}
+            onCancel={handleCancel}
+          />
+        ),
+      },
+    ],
+    [
+      store.name,
+      store.flavor,
+      store.scaling,
+      store.selectedAvailabilityZones,
+      isClusterPending,
+      cluster?.region,
+      projectId,
+      regionInformations,
+      billingState,
+      isAdding,
+      price,
+      handleNameChange,
+      handleCreateNodePool,
+      handleCancel,
+    ],
+  );
 
   return (
     <>
@@ -229,226 +256,29 @@ export default function NewPage(): ReactElement {
         {t('listing:kube_common_create_node_pool')}
       </OsdsText>
 
-      <div ref={store.steps.get(StepsEnum.NAME)?.ref}></div>
-      <StepComponent
-        id={StepsEnum.NAME}
-        order={1}
-        title={t('add:kube_add_name_title')}
-        isOpen={!!store.steps.get(StepsEnum.NAME)?.isOpen}
-        isChecked={!!store.steps.get(StepsEnum.NAME)?.isChecked}
-        isLocked={!!store.steps.get(StepsEnum.NAME)?.isLocked}
-        next={{
-          isDisabled: !store.name.isTouched || !!store.name.hasError,
-          action: () => {
-            if (store.name.isTouched && !store.name.hasError) {
-              store.check(StepsEnum.NAME);
-              store.lock(StepsEnum.NAME);
-              store.open(StepsEnum.TYPE);
-            }
-          },
-          label: t('common_stepper_next_button_label'),
-        }}
-        edit={{
-          action: () => {
-            store.edit(StepsEnum.NAME);
-          },
-          label: t('common_stepper_modify_this_step'),
-        }}
-      >
-        <OsdsFormField
-          data-testid="name-field"
-          className="mt-4"
-          inline
-          error={
-            store.name.hasError
-              ? t('add:kube_add_node_pool_name_input_pattern_validation_error')
-              : ''
-          }
-        >
-          <OsdsText
-            slot="label"
-            color={store.name.hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
-            className="mt-4"
-            size={ODS_TEXT_SIZE._100}
-          >
-            {t('add:kubernetes_add_name')}
-          </OsdsText>
-          <div className="w-fit">
-            <OsdsInput
-              data-testid="name-input"
-              value={store.name.value}
-              inline
-              color={
-                store.name.hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.primary
-              }
-              onOdsValueChange={handleValueChange}
-              type={ODS_INPUT_TYPE.text}
-              error={store.name.hasError}
-              className="border"
-            />
-          </div>
-        </OsdsFormField>
-      </StepComponent>
-      <div ref={store.steps.get(StepsEnum.TYPE)?.ref}></div>
-      <StepComponent
-        id={StepsEnum.TYPE}
-        title={t('add-form:kube_common_node_pool_model_type_selector')}
-        isOpen={Boolean(store.steps.get(StepsEnum.TYPE)?.isOpen)}
-        isChecked={Boolean(store.steps.get(StepsEnum.TYPE)?.isChecked)}
-        isLocked={Boolean(store.steps.get(StepsEnum.TYPE)?.isLocked)}
-        order={2}
-        next={{
-          isDisabled: !store.flavor,
-          action: () => {
-            if (store.flavor) {
-              store.check(StepsEnum.TYPE);
-              store.lock(StepsEnum.TYPE);
-              store.open(StepsEnum.SIZE);
-            }
-          },
-          label: t('common_stepper_next_button_label'),
-        }}
-        edit={{
-          action: () => {
-            store.edit(StepsEnum.TYPE);
-          },
-          label: t('common_stepper_modify_this_step'),
-        }}
-      >
-        <OsdsText
-          color={ODS_TEXT_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-        >
-          {t('add-form:kubernetes_add_node_pool_description')}
-        </OsdsText>
-        <br />
-        <OsdsText
-          color={ODS_TEXT_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-        >
-          {t('add-form:kubernetes_add_node_pool_node_type')}
-        </OsdsText>
-        <>
-          {!isClusterPending && cluster?.region && (
-            <FlavorSelector
-              projectId={projectId}
-              region={cluster?.region}
-              onSelect={(flavor) => {
-                store.set.flavor(flavor);
-              }}
-            />
-          )}
-        </>
-      </StepComponent>
-      <div ref={store.steps.get(StepsEnum.SIZE)?.ref}></div>
-      <StepComponent
-        id={StepsEnum.SIZE}
-        title={t('node-pool:kube_node_pool')}
-        isOpen={Boolean(store.steps.get(StepsEnum.SIZE)?.isOpen)}
-        isChecked={Boolean(store.steps.get(StepsEnum.SIZE)?.isChecked)}
-        isLocked={Boolean(store.steps.get(StepsEnum.SIZE)?.isLocked)}
-        order={3}
-        next={{
-          action: () => {
-            if (store.scaling) {
-              store.check(StepsEnum.SIZE);
-              store.lock(StepsEnum.SIZE);
-              store.open(StepsEnum.BILLING);
-            }
-          },
-          label: t('common_stepper_next_button_label'),
-          isDisabled: !!(
-            regionInformations &&
-            hasInvalidScalingOrAntiAffinityConfig(regionInformations.type, {
-              name: store.name.value,
-              isTouched: store.name.isTouched,
-              scaling: store.scaling,
-              antiAffinity: store.antiAffinity,
-              selectedAvailabilityZones: store.selectedAvailabilityZones,
-            })
-          ),
-        }}
-        edit={{
-          action: () => {
-            store.edit(StepsEnum.SIZE);
-          },
-          label: t('common_stepper_modify_this_step'),
-        }}
-      >
-        {store.selectedAvailabilityZones ? (
-          <div className="mb-8 flex gap-4">
-            <DeploymentZone
-              multiple={false}
-              onSelect={store.set.selectedAvailabilityZones}
-              availabilityZones={store.selectedAvailabilityZones}
-            />
-          </div>
-        ) : (
-          <div />
-        )}
-        <NodePoolSize
-          isAutoscale={store.scaling?.isAutoscale}
-          initialScaling={store.scaling?.quantity}
-          isMonthlyBilled={store.isMonthlyBilling}
-          onScaleChange={(auto) => store.set.scaling(auto)}
-          antiAffinity={billingState.antiAffinity.isChecked}
-        />
-        <NodePoolAntiAffinity
-          isChecked={billingState.antiAffinity.isChecked}
-          isEnabled={!store.scaling?.isAutoscale}
-          onChange={billingState.antiAffinity.onChange}
-        />
-      </StepComponent>
-      <div ref={store.steps.get(StepsEnum.BILLING)?.ref}></div>
-      <StepComponent
-        id={StepsEnum.BILLING}
-        title={t('kube:kube_service_billing')}
-        isOpen={Boolean(store.steps.get(StepsEnum.BILLING)?.isOpen)}
-        isChecked={Boolean(store.steps.get(StepsEnum.BILLING)?.isChecked)}
-        isLocked={Boolean(store.steps.get(StepsEnum.BILLING)?.isLocked)}
-        order={4}
-      >
-        <BillingStep
-          price={price?.hour ?? 0}
-          monthlyPrice={price?.month}
-          monthlyBilling={billingState.monthlyBilling}
-          warn={billingState.warn}
-        />
+      {steps.map((step) => {
+        if (!step.condition) return null;
 
-        {!state.isAdding ? (
-          <div className="flex mt-4">
-            <OsdsButton onClick={create} inline color={ODS_THEME_COLOR_INTENT.primary}>
-              {t('listing:kube_common_save')}
-            </OsdsButton>
-            <OsdsButton
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              className="ml-4"
-              onClick={() => {
-                trackClick(`details::nodepools::add::cancel`);
-                navigate('../nodepools');
-              }}
-            >
-              {t('common_stepper_cancel_button_label')}
-            </OsdsButton>
-          </div>
-        ) : (
-          <div className="d-flex align-items-center">
-            <OsdsSpinner inline />
-            <OsdsText
-              slot="label"
-              color={ODS_THEME_COLOR_INTENT.text}
-              className="mt-4"
-              size={ODS_TEXT_SIZE._100}
-            >
-              {t('add:kube_add_node_pool_creating')}
-            </OsdsText>
-          </div>
-        )}
-      </StepComponent>
+        const stepState = store.steps.get(step.id);
+        const visibleSteps = steps.filter((s) => s.condition);
+        const visibleIndex = visibleSteps.findIndex((s) => s.id === step.id);
+
+        return (
+          <StepComponent
+            key={step.id}
+            id={step.id}
+            title={step.title}
+            isOpen={!!stepState?.isOpen}
+            isChecked={!!stepState?.isChecked}
+            isLocked={!!stepState?.isLocked}
+            order={visibleIndex + 1}
+            {...(step.next && { next: step.next })}
+            {...(step.edit && { edit: step.edit })}
+          >
+            {step.render()}
+          </StepComponent>
+        );
+      })}
     </>
   );
 }

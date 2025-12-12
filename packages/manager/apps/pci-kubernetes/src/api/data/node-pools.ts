@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { TCreateNodePoolParam } from '@/types';
+import { TAttachFloatingIPs, TCreateNodePoolParam } from '@/types';
 
 type TRawClusterNodePool = {
   id: string;
@@ -22,6 +22,7 @@ type TRawClusterNodePool = {
   updatedAt: string;
   location?: string;
   availabilityZones?: string[];
+  attachFloatingIps?: TAttachFloatingIPs;
   autoscaling: {
     scaleDownUtilizationThreshold: number;
     scaleDownUnneededTimeSeconds: number;
@@ -49,6 +50,7 @@ export type TClusterNodePool = Pick<
   | 'desiredNodes'
   | 'autoscale'
   | 'availabilityZones'
+  | 'attachFloatingIps'
   | 'monthlyBilled'
   | 'createdAt'
   | 'status'
@@ -57,7 +59,7 @@ export type TClusterNodePool = Pick<
   | 'maxNodes'
   | 'location'
 > & {
-  formattedFlavor: string;
+  formattedFlavor?: string;
   search?: string;
 };
 
@@ -69,43 +71,44 @@ export const getClusterNodePools = async (
     `/cloud/project/${projectId}/kube/${clusterId}/nodepool`,
   );
 
-  return items.map(
-    (item) =>
-      ({
-        id: item.id,
-        name: item.name,
-        antiAffinity: item.antiAffinity,
-        availableNodes: item.availableNodes,
-        desiredNodes: item.desiredNodes,
-        autoscale: item.autoscale,
-        monthlyBilled: item.monthlyBilled,
-        createdAt: item.createdAt,
-        status: item.status,
-        flavor: item.flavor,
-        minNodes: item.minNodes,
-        maxNodes: item.maxNodes,
-        ...(item.availabilityZones && {
-          availabilityZones: item.availabilityZones,
-        }),
-      }) as TClusterNodePool,
-  );
+  return items.map((item) => ({
+    id: item.id,
+    name: item.name,
+    antiAffinity: item.antiAffinity,
+    availableNodes: item.availableNodes,
+    desiredNodes: item.desiredNodes,
+    autoscale: item.autoscale,
+    monthlyBilled: item.monthlyBilled,
+    createdAt: item.createdAt,
+    status: item.status,
+    flavor: item.flavor,
+    minNodes: item.minNodes,
+    maxNodes: item.maxNodes,
+    ...(item.availabilityZones && {
+      availabilityZones: item.availabilityZones,
+    }),
+    ...(item.attachFloatingIps && {
+      attachFloatingIps: item.attachFloatingIps,
+    }),
+  }));
 };
 
 export const deleteNodePool = async (projectId: string, clusterId: string, poolId: string) =>
   v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`);
 
-export type TUpdateNodePoolSizeParam = {
+export type TUpdateNodePoolParam = {
   desiredNodes: number;
   minNodes?: number;
   maxNodes?: number;
   autoscale: boolean;
+  attachFloatingIps?: TAttachFloatingIPs;
 };
 
-export const updateNodePoolSize = async (
+export const updateNodePool = async (
   projectId: string,
   clusterId: string,
   poolId: string,
-  param: TUpdateNodePoolSizeParam,
+  param: TUpdateNodePoolParam,
 ) => v6.put(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`, param);
 
 export const createNodePool = (projectId: string, clusterId: string, param: TCreateNodePoolParam) =>

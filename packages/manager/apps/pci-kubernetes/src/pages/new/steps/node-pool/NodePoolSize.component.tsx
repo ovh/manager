@@ -7,14 +7,14 @@ import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 import { Autoscaling } from '@/components/Autoscaling.component';
 import { TScalingState, TSelectedAvailabilityZones } from '@/types';
 
-export interface NodeSizeStepProps {
+export type TNodeSizeStepProps = {
   isMonthlyBilled: boolean;
   antiAffinity: boolean;
   isAutoscale: boolean;
   initialScaling: TScalingState['quantity'];
   onScaleChange: (scaling: TScalingState) => void;
   selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
-}
+};
 
 export default function NodePoolSize({
   onScaleChange,
@@ -23,7 +23,7 @@ export default function NodePoolSize({
   isMonthlyBilled,
   antiAffinity,
   selectedAvailabilityZones,
-}: Readonly<NodeSizeStepProps>) {
+}: Readonly<TNodeSizeStepProps>) {
   const { t } = useTranslation('node-pool');
 
   const totalNodes = useMemo(() => {

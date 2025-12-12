@@ -67,7 +67,7 @@ export default function ClusterNetwork({ projectId, kubeDetail }: Readonly<Clust
 
   return (
     <OsdsTile className="w-full flex-col shadow-md" inline rounded variant={ODS_TILE_VARIANT.ghost}>
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.heading}

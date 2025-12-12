@@ -166,7 +166,7 @@ export function FlavorTile({
         >
           {t('pci_project_flavors_zone_compatible')}
         </OsdsText>
-        <div className="flex gap-4 mt-3">
+        <div className="mt-3 flex gap-4">
           {Object.entries(flavorCompatibility).map(([zone, isVisible]) => {
             if (isVisible) {
               return <RegionChipByType key={zone} type={zone as DeploymentMode} />;

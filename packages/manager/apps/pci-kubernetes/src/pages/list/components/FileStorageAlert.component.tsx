@@ -17,7 +17,7 @@ const FileStorageAlert = (props: { onRemove?: () => void }) => {
         </MessageBody>
 
         <Link
-          className="text-white inline-flex hover:after:!scale-100 items-center mt-4 justify-center cursor-pointer overflow-hidden  p-4 rounded-md text-sm md:text-base bg-[--ods-color-primary-500] hover:bg-[--ods-color-primary-600] active:bg-[--ods-color-primary-700] disabled:bg-[--ods-color-primary-200]"
+          className="mt-4 inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-md bg-[--ods-color-primary-500]  p-4 text-sm text-white hover:bg-[--ods-color-primary-600] hover:after:!scale-100 active:bg-[--ods-color-primary-700] disabled:bg-[--ods-color-primary-200] md:text-base"
           target="_blank"
           rel="noreferrer"
           href="https://labs.ovhcloud.com/en/file-storage"

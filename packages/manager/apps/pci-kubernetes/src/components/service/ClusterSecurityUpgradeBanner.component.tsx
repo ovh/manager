@@ -17,7 +17,7 @@ export default function ClusterSecurityUpgradeBanner({ isDisabled }: { isDisable
         <OsdsText
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
-          className="block mb-5"
+          className="mb-5 block"
         >
           <Trans>{t('kube_service_cluster_update_available')}</Trans>
         </OsdsText>

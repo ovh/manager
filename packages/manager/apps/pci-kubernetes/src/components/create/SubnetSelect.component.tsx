@@ -43,7 +43,7 @@ export default function SubnetSelect({
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
-        className="block mb-5"
+        className="mb-5 block"
       >
         {t('kubernetes_network_form_subnet')}
       </OsdsText>

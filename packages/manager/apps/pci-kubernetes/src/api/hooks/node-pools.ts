@@ -12,10 +12,10 @@ import { PaginationState } from '@ovh-ux/manager-react-components';
 
 import {
   TClusterNodePool,
-  TUpdateNodePoolSizeParam,
+  TUpdateNodePoolParam,
   deleteNodePool,
   getClusterNodePools,
-  updateNodePoolSize,
+  updateNodePool,
 } from '@/api/data/node-pools';
 import { useRegionFlavors } from '@/api/hooks/flavors';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
@@ -100,18 +100,13 @@ export const usePaginatedClusterNodePools = (
       (pools || []).map((pool) => {
         const flavor = (flavors || []).find((f) => f.name === pool.flavor);
 
-        const formattedFlavor = t('kube_flavor', {
-          name: flavor?.name?.toUpperCase(),
-          cpuNumber: flavor?.vcpus,
-          ramCapacity: flavor?.ram / 1000,
-          diskCapacity: flavor?.disk,
-        });
-
+        const formattedFlavor = flavor?.name?.toUpperCase();
         return {
           ...pool,
           formattedFlavor,
           location: pool.availabilityZones?.[0] || cluster?.region,
           search: `${pool.name} ${formattedFlavor}`,
+          plan: cluster?.plan,
         };
       }),
     [pools, flavors, t],
@@ -163,7 +158,7 @@ export const useDeleteNodePool = ({
   };
 };
 
-export const useUpdateNodePoolSize = ({
+export const useUpdateNodePool = ({
   projectId,
   clusterId,
   poolId,
@@ -171,8 +166,8 @@ export const useUpdateNodePoolSize = ({
   onSuccess,
 }: ActionNodePoolProps) => {
   const mutation = useMutation({
-    mutationFn: async (param: TUpdateNodePoolSizeParam) =>
-      updateNodePoolSize(projectId, clusterId, poolId, param),
+    mutationFn: async (param: TUpdateNodePoolParam) =>
+      updateNodePool(projectId, clusterId, poolId, param),
     onError: (cause: Error) => {
       onError(cause);
     },
@@ -182,7 +177,7 @@ export const useUpdateNodePoolSize = ({
   });
 
   return {
-    updateSize: (param: TUpdateNodePoolSizeParam) => mutation.mutate(param),
+    update: (param: TUpdateNodePoolParam) => mutation.mutate(param),
     ...mutation,
   };
 };

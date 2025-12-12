@@ -5,7 +5,7 @@ import { ODS_INPUT_TYPE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-com
 import { OsdsFormField, OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
 
 type NodeNameProps = {
-  error: string | null;
+  error?: string | null;
   onTouched: (val: boolean) => void;
   name: string;
   onNameChange: (val: string) => void;

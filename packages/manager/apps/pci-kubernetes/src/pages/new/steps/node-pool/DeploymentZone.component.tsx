@@ -117,13 +117,13 @@ const DeploymentZone = ({ onSelect, availabilityZones, multiple }: DeploymentZon
         </Text>
       )}
       {multiple && isInvalid && (
-        <Message dismissible={false} className="flex mt-6" variant="default" color="critical">
+        <Message dismissible={false} className="mt-6 flex" variant="default" color="critical">
           <MessageIcon name="hexagon-exclamation" />
           <MessageBody>{t('kube_common_node_pool_select_zone')}</MessageBody>
         </Message>
       )}
       <Group {...groupProps}>
-        <div className="flex gap-6  w-full flex-col lg:flex-row">
+        <div className="flex w-full  flex-col gap-6 lg:flex-row">
           {availabilityZones?.map(({ zone, checked }) => (
             <Component className="w-full" key={zone} name={zone} value={zone} checked={checked}>
               <PciCard

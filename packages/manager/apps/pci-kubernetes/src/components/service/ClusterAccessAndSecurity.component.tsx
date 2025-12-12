@@ -2,59 +2,38 @@ import { useMemo, useState } from 'react';
 
 import { useHref } from 'react-router-dom';
 
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
 import {
   OsdsAccordion,
-  OsdsButton,
   OsdsDivider,
   OsdsIcon,
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSkeleton,
-  OsdsSpinner,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 
-import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useParam } from '@ovh-ux/manager-pci-common';
-import {
-  ActionMenu,
-  Clipboard,
-  LinkType,
-  Links,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { ActionMenu, Clipboard, LinkType, Links } from '@ovh-ux/manager-react-components';
 
-import { useClusterRestrictions, useKubeConfig, useOidcProvider } from '@/api/hooks/useKubernetes';
+import { useClusterRestrictions, useOidcProvider } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import {
-  CONFIG_FILENAME,
-  KUBECONFIG_URL,
-  KUBE_INSTALLING_STATUS,
-  PROCESSING_STATUS,
-} from '@/constants';
-import {
-  downloadContent,
-  getValidOptionalKeys,
-  isMultiDeploymentZones,
-  isOptionalValue,
-} from '@/helpers';
+import { KUBECONFIG_URL, PROCESSING_STATUS } from '@/constants';
+import { getValidOptionalKeys, isMultiDeploymentZones, isOptionalValue } from '@/helpers';
 import { TKube } from '@/types';
 
+import { ClusterConfigFileActions } from './ClusterConfigFileActions.component';
 import TileLine from './TileLine.component';
 
 export type ClusterAccessAndSecurityProps = {
@@ -67,7 +46,6 @@ export default function ClusterAccessAndSecurity({
   const { t } = useTranslation('service');
 
   const { kubeId, projectId } = useParam('projectId', 'kubeId');
-  const { addError } = useNotifications();
   const [isOptional, setIsOptional] = useState(true);
 
   const hrefRestrictions = useHref('../restrictions');
@@ -86,28 +64,6 @@ export default function ClusterAccessAndSecurity({
     [oidcProvider],
   );
 
-  const { postKubeConfig, isPending: isKubeConfigPending } = useKubeConfig({
-    projectId,
-    kubeId,
-    onSuccess: (config) =>
-      downloadContent({
-        fileContent: config.content,
-        fileName: `${CONFIG_FILENAME}.yml`,
-      }),
-    onError: (error: Error) =>
-      addError(
-        <Translation ns="service">
-          {(_t) =>
-            _t('kube_service_file_error', {
-              message: isApiCustomError(error)
-                ? error?.response?.data?.message
-                : (error?.message ?? null),
-            })
-          }
-        </Translation>,
-        true,
-      ),
-  });
   const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
   const { data: regionInformations } = useRegionInformations(projectId, kubeDetail?.region);
 
@@ -125,8 +81,8 @@ export default function ClusterAccessAndSecurity({
   };
 
   return (
-    <OsdsTile className="flex-col w-full shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
-      <div className="flex flex-col w-full">
+    <OsdsTile className="w-full flex-col shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
+      <div className="flex w-full flex-col">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.heading}
@@ -205,29 +161,7 @@ export default function ClusterAccessAndSecurity({
             />
           </OsdsPopoverContent>
         </OsdsPopover>
-        <div className="flex items-center gap-5">
-          <OsdsButton
-            className="hover:shadow-lg w-fit"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            data-testid="ClusterAccessAndSecurity-DownloadKubeConfig"
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            onClick={postKubeConfig}
-            {...(isKubeConfigPending || kubeDetail?.status === KUBE_INSTALLING_STATUS
-              ? { disabled: true }
-              : {})}
-            inline
-          >
-            {CONFIG_FILENAME}
-          </OsdsButton>
-          {isKubeConfigPending && (
-            <OsdsSpinner
-              inline
-              size={ODS_SPINNER_SIZE.sm}
-              data-testid="clusterAccessAndSecurity-spinnerKubeConfig"
-            />
-          )}
-        </div>
+        <ClusterConfigFileActions projectId={projectId} kubeDetail={kubeDetail} />
 
         <OsdsDivider separator />
 
@@ -242,7 +176,7 @@ export default function ClusterAccessAndSecurity({
                 {t('kube_service_access_security_oidc_title')}
               </OsdsText>
 
-              <div className="min-w-10 ml-4">
+              <div className="ml-4 min-w-10">
                 <ActionMenu
                   icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
                   aria-label={t('kube_service_access_security_oidc_menu_action_sr_only')}
@@ -315,7 +249,7 @@ export default function ClusterAccessAndSecurity({
                                   key !== 'clientId',
                               )
                               .map(([key, value]) => (
-                                <div key={key} className="mb-4 mt-4 flex flex-col max-w-[400px]">
+                                <div key={key} className="my-4 flex max-w-[400px] flex-col">
                                   <OsdsText
                                     className="font-semibold"
                                     size={ODS_TEXT_SIZE._200}

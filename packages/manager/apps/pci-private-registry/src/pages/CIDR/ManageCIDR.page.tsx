@@ -1,11 +1,10 @@
 import { useParams } from 'react-router-dom';
 import {
   Headers,
-  PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-
+import { PciGuidesHeader } from '@/components/guides-header';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useProject } from '@ovh-ux/manager-pci-common';

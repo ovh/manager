@@ -1,13 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  FormField,
-  TEXT_PRESET,
-  Text,
-  Toggle,
-  ToggleControl,
-  ToggleLabel,
-} from '@ovhcloud/ods-react';
+import { TEXT_PRESET, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
 
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
@@ -31,6 +24,7 @@ const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAf
       </Text>
       <div className="mt-8">
         <Toggle
+          withLabels
           data-testid="toggle-anti-affinity"
           disabled={!isEnabled}
           color="primary"
@@ -38,10 +32,8 @@ const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAf
           onChange={() => isEnabled && onChange(!isChecked)}
         >
           <ToggleControl />
-          <ToggleLabel>
-            <Text className="ml-4 font-bold">
-              {t(`kubernetes_node_pool_anti_affinity_${isChecked}`)}
-            </Text>
+          <ToggleLabel className="font-semibold text-[--ods-color-text]">
+            {t(`kubernetes_node_pool_anti_affinity_${isChecked}`)}
           </ToggleLabel>
         </Toggle>
       </div>

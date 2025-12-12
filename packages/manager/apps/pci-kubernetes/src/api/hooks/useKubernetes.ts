@@ -291,7 +291,7 @@ type KubeConfigProps = {
   projectId: string;
   kubeId: string;
   onError: (cause: Error) => void;
-  onSuccess: (data: { content: string }) => void;
+  onSuccess?: (data: { content: string }) => void;
 };
 
 export const useKubeConfig = ({ projectId, kubeId, onError, onSuccess }: KubeConfigProps) => {
@@ -300,10 +300,7 @@ export const useKubeConfig = ({ projectId, kubeId, onError, onSuccess }: KubeCon
     onError,
     onSuccess,
   });
-  return {
-    postKubeConfig: () => mutation.mutate(),
-    ...mutation,
-  };
+  return mutation;
 };
 
 type KubeUpdateVersionProps = {

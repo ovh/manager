@@ -30,10 +30,10 @@ export function VersionAndUpdatePolicyStep({ onSubmit, step }: Readonly<VersionS
       </div>
 
       {step.isLocked && version && (
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
             <OsdsText
-              className="block w-[20rem]"
+              className="block w-80"
               level={ODS_TEXT_LEVEL.heading}
               size={ODS_TEXT_SIZE._200}
               color={ODS_THEME_COLOR_INTENT.text}
@@ -46,7 +46,7 @@ export function VersionAndUpdatePolicyStep({ onSubmit, step }: Readonly<VersionS
           </OsdsTile>
           <OsdsTile color={ODS_THEME_COLOR_INTENT.primary} inline>
             <OsdsText
-              className="block w-[20rem]"
+              className="block w-80"
               level={ODS_TEXT_LEVEL.heading}
               size={ODS_TEXT_SIZE._200}
               color={ODS_THEME_COLOR_INTENT.text}

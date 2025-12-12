@@ -13,7 +13,9 @@ export const getPriceByDesiredScale = (
   if (!hour) return null;
   return {
     hour: hour * desiredScaling,
-    ...(month && { month: month * desiredScaling }),
+    ...(month && {
+      month: month * desiredScaling,
+    }),
   };
 };
 

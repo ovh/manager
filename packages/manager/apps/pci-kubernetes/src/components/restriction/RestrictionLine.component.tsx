@@ -41,7 +41,7 @@ export default function RestrictionLine({
             error={isTouched && !isIPValid(displayedIP)}
             className={
               isTouched && !isIPValid(displayedIP)
-                ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
+                ? 'border-red-500 bg-red-100 text-red-500 focus:text-red-500'
                 : 'border-color-[var(--ods-color-default-200)] bg-white'
             }
             onOdsValueChange={(e: OdsInputValueChangeEvent) => {
@@ -53,7 +53,7 @@ export default function RestrictionLine({
           <DataGridTextCell>{displayedIP}</DataGridTextCell>
         )}
       </div>
-      <div className="min-w-16 flex flex-end gap-2 mx-5 max-w-sm float-right">
+      <div className="flex-end float-right mx-5 flex min-w-16 max-w-sm gap-2">
         {isEditing ? (
           <>
             <RestrictionAction

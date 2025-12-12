@@ -1,0 +1,9 @@
+{
+  "private_registry_header": "Guides",
+  "private_registry_header_all_guides": "Tous les guides",
+  "private_registry_header_first_steps_with_instances": "Premiers pas avec les instances",
+  "private_registry_header_faq_managed_private_registry": "FAQ Managed Private Registry (Harbor)",
+  "private_registry_header_create_a_managed_private_register": "Créer un Registre privé géré (EN)",
+  "private_registry_header_create_and_use_a_private_image": "Créer et utiliser une image privée (EN)",
+  "private_registry_header_authentification_iam": "Activer l'authentification IAM (EN)"
+}
