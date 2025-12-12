@@ -26,7 +26,9 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 import { PATH_LABEL } from '@/constants';
@@ -43,6 +45,7 @@ export default function SecretListPage() {
   const { notifications } = useNotifications();
   const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const { okmsId } = useRequiredParams('okmsId');
+  const { trackClick } = useOkmsTracking();
 
   const columns: DatagridColumn<Secret>[] = [
     {
@@ -111,7 +114,15 @@ export default function SecretListPage() {
           <OdsButton
             label={t('okms_manage_label')}
             variant="outline"
-            onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId))}
+            onClick={() => {
+              navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId));
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'navigation',
+                actions: ['go-to-okms'],
+              });
+            }}
           />
         </div>
         <Datagrid
@@ -127,12 +138,18 @@ export default function SecretListPage() {
           topbar={
             <OdsButton
               label={t('create_a_secret')}
-              onClick={() =>
+              onClick={() => {
                 navigate({
                   pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
                   search: `?${SECRET_MANAGER_SEARCH_PARAMS.okmsId}=${okmsId}`,
-                })
-              }
+                });
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.button,
+                  actionType: 'navigation',
+                  actions: ['create-secret'],
+                });
+              }}
             />
           }
         />
