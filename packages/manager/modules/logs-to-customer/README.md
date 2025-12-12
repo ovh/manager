@@ -7,6 +7,13 @@ This module provides the necessary pages and components to add the "Logs to Cust
 - Logs live tail
 - Create, read, update, and delete subscriptions to data-streams
 
+## Version Compatibility
+
+| Version | Design System | Component Library | Last Stable |
+|---------|---------------|-------------------|-------------|
+| v1.x    | ODS 18        | MRC               | 1.12.0      |
+| v2.x    | ODS 19        | MUK               | latest      |
+
 ## Configuration
 
 ### Add the package to your uapp

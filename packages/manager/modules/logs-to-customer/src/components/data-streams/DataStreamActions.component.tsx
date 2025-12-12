@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Skeleton } from '@ovhcloud/ods-react';
 
 import { LogsContext } from '@/LogsToCustomer.context';
 import { useLogSubscriptions } from '@/data/hooks/useLogSubscriptions';
@@ -28,7 +28,7 @@ const DataStreamActions = ({ stream }: TDataStreamActions) => {
     error,
   } = useLogSubscriptions(logApiUrls.logSubscription, logApiVersion, currentLogKind);
 
-  if (isPending) return <OdsSkeleton data-testid={DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID} />;
+  if (isPending) return <Skeleton data-testid={DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID} />;
 
   if (error) return <span>{t('error_datagrid_cell')}</span>;
 
