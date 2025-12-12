@@ -97,7 +97,7 @@
   "pci_instance_creation_network_private_network_setting_title": "Rete privata",
   "pci_instance_creation_network_private_network_setting_description": "Le istanze sono collegate in rete privata. Per l'accesso a Internet o SSH è necessario un Floating IP, un Gateway o un SSH-Proxy.",
   "pci_instance_creation_network_setting_help_title": "Comprendere i parametri di rete",
-  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} +IVA/ora",
+  "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} +IVA/ora",
   "pci_instance_creation_image_available_on_other_models": "Questa immagine è disponibile su altri modelli.",
   "pci_instance_creation_select_network_dropdown_label": "Seleziona una rete privata esistente",
   "pci_instance_creation_network_add_new": "Creare una rete privata"

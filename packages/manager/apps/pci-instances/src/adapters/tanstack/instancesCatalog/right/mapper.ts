@@ -295,9 +295,7 @@ const mapFlavorPricesDTOToFlavorPricesEntity = (
     priceInUcents: priceDTO.price.priceInUcents,
     text: priceDTO.price.text,
   },
-  hourlyVcoreEquivalent: priceDTO.hourlyVcoreEquivalent,
   monthlyEquivalent: priceDTO.monthlyEquivalent,
-
   includeVat: priceDTO.includeVat,
 });
 

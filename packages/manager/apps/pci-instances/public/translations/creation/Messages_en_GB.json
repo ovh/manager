@@ -97,7 +97,7 @@
   "pci_instance_creation_network_private_network_setting_title": "Private Network",
   "pci_instance_creation_network_private_network_setting_description": "The authorities are part of a private network. Internet or SSH access requires a Floating IP, a Gateway or an SSH Proxy.",
   "pci_instance_creation_network_setting_help_title": "Understanding network settings",
-  "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} ex VAT/hour",
+  "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} ex VAT/hour",
   "pci_instance_creation_image_available_on_other_models": "This image is available on other models.",
   "pci_instance_creation_select_network_dropdown_label": "Select an existing private network",
   "pci_instance_creation_network_add_new": "Create a private network"
