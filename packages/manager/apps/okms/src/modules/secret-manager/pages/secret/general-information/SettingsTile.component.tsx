@@ -12,8 +12,10 @@ import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { Link } from '@/common/components/link/Link.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 type SettingsTileProps = {
@@ -24,6 +26,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
   const { secretConfig, isPending, isError } = useSecretSmartConfig(secret);
   const { okmsId } = useRequiredParams('okmsId');
+  const { trackClick } = useOkmsTracking();
 
   const labels: Record<SecretSmartConfigOrigin, string | null> = {
     SECRET: null,
@@ -92,6 +95,14 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
             href={SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(okmsId, secret.path)}
             label={t('edit_metadata')}
             isRouterLink
+            onClick={() => {
+              trackClick({
+                location: PageLocation.tile,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['edit-metadata'],
+              });
+            }}
           />
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
