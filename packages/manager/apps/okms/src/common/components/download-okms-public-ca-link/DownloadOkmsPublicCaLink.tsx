@@ -8,8 +8,9 @@ import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 import { OdsLink, OdsSpinner } from '@ovhcloud/ods-components/react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
 
 import { PUBLIC_CA_FILENAME, PUBLIC_RSA_CA_FILENAME } from './downloadOkmsPublicCaLink.constants';
@@ -32,7 +33,7 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
   const { t } = useTranslation('key-management-service/dashboard');
   const [loading, setLoading] = useState(false);
   const { addError } = useNotifications();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const resources: Record<CertificateType, ButtonResource> = {
     publicCaRest: {
