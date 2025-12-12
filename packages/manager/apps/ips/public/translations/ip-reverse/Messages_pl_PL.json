@@ -1,7 +1,7 @@
 {
-  "ip_reverse_update_failure_title": "Aktualizacja rewersu DNS nie powiodła się",
-  "ip_reverse_update_failure_hint": "Upewnij się, że rekord A jest poprawnie skonfigurowany dla danej nazwy hosta. Aby uzyskać więcej informacji, sprawdź ",
-  "ip_reverse_update_failure_hint_link": "przewodnik",
-  "ip_reverse_update_failure_api_error": "API error:",
-  "ip_reverse_update_failure_request_id": "Request ID:"
+  "ip_reverse_update_failure_title": "Aktualizacja Reverse DNS nie powiodła się",
+  "ip_reverse_update_failure_hint": "Proszę upewnić się, że rekord A jest poprawnie skonfigurowany dla podanej nazwy hosta. Aby uzyskać więcej informacji, proszę zapoznać się z ",
+  "ip_reverse_update_failure_hint_link": "naszym przewodnikiem",
+  "ip_reverse_update_failure_api_error": "Błąd API:",
+  "ip_reverse_update_failure_request_id": "ID żądania:"
 }

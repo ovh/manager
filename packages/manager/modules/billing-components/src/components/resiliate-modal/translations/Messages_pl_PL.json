@@ -16,8 +16,8 @@
   "billing_resiliate_error": "Wystąpił błąd podczas rozwiązywania umowy terminowej:",
   "billing_resiliate_terminateAtEngagementDate_us": "Rezygnacja z usługi w dniu zakończenia umowy terminowej",
   "billing_resiliate_terminateAtEngagementDate_error_us": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu zakończenia umowy terminowej.",
-  "billing_resiliate_mode_label_us": "Wybierz czynność, którą chcesz wykonać",
-  "billing_resiliate_terminate_us": "Rezygnuję z usługi teraz",
-  "billing_resiliate_terminateAtExpirationDate_us": "Rezygnuję z usługi po zakończeniu umowy terminowej",
-  "billing_resiliate_confirmation_mail_to_be_sent": "Otrzymasz e-mail z potwierdzeniem rezygnacji z usługi"
+  "billing_resiliate_mode_label_us": "Wybierz akcję, którą chcesz wykonać",
+  "billing_resiliate_terminate_us": "Zakończ moją usługę teraz",
+  "billing_resiliate_terminateAtExpirationDate_us": "Zakończ moją usługę po zakończeniu mojego zobowiązania",
+  "billing_resiliate_confirmation_mail_to_be_sent": "E-mail potwierdzający zakończenie twojej usługi zostanie wysłany"
 }

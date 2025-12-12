@@ -1,5 +1,5 @@
 {
-  "log_stream_title_tile_label": "Flujos de datos",
+  "log_stream_title_tile_label": "Flujo de datos",
   "log_stream_button_graylog_watch_label": "Observar en Graylog",
   "log_stream_indexing_active": "Activo",
   "log_stream_indexing_inactive": "En pausa"

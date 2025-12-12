@@ -1,7 +1,7 @@
 {
   "manageOrganisationsTabDescription": "Meine Organisationen",
-  "manageOrganisationsPageDescription": "Auf dieser Seite können Sie die Organisationsinformationen konfigurieren, die Ihren zusätzlichen IP-Blockadressen für die Anpassung von WHOIS-Einträgen zugeordnet werden.",
-  "manageOrganisationsPageHowto": "Eine bestimmte ARIN- oder RIPE-IP-Organisation kann dann konfiguriert werden, indem Sie im Menü eines beliebigen IP-Blocks in der IP-Hauptliste die Option „Informationen zum IP-Block konfigurieren“ auswählen.",
+  "manageOrganisationsPageDescription": "Diese Seite ermöglicht es, die organisatorischen Informationen zu konfigurieren, die mit Ihren zusätzlichen IP-Blockadressen für die Anpassung der WHOIS-Einträge verbunden sind.",
+  "manageOrganisationsPageHowto": "Eine bestimmte ARIN- oder RIPE-IP-Organisation kann dann konfiguriert werden, indem Sie \"IP-Blockinformationen konfigurieren\" im Menü eines beliebigen IP-Blocks in der Haupt-IP-Liste auswählen.",
   "manageOrganisationsOrderButtonLabel": "Organisation hinzufügen",
   "manageOrganisationsTabOrganisaton": "Organisation",
   "manageOrganisationsTabType": "Typ",
@@ -22,14 +22,14 @@
   "manageOrganisationsOrgModelCityLabel": "Stadt",
   "manageOrganisationsOrgModelPostcodeLabel": "Postleitzahl",
   "manageOrganisationsOrgModelPhoneLabel": "Telefon",
-  "manageOrganisationsErrorMessage": "Es ist ein Fehler aufgetreten {{ error }}.",
-  "manageOrganisationsSuccessMessage": "Ihre Informationen wurden registriert.",
+  "manageOrganisationsErrorMessage": "Es ist ein Fehler aufgetreten {{error}}.",
+  "manageOrganisationsSuccessMessage": "Ihre Informationen wurden erfolgreich erfasst",
   "manageOrganisationsOrgModelPhoneInvalid": "Internationales Format erforderlich {{countryCode}}",
   "manageOrganisationsTabDeleteOrgAction": "Löschen",
-  "manageOrganisationsDelete_confirm_input": "Geben Sie zur Bestätigung den Namen der Organisation in das Feld unten ein.",
+  "manageOrganisationsDelete_confirm_input": "Geben Sie den Namen der Organisation im untenstehenden Feld ein, um zu bestätigen",
   "manageOrganisationsDelete_confirm_headline": "Möchten Sie diese IP-Organisation löschen?",
-  "manageOrganisationsDelete_confirm_description": "Durch diese Aktion wird die Organisation dauerhaft gelöscht.",
+  "manageOrganisationsDelete_confirm_description": "Diese Aktion wird die Organisation dauerhaft löschen",
   "manageOrganisationsDelete_success": "Die Organisation {{organisationId}} wurde gelöscht.",
-  "manageOrganisationsDelete_unknown_error": "Beim Löschen der Organisation ist ein Fehler aufgetreten: {{error}}",
-  "manageOrganisationsDelete_includedInIpBlock_error": "Diese IP-Organisation wird nach wie vor mit bestimmten IP-Blöcken verwendet. Bitte trennen Sie zuerst die Verbindung."
+  "manageOrganisationsDelete_unknown_error": "Ein Fehler ist während der Löschung der Organisation aufgetreten: {{error}}",
+  "manageOrganisationsDelete_includedInIpBlock_error": "Diese IP-Organisation wird weiterhin mit bestimmten IP-Blöcken verwendet. Bitte trennen Sie sie zuerst."
 }

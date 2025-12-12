@@ -5,6 +5,6 @@
   "unblock_anti_hack_ip_error": "Ocorreu um erro durante o desbloqueio de {{ipBlocked}}: {{error}}",
   "anti_hack_status": "Estado",
   "anti_hack_blocked_since": "Bloqueado desde",
-  "anti_hack_time": "Tempo restante",
+  "anti_hack_time": "Tempo restante (s)",
   "anti_hack_no_log_available": "Registo indisponível"
 }

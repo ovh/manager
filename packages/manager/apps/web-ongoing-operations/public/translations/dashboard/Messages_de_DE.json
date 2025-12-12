@@ -129,7 +129,7 @@
   "domain_operations_nicOperation_ZoneCut": "Delegierung der DNS-Zone",
   "domain_operations_nicOperation_ZoneDelete": "Löschung der DNS-Zone",
   "domain_operations_nicOperation_Zonerestore": "Wiederherstellung der DNS Zone",
-  "domain_operations_update_key_legitimacyAfnic": "Verwendung des Domainnamens rechtfertigen",
+  "domain_operations_update_key_legitimacyAfnic": "Rechtfertigung der Verwendung des Domainnamens",
   "domain_operations_update_contact_administrator": "Wenden Sie sich an Ihren Administrator, um dieses Problem zu beheben.",
   "domain_operations_nicOperation_ZoneRestore": "Wiederherstellung der DNS-Zone",
   "wizard_close": "Schließen",

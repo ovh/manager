@@ -841,14 +841,14 @@
   "domain_tab_DNS_state_error": "Fehler",
   "domain_tab_DNS_error_warning": "Bei der Aktualisierung Ihrer DNS wurde ein Fehler festgestellt. Bitte korrigieren Sie sie.",
   "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb": "SVCB und HTTPS",
-  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc": "Gibt den Server und die Verbindungseinstellungen an, die für den Zugriff auf einen Dienst in einer Domain verwendet werden.",
+  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc": "Gibt den Server und die Verbindungsparameter an, die verwendet werden sollen, um auf einen Dienst unter einem Domainnamen zuzugreifen.",
   "domain_configuration_dns_entry_add_step1_helpwizard_rp": "RP",
   "domain_configuration_dns_entry_add_step1_helpwizard_rp_desc": "Ermöglicht die Angabe der E-Mail-Adresse der für den Domainnamen verantwortlichen Person.",
   "domain_configuration_dns_entry_add_rp_mbox": "Kontakt",
-  "domain_configuration_dns_entry_add_rp_txt_dname": "Informationen",
-  "domain_configuration_dns_entry_add_svcb_priority": "Priorität",
-  "domain_configuration_dns_entry_add_svcb_target": "Ziel",
-  "domain_configuration_dns_entry_add_svcb_params": "Einstellungen",
-  "domain_configuration_dns_entry_add_svcb_priority_help": "Eine Priorität von 0 gibt den Aliasmodus an. Jeder andere Wert entspricht dem Dienstmodus.",
-  "domain_configuration_dns_entry_add_svcb_params_help": "Wenn die Priorität 0 ist, muss dieses Feld leer bleiben. Andernfalls lautet das Format ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
+  "domain_configuration_dns_entry_add_rp_txt_dname": "Infos",
+  "domain_configuration_dns_entry_add_svcb_priority": "Prioritäten",
+  "domain_configuration_dns_entry_add_svcb_target": "Zielgruppe",
+  "domain_configuration_dns_entry_add_svcb_params": "Eigenschaften",
+  "domain_configuration_dns_entry_add_svcb_priority_help": "Eine Priorität von 0 zeigt den Alias-Modus an. Jeder andere Wert entspricht dem Dienstmodus.",
+  "domain_configuration_dns_entry_add_svcb_params_help": "Wenn die Priorität 0 beträgt, muss dieses Feld leer bleiben. Andernfalls hat das Format folgendes: ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
 }

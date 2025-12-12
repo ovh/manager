@@ -1,11 +1,11 @@
 {
-  "listingReverseDnsUpdateSuccess": "A atualização da reverse foi efetuada.",
-  "reverseDnsModalTitle": "Configurar o reverse DNS",
-  "reverseDnsModalDescription": "Introduza um nome de domínio como reverse DNS para determinado endereço IP (registo PTR). Para mais informações, pode consultar o nosso ",
-  "reverseDnsParentIpBlockFieldLabel": "Parent IP block",
+  "listingReverseDnsUpdateSuccess": "A atualização do reverse foi efetuada.",
+  "reverseDnsModalTitle": "Configurar o DNS reverso",
+  "reverseDnsModalDescription": "Queira introduzir um nome de domínio como DNS reverso para um endereço IP dado (registo PTR). Para mais informações, pode consultar a nossa ",
+  "reverseDnsParentIpBlockFieldLabel": "bloco de IP pai",
   "reverseDnsIpFieldLabel": "Endereço IP",
-  "reverseDnsIpError": "Introduza um endereço IP válido",
-  "reverseDnsIpNotInsideBlockError": "Introduza um endereço IP contido no bloco",
+  "reverseDnsIpError": "Queira introduzir um endereço IP válido",
+  "reverseDnsIpNotInsideBlockError": "Queira introduzir um endereço IP contido no bloco",
   "reverseDnsDnsFieldLabel": "Reverse DNS",
-  "reverseDnsDnsError": "Introduza um nome de domínio válido"
+  "reverseDnsDnsError": "Queira introduzir um nome de domínio válido"
 }

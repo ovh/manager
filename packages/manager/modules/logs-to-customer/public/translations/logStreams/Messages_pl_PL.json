@@ -7,11 +7,11 @@
   "log_streams_filter": "Filtruj",
   "log_streams_colomn_name": "Strumień danych",
   "log_streams_colomn_description": "Opis",
-  "log_streams_colomn_indexation": "Indeksacja",
+  "log_streams_colomn_indexation": "Indeksowanie",
   "log_streams_colomn_retention": "Retencja",
   "log_streams_colomn_subscriptions": "Subskrypcje",
   "log_streams_no_results": "Brak strumieni danych na tym koncie LDP",
-  "log_streams_subscribe": "Subskrybuj",
-  "log_streams_unsubscribe": "Rezygnacja z subskrypcji",
-  "log_streams_subscription_disabled_tooltip": "Subskrypcja podstrumienia danych jest niedostępna."
+  "log_streams_subscribe": "Zapisz się",
+  "log_streams_unsubscribe": "Wypisz się",
+  "log_streams_subscription_disabled_tooltip": "Subskrypcja na podstrumień danych nie jest dostępna."
 }

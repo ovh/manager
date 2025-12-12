@@ -1,11 +1,11 @@
 {
-  "listingReverseDnsUpdateSuccess": "Zmiana rewersu zakończyła się pomyślnie.",
-  "reverseDnsModalTitle": "Skonfiguruj rewers DNS",
-  "reverseDnsModalDescription": "Wpisz nazwę domeny jako rewers DNS dla danego adresu IP (rekord PTR). Aby uzyskać więcej informacji, sprawdź ",
-  "reverseDnsParentIpBlockFieldLabel": "Nadrzędny blok adresów IP",
+  "listingReverseDnsUpdateSuccess": "Aktualizacja reverse została wykonana.",
+  "reverseDnsModalTitle": "Skonfiguruj reverse DNS",
+  "reverseDnsModalDescription": "Proszę wprowadzić nazwę domeny jako reverse DNS dla podanego adresu IP (rekord PTR). Aby uzyskać więcej informacji, sprawdź nasz ",
+  "reverseDnsParentIpBlockFieldLabel": "Blok IP rodzica",
   "reverseDnsIpFieldLabel": "Adres IP",
-  "reverseDnsIpError": "Wpisz poprawny adres IP",
-  "reverseDnsIpNotInsideBlockError": "Wpisz adres IP zawarty w bloku",
+  "reverseDnsIpError": "Proszę wprowadzić poprawny adres IP",
+  "reverseDnsIpNotInsideBlockError": "Proszę wprowadzić adres IP zawarty w bloku",
   "reverseDnsDnsFieldLabel": "Rewers DNS",
-  "reverseDnsDnsError": "Wpisz poprawną nazwę domeny"
+  "reverseDnsDnsError": "Proszę wprowadzić poprawną nazwę domeny"
 }

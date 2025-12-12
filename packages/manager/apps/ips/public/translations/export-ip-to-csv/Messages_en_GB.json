@@ -1,14 +1,14 @@
 {
-  "exportIpToCsvTitle": "Export IP addresses to a CSV file",
-  "exportIpToCsvExplanation": "Depending on the number of IPs you have, it may take a few seconds to export them.",
-  "exportIpToCsvConfirm": "Are you sure you want to export your IPs in CSV format?",
-  "exportIpToCsvSuccess": "Your IPs have been exported.",
-  "exportIpToCsvError": "An error has occurred exporting the IPs.",
-  "exportIpToCsvDownloadingFile": "Creating file. Please wait...",
+  "exportIpToCsvTitle": "Export my IP addresses to a CSV file",
+  "exportIpToCsvExplanation": "The export of your IPs takes a few seconds (depending on the number of IPs you have).",
+  "exportIpToCsvConfirm": "Are you sure you want to export the IPs in CSV format?",
+  "exportIpToCsvSuccess": "The export of your IPs is complete.",
+  "exportIpToCsvError": "An error occurred during the export.",
+  "exportIpToCsvDownloadingFile": "The file is being created, please wait",
   "exportIpToCsvHeaderIpBlock": "IP block",
   "exportIpToCsvHeaderVersion": "Version",
   "exportIpToCsvHeaderType": "Type",
   "exportIpToCsvHeaderCountry": "Country",
-  "exportIpToCsvHeaderServiceName": "Linked Service",
+  "exportIpToCsvHeaderServiceName": "Attached Service",
   "exportIpToCsvHeaderDescription": "Description"
 }

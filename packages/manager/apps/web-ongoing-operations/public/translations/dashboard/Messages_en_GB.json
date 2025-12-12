@@ -129,7 +129,7 @@
   "domain_operations_nicOperation_ZoneCut": "DNS zone delegation",
   "domain_operations_nicOperation_ZoneDelete": "Deleting the DNS zone",
   "domain_operations_nicOperation_Zonerestore": "Restoring the DNS zone",
-  "domain_operations_update_key_legitimacyAfnic": "Describe the domain name’s purpose",
+  "domain_operations_update_key_legitimacyAfnic": "Justify the use of the domain name",
   "domain_operations_update_contact_administrator": "Contact your administrator to resolve this problem.",
   "domain_operations_nicOperation_ZoneRestore": "Restoring the DNS zone",
   "wizard_close": "Close",

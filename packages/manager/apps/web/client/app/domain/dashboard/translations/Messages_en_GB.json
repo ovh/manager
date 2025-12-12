@@ -841,14 +841,14 @@
   "domain_tab_DNS_state_error": "Error",
   "domain_tab_DNS_error_warning": "An error has been detected while updating your DNS. Please correct it.",
   "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb": "SVCB and HTTPS",
-  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc": "Specifies the server and connection settings needed to access a service within a domain.",
+  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc": "Indicates the server and connection parameters to use to access a service on a domain name.",
   "domain_configuration_dns_entry_add_step1_helpwizard_rp": "RP",
-  "domain_configuration_dns_entry_add_step1_helpwizard_rp_desc": "Allows you to designate the email address of the domain’s contact person.",
+  "domain_configuration_dns_entry_add_step1_helpwizard_rp_desc": "Allows declaring the email of the person responsible for the domain name.",
   "domain_configuration_dns_entry_add_rp_mbox": "Contact",
   "domain_configuration_dns_entry_add_rp_txt_dname": "Info",
-  "domain_configuration_dns_entry_add_svcb_priority": "Priority",
+  "domain_configuration_dns_entry_add_svcb_priority": "Distribution",
   "domain_configuration_dns_entry_add_svcb_target": "Target",
   "domain_configuration_dns_entry_add_svcb_params": "Settings",
-  "domain_configuration_dns_entry_add_svcb_priority_help": "Alias mode is indicated by a priority of 0. Any other value corresponds to the service mode.",
-  "domain_configuration_dns_entry_add_svcb_params_help": "If the priority is 0, this field must remain empty. Otherwise, the format is ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
+  "domain_configuration_dns_entry_add_svcb_priority_help": "A priority of 0 indicates alias mode. Any other value corresponds to service mode.",
+  "domain_configuration_dns_entry_add_svcb_params_help": "If the priority is equal to 0, this field must remain empty. Otherwise, the format is as follows ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
 }

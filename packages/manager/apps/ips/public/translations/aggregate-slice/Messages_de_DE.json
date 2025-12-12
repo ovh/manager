@@ -1,12 +1,12 @@
 {
-  "aggregateModalTitle": "Den Block {{ ip }} aggregieren",
-  "aggregateModalDescription": "Bitte geben Sie den gewünschten übergeordneten Block an.",
-  "aggregateModalChildrenIpsDescription": "Durch diese Aktion werden die folgenden Subnetze aggregiert:",
-  "aggregateSuccessMessage": "Ihr IP-Block wird aggregiert. Bitte aktualisieren Sie in einigen Minuten.",
-  "noAggregateSliceAvailable": "Es ist keine Segmentierungs-/Aggregationskonfiguration verfügbar. Weitere Informationen finden Sie in unserem Guide: ",
-  "noAggregateLinkLabel": "hier",
-  "sliceModalTitle": "Den Block {{ ip }} segmentieren",
-  "sliceModalDescription": "Bitte geben Sie die gewünschte Größe für die untergeordneten Blöcke an.",
-  "sliceModalChildrenIpsDescription": "Mit dieser Konfiguration werden die folgenden Blöcke erstellt",
-  "sliceSuccessMessage": "Ihr IP-Block wird segmentiert. Bitte aktualisieren Sie in einigen Minuten."
+  "aggregateModalTitle": "Aggregieren Sie den Block {{ ip }}",
+  "aggregateModalDescription": "Bitte geben Sie den gewünschten übergeordneten Block an",
+  "aggregateModalChildrenIpsDescription": "Diese Aktion führt zur Aggregation der folgenden Subnetze:",
+  "aggregateSuccessMessage": "Ihr IP-Block wird aggregiert. Bitte aktualisieren Sie in ein paar Minuten.",
+  "noAggregateSliceAvailable": "Keine Segmentierungs-/Aggregierungskonfiguration verfügbar. Für weitere Informationen konsultieren Sie bitte unser Handbuch: ",
+  "noAggregateLinkLabel": "hier.",
+  "sliceModalTitle": "Segmentieren Sie den Block {{ ip }}",
+  "sliceModalDescription": "Bitte geben Sie die gewünschte Größe der Kindblöcke an",
+  "sliceModalChildrenIpsDescription": "Diese Konfiguration führt zur Erstellung der folgenden Blöcke",
+  "sliceSuccessMessage": "Ihr IP-Block wird segmentiert. Bitte aktualisieren Sie in ein paar Minuten."
 }

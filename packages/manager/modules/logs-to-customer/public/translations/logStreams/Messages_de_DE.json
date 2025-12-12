@@ -1,17 +1,17 @@
 {
-  "log_streams_title": "Streams",
-  "log_streams_back_button": "Zurück zu den Logs",
-  "log_streams_select_account": "LDP Account auswählen",
-  "log_streams_account_label": "LDP Account",
-  "log_streams_add_stream": "Stream erstellen",
+  "log_streams_title": "Datenfluss",
+  "log_streams_back_button": "Zurück zu den Protokollen",
+  "log_streams_select_account": "LDP-Konto auswählen",
+  "log_streams_account_label": "LDP-Konto",
+  "log_streams_add_stream": "Einen Datenfluss erstellen",
   "log_streams_filter": "Filtern",
-  "log_streams_colomn_name": "Streams",
+  "log_streams_colomn_name": "Datenfluss",
   "log_streams_colomn_description": "Beschreibung",
   "log_streams_colomn_indexation": "Indizierung",
   "log_streams_colomn_retention": "Aufbewahrung",
   "log_streams_colomn_subscriptions": "Abonnements",
-  "log_streams_no_results": "Kein Stream für diesen LDP Account",
+  "log_streams_no_results": "Kein Datenfluss auf diesem LDP-Konto",
   "log_streams_subscribe": "Abonnieren",
   "log_streams_unsubscribe": "Abmelden",
-  "log_streams_subscription_disabled_tooltip": "Das Abonnement für einen Teildatenstrom ist nicht verfügbar."
+  "log_streams_subscription_disabled_tooltip": "Das Abonnement für einen Unterdatenfluss ist nicht verfügbar."
 }

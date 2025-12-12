@@ -1,6 +1,6 @@
 {
   "breadcrumb_root_label": "Wszystkie adresy IP",
-  "order": "Zamów IP",
+  "order": "Zamów adres IP",
   "byoip": "BYOIP",
   "free_price": "Gratis",
   "task_error_message": "Status zadania: {{status}}. Komentarz: {{comment}}",

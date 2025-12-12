@@ -1,5 +1,5 @@
 {
-  "discoveryMode": "Atualmente, está no modo “Descoberta”. Para aceder aos produtos {{type}} disponibilizados pela OVHcloud, deve ativar o seu projeto.",
+  "discoveryMode": "Está atualmente em modo «Descoberta». Para aceder aos produtos {{type}} propostos pela OVHcloud, deve ativar o seu projeto.",
   "discoveryModeActivate": "Ative o seu projeto",
   "authActivateProjectButton": "Ativar o seu projeto AI",
   "authDescription": "De modo a utilizar os serviços AI da OVHcloud, deve autenticar-se antes de criar o seu primeiro notebook, job ou app.",

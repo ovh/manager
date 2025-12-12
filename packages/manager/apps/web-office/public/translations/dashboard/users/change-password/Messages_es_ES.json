@@ -14,5 +14,5 @@
   "dashboard_users_change_password_message_error": "Se ha producido un error al cargar la información.",
   "dashboard_users_change_password_message_success": "El cambio de contraseña se ha registrado correctamente.",
   "dashboard_users_change_password_generate_password_tooltip": "Generar una contraseña",
-  "dashboard_users_change_password_generated_password_tooltip": "La contraseña se ha copiado al portapapeles."
+  "dashboard_users_change_password_generated_password_tooltip": "¡Contraseña copiada en el portapapeles!"
 }

@@ -26,6 +26,6 @@
   "pci_workflow_id": "ID",
   "pci_workflow_backup": "Backup",
   "pci_workflow_backup_local": "Local",
-  "pci_workflow_backup_local_and_distant": "Local, remoto",
+  "pci_workflow_backup_local_and_distant": "Local, distante",
   "pci_workflow_localisation": "Localização"
 }

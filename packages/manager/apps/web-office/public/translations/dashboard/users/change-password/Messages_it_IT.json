@@ -13,6 +13,6 @@
   "dashboard_users_change_password_email-edit": "Invia per email",
   "dashboard_users_change_password_message_error": "Si è verificato un errore durante il recupero delle informazioni.",
   "dashboard_users_change_password_message_success": "La modifica della password è stata presa in carico.",
-  "dashboard_users_change_password_generate_password_tooltip": "Generare una password",
-  "dashboard_users_change_password_generated_password_tooltip": "Password copiata negli appunti"
+  "dashboard_users_change_password_generate_password_tooltip": "Genera una password",
+  "dashboard_users_change_password_generated_password_tooltip": "Password copiata negli appunti!"
 }

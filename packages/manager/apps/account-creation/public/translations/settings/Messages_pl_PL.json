@@ -4,8 +4,8 @@
   "country_setting": "Kraj rezydencji podatkowej",
   "currency_setting": "Waluta",
   "site_setting": "Strona WWW (język)",
-  "setting_description": "W zależności od kraju rezydencji podatkowej wybierasz stronę internetową, na której zawierasz umowę i wybierasz produkty. Waluta rozliczeń zależy od wybranej strony.",
-  "setting_description_list_first": "1. Jeśli jesteś klientem zarejestrowanym jako podatnik VAT, GST lub podatku równoważnego, Twoim krajem rezydencji podatkowej jest kraj, w którym dokonałeś rejestracji.",
-  "setting_description_list_second": "2. Jeśli nie jesteś zarejestrowany jako podatnik VAT, GST lub podatku równoważnego, ale jesteś zarejestrowany jako przedsiębiorca, Twoim krajem rezydencji podatkowej jest kraj, w którym dokonałeś tej rejestracji.",
-  "setting_description_list_last": "3. Jeśli nie jesteś zarejestrowany jako podatnik VAT, GST lub podatku równoważnego i nie zarejestrowałeś się jako przedsiębiorca, Twoim krajem rezydencji podatkowej jest kraj wskazany w adresie rozliczeniowym. Zgodnie z obowiązującymi przepisami OVHcloud może porównywać te informacje z adresem IP lub krajem prowadzenia rachunku bankowego użytego do płatności. W przypadku rozbieżności OVHcloud może skontaktować się z Tobą w celu potwierdzenia kraju rezydencji podatkowej."
+  "setting_description": "W zależności od kraju zamieszkania, masz możliwość wyboru strony internetowej, na której możesz zawrzeć umowę i wybrać swoje produkty. Waluta rozliczeniowa będzie również związana z wybraną stroną internetową.",
+  "setting_description_list_first": "1 . Jeśli jesteś klientem zarejestrowanym do VAT, GST lub podobnego podatku, twój kraj zamieszkania odpowiada krajowi, w którym jesteś zarejestrowany.",
+  "setting_description_list_second": "2 . Jeśli jesteś klientem niezarejestrowanym do VAT, GST lub innego podobnego podatku, ale jesteś zarejestrowany jako „przedsiębiorca”, twój kraj zamieszkania odpowiada krajowi, w którym jesteś zarejestrowany jako przedsiębiorca (numer identyfikacji podatkowej).",
+  "setting_description_list_last": "3 . Jeśli jesteś klientem niezarejestrowanym do VAT, GST lub innego podobnego podatku, twój kraj zamieszkania zasadniczo odpowiada temu, który znajduje się na twoim adresie rozliczeniowym. Zgodnie z obowiązującym prawem, OVH może być zobowiązane do zestawienia tych informacji z twoim adresem IP lub z danymi bankowymi twojego środka płatniczego. W przypadku niezgodności, OVH może skontaktować się z tobą w celu potwierdzenia twojego kraju zamieszkania."
 }

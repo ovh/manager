@@ -6,6 +6,6 @@
   "dbaas_logs_account_setup_title": "Configurar a sua conta LDP",
   "dbaas_logs_account_setup_enable_iam": "Ativar o IAM OVHcloud",
   "dbaas_logs_account_setup_select_password": "Escolher uma palavra-passe",
-  "dbaas_logs_account_setup_select_password_alert_title": "Próxima evolução",
-  "dbaas_logs_account_setup_select_password_alert_detail": "Em breve, esta opção será retirada em benefício da IAM OVHcloud, a nova solução de gestão das identidades e dos acessos. Convidamo-lo a adotar já o IAM OVHcloud, a fim de assegurar uma transição fluida e sem interrupção de serviço."
+  "dbaas_logs_account_setup_select_password_alert_title": "Evolução futura",
+  "dbaas_logs_account_setup_select_password_alert_detail": "Esta opção será removida em breve em favor do IAM OVHcloud, a nova solução de gestão de identidades e acessos. Convidamo-lo a adotar já o IAM OVHcloud para garantir uma transição suave e sem interrupção de serviço."
 }

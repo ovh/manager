@@ -3,9 +3,9 @@
   "price_ttc_label": "INCL. VAT",
   "price_from_label": "from ",
   "price_free": "Included",
-  "price_gst_excl_label": "ex. GST",
-  "price_gst_incl_label": "incl. GST",
-  "price_per_month": "/month",
+  "price_gst_excl_label": "ex. VAT",
+  "price_gst_incl_label": "incl. VAT",
+  "price_per_month": "/Month",
   "price_per_year": "/year",
   "price_per_day": "/day"
 }

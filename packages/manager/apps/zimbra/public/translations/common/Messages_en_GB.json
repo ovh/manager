@@ -146,7 +146,7 @@
   "contactInformation_postcode": "Postcode",
   "contactInformation_city": "City",
   "contactInformation_country": "Country",
-  "redirections": "Redirects",
-  "delete_redirections": "Delete redirects",
-  "delete_email_accounts": "Delete accounts"
+  "redirections": "Redirections",
+  "delete_redirections": "Delete the redirects",
+  "delete_email_accounts": "Delete the accounts"
 }

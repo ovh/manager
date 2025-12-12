@@ -16,8 +16,8 @@
   "billing_resiliate_error": "Lamentamos, mas ocorreu um erro aquando do pedido de rescisão:",
   "billing_resiliate_terminateAtEngagementDate_us": "Rescindir o serviço na data de fim do compromisso",
   "billing_resiliate_terminateAtEngagementDate_error_us": "Ocorreu um erro aquando do pedido de rescisão à data de fim do compromisso deste serviço:",
-  "billing_resiliate_mode_label_us": "Selecionar a ação que deseja efetuar",
-  "billing_resiliate_terminate_us": "Rescindir o meu serviço agora",
-  "billing_resiliate_terminateAtExpirationDate_us": "Rescindir o meu serviço uma vez terminado o meu compromisso",
-  "billing_resiliate_confirmation_mail_to_be_sent": "Receberá o e-mail da confirmação da rescisão do serviço"
+  "billing_resiliate_mode_label_us": "Selecione a ação que deseja realizar",
+  "billing_resiliate_terminate_us": "Cancelar o meu serviço agora",
+  "billing_resiliate_terminateAtExpirationDate_us": "Cancelar o meu serviço uma vez que o meu compromisso tenha terminado",
+  "billing_resiliate_confirmation_mail_to_be_sent": "Um e-mail a confirmar o cancelamento do seu serviço será enviado"
 }

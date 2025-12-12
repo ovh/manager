@@ -40,6 +40,6 @@
   "validation_pending_contact_email_info": "Se ha enviado un enlace de validación a <strong>{{email}}</strong>.",
   "validation_pending_resend_validation_code_label": "Reenviar el enlace de validación",
   "validation_pending_validate_contact_label": "Introducir el código",
-  "activate_contact_success_message": "El contacto se ha activado con éxito.",
+  "activate_contact_success_message": "El contacto ha sido activado con éxito.",
   "activate_contact_error_message": "Se ha producido un error al activar el contacto."
 }

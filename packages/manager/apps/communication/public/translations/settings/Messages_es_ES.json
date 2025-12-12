@@ -1,6 +1,6 @@
 {
-  "rule_form_rule_continue_label": "Y continuar el tratamiento de reglas",
-  "rule_form_rule_continue_tooltip": "Cuando se cumplen las condiciones de esta regla, se aplica. <br>Si esta opción está activada, las siguientes reglas también se evaluarán. <br>De lo contrario, la evaluación se detiene aquí.",
+  "rule_form_rule_continue_label": "Y continuar el procesamiento de reglas",
+  "rule_form_rule_continue_tooltip": "Cuando se cumplan las condiciones de esta regla, se aplicará. <br>Si esta opción está activada, las siguientes reglas también serán evaluadas. <br>De lo contrario, la evaluación se detiene aquí.",
   "description": "Defina sus reglas de difusión para elegir qué contactos recibirán las comunicaciones, según las categorías y prioridades que seleccione.",
   "table_column_name": "Nombre",
   "table_column_status": "Estado",

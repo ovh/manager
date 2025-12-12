@@ -2,5 +2,5 @@
   "log_service_displayname_tile_label": "Nome visualizzato",
   "log_service_username_tile_label": "Utente",
   "log_service_create": "Crea un account",
-  "log_service_no_service_description": "Per attivare questo trasferimento è prima necessario creare un account Logs Data Platform e un primo flusso di dati."
+  "log_service_no_service_description": "Per attivare questo trasferimento, devi prima creare un account Logs Data Platform e un primo flusso di dati."
 }

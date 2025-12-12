@@ -1,11 +1,11 @@
 {
-  "price_ht_label": "ohne MwSt.",
-  "price_ttc_label": "inkl. MwSt.",
+  "price_ht_label": "Ohne MwSt",
+  "price_ttc_label": "&amp;#160;(inkl. MwSt.)",
   "price_from_label": "ab ",
   "price_free": "Inklusive",
-  "price_gst_excl_label": "ohne GST",
-  "price_gst_incl_label": "inkl. GST",
-  "price_per_month": "/Monat",
-  "price_per_year": "/Jahr",
-  "price_per_day": "/Tag"
+  "price_gst_excl_label": "z. B. MwSt",
+  "price_gst_incl_label": "inkl. MwSt",
+  "price_per_month": "/ Monat",
+  "price_per_year": "&amp;#160;/ Jahr",
+  "price_per_day": "&amp;#160;/ Tag"
 }

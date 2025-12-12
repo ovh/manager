@@ -1,17 +1,17 @@
 {
-  "log_streams_title": "Flujos de datos",
-  "log_streams_back_button": "Volver a los logs",
+  "log_streams_title": "Flujo de datos",
+  "log_streams_back_button": "Volver a los registros",
   "log_streams_select_account": "Seleccionar la cuenta LDP",
   "log_streams_account_label": "Cuenta LDP",
   "log_streams_add_stream": "Crear un flujo de datos",
   "log_streams_filter": "Filtrar",
-  "log_streams_colomn_name": "Flujos de datos",
+  "log_streams_colomn_name": "Flujo de datos",
   "log_streams_colomn_description": "Descripción",
   "log_streams_colomn_indexation": "Indexación",
   "log_streams_colomn_retention": "Retención",
   "log_streams_colomn_subscriptions": "Suscripciones",
-  "log_streams_no_results": "No hay ningún flujo de datos en esta cuenta LDP",
-  "log_streams_subscribe": "Suscribirse",
-  "log_streams_unsubscribe": "Anular la suscripción",
-  "log_streams_subscription_disabled_tooltip": "La suscripción a un subflujo de datos no está disponible."
+  "log_streams_no_results": "No hay flujo de datos en esta cuenta LDP",
+  "log_streams_subscribe": "Suscribirme",
+  "log_streams_unsubscribe": "Darse de baja",
+  "log_streams_subscription_disabled_tooltip": "La suscripción a un sub-flujo de datos no está disponible."
 }

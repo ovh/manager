@@ -844,11 +844,11 @@
   "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc": "Indica il server e i parametri di connessione da utilizzare per accedere a un servizio su un nome di dominio.",
   "domain_configuration_dns_entry_add_step1_helpwizard_rp": "RP",
   "domain_configuration_dns_entry_add_step1_helpwizard_rp_desc": "Permette di dichiarare l'email della persona responsabile del nome di dominio.",
-  "domain_configuration_dns_entry_add_rp_mbox": "Contatto",
+  "domain_configuration_dns_entry_add_rp_mbox": "Contatti",
   "domain_configuration_dns_entry_add_rp_txt_dname": "Info",
   "domain_configuration_dns_entry_add_svcb_priority": "Priorità",
-  "domain_configuration_dns_entry_add_svcb_target": "Destinazione",
-  "domain_configuration_dns_entry_add_svcb_params": "Impostazioni",
-  "domain_configuration_dns_entry_add_svcb_priority_help": "La priorità 0 indica la modalità alias. Qualsiasi altro valore corrisponde alla modalità servizio.",
-  "domain_configuration_dns_entry_add_svcb_params_help": "Se la priorità è 0, questo campo deve restare vuoto. In caso contrario, il formato sarà il seguente: ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
+  "domain_configuration_dns_entry_add_svcb_target": "Target",
+  "domain_configuration_dns_entry_add_svcb_params": "Parametri",
+  "domain_configuration_dns_entry_add_svcb_priority_help": "Una priorità di 0 indica la modalità alias. Qualsiasi altro valore corrisponde alla modalità servizio.",
+  "domain_configuration_dns_entry_add_svcb_params_help": "Se la priorità è uguale a 0, questo campo deve rimanere vuoto. Altrimenti, il formato è il seguente ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
 }

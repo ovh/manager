@@ -1,6 +1,6 @@
 {
   "title": "Wiadomości",
-  "description": "Znajdziesz tutaj wszystkie wiadomości wysłane do Ciebie przez OVHcloud, poza korespondencją z działem pomocy. Możesz je sprawdzić w sekcji: <anchor>Pomoc</anchor>",
+  "description": "Znajdź wszystkie komunikaty, które OVHcloud do Ciebie wysłał, z wyjątkiem próśb o pomoc. Możesz je przeglądać w sekcji: <anchor>Wsparcie</anchor>",
   "assistance_link_label": "Pomoc",
   "tab_communications": "Wiadomości",
   "tab_contacts": "Kontakty",

@@ -1,6 +1,6 @@
 {
-  "breadcrumb_root_label": "Todas las IP",
-  "order": "Contratar una IP",
+  "breadcrumb_root_label": "Todas las IPs",
+  "order": "Solicitar una IP",
   "byoip": "BYOIP",
   "free_price": "Gratis",
   "task_error_message": "Estado de la tarea: {{status}}. Comentario: {{comment}}",
