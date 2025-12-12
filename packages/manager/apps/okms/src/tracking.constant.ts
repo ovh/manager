@@ -1,3 +1,5 @@
+import { APP_NAME } from './App.constants';
+
 export const LEVEL2 = {
   EU: {
     config: {
@@ -15,6 +17,13 @@ export const LEVEL2 = {
     },
   },
 };
-export const UNIVERSE = 'identity-security-operation';
-export const SUB_UNIVERSE = 'kms';
-export const APP_NAME = 'kms';
+export const UNIVERSE = 'identity-security-operations';
+
+export const TRACKING_CONTEXT = {
+  chapter1: UNIVERSE,
+  chapter2: APP_NAME,
+  chapter3: APP_NAME,
+  appName: APP_NAME,
+  pageTheme: UNIVERSE,
+  level2Config: LEVEL2,
+};
