@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.2...@ovh-ux/manager-pci-workflow-app@0.11.3) (2025-12-12)
+
+
+### Bug Fixes
+
+* **pci-workflow:** change workflow planing rotation description ([f55d256](https://github.com/ovh/manager/commit/f55d25658f062c595abc95febe1aaab912da49f1)), closes [#TAPC-5443](https://github.com/ovh/manager/issues/TAPC-5443)
+* **pci-workflow:** fix linter ([d8eb497](https://github.com/ovh/manager/commit/d8eb497b092218a1a44f6c21c013aab993162197)), closes [#TAPC-5443](https://github.com/ovh/manager/issues/TAPC-5443)
+* **pci-workflow:** make region selector required ([768b326](https://github.com/ovh/manager/commit/768b3262478b161027ae1ce2bdde7d2bb8f4cd2b)), closes [#TAPC-5416](https://github.com/ovh/manager/issues/TAPC-5416)
+* **pci-workflow:** remove notification from configuration page ([97e0dba](https://github.com/ovh/manager/commit/97e0dba63b6e5e5f1d2ae405fbfbf5fd468bbd39)), closes [#TAPC-5414](https://github.com/ovh/manager/issues/TAPC-5414)
+
+
+
+
+
 ## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.1...@ovh-ux/manager-pci-workflow-app@0.11.2) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
