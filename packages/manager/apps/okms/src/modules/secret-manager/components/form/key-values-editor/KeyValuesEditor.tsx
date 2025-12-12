@@ -22,10 +22,15 @@ export type FormFieldInput = {
   data: string;
 };
 
+type KeyValuesEditorProps<T extends FormFieldInput> = UseControllerProps<T> & {
+  allowDeleteLastItem?: boolean;
+};
+
 export const KeyValuesEditor = <T extends FormFieldInput>({
   name,
   control,
-}: UseControllerProps<T>) => {
+  allowDeleteLastItem = false,
+}: KeyValuesEditorProps<T>) => {
   const { t } = useTranslation(['secret-manager']);
   const { field, fieldState } = useController({ name, control });
   const { setError, clearErrors } = useFormContext(); // Requires a form provider to be present
@@ -93,7 +98,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
             onChange={(item) => handleItemChange(index, item)}
             onDelete={() => handleDeleteItem(index)}
             onBlur={handleItemBlur}
-            isDeletable={keyValuePairs.length > 1}
+            isDeletable={allowDeleteLastItem ? true : keyValuePairs.length > 1}
           />
         ))}
       </OdsFormField>
