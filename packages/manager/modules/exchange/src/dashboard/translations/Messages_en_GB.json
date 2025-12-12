@@ -1382,8 +1382,8 @@
   "exchange_ACTION_configure_help_putinjunk_text": "Automatically moves emails identified as SPAM to the junk folder. ",
   "exchange_ACTION_display_pst_check_existing_export": "Checking for any exports in progress. Please wait.",
   "exchange_ACTION_display_pst_wait_label": "It may take several hours to export to a .pst file. You may check the progress at any time in this window (you can close it and re-open it later).",
-  "exchange_ACTION_display_pst_get_file": "Your file is now available. You can download via this URL: IMPORTANT: This URL is only valid for a period of 30 minutes.",
-  "exchange_ACTION_display_pst_start": "Launch the export",
+  "exchange_ACTION_display_pst_get_file": "Your <strong>{{ currentEmail }}</strong> account is now available in .pst format.",
+  "exchange_ACTION_display_pst_start": "Download",
   "exchange_ACTION_display_pst_progress": "Your export is in progress: {0}% complete.",
   "exchange_ACTION_display_pst_export_done": ".pst file export complete. You can now download it.",
   "exchange_ACTION_display_pst_genlink": "Generating the link.",
@@ -1393,9 +1393,9 @@
   "exchange_ACTION_display_pst_retry": "Try again now",
   "exchange_ACTION_display_pst_error": "The .pst file export failed. Please try again.",
   "exchange_ACTION_display_pst_already_exist": "There is already an existing .pst file for this email account:",
-  "exchange_ACTION_display_pst_ask_generate_new": "Do you wish to create a new export in .pst format?",
-  "exchange_ACTION_display_pst_warning_erase": "Warning - this action will replace the existing file.",
-  "exchange_ACTION_add_pst_title": "Export as .pst",
+  "exchange_ACTION_display_pst_ask_generate_new": "Want to generate a new export for your account?",
+  "exchange_ACTION_display_pst_warning_erase": "This action will <strong>automatically and directly delete</strong> the last .pst file.",
+  "exchange_ACTION_add_pst_title": "Export in .pst format",
   "exchange_action_order_space_disk_title": "Order additional space ",
   "exchange_action_order_space_disk_intro": "You can order an additional disk space",
   "exchange_action_order_space_disk_price": "Total price ex. VAT:",
@@ -1687,5 +1687,7 @@
   "exchange_reset_mfa_success": "The two-factor authentication has been successfully reset.",
   "exchange_mfa_error": "An error has occurred: {{error}}",
   "exchange_delete_mfa_success": "The two-factor authentication was successfully deleted.",
-  "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}"
+  "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}",
+  "exchange_ACTION_display_pst_message_info": "The file download is <strong>available until {{ expirationDate }} at {{ expirationHour }}</strong>. After this period, the file will be automatically deleted.",
+  "exchange_ACTION_display_pst_ask_generate_new_link": "Start a new export"
 }
