@@ -1,6 +1,6 @@
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
 
-import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
+import { getTenantDetails } from '@/data/api/tenants/tenants.requests';
 import { Resource } from '@/types/Resource.type';
 import { Tenant } from '@/types/Tenant.type';
 import { WithRegion } from '@/types/Utils.type';
@@ -25,11 +25,7 @@ export const useBackupTenantDetails = ({
   >
 >) =>
   useQuery({
-    queryFn: () =>
-      new Promise<Resource<Tenant>>((resolve, reject) => {
-        const result = TENANTS_MOCKS.find((tenant) => tenant.id === tenantId);
-        result ? resolve(result) : reject(new Error('Tenant not found'));
-      }),
+    queryFn: () => getTenantDetails(tenantId),
     queryKey: BACKUP_TENANT_DETAILS_QUERY_KEY(tenantId),
     select: (data): Resource<WithRegion<Tenant>> =>
       mapTenantResourceToTenantResourceWithRegion(data),

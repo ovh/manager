@@ -25,7 +25,7 @@ export default function AgentsListingPage() {
   ]);
   const navigate = useNavigate();
   const columns = useAgentsListingColumnsHooks();
-  const { flattenData, isLoading } = useBackupAgentList(); // TODO: unmock (useVSPCTenants)
+  const { flattenData, isLoading } = useBackupAgentList();
 
   const handleDownloadButton = () => {
     navigate(urls.downloadAgentBackup.replace(urlParams.tenantId, tenantId ?? ''));

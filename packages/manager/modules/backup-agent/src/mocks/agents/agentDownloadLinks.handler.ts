@@ -10,7 +10,7 @@ export const getAgentDownloadLinksMocks = ({
   isAgentDownloadLinksError = false,
 }: TAgentDownloadLinkMockParams = {}): Handler[] => [
   {
-    url: '/backup/tenant/vspc/:vspcTenantId/backupAgent',
+    url: '/backupServices/tenant/vspc/:vspcTenantId/backupAgent',
     response: () => {
       return isAgentDownloadLinksError ? null : mockAgentDownloadLinks;
     },

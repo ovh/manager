@@ -10,7 +10,7 @@ export const getTenantBackupPolicieMocks = ({
   isTenantBackupPoliciesError = false,
 }: TTenantBackupPolicieMockParams = {}): Handler[] => [
   {
-    url: '/backup/tenant/vspc/:vspcTenantId/backupPolicies',
+    url: '/backupServices/tenant/vspc/:vspcTenantId/backupPolicies',
     response: () => {
       return isTenantBackupPoliciesError ? null : mockTenantBackupPolicies;
     },
