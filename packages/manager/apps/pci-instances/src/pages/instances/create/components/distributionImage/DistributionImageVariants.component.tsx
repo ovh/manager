@@ -152,7 +152,7 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
               available,
               value,
               osType,
-              windowsHourlyPrice,
+              windowsHourlyLicensePrice,
               windowsId,
             }) => {
               // eslint-disable-next-line react/no-multi-comp
@@ -183,11 +183,15 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
                         >
                           <span className="max-w-full flex-1 pr-8">
                             {label}
-                            {windowsHourlyPrice && (
+                            {windowsHourlyLicensePrice && (
                               <Text className="text-sm font-medium text-[--ods-color-success-500]">
                                 {t(
-                                  'creation:pci_instance_creation_windows_image_hourly_price',
-                                  { price: getTextPrice(windowsHourlyPrice) },
+                                  'creation:pci_instance_creation_windows_image_hourly_license_price',
+                                  {
+                                    price: getTextPrice(
+                                      windowsHourlyLicensePrice,
+                                    ),
+                                  },
                                 )}
                               </Text>
                             )}

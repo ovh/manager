@@ -83,7 +83,6 @@ export type TPriceDTO = {
   type: 'hour' | 'month' | 'licence';
   price: TPriceDetailsDTO;
   includeVat: boolean;
-  hourlyVcoreEquivalent: TPriceDetailsDTO | null;
   monthlyEquivalent: TPriceDetailsDTO | null;
 };
 

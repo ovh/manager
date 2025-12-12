@@ -237,7 +237,6 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
                 value: 0.0465,
               },
               includeVat: false,
-              hourlyVcoreEquivalent: null,
             },
           ],
         },
@@ -254,7 +253,6 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
                 value: 0.0465,
               },
               includeVat: false,
-              hourlyVcoreEquivalent: null,
               monthlyEquivalent: {
                 currencyCode: 'EUR',
                 priceInUcents: 366670000,
@@ -277,7 +275,6 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
                 value: 0.0465,
               },
               includeVat: false,
-              hourlyVcoreEquivalent: null,
               monthlyEquivalent: {
                 currencyCode: 'EUR',
                 priceInUcents: 366670000,
@@ -295,12 +292,6 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
               },
               includeVat: false,
               monthlyEquivalent: null,
-              hourlyVcoreEquivalent: {
-                currencyCode: 'EUR',
-                priceInUcents: 670000,
-                text: '0.0067 €',
-                value: 0.006667,
-              },
             },
           ],
         },
@@ -601,7 +592,6 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
                   text: '3.67 €',
                   value: 3.6667,
                 },
-                hourlyVcoreEquivalent: null,
               },
             ],
           },
@@ -620,7 +610,6 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
                   priceInUcents: 4650000,
                   text: '0.04 €',
                 },
-                hourlyVcoreEquivalent: null,
                 monthlyEquivalent: {
                   currencyCode: 'EUR',
                   priceInUcents: 366670000,
@@ -645,7 +634,6 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
                   priceInUcents: 4650000,
                   text: '0.05 €',
                 },
-                hourlyVcoreEquivalent: null,
                 monthlyEquivalent: {
                   currencyCode: 'EUR',
                   priceInUcents: 366670000,
@@ -663,12 +651,6 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
                   text: '5 €',
                 },
                 monthlyEquivalent: null,
-                hourlyVcoreEquivalent: {
-                  currencyCode: 'EUR',
-                  priceInUcents: 670000,
-                  text: '0.0067 €',
-                  value: 0.006667,
-                },
               },
             ],
           },

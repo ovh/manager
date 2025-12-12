@@ -39,7 +39,7 @@ export type TImageOption = {
   available: boolean;
   osType: TImageOsType;
   windowsId?: string;
-  windowsHourlyPrice?: number;
+  windowsHourlyLicensePrice?: number;
 };
 
 export type TCustomData = { available: boolean };
@@ -228,18 +228,18 @@ const createWindowsImageVariant = (
       `${imageId}_${microRegion}`,
     )?.imageId;
 
-    const windowsHourlyPrice = entities.flavorPrices.byId
+    const windowsHourlyLicensePrice = entities.flavorPrices.byId
       .get(`${regionalizedFlavorWindowsId}_price`)
-      ?.prices.find((price) => price.type === 'licence')?.hourlyVcoreEquivalent;
+      ?.prices.find((price) => price.type === 'licence')?.price.priceInUcents;
 
-    if (!windowsVersionId || !windowsHourlyPrice) return acc;
+    if (!windowsVersionId || !windowsHourlyLicensePrice) return acc;
 
     acc.set(imageId, {
       label: imageId,
       value: imageId,
       windowsId: windowsVersionId,
       available: hasWindowsStock,
-      windowsHourlyPrice: windowsHourlyPrice.priceInUcents,
+      windowsHourlyLicensePrice,
       osType: image.osType,
     });
   });

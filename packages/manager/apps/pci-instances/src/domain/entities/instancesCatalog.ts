@@ -101,7 +101,6 @@ export type TPrice = {
   type: 'hour' | 'month' | 'licence';
   includeVat: boolean;
   price: TPriceDetails;
-  hourlyVcoreEquivalent: TPriceDetails | null;
   monthlyEquivalent: TPriceDetails | null;
 };
 
