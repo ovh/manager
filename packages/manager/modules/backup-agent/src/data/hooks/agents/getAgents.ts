@@ -1,7 +1,10 @@
-import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
-import { mockAgents } from '@/mocks/agents/agents';
+import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 
-// Remove during unmocking
+import { getBackupAgentsListRoute } from '@/data/api/agents/agents.requests';
+import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
+import { Agent } from '@/types/Agent.type';
+import { Resource } from '@/types/Resource.type';
+
 export const BACKUP_AGENTS_LIST_QUERY_KEY = (tenantId: string) => [
   ...BACKUP_TENANT_DETAILS_QUERY_KEY(tenantId),
   'agents',
@@ -9,15 +12,16 @@ export const BACKUP_AGENTS_LIST_QUERY_KEY = (tenantId: string) => [
 
 export const useBackupAgentList = (
   {
-    // tenantId
-    // pageSize,
+    tenantId,
+    pageSize,
   }: {
+    tenantId?: string;
     pageSize: number;
-    tenantId: string;
   } = { pageSize: 9999 },
-) => ({ flattenData: mockAgents, isLoading: false });
-// useResourcesIcebergV2<VaultResource>({
-//   route: getBackupAgentsList(tenantId),
-//   queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(tenantId),
-//   pageSize,
-// });
+) =>
+  useResourcesIcebergV2<Resource<Agent>>({
+    route: getBackupAgentsListRoute(tenantId!),
+    queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(tenantId!),
+    enabled: !!tenantId,
+    pageSize,
+  });
