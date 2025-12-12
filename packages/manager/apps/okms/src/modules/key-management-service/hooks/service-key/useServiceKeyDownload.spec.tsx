@@ -46,17 +46,9 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
-
-  return {
-    ...mod,
-    useOvhTracking: vi.fn(() => ({
-      trackClick: mockTrackClick,
-      trackPage: vi.fn(),
-    })),
-  };
-});
+vi.mock('@/common/hooks/useOkmsTracking', () => ({
+  useOkmsTracking: () => ({ trackClick: mockTrackClick }),
+}));
 
 vi.mock('@key-management-service/data/hooks/useOkmsServiceKeys', () => ({
   useOkmsServiceKeyById: (...args: unknown[]) =>

@@ -20,13 +20,14 @@ import {
   ErrorBanner,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
 import {
   TabNavigation,
   TabNavigationItem,
 } from '@/common/components/tab-navigation/TabNavigation.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
@@ -38,7 +39,7 @@ export default function ServiceKeyDashboard() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const { data: okms, isPending: isLoadingOkms, error: okmsError } = useOkmsById(okmsId);
 

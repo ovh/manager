@@ -2,16 +2,18 @@ import { Suspense, useContext, useEffect } from 'react';
 
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 
-import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 import { APP_NAME } from '@/App.constants';
+
+import { useOkmsTracking } from '../hooks/useOkmsTracking';
 
 export default function MainLayout() {
   const location = useLocation();
   const matches = useMatches();
   const { shell } = useContext(ShellContext);
-  const { trackCurrentPage } = useOvhTracking();
+  const { trackCurrentPage } = useOkmsTracking();
 
   // Keep shell route state in sync with React Router
   useRouteSynchro();

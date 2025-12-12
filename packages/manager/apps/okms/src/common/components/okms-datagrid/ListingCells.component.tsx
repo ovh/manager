@@ -9,9 +9,10 @@ import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { Link } from '@/common/components/link/Link.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { OKMS_LIST_CELL_TEST_IDS } from './ListingCells.constants';
 import { OkmsDatagridType } from './okmsDatagrid.type';
@@ -27,32 +28,29 @@ export const DatagridCellId = (okms: OKMS) => {
 };
 
 export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => {
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
-  const urls: Record<OkmsDatagridType, string> = {
-    kms: KMS_ROUTES_URLS.kmsDashboard(okms.id),
-    'secret-manager': SECRET_MANAGER_ROUTES_URLS.secretList(okms.id),
-  };
-  const tracking: Record<OkmsDatagridType, string> = {
-    kms: 'go-to-kms',
-    'secret-manager': '',
+  const links: Record<OkmsDatagridType, { href: string; tracking: string }> = {
+    kms: { href: KMS_ROUTES_URLS.kmsDashboard(okms.id), tracking: 'go-to-kms' },
+    'secret-manager': {
+      href: SECRET_MANAGER_ROUTES_URLS.secretList(okms.id),
+      tracking: 'go-to-secret-list',
+    },
   };
 
   return (
     <Link
-      href={urls[type]}
+      href={links[type].href}
       label={okms.iam.displayName}
       isRouterLink
       data-testid={OKMS_LIST_CELL_TEST_IDS.name(okms.id)}
       onClick={() => {
-        if (tracking[type].length > 0) {
-          trackClick({
-            location: PageLocation.datagrid,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: [tracking[type]],
-          });
-        }
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: [links[type].tracking],
+        });
       }}
     />
   );
