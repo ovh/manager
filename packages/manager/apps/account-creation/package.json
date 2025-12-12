@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-creation-app",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "private": true,
   "description": "Application used to finalize an account creation",
   "repository": {
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
-    "@ovh-ux/manager-common-translations": "^0.24.3",
+    "@ovh-ux/manager-common-translations": "^0.25.0",
     "@ovh-ux/manager-config": "^8.8.2",
     "@ovh-ux/manager-core-api": "^0.20.1",
     "@ovh-ux/manager-core-utils": "^0.4.10",
