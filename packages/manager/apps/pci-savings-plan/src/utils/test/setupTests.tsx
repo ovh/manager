@@ -48,3 +48,28 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
     }),
   };
 });
+
+type ElementInternalsLike = {
+  form: HTMLFormElement | null;
+  states: Set<string>;
+  setFormValue(value: unknown, state?: unknown): void;
+  setValidity(
+    flags?: Record<string, boolean>,
+    message?: string,
+    anchor?: HTMLElement | null,
+  ): void;
+};
+
+if (!HTMLElement.prototype.attachInternals) {
+  // avoid reimplementing the full attachInternals content
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  HTMLElement.prototype.attachInternals = (): ElementInternalsLike => {
+    return {
+      form: null,
+      states: new Set<string>(),
+      setFormValue: () => {},
+      setValidity: () => {},
+    };
+  };
+}

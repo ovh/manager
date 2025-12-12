@@ -21,8 +21,7 @@
     // "strictNullChecks": true,
     // "exactOptionalPropertyTypes": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],

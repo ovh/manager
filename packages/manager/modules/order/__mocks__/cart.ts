@@ -1,6 +1,6 @@
-import { Handler } from '../../../../../playwright-helpers';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
+import { getParamsFromUrl } from './test-helpers';
 import { Cart, Item } from '../src';
-import { getParamsFromUrl } from '../../../../../playwright-helpers/network';
 
 const getCart = (): Cart => {
   const expire = new Date();
@@ -20,7 +20,7 @@ const getVrackItem = (request: Request, params: { id: string }): Item => ({
   configurations: [],
   duration: 'P1M',
   itemId: 111111111,
-  offerId: null as unknown as string,
+  offerId: (null as unknown) as string,
   options: [],
   prices: [
     {
@@ -49,7 +49,7 @@ const getVrackServicesItem = (
   configurations: [],
   duration: 'P1M',
   itemId: 222222222,
-  offerId: null as unknown as string,
+  offerId: (null as unknown) as string,
   options: [],
   prices: [
     {

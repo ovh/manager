@@ -20,5 +20,7 @@
   "creating": "Trwa tworzenie",
   "updating": "Aktualizacja",
   "unconfigured": "Brak konfiguracji",
-  "unPaid": "Niezapłacona faktura"
+  "unPaid": "Niezapłacona faktura",
+  "error": "Błąd",
+  "ready": "Aktywna"
 }

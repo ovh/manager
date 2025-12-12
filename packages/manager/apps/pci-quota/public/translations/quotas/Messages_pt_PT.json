@@ -26,6 +26,6 @@
   "pci_projects_project_quota_autoscaling_help": "A sua quota será atualizada de forma automática em função da sua utilização e segundo diferentes critérios.",
   "pci_projects_project_quota_protect_contact_support": "Contactar o Apoio ao Cliente",
   "pci_projects_project_quota_error_forbidden": "Não tem permissões suficientes para gerir os seus limites. Contacte o proprietário do serviço",
-  "pci_projects_project_quota_limit_warning": "Os limites correspondem ao máximo de recursos que você pode consumir. Para limitar os usos abusivos, estabelecemos limites por padrão.",
-  "pci_projects_project_quota_help_cta": "Compreender o funcionamento dos limites"
+  "pci_projects_project_quota_limit_warning": "As quotas correspondem ao máximo de recursos que pode consumir. Para limitar as utilizações abusivas, estabelecemos limites por defeito.",
+  "pci_projects_project_quota_help_cta": "Compreender o funcionamento das quotas"
 }

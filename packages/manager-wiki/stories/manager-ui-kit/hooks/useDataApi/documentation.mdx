@@ -1,0 +1,333 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager UI Kit/Hooks/useDataApi" />
+
+<StorybookHeading label="Overview" level={2} />
+
+The `useDataApi` hook is a unified data fetching utility that provides a consistent interface for working with different OVHcloud API versions. It automatically routes to the appropriate adapter (Iceberg, v2, or v6) based on the configuration provided.
+
+<StorybookHeading label="Features" level={3} />
+
+- 🔄 **Multi-version support**: Works with Iceberg, API v2, and API v6
+- 📦 **Automatic routing**: Selects the correct adapter based on configuration
+- ⚡ **React Query integration**: Built on React Query for efficient caching and state management
+- 🔍 **Search capabilities**: Available with Iceberg adapter
+- 🎯 **Filter management**: Available with Iceberg adapter
+- 📊 **Sorting support**: Available with Iceberg and v6 adapters
+- 📥 **Pagination**: Supports infinite queries and fetching all data at once
+- 🔄 **Auto-refetch**: Configurable refetch intervals for v6 adapter
+
+<StorybookHeading label="Adapter Selection" level={2} />
+
+The hook automatically selects the appropriate adapter based on the following logic:
+
+1. **Iceberg**: Used when `iceberg: true` is provided
+2. **v2**: Used when `version: 'v2'` and `iceberg` is not set
+3. **v6**: Used by default when `version: 'v6'` (or not specified) and `iceberg` is not set
+
+<StorybookHeading label="Parameters" level={2} />
+
+```typescript
+type UseDataApiOptions<TData = Record<string, unknown>> = {
+  /** API endpoint route */
+  route?: string;
+  /** API version to use ('v2' | 'v6') */
+  version: 'v2' | 'v6';
+  /** Enable Iceberg adapter */
+  iceberg?: boolean;
+  /** Unique cache key for React Query */
+  cacheKey: string | string[];
+  /** Enable or disable the query */
+  enabled?: boolean;
+  /** Refetch interval in milliseconds (v6 only) */
+  refetchInterval?: number | false;
+  /** Number of items per page */
+  pageSize?: number;
+  /** Initial sorting configuration */
+  defaultSorting?: SortingState;
+  /** Fetch all data at once */
+  fetchAll?: boolean;
+  /** Disable caching */
+  disableCache?: boolean;
+  /** Column definitions for datagrid (Iceberg and v6) */
+  columns?: DatagridColumn<TData>[];
+  /** Custom fetch function (v6 only) */
+  fetchDataFn?: (route: string) => Promise<{ data: TData[] }>;
+};
+```
+
+<StorybookHeading label="Returns" level={2} />
+
+The hook returns an object with the following properties:
+
+```typescript
+type UseDataApiResult<TData = Record<string, unknown>> = {
+  // React Query properties
+  isLoading: boolean;
+  isError: boolean;
+  isSuccess: boolean;
+  error: Error | null;
+  status: 'idle' | 'loading' | 'success' | 'error';
+  refetch: () => void;
+  
+  // Pagination
+  hasNextPage: boolean;
+  fetchNextPage: () => void;
+  pageIndex?: number;
+  totalCount?: number;
+  
+  // Data
+  flattenData: TData[];
+  
+  // Sorting (Iceberg and v6)
+  sorting?: {
+    sorting: SortingState;
+    setSorting: Dispatch<SetStateAction<SortingState>>;
+    manualSorting: boolean;
+  };
+  
+  // Filters (Iceberg only)
+  filters?: {
+    filters: FilterWithLabel[];
+    add: (filter: FilterWithLabel) => void;
+    remove: (filter: Filter) => void;
+  };
+  
+  // Search (Iceberg only)
+  search?: {
+    onSearch: (search: string | undefined) => void;
+    searchInput: string;
+    setSearchInput: Dispatch<SetStateAction<string>>;
+  };
+};
+```
+
+<StorybookHeading label="Examples" level={2} />
+
+<StorybookHeading label="Basic Usage with v6" level={3} />
+
+```tsx
+import { useDataApi } from '@ovh-ux/manager-ui-kit';
+
+interface MyResource {
+  id: string;
+  name: string;
+  status: string;
+}
+
+const columns = [
+  {
+    id: 'name',
+    label: 'name',
+    accessorKey: 'name',
+    isSortable: true,
+    cell: ({ getValue }: any) => <div>{getValue()}</div>,
+  },
+  {
+    id: 'ip',
+    label: 'ip',
+    accessorKey: 'ip',
+    isSortable: true,
+    cell: ({ getValue }: any) => <div>{getValue()}</div>,
+  },
+]
+
+function MyComponent() {
+  const {
+    flattenData,
+    isLoading,
+    isError,
+    error,
+  } = useDataApi<MyResource>({
+    route: '/api/v6/my-resources',
+    version: 'v6',
+    cacheKey: ['my-resources'],
+    enabled: true,
+    columns: columns,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error?.message}</div>;
+
+  return (
+    <ul>
+      {flattenData.map((resource) => (
+        <li key={resource.id}>{resource.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+<StorybookHeading label="Using v2 API" level={3} />
+
+```tsx
+function MyComponent() {
+  const {
+    flattenData,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+  } = useDataApi({
+    route: '/api/v2/my-resources',
+    version: 'v2',
+    cacheKey: ['my-resources-v2'],
+    pageSize: 20,
+    enabled: true,
+  });
+
+  return (
+    <div>
+      <ul>
+        {flattenData.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+      {hasNextPage && (
+        <button onClick={() => fetchNextPage()}>
+          Load More
+        </button>
+      )}
+    </div>
+  );
+}
+```
+
+<StorybookHeading label="Using Iceberg with Search and Filters" level={3} />
+
+```tsx
+function MyComponent() {
+  const {
+    flattenData,
+    sorting,
+    filters,
+    search,
+    isLoading,
+  } = useDataApi({
+    route: '/api/v2/my-resources',
+    version: 'v2',
+    iceberg: true,
+    cacheKey: ['my-resources-iceberg'],
+    columns: [
+      { id: 'name', isSearchable: true, isFilterable: true },
+      { id: 'status', isFilterable: true },
+    ],
+    defaultSorting: [{ id: 'name', desc: false }],
+    enabled: true,
+  });
+
+  return (
+    <div>
+      {/* Search input */}
+      <input
+        value={search?.searchInput || ''}
+        onChange={(e) => {
+          search?.setSearchInput(e.target.value);
+          search?.onSearch(e.target.value);
+        }}
+        placeholder="Search..."
+      />
+
+      {/* Filters */}
+      <button
+        onClick={() => {
+          filters?.add({
+            key: 'status',
+            value: 'active',
+            comparator: 'equals',
+            label: 'Status: Active',
+          });
+        }}
+      >
+        Filter by Active Status
+      </button>
+
+      {/* Data table */}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {flattenData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+```
+
+<StorybookHeading label="Using Custom Fetch Function (v6)" level={3} />
+
+```tsx
+function MyComponent() {
+  const { flattenData, isLoading } = useDataApi({
+    version: 'v6',
+    cacheKey: ['custom-resources'],
+    fetchDataFn: async (route) => {
+      const response = await fetch(route);
+      const json = await response.json();
+      return { data: json.items };
+    },
+    enabled: true,
+    columns,
+  });
+
+  // ...
+}
+```
+
+<StorybookHeading label="Conditional Fetching" level={3} />
+
+```tsx
+function MyComponent({ shouldFetch }: { shouldFetch: boolean }) {
+  const { flattenData, isLoading } = useDataApi({
+    route: '/api/v6/my-resources',
+    version: 'v6',
+    cacheKey: ['my-resources'],
+    enabled: shouldFetch, // Only fetch when shouldFetch is true
+  });
+
+  // ...
+}
+```
+
+<StorybookHeading label="Auto-refetch with Interval (v6)" level={3} />
+
+```tsx
+function MyComponent() {
+  const { flattenData, isLoading } = useDataApi({
+    route: '/api/v6/my-resources',
+    version: 'v6',
+    cacheKey: ['my-resources'],
+    refetchInterval: 5000, // Refetch every 5 seconds
+    columns,
+  });
+
+  // ...
+}
+```
+
+<StorybookHeading label="Notes" level={2} />
+
+- ⚡ The hook uses React Query under the hood for efficient data caching and state management
+- 🔄 When using Iceberg adapter, search and filter capabilities are available for columns marked with `isSearchable` and `isFilterable`
+- 📥 The `fetchAll` option will automatically fetch all available data, bypassing pagination
+- 🔍 Search functionality is only available with the Iceberg adapter
+- 🎯 Filter functionality is only available with the Iceberg adapter
+- 📊 Sorting is available with both Iceberg and v6 adapters
+- 🔄 The `refetchInterval` option is only available with the v6 adapter
+- 📦 The `fetchDataFn` option is only available with the v6 adapter and allows you to provide a custom data fetching function
+
