@@ -13,13 +13,9 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { ServiceKeyAction } from './service-key.type';
@@ -33,7 +29,7 @@ export const useServiceKeyActionsList = (
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { addSuccess, clearNotifications } = useNotifications();
   const navigate = useNavigate();
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick, trackPage } = useOkmsTracking();
   const trackLocation = page === 'list' ? PageLocation.datagrid : PageLocation.page;
 
   const downloadAction = useServiceKeyDownload({
