@@ -1,0 +1,7 @@
+{
+  "dedicated_server_dashboard_resiliate_service": "Serveur Dedié",
+  "dedicated_server_dashboard_resiliate_service_terminateAtExpirationDate": "Your service will remain active until {{expirationDate}}, the end of the current billing period.",
+  "dedicated_server_dashboard_resiliate_service_terminate": "Your service will be terminated immediately and you will not be billed again for this service.",
+  "dedicated_server_dashboard_resiliate_service_terminateAtEngagementDate": "Your service will remain active and you will be billed until the end of your commitment on {{commitmentEndDate}}.",
+  "dedicated_server_dashboard_resiliate_service_deleteAtExpiration": "Your service will be terminated immediately. However, you will still be charged the monthly fee for this service until the end of your commitment on {{commitmentEndDate}}."
+}

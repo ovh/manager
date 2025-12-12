@@ -206,7 +206,7 @@
         <oui-tile-description>
             <oui-skeleton size="s" data-ng-if="$ctrl.isLoading"></oui-skeleton>
             <div
-                data-ng-if="!$ctrl.isLoading && $ctrl.canResiliate() && (!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation()"
+                data-ng-if="!$ctrl.canResiliateService() && !$ctrl.isLoading && $ctrl.canResiliate() && (!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation()"
             >
                 <a
                     class="oui-link_icon"
@@ -234,7 +234,7 @@
 
             <!-- Pack XDSL -->
             <div
-                data-ng-if="$ctrl.serviceInfos.serviceType === $ctrl.SERVICE_TYPE.PACK_XDSL && ((!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation())"
+                data-ng-if="!$ctrl.canResiliateService() && $ctrl.serviceInfos.serviceType === $ctrl.SERVICE_TYPE.PACK_XDSL && ((!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation())"
             >
                 <a
                     class="oui-link_icon"
@@ -257,6 +257,17 @@
                             class="oui-icon oui-icon-arrow-right"
                         ></span>
                     </p>
+                </a>
+            </div>
+            <div data-ng-if="$ctrl.canResiliateService()">
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{ $ctrl.resiliateService() }}"
+                    target="_top"
+                >
+                    <span
+                        data-translate="dedicated_server_dashboard_close_service"
+                    ></span>
                 </a>
             </div>
             <!-- /Pack XDSL -->
