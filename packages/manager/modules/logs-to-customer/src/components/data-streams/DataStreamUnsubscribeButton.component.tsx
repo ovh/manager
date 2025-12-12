@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { Button } from '@ovh-ux/muk';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { LogsContext } from '@/LogsToCustomer.context';
@@ -41,16 +40,17 @@ const UnsubscribeButton = ({
   };
 
   return (
-    <ManagerButton
+    <Button
       size="sm"
       variant="outline"
       onClick={handleClick}
-      isLoading={isPending}
+      loading={isPending}
       iamActions={logIamActions?.deleteSubscription}
       urn={resourceURN}
-      label={t('log_streams_unsubscribe')}
       id="data-stream-unsubscribe"
-    />
+    >
+      {t('log_streams_unsubscribe')}
+    </Button>
   );
 };
 

@@ -41,12 +41,14 @@ describe('LogsToCustomer module', () => {
   });
 
   it('should render the log kind select when there is 2 or more log kinds', async () => {
-    await renderTest();
+    const { container } = await renderTest();
 
     await waitFor(() => expect(screen.queryByTestId('logKindSelect')).toBeInTheDocument(), {
       timeout: 10_000,
     });
     expect(screen.queryByText('log_kind_selector_select_label')).toBeInTheDocument();
-    expect(screen.queryAllByTestId('logKindOption')).toHaveLength(logKindsMock.length);
+    // ODS 19 Select renders options inside a native <select> element
+    const selectElement = container.querySelector('select[name="select-log-kind"]');
+    expect(selectElement?.querySelectorAll('option')).toHaveLength(logKindsMock.length);
   });
 });

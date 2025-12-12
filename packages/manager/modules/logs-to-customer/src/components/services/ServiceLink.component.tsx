@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { Icon, Link, ICON_NAME } from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
@@ -28,12 +28,10 @@ const ServiceLink = ({ service }: { service: Service }) => {
   }, [navigation, service]);
 
   return (
-    <Links
+    <Link
       href={serviceUrl}
-      label={getServiceLabel(service)}
-      type={LinkType.external}
       target="_blank"
-      onClickReturn={() => {
+      onClick={() => {
         trackClick({
           location: PageLocation.page,
           buttonType: ButtonType.button,
@@ -41,7 +39,10 @@ const ServiceLink = ({ service }: { service: Service }) => {
           actions: [goToDetailLogsAccess],
         });
       }}
-    />
+    >
+      {getServiceLabel(service)}
+      <Icon name={ICON_NAME.externalLink} />
+    </Link>
   );
 };
 
