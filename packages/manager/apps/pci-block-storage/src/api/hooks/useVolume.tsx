@@ -239,12 +239,14 @@ export const useAttachVolume = ({
         getVolumesQueryKey(projectId),
         (data: { id: string }[]) =>
           data?.map((v) =>
-            v.id === volumeId ? { ...volume, attachedTo: [instanceId] } : v,
+            v.id === volumeId
+              ? { ...volume, attachedTo: [...volume.attachedTo, instanceId] }
+              : v,
           ),
       );
       queryClient.setQueryData(getVolumeQueryKey(projectId, volumeId), () => ({
         ...volume,
-        attachedTo: [instanceId],
+        attachedTo: [...volume.attachedTo, instanceId],
       }));
       onSuccess();
     },
