@@ -34,10 +34,14 @@ describe('[INTEGRATION] - Tenant agent add configuration page', () => {
       { timeout: 10_000 },
     );
 
-    [
-      labels.servicesAgent.select_server,
-      labels.servicesAgent.select_os,
-      labels.servicesAgent.download_agent,
-    ].forEach((label) => expect(screen.getByText(label)).toBeVisible());
+    await waitFor(() => {
+      [
+        labels.servicesAgent.select_server,
+        labels.servicesAgent.select_os,
+        labels.servicesAgent.download_agent,
+      ]
+        // eslint-disable-next-line max-nested-callbacks
+        .forEach((label) => expect(screen.getByText(label)).toBeVisible());
+    });
   });
 });

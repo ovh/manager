@@ -1,7 +1,7 @@
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
 
+import { getVaultDetails } from '@/data/api/vaults/vault.requests';
 import { BACKUP_VAULTS_LIST_QUERY_KEY } from '@/data/hooks/vaults/getVault';
-import { mockVaults } from '@/mocks/vaults/vaults';
 import { VaultResource } from '@/types/Vault.type';
 
 export const BACKUP_VAULT_DETAILS_QUERY_KEY = (vaultId: string) => [
@@ -17,11 +17,8 @@ export const useBackupVaultDetails = ({
   vaultId: string;
 } & Partial<Omit<DefinedInitialDataOptions<VaultResource>, 'queryKey' | 'queryFn'>>) =>
   useQuery({
-    queryFn: () =>
-      new Promise<VaultResource>((resolve, reject) => {
-        const result = mockVaults.find((vault) => vault.id === vaultId);
-        result ? resolve(result) : reject(new Error('Vault not found'));
-      }),
+    queryFn: () => getVaultDetails(vaultId),
     queryKey: BACKUP_VAULT_DETAILS_QUERY_KEY(vaultId),
+    enabled: !!vaultId,
     ...options,
   });
