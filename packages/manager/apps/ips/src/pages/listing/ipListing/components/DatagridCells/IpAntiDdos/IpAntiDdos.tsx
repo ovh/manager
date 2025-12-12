@@ -7,7 +7,7 @@ import {
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { IpAntiDdosDisplay } from './IpAntiDdosDisplay';
-import { isAntiDdosEnabled } from '../enableCellsUtils';
+import { isAntiDdosAvailable } from '../enableCellsUtils';
 
 export type IpAntiDdosProps = {
   ip: string;
@@ -41,7 +41,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
   const enabled =
     expiredIps.indexOf(ip) === -1 &&
     !isDetailsLoading &&
-    isAntiDdosEnabled(ipDetails);
+    isAntiDdosAvailable(ipDetails);
 
   const { ipMitigation, isLoading, error } = useGetIpMitigationWithoutIceberg({
     ip,
