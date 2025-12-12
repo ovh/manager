@@ -6,6 +6,10 @@ import {
   selectAttachableInstances,
   selectAttachedInstances,
 } from '@/api/select/instances';
+import {
+  forceReloadUseQueryOptions,
+  TApiHookOptions,
+} from '@/api/hooks/helpers';
 
 const getInstancesQueryKey = (projectId: string, region?: string) => [
   'instances',
@@ -32,7 +36,11 @@ export const useAttachableInstances = (projectId: string, volumeId: string) => {
   });
 };
 
-export const useAttachedInstances = (projectId: string, volumeId: string) => {
+export const useAttachedInstances = (
+  projectId: string,
+  volumeId: string,
+  options: TApiHookOptions = {},
+) => {
   const { data: volume } = useVolume(projectId, volumeId);
 
   const select = useMemo(
@@ -45,5 +53,6 @@ export const useAttachedInstances = (projectId: string, volumeId: string) => {
     queryFn: () => getInstancesByRegion(projectId, volume.region),
     enabled: !!volume,
     select,
+    ...(options.forceReload && forceReloadUseQueryOptions),
   });
 };
