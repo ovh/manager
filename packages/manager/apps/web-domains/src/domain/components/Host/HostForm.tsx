@@ -13,10 +13,7 @@ import {
   FormFieldError,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import {
-  DrawerActionEnum,
-  IpsSupportedEnum,
-} from '@/domain/enum/hostConfiguration.enum';
+import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 import HostIpsSupportedMessage from '@/domain/components/Host/HostIpsSupportedMessage';
 import { THost } from '@/domain/types/host';
 import { useFormContext } from 'react-hook-form';
@@ -25,6 +22,7 @@ import {
   getIpsErrorMessage,
   tranformIpsStringToArray,
 } from '@/domain/utils/utils';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 interface HostFormProps {
   readonly drawerAction: DrawerActionEnum;

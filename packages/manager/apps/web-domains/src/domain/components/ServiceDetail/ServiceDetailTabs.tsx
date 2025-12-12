@@ -21,6 +21,7 @@ import {
 } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
+import { DashboardTabItemProps } from '@/domain/types/serviceDetail';
 
 interface ServiceDetailsTabsProps {
   readonly domainResource: TDomainResource;
@@ -66,35 +67,26 @@ export default function ServiceDetailsTabs({
     }
   }, [location.pathname]);
 
-  const isDisabled = (value: string, name: string, bool: boolean) => {
-    if (value.includes(name) && bool) {
-      return true;
-    }
-    return false;
-  };
+  const isDisabled = (
+    tab: DashboardTabItemProps,
+    domainResource: TDomainResource,
+  ) => (tab.rule ? tab.rule(domainResource) : false);
 
   return (
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
         {ServiceDetailTabsProps.map((tab) => {
+          const disabled = isDisabled(tab, domainResource);
           return (
             <Tab
               key={tab.id}
               value={tab.value}
               data-testid={tab.id}
-              disabled={isDisabled(
-                tab.value,
-                'hosts',
-                !domainResource.currentState.hostsConfiguration.hostSupported,
-              )}
+              disabled={disabled}
               className="flex items-center gap-x-4"
             >
               {t(tab.name)}
-              {isDisabled(
-                tab.value,
-                'hosts',
-                !domainResource.currentState.hostsConfiguration.hostSupported,
-              ) && (
+              {disabled && (
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Icon name={ICON_NAME.circleInfo} />

@@ -18,10 +18,12 @@ import {
   transferTag,
 } from '@/domain/data/api/domainResources';
 import {
+  DsRecordApiError,
   ServiceType,
   TDomainOption,
   TDomainResource,
   TTargetSpec,
+  TUpdateDomainVariables,
 } from '@/domain/types/domainResource';
 import {
   activateServiceDnssec,
@@ -50,9 +52,7 @@ import {
   orderFreeHosting,
 } from '@/domain/data/api/hosting';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
-import { THost } from '@/domain/types/host';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
-import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -159,7 +159,11 @@ export const useTerminateAnycastMutation = (
 export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
 
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, error, reset } = useMutation<
+    void,
+    DsRecordApiError,
+    TUpdateDomainVariables
+  >({
     mutationKey: ['domain', 'resource', 'update', serviceName],
     mutationFn: ({
       checksum,
@@ -190,7 +194,9 @@ export const useUpdateDomainResource = (serviceName: string) => {
 
   return {
     updateDomain: mutate,
+    errorMessage: error,
     isUpdateDomainPending: isPending,
+    resetError: reset,
   };
 };
 

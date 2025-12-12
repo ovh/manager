@@ -6,8 +6,6 @@ import {
   TTargetSpec,
 } from '@/domain/types/domainResource';
 import { OptionEnum } from '@/common/enum/option.enum';
-import { THost } from '@/domain/types/host';
-import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 
 /**
  *  : Get this Domain properties
