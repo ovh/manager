@@ -62,7 +62,7 @@ const deleteCookie = (name: string, path = "/", domain?: string) => {
   }`;
 };
 
-// Temporary function to delete cookies
+// Temporary function to delete matching cookies
 const deleteMatchingCookies = () => {
   const cookies = document.cookie.split("; ");
 
