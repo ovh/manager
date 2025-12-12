@@ -14,7 +14,6 @@ import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
 import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
 import { THost, THostsconfiguration } from './host';
-import contact from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/contact/Messages_fr_FR.json';
 import { TDnssecConfiguration, TDsDataInterface } from './dnssecConfiguration';
 import { AxiosError } from 'axios';
 

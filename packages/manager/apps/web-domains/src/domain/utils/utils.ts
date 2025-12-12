@@ -10,12 +10,13 @@ import {
   transformTarget,
 } from '@/domain/utils/dnsUtils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
-import { FreeHostingOptions } from '../components/AssociatedServicesCards/Hosting';
-import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
-import { THost } from '../types/host';
-import { TDsDataInterface } from '../types/dnssecConfiguration';
-import { algorithm_RSASHZA3457 } from '../constants/dsRecords';
+import { DNS_UPDATE_OPERATION } from '@/domain/constants/dns.const';
+import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
+import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
+import { THost } from '@/domain/types/host';
+import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
+import { algorithm_RSASHZA3457 } from '@/domain/constants/dsRecords';
+import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -217,3 +218,7 @@ export const getPublicKeyError = (value: string) => {
 
   return '';
 };
+
+export const isDsRecordActionDisabled = (
+  activeConfiguration: ActiveConfigurationTypeEnum,
+) => activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL;

@@ -122,9 +122,13 @@ export default function HostDrawer({
             },
             onError: (e) => {
               addError(
-                t('domain_tab_hosts_drawer_add_error_message', {
-                  error: e,
-                }),
+                isAddAction
+                  ? t('domain_tab_hosts_drawer_add_error_message', {
+                      error: e,
+                    })
+                  : t('domain_tab_hosts_drawer_add_error_message', {
+                      error: e,
+                    }),
               );
             },
             onSettled: () => {
