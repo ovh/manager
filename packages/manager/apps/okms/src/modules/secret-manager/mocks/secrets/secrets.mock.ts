@@ -71,11 +71,6 @@ export const mockSecret3: Secret = {
     createdAt: '2023-04-22T14:15:30Z',
     updatedAt: '2023-04-22T19:15:30Z',
     currentVersion: 3,
-    customMetadata: {
-      environment: 'staging',
-      application: 'user-database',
-      owner: 'db-team',
-    },
     deactivateVersionAfter: '20d20h20m20s',
     oldestVersion: 1,
     maxVersions: 10,
