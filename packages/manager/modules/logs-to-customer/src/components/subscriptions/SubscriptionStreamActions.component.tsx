@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+
+import { Button, BUTTON_VARIANT, Icon, ICON_NAME, Link, Spinner } from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
@@ -45,7 +45,7 @@ const SubscriptionStreamActions = ({
   if (isLoading || isPending) {
     return (
       <div className="flex justify-center w-full py-4">
-        <OdsSpinner size="md" data-testid="logStreamUrl-spinner" />
+        <Spinner size="md" data-testid="logStreamUrl-spinner" />
       </div>
     );
   }
@@ -68,11 +68,10 @@ const SubscriptionStreamActions = ({
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <Links
+      <Link
         href={data?.streamURL?.address}
-        type={LinkType.external}
         target="_blank"
-        onClickReturn={() => {
+        onClick={() => {
           trackClick({
             location: PageLocation.page,
             buttonType: ButtonType.button,
@@ -80,11 +79,13 @@ const SubscriptionStreamActions = ({
             actions: [graylogObserveLogsAccess],
           });
         }}
-        label={t('log_stream_button_graylog_watch_label')}
-      />
-      <OdsButton
-        className="[&::part(button)]:w-full self-stretch"
-        variant="outline"
+      >
+        {t('log_stream_button_graylog_watch_label')}
+        <Icon name={ICON_NAME.externalLink} />
+      </Link>
+      <Button
+        className="w-full self-stretch"
+        variant={BUTTON_VARIANT.outline}
         size="sm"
         onClick={() => {
           trackClick({
@@ -95,8 +96,9 @@ const SubscriptionStreamActions = ({
           });
           navigate(`subscription/${subscription.subscriptionId}/terminate`);
         }}
-        label={tSubscription('log_subscription_button_unsubscribe_label')}
-      />
+      >
+        {tSubscription('log_subscription_button_unsubscribe_label')}
+      </Button>
     </div>
   );
 };
