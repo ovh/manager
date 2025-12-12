@@ -1,11 +1,9 @@
 import { useMediaQuery } from 'react-responsive';
-
 import { useTranslation } from 'react-i18next';
-
-import style from './style.module.scss';
-
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 import useContainer from '@/core/container';
+import style from './style.module.scss';
+import clsx from 'clsx';
 
 export type Props = {
   children?: JSX.Element;
@@ -19,11 +17,19 @@ function LanguageButton({
   show = false,
 }: Props): JSX.Element {
   const { t } = useTranslation('language');
-  const { betaVersion, useBeta } = useContainer();
-  const isNavReshuffle = betaVersion && useBeta;
+  const { useBeta } = useContainer();
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
+
+
+  const buttonClassName = clsx(
+    'oui-navbar-link oui-navbar-link_dropdown',
+    style.navbarFontSize,
+    isSmallDevice ? 'p-0' : '-ml-[0.75rem]',
+    useBeta && style.contrastedButton,
+  );
+
   return (
     <button
       aria-haspopup={show}
@@ -31,9 +37,7 @@ function LanguageButton({
       aria-label={t('language_change')}
       title={t('language_change')}
       type="button"
-      className={`oui-navbar-link oui-navbar-link_dropdown ${
-        style.navbarFontSize
-      } ${isSmallDevice ? 'p-0' : ''} ${isNavReshuffle ? style.contrastedButton : ''}`}
+      className={buttonClassName}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);

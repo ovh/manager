@@ -27,7 +27,6 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const trackingPlugin = shell.getPlugin('tracking');
   const { setIsNotificationsSidebarVisible } = useHeader();
 
-  const pluginEnvironement = shell.getPlugin('environment');
   const user = useUser();
 
   const {

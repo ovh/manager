@@ -1,20 +1,21 @@
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import useContainer from '@/core/container';
-import style from './cloud-shell.module.scss';
+import clsx from 'clsx';
 
 const CloudShellLink = (): JSX.Element => {
   const { t } = useTranslation('navbar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
-  const { betaVersion, useBeta } = useContainer();
-  const isNavReshuffle = betaVersion && useBeta;
+  const { useBeta } = useContainer();
   const applications = shell
     .getPlugin('environment')
     .getEnvironment()
     .getApplications();
 
   const url = applications['cloud-shell']?.publicURL;
+
+  if (!url) return null;
 
   const handleClick = () => {
     trackingPlugin.trackClick({
@@ -23,9 +24,15 @@ const CloudShellLink = (): JSX.Element => {
     });
   };
 
+  const className = clsx(
+    'block bg-transparent',
+    useBeta && '*:text-[var(--ods-color-primary-100)]', // Force-override UI-kit link styles
+    !useBeta && 'disabled:opacity-50 oui-navbar-link oui-navbar-link_icon',
+  );
+
   return (
     <a
-      className={`oui-navbar-link oui-navbar-link_icon ${isNavReshuffle ? style.cloudShellIconContrasted : style.cloudShellIcon}`}
+      className={className}
       href={url}
       onClick={handleClick}
       title={t('navbar_cloud_shell')}
