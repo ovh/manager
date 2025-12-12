@@ -6,7 +6,7 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { Card, OnboardingLayout, useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -24,6 +24,7 @@ export default function Onboarding() {
   const { trackClick } = useOvhTracking();
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
+  const { data: availability } = useFeatureAvailability(['web-office:order']);
 
   return (
     <OnboardingLayout
@@ -38,21 +39,25 @@ export default function Onboarding() {
         </OdsText>
       }
       orderButtonLabel={t(`${NAMESPACES.ACTIONS}:order`)}
-      onOrderButtonClick={() => {
-        trackClick({
-          location: PageLocation.page,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: [ORDER_OFFICE],
-        });
+      onOrderButtonClick={
+        availability?.['web-office:order']
+          ? () => {
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: [ORDER_OFFICE],
+              });
 
-        window.open(
-          GUIDES_LIST.office_cta_order.url[ovhSubsidiary] ||
-            GUIDES_LIST.office_cta_order.url.DEFAULT,
-          '_blank',
-          'noopener',
-        );
-      }}
+              window.open(
+                GUIDES_LIST.office_cta_order.url[ovhSubsidiary] ||
+                  GUIDES_LIST.office_cta_order.url.DEFAULT,
+                '_blank',
+                'noopener',
+              );
+            }
+          : null
+      }
     >
       {[1, 2, 3].map((value: number) => (
         <Card

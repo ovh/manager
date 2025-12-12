@@ -102,7 +102,7 @@ export default function ModalDeleteUsers() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-4">
           <Trans t={t} i18nKey="dashboard_users_delete_confirm" values={{ t0: activationEmail }} />
         </OdsText>
-        <OdsMessage color={ODS_MESSAGE_COLOR.critical} className="mt-4 mb-6" isDismissible={false}>
+        <OdsMessage color={ODS_MESSAGE_COLOR.critical} className="mb-6 mt-4" isDismissible={false}>
           <div>
             <span className="block font-bold">{t('dashboard_users_delete_info1')}</span>
             <p>{t('dashboard_users_delete_info2')}</p>

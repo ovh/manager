@@ -224,7 +224,7 @@ export default function ModalChangePasswordUsers() {
           control={control}
           name="email"
           render={({ field: { name, value, onBlur, onChange } }) => (
-            <OdsFormField className="w-full mt-4 mb-4" error={errors?.email?.message}>
+            <OdsFormField className="my-4 w-full" error={errors?.email?.message}>
               <label slot="label">
                 {t('dashboard_users_change_password_label_email')}
                 {isAutomatic && '*'}
